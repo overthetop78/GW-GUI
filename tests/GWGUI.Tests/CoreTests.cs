@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Profiles;
 using GWGUI.Scp;

@@ -1,13 +1,9 @@
-<Window x:Class="GWGUI.App.DriveEditorWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Définir un lecteur" Width="520" Height="410" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
-    <Grid Margin="24"><Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Text="Contrôleur Greaseweazle"/><ComboBox x:Name="ControllerCombo" DisplayMemberPath="Label" Margin="0,6,0,16"/>
-            <TextBlock Text="Sélection transmise à gw"/><ComboBox x:Name="SelectionCombo" Margin="0,6,0,16"><ComboBoxItem Content="A"/><ComboBoxItem Content="B"/><ComboBoxItem Content="0"/><ComboBoxItem Content="1"/><ComboBoxItem Content="2"/></ComboBox>
-            <TextBlock Text="Taille physique"/><ComboBox x:Name="SizeCombo" Margin="0,6,0,16"><ComboBoxItem Content="3"/><ComboBoxItem Content="3,5"/><ComboBoxItem Content="5,25"/><ComboBoxItem Content="8"/></ComboBox>
-            <TextBlock Text="Densité du lecteur (description uniquement)"/><ComboBox x:Name="DensityCombo" Margin="0,6,0,16"><ComboBoxItem Content="Inconnue"/><ComboBoxItem Content="DD"/><ComboBoxItem Content="HD"/><ComboBoxItem Content="ED"/></ComboBox>
-            <TextBlock Text="Vitesse nominale (description uniquement)"/><ComboBox x:Name="RpmCombo" Margin="0,6"><ComboBoxItem Content="Inconnue"/><ComboBoxItem Content="300 RPM"/><ComboBoxItem Content="360 RPM"/></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"><Button Content="Annuler" IsCancel="True"/><Button Content="Enregistrer" Style="{StaticResource PrimaryButton}" IsDefault="True" Click="Save_Click"/></StackPanel>
-    </Grid>
+<Window x:Class="GWGUI.App.DriveEditorWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization" Title="{l:Loc Hardware.EditorTitle}" Width="520" Height="410" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+ <Grid Margin="24"><Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><StackPanel>
+  <TextBlock Text="{l:Loc Hardware.Controller}"/><ComboBox x:Name="ControllerCombo" DisplayMemberPath="Label" Margin="0,6,0,16"/>
+  <TextBlock Text="{l:Loc Hardware.GwSelection}"/><ComboBox x:Name="SelectionCombo" Margin="0,6,0,16"><ComboBoxItem Content="A"/><ComboBoxItem Content="B"/><ComboBoxItem Content="0"/><ComboBoxItem Content="1"/><ComboBoxItem Content="2"/></ComboBox>
+  <TextBlock Text="{l:Loc Hardware.PhysicalSize}"/><ComboBox x:Name="SizeCombo" Margin="0,6,0,16"><ComboBoxItem Content="3"/><ComboBoxItem Content="3.5"/><ComboBoxItem Content="5.25"/><ComboBoxItem Content="8"/></ComboBox>
+  <TextBlock Text="{l:Loc Hardware.DensityDescription}"/><ComboBox x:Name="DensityCombo" Margin="0,6,0,16"><ComboBoxItem Tag="Unknown" Content="{l:Loc Common.Unknown}"/><ComboBoxItem Tag="DD" Content="DD"/><ComboBoxItem Tag="HD" Content="HD"/><ComboBoxItem Tag="ED" Content="ED"/></ComboBox>
+  <TextBlock Text="{l:Loc Hardware.SpeedDescription}"/><ComboBox x:Name="RpmCombo" Margin="0,6"><ComboBoxItem Content="{l:Loc Common.Unknown}"/><ComboBoxItem Content="300 RPM"/><ComboBoxItem Content="360 RPM"/></ComboBox>
+ </StackPanel><StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"><Button Content="{l:Loc Common.Cancel}" IsCancel="True"/><Button Content="{l:Loc Common.Save}" Style="{StaticResource PrimaryButton}" IsDefault="True" Click="Save_Click"/></StackPanel></Grid>
 </Window>

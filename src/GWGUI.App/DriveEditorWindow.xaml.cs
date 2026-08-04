@@ -30,7 +30,7 @@ public partial class DriveEditorWindow : Window
             ControllerUsbId = controller.UsbId,
             Selection = ((ComboBoxItem)SelectionCombo.SelectedItem).Content.ToString()!,
             Size = ((ComboBoxItem)SizeCombo.SelectedItem).Content.ToString()!.Replace(',', '.'),
-            Density = ((ComboBoxItem)DensityCombo.SelectedItem).Content.ToString()!,
+            Density = ((ComboBoxItem)DensityCombo.SelectedItem).Tag.ToString()!,
             NominalRpm = RpmCombo.SelectedIndex switch { 1 => 300, 2 => 360, _ => null }
         };
         DialogResult = true;
