@@ -9,6 +9,7 @@ using GWGUI.Domain.Read;
 using GWGUI.Domain.Naming;
 using GWGUI.Domain.Profiles;
 using GWGUI.Domain.Write;
+using GWGUI.Domain.Conversion;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
@@ -25,6 +26,7 @@ public partial class MainWindow : Window
     private IProfileStore _profiles = new InMemoryProfileStore();
     private readonly ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
+    private readonly List<ConversionFormatControl> _conversionControls = [];
 
     public MainWindow()
     {
@@ -45,6 +47,8 @@ public partial class MainWindow : Window
         ReadFamilyCombo.SelectedIndex = 0;
         RefreshReadProfiles();
         RefreshWriteProfiles();
+        ConvertTags.IsChecked = _settings.Conversion.AddTags;
+        BuildConversionFormats(null);
         RestoreReadSettings();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
@@ -54,6 +58,7 @@ public partial class MainWindow : Window
     {
         if (MainTabs?.SelectedIndex == 1) UpdateWriteCommand();
         else if (MainTabs?.SelectedIndex == 0) UpdateReadCommand();
+        else if (MainTabs?.SelectedIndex == 2) UpdateConvertCommand();
     }
 
     private void RefreshWriteProfiles(string? selectedId = null)
@@ -141,6 +146,116 @@ public partial class MainWindow : Window
         RefreshWriteProfiles(profile.Id);
     }
 
+    private void BuildConversionFormats(string? sourceExtension)
+    {
+        if (ConvertCommonPanel is null) return;
+        var selected = _conversionControls.Count == 0 ? _settings.Conversion.SelectedFormats : _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
+        var extensions = _conversionControls.Count == 0 ? _settings.Conversion.ExplicitExtensions : _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
+        _conversionControls.Clear(); ConvertPinnedPanel.Children.Clear(); ConvertCommonPanel.Children.Clear(); ConvertRarePanel.Children.Clear();
+        var compatible = sourceExtension is null ? _formatCatalog.Formats.Select(x => x.Id).ToHashSet() : _formatCatalog.GetCompatibleOutputs(sourceExtension).Select(x => x.Id).ToHashSet();
+        foreach (var format in _formatCatalog.Formats.Where(x => x.Id != "raw.scp").OrderBy(x => x.Family).ThenBy(x => x.DisplayName))
+        {
+            var control = new ConversionFormatControl(format) { IsEnabled = compatible.Contains(format.Id) };
+            if (!control.IsEnabled) control.ToolTip = $"{format.DisplayName} n’est pas compatible avec cette source.";
+            control.SetState(selected.Contains(format.Id) && control.IsEnabled, extensions.GetValueOrDefault(format.Id));
+            control.ValueChanged += ConversionSelectionChanged; _conversionControls.Add(control);
+            (control.IsSelected ? ConvertPinnedPanel : format.IsCommon ? ConvertCommonPanel : ConvertRarePanel).Children.Add(control);
+        }
+    }
+
+    private void ConversionSelectionChanged(object? sender, EventArgs e)
+    {
+        if (sender is not ConversionFormatControl control) return;
+        if (control.Parent is Panel oldParent) oldParent.Children.Remove(control);
+        var destination = control.IsSelected ? ConvertPinnedPanel : control.Format.IsCommon ? ConvertCommonPanel : ConvertRarePanel;
+        var index = destination.Children.OfType<ConversionFormatControl>().TakeWhile(x => string.Compare(x.Format.DisplayName, control.Format.DisplayName, StringComparison.CurrentCulture) < 0).Count();
+        destination.Children.Insert(index, control); UpdateConvertCommand();
+    }
+
+    private void BrowseConvertSource_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog { Filter = "Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
+        if (dialog.ShowDialog(this) != true) return;
+        ConvertSourceText.Text = dialog.FileName; ConvertOutputName.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
+        var detection = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
+        ConvertSourceInfo.Text = detection.Format?.DisplayName ?? "Source ambiguë";
+        BuildConversionFormats(Path.GetExtension(dialog.FileName)); UpdateConvertCommand();
+    }
+
+    private void ConvertInput_Changed(object sender, RoutedEventArgs e) => UpdateConvertCommand();
+
+    private IReadOnlyList<ConversionOutput> PlanConversions()
+    {
+        if (string.IsNullOrWhiteSpace(ConvertSourceText.Text)) return [];
+        return new ConversionPlanner(_formatCatalog).Plan(ConvertSourceText.Text, Path.GetDirectoryName(ConvertSourceText.Text)!, ConvertOutputName.Text.Trim(), _conversionControls.Where(x => x.IsSelected).Select(x => x.ToSelection()), ConvertTags.IsChecked == true);
+    }
+
+    private EnabledOption[] GetConvertOptions() => ConvertTracksEnabled.IsChecked == true ? [new("--tracks", ConvertTracksValue.Text.Trim())] : [];
+
+    private void UpdateConvertCommand()
+    {
+        if (CommandPreview is null || ConvertSourceText is null || MainTabs?.SelectedIndex != 2) return;
+        try
+        {
+            var outputs = PlanConversions();
+            if (outputs.Count == 0) { CommandPreview.Text = "Sélectionnez au moins un format de sortie."; return; }
+            var first = ConversionCommandBuilder.Build(_settings.GwExecutablePath ?? "gw.exe", ConvertSourceText.Text, outputs[0], GetConvertOptions(), ConvertExpertArguments.Text);
+            CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? $"  (+ {outputs.Count - 1} conversion(s))" : "");
+        }
+        catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+    }
+
+    private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
+    {
+        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show("Choisissez une image source existante.", "Conversion"); return; }
+        if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show("Indiquez le nom des fichiers de sortie.", "Conversion"); return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show("Greaseweazle Tools n’est pas configuré.", "GW GUI"); return; }
+        IReadOnlyList<ConversionOutput> outputs;
+        try { outputs = PlanConversions(); } catch (Exception exception) { MessageBox.Show(exception.Message, "Conversion", MessageBoxButton.OK, MessageBoxImage.Warning); return; }
+        if (outputs.Count == 0) { MessageBox.Show("Cochez au moins un format de sortie.", "Conversion"); return; }
+        var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
+        if (existing.Length > 0)
+        {
+            var dialog = new ConversionConflictWindow(existing) { Owner = this }; if (dialog.ShowDialog() != true) return;
+            var resolved = outputs.Except(existing).ToList();
+            foreach (var row in dialog.Rows)
+            {
+                if (row.Choice == ConversionConflictChoice.Skip) continue;
+                resolved.Add(row.Choice == ConversionConflictChoice.Number ? row.Output with { OutputPath = NumberedPath(row.Output.OutputPath) } : row.Output);
+            }
+            outputs = resolved;
+        }
+        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = "Arrêter"; LogOutput.Clear(); var failures = new List<string>();
+        var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        try
+        {
+            foreach (var planned in outputs)
+            {
+                if (_cancellation.IsCancellationRequested) break;
+                LogOutput.AppendText($"{Environment.NewLine}→ {Path.GetFileName(planned.OutputPath)}{Environment.NewLine}");
+                var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, ConvertSourceText.Text, planned, GetConvertOptions(), ConvertExpertArguments.Text), progress, _cancellation.Token);
+                if (!result.IsSuccess) failures.Add(Path.GetFileName(planned.OutputPath));
+            }
+            LogOutput.AppendText($"{Environment.NewLine}Bilan : {outputs.Count - failures.Count} réussie(s), {failures.Count} échec(s)." + (failures.Count > 0 ? $" Échecs : {string.Join(", ", failures)}" : ""));
+        }
+        finally { ConvertExecuteButton.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+    }
+
+    private static string NumberedPath(string path)
+    {
+        var folder = Path.GetDirectoryName(path)!; var name = Path.GetFileNameWithoutExtension(path); var extension = Path.GetExtension(path);
+        for (var number = 1; number < int.MaxValue; number++) { var candidate = Path.Combine(folder, $"{name} ({number}){extension}"); if (!File.Exists(candidate)) return candidate; }
+        throw new IOException("Impossible de trouver un nom de sortie disponible.");
+    }
+
+    private void CaptureConversionSettings()
+    {
+        _settings.Conversion.AddTags = ConvertTags.IsChecked == true;
+        _settings.Conversion.SelectedFormats = _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
+        _settings.Conversion.ExplicitExtensions = _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
+    }
+
     private async void Window_Closing(object? sender, CancelEventArgs e)
     {
         if (_runner.IsRunning)
@@ -159,6 +274,7 @@ public partial class MainWindow : Window
         if (_settings.ConsoleExpanded) _settings.ConsoleHeight = ConsoleRow.ActualHeight;
         CaptureReadSettings();
         CaptureProfiles();
+        CaptureConversionSettings();
         await _settingsStore.SaveAsync(_settings);
     }
 

@@ -16,6 +16,14 @@ public sealed class AppSettings
     public List<DriveSettings> Drives { get; set; } = [];
     public ReadUiSettings Read { get; set; } = new();
     public List<ProfileSettings> Profiles { get; set; } = [];
+    public ConversionUiSettings Conversion { get; set; } = new();
+}
+
+public sealed class ConversionUiSettings
+{
+    public bool AddTags { get; set; }
+    public HashSet<string> SelectedFormats { get; set; } = [];
+    public Dictionary<string, HashSet<string>> ExplicitExtensions { get; set; } = new();
 }
 
 public sealed class ProfileSettings

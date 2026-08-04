@@ -168,4 +168,20 @@ public sealed class CoreTests
         var unsafeCommand = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.adf", "amiga.amigados", [], DisableVerify: true));
         Assert.Contains("--no-verify", unsafeCommand.Arguments);
     }
+
+    [Fact]
+    public void ConversionCommandUsesSelectedFormatAndSeparatePaths()
+    {
+        var output = new ConversionOutput("atarist.720", ".st", "out/disk.st", true);
+        var command = ConversionCommandBuilder.Build("gw.exe", "source.scp", output);
+        Assert.Equal(["--format", "atarist.720", "source.scp", "out/disk.st"], command.Arguments);
+    }
+
+    [Fact]
+    public void ConversionTagsPreventSameExtensionOutputsFromColliding()
+    {
+        var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
+        var outputs = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("amiga.amigados", new HashSet<string>()), new ConversionSelection("acorn.adfs.800", new HashSet<string>())], true);
+        Assert.Equal(2, outputs.Select(x => x.OutputPath).Distinct(StringComparer.OrdinalIgnoreCase).Count());
+    }
 }
