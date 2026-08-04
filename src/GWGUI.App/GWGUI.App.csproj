@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon />
+    <AssemblyName>GW GUI</AssemblyName>
+    <RootNamespace>GWGUI.App</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
+    <ProjectReference Include="..\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
+    <ProjectReference Include="..\GWGUI.Scp\GWGUI.Scp.csproj" />
+  </ItemGroup>
+
+</Project>
