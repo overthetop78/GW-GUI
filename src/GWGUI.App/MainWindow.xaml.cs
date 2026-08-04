@@ -10,6 +10,7 @@ using GWGUI.Domain.Naming;
 using GWGUI.Domain.Profiles;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Conversion;
+using GWGUI.Domain.Maintenance;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
@@ -59,6 +60,7 @@ public partial class MainWindow : Window
         if (MainTabs?.SelectedIndex == 1) UpdateWriteCommand();
         else if (MainTabs?.SelectedIndex == 0) UpdateReadCommand();
         else if (MainTabs?.SelectedIndex == 2) UpdateConvertCommand();
+        else if (MainTabs?.SelectedIndex == 4) UpdateToolCommand();
     }
 
     private void RefreshWriteProfiles(string? selectedId = null)
@@ -509,13 +511,72 @@ public partial class MainWindow : Window
 
     private async void Preferences_Click(object sender, RoutedEventArgs e)
     {
+        CaptureProfiles();
         var dialog = new OptionsWindow(_settings) { Owner = this };
         if (dialog.ShowDialog() == true)
         {
+            _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
+            RefreshReadProfiles(); RefreshWriteProfiles();
             ReadFolder.Text = _settings.DefaultImagesFolder;
             await _settingsStore.SaveAsync(_settings);
             UpdateReadCommand();
         }
+    }
+
+    private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ErasePanel is null) return;
+        ErasePanel.Visibility = ToolsList.SelectedIndex == 0 ? Visibility.Visible : Visibility.Collapsed;
+        CleanPanel.Visibility = ToolsList.SelectedIndex == 1 ? Visibility.Visible : Visibility.Collapsed;
+        UpdateToolCommand();
+    }
+
+    private void ToolInput_Changed(object sender, RoutedEventArgs e) => UpdateToolCommand();
+
+    private GwCommand BuildEraseCommand()
+    {
+        var options = new List<EnabledOption>();
+        if (EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", EraseTracksValue.Text.Trim()));
+        if (EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", EraseRevsValue.Text.Trim()));
+        return MaintenanceCommandBuilder.Erase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, ExpertArguments: EraseExpertArguments.Text));
+    }
+
+    private GwCommand BuildCleanCommand() => MaintenanceCommandBuilder.Clean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
+        CleanCylindersEnabled.IsChecked == true && int.TryParse(CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
+        CleanPassesEnabled.IsChecked == true && int.TryParse(CleanPassesValue.Text, out var passes) ? passes : null,
+        CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,
+        ExpertArguments: CleanExpertArguments.Text));
+
+    private void UpdateToolCommand()
+    {
+        if (CommandPreview is null || ToolsList is null || MainTabs?.SelectedIndex != 4) return;
+        try { CommandPreview.Text = (ToolsList.SelectedIndex == 0 ? BuildEraseCommand() : BuildCleanCommand()).ToDisplayString(); }
+        catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+    }
+
+    private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
+    {
+        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (MessageBox.Show("Effacer définitivement toutes les données de la disquette insérée ?", "Confirmer l’effacement", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        await ExecuteMaintenanceAsync(BuildEraseCommand(), EraseExecuteButton);
+    }
+
+    private async void ExecuteClean_Click(object sender, RoutedEventArgs e)
+    {
+        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (MessageBox.Show("Confirmez qu’une disquette de nettoyage est insérée. Une disquette de données ne doit pas être utilisée.", "Nettoyer les têtes", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        await ExecuteMaintenanceAsync(BuildCleanCommand(), CleanExecuteButton);
+    }
+
+    private async Task ExecuteMaintenanceAsync(GwCommand command, Button button)
+    {
+        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show("Greaseweazle Tools n’est pas configuré.", "GW GUI"); return; }
+        _cancellation = new CancellationTokenSource(); button.Content = "Arrêter"; LogOutput.Clear();
+        var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        try { var result = await _runner.RunAsync(command, progress, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}."); }
+        catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
+        finally { button.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)

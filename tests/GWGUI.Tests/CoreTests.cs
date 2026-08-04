@@ -7,6 +7,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
+using GWGUI.Domain.Maintenance;
 
 namespace GWGUI.Tests;
 
@@ -183,5 +184,19 @@ public sealed class CoreTests
         var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
         var outputs = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("amiga.amigados", new HashSet<string>()), new ConversionSelection("acorn.adfs.800", new HashSet<string>())], true);
         Assert.Equal(2, outputs.Select(x => x.OutputPath).Distinct(StringComparer.OrdinalIgnoreCase).Count());
+    }
+
+    [Fact]
+    public void MaintenanceDefaultsDoNotEmitOptionalArguments()
+    {
+        Assert.Empty(MaintenanceCommandBuilder.Erase(new EraseRequest("gw.exe", [])).Arguments);
+        Assert.Empty(MaintenanceCommandBuilder.Clean(new CleanRequest("gw.exe")).Arguments);
+    }
+
+    [Fact]
+    public void CleaningOptionsAreMappedExplicitly()
+    {
+        var command = MaintenanceCommandBuilder.Clean(new CleanRequest("gw.exe", 80, 3, 100));
+        Assert.Equal(["--cylinders", "80", "--passes", "3", "--linger", "100"], command.Arguments);
     }
 }
