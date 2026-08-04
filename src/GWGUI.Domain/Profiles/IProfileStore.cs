@@ -10,12 +10,13 @@ public interface IProfileStore
 
 public sealed class InMemoryProfileStore : IProfileStore
 {
-    private readonly List<OperationProfile> _profiles =
-    [
-        OperationProfile.Default(OperationKind.Read),
-        OperationProfile.Default(OperationKind.Write),
-        OperationProfile.Default(OperationKind.Convert)
-    ];
+    private readonly List<OperationProfile> _profiles;
+
+    public InMemoryProfileStore(IEnumerable<OperationProfile>? userProfiles = null)
+    {
+        _profiles = [OperationProfile.Default(OperationKind.Read), OperationProfile.Default(OperationKind.Write), OperationProfile.Default(OperationKind.Convert)];
+        if (userProfiles is not null) _profiles.AddRange(userProfiles.Where(x => !x.IsSystem));
+    }
 
     public IReadOnlyList<OperationProfile> Get(OperationKind operation) =>
         _profiles.Where(x => x.Operation == operation).OrderByDescending(x => x.IsSystem).ThenBy(x => x.Name).ToArray();

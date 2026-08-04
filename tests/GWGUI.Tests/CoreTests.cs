@@ -5,6 +5,7 @@ using GWGUI.Domain.Formats;
 using GWGUI.Domain.Naming;
 using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Conversion;
+using GWGUI.Domain.Read;
 
 namespace GWGUI.Tests;
 
@@ -108,5 +109,35 @@ public sealed class CoreTests
         Assert.Equal([".img"], imgOnly.Select(x => x.Extension));
         var both = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string> { ".ima", ".img" })], false);
         Assert.Equal(2, both.Count);
+    }
+
+    [Fact]
+    public void DefaultReadAddsNoOptionalGwArguments()
+    {
+        var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null, []));
+        Assert.Equal(["disk.scp"], command.Arguments);
+    }
+
+    [Fact]
+    public void OnlyEnabledReadOptionsAreEmitted()
+    {
+        var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null,
+            [new EnabledOption("--revs", "5"), new EnabledOption("--tracks", "0-79:c=0-79:h=0-1")], "COM3", null));
+        Assert.Equal(["--device", "COM3", "--revs", "5", "--tracks", "0-79:c=0-79:h=0-1", "disk.scp"], command.Arguments);
+    }
+
+    [Fact]
+    public void ExpertArgumentsPreserveQuotedValues()
+    {
+        var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null, [], ExpertArguments: "--fake-index 300 --tracks \"c=0-79:h=0-1\""));
+        Assert.Equal(["--fake-index", "300", "--tracks", "c=0-79:h=0-1", "disk.scp"], command.Arguments);
+    }
+
+    [Fact]
+    public void NextNameSkipsExistingSequences()
+    {
+        var occupied = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { Path.Combine("out", "Disk 01.scp"), Path.Combine("out", "Disk 02.scp") };
+        var result = OutputConflictResolver.FindNextAvailable("out", "Disk", ".scp", SequenceKind.Numeric, 2, 1, occupied.Contains);
+        Assert.Equal(Path.Combine("out", "Disk 03.scp"), result);
     }
 }

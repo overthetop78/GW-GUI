@@ -14,6 +14,29 @@ public sealed class AppSettings
     public WindowPlacementSettings Window { get; set; } = new();
     public List<ControllerSettings> Controllers { get; set; } = [];
     public List<DriveSettings> Drives { get; set; } = [];
+    public ReadUiSettings Read { get; set; } = new();
+    public List<ProfileSettings> Profiles { get; set; } = [];
+}
+
+public sealed class ProfileSettings
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public string Operation { get; set; } = "Read";
+    public string Name { get; set; } = "";
+    public Dictionary<string, string> Values { get; set; } = new();
+    public HashSet<string> EnabledOptions { get; set; } = [];
+}
+
+public sealed class ReadUiSettings
+{
+    public bool UseKnownFormat { get; set; }
+    public string? FormatId { get; set; }
+    public bool AutoNumber { get; set; }
+    public string SequenceKind { get; set; } = "Numeric";
+    public int SequenceWidth { get; set; } = 1;
+    public long NextSequence { get; set; } = 1;
+    public Dictionary<string, string> OptionValues { get; set; } = new();
+    public HashSet<string> EnabledOptions { get; set; } = [];
 }
 
 public sealed class WindowPlacementSettings
