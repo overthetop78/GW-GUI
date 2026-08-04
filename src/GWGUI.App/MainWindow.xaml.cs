@@ -34,6 +34,7 @@ public partial class MainWindow : Window
     private bool _syncingScpZoom;
     private readonly FluxDecoderRegistry _fluxDecoders = new();
     private string? _lastScpPath;
+    private ScpTrack? _selectedScpTrack;
 
     public MainWindow()
     {
@@ -67,6 +68,7 @@ public partial class MainWindow : Window
             var heads = _scpImage.Tracks.Select(x => x.Head).Distinct().Order().ToArray();
             ScpSummary.Text = $"SCP {_scpImage.Header.VersionText} · {_scpImage.Tracks.Count} pistes · {_scpImage.Header.Revolutions} révolution(s) · résolution {_scpImage.Header.ResolutionNanoseconds} ns · checksum {(_scpImage.ChecksumValid ? "valide" : "incorrect")}";
             ScpSide0.SetImage(_scpImage, 0); ScpSide1.SetImage(_scpImage, 1);
+            _selectedScpTrack = null;
             ScpSide0.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed; ScpSide1.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
             Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Length == 1 && heads.Contains(0) ? 2 : 1);
             Grid.SetColumn(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 2 : 1);
@@ -77,10 +79,21 @@ public partial class MainWindow : Window
 
     private void ScpTrack_Selected(object? sender, ScpTrack? track)
     {
-        if (track is null || _scpImage is null) return;
-        var decoded = track.Revolutions.Count > 0 ? _fluxDecoders.DecodeAutomatic(track.Revolutions[0]) : null;
+        _selectedScpTrack = track;
+        UpdateScpInspector();
+    }
+
+    private void ScpDecoder_Changed(object sender, SelectionChangedEventArgs e) => UpdateScpInspector();
+
+    private void UpdateScpInspector()
+    {
+        var track = _selectedScpTrack;
+        if (track is null || _scpImage is null || ScpTrackInfo is null) return;
+        var choice = ScpDecoderCombo.SelectedItem as ScpDecoderChoice;
+        var decoded = track.Revolutions.Count == 0 ? null : choice?.Id is null ? _fluxDecoders.DecodeAutomatic(track.Revolutions[0]) : _fluxDecoders.Decode(choice.Id, track.Revolutions[0]);
         var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => $"Révolution {index + 1} : {revolution.FluxIntervals.Count:N0} transitions · {revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds):F2} ms · {revolution.Rpm(_scpImage.Header.ResolutionNanoseconds):F2} RPM"));
-        var analysis = decoded is null ? "" : $"\n\nDécodage : {decoded.DisplayName}\nConfiance : {decoded.Confidence:P0}\nStructures : {decoded.Structures.Count}";
+        var details = decoded is null ? "" : string.Join(Environment.NewLine, decoded.Structures.Take(30).Select(x => $"• {x.Description} @ bit {x.BitOffset:N0}"));
+        var analysis = decoded is null ? "" : $"\n\nDécodage : {decoded.DisplayName}\nConfiance : {decoded.Confidence:P0}\nCellule estimée : {decoded.EstimatedBitCellTicks:F1} ticks\nStructures : {decoded.Structures.Count}" + (details.Length > 0 ? $"\n\n{details}" : "");
         ScpTrackInfo.Text = $"Face : {track.Head}\nPiste : {track.Cylinder}\nEntrée SCP : {track.TrackNumber}\n\n{revolutions}{analysis}";
     }
 
@@ -90,12 +103,14 @@ public partial class MainWindow : Window
         _syncingScpZoom = true; try { (ReferenceEquals(sender, ScpSide0) ? ScpSide1 : ScpSide0).SetZoom(zoom); } finally { _syncingScpZoom = false; }
     }
 
-    private void ResetScpViews_Click(object sender, RoutedEventArgs e) { ScpSide0.SetZoom(1); ScpSide1.SetZoom(1); }
+    private void ResetScpViews_Click(object sender, RoutedEventArgs e) { ScpSide0.ResetView(); ScpSide1.ResetView(); }
     private void ToggleScpInspector_Click(object sender, RoutedEventArgs e) { var visible = ScpInspector.Visibility != Visibility.Visible; ScpInspector.Visibility = visible ? Visibility.Visible : Visibility.Collapsed; ScpInspectorColumn.Width = visible ? new GridLength(290) : new GridLength(0); }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
         _settings = await _settingsStore.LoadAsync();
+        ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, "Automatique") }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
+        ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
         Width = Math.Max(MinWidth, _settings.Window.Width);
         Height = Math.Max(MinHeight, _settings.Window.Height);

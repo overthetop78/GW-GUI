@@ -12,20 +12,24 @@ public partial class ScpDiskView : UserControl
     private ScpImage? _image;
     private int _head;
     private float _zoom = 1;
+    private float _panX;
+    private float _panY;
+    private Point? _dragOrigin;
     public event EventHandler<ScpTrack?>? TrackSelected;
     public event EventHandler<float>? ZoomChanged;
     public ScpTrack? SelectedTrack { get; private set; }
     public float Zoom => _zoom;
 
     public ScpDiskView() => InitializeComponent();
-    public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; Canvas.InvalidateVisual(); }
+    public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; ResetView(); }
     public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
+    public void ResetView() { _zoom = 1; _panX = _panY = 0; Canvas.InvalidateVisual(); }
 
     private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
         var canvas = e.Surface.Canvas; canvas.Clear(new SKColor(7, 10, 14));
         var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? [];
-        var center = new SKPoint(e.Info.Width / 2f, e.Info.Height / 2f); var outer = Math.Min(e.Info.Width, e.Info.Height) * .47f * _zoom; var inner = outer * .25f;
+        var center = new SKPoint(e.Info.Width / 2f + _panX * e.Info.Width / (float)Math.Max(1, Canvas.ActualWidth), e.Info.Height / 2f + _panY * e.Info.Height / (float)Math.Max(1, Canvas.ActualHeight)); var outer = Math.Min(e.Info.Width, e.Info.Height) * .47f * _zoom; var inner = outer * .25f;
         using var disk = new SKPaint { Color = new SKColor(17, 61, 43), IsAntialias = true }; canvas.DrawCircle(center, outer, disk);
         using var hub = new SKPaint { Color = new SKColor(4, 6, 8), IsAntialias = true }; canvas.DrawCircle(center, inner, hub);
         if (tracks.Length == 0) { DrawCentered(canvas, center, $"Face {_head}\nAucune donnée", SKColors.White); return; }
@@ -60,8 +64,24 @@ public partial class ScpDiskView : UserControl
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? []; if (tracks.Length == 0) return;
-        var position = e.GetPosition(Canvas); var centerX = Canvas.ActualWidth / 2; var centerY = Canvas.ActualHeight / 2; var distance = Math.Sqrt(Math.Pow(position.X - centerX, 2) + Math.Pow(position.Y - centerY, 2));
+        var position = e.GetPosition(Canvas); var centerX = Canvas.ActualWidth / 2 + _panX; var centerY = Canvas.ActualHeight / 2 + _panY; var distance = Math.Sqrt(Math.Pow(position.X - centerX, 2) + Math.Pow(position.Y - centerY, 2));
         var outer = Math.Min(Canvas.ActualWidth, Canvas.ActualHeight) * .47 * _zoom; var inner = outer * .25; if (distance < inner || distance > outer) return;
         var index = Math.Clamp((int)((outer - distance) / ((outer - inner) / tracks.Length)), 0, tracks.Length - 1); SelectedTrack = tracks[index]; Canvas.InvalidateVisual(); TrackSelected?.Invoke(this, SelectedTrack);
+    }
+
+    private void Canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e) { _dragOrigin = e.GetPosition(Canvas); Canvas.CaptureMouse(); e.Handled = true; }
+    private void Canvas_MouseRightButtonUp(object sender, MouseButtonEventArgs e) { _dragOrigin = null; Canvas.ReleaseMouseCapture(); e.Handled = true; }
+    private void Canvas_MouseMove(object sender, MouseEventArgs e)
+    {
+        var position = e.GetPosition(Canvas);
+        if (_dragOrigin is Point origin && e.RightButton == MouseButtonState.Pressed) { _panX += (float)(position.X - origin.X); _panY += (float)(position.Y - origin.Y); _dragOrigin = position; Canvas.InvalidateVisual(); return; }
+        var track = TrackAt(position); Canvas.ToolTip = track is null ? null : $"Face {track.Head} · Piste {track.Cylinder}\n{track.Revolutions.Count} révolution(s)";
+    }
+    private void Canvas_MouseLeave(object sender, MouseEventArgs e) { if (_dragOrigin is null) Canvas.ToolTip = null; }
+    private ScpTrack? TrackAt(Point position)
+    {
+        var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? []; if (tracks.Length == 0) return null;
+        var outer = Math.Min(Canvas.ActualWidth, Canvas.ActualHeight) * .47 * _zoom; var inner = outer * .25; var distance = Math.Sqrt(Math.Pow(position.X - (Canvas.ActualWidth / 2 + _panX), 2) + Math.Pow(position.Y - (Canvas.ActualHeight / 2 + _panY), 2));
+        if (distance < inner || distance > outer) return null; return tracks[Math.Clamp((int)((outer - distance) / ((outer - inner) / tracks.Length)), 0, tracks.Length - 1)];
     }
 }
