@@ -4,6 +4,7 @@ using GWGUI.Scp;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Naming;
 using GWGUI.Domain.Hardware;
+using GWGUI.Domain.Conversion;
 
 namespace GWGUI.Tests;
 
@@ -69,5 +70,43 @@ public sealed class CoreTests
         Assert.Equal("Greaseweazle V4.1", info.Model);
         Assert.Equal("GW0CF19C9E7592000007E0941B", info.SerialNumber);
         Assert.True(info.HasNetworkWarning);
+    }
+
+    [Fact]
+    public void DefaultProfileCannotBeRenamedOrDeleted()
+    {
+        var store = new InMemoryProfileStore();
+        var profile = store.Get(OperationKind.Read).Single();
+        Assert.Throws<InvalidOperationException>(() => store.Rename(OperationKind.Read, profile.Id, "Autre"));
+        Assert.Throws<InvalidOperationException>(() => store.Delete(OperationKind.Read, profile.Id));
+    }
+
+    [Fact]
+    public void SavingUnderAnotherNameCreatesTheExpectedCopy()
+    {
+        var store = new InMemoryProfileStore();
+        store.Save(new OperationProfile("p1", OperationKind.Read, "Disquettes récalcitrantes", new Dictionary<string, string>(), new HashSet<string> { "retries" }));
+        store.Save(new OperationProfile("p2", OperationKind.Read, "Disquettes Acorn", new Dictionary<string, string>(), new HashSet<string> { "retries" }));
+        Assert.Equal(3, store.Get(OperationKind.Read).Count);
+    }
+
+    [Fact]
+    public void NoExplicitExtensionUsesImaWithoutCheckingIt()
+    {
+        var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
+        var outputs = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], false);
+        Assert.Single(outputs);
+        Assert.Equal(".ima", outputs[0].Extension);
+        Assert.True(outputs[0].UsesImplicitExtension);
+    }
+
+    [Fact]
+    public void ExplicitImgReplacesImplicitImaAndBothCanBeRequested()
+    {
+        var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
+        var imgOnly = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string> { ".img" })], false);
+        Assert.Equal([".img"], imgOnly.Select(x => x.Extension));
+        var both = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string> { ".ima", ".img" })], false);
+        Assert.Equal(2, both.Count);
     }
 }

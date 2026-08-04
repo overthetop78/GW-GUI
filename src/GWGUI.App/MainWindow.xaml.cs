@@ -98,8 +98,16 @@ public partial class MainWindow : Window
         finally { _cancellation.Dispose(); _cancellation = null; }
     }
 
-    private void Preferences_Click(object sender, RoutedEventArgs e) =>
-        MessageBox.Show("Général · Greaseweazle Tools · Contrôleurs/lecteurs · Profils", "Options", MessageBoxButton.OK, MessageBoxImage.Information);
+    private async void Preferences_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OptionsWindow(_settings) { Owner = this };
+        if (dialog.ShowDialog() == true)
+        {
+            ReadFolder.Text = _settings.DefaultImagesFolder;
+            await _settingsStore.SaveAsync(_settings);
+            UpdateReadCommand();
+        }
+    }
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
     {
