@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Controls;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Hardware;
 using GWGUI.Infrastructure.Processes;
@@ -11,6 +12,8 @@ public partial class GwToolWindow : Window
     private readonly string _verb;
     private readonly IGreaseweazleRunner _runner = new GreaseweazleRunner();
     private CancellationTokenSource? _cancellation;
+    private readonly Dictionary<string, TextBox> _fields = [];
+    private readonly Dictionary<string, CheckBox> _checks = [];
 
     public GwToolWindow(string executable, string verb)
     {
@@ -18,8 +21,55 @@ public partial class GwToolWindow : Window
         _executable = executable;
         _verb = verb;
         Heading.Text = Title = TitleFor(verb);
-        CommandText.Text = new GwCommand(executable, verb, []).ToDisplayString();
+        CreateParameters(); UpdateCommand();
     }
+
+    private void CreateParameters()
+    {
+        switch (_verb)
+        {
+            case "rpm": AddField("nr", "Nombre de mesures", "1"); break;
+            case "seek": AddField("cylinder", "Cylindre", "0"); AddCheck("force", "Autoriser les cylindres extrêmes"); AddCheck("motor-on", "Laisser le moteur actif"); break;
+            case "pin": AddField("pin", "Broche (8, 26 ou 28)", "26"); AddCheck("set", "Modifier la broche"); AddCheck("high", "Niveau haut"); break;
+            case "delays":
+                AddOptionalField("select", "Sélection (µs)", "10"); AddOptionalField("step", "Pas de tête (µs)", "3000"); AddOptionalField("settle", "Stabilisation (ms)", "15"); AddOptionalField("motor", "Moteur (ms)", "750"); AddOptionalField("watchdog", "Désélection (ms)", "10000"); AddOptionalField("pre-write", "Avant écriture (µs)", "15"); AddOptionalField("post-write", "Après écriture (µs)", "15"); AddOptionalField("index-mask", "Masque index (µs)", "15"); break;
+            case "update": AddCheck("bootloader", "Mettre à jour le bootloader (risqué)"); break;
+        }
+    }
+
+    private void AddField(string key, string label, string value)
+    {
+        var panel = new StackPanel { Margin = new Thickness(0, 0, 14, 8) }; panel.Children.Add(new TextBlock { Text = label });
+        var text = new TextBox { Text = value, Width = 150 }; text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _fields[key] = text;
+    }
+
+    private void AddOptionalField(string key, string label, string value)
+    {
+        var panel = new StackPanel { Margin = new Thickness(0, 0, 14, 8) }; var check = new CheckBox { Content = label }; check.Checked += (_, _) => UpdateCommand(); check.Unchecked += (_, _) => UpdateCommand(); panel.Children.Add(check);
+        var text = new TextBox { Text = value, Width = 145 }; text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _checks[key] = check; _fields[key] = text;
+    }
+
+    private void AddCheck(string key, string label)
+    {
+        var check = new CheckBox { Content = label, Margin = new Thickness(0, 8, 16, 8) }; check.Checked += (_, _) => UpdateCommand(); check.Unchecked += (_, _) => UpdateCommand(); ParametersPanel.Children.Add(check); _checks[key] = check;
+    }
+
+    private GwCommand BuildCommand()
+    {
+        var args = new List<string>();
+        switch (_verb)
+        {
+            case "rpm": args.AddRange(["--nr", _fields["nr"].Text]); break;
+            case "seek": args.Add(_fields["cylinder"].Text); if (Checked("force")) args.Add("--force"); if (Checked("motor-on")) args.Add("--motor-on"); break;
+            case "pin": args.Add(Checked("set") ? "set" : "get"); args.Add(_fields["pin"].Text); if (Checked("set")) args.Add(Checked("high") ? "H" : "L"); break;
+            case "delays": foreach (var key in _fields.Keys) if (Checked(key)) args.AddRange(["--" + key, _fields[key].Text]); break;
+            case "update": if (Checked("bootloader")) args.Add("--bootloader"); break;
+        }
+        return new GwCommand(_executable, _verb, args);
+    }
+
+    private bool Checked(string key) => _checks.GetValueOrDefault(key)?.IsChecked == true;
+    private void UpdateCommand() { if (CommandText is not null) CommandText.Text = BuildCommand().ToDisplayString(); }
 
     private async void Execute_Click(object sender, RoutedEventArgs e)
     {
@@ -31,7 +81,8 @@ public partial class GwToolWindow : Window
         var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); });
         try
         {
-            var command = new GwCommand(_executable, _verb, []);
+            if (_verb == "update" && Checked("bootloader") && MessageBox.Show(this, "La mise à jour du bootloader est une opération avancée qui peut rendre le contrôleur inutilisable en cas d’interruption. Continuer ?", "Bootloader", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+            var command = BuildCommand();
             var result = await _runner.RunAsync(command, progress, _cancellation.Token);
             if (_verb == "info")
             {
