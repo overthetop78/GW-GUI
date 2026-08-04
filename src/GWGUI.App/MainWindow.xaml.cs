@@ -111,7 +111,12 @@ public partial class MainWindow : Window
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is MenuItem { Tag: string verb })
-            MessageBox.Show($"Commande : gw {verb}\n\nLe dialogue final affichera un résumé lisible et une sortie brute repliable.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information);
+        if (sender is not MenuItem { Tag: string verb }) return;
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
+        {
+            MessageBox.Show("Greaseweazle Tools n’est pas configuré. Ouvrez Options → Préférences.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information);
+            return;
+        }
+        new GwToolWindow(_settings.GwExecutablePath, verb) { Owner = this }.ShowDialog();
     }
 }
