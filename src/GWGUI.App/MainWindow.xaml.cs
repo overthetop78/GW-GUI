@@ -687,7 +687,8 @@ public partial class MainWindow : Window
             MessageBox.Show("Greaseweazle Tools n’est pas configuré. Ouvrez Options → Préférences.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
-        new GwToolWindow(_settings.GwExecutablePath, verb) { Owner = this }.ShowDialog();
+        var hardware = SelectedHardware();
+        new GwToolWindow(_settings.GwExecutablePath, verb, hardware?.Port, hardware?.Drive.Selection) { Owner = this }.ShowDialog();
     }
 }
 

@@ -21,7 +21,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Encore à réaliser avant achèvement
 
-- Étendre le choix du lecteur aux dialogues Diagnostics/Matériel et valider le scan sur plusieurs contrôleurs physiques.
+- Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
 - Compléter toutes les options avancées de chaque commande `gw` et leurs profils.
 - Remplacer tous les textes visibles codés dans les vues par `Strings.resx`, français et anglais.
 - Terminer thèmes, restauration complète de fenêtre, barre d’état, progression et arrêt gracieux avant terminaison forcée.

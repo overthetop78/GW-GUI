@@ -10,16 +10,20 @@ public partial class GwToolWindow : Window
 {
     private readonly string _executable;
     private readonly string _verb;
+    private readonly string? _device;
+    private readonly string? _drive;
     private readonly IGreaseweazleRunner _runner = new GreaseweazleRunner();
     private CancellationTokenSource? _cancellation;
     private readonly Dictionary<string, TextBox> _fields = [];
     private readonly Dictionary<string, CheckBox> _checks = [];
 
-    public GwToolWindow(string executable, string verb)
+    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null)
     {
         InitializeComponent();
         _executable = executable;
         _verb = verb;
+        _device = device;
+        _drive = drive;
         Heading.Text = Title = TitleFor(verb);
         CreateParameters(); UpdateCommand();
     }
@@ -65,6 +69,8 @@ public partial class GwToolWindow : Window
             case "delays": foreach (var key in _fields.Keys) if (Checked(key)) args.AddRange(["--" + key, _fields[key].Text]); break;
             case "update": if (Checked("bootloader")) args.Add("--bootloader"); break;
         }
+        if (!string.IsNullOrWhiteSpace(_device)) args.AddRange(["--device", _device]);
+        if (!string.IsNullOrWhiteSpace(_drive) && _verb is "rpm" or "seek") args.AddRange(["--drive", _drive]);
         return new GwCommand(_executable, _verb, args);
     }
 
