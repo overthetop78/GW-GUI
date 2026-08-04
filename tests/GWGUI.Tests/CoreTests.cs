@@ -98,6 +98,15 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void DeviceInfoReadsCurrentIndentedPortLine()
+    {
+        var info = GwInfoParser.Parse("Host Tools: 1.23\nDevice:\n  Port:      COM12\n  Model:     Greaseweazle V4.1\n  Serial:    GW123");
+        Assert.Equal("COM12", info.Port);
+        Assert.Equal("Greaseweazle V4.1", info.Model);
+        Assert.Equal("GW123", info.SerialNumber);
+    }
+
+    [Fact]
     public void DefaultProfileCannotBeRenamedOrDeleted()
     {
         var store = new InMemoryProfileStore();

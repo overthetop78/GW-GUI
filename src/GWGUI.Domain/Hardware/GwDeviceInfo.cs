@@ -27,7 +27,7 @@ public static class GwInfoParser
             return null;
         }
 
-        var port = output.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
+        var port = ValueAfter("Port") ?? output.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
             .Select(x => x.Trim())
             .FirstOrDefault(x => x.StartsWith("COM", StringComparison.OrdinalIgnoreCase));
 

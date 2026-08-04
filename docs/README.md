@@ -15,6 +15,7 @@ La documentation distingue systématiquement :
 - [Journal des décisions de conception](design-session-log.md)
 - [Architecture technique](architecture.md)
 - [Plan d’implémentation complet](implementation-plan.md)
+- [État réel de l’implémentation](implementation-status.md)
 - [Spécification visuelle validée](ui/visual-specification.md)
 - [Fenêtre principale et navigation](ui/main-window.md)
 - [Onglet Lecture](ui/read.md)

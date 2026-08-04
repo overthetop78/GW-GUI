@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Settings;
 using GWGUI.Domain.Formats;
@@ -122,6 +123,7 @@ public partial class MainWindow : Window
         ConvertTags.IsChecked = _settings.Conversion.AddTags;
         BuildConversionFormats(null);
         RestoreReadSettings();
+        RefreshHardwareSelector();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
     }
@@ -169,7 +171,7 @@ public partial class MainWindow : Window
         if (WriteRetriesEnabled?.IsChecked == true) options.Add(new("--retries", WriteRetriesValue.Text.Trim()));
         return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", WriteSourceText.Text,
             (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, options,
-            WriteNoVerify?.IsChecked == true, ExpertArguments: WriteExpertArguments?.Text));
+            WriteNoVerify?.IsChecked == true, SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, WriteExpertArguments?.Text));
     }
 
     private void UpdateWriteCommand()
@@ -487,7 +489,7 @@ public partial class MainWindow : Window
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
             (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, options,
-            ExpertArguments: ReadExpertArguments?.Text));
+            SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, ReadExpertArguments?.Text));
     }
 
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
@@ -590,6 +592,7 @@ public partial class MainWindow : Window
             _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
             RefreshReadProfiles(); RefreshWriteProfiles();
             ReadFolder.Text = _settings.DefaultImagesFolder;
+            RefreshHardwareSelector();
             await _settingsStore.SaveAsync(_settings);
             UpdateReadCommand();
         }
@@ -610,14 +613,39 @@ public partial class MainWindow : Window
         var options = new List<EnabledOption>();
         if (EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", EraseTracksValue.Text.Trim()));
         if (EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", EraseRevsValue.Text.Trim()));
-        return MaintenanceCommandBuilder.Erase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, ExpertArguments: EraseExpertArguments.Text));
+        var hardware = SelectedHardware();
+        return MaintenanceCommandBuilder.Erase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, hardware?.Port, hardware?.Drive.Selection, EraseExpertArguments.Text));
     }
 
     private GwCommand BuildCleanCommand() => MaintenanceCommandBuilder.Clean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
         CleanCylindersEnabled.IsChecked == true && int.TryParse(CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
         CleanPassesEnabled.IsChecked == true && int.TryParse(CleanPassesValue.Text, out var passes) ? passes : null,
         CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,
-        ExpertArguments: CleanExpertArguments.Text));
+        SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, CleanExpertArguments.Text));
+
+    private void RefreshHardwareSelector()
+    {
+        if (HardwareSelector is null) return;
+        var previousId = (HardwareSelector.SelectedItem as HardwareChoice)?.Drive.Id;
+        var choices = (from drive in _settings.Drives
+                       join controller in _settings.Controllers on drive.ControllerUsbId equals controller.UsbId
+                       select new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
+                           $"{drive.Size} pouces · {drive.Density} · {controller.LastPort} · {drive.Selection}" + (controller.IsAvailable ? "" : " (débranché)"))).ToArray();
+        HardwareSelector.ItemsSource = choices;
+        HardwareSelector.SelectedItem = choices.FirstOrDefault(x => x.Drive.Id == previousId) ?? choices.FirstOrDefault();
+        HardwareSelectorItem.Visibility = choices.Length > 1 ? Visibility.Visible : Visibility.Collapsed;
+        UpdateHardwareStatus();
+    }
+
+    private HardwareChoice? SelectedHardware() => HardwareSelector?.SelectedItem as HardwareChoice;
+    private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) { UpdateHardwareStatus(); UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); }
+    private void UpdateHardwareStatus()
+    {
+        if (HardwareStatusText is null) return;
+        var selected = SelectedHardware();
+        HardwareStatusText.Text = selected is null ? "Contrôleur non configuré" : selected.Label;
+        HardwareStatusLight.Fill = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
+    }
 
     private void UpdateToolCommand()
     {
@@ -662,3 +690,5 @@ public partial class MainWindow : Window
         new GwToolWindow(_settings.GwExecutablePath, verb) { Owner = this }.ShowDialog();
     }
 }
+
+public sealed record HardwareChoice(DriveSettings Drive, string Port, bool Available, string Label);

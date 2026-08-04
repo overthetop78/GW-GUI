@@ -1,14 +1,21 @@
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
+using GWGUI.Domain.Commands;
+using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Processes;
 
 namespace GWGUI.App;
 
 public partial class OptionsWindow : Window
 {
     private readonly AppSettings _settings;
+    private readonly List<ControllerSettings> _controllers;
+    private readonly List<DriveSettings> _drives;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> Profiles { get; } = [];
 
@@ -16,16 +23,13 @@ public partial class OptionsWindow : Window
     {
         InitializeComponent();
         _settings = settings;
+        _controllers = settings.Controllers.Select(x => new ControllerSettings { UsbId = x.UsbId, LastPort = x.LastPort, Model = x.Model, IsAvailable = x.IsAvailable }).ToList();
+        _drives = settings.Drives.Select(x => new DriveSettings { Id = x.Id, ControllerUsbId = x.ControllerUsbId, Selection = x.Selection, Size = x.Size, Density = x.Density, NominalRpm = x.NominalRpm }).ToList();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = settings.GwExecutablePath;
         LanguageCombo.SelectedIndex = settings.Language == "en" ? 1 : 0;
         ThemeCombo.SelectedIndex = (int)settings.Theme;
-        foreach (var controller in settings.Controllers)
-        {
-            var drives = settings.Drives.Where(x => x.ControllerUsbId == controller.UsbId).ToArray();
-            if (drives.Length == 0) Hardware.Add(new(controller.LastPort, controller.UsbId, "Aucun lecteur défini", controller.IsAvailable));
-            foreach (var drive in drives) Hardware.Add(new(controller.LastPort, controller.UsbId, $"{drive.Size} pouces · {drive.Density} · {drive.Selection}", controller.IsAvailable));
-        }
+        RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
         foreach (var operation in new[] { "Read", "Write", "Convert" }) Profiles.Add(new($"default-{operation.ToLowerInvariant()}", operation, "Par défaut", true));
         foreach (var profile in settings.Profiles) Profiles.Add(new(profile.Id, profile.Operation, profile.Name, false));
@@ -51,8 +55,58 @@ public partial class OptionsWindow : Window
         if (dialog.ShowDialog(this) == true) ImagesFolderText.Text = dialog.FolderName;
     }
 
-    private void ScanHardware_Click(object sender, RoutedEventArgs e) => MessageBox.Show(this, "Le scan utilisera gw info et associera l’identifiant USB stable au dernier port COM.", "Scanner", MessageBoxButton.OK, MessageBoxImage.Information);
-    private void AddDrive_Click(object sender, RoutedEventArgs e) => MessageBox.Show(this, "Le lecteur sera défini par contrôleur, sélection A/B ou 0/1, taille, densité et vitesse éventuelle.", "Ajouter un lecteur", MessageBoxButton.OK, MessageBoxImage.Information);
+    private async void ScanHardware_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(GwPathText.Text) || !File.Exists(GwPathText.Text)) { MessageBox.Show(this, "Choisissez d’abord gw.exe dans Greaseweazle Tools.", "Scanner"); return; }
+        ScanButton.IsEnabled = false;
+        try
+        {
+            foreach (var controller in _controllers) controller.IsAvailable = false;
+            var discovery = new WindowsSerialDeviceDiscovery();
+            foreach (var serial in discovery.FindSerialDevices())
+            {
+                var runner = new GreaseweazleRunner();
+                var result = await runner.RunAsync(new GwCommand(GwPathText.Text, "info", ["--device", serial.Port]));
+                if (!result.IsSuccess) continue;
+                var parsed = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(x => x.Text)));
+                var usbId = string.IsNullOrWhiteSpace(parsed.SerialNumber) ? serial.StableId : parsed.SerialNumber;
+                var controller = _controllers.FirstOrDefault(x => x.UsbId == usbId);
+                if (controller is null) { controller = new ControllerSettings { UsbId = usbId }; _controllers.Add(controller); }
+                controller.LastPort = serial.Port;
+                controller.Model = parsed.Model ?? serial.DisplayName;
+                controller.IsAvailable = true;
+            }
+            RefreshHardwareRows();
+        }
+        catch (Exception exception) { MessageBox.Show(this, exception.Message, "Scanner", MessageBoxButton.OK, MessageBoxImage.Error); }
+        finally { ScanButton.IsEnabled = true; }
+    }
+
+    private void AddDrive_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new DriveEditorWindow(_controllers) { Owner = this };
+        if (dialog.ShowDialog() == true && dialog.Drive is not null) { _drives.Add(dialog.Drive); RefreshHardwareRows(); }
+    }
+
+    private void RemoveHardware_Click(object sender, RoutedEventArgs e)
+    {
+        if (DrivesGrid.SelectedItem is not HardwareRow row) return;
+        if (row.DriveId is not null) _drives.RemoveAll(x => x.Id == row.DriveId);
+        else if (MessageBox.Show(this, "Supprimer ce contrôleur mémorisé et tous ses lecteurs ?", "Matériel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+        { _controllers.RemoveAll(x => x.UsbId == row.UsbId); _drives.RemoveAll(x => x.ControllerUsbId == row.UsbId); }
+        RefreshHardwareRows();
+    }
+
+    private void RefreshHardwareRows()
+    {
+        Hardware.Clear();
+        foreach (var controller in _controllers)
+        {
+            var drives = _drives.Where(x => x.ControllerUsbId == controller.UsbId).ToArray();
+            if (drives.Length == 0) Hardware.Add(new(null, controller.LastPort, controller.UsbId, "Aucun lecteur défini", controller.IsAvailable));
+            foreach (var drive in drives) Hardware.Add(new(drive.Id, controller.LastPort, controller.UsbId, $"{drive.Size} pouces · {drive.Density} · sélection {drive.Selection}" + (drive.NominalRpm is null ? "" : $" · {drive.NominalRpm} RPM"), controller.IsAvailable));
+        }
+    }
 
     private void RenameProfile_Click(object sender, RoutedEventArgs e)
     {
@@ -77,13 +131,15 @@ public partial class OptionsWindow : Window
         _settings.GwExecutablePath = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text.Trim();
         _settings.Language = LanguageCombo.SelectedIndex == 1 ? "en" : "fr";
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
+        _settings.Controllers = _controllers;
+        _settings.Drives = _drives;
         var retained = Profiles.Where(x => !x.IsSystem).ToDictionary(x => x.Id);
         _settings.Profiles = _settings.Profiles.Where(x => retained.ContainsKey(x.Id)).Select(x => { x.Name = retained[x.Id].Name; return x; }).ToList();
         DialogResult = true;
     }
 }
 
-public sealed record HardwareRow(string Port, string UsbId, string Description, bool Available);
+public sealed record HardwareRow(string? DriveId, string Port, string UsbId, string Description, bool Available);
 public sealed record ProfileOptionRow(string Id, string Operation, string Name, bool IsSystem)
 {
     public string OperationLabel => Operation switch { "Read" => "Lecture", "Write" => "Écriture", "Convert" => "Conversion", _ => Operation };

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="10.0.4" />
+  </ItemGroup>
+
 </Project>
