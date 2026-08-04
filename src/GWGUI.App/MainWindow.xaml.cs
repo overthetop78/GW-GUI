@@ -11,6 +11,8 @@ using GWGUI.Domain.Profiles;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Maintenance;
+using GWGUI.Scp;
+using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
@@ -28,14 +30,68 @@ public partial class MainWindow : Window
     private readonly ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
     private readonly List<ConversionFormatControl> _conversionControls = [];
+    private ScpImage? _scpImage;
+    private bool _syncingScpZoom;
+    private readonly FluxDecoderRegistry _fluxDecoders = new();
+    private string? _lastScpPath;
 
     public MainWindow()
     {
         InitializeComponent();
+        ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
+        ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
         var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GW GUI");
         _settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
     }
+
+    private async void OpenScp_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog { Filter = "Capture SuperCard Pro (*.scp)|*.scp|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
+        if (dialog.ShowDialog(this) != true) return;
+        await LoadScpAsync(dialog.FileName);
+    }
+
+    private async void OpenLastScp_Click(object sender, RoutedEventArgs e)
+    {
+        if (_lastScpPath is null) return; MainTabs.SelectedIndex = 3; await LoadScpAsync(_lastScpPath);
+    }
+
+    private async Task LoadScpAsync(string path)
+    {
+        try
+        {
+            ScpSummary.Text = "Lecture du fichier…";
+            _scpImage = await new ScpReader().ReadAsync(path);
+            ScpFileName.Text = Path.GetFileName(path);
+            var heads = _scpImage.Tracks.Select(x => x.Head).Distinct().Order().ToArray();
+            ScpSummary.Text = $"SCP {_scpImage.Header.VersionText} · {_scpImage.Tracks.Count} pistes · {_scpImage.Header.Revolutions} révolution(s) · résolution {_scpImage.Header.ResolutionNanoseconds} ns · checksum {(_scpImage.ChecksumValid ? "valide" : "incorrect")}";
+            ScpSide0.SetImage(_scpImage, 0); ScpSide1.SetImage(_scpImage, 1);
+            ScpSide0.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed; ScpSide1.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
+            Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Length == 1 && heads.Contains(0) ? 2 : 1);
+            Grid.SetColumn(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 2 : 1);
+            ScpTrackInfo.Text = "Sélectionnez une piste.";
+        }
+        catch (Exception exception) { _scpImage = null; ScpSummary.Text = "Fichier invalide"; MessageBox.Show(exception.Message, "Visualisation SCP", MessageBoxButton.OK, MessageBoxImage.Error); }
+    }
+
+    private void ScpTrack_Selected(object? sender, ScpTrack? track)
+    {
+        if (track is null || _scpImage is null) return;
+        var decoded = track.Revolutions.Count > 0 ? _fluxDecoders.DecodeAutomatic(track.Revolutions[0]) : null;
+        var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => $"Révolution {index + 1} : {revolution.FluxIntervals.Count:N0} transitions · {revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds):F2} ms · {revolution.Rpm(_scpImage.Header.ResolutionNanoseconds):F2} RPM"));
+        var analysis = decoded is null ? "" : $"\n\nDécodage : {decoded.DisplayName}\nConfiance : {decoded.Confidence:P0}\nStructures : {decoded.Structures.Count}";
+        ScpTrackInfo.Text = $"Face : {track.Head}\nPiste : {track.Cylinder}\nEntrée SCP : {track.TrackNumber}\n\n{revolutions}{analysis}";
+    }
+
+    private void ScpZoom_Changed(object? sender, float zoom)
+    {
+        if (_syncingScpZoom || LinkScpViews.IsChecked != true) return;
+        _syncingScpZoom = true; try { (ReferenceEquals(sender, ScpSide0) ? ScpSide1 : ScpSide0).SetZoom(zoom); } finally { _syncingScpZoom = false; }
+    }
+
+    private void ResetScpViews_Click(object sender, RoutedEventArgs e) { ScpSide0.SetZoom(1); ScpSide1.SetZoom(1); }
+    private void ToggleScpInspector_Click(object sender, RoutedEventArgs e) { var visible = ScpInspector.Visibility != Visibility.Visible; ScpInspector.Visibility = visible ? Visibility.Visible : Visibility.Collapsed; ScpInspectorColumn.Width = visible ? new GridLength(290) : new GridLength(0); }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
@@ -470,6 +526,7 @@ public partial class MainWindow : Window
         {
             var result = await _runner.RunAsync(command, output, _cancellation.Token);
             LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}, durée {result.Duration:g}.");
+            if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
             if (result.IsSuccess && ReadAutoNumber.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var value)) ReadSequenceValue.Text = (value + 1).ToString();
         }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }

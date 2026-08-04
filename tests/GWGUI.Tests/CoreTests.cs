@@ -8,6 +8,7 @@ using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
+using GWGUI.Scp.Decoding;
 
 namespace GWGUI.Tests;
 
@@ -32,11 +33,32 @@ public sealed class CoreTests
     [Fact]
     public void ScpHeaderReaderReadsCoreMetadata()
     {
-        byte[] header = [(byte)'S', (byte)'C', (byte)'P', 0x24, 0, 0, 83, 5, 0, 0, 2, 0, 0, 0, 0, 0];
+        byte[] header = [(byte)'S', (byte)'C', (byte)'P', 0x24, 0, 5, 0, 83, 0, 0, 0, 0, 0, 0, 0, 0];
         var result = ScpHeaderReader.Read(header);
         Assert.Equal(84, result.TrackCount);
         Assert.Equal(5, result.Revolutions);
-        Assert.Equal(2, result.Heads);
+        Assert.Equal(0, result.Heads);
+    }
+
+    [Fact]
+    public void ScpReaderReadsTrackRevolutionAndBigEndianFluxOverflow()
+    {
+        var data = new byte[0x2b0 + 16 + 6];
+        data[0] = (byte)'S'; data[1] = (byte)'C'; data[2] = (byte)'P'; data[3] = 0x25; data[5] = 1; data[6] = 0; data[7] = 0;
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x10, 4), 0x2b0);
+        data[0x2b0] = (byte)'T'; data[0x2b1] = (byte)'R'; data[0x2b2] = (byte)'K'; data[0x2b3] = 0;
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2b4, 4), 8_000_000);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2b8, 4), 3);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2bc, 4), 16);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c0, 2), 100);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c2, 2), 0);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c4, 2), 50);
+        uint checksum = 0; foreach (var value in data.AsSpan(0x10)) checksum = unchecked(checksum + value);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x0c, 4), checksum);
+        var image = new ScpReader().Read(data);
+        Assert.True(image.ChecksumValid);
+        Assert.Equal([100u, 65_586u], image.Tracks[0].Revolutions[0].FluxIntervals);
+        Assert.Equal(300d, image.Tracks[0].Revolutions[0].Rpm(image.Header.ResolutionNanoseconds), 3);
     }
 
     [Theory]
@@ -198,5 +220,16 @@ public sealed class CoreTests
     {
         var command = MaintenanceCommandBuilder.Clean(new CleanRequest("gw.exe", 80, 3, 100));
         Assert.Equal(["--cylinders", "80", "--passes", "3", "--linger", "100"], command.Arguments);
+    }
+
+    [Fact]
+    public void AmigaDecoderFindsTheDouble4489SyncWord()
+    {
+        var bits = Convert.ToString(0x4489, 2).PadLeft(16, '0') + Convert.ToString(0x4489, 2).PadLeft(16, '0');
+        var intervals = new List<uint>(); var sinceTransition = 0;
+        foreach (var bit in bits) { sinceTransition++; if (bit == '1') { intervals.Add((uint)(sinceTransition * 40)); sinceTransition = 0; } }
+        var result = new AmigaMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Contains(result.Structures, x => x.Kind == FluxStructureKind.AmigaSync);
+        Assert.True(result.Confidence > 0);
     }
 }
