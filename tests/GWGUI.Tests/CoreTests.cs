@@ -6,6 +6,7 @@ using GWGUI.Domain.Naming;
 using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Read;
+using GWGUI.Domain.Write;
 
 namespace GWGUI.Tests;
 
@@ -139,5 +140,32 @@ public sealed class CoreTests
         var occupied = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { Path.Combine("out", "Disk 01.scp"), Path.Combine("out", "Disk 02.scp") };
         var result = OutputConflictResolver.FindNextAvailable("out", "Disk", ".scp", SequenceKind.Numeric, 2, 1, occupied.Contains);
         Assert.Equal(Path.Combine("out", "Disk 03.scp"), result);
+    }
+
+    [Theory]
+    [InlineData("disk.adf", 901120, "amiga.amigados")]
+    [InlineData("disk.adf", 819200, "acorn.adfs.800")]
+    [InlineData("disk.ima", 1474560, "ibm.1440")]
+    public void WriteDetectorUsesContainerSizeToResolveAmbiguity(string name, long length, string formatId)
+    {
+        var result = new ImageFormatDetector(new BuiltInImageFormatCatalog()).Detect(name, length);
+        Assert.Equal(formatId, result.Format?.Id);
+        Assert.False(result.RequiresUserChoice);
+    }
+
+    [Fact]
+    public void UnknownImgGeometryRequiresExplicitChoice()
+    {
+        var result = new ImageFormatDetector(new BuiltInImageFormatCatalog()).Detect("disk.img", 12345);
+        Assert.True(result.RequiresUserChoice);
+    }
+
+    [Fact]
+    public void WriteVerificationIsEnabledUnlessNoVerifyWasExplicitlySelected()
+    {
+        var normal = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.adf", "amiga.amigados", []));
+        Assert.DoesNotContain("--no-verify", normal.Arguments);
+        var unsafeCommand = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.adf", "amiga.amigados", [], DisableVerify: true));
+        Assert.Contains("--no-verify", unsafeCommand.Arguments);
     }
 }

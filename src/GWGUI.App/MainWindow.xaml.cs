@@ -8,6 +8,7 @@ using GWGUI.Domain.Formats;
 using GWGUI.Domain.Read;
 using GWGUI.Domain.Naming;
 using GWGUI.Domain.Profiles;
+using GWGUI.Domain.Write;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
@@ -22,10 +23,13 @@ public partial class MainWindow : Window
     private CancellationTokenSource? _cancellation;
     private readonly IImageFormatCatalog _formatCatalog = new BuiltInImageFormatCatalog();
     private IProfileStore _profiles = new InMemoryProfileStore();
+    private readonly ImageFormatDetector _formatDetector;
+    private DetectedImageFormat? _detectedWriteFormat;
 
     public MainWindow()
     {
         InitializeComponent();
+        _formatDetector = new ImageFormatDetector(_formatCatalog);
         var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GW GUI");
         _settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
     }
@@ -40,9 +44,101 @@ public partial class MainWindow : Window
         ReadFamilyCombo.ItemsSource = _formatCatalog.Formats.Where(x => x.Family != "Raw").Select(x => x.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.SelectedIndex = 0;
         RefreshReadProfiles();
+        RefreshWriteProfiles();
         RestoreReadSettings();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
+    }
+
+    private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (MainTabs?.SelectedIndex == 1) UpdateWriteCommand();
+        else if (MainTabs?.SelectedIndex == 0) UpdateReadCommand();
+    }
+
+    private void RefreshWriteProfiles(string? selectedId = null)
+    {
+        var items = _profiles.Get(OperationKind.Write);
+        WriteProfileCombo.ItemsSource = items;
+        WriteProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
+    }
+
+    private void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog { Filter = "Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
+        if (dialog.ShowDialog(this) != true) return;
+        WriteSourceText.Text = dialog.FileName;
+        _detectedWriteFormat = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
+        WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? "Format ambigu"} — {_detectedWriteFormat.Explanation}";
+        WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
+        WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
+        WriteFormatCombo.Visibility = _detectedWriteFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
+        UpdateWriteCommand();
+    }
+
+    private void ToggleWriteFormat_Click(object sender, RoutedEventArgs e)
+    {
+        if (WriteFormatCombo.ItemsSource is null) WriteFormatCombo.ItemsSource = _formatCatalog.Formats;
+        WriteFormatCombo.Visibility = WriteFormatCombo.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void WriteInput_Changed(object sender, RoutedEventArgs e) => UpdateWriteCommand();
+
+    private GwCommand BuildWriteCommand()
+    {
+        var options = new List<EnabledOption>();
+        if (WriteEraseEmpty?.IsChecked == true) options.Add(new("--erase-empty"));
+        if (WriteRetriesEnabled?.IsChecked == true) options.Add(new("--retries", WriteRetriesValue.Text.Trim()));
+        return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", WriteSourceText.Text,
+            (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, options,
+            WriteNoVerify?.IsChecked == true, ExpertArguments: WriteExpertArguments?.Text));
+    }
+
+    private void UpdateWriteCommand()
+    {
+        if (CommandPreview is null || WriteSourceText is null || MainTabs?.SelectedIndex != 1) return;
+        try { CommandPreview.Text = BuildWriteCommand().ToDisplayString(); }
+        catch (ArgumentException exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+    }
+
+    private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
+    {
+        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (!File.Exists(WriteSourceText.Text)) { MessageBox.Show("Choisissez une image source existante.", "Écriture", MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
+        if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
+        { MessageBox.Show("Le format est ambigu. Choisissez explicitement un format compatible.", "Écriture", MessageBoxButton.OK, MessageBoxImage.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show("Greaseweazle Tools n’est pas configuré.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        var warning = WriteNoVerify.IsChecked == true ? "\n⚠ La vérification après écriture est désactivée." : "\nLa vérification après écriture est active.";
+        var confirmation = $"Image : {Path.GetFileName(WriteSourceText.Text)}\nFormat : {selected.DisplayName}\nLecteur : lecteur configuré par défaut{warning}\n\nÉcrire cette image sur la disquette ?";
+        if (MessageBox.Show(confirmation, "Confirmer l’écriture", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        var command = BuildWriteCommand();
+        _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = "Arrêter"; LogOutput.Clear();
+        var output = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        try { var result = await _runner.RunAsync(command, output, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}, durée {result.Duration:g}."); }
+        catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
+        finally { WriteExecuteButton.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+    }
+
+    private void WriteProfile_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (WriteProfileCombo.SelectedItem is not OperationProfile profile || WriteNoVerify is null) return;
+        WriteNoVerify.IsChecked = profile.EnabledOptions.Contains("no-verify"); WriteEraseEmpty.IsChecked = profile.EnabledOptions.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("retries");
+        if (profile.Values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries;
+        if (profile.IsSystem) { WriteNoVerify.IsChecked = false; WriteExpertArguments.Clear(); }
+        UpdateWriteCommand();
+    }
+
+    private void ResetWriteProfile_Click(object sender, RoutedEventArgs e) { if (WriteProfileCombo.SelectedItem is OperationProfile profile) { WriteProfileCombo.SelectedItem = null; WriteProfileCombo.SelectedItem = profile; } }
+
+    private void SaveWriteProfile_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
+        var enabled = new HashSet<string>(); if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries");
+        var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text };
+        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
+        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show("Ce profil existe déjà. Voulez-vous le remplacer ?", "Profil", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
+        RefreshWriteProfiles(profile.Id);
     }
 
     private async void Window_Closing(object? sender, CancelEventArgs e)
