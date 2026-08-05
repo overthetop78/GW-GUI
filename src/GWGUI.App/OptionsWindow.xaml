@@ -34,6 +34,10 @@
                     <ComboBoxItem Content="{l:Loc Theme.Light}" />
                     <ComboBoxItem Content="{l:Loc Theme.Dark}" />
                 </ComboBox>
+                <TextBlock Text="{l:Loc Options.TagPattern}" Margin="0,18,0,0" />
+                <TextBox x:Name="TagPatternText" Width="240" HorizontalAlignment="Left" Margin="0,6" TextChanged="TagPattern_Changed" />
+                <TextBlock Text="{l:Loc Options.TagPatternHelp}" Foreground="#69707D" TextWrapping="Wrap" />
+                <TextBlock x:Name="TagPatternPreview" Margin="0,6" />
             </StackPanel>
             <StackPanel x:Name="ToolsPage" Visibility="Collapsed">
                 <TextBlock Text="{l:Loc Options.Tools}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,20" />

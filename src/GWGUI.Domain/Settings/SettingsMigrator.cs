@@ -2,7 +2,7 @@ namespace GWGUI.Domain.Settings;
 
 public static class SettingsMigrator
 {
-    public const int CurrentVersion = 3;
+    public const int CurrentVersion = 4;
 
     public static AppSettings Migrate(AppSettings settings)
     {
@@ -17,6 +17,7 @@ public static class SettingsMigrator
             {
                 case 1: MigrateV1ToV2(settings); break;
                 case 2: MigrateV2ToV3(settings); break;
+                case 3: MigrateV3ToV4(settings); break;
                 default: throw new NotSupportedException($"No migration exists for settings schema {settings.SchemaVersion}.");
             }
         }
@@ -45,6 +46,12 @@ public static class SettingsMigrator
         settings.SchemaVersion = 3;
     }
 
+    private static void MigrateV3ToV4(AppSettings settings)
+    {
+        settings.Conversion.TagPattern = " [{tag}]";
+        settings.SchemaVersion = 4;
+    }
+
     private static void Normalize(AppSettings settings)
     {
         settings.Language = string.IsNullOrWhiteSpace(settings.Language) ? "fr" : settings.Language;
@@ -64,6 +71,7 @@ public static class SettingsMigrator
         settings.Conversion.ExplicitExtensions ??= [];
         settings.Conversion.OptionValues ??= [];
         settings.Conversion.EnabledOptions ??= [];
+        settings.Conversion.TagPattern = string.IsNullOrWhiteSpace(settings.Conversion.TagPattern) || !settings.Conversion.TagPattern.Contains("{tag}", StringComparison.OrdinalIgnoreCase) ? " [{tag}]" : settings.Conversion.TagPattern;
         foreach (var profile in settings.Profiles) { profile.Values ??= []; profile.EnabledOptions ??= []; }
     }
 

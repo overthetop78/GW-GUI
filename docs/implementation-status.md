@@ -27,11 +27,12 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Chaque onglet d’opération permet d’activer et choisir un fichier `diskdefs.cfg` personnalisé; son chemin est persistant et mémorisé dans les profils. Un fichier disparu bloque l’exécution avec un message localisé.
 - Validation centrale des options structurées : valeurs obligatoires, révolutions positives, tentatives non négatives, densité H/L et exclusions faux index/secteurs matériels ainsi que densité/TG43.
 - Journal automatique rotatif : 10 fichiers de 5 Mio sous les données utilisateur, avec commande exacte, sortie horodatée, flux standard/erreur, code retour, annulation et durée. Le menu Options ouvre un historique consultable et exportable; la console courante peut aussi être exportée directement.
-- Réglages au schéma versionné 3 avec migrations séquentielles, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
+- Réglages au schéma versionné 4 avec migrations séquentielles, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
 - Distribution Windows x64 autonome : ZIP portable avec stockage local `Data`, installateur Inno Setup bilingue avec stockage utilisateur Windows, métadonnées de version, exclusion des symboles, SHA-256 et workflow GitHub Actions publiant les paquets lors d’un tag `v*`.
 - Identité visuelle originale intégrée : icône multi-résolution 16–256 px dans l’exécutable et l’installateur, écran À propos versionné et guides utilisateur français/anglais accessibles depuis le menu Aide et embarqués dans les deux distributions.
 - La détection en Écriture reconnaît par taille toutes les géométries IBM et Atari cataloguées, ainsi que les ADF Amiga DD/HD et Acorn; ses explications sont localisées en français et en anglais.
 - Tous les noms conviviaux du catalogue et des extensions sont fournis par les ressources de la langue active. Les tags de multiconversion sont des identifiants stables indépendants de la traduction, par exemple `[PC-720]`, `[ST-720]` et `[AMIGA-DD]`.
+- Les Options permettent de personnaliser le modèle de nommage des tags avec le jeton obligatoire `{tag}` et affichent immédiatement un exemple; le modèle initial reste ` [{tag}]`.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur. Les structures reconnues sont superposées aux pistes avec une légende distincte pour en-têtes, données et anomalies.
 - Décodeurs flux brut, ISO MFM, ISO FM, Amiga MFM, Apple II GCR et Commodore GCR; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO et détection des prologues/blocs GCR. Pour chaque piste, l’analyse retient la révolution donnant le résultat le plus convaincant et l’indique dans l’inspecteur.
@@ -51,7 +52,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 76 réussis, dont localisation et stabilité des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/GCR et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 77 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/GCR et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.

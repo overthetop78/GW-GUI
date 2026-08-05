@@ -20,7 +20,7 @@ public static class ConversionCommandBuilder
 
 public sealed class ConversionPlanner(IImageFormatCatalog catalog)
 {
-    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags)
+    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = " [{tag}]")
     {
         var sourceExtension = Path.GetExtension(sourcePath);
         var compatible = catalog.GetCompatibleOutputs(sourceExtension).ToDictionary(x => x.Id);
@@ -37,7 +37,7 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
             {
                 var known = format.Extensions.FirstOrDefault(x => string.Equals(x.Extension, extension, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidOperationException($"Extension '{extension}' is not valid for '{format.DisplayName}'.");
-                var tag = addTags ? $" [{Tag(format)}]" : "";
+                var tag = addTags ? FormatTag(tagPattern, Tag(format)) : "";
                 var outputPath = Path.Combine(destinationFolder, outputBaseName + tag + known.Extension);
                 outputs.Add(new ConversionOutput(format.Id, known.Extension, outputPath, selection.ExplicitExtensions.Count == 0));
             }
@@ -49,4 +49,9 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
     }
 
     private static string Tag(DiskFormat format) => format.Tag ?? format.Id.ToUpperInvariant().Replace('.', '-');
+    private static string FormatTag(string pattern, string tag)
+    {
+        if (string.IsNullOrWhiteSpace(pattern) || !pattern.Contains("{tag}", StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("The tag pattern must contain {tag}.", nameof(pattern));
+        return pattern.Replace("{tag}", tag, StringComparison.OrdinalIgnoreCase);
+    }
 }

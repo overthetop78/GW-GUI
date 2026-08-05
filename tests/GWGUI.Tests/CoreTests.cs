@@ -559,6 +559,15 @@ public sealed class CoreTests
         Assert.NotNull(best); Assert.Equal(1, best.Value.RevolutionIndex); Assert.Equal("apple2.gcr", best.Value.Result.DecoderId);
     }
 
+    [Fact]
+    public void ConversionTagPatternIsAppliedWithoutForcingBrackets()
+    {
+        var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
+        var output = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_{tag}"));
+        Assert.Equal("disk_PC-720.ima", Path.GetFileName(output.OutputPath));
+        Assert.Throws<ArgumentException>(() => planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_format"));
+    }
+
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
     private static string EncodeFmBytes(params byte[] values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "1" + (((value >> (7 - bit)) & 1) != 0 ? "1" : "0"))));
     private static List<uint> BitsToIntervals(string bits, uint cellTicks) { var result = new List<uint>(); var cells = 0; foreach (var bit in bits) { cells++; if (bit == '1') { result.Add((uint)cells * cellTicks); cells = 0; } } return result; }

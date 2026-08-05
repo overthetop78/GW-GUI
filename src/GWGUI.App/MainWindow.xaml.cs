@@ -361,7 +361,7 @@ public partial class MainWindow : Window
     private IReadOnlyList<ConversionOutput> PlanConversions()
     {
         if (string.IsNullOrWhiteSpace(ConvertSourceText.Text)) return [];
-        return new ConversionPlanner(_formatCatalog).Plan(ConvertSourceText.Text, Path.GetDirectoryName(ConvertSourceText.Text)!, ConvertOutputName.Text.Trim(), _conversionControls.Where(x => x.IsSelected).Select(x => x.ToSelection()), ConvertTags.IsChecked == true);
+        return new ConversionPlanner(_formatCatalog).Plan(ConvertSourceText.Text, Path.GetDirectoryName(ConvertSourceText.Text)!, ConvertOutputName.Text.Trim(), _conversionControls.Where(x => x.IsSelected).Select(x => x.ToSelection()), ConvertTags.IsChecked == true, _settings.Conversion.TagPattern);
     }
 
     private EnabledOption[] GetConvertOptions()

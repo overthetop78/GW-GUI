@@ -54,4 +54,8 @@
   <data name="Visual.StructureData"><value>Decoded data</value></data>
   <data name="Visual.StructureAnomaly"><value>Deleted/anomaly</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analysis based on revolution {0}.</value></data>
+  <data name="Options.TagPattern"><value>Conversion tag pattern</value></data>
+  <data name="Options.TagPatternHelp"><value>Use {tag} where the format tag must appear.</value></data>
+  <data name="Options.TagPatternPreview"><value>Example: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>The tag pattern must contain {tag}.</value></data>
 </root>

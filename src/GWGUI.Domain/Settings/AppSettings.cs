@@ -27,6 +27,7 @@ public sealed class AppSettings
 public sealed class ConversionUiSettings
 {
     public bool AddTags { get; set; }
+    public string TagPattern { get; set; } = " [{tag}]";
     public HashSet<string> SelectedFormats { get; set; } = [];
     public Dictionary<string, HashSet<string>> ExplicitExtensions { get; set; } = new();
     public Dictionary<string, string> OptionValues { get; set; } = new();

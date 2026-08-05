@@ -41,6 +41,7 @@ public partial class OptionsWindow : Window
         GwPathText.Text = settings.GwExecutablePath;
         LanguageCombo.SelectedIndex = settings.Language == "en" ? 1 : 0;
         ThemeCombo.SelectedIndex = (int)settings.Theme;
+        TagPatternText.Text = settings.Conversion.TagPattern;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
         foreach (var operation in new[] { "Read", "Write", "Convert" }) Profiles.Add(new($"default-{operation.ToLowerInvariant()}", operation, LocExtension.Get("Profile.Default"), true));
@@ -122,6 +123,15 @@ public partial class OptionsWindow : Window
         if (dialog.ShowDialog(this) == true) ImagesFolderText.Text = dialog.FolderName;
     }
 
+    private void TagPattern_Changed(object sender, TextChangedEventArgs e)
+    {
+        if (TagPatternPreview is null) return;
+        var pattern = TagPatternText.Text;
+        TagPatternPreview.Text = pattern.Contains("{tag}", StringComparison.OrdinalIgnoreCase)
+            ? LocExtension.Get("Options.TagPatternPreview", "Disquette" + pattern.Replace("{tag}", "PC-720", StringComparison.OrdinalIgnoreCase) + ".ima")
+            : LocExtension.Get("Options.TagPatternInvalid");
+    }
+
     private async void ScanHardware_Click(object sender, RoutedEventArgs e)
     {
         if (string.IsNullOrWhiteSpace(GwPathText.Text) || !File.Exists(GwPathText.Text)) { MessageBox.Show(this, LocExtension.Get("Hardware.GwRequired"), LocExtension.Get("Hardware.ScanTitle")); return; }
@@ -194,6 +204,7 @@ public partial class OptionsWindow : Window
 
     private void Save_Click(object sender, RoutedEventArgs e)
     {
+        if (!TagPatternText.Text.Contains("{tag}", StringComparison.OrdinalIgnoreCase)) { MessageBox.Show(this, LocExtension.Get("Options.TagPatternInvalid"), LocExtension.Get("Options.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
         _settings.DefaultImagesFolder = ImagesFolderText.Text.Trim();
         _settings.GwExecutablePath = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text.Trim();
         _settings.PreviousGwExecutablePath = _previousGwPath;
@@ -202,6 +213,7 @@ public partial class OptionsWindow : Window
         _settings.LastHostToolsCheckUtc = _lastHostToolsCheck;
         _settings.Language = LanguageCombo.SelectedIndex == 1 ? "en" : "fr";
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
+        _settings.Conversion.TagPattern = TagPatternText.Text;
         _settings.Controllers = _controllers;
         _settings.Drives = _drives;
         var retained = Profiles.Where(x => !x.IsSystem).ToDictionary(x => x.Id);

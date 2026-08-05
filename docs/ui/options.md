@@ -6,7 +6,7 @@
 - Langue française ou anglaise.
 - Configuration des tags de conversion.
 - Gestion des profils utilisateur par onglet : renommer et supprimer.
-- Valeur générale initiale de la case Tags et choix d’un modèle de tag.
+- Valeur générale initiale de la case Tags et modèle de tag configurable. Le jeton `{tag}` est obligatoire, la valeur initiale est ` [{tag}]` et un aperçu montre le nom obtenu.
 - Un changement temporaire dans Conversion n’écrase pas ce réglage général.
 
 ## Matériel

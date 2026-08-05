@@ -89,7 +89,7 @@ Ce journal conserve les questions posées, la réponse retenue et les précision
 | Extensions | Chaque format montre ses extensions compatibles. Aucune extension cochée = extension implicite par défaut. |
 | Extension explicite | Une extension cochée remplace le défaut; plusieurs cochées produisent plusieurs fichiers. Le défaut est indiqué en infobulle uniquement. |
 | Nom | Reprend le nom de la source sans extension à chaque chargement; reste modifiable. |
-| Tags | Option mémorisée; tags précis famille/géométrie. Valeur initiale et modèles définis dans Options; changement temporaire pour la session. Modèles exacts à étudier. |
+| Tags | Option mémorisée; tags précis famille/géométrie. Le modèle général est configurable dans Options avec le jeton obligatoire `{tag}`, un aperçu immédiat et la valeur initiale ` [{tag}]`; la case de l’onglet permet l’activation temporaire et les profils mémorisent son état. |
 | Échec dans une série | Continuer les autres conversions puis afficher un bilan. |
 | Fichiers existants | Résumé avant lancement avec Écraser, Ignorer ou Numéroter, individuellement ou pour tous. |
 

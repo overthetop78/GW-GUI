@@ -54,4 +54,8 @@
   <data name="Visual.StructureData"><value>Données décodées</value></data>
   <data name="Visual.StructureAnomaly"><value>Supprimé/anomalie</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analyse fondée sur la révolution {0}.</value></data>
+  <data name="Options.TagPattern"><value>Modèle des tags de conversion</value></data>
+  <data name="Options.TagPatternHelp"><value>Utilisez {tag} à l’endroit où le tag du format doit apparaître.</value></data>
+  <data name="Options.TagPatternPreview"><value>Exemple : {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Le modèle de tag doit contenir {tag}.</value></data>
 </root>
