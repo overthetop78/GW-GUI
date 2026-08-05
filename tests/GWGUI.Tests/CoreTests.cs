@@ -904,6 +904,27 @@ public sealed class CoreTests
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
     }
 
+    [Fact]
+    public void NativeChecksumDecodersReportCorruptedBlocks()
+    {
+        var northstarData = new byte[512];
+        var northstarBlock = Enumerable.Repeat((byte)0, 7)
+            .Concat([(byte)0xfb, (byte)0x21])
+            .Concat(northstarData)
+            .Append((byte)0x01)
+            .ToArray();
+        var northstarIntervals = BitsToIntervals(EncodeMfmBytesFromZero(northstarBlock) + "001", 40);
+        var northstar = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)northstarIntervals.Count, northstarIntervals));
+
+        static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
+        var heathkitBits = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(1), Reverse(2), Reverse(3), Reverse(0xff)) + "001";
+        var heathkitIntervals = BitsToIntervals(heathkitBits, 40);
+        var heathkit = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)heathkitIntervals.Count, heathkitIntervals));
+
+        Assert.False(Assert.Single(northstar.Sectors!).HeaderCrcValid);
+        Assert.False(Assert.Single(heathkit.Sectors!).HeaderCrcValid);
+    }
+
     [Theory]
     [InlineData("membrain.mfm", "44895554", FluxStructureKind.FormatHeader)]
     [InlineData("aed6200p.mfm", "5094", FluxStructureKind.FormatHeader)]

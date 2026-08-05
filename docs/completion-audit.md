@@ -19,7 +19,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.
 - Les réglages avancés de Lecture, Écriture et Conversion possèdent des infobulles FR/EN indiquant l’argument `gw`, son rôle, les incompatibilités utiles et un exemple lorsqu’une valeur est attendue.
-- La compilation Release et 123 tests automatisés réussissent; un test STA charge réellement le XAML principal et vérifie le ViewModel, les liaisons de statut/progression et le menu Alignement. Des vecteurs bit à bit contrôlent les extractions et checksums NorthStar/Heathkit.
+- La compilation Release et 124 tests automatisés réussissent; un test STA charge réellement le XAML principal et vérifie le ViewModel, les liaisons de statut/progression et le menu Alignement. Des vecteurs bit à bit contrôlent les extractions et checksums valides comme corrompus NorthStar/Heathkit.
 
 ## Partiellement prouvé
 
