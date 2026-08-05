@@ -1335,6 +1335,52 @@ public sealed class CoreTests
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(false, false)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    public void AppleGcrDecoderExtractsAddressAndDecodesSixAndTwoData(bool corruptAddress, bool corruptData)
+    {
+        byte[] table = [0x96,0x97,0x9a,0x9b,0x9d,0x9e,0x9f,0xa6,0xa7,0xab,0xac,0xad,0xae,0xaf,0xb2,0xb3,0xb4,0xb5,0xb6,0xb7,0xb9,0xba,0xbb,0xbc,0xbd,0xbe,0xbf,0xcb,0xcd,0xce,0xcf,0xd3,0xd6,0xd7,0xd9,0xda,0xdb,0xdc,0xdd,0xde,0xdf,0xe5,0xe6,0xe7,0xe9,0xea,0xeb,0xec,0xed,0xee,0xef,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff];
+        static IEnumerable<byte> FourAndFour(byte value) => [(byte)((value >> 1) | 0xaa), (byte)(value | 0xaa)];
+        static string Bits(IEnumerable<byte> values) => string.Concat(values.Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        static byte[] EncodeData(byte[] source, IReadOnlyList<byte> translation, bool corrupt)
+        {
+            var buffer = new byte[300]; source.CopyTo(buffer, 0); var encoded = new List<byte>(343); byte checksum = 0;
+            for (var index = 0; index < 86; index++)
+            {
+                var value = (byte)(((buffer[index] & 1) << 1) | ((buffer[index] & 2) >> 1) | ((buffer[index + 86] & 1) << 3) | ((buffer[index + 86] & 2) << 1) | ((buffer[index + 172] & 1) << 5) | ((buffer[index + 172] & 2) << 3));
+                encoded.Add(translation[value ^ checksum]); checksum = value;
+            }
+            for (var index = 0; index < 256; index++) { var value = (byte)(source[index] >> 2); encoded.Add(translation[value ^ checksum]); checksum = value; }
+            encoded.Add(translation[(checksum + (corrupt ? 1 : 0)) & 0x3f]); return encoded.ToArray();
+        }
+        const byte volume = 254; const byte track = 19; const byte sector = 11;
+        var addressChecksum = (byte)(volume ^ track ^ sector ^ (corruptAddress ? 1 : 0));
+        var address = FourAndFour(volume).Concat(FourAndFour(track)).Concat(FourAndFour(sector)).Concat(FourAndFour(addressChecksum));
+        var data = Enumerable.Range(0, 256).Select(index => (byte)(index * 37 + 9)).ToArray();
+        var calibration = new string('1', 100);
+        var raw = calibration + Bits([0xd5,0xaa,0x96]) + Bits(address) + Bits([0xde,0xaa,0xeb,0xff,0xff,0xff]) + Bits([0xd5,0xaa,0xad]) + Bits(EncodeData(data, table, corruptData)) + Bits([0xde,0xaa,0xeb]) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var decoded = Assert.Single(result.Sectors!); Assert.Equal(track, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(256, decoded.SizeBytes);
+        Assert.Equal(!corruptAddress && !corruptData, decoded.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData && structure.Description.Contains(corruptData ? "invalid" : "valid", StringComparison.Ordinal));
+        if (!corruptData) Assert.Equal(data, result.DecodedBytes.Skip(4).Take(256));
+    }
+
+    [Fact]
+    public void AppleGcrDecoderReportsUnavailableIntegrityWhenDataBlockIsMissing()
+    {
+        var calibration = new string('1', 100); var mark = string.Concat(Convert.FromHexString("D5AA96").Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var address = string.Concat(Enumerable.Repeat("10101010", 8)); var epilogue = string.Concat(Convert.FromHexString("DEAAEB").Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var intervals = BitsToIntervals(calibration + mark + address + epilogue + "0001", 40); var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress && structure.Description.Contains("unavailable", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
