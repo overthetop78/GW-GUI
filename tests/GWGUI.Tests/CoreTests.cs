@@ -71,6 +71,20 @@ public sealed class CoreTests
                 Assert.Equal("Read.Revs.Enabled", BindingOperations.GetBindingExpression(readRevs, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Write.NoVerify.Enabled", BindingOperations.GetBindingExpression(writeNoVerify, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Conversion.AddTags", BindingOperations.GetBindingExpression(convertTags, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
+                var model = Assert.IsType<MainWindowViewModel>(window.DataContext);
+                static System.Windows.Controls.CheckBox Probe(MainWindowViewModel dataContext, string path)
+                {
+                    var probe = new System.Windows.Controls.CheckBox { DataContext = dataContext };
+                    BindingOperations.SetBinding(probe, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty, new Binding(path) { Mode = BindingMode.TwoWay });
+                    return probe;
+                }
+                var readProbe = Probe(model, "Read.Revs.Enabled"); var writeProbe = Probe(model, "Write.NoVerify.Enabled"); var convertProbe = Probe(model, "Conversion.AddTags");
+                readProbe.IsChecked = true; writeProbe.IsChecked = true; convertProbe.IsChecked = true;
+                Assert.True(model.Read.Revs.Enabled, "Read checkbox did not update its source");
+                Assert.True(model.Write.NoVerify.Enabled, "Write checkbox did not update its source");
+                Assert.True(model.Conversion.AddTags, "Conversion checkbox did not update its source");
+                model.Read.Revs.Enabled = false; model.Write.NoVerify.Enabled = false; model.Conversion.AddTags = false;
+                Assert.False(readProbe.IsChecked); Assert.False(writeProbe.IsChecked); Assert.False(convertProbe.IsChecked);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -92,6 +106,42 @@ public sealed class CoreTests
         Assert.False(result.IsSuccess);
         Assert.Contains(result.Output, line => line.Stream == GwOutputStream.Standard && line.Text.Contains("café 漢字"));
         Assert.Contains(result.Output, line => line.Stream == GwOutputStream.Error && line.Text.Contains("échec Ω"));
+    }
+
+    [Fact]
+    public async Task BatchExecutorContinuesAfterFailuresAndKeepsAnExactSummary()
+    {
+        var runner = new ScriptedRunner(
+            new GwExecutionResult(0, false, TimeSpan.Zero, []),
+            new GwExecutionResult(2, false, TimeSpan.Zero, []),
+            new GwExecutionResult(0, false, TimeSpan.Zero, []));
+        var items = new[] { "one", "two", "three" }.Select(label => new GwBatchItem(label, new GwCommand("gw.exe", "convert", [label]))).ToArray();
+        var started = new List<string>();
+
+        var result = await new GwBatchExecutor(runner).RunAsync(items, itemStarting: item => started.Add(item.Label));
+
+        Assert.False(result.WasCancelled);
+        Assert.Equal(2, result.SuccessfulCount);
+        Assert.Equal(["two"], result.FailedLabels);
+        Assert.Equal(["one", "two", "three"], started);
+        Assert.Equal(3, runner.Commands.Count);
+    }
+
+    [Fact]
+    public async Task BatchExecutorStopsImmediatelyAfterACommandReportsCancellation()
+    {
+        var runner = new ScriptedRunner(
+            new GwExecutionResult(0, false, TimeSpan.Zero, []),
+            new GwExecutionResult(-1, true, TimeSpan.Zero, []),
+            new GwExecutionResult(0, false, TimeSpan.Zero, []));
+        var items = new[] { "one", "two", "three" }.Select(label => new GwBatchItem(label, new GwCommand("gw.exe", "convert", [label]))).ToArray();
+
+        var result = await new GwBatchExecutor(runner).RunAsync(items);
+
+        Assert.True(result.WasCancelled);
+        Assert.Equal(1, result.SuccessfulCount);
+        Assert.Empty(result.FailedLabels);
+        Assert.Equal(2, runner.Commands.Count);
     }
 
     [Fact]
@@ -1119,6 +1169,19 @@ public sealed class CoreTests
         Assert.True(selections.Single(x => x.FormatId == "ibm.720").ExplicitExtensions.SetEquals([".ima", ".img"]));
         Assert.Empty(selections.Single(x => x.FormatId == "atarist.720").ExplicitExtensions);
         Assert.Equal([new EnabledOption("--tracks", "c=0-79:h=0-1")], restored.BuildOptions());
+    }
+
+    private sealed class ScriptedRunner(params GwExecutionResult[] results) : IGreaseweazleRunner
+    {
+        private readonly Queue<GwExecutionResult> _results = new(results);
+        public List<GwCommand> Commands { get; } = [];
+        public bool IsRunning { get; private set; }
+        public Task<GwExecutionResult> RunAsync(GwCommand command, IProgress<GwOutputLine>? output = null, CancellationToken cancellationToken = default)
+        {
+            Commands.Add(command); IsRunning = true;
+            try { return Task.FromResult(_results.Dequeue()); }
+            finally { IsRunning = false; }
+        }
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

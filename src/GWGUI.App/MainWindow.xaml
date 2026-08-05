@@ -105,7 +105,7 @@
                             <Border Style="{StaticResource Card}" Margin="0,10,0,12">
                                 <StackPanel>
                                     <WrapPanel>
-                                        <CheckBox x:Name="ReadRevsEnabled" IsChecked="{Binding Read.Revs.Enabled}" Content="{l:Loc Read.Revolutions}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RevsTip}" />
+                                        <CheckBox x:Name="ReadRevsEnabled" IsChecked="{Binding Read.Revs.Enabled, Mode=TwoWay}" Content="{l:Loc Read.Revolutions}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RevsTip}" />
                                         <TextBox x:Name="ReadRevsValue" Width="70" Text="{Binding Read.Revs.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
                                         <CheckBox x:Name="ReadRetriesEnabled" IsChecked="{Binding Read.Retries.Enabled}" Content="{l:Loc Read.Retries}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RetriesTip}" />
                                         <TextBox x:Name="ReadRetriesValue" Width="70" Text="{Binding Read.Retries.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
@@ -214,7 +214,7 @@
                         <Border Style="{StaticResource Card}" Margin="0,10,0,12">
                             <StackPanel>
                                 <WrapPanel>
-                                    <CheckBox x:Name="WriteNoVerify" IsChecked="{Binding Write.NoVerify.Enabled}" Content="{l:Loc Write.NoVerify}" Foreground="#B3261E" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Write.NoVerifyTip}" />
+                                    <CheckBox x:Name="WriteNoVerify" IsChecked="{Binding Write.NoVerify.Enabled, Mode=TwoWay}" Content="{l:Loc Write.NoVerify}" Foreground="#B3261E" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Write.NoVerifyTip}" />
                                     <CheckBox x:Name="WriteEraseEmpty" IsChecked="{Binding Write.EraseEmpty.Enabled}" Content="{l:Loc Write.EraseEmpty}" Margin="16,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.EraseEmptyTip}" />
                                     <CheckBox x:Name="WriteRetriesEnabled" IsChecked="{Binding Write.Retries.Enabled}" Content="{l:Loc Read.Retries}" Margin="16,8,8,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.RetriesTip}" />
                                     <TextBox x:Name="WriteRetriesValue" Width="70" Text="{Binding Write.Retries.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="WriteInput_Changed" />
@@ -277,7 +277,7 @@
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,12,0,0">
                                 <TextBlock Text="{l:Loc Conversion.OutputNames}" VerticalAlignment="Center" />
                                 <TextBox x:Name="ConvertOutputName" Width="330" Margin="12,0" Text="{Binding Conversion.OutputName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" />
-                                <CheckBox x:Name="ConvertTags" IsChecked="{Binding Conversion.AddTags}" Content="{l:Loc Conversion.AddTags}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
+                                <CheckBox x:Name="ConvertTags" IsChecked="{Binding Conversion.AddTags, Mode=TwoWay}" Content="{l:Loc Conversion.AddTags}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                 <TextBlock x:Name="ConvertSourceInfo" Margin="18,0" VerticalAlignment="Center" />
                             </StackPanel>
                         </Grid>

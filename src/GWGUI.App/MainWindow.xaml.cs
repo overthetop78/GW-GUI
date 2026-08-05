@@ -374,20 +374,14 @@ public partial class MainWindow : Window
             }
             outputs = resolved;
         }
-        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress(); var failures = new List<string>();
+        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
         try
         {
-            foreach (var planned in outputs)
-            {
-                if (_cancellation.IsCancellationRequested) break;
-                BeginProgress();
-                LogOutput.AppendText($"{Environment.NewLine}→ {Path.GetFileName(planned.OutputPath)}{Environment.NewLine}");
-                var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments), progress, _cancellation.Token);
-                if (!result.IsSuccess) failures.Add(Path.GetFileName(planned.OutputPath));
-            }
-            if (_cancellation.IsCancellationRequested) SetOperationCancelled(); else if (failures.Count == 0) SetOperationSuccess(); else SetOperationError();
-            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Conversion.Summary", outputs.Count - failures.Count, failures.Count) + (failures.Count > 0 ? LocExtension.Get("Conversion.Failures", string.Join(", ", failures)) : ""));
+            var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), ConversionCommandBuilder.Build(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
+            var result = await new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); LogOutput.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), _cancellation.Token);
+            if (result.WasCancelled) SetOperationCancelled(); else if (result.FailedLabels.Count == 0) SetOperationSuccess(); else SetOperationError();
+            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Conversion.Summary", result.SuccessfulCount, result.FailedLabels.Count) + (result.FailedLabels.Count > 0 ? LocExtension.Get("Conversion.Failures", string.Join(", ", result.FailedLabels)) : ""));
         }
         catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); ConvertExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
