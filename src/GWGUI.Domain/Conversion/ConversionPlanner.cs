@@ -48,5 +48,5 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
         return outputs;
     }
 
-    private static string Tag(DiskFormat format) => format.DisplayName.ToUpperInvariant().Replace(" — ", "-").Replace(' ', '-');
+    private static string Tag(DiskFormat format) => format.Tag ?? format.Id.ToUpperInvariant().Replace('.', '-');
 }

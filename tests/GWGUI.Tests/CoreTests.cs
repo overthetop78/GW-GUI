@@ -150,6 +150,15 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void CatalogDisplayNamesAreProvidedByTheActiveLocalizer()
+    {
+        var catalog = new BuiltInImageFormatCatalog(key => "localized:" + key);
+        var format = Assert.Single(catalog.Formats, item => item.Id == "ibm.720");
+        Assert.Equal("localized:Format.ibm.720", format.DisplayName);
+        Assert.Equal("localized:Extension.ima", format.Extensions[0].DisplayName);
+    }
+
+    [Fact]
     public void DisplayCommandQuotesPathsWithSpaces()
     {
         var command = new GwCommand("C:\\GW Tools\\gw.exe", "read", ["F:\\Disk Images\\My disk.scp"]);
@@ -439,6 +448,14 @@ public sealed class CoreTests
         var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
         var outputs = planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("amiga.amigados", new HashSet<string>()), new ConversionSelection("acorn.adfs.800", new HashSet<string>())], true);
         Assert.Equal(2, outputs.Select(x => x.OutputPath).Distinct(StringComparer.OrdinalIgnoreCase).Count());
+    }
+
+    [Fact]
+    public void ConversionTagsAreStableAndIndependentFromTranslatedLabels()
+    {
+        var catalog = new BuiltInImageFormatCatalog(key => "translated:" + key);
+        var output = Assert.Single(new ConversionPlanner(catalog).Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true));
+        Assert.Equal(Path.Combine("out", "disk [PC-720].ima"), output.OutputPath);
     }
 
     [Fact]

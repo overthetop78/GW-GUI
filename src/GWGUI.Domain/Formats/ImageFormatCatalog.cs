@@ -8,7 +8,8 @@ public sealed record DiskFormat(
     string DisplayName,
     IReadOnlyList<ImageExtension> Extensions,
     bool IsCommon = true,
-    IReadOnlySet<string>? CompatibleSourceExtensions = null);
+    IReadOnlySet<string>? CompatibleSourceExtensions = null,
+    string? Tag = null);
 
 public interface IImageFormatCatalog
 {
@@ -54,33 +55,38 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
 
 public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
 {
-    public IReadOnlyList<DiskFormat> Formats { get; } =
-    [
-        new("raw.scp", "Raw", "Image brute", [new(".scp", "SuperCard Pro", true)]),
-        new("amiga.amigados", "Amiga", "AmigaDOS — 880 Kio", [new(".adf", "Amiga Disk File", true)], CompatibleSourceExtensions: Set(".scp", ".adf", ".hfe")),
-        new("amiga.amigados_hd", "Amiga", "AmigaDOS HD — 1,76 Mio", [new(".adf", "Amiga Disk File", true)], CompatibleSourceExtensions: Set(".scp", ".adf", ".hfe")),
-        new("atarist.360", "Atari ST", "Atari ST — 360 Kio", [new(".st", "Image Atari ST", true)], CompatibleSourceExtensions: Set(".scp", ".st", ".msa", ".hfe"), IsCommon: false),
-        new("atarist.400", "Atari ST", "Atari ST — 400 Kio", [new(".st", "Image Atari ST", true)], CompatibleSourceExtensions: Set(".scp", ".st", ".msa", ".hfe"), IsCommon: false),
-        new("atarist.440", "Atari ST", "Atari ST — 440 Kio", [new(".st", "Image Atari ST", true)], CompatibleSourceExtensions: Set(".scp", ".st", ".msa", ".hfe"), IsCommon: false),
-        new("atarist.720", "Atari ST", "Atari ST — 720 Kio", [new(".st", "Image Atari ST", true), new(".msa", "Magic Shadow Archiver")], CompatibleSourceExtensions: Set(".scp", ".st", ".msa", ".hfe")),
-        new("atarist.800", "Atari ST", "Atari ST — 800 Kio", [new(".st", "Image Atari ST", true)], CompatibleSourceExtensions: Set(".scp", ".st", ".msa", ".hfe"), IsCommon: false),
-        new("atarist.880", "Atari ST", "Atari ST — 880 Kio", [new(".st", "Image Atari ST", true)], CompatibleSourceExtensions: Set(".scp", ".st", ".msa", ".hfe"), IsCommon: false),
-        new("ibm.160", "IBM PC", "IBM PC — 160 Kio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.180", "IBM PC", "IBM PC — 180 Kio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.320", "IBM PC", "IBM PC — 320 Kio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.360", "IBM PC", "IBM PC — 360 Kio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe")),
-        new("ibm.720", "IBM PC", "IBM PC — 720 Kio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe")),
-        new("ibm.800", "IBM PC", "IBM PC — 800 Kio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.1200", "IBM PC", "IBM PC — 1,2 Mio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe")),
-        new("ibm.1440", "IBM PC", "IBM PC — 1,44 Mio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe")),
-        new("ibm.1680", "IBM PC", "IBM PC — 1,68 Mio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.dmf", "IBM PC", "IBM PC — DMF 1,68 Mio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.2880", "IBM PC", "IBM PC — 2,88 Mio", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".ima", ".img", ".hfe"), IsCommon: false),
-        new("ibm.scan", "IBM PC", "IBM PC — Recherche FM/MFM", [new(".ima", "Image disque IMA", true), new(".img", "Image disque IMG")], CompatibleSourceExtensions: Set(".scp", ".hfe"), IsCommon: false),
-        new("commodore.1541", "Commodore", "Commodore 64 — 1541", [new(".d64", "Image Commodore D64", true)], CompatibleSourceExtensions: Set(".scp", ".d64", ".hfe")),
-        new("acorn.adfs.800", "Acorn", "Acorn ADFS — 800 Kio", [new(".adf", "Acorn Disk File", true)], CompatibleSourceExtensions: Set(".scp", ".adf", ".hfe")),
-        new("raw.hfe", "Raw", "Image de flux HxC", [new(".hfe", "HxC Floppy Emulator", true)], CompatibleSourceExtensions: Set(".scp", ".hfe"), IsCommon: false)
-    ];
+    public IReadOnlyList<DiskFormat> Formats { get; }
+
+    public BuiltInImageFormatCatalog(Func<string, string>? localize = null)
+    {
+        string T(string key, string fallback) => localize?.Invoke(key) ?? fallback;
+        ImageExtension E(string extension, string key, string fallback, bool isDefault = false) => new(extension, T(key, fallback), isDefault);
+        DiskFormat F(string id, string family, string fallback, IReadOnlyList<ImageExtension> extensions, bool common, string tag, params string[] sources) => new(id, family, T("Format." + id, fallback), extensions, common, Set(sources), tag);
+        var ima = new Func<bool, ImageExtension>(isDefault => E(".ima", "Extension.ima", "IMA disk image", isDefault));
+        var img = new Func<ImageExtension>(() => E(".img", "Extension.img", "IMG disk image"));
+        IReadOnlyList<ImageExtension> Ibm() => [ima(true), img()];
+        Formats =
+        [
+            new("raw.scp", "Raw", T("Format.raw.scp", "Raw flux image"), [E(".scp", "Extension.scp", "SuperCard Pro", true)], Tag: "RAW-SCP"),
+            F("amiga.amigados", "Amiga", "AmigaDOS — 880 KiB", [E(".adf", "Extension.adf.amiga", "Amiga Disk File", true)], true, "AMIGA-DD", ".scp", ".adf", ".hfe"),
+            F("amiga.amigados_hd", "Amiga", "AmigaDOS HD — 1.76 MiB", [E(".adf", "Extension.adf.amiga", "Amiga Disk File", true)], true, "AMIGA-HD", ".scp", ".adf", ".hfe"),
+            F("atarist.360", "Atari ST", "Atari ST — 360 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-360", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.400", "Atari ST", "Atari ST — 400 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-400", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.440", "Atari ST", "Atari ST — 440 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-440", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.720", "Atari ST", "Atari ST — 720 KiB", [E(".st", "Extension.st", "Atari ST image", true), E(".msa", "Extension.msa", "Magic Shadow Archiver")], true, "ST-720", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.800", "Atari ST", "Atari ST — 800 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-800", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.880", "Atari ST", "Atari ST — 880 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-880", ".scp", ".st", ".msa", ".hfe"),
+            F("ibm.160", "IBM PC", "IBM PC — 160 KiB", Ibm(), false, "PC-160", ".scp", ".ima", ".img", ".hfe"), F("ibm.180", "IBM PC", "IBM PC — 180 KiB", Ibm(), false, "PC-180", ".scp", ".ima", ".img", ".hfe"),
+            F("ibm.320", "IBM PC", "IBM PC — 320 KiB", Ibm(), false, "PC-320", ".scp", ".ima", ".img", ".hfe"), F("ibm.360", "IBM PC", "IBM PC — 360 KiB", Ibm(), true, "PC-360", ".scp", ".ima", ".img", ".hfe"),
+            F("ibm.720", "IBM PC", "IBM PC — 720 KiB", Ibm(), true, "PC-720", ".scp", ".ima", ".img", ".hfe"), F("ibm.800", "IBM PC", "IBM PC — 800 KiB", Ibm(), false, "PC-800", ".scp", ".ima", ".img", ".hfe"),
+            F("ibm.1200", "IBM PC", "IBM PC — 1.2 MiB", Ibm(), true, "PC-1200", ".scp", ".ima", ".img", ".hfe"), F("ibm.1440", "IBM PC", "IBM PC — 1.44 MiB", Ibm(), true, "PC-1440", ".scp", ".ima", ".img", ".hfe"),
+            F("ibm.1680", "IBM PC", "IBM PC — 1.68 MiB", Ibm(), false, "PC-1680", ".scp", ".ima", ".img", ".hfe"), F("ibm.dmf", "IBM PC", "IBM PC — DMF 1.68 MiB", Ibm(), false, "PC-DMF", ".scp", ".ima", ".img", ".hfe"),
+            F("ibm.2880", "IBM PC", "IBM PC — 2.88 MiB", Ibm(), false, "PC-2880", ".scp", ".ima", ".img", ".hfe"), F("ibm.scan", "IBM PC", "IBM PC — FM/MFM scan", Ibm(), false, "PC-SCAN", ".scp", ".hfe"),
+            F("commodore.1541", "Commodore", "Commodore 64 — 1541", [E(".d64", "Extension.d64", "Commodore D64 image", true)], true, "C64-1541", ".scp", ".d64", ".hfe"),
+            F("acorn.adfs.800", "Acorn", "Acorn ADFS — 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", ".scp", ".adf", ".hfe"),
+            F("raw.hfe", "Raw", "HxC flux image", [E(".hfe", "Extension.hfe", "HxC Floppy Emulator", true)], false, "RAW-HFE", ".scp", ".hfe")
+        ];
+    }
 
     public IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension)
     {

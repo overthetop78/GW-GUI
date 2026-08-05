@@ -29,6 +29,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Journal automatique rotatif : 10 fichiers de 5 Mio sous les données utilisateur, avec commande exacte, sortie horodatée, flux standard/erreur, code retour, annulation et durée. Le menu Options ouvre un historique consultable et exportable; la console courante peut aussi être exportée directement.
 - Réglages au schéma versionné 3 avec migrations séquentielles, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
 - La détection en Écriture reconnaît par taille toutes les géométries IBM et Atari cataloguées, ainsi que les ADF Amiga DD/HD et Acorn; ses explications sont localisées en français et en anglais.
+- Tous les noms conviviaux du catalogue et des extensions sont fournis par les ressources de la langue active. Les tags de multiconversion sont des identifiants stables indépendants de la traduction, par exemple `[PC-720]`, `[ST-720]` et `[AMIGA-DD]`.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -37,7 +38,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
 - Enrichir les infobulles avancées avec exemples détaillés et ajouter une validation syntaxique plus profonde de TSPEC, PLL et précompensation.
-- Vérifier visuellement les deux langues et traduire progressivement les descriptions provenant encore du catalogue métier lorsqu’elles sont exposées à l’utilisateur.
+- Vérifier visuellement les deux langues sur l’application publiée.
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et finaliser le comportement portable versus installé.
 - Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
@@ -48,5 +49,5 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 69 réussis, dont migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 71 réussis, dont localisation et stabilité des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.

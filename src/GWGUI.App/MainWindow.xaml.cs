@@ -29,7 +29,7 @@ public partial class MainWindow : Window
     private readonly IGreaseweazleRunner _runner;
     private AppSettings _settings = new();
     private CancellationTokenSource? _cancellation;
-    private IImageFormatCatalog _formatCatalog = new BuiltInImageFormatCatalog();
+    private IImageFormatCatalog _formatCatalog = null!;
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
@@ -45,6 +45,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
@@ -120,7 +121,7 @@ public partial class MainWindow : Window
         if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
         {
             var capabilities = await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath);
-            _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(), capabilities);
+            _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)), capabilities);
             _formatDetector = new ImageFormatDetector(_formatCatalog);
         }
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, "Automatique") }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
