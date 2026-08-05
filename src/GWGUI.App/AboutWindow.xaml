@@ -1,0 +1,6 @@
+<Window x:Class="GWGUI.App.AboutWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization" Title="{l:Loc Menu.About}" Width="500" Height="390" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid Margin="28"><Grid.RowDefinitions><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center"><Image Source="Assets/app-icon.png" Width="128" Height="128"/><TextBlock Text="{l:Loc App.Title}" FontSize="28" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,12,0,0"/><TextBlock x:Name="VersionText" HorizontalAlignment="Center" Margin="0,4,0,18"/><TextBlock Text="{l:Loc About.Description}" TextWrapping="Wrap" TextAlignment="Center" MaxWidth="420"/><TextBlock Text="{l:Loc About.License}" HorizontalAlignment="Center" Margin="0,14,0,0"/></StackPanel>
+        <Button Grid.Row="1" Content="{l:Loc Common.Close}" IsCancel="True" HorizontalAlignment="Right"/>
+    </Grid>
+</Window>

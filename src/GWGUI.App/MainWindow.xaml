@@ -28,8 +28,8 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{l:Loc Menu.Help}">
-                <MenuItem Header="{l:Loc Menu.Documentation}" />
-                <MenuItem Header="{l:Loc Menu.About}" />
+                <MenuItem Header="{l:Loc Menu.Documentation}" Click="Documentation_Click" />
+                <MenuItem Header="{l:Loc Menu.About}" Click="About_Click" />
             </MenuItem>
         </Menu>
         <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged">

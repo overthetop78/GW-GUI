@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -550,6 +551,13 @@ public partial class MainWindow : Window
     private void ToggleConsole_Click(object sender, RoutedEventArgs e) => SetConsoleVisibility(ConsolePanel.Visibility != Visibility.Visible);
 
     private void LogHistory_Click(object sender, RoutedEventArgs e) => new LogHistoryWindow(_logsDirectory) { Owner = this }.ShowDialog();
+    private void About_Click(object sender, RoutedEventArgs e) => new AboutWindow { Owner = this }.ShowDialog();
+    private void Documentation_Click(object sender, RoutedEventArgs e)
+    {
+        var language = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "fr" : "en";
+        var path = Path.Combine(AppContext.BaseDirectory, "Documentation", $"user-guide.{language}.md");
+        if (File.Exists(path)) Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+    }
 
     private async void ExportConsole_Click(object sender, RoutedEventArgs e)
     {

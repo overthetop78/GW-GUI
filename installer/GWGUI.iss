@@ -27,6 +27,7 @@ ArchitecturesInstallIn64BitMode=x64compatible
 PrivilegesRequired=lowest
 UninstallDisplayName=GW GUI
 WizardStyle=modern
+SetupIconFile=..\src\GWGUI.App\Assets\app-icon.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

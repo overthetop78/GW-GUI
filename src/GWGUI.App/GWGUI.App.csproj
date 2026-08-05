@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon />
+    <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
     <AssemblyName>GW GUI</AssemblyName>
     <RootNamespace>GWGUI.App</RootNamespace>
     <Version Condition="'$(Version)' == ''">0.1.0</Version>
@@ -27,6 +27,12 @@
 
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\docs\user-guide.fr.md" Link="Documentation\user-guide.fr.md" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\docs\user-guide.en.md" Link="Documentation\user-guide.en.md" CopyToOutputDirectory="PreserveNewest" />
+    <Resource Include="Assets\app-icon.png" />
   </ItemGroup>
 
 </Project>
