@@ -22,6 +22,9 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Barre d’état dynamique : matériel et lecteur sélectionnés, profil actif, progression par piste/face extraite des sorties officielles `T<cylindre>.<face>`; les répétitions de tentative ne sont pas comptées deux fois.
 - Gestionnaire Host Tools : détection chemin/configuration/PATH/dossier géré, consultation quotidienne discrète de la release officielle, téléchargement x64 volontaire avec progression, contrôle SHA-256 lorsqu’il est publié, extraction ZIP défensive, installations versionnées et retour au chemin précédent.
 - Catalogue de formats recoupé au démarrage avec `gw read --help` : les profils et suffixes absents de la version active sont retirés, avec repli sur le catalogue intégré si l’interrogation échoue. Le catalogue couvre les géométries IBM PC officielles de 160 Kio à 2,88 Mio, DMF et scan, les six profils Atari ST officiels, et utilise l’identifiant Amiga HD corrigé `amiga.amigados_hd`. IMA reste l’extension IBM implicite sans être cochée automatiquement.
+- Panneaux avancés structurés : Lecture couvre révolutions, tentatives, nouvelles tentatives après déplacement, pistes/faces/pas via TSPEC, faux index, secteurs matériels, ajustement de vitesse, PLL, inversion flippy, densité et TG43; Écriture couvre pistes, pré-effacement, pistes vides, faux index, secteurs matériels, vérification/tentatives, précompensation, inversion, densité et TG43; Conversion couvre pistes d’entrée/sortie, vitesse, PLL, secteurs matériels et inversion.
+- Les réglages avancés des trois onglets sont conservés entre les sessions. Les profils Lecture, Écriture et Conversion mémorisent leurs propres options et arguments experts; Conversion mémorise aussi formats, extensions explicites et tags. Le profil système Par défaut remet toutes les options facultatives de son onglet à zéro.
+- La détection en Écriture reconnaît par taille toutes les géométries IBM et Atari cataloguées, ainsi que les ADF Amiga DD/HD et Acorn; ses explications sont localisées en français et en anglais.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -29,7 +32,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Encore à réaliser avant achèvement
 
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
-- Compléter toutes les options avancées de chaque commande `gw` et leurs profils.
+- Ajouter le choix structuré d’un fichier `diskdefs` personnalisé et renforcer la validation contextuelle des valeurs avancées.
 - Vérifier visuellement les deux langues et traduire progressivement les descriptions provenant encore du catalogue métier lorsqu’elles sont exposées à l’utilisateur.
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et finaliser le comportement portable versus installé.
@@ -41,5 +44,5 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 51 réussis, dont capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 61 réussis, dont options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.

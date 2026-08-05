@@ -129,9 +129,12 @@ public partial class MainWindow : Window
         ReadFamilyCombo.SelectedIndex = 0;
         RefreshReadProfiles();
         RefreshWriteProfiles();
+        RefreshConvertProfiles();
         ConvertTags.IsChecked = _settings.Conversion.AddTags;
         BuildConversionFormats(null);
         RestoreReadSettings();
+        RestoreWriteSettings();
+        RestoreConversionSettings();
         RefreshHardwareSelector();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
@@ -155,13 +158,20 @@ public partial class MainWindow : Window
         WriteProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
     }
 
+    private void RefreshConvertProfiles(string? selectedId = null)
+    {
+        var items = _profiles.Get(OperationKind.Convert);
+        ConvertProfileCombo.ItemsSource = items;
+        ConvertProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
+    }
+
     private void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog { Filter = "Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
         if (dialog.ShowDialog(this) != true) return;
         WriteSourceText.Text = dialog.FileName;
         _detectedWriteFormat = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
-        WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? "Format ambigu"} — {_detectedWriteFormat.Explanation}";
+        WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} — {LocExtension.Get(_detectedWriteFormat.ExplanationKey)}";
         WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
         WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
         WriteFormatCombo.Visibility = _detectedWriteFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
@@ -181,6 +191,14 @@ public partial class MainWindow : Window
         var options = new List<EnabledOption>();
         if (WriteEraseEmpty?.IsChecked == true) options.Add(new("--erase-empty"));
         if (WriteRetriesEnabled?.IsChecked == true) options.Add(new("--retries", WriteRetriesValue.Text.Trim()));
+        if (WriteTracksEnabled?.IsChecked == true) options.Add(new("--tracks", WriteTracksValue.Text.Trim()));
+        if (WritePreErase?.IsChecked == true) options.Add(new("--pre-erase"));
+        if (WriteFakeIndexEnabled?.IsChecked == true) options.Add(new("--fake-index", WriteFakeIndexValue.Text.Trim()));
+        if (WriteHardSectors?.IsChecked == true) options.Add(new("--hard-sectors"));
+        if (WritePrecompEnabled?.IsChecked == true) options.Add(new("--precomp", WritePrecompValue.Text.Trim()));
+        if (WriteReverse?.IsChecked == true) options.Add(new("--reverse"));
+        if (WriteDenselEnabled?.IsChecked == true) options.Add(new("--densel", SelectedText(WriteDenselValue)));
+        if (WriteTg43?.IsChecked == true) options.Add(new("--gen-tg43"));
         return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", WriteSourceText.Text,
             (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, options,
             WriteNoVerify?.IsChecked == true, SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, WriteExpertArguments?.Text));
@@ -216,8 +234,15 @@ public partial class MainWindow : Window
     {
         if (WriteProfileCombo.SelectedItem is not OperationProfile profile || WriteNoVerify is null) return;
         WriteNoVerify.IsChecked = profile.EnabledOptions.Contains("no-verify"); WriteEraseEmpty.IsChecked = profile.EnabledOptions.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("retries");
+        WriteTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks"); WritePreErase.IsChecked = profile.EnabledOptions.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = profile.EnabledOptions.Contains("fake-index"); WriteHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors");
+        WritePrecompEnabled.IsChecked = profile.EnabledOptions.Contains("precomp"); WriteReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); WriteDenselEnabled.IsChecked = profile.EnabledOptions.Contains("densel"); WriteTg43.IsChecked = profile.EnabledOptions.Contains("gen-tg43");
         if (profile.Values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries;
-        if (profile.IsSystem) { WriteNoVerify.IsChecked = false; WriteExpertArguments.Clear(); }
+        if (profile.Values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks;
+        if (profile.Values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex;
+        if (profile.Values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp;
+        if (profile.Values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
+        WriteExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
+        if (profile.IsSystem) WriteNoVerify.IsChecked = false;
         UpdateWriteCommand();
         UpdateProfileStatus();
     }
@@ -228,7 +253,9 @@ public partial class MainWindow : Window
     {
         var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
         var enabled = new HashSet<string>(); if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries");
-        var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text };
+        if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors");
+        if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43");
+        var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text, ["tracks"] = WriteTracksValue.Text, ["fake-index"] = WriteFakeIndexValue.Text, ["precomp"] = WritePrecompValue.Text, ["densel"] = SelectedText(WriteDenselValue), ["expert"] = WriteExpertArguments.Text };
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
@@ -249,6 +276,46 @@ public partial class MainWindow : Window
             control.ValueChanged += ConversionSelectionChanged; _conversionControls.Add(control);
             (control.IsSelected ? ConvertPinnedPanel : format.IsCommon ? ConvertCommonPanel : ConvertRarePanel).Children.Add(control);
         }
+    }
+
+    private void ConvertProfile_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (ConvertProfileCombo.SelectedItem is not OperationProfile profile || ConvertTracksEnabled is null) return;
+        ApplyConvertProfile(profile);
+        UpdateProfileStatus();
+    }
+
+    private void ApplyConvertProfile(OperationProfile profile)
+    {
+        ConvertTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = profile.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = profile.EnabledOptions.Contains("adjust-speed");
+        ConvertPllEnabled.IsChecked = profile.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); ConvertTags.IsChecked = profile.EnabledOptions.Contains("tags");
+        if (profile.Values.TryGetValue("tracks", out var tracks)) ConvertTracksValue.Text = tracks;
+        if (profile.Values.TryGetValue("out-tracks", out var outTracks)) ConvertOutTracksValue.Text = outTracks;
+        if (profile.Values.TryGetValue("adjust-speed", out var speed)) ConvertAdjustSpeedValue.Text = speed;
+        if (profile.Values.TryGetValue("pll", out var pll)) ConvertPllValue.Text = pll;
+        ConvertExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
+        foreach (var control in _conversionControls.ToArray())
+        {
+            var selected = profile.EnabledOptions.Contains("format:" + control.Format.Id);
+            var explicitExtensions = profile.Values.TryGetValue("extensions:" + control.Format.Id, out var extensions) ? extensions.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : [];
+            control.SetState(selected && control.IsEnabled, explicitExtensions);
+        }
+        UpdateConvertCommand();
+    }
+
+    private void ResetConvertProfile_Click(object sender, RoutedEventArgs e) { if (ConvertProfileCombo.SelectedItem is OperationProfile profile) ApplyConvertProfile(profile); }
+
+    private void SaveConvertProfile_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
+        var enabled = new HashSet<string>();
+        if (ConvertTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) enabled.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) enabled.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) enabled.Add("pll"); if (ConvertHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) enabled.Add("reverse"); if (ConvertTags.IsChecked == true) enabled.Add("tags");
+        foreach (var control in _conversionControls.Where(control => control.IsSelected)) enabled.Add("format:" + control.Format.Id);
+        var values = new Dictionary<string, string> { ["tracks"] = ConvertTracksValue.Text, ["out-tracks"] = ConvertOutTracksValue.Text, ["adjust-speed"] = ConvertAdjustSpeedValue.Text, ["pll"] = ConvertPllValue.Text, ["expert"] = ConvertExpertArguments.Text };
+        foreach (var control in _conversionControls.Where(control => control.ExplicitExtensions.Count > 0)) values["extensions:" + control.Format.Id] = string.Join(',', control.ExplicitExtensions);
+        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, dialog.ProfileName, values, enabled);
+        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
+        RefreshConvertProfiles(profile.Id);
     }
 
     private void ConversionSelectionChanged(object? sender, EventArgs e)
@@ -278,7 +345,17 @@ public partial class MainWindow : Window
         return new ConversionPlanner(_formatCatalog).Plan(ConvertSourceText.Text, Path.GetDirectoryName(ConvertSourceText.Text)!, ConvertOutputName.Text.Trim(), _conversionControls.Where(x => x.IsSelected).Select(x => x.ToSelection()), ConvertTags.IsChecked == true);
     }
 
-    private EnabledOption[] GetConvertOptions() => ConvertTracksEnabled.IsChecked == true ? [new("--tracks", ConvertTracksValue.Text.Trim())] : [];
+    private EnabledOption[] GetConvertOptions()
+    {
+        var options = new List<EnabledOption>();
+        if (ConvertTracksEnabled.IsChecked == true) options.Add(new("--tracks", ConvertTracksValue.Text.Trim()));
+        if (ConvertOutTracksEnabled.IsChecked == true) options.Add(new("--out-tracks", ConvertOutTracksValue.Text.Trim()));
+        if (ConvertAdjustSpeedEnabled.IsChecked == true) options.Add(new("--adjust-speed", ConvertAdjustSpeedValue.Text.Trim()));
+        if (ConvertPllEnabled.IsChecked == true) options.Add(new("--pll", ConvertPllValue.Text.Trim()));
+        if (ConvertHardSectors.IsChecked == true) options.Add(new("--hard-sectors"));
+        if (ConvertReverse.IsChecked == true) options.Add(new("--reverse"));
+        return options.ToArray();
+    }
 
     private void UpdateConvertCommand()
     {
@@ -343,6 +420,19 @@ public partial class MainWindow : Window
         _settings.Conversion.AddTags = ConvertTags.IsChecked == true;
         _settings.Conversion.SelectedFormats = _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
         _settings.Conversion.ExplicitExtensions = _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
+        _settings.Conversion.EnabledOptions = [];
+        if (ConvertTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("pll"); if (ConvertHardSectors.IsChecked == true) _settings.Conversion.EnabledOptions.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) _settings.Conversion.EnabledOptions.Add("reverse");
+        _settings.Conversion.OptionValues["tracks"] = ConvertTracksValue.Text; _settings.Conversion.OptionValues["out-tracks"] = ConvertOutTracksValue.Text; _settings.Conversion.OptionValues["adjust-speed"] = ConvertAdjustSpeedValue.Text; _settings.Conversion.OptionValues["pll"] = ConvertPllValue.Text; _settings.Conversion.OptionValues["expert"] = ConvertExpertArguments.Text;
+    }
+
+    private void RestoreConversionSettings()
+    {
+        ConvertTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("adjust-speed"); ConvertPllEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = _settings.Conversion.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = _settings.Conversion.EnabledOptions.Contains("reverse");
+        if (_settings.Conversion.OptionValues.TryGetValue("tracks", out var tracks)) ConvertTracksValue.Text = tracks;
+        if (_settings.Conversion.OptionValues.TryGetValue("out-tracks", out var outTracks)) ConvertOutTracksValue.Text = outTracks;
+        if (_settings.Conversion.OptionValues.TryGetValue("adjust-speed", out var speed)) ConvertAdjustSpeedValue.Text = speed;
+        if (_settings.Conversion.OptionValues.TryGetValue("pll", out var pll)) ConvertPllValue.Text = pll;
+        ConvertExpertArguments.Text = _settings.Conversion.OptionValues.GetValueOrDefault("expert", "");
     }
 
     private async void Window_Closing(object? sender, CancelEventArgs e)
@@ -362,6 +452,7 @@ public partial class MainWindow : Window
         _settings.ConsoleExpanded = ConsolePanel.Visibility == Visibility.Visible;
         if (_settings.ConsoleExpanded) _settings.ConsoleHeight = ConsoleRow.ActualHeight;
         CaptureReadSettings();
+        CaptureWriteSettings();
         CaptureProfiles();
         CaptureConversionSettings();
         await _settingsStore.SaveAsync(_settings);
@@ -391,13 +482,20 @@ public partial class MainWindow : Window
         ReadRevsEnabled.IsChecked = profile.EnabledOptions.Contains("revs");
         ReadRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("retries");
         ReadTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks");
+        ReadSeekRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("seek-retries"); ReadFakeIndexEnabled.IsChecked = profile.EnabledOptions.Contains("fake-index"); ReadHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors");
+        ReadAdjustSpeedEnabled.IsChecked = profile.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = profile.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = profile.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = profile.EnabledOptions.Contains("gen-tg43");
         if (profile.Values.TryGetValue("revs", out var revs)) ReadRevsValue.Text = revs;
         if (profile.Values.TryGetValue("retries", out var retries)) ReadRetriesValue.Text = retries;
         if (profile.Values.TryGetValue("tracks", out var tracks)) ReadTracksValue.Text = tracks;
+        if (profile.Values.TryGetValue("seek-retries", out var seekRetries)) ReadSeekRetriesValue.Text = seekRetries;
+        if (profile.Values.TryGetValue("fake-index", out var fakeIndex)) ReadFakeIndexValue.Text = fakeIndex;
+        if (profile.Values.TryGetValue("adjust-speed", out var speed)) ReadAdjustSpeedValue.Text = speed;
+        if (profile.Values.TryGetValue("pll", out var pll)) ReadPllValue.Text = pll;
+        if (profile.Values.TryGetValue("densel", out var densel)) ReadDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
+        ReadExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
         if (profile.IsSystem)
         {
             RawScpRadio.IsChecked = true;
-            ReadExpertArguments.Clear();
         }
         UpdateReadCommand();
     }
@@ -410,7 +508,9 @@ public partial class MainWindow : Window
         if (ReadRevsEnabled.IsChecked == true) enabled.Add("revs");
         if (ReadRetriesEnabled.IsChecked == true) enabled.Add("retries");
         if (ReadTracksEnabled.IsChecked == true) enabled.Add("tracks");
-        var values = new Dictionary<string, string> { ["revs"] = ReadRevsValue.Text, ["retries"] = ReadRetriesValue.Text, ["tracks"] = ReadTracksValue.Text };
+        if (ReadSeekRetriesEnabled.IsChecked == true) enabled.Add("seek-retries"); if (ReadFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (ReadHardSectors.IsChecked == true) enabled.Add("hard-sectors");
+        if (ReadAdjustSpeedEnabled.IsChecked == true) enabled.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) enabled.Add("pll"); if (ReadReverse.IsChecked == true) enabled.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) enabled.Add("densel"); if (ReadTg43.IsChecked == true) enabled.Add("gen-tg43");
+        var values = new Dictionary<string, string> { ["revs"] = ReadRevsValue.Text, ["retries"] = ReadRetriesValue.Text, ["tracks"] = ReadTracksValue.Text, ["seek-retries"] = ReadSeekRetriesValue.Text, ["fake-index"] = ReadFakeIndexValue.Text, ["adjust-speed"] = ReadAdjustSpeedValue.Text, ["pll"] = ReadPllValue.Text, ["densel"] = SelectedText(ReadDenselValue), ["expert"] = ReadExpertArguments.Text };
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); }
         catch (InvalidOperationException)
@@ -503,12 +603,31 @@ public partial class MainWindow : Window
         if (ReadRevsEnabled?.IsChecked == true) options.Add(new("--revs", ReadRevsValue.Text.Trim()));
         if (ReadRetriesEnabled?.IsChecked == true) options.Add(new("--retries", ReadRetriesValue.Text.Trim()));
         if (ReadTracksEnabled?.IsChecked == true) options.Add(new("--tracks", ReadTracksValue.Text.Trim()));
+        if (ReadSeekRetriesEnabled?.IsChecked == true) options.Add(new("--seek-retries", ReadSeekRetriesValue.Text.Trim()));
+        if (ReadFakeIndexEnabled?.IsChecked == true) options.Add(new("--fake-index", ReadFakeIndexValue.Text.Trim()));
+        if (ReadHardSectors?.IsChecked == true) options.Add(new("--hard-sectors"));
+        if (ReadAdjustSpeedEnabled?.IsChecked == true) options.Add(new("--adjust-speed", ReadAdjustSpeedValue.Text.Trim()));
+        if (ReadPllEnabled?.IsChecked == true) options.Add(new("--pll", ReadPllValue.Text.Trim()));
+        if (ReadReverse?.IsChecked == true) options.Add(new("--reverse"));
+        if (ReadDenselEnabled?.IsChecked == true) options.Add(new("--densel", SelectedText(ReadDenselValue)));
+        if (ReadTg43?.IsChecked == true) options.Add(new("--gen-tg43"));
         return ReadCommandBuilder.Build(new ReadRequest(
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
             (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, options,
             SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, ReadExpertArguments?.Text));
     }
+
+    private static string SelectedText(ComboBox combo) => (combo.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+
+    private void ReadFakeIndex_Checked(object sender, RoutedEventArgs e) { if (ReadHardSectors is not null) ReadHardSectors.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void ReadHardSectors_Checked(object sender, RoutedEventArgs e) { if (ReadFakeIndexEnabled is not null) ReadFakeIndexEnabled.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void ReadDensel_Checked(object sender, RoutedEventArgs e) { if (ReadTg43 is not null) ReadTg43.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void ReadTg43_Checked(object sender, RoutedEventArgs e) { if (ReadDenselEnabled is not null) ReadDenselEnabled.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void WriteFakeIndex_Checked(object sender, RoutedEventArgs e) { if (WriteHardSectors is not null) WriteHardSectors.IsChecked = false; WriteInput_Changed(sender, e); }
+    private void WriteHardSectors_Checked(object sender, RoutedEventArgs e) { if (WriteFakeIndexEnabled is not null) WriteFakeIndexEnabled.IsChecked = false; WriteInput_Changed(sender, e); }
+    private void WriteDensel_Checked(object sender, RoutedEventArgs e) { if (WriteTg43 is not null) WriteTg43.IsChecked = false; WriteInput_Changed(sender, e); }
+    private void WriteTg43_Checked(object sender, RoutedEventArgs e) { if (WriteDenselEnabled is not null) WriteDenselEnabled.IsChecked = false; WriteInput_Changed(sender, e); }
 
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
     {
@@ -580,9 +699,17 @@ public partial class MainWindow : Window
         ReadRevsEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("revs");
         ReadRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("retries");
         ReadTracksEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("tracks");
+        ReadSeekRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("seek-retries"); ReadFakeIndexEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("fake-index"); ReadHardSectors.IsChecked = _settings.Read.EnabledOptions.Contains("hard-sectors");
+        ReadAdjustSpeedEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = _settings.Read.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = _settings.Read.EnabledOptions.Contains("gen-tg43");
         if (_settings.Read.OptionValues.TryGetValue("revs", out var revs)) ReadRevsValue.Text = revs;
         if (_settings.Read.OptionValues.TryGetValue("retries", out var retries)) ReadRetriesValue.Text = retries;
         if (_settings.Read.OptionValues.TryGetValue("tracks", out var tracks)) ReadTracksValue.Text = tracks;
+        if (_settings.Read.OptionValues.TryGetValue("seek-retries", out var seekRetries)) ReadSeekRetriesValue.Text = seekRetries;
+        if (_settings.Read.OptionValues.TryGetValue("fake-index", out var fakeIndex)) ReadFakeIndexValue.Text = fakeIndex;
+        if (_settings.Read.OptionValues.TryGetValue("adjust-speed", out var speed)) ReadAdjustSpeedValue.Text = speed;
+        if (_settings.Read.OptionValues.TryGetValue("pll", out var pll)) ReadPllValue.Text = pll;
+        if (_settings.Read.OptionValues.TryGetValue("densel", out var densel)) ReadDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
+        ReadExpertArguments.Text = _settings.Read.OptionValues.GetValueOrDefault("expert", "");
     }
 
     private void CaptureReadSettings()
@@ -597,9 +724,28 @@ public partial class MainWindow : Window
         if (ReadRevsEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("revs");
         if (ReadRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("retries");
         if (ReadTracksEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("tracks");
+        if (ReadSeekRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("seek-retries"); if (ReadFakeIndexEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("fake-index"); if (ReadHardSectors.IsChecked == true) _settings.Read.EnabledOptions.Add("hard-sectors");
+        if (ReadAdjustSpeedEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("pll"); if (ReadReverse.IsChecked == true) _settings.Read.EnabledOptions.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("densel"); if (ReadTg43.IsChecked == true) _settings.Read.EnabledOptions.Add("gen-tg43");
         _settings.Read.OptionValues["revs"] = ReadRevsValue.Text;
         _settings.Read.OptionValues["retries"] = ReadRetriesValue.Text;
         _settings.Read.OptionValues["tracks"] = ReadTracksValue.Text;
+        _settings.Read.OptionValues["seek-retries"] = ReadSeekRetriesValue.Text; _settings.Read.OptionValues["fake-index"] = ReadFakeIndexValue.Text; _settings.Read.OptionValues["adjust-speed"] = ReadAdjustSpeedValue.Text; _settings.Read.OptionValues["pll"] = ReadPllValue.Text; _settings.Read.OptionValues["densel"] = SelectedText(ReadDenselValue); _settings.Read.OptionValues["expert"] = ReadExpertArguments.Text;
+    }
+
+    private void RestoreWriteSettings()
+    {
+        var enabled = _settings.Write.EnabledOptions;
+        WriteNoVerify.IsChecked = enabled.Contains("no-verify"); WriteEraseEmpty.IsChecked = enabled.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = enabled.Contains("retries"); WriteTracksEnabled.IsChecked = enabled.Contains("tracks"); WritePreErase.IsChecked = enabled.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = enabled.Contains("fake-index"); WriteHardSectors.IsChecked = enabled.Contains("hard-sectors"); WritePrecompEnabled.IsChecked = enabled.Contains("precomp"); WriteReverse.IsChecked = enabled.Contains("reverse"); WriteDenselEnabled.IsChecked = enabled.Contains("densel"); WriteTg43.IsChecked = enabled.Contains("gen-tg43");
+        var values = _settings.Write.OptionValues;
+        if (values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries; if (values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks; if (values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex; if (values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp; if (values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0; WriteExpertArguments.Text = values.GetValueOrDefault("expert", "");
+    }
+
+    private void CaptureWriteSettings()
+    {
+        var enabled = _settings.Write.EnabledOptions = [];
+        if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries"); if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43");
+        var values = _settings.Write.OptionValues;
+        values["retries"] = WriteRetriesValue.Text; values["tracks"] = WriteTracksValue.Text; values["fake-index"] = WriteFakeIndexValue.Text; values["precomp"] = WritePrecompValue.Text; values["densel"] = SelectedText(WriteDenselValue); values["expert"] = WriteExpertArguments.Text;
     }
 
     private async void Preferences_Click(object sender, RoutedEventArgs e)
@@ -609,7 +755,7 @@ public partial class MainWindow : Window
         if (dialog.ShowDialog() == true)
         {
             _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
-            RefreshReadProfiles(); RefreshWriteProfiles();
+            RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
             ReadFolder.Text = _settings.DefaultImagesFolder;
             RefreshHardwareSelector();
             ((App)Application.Current).SetTheme(_settings.Theme);
@@ -758,7 +904,7 @@ public partial class MainWindow : Window
         {
             0 => (ReadProfileCombo?.SelectedItem as OperationProfile)?.Name,
             1 => (WriteProfileCombo?.SelectedItem as OperationProfile)?.Name,
-            2 => LocExtension.Get("Profile.Default"),
+            2 => (ConvertProfileCombo?.SelectedItem as OperationProfile)?.Name,
             _ => null
         };
         ProfileStatusItem.Visibility = name is null ? Visibility.Collapsed : Visibility.Visible;

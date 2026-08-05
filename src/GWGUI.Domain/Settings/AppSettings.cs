@@ -19,6 +19,7 @@ public sealed class AppSettings
     public List<ControllerSettings> Controllers { get; set; } = [];
     public List<DriveSettings> Drives { get; set; } = [];
     public ReadUiSettings Read { get; set; } = new();
+    public AdvancedUiSettings Write { get; set; } = new();
     public List<ProfileSettings> Profiles { get; set; } = [];
     public ConversionUiSettings Conversion { get; set; } = new();
 }
@@ -28,6 +29,14 @@ public sealed class ConversionUiSettings
     public bool AddTags { get; set; }
     public HashSet<string> SelectedFormats { get; set; } = [];
     public Dictionary<string, HashSet<string>> ExplicitExtensions { get; set; } = new();
+    public Dictionary<string, string> OptionValues { get; set; } = new();
+    public HashSet<string> EnabledOptions { get; set; } = [];
+}
+
+public sealed class AdvancedUiSettings
+{
+    public Dictionary<string, string> OptionValues { get; set; } = new();
+    public HashSet<string> EnabledOptions { get; set; } = [];
 }
 
 public sealed class ProfileSettings

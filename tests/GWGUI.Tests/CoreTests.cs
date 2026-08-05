@@ -282,7 +282,14 @@ public sealed class CoreTests
     [Theory]
     [InlineData("disk.adf", 901120, "amiga.amigados")]
     [InlineData("disk.adf", 819200, "acorn.adfs.800")]
+    [InlineData("disk.adf", 1802240, "amiga.amigados_hd")]
+    [InlineData("disk.st", 368640, "atarist.360")]
+    [InlineData("disk.st", 901120, "atarist.880")]
+    [InlineData("disk.ima", 163840, "ibm.160")]
+    [InlineData("disk.ima", 1228800, "ibm.1200")]
     [InlineData("disk.ima", 1474560, "ibm.1440")]
+    [InlineData("disk.img", 1720320, "ibm.1680")]
+    [InlineData("disk.img", 2949120, "ibm.2880")]
     public void WriteDetectorUsesContainerSizeToResolveAmbiguity(string name, long length, string formatId)
     {
         var result = new ImageFormatDetector(new BuiltInImageFormatCatalog()).Detect(name, length);
@@ -304,6 +311,31 @@ public sealed class CoreTests
         Assert.DoesNotContain("--no-verify", normal.Arguments);
         var unsafeCommand = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.adf", "amiga.amigados", [], DisableVerify: true));
         Assert.Contains("--no-verify", unsafeCommand.Arguments);
+    }
+
+    [Fact]
+    public void AdvancedReadOptionsRemainSeparateCommandArguments()
+    {
+        EnabledOption[] options = [new("--seek-retries", "2"), new("--fake-index", "300rpm"), new("--adjust-speed", "360rpm"), new("--pll", "period=5:phase=60"), new("--reverse"), new("--densel", "L")];
+        var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null, options));
+        Assert.Equal(["--seek-retries", "2", "--fake-index", "300rpm", "--adjust-speed", "360rpm", "--pll", "period=5:phase=60", "--reverse", "--densel", "L", "disk.scp"], command.Arguments);
+    }
+
+    [Fact]
+    public void AdvancedWriteOptionsRemainSeparateCommandArguments()
+    {
+        EnabledOption[] options = [new("--tracks", "c=0-79:h=0-1"), new("--pre-erase"), new("--precomp", "type=mfm:40=125"), new("--hard-sectors"), new("--gen-tg43")];
+        var command = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.adf", "amiga.amigados", options));
+        Assert.Equal(["--format", "amiga.amigados", "--tracks", "c=0-79:h=0-1", "--pre-erase", "--precomp", "type=mfm:40=125", "--hard-sectors", "--gen-tg43", "disk.adf"], command.Arguments);
+    }
+
+    [Fact]
+    public void AdvancedConversionOptionsRemainSeparateCommandArguments()
+    {
+        var output = new ConversionOutput("ibm.720", ".ima", "out/disk.ima", true);
+        EnabledOption[] options = [new("--tracks", "c=0-79:h=0-1"), new("--out-tracks", "c=0-39:h=0"), new("--adjust-speed", "300rpm"), new("--pll", "period=5:phase=60"), new("--reverse")];
+        var command = ConversionCommandBuilder.Build("gw.exe", "source.scp", output, options);
+        Assert.Equal(["--format", "ibm.720", "--tracks", "c=0-79:h=0-1", "--out-tracks", "c=0-39:h=0", "--adjust-speed", "300rpm", "--pll", "period=5:phase=60", "--reverse", "source.scp", "out/disk.ima"], command.Arguments);
     }
 
     [Fact]
