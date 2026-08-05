@@ -80,7 +80,11 @@ public partial class GwToolWindow : Window
 
     private async void Execute_Click(object sender, RoutedEventArgs e)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning)
+        {
+            if (MessageBox.Show(this, LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) _cancellation?.Cancel();
+            return;
+        }
         _cancellation = new CancellationTokenSource();
         ExecuteButton.Content = LocExtension.Get("Common.Stop");
         RawOutput.Clear();

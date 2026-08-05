@@ -42,7 +42,15 @@ public sealed class GreaseweazleRunner : IGreaseweazleRunner
             catch (OperationCanceledException)
             {
                 cancelled = true;
-                if (!process.HasExited) process.Kill(entireProcessTree: true);
+                if (!process.HasExited)
+                {
+                    // Some packaged host-tool builds can react to a normal close request.
+                    // Give them a short grace period before terminating the process tree.
+                    try { process.CloseMainWindow(); } catch (InvalidOperationException) { }
+                    var exited = process.WaitForExitAsync(CancellationToken.None);
+                    if (await Task.WhenAny(exited, Task.Delay(TimeSpan.FromSeconds(2), CancellationToken.None)).ConfigureAwait(false) != exited && !process.HasExited)
+                        process.Kill(entireProcessTree: true);
+                }
                 await process.WaitForExitAsync(CancellationToken.None).ConfigureAwait(false);
             }
 

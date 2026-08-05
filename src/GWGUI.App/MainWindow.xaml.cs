@@ -183,7 +183,7 @@ public partial class MainWindow : Window
 
     private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!File.Exists(WriteSourceText.Text)) { MessageBox.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
@@ -282,7 +282,7 @@ public partial class MainWindow : Window
 
     private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
@@ -508,7 +508,7 @@ public partial class MainWindow : Window
 
     private async void ExecuteRead_Click(object sender, RoutedEventArgs e)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (string.IsNullOrWhiteSpace(ReadFileName.Text))
         {
             MessageBox.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
@@ -675,27 +675,33 @@ public partial class MainWindow : Window
 
     private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (MessageBox.Show(LocExtension.Get("Maintenance.EraseConfirm"), LocExtension.Get("Maintenance.EraseTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         await ExecuteMaintenanceAsync(BuildEraseCommand(), EraseExecuteButton);
     }
 
     private async void ExecuteClean_Click(object sender, RoutedEventArgs e)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (MessageBox.Show(LocExtension.Get("Maintenance.CleanConfirm"), LocExtension.Get("Maintenance.CleanTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         await ExecuteMaintenanceAsync(BuildCleanCommand(), CleanExecuteButton);
     }
 
     private async Task ExecuteMaintenanceAsync(GwCommand command, Button button)
     {
-        if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
+        if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         _cancellation = new CancellationTokenSource(); button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear();
         var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
         try { var result = await _runner.RunAsync(command, progress, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}."); }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
         finally { button.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
+    }
+
+    private void ConfirmAndRequestStop()
+    {
+        if (MessageBox.Show(this, LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            _cancellation?.Cancel();
     }
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
