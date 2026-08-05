@@ -1111,7 +1111,9 @@ public sealed class CoreTests
         byte[] identity = [17, 6];
         var crc = TestCrc16(identity, 0x1021, 0x0000);
         if (corruptCrc) crc ^= 1;
-        var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(crc >> 8), (byte)crc) + "001";
+        var data = Enumerable.Range(0, 256).Select(index => (byte)(index * 5)).ToArray(); var dataCrc = TestCrc16(new byte[] { 1, 0 }.Concat(data), 0x1021, 0x0000);
+        var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(crc >> 8), (byte)crc) + string.Concat(Enumerable.Repeat("10", 200)) +
+                  Convert.ToString(0xaaaaaaa9, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(new byte[] { 0, 1, 0 }.Concat(data).Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
         var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
@@ -1119,9 +1121,38 @@ public sealed class CoreTests
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(17, sector.Cylinder);
         Assert.Equal(6, sector.Number);
-        Assert.Equal(0, sector.SizeBytes);
+        Assert.Equal(256, sector.SizeBytes);
         Assert.Equal(!corruptCrc, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Description.Contains(corruptCrc ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(256));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void CenturionDecoderValidatesVariableDataBlockCrc(bool corruptData)
+    {
+        byte[] identity = [17, 6]; var headerCrc = TestCrc16(identity, 0x1021, 0x0000);
+        var data = Enumerable.Range(0, 512).Select(index => (byte)(index * 3)).ToArray(); var dataCrc = TestCrc16(new byte[] { 2, 0 }.Concat(data), 0x1021, 0x0000); if (corruptData) dataCrc ^= 1;
+        var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(headerCrc >> 8), (byte)headerCrc) + string.Concat(Enumerable.Repeat("10", 200)) +
+                  Convert.ToString(0xaaaaaaa9, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(new byte[] { 0, 2, 0 }.Concat(data).Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
+    }
+
+    [Fact]
+    public void CenturionDecoderReportsUnavailableIntegrityForUnsupportedKey()
+    {
+        byte[] identity = [17, 6]; var crc = TestCrc16(identity, 0x1021, 0x0000);
+        var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(crc >> 8), (byte)crc) + string.Concat(Enumerable.Repeat("10", 200)) +
+                  Convert.ToString(0xaaaaaaa9, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(7, 1, 0) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains("unsupported key 7"));
     }
 
     [Theory]
