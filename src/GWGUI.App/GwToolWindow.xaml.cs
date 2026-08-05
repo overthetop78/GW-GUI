@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Hardware;
 using GWGUI.Infrastructure.Processes;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -81,7 +82,7 @@ public partial class GwToolWindow : Window
     {
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
         _cancellation = new CancellationTokenSource();
-        ExecuteButton.Content = "Arrêter";
+        ExecuteButton.Content = LocExtension.Get("Common.Stop");
         RawOutput.Clear();
         Summary.Text = "Commande en cours…";
         var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); });
@@ -98,7 +99,7 @@ public partial class GwToolWindow : Window
             else Summary.Text = result.IsSuccess ? "Commande terminée avec succès." : result.WasCancelled ? "Commande interrompue." : $"La commande s’est terminée avec le code {result.ExitCode}.";
         }
         catch (Exception exception) { Summary.Text = exception.Message; }
-        finally { ExecuteButton.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+        finally { ExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private static string TitleFor(string verb) => verb switch

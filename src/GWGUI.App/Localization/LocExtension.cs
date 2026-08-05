@@ -17,4 +17,10 @@ public sealed class LocExtension(string key) : MarkupExtension
         var value = Resources.GetString(key, CultureInfo.CurrentUICulture) ?? $"[{key}]";
         return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
+
+    public static IReadOnlySet<string> GetDefinedKeys(CultureInfo culture)
+    {
+        var set = Resources.GetResourceSet(culture, createIfNotExists: true, tryParents: false);
+        return set is null ? new HashSet<string>() : set.Cast<System.Collections.DictionaryEntry>().Select(x => (string)x.Key).ToHashSet(StringComparer.Ordinal);
+    }
 }

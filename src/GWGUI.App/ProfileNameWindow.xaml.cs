@@ -1,4 +1,5 @@
 using System.Windows;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -8,7 +9,7 @@ public partial class ProfileNameWindow : Window
     public ProfileNameWindow(string? initialName = null) { InitializeComponent(); NameText.Text = initialName ?? ""; NameText.SelectAll(); NameText.Focus(); }
     private void Save_Click(object sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(ProfileName)) { MessageBox.Show(this, "Indiquez un nom.", "Profil", MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (string.IsNullOrWhiteSpace(ProfileName)) { MessageBox.Show(this, LocExtension.Get("Profile.NameRequired"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
         DialogResult = true;
     }
 }

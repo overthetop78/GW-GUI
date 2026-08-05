@@ -26,4 +26,13 @@ public sealed class LocalizationTests
         }
         finally { CultureInfo.CurrentUICulture = previous; }
     }
+
+    [Fact]
+    public void FrenchAndEnglishCatalogsCoverEveryNeutralKey()
+    {
+        var neutral = LocExtension.GetDefinedKeys(CultureInfo.InvariantCulture);
+        Assert.NotEmpty(neutral);
+        Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("fr"))));
+        Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("en"))));
+    }
 }

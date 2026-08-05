@@ -42,4 +42,8 @@
   <data name="Profiles.Name" xml:space="preserve"><value>Name</value></data>
   <data name="Profiles.System" xml:space="preserve"><value>System</value></data>
   <data name="Profiles.Rename" xml:space="preserve"><value>Rename…</value></data>
+  <data name="Common.Close"><value>Close</value></data><data name="Common.Execute"><value>Execute</value></data><data name="Common.Stop"><value>Stop</value></data><data name="Common.Continue"><value>Continue</value></data>
+  <data name="Profile.SaveTitle"><value>Save profile</value></data><data name="Profile.Name"><value>Profile name</value></data><data name="Profile.NameRequired"><value>Enter a name.</value></data><data name="Profile.Title"><value>Profile</value></data>
+  <data name="Conflict.Title"><value>Existing files</value></data><data name="Conflict.Heading"><value>Some files already exist</value></data><data name="Conflict.Help"><value>Choose an action for each file or apply the same action to all files.</value></data><data name="Conflict.File"><value>File</value></data><data name="Conflict.Action"><value>Action</value></data><data name="Conflict.Overwrite"><value>Overwrite</value></data><data name="Conflict.Skip"><value>Skip</value></data><data name="Conflict.Number"><value>Use next number</value></data><data name="Conflict.AllOverwrite"><value>Overwrite all</value></data><data name="Conflict.AllSkip"><value>Skip all</value></data><data name="Conflict.AllNumber"><value>Number all</value></data>
+  <data name="Tool.Ready"><value>Ready to execute.</value></data><data name="Tool.RawOutput"><value>Raw output</value></data>
 </root>

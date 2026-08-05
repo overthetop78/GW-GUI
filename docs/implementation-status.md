@@ -15,7 +15,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Profils propres à Lecture, Écriture et Conversion; profil système Par défaut permanent.
 - Renommage et suppression des profils utilisateur dans les Options.
 - Registre matériel persistant : scan des ports Windows, interrogation `gw info --device`, identification stable, disponibilité, ajout et suppression de lecteurs décrits par sélection, taille, densité et RPM.
-- Infrastructure bilingue `.resx`, culture chargée avant la première fenêtre et Options/éditeur de lecteur migrés en français/anglais.
+- Infrastructure bilingue `.resx`, culture chargée avant la première fenêtre et migration effectuée pour Options, éditeur de lecteur, profils, conflits de conversion et commandes techniques.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -35,5 +35,5 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 34 réussis, dont contrôle des ressources françaises et anglaises.
+- Tests automatisés : 35 réussis, dont contrôle exhaustif de la parité des clés françaises et anglaises.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
