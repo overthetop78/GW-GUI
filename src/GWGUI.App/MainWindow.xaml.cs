@@ -37,6 +37,9 @@ public partial class MainWindow : Window
     private ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
     private readonly List<ConversionFormatControl> _conversionControls = [];
+    private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
+    private string? _conversionSourceExtension;
+    private DetectedImageFormat? _conversionSourceDetection;
     private ScpImage? _scpImage;
     private bool _syncingScpZoom;
     private readonly FluxDecoderRegistry _fluxDecoders = new();
@@ -257,21 +260,30 @@ public partial class MainWindow : Window
         RefreshWriteProfiles(profile.Id);
     }
 
-    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null)
+    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null, bool captureCurrent = true)
     {
         if (ConvertCommonPanel is null) return;
-        foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
-        var selected = _viewModel.Conversion.SelectedFormats;
-        var extensions = _viewModel.Conversion.ExplicitExtensions;
+        _conversionSourceExtension = sourceExtension;
+        _conversionSourceDetection = detection;
+        if (captureCurrent)
+            foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
         _conversionControls.Clear(); ConvertPinnedPanel.Children.Clear(); ConvertCommonPanel.Children.Clear(); ConvertRarePanel.Children.Clear();
-        var compatible = ConversionSourceCompatibility.GetOutputs(_formatCatalog, sourceExtension, detection).Select(x => x.Id).ToHashSet();
-        foreach (var format in _formatCatalog.Formats.Where(x => x.Id != "raw.scp").OrderBy(x => x.Family).ThenBy(x => x.DisplayName))
+        var items = _conversionFormatPresenter.Build(_formatCatalog, sourceExtension, detection, _viewModel.Conversion.SelectedFormats, _viewModel.Conversion.ExplicitExtensions);
+        foreach (var item in items)
         {
-            var control = new ConversionFormatControl(format) { IsEnabled = compatible.Contains(format.Id) };
-            if (!control.IsEnabled) control.ToolTip = LocExtension.Get("Conversion.Incompatible", format.DisplayName);
-            control.SetState(selected.Contains(format.Id) && control.IsEnabled, extensions.GetValueOrDefault(format.Id));
+            if (!item.IsCompatible && _viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
+                _viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
+            var control = new ConversionFormatControl(item.Format) { IsEnabled = item.IsCompatible };
+            if (!control.IsEnabled) control.ToolTip = LocExtension.Get("Conversion.Incompatible", item.Format.DisplayName);
+            control.SetState(item.IsSelected, item.ExplicitExtensions);
             control.ValueChanged += ConversionSelectionChanged; _conversionControls.Add(control);
-            (control.IsSelected ? ConvertPinnedPanel : format.IsCommon ? ConvertCommonPanel : ConvertRarePanel).Children.Add(control);
+            Panel destination = item.Group switch
+            {
+                ConversionFormatGroup.Selected => ConvertPinnedPanel,
+                ConversionFormatGroup.Common => ConvertCommonPanel,
+                _ => ConvertRarePanel
+            };
+            destination.Children.Add(control);
         }
     }
 
@@ -285,10 +297,7 @@ public partial class MainWindow : Window
     private void ApplyConvertProfile(OperationProfile profile)
     {
         _viewModel.Conversion.ApplyProfile(profile.EnabledOptions, profile.Values);
-        foreach (var control in _conversionControls.ToArray())
-        {
-            control.SetState(_viewModel.Conversion.SelectedFormats.Contains(control.Format.Id) && control.IsEnabled, _viewModel.Conversion.ExplicitExtensions.GetValueOrDefault(control.Format.Id));
-        }
+        BuildConversionFormats(_conversionSourceExtension, _conversionSourceDetection, captureCurrent: false);
         UpdateConvertCommand();
     }
 
@@ -309,10 +318,8 @@ public partial class MainWindow : Window
     {
         if (sender is not ConversionFormatControl control) return;
         _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
-        if (control.Parent is Panel oldParent) oldParent.Children.Remove(control);
-        var destination = control.IsSelected ? ConvertPinnedPanel : control.Format.IsCommon ? ConvertCommonPanel : ConvertRarePanel;
-        var index = destination.Children.OfType<ConversionFormatControl>().TakeWhile(x => string.Compare(x.Format.DisplayName, control.Format.DisplayName, StringComparison.CurrentCulture) < 0).Count();
-        destination.Children.Insert(index, control); UpdateConvertCommand();
+        BuildConversionFormats(_conversionSourceExtension, _conversionSourceDetection);
+        UpdateConvertCommand();
     }
 
     private void BrowseConvertSource_Click(object sender, RoutedEventArgs e)

@@ -259,6 +259,43 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ConversionFormatPresenterPinsSelectionsAndReturnsUncheckedItemsToTheirNaturalGroup()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        var rare = catalog.Formats.First(format => format.Id != "raw.scp" && !format.IsCommon);
+        var selected = new HashSet<string> { "ibm.720", rare.Id };
+        var extensions = new Dictionary<string, HashSet<string>> { ["ibm.720"] = [".img"] };
+        var presenter = new ConversionFormatPresenter();
+
+        var pinned = presenter.Build(catalog, null, null, selected, extensions);
+
+        Assert.Equal(2, pinned.TakeWhile(item => item.Group == ConversionFormatGroup.Selected).Count());
+        Assert.All(pinned.Take(2), item => Assert.True(item.IsSelected));
+        Assert.True(pinned.Single(item => item.Format.Id == "ibm.720").ExplicitExtensions.SetEquals([".img"]));
+
+        var unselected = presenter.Build(catalog, null, null, new HashSet<string>(), extensions);
+        Assert.Equal(ConversionFormatGroup.Common, unselected.Single(item => item.Format.Id == "ibm.720").Group);
+        Assert.Equal(ConversionFormatGroup.Rare, unselected.Single(item => item.Format.Id == rare.Id).Group);
+        Assert.Equal(unselected.OrderBy(item => item.Group).ThenBy(item => item.Format.DisplayName, StringComparer.CurrentCulture), unselected);
+    }
+
+    [Fact]
+    public void ConversionFormatPresenterDisablesSelectionsThatDoNotMatchDetectedSectorGeometry()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        var detection = new ImageFormatDetector(catalog).Detect("disk.ima", 737280);
+        var selected = new HashSet<string> { "ibm.720", "atarist.720" };
+
+        var items = new ConversionFormatPresenter().Build(catalog, ".ima", detection, selected, new Dictionary<string, HashSet<string>>());
+
+        Assert.True(items.Single(item => item.Format.Id == "ibm.720").IsSelected);
+        var incompatible = items.Single(item => item.Format.Id == "atarist.720");
+        Assert.False(incompatible.IsCompatible);
+        Assert.False(incompatible.IsSelected);
+        Assert.NotEqual(ConversionFormatGroup.Selected, incompatible.Group);
+    }
+
+    [Fact]
     public void RawScpReadNeverAddsAStaleKnownFormat()
     {
         var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, "acorn.adfs.800", []));

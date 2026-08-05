@@ -8,6 +8,7 @@ namespace GWGUI.App;
 
 public partial class ConversionFormatControl : UserControl
 {
+    private bool _settingState;
     public DiskFormat Format { get; }
     public event EventHandler? ValueChanged;
     public bool IsSelected => FormatCheck.IsChecked == true;
@@ -26,9 +27,17 @@ public partial class ConversionFormatControl : UserControl
     public ConversionSelection ToSelection() => new(Format.Id, ExplicitExtensions);
     public void SetState(bool selected, IEnumerable<string>? explicitExtensions)
     {
-        FormatCheck.IsChecked = selected;
-        var wanted = explicitExtensions?.ToHashSet(StringComparer.OrdinalIgnoreCase) ?? [];
-        foreach (var check in ExtensionsPanel.Children.OfType<CheckBox>()) check.IsChecked = wanted.Contains((string)check.Tag);
+        _settingState = true;
+        try
+        {
+            FormatCheck.IsChecked = selected;
+            var wanted = explicitExtensions?.ToHashSet(StringComparer.OrdinalIgnoreCase) ?? [];
+            foreach (var check in ExtensionsPanel.Children.OfType<CheckBox>()) check.IsChecked = wanted.Contains((string)check.Tag);
+        }
+        finally { _settingState = false; }
     }
-    private void SelectionChanged(object sender, RoutedEventArgs e) => ValueChanged?.Invoke(this, EventArgs.Empty);
+    private void SelectionChanged(object sender, RoutedEventArgs e)
+    {
+        if (!_settingState) ValueChanged?.Invoke(this, EventArgs.Empty);
+    }
 }
