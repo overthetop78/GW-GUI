@@ -6,6 +6,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 - Solution .NET 10 structurée en Application WPF, Domaine, Infrastructure, moteur SCP et tests.
 - Exécution de `gw` sans fenêtre console, arguments séparés, sortie intégrée, annulation et verrouillage à une opération.
+- Le verrou est désormais commun à toute l’application : `MainWindow`, `GwToolWindow` et `IHardwareRegistry` reçoivent la même instance journalisée de `IGreaseweazleRunner`. Une commande principale active bloque explicitement l’ouverture d’un outil; un scan lancé depuis Options rencontre le même verrou au lieu de démarrer un second processus.
 - Toutes les commandes produites par l’application passent par `IGwCommandBuilder` : Lecture, Écriture, Conversion, Effacement, Nettoyage, Diagnostics/Matériel et interrogation `gw info` du registre matériel. Les requêtes restent typées et les validateurs spécialisés conservent les règles propres à chaque commande; les fenêtres ne dépendent plus des constructeurs statiques.
 - Les flux standard et erreur sont décodés explicitement en UTF-8; un faux processus vérifie les sorties Unicode, les lignes fragmentées, les codes d’erreur, le refus d’une seconde commande et l’annulation.
 - Configuration JSON versionnée et écrite atomiquement.
@@ -80,6 +81,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Validation actuelle
 
+- Le test WPF injecte un runner déjà occupé, vérifie qu’aucun dialogue d’outil n’est ouvert, contrôle le message localisé et prouve que le service de navigation conserve la même instance. La suite complète reste à 231 tests réussis.
 - Dernière exécution complète après correction multi-écran/DPI : 231 tests réussis, dont 8 scénarios de placement. Le paquet réel reste contrôlé séparément par UI Automation sur l’écran disponible.
 - Dernière exécution complète après matrice matérielle simulée : 226 tests réussis.
 - Dernière exécution complète après centralisation Host Tools : 225 tests réussis. Deux tests supplémentaires couvrent sélection, sélection répétée, retour arrière et rejet des chemins disparus.

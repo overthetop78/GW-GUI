@@ -207,6 +207,19 @@ public sealed class CoreTests
                 Assert.Single(navigation.OptionsSettings);
                 Assert.Equal("rpm", Assert.Single(navigation.ToolRequests).Verb);
 
+                var busyDialogs = new RecordingMessageDialogService();
+                var busyNavigation = new RecordingWindowNavigationService();
+                var busyRunner = new BusyRunner();
+                var busyWindow = new MainWindow(busyDialogs, navigation: busyNavigation, runner: busyRunner);
+                var busySettings = Assert.IsType<AppSettings>(typeof(MainWindow).GetField("_settings", flags)!.GetValue(busyWindow));
+                busySettings.GwExecutablePath = WindowsPowerShell;
+                typeof(MainWindow).GetMethod("ToolCommand_Click", flags)!.Invoke(busyWindow, [new System.Windows.Controls.MenuItem { Tag = "rpm" }, new RoutedEventArgs()]);
+                Assert.Empty(busyNavigation.ToolRequests);
+                Assert.Contains("Greaseweazle", Assert.Single(busyDialogs.Requests).Message);
+                var wpfNavigation = new WpfWindowNavigationService(busyWindow, runner: busyRunner);
+                Assert.Same(busyRunner, typeof(WpfWindowNavigationService).GetField("_runner", flags)!.GetValue(wpfNavigation));
+                busyWindow.Close();
+
                 var optionsWindow = new OptionsWindow(new AppSettings());
                 var optionsNavigation = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("Navigation"));
                 var imagesFolder = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("ImagesFolderText"));
@@ -2428,6 +2441,13 @@ public sealed class CoreTests
             try { return Task.FromResult(_results.Dequeue()); }
             finally { IsRunning = false; }
         }
+    }
+
+    private sealed class BusyRunner : IGreaseweazleRunner
+    {
+        public bool IsRunning => true;
+        public Task<GwExecutionResult> RunAsync(GwCommand command, IProgress<GwOutputLine>? output = null, CancellationToken cancellationToken = default) =>
+            throw new InvalidOperationException("The shared runner is busy.");
     }
 
     private sealed class StubScpReader(ScpImage image) : IScpReader

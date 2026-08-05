@@ -19,6 +19,6 @@
 - Aucun lancement via une console visible.
 - Les arguments sont transmis comme une liste structurée afin de préserver correctement espaces, accents et guillemets.
 - L’interface ne se bloque jamais pendant une commande.
-- Une seule opération matérielle incompatible peut utiliser un contrôleur donné à la fois.
+- Une seule commande `gw` peut être active dans l’application : le runner journalisé créé au point de composition est partagé par Lecture, Écriture, Conversion, Maintenance, Diagnostics/Matériel et le scan des contrôleurs. L’ouverture d’un outil est refusée avec un message localisé pendant une commande active; le runner constitue le dernier verrou pour les autres chemins.
 - La commande affichée correspond exactement aux arguments exécutés.
 - Les options non activées ne sont pas émises.

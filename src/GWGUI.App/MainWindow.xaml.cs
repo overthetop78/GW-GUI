@@ -61,9 +61,9 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow() : this(null, null, null, null, null, null) { }
+    public MainWindow() : this(null, null, null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
@@ -71,7 +71,10 @@ public partial class MainWindow : Window
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), StoragePaths.HostToolsDirectory);
-        _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools);
+        var directory = StoragePaths.DataDirectory;
+        _logsDirectory = Path.Combine(directory, "logs");
+        _runner = runner ?? new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
+        _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -80,10 +83,7 @@ public partial class MainWindow : Window
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
-        var directory = StoragePaths.DataDirectory;
         _settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
-        _logsDirectory = Path.Combine(directory, "logs");
-        _runner = new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
@@ -1015,6 +1015,11 @@ public partial class MainWindow : Window
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not MenuItem { Tag: string verb }) return;
+        if (_runner.IsRunning)
+        {
+            _dialogs.Show(LocExtension.Get("Operation.Busy"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
+            return;
+        }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
         {
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);

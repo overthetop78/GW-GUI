@@ -1,6 +1,9 @@
 using System.Windows;
 using GWGUI.Domain.Settings;
 using GWGUI.Domain.HostTools;
+using GWGUI.Domain.Commands;
+using GWGUI.Domain.Hardware;
+using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.Processes;
 
 namespace GWGUI.App.Services;
@@ -15,14 +18,30 @@ public interface IWindowNavigationService
     void ShowGwTool(GwToolWindowRequest request);
 }
 
-public sealed class WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools = null) : IWindowNavigationService
+public sealed class WpfWindowNavigationService : IWindowNavigationService
 {
-    public bool ShowOptions(AppSettings settings) => new OptionsWindow(settings, hostTools: hostTools) { Owner = owner }.ShowDialog() == true;
-    public void ShowLogHistory(string logsDirectory) => new LogHistoryWindow(logsDirectory) { Owner = owner }.ShowDialog();
-    public void ShowAbout() => new AboutWindow { Owner = owner }.ShowDialog();
+    private readonly Window _owner;
+    private readonly IGwInstallationManager? _hostTools;
+    private readonly IGreaseweazleRunner _runner;
+    private readonly IGwCommandBuilder _commandBuilder;
+
+    public WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null)
+    {
+        _owner = owner;
+        _hostTools = hostTools;
+        _runner = runner ?? new GreaseweazleRunner();
+        _commandBuilder = commandBuilder ?? new GwCommandBuilder();
+    }
+
+    public bool ShowOptions(AppSettings settings)
+    {
+        IHardwareRegistry hardware = new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
+        return new OptionsWindow(settings, hardware, _hostTools) { Owner = _owner }.ShowDialog() == true;
+    }
+    public void ShowLogHistory(string logsDirectory) => new LogHistoryWindow(logsDirectory) { Owner = _owner }.ShowDialog();
+    public void ShowAbout() => new AboutWindow { Owner = _owner }.ShowDialog();
     public void ShowGwTool(GwToolWindowRequest request)
     {
-        var runner = new GreaseweazleRunner(new RotatingOperationLogWriter(request.LogsDirectory));
-        new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, runner) { Owner = owner }.ShowDialog();
+        new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, _runner, _commandBuilder) { Owner = _owner }.ShowDialog();
     }
 }
