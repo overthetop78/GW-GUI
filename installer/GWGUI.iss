@@ -46,4 +46,4 @@ Name: "{autodesktop}\GW GUI"; Filename: "{app}\GW GUI.exe"; Tasks: desktopicon
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Run]
-Filename: "{app}\GW GUI.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\GW GUI.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent unchecked

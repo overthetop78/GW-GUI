@@ -36,6 +36,13 @@ powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -InstallerLa
 powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -InstallerLanguage french
 ```
 
+Sur une session Windows disposant d’un bureau interactif, le wizard complet peut aussi être parcouru au clavier et contrôlé par UI Automation dans les deux langues. Le test vérifie les cinq pages, l’installation, l’absence de lancement automatique lorsque la case finale reste décochée, puis la désinstallation :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-installer-interactive.ps1 -InstallerLanguage english
+powershell -ExecutionPolicy Bypass -File scripts/test-installer-interactive.ps1 -InstallerLanguage french
+```
+
 Un second test fabrique un ancien installateur de contrôle, effectue une mise à niveau vers le paquet courant, vérifie la version inscrite et celle de l’exécutable, puis désinstalle et nettoie tout l’état isolé. Il refuse de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur :
 
 ```powershell

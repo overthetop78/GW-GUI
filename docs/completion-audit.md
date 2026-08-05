@@ -18,6 +18,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Les guides FR/EN contiennent chacun une capture recadrée de la distribution portable correspondante à 150 % de DPI; les deux images sont incluses dans la publication et l’installateur.
 - ZIP portable, installateur Inno Setup et SHA-256 sont produits par `scripts/package.ps1`.
 - Sur Windows 10 22H2 (build 19045), `scripts/test-installer.ps1` a installé silencieusement la version 0.1.0 en anglais puis en français dans un dossier isolé, contrôlé pour chaque langue l’inscription Inno Setup, l’exécutable, les guides et captures FR/EN, l’absence de PDB, puis vérifié une désinstallation sans résidu. Il refuse toute installation utilisateur préexistante et les deux scénarios sont exécutés par le workflow de publication.
+- `scripts/test-installer-interactive.ps1` a parcouru réellement au clavier et par UI Automation les cinq pages anglaises puis françaises du wizard sous Windows 10 22H2 : licence, destination, tâches, récapitulatif et fin. La proposition de lancer GW GUI est désormais décochée par défaut; le test confirme qu’elle ne lance aucun processus sans choix explicite, puis contrôle version/langue et désinstallation sans résidu.
 - Sur le même système, `scripts/test-installer-upgrade.ps1` a installé un fixture 0.0.0 puis le paquet 0.1.0 au même emplacement : l’unique inscription de désinstallation et l’exécutable ont pris la nouvelle version, avant une suppression sans résidu. Le script refuse d’écraser une installation utilisateur préexistante et fait aussi partie du workflow.
 - `scripts/test-host-tools-releases.ps1` a téléchargé les distributions Windows x64 officielles 1.23 et 1.22, contrôlé le digest SHA-256 publié pour 1.23, exécuté leurs aides Lecture/Écriture/Conversion et installé les deux ZIP ensemble via `GwInstallationManager`. Leur détection versionnée et l’analyse réelle de `read --help` — dont `amiga.amigados` et `.scp` — réussissent avant nettoyage complet. La release 1.22 ne publie pas de digest dans ses métadonnées; son SHA-256 observé est consigné par le script.
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
@@ -34,7 +35,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 - Contrôleurs et lecteurs Greaseweazle physiques multiples, déconnexion/reconnexion et changement de port COM.
 - Exécution réelle de toutes les commandes avec Host Tools courant et précédent.
-- Windows 11, parcours interactif de l’installateur et comportement SmartScreen. L’installation, la mise à niveau et la désinstallation silencieuses isolées sont prouvées sous Windows 10 22H2.
+- Windows 11 et comportement SmartScreen. Les parcours interactifs anglais/français ainsi que l’installation, la mise à niveau et la désinstallation silencieuses isolées sont prouvés sous Windows 10 22H2.
 - Décodage des formats rares sur un corpus de captures physiques libres et représentatives.
 
 ## État architectural
