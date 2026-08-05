@@ -7,7 +7,7 @@
 - **Catalogue Greaseweazle** : commandes, options, profils de formats, extensions et compatibilités correspondant à la version détectée de `gw`.
 - **Configuration persistante** : options générales, matériel, profils par onglet et préférences de session.
 - **Moteur SCP** : lecture du conteneur, analyse des pistes/révolutions et décodeurs extensibles.
-- **Rendu SkiaSharp** : deux faces circulaires, zoom, sélection et survol.
+- **Rendu SkiaSharp** : `IScpRenderer` et `SkiaScpRenderer` dessinent faces, pistes et structures sans dépendre du contrôle WPF; `ScpDiskView` gère zoom, sélection, panoramique et survol.
 
 ## Principes
 

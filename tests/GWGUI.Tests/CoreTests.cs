@@ -16,6 +16,8 @@ using GWGUI.Domain.Settings;
 using GWGUI.App;
 using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
+using GWGUI.App.Rendering;
+using SkiaSharp;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
@@ -28,6 +30,23 @@ namespace GWGUI.Tests;
 public sealed class CoreTests
 {
     private static string WindowsPowerShell => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "powershell.exe");
+
+    [Fact]
+    public void ScpRendererDrawsAHeadWithoutDependingOnWpfControls()
+    {
+        var revolution = new ScpRevolution(8_000_000, 2_000, Enumerable.Repeat<uint>(80, 2_000).ToArray());
+        var track = new ScpTrack(0, 0, 0, [revolution]);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 0, 0, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
+        IScpRenderer renderer = new SkiaScpRenderer { DecoderId = "raw" };
+        using var bitmap = new SKBitmap(256, 256);
+        using var canvas = new SKCanvas(bitmap);
+
+        renderer.Render(canvas, new ScpRenderRequest(image, 0, track, 256, 256, new SKPoint(128, 128), 1, "No data", "Side 0"));
+
+        Assert.NotEqual(SKColors.Transparent, bitmap.GetPixel(128, 20));
+        Assert.NotEqual(new SKColor(7, 10, 14), bitmap.GetPixel(128, 20));
+        renderer.ClearCache();
+    }
 
     [Fact]
     public void ScpInspectorPresenterBuildsLocalizedTrackAnalysisOutsideWindow()

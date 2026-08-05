@@ -132,4 +132,5 @@
   <data name="Tool.Field.AlignRaw"><value>Read raw flux (--raw)</value></data>
   <data name="Visual.Integrity.Crc"><value>CRC</value></data>
   <data name="Visual.Integrity.Checksum"><value>Checksum</value></data>
+  <data name="Visual.Side"><value>Side {0}</value></data>
 </root>

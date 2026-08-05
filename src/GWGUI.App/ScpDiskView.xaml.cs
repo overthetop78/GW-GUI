@@ -4,8 +4,8 @@ using System.Windows.Input;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using GWGUI.Scp;
-using GWGUI.Scp.Decoding;
 using GWGUI.App.Localization;
+using GWGUI.App.Rendering;
 
 namespace GWGUI.App;
 
@@ -17,83 +17,24 @@ public partial class ScpDiskView : UserControl
     private float _panX;
     private float _panY;
     private Point? _dragOrigin;
-    private readonly FluxDecoderRegistry _decoders = new();
-    private readonly Dictionary<ScpTrack, (ScpRevolution Revolution, FluxDecodeResult Result)> _decodeCache = [];
-    private string? _decoderId;
+    private readonly IScpRenderer _renderer;
     public event EventHandler<ScpTrack?>? TrackSelected;
     public event EventHandler<float>? ZoomChanged;
     public ScpTrack? SelectedTrack { get; private set; }
     public float Zoom => _zoom;
 
-    public ScpDiskView() => InitializeComponent();
-    public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; _decodeCache.Clear(); ResetView(); }
-    public void SetDecoder(string? decoderId) { _decoderId = decoderId; _decodeCache.Clear(); Canvas.InvalidateVisual(); }
+    public ScpDiskView() : this(new SkiaScpRenderer()) { }
+    internal ScpDiskView(IScpRenderer renderer) { _renderer = renderer; InitializeComponent(); }
+    public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; _renderer.ClearCache(); ResetView(); }
+    public void SetDecoder(string? decoderId) { _renderer.DecoderId = decoderId; Canvas.InvalidateVisual(); }
     public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
     public void ResetView() { _zoom = 1; _panX = _panY = 0; Canvas.InvalidateVisual(); }
 
     private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
-        var canvas = e.Surface.Canvas; canvas.Clear(new SKColor(7, 10, 14));
-        var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? [];
-        var center = new SKPoint(e.Info.Width / 2f + _panX * e.Info.Width / (float)Math.Max(1, Canvas.ActualWidth), e.Info.Height / 2f + _panY * e.Info.Height / (float)Math.Max(1, Canvas.ActualHeight)); var outer = Math.Min(e.Info.Width, e.Info.Height) * .47f * _zoom; var inner = outer * .25f;
-        using var disk = new SKPaint { Color = new SKColor(17, 61, 43), IsAntialias = true }; canvas.DrawCircle(center, outer, disk);
-        using var hub = new SKPaint { Color = new SKColor(4, 6, 8), IsAntialias = true }; canvas.DrawCircle(center, inner, hub);
-        if (tracks.Length == 0) { DrawCentered(canvas, center, LocExtension.Get("Visual.SideNoData", _head), SKColors.White); return; }
-        var ring = (outer - inner) / Math.Max(1, tracks.Length);
-        foreach (var track in tracks)
-        {
-            var trackIndex = Array.IndexOf(tracks, track); var radius = outer - ring * (trackIndex + .5f); var revolution = track.Revolutions.FirstOrDefault();
-            if (revolution is null || revolution.FluxIntervals.Count == 0) continue;
-            var sampleStep = Math.Max(1, revolution.FluxIntervals.Count / 1400); double total = revolution.FluxIntervals.Sum(x => (double)x); double elapsed = 0;
-            var median = revolution.FluxIntervals.Order().ElementAt(revolution.FluxIntervals.Count / 2);
-            for (var index = 0; index < revolution.FluxIntervals.Count; index += sampleStep)
-            {
-                double span = 0; for (var sample = index; sample < Math.Min(index + sampleStep, revolution.FluxIntervals.Count); sample++) span += revolution.FluxIntervals[sample];
-                var start = (float)(elapsed / total * 360 - 90); var sweep = Math.Max(.08f, (float)(span / total * 360)); elapsed += span;
-                var interval = revolution.FluxIntervals[index]; var color = interval < median * .65 ? new SKColor(143, 104, 255) : interval > median * 1.8 ? new SKColor(83, 173, 255) : new SKColor(36, 179, 93);
-                using var paint = new SKPaint { Color = color, IsAntialias = false, Style = SKPaintStyle.Stroke, StrokeWidth = Math.Max(1, ring * .82f) };
-                canvas.DrawArc(new SKRect(center.X - radius, center.Y - radius, center.X + radius, center.Y + radius), start, sweep, false, paint);
-            }
-            DrawDecodedStructures(canvas, center, radius, ring, track);
-            if (ReferenceEquals(track, SelectedTrack)) { using var selected = new SKPaint { Color = SKColors.White, Style = SKPaintStyle.Stroke, StrokeWidth = 2, IsAntialias = true }; canvas.DrawCircle(center, radius, selected); }
-        }
-        DrawCentered(canvas, center, $"Face {_head}", new SKColor(210, 218, 228));
-    }
-
-    private void DrawDecodedStructures(SKCanvas canvas, SKPoint center, float radius, float ring, ScpTrack track)
-    {
-        if (!_decodeCache.TryGetValue(track, out var analysis))
-        {
-            var best = _decoders.DecodeBest(track.Revolutions, _decoderId);
-            if (best is null) return;
-            analysis = (track.Revolutions[best.Value.RevolutionIndex], best.Value.Result);
-            _decodeCache[track] = analysis;
-        }
-        var (revolution, decoded) = analysis;
-        if (decoded.Structures.Count == 0 || decoded.EstimatedBitCellTicks <= 0) return;
-        var totalBits = Math.Max(1d, revolution.FluxIntervals.Sum(x => (double)x) / decoded.EstimatedBitCellTicks);
-        foreach (var structure in decoded.Structures)
-        {
-            var start = (float)(structure.BitOffset / totalBits * 360 - 90);
-            var sweep = Math.Max(.18f, (float)(structure.BitLength / totalBits * 360));
-            using var paint = new SKPaint { Color = StructureColor(structure.Kind), IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeWidth = Math.Max(2, ring * .45f), StrokeCap = SKStrokeCap.Round };
-            canvas.DrawArc(new SKRect(center.X - radius, center.Y - radius, center.X + radius, center.Y + radius), start, sweep, false, paint);
-        }
-    }
-
-    private static SKColor StructureColor(FluxStructureKind kind) => kind switch
-    {
-        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(255, 205, 64),
-        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(67, 220, 255),
-        FluxStructureKind.DeletedDataAddressMark or FluxStructureKind.TimingAnomaly => new SKColor(255, 75, 96),
-        _ => new SKColor(196, 117, 255)
-    };
-
-    private static void DrawCentered(SKCanvas canvas, SKPoint center, string text, SKColor color)
-    {
-        using var paint = new SKPaint { Color = color, IsAntialias = true };
-        using var font = new SKFont(SKTypeface.Default, 17);
-        var lines = text.Split('\n'); for (var index = 0; index < lines.Length; index++) canvas.DrawText(lines[index], center.X, center.Y + index * 20, SKTextAlign.Center, font, paint);
+        var center = new SKPoint(e.Info.Width / 2f + _panX * e.Info.Width / (float)Math.Max(1, Canvas.ActualWidth), e.Info.Height / 2f + _panY * e.Info.Height / (float)Math.Max(1, Canvas.ActualHeight));
+        _renderer.Render(e.Surface.Canvas, new ScpRenderRequest(_image, _head, SelectedTrack, e.Info.Width, e.Info.Height, center, _zoom,
+            LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head)));
     }
 
     private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e) { SetZoom(_zoom * (e.Delta > 0 ? 1.12f : .89f), true); e.Handled = true; }
