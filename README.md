@@ -29,6 +29,12 @@ powershell -ExecutionPolicy Bypass -File scripts/package.ps1 -Version 0.1.0
 
 Le ZIP contient `portable.flag` : réglages, journaux et Host Tools gérés sont alors stockés dans `Data` à côté de l’application. L’installateur ne contient pas ce marqueur et utilise les dossiers utilisateur Windows.
 
+Les captures française et anglaise des guides sont contrôlées comme de véritables PNG à 144 DPI (échelle Windows 150 %), avec une résolution suffisante et une présence effective dans la publication :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-guide-images.ps1
+```
+
 Après la création des paquets, le test suivant installe silencieusement l’application dans un dossier isolé sous `artifacts`, contrôle son contenu, sa version et la langue Inno Setup sélectionnée, puis vérifie sa désinstallation complète. Il refuse de démarrer si une installation GW GUI est déjà enregistrée :
 
 ```powershell
