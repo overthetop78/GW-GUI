@@ -53,6 +53,7 @@ public sealed class ReadUiSettings
 {
     public bool UseKnownFormat { get; set; }
     public string? FormatId { get; set; }
+    public string? ImageExtension { get; set; }
     public bool AutoNumber { get; set; }
     public string SequenceKind { get; set; } = "Numeric";
     public int SequenceWidth { get; set; } = 1;

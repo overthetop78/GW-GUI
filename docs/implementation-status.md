@@ -12,6 +12,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Configuration JSON versionnée et écrite atomiquement.
 - Onglets Lecture, Écriture, Conversion, Visualisation et Outils; menus Diagnostics et Matériel. Les 14 actions publiées par `greaseweazle/cli.py` ont un parcours, dont le diagnostic complet `align`.
 - Lecture SCP ou format connu, nom sans extension, dossier persistant, numérotation numérique/alphabetique, conflits et profils.
+- Le choix Lecture est restauré intégralement après redémarrage : mode SCP/format connu, famille déduite du format, identifiant exact et extension d’image. Les profils Lecture mémorisent en plus résultat, format, extension et dossier particulier, sans mémoriser le nom ni le lecteur. Les profils Écriture mémorisent désormais le format imposé avec leurs options, sans source, dossier ou lecteur.
 - Le compteur alphabétique accepte directement `A` à `Z`, puis `AA`, `AB`, etc.; le passage Chiffres/Lettres convertit la valeur affichée et l’incrément n’a lieu qu’après une lecture réussie.
 - Écriture avec détection/modification du format, vérification par défaut et confirmation obligatoire.
 - Multiconversion séquentielle, sorties compatibles, extensions implicites/explicites, tags, conflits et bilan.
@@ -54,7 +55,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Chaque onglet d’opération permet d’activer et choisir un fichier `diskdefs.cfg` personnalisé; son chemin est persistant et mémorisé dans les profils. Les déclarations `disk` et imports préfixés sont lus pour ajouter immédiatement les formats personnalisés aux listes rares des trois opérations. Les cycles d’import sont refusés et un fichier disparu bloque l’exécution avec un message localisé.
 - Validation centrale des options structurées : valeurs obligatoires, révolutions positives, tentatives non négatives, densité H/L et exclusions faux index/secteurs matériels ainsi que densité/TG43.
 - Journal automatique rotatif : 10 fichiers de 5 Mio sous les données utilisateur, avec commande exacte, sortie horodatée, flux standard/erreur, code retour, annulation et durée. Le menu Options ouvre un historique consultable et exportable; la console courante peut aussi être exportée directement.
-- Réglages au schéma versionné 4 avec migrations séquentielles, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
+- Réglages au schéma versionné 5 avec migrations séquentielles, persistance de l’extension Lecture, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
 - Distribution Windows x64 autonome : ZIP portable avec stockage local `Data`, installateur Inno Setup bilingue avec stockage utilisateur Windows, métadonnées de version, exclusion des symboles, SHA-256 et workflow GitHub Actions publiant les paquets lors d’un tag `v*`.
 - Le script `scripts/test-installer.ps1`, appelé deux fois par GitHub Actions, effectue un test fumée complet de l’installateur anglais et français dans un emplacement isolé : garde contre une installation existante, contrôle de la langue enregistrée, des fichiers, de la version et de l’absence de PDB, désinstallation officielle et absence de résidu.
 - Le script `scripts/test-installer-upgrade.ps1` compile un ancien paquet de contrôle, valide la mise à niveau en place et l’unicité/version de l’inscription de désinstallation, puis nettoie le tout. Il s’arrête sans mutation si une installation GW GUI existe déjà et il est exécuté par GitHub Actions après le test d’installation simple.
@@ -81,6 +82,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Validation actuelle
 
+- Le test WPF restaure réellement `atarist.720` avec `.msa`, change l’extension vers `.st`, la recapture, puis vérifie le contenu des profils Lecture et Écriture créés par leurs boutons. La suite complète reste à 231 tests réussis.
 - Le test WPF injecte un runner déjà occupé, vérifie qu’aucun dialogue d’outil n’est ouvert, contrôle le message localisé et prouve que le service de navigation conserve la même instance. La suite complète reste à 231 tests réussis.
 - Dernière exécution complète après correction multi-écran/DPI : 231 tests réussis, dont 8 scénarios de placement. Le paquet réel reste contrôlé séparément par UI Automation sur l’écran disponible.
 - Dernière exécution complète après matrice matérielle simulée : 226 tests réussis.

@@ -8,6 +8,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Les trois opérations principales construisent des commandes typées, affichent la commande, exécutent sans console externe, journalisent, progressent et peuvent être interrompues.
 - Lecture, Écriture, Conversion, Maintenance, les dialogues Diagnostics/Matériel et le scan matériel partagent le même `IGreaseweazleRunner`; un outil ne peut plus démarrer pendant une commande principale et le verrou du runner couvre aussi les scans depuis Options.
 - Le profil système permanent Par défaut ne contient aucune option facultative; les profils utilisateur sont propres à leur opération.
+- La persistance Lecture restaure mode, format et extension; le test WPF contrôle Atari ST 720/MSA puis la recapture ST. Les profils Lecture conservent résultat, format, extension et dossier, tandis que les profils Écriture conservent le format imposé; aucun ne mémorise fichier source, nom ou lecteur matériel.
 - Lecture distingue SCP brut et format connu. SCP brut n’ajoute jamais `--format`, même si une ancienne sélection demeure en mémoire.
 - `--drive` n’est ajouté que lorsque plusieurs lecteurs sont configurés; `IHardwareRegistry` conserve les contrôleurs débranchés comme indisponibles et fusionne une redécouverte par numéro de série USB ou identifiant PNP stable.
 - Écriture détecte le format, bloque les ambiguïtés, garde la vérification active par défaut et demande confirmation.
@@ -43,6 +44,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## État architectural
 
+- Le schéma de réglages 5 ajoute l’extension Lecture sans casser les versions précédentes. La restauration et la capture des choix structurants ainsi que les contenus des profils Lecture/Écriture sont exercés dans la vraie fenêtre WPF; la suite reste à 231 tests réussis.
 - Le runner journalisé est une dépendance partagée depuis le point de composition jusque dans la navigation, les outils et le registre matériel. Le test WPF prouve le refus d’un outil concurrent et l’identité de l’instance injectée; la suite reste à 231 tests réussis.
 - La politique de placement est séparée du choix Win32 du moniteur et possède une matrice DPI/multi-écran directe; la suite complète compte 231 tests réussis.
 - La suite complète compte 226 tests réussis après ajout de la matrice matérielle simulée multi-contrôleurs.

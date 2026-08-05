@@ -260,8 +260,31 @@ public partial class MainWindow : Window
     {
         if (WriteProfileCombo.SelectedItem is not OperationProfile profile || WriteNoVerify is null) return;
         _viewModel.Write.ApplyOptions(profile.EnabledOptions, profile.Values);
+        ApplyWriteProfileFormat(profile);
         UpdateWriteCommand();
         UpdateProfileStatus();
+    }
+
+    private void ApplyWriteProfileFormat(OperationProfile profile)
+    {
+        if (profile.Values.TryGetValue("format", out var formatId) && _formatCatalog.Formats.FirstOrDefault(format => format.Id == formatId) is { } format)
+        {
+            WriteFormatCombo.ItemsSource = _formatCatalog.Formats.Where(item => item.Family != "Raw").ToArray();
+            WriteFormatCombo.SelectedItem = format;
+            WriteFormatCombo.Visibility = Visibility.Visible;
+            return;
+        }
+        if (_detectedWriteFormat is not null)
+        {
+            WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
+            WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
+            WriteFormatCombo.Visibility = _detectedWriteFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
+        }
+        else
+        {
+            WriteFormatCombo.SelectedItem = null;
+            WriteFormatCombo.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void ResetWriteProfile_Click(object sender, RoutedEventArgs e) { if (WriteProfileCombo.SelectedItem is OperationProfile profile) { WriteProfileCombo.SelectedItem = null; WriteProfileCombo.SelectedItem = profile; } }
@@ -271,6 +294,7 @@ public partial class MainWindow : Window
         var profileName = _businessDialogs.PromptProfileName(); if (profileName is null) return;
         var enabled = _viewModel.Write.CaptureEnabledOptions();
         var values = _viewModel.Write.CaptureValues();
+        if (WriteFormatCombo.SelectedItem is DiskFormat format) values["format"] = format.Id;
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, profileName, values, enabled);
         try { profile = _writeProfiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _writeProfiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
@@ -462,6 +486,13 @@ public partial class MainWindow : Window
         {
             RawScpRadio.IsChecked = true;
         }
+        else
+        {
+            if (profile.Values.GetValueOrDefault("result") == "raw") RawScpRadio.IsChecked = true;
+            else if (profile.Values.GetValueOrDefault("result") == "known") KnownFormatRadio.IsChecked = true;
+            SelectReadFormat(profile.Values.GetValueOrDefault("format"), profile.Values.GetValueOrDefault("extension"));
+            if (profile.Values.TryGetValue("folder", out var folder) && !string.IsNullOrWhiteSpace(folder)) _viewModel.Read.Folder = folder;
+        }
         UpdateReadCommand();
     }
 
@@ -471,6 +502,10 @@ public partial class MainWindow : Window
         if (profileName is null) return;
         var enabled = _viewModel.Read.CaptureEnabledOptions();
         var values = _viewModel.Read.CaptureValues();
+        values["result"] = RawScpRadio.IsChecked == true ? "raw" : "known";
+        if (ReadFormatCombo.SelectedItem is DiskFormat format) values["format"] = format.Id;
+        if (ReadExtensionCombo.SelectedItem is ImageExtension extension) values["extension"] = extension.Extension;
+        if (!string.IsNullOrWhiteSpace(_viewModel.Read.Folder)) values["folder"] = _viewModel.Read.Folder;
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, profileName, values, enabled);
         try { profile = _readProfiles.Save(profile); }
         catch (InvalidOperationException)
@@ -763,6 +798,7 @@ public partial class MainWindow : Window
     {
         KnownFormatRadio.IsChecked = _settings.Read.UseKnownFormat;
         RawScpRadio.IsChecked = !_settings.Read.UseKnownFormat;
+        SelectReadFormat(_settings.Read.FormatId, _settings.Read.ImageExtension);
         _viewModel.Read.AutoNumber = _settings.Read.AutoNumber;
         _viewModel.Read.SequenceKindIndex = _settings.Read.SequenceKind == "Alphabetic" ? 1 : 0;
         _viewModel.Read.SequenceWidthIndex = Math.Clamp(_settings.Read.SequenceWidth - 1, 0, 2);
@@ -770,10 +806,21 @@ public partial class MainWindow : Window
         _viewModel.Read.ApplyOptions(_settings.Read.EnabledOptions, _settings.Read.OptionValues);
     }
 
+    private void SelectReadFormat(string? formatId, string? imageExtension)
+    {
+        var format = _formatCatalog.Formats.FirstOrDefault(item => item.Id == formatId);
+        if (format is null) return;
+        ReadFamilyCombo.SelectedItem = format.Family;
+        ReadFormatCombo.SelectedItem = format;
+        var extension = format.Extensions.FirstOrDefault(item => item.Extension.Equals(imageExtension, StringComparison.OrdinalIgnoreCase));
+        if (extension is not null) ReadExtensionCombo.SelectedItem = extension;
+    }
+
     private void CaptureReadSettings()
     {
         _settings.Read.UseKnownFormat = KnownFormatRadio.IsChecked == true;
         _settings.Read.FormatId = (ReadFormatCombo.SelectedItem as DiskFormat)?.Id;
+        _settings.Read.ImageExtension = (ReadExtensionCombo.SelectedItem as ImageExtension)?.Extension;
         _settings.Read.AutoNumber = _viewModel.Read.AutoNumber;
         _settings.Read.SequenceKind = _viewModel.Read.SequenceKind == SequenceKind.Alphabetic ? "Alphabetic" : "Numeric";
         _settings.Read.SequenceWidth = _viewModel.Read.SequenceWidthIndex + 1;

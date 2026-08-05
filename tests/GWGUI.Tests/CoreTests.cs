@@ -125,6 +125,9 @@ public sealed class CoreTests
                 var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
                 var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));
                 var readExtension = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadExtensionText"));
+                var readFamily = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("ReadFamilyCombo"));
+                var readFormat = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("ReadFormatCombo"));
+                var readImageExtension = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("ReadExtensionCombo"));
                 var readRevs = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ReadRevsEnabled"));
                 var writeNoVerify = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("WriteNoVerify"));
                 var convertTags = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ConvertTags"));
@@ -149,6 +152,22 @@ public sealed class CoreTests
                 Assert.NotNull(new System.Windows.Automation.Peers.ButtonAutomationPeer(readExecute).GetPattern(PatternInterface.Invoke));
                 Assert.True(readFileName.IsTabStop); Assert.True(readExecute.IsTabStop);
                 Assert.All(mainTabs.Items.OfType<System.Windows.Controls.TabItem>(), tab => Assert.True(tab.Focusable));
+                {
+                    var settingsFlags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+                    var catalog = Assert.IsAssignableFrom<IImageFormatCatalog>(typeof(MainWindow).GetField("_formatCatalog", settingsFlags)!.GetValue(window));
+                    readFamily.ItemsSource = catalog.Formats.Where(format => format.Family != "Raw").Select(format => format.Family).Distinct().Order().ToArray();
+                    readFamily.SelectedIndex = 0;
+                    var persisted = Assert.IsType<AppSettings>(typeof(MainWindow).GetField("_settings", settingsFlags)!.GetValue(window));
+                    persisted.Read.UseKnownFormat = true;
+                    persisted.Read.FormatId = "atarist.720";
+                    persisted.Read.ImageExtension = ".msa";
+                    typeof(MainWindow).GetMethod("RestoreReadSettings", settingsFlags)!.Invoke(window, null);
+                    Assert.Equal("atarist.720", Assert.IsType<DiskFormat>(readFormat.SelectedItem).Id);
+                    Assert.Equal(".msa", Assert.IsType<ImageExtension>(readImageExtension.SelectedItem).Extension);
+                    readImageExtension.SelectedItem = Assert.IsType<DiskFormat>(readFormat.SelectedItem).Extensions.Single(extension => extension.Extension == ".st");
+                    typeof(MainWindow).GetMethod("CaptureReadSettings", settingsFlags)!.Invoke(window, null);
+                    Assert.Equal(".st", persisted.Read.ImageExtension);
+                }
                 var model = Assert.IsType<MainWindowViewModel>(window.DataContext);
                 static System.Windows.Controls.CheckBox Probe(MainWindowViewModel dataContext, string path)
                 {
@@ -194,7 +213,22 @@ public sealed class CoreTests
                     .Invoke(window, [window, new RoutedEventArgs()]);
                 Assert.Equal(1, business.ProfilePromptCount);
                 var profileCombo = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("ReadProfileCombo"));
-                Assert.Contains(profileCombo.Items.Cast<OperationProfile>(), profile => profile.Name == "Test profile" && profile.Operation == OperationKind.Read);
+                var savedReadProfile = Assert.Single(profileCombo.Items.Cast<OperationProfile>(), profile => profile.Name == "Test profile" && profile.Operation == OperationKind.Read);
+                Assert.Equal("known", savedReadProfile.Values["result"]);
+                Assert.Equal("atarist.720", savedReadProfile.Values["format"]);
+                Assert.Equal(".st", savedReadProfile.Values["extension"]);
+                Assert.Equal(@"F:\Images", savedReadProfile.Values["folder"]);
+
+                var writeFormatCombo = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("WriteFormatCombo"));
+                var appCatalog = Assert.IsAssignableFrom<IImageFormatCatalog>(typeof(MainWindow).GetField("_formatCatalog", privateFlags)!.GetValue(window));
+                writeFormatCombo.ItemsSource = appCatalog.Formats.Where(format => format.Family != "Raw").ToArray();
+                writeFormatCombo.SelectedItem = appCatalog.Formats.Single(format => format.Id == "amiga.amigados");
+                typeof(MainWindow).GetMethod("SaveWriteProfile_Click", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
+                    .Invoke(window, [window, new RoutedEventArgs()]);
+                Assert.Equal(2, business.ProfilePromptCount);
+                var writeProfileCombo = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("WriteProfileCombo"));
+                var savedWriteProfile = Assert.Single(writeProfileCombo.Items.Cast<OperationProfile>(), profile => profile.Name == "Test profile" && profile.Operation == OperationKind.Write);
+                Assert.Equal("amiga.amigados", savedWriteProfile.Values["format"]);
                 var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
                 typeof(MainWindow).GetMethod("About_Click", flags)!.Invoke(window, [window, new RoutedEventArgs()]);
                 typeof(MainWindow).GetMethod("LogHistory_Click", flags)!.Invoke(window, [window, new RoutedEventArgs()]);

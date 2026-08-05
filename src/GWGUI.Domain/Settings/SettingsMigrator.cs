@@ -2,7 +2,7 @@ namespace GWGUI.Domain.Settings;
 
 public static class SettingsMigrator
 {
-    public const int CurrentVersion = 4;
+    public const int CurrentVersion = 5;
 
     public static AppSettings Migrate(AppSettings settings)
     {
@@ -18,6 +18,7 @@ public static class SettingsMigrator
                 case 1: MigrateV1ToV2(settings); break;
                 case 2: MigrateV2ToV3(settings); break;
                 case 3: MigrateV3ToV4(settings); break;
+                case 4: MigrateV4ToV5(settings); break;
                 default: throw new NotSupportedException($"No migration exists for settings schema {settings.SchemaVersion}.");
             }
         }
@@ -50,6 +51,13 @@ public static class SettingsMigrator
     {
         settings.Conversion.TagPattern = " [{tag}]";
         settings.SchemaVersion = 4;
+    }
+
+    private static void MigrateV4ToV5(AppSettings settings)
+    {
+        // ImageExtension is additive. Existing installations retain the
+        // default extension of their selected format until the next save.
+        settings.SchemaVersion = 5;
     }
 
     private static void Normalize(AppSettings settings)
