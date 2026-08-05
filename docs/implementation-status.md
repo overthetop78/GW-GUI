@@ -12,6 +12,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Configuration JSON versionnée et écrite atomiquement.
 - Onglets Lecture, Écriture, Conversion, Visualisation et Outils; menus Diagnostics et Matériel. Les 14 actions publiées par `greaseweazle/cli.py` ont un parcours, dont le diagnostic complet `align`.
 - Lecture SCP ou format connu, nom sans extension, dossier persistant, numérotation numérique/alphabetique, conflits et profils.
+- Un fichier Lecture déjà présent ouvre désormais un dialogue métier à trois boutons explicites — écraser, prendre le numéro suivant, modifier le nom — au lieu de boutons Oui/Non/Annuler. Les boutons sont localisés et nommés pour UI Automation; fermer le dialogue revient prudemment à modifier le nom.
 - Le choix Lecture est restauré intégralement après redémarrage : mode SCP/format connu, famille déduite du format, identifiant exact et extension d’image. Les profils Lecture mémorisent en plus résultat, format, extension et dossier particulier, sans mémoriser le nom ni le lecteur. Les profils Écriture mémorisent désormais le format imposé avec leurs options, sans source, dossier ou lecteur.
 - Le compteur alphabétique accepte directement `A` à `Z`, puis `AA`, `AB`, etc.; le passage Chiffres/Lettres convertit la valeur affichée et l’incrément n’a lieu qu’après une lecture réussie.
 - Écriture avec détection/modification du format, vérification par défaut et confirmation obligatoire.
@@ -83,6 +84,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Validation actuelle
 
+- Dernière exécution complète après remplacement du dialogue de conflit Lecture : 232 tests réussis. Le test WPF charge le dialogue réel et vérifie le nom accessible de ses trois décisions.
 - Dernière exécution complète après matrice de routage par contrôleur : 232 tests réussis. Le test WPF confirme également qu’un outil n’est pas ouvert pour un lecteur sélectionné indisponible.
 - Le test WPF restaure réellement `atarist.720` avec `.msa`, change l’extension vers `.st`, la recapture, puis vérifie le contenu des profils Lecture et Écriture créés par leurs boutons. La suite complète reste à 231 tests réussis.
 - Le test WPF injecte un runner déjà occupé, vérifie qu’aucun dialogue d’outil n’est ouvert, contrôle le message localisé et prouve que le service de navigation conserve la même instance. La suite complète reste à 231 tests réussis.

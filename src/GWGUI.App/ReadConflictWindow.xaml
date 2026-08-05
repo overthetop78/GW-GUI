@@ -1,0 +1,23 @@
+<Window x:Class="GWGUI.App.ReadConflictWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:GWGUI.App.Localization"
+        Title="{l:Loc Read.FileExistsTitle}" SizeToContent="WidthAndHeight"
+        MinWidth="520" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <StackPanel Margin="22">
+        <TextBlock Text="{l:Loc Read.FileExists}" FontSize="18" FontWeight="SemiBold" />
+        <TextBlock x:Name="OutputPathText" Margin="0,10,0,20" TextWrapping="Wrap"
+                   AutomationProperties.Name="{l:Loc Read.ConflictPath}" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="EditNameButton" Content="{l:Loc Read.ConflictEditName}"
+                    AutomationProperties.Name="{l:Loc Read.ConflictEditName}"
+                    Click="Choice_Click" Tag="EditName" />
+            <Button x:Name="NextNumberButton" Content="{l:Loc Read.ConflictNextNumber}"
+                    AutomationProperties.Name="{l:Loc Read.ConflictNextNumber}"
+                    Click="Choice_Click" Tag="UseNextNumber" />
+            <Button x:Name="OverwriteButton" Content="{l:Loc Read.ConflictOverwrite}"
+                    AutomationProperties.Name="{l:Loc Read.ConflictOverwrite}"
+                    Style="{StaticResource PrimaryButton}" Click="Choice_Click" Tag="Overwrite" />
+        </StackPanel>
+    </StackPanel>
+</Window>

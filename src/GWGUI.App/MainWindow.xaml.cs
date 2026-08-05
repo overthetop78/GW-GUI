@@ -766,9 +766,9 @@ public partial class MainWindow : Window
         var target = GetReadTarget(extension);
         if (File.Exists(target))
         {
-            var answer = _dialogs.Show(LocExtension.Get("Read.FileExists"), LocExtension.Get("Read.FileExistsTitle"), UserDialogButtons.YesNoCancel, UserDialogIcon.Warning);
-            if (answer == UserDialogResult.Cancel) { ReadFileName.Focus(); ReadFileName.SelectAll(); return; }
-            if (answer == UserDialogResult.No)
+            var choice = _businessDialogs.ResolveReadConflict(target);
+            if (choice is null or ReadConflictChoice.EditName) { ReadFileName.Focus(); ReadFileName.SelectAll(); return; }
+            if (choice == ReadConflictChoice.UseNextNumber)
             {
                 if (ReadAutoNumber.IsChecked != true) ReadAutoNumber.IsChecked = true;
                 var kind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;

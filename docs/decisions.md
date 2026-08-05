@@ -52,6 +52,13 @@
 - Si le nom saisi existe déjà, une confirmation demande s’il faut remplacer le profil.
 - Le bouton Réinitialiser recharge le profil actif. Avec `Par défaut`, il restaure complètement l’état sans options facultatives.
 
+## Conflits de fichier en Lecture
+
+- Aucun bouton générique `Oui`, `Non` ou `Annuler` n’est utilisé : le dialogue nomme directement les trois décisions `Écraser`, `Prendre le numéro suivant` et `Me laisser modifier le nom`.
+- `Prendre le numéro suivant` active la numérotation si nécessaire et recherche le premier nom libre selon le mode chiffre ou lettre choisi.
+- `Me laisser modifier le nom`, ainsi que la fermeture du dialogue, ramène le clavier dans le champ du nom sans lancer de commande.
+- Le compteur n’avance définitivement qu’après une lecture réussie; une annulation ou un échec ne le consomme pas.
+
 ## Matériel
 
 - Plusieurs contrôleurs Greaseweazle et plusieurs lecteurs peuvent être configurés et mémorisés.

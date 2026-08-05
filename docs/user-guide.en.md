@@ -20,7 +20,7 @@ Disconnected controllers and drives remain registered. Scan again only when thei
 - Technical controls are folded under **Advanced settings**.
 - The **Default** profile disables every optional setting. Saving creates a profile belonging only to Read.
 
-When a file exists, explicitly choose overwrite, the next available number, or return to edit the name.
+When a file exists, a dialog offers three explicit buttons: **Overwrite**, **Use the next number**, or **Let me edit the name**. Closing the dialog starts nothing and also returns to name editing.
 
 ## Write
 

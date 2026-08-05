@@ -4,10 +4,12 @@ using GWGUI.Domain.Conversion;
 namespace GWGUI.App.Services;
 
 public sealed record ConversionConflictDecision(ConversionOutput Output, ConversionConflictChoice Choice);
+public enum ReadConflictChoice { Overwrite, UseNextNumber, EditName }
 
 public interface IBusinessDialogService
 {
     string? PromptProfileName(string? initialName = null);
+    ReadConflictChoice? ResolveReadConflict(string outputPath);
     IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs);
 }
 
@@ -17,6 +19,12 @@ public sealed class WpfBusinessDialogService(Window owner) : IBusinessDialogServ
     {
         var dialog = new ProfileNameWindow(initialName) { Owner = owner };
         return dialog.ShowDialog() == true ? dialog.ProfileName : null;
+    }
+
+    public ReadConflictChoice? ResolveReadConflict(string outputPath)
+    {
+        var dialog = new ReadConflictWindow(outputPath) { Owner = owner };
+        return dialog.ShowDialog() == true ? dialog.Choice : null;
     }
 
     public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs)

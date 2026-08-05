@@ -312,6 +312,14 @@ public sealed class CoreTests
                     Assert.IsType<System.Windows.Controls.DataGrid>(conflictWindow.FindName("ConflictsGrid")))));
                 conflictWindow.Close();
 
+                var readConflictWindow = new ReadConflictWindow(@"F:\Images\disk.scp");
+                foreach (var name in new[] { "OverwriteButton", "NextNumberButton", "EditNameButton" })
+                {
+                    var button = Assert.IsType<System.Windows.Controls.Button>(readConflictWindow.FindName(name));
+                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(button)));
+                }
+                readConflictWindow.Close();
+
                 var logWindow = new LogHistoryWindow(Path.GetTempPath());
                 var filesList = Assert.IsType<System.Windows.Controls.ListBox>(logWindow.FindName("FilesList"));
                 var logContent = Assert.IsType<System.Windows.Controls.TextBox>(logWindow.FindName("ContentText"));
@@ -2571,7 +2579,9 @@ public sealed class CoreTests
         public string? ProfileNameResult { get; set; }
         public int ProfilePromptCount { get; private set; }
         public IReadOnlyList<ConversionConflictDecision>? ConflictResult { get; set; }
+        public ReadConflictChoice? ReadConflictResult { get; set; }
         public string? PromptProfileName(string? initialName = null) { ProfilePromptCount++; return ProfileNameResult; }
+        public ReadConflictChoice? ResolveReadConflict(string outputPath) => ReadConflictResult;
         public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs) => ConflictResult;
     }
 

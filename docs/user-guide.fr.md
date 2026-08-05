@@ -20,7 +20,7 @@ Les contrôleurs et lecteurs débranchés restent mémorisés. Une nouvelle rech
 - Les options techniques sont repliées dans **Paramètres avancés**.
 - Le profil **Par défaut** désactive toutes les options facultatives. Sauvegarder crée un profil propre à Lecture.
 
-En cas de fichier existant, choisissez explicitement l’écrasement, le prochain numéro libre ou la modification du nom.
+En cas de fichier existant, un dialogue propose trois boutons explicites : **Écraser**, **Prendre le numéro suivant** ou **Me laisser modifier le nom**. Fermer ce dialogue ne lance rien et permet également de modifier le nom.
 
 ## Écriture
 
