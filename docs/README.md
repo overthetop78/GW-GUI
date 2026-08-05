@@ -16,6 +16,7 @@ La documentation distingue systématiquement :
 - [Architecture technique](architecture.md)
 - [Plan d’implémentation complet](implementation-plan.md)
 - [État réel de l’implémentation](implementation-status.md)
+- [Audit d’achèvement et preuves](completion-audit.md)
 - [Spécification visuelle validée](ui/visual-specification.md)
 - [Fenêtre principale et navigation](ui/main-window.md)
 - [Onglet Lecture](ui/read.md)

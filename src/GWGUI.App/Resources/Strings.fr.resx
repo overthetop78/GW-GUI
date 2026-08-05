@@ -103,4 +103,7 @@
   <data name="Advanced.PllTip"><value>Paramètres PLL séparés par des deux-points, par exemple period=5:phase=60 ou period=5:phase=60:lowpass=2.</value></data>
   <data name="Advanced.PrecompTip"><value>Précompensation d’écriture, par exemple type=mfm:40=125. Types : mfm, fm, gcr ; valeurs en nanosecondes.</value></data>
   <data name="Advanced.DiskDefsTip"><value>Utilise un fichier diskdefs.cfg personnalisé pour ajouter ou remplacer des définitions de formats Greaseweazle.</value></data>
+  <data name="Common.DiskImageFilter"><value>Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*</value></data>
+  <data name="Visual.OpenFilter"><value>Capture SuperCard Pro (*.scp)|*.scp|Tous les fichiers|*.*</value></data>
+  <data name="Conversion.Incompatible"><value>{0} n’est pas compatible avec cette source.</value></data>
 </root>

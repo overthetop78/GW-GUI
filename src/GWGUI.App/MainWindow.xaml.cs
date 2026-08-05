@@ -14,6 +14,7 @@ using GWGUI.Domain.Profiles;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Maintenance;
+using GWGUI.Domain.Hardware;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
@@ -58,7 +59,7 @@ public partial class MainWindow : Window
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = "Capture SuperCard Pro (*.scp)|*.scp|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
+        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Visual.OpenFilter"), InitialDirectory = ReadFolder.Text };
         if (dialog.ShowDialog(this) != true) return;
         await LoadScpAsync(dialog.FileName);
     }
@@ -180,7 +181,7 @@ public partial class MainWindow : Window
 
     private void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = "Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
+        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Common.DiskImageFilter"), InitialDirectory = ReadFolder.Text };
         if (dialog.ShowDialog(this) != true) return;
         WriteSourceText.Text = dialog.FileName;
         _detectedWriteFormat = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
@@ -215,7 +216,7 @@ public partial class MainWindow : Window
         if (WriteDiskDefsEnabled?.IsChecked == true) options.Add(new("--diskdefs", WriteDiskDefsValue.Text.Trim()));
         return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", WriteSourceText.Text,
             (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, options,
-            WriteNoVerify?.IsChecked == true, SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, WriteExpertArguments?.Text));
+            WriteNoVerify?.IsChecked == true, SelectedHardware()?.Port, SelectedDriveArgument(), WriteExpertArguments?.Text));
     }
 
     private void UpdateWriteCommand()
@@ -281,17 +282,17 @@ public partial class MainWindow : Window
         RefreshWriteProfiles(profile.Id);
     }
 
-    private void BuildConversionFormats(string? sourceExtension)
+    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null)
     {
         if (ConvertCommonPanel is null) return;
         var selected = _conversionControls.Count == 0 ? _settings.Conversion.SelectedFormats : _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
         var extensions = _conversionControls.Count == 0 ? _settings.Conversion.ExplicitExtensions : _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
         _conversionControls.Clear(); ConvertPinnedPanel.Children.Clear(); ConvertCommonPanel.Children.Clear(); ConvertRarePanel.Children.Clear();
-        var compatible = sourceExtension is null ? _formatCatalog.Formats.Select(x => x.Id).ToHashSet() : _formatCatalog.GetCompatibleOutputs(sourceExtension).Select(x => x.Id).ToHashSet();
+        var compatible = ConversionSourceCompatibility.GetOutputs(_formatCatalog, sourceExtension, detection).Select(x => x.Id).ToHashSet();
         foreach (var format in _formatCatalog.Formats.Where(x => x.Id != "raw.scp").OrderBy(x => x.Family).ThenBy(x => x.DisplayName))
         {
             var control = new ConversionFormatControl(format) { IsEnabled = compatible.Contains(format.Id) };
-            if (!control.IsEnabled) control.ToolTip = $"{format.DisplayName} n’est pas compatible avec cette source.";
+            if (!control.IsEnabled) control.ToolTip = LocExtension.Get("Conversion.Incompatible", format.DisplayName);
             control.SetState(selected.Contains(format.Id) && control.IsEnabled, extensions.GetValueOrDefault(format.Id));
             control.ValueChanged += ConversionSelectionChanged; _conversionControls.Add(control);
             (control.IsSelected ? ConvertPinnedPanel : format.IsCommon ? ConvertCommonPanel : ConvertRarePanel).Children.Add(control);
@@ -352,12 +353,12 @@ public partial class MainWindow : Window
 
     private void BrowseConvertSource_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = "Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*", InitialDirectory = ReadFolder.Text };
+        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Common.DiskImageFilter"), InitialDirectory = ReadFolder.Text };
         if (dialog.ShowDialog(this) != true) return;
         ConvertSourceText.Text = dialog.FileName; ConvertOutputName.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
         var detection = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
         ConvertSourceInfo.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
-        BuildConversionFormats(Path.GetExtension(dialog.FileName)); UpdateConvertCommand();
+        BuildConversionFormats(Path.GetExtension(dialog.FileName), detection); UpdateConvertCommand();
     }
 
     private void ConvertInput_Changed(object sender, RoutedEventArgs e) => UpdateConvertCommand();
@@ -663,7 +664,7 @@ public partial class MainWindow : Window
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
             (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, options,
-            SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, ReadExpertArguments?.Text));
+            SelectedHardware()?.Port, SelectedDriveArgument(), ReadExpertArguments?.Text));
     }
 
     private static string SelectedText(ComboBox combo) => (combo.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
@@ -881,14 +882,14 @@ public partial class MainWindow : Window
         if (EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", EraseTracksValue.Text.Trim()));
         if (EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", EraseRevsValue.Text.Trim()));
         var hardware = SelectedHardware();
-        return MaintenanceCommandBuilder.Erase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, hardware?.Port, hardware?.Drive.Selection, EraseExpertArguments.Text));
+        return MaintenanceCommandBuilder.Erase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, hardware?.Port, SelectedDriveArgument(), EraseExpertArguments.Text));
     }
 
     private GwCommand BuildCleanCommand() => MaintenanceCommandBuilder.Clean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
         CleanCylindersEnabled.IsChecked == true && int.TryParse(CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
         CleanPassesEnabled.IsChecked == true && int.TryParse(CleanPassesValue.Text, out var passes) ? passes : null,
         CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,
-        SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, CleanExpertArguments.Text));
+        SelectedHardware()?.Port, SelectedDriveArgument(), CleanExpertArguments.Text));
 
     private void RefreshHardwareSelector()
     {
@@ -905,6 +906,7 @@ public partial class MainWindow : Window
     }
 
     private HardwareChoice? SelectedHardware() => HardwareSelector?.SelectedItem as HardwareChoice;
+    private string? SelectedDriveArgument() => HardwareRoutingPolicy.DriveArgument(_settings.Drives, SelectedHardware()?.Drive);
     private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) { UpdateHardwareStatus(); UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); }
     private void UpdateHardwareStatus()
     {
@@ -1053,7 +1055,7 @@ public partial class MainWindow : Window
         }
         var hardware = SelectedHardware();
         var toolRunner = new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
-        new GwToolWindow(_settings.GwExecutablePath, verb, hardware?.Port, hardware?.Drive.Selection, toolRunner) { Owner = this }.ShowDialog();
+        new GwToolWindow(_settings.GwExecutablePath, verb, hardware?.Port, SelectedDriveArgument(), toolRunner) { Owner = this }.ShowDialog();
     }
 }
 

@@ -20,6 +20,51 @@ namespace GWGUI.Tests;
 public sealed class CoreTests
 {
     [Fact]
+    public void ConversionCompatibilityUsesTheDetectedGeometryForSectorImages()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        var detection = new ImageFormatDetector(catalog).Detect("disk.ima", 737280);
+        var outputs = ConversionSourceCompatibility.GetOutputs(catalog, ".ima", detection);
+        Assert.Collection(outputs, output => Assert.Equal("ibm.720", output.Id));
+    }
+
+    [Fact]
+    public void ConversionCompatibilityKeepsAllDecodableFormatsForRawFlux()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        var detection = new ImageFormatDetector(catalog).Detect("disk.scp", 1234);
+        var outputs = ConversionSourceCompatibility.GetOutputs(catalog, ".scp", detection);
+        Assert.Contains(outputs, output => output.Id == "amiga.amigados");
+        Assert.Contains(outputs, output => output.Id == "atarist.720");
+        Assert.Contains(outputs, output => output.Id == "ibm.720");
+    }
+
+    [Fact]
+    public void RawScpReadNeverAddsAStaleKnownFormat()
+    {
+        var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, "acorn.adfs.800", []));
+        Assert.DoesNotContain("--format", command.Arguments);
+        Assert.Equal(["disk.scp"], command.Arguments);
+    }
+
+    [Fact]
+    public void KnownFormatReadRequiresAndAddsItsFormat()
+    {
+        var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.adf", ReadResultKind.KnownFormat, "amiga.amigados", []));
+        Assert.Equal(["--format", "amiga.amigados", "disk.adf"], command.Arguments);
+        Assert.Throws<ArgumentException>(() => ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.adf", ReadResultKind.KnownFormat, null, [])));
+    }
+
+    [Fact]
+    public void ADriveArgumentIsOnlyUsedWhenSeveralDrivesAreConfigured()
+    {
+        var first = new DriveSettings { Selection = "A" };
+        var second = new DriveSettings { Selection = "B" };
+        Assert.Null(HardwareRoutingPolicy.DriveArgument([first], first));
+        Assert.Equal("B", HardwareRoutingPolicy.DriveArgument([first, second], second));
+    }
+
+    [Fact]
     public void PortableMarkerMovesSettingsNextToTheApplication()
     {
         var directory = Path.Combine(Path.GetTempPath(), "gwgui-portable-" + Guid.NewGuid().ToString("N"));

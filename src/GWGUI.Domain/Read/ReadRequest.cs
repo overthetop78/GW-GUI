@@ -25,7 +25,11 @@ public static class ReadCommandBuilder
         var arguments = new List<string>();
         Add(arguments, "--device", request.Device);
         Add(arguments, "--drive", request.Drive);
-        if (!string.IsNullOrWhiteSpace(request.FormatId)) Add(arguments, "--format", request.FormatId);
+        if (request.ResultKind == ReadResultKind.KnownFormat)
+        {
+            if (string.IsNullOrWhiteSpace(request.FormatId)) throw new ArgumentException("A known disk format is required.");
+            Add(arguments, "--format", request.FormatId);
+        }
         foreach (var option in request.Options)
         {
             arguments.Add(option.Argument);
