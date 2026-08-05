@@ -90,7 +90,8 @@ public sealed class CoreTests
                 app.InitializeComponent();
                 var dialogs = new RecordingMessageDialogService();
                 var files = new RecordingFileDialogService { FolderResult = @"F:\Images" };
-                var window = new MainWindow(dialogs, files);
+                var business = new RecordingBusinessDialogService { ProfileNameResult = "Test profile" };
+                var window = new MainWindow(dialogs, files, business);
 
                 Assert.IsType<MainWindowViewModel>(window.DataContext);
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
@@ -132,6 +133,11 @@ public sealed class CoreTests
                 Assert.Equal(@"F:\Images", model.Read.Folder);
                 var folderRequest = Assert.Single(files.FolderRequests);
                 Assert.False(string.IsNullOrWhiteSpace(folderRequest.Title));
+                typeof(MainWindow).GetMethod("SaveReadProfile_Click", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
+                    .Invoke(window, [window, new RoutedEventArgs()]);
+                Assert.Equal(1, business.ProfilePromptCount);
+                var profileCombo = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("ReadProfileCombo"));
+                Assert.Contains(profileCombo.Items.Cast<OperationProfile>(), profile => profile.Name == "Test profile" && profile.Operation == OperationKind.Read);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -277,6 +283,26 @@ public sealed class CoreTests
         Assert.Equal("Operation.Error", message.ResourceKey);
         Assert.Equal(["broken"], message.Arguments);
         Assert.False(message.StartOnNewLine);
+    }
+
+    [Fact]
+    public void ConversionConflictResolverAppliesSkipOverwriteAndNumberChoices()
+    {
+        var untouched = new ConversionOutput("ibm.720", ".ima", "plain.ima", true);
+        var overwrite = new ConversionOutput("ibm.720", ".img", "replace.img", false);
+        var skip = new ConversionOutput("atarist.720", ".st", "skip.st", true);
+        var number = new ConversionOutput("amiga.amigados", ".adf", "number.adf", true);
+        var conflicts = new[] { overwrite, skip, number };
+        var decisions = new[]
+        {
+            new ConversionConflictDecision(overwrite, ConversionConflictChoice.Overwrite),
+            new ConversionConflictDecision(skip, ConversionConflictChoice.Skip),
+            new ConversionConflictDecision(number, ConversionConflictChoice.Number)
+        };
+
+        var resolved = ConversionConflictResolver.Apply([untouched, overwrite, skip, number], conflicts, decisions, path => "next-" + path);
+
+        Assert.Equal([untouched, overwrite, number with { OutputPath = "next-number.adf" }], resolved);
     }
 
     [Fact]
@@ -2083,6 +2109,15 @@ public sealed class CoreTests
         public string? OpenFile(OpenFileRequest request) { OpenRequests.Add(request); return OpenResult; }
         public string? SaveFile(SaveFileRequest request) { SaveRequests.Add(request); return SaveResult; }
         public string? SelectFolder(SelectFolderRequest request) { FolderRequests.Add(request); return FolderResult; }
+    }
+
+    private sealed class RecordingBusinessDialogService : IBusinessDialogService
+    {
+        public string? ProfileNameResult { get; set; }
+        public int ProfilePromptCount { get; private set; }
+        public IReadOnlyList<ConversionConflictDecision>? ConflictResult { get; set; }
+        public string? PromptProfileName(string? initialName = null) { ProfilePromptCount++; return ProfileNameResult; }
+        public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs) => ConflictResult;
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

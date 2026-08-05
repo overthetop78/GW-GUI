@@ -35,6 +35,7 @@ public partial class MainWindow : Window
     private readonly OperationResultPresenter _operationResultPresenter = new();
     private readonly IMessageDialogService _dialogs;
     private readonly IFileDialogService _fileDialogs;
+    private readonly IBusinessDialogService _businessDialogs;
     private IImageFormatCatalog _formatCatalog = null!;
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
@@ -55,13 +56,14 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow() : this(null, null) { }
+    public MainWindow() : this(null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
+        _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -258,10 +260,10 @@ public partial class MainWindow : Window
 
     private void SaveWriteProfile_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
+        var profileName = _businessDialogs.PromptProfileName(); if (profileName is null) return;
         var enabled = _viewModel.Write.CaptureEnabledOptions();
         var values = _viewModel.Write.CaptureValues();
-        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
+        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, profileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
     }
@@ -311,11 +313,11 @@ public partial class MainWindow : Window
 
     private void SaveConvertProfile_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
+        var profileName = _businessDialogs.PromptProfileName(); if (profileName is null) return;
         foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
         var enabled = _viewModel.Conversion.CaptureProfileEnabled();
         var values = _viewModel.Conversion.CaptureProfileValues();
-        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, dialog.ProfileName, values, enabled);
+        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, profileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshConvertProfiles(profile.Id);
     }
@@ -377,14 +379,8 @@ public partial class MainWindow : Window
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
         if (existing.Length > 0)
         {
-            var dialog = new ConversionConflictWindow(existing) { Owner = this }; if (dialog.ShowDialog() != true) return;
-            var resolved = outputs.Except(existing).ToList();
-            foreach (var row in dialog.Rows)
-            {
-                if (row.Choice == ConversionConflictChoice.Skip) continue;
-                resolved.Add(row.Choice == ConversionConflictChoice.Number ? row.Output with { OutputPath = NumberedPath(row.Output.OutputPath) } : row.Output);
-            }
-            outputs = resolved;
+            var decisions = _businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
+            outputs = ConversionConflictResolver.Apply(outputs, existing, decisions, NumberedPath);
         }
         ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
@@ -476,11 +472,11 @@ public partial class MainWindow : Window
 
     private void SaveReadProfile_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new ProfileNameWindow { Owner = this };
-        if (dialog.ShowDialog() != true) return;
+        var profileName = _businessDialogs.PromptProfileName();
+        if (profileName is null) return;
         var enabled = _viewModel.Read.CaptureEnabledOptions();
         var values = _viewModel.Read.CaptureValues();
-        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, dialog.ProfileName, values, enabled);
+        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, profileName, values, enabled);
         try { profile = _profiles.Save(profile); }
         catch (InvalidOperationException)
         {
