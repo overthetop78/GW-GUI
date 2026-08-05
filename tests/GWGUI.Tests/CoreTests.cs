@@ -26,6 +26,23 @@ public sealed class CoreTests
     private static string WindowsPowerShell => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "powershell.exe");
 
     [Fact]
+    public void ScpInspectorPresenterBuildsLocalizedTrackAnalysisOutsideWindow()
+    {
+        static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
+        var presenter = new ScpInspectorPresenter(new FluxDecoderRegistry(), Localize);
+        var revolution = new ScpRevolution(8_000_000, 4, [80, 80, 160, 80]);
+        var track = new ScpTrack(11, 5, 1, [revolution]);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 11, 11, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
+
+        var text = presenter.Build(image, track, "raw");
+
+        Assert.Contains("Visual.Track(1,5,11)", text);
+        Assert.Contains("Visual.Revolution(1,4", text);
+        Assert.Contains("Visual.DecoderName.raw", text);
+        Assert.Contains("Visual.AnalysedRevolution(1)", text);
+    }
+
+    [Fact]
     public void MainWindowStateViewModelPublishesSharedStatusChanges()
     {
         var model = new MainWindowViewModel("No hardware", "Ready");

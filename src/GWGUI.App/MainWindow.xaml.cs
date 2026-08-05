@@ -40,6 +40,7 @@ public partial class MainWindow : Window
     private ScpImage? _scpImage;
     private bool _syncingScpZoom;
     private readonly FluxDecoderRegistry _fluxDecoders = new();
+    private readonly ScpInspectorPresenter _scpInspector;
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
@@ -53,6 +54,7 @@ public partial class MainWindow : Window
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
+        _scpInspector = new ScpInspectorPresenter(_fluxDecoders, (key, arguments) => LocExtension.Get(key, arguments));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
@@ -111,13 +113,7 @@ public partial class MainWindow : Window
         var track = _selectedScpTrack;
         if (track is null || _scpImage is null || ScpTrackInfo is null) return;
         var choice = ScpDecoderCombo.SelectedItem as ScpDecoderChoice;
-        var best = _fluxDecoders.DecodeBest(track.Revolutions, choice?.Id);
-        var decoded = best?.Result;
-        var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => LocExtension.Get("Visual.Revolution", index + 1, revolution.FluxIntervals.Count, revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds), revolution.Rpm(_scpImage.Header.ResolutionNanoseconds))));
-        var details = decoded is null ? "" : string.Join(Environment.NewLine, decoded.Structures.Take(30).Select(x => $"• {StructureLabel(x.Kind)} · {LocExtension.Get("Visual.BitOffset", x.BitOffset)}"));
-        var sectors = decoded?.Sectors is not { Count: > 0 } ? "" : string.Join(Environment.NewLine, decoded.Sectors.Take(30).Select(x => LocExtension.Get("Visual.SectorDetail", x.Cylinder, x.Head, x.Number, x.SizeBytes, LocExtension.Get("Visual.Integrity." + x.IntegrityKind), LocExtension.Get(x.IntegrityValid is null ? "Visual.IntegrityUnavailable" : x.IntegrityValid.Value ? "Visual.CrcValid" : "Visual.CrcInvalid"))));
-        var analysis = decoded is null ? "" : "\n\n" + LocExtension.Get("Visual.Analysis", DecoderName(decoded.DecoderId), decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count) + $"\n{LocExtension.Get("Visual.AnalysedRevolution", best!.Value.RevolutionIndex + 1)}" + (details.Length > 0 ? $"\n\n{details}" : "") + (sectors.Length > 0 ? $"\n\n{sectors}" : "");
-        ScpTrackInfo.Text = LocExtension.Get("Visual.Track", track.Head, track.Cylinder, track.TrackNumber) + $"\n\n{revolutions}{analysis}";
+        ScpTrackInfo.Text = _scpInspector.Build(_scpImage, track, choice?.Id);
     }
 
     private void ScpZoom_Changed(object? sender, float zoom)
@@ -998,8 +994,6 @@ public partial class MainWindow : Window
     }
 
     private static string DecoderName(string id) => LocExtension.Get("Visual.DecoderName." + id);
-    private static string StructureLabel(FluxStructureKind kind) => LocExtension.Get("Visual.StructureKind." + kind);
-
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not MenuItem { Tag: string verb }) return;
