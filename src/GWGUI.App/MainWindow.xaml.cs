@@ -17,6 +17,7 @@ using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -184,20 +185,20 @@ public partial class MainWindow : Window
     private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
-        if (!File.Exists(WriteSourceText.Text)) { MessageBox.Show("Choisissez une image source existante.", "Écriture", MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (!File.Exists(WriteSourceText.Text)) { MessageBox.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
-        { MessageBox.Show("Le format est ambigu. Choisissez explicitement un format compatible.", "Écriture", MessageBoxButton.OK, MessageBoxImage.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show("Greaseweazle Tools n’est pas configuré.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information); return; }
-        var warning = WriteNoVerify.IsChecked == true ? "\n⚠ La vérification après écriture est désactivée." : "\nLa vérification après écriture est active.";
-        var confirmation = $"Image : {Path.GetFileName(WriteSourceText.Text)}\nFormat : {selected.DisplayName}\nLecteur : lecteur configuré par défaut{warning}\n\nÉcrire cette image sur la disquette ?";
-        if (MessageBox.Show(confirmation, "Confirmer l’écriture", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        { MessageBox.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        var warning = LocExtension.Get(WriteNoVerify.IsChecked == true ? "Write.VerifyOff" : "Write.VerifyOn");
+        var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
+        if (MessageBox.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         var command = BuildWriteCommand();
-        _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = "Arrêter"; LogOutput.Clear();
+        _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear();
         var output = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
         try { var result = await _runner.RunAsync(command, output, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}, durée {result.Duration:g}."); }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
-        finally { WriteExecuteButton.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+        finally { WriteExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void WriteProfile_Changed(object sender, SelectionChangedEventArgs e)
@@ -253,7 +254,7 @@ public partial class MainWindow : Window
         if (dialog.ShowDialog(this) != true) return;
         ConvertSourceText.Text = dialog.FileName; ConvertOutputName.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
         var detection = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
-        ConvertSourceInfo.Text = detection.Format?.DisplayName ?? "Source ambiguë";
+        ConvertSourceInfo.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
         BuildConversionFormats(Path.GetExtension(dialog.FileName)); UpdateConvertCommand();
     }
 
@@ -273,7 +274,7 @@ public partial class MainWindow : Window
         try
         {
             var outputs = PlanConversions();
-            if (outputs.Count == 0) { CommandPreview.Text = "Sélectionnez au moins un format de sortie."; return; }
+            if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
             var first = ConversionCommandBuilder.Build(_settings.GwExecutablePath ?? "gw.exe", ConvertSourceText.Text, outputs[0], GetConvertOptions(), ConvertExpertArguments.Text);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? $"  (+ {outputs.Count - 1} conversion(s))" : "");
         }
@@ -285,7 +286,7 @@ public partial class MainWindow : Window
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
         if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show("Choisissez une image source existante.", "Conversion"); return; }
         if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show("Indiquez le nom des fichiers de sortie.", "Conversion"); return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show("Greaseweazle Tools n’est pas configuré.", "GW GUI"); return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = PlanConversions(); } catch (Exception exception) { MessageBox.Show(exception.Message, "Conversion", MessageBoxButton.OK, MessageBoxImage.Warning); return; }
         if (outputs.Count == 0) { MessageBox.Show("Cochez au moins un format de sortie.", "Conversion"); return; }
@@ -301,7 +302,7 @@ public partial class MainWindow : Window
             }
             outputs = resolved;
         }
-        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = "Arrêter"; LogOutput.Clear(); var failures = new List<string>();
+        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); var failures = new List<string>();
         var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
         try
         {
@@ -312,9 +313,9 @@ public partial class MainWindow : Window
                 var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, ConvertSourceText.Text, planned, GetConvertOptions(), ConvertExpertArguments.Text), progress, _cancellation.Token);
                 if (!result.IsSuccess) failures.Add(Path.GetFileName(planned.OutputPath));
             }
-            LogOutput.AppendText($"{Environment.NewLine}Bilan : {outputs.Count - failures.Count} réussie(s), {failures.Count} échec(s)." + (failures.Count > 0 ? $" Échecs : {string.Join(", ", failures)}" : ""));
+            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Conversion.Summary", outputs.Count - failures.Count, failures.Count) + (failures.Count > 0 ? LocExtension.Get("Conversion.Failures", string.Join(", ", failures)) : ""));
         }
-        finally { ConvertExecuteButton.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+        finally { ConvertExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private static string NumberedPath(string path)
@@ -335,7 +336,7 @@ public partial class MainWindow : Window
     {
         if (_runner.IsRunning)
         {
-            var answer = MessageBox.Show("Une opération est en cours. Voulez-vous l’arrêter et fermer GW GUI ?", "GW GUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var answer = MessageBox.Show(LocExtension.Get("App.OperationRunningClose"), LocExtension.Get("App.Title"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (answer != MessageBoxResult.Yes) { e.Cancel = true; return; }
             _cancellation?.Cancel();
         }
@@ -508,21 +509,21 @@ public partial class MainWindow : Window
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
         if (string.IsNullOrWhiteSpace(ReadFileName.Text))
         {
-            MessageBox.Show("Indiquez un nom de fichier.", "Lecture", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
         {
-            MessageBox.Show("Greaseweazle Tools n’est pas configuré. Ouvrez Options → Préférences.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
 
         var extension = GetReadExtension();
-        if (string.IsNullOrWhiteSpace(extension)) { MessageBox.Show("Choisissez un type d’image compatible.", "Lecture", MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (string.IsNullOrWhiteSpace(extension)) { MessageBox.Show(LocExtension.Get("Read.TypeRequired"), LocExtension.Get("Read.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
         var target = GetReadTarget(extension);
         if (File.Exists(target))
         {
-            var answer = MessageBox.Show("Ce fichier existe déjà.\n\nOui : écraser\nNon : prendre le numéro suivant\nAnnuler : modifier le nom", "Fichier existant", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+            var answer = MessageBox.Show(LocExtension.Get("Read.FileExists"), LocExtension.Get("Read.FileExistsTitle"), MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
             if (answer == MessageBoxResult.Cancel) { ReadFileName.Focus(); ReadFileName.SelectAll(); return; }
             if (answer == MessageBoxResult.No)
             {
@@ -536,7 +537,7 @@ public partial class MainWindow : Window
         }
         var command = BuildReadCommand(target);
         _cancellation = new CancellationTokenSource();
-        ReadExecuteButton.Content = "Arrêter";
+        ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
         LogOutput.Clear();
         var output = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
         try
@@ -547,7 +548,7 @@ public partial class MainWindow : Window
             if (result.IsSuccess && ReadAutoNumber.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var value)) ReadSequenceValue.Text = (value + 1).ToString();
         }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
-        finally { ReadExecuteButton.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+        finally { ReadExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void RestoreReadSettings()
@@ -630,7 +631,7 @@ public partial class MainWindow : Window
         var choices = (from drive in _settings.Drives
                        join controller in _settings.Controllers on drive.ControllerUsbId equals controller.UsbId
                        select new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
-                           $"{drive.Size} pouces · {drive.Density} · {controller.LastPort} · {drive.Selection}" + (controller.IsAvailable ? "" : " (débranché)"))).ToArray();
+                           LocExtension.Get("Hardware.DriveLabel", drive.Size, drive.Density, controller.LastPort, drive.Selection) + (controller.IsAvailable ? "" : $" ({LocExtension.Get("Hardware.Disconnected")})"))).ToArray();
         HardwareSelector.ItemsSource = choices;
         HardwareSelector.SelectedItem = choices.FirstOrDefault(x => x.Drive.Id == previousId) ?? choices.FirstOrDefault();
         HardwareSelectorItem.Visibility = choices.Length > 1 ? Visibility.Visible : Visibility.Collapsed;
@@ -643,7 +644,7 @@ public partial class MainWindow : Window
     {
         if (HardwareStatusText is null) return;
         var selected = SelectedHardware();
-        HardwareStatusText.Text = selected is null ? "Contrôleur non configuré" : selected.Label;
+        HardwareStatusText.Text = selected is null ? LocExtension.Get("Hardware.NotConfigured") : selected.Label;
         HardwareStatusLight.Fill = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
     }
 
@@ -657,26 +658,26 @@ public partial class MainWindow : Window
     private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
-        if (MessageBox.Show("Effacer définitivement toutes les données de la disquette insérée ?", "Confirmer l’effacement", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        if (MessageBox.Show(LocExtension.Get("Maintenance.EraseConfirm"), LocExtension.Get("Maintenance.EraseTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         await ExecuteMaintenanceAsync(BuildEraseCommand(), EraseExecuteButton);
     }
 
     private async void ExecuteClean_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
-        if (MessageBox.Show("Confirmez qu’une disquette de nettoyage est insérée. Une disquette de données ne doit pas être utilisée.", "Nettoyer les têtes", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        if (MessageBox.Show(LocExtension.Get("Maintenance.CleanConfirm"), LocExtension.Get("Maintenance.CleanTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         await ExecuteMaintenanceAsync(BuildCleanCommand(), CleanExecuteButton);
     }
 
     private async Task ExecuteMaintenanceAsync(GwCommand command, Button button)
     {
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show("Greaseweazle Tools n’est pas configuré.", "GW GUI"); return; }
-        _cancellation = new CancellationTokenSource(); button.Content = "Arrêter"; LogOutput.Clear();
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
+        _cancellation = new CancellationTokenSource(); button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear();
         var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
         try { var result = await _runner.RunAsync(command, progress, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}."); }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
-        finally { button.Content = "Exécuter"; _cancellation.Dispose(); _cancellation = null; }
+        finally { button.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
@@ -684,7 +685,7 @@ public partial class MainWindow : Window
         if (sender is not MenuItem { Tag: string verb }) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
         {
-            MessageBox.Show("Greaseweazle Tools n’est pas configuré. Ouvrez Options → Préférences.", "GW GUI", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
         var hardware = SelectedHardware();

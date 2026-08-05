@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Domain.Settings;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -23,7 +24,7 @@ public partial class DriveEditorWindow : Window
 
     private void Save_Click(object sender, RoutedEventArgs e)
     {
-        if (ControllerCombo.SelectedIndex < 0) { MessageBox.Show(this, "Scannez ou ajoutez d’abord un contrôleur Greaseweazle.", "Lecteur"); return; }
+        if (ControllerCombo.SelectedIndex < 0) { MessageBox.Show(this, LocExtension.Get("Hardware.ControllerRequired"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
         var controller = _controllers[ControllerCombo.SelectedIndex];
         Drive = new DriveSettings
         {
