@@ -1114,6 +1114,68 @@ public sealed class CoreTests
         Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(0xf8, false)]
+    [InlineData(0xf9, false)]
+    [InlineData(0xfa, false)]
+    [InlineData(0xfb, true)]
+    public void TycomFmDecoderExtractsIdentityDataMarkAndCrc(byte dataMark, bool corruptDataCrc)
+    {
+        static string EncodeTycomFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        const byte cylinder = 31, sectorNumber = 7;
+        var headerCrc = TestCrc16([0xfe, cylinder, sectorNumber], 0x1021, 0xffff);
+        var data = Enumerable.Range(0, 128).Select(index => (byte)(index * 19)).ToArray();
+        var dataCrc = TestCrc16(new byte[] { dataMark }.Concat(data), 0x1021, 0xffff);
+        if (corruptDataCrc) dataCrc ^= 1;
+        var dataPattern = dataMark switch { 0xf8 => "55111444", 0xf9 => "55111445", 0xfa => "55111454", _ => "55111455" };
+        var raw = RawMark("55111554") + EncodeTycomFm([cylinder, sectorNumber, (byte)(headerCrc >> 8), (byte)headerCrc]) + new string('1', 64)
+            + RawMark(dataPattern) + EncodeTycomFm(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc])) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new TycomFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(cylinder, sector.Cylinder);
+        Assert.Equal(sectorNumber, sector.Number);
+        Assert.Equal(128, sector.SizeBytes);
+        Assert.Equal(!corruptDataCrc, sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(dataMark.ToString("X2"), StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void TycomFmDecoderReportsUnavailableDataIntegrityWhenOnlyHeaderExists()
+    {
+        static string EncodeTycomFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var headerCrc = TestCrc16([0xfe, 4, 2], 0x1021, 0xffff);
+        var raw = RawMark("55111554") + EncodeTycomFm([4, 2, (byte)(headerCrc >> 8), (byte)headerCrc]) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new TycomFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(4, sector.Cylinder);
+        Assert.Equal(2, sector.Number);
+        Assert.Null(sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void TycomFmDecoderRejectsCorruptedHeaderCrc()
+    {
+        static string EncodeTycomFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var headerCrc = (ushort)(TestCrc16([0xfe, 9, 3], 0x1021, 0xffff) ^ 1);
+        var raw = RawMark("55111554") + EncodeTycomFm([9, 3, (byte)(headerCrc >> 8), (byte)headerCrc]) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new TycomFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Empty(result.Sectors!);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains("header CRC invalid", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
@@ -1148,8 +1210,8 @@ public sealed class CoreTests
     public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var singleCellEncoding = decoderId is "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr";
-        var calibration = decoderId == "emu.fm" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
+        var singleCellEncoding = decoderId is "dec.rx02" or "arburg" or "victor9k.gcr";
+        var calibration = decoderId is "emu.fm" or "tycom.fm" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);
         var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
