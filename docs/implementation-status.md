@@ -27,6 +27,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Chaque onglet d’opération permet d’activer et choisir un fichier `diskdefs.cfg` personnalisé; son chemin est persistant et mémorisé dans les profils. Un fichier disparu bloque l’exécution avec un message localisé.
 - Validation centrale des options structurées : valeurs obligatoires, révolutions positives, tentatives non négatives, densité H/L et exclusions faux index/secteurs matériels ainsi que densité/TG43.
 - Journal automatique rotatif : 10 fichiers de 5 Mio sous les données utilisateur, avec commande exacte, sortie horodatée, flux standard/erreur, code retour, annulation et durée. Le menu Options ouvre un historique consultable et exportable; la console courante peut aussi être exportée directement.
+- Réglages au schéma versionné 3 avec migrations séquentielles, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
 - La détection en Écriture reconnaît par taille toutes les géométries IBM et Atari cataloguées, ainsi que les ADF Amiga DD/HD et Acorn; ses explications sont localisées en français et en anglais.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
@@ -41,11 +42,11 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Valider le gestionnaire Host Tools avec une installation réelle et finaliser le comportement portable versus installé.
 - Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
 - Étendre le moteur SCP à tous les décodeurs définis dans le plan et améliorer PLL, anomalies et visualisation des structures.
-- Ajouter migrations explicites des réglages et renforcer la couverture de tests d’intégration/UI/matériel.
+- Renforcer la couverture de tests d’intégration/UI/matériel.
 - Réaliser icône, aide utilisateur bilingue, ZIP portable, installateur Inno Setup, sommes SHA-256 et workflow GitHub Actions.
 
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 67 réussis, dont rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 69 réussis, dont migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.

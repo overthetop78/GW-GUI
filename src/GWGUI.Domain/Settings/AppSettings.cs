@@ -4,7 +4,7 @@ public enum AppTheme { System, Light, Dark }
 
 public sealed class AppSettings
 {
-    public int SchemaVersion { get; set; } = 1;
+    public int SchemaVersion { get; set; } = SettingsMigrator.CurrentVersion;
     public string Language { get; set; } = "fr";
     public AppTheme Theme { get; set; } = AppTheme.System;
     public string DefaultImagesFolder { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

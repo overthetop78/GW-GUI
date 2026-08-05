@@ -11,11 +11,57 @@ using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
 using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Domain.Settings;
 
 namespace GWGUI.Tests;
 
 public sealed class CoreTests
 {
+    [Fact]
+    public async Task VersionOneSettingsMigrateFormatIdentifiersAndCollections()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-settings-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        var path = Path.Combine(directory, "settings.json");
+        try
+        {
+            await File.WriteAllTextAsync(path, """{"SchemaVersion":1,"Read":{"FormatId":"amiga.amigadoshd"},"Conversion":{"SelectedFormats":["amiga.amigadoshd"],"ExplicitExtensions":{"amiga.amigadoshd":[".adf"]}},"Profiles":[{"Operation":"Convert","Name":"HD","EnabledOptions":["format:amiga.amigadoshd"],"Values":{"extensions:amiga.amigadoshd":".adf"}}]}""");
+            var settings = await new JsonSettingsStore(path).LoadAsync();
+
+            Assert.Equal(SettingsMigrator.CurrentVersion, settings.SchemaVersion);
+            Assert.Equal("amiga.amigados_hd", settings.Read.FormatId);
+            Assert.Contains("amiga.amigados_hd", settings.Conversion.SelectedFormats);
+            Assert.Contains("amiga.amigados_hd", settings.Conversion.ExplicitExtensions.Keys);
+            Assert.Contains("format:amiga.amigados_hd", settings.Profiles[0].EnabledOptions);
+            Assert.Contains("extensions:amiga.amigados_hd", settings.Profiles[0].Values.Keys);
+            Assert.NotNull(settings.Write);
+        }
+        finally { Directory.Delete(directory, true); }
+    }
+
+    [Fact]
+    public async Task InvalidSettingsRecoverFromLastBackupAndArePreserved()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-settings-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        var path = Path.Combine(directory, "settings.json");
+        try
+        {
+            var store = new JsonSettingsStore(path);
+            await store.SaveAsync(new AppSettings { Language = "fr" });
+            await store.SaveAsync(new AppSettings { Language = "en" });
+            await File.WriteAllTextAsync(path, "{ invalid json");
+
+            var recovered = await store.LoadAsync();
+
+            Assert.Equal("fr", recovered.Language);
+            Assert.Contains(Directory.GetFiles(directory), file => file.Contains(".invalid-", StringComparison.Ordinal));
+            Assert.Contains("\"Language\": \"fr\"", await File.ReadAllTextAsync(path));
+        }
+        finally { Directory.Delete(directory, true); }
+    }
+
     [Fact]
     public async Task OperationLogWriterRotatesAndKeepsCommandAndOutput()
     {
