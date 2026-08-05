@@ -1005,6 +1005,27 @@ public sealed class CoreTests
         Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void CenturionDecoderExtractsSectorIdentityAndXmodemHeaderCrc(bool corruptCrc)
+    {
+        byte[] identity = [17, 6];
+        var crc = TestCrc16(identity, 0x1021, 0x0000);
+        if (corruptCrc) crc ^= 1;
+        var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(crc >> 8), (byte)crc) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(17, sector.Cylinder);
+        Assert.Equal(6, sector.Number);
+        Assert.Equal(0, sector.SizeBytes);
+        Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains(corruptCrc ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {

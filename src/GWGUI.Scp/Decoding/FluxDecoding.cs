@@ -165,8 +165,45 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
 
 public sealed class CenturionMfmDecoder : SignatureMfmDecoder
 {
+    private static readonly byte[] SectorMark = [0x91, 0x22, 0x44, 0x89];
+    private static readonly byte[] DataMark = [0xaa, 0xaa, 0xaa, 0xa9];
     public override string Id => "centurion.mfm"; public override string DisplayName => "Centurion MFM";
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x91, 0x22, 0x44, 0x89], FluxStructureKind.FormatHeader, "Centurion sector mark"), ([0xaa, 0xaa, 0xaa, 0xa9], FluxStructureKind.FormatData, "Centurion data mark")];
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Centurion sector mark"), (DataMark, FluxStructureKind.FormatData, "Centurion data mark")];
+
+    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        const int markBits = 4 * 8;
+        const int headerBits = markBits + 4 * 16;
+        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
+        {
+            if (!stream.MatchBytes(offset, SectorMark))
+            {
+                if (!stream.MatchBytes(offset, DataMark)) continue;
+                structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Centurion data mark"));
+                offset += markBits - 1; continue;
+            }
+            var complete = offset + headerBits <= stream.Bits.Length;
+            if (complete)
+            {
+                var header = Enumerable.Range(0, 4).Select(index => stream.DecodeMfmByte(offset + markBits + index * 16)).ToArray();
+                var valid = Crc16(header) == 0;
+                sectors.Add(new(header[0], 0, header[1], 0, 0, valid, offset)); bytes.AddRange(header);
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"Centurion C{header[0]} R{header[1]}, header CRC {(valid ? "valid" : "invalid")}"));
+            }
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "Centurion sector mark"));
+            offset += markBits - 1;
+        }
+        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static ushort Crc16(IEnumerable<byte> values)
+    {
+        ushort crc = 0;
+        foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x1021 : crc << 1); }
+        return crc;
+    }
 }
 
 public sealed class NorthstarMfmDecoder : SignatureMfmDecoder

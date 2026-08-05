@@ -14,7 +14,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | Apple II GCR | Prologues adresse/données | Non | Non |
 | Commodore GCR | Synchronisation et type de bloc | Non | Non |
 | QD MO5 MFM | Marques en-tête/données | Non | Non |
-| Centurion MFM | Marques secteur/données | Non | Non |
+| Centurion MFM | Cylindre et secteur | CRC16 XMODEM de l’en-tête | Oui pour l’identité et le CRC d’en-tête ; la taille est portée par le bloc de données séparé |
 | E-mu Emulator FM | Marque secteur | Non | Non |
 | TYCOM FM | En-tête et marques F8–FB | Non | Non |
 | DEC RX02 M²FM | En-tête FM et marque données FD | Non | Non |
