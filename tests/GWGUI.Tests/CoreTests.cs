@@ -1287,6 +1287,54 @@ public sealed class CoreTests
         Assert.All(data.Structures.Concat(system.Structures), structure => Assert.Contains("unavailable", structure.Description, StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(false, false)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    public void Victor9kDecoderExtractsIdentityAndValidatesHeaderAndDataChecksums(bool corruptHeader, bool corruptData)
+    {
+        static string EncodeGcr(IEnumerable<byte> values)
+        {
+            int[] table = [0x0a,0x0b,0x12,0x13,0x0e,0x0f,0x16,0x17,0x09,0x19,0x1a,0x1b,0x0d,0x1d,0x1e,0x15];
+            return string.Concat(values.SelectMany(value => new[] { value >> 4, value & 15 }).Select(nibble => Convert.ToString(table[nibble], 2).PadLeft(5, '0')));
+        }
+        static string Block(string markerHex, IReadOnlyList<byte> values)
+        {
+            var marker = string.Concat(Convert.FromHexString(markerHex).Select(value => Convert.ToString(value, 2).PadLeft(8, '0'))); var bits = marker.ToList(); var encoded = EncodeGcr(values);
+            while (bits.Count < 49 + encoded.Length * 2) bits.Add('0');
+            for (var index = 0; index < encoded.Length; index++)
+            {
+                var position = 49 + index * 2;
+                if (position < marker.Length) Assert.Equal(marker[position], encoded[index]);
+                bits[position] = encoded[index];
+            }
+            return new(bits.ToArray());
+        }
+        const byte cylinder = 17; const byte sector = 6;
+        var headerChecksum = (byte)(cylinder + sector + (corruptHeader ? 1 : 0));
+        byte[] header = [0x06, cylinder, sector, headerChecksum, 0xa1, 0x1a];
+        var data = Enumerable.Range(0, 512).Select(index => (byte)(index * 29 + 7)).ToArray(); ushort checksum = 0; foreach (var value in data) checksum += value;
+        if (corruptData) checksum++;
+        var dataBlock = new byte[] { 0x00 }.Concat(data).Concat([(byte)checksum, (byte)(checksum >> 8)]).ToArray();
+        var raw = Block("5555555555551111", header) + new string('0', 20) + Block("5555555555551104", dataBlock) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new Victor9kGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var decoded = Assert.Single(result.Sectors!); Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
+        Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptData ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Victor9kDecoderReportsUnavailableIntegrityForTruncatedSector()
+    {
+        var marker = string.Concat(Convert.FromHexString("5555555555551111").Select(value => Convert.ToString(value, 2).PadLeft(8, '0'))); var intervals = BitsToIntervals(marker + "1", 40);
+        var result = new Victor9kGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
@@ -1321,8 +1369,7 @@ public sealed class CoreTests
     public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var singleCellEncoding = decoderId == "victor9k.gcr";
-        var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
+        var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr" ? "" : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);
         var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));

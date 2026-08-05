@@ -22,6 +22,6 @@ Les décodeurs rares sont implémentés à partir des caractéristiques de leur 
 | TYCOM FM | `tycom_fm_track.c` | `55 11 15 54` et marques de données `55 11 14 xx` |
 | DEC RX02 M²FM | `dec_rx02_track.c` | `55 11 15 54` et marque M²FM `55 11 15 45` |
 | Arburg | `arburg_track.c` | `44 44 44 44 55 55 55 55` et `55 55 55 55 55 24 92 49` |
-| Victor 9000 GCR | `victor9k_gcr_track.c` | `55 55 55 55 55 55 11 11` et `55 55 55 55 55 55 11 04` |
+| Victor 9000 GCR | `victor9k_gcr_track.c` | Marques `55 55 55 55 55 55 11 11` / `55 55 55 55 55 55 11 04`, table GCR 4/5, en-tête de 6 octets, données de 512 octets et somme additive 16 bits little-endian |
 
 Les prochaines familles doivent suivre la même règle : signature justifiée par une référence primaire, corpus synthétique ciblé et résultat visuel réellement exploitable.
