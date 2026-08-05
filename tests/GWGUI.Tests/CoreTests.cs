@@ -13,11 +13,26 @@ using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Domain.Settings;
+using GWGUI.App;
 
 namespace GWGUI.Tests;
 
 public sealed class CoreTests
 {
+    [Fact]
+    public void PortableMarkerMovesSettingsNextToTheApplication()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-portable-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        try
+        {
+            Assert.Equal(Path.Combine("roaming", "GW GUI"), StoragePaths.ResolveDataDirectory(directory, "roaming"));
+            File.WriteAllText(Path.Combine(directory, "portable.flag"), "");
+            Assert.Equal(Path.Combine(directory, "Data"), StoragePaths.ResolveDataDirectory(directory, "roaming"));
+        }
+        finally { Directory.Delete(directory, true); }
+    }
+
     [Fact]
     public async Task VersionOneSettingsMigrateFormatIdentifiersAndCollections()
     {

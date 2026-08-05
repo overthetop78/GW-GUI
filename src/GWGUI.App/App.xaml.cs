@@ -12,7 +12,7 @@ public partial class App : Application
     private AppTheme _theme;
     protected override void OnStartup(StartupEventArgs e)
     {
-        var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GW GUI");
+        var directory = StoragePaths.DataDirectory;
         var settings = new JsonSettingsStore(Path.Combine(directory, "settings.json")).LoadAsync().GetAwaiter().GetResult();
         var culture = CultureInfo.GetCultureInfo(settings.Language == "en" ? "en" : "fr");
         CultureInfo.DefaultThreadCurrentCulture = culture;

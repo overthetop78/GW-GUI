@@ -9,3 +9,4 @@ packages/
 *.log
 settings.json
 gw/
+artifacts/

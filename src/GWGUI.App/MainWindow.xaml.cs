@@ -49,7 +49,7 @@ public partial class MainWindow : Window
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
-        var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GW GUI");
+        var directory = StoragePaths.DataDirectory;
         _settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         _logsDirectory = Path.Combine(directory, "logs");
         _runner = new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
@@ -967,7 +967,7 @@ public partial class MainWindow : Window
         }
         try
         {
-            var root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GW GUI", "host-tools");
+            var root = StoragePaths.HostToolsDirectory;
             var manager = new GwInstallationManager(new HttpClient(), root);
             var release = await manager.GetLatestReleaseAsync();
             _settings.AvailableHostToolsVersion = release.Version; _settings.LastHostToolsCheckUtc = DateTimeOffset.UtcNow;

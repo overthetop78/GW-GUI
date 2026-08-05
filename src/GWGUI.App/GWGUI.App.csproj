@@ -9,6 +9,14 @@
     <ApplicationIcon />
     <AssemblyName>GW GUI</AssemblyName>
     <RootNamespace>GWGUI.App</RootNamespace>
+    <Version Condition="'$(Version)' == ''">0.1.0</Version>
+    <Authors>overthetop78</Authors>
+    <Company>GW GUI</Company>
+    <Product>GW GUI</Product>
+    <Description>Modern Windows interface for Greaseweazle.</Description>
+    <Copyright>Copyright © overthetop78</Copyright>
+    <RepositoryUrl>https://github.com/overthetop78/GW-GUI</RepositoryUrl>
+    <SatelliteResourceLanguages>en;fr</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>

@@ -28,6 +28,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Validation centrale des options structurées : valeurs obligatoires, révolutions positives, tentatives non négatives, densité H/L et exclusions faux index/secteurs matériels ainsi que densité/TG43.
 - Journal automatique rotatif : 10 fichiers de 5 Mio sous les données utilisateur, avec commande exacte, sortie horodatée, flux standard/erreur, code retour, annulation et durée. Le menu Options ouvre un historique consultable et exportable; la console courante peut aussi être exportée directement.
 - Réglages au schéma versionné 3 avec migrations séquentielles, correction des anciens identifiants de formats, normalisation défensive des collections, sauvegarde automatique `.bak`, conservation datée des fichiers invalides et restauration depuis la dernière sauvegarde valide.
+- Distribution Windows x64 autonome : ZIP portable avec stockage local `Data`, installateur Inno Setup bilingue avec stockage utilisateur Windows, métadonnées de version, exclusion des symboles, SHA-256 et workflow GitHub Actions publiant les paquets lors d’un tag `v*`.
 - La détection en Écriture reconnaît par taille toutes les géométries IBM et Atari cataloguées, ainsi que les ADF Amiga DD/HD et Acorn; ses explications sont localisées en français et en anglais.
 - Tous les noms conviviaux du catalogue et des extensions sont fournis par les ressources de la langue active. Les tags de multiconversion sont des identifiants stables indépendants de la traduction, par exemple `[PC-720]`, `[ST-720]` et `[AMIGA-DD]`.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
@@ -40,14 +41,15 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Enrichir les infobulles avancées avec exemples détaillés et ajouter une validation syntaxique plus profonde de TSPEC, PLL et précompensation.
 - Vérifier visuellement les deux langues sur l’application publiée.
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
-- Valider le gestionnaire Host Tools avec une installation réelle et finaliser le comportement portable versus installé.
+- Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
 - Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
 - Étendre le moteur SCP à tous les décodeurs définis dans le plan et améliorer PLL, anomalies et visualisation des structures.
 - Renforcer la couverture de tests d’intégration/UI/matériel.
-- Réaliser icône, aide utilisateur bilingue, ZIP portable, installateur Inno Setup, sommes SHA-256 et workflow GitHub Actions.
+- Réaliser l’icône et l’aide utilisateur bilingue intégrée.
 
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
 - Tests automatisés : 71 réussis, dont localisation et stabilité des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
+- Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.

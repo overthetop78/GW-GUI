@@ -32,7 +32,7 @@ public partial class OptionsWindow : Window
     {
         InitializeComponent();
         _settings = settings;
-        var managedRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GW GUI", "host-tools");
+        var managedRoot = StoragePaths.HostToolsDirectory;
         _hostTools = new GwInstallationManager(new HttpClient(), managedRoot);
         _previousGwPath = settings.PreviousGwExecutablePath; _installedVersion = settings.InstalledHostToolsVersion; _availableVersion = settings.AvailableHostToolsVersion; _lastHostToolsCheck = settings.LastHostToolsCheckUtc;
         _controllers = settings.Controllers.Select(x => new ControllerSettings { UsbId = x.UsbId, LastPort = x.LastPort, Model = x.Model, IsAvailable = x.IsAvailable }).ToList();
