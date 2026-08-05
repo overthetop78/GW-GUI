@@ -6,8 +6,11 @@ namespace GWGUI.Infrastructure.Hardware;
 
 public sealed class GreaseweazleHardwareRegistry(
     ISerialDeviceDiscovery discovery,
-    IGreaseweazleRunner runner) : IHardwareRegistry
+    IGreaseweazleRunner runner,
+    IGwCommandBuilder? commandBuilder = null) : IHardwareRegistry
 {
+    private readonly IGwCommandBuilder commandBuilder = commandBuilder ?? new GwCommandBuilder();
+
     public async Task<IReadOnlyList<ControllerSettings>> ScanAsync(
         string executable,
         IReadOnlyList<ControllerSettings> configuredControllers,
@@ -19,7 +22,7 @@ public sealed class GreaseweazleHardwareRegistry(
         foreach (var serial in serialDevices)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await runner.RunAsync(new GwCommand(executable, "info", ["--device", serial.Port]), cancellationToken: cancellationToken);
+            var result = await runner.RunAsync(commandBuilder.BuildInfo(new(executable, serial.Port)), cancellationToken: cancellationToken);
             if (!result.IsSuccess) continue;
             var parsed = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(line => line.Text)));
             var usbId = string.IsNullOrWhiteSpace(parsed.SerialNumber) ? serial.StableId : parsed.SerialNumber;

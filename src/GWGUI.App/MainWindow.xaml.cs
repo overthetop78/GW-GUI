@@ -30,6 +30,7 @@ public partial class MainWindow : Window
 {
     private readonly ISettingsStore _settingsStore;
     private readonly IGreaseweazleRunner _runner;
+    private readonly IGwCommandBuilder _commandBuilder;
     private AppSettings _settings = new();
     private readonly OperationCoordinator _operation = new();
     private readonly OperationResultPresenter _operationResultPresenter = new();
@@ -56,15 +57,16 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow() : this(null, null, null, null) { }
+    public MainWindow() : this(null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
         _navigation = navigation ?? new WpfWindowNavigationService(this);
+        _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -215,7 +217,7 @@ public partial class MainWindow : Window
 
     private GwCommand BuildWriteCommand()
     {
-        return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Write.SourcePath,
+        return _commandBuilder.BuildWrite(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Write.SourcePath,
             (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, _viewModel.Write.BuildOptions(),
             _viewModel.Write.DisableVerification, SelectedHardware()?.Port, SelectedDriveArgument(), _viewModel.Write.ExpertArguments));
     }
@@ -349,7 +351,7 @@ public partial class MainWindow : Window
         {
             var outputs = PlanConversions();
             if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
-            var first = ConversionCommandBuilder.Build(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
+            var first = _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
         catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
@@ -375,7 +377,7 @@ public partial class MainWindow : Window
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token =>
         {
-            var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), ConversionCommandBuilder.Build(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
+            var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), _commandBuilder.BuildConversion(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
             return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); LogOutput.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), token);
         });
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
@@ -559,7 +561,7 @@ public partial class MainWindow : Window
 
     private GwCommand BuildReadCommand(string target)
     {
-        return ReadCommandBuilder.Build(new ReadRequest(
+        return _commandBuilder.BuildRead(new ReadRequest(
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
             (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, _viewModel.Read.BuildOptions(),
@@ -828,10 +830,10 @@ public partial class MainWindow : Window
         if (EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", EraseTracksValue.Text.Trim()));
         if (EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", EraseRevsValue.Text.Trim()));
         var hardware = SelectedHardware();
-        return MaintenanceCommandBuilder.Erase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, hardware?.Port, SelectedDriveArgument(), EraseExpertArguments.Text));
+        return _commandBuilder.BuildErase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, hardware?.Port, SelectedDriveArgument(), EraseExpertArguments.Text));
     }
 
-    private GwCommand BuildCleanCommand() => MaintenanceCommandBuilder.Clean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
+    private GwCommand BuildCleanCommand() => _commandBuilder.BuildClean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
         CleanCylindersEnabled.IsChecked == true && int.TryParse(CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
         CleanPassesEnabled.IsChecked == true && int.TryParse(CleanPassesValue.Text, out var passes) ? passes : null,
         CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,

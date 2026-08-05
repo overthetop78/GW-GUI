@@ -4,6 +4,7 @@
 
 - **Application WPF/MVVM** : navigation, formulaires, validation et localisation.
 - **Gestionnaire de commandes Greaseweazle** : construction typée des arguments, exécution asynchrone, capture de sortie, annulation et codes de retour.
+- **Construction des commandes** : `IGwCommandBuilder` est le contrat unique consommé par les fenêtres et le registre matériel. Son implémentation délègue aux validateurs spécialisés Lecture, Écriture, Conversion, Maintenance et Diagnostics afin que la commande affichée soit exactement celle exécutée.
 - **Catalogue Greaseweazle** : commandes, options, profils de formats, extensions et compatibilités correspondant à la version détectée de `gw`.
 - **Configuration persistante** : options générales, matériel, profils par onglet et préférences de session.
 - **Registre matériel** : `IHardwareRegistry` orchestre découverte série, interrogation `gw info`, identité USB stable et conservation des contrôleurs absents; l’infrastructure Windows fournit son implémentation.

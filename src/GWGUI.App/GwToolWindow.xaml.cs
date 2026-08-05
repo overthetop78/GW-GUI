@@ -16,11 +16,12 @@ public partial class GwToolWindow : Window
     private readonly string? _device;
     private readonly string? _drive;
     private readonly IGreaseweazleRunner _runner;
+    private readonly IGwCommandBuilder _commandBuilder;
     private CancellationTokenSource? _cancellation;
     private readonly Dictionary<string, TextBox> _fields = [];
     private readonly Dictionary<string, CheckBox> _checks = [];
 
-    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null)
+    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null)
     {
         InitializeComponent();
         _executable = executable;
@@ -28,6 +29,7 @@ public partial class GwToolWindow : Window
         _device = device;
         _drive = drive;
         _runner = runner ?? new GreaseweazleRunner();
+        _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         Heading.Text = Title = TitleFor(verb);
         CreateParameters(); UpdateCommand();
     }
@@ -70,7 +72,7 @@ public partial class GwToolWindow : Window
 
     private GwCommand BuildCommand()
     {
-        return ToolCommandBuilder.Build(new(_executable, _verb, _fields.ToDictionary(x => x.Key, x => x.Value.Text), _checks.Where(x => x.Value.IsChecked == true).Select(x => x.Key).ToHashSet(), _device, _drive));
+        return _commandBuilder.BuildTool(new(_executable, _verb, _fields.ToDictionary(x => x.Key, x => x.Value.Text), _checks.Where(x => x.Value.IsChecked == true).Select(x => x.Key).ToHashSet(), _device, _drive));
     }
 
     private bool Checked(string key) => _checks.GetValueOrDefault(key)?.IsChecked == true;

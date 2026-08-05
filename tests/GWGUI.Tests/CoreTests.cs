@@ -1095,6 +1095,20 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void CentralCommandBuilderCoversEveryApplicationOperation()
+    {
+        IGwCommandBuilder builder = new GwCommandBuilder();
+
+        Assert.Equal("read", builder.BuildRead(new("gw.exe", "disk.scp", ReadResultKind.RawScp, null, [])).Verb);
+        Assert.Equal("write", builder.BuildWrite(new("gw.exe", "disk.adf", "amiga.amigados", [])).Verb);
+        Assert.Equal("convert", builder.BuildConversion("gw.exe", "disk.scp", new("ibm.720", ".ima", "disk.ima", true)).Verb);
+        Assert.Equal("erase", builder.BuildErase(new("gw.exe", [])).Verb);
+        Assert.Equal("clean", builder.BuildClean(new("gw.exe")).Verb);
+        Assert.Equal("rpm", builder.BuildTool(new("gw.exe", "rpm", new Dictionary<string, string> { ["nr"] = "1" }, new HashSet<string>())).Verb);
+        Assert.Equal(["--device", "COM9", "--bootloader"], builder.BuildInfo(new("gw.exe", "COM9", true)).Arguments);
+    }
+
+    [Fact]
     public void CleaningOptionsAreMappedExplicitly()
     {
         var command = MaintenanceCommandBuilder.Clean(new CleanRequest("gw.exe", 80, 3, 100));
