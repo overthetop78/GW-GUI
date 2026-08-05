@@ -26,7 +26,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 - Le visualiseur SCP lit et rend le conteneur, les deux faces, pistes, structures, anomalies, zooms et inspecteur. Les familles déjà décodées ont des tests synthétiques, mais la couverture exhaustive des analyseurs HxC annoncée dans le plan n’est pas encore démontrée par un corpus physique libre.
 - Le gestionnaire Host Tools est couvert par des tests de détection, version, téléchargement, checksum, extraction et retour arrière. Son comportement avec plusieurs installations réelles reste à vérifier.
-- Le placement et le DPI ont été validés sur l’écran actuel à 125 %. Les matrices complètes multi-écran, clavier et lecteur d’écran restent à exécuter.
+- Le placement et le DPI ont été validés sur l’écran actuel à 125 % puis les captures finales à 150 %. Les noms localisés, pairs UI Automation, motifs `Value`/`Selection`/`Invoke`, étapes principales de tabulation et focus des onglets sont contrôlés automatiquement. Les matrices complètes multi-écran et l’essai manuel avec NVDA/Narrator restent à exécuter.
 
 ## Non prouvé sans environnement supplémentaire
 

@@ -33,7 +33,7 @@
                 <MenuItem Header="{l:Loc Menu.About}" Click="About_Click" />
             </MenuItem>
         </Menu>
-        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged">
+        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}">
             <TabItem Header="{l:Loc Tab.Read}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid Margin="16">
@@ -54,7 +54,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                    <ComboBox x:Name="ReadProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ReadProfile_Changed" />
+                                    <ComboBox x:Name="ReadProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ReadProfile_Changed" AutomationProperties.Name="{l:Loc Common.Profile}" />
                                 </StackPanel>
                             </DockPanel>
                         </Border>
@@ -84,7 +84,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:Loc Read.FileName}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <TextBox Grid.Column="1" x:Name="ReadFileName" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
+                                <TextBox Grid.Column="1" x:Name="ReadFileName" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" AutomationProperties.Name="{l:Loc Read.FileName}" />
                                 <TextBox Grid.Column="2" x:Name="ReadExtensionText" Margin="8,0" IsReadOnly="True" Text="{l:Loc Read.RawScp}" />
                                 <Button Grid.Column="3" Content="{l:Loc Common.Copy}" Click="CopyReadName_Click" />
                             </Grid>
@@ -97,7 +97,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:Loc Read.Folder}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <TextBox Grid.Column="1" x:Name="ReadFolder" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" />
+                                <TextBox Grid.Column="1" x:Name="ReadFolder" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Read.Folder}" />
                                 <Button Grid.Column="2" Content="{l:Loc Common.Browse}" Click="BrowseReadFolder_Click" />
                             </Grid>
                         </Border>
@@ -178,7 +178,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <ComboBox x:Name="WriteProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="WriteProfile_Changed" />
+                                <ComboBox x:Name="WriteProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="WriteProfile_Changed" AutomationProperties.Name="{l:Loc Common.Profile}" />
                             </StackPanel>
                         </DockPanel>
                     </Border>
@@ -190,7 +190,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{l:Loc Write.Source}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                            <TextBox x:Name="WriteSourceText" Grid.Column="1" IsReadOnly="True" Text="{Binding Write.SourcePath, Mode=TwoWay}" />
+                            <TextBox x:Name="WriteSourceText" Grid.Column="1" IsReadOnly="True" Text="{Binding Write.SourcePath, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Write.Source}" />
                             <Button Grid.Column="2" Content="{l:Loc Common.Choose}" Click="BrowseWriteSource_Click" />
                         </Grid>
                     </Border>
@@ -207,7 +207,7 @@
                                     <TextBlock x:Name="WriteDetectionText" Text="{l:Loc Write.ChooseImage}" Margin="0,5,12,0" TextWrapping="Wrap" />
                                 </StackPanel>
                             </DockPanel>
-                            <ComboBox Grid.Row="1" x:Name="WriteFormatCombo" Margin="0,12,0,0" Visibility="Collapsed" DisplayMemberPath="DisplayName" SelectionChanged="WriteInput_Changed" />
+                            <ComboBox Grid.Row="1" x:Name="WriteFormatCombo" Margin="0,12,0,0" Visibility="Collapsed" DisplayMemberPath="DisplayName" SelectionChanged="WriteInput_Changed" AutomationProperties.Name="{l:Loc Write.Detected}" />
                         </Grid>
                     </Border>
                     <Expander Grid.Row="3" Header="{l:Loc Common.Advanced}">
@@ -257,7 +257,7 @@
                     <Border Style="{StaticResource Card}">
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button Content="{l:Loc Common.Save}" Click="SaveConvertProfile_Click"/><Button Content="{l:Loc Common.Reset}" Click="ResetConvertProfile_Click"/></StackPanel>
-                            <StackPanel Orientation="Horizontal"><TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="ConvertProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ConvertProfile_Changed"/></StackPanel>
+                            <StackPanel Orientation="Horizontal"><TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="ConvertProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ConvertProfile_Changed" AutomationProperties.Name="{l:Loc Common.Profile}"/></StackPanel>
                         </DockPanel>
                     </Border>
                     <Border Grid.Row="1" Style="{StaticResource Card}">
@@ -272,11 +272,11 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{l:Loc Conversion.Source}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                            <TextBox x:Name="ConvertSourceText" Grid.Column="1" IsReadOnly="True" Text="{Binding Conversion.SourcePath, Mode=TwoWay}" />
+                            <TextBox x:Name="ConvertSourceText" Grid.Column="1" IsReadOnly="True" Text="{Binding Conversion.SourcePath, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Conversion.Source}" />
                             <Button Grid.Column="2" Content="{l:Loc Common.Choose}" Click="BrowseConvertSource_Click" />
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,12,0,0">
                                 <TextBlock Text="{l:Loc Conversion.OutputNames}" VerticalAlignment="Center" />
-                                <TextBox x:Name="ConvertOutputName" Width="330" Margin="12,0" Text="{Binding Conversion.OutputName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" />
+                                <TextBox x:Name="ConvertOutputName" Width="330" Margin="12,0" Text="{Binding Conversion.OutputName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" AutomationProperties.Name="{l:Loc Conversion.OutputNames}" />
                                 <CheckBox x:Name="ConvertTags" IsChecked="{Binding Conversion.AddTags, Mode=TwoWay}" Content="{l:Loc Conversion.AddTags}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                 <TextBlock x:Name="ConvertSourceInfo" Margin="18,0" VerticalAlignment="Center" />
                             </StackPanel>
@@ -451,8 +451,8 @@
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button Content="{l:Loc Common.Export}" Padding="8,2" MinHeight="24" Click="ExportConsole_Click"/><Button Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleConsole_Click" /></StackPanel>
                     <TextBlock Text="{l:Loc Common.Command}" Foreground="White" FontWeight="SemiBold" />
                 </DockPanel>
-                <TextBox Grid.Row="1" x:Name="CommandPreview" Background="Transparent" Foreground="#B7F7C3" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" />
-                <TextBox Grid.Row="2" x:Name="LogOutput" Background="Transparent" Foreground="#D9DEE7" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{l:Loc Status.Ready}" />
+                <TextBox Grid.Row="1" x:Name="CommandPreview" Background="Transparent" Foreground="#B7F7C3" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" AutomationProperties.Name="{l:Loc Common.Command}" />
+                <TextBox Grid.Row="2" x:Name="LogOutput" Background="Transparent" Foreground="#D9DEE7" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{l:Loc Status.Ready}" AutomationProperties.Name="{l:Loc Tool.RawOutput}" />
             </Grid>
         </Border>
         <StatusBar Grid.Row="4">
@@ -465,7 +465,7 @@
             </StatusBarItem>
             <Separator />
             <StatusBarItem x:Name="HardwareSelectorItem" Visibility="Collapsed">
-                <ComboBox x:Name="HardwareSelector" MinWidth="260" DisplayMemberPath="Label" SelectionChanged="HardwareSelector_Changed" />
+                <ComboBox x:Name="HardwareSelector" MinWidth="260" DisplayMemberPath="Label" SelectionChanged="HardwareSelector_Changed" AutomationProperties.Name="{l:Loc Menu.Hardware}" />
             </StatusBarItem>
             <Separator />
             <StatusBarItem x:Name="ProfileStatusItem" Visibility="{Binding ProfileVisibility}"><TextBlock x:Name="ProfileStatusText" Text="{Binding ProfileText}" /></StatusBarItem>

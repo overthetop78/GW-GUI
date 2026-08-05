@@ -19,6 +19,9 @@ using GWGUI.App.Services;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
+using System.Windows.Automation;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 
 namespace GWGUI.Tests;
 
@@ -108,6 +111,21 @@ public sealed class CoreTests
                 Assert.Equal("Read.Revs.Enabled", BindingOperations.GetBindingExpression(readRevs, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Write.NoVerify.Enabled", BindingOperations.GetBindingExpression(writeNoVerify, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Conversion.AddTags", BindingOperations.GetBindingExpression(convertTags, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
+                var writeSource = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("WriteSourceText"));
+                var convertSource = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ConvertSourceText"));
+                var convertOutput = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ConvertOutputName"));
+                var commandPreview = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("CommandPreview"));
+                var logOutput = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("LogOutput"));
+                var mainTabs = Assert.IsType<System.Windows.Controls.TabControl>(window.FindName("MainTabs"));
+                var readExecute = Assert.IsType<System.Windows.Controls.Button>(window.FindName("ReadExecuteButton"));
+                foreach (var named in new FrameworkElement[] { readFileName, writeSource, convertSource, convertOutput, commandPreview, logOutput, mainTabs })
+                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(named)));
+                Assert.NotEqual(AutomationProperties.GetName(commandPreview), AutomationProperties.GetName(logOutput));
+                Assert.NotNull(new System.Windows.Automation.Peers.TextBoxAutomationPeer(readFileName).GetPattern(PatternInterface.Value));
+                Assert.NotNull(new System.Windows.Automation.Peers.TabControlAutomationPeer(mainTabs).GetPattern(PatternInterface.Selection));
+                Assert.NotNull(new System.Windows.Automation.Peers.ButtonAutomationPeer(readExecute).GetPattern(PatternInterface.Invoke));
+                Assert.True(readFileName.IsTabStop); Assert.True(readExecute.IsTabStop);
+                Assert.All(mainTabs.Items.OfType<System.Windows.Controls.TabItem>(), tab => Assert.True(tab.Focusable));
                 var model = Assert.IsType<MainWindowViewModel>(window.DataContext);
                 static System.Windows.Controls.CheckBox Probe(MainWindowViewModel dataContext, string path)
                 {
