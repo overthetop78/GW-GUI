@@ -84,7 +84,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:Loc Read.FileName}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <TextBox Grid.Column="1" x:Name="ReadFileName" TextChanged="ReadInput_Changed" />
+                                <TextBox Grid.Column="1" x:Name="ReadFileName" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
                                 <TextBox Grid.Column="2" x:Name="ReadExtensionText" Margin="8,0" IsReadOnly="True" Text="{l:Loc Read.RawScp}" />
                                 <Button Grid.Column="3" Content="{l:Loc Common.Copy}" Click="CopyReadName_Click" />
                             </Grid>
@@ -97,7 +97,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:Loc Read.Folder}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <TextBox Grid.Column="1" x:Name="ReadFolder" IsReadOnly="True" />
+                                <TextBox Grid.Column="1" x:Name="ReadFolder" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" />
                                 <Button Grid.Column="2" Content="{l:Loc Common.Browse}" Click="BrowseReadFolder_Click" />
                             </Grid>
                         </Border>
@@ -132,22 +132,22 @@
                                     <Separator Margin="8" />
                                     <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ReadInput_Changed"/></DockPanel>
                                     <WrapPanel>
-                                        <CheckBox x:Name="ReadAutoNumber" Content="{l:Loc Read.AutoNumber}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
-                                        <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="0" SelectionChanged="ReadSequenceKind_Changed">
+                                        <CheckBox x:Name="ReadAutoNumber" Content="{l:Loc Read.AutoNumber}" Margin="8" IsChecked="{Binding Read.AutoNumber}" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
+                                        <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="{Binding Read.SequenceKindIndex}" SelectionChanged="ReadSequenceKind_Changed">
                                             <ComboBoxItem Content="{l:Loc Read.Digits}" />
                                             <ComboBoxItem Content="{l:Loc Read.Letters}" />
                                         </ComboBox>
-                                        <ComboBox x:Name="ReadSequenceWidth" Width="90" SelectedIndex="0" SelectionChanged="ReadInput_Changed">
+                                        <ComboBox x:Name="ReadSequenceWidth" Width="90" SelectedIndex="{Binding Read.SequenceWidthIndex}" SelectionChanged="ReadInput_Changed">
                                             <ComboBoxItem Content="0 / A" />
                                             <ComboBoxItem Content="00 / AA" />
                                             <ComboBoxItem Content="000 / AAA" />
                                         </ComboBox>
                                         <TextBlock Text="{l:Loc Read.Next}" VerticalAlignment="Center" Margin="14,0,5,0" />
-                                        <TextBox x:Name="ReadSequenceValue" Width="80" Text="1" TextChanged="ReadInput_Changed" />
+                                        <TextBox x:Name="ReadSequenceValue" Width="80" Text="{Binding Read.SequenceValue, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
                                         <TextBlock x:Name="ReadNamePreview" VerticalAlignment="Center" Margin="14,0" FontWeight="SemiBold" />
                                     </WrapPanel>
                                     <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,12,8,4" />
-                                    <TextBox x:Name="ReadExpertArguments" Margin="8" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
+                                    <TextBox x:Name="ReadExpertArguments" Margin="8" Text="{Binding Read.ExpertArguments, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
                                 </StackPanel>
                             </Border>
                         </Expander>

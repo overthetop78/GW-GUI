@@ -19,7 +19,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.
 - Les réglages avancés de Lecture, Écriture et Conversion possèdent des infobulles FR/EN indiquant l’argument `gw`, son rôle, les incompatibilités utiles et un exemple lorsqu’une valeur est attendue.
-- La compilation Release et 124 tests automatisés réussissent; un test STA charge réellement le XAML principal et vérifie le ViewModel, les liaisons de statut/progression et le menu Alignement. Des vecteurs bit à bit contrôlent les extractions et checksums valides comme corrompus NorthStar/Heathkit.
+- La compilation Release et 126 tests automatisés réussissent; un test STA charge réellement le XAML principal et vérifie le ViewModel, les liaisons de statut/progression, la liaison du nom de Lecture et le menu Alignement. Des tests sans fenêtre contrôlent le nommage et l’incrément de Lecture; des vecteurs bit à bit contrôlent les extractions et checksums valides comme corrompus NorthStar/Heathkit.
 
 ## Partiellement prouvé
 
@@ -36,4 +36,4 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## Écart architectural restant
 
-- La solution est séparée en Application, Domaine, Infrastructure, moteur SCP et Tests. L’état transversal de la fenêtre est désormais lié à un ViewModel observable, mais les formulaires d’opérations utilisent encore beaucoup de code-behind. La migration MVVM avance donc sans être encore présentée comme achevée.
+- La solution est séparée en Application, Domaine, Infrastructure, moteur SCP et Tests. L’état transversal et le premier ensemble d’état utilisateur de Lecture sont liés à des ViewModels observables, mais les options avancées et les formulaires Écriture/Conversion utilisent encore beaucoup de code-behind. La migration MVVM avance donc sans être encore présentée comme achevée.

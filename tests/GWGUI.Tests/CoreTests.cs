@@ -61,8 +61,10 @@ public sealed class CoreTests
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
                 var hardwareText = Assert.IsType<System.Windows.Controls.TextBlock>(window.FindName("HardwareStatusText"));
                 var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
+                var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));
                 Assert.NotNull(BindingOperations.GetBindingExpression(hardwareText, System.Windows.Controls.TextBlock.TextProperty));
                 Assert.NotNull(BindingOperations.GetBindingExpression(progress, System.Windows.Controls.Primitives.RangeBase.ValueProperty));
+                Assert.Equal("Read.FileName", BindingOperations.GetBindingExpression(readFileName, System.Windows.Controls.TextBox.TextProperty)?.ParentBinding.Path.Path);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -964,6 +966,38 @@ public sealed class CoreTests
         var output = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_{tag}"));
         Assert.Equal("disk_PC-720.ima", Path.GetFileName(output.OutputPath));
         Assert.Throws<ArgumentException>(() => planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_format"));
+    }
+
+    [Fact]
+    public void ReadViewModelBuildsNumericAndAlphabeticTargetsAndAdvancesOnlyWhenRequested()
+    {
+        var model = new GWGUI.App.ViewModels.ReadOperationViewModel
+        {
+            Folder = Path.Combine("images", "magazines"),
+            FileName = "Tilt",
+            AutoNumber = true,
+            SequenceWidthIndex = 1,
+            SequenceValue = "9"
+        };
+
+        Assert.Equal(Path.Combine("images", "magazines", "Tilt 09.scp"), model.BuildTarget(".scp", "Exemple"));
+        Assert.True(model.TryAdvanceSequence());
+        Assert.Equal("10", model.SequenceValue);
+
+        model.SequenceKindIndex = 1;
+        model.SequenceValue = "Z";
+        Assert.Equal(Path.Combine("images", "magazines", "Tilt AZ.scp"), model.BuildTarget(".scp", "Exemple"));
+        Assert.True(model.TryAdvanceSequence());
+        Assert.Equal("AA", model.SequenceValue);
+    }
+
+    [Fact]
+    public void ReadViewModelUsesExampleWithoutMutatingAnEmptyName()
+    {
+        var model = new GWGUI.App.ViewModels.ReadOperationViewModel { Folder = "images", FileName = "   " };
+        Assert.Equal(Path.Combine("images", "Exemple.scp"), model.BuildTarget(".scp", "Exemple"));
+        Assert.False(model.TryAdvanceSequence());
+        Assert.Equal("   ", model.FileName);
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

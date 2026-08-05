@@ -638,16 +638,7 @@ public partial class MainWindow : Window
     }
 
     private string GetReadTarget(string extension)
-    {
-        var name = string.IsNullOrWhiteSpace(ReadFileName?.Text) ? "Exemple" : ReadFileName.Text.Trim();
-        var kind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
-        if (ReadAutoNumber?.IsChecked == true && SequenceFormatter.TryParse(ReadSequenceValue.Text, kind, out var sequence))
-        {
-            var suffix = SequenceFormatter.Format(sequence, kind, ReadSequenceWidth.SelectedIndex + 1);
-            name += " " + suffix;
-        }
-        return Path.Combine(ReadFolder.Text, name + extension);
-    }
+        => _viewModel.Read.BuildTarget(extension, "Exemple");
 
     private string GetReadExtension() => RawScpRadio?.IsChecked == true ? ".scp" : (ReadExtensionCombo?.SelectedItem as ImageExtension)?.Extension ?? "";
 
@@ -837,8 +828,7 @@ public partial class MainWindow : Window
             LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g")));
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
             var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
-            if (result.IsSuccess && ReadAutoNumber.IsChecked == true && SequenceFormatter.TryParse(ReadSequenceValue.Text, sequenceKind, out var value))
-                ReadSequenceValue.Text = sequenceKind == SequenceKind.Numeric ? (value + 1).ToString() : SequenceFormatter.Format(value + 1, sequenceKind, 1);
+            if (result.IsSuccess) _viewModel.Read.TryAdvanceSequence();
         }
         catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); ReadExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }

@@ -20,6 +20,8 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     private Visibility _hostToolsUpdateVisibility = Visibility.Collapsed;
     private string _hostToolsUpdateText = "";
 
+    public ReadOperationViewModel Read { get; } = new();
+
     public string HardwareText { get => _hardwareText; set => Set(ref _hardwareText, value); }
     public Brush HardwareBrush { get => _hardwareBrush; set => Set(ref _hardwareBrush, value); }
     public string ProfileText { get => _profileText; set => Set(ref _profileText, value); }
