@@ -25,3 +25,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 ## Sources de qualification
 
 Les structures Amiga, NorthStar, Heathkit, Membrain, AED 6200P, Apple II 6-and-2, Commodore et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les restitutions exactes Amiga, Apple II, Commodore, Membrain et AED, les tailles variables et marques C0–C3 AED, ainsi que l’échantillonnage GCR Victor à un bit utile sur deux. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.
+
+## Corpus physique public
+
+Le test opt-in `scripts/test-scp-corpus.ps1` récupère `os9sys.scp` et `pubsoft1.scp` depuis Internet Archive. Ces captures Greaseweazle OS-9/CD-i sont annoncées comme testées sur matériel; leurs tailles, MD5 et SHA-1 publiés sont vérifiés. Elles valident le conteneur réel, les checksums, les deux faces, les révolutions, l’auto-détection de la famille ISO et le rendu WPF/Skia. Elles ne prouvent pas les familles rares non ISO et ne sont pas redistribuées avec le projet.

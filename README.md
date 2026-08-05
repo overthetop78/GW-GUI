@@ -55,4 +55,10 @@ La compatibilité avec les distributions officielles courante et précédente de
 powershell -ExecutionPolicy Bypass -File scripts/test-host-tools-releases.ps1
 ```
 
+Le chargeur, la sélection automatique des décodeurs et le rendu WPF/Skia peuvent être éprouvés sur deux captures physiques SCP publiques OS-9/CD-i confirmées fonctionnelles. Le script contrôle les tailles, MD5 et SHA-1 publiés par Internet Archive, exécute les tests puis supprime les quelque 78 Mo téléchargés :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-scp-corpus.ps1
+```
+
 Les tags Git `v*` déclenchent le même processus dans GitHub Actions et publient les trois fichiers de distribution dans une release GitHub.
