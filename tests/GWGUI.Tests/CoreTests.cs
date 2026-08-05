@@ -1285,6 +1285,7 @@ public sealed class CoreTests
         Assert.Equal(0xe00, sector.SizeBytes);
         Assert.Equal(!corruptDataCrc, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptDataCrc ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(0xe00));
     }
 
     [Fact]
@@ -1333,6 +1334,7 @@ public sealed class CoreTests
         Assert.Equal(128, sector.SizeBytes);
         Assert.Equal(!corruptDataCrc, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(dataMark.ToString("X2"), StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(128));
     }
 
     [Fact]
@@ -1407,6 +1409,7 @@ public sealed class CoreTests
         Assert.Equal(cylinder, sector.Cylinder); Assert.Equal(head, sector.Head); Assert.Equal(sectorNumber, sector.Number);
         Assert.Equal(size, sector.SizeBytes); Assert.Equal(!corruptDataCrc, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(dataMark.ToString("X2"), StringComparison.Ordinal) && structure.Description.Contains(m2fm ? "M²FM" : "FM", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(size));
     }
 
     [Fact]

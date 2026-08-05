@@ -467,9 +467,9 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
             bool? dataCrcValid = null;
             if (completeData)
             {
-                ushort crc = 0;
-                for (var index = 0; index < sectorSize + 2; index++) crc = UpdateCrc(crc, stream.DecodeFmByte32(dataOffset + markBits + index * 32));
-                dataCrcValid = crc == 0; classifiedMarks.Add(dataOffset);
+                ushort crc = 0; var data = new byte[sectorSize];
+                for (var index = 0; index < sectorSize + 2; index++) { var value = stream.DecodeFmByte32(dataOffset + markBits + index * 32); crc = UpdateCrc(crc, value); if (index < sectorSize) data[index] = value; }
+                dataCrcValid = crc == 0; classifiedMarks.Add(dataOffset); bytes.AddRange(data);
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + (sectorSize + 2) * 32, $"E-mu C{cylinder} H{head} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
             }
             sectors.Add(new(cylinder, head, 1, 0, sectorSize, dataCrcValid, offset));
@@ -538,18 +538,19 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"TYCOM C{cylinder} R{number}, header CRC invalid")); offset += markBits - 1; continue;
             }
+            bytes.AddRange([cylinder, (byte)number]);
 
             var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * 8 * 2);
             var completeData = data.Offset >= 0 && data.Offset + (1 + sectorSize + 2) * 32 <= stream.Bits.Length;
             bool? dataCrcValid = null;
             if (completeData)
             {
-                ushort crc = 0xffff;
-                for (var index = 0; index < 1 + sectorSize + 2; index++) crc = UpdateCrc(crc, stream.DecodeFmByte32(data.Offset + index * 32));
-                dataCrcValid = crc == 0; classifiedData.Add(data.Offset);
+                ushort crc = 0xffff; var payload = new byte[sectorSize];
+                for (var index = 0; index < 1 + sectorSize + 2; index++) { var value = stream.DecodeFmByte32(data.Offset + index * 32); crc = UpdateCrc(crc, value); if (index is > 0 and <= sectorSize) payload[index - 1] = value; }
+                dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, (1 + sectorSize + 2) * 32, $"TYCOM {data.Mark:X2} C{cylinder} R{number} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
             }
-            sectors.Add(new(cylinder, 0, number, 0, sectorSize, dataCrcValid, offset)); bytes.AddRange([cylinder, (byte)number]);
+            sectors.Add(new(cylinder, 0, number, 0, sectorSize, dataCrcValid, offset));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"TYCOM C{cylinder} R{number}, 128 bytes, header CRC valid{(completeData ? $", {data.Mark:X2} data CRC {(dataCrcValid == true ? "valid" : "invalid")}" : ", data CRC unavailable")}"));
             offset += markBits - 1;
         }
@@ -608,6 +609,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"DEC RX02 C{cylinder} H{head} R{number}, header CRC invalid")); offset += markBits - 1; continue;
             }
+            bytes.AddRange([cylinder, head, number, sizeCode]);
 
             var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * 8 * 2);
             var m2fm = data.Mark is 0xf9 or 0xfd; var sectorSize = m2fm ? 256 : 128; var decodedCount = sectorSize + 2;
@@ -615,13 +617,20 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
             bool? dataCrcValid = null;
             if (completeData)
             {
-                ushort crc = UpdateCrc(0xffff, data.Mark);
-                if (m2fm) foreach (var value in DecodeM2Fm(stream, data.Offset + markBits + 1, decodedCount)) crc = UpdateCrc(crc, value);
-                else for (var index = 1; index < 1 + sectorSize + 2; index++) crc = UpdateCrc(crc, stream.DecodeFmByte32(data.Offset + index * 32));
-                dataCrcValid = crc == 0; classifiedData.Add(data.Offset);
+                ushort crc = UpdateCrc(0xffff, data.Mark); byte[] payload;
+                if (m2fm)
+                {
+                    var decoded = DecodeM2Fm(stream, data.Offset + markBits + 1, decodedCount); foreach (var value in decoded) crc = UpdateCrc(crc, value); payload = decoded.Take(sectorSize).ToArray();
+                }
+                else
+                {
+                    payload = new byte[sectorSize];
+                    for (var index = 1; index < 1 + sectorSize + 2; index++) { var value = stream.DecodeFmByte32(data.Offset + index * 32); crc = UpdateCrc(crc, value); if (index <= sectorSize) payload[index - 1] = value; }
+                }
+                dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, m2fm ? markBits + 1 + decodedCount * 16 : (1 + sectorSize + 2) * 32, $"DEC RX02 {data.Mark:X2} C{cylinder} H{head} R{number} {(m2fm ? "M²FM" : "FM")} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
             }
-            sectors.Add(new(cylinder, head, number, sizeCode, sectorSize, dataCrcValid, offset)); bytes.AddRange([cylinder, head, number, sizeCode]);
+            sectors.Add(new(cylinder, head, number, sizeCode, sectorSize, dataCrcValid, offset));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"DEC RX02 C{cylinder} H{head} R{number}, {sectorSize} bytes, header CRC valid{(completeData ? $", {data.Mark:X2} data CRC {(dataCrcValid == true ? "valid" : "invalid")}" : ", data CRC unavailable")}"));
             offset += markBits - 1;
         }
