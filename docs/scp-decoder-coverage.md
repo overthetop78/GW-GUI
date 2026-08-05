@@ -12,7 +12,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | AED 6200P MFM | Marques C6/données | Cylindre, secteur, taille variable | CRC-CCITT d’en-tête |
 | Amiga MFM | Double synchronisation | Non | Non |
 | Apple II GCR 16 secteurs | Adresse 4-and-4 avec volume, piste et secteur ; bloc de 256 octets décodé en 6-and-2 | XOR de l’adresse et chaîne XOR des 343 symboles GCR ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
-| Commodore GCR | Synchronisation et type de bloc | Non | Non |
+| Commodore GCR | Synchronisations, blocs `0x08`/`0x07`, piste, secteur, identifiant disque et 256 octets | XOR des cinq champs d’en-tête et XOR des données avec l’octet stocké ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
 | QD MO5 MFM | Numéro de secteur sur 16 bits, taille fixe de 128 octets | Somme 8 bits du marqueur et des 128 octets de données ; aucun CRC d’en-tête | Oui pour l’identité et la somme du bloc de données |
 | Centurion MFM | Cylindre et secteur | CRC16 XMODEM de l’en-tête | Oui pour l’identité et le CRC d’en-tête ; la taille est portée par le bloc de données séparé |
 | E-mu Emulator FM | Cylindre, face, secteur unique et taille fixe de 3584 octets | CRC16 `0x8005` de l’en-tête et des données ; état des données valide, incorrect ou indisponible | Oui pour l’identité, la cadence FM quadruplée et les deux CRC |
@@ -24,4 +24,4 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 
 ## Sources de qualification
 
-Les structures NorthStar, Heathkit, Membrain, AED 6200P, Apple II 6-and-2 et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les données Apple II, les tailles variables AED et l’échantillonnage GCR Victor à un bit utile sur deux. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.
+Les structures NorthStar, Heathkit, Membrain, AED 6200P, Apple II 6-and-2, Commodore et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les données Apple II et Commodore, les tailles variables AED et l’échantillonnage GCR Victor à un bit utile sur deux. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.

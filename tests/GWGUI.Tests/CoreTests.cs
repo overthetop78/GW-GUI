@@ -1381,6 +1381,42 @@ public sealed class CoreTests
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(false, false)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    public void CommodoreGcrDecoderExtractsTrackSectorAndValidatesData(bool corruptHeader, bool corruptData)
+    {
+        int[] table = [0x0a,0x0b,0x12,0x13,0x0e,0x0f,0x16,0x17,0x09,0x19,0x1a,0x1b,0x0d,0x1d,0x1e,0x15];
+        string Encode(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => new[] { value >> 4, value & 15 }).Select(nibble => Convert.ToString(table[nibble], 2).PadLeft(5, '0')));
+        const byte track = 23; const byte sector = 8; const byte id2 = 0xa1; const byte id1 = 0x1a;
+        var headerChecksum = (byte)(sector ^ track ^ id2 ^ id1 ^ (corruptHeader ? 1 : 0));
+        byte[] header = [0x08, headerChecksum, sector, track, id2, id1];
+        var data = Enumerable.Range(0, 256).Select(index => (byte)(index * 43 + 5)).ToArray(); byte checksum = 0; foreach (var value in data) checksum ^= value;
+        if (corruptData) checksum ^= 1;
+        var dataBlock = new byte[] { 0x07 }.Concat(data).Append(checksum).ToArray();
+        var raw = new string('1', 100) + "000" + new string('1', 20) + Encode(header) + "000000" + new string('1', 20) + Encode(dataBlock) + "0001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new CommodoreGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var decoded = Assert.Single(result.Sectors!); Assert.Equal(track, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(256, decoded.SizeBytes);
+        Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptData ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.Skip(7).Take(256));
+    }
+
+    [Fact]
+    public void CommodoreGcrDecoderReportsUnavailableIntegrityWhenDataIsMissing()
+    {
+        int[] table = [0x0a,0x0b,0x12,0x13,0x0e,0x0f,0x16,0x17,0x09,0x19,0x1a,0x1b,0x0d,0x1d,0x1e,0x15];
+        string Encode(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => new[] { value >> 4, value & 15 }).Select(nibble => Convert.ToString(table[nibble], 2).PadLeft(5, '0')));
+        byte[] header = [0x08, 0x03, 0x02, 0x01, 0xa1, 0xa1]; var raw = new string('1', 100) + "000" + new string('1', 20) + Encode(header) + "0001";
+        var intervals = BitsToIntervals(raw, 40); var result = new CommodoreGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.CommodoreHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
