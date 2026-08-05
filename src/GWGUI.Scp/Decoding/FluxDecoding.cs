@@ -74,8 +74,45 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
 
 public sealed class MembrainMfmDecoder : SignatureMfmDecoder
 {
+    private static readonly byte[] SectorHeader = [0x44, 0x89, 0x55, 0x54];
     public override string Id => "membrain.mfm"; public override string DisplayName => "Membrain MFM";
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x44, 0x89, 0x55, 0x54], FluxStructureKind.FormatHeader, "Membrain sector header"), ([0x44, 0x89, 0x55, 0x4a], FluxStructureKind.FormatData, "Membrain sector data")];
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "Membrain sector header"), ([0x44, 0x89, 0x55, 0x4a], FluxStructureKind.FormatData, "Membrain sector data")];
+
+    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        const int headerBits = 6 * 16;
+        for (var offset = 0; offset + SectorHeader.Length * 8 <= stream.Bits.Length; offset++)
+        {
+            if (!stream.MatchBytes(offset, SectorHeader)) continue;
+            var complete = offset + headerBits <= stream.Bits.Length;
+            if (complete)
+            {
+                var header = Enumerable.Range(0, 6).Select(index => stream.DecodeMfmByte(offset + index * 16)).ToArray();
+                var valid = header[1] == 0xfe && Crc16(header) == 0;
+                var cylinder = (byte)(((header[2] & 0x1f) << 3) | ((header[3] & 0xe0) >> 5));
+                var head = (byte)((header[3] >> 4) & 1); var number = (byte)(header[3] & 0x0f);
+                sectors.Add(new(cylinder, head, number, 2, 512, valid, offset));
+                bytes.AddRange(header);
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"Membrain C{cylinder} H{head} R{number}, CRC {(valid ? "valid" : "invalid")}"));
+            }
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * 8, "Membrain sector header"));
+            offset += SectorHeader.Length * 8 - 1;
+        }
+        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static ushort Crc16(IEnumerable<byte> values)
+    {
+        ushort crc = 0;
+        foreach (var value in values)
+        {
+            crc ^= (ushort)(value << 8);
+            for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x8005 : crc << 1);
+        }
+        return crc;
+    }
 }
 
 public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder

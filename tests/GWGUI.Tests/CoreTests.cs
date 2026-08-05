@@ -962,6 +962,28 @@ public sealed class CoreTests
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void MembrainDecoderExtractsPackedIdentityAndNativeCrc(bool corruptCrc)
+    {
+        byte[] prefix = [0xa1, 0xfe, 0x04, 0xb9];
+        var crc = TestCrc16(prefix, 0x8005, 0x0000);
+        if (corruptCrc) crc ^= 1;
+        var raw = Convert.ToString(0x44895554, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(0x04, 0xb9, (byte)(crc >> 8), (byte)crc) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(37, sector.Cylinder);
+        Assert.Equal(1, sector.Head);
+        Assert.Equal(9, sector.Number);
+        Assert.Equal(512, sector.SizeBytes);
+        Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
+        Assert.Equal(SectorIntegrityKind.Crc, sector.IntegrityKind);
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
@@ -1188,5 +1210,6 @@ public sealed class CoreTests
     private static string EncodeMfmBytesFromZero(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 0; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
     private static string EncodeFmBytes(params byte[] values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "1" + (((value >> (7 - bit)) & 1) != 0 ? "1" : "0"))));
     private static List<uint> BitsToIntervals(string bits, uint cellTicks) { var result = new List<uint>(); var cells = 0; foreach (var bit in bits) { cells++; if (bit == '1') { result.Add((uint)cells * cellTicks); cells = 0; } } return result; }
-    private static ushort TestCrc16(IEnumerable<byte> values) { ushort crc = 0xffff; foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x1021 : crc << 1); } return crc; }
+    private static ushort TestCrc16(IEnumerable<byte> values) => TestCrc16(values, 0x1021, 0xffff);
+    private static ushort TestCrc16(IEnumerable<byte> values, ushort polynomial, ushort initial) { var crc = initial; foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ polynomial : crc << 1); } return crc; }
 }
