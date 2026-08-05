@@ -14,7 +14,7 @@ public interface IFluxDecoder
 
 public sealed class FluxDecoderRegistry
 {
-    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new RawFluxDecoder()];
+    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new EmuFmDecoder(), new ArburgDecoder(), new Victor9kGcrDecoder(), new RawFluxDecoder()];
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => x.Decode(revolution)).OrderByDescending(x => x.Confidence).First();
     public FluxDecodeResult Decode(string id, ScpRevolution revolution) => Decoders.First(x => x.Id == id).Decode(revolution);
     public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
@@ -34,10 +34,11 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
     protected abstract IReadOnlyList<(byte[] Pattern, FluxStructureKind Kind, string Description)> Signatures { get; }
     protected virtual double ExpectedStructures => 10;
     protected virtual bool IsFm => false;
+    protected virtual bool IsNrzi => false;
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals, IsFm); var structures = new List<FluxStructure>();
+        var stream = IsNrzi ? FluxBitstream.FromNrziIntervals(revolution.FluxIntervals) : FluxBitstream.FromIntervals(revolution.FluxIntervals, IsFm); var structures = new List<FluxStructure>();
         for (var offset = 0; offset < stream.Bits.Length; offset++)
         {
             foreach (var signature in Signatures)
@@ -107,6 +108,27 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
     public override string Id => "heathkit.fm"; public override string DisplayName => "Heathkit hard-sectored FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Heathkit hard-sector header")];
+}
+
+public sealed class EmuFmDecoder : SignatureMfmDecoder
+{
+    public override string Id => "emu.fm"; public override string DisplayName => "E-mu Emulator FM";
+    protected override bool IsFm => true;
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x45,0x45,0x55,0x55,0x45,0x54,0x54,0x45], FluxStructureKind.FormatHeader, "E-mu Emulator sector mark")];
+}
+
+public sealed class ArburgDecoder : SignatureMfmDecoder
+{
+    public override string Id => "arburg"; public override string DisplayName => "Arburg system/data";
+    protected override bool IsFm => true;
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x44,0x44,0x44,0x44,0x55,0x55,0x55,0x55], FluxStructureKind.FormatData, "Arburg data block"), ([0x55,0x55,0x55,0x55,0x55,0x24,0x92,0x49], FluxStructureKind.FormatHeader, "Arburg system block")];
+}
+
+public sealed class Victor9kGcrDecoder : SignatureMfmDecoder
+{
+    public override string Id => "victor9k.gcr"; public override string DisplayName => "Victor 9000 GCR";
+    protected override bool IsNrzi => true;
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x55,0x55,0x55,0x55,0x55,0x55,0x11,0x11], FluxStructureKind.FormatHeader, "Victor 9000 sector header"), ([0x55,0x55,0x55,0x55,0x55,0x55,0x11,0x04], FluxStructureKind.FormatData, "Victor 9000 sector data")];
 }
 
 public sealed class IsoFmDecoder : IFluxDecoder
