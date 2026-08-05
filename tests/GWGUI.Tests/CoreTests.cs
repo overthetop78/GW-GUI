@@ -325,15 +325,6 @@ public sealed class CoreTests
                     toolWindow.Close();
                 }
 
-                var driveEditor = new DriveEditorWindow([]);
-                foreach (var name in new[] { "ControllerCombo", "SelectionCombo", "SizeCombo", "DensityCombo", "RpmCombo" })
-                {
-                    var selector = Assert.IsType<System.Windows.Controls.ComboBox>(driveEditor.FindName(name));
-                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(selector)));
-                    Assert.NotNull(new ComboBoxAutomationPeer(selector).GetPattern(PatternInterface.Selection));
-                }
-                driveEditor.Close();
-
                 var profileNameWindow = new ProfileNameWindow();
                 Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(
                     Assert.IsType<System.Windows.Controls.TextBox>(profileNameWindow.FindName("NameText")))));
@@ -641,6 +632,36 @@ public sealed class CoreTests
 
         Assert.Null(HardwareRoutingPolicy.DriveArgument([first, second], first));
         Assert.Null(HardwareRoutingPolicy.DriveArgument([first, second], second));
+    }
+
+    [Fact]
+    public void DeviceArgumentIsOnlyUsedWhenSeveralConfiguredControllersAreAvailable()
+    {
+        var firstController = new ControllerSettings { UsbId = "GW-1", LastPort = "COM3", IsAvailable = true };
+        var secondController = new ControllerSettings { UsbId = "GW-2", LastPort = "COM5", IsAvailable = true };
+        var firstDrive = new DriveSettings { ControllerUsbId = "GW-1", Selection = "A" };
+        var secondDrive = new DriveSettings { ControllerUsbId = "GW-2", Selection = "A" };
+
+        Assert.Null(HardwareRoutingPolicy.DeviceArgument([firstController], [firstDrive], firstDrive));
+        Assert.Equal("COM5", HardwareRoutingPolicy.DeviceArgument([firstController, secondController], [firstDrive, secondDrive], secondDrive));
+
+        secondController.IsAvailable = false;
+        Assert.Null(HardwareRoutingPolicy.DeviceArgument([firstController, secondController], [firstDrive, secondDrive], firstDrive));
+    }
+
+    [Fact]
+    public void AutomaticDriveSelectionAssignsHiddenAAndBPerController()
+    {
+        var first = new DriveSettings { ControllerUsbId = "GW-1", Selection = "legacy" };
+        var second = new DriveSettings { ControllerUsbId = "GW-1", Selection = "legacy" };
+        var other = new DriveSettings { ControllerUsbId = "GW-2", Selection = "legacy" };
+        var drives = new List<DriveSettings> { first, second, other };
+
+        HardwareRoutingPolicy.AssignAutomaticDriveSelections(drives, "GW-1");
+
+        Assert.Equal("A", first.Selection);
+        Assert.Equal("B", second.Selection);
+        Assert.Equal("legacy", other.Selection);
     }
 
     [Theory]
@@ -2787,13 +2808,11 @@ public sealed class CoreTests
         public List<AppSettings> OptionsSettings { get; } = [];
         public List<string> LogDirectories { get; } = [];
         public List<GwToolWindowRequest> ToolRequests { get; } = [];
-        public DriveSettings? DriveResult { get; set; }
-        public List<IReadOnlyList<ControllerSettings>> DriveRequests { get; } = [];
-        public bool ShowOptions(AppSettings settings) { OptionsSettings.Add(settings); return OptionsResult; }
+        public List<OptionsSection> OptionsSections { get; } = [];
+        public bool ShowOptions(AppSettings settings, OptionsSection section = OptionsSection.General) { OptionsSettings.Add(settings); OptionsSections.Add(section); return OptionsResult; }
         public void ShowLogHistory(string logsDirectory) => LogDirectories.Add(logsDirectory);
         public void ShowAbout() => AboutCount++;
         public void ShowGwTool(GwToolWindowRequest request) => ToolRequests.Add(request);
-        public DriveSettings? ConfigureDrive(IReadOnlyList<ControllerSettings> controllers) { DriveRequests.Add(controllers); return DriveResult; }
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

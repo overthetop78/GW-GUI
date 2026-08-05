@@ -210,9 +210,9 @@ public partial class MainWindow : Window
                     LocExtension.Get("Hardware.NewDetectedTitle"), UserDialogButtons.YesNo, UserDialogIcon.Question) == UserDialogResult.Yes;
                 if (configure)
                 {
-                    _settings.Controllers.Add(controller);
-                    var drive = _navigation.ConfigureDrive([controller]);
-                    if (drive is not null) _settings.Drives.Add(drive);
+                    _settings.UnconfiguredControllers.Add(controller);
+                    await _settingsStore.SaveAsync(_settings);
+                    _navigation.ShowOptions(_settings, OptionsSection.Hardware);
                 }
                 else
                 {
@@ -294,7 +294,7 @@ public partial class MainWindow : Window
     {
         return _commandBuilder.BuildWrite(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Write.SourcePath,
             (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, _viewModel.Write.BuildOptions(),
-            _viewModel.Write.DisableVerification, SelectedHardware()?.Port, SelectedDriveArgument(), _viewModel.Write.ExpertArguments));
+            _viewModel.Write.DisableVerification, SelectedDeviceArgument(), SelectedDriveArgument(), _viewModel.Write.ExpertArguments));
     }
 
     private void UpdateWriteCommand()
@@ -724,7 +724,7 @@ public partial class MainWindow : Window
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
             (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, _viewModel.Read.BuildOptions(),
-            SelectedHardware()?.Port, SelectedDriveArgument(), _viewModel.Read.ExpertArguments));
+            SelectedDeviceArgument(), SelectedDriveArgument(), _viewModel.Read.ExpertArguments));
     }
 
     private static string SelectedText(ComboBox combo) => (combo.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
@@ -1000,24 +1000,27 @@ public partial class MainWindow : Window
         var options = new List<EnabledOption>();
         if (EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", EraseTracksValue.Text.Trim()));
         if (EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", EraseRevsValue.Text.Trim()));
-        var hardware = SelectedHardware();
-        return _commandBuilder.BuildErase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, hardware?.Port, SelectedDriveArgument(), EraseExpertArguments.Text));
+        return _commandBuilder.BuildErase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, SelectedDeviceArgument(), SelectedDriveArgument(), EraseExpertArguments.Text));
     }
 
     private GwCommand BuildCleanCommand() => _commandBuilder.BuildClean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
         CleanCylindersEnabled.IsChecked == true && int.TryParse(CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
         CleanPassesEnabled.IsChecked == true && int.TryParse(CleanPassesValue.Text, out var passes) ? passes : null,
         CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,
-        SelectedHardware()?.Port, SelectedDriveArgument(), CleanExpertArguments.Text));
+        SelectedDeviceArgument(), SelectedDriveArgument(), CleanExpertArguments.Text));
 
     private void RefreshHardwareSelector()
     {
         if (HardwareSelector is null) return;
         var previousId = (HardwareSelector.SelectedItem as HardwareChoice)?.Drive.Id;
-        var choices = (from drive in _settings.Drives
-                       join controller in _settings.Controllers on drive.ControllerUsbId equals controller.UsbId
-                       select new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
-                           LocExtension.Get("Hardware.DriveLabel", drive.Size, drive.Density, controller.LastPort, drive.Selection) + (controller.IsAvailable ? "" : $" ({LocExtension.Get("Hardware.Disconnected")})"))).ToArray();
+        var choices = _settings.Drives.Select(drive =>
+        {
+            var controller = _settings.Controllers.First(item => item.UsbId == drive.ControllerUsbId);
+            var number = _settings.Drives.Where(item => item.ControllerUsbId == drive.ControllerUsbId).ToList().IndexOf(drive) + 1;
+            var label = LocExtension.Get("Hardware.DriveChoice", number, drive.Size, drive.Density, controller.LastPort);
+            return new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
+                label + (controller.IsAvailable ? "" : $" ({LocExtension.Get("Hardware.Disconnected")})"));
+        }).ToArray();
         HardwareSelector.ItemsSource = choices;
         HardwareSelector.SelectedItem = choices.FirstOrDefault(x => x.Drive.Id == previousId) ?? choices.FirstOrDefault();
         HardwareSelectorItem.Visibility = choices.Length > 1 ? Visibility.Visible : Visibility.Collapsed;
@@ -1025,6 +1028,7 @@ public partial class MainWindow : Window
     }
 
     private HardwareChoice? SelectedHardware() => HardwareSelector?.SelectedItem as HardwareChoice;
+    private string? SelectedDeviceArgument() => HardwareRoutingPolicy.DeviceArgument(_settings.Controllers, _settings.Drives, SelectedHardware()?.Drive);
     private string? SelectedDriveArgument() => HardwareRoutingPolicy.DriveArgument(_settings.Drives, SelectedHardware()?.Drive);
     private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) { UpdateHardwareStatus(); UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); }
     private void UpdateHardwareStatus()
@@ -1192,8 +1196,7 @@ public partial class MainWindow : Window
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
         }
-        var hardware = SelectedHardware();
-        _navigation.ShowGwTool(new(_settings.GwExecutablePath, verb, hardware?.Port, SelectedDriveArgument(), _logsDirectory));
+        _navigation.ShowGwTool(new(_settings.GwExecutablePath, verb, SelectedDeviceArgument(), SelectedDriveArgument(), _logsDirectory));
     }
 }
 

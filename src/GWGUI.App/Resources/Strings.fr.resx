@@ -147,4 +147,12 @@
   <data name="Hardware.Configured"><value>Configuré</value></data>
   <data name="Hardware.NotConfiguredState"><value>Détecté, non configuré</value></data>
   <data name="Hardware.Configure"><value>Configurer</value></data>
+  <data name="Hardware.ReaderNumber"><value>Lecteur {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Lecteur {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Oublier</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Voulez-vous vraiment oublier ce lecteur ou cet appareil ?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>C’est le dernier lecteur configuré pour ce Greaseweazle. Voulez-vous oublier le lecteur et le Greaseweazle ?</value></data>
+  <data name="Hardware.SelectController"><value>Sélectionnez d’abord une ligne du Greaseweazle concerné.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Deux lecteurs au maximum peuvent être associés automatiquement à ce Greaseweazle (A et B).</value></data>
+  <data name="Common.SaveIcon"><value>💾</value></data><data name="Common.TrashIcon"><value>🗑</value></data>
 </root>

@@ -76,6 +76,10 @@
 - Les caractéristiques sont choisies dans des listes dans les Options; l’utilisateur ne saisit pas un nom convivial arbitraire.
 - Si plusieurs lecteurs sont configurés, la sélection d’un lecteur devient disponible. Un lecteur débranché reste affiché comme indisponible.
 - Si un seul lecteur est configuré, `gw` utilise son lecteur implicite et aucun `--drive` inutile n’est ajouté.
+- La page Matériel affiche toujours les lecteurs configurés. Chaque lecteur occupe une ligne : numéro automatique non modifiable, taille, densité, RPM, enregistrement et oubli avec confirmation.
+- Oublier le dernier lecteur d’un Greaseweazle oublie également ce contrôleur. Les autres lecteurs d’un même contrôleur sont conservés.
+- Le sélecteur des onglets reste masqué lorsqu’un seul lecteur est utilisable. Les libellés visibles utilisent `Lecteur 1`, `Lecteur 2`, taille, densité et COM; A/B reste interne.
+- `--device` n’est émis que si plusieurs Greaseweazle configurés et disponibles doivent être distingués. `--drive` n’est émis que si plusieurs lecteurs partagent le contrôleur sélectionné.
 - Le démarrage vérifie automatiquement la présence des contrôleurs déjà configurés sans supprimer, remplacer ni reconfigurer leurs lecteurs.
 - Si le même contrôleur est retrouvé sur un autre COM, seul son port courant est actualisé. Un contrôleur absent reste mémorisé comme déconnecté.
 - En cas d’absence, le dialogue propose une nouvelle recherche, l’ouverture des paramètres du matériel ou la poursuite sans le lecteur. Les opérations nécessitant ce lecteur sont désactivées jusqu’à sa reconnexion.

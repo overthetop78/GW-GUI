@@ -31,7 +31,7 @@ public partial class OptionsWindow : Window
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> Profiles { get; } = [];
 
-    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null)
+    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General)
     {
         InitializeComponent();
         _settings = settings;
@@ -53,6 +53,7 @@ public partial class OptionsWindow : Window
         }).ToList();
         _unconfiguredControllers = settings.UnconfiguredControllers.Select(CloneController).ToList();
         _drives = settings.Drives.Select(x => new DriveSettings { Id = x.Id, ControllerUsbId = x.ControllerUsbId, Selection = x.Selection, Size = x.Size, Density = x.Density, NominalRpm = x.NominalRpm }).ToList();
+        AssignAllDriveSelections();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = settings.GwExecutablePath;
         LanguageCombo.SelectedIndex = settings.Language == "en" ? 1 : 0;
@@ -64,6 +65,7 @@ public partial class OptionsWindow : Window
         foreach (var profile in settings.Profiles) Profiles.Add(new(profile.Id, profile.Operation, profile.Name, false));
         ProfilesGrid.ItemsSource = Profiles;
         HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
+        Navigation.SelectedIndex = (int)section;
     }
 
     private void Navigation_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -172,35 +174,49 @@ public partial class OptionsWindow : Window
 
     private void AddDrive_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new DriveEditorWindow(_controllers) { Owner = this };
-        if (dialog.ShowDialog() == true && dialog.Drive is not null) { _drives.Add(dialog.Drive); RefreshHardwareRows(); }
+        var selected = DrivesGrid.SelectedItem as HardwareRow;
+        var controllerId = selected?.UsbId ?? (_controllers.Count == 1 ? _controllers[0].UsbId : null);
+        if (controllerId is null) { MessageBox.Show(this, LocExtension.Get("Hardware.SelectController"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
+        if (_drives.Count(drive => drive.ControllerUsbId == controllerId) >= 2) { MessageBox.Show(this, LocExtension.Get("Hardware.MaximumDrives"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
+        Hardware.Add(CreateRow(null, controllerId, true));
+        DrivesGrid.SelectedItem = Hardware[^1];
     }
 
-    private void ConfigureDetected_Click(object sender, RoutedEventArgs e)
+    private void SaveHardwareRow_Click(object sender, RoutedEventArgs e)
     {
-        if (DrivesGrid.SelectedItem is not HardwareRow { Configured: false } row) return;
-        var controller = _unconfiguredControllers.FirstOrDefault(item => item.UsbId == row.UsbId);
-        if (controller is null) return;
-        _unconfiguredControllers.Remove(controller);
-        _controllers.Add(controller);
-        var dialog = new DriveEditorWindow([controller]) { Owner = this };
-        if (dialog.ShowDialog() == true && dialog.Drive is not null) _drives.Add(dialog.Drive);
+        if (sender is not FrameworkElement { DataContext: HardwareRow row }) return;
+        var drive = row.DriveId is null ? null : _drives.FirstOrDefault(item => item.Id == row.DriveId);
+        if (drive is null)
+        {
+            if (_drives.Count(item => item.ControllerUsbId == row.UsbId) >= 2) { MessageBox.Show(this, LocExtension.Get("Hardware.MaximumDrives"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
+            var controller = _unconfiguredControllers.FirstOrDefault(item => item.UsbId == row.UsbId);
+            if (controller is not null) { _unconfiguredControllers.Remove(controller); _controllers.Add(controller); }
+            drive = new DriveSettings { ControllerUsbId = row.UsbId };
+            _drives.Add(drive);
+        }
+        drive.Size = row.Size;
+        drive.Density = row.Density;
+        drive.NominalRpm = row.Rpm == HardwareChoices.UnknownSpeed ? null : int.Parse(row.Rpm.AsSpan(0, 3));
+        AssignDriveSelections(row.UsbId);
         RefreshHardwareRows();
     }
 
-    private void RemoveHardware_Click(object sender, RoutedEventArgs e)
+    private void ForgetHardwareRow_Click(object sender, RoutedEventArgs e)
     {
-        if (DrivesGrid.SelectedItem is not HardwareRow row) return;
-        if (row.DriveId is not null) _drives.RemoveAll(x => x.Id == row.DriveId);
-        else if (MessageBox.Show(this, LocExtension.Get("Options.RemoveHardware"), LocExtension.Get("Options.HardwareTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+        if (sender is not FrameworkElement { DataContext: HardwareRow row }) return;
+        var lastDrive = row.DriveId is not null && _drives.Count(item => item.ControllerUsbId == row.UsbId) == 1;
+        var message = lastDrive ? LocExtension.Get("Hardware.ForgetLastConfirm") : LocExtension.Get("Hardware.ForgetConfirm");
+        if (MessageBox.Show(this, message, LocExtension.Get("Hardware.Forget"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+        if (row.DriveId is not null)
         {
-            if (row.Configured)
-            {
-                var removed = _controllers.FirstOrDefault(x => x.UsbId == row.UsbId);
-                _controllers.RemoveAll(x => x.UsbId == row.UsbId); _drives.RemoveAll(x => x.ControllerUsbId == row.UsbId);
-                if (removed is not null && !_unconfiguredControllers.Any(x => StartupHardwareMonitor.SameController(x, removed))) _unconfiguredControllers.Add(removed);
-            }
-            else _unconfiguredControllers.RemoveAll(x => x.UsbId == row.UsbId);
+            _drives.RemoveAll(item => item.Id == row.DriveId);
+            if (!_drives.Any(item => item.ControllerUsbId == row.UsbId)) _controllers.RemoveAll(item => item.UsbId == row.UsbId);
+            else AssignDriveSelections(row.UsbId);
+        }
+        else
+        {
+            _unconfiguredControllers.RemoveAll(item => item.UsbId == row.UsbId);
+            _controllers.RemoveAll(item => item.UsbId == row.UsbId);
         }
         RefreshHardwareRows();
     }
@@ -211,11 +227,32 @@ public partial class OptionsWindow : Window
         foreach (var controller in _controllers)
         {
             var drives = _drives.Where(x => x.ControllerUsbId == controller.UsbId).ToArray();
-            if (drives.Length == 0) Hardware.Add(new(null, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.NoDrive"), controller.IsAvailable, true, LocExtension.Get("Hardware.Configured")));
-            foreach (var drive in drives) Hardware.Add(new(drive.Id, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.Description", drive.Size, drive.Density, drive.Selection, drive.NominalRpm is null ? "" : $" · {drive.NominalRpm} RPM"), controller.IsAvailable, true, LocExtension.Get("Hardware.Configured")));
+            if (drives.Length == 0) Hardware.Add(CreateRow(null, controller.UsbId, true));
+            foreach (var drive in drives) Hardware.Add(CreateRow(drive, controller.UsbId, true));
         }
         foreach (var controller in _unconfiguredControllers)
-            Hardware.Add(new(null, controller.LastPort, controller.UsbId, controller.Model, controller.IsAvailable, false, LocExtension.Get("Hardware.NotConfiguredState")));
+            Hardware.Add(CreateRow(null, controller.UsbId, false));
+    }
+
+    private HardwareRow CreateRow(DriveSettings? drive, string controllerId, bool configured)
+    {
+        var controller = _controllers.Concat(_unconfiguredControllers).First(item => item.UsbId == controllerId);
+        var index = drive is null ? _drives.Count(item => item.ControllerUsbId == controllerId) + 1
+            : _drives.Where(item => item.ControllerUsbId == controllerId).ToList().IndexOf(drive) + 1;
+        return new HardwareRow(drive?.Id, controller.LastPort, controllerId, LocExtension.Get("Hardware.ReaderNumber", index),
+            drive?.Size ?? "3.5", drive?.Density ?? "Unknown",
+            drive?.NominalRpm is int rpm ? $"{rpm} RPM" : HardwareChoices.UnknownSpeed,
+            controller.IsAvailable, configured, LocExtension.Get(configured ? "Hardware.Configured" : "Hardware.NotConfiguredState"));
+    }
+
+    private void AssignAllDriveSelections()
+    {
+        foreach (var controllerId in _drives.Select(item => item.ControllerUsbId).Distinct(StringComparer.OrdinalIgnoreCase)) AssignDriveSelections(controllerId);
+    }
+
+    private void AssignDriveSelections(string controllerId)
+    {
+        HardwareRoutingPolicy.AssignAutomaticDriveSelections(_drives, controllerId);
     }
 
     private void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers)
@@ -279,7 +316,27 @@ public partial class OptionsWindow : Window
     }
 }
 
-public sealed record HardwareRow(string? DriveId, string Port, string UsbId, string Description, bool Available, bool Configured, string ConfigurationState);
+public sealed class HardwareRow(string? driveId, string port, string usbId, string readerLabel, string size, string density, string rpm, bool available, bool configured, string configurationState)
+{
+    public string? DriveId { get; } = driveId;
+    public string Port { get; } = port;
+    public string UsbId { get; } = usbId;
+    public string ReaderLabel { get; } = readerLabel;
+    public string Size { get; set; } = size;
+    public string Density { get; set; } = density;
+    public string Rpm { get; set; } = rpm;
+    public bool Available { get; } = available;
+    public bool Configured { get; } = configured;
+    public string ConfigurationState { get; } = configurationState;
+}
+
+public static class HardwareChoices
+{
+    public const string UnknownSpeed = "—";
+    public static IReadOnlyList<string> Sizes { get; } = ["3", "3.5", "5.25", "8"];
+    public static IReadOnlyList<string> Densities { get; } = ["Unknown", "DD", "HD", "ED"];
+    public static IReadOnlyList<string> Speeds { get; } = [UnknownSpeed, "300 RPM", "360 RPM"];
+}
 public sealed record ProfileOptionRow(string Id, string Operation, string Name, bool IsSystem)
 {
     public string OperationLabel => Operation switch { "Read" => LocExtension.Get("Tab.Read"), "Write" => LocExtension.Get("Tab.Write"), "Convert" => LocExtension.Get("Tab.Convert"), _ => Operation };

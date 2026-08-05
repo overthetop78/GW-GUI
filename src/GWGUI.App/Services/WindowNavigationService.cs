@@ -9,14 +9,14 @@ using GWGUI.Infrastructure.Processes;
 namespace GWGUI.App.Services;
 
 public sealed record GwToolWindowRequest(string Executable, string Verb, string? Device, string? Drive, string LogsDirectory);
+public enum OptionsSection { General, HostTools, Hardware, Profiles }
 
 public interface IWindowNavigationService
 {
-    bool ShowOptions(AppSettings settings);
+    bool ShowOptions(AppSettings settings, OptionsSection section = OptionsSection.General);
     void ShowLogHistory(string logsDirectory);
     void ShowAbout();
     void ShowGwTool(GwToolWindowRequest request);
-    DriveSettings? ConfigureDrive(IReadOnlyList<ControllerSettings> controllers);
 }
 
 public sealed class WpfWindowNavigationService : IWindowNavigationService
@@ -34,20 +34,15 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
     }
 
-    public bool ShowOptions(AppSettings settings)
+    public bool ShowOptions(AppSettings settings, OptionsSection section = OptionsSection.General)
     {
         IHardwareRegistry hardware = new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
-        return new OptionsWindow(settings, hardware, _hostTools) { Owner = _owner }.ShowDialog() == true;
+        return new OptionsWindow(settings, hardware, _hostTools, section) { Owner = _owner }.ShowDialog() == true;
     }
     public void ShowLogHistory(string logsDirectory) => new LogHistoryWindow(logsDirectory) { Owner = _owner }.ShowDialog();
     public void ShowAbout() => new AboutWindow { Owner = _owner }.ShowDialog();
     public void ShowGwTool(GwToolWindowRequest request)
     {
         new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, _runner, _commandBuilder) { Owner = _owner }.ShowDialog();
-    }
-    public DriveSettings? ConfigureDrive(IReadOnlyList<ControllerSettings> controllers)
-    {
-        var dialog = new DriveEditorWindow(controllers) { Owner = _owner };
-        return dialog.ShowDialog() == true ? dialog.Drive : null;
     }
 }
