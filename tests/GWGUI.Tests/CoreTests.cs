@@ -186,6 +186,63 @@ public sealed class CoreTests
                 Assert.Single(navigation.LogDirectories);
                 Assert.Single(navigation.OptionsSettings);
                 Assert.Equal("rpm", Assert.Single(navigation.ToolRequests).Verb);
+
+                var optionsWindow = new OptionsWindow(new AppSettings());
+                var optionsNavigation = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("Navigation"));
+                var imagesFolder = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("ImagesFolderText"));
+                var language = Assert.IsType<System.Windows.Controls.ComboBox>(optionsWindow.FindName("LanguageCombo"));
+                var theme = Assert.IsType<System.Windows.Controls.ComboBox>(optionsWindow.FindName("ThemeCombo"));
+                var tagPattern = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("TagPatternText"));
+                var gwPath = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("GwPathText"));
+                var hostToolsProgress = Assert.IsType<System.Windows.Controls.ProgressBar>(optionsWindow.FindName("HostToolsProgress"));
+                var drives = Assert.IsType<System.Windows.Controls.DataGrid>(optionsWindow.FindName("DrivesGrid"));
+                var profiles = Assert.IsType<System.Windows.Controls.DataGrid>(optionsWindow.FindName("ProfilesGrid"));
+                foreach (var named in new FrameworkElement[] { optionsNavigation, imagesFolder, language, theme, tagPattern, gwPath, hostToolsProgress, drives, profiles })
+                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(named)));
+                Assert.NotNull(new ListBoxAutomationPeer(optionsNavigation).GetPattern(PatternInterface.Selection));
+                Assert.NotNull(new TextBoxAutomationPeer(imagesFolder).GetPattern(PatternInterface.Value));
+                Assert.NotNull(new ComboBoxAutomationPeer(language).GetPattern(PatternInterface.Selection));
+                optionsWindow.Close();
+
+                foreach (var verb in new[] { "info", "bandwidth", "rpm", "seek", "pin", "reset", "delays", "update", "align" })
+                {
+                    var toolWindow = new GwToolWindow("gw.exe", verb, runner: new ScriptedRunner());
+                    var rawOutput = Assert.IsType<System.Windows.Controls.TextBox>(toolWindow.FindName("RawOutput"));
+                    var toolCommand = Assert.IsType<System.Windows.Controls.TextBox>(toolWindow.FindName("CommandText"));
+                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(rawOutput)));
+                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(toolCommand)));
+                    var toolFields = Assert.IsType<Dictionary<string, System.Windows.Controls.TextBox>>(
+                        typeof(GwToolWindow).GetField("_fields", privateFlags)!.GetValue(toolWindow));
+                    Assert.All(toolFields.Values, field => Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(field))));
+                    toolWindow.Close();
+                }
+
+                var driveEditor = new DriveEditorWindow([]);
+                foreach (var name in new[] { "ControllerCombo", "SelectionCombo", "SizeCombo", "DensityCombo", "RpmCombo" })
+                {
+                    var selector = Assert.IsType<System.Windows.Controls.ComboBox>(driveEditor.FindName(name));
+                    Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(selector)));
+                    Assert.NotNull(new ComboBoxAutomationPeer(selector).GetPattern(PatternInterface.Selection));
+                }
+                driveEditor.Close();
+
+                var profileNameWindow = new ProfileNameWindow();
+                Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(
+                    Assert.IsType<System.Windows.Controls.TextBox>(profileNameWindow.FindName("NameText")))));
+                profileNameWindow.Close();
+
+                var conflictWindow = new ConversionConflictWindow([new ConversionOutput("ibm.720", ".ima", @"F:\Images\disk.ima", true)]);
+                Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(
+                    Assert.IsType<System.Windows.Controls.DataGrid>(conflictWindow.FindName("ConflictsGrid")))));
+                conflictWindow.Close();
+
+                var logWindow = new LogHistoryWindow(Path.GetTempPath());
+                var filesList = Assert.IsType<System.Windows.Controls.ListBox>(logWindow.FindName("FilesList"));
+                var logContent = Assert.IsType<System.Windows.Controls.TextBox>(logWindow.FindName("ContentText"));
+                Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(filesList)));
+                Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(logContent)));
+                logWindow.Close();
+
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }

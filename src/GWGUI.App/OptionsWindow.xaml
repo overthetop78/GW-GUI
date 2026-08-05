@@ -9,7 +9,7 @@
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="Navigation" Margin="16" SelectedIndex="0" SelectionChanged="Navigation_SelectionChanged">
+        <ListBox x:Name="Navigation" Margin="16" SelectedIndex="0" SelectionChanged="Navigation_SelectionChanged" AutomationProperties.Name="{l:Loc Options.Title}">
             <ListBoxItem Content="{l:Loc Options.General}" />
             <ListBoxItem Content="{l:Loc Options.Tools}" />
             <ListBoxItem Content="{l:Loc Options.Hardware}" />
@@ -21,21 +21,21 @@
                 <TextBlock Text="{l:Loc Options.ImagesFolder}" />
                 <DockPanel Margin="0,6,0,18">
                     <Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseImagesFolder_Click" />
-                    <TextBox x:Name="ImagesFolderText" />
+                    <TextBox x:Name="ImagesFolderText" AutomationProperties.Name="{l:Loc Options.ImagesFolder}" />
                 </DockPanel>
                 <TextBlock Text="{l:Loc Options.Language}" />
-                <ComboBox x:Name="LanguageCombo" Width="240" HorizontalAlignment="Left" Margin="0,6,0,18">
+                <ComboBox x:Name="LanguageCombo" Width="240" HorizontalAlignment="Left" Margin="0,6,0,18" AutomationProperties.Name="{l:Loc Options.Language}">
                     <ComboBoxItem Tag="fr" Content="Français" />
                     <ComboBoxItem Tag="en" Content="English" />
                 </ComboBox>
                 <TextBlock Text="{l:Loc Options.Theme}" />
-                <ComboBox x:Name="ThemeCombo" Width="240" HorizontalAlignment="Left" Margin="0,6">
+                <ComboBox x:Name="ThemeCombo" Width="240" HorizontalAlignment="Left" Margin="0,6" AutomationProperties.Name="{l:Loc Options.Theme}">
                     <ComboBoxItem Content="{l:Loc Theme.System}" />
                     <ComboBoxItem Content="{l:Loc Theme.Light}" />
                     <ComboBoxItem Content="{l:Loc Theme.Dark}" />
                 </ComboBox>
                 <TextBlock Text="{l:Loc Options.TagPattern}" Margin="0,18,0,0" />
-                <TextBox x:Name="TagPatternText" Width="240" HorizontalAlignment="Left" Margin="0,6" TextChanged="TagPattern_Changed" />
+                <TextBox x:Name="TagPatternText" Width="240" HorizontalAlignment="Left" Margin="0,6" TextChanged="TagPattern_Changed" AutomationProperties.Name="{l:Loc Options.TagPattern}" />
                 <TextBlock Text="{l:Loc Options.TagPatternHelp}" Foreground="#69707D" TextWrapping="Wrap" />
                 <TextBlock x:Name="TagPatternPreview" Margin="0,6" />
             </StackPanel>
@@ -44,7 +44,7 @@
                 <TextBlock Text="{l:Loc Options.GwPath}" />
                 <DockPanel Margin="0,6">
                     <Button DockPanel.Dock="Right" Content="{l:Loc Common.Choose}" Click="BrowseGw_Click" />
-                    <TextBox x:Name="GwPathText" />
+                    <TextBox x:Name="GwPathText" AutomationProperties.Name="{l:Loc Options.GwPath}" />
                 </DockPanel>
                 <TextBlock Text="{l:Loc Options.ToolsHelp}" Margin="0,18" TextWrapping="Wrap" />
                 <WrapPanel>
@@ -53,7 +53,7 @@
                     <Button x:Name="DownloadHostToolsButton" Content="{l:Loc HostTools.Download}" Click="DownloadHostTools_Click" />
                     <Button Content="{l:Loc HostTools.Rollback}" Click="RollbackHostTools_Click" />
                 </WrapPanel>
-                <ProgressBar x:Name="HostToolsProgress" Height="8" Margin="4,12" Minimum="0" Maximum="100" Visibility="Collapsed" />
+                <ProgressBar x:Name="HostToolsProgress" Height="8" Margin="4,12" Minimum="0" Maximum="100" Visibility="Collapsed" AutomationProperties.Name="{l:Loc HostTools.Download}" />
                 <TextBlock x:Name="HostToolsStatus" Margin="4,8" TextWrapping="Wrap" />
             </StackPanel>
             <Grid x:Name="HardwarePage" Visibility="Collapsed">
@@ -63,7 +63,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="{l:Loc Options.Hardware}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,20" />
-                <DataGrid Grid.Row="1" x:Name="DrivesGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" HeadersVisibility="Column">
+                <DataGrid Grid.Row="1" x:Name="DrivesGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" HeadersVisibility="Column" AutomationProperties.Name="{l:Loc Options.Hardware}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{l:Loc Hardware.Port}" Binding="{Binding Port}" Width="90" />
                         <DataGridTextColumn Header="{l:Loc Hardware.UsbId}" Binding="{Binding UsbId}" Width="*" />
@@ -84,7 +84,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="{l:Loc Profiles.ByOperation}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,20" />
-                <DataGrid Grid.Row="1" x:Name="ProfilesGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
+                <DataGrid Grid.Row="1" x:Name="ProfilesGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" AutomationProperties.Name="{l:Loc Options.Profiles}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{l:Loc Profiles.Tab}" Binding="{Binding OperationLabel}" Width="160" />
                         <DataGridTextColumn Header="{l:Loc Profiles.Name}" Binding="{Binding Name}" Width="*" />

@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Hardware;
@@ -53,13 +54,13 @@ public partial class GwToolWindow : Window
     private void AddField(string key, string label, string value)
     {
         var panel = new StackPanel { Margin = new Thickness(0, 0, 14, 8) }; panel.Children.Add(new TextBlock { Text = label });
-        var text = new TextBox { Text = value, Width = 150 }; text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _fields[key] = text;
+        var text = new TextBox { Text = value, Width = 150 }; AutomationProperties.SetName(text, label); text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _fields[key] = text;
     }
 
     private void AddOptionalField(string key, string label, string value)
     {
         var panel = new StackPanel { Margin = new Thickness(0, 0, 14, 8) }; var check = new CheckBox { Content = label }; check.Checked += (_, _) => UpdateCommand(); check.Unchecked += (_, _) => UpdateCommand(); panel.Children.Add(check);
-        var text = new TextBox { Text = value, Width = 145 }; text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _checks[key] = check; _fields[key] = text;
+        var text = new TextBox { Text = value, Width = 145 }; AutomationProperties.SetName(text, label); text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _checks[key] = check; _fields[key] = text;
     }
 
     private void AddCheck(string key, string label)
