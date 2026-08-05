@@ -400,7 +400,10 @@
                 <ComboBox x:Name="HardwareSelector" MinWidth="260" DisplayMemberPath="Label" SelectionChanged="HardwareSelector_Changed" />
             </StatusBarItem>
             <Separator />
-            <StatusBarItem Content="{l:Loc Status.DefaultProfile}" />
+            <StatusBarItem x:Name="ProfileStatusItem"><TextBlock x:Name="ProfileStatusText" Text="{l:Loc Status.DefaultProfile}" /></StatusBarItem>
+            <StatusBarItem x:Name="ProgressStatusItem" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal"><ProgressBar x:Name="OperationProgress" Width="180" Height="12" Minimum="0" Maximum="100"/><TextBlock x:Name="OperationProgressText" Margin="8,0,0,0"/></StackPanel>
+            </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <Button Content="{l:Loc Common.Console}" Padding="8,1" MinHeight="22" Click="ToggleConsole_Click" />
             </StatusBarItem>

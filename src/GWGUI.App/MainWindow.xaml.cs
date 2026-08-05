@@ -37,6 +37,7 @@ public partial class MainWindow : Window
     private readonly FluxDecoderRegistry _fluxDecoders = new();
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
+    private readonly GwProgressTracker _progressTracker = new();
 
     public MainWindow()
     {
@@ -126,6 +127,7 @@ public partial class MainWindow : Window
         RefreshHardwareSelector();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
+        UpdateProfileStatus();
     }
 
     private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -134,6 +136,7 @@ public partial class MainWindow : Window
         else if (MainTabs?.SelectedIndex == 0) UpdateReadCommand();
         else if (MainTabs?.SelectedIndex == 2) UpdateConvertCommand();
         else if (MainTabs?.SelectedIndex == 4) UpdateToolCommand();
+        UpdateProfileStatus();
     }
 
     private void RefreshWriteProfiles(string? selectedId = null)
@@ -193,11 +196,11 @@ public partial class MainWindow : Window
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (MessageBox.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         var command = BuildWriteCommand();
-        _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear();
-        var output = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
+        var output = new Progress<GwOutputLine>(ReportOutput);
         try { var result = await _runner.RunAsync(command, output, _cancellation.Token); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
-        finally { WriteExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
+        finally { EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void WriteProfile_Changed(object sender, SelectionChangedEventArgs e)
@@ -207,6 +210,7 @@ public partial class MainWindow : Window
         if (profile.Values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries;
         if (profile.IsSystem) { WriteNoVerify.IsChecked = false; WriteExpertArguments.Clear(); }
         UpdateWriteCommand();
+        UpdateProfileStatus();
     }
 
     private void ResetWriteProfile_Click(object sender, RoutedEventArgs e) { if (WriteProfileCombo.SelectedItem is OperationProfile profile) { WriteProfileCombo.SelectedItem = null; WriteProfileCombo.SelectedItem = profile; } }
@@ -301,20 +305,21 @@ public partial class MainWindow : Window
             }
             outputs = resolved;
         }
-        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); var failures = new List<string>();
-        var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        _cancellation = new CancellationTokenSource(); ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress(); var failures = new List<string>();
+        var progress = new Progress<GwOutputLine>(ReportOutput);
         try
         {
             foreach (var planned in outputs)
             {
                 if (_cancellation.IsCancellationRequested) break;
+                BeginProgress();
                 LogOutput.AppendText($"{Environment.NewLine}→ {Path.GetFileName(planned.OutputPath)}{Environment.NewLine}");
                 var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, ConvertSourceText.Text, planned, GetConvertOptions(), ConvertExpertArguments.Text), progress, _cancellation.Token);
                 if (!result.IsSuccess) failures.Add(Path.GetFileName(planned.OutputPath));
             }
             LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Conversion.Summary", outputs.Count - failures.Count, failures.Count) + (failures.Count > 0 ? LocExtension.Get("Conversion.Failures", string.Join(", ", failures)) : ""));
         }
-        finally { ConvertExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
+        finally { EndProgress(); ConvertExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private static string NumberedPath(string path)
@@ -364,6 +369,7 @@ public partial class MainWindow : Window
     {
         if (ReadProfileCombo.SelectedItem is not OperationProfile profile || ReadRevsEnabled is null) return;
         ApplyReadProfile(profile);
+        UpdateProfileStatus();
     }
 
     private void ResetReadProfile_Click(object sender, RoutedEventArgs e)
@@ -541,7 +547,8 @@ public partial class MainWindow : Window
         _cancellation = new CancellationTokenSource();
         ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
         LogOutput.Clear();
-        var output = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        BeginProgress();
+        var output = new Progress<GwOutputLine>(ReportOutput);
         try
         {
             var result = await _runner.RunAsync(command, output, _cancellation.Token);
@@ -550,7 +557,7 @@ public partial class MainWindow : Window
             if (result.IsSuccess && ReadAutoNumber.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var value)) ReadSequenceValue.Text = (value + 1).ToString();
         }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
-        finally { ReadExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
+        finally { EndProgress(); ReadExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void RestoreReadSettings()
@@ -691,17 +698,62 @@ public partial class MainWindow : Window
     {
         if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
-        _cancellation = new CancellationTokenSource(); button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear();
-        var progress = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
+        _cancellation = new CancellationTokenSource(); button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
+        var progress = new Progress<GwOutputLine>(ReportOutput);
         try { var result = await _runner.RunAsync(command, progress, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}."); }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
-        finally { button.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
+        finally { EndProgress(); button.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
     private void ConfirmAndRequestStop()
     {
         if (MessageBox.Show(this, LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             _cancellation?.Cancel();
+    }
+
+    private void BeginProgress()
+    {
+        _progressTracker.Reset();
+        ProgressStatusItem.Visibility = Visibility.Visible;
+        OperationProgress.IsIndeterminate = true;
+        OperationProgress.Value = 0;
+        OperationProgressText.Text = "";
+    }
+
+    private void ReportOutput(GwOutputLine line)
+    {
+        LogOutput.AppendText(line.Text + Environment.NewLine);
+        LogOutput.ScrollToEnd();
+        var progress = _progressTracker.Accept(line.Text);
+        if (progress is null) return;
+        if (progress.TotalTracks is int total)
+        {
+            OperationProgress.IsIndeterminate = false;
+            OperationProgress.Value = progress.Fraction.GetValueOrDefault() * 100;
+            OperationProgressText.Text = LocExtension.Get("Status.TrackProgress", progress.Cylinder, progress.Head, progress.CompletedTracks, total);
+        }
+        else OperationProgressText.Text = LocExtension.Get("Status.TrackUnknown", progress.Cylinder, progress.Head, progress.CompletedTracks);
+    }
+
+    private void EndProgress()
+    {
+        OperationProgress.IsIndeterminate = false;
+        OperationProgress.Value = 100;
+        ProgressStatusItem.Visibility = Visibility.Collapsed;
+    }
+
+    private void UpdateProfileStatus()
+    {
+        if (ProfileStatusItem is null || MainTabs is null) return;
+        string? name = MainTabs.SelectedIndex switch
+        {
+            0 => (ReadProfileCombo?.SelectedItem as OperationProfile)?.Name,
+            1 => (WriteProfileCombo?.SelectedItem as OperationProfile)?.Name,
+            2 => LocExtension.Get("Profile.Default"),
+            _ => null
+        };
+        ProfileStatusItem.Visibility = name is null ? Visibility.Collapsed : Visibility.Visible;
+        if (name is not null) ProfileStatusText.Text = LocExtension.Get("Status.Profile", name);
     }
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)

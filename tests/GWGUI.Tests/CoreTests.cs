@@ -126,6 +126,28 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void GwProgressCountsUniqueTracksAndIgnoresRetries()
+    {
+        var tracker = new GwProgressTracker();
+        Assert.Null(tracker.Accept("Reading c=0-79:h=0-1 revs=3"));
+        var first = tracker.Accept("T0.0: Raw Flux");
+        var retry = tracker.Accept("T0.0: Retry #1.1");
+        var second = tracker.Accept("T0.1: Raw Flux");
+        Assert.Equal(160, first!.TotalTracks);
+        Assert.Equal(1, retry!.CompletedTracks);
+        Assert.Equal(2, second!.CompletedTracks);
+    }
+
+    [Fact]
+    public void GwProgressUnderstandsSteppedAndCommaSeparatedTrackSets()
+    {
+        var tracker = new GwProgressTracker();
+        tracker.Accept("Writing c=0-39/2,41:h=0");
+        var progress = tracker.Accept("T0.0: Writing Track");
+        Assert.Equal(21, progress!.TotalTracks);
+    }
+
+    [Fact]
     public void DefaultProfileCannotBeRenamedOrDeleted()
     {
         var store = new InMemoryProfileStore();

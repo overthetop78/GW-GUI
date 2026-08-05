@@ -19,6 +19,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Thèmes clair, sombre et système appliqués au démarrage et après les Options; le mode système suit Windows et reprend sa couleur d’accent.
 - Taille, position multi-écran, maximisation, visibilité et hauteur de console restaurées; les positions hors écran sont rejetées.
 - Tous les boutons Arrêter demandent confirmation; l’annulation tente une fermeture normale pendant deux secondes puis termine l’arbre du processus si nécessaire.
+- Barre d’état dynamique : matériel et lecteur sélectionnés, profil actif, progression par piste/face extraite des sorties officielles `T<cylindre>.<face>`; les répétitions de tentative ne sont pas comptées deux fois.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -28,7 +29,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
 - Compléter toutes les options avancées de chaque commande `gw` et leurs profils.
 - Vérifier visuellement les deux langues et traduire progressivement les descriptions provenant encore du catalogue métier lorsqu’elles sont exposées à l’utilisateur.
-- Terminer la progression par face et enrichir la barre d’état.
+- Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Construire le gestionnaire complet des Host Tools : détection, téléchargement, choix, mises à jour signalées et retour arrière.
 - Compléter le catalogue dynamique depuis l’aide et les diskdefs de la version de `gw` active.
 - Étendre le moteur SCP à tous les décodeurs définis dans le plan et améliorer PLL, anomalies et visualisation des structures.
@@ -38,5 +39,5 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 39 réussis, dont parité exhaustive FR/EN, vues sans libellés naturels en dur, placement multi-écran et annulation réelle d’un processus bloqué.
+- Tests automatisés : 41 réussis, dont parité exhaustive FR/EN, vues sans libellés naturels en dur, placement multi-écran, annulation réelle et analyse des progressions avec plages/steps/tentatives.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
