@@ -711,10 +711,10 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
             var complete = offset + markBits + blockSize * 32 <= stream.Bits.Length; bool? valid = null;
             if (complete)
             {
-                ushort checksum = 0;
-                for (var index = 0; index < usefulSize; index++) checksum += ReverseBits(stream.DecodeFmByte32(offset + markBits + index * 32));
+                ushort checksum = 0; var data = new byte[usefulSize];
+                for (var index = 0; index < usefulSize; index++) { var value = ReverseBits(stream.DecodeFmByte32(offset + markBits + index * 32)); data[index] = value; checksum += value; }
                 var low = ReverseBits(stream.DecodeFmByte32(offset + markBits + usefulSize * 32)); var high = ReverseBits(stream.DecodeFmByte32(offset + markBits + (usefulSize + 1) * 32));
-                valid = low == (byte)checksum && high == (byte)(checksum >> 8); bytes.AddRange([low, high]);
+                valid = low == (byte)checksum && high == (byte)(checksum >> 8); bytes.AddRange(data);
             }
             sectors.Add(new(0, 0, 1, 0, blockSize, valid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatData, offset, complete ? markBits + blockSize * 32 : markBits, $"Arburg data block, 2560 bytes, checksum {(valid is null ? "unavailable" : valid == true ? "valid" : "invalid")}"));
@@ -732,7 +732,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
             if (decoded is not null)
             {
                 ushort checksum = 0; for (var index = 0; index < usefulSize; index++) checksum += decoded.Value.Bytes[index];
-                valid = decoded.Value.Bytes[usefulSize] == (byte)checksum && decoded.Value.Bytes[usefulSize + 1] == (byte)(checksum >> 8); bytes.AddRange([decoded.Value.Bytes[usefulSize], decoded.Value.Bytes[usefulSize + 1]]);
+                valid = decoded.Value.Bytes[usefulSize] == (byte)checksum && decoded.Value.Bytes[usefulSize + 1] == (byte)(checksum >> 8); bytes.AddRange(decoded.Value.Bytes.Take(usefulSize));
             }
             sectors.Add(new(0, 0, 1, 0, blockSize, valid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, decoded is null ? markBits : decoded.Value.EndOffset - offset, $"Arburg system block, 3840 bytes, checksum {(valid is null ? "unavailable" : valid == true ? "valid" : "invalid")}"));
@@ -795,7 +795,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
                 {
                     ushort checksum = 0; for (var index = 0; index < sectorBytes; index++) checksum += data.Value.Bytes[index + 1];
                     var stored = (ushort)(data.Value.Bytes[sectorBytes + 1] | data.Value.Bytes[sectorBytes + 2] << 8); dataValid = checksum == stored; structureEnd = data.Value.EndOffset;
-                    bytes.AddRange(data.Value.Bytes.Skip(1 + sectorBytes));
+                    bytes.AddRange(data.Value.Bytes.Skip(1).Take(sectorBytes));
                     structures.Add(new(FluxStructureKind.FormatData, dataOffset, data.Value.EndOffset - dataOffset, $"Victor 9000 data block, 512 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
                 }
                 else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits, "Victor 9000 data block, checksum unavailable"));

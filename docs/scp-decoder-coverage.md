@@ -18,8 +18,8 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | E-mu Emulator FM | Cylindre, face, secteur unique et restitution des 3584 octets | CRC16 `0x8005` de l’en-tête et des données ; état valide, incorrect ou indisponible | Oui pour l’identité, la cadence FM quadruplée, les données et les deux CRC |
 | TYCOM FM | Cylindre, secteur, marques F8–FB et restitution des 128 octets | CRC-CCITT de l’en-tête et des données ; état valide, incorrect ou indisponible | Oui pour l’identité, les marques, la cadence FM quadruplée, les données et les deux CRC |
 | DEC RX02 FM/M²FM | Cylindre, face, secteur, code de taille, marques F8–FD ; restitution de 128 octets FM ou 256 octets M²FM pour F9/FD | CRC-CCITT de l’en-tête et des données ; état valide, incorrect ou indisponible | Oui, y compris les données et la substitution DEC M²FM sur 11 bits |
-| Arburg | Bloc de données FM de 2560 octets et bloc système variable de 3840 octets ; identité fixe de bloc unique | Somme additive 16 bits little-endian sur 2558 ou 3838 octets ; état valide, incorrect ou indisponible | Oui pour les deux encodages et leurs sommes |
-| Victor 9000 GCR | En-tête GCR de 6 octets, cylindre, secteur et bloc de 512 octets | Contrôle arithmétique de l’en-tête et somme additive 16 bits little-endian des données ; état valide, incorrect ou indisponible | Oui pour l’identité, l’encodage GCR à demi-cellules et les deux contrôles |
+| Arburg | Bloc FM de 2560 octets et bloc système de 3840 octets ; restitution des charges utiles de 2558 ou 3838 octets | Somme additive 16 bits little-endian ; état valide, incorrect ou indisponible | Oui pour les deux encodages, leurs données et leurs sommes |
+| Victor 9000 GCR | En-tête GCR de 6 octets, cylindre, secteur et restitution des 512 octets | Contrôle arithmétique de l’en-tête et somme additive 16 bits little-endian des données ; état valide, incorrect ou indisponible | Oui pour l’identité, les données, l’encodage GCR à demi-cellules et les deux contrôles |
 | Flux brut | Impulsions courtes et absences longues | Sans objet | Sans objet |
 
 ## Sources de qualification

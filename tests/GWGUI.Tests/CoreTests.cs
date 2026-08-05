@@ -1449,6 +1449,7 @@ public sealed class CoreTests
 
         var sector = Assert.Single(result.Sectors!); Assert.Equal(0xa00, sector.SizeBytes); Assert.Equal(!corruptChecksum, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(0x9fe));
     }
 
     [Theory]
@@ -1467,6 +1468,7 @@ public sealed class CoreTests
 
         var sector = Assert.Single(result.Sectors!); Assert.Equal(0xf00, sector.SizeBytes); Assert.Equal(!corruptChecksum, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(0xefe));
     }
 
     [Fact]
@@ -1519,6 +1521,7 @@ public sealed class CoreTests
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
         Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptData ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(512));
     }
 
     [Fact]
