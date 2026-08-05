@@ -177,6 +177,45 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task OperationCoordinatorOwnsCancellationAndRejectsConcurrentWork()
+    {
+        var coordinator = new OperationCoordinator();
+        var started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var operation = coordinator.RunAsync(async token =>
+        {
+            started.SetResult();
+            await Task.Delay(Timeout.InfiniteTimeSpan, token);
+            return 1;
+        });
+        await started.Task;
+
+        Assert.True(coordinator.IsRunning);
+        var concurrent = await coordinator.RunAsync(_ => Task.FromResult(2));
+        Assert.IsType<InvalidOperationException>(concurrent.Error);
+        coordinator.RequestCancellation();
+        var outcome = await operation;
+
+        Assert.IsType<TaskCanceledException>(outcome.Error);
+        Assert.False(coordinator.IsRunning);
+    }
+
+    [Fact]
+    public async Task OperationCoordinatorReturnsSuccessAndFailureAsExplicitOutcomes()
+    {
+        var coordinator = new OperationCoordinator();
+
+        var success = await coordinator.RunAsync(_ => Task.FromResult(42));
+        var failure = await coordinator.RunAsync<int>(_ => throw new IOException("broken"));
+
+        Assert.True(success.HasResult);
+        Assert.Equal(42, success.Result);
+        Assert.Null(success.Error);
+        Assert.False(failure.HasResult);
+        Assert.Equal("broken", Assert.IsType<IOException>(failure.Error).Message);
+        Assert.False(coordinator.IsRunning);
+    }
+
+    [Fact]
     public async Task RunnerRejectsASecondConcurrentCommand()
     {
         var runner = new GreaseweazleRunner();
