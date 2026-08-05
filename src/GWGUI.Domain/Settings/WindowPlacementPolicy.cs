@@ -17,7 +17,7 @@ public static class WindowPlacementPolicy
                          top + height >= virtualTop + visibleMargin && top <= bottom - visibleMargin;
         if (!intersects) return new(width, height, null, null);
         return new(width, height,
-            Math.Clamp(left, virtualLeft - width + visibleMargin, right - visibleMargin),
-            Math.Clamp(top, virtualTop, bottom - visibleMargin));
+            Math.Clamp(left, virtualLeft, Math.Max(virtualLeft, right - width)),
+            Math.Clamp(top, virtualTop, Math.Max(virtualTop, bottom - height)));
     }
 }

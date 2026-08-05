@@ -284,6 +284,15 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void WindowPlacementClampsTheWholeWindowInsideTheVirtualDesktop()
+    {
+        var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1360, Height = 820, Left = 1200, Top = 700 };
+        var result = GWGUI.Domain.Settings.WindowPlacementPolicy.Normalize(settings, 1280, 720, 0, 0, 2048, 1152);
+        Assert.Equal(688, result.Left);
+        Assert.Equal(332, result.Top);
+    }
+
+    [Fact]
     public void GwProgressCountsUniqueTracksAndIgnoresRetries()
     {
         var tracker = new GwProgressTracker();

@@ -10,11 +10,8 @@ public static class ThemeManager
     public static void Apply(AppTheme requested)
     {
         var dark = requested == AppTheme.Dark || requested == AppTheme.System && SystemUsesDarkTheme();
-        if (Application.Current.Resources["AccentBrush"] is SolidColorBrush accent)
-        {
-            var systemAccent = SystemParameters.WindowGlassColor;
-            accent.Color = systemAccent.A == 0 ? Color.FromRgb(77, 118, 232) : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B);
-        }
+        var systemAccent = SystemParameters.WindowGlassColor;
+        Set("AccentBrush", systemAccent.A == 0 ? Color.FromRgb(77, 118, 232) : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B));
         Set("WindowBrush", dark ? "#17191F" : "#F6F7FA");
         Set("CardBrush", dark ? "#23262E" : "#FFFFFF");
         Set("ControlBrush", dark ? "#2B2F38" : "#FFFFFF");
@@ -24,8 +21,10 @@ public static class ThemeManager
 
     private static void Set(string key, string color)
     {
-        if (Application.Current.Resources[key] is SolidColorBrush brush) brush.Color = (Color)ColorConverter.ConvertFromString(color);
+        Set(key, (Color)ColorConverter.ConvertFromString(color));
     }
+
+    private static void Set(string key, Color color) => Application.Current.Resources[key] = new SolidColorBrush(color);
 
     private static bool SystemUsesDarkTheme()
     {
