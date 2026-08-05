@@ -76,3 +76,6 @@
 - Les caractéristiques sont choisies dans des listes dans les Options; l’utilisateur ne saisit pas un nom convivial arbitraire.
 - Si plusieurs lecteurs sont configurés, la sélection d’un lecteur devient disponible. Un lecteur débranché reste affiché comme indisponible.
 - Si un seul lecteur est configuré, `gw` utilise son lecteur implicite et aucun `--drive` inutile n’est ajouté.
+- Le démarrage vérifie automatiquement la présence des contrôleurs déjà configurés sans supprimer, remplacer ni reconfigurer leurs lecteurs.
+- Si le même contrôleur est retrouvé sur un autre COM, seul son port courant est actualisé. Un contrôleur absent reste mémorisé comme déconnecté.
+- En cas d’absence, le dialogue propose une nouvelle recherche, l’ouverture des paramètres du matériel ou la poursuite sans le lecteur. Les opérations nécessitant ce lecteur sont désactivées jusqu’à sa reconnexion.

@@ -133,4 +133,12 @@
   <data name="Visual.Integrity.Crc"><value>CRC</value></data>
   <data name="Visual.Integrity.Checksum"><value>Checksum</value></data>
   <data name="Visual.Side"><value>Face {0}</value></data>
+  <data name="Hardware.StartupTitle"><value>Vérification du matériel</value></data>
+  <data name="Hardware.StartupMissing"><value>Un matériel configuré est introuvable</value></data>
+  <data name="Hardware.StartupExplanation"><value>La configuration est conservée, mais les lecteurs concernés resteront indisponibles tant que leur Greaseweazle ne sera pas retrouvé.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Contrôleurs Greaseweazle introuvables</value></data>
+  <data name="Hardware.StartupRetry"><value>Rechercher à nouveau</value></data>
+  <data name="Hardware.StartupSettings"><value>Paramètres du matériel</value></data>
+  <data name="Hardware.StartupContinue"><value>Continuer sans ce lecteur</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>La vérification du matériel a échoué : {0}</value></data>
 </root>

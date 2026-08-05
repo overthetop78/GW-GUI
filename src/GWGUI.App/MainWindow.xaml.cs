@@ -22,6 +22,7 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Localization;
 using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Hardware;
 using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
 
@@ -33,6 +34,8 @@ public partial class MainWindow : Window
     private readonly IGreaseweazleRunner _runner;
     private readonly IGwCommandBuilder _commandBuilder;
     private readonly IGwInstallationManager _hostTools;
+    private readonly IHardwareRegistry _hardwareRegistry;
+    private readonly StartupHardwareMonitor _startupHardwareMonitor;
     private AppSettings _settings = new();
     private readonly OperationCoordinator _operation = new();
     private readonly OperationResultPresenter _operationResultPresenter = new();
@@ -63,9 +66,9 @@ public partial class MainWindow : Window
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
 
-    public MainWindow() : this(null, null, null, null, null, null, null, null) { }
+    public MainWindow() : this(null, null, null, null, null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
@@ -76,6 +79,7 @@ public partial class MainWindow : Window
         var directory = StoragePaths.DataDirectory;
         _logsDirectory = Path.Combine(directory, "logs");
         _runner = runner ?? new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
+        _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
@@ -86,6 +90,7 @@ public partial class MainWindow : Window
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
+        _startupHardwareMonitor = new StartupHardwareMonitor(_hardwareRegistry, _settingsStore);
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
@@ -172,10 +177,55 @@ public partial class MainWindow : Window
         RestoreConversionSettings();
         BuildConversionFormats(null);
         RefreshHardwareSelector();
+        await VerifyConfiguredHardwareAsync();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
         UpdateProfileStatus();
         _ = CheckHostToolsUpdateAsync();
+    }
+
+    private async Task VerifyConfiguredHardwareAsync()
+    {
+        if (_settings.Controllers.Count == 0 || string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
+            return;
+
+        while (true)
+        {
+            StartupHardwareCheckResult check;
+            try { check = await _startupHardwareMonitor.CheckAsync(_settings); }
+            catch (Exception exception)
+            {
+                foreach (var controller in _settings.Controllers) controller.IsAvailable = false;
+                RefreshHardwareSelector();
+                await _settingsStore.SaveAsync(_settings);
+                _dialogs.Show(LocExtension.Get("Hardware.StartupCheckFailed", exception.Message), LocExtension.Get("Hardware.StartupTitle"), icon: UserDialogIcon.Warning);
+                check = new(true, _settings.Controllers.ToArray());
+            }
+            if (!check.Performed) return;
+            RefreshHardwareSelector();
+            var missing = check.MissingControllers;
+            if (missing.Count == 0) return;
+
+            switch (_businessDialogs.ResolveMissingHardware(missing))
+            {
+                case MissingHardwareChoice.Retry:
+                    continue;
+                case MissingHardwareChoice.OpenSettings:
+                    CaptureProfiles();
+                    if (_navigation.ShowOptions(_settings))
+                    {
+                        LoadProfileStores();
+                        RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
+                        _viewModel.Read.Folder = _settings.DefaultImagesFolder;
+                        RefreshHardwareSelector();
+                        ((App)Application.Current).SetTheme(_settings.Theme);
+                        await _settingsStore.SaveAsync(_settings);
+                    }
+                    return;
+                default:
+                    return;
+            }
+        }
     }
 
     private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -962,8 +1012,13 @@ public partial class MainWindow : Window
     private void UpdateHardwareStatus()
     {
         var selected = SelectedHardware();
+        var enabled = selected is not { Available: false };
         _viewModel.HardwareText = selected is null ? LocExtension.Get("Hardware.NotConfigured") : selected.Label;
         _viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
+        if (ReadExecuteButton is not null) ReadExecuteButton.IsEnabled = enabled;
+        if (WriteExecuteButton is not null) WriteExecuteButton.IsEnabled = enabled;
+        if (EraseExecuteButton is not null) EraseExecuteButton.IsEnabled = enabled;
+        if (CleanExecuteButton is not null) CleanExecuteButton.IsEnabled = enabled;
     }
 
     private bool EnsureSelectedHardwareAvailable()

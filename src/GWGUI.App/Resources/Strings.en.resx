@@ -133,4 +133,12 @@
   <data name="Visual.Integrity.Crc"><value>CRC</value></data>
   <data name="Visual.Integrity.Checksum"><value>Checksum</value></data>
   <data name="Visual.Side"><value>Side {0}</value></data>
+  <data name="Hardware.StartupTitle"><value>Hardware check</value></data>
+  <data name="Hardware.StartupMissing"><value>Configured hardware could not be found</value></data>
+  <data name="Hardware.StartupExplanation"><value>The configuration is preserved, but its drives will remain unavailable until their Greaseweazle is found again.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Missing Greaseweazle controllers</value></data>
+  <data name="Hardware.StartupRetry"><value>Search again</value></data>
+  <data name="Hardware.StartupSettings"><value>Hardware settings</value></data>
+  <data name="Hardware.StartupContinue"><value>Continue without this drive</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>The hardware check failed: {0}</value></data>
 </root>

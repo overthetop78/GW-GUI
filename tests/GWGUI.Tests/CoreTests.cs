@@ -255,6 +255,11 @@ public sealed class CoreTests
                 settings.Controllers = [new() { UsbId = "GW-OFFLINE", LastPort = "COM8", Model = "Greaseweazle V4.1", IsAvailable = false }];
                 settings.Drives = [new() { ControllerUsbId = "GW-OFFLINE", Selection = "A", Size = "3.5", Density = "HD" }];
                 typeof(MainWindow).GetMethod("RefreshHardwareSelector", flags)!.Invoke(window, null);
+                Assert.False(readExecute.IsEnabled);
+                Assert.False(Assert.IsType<System.Windows.Controls.Button>(window.FindName("WriteExecuteButton")).IsEnabled);
+                Assert.False(Assert.IsType<System.Windows.Controls.Button>(window.FindName("EraseExecuteButton")).IsEnabled);
+                Assert.False(Assert.IsType<System.Windows.Controls.Button>(window.FindName("CleanExecuteButton")).IsEnabled);
+                Assert.True(Assert.IsType<System.Windows.Controls.Button>(window.FindName("ConvertExecuteButton")).IsEnabled);
                 var dialogCount = dialogs.Requests.Count;
                 typeof(MainWindow).GetMethod("ToolCommand_Click", flags)!.Invoke(window, [new System.Windows.Controls.MenuItem { Tag = "rpm" }, new RoutedEventArgs()]);
                 Assert.Single(navigation.ToolRequests);
@@ -299,6 +304,13 @@ public sealed class CoreTests
                 Assert.NotNull(new TextBoxAutomationPeer(imagesFolder).GetPattern(PatternInterface.Value));
                 Assert.NotNull(new ComboBoxAutomationPeer(language).GetPattern(PatternInterface.Selection));
                 optionsWindow.Close();
+
+                var hardwareWindow = new HardwareUnavailableWindow([new ControllerSettings { UsbId = "GW-TEST", LastPort = "COM3", Model = "Greaseweazle" }]);
+                Assert.Single(Assert.IsType<System.Windows.Controls.ListBox>(hardwareWindow.FindName("MissingControllers")).Items);
+                Assert.False(string.IsNullOrWhiteSpace(Assert.IsType<System.Windows.Controls.Button>(hardwareWindow.FindName("RetryButton")).Content?.ToString()));
+                Assert.False(string.IsNullOrWhiteSpace(Assert.IsType<System.Windows.Controls.Button>(hardwareWindow.FindName("SettingsButton")).Content?.ToString()));
+                Assert.False(string.IsNullOrWhiteSpace(Assert.IsType<System.Windows.Controls.Button>(hardwareWindow.FindName("ContinueButton")).Content?.ToString()));
+                hardwareWindow.Close();
 
                 foreach (var verb in new[] { "info", "bandwidth", "rpm", "seek", "pin", "reset", "delays", "update", "align" })
                 {
@@ -1021,6 +1033,64 @@ public sealed class CoreTests
 
         Assert.Empty(scanned);
         Assert.Empty(runner.Commands);
+    }
+
+    [Fact]
+    public async Task StartupHardwareMonitorPersistsAvailabilityWithoutChangingConfiguration()
+    {
+        var controller = new ControllerSettings { UsbId = "GW-ONE", LastPort = "COM3", Model = "Greaseweazle V4.1", IsAvailable = true };
+        var drive = new DriveSettings { ControllerUsbId = "GW-ONE", Selection = "A", Size = "3.5", Density = "HD" };
+        var settings = new AppSettings { GwExecutablePath = WindowsPowerShell, Controllers = [controller], Drives = [drive] };
+        var scanned = new ControllerSettings { UsbId = "GW-ONE", LastPort = "COM3", Model = controller.Model, IsAvailable = false };
+        var store = new RecordingSettingsStore();
+        var monitor = new StartupHardwareMonitor(new StaticHardwareRegistry([scanned]), store);
+
+        var result = await monitor.CheckAsync(settings);
+
+        Assert.True(result.Performed);
+        Assert.Same(scanned, Assert.Single(result.MissingControllers));
+        Assert.Same(drive, Assert.Single(settings.Drives));
+        Assert.Equal("GW-ONE", settings.Drives[0].ControllerUsbId);
+        Assert.Equal(1, store.SaveCount);
+    }
+
+    [Fact]
+    public async Task StartupHardwareMonitorUpdatesPortSilentlyWhenControllerIsFound()
+    {
+        var settings = new AppSettings
+        {
+            GwExecutablePath = WindowsPowerShell,
+            Controllers = [new() { UsbId = "GW-ONE", LastPort = "COM3", IsAvailable = true }]
+        };
+        var found = new ControllerSettings { UsbId = "GW-ONE", LastPort = "COM5", IsAvailable = true };
+        var store = new RecordingSettingsStore();
+        var monitor = new StartupHardwareMonitor(new StaticHardwareRegistry([found]), store);
+
+        var result = await monitor.CheckAsync(settings);
+
+        Assert.True(result.Performed);
+        Assert.Empty(result.MissingControllers);
+        Assert.Equal("COM5", Assert.Single(settings.Controllers).LastPort);
+        Assert.Equal(1, store.SaveCount);
+    }
+
+    [Fact]
+    public async Task StartupHardwareMonitorMarksConfiguredControllersUnavailableWithoutHostTools()
+    {
+        var settings = new AppSettings
+        {
+            GwExecutablePath = @"Z:\missing\gw.exe",
+            Controllers = [new() { UsbId = "GW-ONE", LastPort = "COM3", IsAvailable = true }]
+        };
+        var store = new RecordingSettingsStore();
+        var monitor = new StartupHardwareMonitor(new StaticHardwareRegistry([]), store);
+
+        var result = await monitor.CheckAsync(settings);
+
+        Assert.True(result.Performed);
+        Assert.False(Assert.Single(settings.Controllers).IsAvailable);
+        Assert.Single(result.MissingControllers);
+        Assert.Equal(1, store.SaveCount);
     }
 
     [Fact]
@@ -2586,6 +2656,12 @@ public sealed class CoreTests
         public IReadOnlyList<SerialDevice> FindSerialDevices() => devices;
     }
 
+    private sealed class StaticHardwareRegistry(IReadOnlyList<ControllerSettings> controllers) : IHardwareRegistry
+    {
+        public Task<IReadOnlyList<ControllerSettings>> ScanAsync(string executable, IReadOnlyList<ControllerSettings> configuredControllers, CancellationToken cancellationToken = default) =>
+            Task.FromResult(controllers);
+    }
+
     private sealed class MutableSerialDeviceDiscovery(IReadOnlyList<SerialDevice> devices) : ISerialDeviceDiscovery
     {
         public IReadOnlyList<SerialDevice> Devices { get; set; } = devices;
@@ -2657,9 +2733,16 @@ public sealed class CoreTests
         public int ProfilePromptCount { get; private set; }
         public IReadOnlyList<ConversionConflictDecision>? ConflictResult { get; set; }
         public ReadConflictChoice? ReadConflictResult { get; set; }
+        public MissingHardwareChoice MissingHardwareResult { get; set; } = MissingHardwareChoice.Continue;
+        public List<IReadOnlyList<ControllerSettings>> MissingHardwareRequests { get; } = [];
         public string? PromptProfileName(string? initialName = null) { ProfilePromptCount++; return ProfileNameResult; }
         public ReadConflictChoice? ResolveReadConflict(string outputPath) => ReadConflictResult;
         public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs) => ConflictResult;
+        public MissingHardwareChoice ResolveMissingHardware(IReadOnlyList<ControllerSettings> controllers)
+        {
+            MissingHardwareRequests.Add(controllers);
+            return MissingHardwareResult;
+        }
     }
 
     private sealed class RecordingWindowNavigationService : IWindowNavigationService
