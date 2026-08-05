@@ -12,7 +12,7 @@ Ce socle offre une intégration Windows mature, une exécution fiable de process
 
 ### Les traductions utilisent-elles des fichiers `.lng` ?
 
-Non. Les ressources natives `.resx` de .NET sont retenues. Les écrans utilisent des clés et aucun texte français ou anglais n’est codé directement dans la vue.
+Non. Les ressources natives `.resx` de .NET sont retenues. Les écrans utilisent des clés et aucun texte d’une langue distribuée n’est codé directement dans la vue. Le français et l’anglais servent de références; le même système doit maintenant être étendu à plusieurs langues dans l’application et dans l’installateur.
 
 ### Que fait le profil Par défaut ?
 

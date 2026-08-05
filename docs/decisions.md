@@ -7,10 +7,17 @@
 - Couverture complète des commandes de Greaseweazle Host Tools 1.23.
 - Exécution de `gw.exe` sans fenêtre console externe.
 - Commande générée et journaux visibles dans l’application.
-- Interface française et anglaise.
-- Ressources de traduction `.resx` : `Strings.resx`, `Strings.fr.resx` et `Strings.en.resx`.
+- Interface multilingue. Le français et l’anglais restent les langues de référence; plusieurs langues supplémentaires doivent couvrir à la fois le logiciel et l’installateur.
+- Ressources de traduction `.resx` : `Strings.resx`, `Strings.fr.resx`, `Strings.en.resx`, puis un catalogue complet par culture ajoutée.
+- Langues supplémentaires demandées : allemand, espagnol, italien, russe, chinois, japonais, portugais brésilien, néerlandais et polonais.
+- Traduction et relecture réalisées avec ChatGPT/Codex, complétées par les tests de parité et la vérification dans l’interface; aucun relecteur externe n’est requis.
+- L’interface fonctionnelle actuelle sera reprise écran par écran avec l’utilisateur et ne constitue pas une validation visuelle définitive.
 - Tous les textes visibles passent par des clés de ressources; aucune chaîne française ou anglaise ne doit être écrite directement dans une vue.
 - Le projet doit être complet : les capacités annoncées ne sont pas découpées en une « première version » volontairement incomplète.
+- L’utilisateur décide du périmètre fonctionnel. Une fonction qu’il valide doit être réalisée complètement, pas réduite à un minimum provisoire.
+- Les idées supplémentaires découvertes pendant l’étude sont présentées comme propositions et ne deviennent pas des décisions ou du travail autorisé sans validation explicite de l’utilisateur.
+- L’architecture peut réserver une extension future, mais cette anticipation ne doit ni ajouter silencieusement une fonction ni modifier le comportement demandé.
+- Aide → À propos contient des crédits et références transparents pour les dépendances, outils et sources techniques réellement utilisés ou étudiés, avec liens cliquables.
 
 ## Socle technique
 

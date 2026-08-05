@@ -78,10 +78,15 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Encore à réaliser avant achèvement
 
+- Implémenter la notification discrète de nouvelle version de GW GUI prévue au plan, distincte des mises à jour des Host Tools et du firmware.
+- Généraliser la sélection de langue actuellement codée pour français/anglais, puis traduire et valider l’application et l’installateur dans les langues retenues.
+- Renforcer le test du paquet réel afin de contrôler le code de sortie et la sauvegarde des réglages lors de la fermeture.
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
 - Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
 - Compléter l’extraction détaillée des secteurs pour les formats rares, renforcer la qualification des anomalies et valider les décodeurs sur un corpus de captures physiques libres.
 - Renforcer la couverture de tests d’intégration/UI/matériel.
+
+La classification détaillée, les prérequis et les tâches nécessitant l’aide de l’utilisateur sont maintenus dans `remaining-work.md`.
 
 ## Validation actuelle
 

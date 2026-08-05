@@ -13,7 +13,7 @@ Ce journal conserve les questions posées, la réponse retenue et les précision
 | Technologie | C#/.NET 10, WPF, MVVM et SkiaSharp après étude des alternatives. |
 | Priorité technique | Fiabilité et réactivité avant performance théorique maximale ou multiplateforme. |
 | Style | Moderne Windows 10/11, clair et aéré; intuitivité avant décoration. |
-| Langues | Français et anglais via ressources `.resx`. |
+| Langues | Français et anglais via ressources `.resx` comme références initiales. Extension demandée à plusieurs langues pour le logiciel et l’installateur; langues supplémentaires à confirmer. |
 
 ## Fenêtre et exécution
 
@@ -21,7 +21,7 @@ Ce journal conserve les questions posées, la réponse retenue et les précision
 |---|---|
 | Navigation principale | Onglets par fonctions utiles; pas de menu radio comme l’ancien GUI. Le regroupement exact découle de l’étude de chaque opération. |
 | Commande générée | Visible, copiable, en lecture seule; champ séparé d’arguments experts. |
-| Journaux | Intégrés à la fenêtre, jamais dans une console DOS externe; panneau masquable. Position exacte à étudier. |
+| Journaux | Intégrés à la fenêtre, jamais dans une console DOS externe; panneau inférieur redimensionnable et masquable. |
 | Bouton principal | Exécuter devient Arrêter pendant la commande; confirmation avant interruption. |
 | Barre d’état | Port COM, lecteur actif si nécessaire, profil actif, diode d’état avec infobulle, progression par face/piste. |
 | Progression au repos | Masquée hors opération. |

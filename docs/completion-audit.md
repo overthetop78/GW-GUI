@@ -44,6 +44,14 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Windows 11 et comportement SmartScreen. Les parcours interactifs anglais/français ainsi que l’installation, la mise à niveau et la désinstallation silencieuses isolées sont prouvés sous Windows 10 22H2.
 - Décodage des formats rares sur un corpus de captures physiques libres et représentatives.
 
+## Pas encore implémenté
+
+- Notification discrète d’une nouvelle release de GW GUI, sans téléchargement ni installation automatique. La mise à jour des Host Tools existe déjà mais ne remplace pas cette fonction distincte prévue au plan.
+- Catalogue multilingue demandé pour l’application et l’installateur. Le français et l’anglais sont complets et testés; les choix binaires doivent être généralisés avant d’ajouter et valider les autres langues.
+- Contrôle automatisé du code de sortie et de la réécriture valide des réglages lorsque le véritable paquet portable est fermé. La correction de fermeture possède déjà ses tests WPF; cette vérification supplémentaire concerne le paquet publié.
+
+La liste détaillée et les dépendances utilisateur se trouvent dans `remaining-work.md`.
+
 ## État architectural
 
 - `HardwareRoutingPolicy` raisonne désormais par contrôleur, et la garde commune des opérations empêche l’usage d’un lecteur indisponible. Les tests directs et WPF portent la suite à 232 réussites.

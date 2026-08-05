@@ -53,7 +53,7 @@ L’écran de l’ancien GUI affiche trop d’informations simultanément. Lectu
 
 - Le panneau se déplie dans l’onglet; ce n’est ni une fenêtre séparée ni un sous-onglet.
 - Catégories fonctionnelles prévues : pistes/faces, lecture/récupération, synchronisation/vitesse, matériel spécialisé.
-- Les catégories exactes seront validées lors de la maquette.
+- Les catégories retenues sont : pistes et faces, lecture et récupération, rotation et index, traitement du signal et matériel spécialisé.
 - Une case active chaque option facultative et son champ associé.
 - Décocher retire l’argument mais conserve temporairement la valeur saisie.
 - Le libellé reste humain; l’infobulle montre le drapeau `gw`, son rôle et un exemple.

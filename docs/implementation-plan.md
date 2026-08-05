@@ -34,7 +34,7 @@ Le dépôt est public sous licence MIT. Les préversions `0.x` servent au dével
 - Une seule commande `gw` active; multiconversions séquentielles.
 - Arrêt gracieux puis terminaison de l’arbre de processus en dernier recours.
 - Catalogue convivial recoupé avec l’aide et les diskdefs de la version active de `gw`, puis validé par tests.
-- Ressources `Strings.resx`, `Strings.fr.resx`, `Strings.en.resx`; aucun texte visible codé dans les vues.
+- Ressources `.resx` et catalogue extensible de langues; aucun texte visible codé dans les vues. Le français et l’anglais restent les références, puis l’application et l’installateur sont traduits dans plusieurs langues selon la feuille de route `remaining-work.md`.
 
 ## Fonctions
 
@@ -92,6 +92,24 @@ Le dépôt est public sous licence MIT. Les préversions `0.x` servent au dével
 - Notifications GitHub discrètes, sans mise à jour automatique.
 - Builds non signés, sommes SHA-256 et explication SmartScreen.
 - GitHub Actions Windows : compilation, tests, analyse, ZIP, installateur, SHA-256 et releases.
+
+## Traductions de l’application et de l’installateur
+
+- Remplacer la sélection binaire français/anglais par un catalogue de cultures extensible.
+- Conserver une ressource `.resx` complète par langue avec contrôle automatique de parité des clés et repli vers l’anglais.
+- Traduire tous les écrans, dialogues, messages dynamiques, infobulles et noms accessibles; ne pas traduire les arguments `gw` ni les identifiants techniques.
+- Ajouter les mêmes langues à Inno Setup et étendre les tests silencieux, interactifs et de mise à niveau de l’installateur.
+- Vérifier visuellement les textes longs, raccourcis clavier, formats numériques et captures dans chaque langue.
+- Publier uniquement les traductions relues; conserver le glossaire et les règles de contribution dans la documentation.
+- Langues demandées après les références française et anglaise : allemand, espagnol, italien, russe, chinois, japonais, portugais brésilien, néerlandais et polonais.
+- Traduction et seconde passe de relecture assurées avec ChatGPT/Codex, puis contrôles automatiques de parité et vérification réelle de la mise en page.
+
+## Version, build et révision
+
+- Version produit choisie pour une publication; numéro de build propre à une compilation; révision liée au commit exact.
+- Métadonnées centralisées et cohérentes pour l’EXE et toutes les DLL GW GUI, y compris lorsqu’un projet est compilé séparément.
+- `AssemblyVersion` stable pour la compatibilité, `FileVersion` numérique Windows et `InformationalVersion` contenant build, révision numérique et hash court.
+- Affichage complet dans À propos et contrôle automatique du paquet; convention détaillée dans `versioning.md`.
 
 ## Validation
 

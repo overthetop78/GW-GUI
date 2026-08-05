@@ -14,7 +14,7 @@ La fenêtre principale n’utilise pas la page d’accueil de l’ancien GUI ave
 - **Visualisation** : analyser visuellement un fichier SCP.
 - **Outils** : uniquement les actions de maintenance retenues dans la fenêtre principale, actuellement Effacer et Nettoyer les têtes.
 
-La liste finale des onglets sera confirmée après l’étude de toutes les opérations. Les diagnostics et contrôles matériels ne deviennent pas des onglets.
+La liste finale retenue contient ces cinq onglets. Les diagnostics et contrôles matériels ne deviennent pas des onglets.
 
 ## Menu Options — Validé
 
