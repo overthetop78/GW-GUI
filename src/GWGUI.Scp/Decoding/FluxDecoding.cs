@@ -1,6 +1,6 @@
 namespace GWGUI.Scp.Decoding;
 
-public enum FluxStructureKind { Sync, IdAddressMark, DataAddressMark, DeletedDataAddressMark, AmigaSync, AppleAddress, AppleData, CommodoreSync, CommodoreHeader, TimingAnomaly }
+public enum FluxStructureKind { Sync, IdAddressMark, DataAddressMark, DeletedDataAddressMark, AmigaSync, AppleAddress, AppleData, CommodoreSync, CommodoreHeader, FormatHeader, FormatData, TimingAnomaly }
 public sealed record FluxStructure(FluxStructureKind Kind, int BitOffset, int BitLength, string Description);
 public sealed record DecodedSector(byte Cylinder, byte Head, byte Number, byte SizeCode, int SizeBytes, bool HeaderCrcValid, int BitOffset);
 public sealed record FluxDecodeResult(string DecoderId, string DisplayName, double Confidence, double EstimatedBitCellTicks, IReadOnlyList<FluxStructure> Structures, IReadOnlyList<byte> DecodedBytes, IReadOnlyList<DecodedSector>? Sectors = null);
@@ -14,7 +14,7 @@ public interface IFluxDecoder
 
 public sealed class FluxDecoderRegistry
 {
-    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new RawFluxDecoder()];
+    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new RawFluxDecoder()];
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => x.Decode(revolution)).OrderByDescending(x => x.Confidence).First();
     public FluxDecodeResult Decode(string id, ScpRevolution revolution) => Decoders.First(x => x.Id == id).Decode(revolution);
     public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
@@ -25,6 +25,53 @@ public sealed class FluxDecoderRegistry
             .ThenByDescending(candidate => candidate.Result.Structures.Count)
             .First();
     }
+}
+
+public abstract class SignatureMfmDecoder : IFluxDecoder
+{
+    public abstract string Id { get; }
+    public abstract string DisplayName { get; }
+    protected abstract IReadOnlyList<(byte[] Pattern, FluxStructureKind Kind, string Description)> Signatures { get; }
+    protected virtual double ExpectedStructures => 10;
+
+    public FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>();
+        for (var offset = 0; offset < stream.Bits.Length; offset++)
+        {
+            foreach (var signature in Signatures)
+            {
+                if (!stream.MatchBytes(offset, signature.Pattern)) continue;
+                structures.Add(new(signature.Kind, offset, signature.Pattern.Length * 8, signature.Description));
+                offset += signature.Pattern.Length * 8 - 1; break;
+            }
+        }
+        return new(Id, DisplayName, Math.Min(1, structures.Count / ExpectedStructures), stream.BitCellTicks, structures, []);
+    }
+}
+
+public sealed class MembrainMfmDecoder : SignatureMfmDecoder
+{
+    public override string Id => "membrain.mfm"; public override string DisplayName => "Membrain MFM";
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x44, 0x89, 0x55, 0x54], FluxStructureKind.FormatHeader, "Membrain sector header"), ([0x44, 0x89, 0x55, 0x4a], FluxStructureKind.FormatData, "Membrain sector data")];
+}
+
+public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
+{
+    public override string Id => "aed6200p.mfm"; public override string DisplayName => "AED 6200P MFM";
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x50, 0x94], FluxStructureKind.FormatHeader, "AED 6200P C6 header mark"), ([0xa5, 0x08], FluxStructureKind.FormatData, "AED 6200P data mark")];
+}
+
+public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
+{
+    public override string Id => "qdmo5.mfm"; public override string DisplayName => "QD MO5 MFM";
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0x44,0x91], FluxStructureKind.FormatHeader, "QD MO5 sector header"), ([0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0x91,0x44], FluxStructureKind.FormatData, "QD MO5 sector data")];
+}
+
+public sealed class CenturionMfmDecoder : SignatureMfmDecoder
+{
+    public override string Id => "centurion.mfm"; public override string DisplayName => "Centurion MFM";
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x91, 0x22, 0x44, 0x89], FluxStructureKind.FormatHeader, "Centurion sector mark"), ([0xaa, 0xaa, 0xaa, 0xa9], FluxStructureKind.FormatData, "Centurion data mark")];
 }
 
 public sealed class IsoFmDecoder : IFluxDecoder
@@ -179,11 +226,16 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
     }
     public static double EstimateBitCell(IReadOnlyList<uint> intervals, bool fm = false)
     {
-        if (intervals.Count == 0) return 1; var sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return 1;
+        if (intervals.Count == 0) return 1;
+        // The first interval starts at the index pulse rather than at a previous flux transition,
+        // so it is not a complete cell-spacing sample and must not drive the PLL estimate.
+        var samples = fm ? intervals : intervals.Skip(1);
+        var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return 1;
         var sampleLength = Math.Max(1, sorted.Length / 5); var lowerCluster = sorted.Take(sampleLength).ToArray(); var robustLower = lowerCluster[lowerCluster.Length / 2];
         return Math.Max(1, fm ? robustLower : robustLower / 2d);
     }
     public bool Match(int offset, ushort pattern) { if (offset + 16 > Bits.Length) return false; for (var bit = 0; bit < 16; bit++) if (Bits[offset + bit] != ((pattern & (1 << (15 - bit))) != 0)) return false; return true; }
     public bool Match(int offset, uint pattern, int length) { if (length is < 1 or > 32 || offset + length > Bits.Length) return false; for (var bit = 0; bit < length; bit++) if (Bits[offset + bit] != ((pattern & (1u << (length - 1 - bit))) != 0)) return false; return true; }
+    public bool MatchBytes(int offset, IReadOnlyList<byte> pattern) { if (offset + pattern.Count * 8 > Bits.Length) return false; for (var index = 0; index < pattern.Count; index++) for (var bit = 0; bit < 8; bit++) if (Bits[offset + index * 8 + bit] != ((pattern[index] & (1 << (7 - bit))) != 0)) return false; return true; }
     public byte DecodeMfmByte(int offset) { byte value = 0; for (var bit = 0; bit < 8 && offset + bit * 2 + 1 < Bits.Length; bit++) if (Bits[offset + bit * 2 + 1]) value |= (byte)(1 << (7 - bit)); return value; }
 }

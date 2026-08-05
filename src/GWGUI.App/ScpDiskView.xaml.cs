@@ -83,8 +83,8 @@ public partial class ScpDiskView : UserControl
 
     private static SKColor StructureColor(FluxStructureKind kind) => kind switch
     {
-        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader => new SKColor(255, 205, 64),
-        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData => new SKColor(67, 220, 255),
+        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(255, 205, 64),
+        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(67, 220, 255),
         FluxStructureKind.DeletedDataAddressMark or FluxStructureKind.TimingAnomaly => new SKColor(255, 75, 96),
         _ => new SKColor(196, 117, 255)
     };

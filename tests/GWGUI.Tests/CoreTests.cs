@@ -548,6 +548,20 @@ public sealed class CoreTests
         Assert.Contains("apple2.gcr", ids); Assert.Contains("commodore.gcr", ids);
     }
 
+    [Theory]
+    [InlineData("membrain.mfm", "44895554", FluxStructureKind.FormatHeader)]
+    [InlineData("aed6200p.mfm", "5094", FluxStructureKind.FormatHeader)]
+    [InlineData("qdmo5.mfm", "A914A914A914A914A9144491", FluxStructureKind.FormatHeader)]
+    [InlineData("centurion.mfm", "91224489", FluxStructureKind.FormatHeader)]
+    public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
+    {
+        var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var bits = string.Concat(Enumerable.Repeat("10", 50)) + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
+        var intervals = BitsToIntervals(bits, 40);
+        var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Contains(result.Structures, structure => structure.Kind == expectedKind);
+    }
+
     [Fact]
     public void DecoderRegistrySelectsMostConvincingRevolution()
     {
