@@ -984,7 +984,10 @@ public sealed class CoreTests
         byte checksum = 0;
         foreach (var value in new[] { volume, cylinder, sectorNumber }) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
         static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
-        var raw = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(volume), Reverse(cylinder), Reverse(sectorNumber), Reverse(checksum)) + "001";
+        var data = Enumerable.Range(0, 256).Select(index => (byte)(index * 9)).ToArray(); byte dataChecksum = 0;
+        foreach (var value in data) { dataChecksum ^= value; dataChecksum = (byte)((dataChecksum >> 7) | (dataChecksum << 1)); }
+        var raw = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(volume), Reverse(cylinder), Reverse(sectorNumber), Reverse(checksum)) + string.Concat(Enumerable.Repeat("10", 20)) +
+                  EncodeFmBytes(new byte[] { 0, 0, 0, 0xbf }.Concat(data.Select(Reverse)).Append(Reverse(dataChecksum)).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
         var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
@@ -995,6 +998,37 @@ public sealed class CoreTests
         Assert.Equal(256, sector.SizeBytes);
         Assert.True(sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
+        Assert.Equal(data, result.DecodedBytes.TakeLast(256));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void HeathkitDecoderValidatesDataChecksum(bool corruptData)
+    {
+        const byte volume = 2, cylinder = 12, sectorNumber = 5;
+        static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
+        byte headerChecksum = 0; foreach (var value in new[] { volume, cylinder, sectorNumber }) { headerChecksum ^= value; headerChecksum = (byte)((headerChecksum >> 7) | (headerChecksum << 1)); }
+        var data = Enumerable.Range(0, 256).Select(index => (byte)(index * 7)).ToArray(); byte dataChecksum = 0; foreach (var value in data) { dataChecksum ^= value; dataChecksum = (byte)((dataChecksum >> 7) | (dataChecksum << 1)); } if (corruptData) dataChecksum++;
+        var raw = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(volume), Reverse(cylinder), Reverse(sectorNumber), Reverse(headerChecksum)) + string.Concat(Enumerable.Repeat("10", 20)) +
+                  EncodeFmBytes(new byte[] { 0, 0, 0, 0xbf }.Concat(data.Select(Reverse)).Append(Reverse(dataChecksum)).ToArray()) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
+    }
+
+    [Fact]
+    public void HeathkitDecoderReportsUnavailableIntegrityWithoutDataBlock()
+    {
+        const byte volume = 2, cylinder = 12, sectorNumber = 5;
+        static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
+        byte checksum = 0; foreach (var value in new[] { volume, cylinder, sectorNumber }) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
+        var raw = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(volume), Reverse(cylinder), Reverse(sectorNumber), Reverse(checksum)) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
 
     [Theory]
