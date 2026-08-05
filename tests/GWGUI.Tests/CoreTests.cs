@@ -15,6 +15,7 @@ using GWGUI.Infrastructure.Settings;
 using GWGUI.Domain.Settings;
 using GWGUI.App;
 using GWGUI.App.ViewModels;
+using GWGUI.App.Services;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
@@ -87,7 +88,8 @@ public sealed class CoreTests
             {
                 var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
                 app.InitializeComponent();
-                var window = new MainWindow();
+                var dialogs = new RecordingMessageDialogService();
+                var window = new MainWindow(dialogs);
 
                 Assert.IsType<MainWindowViewModel>(window.DataContext);
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
@@ -117,6 +119,13 @@ public sealed class CoreTests
                 Assert.True(model.Conversion.AddTags, "Conversion checkbox did not update its source");
                 model.Read.Revs.Enabled = false; model.Write.NoVerify.Enabled = false; model.Conversion.AddTags = false;
                 Assert.False(readProbe.IsChecked); Assert.False(writeProbe.IsChecked); Assert.False(convertProbe.IsChecked);
+                typeof(MainWindow).GetMethod("ShowAdvancedValidation", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
+                    .Invoke(window, [new ArgumentException("invalid value"), "Validation"]);
+                var request = Assert.Single(dialogs.Requests);
+                Assert.Equal("Validation", request.Title);
+                Assert.Equal(UserDialogButtons.Ok, request.Buttons);
+                Assert.Equal(UserDialogIcon.Warning, request.Icon);
+                Assert.Contains("invalid value", request.Message);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -2045,6 +2054,16 @@ public sealed class CoreTests
     {
         public string? Path { get; private set; }
         public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) { Path = path; return Task.FromResult(image); }
+    }
+
+    private sealed class RecordingMessageDialogService(UserDialogResult result = UserDialogResult.Ok) : IMessageDialogService
+    {
+        public List<(string Message, string Title, UserDialogButtons Buttons, UserDialogIcon Icon)> Requests { get; } = [];
+        public UserDialogResult Show(string message, string title, UserDialogButtons buttons = UserDialogButtons.Ok, UserDialogIcon icon = UserDialogIcon.None)
+        {
+            Requests.Add((message, title, buttons, icon));
+            return result;
+        }
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

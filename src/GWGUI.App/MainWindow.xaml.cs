@@ -23,6 +23,7 @@ using Microsoft.Win32;
 using GWGUI.App.Localization;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.App.ViewModels;
+using GWGUI.App.Services;
 
 namespace GWGUI.App;
 
@@ -33,6 +34,7 @@ public partial class MainWindow : Window
     private AppSettings _settings = new();
     private readonly OperationCoordinator _operation = new();
     private readonly OperationResultPresenter _operationResultPresenter = new();
+    private readonly IMessageDialogService _dialogs;
     private IImageFormatCatalog _formatCatalog = null!;
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
@@ -53,9 +55,12 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow()
+    public MainWindow() : this(null) { }
+
+    public MainWindow(IMessageDialogService? dialogs)
     {
         InitializeComponent();
+        _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -98,7 +103,7 @@ public partial class MainWindow : Window
             Grid.SetColumn(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 2 : 1);
             ScpTrackInfo.Text = LocExtension.Get("Visual.SelectTrack");
         }
-        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); MessageBox.Show(exception.Message, LocExtension.Get("Visual.Title"), MessageBoxButton.OK, MessageBoxImage.Error); }
+        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); _dialogs.Show(exception.Message, LocExtension.Get("Visual.Title"), icon: UserDialogIcon.Error); }
     }
 
     private void ScpTrack_Selected(object? sender, ScpTrack? track)
@@ -222,17 +227,17 @@ public partial class MainWindow : Window
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!ValidateDiskDefs(WriteDiskDefsEnabled, WriteDiskDefsValue, LocExtension.Get("Write.Title"))) return;
-        if (!File.Exists(WriteSourceText.Text)) { MessageBox.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (!File.Exists(WriteSourceText.Text)) { _dialogs.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Information); return; }
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
-        { MessageBox.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        { _dialogs.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information); return; }
         GwCommand command;
         try { command = BuildWriteCommand(); }
         catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Write.Title")); return; }
         var warning = LocExtension.Get(_viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
-        if (MessageBox.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        if (_dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
         WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
@@ -256,7 +261,7 @@ public partial class MainWindow : Window
         var enabled = _viewModel.Write.CaptureEnabledOptions();
         var values = _viewModel.Write.CaptureValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
-        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
+        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
     }
 
@@ -310,7 +315,7 @@ public partial class MainWindow : Window
         var enabled = _viewModel.Conversion.CaptureProfileEnabled();
         var values = _viewModel.Conversion.CaptureProfileValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, dialog.ProfileName, values, enabled);
-        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
+        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshConvertProfiles(profile.Id);
     }
 
@@ -362,12 +367,12 @@ public partial class MainWindow : Window
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!ValidateDiskDefs(ConvertDiskDefsEnabled, ConvertDiskDefsValue, LocExtension.Get("Conversion.Title"))) return;
-        if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
-        if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
+        if (!File.Exists(ConvertSourceText.Text)) { _dialogs.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
+        if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { _dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception exception) { ShowAdvancedValidation(exception, LocExtension.Get("Conversion.Title")); return; }
-        if (outputs.Count == 0) { MessageBox.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
+        if (outputs.Count == 0) { _dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
         if (existing.Length > 0)
         {
@@ -417,8 +422,8 @@ public partial class MainWindow : Window
     {
         if (_operation.IsRunning)
         {
-            var answer = MessageBox.Show(LocExtension.Get("App.OperationRunningClose"), LocExtension.Get("App.Title"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (answer != MessageBoxResult.Yes) { e.Cancel = true; return; }
+            var answer = _dialogs.Show(LocExtension.Get("App.OperationRunningClose"), LocExtension.Get("App.Title"), UserDialogButtons.YesNo, UserDialogIcon.Warning);
+            if (answer != UserDialogResult.Yes) { e.Cancel = true; return; }
             _operation.RequestCancellation();
         }
 
@@ -478,7 +483,7 @@ public partial class MainWindow : Window
         try { profile = _profiles.Save(profile); }
         catch (InvalidOperationException)
         {
-            if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
+            if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo, UserDialogIcon.Question) != UserDialogResult.Yes) return;
             profile = _profiles.Save(profile, true);
         }
         RefreshReadProfiles(profile.Id);
@@ -678,12 +683,12 @@ public partial class MainWindow : Window
     private bool ValidateDiskDefs(CheckBox enabled, TextBox path, string title)
     {
         if (enabled.IsChecked != true || File.Exists(path.Text)) return true;
-        MessageBox.Show(LocExtension.Get("Advanced.DiskDefsMissing"), title, MessageBoxButton.OK, MessageBoxImage.Warning);
+        _dialogs.Show(LocExtension.Get("Advanced.DiskDefsMissing"), title, icon: UserDialogIcon.Warning);
         return false;
     }
 
     private void ShowAdvancedValidation(Exception exception, string title) =>
-        MessageBox.Show(LocExtension.Get("Advanced.Invalid", exception.Message), title, MessageBoxButton.OK, MessageBoxImage.Warning);
+        _dialogs.Show(LocExtension.Get("Advanced.Invalid", exception.Message), title, icon: UserDialogIcon.Warning);
 
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
     {
@@ -702,23 +707,23 @@ public partial class MainWindow : Window
         if (!ValidateDiskDefs(ReadDiskDefsEnabled, ReadDiskDefsValue, LocExtension.Get("Read.Title"))) return;
         if (string.IsNullOrWhiteSpace(ReadFileName.Text))
         {
-            MessageBox.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+            _dialogs.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Information);
             return;
         }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
         {
-            MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+            _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
         }
 
         var extension = GetReadExtension();
-        if (string.IsNullOrWhiteSpace(extension)) { MessageBox.Show(LocExtension.Get("Read.TypeRequired"), LocExtension.Get("Read.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (string.IsNullOrWhiteSpace(extension)) { _dialogs.Show(LocExtension.Get("Read.TypeRequired"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Information); return; }
         var target = GetReadTarget(extension);
         if (File.Exists(target))
         {
-            var answer = MessageBox.Show(LocExtension.Get("Read.FileExists"), LocExtension.Get("Read.FileExistsTitle"), MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-            if (answer == MessageBoxResult.Cancel) { ReadFileName.Focus(); ReadFileName.SelectAll(); return; }
-            if (answer == MessageBoxResult.No)
+            var answer = _dialogs.Show(LocExtension.Get("Read.FileExists"), LocExtension.Get("Read.FileExistsTitle"), UserDialogButtons.YesNoCancel, UserDialogIcon.Warning);
+            if (answer == UserDialogResult.Cancel) { ReadFileName.Focus(); ReadFileName.SelectAll(); return; }
+            if (answer == UserDialogResult.No)
             {
                 if (ReadAutoNumber.IsChecked != true) ReadAutoNumber.IsChecked = true;
                 var kind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
@@ -882,21 +887,21 @@ public partial class MainWindow : Window
     private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
-        if (MessageBox.Show(LocExtension.Get("Maintenance.EraseConfirm"), LocExtension.Get("Maintenance.EraseTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        if (_dialogs.Show(LocExtension.Get("Maintenance.EraseConfirm"), LocExtension.Get("Maintenance.EraseTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
         await ExecuteMaintenanceAsync(BuildEraseCommand(), EraseExecuteButton);
     }
 
     private async void ExecuteClean_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
-        if (MessageBox.Show(LocExtension.Get("Maintenance.CleanConfirm"), LocExtension.Get("Maintenance.CleanTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
+        if (_dialogs.Show(LocExtension.Get("Maintenance.CleanConfirm"), LocExtension.Get("Maintenance.CleanTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
         await ExecuteMaintenanceAsync(BuildCleanCommand(), CleanExecuteButton);
     }
 
     private async Task ExecuteMaintenanceAsync(GwCommand command, Button button)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, progress, token));
@@ -906,7 +911,7 @@ public partial class MainWindow : Window
 
     private void ConfirmAndRequestStop()
     {
-        if (MessageBox.Show(this, LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+        if (_dialogs.Show(LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"), UserDialogButtons.YesNo, UserDialogIcon.Warning) == UserDialogResult.Yes)
             _operation.RequestCancellation();
     }
 
@@ -1008,7 +1013,7 @@ public partial class MainWindow : Window
         if (sender is not MenuItem { Tag: string verb }) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
         {
-            MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+            _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
         }
         var hardware = SelectedHardware();
