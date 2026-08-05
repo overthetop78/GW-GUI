@@ -54,12 +54,17 @@ Une ligne cochée sans extension explicite utilise son extension par défaut. Co
 
 Ils sont rarement nécessaires et n’ont pas besoin d’occuper la fenêtre principale. Ils s’ouvrent comme dialogues depuis Options → Diagnostics.
 
-## Points à décider
+## Décisions désormais appliquées
 
-- Disposition exacte du panneau commande/journaux.
-- Modèles et personnalisation des tags de conversion.
-- Organisation finale du menu Options et emplacement exact de la mise à jour du firmware.
-- Maquettes visuelles détaillées de chaque onglet.
-- Libellés définitifs et modèles proposés pour les tags.
-- Matrice vérifiée format de disquette ↔ extensions d’entrée/sortie.
-- Organisation exacte des catégories dans les panneaux avancés.
+- La commande et les journaux partagent un panneau inférieur réductible, intégré à la fenêtre principale.
+- Les tags de conversion utilisent des identifiants stables (`PC-720`, `ST-720`, `AMIGA-DD`, etc.) et un modèle personnalisable contenant obligatoirement `{tag}`. Le modèle initial est ` [{tag}]`.
+- Le menu Options contient les dialogues Diagnostics, Matériel, Mise à jour du firmware, historique des journaux et préférences générales.
+- La fenêtre principale utilise les onglets Lecture, Écriture, Conversion, Visualisation et Outils. Effacement et nettoyage sont regroupés dans Outils; les diagnostics rares restent des dialogues.
+- La matrice format ↔ extensions est portée par le catalogue de formats. La source détectée filtre les sorties réellement compatibles; une ligne cochée sans extension explicite utilise son extension implicite, tandis que les coches d’extensions la remplacent ou demandent plusieurs conteneurs.
+- Les paramètres rarement utilisés sont placés dans des panneaux Avancé propres à chaque opération. Ils sont mémorisés, inclus dans les profils de l’onglet et réinitialisés en choisissant le profil système permanent Par défaut.
+
+## Vérifications nécessitant encore des données réelles
+
+- Valider les commandes avec plusieurs contrôleurs et lecteurs physiques.
+- Vérifier les formats rares sur un corpus de captures libre et représentatif.
+- Ajuster, si nécessaire, l’ordre des formats à partir de retours d’usage réels sans changer le fonctionnement retenu.

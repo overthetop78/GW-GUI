@@ -109,27 +109,27 @@
                                         <CheckBox x:Name="ReadRetriesEnabled" Content="{l:Loc Read.Retries}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
                                         <TextBox x:Name="ReadRetriesValue" Width="70" Text="5" TextChanged="ReadInput_Changed" />
                                         <CheckBox x:Name="ReadTracksEnabled" Content="{l:Loc Read.Tracks}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
-                                        <TextBox x:Name="ReadTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="ReadInput_Changed" />
+                                        <TextBox x:Name="ReadTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
                                     </WrapPanel>
                                     <WrapPanel>
                                         <CheckBox x:Name="ReadSeekRetriesEnabled" Content="{l:Loc Advanced.SeekRetries}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
                                         <TextBox x:Name="ReadSeekRetriesValue" Width="70" Text="0" TextChanged="ReadInput_Changed" />
                                         <CheckBox x:Name="ReadFakeIndexEnabled" Content="{l:Loc Advanced.FakeIndex}" Margin="18,8,8,8" Checked="ReadFakeIndex_Checked" Unchecked="ReadInput_Changed" />
-                                        <TextBox x:Name="ReadFakeIndexValue" Width="90" Text="300rpm" TextChanged="ReadInput_Changed" />
+                                        <TextBox x:Name="ReadFakeIndexValue" Width="90" Text="300rpm" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
                                         <CheckBox x:Name="ReadHardSectors" Content="{l:Loc Advanced.HardSectors}" Margin="18,8" Checked="ReadHardSectors_Checked" Unchecked="ReadInput_Changed" />
                                         <CheckBox x:Name="ReadReverse" Content="{l:Loc Advanced.Reverse}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
                                     </WrapPanel>
                                     <WrapPanel>
                                         <CheckBox x:Name="ReadAdjustSpeedEnabled" Content="{l:Loc Advanced.AdjustSpeed}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
-                                        <TextBox x:Name="ReadAdjustSpeedValue" Width="90" Text="300rpm" TextChanged="ReadInput_Changed" />
+                                        <TextBox x:Name="ReadAdjustSpeedValue" Width="90" Text="300rpm" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
                                         <CheckBox x:Name="ReadPllEnabled" Content="{l:Loc Advanced.Pll}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
-                                        <TextBox x:Name="ReadPllValue" Width="180" Text="period=5:phase=60" TextChanged="ReadInput_Changed" />
+                                        <TextBox x:Name="ReadPllValue" Width="180" Text="period=5:phase=60" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.PllTip}" />
                                         <CheckBox x:Name="ReadDenselEnabled" Content="{l:Loc Advanced.DensityPin}" Margin="18,8,8,8" Checked="ReadDensel_Checked" Unchecked="ReadInput_Changed" />
                                         <ComboBox x:Name="ReadDenselValue" Width="70" SelectedIndex="0" SelectionChanged="ReadInput_Changed"><ComboBoxItem Content="H"/><ComboBoxItem Content="L"/></ComboBox>
                                         <CheckBox x:Name="ReadTg43" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="ReadTg43_Checked" Unchecked="ReadInput_Changed" />
                                     </WrapPanel>
                                     <Separator Margin="8" />
-                                    <DockPanel Margin="8,4"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ReadInput_Changed"/></DockPanel>
+                                    <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ReadInput_Changed"/></DockPanel>
                                     <WrapPanel>
                                         <CheckBox x:Name="ReadAutoNumber" Content="{l:Loc Read.AutoNumber}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
                                         <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="0" SelectionChanged="ReadInput_Changed">
@@ -220,25 +220,25 @@
                                 </WrapPanel>
                                 <WrapPanel>
                                     <CheckBox x:Name="WriteTracksEnabled" Content="{l:Loc Read.Tracks}" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
-                                    <TextBox x:Name="WriteTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="WriteInput_Changed" />
+                                    <TextBox x:Name="WriteTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
                                     <CheckBox x:Name="WritePreErase" Content="{l:Loc Advanced.PreErase}" Margin="18,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
                                     <CheckBox x:Name="WriteReverse" Content="{l:Loc Advanced.Reverse}" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
                                 </WrapPanel>
                                 <WrapPanel>
                                     <CheckBox x:Name="WriteFakeIndexEnabled" Content="{l:Loc Advanced.FakeIndex}" Margin="8" Checked="WriteFakeIndex_Checked" Unchecked="WriteInput_Changed" />
-                                    <TextBox x:Name="WriteFakeIndexValue" Width="90" Text="300rpm" TextChanged="WriteInput_Changed" />
+                                    <TextBox x:Name="WriteFakeIndexValue" Width="90" Text="300rpm" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
                                     <CheckBox x:Name="WriteHardSectors" Content="{l:Loc Advanced.HardSectors}" Margin="18,8" Checked="WriteHardSectors_Checked" Unchecked="WriteInput_Changed" />
                                     <CheckBox x:Name="WritePrecompEnabled" Content="{l:Loc Advanced.Precomp}" Margin="18,8,8,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
-                                    <TextBox x:Name="WritePrecompValue" Width="170" Text="type=mfm:40=125" TextChanged="WriteInput_Changed" />
+                                    <TextBox x:Name="WritePrecompValue" Width="170" Text="type=mfm:40=125" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Advanced.PrecompTip}" />
                                 </WrapPanel>
                                 <WrapPanel>
                                     <CheckBox x:Name="WriteDenselEnabled" Content="{l:Loc Advanced.DensityPin}" Margin="8" Checked="WriteDensel_Checked" Unchecked="WriteInput_Changed" />
                                     <ComboBox x:Name="WriteDenselValue" Width="70" SelectedIndex="0" SelectionChanged="WriteInput_Changed"><ComboBoxItem Content="H"/><ComboBoxItem Content="L"/></ComboBox>
                                     <CheckBox x:Name="WriteTg43" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="WriteTg43_Checked" Unchecked="WriteInput_Changed" />
                                 </WrapPanel>
-                                <DockPanel Margin="8,4"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseWriteDiskDefs_Click"/><CheckBox x:Name="WriteDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed"/><TextBox x:Name="WriteDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="WriteInput_Changed"/></DockPanel>
+                                <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseWriteDiskDefs_Click"/><CheckBox x:Name="WriteDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed"/><TextBox x:Name="WriteDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="WriteInput_Changed"/></DockPanel>
                                 <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,12,8,4" />
-                                <TextBox x:Name="WriteExpertArguments" Margin="8" TextChanged="WriteInput_Changed" />
+                                <TextBox x:Name="WriteExpertArguments" Margin="8" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
                             </StackPanel>
                         </Border>
                     </Expander>
@@ -300,22 +300,22 @@
                                 <Border Style="{StaticResource Card}" Margin="0,10,0,0">
                                     <StackPanel>
                                         <CheckBox x:Name="ConvertTracksEnabled" Content="{l:Loc Conversion.LimitTracks}" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
-                                        <TextBox x:Name="ConvertTracksValue" Text="c=0-79:h=0-1" Margin="0,6,0,12" TextChanged="ConvertInput_Changed" />
+                                        <TextBox x:Name="ConvertTracksValue" Text="c=0-79:h=0-1" Margin="0,6,0,12" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
                                         <WrapPanel>
                                             <CheckBox x:Name="ConvertOutTracksEnabled" Content="{l:Loc Advanced.OutputTracks}" Margin="0,0,8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
-                                            <TextBox x:Name="ConvertOutTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="ConvertInput_Changed" />
+                                            <TextBox x:Name="ConvertOutTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
                                             <CheckBox x:Name="ConvertAdjustSpeedEnabled" Content="{l:Loc Advanced.AdjustSpeed}" Margin="18,0,8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
-                                            <TextBox x:Name="ConvertAdjustSpeedValue" Width="90" Text="300rpm" TextChanged="ConvertInput_Changed" />
+                                            <TextBox x:Name="ConvertAdjustSpeedValue" Width="90" Text="300rpm" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
                                         </WrapPanel>
                                         <WrapPanel Margin="0,10,0,12">
                                             <CheckBox x:Name="ConvertPllEnabled" Content="{l:Loc Advanced.Pll}" Margin="0,0,8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
-                                            <TextBox x:Name="ConvertPllValue" Width="180" Text="period=5:phase=60" TextChanged="ConvertInput_Changed" />
+                                            <TextBox x:Name="ConvertPllValue" Width="180" Text="period=5:phase=60" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.PllTip}" />
                                             <CheckBox x:Name="ConvertHardSectors" Content="{l:Loc Advanced.HardSectors}" Margin="18,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                             <CheckBox x:Name="ConvertReverse" Content="{l:Loc Advanced.Reverse}" Margin="8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                         </WrapPanel>
-                                        <DockPanel Margin="0,0,0,12"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseConvertDiskDefs_Click"/><CheckBox x:Name="ConvertDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed"/><TextBox x:Name="ConvertDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ConvertInput_Changed"/></DockPanel>
+                                        <DockPanel Margin="0,0,0,12" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseConvertDiskDefs_Click"/><CheckBox x:Name="ConvertDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed"/><TextBox x:Name="ConvertDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ConvertInput_Changed"/></DockPanel>
                                         <TextBlock Text="{l:Loc Common.ExpertArguments}" />
-                                        <TextBox x:Name="ConvertExpertArguments" Margin="0,6,0,0" TextChanged="ConvertInput_Changed" />
+                                        <TextBox x:Name="ConvertExpertArguments" Margin="0,6,0,0" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
                                     </StackPanel>
                                 </Border>
                             </Expander>

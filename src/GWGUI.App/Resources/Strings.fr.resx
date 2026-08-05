@@ -98,4 +98,9 @@
   <data name="Read.DestinationFolder"><value>Dossier de destination</value></data>
   <data name="Status.ReadyShort"><value>Prêt</value></data><data name="Status.Running"><value>En cours</value></data><data name="Status.Success"><value>Succès</value></data><data name="Status.Error"><value>Erreur</value></data><data name="Status.Cancelled"><value>Interrompu</value></data>
   <data name="Tool.BootloaderTitle"><value>Mode bootloader</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Sélection des pistes, par exemple c=0-79:h=0-1, c=0-79/2:h=0 ou c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Vitesse ou durée positive, par exemple 300rpm, 200ms, 200000us ou 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>Paramètres PLL séparés par des deux-points, par exemple period=5:phase=60 ou period=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Précompensation d’écriture, par exemple type=mfm:40=125. Types : mfm, fm, gcr ; valeurs en nanosecondes.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Utilise un fichier diskdefs.cfg personnalisé pour ajouter ou remplacer des définitions de formats Greaseweazle.</value></data>
 </root>
