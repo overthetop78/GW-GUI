@@ -29,10 +29,11 @@ powershell -ExecutionPolicy Bypass -File scripts/package.ps1 -Version 0.1.0
 
 Le ZIP contient `portable.flag` : réglages, journaux et Host Tools gérés sont alors stockés dans `Data` à côté de l’application. L’installateur ne contient pas ce marqueur et utilise les dossiers utilisateur Windows.
 
-Après la création des paquets, le test suivant installe silencieusement l’application dans un dossier isolé sous `artifacts`, contrôle son contenu et sa version, puis vérifie sa désinstallation complète :
+Après la création des paquets, le test suivant installe silencieusement l’application dans un dossier isolé sous `artifacts`, contrôle son contenu, sa version et la langue Inno Setup sélectionnée, puis vérifie sa désinstallation complète. Il refuse de démarrer si une installation GW GUI est déjà enregistrée :
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1
+powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -InstallerLanguage english
+powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -InstallerLanguage french
 ```
 
 Un second test fabrique un ancien installateur de contrôle, effectue une mise à niveau vers le paquet courant, vérifie la version inscrite et celle de l’exécutable, puis désinstalle et nettoie tout l’état isolé. Il refuse de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur :

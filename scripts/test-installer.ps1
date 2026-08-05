@@ -1,7 +1,8 @@
 param(
     [string]$SetupPath,
     [string]$InstallDirectory,
-    [string]$ExpectedVersion = '0.1.0'
+    [string]$ExpectedVersion = '0.1.0',
+    [ValidateSet('english', 'french')][string]$InstallerLanguage = 'english'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -11,15 +12,19 @@ if ([string]::IsNullOrWhiteSpace($InstallDirectory)) { $InstallDirectory = Join-
 $setup = [IO.Path]::GetFullPath($SetupPath)
 $destination = [IO.Path]::GetFullPath($InstallDirectory)
 $artifactsRoot = [IO.Path]::GetFullPath((Join-Path $repository 'artifacts')) + [IO.Path]::DirectorySeparatorChar
+$uninstallRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{7B909A70-92B3-48E5-82CB-51A584ECE231}_is1'
 if (-not $destination.StartsWith($artifactsRoot, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'InstallDirectory must be located inside the repository artifacts directory.'
 }
 if (-not (Test-Path -LiteralPath $setup -PathType Leaf)) { throw "Installer not found: $setup" }
 if (Test-Path -LiteralPath $destination) { throw "Smoke-test destination already exists: $destination" }
+if (Test-Path -LiteralPath $uninstallRegistryPath) {
+    throw 'An installed GW GUI registration already exists. The installer smoke test refuses to replace it.'
+}
 
 $uninstaller = Join-Path $destination 'unins000.exe'
 try {
-    $install = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', "/DIR=`"$destination`"") -Wait -PassThru
+    $install = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', "/LANG=$InstallerLanguage", "/DIR=`"$destination`"") -Wait -PassThru
     if ($install.ExitCode -ne 0) { throw "Installer exited with code $($install.ExitCode)." }
 
     $required = @(
@@ -40,7 +45,12 @@ try {
     if (-not $version.StartsWith($ExpectedVersion, [StringComparison]::Ordinal)) {
         throw "Unexpected installed product version: $version (expected $ExpectedVersion)."
     }
-    [pscustomobject]@{ InstallDirectory = $destination; ProductVersion = $version; RequiredFiles = $required.Count }
+    $registration = Get-ItemProperty -LiteralPath $uninstallRegistryPath
+    $registeredLanguage = $registration.'Inno Setup: Language'
+    if ($registeredLanguage -ne $InstallerLanguage) {
+        throw "Installer registered language $registeredLanguage, expected $InstallerLanguage."
+    }
+    [pscustomobject]@{ InstallDirectory = $destination; ProductVersion = $version; InstallerLanguage = $registeredLanguage; RequiredFiles = $required.Count }
 }
 finally {
     if (Test-Path -LiteralPath $uninstaller -PathType Leaf) {
@@ -48,6 +58,8 @@ finally {
         if ($uninstall.ExitCode -ne 0) { throw "Uninstaller exited with code $($uninstall.ExitCode)." }
     }
 }
+
+if (Test-Path -LiteralPath $uninstallRegistryPath) { throw 'The uninstall registration remained after cleanup.' }
 
 if (Test-Path -LiteralPath $destination) {
     $remaining = @(Get-ChildItem -LiteralPath $destination -Force)
