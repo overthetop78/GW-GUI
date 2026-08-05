@@ -10,11 +10,35 @@ using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
 using GWGUI.Scp.Decoding;
+using GWGUI.Infrastructure.Processes;
 
 namespace GWGUI.Tests;
 
 public sealed class CoreTests
 {
+    [Fact]
+    public async Task OperationLogWriterRotatesAndKeepsCommandAndOutput()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-log-" + Guid.NewGuid().ToString("N"));
+        try
+        {
+            var writer = new RotatingOperationLogWriter(directory, maximumBytes: 220, maximumFiles: 3);
+            var command = new GwCommand("gw.exe", "read", ["disk.scp"]);
+            for (var index = 0; index < 5; index++)
+            {
+                var line = new GwOutputLine(DateTimeOffset.UtcNow, GwOutputStream.Standard, $"T{index}.0: " + new string('x', 90));
+                await writer.WriteAsync(command, new GwExecutionResult(0, false, TimeSpan.FromSeconds(1), [line]));
+            }
+
+            var files = Directory.GetFiles(directory, "operations*.log");
+            Assert.Equal(3, files.Length);
+            var current = await File.ReadAllTextAsync(Path.Combine(directory, "operations.log"));
+            Assert.Contains("gw.exe read disk.scp", current);
+            Assert.Contains("T4.0", current);
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    }
+
     [Fact]
     public void GwHelpCapabilitiesAreParsedBySection()
     {

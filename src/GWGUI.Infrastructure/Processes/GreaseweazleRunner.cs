@@ -3,7 +3,7 @@ using GWGUI.Domain.Commands;
 
 namespace GWGUI.Infrastructure.Processes;
 
-public sealed class GreaseweazleRunner : IGreaseweazleRunner
+public sealed class GreaseweazleRunner(IOperationLogWriter? logWriter = null) : IGreaseweazleRunner
 {
     private int _running;
     public bool IsRunning => Volatile.Read(ref _running) != 0;
@@ -55,7 +55,14 @@ public sealed class GreaseweazleRunner : IGreaseweazleRunner
             }
 
             started.Stop();
-            lock (gate) return new GwExecutionResult(process.ExitCode, cancelled, started.Elapsed, lines.ToArray());
+            GwExecutionResult result;
+            lock (gate) result = new GwExecutionResult(process.ExitCode, cancelled, started.Elapsed, lines.ToArray());
+            if (logWriter is not null)
+            {
+                try { await logWriter.WriteAsync(command, result, CancellationToken.None).ConfigureAwait(false); }
+                catch (Exception exception) when (exception is IOException or UnauthorizedAccessException) { }
+            }
+            return result;
         }
         finally
         {

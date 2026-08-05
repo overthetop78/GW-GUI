@@ -11,6 +11,7 @@
         <Menu>
             <MenuItem Header="{l:Loc Menu.Options}">
                 <MenuItem Header="{l:Loc Menu.Preferences}" Click="Preferences_Click" />
+                <MenuItem Header="{l:Loc Logs.History}" Click="LogHistory_Click" />
                 <Separator />
                 <MenuItem Header="{l:Loc Menu.Diagnostics}">
                     <MenuItem Header="{l:Loc Menu.Information}" Tag="info" Click="ToolCommand_Click" />
@@ -437,7 +438,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <DockPanel>
-                    <Button DockPanel.Dock="Right" Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleConsole_Click" />
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button Content="{l:Loc Common.Export}" Padding="8,2" MinHeight="24" Click="ExportConsole_Click"/><Button Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleConsole_Click" /></StackPanel>
                     <TextBlock Text="{l:Loc Common.Command}" Foreground="White" FontWeight="SemiBold" />
                 </DockPanel>
                 <TextBox Grid.Row="1" x:Name="CommandPreview" Background="Transparent" Foreground="#B7F7C3" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" />

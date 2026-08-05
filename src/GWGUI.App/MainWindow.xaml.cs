@@ -26,7 +26,7 @@ namespace GWGUI.App;
 public partial class MainWindow : Window
 {
     private readonly ISettingsStore _settingsStore;
-    private readonly IGreaseweazleRunner _runner = new GreaseweazleRunner();
+    private readonly IGreaseweazleRunner _runner;
     private AppSettings _settings = new();
     private CancellationTokenSource? _cancellation;
     private IImageFormatCatalog _formatCatalog = new BuiltInImageFormatCatalog();
@@ -40,6 +40,7 @@ public partial class MainWindow : Window
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
+    private readonly string _logsDirectory;
 
     public MainWindow()
     {
@@ -49,6 +50,8 @@ public partial class MainWindow : Window
         _formatDetector = new ImageFormatDetector(_formatCatalog);
         var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GW GUI");
         _settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
+        _logsDirectory = Path.Combine(directory, "logs");
+        _runner = new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
@@ -544,6 +547,15 @@ public partial class MainWindow : Window
     private static OperationProfile ToProfile(ProfileSettings value) => new(value.Id, Enum.TryParse<OperationKind>(value.Operation, out var operation) ? operation : OperationKind.Read, value.Name, value.Values, value.EnabledOptions);
 
     private void ToggleConsole_Click(object sender, RoutedEventArgs e) => SetConsoleVisibility(ConsolePanel.Visibility != Visibility.Visible);
+
+    private void LogHistory_Click(object sender, RoutedEventArgs e) => new LogHistoryWindow(_logsDirectory) { Owner = this }.ShowDialog();
+
+    private async void ExportConsole_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new SaveFileDialog { Filter = LocExtension.Get("Logs.ExportFilter"), FileName = $"gw-gui-{DateTime.Now:yyyyMMdd-HHmmss}.txt", DefaultExt = ".txt" };
+        if (dialog.ShowDialog(this) != true) return;
+        await File.WriteAllTextAsync(dialog.FileName, CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
+    }
 
     private void SetConsoleVisibility(bool visible)
     {

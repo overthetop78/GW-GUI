@@ -1,0 +1,7 @@
+<Window x:Class="GWGUI.App.LogHistoryWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization" Title="{l:Loc Logs.History}" Width="980" Height="620" MinWidth="720" MinHeight="420" WindowStartupLocation="CenterOwner">
+    <Grid Margin="16"><Grid.RowDefinitions><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions><Grid.ColumnDefinitions><ColumnDefinition Width="240"/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <ListBox x:Name="FilesList" DisplayMemberPath="Name" SelectionChanged="FilesList_SelectionChanged"/>
+        <TextBox x:Name="ContentText" Grid.Column="2" IsReadOnly="True" FontFamily="Consolas" AcceptsReturn="True" TextWrapping="NoWrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0"><Button x:Name="ExportButton" Content="{l:Loc Common.Export}" Click="Export_Click" IsEnabled="False"/><Button Content="{l:Loc Common.Close}" IsCancel="True"/></StackPanel>
+    </Grid>
+</Window>
