@@ -39,7 +39,9 @@ public partial class MainWindow : Window
     private readonly IBusinessDialogService _businessDialogs;
     private readonly IWindowNavigationService _navigation;
     private IImageFormatCatalog _formatCatalog = null!;
-    private IProfileStore _profiles = new InMemoryProfileStore();
+    private IProfileStore<OperationProfile> _readProfiles = new InMemoryProfileStore(OperationKind.Read);
+    private IProfileStore<OperationProfile> _writeProfiles = new InMemoryProfileStore(OperationKind.Write);
+    private IProfileStore<OperationProfile> _convertProfiles = new InMemoryProfileStore(OperationKind.Convert);
     private ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
     private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
@@ -151,7 +153,7 @@ public partial class MainWindow : Window
         RebuildFormatCatalog();
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
-        _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
+        LoadProfileStores();
         RestoreWindowPlacement();
         ConstrainToCurrentWorkArea();
         _viewModel.Read.Folder = _settings.DefaultImagesFolder;
@@ -267,7 +269,7 @@ public partial class MainWindow : Window
         var enabled = _viewModel.Write.CaptureEnabledOptions();
         var values = _viewModel.Write.CaptureValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, profileName, values, enabled);
-        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.Save(profile, true); }
+        try { profile = _writeProfiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _writeProfiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
     }
 
@@ -309,7 +311,7 @@ public partial class MainWindow : Window
         var enabled = _viewModel.Conversion.CaptureProfileEnabled();
         var values = _viewModel.Conversion.CaptureProfileValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, profileName, values, enabled);
-        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.Save(profile, true); }
+        try { profile = _convertProfiles.Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _convertProfiles.Save(profile, true); }
         RefreshConvertProfiles(profile.Id);
     }
 
@@ -436,7 +438,7 @@ public partial class MainWindow : Window
     }
 
     private IReadOnlyList<OperationProfile> LocalizedProfiles(OperationKind operation) =>
-        _profiles.Get(operation).Select(profile => profile.IsSystem ? profile with { Name = LocExtension.Get("Profile.Default") } : profile).ToArray();
+        ProfileStore(operation).GetAll().Select(profile => profile.IsSystem ? profile with { Name = LocExtension.Get("Profile.Default") } : profile).ToArray();
 
     private void ReadProfile_Changed(object sender, SelectionChangedEventArgs e)
     {
@@ -467,19 +469,35 @@ public partial class MainWindow : Window
         var enabled = _viewModel.Read.CaptureEnabledOptions();
         var values = _viewModel.Read.CaptureValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, profileName, values, enabled);
-        try { profile = _profiles.Save(profile); }
+        try { profile = _readProfiles.Save(profile); }
         catch (InvalidOperationException)
         {
             if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo, UserDialogIcon.Question) != UserDialogResult.Yes) return;
-            profile = _profiles.Save(profile, true);
+            profile = _readProfiles.Save(profile, true);
         }
         RefreshReadProfiles(profile.Id);
     }
 
     private void CaptureProfiles()
     {
-        _settings.Profiles = Enum.GetValues<OperationKind>().SelectMany(_profiles.Get).Where(x => !x.IsSystem)
+        _settings.Profiles = Enum.GetValues<OperationKind>().SelectMany(operation => ProfileStore(operation).GetAll()).Where(x => !x.IsSystem)
             .Select(x => new ProfileSettings { Id = x.Id, Operation = x.Operation.ToString(), Name = x.Name, Values = x.Values.ToDictionary(), EnabledOptions = x.EnabledOptions.ToHashSet() }).ToList();
+    }
+
+    private IProfileStore<OperationProfile> ProfileStore(OperationKind operation) => operation switch
+    {
+        OperationKind.Read => _readProfiles,
+        OperationKind.Write => _writeProfiles,
+        OperationKind.Convert => _convertProfiles,
+        _ => throw new ArgumentOutOfRangeException(nameof(operation))
+    };
+
+    private void LoadProfileStores()
+    {
+        var profiles = _settings.Profiles.Select(ToProfile).ToArray();
+        _readProfiles = new InMemoryProfileStore(OperationKind.Read, profiles.Where(profile => profile.Operation == OperationKind.Read));
+        _writeProfiles = new InMemoryProfileStore(OperationKind.Write, profiles.Where(profile => profile.Operation == OperationKind.Write));
+        _convertProfiles = new InMemoryProfileStore(OperationKind.Convert, profiles.Where(profile => profile.Operation == OperationKind.Convert));
     }
 
     private static OperationProfile ToProfile(ProfileSettings value) => new(value.Id, Enum.TryParse<OperationKind>(value.Operation, out var operation) ? operation : OperationKind.Read, value.Name, value.Values, value.EnabledOptions);
@@ -777,7 +795,7 @@ public partial class MainWindow : Window
         CaptureProfiles();
         if (_navigation.ShowOptions(_settings))
         {
-            _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
+            LoadProfileStores();
             RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
             _viewModel.Read.Folder = _settings.DefaultImagesFolder;
             RefreshHardwareSelector();

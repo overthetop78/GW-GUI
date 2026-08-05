@@ -28,6 +28,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Effacement, nettoyage, diagnostics et commandes matérielles intégrés.
 - Les commandes Diagnostics/Matériel utilisent un constructeur central validé : mesures RPM strictement positives, cylindres et délais non négatifs, broches limitées à 8/26/28 et routage `--device`/`--drive` contrôlé. Leur bouton d’exécution est désactivé tant que les champs sont invalides et leurs sorties alimentent le même journal rotatif que les opérations principales.
 - Profils propres à Lecture, Écriture et Conversion; profil système Par défaut permanent.
+- Les profils sont servis par trois magasins `IProfileStore<OperationProfile>` liés chacun à un seul onglet. Un magasin refuse à la construction comme à la sauvegarde tout profil portant une autre opération; le profil `Par défaut` de chaque onglet reste unique, permanent et immuable. La liste JSON existante est répartie entre les trois magasins au chargement puis réunie à la sauvegarde, sans rupture de compatibilité.
 - Renommage et suppression des profils utilisateur dans les Options.
 - Registre matériel persistant derrière `IHardwareRegistry` : l’implémentation Windows scanne les ports hors du thread UI, interroge `gw info --device`, fusionne les contrôleurs par numéro de série ou identifiant PNP stable et conserve les contrôleurs absents comme indisponibles. Options ne connaît plus WMI ni la construction des commandes de scan; ajout et suppression de lecteurs restent décrits par sélection, taille, densité et RPM.
 - Infrastructure bilingue `.resx` et culture chargée avant la première fenêtre. Toutes les vues utilisent désormais des clés pour leurs libellés naturels; seuls les nombres, valeurs techniques et noms natifs des langues restent littéraux. Options, diagnostics, profils, conflits, inspecteur SCP et messages dynamiques sont migrés. Un test contrôle toutes les vues et la parité exhaustive des catalogues FR/EN.
@@ -76,6 +77,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Validation actuelle
 
+- Dernière exécution complète après typage des profils : 223 tests réussis. Le test ajouté prouve le rejet d’un profil Écriture par le magasin Lecture, aussi bien au chargement qu’à la sauvegarde.
 - Dernière exécution complète : 222 tests réussis. L’inventaire détaillé ci-dessous en recensait 221 avant l’ajout du test de couverture de `IGwCommandBuilder`; ce nouveau test couvre les sept chemins Lecture, Écriture, Conversion, Effacement, Nettoyage, Outils et Info.
 
 - Compilation Release : zéro erreur et zéro avertissement.

@@ -41,6 +41,8 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## État architectural
 
+- Le contrat générique `IProfileStore<TProfile>` est concrètement séparé en trois magasins liés aux onglets Lecture, Écriture et Conversion. Chacun fournit son propre profil système immuable et rejette les profils d’une autre opération; la compatibilité du schéma JSON est conservée.
+- La dernière exécution complète compte 223 tests réussis, dont un test dédié à l’isolation des magasins de profils.
 - `IGwCommandBuilder` est désormais le contrat unique de construction pour Lecture, Écriture, Conversion, Maintenance, Diagnostics/Matériel et le scan `gw info`. Les écrans et le registre matériel dépendent de ce contrat; les constructeurs spécialisés conservent les validations propres à chaque opération.
 - La dernière exécution complète compte 222 tests réussis; le test supplémentaire contrôle explicitement les sept chemins du constructeur central.
 

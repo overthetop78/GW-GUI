@@ -922,19 +922,30 @@ public sealed class CoreTests
     [Fact]
     public void DefaultProfileCannotBeRenamedOrDeleted()
     {
-        var store = new InMemoryProfileStore();
-        var profile = store.Get(OperationKind.Read).Single();
-        Assert.Throws<InvalidOperationException>(() => store.Rename(OperationKind.Read, profile.Id, "Autre"));
-        Assert.Throws<InvalidOperationException>(() => store.Delete(OperationKind.Read, profile.Id));
+        IProfileStore<OperationProfile> store = new InMemoryProfileStore(OperationKind.Read);
+        var profile = store.GetAll().Single();
+        Assert.Throws<InvalidOperationException>(() => store.Rename(profile.Id, "Autre"));
+        Assert.Throws<InvalidOperationException>(() => store.Delete(profile.Id));
     }
 
     [Fact]
     public void SavingUnderAnotherNameCreatesTheExpectedCopy()
     {
-        var store = new InMemoryProfileStore();
+        IProfileStore<OperationProfile> store = new InMemoryProfileStore(OperationKind.Read);
         store.Save(new OperationProfile("p1", OperationKind.Read, "Disquettes récalcitrantes", new Dictionary<string, string>(), new HashSet<string> { "retries" }));
         store.Save(new OperationProfile("p2", OperationKind.Read, "Disquettes Acorn", new Dictionary<string, string>(), new HashSet<string> { "retries" }));
-        Assert.Equal(3, store.Get(OperationKind.Read).Count);
+        Assert.Equal(3, store.GetAll().Count);
+    }
+
+    [Fact]
+    public void ProfileStoreRejectsProfilesFromAnotherTab()
+    {
+        IProfileStore<OperationProfile> readProfiles = new InMemoryProfileStore(OperationKind.Read);
+        var writeProfile = new OperationProfile("write-1", OperationKind.Write, "Même nom autorisé ailleurs", new Dictionary<string, string>(), new HashSet<string>());
+
+        Assert.Throws<ArgumentException>(() => readProfiles.Save(writeProfile));
+        Assert.Throws<ArgumentException>(() => new InMemoryProfileStore(OperationKind.Read, [writeProfile]));
+        Assert.Single(readProfiles.GetAll());
     }
 
     [Fact]
