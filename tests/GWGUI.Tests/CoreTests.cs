@@ -1060,7 +1060,9 @@ public sealed class CoreTests
         byte[] prefix = [0xc6, 12, (byte)sectorSize, 3, (byte)(sectorSize >> 8)];
         var crc = TestCrc16(prefix);
         if (corruptCrc) crc ^= 1;
-        var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, (byte)sectorSize, 3, (byte)(sectorSize >> 8), (byte)(crc >> 8), (byte)crc) + "001";
+        var data = Enumerable.Range(0, sectorSize).Select(index => (byte)(index * 11)).ToArray(); var dataCrc = TestCrc16(new byte[] { 0xc0 }.Concat(data));
+        var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, (byte)sectorSize, 3, (byte)(sectorSize >> 8), (byte)(crc >> 8), (byte)crc) + "00000000" +
+                  Convert.ToString(0x508a, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
         var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
@@ -1071,6 +1073,34 @@ public sealed class CoreTests
         Assert.Equal(3, sector.Number);
         Assert.Equal(sectorSize, sector.SizeBytes);
         Assert.Equal(!corruptCrc, sector.IntegrityValid);
+        Assert.Equal(data, result.DecodedBytes.TakeLast(sectorSize));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Aed6200pDecoderValidatesVariableDataBlockCrc(bool corruptData)
+    {
+        const int sectorSize = 512; byte[] header = [0xc6, 12, 0, 3, 2]; var headerCrc = TestCrc16(header);
+        var data = Enumerable.Range(0, sectorSize).Select(index => (byte)(index * 13)).ToArray(); var dataCrc = TestCrc16(new byte[] { 0xc3 }.Concat(data)); if (corruptData) dataCrc ^= 1;
+        var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, 0, 3, 2, (byte)(headerCrc >> 8), (byte)headerCrc) + "00000000" +
+                  Convert.ToString(0x5085, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains("C3"));
+    }
+
+    [Fact]
+    public void Aed6200pDecoderReportsUnavailableIntegrityWithoutDataBlock()
+    {
+        byte[] header = [0xc6, 12, 0, 3, 2]; var crc = TestCrc16(header);
+        var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, 0, 3, 2, (byte)(crc >> 8), (byte)crc) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
 
     [Theory]
