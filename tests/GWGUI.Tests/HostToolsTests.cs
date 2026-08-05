@@ -2,6 +2,7 @@ using System.IO.Compression;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using GWGUI.Infrastructure.HostTools;
 
@@ -9,6 +10,57 @@ namespace GWGUI.Tests;
 
 public sealed class HostToolsTests
 {
+    [Fact]
+    public async Task RealHostToolsInstallationsAreDetectedAndExposeFormatCapabilitiesWhenRequested()
+    {
+        var specification = Environment.GetEnvironmentVariable("GWGUI_REAL_HOST_TOOLS");
+        if (string.IsNullOrWhiteSpace(specification)) return;
+
+        var entries = specification.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(entry => entry.Split('|', 2, StringSplitOptions.TrimEntries))
+            .ToArray();
+        Assert.True(entries.Length >= 2, "At least two real Host Tools installations are required.");
+        var managedRoot = Path.Combine(Path.GetTempPath(), "gwgui-real-host-tools-" + Guid.NewGuid().ToString("N"));
+        try
+        {
+            var installed = new List<(string Version, string ExecutablePath)>();
+            foreach (var entry in entries)
+            {
+                Assert.Equal(2, entry.Length);
+                var expectedVersion = entry[0];
+                var archivePath = Path.GetFullPath(entry[1]);
+                Assert.True(File.Exists(archivePath), $"Real Host Tools archive is missing: {archivePath}");
+                var bytes = await File.ReadAllBytesAsync(archivePath);
+                var sha256 = Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant();
+                var manager = new GwInstallationManager(new HttpClient(new StaticHandler(new ByteArrayContent(bytes))), managedRoot);
+                var installation = await manager.InstallAsync(new(
+                    expectedVersion,
+                    new Uri("https://example.test/" + Path.GetFileName(archivePath)),
+                    Path.GetFileName(archivePath),
+                    sha256));
+                Assert.True(installation.Managed);
+                Assert.Equal(expectedVersion, installation.Version);
+                Assert.True(File.Exists(installation.ExecutablePath));
+                installed.Add((expectedVersion, installation.ExecutablePath));
+            }
+
+            var detector = new GwInstallationManager(new HttpClient(), managedRoot);
+            var detected = detector.Detect();
+            var reader = new GwFormatCapabilityReader();
+            foreach (var (expectedVersion, executablePath) in installed)
+            {
+                Assert.Contains(detected, item =>
+                    Path.GetFullPath(item.ExecutablePath).Equals(Path.GetFullPath(executablePath), StringComparison.OrdinalIgnoreCase)
+                    && item.Version == expectedVersion);
+                var capabilities = await reader.ReadAsync(executablePath);
+                Assert.True(capabilities.IsKnown, $"No format capabilities were parsed from Host Tools {expectedVersion}.");
+                Assert.Contains("amiga.amigados", capabilities.FormatIds);
+                Assert.Contains(".scp", capabilities.ImageExtensions);
+            }
+        }
+        finally { if (Directory.Exists(managedRoot)) Directory.Delete(managedRoot, true); }
+    }
+
     [Fact]
     public async Task LatestReleaseSelectsTheWindowsX64Asset()
     {

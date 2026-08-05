@@ -41,4 +41,10 @@ Un second test fabrique un ancien installateur de contrôle, effectue une mise �
 powershell -ExecutionPolicy Bypass -File scripts/test-installer-upgrade.ps1 -CurrentVersion 0.1.0
 ```
 
+La compatibilité avec les distributions officielles courante et précédente des Host Tools peut être vérifiée sans matériel. Le script télécharge les ZIP x64 officiels, contrôle leur SHA-256 publié lorsqu’il existe, teste les aides Lecture/Écriture/Conversion, les installe ensemble via le gestionnaire du produit, analyse leurs formats puis supprime tous les téléchargements :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-host-tools-releases.ps1
+```
+
 Les tags Git `v*` déclenchent le même processus dans GitHub Actions et publient les trois fichiers de distribution dans une release GitHub.
