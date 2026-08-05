@@ -60,10 +60,12 @@ public partial class MainWindow : Window
     private readonly string _logsDirectory;
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
+    private bool _settingsSaveInProgress;
+    private bool _closeAfterSettingsSave;
 
-    public MainWindow() : this(null, null, null, null, null, null, null) { }
+    public MainWindow() : this(null, null, null, null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
@@ -83,7 +85,7 @@ public partial class MainWindow : Window
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
-        _settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
+        _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
@@ -435,12 +437,16 @@ public partial class MainWindow : Window
         _viewModel.Conversion.ApplySettings(_settings.Conversion.AddTags, _settings.Conversion.SelectedFormats, _settings.Conversion.ExplicitExtensions, _settings.Conversion.EnabledOptions, _settings.Conversion.OptionValues);
     }
 
-    private async void Window_Closing(object? sender, CancelEventArgs e)
+    private void Window_Closing(object? sender, CancelEventArgs e)
     {
+        if (_closeAfterSettingsSave) return;
+        e.Cancel = true;
+        if (_settingsSaveInProgress) return;
+
         if (_operation.IsRunning)
         {
             var answer = _dialogs.Show(LocExtension.Get("App.OperationRunningClose"), LocExtension.Get("App.Title"), UserDialogButtons.YesNo, UserDialogIcon.Warning);
-            if (answer != UserDialogResult.Yes) { e.Cancel = true; return; }
+            if (answer != UserDialogResult.Yes) return;
             _operation.RequestCancellation();
         }
 
@@ -455,7 +461,35 @@ public partial class MainWindow : Window
         CaptureWriteSettings();
         CaptureProfiles();
         CaptureConversionSettings();
-        await _settingsStore.SaveAsync(_settings);
+        _settingsSaveInProgress = true;
+        _ = SaveSettingsAndCloseAsync();
+    }
+
+    private async Task SaveSettingsAndCloseAsync()
+    {
+        Exception? failure = null;
+        try
+        {
+            await _settingsStore.SaveAsync(_settings).ConfigureAwait(false);
+        }
+        catch (Exception exception)
+        {
+            failure = exception;
+        }
+
+        if (Dispatcher.HasShutdownStarted || Dispatcher.HasShutdownFinished) return;
+        try
+        {
+            await Dispatcher.InvokeAsync(() =>
+            {
+                if (failure is not null)
+                    _dialogs.Show(LocExtension.Get("App.SettingsSaveFailed", failure.Message), LocExtension.Get("App.Title"), icon: UserDialogIcon.Warning);
+                _settingsSaveInProgress = false;
+                _closeAfterSettingsSave = true;
+                Close();
+            }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+        }
+        catch (TaskCanceledException) when (Dispatcher.HasShutdownStarted || Dispatcher.HasShutdownFinished) { }
     }
 
     private void RefreshReadProfiles(string? selectedId = null)

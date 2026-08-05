@@ -125,7 +125,8 @@ public sealed class CoreTests
                 var files = new RecordingFileDialogService { FolderResult = @"F:\Images" };
                 var business = new RecordingBusinessDialogService { ProfileNameResult = "Test profile" };
                 var navigation = new RecordingWindowNavigationService();
-                var window = new MainWindow(dialogs, files, business, navigation);
+                var settingsStore = new RecordingSettingsStore();
+                var window = new MainWindow(dialogs, files, business, navigation, settingsStore: settingsStore);
 
                 Assert.IsType<MainWindowViewModel>(window.DataContext);
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
@@ -263,7 +264,7 @@ public sealed class CoreTests
                 var busyDialogs = new RecordingMessageDialogService();
                 var busyNavigation = new RecordingWindowNavigationService();
                 var busyRunner = new BusyRunner();
-                var busyWindow = new MainWindow(busyDialogs, navigation: busyNavigation, runner: busyRunner);
+                var busyWindow = new MainWindow(busyDialogs, navigation: busyNavigation, runner: busyRunner, settingsStore: new RecordingSettingsStore());
                 var busySettings = Assert.IsType<AppSettings>(typeof(MainWindow).GetField("_settings", flags)!.GetValue(busyWindow));
                 busySettings.GwExecutablePath = WindowsPowerShell;
                 typeof(MainWindow).GetMethod("ToolCommand_Click", flags)!.Invoke(busyWindow, [new System.Windows.Controls.MenuItem { Tag = "rpm" }, new RoutedEventArgs()]);
@@ -272,6 +273,15 @@ public sealed class CoreTests
                 var wpfNavigation = new WpfWindowNavigationService(busyWindow, runner: busyRunner);
                 Assert.Same(busyRunner, typeof(WpfWindowNavigationService).GetField("_runner", flags)!.GetValue(wpfNavigation));
                 busyWindow.Close();
+                Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+
+                var failingSaveDialogs = new RecordingMessageDialogService();
+                var failingSaveWindow = new MainWindow(failingSaveDialogs, settingsStore: new FailingSettingsStore());
+                failingSaveWindow.Close();
+                Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                var saveFailure = Assert.Single(failingSaveDialogs.Requests);
+                Assert.Equal(UserDialogIcon.Warning, saveFailure.Icon);
+                Assert.Contains("test save failure", saveFailure.Message);
 
                 var optionsWindow = new OptionsWindow(new AppSettings());
                 var optionsNavigation = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("Navigation"));
@@ -338,6 +348,8 @@ public sealed class CoreTests
                 logWindow.Close();
 
                 window.Close();
+                Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                Assert.Equal(1, settingsStore.SaveCount);
             }
             catch (Exception exception) { failure = exception; }
             finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
@@ -2597,6 +2609,19 @@ public sealed class CoreTests
         public string? OpenFile(OpenFileRequest request) { OpenRequests.Add(request); return OpenResult; }
         public string? SaveFile(SaveFileRequest request) { SaveRequests.Add(request); return SaveResult; }
         public string? SelectFolder(SelectFolderRequest request) { FolderRequests.Add(request); return FolderResult; }
+    }
+
+    private sealed class RecordingSettingsStore : ISettingsStore
+    {
+        public int SaveCount { get; private set; }
+        public Task<AppSettings> LoadAsync(CancellationToken cancellationToken = default) => Task.FromResult(new AppSettings());
+        public Task SaveAsync(AppSettings settings, CancellationToken cancellationToken = default) { SaveCount++; return Task.CompletedTask; }
+    }
+
+    private sealed class FailingSettingsStore : ISettingsStore
+    {
+        public Task<AppSettings> LoadAsync(CancellationToken cancellationToken = default) => Task.FromResult(new AppSettings());
+        public Task SaveAsync(AppSettings settings, CancellationToken cancellationToken = default) => Task.FromException(new IOException("test save failure"));
     }
 
     private sealed class RecordingBusinessDialogService : IBusinessDialogService
