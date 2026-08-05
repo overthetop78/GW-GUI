@@ -16,6 +16,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Renommage et suppression des profils utilisateur dans les Options.
 - Registre matériel persistant : scan des ports Windows, interrogation `gw info --device`, identification stable, disponibilité, ajout et suppression de lecteurs décrits par sélection, taille, densité et RPM.
 - Infrastructure bilingue `.resx` et culture chargée avant la première fenêtre. Toutes les vues utilisent désormais des clés pour leurs libellés naturels; seuls les nombres, valeurs techniques et noms natifs des langues restent littéraux. Options, diagnostics, profils, conflits, inspecteur SCP et messages dynamiques sont migrés. Un test contrôle toutes les vues et la parité exhaustive des catalogues FR/EN.
+- Les noms de décodeurs SCP, catégories de structures, positions de bits, états CRC et détails de secteurs sont localisés dans l’application; les descriptions internes du moteur ne fuient plus dans l’inspecteur.
 - Thèmes clair, sombre et système appliqués au démarrage et après les Options; le mode système suit Windows et reprend sa couleur d’accent.
 - Taille, position multi-écran, maximisation, visibilité et hauteur de console restaurées; les positions hors écran sont rejetées.
 - Tous les boutons Arrêter demandent confirmation; l’annulation tente une fermeture normale pendant deux secondes puis termine l’arbre du processus si nécessaire.

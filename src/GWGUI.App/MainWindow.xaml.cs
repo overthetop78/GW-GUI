@@ -108,8 +108,9 @@ public partial class MainWindow : Window
         var best = _fluxDecoders.DecodeBest(track.Revolutions, choice?.Id);
         var decoded = best?.Result;
         var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => LocExtension.Get("Visual.Revolution", index + 1, revolution.FluxIntervals.Count, revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds), revolution.Rpm(_scpImage.Header.ResolutionNanoseconds))));
-        var details = decoded is null ? "" : string.Join(Environment.NewLine, decoded.Structures.Take(30).Select(x => $"• {x.Description} @ bit {x.BitOffset:N0}"));
-        var analysis = decoded is null ? "" : "\n\n" + LocExtension.Get("Visual.Analysis", decoded.DisplayName, decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count) + $"\n{LocExtension.Get("Visual.AnalysedRevolution", best!.Value.RevolutionIndex + 1)}" + (details.Length > 0 ? $"\n\n{details}" : "");
+        var details = decoded is null ? "" : string.Join(Environment.NewLine, decoded.Structures.Take(30).Select(x => $"• {StructureLabel(x.Kind)} · {LocExtension.Get("Visual.BitOffset", x.BitOffset)}"));
+        var sectors = decoded?.Sectors is not { Count: > 0 } ? "" : string.Join(Environment.NewLine, decoded.Sectors.Take(30).Select(x => LocExtension.Get("Visual.SectorDetail", x.Cylinder, x.Head, x.Number, x.SizeBytes, LocExtension.Get(x.HeaderCrcValid ? "Visual.CrcValid" : "Visual.CrcInvalid"))));
+        var analysis = decoded is null ? "" : "\n\n" + LocExtension.Get("Visual.Analysis", DecoderName(decoded.DecoderId), decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count) + $"\n{LocExtension.Get("Visual.AnalysedRevolution", best!.Value.RevolutionIndex + 1)}" + (details.Length > 0 ? $"\n\n{details}" : "") + (sectors.Length > 0 ? $"\n\n{sectors}" : "");
         ScpTrackInfo.Text = LocExtension.Get("Visual.Track", track.Head, track.Cylinder, track.TrackNumber) + $"\n\n{revolutions}{analysis}";
     }
 
@@ -131,7 +132,7 @@ public partial class MainWindow : Window
             _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)), capabilities);
             _formatDetector = new ImageFormatDetector(_formatCatalog);
         }
-        ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
+        ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
         RestoreWindowPlacement();
@@ -998,6 +999,9 @@ public partial class MainWindow : Window
         HostToolsUpdateItem.Visibility = newer ? Visibility.Visible : Visibility.Collapsed;
         if (newer) HostToolsUpdateButton.Content = LocExtension.Get("HostTools.UpdateAvailable", available!);
     }
+
+    private static string DecoderName(string id) => LocExtension.Get("Visual.DecoderName." + id);
+    private static string StructureLabel(FluxStructureKind kind) => LocExtension.Get("Visual.StructureKind." + kind);
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)
     {
