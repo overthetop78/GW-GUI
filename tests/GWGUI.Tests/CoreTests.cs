@@ -91,7 +91,8 @@ public sealed class CoreTests
                 var dialogs = new RecordingMessageDialogService();
                 var files = new RecordingFileDialogService { FolderResult = @"F:\Images" };
                 var business = new RecordingBusinessDialogService { ProfileNameResult = "Test profile" };
-                var window = new MainWindow(dialogs, files, business);
+                var navigation = new RecordingWindowNavigationService();
+                var window = new MainWindow(dialogs, files, business, navigation);
 
                 Assert.IsType<MainWindowViewModel>(window.DataContext);
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
@@ -138,6 +139,17 @@ public sealed class CoreTests
                 Assert.Equal(1, business.ProfilePromptCount);
                 var profileCombo = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("ReadProfileCombo"));
                 Assert.Contains(profileCombo.Items.Cast<OperationProfile>(), profile => profile.Name == "Test profile" && profile.Operation == OperationKind.Read);
+                var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+                typeof(MainWindow).GetMethod("About_Click", flags)!.Invoke(window, [window, new RoutedEventArgs()]);
+                typeof(MainWindow).GetMethod("LogHistory_Click", flags)!.Invoke(window, [window, new RoutedEventArgs()]);
+                typeof(MainWindow).GetMethod("Preferences_Click", flags)!.Invoke(window, [window, new RoutedEventArgs()]);
+                var settings = Assert.IsType<AppSettings>(typeof(MainWindow).GetField("_settings", flags)!.GetValue(window));
+                settings.GwExecutablePath = WindowsPowerShell;
+                typeof(MainWindow).GetMethod("ToolCommand_Click", flags)!.Invoke(window, [new System.Windows.Controls.MenuItem { Tag = "rpm" }, new RoutedEventArgs()]);
+                Assert.Equal(1, navigation.AboutCount);
+                Assert.Single(navigation.LogDirectories);
+                Assert.Single(navigation.OptionsSettings);
+                Assert.Equal("rpm", Assert.Single(navigation.ToolRequests).Verb);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -2118,6 +2130,19 @@ public sealed class CoreTests
         public IReadOnlyList<ConversionConflictDecision>? ConflictResult { get; set; }
         public string? PromptProfileName(string? initialName = null) { ProfilePromptCount++; return ProfileNameResult; }
         public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs) => ConflictResult;
+    }
+
+    private sealed class RecordingWindowNavigationService : IWindowNavigationService
+    {
+        public bool OptionsResult { get; set; }
+        public int AboutCount { get; private set; }
+        public List<AppSettings> OptionsSettings { get; } = [];
+        public List<string> LogDirectories { get; } = [];
+        public List<GwToolWindowRequest> ToolRequests { get; } = [];
+        public bool ShowOptions(AppSettings settings) { OptionsSettings.Add(settings); return OptionsResult; }
+        public void ShowLogHistory(string logsDirectory) => LogDirectories.Add(logsDirectory);
+        public void ShowAbout() => AboutCount++;
+        public void ShowGwTool(GwToolWindowRequest request) => ToolRequests.Add(request);
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

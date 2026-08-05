@@ -36,6 +36,7 @@ public partial class MainWindow : Window
     private readonly IMessageDialogService _dialogs;
     private readonly IFileDialogService _fileDialogs;
     private readonly IBusinessDialogService _businessDialogs;
+    private readonly IWindowNavigationService _navigation;
     private IImageFormatCatalog _formatCatalog = null!;
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
@@ -56,14 +57,15 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow() : this(null, null, null) { }
+    public MainWindow() : this(null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
+        _navigation = navigation ?? new WpfWindowNavigationService(this);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -496,8 +498,8 @@ public partial class MainWindow : Window
 
     private void ToggleConsole_Click(object sender, RoutedEventArgs e) => SetConsoleVisibility(ConsolePanel.Visibility != Visibility.Visible);
 
-    private void LogHistory_Click(object sender, RoutedEventArgs e) => new LogHistoryWindow(_logsDirectory) { Owner = this }.ShowDialog();
-    private void About_Click(object sender, RoutedEventArgs e) => new AboutWindow { Owner = this }.ShowDialog();
+    private void LogHistory_Click(object sender, RoutedEventArgs e) => _navigation.ShowLogHistory(_logsDirectory);
+    private void About_Click(object sender, RoutedEventArgs e) => _navigation.ShowAbout();
     private void Documentation_Click(object sender, RoutedEventArgs e)
     {
         var language = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "fr" : "en";
@@ -785,8 +787,7 @@ public partial class MainWindow : Window
     private async void Preferences_Click(object sender, RoutedEventArgs e)
     {
         CaptureProfiles();
-        var dialog = new OptionsWindow(_settings) { Owner = this };
-        if (dialog.ShowDialog() == true)
+        if (_navigation.ShowOptions(_settings))
         {
             _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
             RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
@@ -1014,8 +1015,7 @@ public partial class MainWindow : Window
             return;
         }
         var hardware = SelectedHardware();
-        var toolRunner = new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
-        new GwToolWindow(_settings.GwExecutablePath, verb, hardware?.Port, SelectedDriveArgument(), toolRunner) { Owner = this }.ShowDialog();
+        _navigation.ShowGwTool(new(_settings.GwExecutablePath, verb, hardware?.Port, SelectedDriveArgument(), _logsDirectory));
     }
 }
 
