@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.IO;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,6 +19,7 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
 using GWGUI.App.Localization;
+using GWGUI.Infrastructure.HostTools;
 
 namespace GWGUI.App;
 
@@ -128,6 +130,7 @@ public partial class MainWindow : Window
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
         UpdateProfileStatus();
+        _ = CheckHostToolsUpdateAsync();
     }
 
     private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -754,6 +757,32 @@ public partial class MainWindow : Window
         };
         ProfileStatusItem.Visibility = name is null ? Visibility.Collapsed : Visibility.Visible;
         if (name is not null) ProfileStatusText.Text = LocExtension.Get("Status.Profile", name);
+    }
+
+    private async Task CheckHostToolsUpdateAsync()
+    {
+        if (_settings.LastHostToolsCheckUtc is DateTimeOffset checkedAt && DateTimeOffset.UtcNow - checkedAt < TimeSpan.FromDays(1))
+        {
+            ShowHostToolsUpdateIfNeeded(); return;
+        }
+        try
+        {
+            var root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GW GUI", "host-tools");
+            var manager = new GwInstallationManager(new HttpClient(), root);
+            var release = await manager.GetLatestReleaseAsync();
+            _settings.AvailableHostToolsVersion = release.Version; _settings.LastHostToolsCheckUtc = DateTimeOffset.UtcNow;
+            ShowHostToolsUpdateIfNeeded();
+        }
+        catch { /* Update checks are intentionally silent. */ }
+    }
+
+    private void ShowHostToolsUpdateIfNeeded()
+    {
+        var available = _settings.AvailableHostToolsVersion;
+        var installed = _settings.InstalledHostToolsVersion;
+        var newer = Version.TryParse(available, out var availableVersion) && (!Version.TryParse(installed, out var installedVersion) || availableVersion > installedVersion);
+        HostToolsUpdateItem.Visibility = newer ? Visibility.Visible : Visibility.Collapsed;
+        if (newer) HostToolsUpdateButton.Content = LocExtension.Get("HostTools.UpdateAvailable", available!);
     }
 
     private void ToolCommand_Click(object sender, RoutedEventArgs e)

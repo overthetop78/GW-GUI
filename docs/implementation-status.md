@@ -20,6 +20,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Taille, position multi-écran, maximisation, visibilité et hauteur de console restaurées; les positions hors écran sont rejetées.
 - Tous les boutons Arrêter demandent confirmation; l’annulation tente une fermeture normale pendant deux secondes puis termine l’arbre du processus si nécessaire.
 - Barre d’état dynamique : matériel et lecteur sélectionnés, profil actif, progression par piste/face extraite des sorties officielles `T<cylindre>.<face>`; les répétitions de tentative ne sont pas comptées deux fois.
+- Gestionnaire Host Tools : détection chemin/configuration/PATH/dossier géré, consultation quotidienne discrète de la release officielle, téléchargement x64 volontaire avec progression, contrôle SHA-256 lorsqu’il est publié, extraction ZIP défensive, installations versionnées et retour au chemin précédent.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -30,7 +31,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Compléter toutes les options avancées de chaque commande `gw` et leurs profils.
 - Vérifier visuellement les deux langues et traduire progressivement les descriptions provenant encore du catalogue métier lorsqu’elles sont exposées à l’utilisateur.
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
-- Construire le gestionnaire complet des Host Tools : détection, téléchargement, choix, mises à jour signalées et retour arrière.
+- Valider le gestionnaire Host Tools avec une installation réelle et finaliser le comportement portable versus installé.
 - Compléter le catalogue dynamique depuis l’aide et les diskdefs de la version de `gw` active.
 - Étendre le moteur SCP à tous les décodeurs définis dans le plan et améliorer PLL, anomalies et visualisation des structures.
 - Ajouter journal rotatif, export, migrations et couverture de tests d’intégration/UI/matériel.
@@ -39,5 +40,5 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 41 réussis, dont parité exhaustive FR/EN, vues sans libellés naturels en dur, placement multi-écran, annulation réelle et analyse des progressions avec plages/steps/tentatives.
+- Tests automatisés : 45 réussis, dont gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.

@@ -1,0 +1,100 @@
+using System.IO.Compression;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using GWGUI.Domain.HostTools;
+
+namespace GWGUI.Infrastructure.HostTools;
+
+public sealed partial class GwInstallationManager(HttpClient httpClient, string managedRoot) : IGwInstallationManager
+{
+    private static readonly Uri LatestReleaseApi = new("https://api.github.com/repos/keirf/greaseweazle/releases/latest");
+
+    public IReadOnlyList<HostToolsInstallation> Detect(string? configuredPath = null)
+    {
+        var candidates = new List<string?> { configuredPath, Path.Combine(AppContext.BaseDirectory, "gw.exe") };
+        var path = Environment.GetEnvironmentVariable("PATH") ?? "";
+        candidates.AddRange(path.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries).Select(x => Path.Combine(x.Trim(), "gw.exe")));
+        if (Directory.Exists(managedRoot)) candidates.AddRange(Directory.EnumerateFiles(managedRoot, "gw.exe", SearchOption.AllDirectories));
+        return candidates.Where(x => !string.IsNullOrWhiteSpace(x) && File.Exists(x)).Select(x => Path.GetFullPath(x!))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Select(x => new HostToolsInstallation(x, VersionFromPath(x), IsInside(x, managedRoot))).ToArray();
+    }
+
+    public async Task<HostToolsRelease> GetLatestReleaseAsync(CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, LatestReleaseApi);
+        request.Headers.UserAgent.Add(new ProductInfoHeaderValue("GW-GUI", "0.1"));
+        using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+        await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+        using var json = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var version = json.RootElement.GetProperty("tag_name").GetString()?.TrimStart('v') ?? throw new InvalidDataException("Release tag is missing.");
+        foreach (var asset in json.RootElement.GetProperty("assets").EnumerateArray())
+        {
+            var name = asset.GetProperty("name").GetString() ?? "";
+            if (!Win64AssetRegex().IsMatch(name)) continue;
+            var url = asset.GetProperty("browser_download_url").GetString() ?? throw new InvalidDataException("Release URL is missing.");
+            var digest = asset.TryGetProperty("digest", out var digestNode) ? digestNode.GetString() : null;
+            return new(version, new Uri(url), name, digest?.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase) == true ? digest[7..] : null);
+        }
+        throw new InvalidDataException("The release has no Windows x64 archive.");
+    }
+
+    public async Task<HostToolsInstallation> InstallAsync(HostToolsRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    {
+        Directory.CreateDirectory(managedRoot);
+        var destination = Path.GetFullPath(Path.Combine(managedRoot, release.Version));
+        EnsureInside(destination, managedRoot);
+        var existing = Directory.Exists(destination) ? Directory.EnumerateFiles(destination, "gw.exe", SearchOption.AllDirectories).FirstOrDefault() : null;
+        if (existing is not null) return new(existing, release.Version, true);
+
+        var temporary = Path.GetFullPath(Path.Combine(managedRoot, ".install-" + Guid.NewGuid().ToString("N")));
+        EnsureInside(temporary, managedRoot);
+        Directory.CreateDirectory(temporary);
+        try
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, release.DownloadUri);
+            request.Headers.UserAgent.Add(new ProductInfoHeaderValue("GW-GUI", "0.1"));
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            var length = response.Content.Headers.ContentLength;
+            await using var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+            await using var archiveMemory = new MemoryStream();
+            var buffer = new byte[81920]; long copied = 0;
+            while (true)
+            {
+                var read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false); if (read == 0) break;
+                await archiveMemory.WriteAsync(buffer.AsMemory(0, read), cancellationToken).ConfigureAwait(false); copied += read;
+                if (length > 0) progress?.Report(Math.Clamp((double)copied / length.Value, 0, 1));
+            }
+            archiveMemory.Position = 0;
+            if (!string.IsNullOrWhiteSpace(release.Sha256))
+            {
+                var actual = Convert.ToHexString(SHA256.HashData(archiveMemory)).ToLowerInvariant();
+                if (!actual.Equals(release.Sha256, StringComparison.OrdinalIgnoreCase)) throw new InvalidDataException("Downloaded archive checksum does not match the release metadata.");
+                archiveMemory.Position = 0;
+            }
+            using var archive = new ZipArchive(archiveMemory, ZipArchiveMode.Read);
+            foreach (var entry in archive.Entries)
+            {
+                var target = Path.GetFullPath(Path.Combine(temporary, entry.FullName)); EnsureInside(target, temporary);
+                if (string.IsNullOrEmpty(entry.Name)) { Directory.CreateDirectory(target); continue; }
+                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+                await using var input = entry.Open(); await using var output = File.Create(target); await input.CopyToAsync(output, cancellationToken).ConfigureAwait(false);
+            }
+            var executable = Directory.EnumerateFiles(temporary, "gw.exe", SearchOption.AllDirectories).FirstOrDefault() ?? throw new InvalidDataException("gw.exe is missing from the downloaded archive.");
+            Directory.Move(temporary, destination);
+            var relative = Path.GetRelativePath(temporary, executable);
+            return new(Path.Combine(destination, relative), release.Version, true);
+        }
+        finally { if (Directory.Exists(temporary)) Directory.Delete(temporary, recursive: true); }
+    }
+
+    private static string? VersionFromPath(string path) => VersionRegex().Match(path) is { Success: true } match ? match.Groups[1].Value : null;
+    private static bool IsInside(string path, string root) { var relative = Path.GetRelativePath(Path.GetFullPath(root), Path.GetFullPath(path)); return relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar); }
+    private static void EnsureInside(string path, string root) { if (!IsInside(path, root)) throw new InvalidOperationException("Path escapes the managed Host Tools folder."); }
+    [GeneratedRegex(@"^greaseweazle-.*-win64\.zip$", RegexOptions.IgnoreCase)] private static partial Regex Win64AssetRegex();
+    [GeneratedRegex(@"(?:^|[\\/])(?:v)?(\d+\.\d+(?:\.\d+)?)(?:[\\/]|$)")] private static partial Regex VersionRegex();
+}

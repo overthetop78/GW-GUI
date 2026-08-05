@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
@@ -9,6 +10,8 @@ using GWGUI.Domain.Settings;
 using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.App.Localization;
+using GWGUI.Domain.HostTools;
+using GWGUI.Infrastructure.HostTools;
 
 namespace GWGUI.App;
 
@@ -17,6 +20,11 @@ public partial class OptionsWindow : Window
     private readonly AppSettings _settings;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<DriveSettings> _drives;
+    private readonly IGwInstallationManager _hostTools;
+    private string? _previousGwPath;
+    private string? _installedVersion;
+    private string? _availableVersion;
+    private DateTimeOffset? _lastHostToolsCheck;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> Profiles { get; } = [];
 
@@ -24,6 +32,9 @@ public partial class OptionsWindow : Window
     {
         InitializeComponent();
         _settings = settings;
+        var managedRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GW GUI", "host-tools");
+        _hostTools = new GwInstallationManager(new HttpClient(), managedRoot);
+        _previousGwPath = settings.PreviousGwExecutablePath; _installedVersion = settings.InstalledHostToolsVersion; _availableVersion = settings.AvailableHostToolsVersion; _lastHostToolsCheck = settings.LastHostToolsCheckUtc;
         _controllers = settings.Controllers.Select(x => new ControllerSettings { UsbId = x.UsbId, LastPort = x.LastPort, Model = x.Model, IsAvailable = x.IsAvailable }).ToList();
         _drives = settings.Drives.Select(x => new DriveSettings { Id = x.Id, ControllerUsbId = x.ControllerUsbId, Selection = x.Selection, Size = x.Size, Density = x.Density, NominalRpm = x.NominalRpm }).ToList();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
@@ -35,6 +46,7 @@ public partial class OptionsWindow : Window
         foreach (var operation in new[] { "Read", "Write", "Convert" }) Profiles.Add(new($"default-{operation.ToLowerInvariant()}", operation, LocExtension.Get("Profile.Default"), true));
         foreach (var profile in settings.Profiles) Profiles.Add(new(profile.Id, profile.Operation, profile.Name, false));
         ProfilesGrid.ItemsSource = Profiles;
+        HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
     }
 
     private void Navigation_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,7 +59,61 @@ public partial class OptionsWindow : Window
     private void BrowseGw_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get("Options.ExecutableFilter") };
-        if (dialog.ShowDialog(this) == true) GwPathText.Text = dialog.FileName;
+        if (dialog.ShowDialog(this) == true) SetGwPath(dialog.FileName, null);
+    }
+
+    private void DetectHostTools_Click(object sender, RoutedEventArgs e)
+    {
+        var found = _hostTools.Detect(GwPathText.Text).FirstOrDefault();
+        if (found is null) { HostToolsStatus.Text = LocExtension.Get("HostTools.None"); return; }
+        SetGwPath(found.ExecutablePath, found.Version);
+        HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", found.ExecutablePath);
+    }
+
+    private async void CheckHostTools_Click(object sender, RoutedEventArgs e)
+    {
+        await WithHostToolsBusyAsync(async () =>
+        {
+            var release = await _hostTools.GetLatestReleaseAsync(); _availableVersion = release.Version; _lastHostToolsCheck = DateTimeOffset.UtcNow;
+            HostToolsStatus.Text = LocExtension.Get("HostTools.Latest", release.Version);
+        });
+    }
+
+    private async void DownloadHostTools_Click(object sender, RoutedEventArgs e)
+    {
+        await WithHostToolsBusyAsync(async () =>
+        {
+            var release = await _hostTools.GetLatestReleaseAsync(); _availableVersion = release.Version; _lastHostToolsCheck = DateTimeOffset.UtcNow;
+            if (MessageBox.Show(this, LocExtension.Get("HostTools.DownloadConfirm", release.Version), LocExtension.Get("HostTools.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
+            HostToolsProgress.Visibility = Visibility.Visible;
+            var progress = new Progress<double>(value => HostToolsProgress.Value = value * 100);
+            var installed = await _hostTools.InstallAsync(release, progress);
+            SetGwPath(installed.ExecutablePath, installed.Version);
+            HostToolsStatus.Text = LocExtension.Get("HostTools.Installed", installed.Version ?? release.Version);
+        });
+    }
+
+    private void RollbackHostTools_Click(object sender, RoutedEventArgs e)
+    {
+        if (!File.Exists(_previousGwPath)) { MessageBox.Show(this, LocExtension.Get("HostTools.NoPrevious"), LocExtension.Get("HostTools.Title")); return; }
+        var current = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text;
+        GwPathText.Text = _previousGwPath; _previousGwPath = current; _installedVersion = null;
+        HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", GwPathText.Text);
+    }
+
+    private void SetGwPath(string path, string? version)
+    {
+        var current = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text;
+        if (!string.Equals(current, path, StringComparison.OrdinalIgnoreCase) && File.Exists(current)) _previousGwPath = current;
+        GwPathText.Text = path; _installedVersion = version;
+    }
+
+    private async Task WithHostToolsBusyAsync(Func<Task> action)
+    {
+        DownloadHostToolsButton.IsEnabled = false;
+        try { await action(); }
+        catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("HostTools.Title"), MessageBoxButton.OK, MessageBoxImage.Error); }
+        finally { DownloadHostToolsButton.IsEnabled = true; HostToolsProgress.Visibility = Visibility.Collapsed; }
     }
 
     private void BrowseImagesFolder_Click(object sender, RoutedEventArgs e)
@@ -130,6 +196,10 @@ public partial class OptionsWindow : Window
     {
         _settings.DefaultImagesFolder = ImagesFolderText.Text.Trim();
         _settings.GwExecutablePath = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text.Trim();
+        _settings.PreviousGwExecutablePath = _previousGwPath;
+        _settings.InstalledHostToolsVersion = _installedVersion;
+        _settings.AvailableHostToolsVersion = _availableVersion;
+        _settings.LastHostToolsCheckUtc = _lastHostToolsCheck;
         _settings.Language = LanguageCombo.SelectedIndex == 1 ? "en" : "fr";
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _settings.Controllers = _controllers;

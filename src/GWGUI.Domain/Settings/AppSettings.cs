@@ -9,6 +9,10 @@ public sealed class AppSettings
     public AppTheme Theme { get; set; } = AppTheme.System;
     public string DefaultImagesFolder { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
     public string? GwExecutablePath { get; set; }
+    public string? PreviousGwExecutablePath { get; set; }
+    public string? InstalledHostToolsVersion { get; set; }
+    public string? AvailableHostToolsVersion { get; set; }
+    public DateTimeOffset? LastHostToolsCheckUtc { get; set; }
     public bool ConsoleExpanded { get; set; } = true;
     public double ConsoleHeight { get; set; } = 190;
     public WindowPlacementSettings Window { get; set; } = new();
