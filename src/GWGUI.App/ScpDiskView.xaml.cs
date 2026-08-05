@@ -18,7 +18,7 @@ public partial class ScpDiskView : UserControl
     private float _panY;
     private Point? _dragOrigin;
     private readonly FluxDecoderRegistry _decoders = new();
-    private readonly Dictionary<ScpTrack, FluxDecodeResult> _decodeCache = [];
+    private readonly Dictionary<ScpTrack, (ScpRevolution Revolution, FluxDecodeResult Result)> _decodeCache = [];
     private string? _decoderId;
     public event EventHandler<ScpTrack?>? TrackSelected;
     public event EventHandler<float>? ZoomChanged;
@@ -54,19 +54,22 @@ public partial class ScpDiskView : UserControl
                 using var paint = new SKPaint { Color = color, IsAntialias = false, Style = SKPaintStyle.Stroke, StrokeWidth = Math.Max(1, ring * .82f) };
                 canvas.DrawArc(new SKRect(center.X - radius, center.Y - radius, center.X + radius, center.Y + radius), start, sweep, false, paint);
             }
-            DrawDecodedStructures(canvas, center, radius, ring, track, revolution);
+            DrawDecodedStructures(canvas, center, radius, ring, track);
             if (ReferenceEquals(track, SelectedTrack)) { using var selected = new SKPaint { Color = SKColors.White, Style = SKPaintStyle.Stroke, StrokeWidth = 2, IsAntialias = true }; canvas.DrawCircle(center, radius, selected); }
         }
         DrawCentered(canvas, center, $"Face {_head}", new SKColor(210, 218, 228));
     }
 
-    private void DrawDecodedStructures(SKCanvas canvas, SKPoint center, float radius, float ring, ScpTrack track, ScpRevolution revolution)
+    private void DrawDecodedStructures(SKCanvas canvas, SKPoint center, float radius, float ring, ScpTrack track)
     {
-        if (!_decodeCache.TryGetValue(track, out var decoded))
+        if (!_decodeCache.TryGetValue(track, out var analysis))
         {
-            decoded = _decoderId is null ? _decoders.DecodeAutomatic(revolution) : _decoders.Decode(_decoderId, revolution);
-            _decodeCache[track] = decoded;
+            var best = _decoders.DecodeBest(track.Revolutions, _decoderId);
+            if (best is null) return;
+            analysis = (track.Revolutions[best.Value.RevolutionIndex], best.Value.Result);
+            _decodeCache[track] = analysis;
         }
+        var (revolution, decoded) = analysis;
         if (decoded.Structures.Count == 0 || decoded.EstimatedBitCellTicks <= 0) return;
         var totalBits = Math.Max(1d, revolution.FluxIntervals.Sum(x => (double)x) / decoded.EstimatedBitCellTicks);
         foreach (var structure in decoded.Structures)

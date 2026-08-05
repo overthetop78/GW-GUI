@@ -17,6 +17,7 @@
 - Légende claire des couleurs, secteurs et anomalies.
 - Affichage du flux brut et des résultats de décodage.
 - Les marqueurs décodés sont dessinés directement sur chaque anneau : en-têtes/adresses, données et anomalies utilisent des couleurs distinctes de la densité du flux brut.
+- Si une piste contient plusieurs révolutions, le visualiseur compare leur décodage et affiche celle qui fournit les structures les plus fiables; l’inspecteur précise le numéro retenu.
 
 ## Décodage
 

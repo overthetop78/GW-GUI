@@ -105,10 +105,11 @@ public partial class MainWindow : Window
         var track = _selectedScpTrack;
         if (track is null || _scpImage is null || ScpTrackInfo is null) return;
         var choice = ScpDecoderCombo.SelectedItem as ScpDecoderChoice;
-        var decoded = track.Revolutions.Count == 0 ? null : choice?.Id is null ? _fluxDecoders.DecodeAutomatic(track.Revolutions[0]) : _fluxDecoders.Decode(choice.Id, track.Revolutions[0]);
+        var best = _fluxDecoders.DecodeBest(track.Revolutions, choice?.Id);
+        var decoded = best?.Result;
         var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => LocExtension.Get("Visual.Revolution", index + 1, revolution.FluxIntervals.Count, revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds), revolution.Rpm(_scpImage.Header.ResolutionNanoseconds))));
         var details = decoded is null ? "" : string.Join(Environment.NewLine, decoded.Structures.Take(30).Select(x => $"• {x.Description} @ bit {x.BitOffset:N0}"));
-        var analysis = decoded is null ? "" : "\n\n" + LocExtension.Get("Visual.Analysis", decoded.DisplayName, decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count) + (details.Length > 0 ? $"\n\n{details}" : "");
+        var analysis = decoded is null ? "" : "\n\n" + LocExtension.Get("Visual.Analysis", decoded.DisplayName, decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count) + $"\n{LocExtension.Get("Visual.AnalysedRevolution", best!.Value.RevolutionIndex + 1)}" + (details.Length > 0 ? $"\n\n{details}" : "");
         ScpTrackInfo.Text = LocExtension.Get("Visual.Track", track.Head, track.Cylinder, track.TrackNumber) + $"\n\n{revolutions}{analysis}";
     }
 

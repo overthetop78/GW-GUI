@@ -17,6 +17,14 @@ public sealed class FluxDecoderRegistry
     public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new RawFluxDecoder()];
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => x.Decode(revolution)).OrderByDescending(x => x.Confidence).First();
     public FluxDecodeResult Decode(string id, ScpRevolution revolution) => Decoders.First(x => x.Id == id).Decode(revolution);
+    public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
+    {
+        if (revolutions.Count == 0) return null;
+        return revolutions.Select((revolution, index) => (RevolutionIndex: index, Result: decoderId is null ? DecodeAutomatic(revolution) : Decode(decoderId, revolution)))
+            .OrderByDescending(candidate => candidate.Result.Confidence)
+            .ThenByDescending(candidate => candidate.Result.Structures.Count)
+            .First();
+    }
 }
 
 public sealed class IsoFmDecoder : IFluxDecoder

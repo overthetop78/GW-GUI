@@ -548,6 +548,17 @@ public sealed class CoreTests
         Assert.Contains("apple2.gcr", ids); Assert.Contains("commodore.gcr", ids);
     }
 
+    [Fact]
+    public void DecoderRegistrySelectsMostConvincingRevolution()
+    {
+        var weak = new ScpRevolution(8_000_000, 2, [40u, 40u]);
+        var prologues = string.Concat(Enumerable.Repeat(Convert.ToString(0xD5AA96, 2).PadLeft(24, '0') + "1", 8));
+        var strongIntervals = BitsToIntervals(prologues, 40);
+        var strong = new ScpRevolution(8_000_000, (uint)strongIntervals.Count, strongIntervals);
+        var best = new FluxDecoderRegistry().DecodeBest([weak, strong], "apple2.gcr");
+        Assert.NotNull(best); Assert.Equal(1, best.Value.RevolutionIndex); Assert.Equal("apple2.gcr", best.Value.Result.DecoderId);
+    }
+
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
     private static string EncodeFmBytes(params byte[] values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "1" + (((value >> (7 - bit)) & 1) != 0 ? "1" : "0"))));
     private static List<uint> BitsToIntervals(string bits, uint cellTicks) { var result = new List<uint>(); var cells = 0; foreach (var bit in bits) { cells++; if (bit == '1') { result.Add((uint)cells * cellTicks); cells = 0; } } return result; }
