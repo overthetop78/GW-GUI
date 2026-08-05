@@ -2,7 +2,7 @@ namespace GWGUI.Domain.Settings;
 
 public static class SettingsMigrator
 {
-    public const int CurrentVersion = 6;
+    public const int CurrentVersion = 7;
 
     public static AppSettings Migrate(AppSettings settings)
     {
@@ -20,6 +20,7 @@ public static class SettingsMigrator
                 case 3: MigrateV3ToV4(settings); break;
                 case 4: MigrateV4ToV5(settings); break;
                 case 5: MigrateV5ToV6(settings); break;
+                case 6: MigrateV6ToV7(settings); break;
                 default: throw new NotSupportedException($"No migration exists for settings schema {settings.SchemaVersion}.");
             }
         }
@@ -68,12 +69,19 @@ public static class SettingsMigrator
         settings.SchemaVersion = 6;
     }
 
+    private static void MigrateV6ToV7(AppSettings settings)
+    {
+        settings.UnconfiguredControllers = [];
+        settings.SchemaVersion = 7;
+    }
+
     private static void Normalize(AppSettings settings)
     {
         settings.Language = string.IsNullOrWhiteSpace(settings.Language) ? "fr" : settings.Language;
         settings.DefaultImagesFolder ??= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];
+        settings.UnconfiguredControllers ??= [];
         settings.Drives ??= [];
         settings.Read ??= new ReadUiSettings();
         settings.Write ??= new AdvancedUiSettings();

@@ -967,10 +967,10 @@ public sealed class CoreTests
 
         var scanned = await registry.ScanAsync("gw.exe", configured);
 
-        var disconnected = Assert.Single(scanned, controller => controller.UsbId == "GW-OLD-001");
+        var disconnected = Assert.Single(scanned.ConfiguredControllers, controller => controller.UsbId == "GW-OLD-001");
         Assert.False(disconnected.IsAvailable);
         Assert.Equal("COM3", disconnected.LastPort);
-        var discovered = Assert.Single(scanned, controller => controller.UsbId == "GW-NEW-123");
+        var discovered = Assert.Single(scanned.UnconfiguredControllers, controller => controller.UsbId == "GW-NEW-123");
         Assert.True(discovered.IsAvailable);
         Assert.Equal("COM9", discovered.LastPort);
         Assert.Equal("Greaseweazle V4.1", discovered.Model);
@@ -996,12 +996,13 @@ public sealed class CoreTests
         });
         IHardwareRegistry registry = new GreaseweazleHardwareRegistry(discovery, runner);
 
-        var initial = await registry.ScanAsync("gw.exe", []);
+        var initialScan = await registry.ScanAsync("gw.exe", []);
+        var initial = initialScan.UnconfiguredControllers;
         Assert.Equal(2, initial.Count);
         Assert.All(initial, controller => Assert.True(controller.IsAvailable));
 
         discovery.Devices = [new("COM7", "PNP-B", "Greaseweazle B", 0x1209, 0x4d69)];
-        var disconnected = await registry.ScanAsync("gw.exe", initial);
+        var disconnected = (await registry.ScanAsync("gw.exe", initial)).ConfiguredControllers;
         var controllerA = Assert.Single(disconnected, controller => controller.UsbId == "GW-A");
         Assert.False(controllerA.IsAvailable);
         Assert.Equal("COM3", controllerA.LastPort);
@@ -1014,7 +1015,7 @@ public sealed class CoreTests
             new("COM9", "PNP-A", "Greaseweazle A", 0x1209, 0x4d69),
             new("COM7", "PNP-B", "Greaseweazle B", 0x1209, 0x4d69)
         ];
-        var reconnected = await registry.ScanAsync("gw.exe", disconnected);
+        var reconnected = (await registry.ScanAsync("gw.exe", disconnected)).ConfiguredControllers;
         Assert.Equal(2, reconnected.Count);
         Assert.All(reconnected, controller => Assert.True(controller.IsAvailable));
         Assert.Equal("COM9", reconnected.Single(controller => controller.UsbId == "GW-A").LastPort);
@@ -1031,7 +1032,8 @@ public sealed class CoreTests
 
         var scanned = await registry.ScanAsync("gw.exe", []);
 
-        Assert.Empty(scanned);
+        Assert.Empty(scanned.ConfiguredControllers);
+        Assert.Empty(scanned.UnconfiguredControllers);
         Assert.Empty(runner.Commands);
     }
 
@@ -1091,6 +1093,39 @@ public sealed class CoreTests
         Assert.False(Assert.Single(settings.Controllers).IsAvailable);
         Assert.Single(result.MissingControllers);
         Assert.Equal(1, store.SaveCount);
+    }
+
+    [Fact]
+    public async Task StartupHardwareMonitorReportsNewControllerWithoutConfiguringIt()
+    {
+        var settings = new AppSettings { GwExecutablePath = WindowsPowerShell };
+        var detected = new ControllerSettings { UsbId = "GW-NEW", UsbSerialNumber = "GW-NEW", LastPort = "COM7", IsAvailable = true };
+        var store = new RecordingSettingsStore();
+        var monitor = new StartupHardwareMonitor(new StaticHardwareRegistry([], [detected]), store);
+
+        var result = await monitor.CheckAsync(settings);
+
+        Assert.Same(detected, Assert.Single(result.NewControllers));
+        Assert.Empty(settings.Controllers);
+        Assert.Empty(settings.UnconfiguredControllers);
+        Assert.Equal(1, store.SaveCount);
+    }
+
+    [Fact]
+    public async Task StartupHardwareMonitorRemembersDeclinedControllerAndDoesNotAskAgain()
+    {
+        var remembered = new ControllerSettings { UsbId = "GW-IGNORED", UsbSerialNumber = "GW-IGNORED", LastPort = "COM4", IsAvailable = false };
+        var detected = new ControllerSettings { UsbId = "GW-IGNORED", UsbSerialNumber = "GW-IGNORED", LastPort = "COM9", IsAvailable = true };
+        var settings = new AppSettings { GwExecutablePath = WindowsPowerShell, UnconfiguredControllers = [remembered] };
+        var monitor = new StartupHardwareMonitor(new StaticHardwareRegistry([], [detected]), new RecordingSettingsStore());
+
+        var result = await monitor.CheckAsync(settings);
+
+        Assert.Empty(result.NewControllers);
+        var retained = Assert.Single(settings.UnconfiguredControllers);
+        Assert.Equal("COM9", retained.LastPort);
+        Assert.True(retained.IsAvailable);
+        Assert.Empty(settings.Controllers);
     }
 
     [Fact]
@@ -2656,10 +2691,10 @@ public sealed class CoreTests
         public IReadOnlyList<SerialDevice> FindSerialDevices() => devices;
     }
 
-    private sealed class StaticHardwareRegistry(IReadOnlyList<ControllerSettings> controllers) : IHardwareRegistry
+    private sealed class StaticHardwareRegistry(IReadOnlyList<ControllerSettings> controllers, IReadOnlyList<ControllerSettings>? unconfigured = null) : IHardwareRegistry
     {
-        public Task<IReadOnlyList<ControllerSettings>> ScanAsync(string executable, IReadOnlyList<ControllerSettings> configuredControllers, CancellationToken cancellationToken = default) =>
-            Task.FromResult(controllers);
+        public Task<HardwareScanResult> ScanAsync(string executable, IReadOnlyList<ControllerSettings> configuredControllers, CancellationToken cancellationToken = default) =>
+            Task.FromResult(new HardwareScanResult(controllers, unconfigured ?? []));
     }
 
     private sealed class MutableSerialDeviceDiscovery(IReadOnlyList<SerialDevice> devices) : ISerialDeviceDiscovery
@@ -2752,10 +2787,13 @@ public sealed class CoreTests
         public List<AppSettings> OptionsSettings { get; } = [];
         public List<string> LogDirectories { get; } = [];
         public List<GwToolWindowRequest> ToolRequests { get; } = [];
+        public DriveSettings? DriveResult { get; set; }
+        public List<IReadOnlyList<ControllerSettings>> DriveRequests { get; } = [];
         public bool ShowOptions(AppSettings settings) { OptionsSettings.Add(settings); return OptionsResult; }
         public void ShowLogHistory(string logsDirectory) => LogDirectories.Add(logsDirectory);
         public void ShowAbout() => AboutCount++;
         public void ShowGwTool(GwToolWindowRequest request) => ToolRequests.Add(request);
+        public DriveSettings? ConfigureDrive(IReadOnlyList<ControllerSettings> controllers) { DriveRequests.Add(controllers); return DriveResult; }
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

@@ -17,6 +17,7 @@ public sealed class AppSettings
     public double ConsoleHeight { get; set; } = 190;
     public WindowPlacementSettings Window { get; set; } = new();
     public List<ControllerSettings> Controllers { get; set; } = [];
+    public List<ControllerSettings> UnconfiguredControllers { get; set; } = [];
     public List<DriveSettings> Drives { get; set; } = [];
     public ReadUiSettings Read { get; set; } = new();
     public AdvancedUiSettings Write { get; set; } = new();

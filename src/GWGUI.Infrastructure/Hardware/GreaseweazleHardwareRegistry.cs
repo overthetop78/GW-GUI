@@ -11,13 +11,14 @@ public sealed class GreaseweazleHardwareRegistry(
 {
     private readonly IGwCommandBuilder commandBuilder = commandBuilder ?? new GwCommandBuilder();
 
-    public async Task<IReadOnlyList<ControllerSettings>> ScanAsync(
+    public async Task<HardwareScanResult> ScanAsync(
         string executable,
         IReadOnlyList<ControllerSettings> configuredControllers,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(executable);
         var controllers = configuredControllers.Select(CloneUnavailable).ToList();
+        var unconfigured = new List<ControllerSettings>();
         var serialDevices = await Task.Run(discovery.FindSerialDevices, cancellationToken);
         foreach (var serial in serialDevices.Where(GreaseweazleDeviceMatcher.IsCandidate))
         {
@@ -31,7 +32,7 @@ public sealed class GreaseweazleHardwareRegistry(
             if (controller is null)
             {
                 controller = new ControllerSettings { UsbId = usbId };
-                controllers.Add(controller);
+                unconfigured.Add(controller);
             }
             controller.LastPort = serial.Port;
             controller.Model = parsed.Model ?? serial.DisplayName;
@@ -42,7 +43,7 @@ public sealed class GreaseweazleHardwareRegistry(
             controller.ProductId = serial.ProductId;
             controller.IsAvailable = true;
         }
-        return controllers;
+        return new(controllers, unconfigured);
     }
 
     private static ControllerSettings CloneUnavailable(ControllerSettings source) => new()

@@ -68,11 +68,13 @@
                         <DataGridTextColumn Header="{l:Loc Hardware.Port}" Binding="{Binding Port}" Width="90" />
                         <DataGridTextColumn Header="{l:Loc Hardware.UsbId}" Binding="{Binding UsbId}" Width="*" />
                         <DataGridTextColumn Header="{l:Loc Hardware.Drive}" Binding="{Binding Description}" Width="200" />
+                        <DataGridTextColumn Header="{l:Loc Hardware.ConfigurationState}" Binding="{Binding ConfigurationState}" Width="150" />
                         <DataGridCheckBoxColumn Header="{l:Loc Hardware.Available}" Binding="{Binding Available}" Width="90" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="ScanButton" Content="{l:Loc Hardware.Scan}" Click="ScanHardware_Click" />
+                    <Button Content="{l:Loc Hardware.Configure}" Click="ConfigureDetected_Click" />
                     <Button Content="{l:Loc Hardware.AddDrive}" Click="AddDrive_Click" />
                     <Button Content="{l:Loc Common.Delete}" Click="RemoveHardware_Click" />
                 </StackPanel>

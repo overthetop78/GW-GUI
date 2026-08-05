@@ -141,4 +141,10 @@
   <data name="Hardware.StartupSettings"><value>Paramètres du matériel</value></data>
   <data name="Hardware.StartupContinue"><value>Continuer sans ce lecteur</value></data>
   <data name="Hardware.StartupCheckFailed"><value>La vérification du matériel a échoué : {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Nouveau Greaseweazle détecté</value></data>
+  <data name="Hardware.NewDetected"><value>{0} a été détecté sur {1}. Voulez-vous configurer son lecteur maintenant ?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Configuration</value></data>
+  <data name="Hardware.Configured"><value>Configuré</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Détecté, non configuré</value></data>
+  <data name="Hardware.Configure"><value>Configurer</value></data>
 </root>

@@ -79,3 +79,6 @@
 - Le démarrage vérifie automatiquement la présence des contrôleurs déjà configurés sans supprimer, remplacer ni reconfigurer leurs lecteurs.
 - Si le même contrôleur est retrouvé sur un autre COM, seul son port courant est actualisé. Un contrôleur absent reste mémorisé comme déconnecté.
 - En cas d’absence, le dialogue propose une nouvelle recherche, l’ouverture des paramètres du matériel ou la poursuite sans le lecteur. Les opérations nécessitant ce lecteur sont désactivées jusqu’à sa reconnexion.
+- Un nouveau Greaseweazle détecté n’est jamais configuré automatiquement. L’application demande une seule fois si son lecteur doit être défini.
+- En cas de refus, le contrôleur est conservé dans la liste « détecté, non configuré » et la question n’est pas reposée aux démarrages suivants. Il peut être configuré ultérieurement depuis les Options.
+- La reconnexion d’un contrôleur configuré ne déclenche aucune nouvelle configuration : son lecteur et ses réglages existants sont réutilisés.

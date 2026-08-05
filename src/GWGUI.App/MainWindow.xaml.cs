@@ -199,10 +199,28 @@ public partial class MainWindow : Window
                 RefreshHardwareSelector();
                 await _settingsStore.SaveAsync(_settings);
                 _dialogs.Show(LocExtension.Get("Hardware.StartupCheckFailed", exception.Message), LocExtension.Get("Hardware.StartupTitle"), icon: UserDialogIcon.Warning);
-                check = new(true, _settings.Controllers.ToArray());
+                check = new(true, _settings.Controllers.ToArray(), []);
             }
             if (!check.Performed) return;
             RefreshHardwareSelector();
+            foreach (var controller in check.NewControllers)
+            {
+                var configure = _dialogs.Show(
+                    LocExtension.Get("Hardware.NewDetected", controller.Model, controller.LastPort),
+                    LocExtension.Get("Hardware.NewDetectedTitle"), UserDialogButtons.YesNo, UserDialogIcon.Question) == UserDialogResult.Yes;
+                if (configure)
+                {
+                    _settings.Controllers.Add(controller);
+                    var drive = _navigation.ConfigureDrive([controller]);
+                    if (drive is not null) _settings.Drives.Add(drive);
+                }
+                else
+                {
+                    _settings.UnconfiguredControllers.Add(controller);
+                }
+                await _settingsStore.SaveAsync(_settings);
+                RefreshHardwareSelector();
+            }
             var missing = check.MissingControllers;
             if (missing.Count == 0) return;
 

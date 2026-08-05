@@ -12,6 +12,7 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.App.Localization;
 using GWGUI.Domain.HostTools;
 using GWGUI.Infrastructure.HostTools;
+using GWGUI.App.Services;
 
 namespace GWGUI.App;
 
@@ -19,6 +20,7 @@ public partial class OptionsWindow : Window
 {
     private readonly AppSettings _settings;
     private readonly List<ControllerSettings> _controllers;
+    private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
     private readonly IGwInstallationManager _hostTools;
     private readonly IHardwareRegistry _hardwareRegistry;
@@ -49,6 +51,7 @@ public partial class OptionsWindow : Window
             Model = x.Model,
             IsAvailable = x.IsAvailable
         }).ToList();
+        _unconfiguredControllers = settings.UnconfiguredControllers.Select(CloneController).ToList();
         _drives = settings.Drives.Select(x => new DriveSettings { Id = x.Id, ControllerUsbId = x.ControllerUsbId, Selection = x.Selection, Size = x.Size, Density = x.Density, NominalRpm = x.NominalRpm }).ToList();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = settings.GwExecutablePath;
@@ -159,7 +162,8 @@ public partial class OptionsWindow : Window
         {
             var scanned = await _hardwareRegistry.ScanAsync(GwPathText.Text, _controllers);
             _controllers.Clear();
-            _controllers.AddRange(scanned);
+            _controllers.AddRange(scanned.ConfiguredControllers);
+            MergeUnconfigured(scanned.UnconfiguredControllers);
             RefreshHardwareRows();
         }
         catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("Hardware.ScanTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -172,12 +176,32 @@ public partial class OptionsWindow : Window
         if (dialog.ShowDialog() == true && dialog.Drive is not null) { _drives.Add(dialog.Drive); RefreshHardwareRows(); }
     }
 
+    private void ConfigureDetected_Click(object sender, RoutedEventArgs e)
+    {
+        if (DrivesGrid.SelectedItem is not HardwareRow { Configured: false } row) return;
+        var controller = _unconfiguredControllers.FirstOrDefault(item => item.UsbId == row.UsbId);
+        if (controller is null) return;
+        _unconfiguredControllers.Remove(controller);
+        _controllers.Add(controller);
+        var dialog = new DriveEditorWindow([controller]) { Owner = this };
+        if (dialog.ShowDialog() == true && dialog.Drive is not null) _drives.Add(dialog.Drive);
+        RefreshHardwareRows();
+    }
+
     private void RemoveHardware_Click(object sender, RoutedEventArgs e)
     {
         if (DrivesGrid.SelectedItem is not HardwareRow row) return;
         if (row.DriveId is not null) _drives.RemoveAll(x => x.Id == row.DriveId);
         else if (MessageBox.Show(this, LocExtension.Get("Options.RemoveHardware"), LocExtension.Get("Options.HardwareTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-        { _controllers.RemoveAll(x => x.UsbId == row.UsbId); _drives.RemoveAll(x => x.ControllerUsbId == row.UsbId); }
+        {
+            if (row.Configured)
+            {
+                var removed = _controllers.FirstOrDefault(x => x.UsbId == row.UsbId);
+                _controllers.RemoveAll(x => x.UsbId == row.UsbId); _drives.RemoveAll(x => x.ControllerUsbId == row.UsbId);
+                if (removed is not null && !_unconfiguredControllers.Any(x => StartupHardwareMonitor.SameController(x, removed))) _unconfiguredControllers.Add(removed);
+            }
+            else _unconfiguredControllers.RemoveAll(x => x.UsbId == row.UsbId);
+        }
         RefreshHardwareRows();
     }
 
@@ -187,10 +211,35 @@ public partial class OptionsWindow : Window
         foreach (var controller in _controllers)
         {
             var drives = _drives.Where(x => x.ControllerUsbId == controller.UsbId).ToArray();
-            if (drives.Length == 0) Hardware.Add(new(null, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.NoDrive"), controller.IsAvailable));
-            foreach (var drive in drives) Hardware.Add(new(drive.Id, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.Description", drive.Size, drive.Density, drive.Selection, drive.NominalRpm is null ? "" : $" · {drive.NominalRpm} RPM"), controller.IsAvailable));
+            if (drives.Length == 0) Hardware.Add(new(null, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.NoDrive"), controller.IsAvailable, true, LocExtension.Get("Hardware.Configured")));
+            foreach (var drive in drives) Hardware.Add(new(drive.Id, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.Description", drive.Size, drive.Density, drive.Selection, drive.NominalRpm is null ? "" : $" · {drive.NominalRpm} RPM"), controller.IsAvailable, true, LocExtension.Get("Hardware.Configured")));
+        }
+        foreach (var controller in _unconfiguredControllers)
+            Hardware.Add(new(null, controller.LastPort, controller.UsbId, controller.Model, controller.IsAvailable, false, LocExtension.Get("Hardware.NotConfiguredState")));
+    }
+
+    private void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers)
+    {
+        foreach (var controller in _unconfiguredControllers) controller.IsAvailable = false;
+        foreach (var detected in detectedControllers)
+        {
+            var known = _unconfiguredControllers.FirstOrDefault(item => StartupHardwareMonitor.SameController(item, detected));
+            if (known is null) _unconfiguredControllers.Add(detected);
+            else
+            {
+                known.UsbSerialNumber = detected.UsbSerialNumber; known.PnpDeviceId = detected.PnpDeviceId;
+                known.LastUsbLocation = detected.LastUsbLocation; known.VendorId = detected.VendorId; known.ProductId = detected.ProductId;
+                known.LastPort = detected.LastPort; known.Model = detected.Model; known.IsAvailable = detected.IsAvailable;
+            }
         }
     }
+
+    private static ControllerSettings CloneController(ControllerSettings source) => new()
+    {
+        UsbId = source.UsbId, UsbSerialNumber = source.UsbSerialNumber, PnpDeviceId = source.PnpDeviceId,
+        LastUsbLocation = source.LastUsbLocation, VendorId = source.VendorId, ProductId = source.ProductId,
+        LastPort = source.LastPort, Model = source.Model, IsAvailable = source.IsAvailable
+    };
 
     private void RenameProfile_Click(object sender, RoutedEventArgs e)
     {
@@ -222,6 +271,7 @@ public partial class OptionsWindow : Window
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _settings.Conversion.TagPattern = TagPatternText.Text;
         _settings.Controllers = _controllers;
+        _settings.UnconfiguredControllers = _unconfiguredControllers;
         _settings.Drives = _drives;
         var retained = Profiles.Where(x => !x.IsSystem).ToDictionary(x => x.Id);
         _settings.Profiles = _settings.Profiles.Where(x => retained.ContainsKey(x.Id)).Select(x => { x.Name = retained[x.Id].Name; return x; }).ToList();
@@ -229,7 +279,7 @@ public partial class OptionsWindow : Window
     }
 }
 
-public sealed record HardwareRow(string? DriveId, string Port, string UsbId, string Description, bool Available);
+public sealed record HardwareRow(string? DriveId, string Port, string UsbId, string Description, bool Available, bool Configured, string ConfigurationState);
 public sealed record ProfileOptionRow(string Id, string Operation, string Name, bool IsSystem)
 {
     public string OperationLabel => Operation switch { "Read" => LocExtension.Get("Tab.Read"), "Write" => LocExtension.Get("Tab.Write"), "Convert" => LocExtension.Get("Tab.Convert"), _ => Operation };

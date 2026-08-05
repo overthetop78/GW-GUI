@@ -16,6 +16,7 @@ public interface IWindowNavigationService
     void ShowLogHistory(string logsDirectory);
     void ShowAbout();
     void ShowGwTool(GwToolWindowRequest request);
+    DriveSettings? ConfigureDrive(IReadOnlyList<ControllerSettings> controllers);
 }
 
 public sealed class WpfWindowNavigationService : IWindowNavigationService
@@ -43,5 +44,10 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
     public void ShowGwTool(GwToolWindowRequest request)
     {
         new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, _runner, _commandBuilder) { Owner = _owner }.ShowDialog();
+    }
+    public DriveSettings? ConfigureDrive(IReadOnlyList<ControllerSettings> controllers)
+    {
+        var dialog = new DriveEditorWindow(controllers) { Owner = _owner };
+        return dialog.ShowDialog() == true ? dialog.Drive : null;
     }
 }
