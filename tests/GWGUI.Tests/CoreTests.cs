@@ -64,11 +64,13 @@ public sealed class CoreTests
                 var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));
                 var readRevs = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ReadRevsEnabled"));
                 var writeNoVerify = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("WriteNoVerify"));
+                var convertTags = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ConvertTags"));
                 Assert.NotNull(BindingOperations.GetBindingExpression(hardwareText, System.Windows.Controls.TextBlock.TextProperty));
                 Assert.NotNull(BindingOperations.GetBindingExpression(progress, System.Windows.Controls.Primitives.RangeBase.ValueProperty));
                 Assert.Equal("Read.FileName", BindingOperations.GetBindingExpression(readFileName, System.Windows.Controls.TextBox.TextProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Read.Revs.Enabled", BindingOperations.GetBindingExpression(readRevs, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Write.NoVerify.Enabled", BindingOperations.GetBindingExpression(writeNoVerify, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
+                Assert.Equal("Conversion.AddTags", BindingOperations.GetBindingExpression(convertTags, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -1074,6 +1076,49 @@ public sealed class CoreTests
         Assert.True(model.FakeIndex.Enabled);
         Assert.Equal("--foo bar", model.CaptureValues()["expert"]);
         Assert.Contains("diskdefs", model.CaptureEnabledOptions());
+    }
+
+    [Fact]
+    public void ConversionViewModelDefaultProfileClearsFormatsTagsAndOptionalArguments()
+    {
+        var model = new ConversionOperationViewModel();
+        model.ApplyProfile(new HashSet<string> { "tags", "tracks", "format:ibm.720" }, new Dictionary<string, string>
+        {
+            ["tracks"] = "c=0-39:h=0", ["extensions:ibm.720"] = ".ima,.img", ["expert"] = "--raw"
+        });
+        Assert.True(model.AddTags);
+        Assert.Contains("ibm.720", model.SelectedFormats);
+
+        model.ApplyProfile(new HashSet<string>(), new Dictionary<string, string>());
+
+        Assert.False(model.AddTags);
+        Assert.Empty(model.SelectedFormats);
+        Assert.Empty(model.ExplicitExtensions);
+        Assert.Empty(model.BuildOptions());
+        Assert.Equal("", model.ExpertArguments);
+    }
+
+    [Fact]
+    public void ConversionViewModelRoundTripsMultipleFormatsAndExplicitExtensions()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        var model = new ConversionOperationViewModel { AddTags = true };
+        model.Tracks.Enabled = true;
+        model.Tracks.Value = "c=0-79:h=0-1";
+        model.SetFormat("ibm.720", true, [".ima", ".img"]);
+        model.SetFormat("atarist.720", true, []);
+
+        var enabled = model.CaptureProfileEnabled();
+        var values = model.CaptureProfileValues();
+        var restored = new ConversionOperationViewModel();
+        restored.ApplyProfile(enabled, values);
+        var selections = restored.BuildSelections(catalog.Formats).ToArray();
+
+        Assert.True(restored.AddTags);
+        Assert.Equal(2, selections.Length);
+        Assert.True(selections.Single(x => x.FormatId == "ibm.720").ExplicitExtensions.SetEquals([".ima", ".img"]));
+        Assert.Empty(selections.Single(x => x.FormatId == "atarist.720").ExplicitExtensions);
+        Assert.Equal([new EnabledOption("--tracks", "c=0-79:h=0-1")], restored.BuildOptions());
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

@@ -19,7 +19,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.
 - Les réglages avancés de Lecture, Écriture et Conversion possèdent des infobulles FR/EN indiquant l’argument `gw`, son rôle, les incompatibilités utiles et un exemple lorsqu’une valeur est attendue.
-- La compilation Release et 130 tests automatisés réussissent; un test STA charge réellement le XAML principal et vérifie les liaisons de statut/progression ainsi que des options Lecture/Écriture. Des tests sans fenêtre contrôlent nommage, incrément, profils, exclusions, arguments et vérification sûre par défaut; des vecteurs bit à bit contrôlent les extractions et checksums valides comme corrompus NorthStar/Heathkit.
+- La compilation Release et 132 tests automatisés réussissent; un test STA charge réellement le XAML principal et vérifie les liaisons de statut/progression ainsi que des options des trois opérations. Des tests sans fenêtre contrôlent nommage, incrément, profils, exclusions, multiconversion, extensions, tags, arguments et vérification sûre par défaut; des vecteurs bit à bit contrôlent les extractions et checksums valides comme corrompus NorthStar/Heathkit.
 
 ## Partiellement prouvé
 
@@ -36,4 +36,4 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## Écart architectural restant
 
-- La solution est séparée en Application, Domaine, Infrastructure, moteur SCP et Tests. L’état transversal et tout l’état éditable de Lecture/Écriture sont liés à des ViewModels observables, mais le formulaire Conversion utilise encore beaucoup de code-behind. La migration MVVM avance donc sans être encore présentée comme achevée.
+- La solution est séparée en Application, Domaine, Infrastructure, moteur SCP et Tests. L’état transversal et tout l’état éditable des trois opérations sont liés à des ViewModels observables. Le code-behind conserve encore l’orchestration des dialogues, de l’exécution et du placement des contrôles dynamiques de formats; la migration MVVM avance donc sans être encore présentée comme achevée.

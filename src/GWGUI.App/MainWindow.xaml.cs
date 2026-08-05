@@ -147,11 +147,10 @@ public partial class MainWindow : Window
         RefreshReadProfiles();
         RefreshWriteProfiles();
         RefreshConvertProfiles();
-        ConvertTags.IsChecked = _settings.Conversion.AddTags;
-        BuildConversionFormats(null);
         RestoreReadSettings();
         RestoreWriteSettings();
         RestoreConversionSettings();
+        BuildConversionFormats(null);
         RefreshHardwareSelector();
         SetConsoleVisibility(_settings.ConsoleExpanded);
         UpdateReadCommand();
@@ -262,8 +261,9 @@ public partial class MainWindow : Window
     private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null)
     {
         if (ConvertCommonPanel is null) return;
-        var selected = _conversionControls.Count == 0 ? _settings.Conversion.SelectedFormats : _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
-        var extensions = _conversionControls.Count == 0 ? _settings.Conversion.ExplicitExtensions : _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
+        foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
+        var selected = _viewModel.Conversion.SelectedFormats;
+        var extensions = _viewModel.Conversion.ExplicitExtensions;
         _conversionControls.Clear(); ConvertPinnedPanel.Children.Clear(); ConvertCommonPanel.Children.Clear(); ConvertRarePanel.Children.Clear();
         var compatible = ConversionSourceCompatibility.GetOutputs(_formatCatalog, sourceExtension, detection).Select(x => x.Id).ToHashSet();
         foreach (var format in _formatCatalog.Formats.Where(x => x.Id != "raw.scp").OrderBy(x => x.Family).ThenBy(x => x.DisplayName))
@@ -285,20 +285,10 @@ public partial class MainWindow : Window
 
     private void ApplyConvertProfile(OperationProfile profile)
     {
-        ConvertTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = profile.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = profile.EnabledOptions.Contains("adjust-speed");
-        ConvertPllEnabled.IsChecked = profile.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); ConvertTags.IsChecked = profile.EnabledOptions.Contains("tags");
-        ConvertDiskDefsEnabled.IsChecked = profile.EnabledOptions.Contains("diskdefs");
-        if (profile.Values.TryGetValue("tracks", out var tracks)) ConvertTracksValue.Text = tracks;
-        if (profile.Values.TryGetValue("out-tracks", out var outTracks)) ConvertOutTracksValue.Text = outTracks;
-        if (profile.Values.TryGetValue("adjust-speed", out var speed)) ConvertAdjustSpeedValue.Text = speed;
-        if (profile.Values.TryGetValue("pll", out var pll)) ConvertPllValue.Text = pll;
-        if (profile.Values.TryGetValue("diskdefs", out var diskdefs)) ConvertDiskDefsValue.Text = diskdefs;
-        ConvertExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
+        _viewModel.Conversion.ApplyProfile(profile.EnabledOptions, profile.Values);
         foreach (var control in _conversionControls.ToArray())
         {
-            var selected = profile.EnabledOptions.Contains("format:" + control.Format.Id);
-            var explicitExtensions = profile.Values.TryGetValue("extensions:" + control.Format.Id, out var extensions) ? extensions.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : [];
-            control.SetState(selected && control.IsEnabled, explicitExtensions);
+            control.SetState(_viewModel.Conversion.SelectedFormats.Contains(control.Format.Id) && control.IsEnabled, _viewModel.Conversion.ExplicitExtensions.GetValueOrDefault(control.Format.Id));
         }
         UpdateConvertCommand();
     }
@@ -308,12 +298,9 @@ public partial class MainWindow : Window
     private void SaveConvertProfile_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
-        var enabled = new HashSet<string>();
-        if (ConvertTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) enabled.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) enabled.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) enabled.Add("pll"); if (ConvertHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) enabled.Add("reverse"); if (ConvertTags.IsChecked == true) enabled.Add("tags");
-        if (ConvertDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
-        foreach (var control in _conversionControls.Where(control => control.IsSelected)) enabled.Add("format:" + control.Format.Id);
-        var values = new Dictionary<string, string> { ["tracks"] = ConvertTracksValue.Text, ["out-tracks"] = ConvertOutTracksValue.Text, ["adjust-speed"] = ConvertAdjustSpeedValue.Text, ["pll"] = ConvertPllValue.Text, ["diskdefs"] = ConvertDiskDefsValue.Text, ["expert"] = ConvertExpertArguments.Text };
-        foreach (var control in _conversionControls.Where(control => control.ExplicitExtensions.Count > 0)) values["extensions:" + control.Format.Id] = string.Join(',', control.ExplicitExtensions);
+        foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
+        var enabled = _viewModel.Conversion.CaptureProfileEnabled();
+        var values = _viewModel.Conversion.CaptureProfileValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshConvertProfiles(profile.Id);
@@ -322,6 +309,7 @@ public partial class MainWindow : Window
     private void ConversionSelectionChanged(object? sender, EventArgs e)
     {
         if (sender is not ConversionFormatControl control) return;
+        _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
         if (control.Parent is Panel oldParent) oldParent.Children.Remove(control);
         var destination = control.IsSelected ? ConvertPinnedPanel : control.Format.IsCommon ? ConvertCommonPanel : ConvertRarePanel;
         var index = destination.Children.OfType<ConversionFormatControl>().TakeWhile(x => string.Compare(x.Format.DisplayName, control.Format.DisplayName, StringComparison.CurrentCulture) < 0).Count();
@@ -332,7 +320,7 @@ public partial class MainWindow : Window
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get("Common.DiskImageFilter"), InitialDirectory = ReadFolder.Text };
         if (dialog.ShowDialog(this) != true) return;
-        ConvertSourceText.Text = dialog.FileName; ConvertOutputName.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
+        _viewModel.Conversion.SourcePath = dialog.FileName; _viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(dialog.FileName);
         var detection = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
         ConvertSourceInfo.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
         BuildConversionFormats(Path.GetExtension(dialog.FileName), detection); UpdateConvertCommand();
@@ -342,21 +330,13 @@ public partial class MainWindow : Window
 
     private IReadOnlyList<ConversionOutput> PlanConversions()
     {
-        if (string.IsNullOrWhiteSpace(ConvertSourceText.Text)) return [];
-        return new ConversionPlanner(_formatCatalog).Plan(ConvertSourceText.Text, ReadFolder.Text, ConvertOutputName.Text.Trim(), _conversionControls.Where(x => x.IsSelected).Select(x => x.ToSelection()), ConvertTags.IsChecked == true, _settings.Conversion.TagPattern);
+        if (string.IsNullOrWhiteSpace(_viewModel.Conversion.SourcePath)) return [];
+        return new ConversionPlanner(_formatCatalog).Plan(_viewModel.Conversion.SourcePath, ReadFolder.Text, _viewModel.Conversion.OutputName.Trim(), _viewModel.Conversion.BuildSelections(_formatCatalog.Formats), _viewModel.Conversion.AddTags, _settings.Conversion.TagPattern);
     }
 
     private EnabledOption[] GetConvertOptions()
     {
-        var options = new List<EnabledOption>();
-        if (ConvertTracksEnabled.IsChecked == true) options.Add(new("--tracks", ConvertTracksValue.Text.Trim()));
-        if (ConvertOutTracksEnabled.IsChecked == true) options.Add(new("--out-tracks", ConvertOutTracksValue.Text.Trim()));
-        if (ConvertAdjustSpeedEnabled.IsChecked == true) options.Add(new("--adjust-speed", ConvertAdjustSpeedValue.Text.Trim()));
-        if (ConvertPllEnabled.IsChecked == true) options.Add(new("--pll", ConvertPllValue.Text.Trim()));
-        if (ConvertHardSectors.IsChecked == true) options.Add(new("--hard-sectors"));
-        if (ConvertReverse.IsChecked == true) options.Add(new("--reverse"));
-        if (ConvertDiskDefsEnabled.IsChecked == true) options.Add(new("--diskdefs", ConvertDiskDefsValue.Text.Trim()));
-        return options.ToArray();
+        return _viewModel.Conversion.BuildOptions().ToArray();
     }
 
     private void UpdateConvertCommand()
@@ -366,7 +346,7 @@ public partial class MainWindow : Window
         {
             var outputs = PlanConversions();
             if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
-            var first = ConversionCommandBuilder.Build(_settings.GwExecutablePath ?? "gw.exe", ConvertSourceText.Text, outputs[0], GetConvertOptions(), ConvertExpertArguments.Text);
+            var first = ConversionCommandBuilder.Build(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
         catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
@@ -403,7 +383,7 @@ public partial class MainWindow : Window
                 if (_cancellation.IsCancellationRequested) break;
                 BeginProgress();
                 LogOutput.AppendText($"{Environment.NewLine}→ {Path.GetFileName(planned.OutputPath)}{Environment.NewLine}");
-                var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, ConvertSourceText.Text, planned, GetConvertOptions(), ConvertExpertArguments.Text), progress, _cancellation.Token);
+                var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments), progress, _cancellation.Token);
                 if (!result.IsSuccess) failures.Add(Path.GetFileName(planned.OutputPath));
             }
             if (_cancellation.IsCancellationRequested) SetOperationCancelled(); else if (failures.Count == 0) SetOperationSuccess(); else SetOperationError();
@@ -422,23 +402,17 @@ public partial class MainWindow : Window
 
     private void CaptureConversionSettings()
     {
-        _settings.Conversion.AddTags = ConvertTags.IsChecked == true;
-        _settings.Conversion.SelectedFormats = _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
-        _settings.Conversion.ExplicitExtensions = _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
-        _settings.Conversion.EnabledOptions = [];
-        if (ConvertTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("pll"); if (ConvertHardSectors.IsChecked == true) _settings.Conversion.EnabledOptions.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) _settings.Conversion.EnabledOptions.Add("reverse"); if (ConvertDiskDefsEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("diskdefs");
-        _settings.Conversion.OptionValues["tracks"] = ConvertTracksValue.Text; _settings.Conversion.OptionValues["out-tracks"] = ConvertOutTracksValue.Text; _settings.Conversion.OptionValues["adjust-speed"] = ConvertAdjustSpeedValue.Text; _settings.Conversion.OptionValues["pll"] = ConvertPllValue.Text; _settings.Conversion.OptionValues["diskdefs"] = ConvertDiskDefsValue.Text; _settings.Conversion.OptionValues["expert"] = ConvertExpertArguments.Text;
+        foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
+        _settings.Conversion.AddTags = _viewModel.Conversion.AddTags;
+        _settings.Conversion.SelectedFormats = _viewModel.Conversion.SelectedFormats.ToHashSet();
+        _settings.Conversion.ExplicitExtensions = _viewModel.Conversion.ExplicitExtensions.ToDictionary(x => x.Key, x => x.Value.ToHashSet());
+        _settings.Conversion.EnabledOptions = _viewModel.Conversion.CaptureEnabledOptions();
+        _settings.Conversion.OptionValues = _viewModel.Conversion.CaptureValues();
     }
 
     private void RestoreConversionSettings()
     {
-        ConvertTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("adjust-speed"); ConvertPllEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = _settings.Conversion.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = _settings.Conversion.EnabledOptions.Contains("reverse"); ConvertDiskDefsEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("diskdefs");
-        if (_settings.Conversion.OptionValues.TryGetValue("tracks", out var tracks)) ConvertTracksValue.Text = tracks;
-        if (_settings.Conversion.OptionValues.TryGetValue("out-tracks", out var outTracks)) ConvertOutTracksValue.Text = outTracks;
-        if (_settings.Conversion.OptionValues.TryGetValue("adjust-speed", out var speed)) ConvertAdjustSpeedValue.Text = speed;
-        if (_settings.Conversion.OptionValues.TryGetValue("pll", out var pll)) ConvertPllValue.Text = pll;
-        if (_settings.Conversion.OptionValues.TryGetValue("diskdefs", out var diskdefs)) ConvertDiskDefsValue.Text = diskdefs;
-        ConvertExpertArguments.Text = _settings.Conversion.OptionValues.GetValueOrDefault("expert", "");
+        _viewModel.Conversion.ApplySettings(_settings.Conversion.AddTags, _settings.Conversion.SelectedFormats, _settings.Conversion.ExplicitExtensions, _settings.Conversion.EnabledOptions, _settings.Conversion.OptionValues);
     }
 
     private async void Window_Closing(object? sender, CancelEventArgs e)
@@ -642,6 +616,7 @@ public partial class MainWindow : Window
         }
         if (ReferenceEquals(target, ReadDiskDefsValue)) { _viewModel.Read.DiskDefs.Value = dialog.FileName; _viewModel.Read.DiskDefs.Enabled = true; }
         else if (ReferenceEquals(target, WriteDiskDefsValue)) { _viewModel.Write.DiskDefs.Value = dialog.FileName; _viewModel.Write.DiskDefs.Enabled = true; }
+        else if (ReferenceEquals(target, ConvertDiskDefsValue)) { _viewModel.Conversion.DiskDefs.Value = dialog.FileName; _viewModel.Conversion.DiskDefs.Enabled = true; }
         else { target.Text = dialog.FileName; enabled.IsChecked = true; }
         RefreshFormatSelectors();
         refresh();
