@@ -286,15 +286,21 @@
                         <StackPanel>
                             <TextBlock Text="{l:Loc Conversion.Selected}" FontSize="18" FontWeight="SemiBold" Margin="4,4,4,10" />
                             <Border Style="{StaticResource Card}">
-                                <StackPanel x:Name="ConvertPinnedPanel" />
+                                <ItemsControl x:Name="ConvertPinnedPanel">
+                                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="ConversionSelectionChanged" /></DataTemplate></ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </Border>
                             <TextBlock Text="{l:Loc Conversion.CommonFormats}" FontSize="17" FontWeight="SemiBold" Margin="4" />
                             <Border Style="{StaticResource Card}">
-                                <StackPanel x:Name="ConvertCommonPanel" />
+                                <ItemsControl x:Name="ConvertCommonPanel">
+                                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="ConversionSelectionChanged" /></DataTemplate></ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </Border>
                             <Expander Header="{l:Loc Conversion.ShowRare}">
                                 <Border Style="{StaticResource Card}" Margin="0,10,0,0">
-                                    <StackPanel x:Name="ConvertRarePanel" />
+                                    <ItemsControl x:Name="ConvertRarePanel">
+                                        <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="ConversionSelectionChanged" /></DataTemplate></ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                 </Border>
                             </Expander>
                             <Expander Header="{l:Loc Common.Advanced}">

@@ -41,7 +41,6 @@ public partial class MainWindow : Window
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
-    private readonly List<ConversionFormatControl> _conversionControls = [];
     private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
     private string? _conversionSourceExtension;
     private DetectedImageFormat? _conversionSourceDetection;
@@ -270,31 +269,20 @@ public partial class MainWindow : Window
         RefreshWriteProfiles(profile.Id);
     }
 
-    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null, bool captureCurrent = true)
+    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null)
     {
         if (ConvertCommonPanel is null) return;
         _conversionSourceExtension = sourceExtension;
         _conversionSourceDetection = detection;
-        if (captureCurrent)
-            foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
-        _conversionControls.Clear(); ConvertPinnedPanel.Children.Clear(); ConvertCommonPanel.Children.Clear(); ConvertRarePanel.Children.Clear();
         var items = _conversionFormatPresenter.Build(_formatCatalog, sourceExtension, detection, _viewModel.Conversion.SelectedFormats, _viewModel.Conversion.ExplicitExtensions);
         foreach (var item in items)
         {
             if (!item.IsCompatible && _viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 _viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
-            var control = new ConversionFormatControl(item.Format) { IsEnabled = item.IsCompatible };
-            if (!control.IsEnabled) control.ToolTip = LocExtension.Get("Conversion.Incompatible", item.Format.DisplayName);
-            control.SetState(item.IsSelected, item.ExplicitExtensions);
-            control.ValueChanged += ConversionSelectionChanged; _conversionControls.Add(control);
-            Panel destination = item.Group switch
-            {
-                ConversionFormatGroup.Selected => ConvertPinnedPanel,
-                ConversionFormatGroup.Common => ConvertCommonPanel,
-                _ => ConvertRarePanel
-            };
-            destination.Children.Add(control);
         }
+        ConvertPinnedPanel.ItemsSource = items.Where(item => item.Group == ConversionFormatGroup.Selected);
+        ConvertCommonPanel.ItemsSource = items.Where(item => item.Group == ConversionFormatGroup.Common);
+        ConvertRarePanel.ItemsSource = items.Where(item => item.Group == ConversionFormatGroup.Rare);
     }
 
     private void ConvertProfile_Changed(object sender, SelectionChangedEventArgs e)
@@ -307,7 +295,7 @@ public partial class MainWindow : Window
     private void ApplyConvertProfile(OperationProfile profile)
     {
         _viewModel.Conversion.ApplyProfile(profile.EnabledOptions, profile.Values);
-        BuildConversionFormats(_conversionSourceExtension, _conversionSourceDetection, captureCurrent: false);
+        BuildConversionFormats(_conversionSourceExtension, _conversionSourceDetection);
         UpdateConvertCommand();
     }
 
@@ -316,7 +304,6 @@ public partial class MainWindow : Window
     private void SaveConvertProfile_Click(object sender, RoutedEventArgs e)
     {
         var profileName = _businessDialogs.PromptProfileName(); if (profileName is null) return;
-        foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
         var enabled = _viewModel.Conversion.CaptureProfileEnabled();
         var values = _viewModel.Conversion.CaptureProfileValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, profileName, values, enabled);
@@ -404,7 +391,6 @@ public partial class MainWindow : Window
 
     private void CaptureConversionSettings()
     {
-        foreach (var control in _conversionControls) _viewModel.Conversion.SetFormat(control.Format.Id, control.IsSelected, control.ExplicitExtensions);
         _settings.Conversion.AddTags = _viewModel.Conversion.AddTags;
         _settings.Conversion.SelectedFormats = _viewModel.Conversion.SelectedFormats.ToHashSet();
         _settings.Conversion.ExplicitExtensions = _viewModel.Conversion.ExplicitExtensions.ToDictionary(x => x.Key, x => x.Value.ToHashSet());

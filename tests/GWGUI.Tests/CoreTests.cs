@@ -122,6 +122,21 @@ public sealed class CoreTests
                 Assert.True(model.Conversion.AddTags, "Conversion checkbox did not update its source");
                 model.Read.Revs.Enabled = false; model.Write.NoVerify.Enabled = false; model.Conversion.AddTags = false;
                 Assert.False(readProbe.IsChecked); Assert.False(writeProbe.IsChecked); Assert.False(convertProbe.IsChecked);
+                var privateFlags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+                typeof(MainWindow).GetMethod("BuildConversionFormats", privateFlags)!.Invoke(window, [null, null]);
+                var pinnedFormats = Assert.IsType<System.Windows.Controls.ItemsControl>(window.FindName("ConvertPinnedPanel"));
+                var commonFormats = Assert.IsType<System.Windows.Controls.ItemsControl>(window.FindName("ConvertCommonPanel"));
+                var rareFormats = Assert.IsType<System.Windows.Controls.ItemsControl>(window.FindName("ConvertRarePanel"));
+                Assert.NotNull(commonFormats.ItemTemplate); Assert.NotNull(rareFormats.ItemTemplate);
+                Assert.All(commonFormats.Items.Cast<object>(), item => Assert.IsType<ConversionFormatPresentation>(item));
+                Assert.All(rareFormats.Items.Cast<object>(), item => Assert.IsType<ConversionFormatPresentation>(item));
+                model.Conversion.SetFormat("ibm.720", true, [".img"]);
+                typeof(MainWindow).GetMethod("BuildConversionFormats", privateFlags)!.Invoke(window, [null, null]);
+                var pinned = Assert.IsType<ConversionFormatPresentation>(Assert.Single(pinnedFormats.Items));
+                Assert.Equal("ibm.720", pinned.Format.Id); Assert.True(pinned.ExplicitExtensions.SetEquals([".img"]));
+                var renderedFormat = Assert.IsType<ConversionFormatControl>(pinnedFormats.ItemTemplate.LoadContent());
+                var presentationBinding = BindingOperations.GetBindingExpression(renderedFormat, ConversionFormatControl.PresentationProperty);
+                Assert.NotNull(presentationBinding);
                 typeof(MainWindow).GetMethod("ShowAdvancedValidation", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
                     .Invoke(window, [new ArgumentException("invalid value"), "Validation"]);
                 var request = Assert.Single(dialogs.Requests);
