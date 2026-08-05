@@ -22,6 +22,7 @@ using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
 using GWGUI.App.Localization;
 using GWGUI.Infrastructure.HostTools;
+using GWGUI.App.ViewModels;
 
 namespace GWGUI.App;
 
@@ -43,10 +44,13 @@ public partial class MainWindow : Window
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
     private readonly string _logsDirectory;
+    private readonly MainWindowViewModel _viewModel;
 
     public MainWindow()
     {
         InitializeComponent();
+        _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
+        DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
@@ -927,10 +931,9 @@ public partial class MainWindow : Window
     private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) { UpdateHardwareStatus(); UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); }
     private void UpdateHardwareStatus()
     {
-        if (HardwareStatusText is null) return;
         var selected = SelectedHardware();
-        HardwareStatusText.Text = selected is null ? LocExtension.Get("Hardware.NotConfigured") : selected.Label;
-        HardwareStatusLight.Fill = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
+        _viewModel.HardwareText = selected is null ? LocExtension.Get("Hardware.NotConfigured") : selected.Label;
+        _viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
     }
 
     private void UpdateToolCommand()
@@ -975,10 +978,10 @@ public partial class MainWindow : Window
     {
         _progressTracker.Reset();
         SetOperationState("Status.Running", Color.FromRgb(45, 125, 210));
-        ProgressStatusItem.Visibility = Visibility.Visible;
-        OperationProgress.IsIndeterminate = true;
-        OperationProgress.Value = 0;
-        OperationProgressText.Text = "";
+        _viewModel.ProgressVisibility = Visibility.Visible;
+        _viewModel.ProgressIndeterminate = true;
+        _viewModel.ProgressValue = 0;
+        _viewModel.ProgressText = "";
     }
 
     private void ReportOutput(GwOutputLine line)
@@ -989,18 +992,18 @@ public partial class MainWindow : Window
         if (progress is null) return;
         if (progress.TotalTracks is int total)
         {
-            OperationProgress.IsIndeterminate = false;
-            OperationProgress.Value = progress.Fraction.GetValueOrDefault() * 100;
-            OperationProgressText.Text = LocExtension.Get("Status.TrackProgress", progress.Cylinder, progress.Head, progress.CompletedTracks, total);
+            _viewModel.ProgressIndeterminate = false;
+            _viewModel.ProgressValue = progress.Fraction.GetValueOrDefault() * 100;
+            _viewModel.ProgressText = LocExtension.Get("Status.TrackProgress", progress.Cylinder, progress.Head, progress.CompletedTracks, total);
         }
-        else OperationProgressText.Text = LocExtension.Get("Status.TrackUnknown", progress.Cylinder, progress.Head, progress.CompletedTracks);
+        else _viewModel.ProgressText = LocExtension.Get("Status.TrackUnknown", progress.Cylinder, progress.Head, progress.CompletedTracks);
     }
 
     private void EndProgress()
     {
-        OperationProgress.IsIndeterminate = false;
-        OperationProgress.Value = 100;
-        ProgressStatusItem.Visibility = Visibility.Collapsed;
+        _viewModel.ProgressIndeterminate = false;
+        _viewModel.ProgressValue = 100;
+        _viewModel.ProgressVisibility = Visibility.Collapsed;
     }
 
     private void SetOperationResult(GwExecutionResult result)
@@ -1015,8 +1018,8 @@ public partial class MainWindow : Window
     private void SetOperationCancelled() => SetOperationState("Status.Cancelled", Color.FromRgb(220, 148, 45));
     private void SetOperationState(string resourceKey, Color color)
     {
-        OperationStatusText.Text = LocExtension.Get(resourceKey);
-        OperationStatusLight.Fill = new SolidColorBrush(color);
+        _viewModel.OperationText = LocExtension.Get(resourceKey);
+        _viewModel.OperationBrush = new SolidColorBrush(color);
     }
 
     private void UpdateProfileStatus()
@@ -1029,8 +1032,8 @@ public partial class MainWindow : Window
             2 => (ConvertProfileCombo?.SelectedItem as OperationProfile)?.Name,
             _ => null
         };
-        ProfileStatusItem.Visibility = name is null ? Visibility.Collapsed : Visibility.Visible;
-        if (name is not null) ProfileStatusText.Text = LocExtension.Get("Status.Profile", name);
+        _viewModel.ProfileVisibility = name is null ? Visibility.Collapsed : Visibility.Visible;
+        if (name is not null) _viewModel.ProfileText = LocExtension.Get("Status.Profile", name);
     }
 
     private async Task CheckHostToolsUpdateAsync()
@@ -1055,8 +1058,8 @@ public partial class MainWindow : Window
         var available = _settings.AvailableHostToolsVersion;
         var installed = _settings.InstalledHostToolsVersion;
         var newer = Version.TryParse(available, out var availableVersion) && (!Version.TryParse(installed, out var installedVersion) || availableVersion > installedVersion);
-        HostToolsUpdateItem.Visibility = newer ? Visibility.Visible : Visibility.Collapsed;
-        if (newer) HostToolsUpdateButton.Content = LocExtension.Get("HostTools.UpdateAvailable", available!);
+        _viewModel.HostToolsUpdateVisibility = newer ? Visibility.Visible : Visibility.Collapsed;
+        if (newer) _viewModel.HostToolsUpdateText = LocExtension.Get("HostTools.UpdateAvailable", available!);
     }
 
     private static string DecoderName(string id) => LocExtension.Get("Visual.DecoderName." + id);

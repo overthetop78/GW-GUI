@@ -14,12 +14,34 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Domain.Settings;
 using GWGUI.App;
+using GWGUI.App.ViewModels;
+using System.Windows;
 
 namespace GWGUI.Tests;
 
 public sealed class CoreTests
 {
     private static string WindowsPowerShell => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "powershell.exe");
+
+    [Fact]
+    public void MainWindowStateViewModelPublishesSharedStatusChanges()
+    {
+        var model = new MainWindowViewModel("No hardware", "Ready");
+        var changed = new List<string?>();
+        model.PropertyChanged += (_, args) => changed.Add(args.PropertyName);
+
+        model.HardwareText = "Drive 1";
+        model.ProfileText = "Profile: Default";
+        model.ProfileVisibility = Visibility.Visible;
+        model.ProgressVisibility = Visibility.Visible;
+        model.ProgressValue = 50;
+
+        Assert.Equal("Drive 1", model.HardwareText);
+        Assert.Equal(Visibility.Visible, model.ProfileVisibility);
+        Assert.Equal(50, model.ProgressValue);
+        Assert.Contains(nameof(model.HardwareText), changed);
+        Assert.Contains(nameof(model.ProgressValue), changed);
+    }
 
     [Fact]
     public async Task RunnerCapturesUnicodeStandardErrorAndExitCode()
