@@ -111,6 +111,16 @@ public sealed class CoreTests
             {
                 var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
                 app.InitializeComponent();
+                ThemeManager.Apply(AppTheme.Light);
+                var lightWindow = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["WindowBrush"]).Color;
+                var lightText = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["TextBrush"]).Color;
+                ThemeManager.Apply(AppTheme.Dark);
+                var darkWindow = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["WindowBrush"]).Color;
+                var darkText = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["TextBrush"]).Color;
+                Assert.NotEqual(lightWindow, darkWindow);
+                Assert.NotEqual(lightText, darkText);
+                ThemeManager.Apply(AppTheme.System);
+                Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["AccentBrush"]);
                 var dialogs = new RecordingMessageDialogService();
                 var files = new RecordingFileDialogService { FolderResult = @"F:\Images" };
                 var business = new RecordingBusinessDialogService { ProfileNameResult = "Test profile" };
@@ -824,8 +834,9 @@ public sealed class CoreTests
     [Fact]
     public void DisplayCommandQuotesPathsWithSpaces()
     {
-        var command = new GwCommand("C:\\GW Tools\\gw.exe", "read", ["F:\\Disk Images\\My disk.scp"]);
-        Assert.Equal("\"C:\\GW Tools\\gw.exe\" read \"F:\\Disk Images\\My disk.scp\"", command.ToDisplayString());
+        var command = new GwCommand("C:\\GW Tools\\gw.exe", "read", ["F:\\Disquettes été\\Tilt n°117 漢字.scp"]);
+        Assert.Equal("\"C:\\GW Tools\\gw.exe\" read \"F:\\Disquettes été\\Tilt n°117 漢字.scp\"", command.ToDisplayString());
+        Assert.Equal("F:\\Disquettes été\\Tilt n°117 漢字.scp", command.Arguments[0]);
     }
 
     [Fact]

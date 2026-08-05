@@ -35,10 +35,14 @@
         </Menu>
         <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}">
             <TabItem Header="{l:Loc Tab.Read}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid Margin="16">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -157,9 +161,10 @@
                                 <TextBlock Text="{l:Loc Read.ScpFinished}" VerticalAlignment="Center" TextWrapping="Wrap" />
                             </DockPanel>
                         </Border>
-                        <Button Grid.Row="6" x:Name="ReadExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteRead_Click" />
                     </Grid>
                 </ScrollViewer>
+                    <Button Grid.Row="1" x:Name="ReadExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" Click="ExecuteRead_Click" />
+                </Grid>
             </TabItem>
             <TabItem Header="{l:Loc Tab.Write}">
                 <Grid Margin="16">
@@ -424,14 +429,14 @@
                                 <TextBlock Text="{l:Loc Tools.CleanWarning}" Foreground="#8A4B00" Margin="0,8,0,18" />
                                 <WrapPanel>
                                     <CheckBox x:Name="CleanCylindersEnabled" Content="{l:Loc Tools.Cylinders}" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="CleanCylindersValue" Width="70" Text="80" TextChanged="ToolInput_Changed" />
+                                    <TextBox x:Name="CleanCylindersValue" Width="70" Text="80" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Cylinders}" />
                                     <CheckBox x:Name="CleanPassesEnabled" Content="{l:Loc Tools.Passes}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="CleanPassesValue" Width="70" Text="3" TextChanged="ToolInput_Changed" />
+                                    <TextBox x:Name="CleanPassesValue" Width="70" Text="3" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Passes}" />
                                     <CheckBox x:Name="CleanLingerEnabled" Content="{l:Loc Tools.Linger}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="CleanLingerValue" Width="80" Text="100" TextChanged="ToolInput_Changed" />
+                                    <TextBox x:Name="CleanLingerValue" Width="80" Text="100" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Linger}" />
                                 </WrapPanel>
                                 <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,14,8,4" />
-                                <TextBox x:Name="CleanExpertArguments" Margin="8" TextChanged="ToolInput_Changed" />
+                                <TextBox x:Name="CleanExpertArguments" Margin="8" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Common.ExpertArguments}" />
                                 <Button x:Name="CleanExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteClean_Click" />
                             </StackPanel>
                         </Border>

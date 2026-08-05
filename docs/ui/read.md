@@ -23,6 +23,7 @@ L’écran de l’ancien GUI affiche trop d’informations simultanément. Lectu
 - Le dossier temporaire reste actif pendant la session puis revient au dossier par défaut au redémarrage.
 - Au premier niveau restent visibles : profil, résultat, nom et dossier.
 - Les paramètres techniques sont dans un panneau avancé intégré.
+- Le bouton Exécuter/Arrêter reste fixe en bas à droite de l’onglet; seuls les réglages défilent lorsque la fenêtre utilise sa taille minimale.
 - Le bouton de choix du dossier se trouve près du nom. Il modifie le dossier courant pour la session sans changer automatiquement le dossier par défaut.
 - Le dossier par défaut se règle dans Options.
 

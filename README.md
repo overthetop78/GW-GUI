@@ -49,7 +49,7 @@ powershell -ExecutionPolicy Bypass -File scripts/test-installer-interactive.ps1 
 powershell -ExecutionPolicy Bypass -File scripts/test-installer-interactive.ps1 -InstallerLanguage french
 ```
 
-L’arbre UI Automation du véritable exécutable peut aussi être contrôlé sur les cinq onglets. Le test échoue si un contrôle interactif visible n’a pas de nom accessible :
+L’arbre UI Automation du véritable exécutable peut aussi être contrôlé sur les cinq onglets. Le test impose la taille minimale logique 1280×720 en tenant compte du DPI réel, vérifie les cinq actions principales Lecture/Écriture/Conversion/Effacer/Nettoyer et échoue si un contrôle interactif visible n’a pas de nom accessible :
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/test-app-accessibility.ps1
