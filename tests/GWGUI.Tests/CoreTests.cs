@@ -573,10 +573,12 @@ public sealed class CoreTests
     [InlineData("emu.fm", "4545555545545445", FluxStructureKind.FormatHeader)]
     [InlineData("arburg", "5555555555249249", FluxStructureKind.FormatHeader)]
     [InlineData("victor9k.gcr", "5555555555551111", FluxStructureKind.FormatHeader)]
+    [InlineData("tycom.fm", "55111444", FluxStructureKind.FormatData)]
+    [InlineData("dec.rx02", "55111545", FluxStructureKind.FormatData)]
     public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var singleCellEncoding = decoderId is "emu.fm" or "arburg" or "victor9k.gcr";
+        var singleCellEncoding = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr";
         var calibration = singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);

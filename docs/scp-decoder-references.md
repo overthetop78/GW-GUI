@@ -19,6 +19,8 @@ Les décodeurs rares sont implémentés à partir des caractéristiques de leur 
 | NorthStar MFM | `northstar_mfm_track.c` | sept octets nuls suivis de `FB`, encodés en MFM |
 | Heathkit FM | `heathkit_fm_track.c` | trois octets nuls suivis de `FD` inversé bit à bit, encodés en FM |
 | E-mu Emulator FM | `emu_emulator_fm_track.c` | `45 45 55 55 45 54 54 45` |
+| TYCOM FM | `tycom_fm_track.c` | `55 11 15 54` et marques de données `55 11 14 xx` |
+| DEC RX02 M²FM | `dec_rx02_track.c` | `55 11 15 54` et marque M²FM `55 11 15 45` |
 | Arburg | `arburg_track.c` | `44 44 44 44 55 55 55 55` et `55 55 55 55 55 24 92 49` |
 | Victor 9000 GCR | `victor9k_gcr_track.c` | `55 55 55 55 55 55 11 11` et `55 55 55 55 55 55 11 04` |
 

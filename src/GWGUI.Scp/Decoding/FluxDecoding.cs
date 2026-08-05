@@ -14,7 +14,7 @@ public interface IFluxDecoder
 
 public sealed class FluxDecoderRegistry
 {
-    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new EmuFmDecoder(), new ArburgDecoder(), new Victor9kGcrDecoder(), new RawFluxDecoder()];
+    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new EmuFmDecoder(), new TycomFmDecoder(), new DecRx02Decoder(), new ArburgDecoder(), new Victor9kGcrDecoder(), new RawFluxDecoder()];
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => x.Decode(revolution)).OrderByDescending(x => x.Confidence).First();
     public FluxDecodeResult Decode(string id, ScpRevolution revolution) => Decoders.First(x => x.Id == id).Decode(revolution);
     public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
@@ -115,6 +115,20 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
     public override string Id => "emu.fm"; public override string DisplayName => "E-mu Emulator FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x45,0x45,0x55,0x55,0x45,0x54,0x54,0x45], FluxStructureKind.FormatHeader, "E-mu Emulator sector mark")];
+}
+
+public sealed class TycomFmDecoder : SignatureMfmDecoder
+{
+    public override string Id => "tycom.fm"; public override string DisplayName => "TYCOM FM";
+    protected override bool IsFm => true;
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x55,0x11,0x15,0x54], FluxStructureKind.FormatHeader, "TYCOM sector header"), ([0x55,0x11,0x14,0x44], FluxStructureKind.FormatData, "TYCOM F8 data"), ([0x55,0x11,0x14,0x45], FluxStructureKind.FormatData, "TYCOM F9 data"), ([0x55,0x11,0x14,0x54], FluxStructureKind.FormatData, "TYCOM FA data"), ([0x55,0x11,0x14,0x55], FluxStructureKind.FormatData, "TYCOM FB data")];
+}
+
+public sealed class DecRx02Decoder : SignatureMfmDecoder
+{
+    public override string Id => "dec.rx02"; public override string DisplayName => "DEC RX02 M²FM";
+    protected override bool IsFm => true;
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x55,0x11,0x15,0x54], FluxStructureKind.FormatHeader, "DEC RX02 sector header"), ([0x55,0x11,0x15,0x45], FluxStructureKind.FormatData, "DEC RX02 FD M²FM data")];
 }
 
 public sealed class ArburgDecoder : SignatureMfmDecoder
