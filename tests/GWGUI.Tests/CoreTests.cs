@@ -2320,8 +2320,22 @@ public sealed class CoreTests
         var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr" ? "" : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);
-        var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var image = new ScpReader().Read(BuildSingleTrackScp(intervals));
+        var track = Assert.Single(image.Tracks);
+        var result = new FluxDecoderRegistry().Decode(decoderId, Assert.Single(track.Revolutions));
         Assert.Contains(result.Structures, structure => structure.Kind == expectedKind);
+
+        static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
+        var inspection = new ScpInspectorPresenter(new FluxDecoderRegistry(), Localize).Build(image, track, decoderId);
+        Assert.Contains("Visual.StructureKind." + expectedKind, inspection);
+
+        using var bitmap = new SKBitmap(320, 320);
+        using var canvas = new SKCanvas(bitmap);
+        IScpRenderer renderer = new SkiaScpRenderer { DecoderId = decoderId };
+        renderer.Render(canvas, new ScpRenderRequest(image, 0, track, 320, 320, new SKPoint(160, 160), 1, "No data", "Side 0"));
+        var overlay = expectedKind == FluxStructureKind.FormatData ? new SKColor(67, 220, 255) : new SKColor(255, 205, 64);
+        Assert.Contains(Enumerable.Range(0, bitmap.Height).SelectMany(y => Enumerable.Range(0, bitmap.Width).Select(x => bitmap.GetPixel(x, y))), color => color == overlay);
+        renderer.ClearCache();
     }
 
     [Fact]
@@ -2599,6 +2613,21 @@ public sealed class CoreTests
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
+    private static byte[] BuildSingleTrackScp(IReadOnlyList<uint> intervals)
+    {
+        if (intervals.Any(value => value is 0 or > ushort.MaxValue)) throw new ArgumentOutOfRangeException(nameof(intervals));
+        var data = new byte[0x2c0 + intervals.Count * 2];
+        data[0] = (byte)'S'; data[1] = (byte)'C'; data[2] = (byte)'P'; data[3] = 0x25; data[5] = 1; data[6] = 0; data[7] = 0; data[8] = (byte)ScpFlags.IndexAligned;
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x10, 4), 0x2b0);
+        data[0x2b0] = (byte)'T'; data[0x2b1] = (byte)'R'; data[0x2b2] = (byte)'K';
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2b4, 4), intervals.Aggregate(0u, (sum, value) => checked(sum + value)));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2b8, 4), (uint)intervals.Count);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2bc, 4), 16);
+        for (var index = 0; index < intervals.Count; index++) System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c0 + index * 2, 2), (ushort)intervals[index]);
+        uint checksum = 0; foreach (var value in data.AsSpan(0x10)) checksum = unchecked(checksum + value);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x0c, 4), checksum);
+        return data;
+    }
     private static string EncodeMfmBytesFromZero(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 0; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
     private static string EncodeFmBytes(params byte[] values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "1" + (((value >> (7 - bit)) & 1) != 0 ? "1" : "0"))));
     private static List<uint> BitsToIntervals(string bits, uint cellTicks) { var result = new List<uint>(); var cells = 0; foreach (var bit in bits) { cells++; if (bit == '1') { result.Add((uint)cells * cellTicks); cells = 0; } } return result; }

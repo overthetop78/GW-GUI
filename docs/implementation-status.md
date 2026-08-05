@@ -73,6 +73,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - La reconstruction du flux utilise une estimation robuste initiale puis une horloge adaptative à faible gain sur toute la révolution, afin de suivre progressivement les variations de vitesse sans se verrouiller sur un intervalle aberrant.
 - L’analyse brute distingue les impulsions parasites exceptionnellement courtes et les longues absences de transition; les deux sont superposées en rouge sur les pistes.
 - Deux tests d’intégration opt-in chargent quatre captures physiques publiques OS-9/CD-i, Amiga AMOS et Lexitron CP/M, vérifient leur structure et leur géométrie propres ainsi que les sélections automatiques `iso.fm`/`iso.*` et `amiga.mfm`, puis rendent réellement dix pistes dans `ScpDiskView` sur un bitmap WPF/Skia. `scripts/test-scp-corpus.ps1` contrôle la provenance par taille/MD5/SHA-1 et nettoie le corpus après exécution.
+- Neuf familles rares — Membrain, AED 6200P, QD MO5, Centurion, E-mu, Arburg, Victor 9000, TYCOM et DEC RX02 — traversent aussi un test synthétique de bout en bout : création d’un conteneur SCP avec checksum, relecture par le parseur, analyse par l’inspecteur et vérification de la superposition colorée dans un bitmap Skia. Cette couverture d’intégration n’est pas présentée comme une validation sur disquette physique.
 
 ## Encore à réaliser avant achèvement
 

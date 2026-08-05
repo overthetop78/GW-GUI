@@ -2,7 +2,7 @@
 
 Ce tableau distingue volontairement trois niveaux : détection de synchronisation ou de marque, extraction d’identité de secteur, et contrôle d’intégrité. La présence d’un décodeur dans la liste ne signifie donc pas automatiquement que tout son contenu logique est déjà décodé.
 
-| Décodeur | Marques/structures | Identité de secteur | Intégrité actuellement contrôlée |
+| Décodeur | Extraction réalisée | Contrôles appliqués | État de couverture synthétique |
 |---|---:|---:|---:|
 | ISO MFM — Atari ST / IBM PC | Marques FE/FB/F8, C/H/R/N, taille et données | CRC16-CCITT des en-têtes et des données, avec préfixe A1×3 ; état valide, incorrect ou indisponible | Oui, y compris les données supprimées F8 |
 | ISO FM | Marques FE/FB/F8, C/H/R/N, taille et données | CRC16-CCITT des en-têtes et des données ; état valide, incorrect ou indisponible | Oui, y compris les données supprimées F8 |
@@ -28,6 +28,8 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 
 Les structures Amiga, NorthStar, Heathkit, Micral N, Membrain, AED 6200P, Apple II et Macintosh 6-and-2, Commodore et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les restitutions exactes Amiga, Apple II, Apple Macintosh, Commodore, Micral N, Membrain et AED, les tailles variables et marques C0–C3 AED, ainsi que les échantillonnages GCR Macintosh et Victor. Les 18 fichiers `*_track.c` de cette collection HxC possèdent désormais un décodeur dédié dans GW GUI. Leur validation physique exhaustive demande encore un corpus libre.
 
+Pour Membrain, AED 6200P, QD MO5, Centurion, E-mu, Arburg, Victor 9000, TYCOM et DEC RX02, le test d’intégration synthétique ne s’arrête plus à un appel direct du décodeur : il construit un véritable conteneur SCP avec checksum, le relit par `ScpReader`, force le décodeur dans l’inspecteur, puis vérifie que le rendu Skia contient la superposition attendue. Cette preuve couvre la chaîne logicielle complète, mais reste explicitement distincte d’une capture de disquette physique.
+
 ## Corpus physique public
 
-Le test opt-in `scripts/test-scp-corpus.ps1` récupère `os9sys.scp`, `pubsoft1.scp` et `amiga amos professional demo disc.scp` depuis Internet Archive. Les deux captures Greaseweazle OS-9/CD-i sont annoncées comme testées sur matériel; AMOS Professional est une disquette de démonstration marquée domaine public. Leurs tailles, MD5 et SHA-1 publiés sont vérifiés. Elles valident le conteneur réel, les checksums, les deux faces, les révolutions, l’auto-détection `iso.*`/`amiga.mfm` et le rendu WPF/Skia. Elles ne prouvent pas les autres familles rares et ne sont pas redistribuées avec le projet.
+Le test opt-in `scripts/test-scp-corpus.ps1` récupère les quatre captures consignées dans l’audit : deux OS-9/CD-i, une démonstration Amiga AMOS et une disquette Lexitron CP/M. Leurs tailles, empreintes publiées et licences déclarées lorsqu’elles sont disponibles sont vérifiées. Elles valident le conteneur réel, les checksums, la géométrie, l’auto-détection `iso.*`/`amiga.mfm` et le rendu WPF/Skia. Elles ne prouvent pas les autres familles rares et ne sont pas redistribuées avec le projet. Une recherche complémentaire dans le corpus public de FluxEngine n’a trouvé que du code de test, aucune capture rare distribuée; elle n’est donc pas comptée comme preuve physique.
