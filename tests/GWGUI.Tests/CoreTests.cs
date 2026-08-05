@@ -12,6 +12,7 @@ using GWGUI.Domain.Maintenance;
 using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Hardware;
 using GWGUI.Domain.Settings;
 using GWGUI.App;
 using GWGUI.App.ViewModels;
@@ -836,6 +837,37 @@ public sealed class CoreTests
         Assert.Equal("COM12", info.Port);
         Assert.Equal("Greaseweazle V4.1", info.Model);
         Assert.Equal("GW123", info.SerialNumber);
+    }
+
+    [Fact]
+    public async Task HardwareRegistryKeepsDisconnectedControllersAndMergesScannedUsbIdentity()
+    {
+        var output = new[]
+        {
+            new GwOutputLine(DateTimeOffset.UtcNow, GwOutputStream.Standard, "Model: Greaseweazle V4.1"),
+            new GwOutputLine(DateTimeOffset.UtcNow, GwOutputStream.Standard, "Serial: GW-NEW-123")
+        };
+        var runner = new ScriptedRunner(new GwExecutionResult(0, false, TimeSpan.FromMilliseconds(10), output));
+        IHardwareRegistry registry = new GreaseweazleHardwareRegistry(
+            new StaticSerialDeviceDiscovery([new SerialDevice("COM9", "USB\\VID_1209&PID_4D69", "Greaseweazle serial device")]),
+            runner);
+        var configured = new[]
+        {
+            new ControllerSettings { UsbId = "GW-OLD-001", LastPort = "COM3", Model = "Greaseweazle F7", IsAvailable = true }
+        };
+
+        var scanned = await registry.ScanAsync("gw.exe", configured);
+
+        var disconnected = Assert.Single(scanned, controller => controller.UsbId == "GW-OLD-001");
+        Assert.False(disconnected.IsAvailable);
+        Assert.Equal("COM3", disconnected.LastPort);
+        var discovered = Assert.Single(scanned, controller => controller.UsbId == "GW-NEW-123");
+        Assert.True(discovered.IsAvailable);
+        Assert.Equal("COM9", discovered.LastPort);
+        Assert.Equal("Greaseweazle V4.1", discovered.Model);
+        var command = Assert.Single(runner.Commands);
+        Assert.Equal("info", command.Verb);
+        Assert.Equal(["--device", "COM9"], command.Arguments);
     }
 
     [Fact]
@@ -2313,6 +2345,11 @@ public sealed class CoreTests
     {
         public string? Path { get; private set; }
         public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) { Path = path; return Task.FromResult(image); }
+    }
+
+    private sealed class StaticSerialDeviceDiscovery(IReadOnlyList<SerialDevice> devices) : ISerialDeviceDiscovery
+    {
+        public IReadOnlyList<SerialDevice> FindSerialDevices() => devices;
     }
 
     private sealed class RecordingMessageDialogService(UserDialogResult result = UserDialogResult.Ok) : IMessageDialogService

@@ -6,6 +6,7 @@
 - **Gestionnaire de commandes Greaseweazle** : construction typée des arguments, exécution asynchrone, capture de sortie, annulation et codes de retour.
 - **Catalogue Greaseweazle** : commandes, options, profils de formats, extensions et compatibilités correspondant à la version détectée de `gw`.
 - **Configuration persistante** : options générales, matériel, profils par onglet et préférences de session.
+- **Registre matériel** : `IHardwareRegistry` orchestre découverte série, interrogation `gw info`, identité USB stable et conservation des contrôleurs absents; l’infrastructure Windows fournit son implémentation.
 - **Moteur SCP** : lecture du conteneur, analyse des pistes/révolutions et décodeurs extensibles.
 - **Rendu SkiaSharp** : `IScpRenderer` et `SkiaScpRenderer` dessinent faces, pistes et structures sans dépendre du contrôle WPF; `ScpDiskView` gère zoom, sélection, panoramique et survol.
 

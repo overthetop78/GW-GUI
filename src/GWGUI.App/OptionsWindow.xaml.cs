@@ -21,6 +21,7 @@ public partial class OptionsWindow : Window
     private readonly List<ControllerSettings> _controllers;
     private readonly List<DriveSettings> _drives;
     private readonly IGwInstallationManager _hostTools;
+    private readonly IHardwareRegistry _hardwareRegistry;
     private string? _previousGwPath;
     private string? _installedVersion;
     private string? _availableVersion;
@@ -28,12 +29,13 @@ public partial class OptionsWindow : Window
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> Profiles { get; } = [];
 
-    public OptionsWindow(AppSettings settings)
+    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null)
     {
         InitializeComponent();
         _settings = settings;
         var managedRoot = StoragePaths.HostToolsDirectory;
         _hostTools = new GwInstallationManager(new HttpClient(), managedRoot);
+        _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _previousGwPath = settings.PreviousGwExecutablePath; _installedVersion = settings.InstalledHostToolsVersion; _availableVersion = settings.AvailableHostToolsVersion; _lastHostToolsCheck = settings.LastHostToolsCheckUtc;
         _controllers = settings.Controllers.Select(x => new ControllerSettings { UsbId = x.UsbId, LastPort = x.LastPort, Model = x.Model, IsAvailable = x.IsAvailable }).ToList();
         _drives = settings.Drives.Select(x => new DriveSettings { Id = x.Id, ControllerUsbId = x.ControllerUsbId, Selection = x.Selection, Size = x.Size, Density = x.Density, NominalRpm = x.NominalRpm }).ToList();
@@ -138,21 +140,9 @@ public partial class OptionsWindow : Window
         ScanButton.IsEnabled = false;
         try
         {
-            foreach (var controller in _controllers) controller.IsAvailable = false;
-            var discovery = new WindowsSerialDeviceDiscovery();
-            foreach (var serial in discovery.FindSerialDevices())
-            {
-                var runner = new GreaseweazleRunner();
-                var result = await runner.RunAsync(new GwCommand(GwPathText.Text, "info", ["--device", serial.Port]));
-                if (!result.IsSuccess) continue;
-                var parsed = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(x => x.Text)));
-                var usbId = string.IsNullOrWhiteSpace(parsed.SerialNumber) ? serial.StableId : parsed.SerialNumber;
-                var controller = _controllers.FirstOrDefault(x => x.UsbId == usbId);
-                if (controller is null) { controller = new ControllerSettings { UsbId = usbId }; _controllers.Add(controller); }
-                controller.LastPort = serial.Port;
-                controller.Model = parsed.Model ?? serial.DisplayName;
-                controller.IsAvailable = true;
-            }
+            var scanned = await _hardwareRegistry.ScanAsync(GwPathText.Text, _controllers);
+            _controllers.Clear();
+            _controllers.AddRange(scanned);
             RefreshHardwareRows();
         }
         catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("Hardware.ScanTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
