@@ -23,9 +23,9 @@ public sealed class RealScpCorpusTests
         {
             var image = await reader.ReadAsync(entry.Path);
             Assert.True(image.ChecksumValid, $"SCP checksum is invalid: {entry.Path}");
-            Assert.True(image.Tracks.Count >= 80, $"Too few populated tracks in {entry.Path}: {image.Tracks.Count}");
-            Assert.Contains(image.Tracks, track => track.Head == 0);
-            Assert.Contains(image.Tracks, track => track.Head == 1);
+            Assert.True(image.Tracks.Count >= entry.MinimumTrackCount, $"Too few populated tracks in {entry.Path}: {image.Tracks.Count} (expected at least {entry.MinimumTrackCount})");
+            Assert.All(entry.ExpectedHeads, head => Assert.Contains(image.Tracks, track => track.Head == head));
+            Assert.All(image.Tracks, track => Assert.Contains(track.Head, entry.ExpectedHeads));
             Assert.All(image.Tracks, track => Assert.Equal(image.Header.Revolutions, track.Revolutions.Count));
             Assert.All(image.Tracks.SelectMany(track => track.Revolutions), revolution => Assert.True(revolution.FluxIntervals.Count > 1000));
 
@@ -82,13 +82,26 @@ public sealed class RealScpCorpusTests
         var specification = Environment.GetEnvironmentVariable("GWGUI_REAL_SCP_CORPUS");
         if (string.IsNullOrWhiteSpace(specification)) return [];
         var entries = specification.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Select(value => value.Split('|', 2, StringSplitOptions.TrimEntries))
-            .Select(parts => parts.Length == 2 ? new CorpusEntry(parts[0], Path.GetFullPath(parts[1])) : throw new InvalidDataException("Invalid SCP corpus specification."))
+            .Select(value => value.Split('|', 4, StringSplitOptions.TrimEntries))
+            .Select(parts => parts.Length switch
+            {
+                2 => new CorpusEntry(parts[0], Path.GetFullPath(parts[1]), 80, [0, 1]),
+                3 when int.TryParse(parts[1], out var minimumTracks) && minimumTracks > 0 => new CorpusEntry(parts[0], Path.GetFullPath(parts[2]), minimumTracks, [0, 1]),
+                4 when int.TryParse(parts[1], out var minimumTracks) && minimumTracks > 0 => new CorpusEntry(parts[0], Path.GetFullPath(parts[3]), minimumTracks, ParseHeads(parts[2])),
+                _ => throw new InvalidDataException("Invalid SCP corpus specification.")
+            })
             .ToArray();
-        Assert.True(entries.Length >= 3, "At least three public physical SCP captures are required.");
+        Assert.True(entries.Length >= 4, "At least four public physical SCP captures are required.");
         Assert.All(entries, entry => Assert.True(File.Exists(entry.Path), $"SCP corpus file is missing: {entry.Path}"));
         return entries;
     }
 
-    private sealed record CorpusEntry(string DecoderPrefix, string Path);
+    private static int[] ParseHeads(string value)
+    {
+        var heads = value.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(int.Parse).Distinct().ToArray();
+        if (heads.Length == 0 || heads.Any(head => head is < 0 or > 1)) throw new InvalidDataException("Invalid SCP corpus head specification.");
+        return heads;
+    }
+
+    private sealed record CorpusEntry(string DecoderPrefix, string Path, int MinimumTrackCount, int[] ExpectedHeads);
 }
