@@ -939,6 +939,28 @@ public sealed class CoreTests
         Assert.Equal(332, result.Top);
     }
 
+    [Theory]
+    [InlineData(-2560, 0, 2560, 1440, 1.25, -1900, 100, -1900, 100, 1360, 820)]
+    [InlineData(1920, 0, 2560, 1440, 1.25, 1600, 80, 1600, 80, 1360, 820)]
+    [InlineData(0, -2160, 3840, 2160, 1.5, 100, -1300, 100, -1300, 1360, 820)]
+    [InlineData(1920, 0, 1920, 1080, 1.0, 3400, 700, 2480, 260, 1360, 820)]
+    [InlineData(0, 0, 1920, 1080, 1.5, 300, 200, 0, 0, 1280, 720)]
+    public void WindowPlacementUsesTheActualMonitorWorkAreaAtDifferentDpi(
+        double leftPixels, double topPixels, double widthPixels, double heightPixels, double scale,
+        double savedLeft, double savedTop, double expectedLeft, double expectedTop, double expectedWidth, double expectedHeight)
+    {
+        var workLeft = leftPixels / scale;
+        var workTop = topPixels / scale;
+        var workWidth = widthPixels / scale;
+        var workHeight = heightPixels / scale;
+        var result = WindowPlacementPolicy.ConstrainToWorkArea(new(1360, 820, savedLeft, savedTop), workLeft, workTop, workWidth, workHeight);
+
+        Assert.Equal(expectedLeft, result.Left);
+        Assert.Equal(expectedTop, result.Top);
+        Assert.Equal(expectedWidth, result.Width);
+        Assert.Equal(expectedHeight, result.Height);
+    }
+
     [Fact]
     public void GwProgressCountsUniqueTracksAndIgnoresRetries()
     {

@@ -826,13 +826,12 @@ public partial class MainWindow : Window
     private void ConstrainToCurrentWorkArea()
     {
         if (WindowState == WindowState.Maximized) return;
-        var dpi = VisualTreeHelper.GetDpi(this);
-        var raw = SystemParameters.WorkArea;
-        var area = new Rect(raw.X / dpi.DpiScaleX, raw.Y / dpi.DpiScaleY, raw.Width / dpi.DpiScaleX, raw.Height / dpi.DpiScaleY);
-        Width = Math.Min(Width, area.Width);
-        Height = Math.Min(Height, area.Height);
-        Left = Math.Clamp(Left, area.Left, Math.Max(area.Left, area.Right - Width));
-        Top = Math.Clamp(Top, area.Top, Math.Max(area.Top, area.Bottom - Height));
+        var area = MonitorWorkArea.Get(this);
+        var placement = WindowPlacementPolicy.ConstrainToWorkArea(new(Width, Height, Left, Top), area.Left, area.Top, area.Width, area.Height);
+        Width = placement.Width;
+        Height = placement.Height;
+        Left = placement.Left!.Value;
+        Top = placement.Top!.Value;
     }
 
     private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e)

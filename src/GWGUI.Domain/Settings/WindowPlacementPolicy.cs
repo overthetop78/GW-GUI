@@ -20,4 +20,16 @@ public static class WindowPlacementPolicy
             Math.Clamp(left, virtualLeft, Math.Max(virtualLeft, right - width)),
             Math.Clamp(top, virtualTop, Math.Max(virtualTop, bottom - height)));
     }
+
+    public static NormalizedWindowPlacement ConstrainToWorkArea(NormalizedWindowPlacement value,
+        double workLeft, double workTop, double workWidth, double workHeight)
+    {
+        if (workWidth <= 0 || workHeight <= 0 || !double.IsFinite(workLeft) || !double.IsFinite(workTop) ||
+            !double.IsFinite(workWidth) || !double.IsFinite(workHeight)) return value;
+        var width = Math.Min(value.Width, workWidth);
+        var height = Math.Min(value.Height, workHeight);
+        var left = Math.Clamp(value.Left ?? workLeft, workLeft, Math.Max(workLeft, workLeft + workWidth - width));
+        var top = Math.Clamp(value.Top ?? workTop, workTop, Math.Max(workTop, workTop + workHeight - height));
+        return new(width, height, left, top);
+    }
 }

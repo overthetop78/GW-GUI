@@ -3,6 +3,7 @@
 ## Composants
 
 - **Application WPF/MVVM** : navigation, formulaires, validation et localisation.
+- **Placement de fenêtre** : la restauration valide d’abord les coordonnées dans le bureau virtuel, puis interroge avec `MonitorFromWindow` la zone de travail du moniteur réellement choisi. Les coordonnées natives sont converties par WPF selon le DPI de ce moniteur avant le confinement final.
 - **Gestionnaire de commandes Greaseweazle** : construction typée des arguments, exécution asynchrone, capture de sortie, annulation et codes de retour.
 - **Gestionnaire Host Tools** : `IGwInstallationManager` couvre détection, recherche de version, installation contrôlée, sélection et retour arrière. Une instance est injectée depuis le point de composition dans `MainWindow`, puis partagée avec Options; les fenêtres ne portent plus les règles d’historique des exécutables.
 - **Construction des commandes** : `IGwCommandBuilder` est le contrat unique consommé par les fenêtres et le registre matériel. Son implémentation délègue aux validateurs spécialisés Lecture, Écriture, Conversion, Maintenance et Diagnostics afin que la commande affichée soit exactement celle exécutée.

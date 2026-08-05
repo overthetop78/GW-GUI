@@ -37,6 +37,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Thèmes clair, sombre et système appliqués au démarrage et après les Options; le mode système suit Windows et reprend sa couleur d’accent.
 - Taille, position multi-écran, maximisation, visibilité et hauteur de console restaurées; les positions hors écran sont rejetées.
 - La restauration remplace les pinceaux WPF figés au lieu de les modifier, ce qui évite un plantage réel au démarrage avec le thème système. L’exécutable déclare Per-Monitor-V2 et la fenêtre est renormalisée dans la zone de travail déjà convertie selon le DPI; les anciennes positions ne peuvent plus masquer les boutons ou la barre d’état.
+- Le confinement final n’utilise plus la zone de travail du moniteur principal : `MonitorFromWindow` sélectionne le moniteur contenant la fenêtre restaurée et `PointFromScreen` convertit sa zone de travail selon le DPI effectif. Une matrice couvre écrans à gauche, à droite et au-dessus, positions débordantes et surfaces logiques à 100 %, 125 % et 150 %.
 - Tous les boutons Arrêter demandent confirmation; l’annulation tente une fermeture normale pendant deux secondes puis termine l’arbre du processus si nécessaire.
 - Barre d’état dynamique : matériel et lecteur sélectionnés, profil actif, progression par piste/face extraite des sorties officielles `T<cylindre>.<face>`; les répétitions de tentative ne sont pas comptées deux fois.
 - L’état transversal de la fenêtre (matériel, profil, opération, progression et mise à jour Host Tools) est porté par un ViewModel observable et lié au XAML; il n’est plus écrit directement dans les contrôles par les onglets.
@@ -79,6 +80,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Validation actuelle
 
+- Dernière exécution complète après correction multi-écran/DPI : 231 tests réussis, dont 8 scénarios de placement. Le paquet réel reste contrôlé séparément par UI Automation sur l’écran disponible.
 - Dernière exécution complète après matrice matérielle simulée : 226 tests réussis.
 - Dernière exécution complète après centralisation Host Tools : 225 tests réussis. Deux tests supplémentaires couvrent sélection, sélection répétée, retour arrière et rejet des chemins disparus.
 - Dernière exécution complète après typage des profils : 223 tests réussis. Le test ajouté prouve le rejet d’un profil Écriture par le magasin Lecture, aussi bien au chargement qu’à la sauvegarde.
