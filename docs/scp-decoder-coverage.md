@@ -13,7 +13,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | Amiga MFM | Double synchronisation | Non | Non |
 | Apple II GCR | Prologues adresse/données | Non | Non |
 | Commodore GCR | Synchronisation et type de bloc | Non | Non |
-| QD MO5 MFM | Marques en-tête/données | Non | Non |
+| QD MO5 MFM | Numéro de secteur sur 16 bits, taille fixe de 128 octets | Somme 8 bits du marqueur et des 128 octets de données ; aucun CRC d’en-tête | Oui pour l’identité et la somme du bloc de données |
 | Centurion MFM | Cylindre et secteur | CRC16 XMODEM de l’en-tête | Oui pour l’identité et le CRC d’en-tête ; la taille est portée par le bloc de données séparé |
 | E-mu Emulator FM | Marque secteur | Non | Non |
 | TYCOM FM | En-tête et marques F8–FB | Non | Non |

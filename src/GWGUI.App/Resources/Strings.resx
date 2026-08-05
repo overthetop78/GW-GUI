@@ -98,6 +98,7 @@
   <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>valid</value></data>
   <data name="Visual.CrcInvalid"><value>invalid</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>unavailable</value></data>
   <data name="Visual.DecoderName.iso.mfm"><value>ISO MFM (Atari ST / IBM PC)</value></data>
   <data name="Visual.DecoderName.iso.fm"><value>ISO FM (single density)</value></data>
   <data name="Visual.DecoderName.amiga.mfm"><value>Amiga MFM</value></data>

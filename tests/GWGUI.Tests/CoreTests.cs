@@ -838,7 +838,7 @@ public sealed class CoreTests
         var intervals = BitsToIntervals(raw, 40);
         var result = new IsoMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
         var sector = Assert.Single(result.Sectors!);
-        Assert.Equal(2, sector.Number); Assert.Equal(512, sector.SizeBytes); Assert.True(sector.HeaderCrcValid);
+        Assert.Equal(2, sector.Number); Assert.Equal(512, sector.SizeBytes); Assert.True(sector.IntegrityValid);
     }
 
     [Fact]
@@ -847,7 +847,7 @@ public sealed class CoreTests
         byte[] header = [0xfe, 3, 0, 7, 1]; var crc = TestCrc16(header);
         var raw = Convert.ToString(0xf57e, 2).PadLeft(16, '0') + EncodeFmBytes(3, 0, 7, 1, (byte)(crc >> 8), (byte)crc) + "001";
         var intervals = BitsToIntervals(raw, 40); var result = new IsoFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
-        var sector = Assert.Single(result.Sectors!); Assert.Equal(7, sector.Number); Assert.Equal(256, sector.SizeBytes); Assert.True(sector.HeaderCrcValid);
+        var sector = Assert.Single(result.Sectors!); Assert.Equal(7, sector.Number); Assert.Equal(256, sector.SizeBytes); Assert.True(sector.IntegrityValid);
     }
 
     [Fact]
@@ -930,7 +930,7 @@ public sealed class CoreTests
         Assert.Equal(3, sector.Cylinder);
         Assert.Equal(7, sector.Number);
         Assert.Equal(512, sector.SizeBytes);
-        Assert.True(sector.HeaderCrcValid);
+        Assert.True(sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
     }
 
@@ -958,7 +958,7 @@ public sealed class CoreTests
         Assert.Equal(cylinder, sector.Cylinder);
         Assert.Equal(sectorNumber, sector.Number);
         Assert.Equal(256, sector.SizeBytes);
-        Assert.True(sector.HeaderCrcValid);
+        Assert.True(sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
     }
 
@@ -980,7 +980,7 @@ public sealed class CoreTests
         Assert.Equal(1, sector.Head);
         Assert.Equal(9, sector.Number);
         Assert.Equal(512, sector.SizeBytes);
-        Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
+        Assert.Equal(!corruptCrc, sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Crc, sector.IntegrityKind);
     }
 
@@ -1002,7 +1002,7 @@ public sealed class CoreTests
         Assert.Equal(0, sector.Head);
         Assert.Equal(3, sector.Number);
         Assert.Equal(sectorSize, sector.SizeBytes);
-        Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
+        Assert.Equal(!corruptCrc, sector.IntegrityValid);
     }
 
     [Theory]
@@ -1022,8 +1022,49 @@ public sealed class CoreTests
         Assert.Equal(17, sector.Cylinder);
         Assert.Equal(6, sector.Number);
         Assert.Equal(0, sector.SizeBytes);
-        Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
+        Assert.Equal(!corruptCrc, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Description.Contains(corruptCrc ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void QdMo5DecoderExtractsWideSectorNumberAndDataChecksum(bool corruptChecksum)
+    {
+        var data = Enumerable.Range(0, 128).Select(index => (byte)(index * 11)).ToArray();
+        var checksum = (byte)(0x5a + data.Sum(value => value));
+        if (corruptChecksum) checksum++;
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var headerMark = RawMark("A914A914A914A914A9144491");
+        var dataMark = RawMark("A914A914A914A914A9149144");
+        var headerTail = new byte[] { 0x12, 0x34 }.Concat(new byte[13]).ToArray();
+        var raw = headerMark + EncodeMfmBytesFromZero(headerTail) + string.Concat(Enumerable.Repeat("10", 20)) + dataMark + EncodeMfmBytesFromZero(data.Append(checksum).ToArray()) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new QdMo5MfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(0x1234, sector.Number);
+        Assert.Equal(128, sector.SizeBytes);
+        Assert.Equal(!corruptChecksum, sector.IntegrityValid);
+        Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void QdMo5DecoderReportsUnavailableIntegrityWhenDataBlockIsMissing()
+    {
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var headerTail = new byte[] { 0x01, 0x02 }.Concat(new byte[13]).ToArray();
+        var raw = RawMark("A914A914A914A914A9144491") + EncodeMfmBytesFromZero(headerTail) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new QdMo5MfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(0x0102, sector.Number);
+        Assert.Null(sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
 
     [Fact]
@@ -1043,8 +1084,8 @@ public sealed class CoreTests
         var heathkitIntervals = BitsToIntervals(heathkitBits, 40);
         var heathkit = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)heathkitIntervals.Count, heathkitIntervals));
 
-        Assert.False(Assert.Single(northstar.Sectors!).HeaderCrcValid);
-        Assert.False(Assert.Single(heathkit.Sectors!).HeaderCrcValid);
+        Assert.False(Assert.Single(northstar.Sectors!).IntegrityValid);
+        Assert.False(Assert.Single(heathkit.Sectors!).IntegrityValid);
     }
 
     [Theory]
