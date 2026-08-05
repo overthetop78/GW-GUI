@@ -235,10 +235,10 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
             bool? checksumValid = null;
             if (completeData)
             {
-                byte checksum = 0;
-                for (var index = 0; index < 129; index++) checksum += stream.DecodeMfmByte(dataOffset + 10 * 8 + index * 16);
+                byte checksum = 0; var data = new byte[128];
+                for (var index = 0; index < 129; index++) { var value = stream.DecodeMfmByte(dataOffset + 10 * 8 + index * 16); checksum += value; if (index > 0) data[index - 1] = value; }
                 var stored = stream.DecodeMfmByte(dataOffset + 10 * 8 + 129 * 16); checksumValid = checksum == stored;
-                pairedDataMarks.Add(dataOffset);
+                pairedDataMarks.Add(dataOffset); bytes.AddRange(data);
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, 10 * 8 + 130 * 16, $"QD MO5 R{number} data, checksum {(checksumValid == true ? "valid" : "invalid")}"));
             }
             sectors.Add(new(0, 0, number, 0, 128, checksumValid, offset, SectorIntegrityKind.Checksum));

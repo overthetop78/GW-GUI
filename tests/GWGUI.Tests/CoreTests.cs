@@ -1226,6 +1226,21 @@ public sealed class CoreTests
         Assert.Equal(!corruptChecksum, sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+        Assert.Equal(data, result.DecodedBytes.TakeLast(128));
+    }
+
+    [Fact]
+    public void QdMo5DecoderReportsUnavailableIntegrityForTruncatedData()
+    {
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var headerMark = RawMark("A914A914A914A914A9144491"); var dataMark = RawMark("A914A914A914A914A9149144");
+        var headerTail = new byte[] { 0x12, 0x34 }.Concat(new byte[13]).ToArray();
+        var raw = headerMark + EncodeMfmBytesFromZero(headerTail) + string.Concat(Enumerable.Repeat("10", 20)) + dataMark + EncodeMfmBytesFromZero(Enumerable.Range(0, 12).Select(index => (byte)index).ToArray()) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new QdMo5MfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
 
     [Fact]
