@@ -33,12 +33,12 @@ public partial class GwToolWindow : Window
     {
         switch (_verb)
         {
-            case "rpm": AddField("nr", "Nombre de mesures", "1"); break;
-            case "seek": AddField("cylinder", "Cylindre", "0"); AddCheck("force", "Autoriser les cylindres extrêmes"); AddCheck("motor-on", "Laisser le moteur actif"); break;
-            case "pin": AddField("pin", "Broche (8, 26 ou 28)", "26"); AddCheck("set", "Modifier la broche"); AddCheck("high", "Niveau haut"); break;
+            case "rpm": AddField("nr", L("Tool.Field.Measurements"), "1"); break;
+            case "seek": AddField("cylinder", L("Tool.Field.Cylinder"), "0"); AddCheck("force", L("Tool.Field.Extreme")); AddCheck("motor-on", L("Tool.Field.MotorOn")); break;
+            case "pin": AddField("pin", L("Tool.Field.Pin"), "26"); AddCheck("set", L("Tool.Field.SetPin")); AddCheck("high", L("Tool.Field.High")); break;
             case "delays":
-                AddOptionalField("select", "Sélection (µs)", "10"); AddOptionalField("step", "Pas de tête (µs)", "3000"); AddOptionalField("settle", "Stabilisation (ms)", "15"); AddOptionalField("motor", "Moteur (ms)", "750"); AddOptionalField("watchdog", "Désélection (ms)", "10000"); AddOptionalField("pre-write", "Avant écriture (µs)", "15"); AddOptionalField("post-write", "Après écriture (µs)", "15"); AddOptionalField("index-mask", "Masque index (µs)", "15"); break;
-            case "update": AddCheck("bootloader", "Mettre à jour le bootloader (risqué)"); break;
+                AddOptionalField("select", L("Tool.Field.Select"), "10"); AddOptionalField("step", L("Tool.Field.Step"), "3000"); AddOptionalField("settle", L("Tool.Field.Settle"), "15"); AddOptionalField("motor", L("Tool.Field.Motor"), "750"); AddOptionalField("watchdog", L("Tool.Field.Watchdog"), "10000"); AddOptionalField("pre-write", L("Tool.Field.PreWrite"), "15"); AddOptionalField("post-write", L("Tool.Field.PostWrite"), "15"); AddOptionalField("index-mask", L("Tool.Field.IndexMask"), "15"); break;
+            case "update": AddCheck("bootloader", L("Tool.Field.Bootloader")); break;
         }
     }
 
@@ -84,27 +84,28 @@ public partial class GwToolWindow : Window
         _cancellation = new CancellationTokenSource();
         ExecuteButton.Content = LocExtension.Get("Common.Stop");
         RawOutput.Clear();
-        Summary.Text = "Commande en cours…";
+        Summary.Text = L("Tool.Running");
         var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); });
         try
         {
-            if (_verb == "update" && Checked("bootloader") && MessageBox.Show(this, "La mise à jour du bootloader est une opération avancée qui peut rendre le contrôleur inutilisable en cas d’interruption. Continuer ?", "Bootloader", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+            if (_verb == "update" && Checked("bootloader") && MessageBox.Show(this, L("Tool.BootloaderWarning"), "Bootloader", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
             var command = BuildCommand();
             var result = await _runner.RunAsync(command, progress, _cancellation.Token);
             if (_verb == "info")
             {
                 var info = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(x => x.Text)));
-                Summary.Text = $"{info.Model ?? "Contrôleur"} · {info.FirmwareVersion ?? "Firmware inconnu"} · {info.Port ?? "Port inconnu"}" + (info.HasNetworkWarning ? "\nLes informations locales sont valides; seule la vérification réseau a échoué." : "");
+                Summary.Text = $"{info.Model ?? L("Tool.ControllerFallback")} · {info.FirmwareVersion ?? L("Tool.FirmwareUnknown")} · {info.Port ?? L("Tool.PortUnknown")}" + (info.HasNetworkWarning ? "\n" + L("Tool.NetworkWarning") : "");
             }
-            else Summary.Text = result.IsSuccess ? "Commande terminée avec succès." : result.WasCancelled ? "Commande interrompue." : $"La commande s’est terminée avec le code {result.ExitCode}.";
+            else Summary.Text = result.IsSuccess ? L("Operation.Succeeded") : result.WasCancelled ? L("Operation.Cancelled") : LocExtension.Get("Operation.ExitCode", result.ExitCode);
         }
         catch (Exception exception) { Summary.Text = exception.Message; }
         finally { ExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
+    private static string L(string key) => LocExtension.Get(key);
     private static string TitleFor(string verb) => verb switch
     {
-        "info" => "Informations du contrôleur", "bandwidth" => "Bande passante USB", "rpm" => "Vitesse du lecteur", "seek" => "Déplacer la tête",
-        "pin" => "Broches matérielles", "reset" => "Réinitialiser le contrôleur", "delays" => "Temporisations", "update" => "Firmware", _ => verb
+        "info" => L("Tool.Title.Info"), "bandwidth" => L("Tool.Title.Bandwidth"), "rpm" => L("Tool.Title.Rpm"), "seek" => L("Tool.Title.Seek"),
+        "pin" => L("Tool.Title.Pin"), "reset" => L("Tool.Title.Reset"), "delays" => L("Tool.Title.Delays"), "update" => L("Tool.Title.Update"), _ => verb
     };
 }

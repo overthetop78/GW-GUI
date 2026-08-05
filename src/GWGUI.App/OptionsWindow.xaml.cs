@@ -8,6 +8,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Settings;
 using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.Processes;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -31,7 +32,7 @@ public partial class OptionsWindow : Window
         ThemeCombo.SelectedIndex = (int)settings.Theme;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
-        foreach (var operation in new[] { "Read", "Write", "Convert" }) Profiles.Add(new($"default-{operation.ToLowerInvariant()}", operation, "Par défaut", true));
+        foreach (var operation in new[] { "Read", "Write", "Convert" }) Profiles.Add(new($"default-{operation.ToLowerInvariant()}", operation, LocExtension.Get("Profile.Default"), true));
         foreach (var profile in settings.Profiles) Profiles.Add(new(profile.Id, profile.Operation, profile.Name, false));
         ProfilesGrid.ItemsSource = Profiles;
     }
@@ -45,19 +46,19 @@ public partial class OptionsWindow : Window
 
     private void BrowseGw_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = "Greaseweazle (gw.exe)|gw.exe|Exécutable (*.exe)|*.exe" };
+        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Options.ExecutableFilter") };
         if (dialog.ShowDialog(this) == true) GwPathText.Text = dialog.FileName;
     }
 
     private void BrowseImagesFolder_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFolderDialog { Multiselect = false, Title = "Dossier d’images par défaut" };
+        var dialog = new OpenFolderDialog { Multiselect = false, Title = LocExtension.Get("Options.ImagesFolder") };
         if (dialog.ShowDialog(this) == true) ImagesFolderText.Text = dialog.FolderName;
     }
 
     private async void ScanHardware_Click(object sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(GwPathText.Text) || !File.Exists(GwPathText.Text)) { MessageBox.Show(this, "Choisissez d’abord gw.exe dans Greaseweazle Tools.", "Scanner"); return; }
+        if (string.IsNullOrWhiteSpace(GwPathText.Text) || !File.Exists(GwPathText.Text)) { MessageBox.Show(this, LocExtension.Get("Hardware.GwRequired"), LocExtension.Get("Hardware.ScanTitle")); return; }
         ScanButton.IsEnabled = false;
         try
         {
@@ -78,7 +79,7 @@ public partial class OptionsWindow : Window
             }
             RefreshHardwareRows();
         }
-        catch (Exception exception) { MessageBox.Show(this, exception.Message, "Scanner", MessageBoxButton.OK, MessageBoxImage.Error); }
+        catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("Hardware.ScanTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
         finally { ScanButton.IsEnabled = true; }
     }
 
@@ -92,7 +93,7 @@ public partial class OptionsWindow : Window
     {
         if (DrivesGrid.SelectedItem is not HardwareRow row) return;
         if (row.DriveId is not null) _drives.RemoveAll(x => x.Id == row.DriveId);
-        else if (MessageBox.Show(this, "Supprimer ce contrôleur mémorisé et tous ses lecteurs ?", "Matériel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+        else if (MessageBox.Show(this, LocExtension.Get("Options.RemoveHardware"), LocExtension.Get("Options.HardwareTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
         { _controllers.RemoveAll(x => x.UsbId == row.UsbId); _drives.RemoveAll(x => x.ControllerUsbId == row.UsbId); }
         RefreshHardwareRows();
     }
@@ -103,26 +104,26 @@ public partial class OptionsWindow : Window
         foreach (var controller in _controllers)
         {
             var drives = _drives.Where(x => x.ControllerUsbId == controller.UsbId).ToArray();
-            if (drives.Length == 0) Hardware.Add(new(null, controller.LastPort, controller.UsbId, "Aucun lecteur défini", controller.IsAvailable));
-            foreach (var drive in drives) Hardware.Add(new(drive.Id, controller.LastPort, controller.UsbId, $"{drive.Size} pouces · {drive.Density} · sélection {drive.Selection}" + (drive.NominalRpm is null ? "" : $" · {drive.NominalRpm} RPM"), controller.IsAvailable));
+            if (drives.Length == 0) Hardware.Add(new(null, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.NoDrive"), controller.IsAvailable));
+            foreach (var drive in drives) Hardware.Add(new(drive.Id, controller.LastPort, controller.UsbId, LocExtension.Get("Hardware.Description", drive.Size, drive.Density, drive.Selection, drive.NominalRpm is null ? "" : $" · {drive.NominalRpm} RPM"), controller.IsAvailable));
         }
     }
 
     private void RenameProfile_Click(object sender, RoutedEventArgs e)
     {
         if (ProfilesGrid.SelectedItem is not ProfileOptionRow row) return;
-        if (row.IsSystem) { MessageBox.Show(this, "Le profil Par défaut est permanent et ne peut pas être renommé.", "Profil", MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (row.IsSystem) { MessageBox.Show(this, LocExtension.Get("Profile.SystemRename"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
         var dialog = new ProfileNameWindow(row.Name) { Owner = this };
         if (dialog.ShowDialog() != true) return;
-        if (Profiles.Any(x => x.Operation == row.Operation && x.Id != row.Id && string.Equals(x.Name, dialog.ProfileName, StringComparison.CurrentCultureIgnoreCase))) { MessageBox.Show(this, "Un profil de cet onglet porte déjà ce nom.", "Profil", MessageBoxButton.OK, MessageBoxImage.Warning); return; }
+        if (Profiles.Any(x => x.Operation == row.Operation && x.Id != row.Id && string.Equals(x.Name, dialog.ProfileName, StringComparison.CurrentCultureIgnoreCase))) { MessageBox.Show(this, LocExtension.Get("Profile.DuplicateName"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
         var index = Profiles.IndexOf(row); Profiles[index] = row with { Name = dialog.ProfileName };
     }
 
     private void DeleteProfile_Click(object sender, RoutedEventArgs e)
     {
         if (ProfilesGrid.SelectedItem is not ProfileOptionRow row) return;
-        if (row.IsSystem) { MessageBox.Show(this, "Le profil Par défaut est permanent et ne peut pas être supprimé.", "Profil", MessageBoxButton.OK, MessageBoxImage.Information); return; }
-        if (MessageBox.Show(this, $"Supprimer le profil « {row.Name} » ?", "Profil", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) Profiles.Remove(row);
+        if (row.IsSystem) { MessageBox.Show(this, LocExtension.Get("Profile.SystemDelete"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        if (MessageBox.Show(this, LocExtension.Get("Profile.DeleteConfirm", row.Name), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) Profiles.Remove(row);
     }
 
     private void Save_Click(object sender, RoutedEventArgs e)
@@ -142,5 +143,5 @@ public partial class OptionsWindow : Window
 public sealed record HardwareRow(string? DriveId, string Port, string UsbId, string Description, bool Available);
 public sealed record ProfileOptionRow(string Id, string Operation, string Name, bool IsSystem)
 {
-    public string OperationLabel => Operation switch { "Read" => "Lecture", "Write" => "Écriture", "Convert" => "Conversion", _ => Operation };
+    public string OperationLabel => Operation switch { "Read" => LocExtension.Get("Tab.Read"), "Write" => LocExtension.Get("Tab.Write"), "Convert" => LocExtension.Get("Tab.Convert"), _ => Operation };
 }

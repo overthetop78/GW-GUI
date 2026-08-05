@@ -64,19 +64,19 @@ public partial class MainWindow : Window
     {
         try
         {
-            ScpSummary.Text = "Lecture du fichier…";
+            ScpSummary.Text = LocExtension.Get("Visual.Loading");
             _scpImage = await new ScpReader().ReadAsync(path);
             ScpFileName.Text = Path.GetFileName(path);
             var heads = _scpImage.Tracks.Select(x => x.Head).Distinct().Order().ToArray();
-            ScpSummary.Text = $"SCP {_scpImage.Header.VersionText} · {_scpImage.Tracks.Count} pistes · {_scpImage.Header.Revolutions} révolution(s) · résolution {_scpImage.Header.ResolutionNanoseconds} ns · checksum {(_scpImage.ChecksumValid ? "valide" : "incorrect")}";
+            ScpSummary.Text = LocExtension.Get("Visual.Summary", _scpImage.Header.VersionText, _scpImage.Tracks.Count, _scpImage.Header.Revolutions, _scpImage.Header.ResolutionNanoseconds, LocExtension.Get(_scpImage.ChecksumValid ? "Visual.ChecksumValid" : "Visual.ChecksumInvalid"));
             ScpSide0.SetImage(_scpImage, 0); ScpSide1.SetImage(_scpImage, 1);
             _selectedScpTrack = null;
             ScpSide0.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed; ScpSide1.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
             Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Length == 1 && heads.Contains(0) ? 2 : 1);
             Grid.SetColumn(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 2 : 1);
-            ScpTrackInfo.Text = "Sélectionnez une piste.";
+            ScpTrackInfo.Text = LocExtension.Get("Visual.SelectTrack");
         }
-        catch (Exception exception) { _scpImage = null; ScpSummary.Text = "Fichier invalide"; MessageBox.Show(exception.Message, "Visualisation SCP", MessageBoxButton.OK, MessageBoxImage.Error); }
+        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); MessageBox.Show(exception.Message, LocExtension.Get("Visual.Title"), MessageBoxButton.OK, MessageBoxImage.Error); }
     }
 
     private void ScpTrack_Selected(object? sender, ScpTrack? track)
@@ -93,10 +93,10 @@ public partial class MainWindow : Window
         if (track is null || _scpImage is null || ScpTrackInfo is null) return;
         var choice = ScpDecoderCombo.SelectedItem as ScpDecoderChoice;
         var decoded = track.Revolutions.Count == 0 ? null : choice?.Id is null ? _fluxDecoders.DecodeAutomatic(track.Revolutions[0]) : _fluxDecoders.Decode(choice.Id, track.Revolutions[0]);
-        var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => $"Révolution {index + 1} : {revolution.FluxIntervals.Count:N0} transitions · {revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds):F2} ms · {revolution.Rpm(_scpImage.Header.ResolutionNanoseconds):F2} RPM"));
+        var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) => LocExtension.Get("Visual.Revolution", index + 1, revolution.FluxIntervals.Count, revolution.DurationMilliseconds(_scpImage.Header.ResolutionNanoseconds), revolution.Rpm(_scpImage.Header.ResolutionNanoseconds))));
         var details = decoded is null ? "" : string.Join(Environment.NewLine, decoded.Structures.Take(30).Select(x => $"• {x.Description} @ bit {x.BitOffset:N0}"));
-        var analysis = decoded is null ? "" : $"\n\nDécodage : {decoded.DisplayName}\nConfiance : {decoded.Confidence:P0}\nCellule estimée : {decoded.EstimatedBitCellTicks:F1} ticks\nStructures : {decoded.Structures.Count}" + (details.Length > 0 ? $"\n\n{details}" : "");
-        ScpTrackInfo.Text = $"Face : {track.Head}\nPiste : {track.Cylinder}\nEntrée SCP : {track.TrackNumber}\n\n{revolutions}{analysis}";
+        var analysis = decoded is null ? "" : "\n\n" + LocExtension.Get("Visual.Analysis", decoded.DisplayName, decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count) + (details.Length > 0 ? $"\n\n{details}" : "");
+        ScpTrackInfo.Text = LocExtension.Get("Visual.Track", track.Head, track.Cylinder, track.TrackNumber) + $"\n\n{revolutions}{analysis}";
     }
 
     private void ScpZoom_Changed(object? sender, float zoom)
@@ -196,7 +196,7 @@ public partial class MainWindow : Window
         var command = BuildWriteCommand();
         _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear();
         var output = new Progress<GwOutputLine>(line => { LogOutput.AppendText(line.Text + Environment.NewLine); LogOutput.ScrollToEnd(); });
-        try { var result = await _runner.RunAsync(command, output, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}, durée {result.Duration:g}."); }
+        try { var result = await _runner.RunAsync(command, output, _cancellation.Token); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
         catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
         finally { WriteExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
@@ -218,7 +218,7 @@ public partial class MainWindow : Window
         var enabled = new HashSet<string>(); if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries");
         var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text };
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
-        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show("Ce profil existe déjà. Voulez-vous le remplacer ?", "Profil", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
+        try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
     }
 
@@ -276,7 +276,7 @@ public partial class MainWindow : Window
             var outputs = PlanConversions();
             if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
             var first = ConversionCommandBuilder.Build(_settings.GwExecutablePath ?? "gw.exe", ConvertSourceText.Text, outputs[0], GetConvertOptions(), ConvertExpertArguments.Text);
-            CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? $"  (+ {outputs.Count - 1} conversion(s))" : "");
+            CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
         catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
     }
@@ -284,12 +284,12 @@ public partial class MainWindow : Window
     private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { _cancellation?.Cancel(); return; }
-        if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show("Choisissez une image source existante.", "Conversion"); return; }
-        if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show("Indiquez le nom des fichiers de sortie.", "Conversion"); return; }
+        if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
+        if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
-        try { outputs = PlanConversions(); } catch (Exception exception) { MessageBox.Show(exception.Message, "Conversion", MessageBoxButton.OK, MessageBoxImage.Warning); return; }
-        if (outputs.Count == 0) { MessageBox.Show("Cochez au moins un format de sortie.", "Conversion"); return; }
+        try { outputs = PlanConversions(); } catch (Exception exception) { MessageBox.Show(exception.Message, LocExtension.Get("Conversion.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
+        if (outputs.Count == 0) { MessageBox.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
         if (existing.Length > 0)
         {
@@ -401,7 +401,7 @@ public partial class MainWindow : Window
         try { profile = _profiles.Save(profile); }
         catch (InvalidOperationException)
         {
-            if (MessageBox.Show("Ce profil existe déjà. Voulez-vous le remplacer ?", "Profil", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
+            if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
             profile = _profiles.Save(profile, true);
         }
         RefreshReadProfiles(profile.Id);
@@ -453,7 +453,7 @@ public partial class MainWindow : Window
     private void UpdateReadExtension()
     {
         if (ReadExtensionText is null) return;
-        ReadExtensionText.Text = RawScpRadio?.IsChecked == true ? "Image brute (SCP)" : (ReadExtensionCombo?.SelectedItem as ImageExtension)?.DisplayName ?? "Choisir un type d’image";
+        ReadExtensionText.Text = RawScpRadio?.IsChecked == true ? LocExtension.Get("Read.RawScp") : (ReadExtensionCombo?.SelectedItem as ImageExtension)?.DisplayName ?? LocExtension.Get("Read.ChooseType");
     }
 
     private void UpdateReadCommand()
@@ -543,7 +543,7 @@ public partial class MainWindow : Window
         try
         {
             var result = await _runner.RunAsync(command, output, _cancellation.Token);
-            LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}, durée {result.Duration:g}.");
+            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g")));
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
             if (result.IsSuccess && ReadAutoNumber.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var value)) ReadSequenceValue.Text = (value + 1).ToString();
         }

@@ -2,6 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Formats;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -14,7 +15,7 @@ public partial class ConversionFormatControl : UserControl
 
     public ConversionFormatControl(DiskFormat format)
     {
-        InitializeComponent(); Format = format; FormatCheck.Content = format.DisplayName; FormatCheck.ToolTip = $"Aucune extension cochée : {format.Extensions.First(x => x.IsDefault).Extension.ToUpperInvariant()} par défaut.";
+        InitializeComponent(); Format = format; FormatCheck.Content = format.DisplayName; FormatCheck.ToolTip = LocExtension.Get("Conversion.DefaultExtensionTip", format.Extensions.First(x => x.IsDefault).Extension.ToUpperInvariant());
         foreach (var extension in format.Extensions)
         {
             var check = new CheckBox { Content = extension.Extension.TrimStart('.').ToUpperInvariant(), Tag = extension.Extension, Margin = new Thickness(12, 0, 0, 0), ToolTip = extension.DisplayName };

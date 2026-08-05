@@ -4,6 +4,7 @@ using System.Windows.Input;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using GWGUI.Scp;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App;
 
@@ -32,7 +33,7 @@ public partial class ScpDiskView : UserControl
         var center = new SKPoint(e.Info.Width / 2f + _panX * e.Info.Width / (float)Math.Max(1, Canvas.ActualWidth), e.Info.Height / 2f + _panY * e.Info.Height / (float)Math.Max(1, Canvas.ActualHeight)); var outer = Math.Min(e.Info.Width, e.Info.Height) * .47f * _zoom; var inner = outer * .25f;
         using var disk = new SKPaint { Color = new SKColor(17, 61, 43), IsAntialias = true }; canvas.DrawCircle(center, outer, disk);
         using var hub = new SKPaint { Color = new SKColor(4, 6, 8), IsAntialias = true }; canvas.DrawCircle(center, inner, hub);
-        if (tracks.Length == 0) { DrawCentered(canvas, center, $"Face {_head}\nAucune donnée", SKColors.White); return; }
+        if (tracks.Length == 0) { DrawCentered(canvas, center, LocExtension.Get("Visual.SideNoData", _head), SKColors.White); return; }
         var ring = (outer - inner) / Math.Max(1, tracks.Length);
         foreach (var track in tracks)
         {
@@ -75,7 +76,7 @@ public partial class ScpDiskView : UserControl
     {
         var position = e.GetPosition(Canvas);
         if (_dragOrigin is Point origin && e.RightButton == MouseButtonState.Pressed) { _panX += (float)(position.X - origin.X); _panY += (float)(position.Y - origin.Y); _dragOrigin = position; Canvas.InvalidateVisual(); return; }
-        var track = TrackAt(position); Canvas.ToolTip = track is null ? null : $"Face {track.Head} · Piste {track.Cylinder}\n{track.Revolutions.Count} révolution(s)";
+        var track = TrackAt(position); Canvas.ToolTip = track is null ? null : LocExtension.Get("Visual.TrackTooltip", track.Head, track.Cylinder, track.Revolutions.Count);
     }
     private void Canvas_MouseLeave(object sender, MouseEventArgs e) { if (_dragOrigin is null) Canvas.ToolTip = null; }
     private ScpTrack? TrackAt(Point position)

@@ -39,15 +39,15 @@ public sealed class LocalizationTests
     }
 
     [Fact]
-    public void MainWindowContainsNoHardCodedNaturalLanguageLabels()
+    public void ViewsContainNoHardCodedNaturalLanguageLabels()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
         while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
         Assert.NotNull(directory);
-        var document = XDocument.Load(Path.Combine(directory!.FullName, "src", "GWGUI.App", "MainWindow.xaml"));
         var visibleAttributes = new HashSet<string>(StringComparer.Ordinal) { "Title", "Header", "Content", "Text", "ToolTip" };
-        var technical = new System.Text.RegularExpressions.Regex(@"^(?:\d+|[A-Z]|\d+ / [A-Z]+|\d{2,3} / [A-Z]{2,3}|c=.+)$", System.Text.RegularExpressions.RegexOptions.CultureInvariant);
-        var hardCoded = document.Descendants().Attributes()
+        var technical = new System.Text.RegularExpressions.Regex(@"^(?:\d+(?:\.\d+)?(?: RPM)?|[A-Z]|DD|HD|ED|\d+ / [A-Z]+|\d{2,3} / [A-Z]{2,3}|c=.+|Français|English)$", System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+        var hardCoded = Directory.EnumerateFiles(Path.Combine(directory!.FullName, "src", "GWGUI.App"), "*.xaml")
+            .SelectMany(file => XDocument.Load(file).Descendants().Attributes())
             .Where(x => visibleAttributes.Contains(x.Name.LocalName) && !x.Value.StartsWith('{') && !technical.IsMatch(x.Value))
             .Select(x => x.Value).Distinct().ToArray();
         Assert.Empty(hardCoded);

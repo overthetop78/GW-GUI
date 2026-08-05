@@ -15,7 +15,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Profils propres à Lecture, Écriture et Conversion; profil système Par défaut permanent.
 - Renommage et suppression des profils utilisateur dans les Options.
 - Registre matériel persistant : scan des ports Windows, interrogation `gw info --device`, identification stable, disponibilité, ajout et suppression de lecteurs décrits par sélection, taille, densité et RPM.
-- Infrastructure bilingue `.resx` et culture chargée avant la première fenêtre. Tous les libellés naturels de la fenêtre principale (Lecture, Écriture, Conversion, Visualisation, Outils, console et état) utilisent désormais des clés; un test interdit leur réintroduction en dur. Options, l’éditeur de lecteur, les profils et les conflits de conversion sont également migrés. Les messages dynamiques principaux de lecture, écriture, conversion, maintenance et matériel sont traduits.
+- Infrastructure bilingue `.resx` et culture chargée avant la première fenêtre. Toutes les vues utilisent désormais des clés pour leurs libellés naturels; seuls les nombres, valeurs techniques et noms natifs des langues restent littéraux. Options, diagnostics, profils, conflits, inspecteur SCP et messages dynamiques sont migrés. Un test contrôle toutes les vues et la parité exhaustive des catalogues FR/EN.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -24,7 +24,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
 - Compléter toutes les options avancées de chaque commande `gw` et leurs profils.
-- Achever la migration des derniers textes générés en code dans Options, diagnostics et inspecteur SCP.
+- Vérifier visuellement les deux langues et traduire progressivement les descriptions provenant encore du catalogue métier lorsqu’elles sont exposées à l’utilisateur.
 - Terminer thèmes, restauration complète de fenêtre, barre d’état, progression et arrêt gracieux avant terminaison forcée.
 - Construire le gestionnaire complet des Host Tools : détection, téléchargement, choix, mises à jour signalées et retour arrière.
 - Compléter le catalogue dynamique depuis l’aide et les diskdefs de la version de `gw` active.
