@@ -110,6 +110,7 @@
   <data name="Visual.DecoderName.centurion.mfm"><value>Centurion MFM</value></data>
   <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hard-sectored MFM</value></data>
   <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sectored FM</value></data>
   <data name="Visual.DecoderName.emu.fm"><value>E-mu Emulator FM</value></data>
   <data name="Visual.DecoderName.tycom.fm"><value>TYCOM FM</value></data>
   <data name="Visual.DecoderName.dec.rx02"><value>DEC RX02 M²FM</value></data>

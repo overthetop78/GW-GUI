@@ -1291,6 +1291,48 @@ public sealed class CoreTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
+    public void MicralNDecoderExtractsIdentityDataAndCarryChecksum(bool corruptChecksum)
+    {
+        const byte cylinder = 17, sectorNumber = 29;
+        var data = Enumerable.Range(0, 128).Select(index => (byte)(index * 11 + 7)).ToArray();
+        static byte Update(byte checksum, byte value)
+        {
+            var carrySource = ((value ^ checksum) ^ 0xff) & ((value + checksum) ^ value);
+            return (byte)(checksum + value + ((carrySource & 0x80) != 0 ? 1 : 0));
+        }
+        byte checksum = 0; foreach (var value in data) checksum = Update(checksum, value);
+        if (corruptChecksum) checksum++;
+        var raw = EncodeFmBytes(new byte[] { 0, 0, 0, 0xff, sectorNumber, cylinder }.Concat(data).Append(checksum).ToArray()) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new MicralNFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(cylinder, sector.Cylinder);
+        Assert.Equal(0, sector.Head);
+        Assert.Equal(sectorNumber, sector.Number);
+        Assert.Equal(128, sector.SizeBytes);
+        Assert.Equal(!corruptChecksum, sector.IntegrityValid);
+        Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
+        Assert.Equal(data, result.DecodedBytes);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MicralNDecoderReportsUnavailableIntegrityForTruncatedBlock()
+    {
+        var raw = EncodeFmBytes(0, 0, 0, 0xff, 4, 2, 1, 2, 3) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new MicralNFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Empty(result.Sectors!);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
     public void MembrainDecoderExtractsPackedIdentityAndNativeCrc(bool corruptCrc)
     {
         byte[] prefix = [0xa1, 0xfe, 0x04, 0xb9];

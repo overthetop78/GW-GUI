@@ -72,7 +72,7 @@ Le dépôt est public sous licence MIT. Les préversions `0.x` servent au dével
 - Parser SCP défensif et rendu circulaire des faces, pistes, révolutions, structures et anomalies.
 - Inspecteur latéral masquable; zoom indépendant avec option Lier.
 - Détection automatique ou choix manuel du décodeur.
-- Décodeurs modulaires couvrant flux brut, ISO MFM/FM, Amiga MFM, Apple, C64, Northstar, DEC RX02, E-Emu, AED 6200P, TYCOM, Membrain, Heathkit, Arburg, Victor 9K, QD MO5, Centurion et les analyseurs HxC de référence.
+- Décodeurs modulaires couvrant flux brut, ISO MFM/FM, Amiga MFM, Apple II et Macintosh GCR, C64, Northstar, Micral N, DEC RX02, E-Emu, AED 6200P, TYCOM, Membrain, Heathkit, Arburg, Victor 9K, QD MO5, Centurion et les analyseurs HxC de référence.
 - Aucune dépendance à HxCFloppyEmulator.exe ou libhxcfe.dll.
 
 ### Options, outils et matériel
