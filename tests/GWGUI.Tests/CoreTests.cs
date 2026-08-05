@@ -16,6 +16,8 @@ using GWGUI.Domain.Settings;
 using GWGUI.App;
 using GWGUI.App.ViewModels;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Threading;
 
 namespace GWGUI.Tests;
 
@@ -41,6 +43,35 @@ public sealed class CoreTests
         Assert.Equal(50, model.ProgressValue);
         Assert.Contains(nameof(model.HardwareText), changed);
         Assert.Contains(nameof(model.ProgressValue), changed);
+    }
+
+    [Fact]
+    public void MainWindowXamlLoadsWithStatusBindingsAndAlignmentMenu()
+    {
+        Exception? failure = null;
+        var thread = new Thread(() =>
+        {
+            try
+            {
+                var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+                app.InitializeComponent();
+                var window = new MainWindow();
+
+                Assert.IsType<MainWindowViewModel>(window.DataContext);
+                Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
+                var hardwareText = Assert.IsType<System.Windows.Controls.TextBlock>(window.FindName("HardwareStatusText"));
+                var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
+                Assert.NotNull(BindingOperations.GetBindingExpression(hardwareText, System.Windows.Controls.TextBlock.TextProperty));
+                Assert.NotNull(BindingOperations.GetBindingExpression(progress, System.Windows.Controls.Primitives.RangeBase.ValueProperty));
+                window.Close();
+            }
+            catch (Exception exception) { failure = exception; }
+            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
+        });
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        Assert.True(thread.Join(TimeSpan.FromSeconds(30)), "The WPF smoke test timed out.");
+        if (failure is not null) throw failure;
     }
 
     [Fact]
