@@ -37,7 +37,18 @@ public partial class OptionsWindow : Window
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _previousGwPath = settings.PreviousGwExecutablePath; _installedVersion = settings.InstalledHostToolsVersion; _availableVersion = settings.AvailableHostToolsVersion; _lastHostToolsCheck = settings.LastHostToolsCheckUtc;
-        _controllers = settings.Controllers.Select(x => new ControllerSettings { UsbId = x.UsbId, LastPort = x.LastPort, Model = x.Model, IsAvailable = x.IsAvailable }).ToList();
+        _controllers = settings.Controllers.Select(x => new ControllerSettings
+        {
+            UsbId = x.UsbId,
+            UsbSerialNumber = x.UsbSerialNumber,
+            PnpDeviceId = x.PnpDeviceId,
+            LastUsbLocation = x.LastUsbLocation,
+            VendorId = x.VendorId,
+            ProductId = x.ProductId,
+            LastPort = x.LastPort,
+            Model = x.Model,
+            IsAvailable = x.IsAvailable
+        }).ToList();
         _drives = settings.Drives.Select(x => new DriveSettings { Id = x.Id, ControllerUsbId = x.ControllerUsbId, Selection = x.Selection, Size = x.Size, Density = x.Density, NominalRpm = x.NominalRpm }).ToList();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = settings.GwExecutablePath;

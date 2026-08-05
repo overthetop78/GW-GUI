@@ -74,6 +74,11 @@ public sealed class WindowPlacementSettings
 public sealed class ControllerSettings
 {
     public string UsbId { get; set; } = "";
+    public string? UsbSerialNumber { get; set; }
+    public string? PnpDeviceId { get; set; }
+    public string? LastUsbLocation { get; set; }
+    public int? VendorId { get; set; }
+    public int? ProductId { get; set; }
     public string LastPort { get; set; } = "";
     public string Model { get; set; } = "";
     public bool IsAvailable { get; set; }

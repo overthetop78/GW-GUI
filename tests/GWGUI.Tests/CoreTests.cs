@@ -946,7 +946,7 @@ public sealed class CoreTests
         };
         var runner = new ScriptedRunner(new GwExecutionResult(0, false, TimeSpan.FromMilliseconds(10), output));
         IHardwareRegistry registry = new GreaseweazleHardwareRegistry(
-            new StaticSerialDeviceDiscovery([new SerialDevice("COM9", "USB\\VID_1209&PID_4D69", "Greaseweazle serial device")]),
+            new StaticSerialDeviceDiscovery([new SerialDevice("COM9", "USB\\VID_1209&PID_4D69", "Greaseweazle serial device", 0x1209, 0x4d69)]),
             runner);
         var configured = new[]
         {
@@ -972,8 +972,8 @@ public sealed class CoreTests
     {
         var discovery = new MutableSerialDeviceDiscovery(
         [
-            new("COM3", "PNP-A", "Greaseweazle A"),
-            new("COM4", "PNP-B", "Greaseweazle B")
+            new("COM3", "PNP-A", "Greaseweazle A", 0x1209, 0x4d69),
+            new("COM4", "PNP-B", "Greaseweazle B", 0x1209, 0x4d69)
         ]);
         var runner = new DeviceInfoRunner(new Dictionary<string, (string Serial, string Model)>
         {
@@ -988,7 +988,7 @@ public sealed class CoreTests
         Assert.Equal(2, initial.Count);
         Assert.All(initial, controller => Assert.True(controller.IsAvailable));
 
-        discovery.Devices = [new("COM7", "PNP-B", "Greaseweazle B")];
+        discovery.Devices = [new("COM7", "PNP-B", "Greaseweazle B", 0x1209, 0x4d69)];
         var disconnected = await registry.ScanAsync("gw.exe", initial);
         var controllerA = Assert.Single(disconnected, controller => controller.UsbId == "GW-A");
         Assert.False(controllerA.IsAvailable);
@@ -999,14 +999,41 @@ public sealed class CoreTests
 
         discovery.Devices =
         [
-            new("COM9", "PNP-A", "Greaseweazle A"),
-            new("COM7", "PNP-B", "Greaseweazle B")
+            new("COM9", "PNP-A", "Greaseweazle A", 0x1209, 0x4d69),
+            new("COM7", "PNP-B", "Greaseweazle B", 0x1209, 0x4d69)
         ];
         var reconnected = await registry.ScanAsync("gw.exe", disconnected);
         Assert.Equal(2, reconnected.Count);
         Assert.All(reconnected, controller => Assert.True(controller.IsAvailable));
         Assert.Equal("COM9", reconnected.Single(controller => controller.UsbId == "GW-A").LastPort);
         Assert.Equal("COM7", reconnected.Single(controller => controller.UsbId == "GW-B").LastPort);
+    }
+
+    [Fact]
+    public async Task HardwareRegistryDoesNotProbeUnrelatedSerialPorts()
+    {
+        var runner = new ScriptedRunner(new GwExecutionResult(0, false, TimeSpan.Zero, []));
+        IHardwareRegistry registry = new GreaseweazleHardwareRegistry(
+            new StaticSerialDeviceDiscovery([new SerialDevice("COM6", "USB\\VID_2341&PID_0043\\ARDUINO", "Arduino", 0x2341, 0x0043)]),
+            runner);
+
+        var scanned = await registry.ScanAsync("gw.exe", []);
+
+        Assert.Empty(scanned);
+        Assert.Empty(runner.Commands);
+    }
+
+    [Fact]
+    public void PhysicalGreaseweazleDiscoveryFindsConnectedControllerWhenEnabled()
+    {
+        if (!string.Equals(Environment.GetEnvironmentVariable("GWGUI_TEST_PHYSICAL_DISCOVERY"), "1", StringComparison.Ordinal))
+            return;
+
+        var devices = new WindowsSerialDeviceDiscovery().FindSerialDevices();
+        var controller = Assert.Single(devices, GreaseweazleDeviceMatcher.IsCandidate);
+        Assert.Matches("^COM[0-9]+$", controller.Port);
+        Assert.False(string.IsNullOrWhiteSpace(controller.StableId));
+        Assert.True(controller.VendorId == 0x1209 || controller.UsbSerialNumber?.StartsWith("GW", StringComparison.OrdinalIgnoreCase) == true);
     }
 
     [Fact]

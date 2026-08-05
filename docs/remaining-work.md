@@ -128,7 +128,7 @@ La convention complète et les tâches techniques sont définies dans `versionin
 
 ### B1 — Plusieurs Greaseweazle et plusieurs lecteurs physiques
 
-Le comportement est implémenté et testé par une matrice simulée. Il reste à reproduire avec au moins deux contrôleurs physiques :
+La détection native d’un Greaseweazle branché est validée en lecture seule. Le comportement multi-contrôleur est implémenté et testé par une matrice simulée. Il reste à reproduire avec au moins deux contrôleurs physiques :
 
 - ports COM distincts;
 - plusieurs lecteurs sur un même contrôleur et un lecteur sur chacun de deux contrôleurs;

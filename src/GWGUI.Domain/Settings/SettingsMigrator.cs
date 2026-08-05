@@ -2,7 +2,7 @@ namespace GWGUI.Domain.Settings;
 
 public static class SettingsMigrator
 {
-    public const int CurrentVersion = 5;
+    public const int CurrentVersion = 6;
 
     public static AppSettings Migrate(AppSettings settings)
     {
@@ -19,6 +19,7 @@ public static class SettingsMigrator
                 case 2: MigrateV2ToV3(settings); break;
                 case 3: MigrateV3ToV4(settings); break;
                 case 4: MigrateV4ToV5(settings); break;
+                case 5: MigrateV5ToV6(settings); break;
                 default: throw new NotSupportedException($"No migration exists for settings schema {settings.SchemaVersion}.");
             }
         }
@@ -58,6 +59,13 @@ public static class SettingsMigrator
         // ImageExtension is additive. Existing installations retain the
         // default extension of their selected format until the next save.
         settings.SchemaVersion = 5;
+    }
+
+    private static void MigrateV5ToV6(AppSettings settings)
+    {
+        // USB identity aliases are additive and are populated by the next
+        // hardware scan. Existing controller IDs and drive links stay intact.
+        settings.SchemaVersion = 6;
     }
 
     private static void Normalize(AppSettings settings)

@@ -19,14 +19,15 @@ public sealed class GreaseweazleHardwareRegistry(
         ArgumentException.ThrowIfNullOrWhiteSpace(executable);
         var controllers = configuredControllers.Select(CloneUnavailable).ToList();
         var serialDevices = await Task.Run(discovery.FindSerialDevices, cancellationToken);
-        foreach (var serial in serialDevices)
+        foreach (var serial in serialDevices.Where(GreaseweazleDeviceMatcher.IsCandidate))
         {
             cancellationToken.ThrowIfCancellationRequested();
             var result = await runner.RunAsync(commandBuilder.BuildInfo(new(executable, serial.Port)), cancellationToken: cancellationToken);
             if (!result.IsSuccess) continue;
             var parsed = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(line => line.Text)));
-            var usbId = string.IsNullOrWhiteSpace(parsed.SerialNumber) ? serial.StableId : parsed.SerialNumber;
-            var controller = controllers.FirstOrDefault(item => item.UsbId == usbId);
+            var confirmedSerial = NullIfWhiteSpace(parsed.SerialNumber) ?? serial.UsbSerialNumber;
+            var usbId = confirmedSerial ?? serial.StableId;
+            var controller = controllers.FirstOrDefault(item => Matches(item, serial, confirmedSerial));
             if (controller is null)
             {
                 controller = new ControllerSettings { UsbId = usbId };
@@ -34,6 +35,11 @@ public sealed class GreaseweazleHardwareRegistry(
             }
             controller.LastPort = serial.Port;
             controller.Model = parsed.Model ?? serial.DisplayName;
+            controller.UsbSerialNumber = confirmedSerial;
+            controller.PnpDeviceId = serial.PnpDeviceId;
+            controller.LastUsbLocation = serial.UsbLocation;
+            controller.VendorId = serial.VendorId;
+            controller.ProductId = serial.ProductId;
             controller.IsAvailable = true;
         }
         return controllers;
@@ -42,8 +48,34 @@ public sealed class GreaseweazleHardwareRegistry(
     private static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
     {
         UsbId = source.UsbId,
+        UsbSerialNumber = source.UsbSerialNumber,
+        PnpDeviceId = source.PnpDeviceId,
+        LastUsbLocation = source.LastUsbLocation,
+        VendorId = source.VendorId,
+        ProductId = source.ProductId,
         LastPort = source.LastPort,
         Model = source.Model,
         IsAvailable = false
     };
+
+    private static bool Matches(ControllerSettings controller, SerialDevice serial, string? confirmedSerial)
+    {
+        if (!string.IsNullOrWhiteSpace(confirmedSerial))
+            return EqualsId(controller.UsbId, confirmedSerial) ||
+                   EqualsId(controller.UsbSerialNumber, confirmedSerial) ||
+                   EqualsId(controller.PnpDeviceId, serial.PnpDeviceId);
+
+        if (!string.IsNullOrWhiteSpace(serial.PnpDeviceId))
+            return EqualsId(controller.UsbId, serial.PnpDeviceId) ||
+                   EqualsId(controller.PnpDeviceId, serial.PnpDeviceId);
+
+        return EqualsId(controller.UsbId, serial.StableId) ||
+               EqualsId(controller.LastUsbLocation, serial.UsbLocation);
+    }
+
+    private static bool EqualsId(string? left, string? right) =>
+        !string.IsNullOrWhiteSpace(left) && !string.IsNullOrWhiteSpace(right) &&
+        string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
+
+    private static string? NullIfWhiteSpace(string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
 }
