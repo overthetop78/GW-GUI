@@ -549,6 +549,14 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void RawFluxDecoderReportsShortNoiseAndLongDropout()
+    {
+        var intervals = Enumerable.Repeat(80u, 30).ToList(); intervals[8] = 5; intervals[20] = 900;
+        var result = new RawFluxDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Equal(2, result.Structures.Count(structure => structure.Kind == FluxStructureKind.TimingAnomaly));
+    }
+
+    [Fact]
     public void CommodoreGcrDecoderFindsSyncAndHeaderBlock()
     {
         const string headerByte08 = "01010" + "01001";
