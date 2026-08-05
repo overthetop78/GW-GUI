@@ -64,6 +64,18 @@ public sealed class CoreTests
         Assert.Equal("B", HardwareRoutingPolicy.DriveArgument([first, second], second));
     }
 
+    [Theory]
+    [InlineData("A", 0)]
+    [InlineData("Z", 25)]
+    [InlineData("AA", 26)]
+    [InlineData("AB", 27)]
+    public void AlphabeticSequenceInputParsesLikeItsDisplayedValue(string text, long expected)
+    {
+        Assert.True(SequenceFormatter.TryParse(text, SequenceKind.Alphabetic, out var value));
+        Assert.Equal(expected, value);
+        Assert.Equal(text, SequenceFormatter.Format(value, SequenceKind.Alphabetic, 1));
+    }
+
     [Fact]
     public void PortableMarkerMovesSettingsNextToTheApplication()
     {

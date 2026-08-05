@@ -4,6 +4,27 @@ public enum SequenceKind { Numeric, Alphabetic }
 
 public static class SequenceFormatter
 {
+    public static bool TryParse(string? text, SequenceKind kind, out long value)
+    {
+        value = 0;
+        if (string.IsNullOrWhiteSpace(text)) return false;
+        if (kind == SequenceKind.Numeric) return long.TryParse(text, out value) && value >= 0;
+        try
+        {
+            checked
+            {
+                foreach (var character in text.Trim().ToUpperInvariant())
+                {
+                    if (character is < 'A' or > 'Z') return false;
+                    value = value * 26 + character - 'A' + 1;
+                }
+                value--;
+                return value >= 0;
+            }
+        }
+        catch (OverflowException) { value = 0; return false; }
+    }
+
     public static string Format(long value, SequenceKind kind, int minimumWidth)
     {
         if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));

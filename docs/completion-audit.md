@@ -14,7 +14,8 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Les dialogues Diagnostics/Matériel couvrent les commandes prévues; Effacer et Nettoyer restent dans Outils.
 - Les ressources FR/EN ont une parité automatisée et les deux langues ont été ouvertes et contrôlées sur le paquet portable final.
 - ZIP portable, installateur Inno Setup et SHA-256 sont produits par `scripts/package.ps1`.
-- La compilation Release et 107 tests automatisés réussissent.
+- La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
+- La compilation Release et 111 tests automatisés réussissent.
 
 ## Partiellement prouvé
 

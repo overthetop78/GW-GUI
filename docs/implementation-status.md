@@ -9,6 +9,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Configuration JSON versionnée et écrite atomiquement.
 - Onglets Lecture, Écriture, Conversion, Visualisation et Outils; menus Diagnostics et Matériel.
 - Lecture SCP ou format connu, nom sans extension, dossier persistant, numérotation numérique/alphabetique, conflits et profils.
+- Le compteur alphabétique accepte directement `A` à `Z`, puis `AA`, `AB`, etc.; le passage Chiffres/Lettres convertit la valeur affichée et l’incrément n’a lieu qu’après une lecture réussie.
 - Écriture avec détection/modification du format, vérification par défaut et confirmation obligatoire.
 - Multiconversion séquentielle, sorties compatibles, extensions implicites/explicites, tags, conflits et bilan.
 - Effacement, nettoyage, diagnostics et commandes matérielles intégrés.
@@ -48,7 +49,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
 - Enrichir encore les infobulles avancées avec des exemples détaillés. La validation syntaxique de TSPEC, PLL, précompensation, faux index et ajustement de vitesse est désormais appliquée avant l'exécution.
-- Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
+- Vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
 - Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
 - Compléter l’extraction détaillée des secteurs pour les formats rares, renforcer la qualification des anomalies et valider les décodeurs sur un corpus de captures physiques libres.
@@ -58,7 +59,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 107 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, grammaire des options avancées (TSPEC, PLL, précompensation et vitesse), filtrage des conversions selon la source détectée, absence de format parasite en SCP brut, routage conditionnel du lecteur, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran complet, annulation réelle et progression.
+- Tests automatisés : 111 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, grammaire des options avancées (TSPEC, PLL, précompensation et vitesse), filtrage des conversions selon la source détectée, absence de format parasite en SCP brut, routage conditionnel du lecteur, saisie alphabétique du compteur, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran complet, annulation réelle et progression.
 - Validation visuelle interactive française et anglaise effectuée sur la distribution portable à 125 % de DPI : fenêtre complète, boutons Exécuter, console et barre d’état visibles. Tests matériels Greaseweazle non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.

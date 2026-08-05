@@ -167,14 +167,14 @@ public partial class MainWindow : Window
 
     private void RefreshWriteProfiles(string? selectedId = null)
     {
-        var items = _profiles.Get(OperationKind.Write);
+        var items = LocalizedProfiles(OperationKind.Write);
         WriteProfileCombo.ItemsSource = items;
         WriteProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
     }
 
     private void RefreshConvertProfiles(string? selectedId = null)
     {
-        var items = _profiles.Get(OperationKind.Convert);
+        var items = LocalizedProfiles(OperationKind.Convert);
         ConvertProfileCombo.ItemsSource = items;
         ConvertProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
     }
@@ -489,10 +489,13 @@ public partial class MainWindow : Window
 
     private void RefreshReadProfiles(string? selectedId = null)
     {
-        var items = _profiles.Get(OperationKind.Read);
+        var items = LocalizedProfiles(OperationKind.Read);
         ReadProfileCombo.ItemsSource = items;
         ReadProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
     }
+
+    private IReadOnlyList<OperationProfile> LocalizedProfiles(OperationKind operation) =>
+        _profiles.Get(operation).Select(profile => profile.IsSystem ? profile with { Name = LocExtension.Get("Profile.Default") } : profile).ToArray();
 
     private void ReadProfile_Changed(object sender, SelectionChangedEventArgs e)
     {
@@ -634,9 +637,9 @@ public partial class MainWindow : Window
     private string GetReadTarget(string extension)
     {
         var name = string.IsNullOrWhiteSpace(ReadFileName?.Text) ? "Exemple" : ReadFileName.Text.Trim();
-        if (ReadAutoNumber?.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var sequence) && sequence >= 0)
+        var kind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
+        if (ReadAutoNumber?.IsChecked == true && SequenceFormatter.TryParse(ReadSequenceValue.Text, kind, out var sequence))
         {
-            var kind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
             var suffix = SequenceFormatter.Format(sequence, kind, ReadSequenceWidth.SelectedIndex + 1);
             name += " " + suffix;
         }
@@ -670,6 +673,17 @@ public partial class MainWindow : Window
     private static string SelectedText(ComboBox combo) => (combo.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
 
     private void ReadFakeIndex_Checked(object sender, RoutedEventArgs e) { if (ReadHardSectors is not null) ReadHardSectors.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void ReadSequenceKind_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (ReadSequenceValue is null) return;
+        var targetKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
+        var sourceKind = targetKind == SequenceKind.Alphabetic ? SequenceKind.Numeric : SequenceKind.Alphabetic;
+        if (SequenceFormatter.TryParse(ReadSequenceValue.Text, sourceKind, out var value))
+            ReadSequenceValue.Text = targetKind == SequenceKind.Numeric
+                ? (value + 1).ToString()
+                : SequenceFormatter.Format(Math.Max(0, value - 1), targetKind, 1);
+        UpdateReadCommand();
+    }
     private void ReadHardSectors_Checked(object sender, RoutedEventArgs e) { if (ReadFakeIndexEnabled is not null) ReadFakeIndexEnabled.IsChecked = false; ReadInput_Changed(sender, e); }
     private void ReadDensel_Checked(object sender, RoutedEventArgs e) { if (ReadTg43 is not null) ReadTg43.IsChecked = false; ReadInput_Changed(sender, e); }
     private void ReadTg43_Checked(object sender, RoutedEventArgs e) { if (ReadDenselEnabled is not null) ReadDenselEnabled.IsChecked = false; ReadInput_Changed(sender, e); }
@@ -735,11 +749,11 @@ public partial class MainWindow : Window
             if (answer == MessageBoxResult.No)
             {
                 if (ReadAutoNumber.IsChecked != true) ReadAutoNumber.IsChecked = true;
-                if (!long.TryParse(ReadSequenceValue.Text, out var next)) next = 1;
                 var kind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
+                if (!SequenceFormatter.TryParse(ReadSequenceValue.Text, kind, out var next)) next = kind == SequenceKind.Alphabetic ? 0 : 1;
                 var available = OutputConflictResolver.FindNextAvailableWithValue(ReadFolder.Text, ReadFileName.Text.Trim(), extension, kind, ReadSequenceWidth.SelectedIndex + 1, next);
                 target = available.Path;
-                ReadSequenceValue.Text = available.Value.ToString();
+                ReadSequenceValue.Text = kind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, kind, 1);
             }
         }
         GwCommand command;
@@ -756,7 +770,9 @@ public partial class MainWindow : Window
             SetOperationResult(result);
             LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g")));
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
-            if (result.IsSuccess && ReadAutoNumber.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var value)) ReadSequenceValue.Text = (value + 1).ToString();
+            var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
+            if (result.IsSuccess && ReadAutoNumber.IsChecked == true && SequenceFormatter.TryParse(ReadSequenceValue.Text, sequenceKind, out var value))
+                ReadSequenceValue.Text = sequenceKind == SequenceKind.Numeric ? (value + 1).ToString() : SequenceFormatter.Format(value + 1, sequenceKind, 1);
         }
         catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); ReadExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
@@ -769,7 +785,7 @@ public partial class MainWindow : Window
         ReadAutoNumber.IsChecked = _settings.Read.AutoNumber;
         ReadSequenceKind.SelectedIndex = _settings.Read.SequenceKind == "Alphabetic" ? 1 : 0;
         ReadSequenceWidth.SelectedIndex = Math.Clamp(_settings.Read.SequenceWidth - 1, 0, 2);
-        ReadSequenceValue.Text = _settings.Read.NextSequence.ToString();
+        ReadSequenceValue.Text = _settings.Read.SequenceKind == "Alphabetic" ? SequenceFormatter.Format(_settings.Read.NextSequence, SequenceKind.Alphabetic, 1) : _settings.Read.NextSequence.ToString();
         ReadRevsEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("revs");
         ReadRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("retries");
         ReadTracksEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("tracks");
@@ -794,7 +810,8 @@ public partial class MainWindow : Window
         _settings.Read.AutoNumber = ReadAutoNumber.IsChecked == true;
         _settings.Read.SequenceKind = ReadSequenceKind.SelectedIndex == 1 ? "Alphabetic" : "Numeric";
         _settings.Read.SequenceWidth = ReadSequenceWidth.SelectedIndex + 1;
-        if (long.TryParse(ReadSequenceValue.Text, out var sequence)) _settings.Read.NextSequence = sequence;
+        var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
+        if (SequenceFormatter.TryParse(ReadSequenceValue.Text, sequenceKind, out var sequence)) _settings.Read.NextSequence = sequence;
         _settings.Read.EnabledOptions = [];
         if (ReadRevsEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("revs");
         if (ReadRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("retries");

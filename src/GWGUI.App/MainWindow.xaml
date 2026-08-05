@@ -132,7 +132,7 @@
                                     <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ReadInput_Changed"/></DockPanel>
                                     <WrapPanel>
                                         <CheckBox x:Name="ReadAutoNumber" Content="{l:Loc Read.AutoNumber}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
-                                        <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="0" SelectionChanged="ReadInput_Changed">
+                                        <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="0" SelectionChanged="ReadSequenceKind_Changed">
                                             <ComboBoxItem Content="{l:Loc Read.Digits}" />
                                             <ComboBoxItem Content="{l:Loc Read.Letters}" />
                                         </ComboBox>
