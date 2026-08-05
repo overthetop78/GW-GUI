@@ -967,6 +967,20 @@ public sealed class CoreTests
         Assert.Equal(512, sector.SizeBytes);
         Assert.True(sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Checksum, sector.IntegrityKind);
+        Assert.Equal(data, result.DecodedBytes.TakeLast(512));
+    }
+
+    [Fact]
+    public void NorthstarDecoderReportsUnavailableIntegrityForTruncatedBlock()
+    {
+        var partialData = Enumerable.Range(0, 32).Select(index => (byte)index).ToArray();
+        var block = Enumerable.Repeat((byte)0, 7).Concat([(byte)0xfb, (byte)0x37]).Concat(partialData).ToArray();
+        var raw = string.Concat(Enumerable.Repeat("10", 60)) + EncodeMfmBytesFromZero(block) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!); Assert.Equal(3, sector.Cylinder); Assert.Equal(7, sector.Number); Assert.Null(sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable"));
     }
 
     [Fact]

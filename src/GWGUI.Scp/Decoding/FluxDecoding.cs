@@ -350,24 +350,23 @@ public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
         for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++)
         {
             if (!stream.MatchBytes(offset, SectorMark)) continue;
-            var fullBlock = offset + signatureBits + 16 + payloadBits + 16 <= stream.Bits.Length;
-            var info = fullBlock ? stream.DecodeMfmByte(offset + signatureBits) : (byte)0;
-            var cylinder = (byte)(info >> 4); var sectorNumber = (byte)(info & 0x0f); var checksumValid = false;
+            var hasIdentity = offset + signatureBits + 16 <= stream.Bits.Length; var fullBlock = offset + signatureBits + 16 + payloadBits + 16 <= stream.Bits.Length;
+            var info = hasIdentity ? stream.DecodeMfmByte(offset + signatureBits) : (byte)0;
+            var cylinder = (byte)(info >> 4); var sectorNumber = (byte)(info & 0x0f); bool? checksumValid = null;
             if (fullBlock)
             {
-                byte checksum = 0;
+                byte checksum = 0; var data = new byte[512];
                 for (var index = 0; index < 512; index++)
                 {
-                    var value = stream.DecodeMfmByte(offset + signatureBits + 16 + index * 16);
+                    var value = stream.DecodeMfmByte(offset + signatureBits + 16 + index * 16); data[index] = value;
                     checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1));
                 }
                 var stored = stream.DecodeMfmByte(offset + signatureBits + 16 + payloadBits);
-                checksumValid = stored == checksum;
-                sectors.Add(new(cylinder, 0, sectorNumber, 2, 512, checksumValid, offset, SectorIntegrityKind.Checksum));
-                bytes.Add(info);
+                checksumValid = stored == checksum; bytes.Add(info); bytes.AddRange(data);
             }
+            if (hasIdentity) sectors.Add(new(cylinder, 0, sectorNumber, 2, 512, checksumValid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, fullBlock ? signatureBits + 16 + payloadBits + 16 : signatureBits,
-                fullBlock ? $"NorthStar C{cylinder} R{sectorNumber}, checksum {(checksumValid ? "valid" : "invalid")}" : "NorthStar hard-sector block"));
+                fullBlock ? $"NorthStar C{cylinder} R{sectorNumber}, 512 bytes, checksum {(checksumValid == true ? "valid" : "invalid")}" : hasIdentity ? $"NorthStar C{cylinder} R{sectorNumber}, checksum unavailable" : "NorthStar hard-sector block"));
             offset += signatureBits - 1;
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
