@@ -53,7 +53,7 @@ public static class WriteCommandBuilder
         if (string.IsNullOrWhiteSpace(request.SourcePath)) throw new ArgumentException("A source image is required.");
         GwOptionValidator.Validate(request.Options);
         var arguments = new List<string>();
-        Add(arguments, "--device", request.Device); Add(arguments, "--drive", request.Drive); Add(arguments, "--format", request.FormatId);
+        Add(arguments, "--device", request.Device); Add(arguments, "--drive", request.Drive); Add(arguments, "--format", GwFormatArgument.FromCatalogId(request.FormatId));
         if (request.DisableVerify) arguments.Add("--no-verify");
         foreach (var option in request.Options) { arguments.Add(option.Argument); if (!string.IsNullOrWhiteSpace(option.Value)) arguments.Add(option.Value); }
         if (!string.IsNullOrWhiteSpace(request.ExpertArguments)) arguments.AddRange(CommandLineTokenizer.Tokenize(request.ExpertArguments));

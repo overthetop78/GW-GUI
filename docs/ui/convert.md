@@ -36,6 +36,7 @@
 
 - Le nom de sortie reprend automatiquement le nom de la source sans extension à chaque nouveau chargement.
 - Le nom reste modifiable.
+- Les fichiers produits utilisent le dossier courant partagé avec Lecture. Ce dossier revient à la valeur générale des Options au prochain démarrage.
 - Une option mémorisée permet d’ajouter des tags précis comme `[ST-720]`, `[PC-1440]` ou `[AMIGA-DD]`.
 - Les Options définissent l’état initial des tags; le changement dans Conversion reste valable pour la session.
 - Les Options proposent des modèles prédéfinis et un modèle personnalisé.

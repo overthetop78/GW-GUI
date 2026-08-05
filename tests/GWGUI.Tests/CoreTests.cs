@@ -19,6 +19,43 @@ namespace GWGUI.Tests;
 
 public sealed class CoreTests
 {
+    private static string WindowsPowerShell => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "powershell.exe");
+
+    [Fact]
+    public async Task RunnerCapturesUnicodeStandardErrorAndExitCode()
+    {
+        var runner = new GreaseweazleRunner();
+        var command = new GwCommand(WindowsPowerShell, "-NoProfile", ["-Command", "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Write-Output 'café 漢字'; [Console]::Error.WriteLine('échec Ω'); exit 7"]);
+        var result = await runner.RunAsync(command);
+        Assert.Equal(7, result.ExitCode);
+        Assert.False(result.IsSuccess);
+        Assert.Contains(result.Output, line => line.Stream == GwOutputStream.Standard && line.Text.Contains("café 漢字"));
+        Assert.Contains(result.Output, line => line.Stream == GwOutputStream.Error && line.Text.Contains("échec Ω"));
+    }
+
+    [Fact]
+    public async Task RunnerRejectsASecondConcurrentCommand()
+    {
+        var runner = new GreaseweazleRunner();
+        using var cancellation = new CancellationTokenSource();
+        var first = runner.RunAsync(new GwCommand(WindowsPowerShell, "-NoProfile", ["-Command", "Start-Sleep -Seconds 20"]), cancellationToken: cancellation.Token);
+        Assert.True(SpinWait.SpinUntil(() => runner.IsRunning, TimeSpan.FromSeconds(2)));
+        await Assert.ThrowsAsync<InvalidOperationException>(() => runner.RunAsync(new GwCommand(WindowsPowerShell, "-NoProfile", ["-Command", "exit 0"])));
+        cancellation.Cancel();
+        Assert.True((await first).WasCancelled);
+        Assert.False(runner.IsRunning);
+    }
+
+    [Fact]
+    public async Task RunnerReassemblesAFragmentedUtf8Line()
+    {
+        var runner = new GreaseweazleRunner();
+        var command = new GwCommand(WindowsPowerShell, "-NoProfile", ["-Command", "[Console]::OutputEncoding=[Text.Encoding]::UTF8; [Console]::Out.Write('frag'); Start-Sleep -Milliseconds 50; [Console]::Out.WriteLine('menté')"]);
+        var result = await runner.RunAsync(command);
+        Assert.True(result.IsSuccess);
+        Assert.Contains(result.Output, line => line.Text == "fragmenté");
+    }
+
     [Fact]
     public void ConversionCompatibilityUsesTheDetectedGeometryForSectorImages()
     {
@@ -74,6 +111,15 @@ public sealed class CoreTests
         Assert.True(SequenceFormatter.TryParse(text, SequenceKind.Alphabetic, out var value));
         Assert.Equal(expected, value);
         Assert.Equal(text, SequenceFormatter.Format(value, SequenceKind.Alphabetic, 1));
+    }
+
+    [Fact]
+    public void RawContainerIdsAreNeverSentAsGwFormatArguments()
+    {
+        var write = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.scp", "raw.scp", []));
+        Assert.Equal(["disk.scp"], write.Arguments);
+        var convert = ConversionCommandBuilder.Build("gw.exe", "disk.scp", new ConversionOutput("raw.hfe", ".hfe", "disk.hfe", true));
+        Assert.Equal(["disk.scp", "disk.hfe"], convert.Arguments);
     }
 
     [Fact]

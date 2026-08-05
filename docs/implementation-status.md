@@ -6,6 +6,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 - Solution .NET 10 structurée en Application WPF, Domaine, Infrastructure, moteur SCP et tests.
 - Exécution de `gw` sans fenêtre console, arguments séparés, sortie intégrée, annulation et verrouillage à une opération.
+- Les flux standard et erreur sont décodés explicitement en UTF-8; un faux processus vérifie les sorties Unicode, les lignes fragmentées, les codes d’erreur, le refus d’une seconde commande et l’annulation.
 - Configuration JSON versionnée et écrite atomiquement.
 - Onglets Lecture, Écriture, Conversion, Visualisation et Outils; menus Diagnostics et Matériel.
 - Lecture SCP ou format connu, nom sans extension, dossier persistant, numérotation numérique/alphabetique, conflits et profils.
@@ -48,7 +49,6 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Encore à réaliser avant achèvement
 
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
-- Enrichir encore les infobulles avancées avec des exemples détaillés. La validation syntaxique de TSPEC, PLL, précompensation, faux index et ajustement de vitesse est désormais appliquée avant l'exécution.
 - Vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
 - Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
@@ -59,7 +59,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 111 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, grammaire des options avancées (TSPEC, PLL, précompensation et vitesse), filtrage des conversions selon la source détectée, absence de format parasite en SCP brut, routage conditionnel du lecteur, saisie alphabétique du compteur, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran complet, annulation réelle et progression.
+- Tests automatisés : 115 réussis, dont exécution factice Unicode/fragmentée/annulée/concurrente, localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, grammaire des options avancées (TSPEC, PLL, précompensation et vitesse), filtrage des conversions selon la source détectée, absence de format parasite en SCP brut, routage conditionnel du lecteur, saisie alphabétique du compteur, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran complet, annulation réelle et progression.
 - Validation visuelle interactive française et anglaise effectuée sur la distribution portable à 125 % de DPI : fenêtre complète, boutons Exécuter, console et barre d’état visibles. Tests matériels Greaseweazle non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.

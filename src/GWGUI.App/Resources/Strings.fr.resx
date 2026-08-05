@@ -106,4 +106,19 @@
   <data name="Common.DiskImageFilter"><value>Images de disquette|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tous les fichiers|*.*</value></data>
   <data name="Visual.OpenFilter"><value>Capture SuperCard Pro (*.scp)|*.scp|Tous les fichiers|*.*</value></data>
   <data name="Conversion.Incompatible"><value>{0} n’est pas compatible avec cette source.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs : nombre de révolutions lues par piste. Exemple : --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries : nouvelles tentatives après une erreur. Exemple : --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks : limite les cylindres, faces ou le pas. Exemple : --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries : tentatives supplémentaires après déplacement de la tête. Exemple : --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index : crée un index temporel pour un lecteur sans signal d’index. Exemple : --fake-index 300rpm.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors : traite une disquette à secteurs matériels. Incompatible avec --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse : inverse les données de piste pour un câblage ou support flippy.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed : recale la vitesse des données. Exemple : --adjust-speed 300rpm.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll : règle la boucle de récupération d’horloge. Exemple : --pll period=5:phase=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel : force la broche de densité à H ou L. Exemple : --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43 : génère le signal TG43 pour les lecteurs qui l’exigent. Incompatible avec --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty : efface les pistes pour lesquelles l’image source ne contient aucune donnée.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase : efface chaque piste avant de l’écrire.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp : applique une précompensation d’écriture. Exemple : --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks : remappe les pistes dans l’image produite. Exemple : --out-tracks c=0-79:h=0-1.</value></data>
 </root>

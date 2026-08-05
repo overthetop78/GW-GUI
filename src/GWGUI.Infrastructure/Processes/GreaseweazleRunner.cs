@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text;
 using GWGUI.Domain.Commands;
 
 namespace GWGUI.Infrastructure.Processes;
@@ -77,7 +78,9 @@ public sealed class GreaseweazleRunner(IOperationLogWriter? logWriter = null) : 
             UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardOutput = true,
-            RedirectStandardError = true
+            RedirectStandardError = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8
         };
         foreach (var argument in command.AllArguments()) info.ArgumentList.Add(argument);
         return info;
