@@ -8,7 +8,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | ISO FM | Marques FE/FB/F8, C/H/R/N, taille et données | CRC16-CCITT des en-têtes et des données ; état valide, incorrect ou indisponible | Oui, y compris les données supprimées F8 |
 | NorthStar MFM à secteurs matériels | Oui | Piste, secteur, 512 octets | Checksum rotatif du bloc |
 | Heathkit FM à secteurs matériels | Oui | Volume, cylindre, secteur, 256 octets | Checksum rotatif d’en-tête |
-| Membrain MFM | Marques en-tête/données | Cylindre, face, secteur, 512 octets | CRC16 `0x8005` d’en-tête |
+| Membrain MFM | Marques en-tête/données associées | Cylindre, face, secteur et bloc de 512 octets | CRC16 `0x8005` de l’en-tête et du bloc de données ; état valide, incorrect ou indisponible |
 | AED 6200P MFM | Marques C6/données | Cylindre, secteur, taille variable | CRC-CCITT d’en-tête |
 | Amiga MFM | Double synchronisation, identité odd/even, cylindre, face, secteur, secteurs restants et 512 octets | Parités XOR odd/even de l’en-tête/label et des données ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
 | Apple II GCR 16 secteurs | Adresse 4-and-4 avec volume, piste et secteur ; bloc de 256 octets décodé en 6-and-2 | XOR de l’adresse et chaîne XOR des 343 symboles GCR ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
@@ -24,4 +24,4 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 
 ## Sources de qualification
 
-Les structures Amiga, NorthStar, Heathkit, Membrain, AED 6200P, Apple II 6-and-2, Commodore et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les restitutions exactes Amiga, Apple II et Commodore, les tailles variables AED et l’échantillonnage GCR Victor à un bit utile sur deux. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.
+Les structures Amiga, NorthStar, Heathkit, Membrain, AED 6200P, Apple II 6-and-2, Commodore et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les restitutions exactes Amiga, Apple II, Commodore et Membrain, les tailles variables AED et l’échantillonnage GCR Victor à un bit utile sur deux. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.

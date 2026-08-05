@@ -1005,7 +1005,10 @@ public sealed class CoreTests
         byte[] prefix = [0xa1, 0xfe, 0x04, 0xb9];
         var crc = TestCrc16(prefix, 0x8005, 0x0000);
         if (corruptCrc) crc ^= 1;
-        var raw = Convert.ToString(0x44895554, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(0x04, 0xb9, (byte)(crc >> 8), (byte)crc) + "001";
+        var data = Enumerable.Range(0, 512).Select(index => (byte)(index * 7)).ToArray();
+        var dataCrc = TestCrc16(new byte[] { 0xa1, 0xf8 }.Concat(data), 0x8005, 0x0000);
+        var raw = Convert.ToString(0x44895554, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(0x04, 0xb9, (byte)(crc >> 8), (byte)crc) + "00000000" +
+                  Convert.ToString(0x4489554a, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
         var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
@@ -1017,6 +1020,36 @@ public sealed class CoreTests
         Assert.Equal(512, sector.SizeBytes);
         Assert.Equal(!corruptCrc, sector.IntegrityValid);
         Assert.Equal(SectorIntegrityKind.Crc, sector.IntegrityKind);
+        Assert.Equal(data, result.DecodedBytes.TakeLast(512));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void MembrainDecoderValidatesDataCrc(bool corruptData)
+    {
+        byte[] header = [0xa1, 0xfe, 0x04, 0xb9]; var headerCrc = TestCrc16(header, 0x8005, 0x0000);
+        var data = Enumerable.Range(0, 512).Select(index => (byte)(255 - index)).ToArray(); var dataCrc = TestCrc16(new byte[] { 0xa1, 0xf8 }.Concat(data), 0x8005, 0x0000);
+        if (corruptData) dataCrc ^= 1;
+        var raw = Convert.ToString(0x44895554, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(0x04, 0xb9, (byte)(headerCrc >> 8), (byte)headerCrc) + "00000000" +
+                  Convert.ToString(0x4489554a, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptData ? "invalid" : "valid"));
+    }
+
+    [Fact]
+    public void MembrainDecoderReportsUnavailableIntegrityWithoutDataBlock()
+    {
+        byte[] header = [0xa1, 0xfe, 0x04, 0xb9]; var crc = TestCrc16(header, 0x8005, 0x0000);
+        var raw = Convert.ToString(0x44895554, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(0x04, 0xb9, (byte)(crc >> 8), (byte)crc) + "001"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
 
     [Theory]
