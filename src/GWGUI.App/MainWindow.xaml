@@ -47,7 +47,7 @@
                         <Border Style="{StaticResource Card}">
                             <DockPanel>
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                                    <Button Content="💾 {l:Loc Common.Save}" Click="SaveReadProfile_Click" />
+                                    <Button Content="{l:Loc Common.Save}" Click="SaveReadProfile_Click" />
                                     <Button Content="{l:Loc Common.Reset}" Click="ResetReadProfile_Click" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
@@ -127,7 +127,7 @@
                                         <TextBlock x:Name="ReadNamePreview" VerticalAlignment="Center" Margin="14,0" FontWeight="SemiBold" />
                                     </WrapPanel>
                                     <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,12,8,4" />
-                                    <TextBox x:Name="ReadExpertArguments" Margin="8" TextChanged="ReadInput_Changed" ToolTip="Arguments transmis tels quels après analyse des guillemets." />
+                                    <TextBox x:Name="ReadExpertArguments" Margin="8" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
                                 </StackPanel>
                             </Border>
                         </Expander>
@@ -153,11 +153,11 @@
                     <Border Style="{StaticResource Card}">
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                <Button Content="💾 Enregistrer" Click="SaveWriteProfile_Click" />
-                                <Button Content="Réinitialiser" Click="ResetWriteProfile_Click" />
+                                <Button Content="{l:Loc Common.Save}" Click="SaveWriteProfile_Click" />
+                                <Button Content="{l:Loc Common.Reset}" Click="ResetWriteProfile_Click" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Profil" VerticalAlignment="Center" Margin="0,0,12,0" />
+                                <TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0" />
                                 <ComboBox x:Name="WriteProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="WriteProfile_Changed" />
                             </StackPanel>
                         </DockPanel>
@@ -169,9 +169,9 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Image source" VerticalAlignment="Center" Margin="0,0,12,0" />
+                            <TextBlock Text="{l:Loc Write.Source}" VerticalAlignment="Center" Margin="0,0,12,0" />
                             <TextBox x:Name="WriteSourceText" Grid.Column="1" IsReadOnly="True" />
-                            <Button Grid.Column="2" Content="Choisir…" Click="BrowseWriteSource_Click" />
+                            <Button Grid.Column="2" Content="{l:Loc Common.Choose}" Click="BrowseWriteSource_Click" />
                         </Grid>
                     </Border>
                     <Border Grid.Row="2" Style="{StaticResource Card}">
@@ -181,30 +181,30 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <DockPanel>
-                                <Button DockPanel.Dock="Right" Content="Modifier" Click="ToggleWriteFormat_Click" />
+                                <Button DockPanel.Dock="Right" Content="{l:Loc Common.Modify}" Click="ToggleWriteFormat_Click" />
                                 <StackPanel>
-                                    <TextBlock Text="Format détecté" FontWeight="SemiBold" />
-                                    <TextBlock x:Name="WriteDetectionText" Text="Choisissez une image." Margin="0,5,12,0" TextWrapping="Wrap" />
+                                    <TextBlock Text="{l:Loc Write.Detected}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="WriteDetectionText" Text="{l:Loc Write.ChooseImage}" Margin="0,5,12,0" TextWrapping="Wrap" />
                                 </StackPanel>
                             </DockPanel>
                             <ComboBox Grid.Row="1" x:Name="WriteFormatCombo" Margin="0,12,0,0" Visibility="Collapsed" DisplayMemberPath="DisplayName" SelectionChanged="WriteInput_Changed" />
                         </Grid>
                     </Border>
-                    <Expander Grid.Row="3" Header="Paramètres avancés">
+                    <Expander Grid.Row="3" Header="{l:Loc Common.Advanced}">
                         <Border Style="{StaticResource Card}" Margin="0,10,0,12">
                             <StackPanel>
                                 <WrapPanel>
-                                    <CheckBox x:Name="WriteNoVerify" Content="Désactiver la vérification après écriture" Foreground="#B3261E" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="Ajoute --no-verify. La disquette ne sera pas relue pour confirmer l’écriture." />
-                                    <CheckBox x:Name="WriteEraseEmpty" Content="Effacer les pistes vides" Margin="16,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
-                                    <CheckBox x:Name="WriteRetriesEnabled" Content="Tentatives" Margin="16,8,8,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
+                                    <CheckBox x:Name="WriteNoVerify" Content="{l:Loc Write.NoVerify}" Foreground="#B3261E" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Write.NoVerifyTip}" />
+                                    <CheckBox x:Name="WriteEraseEmpty" Content="{l:Loc Write.EraseEmpty}" Margin="16,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
+                                    <CheckBox x:Name="WriteRetriesEnabled" Content="{l:Loc Read.Retries}" Margin="16,8,8,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" />
                                     <TextBox x:Name="WriteRetriesValue" Width="70" Text="3" TextChanged="WriteInput_Changed" />
                                 </WrapPanel>
-                                <TextBlock Text="Arguments experts" Margin="8,12,8,4" />
+                                <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,12,8,4" />
                                 <TextBox x:Name="WriteExpertArguments" Margin="8" TextChanged="WriteInput_Changed" />
                             </StackPanel>
                         </Border>
                     </Expander>
-                    <Button Grid.Row="4" x:Name="WriteExecuteButton" Content="Exécuter" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteWrite_Click" />
+                    <Button Grid.Row="4" x:Name="WriteExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteWrite_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="{l:Loc Tab.Convert}">
@@ -225,45 +225,45 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Source" VerticalAlignment="Center" Margin="0,0,12,0" />
+                            <TextBlock Text="{l:Loc Conversion.Source}" VerticalAlignment="Center" Margin="0,0,12,0" />
                             <TextBox x:Name="ConvertSourceText" Grid.Column="1" IsReadOnly="True" />
-                            <Button Grid.Column="2" Content="Choisir…" Click="BrowseConvertSource_Click" />
+                            <Button Grid.Column="2" Content="{l:Loc Common.Choose}" Click="BrowseConvertSource_Click" />
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,12,0,0">
-                                <TextBlock Text="Nom des sorties" VerticalAlignment="Center" />
+                                <TextBlock Text="{l:Loc Conversion.OutputNames}" VerticalAlignment="Center" />
                                 <TextBox x:Name="ConvertOutputName" Width="330" Margin="12,0" TextChanged="ConvertInput_Changed" />
-                                <CheckBox x:Name="ConvertTags" Content="Ajouter des tags" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
+                                <CheckBox x:Name="ConvertTags" Content="{l:Loc Conversion.AddTags}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                 <TextBlock x:Name="ConvertSourceInfo" Margin="18,0" VerticalAlignment="Center" />
                             </StackPanel>
                         </Grid>
                     </Border>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <TextBlock Text="Sélections" FontSize="18" FontWeight="SemiBold" Margin="4,4,4,10" />
+                            <TextBlock Text="{l:Loc Conversion.Selected}" FontSize="18" FontWeight="SemiBold" Margin="4,4,4,10" />
                             <Border Style="{StaticResource Card}">
                                 <StackPanel x:Name="ConvertPinnedPanel" />
                             </Border>
-                            <TextBlock Text="Formats courants" FontSize="17" FontWeight="SemiBold" Margin="4" />
+                            <TextBlock Text="{l:Loc Conversion.CommonFormats}" FontSize="17" FontWeight="SemiBold" Margin="4" />
                             <Border Style="{StaticResource Card}">
                                 <StackPanel x:Name="ConvertCommonPanel" />
                             </Border>
-                            <Expander Header="Afficher les formats rarement utilisés">
+                            <Expander Header="{l:Loc Conversion.ShowRare}">
                                 <Border Style="{StaticResource Card}" Margin="0,10,0,0">
                                     <StackPanel x:Name="ConvertRarePanel" />
                                 </Border>
                             </Expander>
-                            <Expander Header="Paramètres avancés">
+                            <Expander Header="{l:Loc Common.Advanced}">
                                 <Border Style="{StaticResource Card}" Margin="0,10,0,0">
                                     <StackPanel>
-                                        <CheckBox x:Name="ConvertTracksEnabled" Content="Limiter les pistes" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
+                                        <CheckBox x:Name="ConvertTracksEnabled" Content="{l:Loc Conversion.LimitTracks}" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                         <TextBox x:Name="ConvertTracksValue" Text="c=0-79:h=0-1" Margin="0,6,0,12" TextChanged="ConvertInput_Changed" />
-                                        <TextBlock Text="Arguments experts" />
+                                        <TextBlock Text="{l:Loc Common.ExpertArguments}" />
                                         <TextBox x:Name="ConvertExpertArguments" Margin="0,6,0,0" TextChanged="ConvertInput_Changed" />
                                     </StackPanel>
                                 </Border>
                             </Expander>
                         </StackPanel>
                     </ScrollViewer>
-                    <Button Grid.Row="2" x:Name="ConvertExecuteButton" Content="Exécuter" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteConvert_Click" />
+                    <Button Grid.Row="2" x:Name="ConvertExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteConvert_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="{l:Loc Tab.Visualize}">
@@ -276,15 +276,15 @@
                     <Border Style="{StaticResource Card}">
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                <TextBlock Text="Décodeur" VerticalAlignment="Center" Margin="0,0,7,0" />
+                                <TextBlock Text="{l:Loc Visual.Decoder}" VerticalAlignment="Center" Margin="0,0,7,0" />
                                 <ComboBox x:Name="ScpDecoderCombo" Width="230" DisplayMemberPath="Name" SelectionChanged="ScpDecoder_Changed" />
-                                <CheckBox x:Name="LinkScpViews" Content="Lier les zooms" IsChecked="True" VerticalAlignment="Center" Margin="14,0" />
-                                <Button Content="Réinitialiser" Click="ResetScpViews_Click" />
-                                <Button Content="Ouvrir un fichier SCP…" Click="OpenScp_Click" />
+                                <CheckBox x:Name="LinkScpViews" Content="{l:Loc Visual.LinkZoom}" IsChecked="True" VerticalAlignment="Center" Margin="14,0" />
+                                <Button Content="{l:Loc Common.Reset}" Click="ResetScpViews_Click" />
+                                <Button Content="{l:Loc Visual.OpenScp}" Click="OpenScp_Click" />
                             </StackPanel>
                             <StackPanel>
-                                <TextBlock x:Name="ScpFileName" Text="Aucun fichier SCP ouvert" FontWeight="SemiBold" />
-                                <TextBlock x:Name="ScpSummary" Text="En attente d’un fichier" Margin="0,5,0,0" />
+                                <TextBlock x:Name="ScpFileName" Text="{l:Loc Visual.NoFile}" FontWeight="SemiBold" />
+                                <TextBlock x:Name="ScpSummary" Text="{l:Loc Visual.Waiting}" Margin="0,5,0,0" />
                             </StackPanel>
                         </DockPanel>
                     </Border>
@@ -304,22 +304,22 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <DockPanel>
-                                    <Button DockPanel.Dock="Right" Content="Masquer" Padding="8,2" MinHeight="24" Click="ToggleScpInspector_Click" />
-                                    <TextBlock Text="Inspecteur" FontSize="18" FontWeight="SemiBold" />
+                                    <Button DockPanel.Dock="Right" Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleScpInspector_Click" />
+                                    <TextBlock Text="{l:Loc Visual.Inspector}" FontSize="18" FontWeight="SemiBold" />
                                 </DockPanel>
                                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                                    <TextBlock x:Name="ScpTrackInfo" Text="Sélectionnez une piste." Margin="0,16,0,0" TextWrapping="Wrap" />
+                                <TextBlock x:Name="ScpTrackInfo" Text="{l:Loc Visual.SelectTrack}" Margin="0,16,0,0" TextWrapping="Wrap" />
                                 </ScrollViewer>
-                                <TextBlock Grid.Row="2" Text="Clic : sélectionner · Molette : zoomer · Clic droit : déplacer" Foreground="#69707D" TextWrapping="Wrap" />
+                                <TextBlock Grid.Row="2" Text="{l:Loc Visual.Controls}" Foreground="#69707D" TextWrapping="Wrap" />
                             </Grid>
                         </Border>
                     </Grid>
                     <DockPanel Grid.Row="2" Margin="8">
-                        <Button DockPanel.Dock="Right" Content="Inspecteur" Padding="8,2" MinHeight="24" Click="ToggleScpInspector_Click" />
+                        <Button DockPanel.Dock="Right" Content="{l:Loc Visual.Inspector}" Padding="8,2" MinHeight="24" Click="ToggleScpInspector_Click" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Flux normal" Foreground="#24B35D" />
-                            <TextBlock Text="Transition courte" Foreground="#8F68FF" Margin="18,0" />
-                            <TextBlock Text="Transition longue/anomalie" Foreground="#53ADFF" />
+                            <TextBlock Text="{l:Loc Visual.NormalFlux}" Foreground="#24B35D" />
+                            <TextBlock Text="{l:Loc Visual.ShortTransition}" Foreground="#8F68FF" Margin="18,0" />
+                            <TextBlock Text="{l:Loc Visual.LongTransition}" Foreground="#53ADFF" />
                         </StackPanel>
                     </DockPanel>
                 </Grid>
@@ -331,40 +331,40 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ListBox x:Name="ToolsList" SelectedIndex="0" SelectionChanged="ToolsList_SelectionChanged">
-                        <ListBoxItem Content="Effacer une disquette" />
-                        <ListBoxItem Content="Nettoyer les têtes" />
+                        <ListBoxItem Content="{l:Loc Tools.Erase}" />
+                        <ListBoxItem Content="{l:Loc Tools.Clean}" />
                     </ListBox>
                     <Grid Grid.Column="1" Margin="16,0,0,0">
                         <Border x:Name="ErasePanel" Style="{StaticResource Card}">
                             <StackPanel>
-                                <TextBlock Text="Effacer une disquette" FontSize="22" FontWeight="SemiBold" />
-                                <TextBlock Text="Toutes les données de la disquette seront détruites." Foreground="#B3261E" Margin="0,8,0,18" />
+                                <TextBlock Text="{l:Loc Tools.Erase}" FontSize="22" FontWeight="SemiBold" />
+                                <TextBlock Text="{l:Loc Tools.EraseWarning}" Foreground="#B3261E" Margin="0,8,0,18" />
                                 <WrapPanel>
-                                    <CheckBox x:Name="EraseTracksEnabled" Content="Limiter les pistes" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
+                                    <CheckBox x:Name="EraseTracksEnabled" Content="{l:Loc Tools.LimitTracks}" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
                                     <TextBox x:Name="EraseTracksValue" Width="180" Text="c=0-79:h=0-1" TextChanged="ToolInput_Changed" />
-                                    <CheckBox x:Name="EraseRevsEnabled" Content="Révolutions" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
+                                    <CheckBox x:Name="EraseRevsEnabled" Content="{l:Loc Tools.Revolutions}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
                                     <TextBox x:Name="EraseRevsValue" Width="70" Text="3" TextChanged="ToolInput_Changed" />
                                 </WrapPanel>
-                                <TextBlock Text="Arguments experts" Margin="8,14,8,4" />
+                                <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,14,8,4" />
                                 <TextBox x:Name="EraseExpertArguments" Margin="8" TextChanged="ToolInput_Changed" />
-                                <Button x:Name="EraseExecuteButton" Content="Exécuter" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteErase_Click" />
+                                <Button x:Name="EraseExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteErase_Click" />
                             </StackPanel>
                         </Border>
                         <Border x:Name="CleanPanel" Style="{StaticResource Card}" Visibility="Collapsed">
                             <StackPanel>
-                                <TextBlock Text="Nettoyer les têtes" FontSize="22" FontWeight="SemiBold" />
-                                <TextBlock Text="Insérez une disquette de nettoyage, jamais une disquette contenant des données." Foreground="#8A4B00" Margin="0,8,0,18" />
+                                <TextBlock Text="{l:Loc Tools.Clean}" FontSize="22" FontWeight="SemiBold" />
+                                <TextBlock Text="{l:Loc Tools.CleanWarning}" Foreground="#8A4B00" Margin="0,8,0,18" />
                                 <WrapPanel>
-                                    <CheckBox x:Name="CleanCylindersEnabled" Content="Cylindres" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
+                                    <CheckBox x:Name="CleanCylindersEnabled" Content="{l:Loc Tools.Cylinders}" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
                                     <TextBox x:Name="CleanCylindersValue" Width="70" Text="80" TextChanged="ToolInput_Changed" />
-                                    <CheckBox x:Name="CleanPassesEnabled" Content="Passages" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
+                                    <CheckBox x:Name="CleanPassesEnabled" Content="{l:Loc Tools.Passes}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
                                     <TextBox x:Name="CleanPassesValue" Width="70" Text="3" TextChanged="ToolInput_Changed" />
-                                    <CheckBox x:Name="CleanLingerEnabled" Content="Durée par cylindre (ms)" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
+                                    <CheckBox x:Name="CleanLingerEnabled" Content="{l:Loc Tools.Linger}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
                                     <TextBox x:Name="CleanLingerValue" Width="80" Text="100" TextChanged="ToolInput_Changed" />
                                 </WrapPanel>
-                                <TextBlock Text="Arguments experts" Margin="8,14,8,4" />
+                                <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,14,8,4" />
                                 <TextBox x:Name="CleanExpertArguments" Margin="8" TextChanged="ToolInput_Changed" />
-                                <Button x:Name="CleanExecuteButton" Content="Exécuter" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteClean_Click" />
+                                <Button x:Name="CleanExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteClean_Click" />
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -380,11 +380,11 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <DockPanel>
-                    <Button DockPanel.Dock="Right" Content="Masquer" Padding="8,2" MinHeight="24" Click="ToggleConsole_Click" />
-                    <TextBlock Text="Commande" Foreground="White" FontWeight="SemiBold" />
+                    <Button DockPanel.Dock="Right" Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleConsole_Click" />
+                    <TextBlock Text="{l:Loc Common.Command}" Foreground="White" FontWeight="SemiBold" />
                 </DockPanel>
                 <TextBox Grid.Row="1" x:Name="CommandPreview" Background="Transparent" Foreground="#B7F7C3" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" />
-                <TextBox Grid.Row="2" x:Name="LogOutput" Background="Transparent" Foreground="#D9DEE7" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="GW GUI prêt." />
+                <TextBox Grid.Row="2" x:Name="LogOutput" Background="Transparent" Foreground="#D9DEE7" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{l:Loc Status.Ready}" />
             </Grid>
         </Border>
         <StatusBar Grid.Row="4">
@@ -393,16 +393,16 @@
             </StatusBarItem>
             <Separator />
             <StatusBarItem>
-                <TextBlock x:Name="HardwareStatusText" Text="Contrôleur non configuré" />
+                <TextBlock x:Name="HardwareStatusText" Text="{l:Loc Hardware.NotConfigured}" />
             </StatusBarItem>
             <Separator />
             <StatusBarItem x:Name="HardwareSelectorItem" Visibility="Collapsed">
                 <ComboBox x:Name="HardwareSelector" MinWidth="260" DisplayMemberPath="Label" SelectionChanged="HardwareSelector_Changed" />
             </StatusBarItem>
             <Separator />
-            <StatusBarItem Content="Profil : Par défaut" />
+            <StatusBarItem Content="{l:Loc Status.DefaultProfile}" />
             <StatusBarItem HorizontalAlignment="Right">
-                <Button Content="Console" Padding="8,1" MinHeight="22" Click="ToggleConsole_Click" />
+                <Button Content="{l:Loc Common.Console}" Padding="8,1" MinHeight="22" Click="ToggleConsole_Click" />
             </StatusBarItem>
         </StatusBar>
     </Grid>

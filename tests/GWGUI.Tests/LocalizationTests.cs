@@ -1,5 +1,7 @@
 using System.Globalization;
+using System.IO;
 using GWGUI.App.Localization;
+using System.Xml.Linq;
 
 namespace GWGUI.Tests;
 
@@ -34,5 +36,20 @@ public sealed class LocalizationTests
         Assert.NotEmpty(neutral);
         Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("fr"))));
         Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("en"))));
+    }
+
+    [Fact]
+    public void MainWindowContainsNoHardCodedNaturalLanguageLabels()
+    {
+        var directory = new DirectoryInfo(AppContext.BaseDirectory);
+        while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
+        Assert.NotNull(directory);
+        var document = XDocument.Load(Path.Combine(directory!.FullName, "src", "GWGUI.App", "MainWindow.xaml"));
+        var visibleAttributes = new HashSet<string>(StringComparer.Ordinal) { "Title", "Header", "Content", "Text", "ToolTip" };
+        var technical = new System.Text.RegularExpressions.Regex(@"^(?:\d+|[A-Z]|\d+ / [A-Z]+|\d{2,3} / [A-Z]{2,3}|c=.+)$", System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+        var hardCoded = document.Descendants().Attributes()
+            .Where(x => visibleAttributes.Contains(x.Name.LocalName) && !x.Value.StartsWith('{') && !technical.IsMatch(x.Value))
+            .Select(x => x.Value).Distinct().ToArray();
+        Assert.Empty(hardCoded);
     }
 }
