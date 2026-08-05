@@ -45,6 +45,7 @@ public partial class MainWindow : Window
     private readonly GwProgressTracker _progressTracker = new();
     private readonly string _logsDirectory;
     private readonly MainWindowViewModel _viewModel;
+    private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
     public MainWindow()
     {
@@ -132,11 +133,9 @@ public partial class MainWindow : Window
     {
         _settings = await _settingsStore.LoadAsync();
         if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
-        {
-            var capabilities = await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath);
-            _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)), capabilities);
-            _formatDetector = new ImageFormatDetector(_formatCatalog);
-        }
+            _gwCapabilities = await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath);
+        LoadConfiguredDiskDefs();
+        RebuildFormatCatalog();
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
@@ -704,7 +703,70 @@ public partial class MainWindow : Window
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get("Advanced.DiskDefsFilter"), FileName = target.Text };
         if (dialog.ShowDialog(this) != true) return;
-        target.Text = dialog.FileName; enabled.IsChecked = true; refresh();
+        try { AddDiskDefs(dialog.FileName); }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException)
+        {
+            ShowAdvancedValidation(exception, LocExtension.Get("Advanced.DiskDefs"));
+            return;
+        }
+        target.Text = dialog.FileName; enabled.IsChecked = true;
+        RefreshFormatSelectors();
+        refresh();
+    }
+
+    private void LoadConfiguredDiskDefs()
+    {
+        var paths = new[]
+        {
+            _settings.Read.OptionValues.GetValueOrDefault("diskdefs"),
+            _settings.Write.OptionValues.GetValueOrDefault("diskdefs"),
+            _settings.Conversion.OptionValues.GetValueOrDefault("diskdefs")
+        }.Concat(_settings.Profiles.Select(profile => profile.Values.GetValueOrDefault("diskdefs")));
+        foreach (var path in paths.Where(path => !string.IsNullOrWhiteSpace(path) && File.Exists(path)).Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            try { AddDiskDefs(path!); }
+            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException) { /* Validation is shown when the profile is executed. */ }
+        }
+    }
+
+    private void AddDiskDefs(string path)
+    {
+        var discovered = DiskDefsFormatReader.Read(path);
+        var ids = _gwCapabilities.FormatIds.Concat(discovered).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var extensions = _gwCapabilities.ImageExtensions.Count > 0
+            ? _gwCapabilities.ImageExtensions
+            : new HashSet<string>([".scp", ".img", ".ima", ".hfe"], StringComparer.OrdinalIgnoreCase);
+        _gwCapabilities = new GwFormatCapabilities(ids, extensions);
+        RebuildFormatCatalog();
+    }
+
+    private void RebuildFormatCatalog()
+    {
+        _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)), _gwCapabilities);
+        _formatDetector = new ImageFormatDetector(_formatCatalog);
+    }
+
+    private void RefreshFormatSelectors()
+    {
+        var selectedReadId = (ReadFormatCombo.SelectedItem as DiskFormat)?.Id;
+        var selectedFamily = (ReadFormatCombo.SelectedItem as DiskFormat)?.Family ?? ReadFamilyCombo.SelectedItem as string;
+        var families = _formatCatalog.Formats.Where(format => format.Family != "Raw").Select(format => format.Family).Distinct().Order().ToArray();
+        ReadFamilyCombo.ItemsSource = families;
+        ReadFamilyCombo.SelectedItem = selectedFamily is not null && families.Contains(selectedFamily) ? selectedFamily : families.FirstOrDefault();
+        if (selectedReadId is not null)
+            ReadFormatCombo.SelectedItem = _formatCatalog.Formats.FirstOrDefault(format => format.Id == selectedReadId);
+
+        if (WriteFormatCombo.ItemsSource is not null)
+        {
+            var selectedWriteId = (WriteFormatCombo.SelectedItem as DiskFormat)?.Id;
+            WriteFormatCombo.ItemsSource = _formatCatalog.Formats.Where(format => format.Family != "Raw").ToArray();
+            WriteFormatCombo.SelectedItem = _formatCatalog.Formats.FirstOrDefault(format => format.Id == selectedWriteId);
+        }
+
+        DetectedImageFormat? detection = null;
+        var sourceExtension = string.IsNullOrWhiteSpace(ConvertSourceText.Text) ? null : Path.GetExtension(ConvertSourceText.Text);
+        if (File.Exists(ConvertSourceText.Text)) detection = _formatDetector.Detect(ConvertSourceText.Text, new FileInfo(ConvertSourceText.Text).Length);
+        BuildConversionFormats(sourceExtension, detection);
     }
 
     private bool ValidateDiskDefs(CheckBox enabled, TextBox path, string title)

@@ -142,6 +142,7 @@ public sealed class CoreTests
         Assert.Equal(["disk.scp"], write.Arguments);
         var convert = ConversionCommandBuilder.Build("gw.exe", "disk.scp", new ConversionOutput("raw.hfe", ".hfe", "disk.hfe", true));
         Assert.Equal(["disk.scp", "disk.hfe"], convert.Arguments);
+        Assert.Equal("raw.gcr", GwFormatArgument.FromCatalogId("raw.gcr"));
     }
 
     [Fact]
@@ -273,6 +274,42 @@ public sealed class CoreTests
         Assert.Equal(".img", Assert.Single(ibm.Extensions).Extension);
         Assert.True(ibm.Extensions[0].IsDefault);
         Assert.DoesNotContain(catalog.Formats, format => format.Id == "atarist.720");
+    }
+
+    [Fact]
+    public void RuntimeCapabilitiesExposePreviouslyUnknownDiskDefinitionsAsRareFormats()
+    {
+        var capabilities = new GwFormatCapabilities(
+            new HashSet<string>(["ibm.720", "dec.rx02", "ensoniq.mirage"], StringComparer.OrdinalIgnoreCase),
+            new HashSet<string>([".scp", ".img"], StringComparer.OrdinalIgnoreCase));
+
+        var catalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(), capabilities);
+
+        var dec = Assert.Single(catalog.Formats, format => format.Id == "dec.rx02");
+        Assert.Equal("DEC", dec.Family);
+        Assert.Equal("DEC — RX02", dec.DisplayName);
+        Assert.False(dec.IsCommon);
+        Assert.Equal(".img", Assert.Single(dec.Extensions).Extension);
+        Assert.Equal("DEC-RX02", dec.Tag);
+        Assert.Contains(".scp", dec.CompatibleSourceExtensions!);
+        Assert.Contains(catalog.Formats, format => format.Id == "ensoniq.mirage");
+    }
+
+    [Fact]
+    public void CustomDiskDefsReaderResolvesPrefixesAndImports()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-diskdefs-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        try
+        {
+            File.WriteAllText(Path.Combine(directory, "child.cfg"), "disk format1\nend\n");
+            File.WriteAllText(Path.Combine(directory, "root.cfg"), "disk local\nend\nimport vendor. \"child.cfg\"\n");
+
+            var formats = DiskDefsFormatReader.Read(Path.Combine(directory, "root.cfg"));
+
+            Assert.Equal(new HashSet<string>(["local", "vendor.format1"], StringComparer.OrdinalIgnoreCase), formats);
+        }
+        finally { Directory.Delete(directory, true); }
     }
 
     [Fact]

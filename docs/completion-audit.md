@@ -11,6 +11,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - `--drive` n’est ajouté que lorsque plusieurs lecteurs sont configurés; les configurations débranchées restent mémorisées.
 - Écriture détecte le format, bloque les ambiguïtés, garde la vérification active par défaut et demande confirmation.
 - Conversion utilise les cases pour le simple et le multiple, les extensions implicites/explicites, les tags, le traitement séquentiel, les conflits et le bilan. Une source sectorielle reconnue limite la sortie à sa géométrie; SCP/HFE gardent les formats décodables.
+- Les diskdefs supplémentaires annoncés par les Host Tools actifs ou chargés depuis un fichier personnalisé ne sont plus masqués : ils sont ajoutés comme formats rares avec nom, tag et conteneur disponibles déterminés sans inventer une association machine/extension. Les imports préfixés personnalisés sont suivis et les cycles sont refusés.
 - Lecture et Conversion utilisent le même dossier de destination pendant la session; il est réinitialisé depuis les Options au démarrage suivant.
 - Les 14 actions officielles de `greaseweazle/cli.py` ont un parcours vérifié dans `gw-command-coverage.md`; les diagnostics, dont `align`, et le matériel utilisent des dialogues, tandis qu’Effacer et Nettoyer restent dans Outils.
 - Les ressources FR/EN ont une parité automatisée et les deux langues ont été ouvertes et contrôlées sur le paquet portable final.
@@ -18,7 +19,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.
 - Les réglages avancés de Lecture, Écriture et Conversion possèdent des infobulles FR/EN indiquant l’argument `gw`, son rôle, les incompatibilités utiles et un exemple lorsqu’une valeur est attendue.
-- La compilation Release et 118 tests automatisés réussissent.
+- La compilation Release et 120 tests automatisés réussissent.
 
 ## Partiellement prouvé
 
