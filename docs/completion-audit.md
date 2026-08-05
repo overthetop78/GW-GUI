@@ -10,7 +10,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Le profil système permanent Par défaut ne contient aucune option facultative; les profils utilisateur sont propres à leur opération.
 - La persistance Lecture restaure mode, format et extension; le test WPF contrôle Atari ST 720/MSA puis la recapture ST. Les profils Lecture conservent résultat, format, extension et dossier, tandis que les profils Écriture conservent le format imposé; aucun ne mémorise fichier source, nom ou lecteur matériel.
 - Lecture distingue SCP brut et format connu. SCP brut n’ajoute jamais `--format`, même si une ancienne sélection demeure en mémoire.
-- `--drive` n’est ajouté que lorsque plusieurs lecteurs sont configurés; `IHardwareRegistry` conserve les contrôleurs débranchés comme indisponibles et fusionne une redécouverte par numéro de série USB ou identifiant PNP stable.
+- `--drive` n’est ajouté que lorsque plusieurs lecteurs sont configurés sur le contrôleur sélectionné; deux contrôleurs ayant chacun un lecteur gardent leur sélection implicite. `IHardwareRegistry` conserve les contrôleurs débranchés comme indisponibles et fusionne une redécouverte par numéro de série USB ou identifiant PNP stable. Un lecteur sélectionné indisponible reste visible mais bloque les commandes avec un avertissement localisé.
 - Écriture détecte le format, bloque les ambiguïtés, garde la vérification active par défaut et demande confirmation.
 - Conversion utilise les cases pour le simple et le multiple, les extensions implicites/explicites, les tags, le traitement séquentiel, les conflits et le bilan. Une source sectorielle reconnue limite la sortie à sa géométrie; SCP/HFE gardent les formats décodables.
 - Les diskdefs supplémentaires annoncés par les Host Tools actifs ou chargés depuis un fichier personnalisé ne sont plus masqués : ils sont ajoutés comme formats rares avec nom, tag et conteneur disponibles déterminés sans inventer une association machine/extension. Les imports préfixés personnalisés sont suivis et les cycles sont refusés.
@@ -44,6 +44,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## État architectural
 
+- `HardwareRoutingPolicy` raisonne désormais par contrôleur, et la garde commune des opérations empêche l’usage d’un lecteur indisponible. Les tests directs et WPF portent la suite à 232 réussites.
 - Le schéma de réglages 5 ajoute l’extension Lecture sans casser les versions précédentes. La restauration et la capture des choix structurants ainsi que les contenus des profils Lecture/Écriture sont exercés dans la vraie fenêtre WPF; la suite reste à 231 tests réussis.
 - Le runner journalisé est une dépendance partagée depuis le point de composition jusque dans la navigation, les outils et le registre matériel. Le test WPF prouve le refus d’un outil concurrent et l’identité de l’instance injectée; la suite reste à 231 tests réussis.
 - La politique de placement est séparée du choix Win32 du moniteur et possède une matrice DPI/multi-écran directe; la suite complète compte 231 tests réussis.

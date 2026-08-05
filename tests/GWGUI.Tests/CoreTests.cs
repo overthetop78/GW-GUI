@@ -241,6 +241,15 @@ public sealed class CoreTests
                 Assert.Single(navigation.OptionsSettings);
                 Assert.Equal("rpm", Assert.Single(navigation.ToolRequests).Verb);
 
+                settings.Controllers = [new() { UsbId = "GW-OFFLINE", LastPort = "COM8", Model = "Greaseweazle V4.1", IsAvailable = false }];
+                settings.Drives = [new() { ControllerUsbId = "GW-OFFLINE", Selection = "A", Size = "3.5", Density = "HD" }];
+                typeof(MainWindow).GetMethod("RefreshHardwareSelector", flags)!.Invoke(window, null);
+                var dialogCount = dialogs.Requests.Count;
+                typeof(MainWindow).GetMethod("ToolCommand_Click", flags)!.Invoke(window, [new System.Windows.Controls.MenuItem { Tag = "rpm" }, new RoutedEventArgs()]);
+                Assert.Single(navigation.ToolRequests);
+                Assert.Equal(dialogCount + 1, dialogs.Requests.Count);
+                Assert.Equal(UserDialogIcon.Warning, dialogs.Requests[^1].Icon);
+
                 var busyDialogs = new RecordingMessageDialogService();
                 var busyNavigation = new RecordingWindowNavigationService();
                 var busyRunner = new BusyRunner();
@@ -576,10 +585,20 @@ public sealed class CoreTests
     [Fact]
     public void ADriveArgumentIsOnlyUsedWhenSeveralDrivesAreConfigured()
     {
-        var first = new DriveSettings { Selection = "A" };
-        var second = new DriveSettings { Selection = "B" };
+        var first = new DriveSettings { ControllerUsbId = "GW-1", Selection = "A" };
+        var second = new DriveSettings { ControllerUsbId = "GW-1", Selection = "B" };
         Assert.Null(HardwareRoutingPolicy.DriveArgument([first], first));
         Assert.Equal("B", HardwareRoutingPolicy.DriveArgument([first, second], second));
+    }
+
+    [Fact]
+    public void OneDriveOnEachControllerDoesNotEmitAnUnnecessaryDriveArgument()
+    {
+        var first = new DriveSettings { ControllerUsbId = "GW-1", Selection = "A" };
+        var second = new DriveSettings { ControllerUsbId = "GW-2", Selection = "B" };
+
+        Assert.Null(HardwareRoutingPolicy.DriveArgument([first, second], first));
+        Assert.Null(HardwareRoutingPolicy.DriveArgument([first, second], second));
     }
 
     [Theory]

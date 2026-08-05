@@ -237,6 +237,7 @@ public partial class MainWindow : Window
     private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!EnsureSelectedHardwareAvailable()) return;
         if (!ValidateDiskDefs(WriteDiskDefsEnabled, WriteDiskDefsValue, LocExtension.Get("Write.Title"))) return;
         if (!File.Exists(WriteSourceText.Text)) { _dialogs.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Information); return; }
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
@@ -747,6 +748,7 @@ public partial class MainWindow : Window
     private async void ExecuteRead_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!EnsureSelectedHardwareAvailable()) return;
         if (!ValidateDiskDefs(ReadDiskDefsEnabled, ReadDiskDefsValue, LocExtension.Get("Read.Title"))) return;
         if (string.IsNullOrWhiteSpace(ReadFileName.Text))
         {
@@ -930,6 +932,13 @@ public partial class MainWindow : Window
         _viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
     }
 
+    private bool EnsureSelectedHardwareAvailable()
+    {
+        if (SelectedHardware() is not { Available: false }) return true;
+        _dialogs.Show(LocExtension.Get("Hardware.SelectedDisconnected"), LocExtension.Get("Menu.Hardware"), icon: UserDialogIcon.Warning);
+        return false;
+    }
+
     private void UpdateToolCommand()
     {
         if (CommandPreview is null || ToolsList is null || MainTabs?.SelectedIndex != 4) return;
@@ -940,6 +949,7 @@ public partial class MainWindow : Window
     private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!EnsureSelectedHardwareAvailable()) return;
         if (_dialogs.Show(LocExtension.Get("Maintenance.EraseConfirm"), LocExtension.Get("Maintenance.EraseTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
         await ExecuteMaintenanceAsync(BuildEraseCommand(), EraseExecuteButton);
     }
@@ -947,6 +957,7 @@ public partial class MainWindow : Window
     private async void ExecuteClean_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!EnsureSelectedHardwareAvailable()) return;
         if (_dialogs.Show(LocExtension.Get("Maintenance.CleanConfirm"), LocExtension.Get("Maintenance.CleanTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
         await ExecuteMaintenanceAsync(BuildCleanCommand(), CleanExecuteButton);
     }
@@ -954,6 +965,7 @@ public partial class MainWindow : Window
     private async Task ExecuteMaintenanceAsync(GwCommand command, Button button)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!EnsureSelectedHardwareAvailable()) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
@@ -1067,6 +1079,7 @@ public partial class MainWindow : Window
             _dialogs.Show(LocExtension.Get("Operation.Busy"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
         }
+        if (!EnsureSelectedHardwareAvailable()) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
         {
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
