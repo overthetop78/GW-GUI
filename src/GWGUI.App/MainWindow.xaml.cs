@@ -41,6 +41,7 @@ public partial class MainWindow : Window
     private bool _syncingScpZoom;
     private readonly FluxDecoderRegistry _fluxDecoders = new();
     private readonly ScpInspectorPresenter _scpInspector;
+    private readonly ScpDocumentLoader _scpLoader;
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
@@ -55,6 +56,7 @@ public partial class MainWindow : Window
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
         _scpInspector = new ScpInspectorPresenter(_fluxDecoders, (key, arguments) => LocExtension.Get(key, arguments));
+        _scpLoader = new ScpDocumentLoader(new ScpReader(), (key, arguments) => LocExtension.Get(key, arguments));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
@@ -81,15 +83,15 @@ public partial class MainWindow : Window
         try
         {
             ScpSummary.Text = LocExtension.Get("Visual.Loading");
-            _scpImage = await new ScpReader().ReadAsync(path);
-            ScpFileName.Text = Path.GetFileName(path);
-            var heads = _scpImage.Tracks.Select(x => x.Head).Distinct().Order().ToArray();
-            ScpSummary.Text = LocExtension.Get("Visual.Summary", _scpImage.Header.VersionText, _scpImage.Tracks.Count, _scpImage.Header.Revolutions, _scpImage.Header.ResolutionNanoseconds, LocExtension.Get(_scpImage.ChecksumValid ? "Visual.ChecksumValid" : "Visual.ChecksumInvalid"));
+            var document = await _scpLoader.LoadAsync(path); _scpImage = document.Image;
+            ScpFileName.Text = document.FileName;
+            var heads = document.Heads;
+            ScpSummary.Text = document.Summary;
             ScpSide0.SetImage(_scpImage, 0); ScpSide1.SetImage(_scpImage, 1);
             _selectedScpTrack = null;
             ScpSide0.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed; ScpSide1.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
-            Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Length == 1 && heads.Contains(0) ? 2 : 1);
-            Grid.SetColumn(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Length == 1 && heads.Contains(1) ? 2 : 1);
+            Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Count == 1 && heads.Contains(0) ? 2 : 1);
+            Grid.SetColumn(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 2 : 1);
             ScpTrackInfo.Text = LocExtension.Get("Visual.SelectTrack");
         }
         catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); MessageBox.Show(exception.Message, LocExtension.Get("Visual.Title"), MessageBoxButton.OK, MessageBoxImage.Error); }

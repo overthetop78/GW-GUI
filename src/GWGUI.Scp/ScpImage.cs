@@ -21,7 +21,12 @@ public sealed record ScpRevolution(uint IndexTimeTicks, uint DeclaredFluxCount, 
 public sealed record ScpTrack(byte TrackNumber, int Cylinder, int Head, IReadOnlyList<ScpRevolution> Revolutions);
 public sealed record ScpImage(ScpHeader Header, IReadOnlyList<ScpTrack> Tracks, bool ChecksumValid, long FileSize);
 
-public sealed class ScpReader
+public interface IScpReader
+{
+    Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default);
+}
+
+public sealed class ScpReader : IScpReader
 {
     public const int HeaderLength = 16;
     public const int FloppyTrackSlots = 168;

@@ -43,6 +43,21 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task ScpDocumentLoaderBuildsLocalizedModelThroughReaderContract()
+    {
+        static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
+        var header = new ScpHeader(0x24, 0, 1, 4, 5, ScpFlags.IndexAligned, 0, 2, 1, 0);
+        var image = new ScpImage(header, [new ScpTrack(4, 2, 0, []), new ScpTrack(5, 2, 1, [])], true, 1024);
+        var reader = new StubScpReader(image); var loader = new ScpDocumentLoader(reader, Localize);
+
+        var document = await loader.LoadAsync(@"F:\captures\demo.scp");
+
+        Assert.Same(image, document.Image); Assert.Equal("demo.scp", document.FileName); Assert.True(document.Heads.SetEquals([0, 1]));
+        Assert.Contains("Visual.Summary(2.4,2,1,50,Visual.ChecksumValid)", document.Summary);
+        Assert.Equal(@"F:\captures\demo.scp", reader.Path);
+    }
+
+    [Fact]
     public void MainWindowStateViewModelPublishesSharedStatusChanges()
     {
         var model = new MainWindowViewModel("No hardware", "Ready");
@@ -1899,6 +1914,12 @@ public sealed class CoreTests
             try { return Task.FromResult(_results.Dequeue()); }
             finally { IsRunning = false; }
         }
+    }
+
+    private sealed class StubScpReader(ScpImage image) : IScpReader
+    {
+        public string? Path { get; private set; }
+        public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) { Path = path; return Task.FromResult(image); }
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
