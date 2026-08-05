@@ -37,6 +37,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur. Les structures reconnues sont superposées aux pistes avec une légende distincte pour en-têtes, données et anomalies.
 - Décodeurs flux brut, ISO MFM, ISO FM, Amiga MFM, Apple II GCR, Commodore GCR, Membrain MFM, AED 6200P MFM, QD MO5 MFM, Centurion MFM, NorthStar MFM à secteurs matériels, Heathkit FM à secteurs matériels, E-mu Emulator FM, TYCOM FM, DEC RX02 M²FM, Arburg système/données et Victor 9000 GCR; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO et détection des marques propres aux autres familles. Pour chaque piste, l’analyse retient la révolution donnant le résultat le plus convaincant et l’indique dans l’inspecteur.
+- La reconstruction du flux utilise une estimation robuste initiale puis une horloge adaptative à faible gain sur toute la révolution, afin de suivre progressivement les variations de vitesse sans se verrouiller sur un intervalle aberrant.
 
 ## Encore à réaliser avant achèvement
 
@@ -46,14 +47,14 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
 - Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
-- Étendre le moteur SCP à tous les décodeurs définis dans le plan et améliorer PLL, anomalies et visualisation des structures.
+- Compléter l’extraction détaillée des secteurs pour les formats rares, renforcer la qualification des anomalies et valider les décodeurs sur un corpus de captures physiques libres.
 - Renforcer la couverture de tests d’intégration/UI/matériel.
 - Compléter l’aide avec des captures d’écran après la validation visuelle finale.
 
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 88 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 89 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.

@@ -285,15 +285,25 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
     public bool[] Bits { get; } = bits; public double BitCellTicks { get; } = bitCellTicks;
     public static FluxBitstream FromIntervals(IReadOnlyList<uint> intervals, bool fm = false)
     {
-        var bitCell = EstimateBitCell(intervals, fm); var bits = new List<bool>(intervals.Count * 3);
-        foreach (var interval in intervals) { var cells = Math.Clamp((int)Math.Round(interval / bitCell), 1, 32); for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true); }
-        return new(bits.ToArray(), bitCell);
+        return Reconstruct(intervals, EstimateBitCell(intervals, fm), 32);
     }
     public static FluxBitstream FromNrziIntervals(IReadOnlyList<uint> intervals)
     {
-        var bitCell = EstimateBitCell(intervals, true); var bits = new List<bool>(intervals.Count * 4);
-        foreach (var interval in intervals) { var cells = Math.Clamp((int)Math.Round(interval / bitCell), 1, 64); for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true); }
-        return new(bits.ToArray(), bitCell);
+        return Reconstruct(intervals, EstimateBitCell(intervals, true), 64);
+    }
+    private static FluxBitstream Reconstruct(IReadOnlyList<uint> intervals, double initialCell, int maximumCells)
+    {
+        var currentCell = initialCell; var accumulatedCell = 0d; var samples = 0; var bits = new List<bool>(intervals.Count * 4);
+        for (var index = 0; index < intervals.Count; index++)
+        {
+            var interval = intervals[index]; var cells = Math.Clamp((int)Math.Round(interval / currentCell), 1, maximumCells);
+            for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true);
+            if (index == 0) continue;
+            var observedCell = interval / (double)cells;
+            if (observedCell >= currentCell * .7 && observedCell <= currentCell * 1.3) currentCell += (observedCell - currentCell) * .08;
+            accumulatedCell += currentCell; samples++;
+        }
+        return new(bits.ToArray(), samples == 0 ? initialCell : accumulatedCell / samples);
     }
     public static double EstimateBitCell(IReadOnlyList<uint> intervals, bool fm = false)
     {

@@ -531,6 +531,24 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void AdaptiveFluxClockFollowsGradualSpeedDrift()
+    {
+        var prologue = Convert.ToString(0xD5AA96, 2).PadLeft(24, '0');
+        var bits = string.Concat(Enumerable.Repeat(prologue + "000", 10)) + "1";
+        var intervals = new List<uint>(); var cells = 0; var transition = 0;
+        foreach (var bit in bits)
+        {
+            cells++;
+            if (bit != '1') continue;
+            var cellTicks = 36d + Math.Min(8, transition * .25);
+            intervals.Add((uint)Math.Round(cells * cellTicks)); cells = 0; transition++;
+        }
+        var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.True(result.Structures.Count(structure => structure.Kind == FluxStructureKind.AppleAddress) >= 8);
+        Assert.InRange(result.EstimatedBitCellTicks, 36, 44);
+    }
+
+    [Fact]
     public void CommodoreGcrDecoderFindsSyncAndHeaderBlock()
     {
         const string headerByte08 = "01010" + "01001";
