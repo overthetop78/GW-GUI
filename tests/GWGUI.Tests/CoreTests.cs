@@ -984,6 +984,27 @@ public sealed class CoreTests
         Assert.Equal(SectorIntegrityKind.Crc, sector.IntegrityKind);
     }
 
+    [Theory]
+    [InlineData(512, false)]
+    [InlineData(1024, true)]
+    public void Aed6200pDecoderExtractsVariableSectorSizeAndHeaderCrc(int sectorSize, bool corruptCrc)
+    {
+        byte[] prefix = [0xc6, 12, (byte)sectorSize, 3, (byte)(sectorSize >> 8)];
+        var crc = TestCrc16(prefix);
+        if (corruptCrc) crc ^= 1;
+        var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, (byte)sectorSize, 3, (byte)(sectorSize >> 8), (byte)(crc >> 8), (byte)crc) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(12, sector.Cylinder);
+        Assert.Equal(0, sector.Head);
+        Assert.Equal(3, sector.Number);
+        Assert.Equal(sectorSize, sector.SizeBytes);
+        Assert.Equal(!corruptCrc, sector.HeaderCrcValid);
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {

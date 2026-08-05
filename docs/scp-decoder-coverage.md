@@ -9,10 +9,10 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | NorthStar MFM à secteurs matériels | Oui | Piste, secteur, 512 octets | Checksum rotatif du bloc |
 | Heathkit FM à secteurs matériels | Oui | Volume, cylindre, secteur, 256 octets | Checksum rotatif d’en-tête |
 | Membrain MFM | Marques en-tête/données | Cylindre, face, secteur, 512 octets | CRC16 `0x8005` d’en-tête |
+| AED 6200P MFM | Marques C6/données | Cylindre, secteur, taille variable | CRC-CCITT d’en-tête |
 | Amiga MFM | Double synchronisation | Non | Non |
 | Apple II GCR | Prologues adresse/données | Non | Non |
 | Commodore GCR | Synchronisation et type de bloc | Non | Non |
-| AED 6200P MFM | Marques C6/données | Non | Non |
 | QD MO5 MFM | Marques en-tête/données | Non | Non |
 | Centurion MFM | Marques secteur/données | Non | Non |
 | E-mu Emulator FM | Marque secteur | Non | Non |
@@ -24,4 +24,4 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 
 ## Sources de qualification
 
-Les structures NorthStar, Heathkit et Membrain sont alignées sur les extracteurs `northstar_mfm_track.c`, `heathkit_fm_track.c` et `membrain_mfm_track.c` de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.
+Les structures NorthStar, Heathkit, Membrain et AED 6200P sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les tailles variables AED. Les autres familles restent annoncées au niveau réellement atteint ci-dessus; leur extraction détaillée demande encore des vecteurs fiables ou un corpus physique libre.

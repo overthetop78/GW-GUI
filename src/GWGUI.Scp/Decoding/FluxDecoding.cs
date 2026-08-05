@@ -117,8 +117,44 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
 
 public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
 {
+    private static readonly byte[] SectorHeader = [0x50, 0x94];
     public override string Id => "aed6200p.mfm"; public override string DisplayName => "AED 6200P MFM";
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x50, 0x94], FluxStructureKind.FormatHeader, "AED 6200P C6 header mark"), ([0xa5, 0x08], FluxStructureKind.FormatData, "AED 6200P data mark")];
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "AED 6200P C6 header mark"), ([0xa5, 0x08], FluxStructureKind.FormatData, "AED 6200P data mark")];
+
+    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        const int headerBits = 7 * 16;
+        for (var offset = 0; offset + SectorHeader.Length * 8 <= stream.Bits.Length; offset++)
+        {
+            if (!stream.MatchBytes(offset, SectorHeader)) continue;
+            var complete = offset + headerBits <= stream.Bits.Length;
+            if (complete)
+            {
+                var header = Enumerable.Range(0, 7).Select(index => stream.DecodeMfmByte(offset + index * 16)).ToArray();
+                var size = (header[4] << 8) | header[2]; var valid = header[0] == 0xc6 && Crc16(header) == 0;
+                sectors.Add(new(header[1], 0, header[3], SizeCode(size), size, valid, offset)); bytes.AddRange(header);
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"AED 6200P C{header[1]} R{header[3]}, {size} bytes, CRC {(valid ? "valid" : "invalid")}"));
+            }
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * 8, "AED 6200P C6 header mark"));
+            offset += SectorHeader.Length * 8 - 1;
+        }
+        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static byte SizeCode(int size)
+    {
+        for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
+        return 0;
+    }
+
+    private static ushort Crc16(IEnumerable<byte> values)
+    {
+        ushort crc = 0xffff;
+        foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x1021 : crc << 1); }
+        return crc;
+    }
 }
 
 public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
