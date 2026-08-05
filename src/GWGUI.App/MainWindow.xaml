@@ -85,7 +85,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:Loc Read.FileName}" VerticalAlignment="Center" Margin="0,0,12,0" />
                                 <TextBox Grid.Column="1" x:Name="ReadFileName" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" AutomationProperties.Name="{l:Loc Read.FileName}" />
-                                <TextBox Grid.Column="2" x:Name="ReadExtensionText" Margin="8,0" IsReadOnly="True" Text="{l:Loc Read.RawScp}" />
+                                <TextBox Grid.Column="2" x:Name="ReadExtensionText" Margin="8,0" IsReadOnly="True" Text="{l:Loc Read.RawScp}" AutomationProperties.Name="{l:Loc Read.Extension}" />
                                 <Button Grid.Column="3" Content="{l:Loc Common.Copy}" Click="CopyReadName_Click" />
                             </Grid>
                         </Border>
@@ -342,7 +342,7 @@
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                                 <TextBlock Text="{l:Loc Visual.Decoder}" VerticalAlignment="Center" Margin="0,0,7,0" />
-                                <ComboBox x:Name="ScpDecoderCombo" Width="230" DisplayMemberPath="Name" SelectionChanged="ScpDecoder_Changed" />
+                                <ComboBox x:Name="ScpDecoderCombo" Width="230" DisplayMemberPath="Name" SelectionChanged="ScpDecoder_Changed" AutomationProperties.Name="{l:Loc Visual.Decoder}" />
                                 <CheckBox x:Name="LinkScpViews" Content="{l:Loc Visual.LinkZoom}" IsChecked="True" VerticalAlignment="Center" Margin="14,0" />
                                 <Button Content="{l:Loc Common.Reset}" Click="ResetScpViews_Click" />
                                 <Button Content="{l:Loc Visual.OpenScp}" Click="OpenScp_Click" />
@@ -409,12 +409,12 @@
                                 <TextBlock Text="{l:Loc Tools.EraseWarning}" Foreground="#B3261E" Margin="0,8,0,18" />
                                 <WrapPanel>
                                     <CheckBox x:Name="EraseTracksEnabled" Content="{l:Loc Tools.LimitTracks}" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="EraseTracksValue" Width="180" Text="c=0-79:h=0-1" TextChanged="ToolInput_Changed" />
+                                    <TextBox x:Name="EraseTracksValue" Width="180" Text="c=0-79:h=0-1" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.LimitTracks}" />
                                     <CheckBox x:Name="EraseRevsEnabled" Content="{l:Loc Tools.Revolutions}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="EraseRevsValue" Width="70" Text="3" TextChanged="ToolInput_Changed" />
+                                    <TextBox x:Name="EraseRevsValue" Width="70" Text="3" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Revolutions}" />
                                 </WrapPanel>
                                 <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,14,8,4" />
-                                <TextBox x:Name="EraseExpertArguments" Margin="8" TextChanged="ToolInput_Changed" />
+                                <TextBox x:Name="EraseExpertArguments" Margin="8" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Common.ExpertArguments}" />
                                 <Button x:Name="EraseExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteErase_Click" />
                             </StackPanel>
                         </Border>

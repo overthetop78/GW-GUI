@@ -102,6 +102,7 @@ public sealed class CoreTests
                 var hardwareText = Assert.IsType<System.Windows.Controls.TextBlock>(window.FindName("HardwareStatusText"));
                 var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
                 var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));
+                var readExtension = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadExtensionText"));
                 var readRevs = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ReadRevsEnabled"));
                 var writeNoVerify = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("WriteNoVerify"));
                 var convertTags = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ConvertTags"));
@@ -118,7 +119,7 @@ public sealed class CoreTests
                 var logOutput = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("LogOutput"));
                 var mainTabs = Assert.IsType<System.Windows.Controls.TabControl>(window.FindName("MainTabs"));
                 var readExecute = Assert.IsType<System.Windows.Controls.Button>(window.FindName("ReadExecuteButton"));
-                foreach (var named in new FrameworkElement[] { readFileName, writeSource, convertSource, convertOutput, commandPreview, logOutput, mainTabs })
+                foreach (var named in new FrameworkElement[] { readFileName, readExtension, writeSource, convertSource, convertOutput, commandPreview, logOutput, mainTabs })
                     Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(named)));
                 Assert.NotEqual(AutomationProperties.GetName(commandPreview), AutomationProperties.GetName(logOutput));
                 Assert.NotNull(new System.Windows.Automation.Peers.TextBoxAutomationPeer(readFileName).GetPattern(PatternInterface.Value));

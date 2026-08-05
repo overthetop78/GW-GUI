@@ -43,6 +43,12 @@ powershell -ExecutionPolicy Bypass -File scripts/test-installer-interactive.ps1 
 powershell -ExecutionPolicy Bypass -File scripts/test-installer-interactive.ps1 -InstallerLanguage french
 ```
 
+L’arbre UI Automation du véritable exécutable peut aussi être contrôlé sur les cinq onglets. Le test échoue si un contrôle interactif visible n’a pas de nom accessible :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-app-accessibility.ps1
+```
+
 Un second test fabrique un ancien installateur de contrôle, effectue une mise à niveau vers le paquet courant, vérifie la version inscrite et celle de l’exécutable, puis désinstalle et nettoie tout l’état isolé. Il refuse de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur :
 
 ```powershell
