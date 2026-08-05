@@ -105,32 +105,32 @@
                             <Border Style="{StaticResource Card}" Margin="0,10,0,12">
                                 <StackPanel>
                                     <WrapPanel>
-                                        <CheckBox x:Name="ReadRevsEnabled" Content="{l:Loc Read.Revolutions}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RevsTip}" />
-                                        <TextBox x:Name="ReadRevsValue" Width="70" Text="5" TextChanged="ReadInput_Changed" />
-                                        <CheckBox x:Name="ReadRetriesEnabled" Content="{l:Loc Read.Retries}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RetriesTip}" />
-                                        <TextBox x:Name="ReadRetriesValue" Width="70" Text="5" TextChanged="ReadInput_Changed" />
-                                        <CheckBox x:Name="ReadTracksEnabled" Content="{l:Loc Read.Tracks}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.TracksTip}" />
-                                        <TextBox x:Name="ReadTracksValue" Width="190" Text="c=0-79:h=0-1" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
+                                        <CheckBox x:Name="ReadRevsEnabled" IsChecked="{Binding Read.Revs.Enabled}" Content="{l:Loc Read.Revolutions}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RevsTip}" />
+                                        <TextBox x:Name="ReadRevsValue" Width="70" Text="{Binding Read.Revs.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
+                                        <CheckBox x:Name="ReadRetriesEnabled" IsChecked="{Binding Read.Retries.Enabled}" Content="{l:Loc Read.Retries}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.RetriesTip}" />
+                                        <TextBox x:Name="ReadRetriesValue" Width="70" Text="{Binding Read.Retries.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
+                                        <CheckBox x:Name="ReadTracksEnabled" IsChecked="{Binding Read.Tracks.Enabled}" Content="{l:Loc Read.Tracks}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.TracksTip}" />
+                                        <TextBox x:Name="ReadTracksValue" Width="190" Text="{Binding Read.Tracks.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
                                     </WrapPanel>
                                     <WrapPanel>
-                                        <CheckBox x:Name="ReadSeekRetriesEnabled" Content="{l:Loc Advanced.SeekRetries}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.SeekRetriesTip}" />
-                                        <TextBox x:Name="ReadSeekRetriesValue" Width="70" Text="0" TextChanged="ReadInput_Changed" />
-                                        <CheckBox x:Name="ReadFakeIndexEnabled" Content="{l:Loc Advanced.FakeIndex}" Margin="18,8,8,8" Checked="ReadFakeIndex_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.FakeIndexTip}" />
-                                        <TextBox x:Name="ReadFakeIndexValue" Width="90" Text="300rpm" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
-                                        <CheckBox x:Name="ReadHardSectors" Content="{l:Loc Advanced.HardSectors}" Margin="18,8" Checked="ReadHardSectors_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.HardSectorsTip}" />
-                                        <CheckBox x:Name="ReadReverse" Content="{l:Loc Advanced.Reverse}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.ReverseTip}" />
+                                        <CheckBox x:Name="ReadSeekRetriesEnabled" IsChecked="{Binding Read.SeekRetries.Enabled}" Content="{l:Loc Advanced.SeekRetries}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.SeekRetriesTip}" />
+                                        <TextBox x:Name="ReadSeekRetriesValue" Width="70" Text="{Binding Read.SeekRetries.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" />
+                                        <CheckBox x:Name="ReadFakeIndexEnabled" IsChecked="{Binding Read.FakeIndex.Enabled}" Content="{l:Loc Advanced.FakeIndex}" Margin="18,8,8,8" Checked="ReadFakeIndex_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.FakeIndexTip}" />
+                                        <TextBox x:Name="ReadFakeIndexValue" Width="90" Text="{Binding Read.FakeIndex.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
+                                        <CheckBox x:Name="ReadHardSectors" IsChecked="{Binding Read.HardSectors.Enabled}" Content="{l:Loc Advanced.HardSectors}" Margin="18,8" Checked="ReadHardSectors_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.HardSectorsTip}" />
+                                        <CheckBox x:Name="ReadReverse" IsChecked="{Binding Read.Reverse.Enabled}" Content="{l:Loc Advanced.Reverse}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.ReverseTip}" />
                                     </WrapPanel>
                                     <WrapPanel>
-                                        <CheckBox x:Name="ReadAdjustSpeedEnabled" Content="{l:Loc Advanced.AdjustSpeed}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.AdjustSpeedTip}" />
-                                        <TextBox x:Name="ReadAdjustSpeedValue" Width="90" Text="300rpm" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
-                                        <CheckBox x:Name="ReadPllEnabled" Content="{l:Loc Advanced.Pll}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.PllOptionTip}" />
-                                        <TextBox x:Name="ReadPllValue" Width="180" Text="period=5:phase=60" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.PllTip}" />
-                                        <CheckBox x:Name="ReadDenselEnabled" Content="{l:Loc Advanced.DensityPin}" Margin="18,8,8,8" Checked="ReadDensel_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.DenselTip}" />
-                                        <ComboBox x:Name="ReadDenselValue" Width="70" SelectedIndex="0" SelectionChanged="ReadInput_Changed"><ComboBoxItem Content="H"/><ComboBoxItem Content="L"/></ComboBox>
-                                        <CheckBox x:Name="ReadTg43" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="ReadTg43_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.Tg43Tip}" />
+                                        <CheckBox x:Name="ReadAdjustSpeedEnabled" IsChecked="{Binding Read.AdjustSpeed.Enabled}" Content="{l:Loc Advanced.AdjustSpeed}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.AdjustSpeedTip}" />
+                                        <TextBox x:Name="ReadAdjustSpeedValue" Width="90" Text="{Binding Read.AdjustSpeed.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
+                                        <CheckBox x:Name="ReadPllEnabled" IsChecked="{Binding Read.Pll.Enabled}" Content="{l:Loc Advanced.Pll}" Margin="18,8,8,8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.PllOptionTip}" />
+                                        <TextBox x:Name="ReadPllValue" Width="180" Text="{Binding Read.Pll.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" ToolTip="{l:Loc Advanced.PllTip}" />
+                                        <CheckBox x:Name="ReadDenselEnabled" IsChecked="{Binding Read.Densel.Enabled}" Content="{l:Loc Advanced.DensityPin}" Margin="18,8,8,8" Checked="ReadDensel_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.DenselTip}" />
+                                        <ComboBox x:Name="ReadDenselValue" Width="70" SelectedValuePath="Content" SelectedValue="{Binding Read.Densel.Value}" SelectionChanged="ReadInput_Changed"><ComboBoxItem Content="H"/><ComboBoxItem Content="L"/></ComboBox>
+                                        <CheckBox x:Name="ReadTg43" IsChecked="{Binding Read.Tg43.Enabled}" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="ReadTg43_Checked" Unchecked="ReadInput_Changed" ToolTip="{l:Loc Advanced.Tg43Tip}" />
                                     </WrapPanel>
                                     <Separator Margin="8" />
-                                    <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ReadInput_Changed"/></DockPanel>
+                                    <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" IsChecked="{Binding Read.DiskDefs.Enabled}" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" Text="{Binding Read.DiskDefs.Value, Mode=TwoWay}" TextChanged="ReadInput_Changed"/></DockPanel>
                                     <WrapPanel>
                                         <CheckBox x:Name="ReadAutoNumber" Content="{l:Loc Read.AutoNumber}" Margin="8" IsChecked="{Binding Read.AutoNumber}" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
                                         <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="{Binding Read.SequenceKindIndex}" SelectionChanged="ReadSequenceKind_Changed">

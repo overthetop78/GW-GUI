@@ -141,7 +141,7 @@ public partial class MainWindow : Window
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
         RestoreWindowPlacement();
         ConstrainToCurrentWorkArea();
-        ReadFolder.Text = _settings.DefaultImagesFolder;
+        _viewModel.Read.Folder = _settings.DefaultImagesFolder;
         ReadFamilyCombo.ItemsSource = _formatCatalog.Formats.Where(x => x.Family != "Raw").Select(x => x.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.SelectedIndex = 0;
         RefreshReadProfiles();
@@ -514,22 +514,7 @@ public partial class MainWindow : Window
 
     private void ApplyReadProfile(OperationProfile profile)
     {
-        ReadRevsEnabled.IsChecked = profile.EnabledOptions.Contains("revs");
-        ReadRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("retries");
-        ReadTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks");
-        ReadSeekRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("seek-retries"); ReadFakeIndexEnabled.IsChecked = profile.EnabledOptions.Contains("fake-index"); ReadHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors");
-        ReadAdjustSpeedEnabled.IsChecked = profile.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = profile.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = profile.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = profile.EnabledOptions.Contains("gen-tg43");
-        ReadDiskDefsEnabled.IsChecked = profile.EnabledOptions.Contains("diskdefs");
-        if (profile.Values.TryGetValue("revs", out var revs)) ReadRevsValue.Text = revs;
-        if (profile.Values.TryGetValue("retries", out var retries)) ReadRetriesValue.Text = retries;
-        if (profile.Values.TryGetValue("tracks", out var tracks)) ReadTracksValue.Text = tracks;
-        if (profile.Values.TryGetValue("seek-retries", out var seekRetries)) ReadSeekRetriesValue.Text = seekRetries;
-        if (profile.Values.TryGetValue("fake-index", out var fakeIndex)) ReadFakeIndexValue.Text = fakeIndex;
-        if (profile.Values.TryGetValue("adjust-speed", out var speed)) ReadAdjustSpeedValue.Text = speed;
-        if (profile.Values.TryGetValue("pll", out var pll)) ReadPllValue.Text = pll;
-        if (profile.Values.TryGetValue("densel", out var densel)) ReadDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
-        if (profile.Values.TryGetValue("diskdefs", out var diskdefs)) ReadDiskDefsValue.Text = diskdefs;
-        ReadExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
+        _viewModel.Read.ApplyOptions(profile.EnabledOptions, profile.Values);
         if (profile.IsSystem)
         {
             RawScpRadio.IsChecked = true;
@@ -541,14 +526,8 @@ public partial class MainWindow : Window
     {
         var dialog = new ProfileNameWindow { Owner = this };
         if (dialog.ShowDialog() != true) return;
-        var enabled = new HashSet<string>();
-        if (ReadRevsEnabled.IsChecked == true) enabled.Add("revs");
-        if (ReadRetriesEnabled.IsChecked == true) enabled.Add("retries");
-        if (ReadTracksEnabled.IsChecked == true) enabled.Add("tracks");
-        if (ReadSeekRetriesEnabled.IsChecked == true) enabled.Add("seek-retries"); if (ReadFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (ReadHardSectors.IsChecked == true) enabled.Add("hard-sectors");
-        if (ReadAdjustSpeedEnabled.IsChecked == true) enabled.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) enabled.Add("pll"); if (ReadReverse.IsChecked == true) enabled.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) enabled.Add("densel"); if (ReadTg43.IsChecked == true) enabled.Add("gen-tg43");
-        if (ReadDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
-        var values = new Dictionary<string, string> { ["revs"] = ReadRevsValue.Text, ["retries"] = ReadRetriesValue.Text, ["tracks"] = ReadTracksValue.Text, ["seek-retries"] = ReadSeekRetriesValue.Text, ["fake-index"] = ReadFakeIndexValue.Text, ["adjust-speed"] = ReadAdjustSpeedValue.Text, ["pll"] = ReadPllValue.Text, ["densel"] = SelectedText(ReadDenselValue), ["diskdefs"] = ReadDiskDefsValue.Text, ["expert"] = ReadExpertArguments.Text };
+        var enabled = _viewModel.Read.CaptureEnabledOptions();
+        var values = _viewModel.Read.CaptureValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); }
         catch (InvalidOperationException)
@@ -644,43 +623,30 @@ public partial class MainWindow : Window
 
     private GwCommand BuildReadCommand(string target)
     {
-        var options = new List<EnabledOption>();
-        if (ReadRevsEnabled?.IsChecked == true) options.Add(new("--revs", ReadRevsValue.Text.Trim()));
-        if (ReadRetriesEnabled?.IsChecked == true) options.Add(new("--retries", ReadRetriesValue.Text.Trim()));
-        if (ReadTracksEnabled?.IsChecked == true) options.Add(new("--tracks", ReadTracksValue.Text.Trim()));
-        if (ReadSeekRetriesEnabled?.IsChecked == true) options.Add(new("--seek-retries", ReadSeekRetriesValue.Text.Trim()));
-        if (ReadFakeIndexEnabled?.IsChecked == true) options.Add(new("--fake-index", ReadFakeIndexValue.Text.Trim()));
-        if (ReadHardSectors?.IsChecked == true) options.Add(new("--hard-sectors"));
-        if (ReadAdjustSpeedEnabled?.IsChecked == true) options.Add(new("--adjust-speed", ReadAdjustSpeedValue.Text.Trim()));
-        if (ReadPllEnabled?.IsChecked == true) options.Add(new("--pll", ReadPllValue.Text.Trim()));
-        if (ReadReverse?.IsChecked == true) options.Add(new("--reverse"));
-        if (ReadDenselEnabled?.IsChecked == true) options.Add(new("--densel", SelectedText(ReadDenselValue)));
-        if (ReadTg43?.IsChecked == true) options.Add(new("--gen-tg43"));
-        if (ReadDiskDefsEnabled?.IsChecked == true) options.Add(new("--diskdefs", ReadDiskDefsValue.Text.Trim()));
         return ReadCommandBuilder.Build(new ReadRequest(
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
-            (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, options,
-            SelectedHardware()?.Port, SelectedDriveArgument(), ReadExpertArguments?.Text));
+            (ReadFormatCombo?.SelectedItem as DiskFormat)?.Id, _viewModel.Read.BuildOptions(),
+            SelectedHardware()?.Port, SelectedDriveArgument(), _viewModel.Read.ExpertArguments));
     }
 
     private static string SelectedText(ComboBox combo) => (combo.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
 
-    private void ReadFakeIndex_Checked(object sender, RoutedEventArgs e) { if (ReadHardSectors is not null) ReadHardSectors.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void ReadFakeIndex_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableFakeIndex(); ReadInput_Changed(sender, e); }
     private void ReadSequenceKind_Changed(object sender, SelectionChangedEventArgs e)
     {
         if (ReadSequenceValue is null) return;
         var targetKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
         var sourceKind = targetKind == SequenceKind.Alphabetic ? SequenceKind.Numeric : SequenceKind.Alphabetic;
         if (SequenceFormatter.TryParse(ReadSequenceValue.Text, sourceKind, out var value))
-            ReadSequenceValue.Text = targetKind == SequenceKind.Numeric
+            _viewModel.Read.SequenceValue = targetKind == SequenceKind.Numeric
                 ? (value + 1).ToString()
                 : SequenceFormatter.Format(Math.Max(0, value - 1), targetKind, 1);
         UpdateReadCommand();
     }
-    private void ReadHardSectors_Checked(object sender, RoutedEventArgs e) { if (ReadFakeIndexEnabled is not null) ReadFakeIndexEnabled.IsChecked = false; ReadInput_Changed(sender, e); }
-    private void ReadDensel_Checked(object sender, RoutedEventArgs e) { if (ReadTg43 is not null) ReadTg43.IsChecked = false; ReadInput_Changed(sender, e); }
-    private void ReadTg43_Checked(object sender, RoutedEventArgs e) { if (ReadDenselEnabled is not null) ReadDenselEnabled.IsChecked = false; ReadInput_Changed(sender, e); }
+    private void ReadHardSectors_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableHardSectors(); ReadInput_Changed(sender, e); }
+    private void ReadDensel_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableDensel(); ReadInput_Changed(sender, e); }
+    private void ReadTg43_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableTg43(); ReadInput_Changed(sender, e); }
     private void WriteFakeIndex_Checked(object sender, RoutedEventArgs e) { if (WriteHardSectors is not null) WriteHardSectors.IsChecked = false; WriteInput_Changed(sender, e); }
     private void WriteHardSectors_Checked(object sender, RoutedEventArgs e) { if (WriteFakeIndexEnabled is not null) WriteFakeIndexEnabled.IsChecked = false; WriteInput_Changed(sender, e); }
     private void WriteDensel_Checked(object sender, RoutedEventArgs e) { if (WriteTg43 is not null) WriteTg43.IsChecked = false; WriteInput_Changed(sender, e); }
@@ -700,7 +666,8 @@ public partial class MainWindow : Window
             ShowAdvancedValidation(exception, LocExtension.Get("Advanced.DiskDefs"));
             return;
         }
-        target.Text = dialog.FileName; enabled.IsChecked = true;
+        if (ReferenceEquals(target, ReadDiskDefsValue)) { _viewModel.Read.DiskDefs.Value = dialog.FileName; _viewModel.Read.DiskDefs.Enabled = true; }
+        else { target.Text = dialog.FileName; enabled.IsChecked = true; }
         RefreshFormatSelectors();
         refresh();
     }
@@ -778,7 +745,7 @@ public partial class MainWindow : Window
     private void BrowseReadFolder_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFolderDialog { InitialDirectory = ReadFolder.Text, Title = LocExtension.Get("Read.DestinationFolder") };
-        if (dialog.ShowDialog(this) == true) { ReadFolder.Text = dialog.FolderName; UpdateReadCommand(); }
+        if (dialog.ShowDialog(this) == true) { _viewModel.Read.Folder = dialog.FolderName; UpdateReadCommand(); }
     }
 
     private async void ExecuteRead_Click(object sender, RoutedEventArgs e)
@@ -810,7 +777,7 @@ public partial class MainWindow : Window
                 if (!SequenceFormatter.TryParse(ReadSequenceValue.Text, kind, out var next)) next = kind == SequenceKind.Alphabetic ? 0 : 1;
                 var available = OutputConflictResolver.FindNextAvailableWithValue(ReadFolder.Text, ReadFileName.Text.Trim(), extension, kind, ReadSequenceWidth.SelectedIndex + 1, next);
                 target = available.Path;
-                ReadSequenceValue.Text = kind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, kind, 1);
+                _viewModel.Read.SequenceValue = kind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, kind, 1);
             }
         }
         GwCommand command;
@@ -838,46 +805,23 @@ public partial class MainWindow : Window
     {
         KnownFormatRadio.IsChecked = _settings.Read.UseKnownFormat;
         RawScpRadio.IsChecked = !_settings.Read.UseKnownFormat;
-        ReadAutoNumber.IsChecked = _settings.Read.AutoNumber;
-        ReadSequenceKind.SelectedIndex = _settings.Read.SequenceKind == "Alphabetic" ? 1 : 0;
-        ReadSequenceWidth.SelectedIndex = Math.Clamp(_settings.Read.SequenceWidth - 1, 0, 2);
-        ReadSequenceValue.Text = _settings.Read.SequenceKind == "Alphabetic" ? SequenceFormatter.Format(_settings.Read.NextSequence, SequenceKind.Alphabetic, 1) : _settings.Read.NextSequence.ToString();
-        ReadRevsEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("revs");
-        ReadRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("retries");
-        ReadTracksEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("tracks");
-        ReadSeekRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("seek-retries"); ReadFakeIndexEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("fake-index"); ReadHardSectors.IsChecked = _settings.Read.EnabledOptions.Contains("hard-sectors");
-        ReadAdjustSpeedEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = _settings.Read.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = _settings.Read.EnabledOptions.Contains("gen-tg43"); ReadDiskDefsEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("diskdefs");
-        if (_settings.Read.OptionValues.TryGetValue("revs", out var revs)) ReadRevsValue.Text = revs;
-        if (_settings.Read.OptionValues.TryGetValue("retries", out var retries)) ReadRetriesValue.Text = retries;
-        if (_settings.Read.OptionValues.TryGetValue("tracks", out var tracks)) ReadTracksValue.Text = tracks;
-        if (_settings.Read.OptionValues.TryGetValue("seek-retries", out var seekRetries)) ReadSeekRetriesValue.Text = seekRetries;
-        if (_settings.Read.OptionValues.TryGetValue("fake-index", out var fakeIndex)) ReadFakeIndexValue.Text = fakeIndex;
-        if (_settings.Read.OptionValues.TryGetValue("adjust-speed", out var speed)) ReadAdjustSpeedValue.Text = speed;
-        if (_settings.Read.OptionValues.TryGetValue("pll", out var pll)) ReadPllValue.Text = pll;
-        if (_settings.Read.OptionValues.TryGetValue("densel", out var densel)) ReadDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
-        if (_settings.Read.OptionValues.TryGetValue("diskdefs", out var diskdefs)) ReadDiskDefsValue.Text = diskdefs;
-        ReadExpertArguments.Text = _settings.Read.OptionValues.GetValueOrDefault("expert", "");
+        _viewModel.Read.AutoNumber = _settings.Read.AutoNumber;
+        _viewModel.Read.SequenceKindIndex = _settings.Read.SequenceKind == "Alphabetic" ? 1 : 0;
+        _viewModel.Read.SequenceWidthIndex = Math.Clamp(_settings.Read.SequenceWidth - 1, 0, 2);
+        _viewModel.Read.SequenceValue = _settings.Read.SequenceKind == "Alphabetic" ? SequenceFormatter.Format(_settings.Read.NextSequence, SequenceKind.Alphabetic, 1) : _settings.Read.NextSequence.ToString();
+        _viewModel.Read.ApplyOptions(_settings.Read.EnabledOptions, _settings.Read.OptionValues);
     }
 
     private void CaptureReadSettings()
     {
         _settings.Read.UseKnownFormat = KnownFormatRadio.IsChecked == true;
         _settings.Read.FormatId = (ReadFormatCombo.SelectedItem as DiskFormat)?.Id;
-        _settings.Read.AutoNumber = ReadAutoNumber.IsChecked == true;
-        _settings.Read.SequenceKind = ReadSequenceKind.SelectedIndex == 1 ? "Alphabetic" : "Numeric";
-        _settings.Read.SequenceWidth = ReadSequenceWidth.SelectedIndex + 1;
-        var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
-        if (SequenceFormatter.TryParse(ReadSequenceValue.Text, sequenceKind, out var sequence)) _settings.Read.NextSequence = sequence;
-        _settings.Read.EnabledOptions = [];
-        if (ReadRevsEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("revs");
-        if (ReadRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("retries");
-        if (ReadTracksEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("tracks");
-        if (ReadSeekRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("seek-retries"); if (ReadFakeIndexEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("fake-index"); if (ReadHardSectors.IsChecked == true) _settings.Read.EnabledOptions.Add("hard-sectors");
-        if (ReadAdjustSpeedEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("pll"); if (ReadReverse.IsChecked == true) _settings.Read.EnabledOptions.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("densel"); if (ReadTg43.IsChecked == true) _settings.Read.EnabledOptions.Add("gen-tg43"); if (ReadDiskDefsEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("diskdefs");
-        _settings.Read.OptionValues["revs"] = ReadRevsValue.Text;
-        _settings.Read.OptionValues["retries"] = ReadRetriesValue.Text;
-        _settings.Read.OptionValues["tracks"] = ReadTracksValue.Text;
-        _settings.Read.OptionValues["seek-retries"] = ReadSeekRetriesValue.Text; _settings.Read.OptionValues["fake-index"] = ReadFakeIndexValue.Text; _settings.Read.OptionValues["adjust-speed"] = ReadAdjustSpeedValue.Text; _settings.Read.OptionValues["pll"] = ReadPllValue.Text; _settings.Read.OptionValues["densel"] = SelectedText(ReadDenselValue); _settings.Read.OptionValues["diskdefs"] = ReadDiskDefsValue.Text; _settings.Read.OptionValues["expert"] = ReadExpertArguments.Text;
+        _settings.Read.AutoNumber = _viewModel.Read.AutoNumber;
+        _settings.Read.SequenceKind = _viewModel.Read.SequenceKind == SequenceKind.Alphabetic ? "Alphabetic" : "Numeric";
+        _settings.Read.SequenceWidth = _viewModel.Read.SequenceWidthIndex + 1;
+        if (SequenceFormatter.TryParse(_viewModel.Read.SequenceValue, _viewModel.Read.SequenceKind, out var sequence)) _settings.Read.NextSequence = sequence;
+        _settings.Read.EnabledOptions = _viewModel.Read.CaptureEnabledOptions();
+        _settings.Read.OptionValues = _viewModel.Read.CaptureValues();
     }
 
     private void RestoreWriteSettings()
@@ -904,7 +848,7 @@ public partial class MainWindow : Window
         {
             _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
             RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
-            ReadFolder.Text = _settings.DefaultImagesFolder;
+            _viewModel.Read.Folder = _settings.DefaultImagesFolder;
             RefreshHardwareSelector();
             ((App)Application.Current).SetTheme(_settings.Theme);
             await _settingsStore.SaveAsync(_settings);

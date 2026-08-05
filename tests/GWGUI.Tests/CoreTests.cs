@@ -62,9 +62,11 @@ public sealed class CoreTests
                 var hardwareText = Assert.IsType<System.Windows.Controls.TextBlock>(window.FindName("HardwareStatusText"));
                 var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
                 var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));
+                var readRevs = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ReadRevsEnabled"));
                 Assert.NotNull(BindingOperations.GetBindingExpression(hardwareText, System.Windows.Controls.TextBlock.TextProperty));
                 Assert.NotNull(BindingOperations.GetBindingExpression(progress, System.Windows.Controls.Primitives.RangeBase.ValueProperty));
                 Assert.Equal("Read.FileName", BindingOperations.GetBindingExpression(readFileName, System.Windows.Controls.TextBox.TextProperty)?.ParentBinding.Path.Path);
+                Assert.Equal("Read.Revs.Enabled", BindingOperations.GetBindingExpression(readRevs, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -998,6 +1000,41 @@ public sealed class CoreTests
         Assert.Equal(Path.Combine("images", "Exemple.scp"), model.BuildTarget(".scp", "Exemple"));
         Assert.False(model.TryAdvanceSequence());
         Assert.Equal("   ", model.FileName);
+    }
+
+    [Fact]
+    public void ReadViewModelDefaultProfileRemovesEveryOptionalGwArgument()
+    {
+        var model = new ReadOperationViewModel();
+        model.ApplyOptions(new HashSet<string> { "revs", "tracks", "reverse", "diskdefs" }, new Dictionary<string, string>
+        {
+            ["revs"] = "3", ["tracks"] = "c=0-39:h=0", ["diskdefs"] = "custom.cfg", ["expert"] = "--raw"
+        });
+        Assert.Equal(4, model.BuildOptions().Count);
+
+        model.ApplyOptions(new HashSet<string>(), new Dictionary<string, string>());
+
+        Assert.Empty(model.BuildOptions());
+        Assert.Empty(model.CaptureEnabledOptions());
+        Assert.Equal("", model.ExpertArguments);
+    }
+
+    [Fact]
+    public void ReadViewModelMapsProfileValuesAndEnforcesExclusiveOptions()
+    {
+        var model = new ReadOperationViewModel();
+        model.ApplyOptions(new HashSet<string> { "retries", "densel" }, new Dictionary<string, string> { ["retries"] = "7", ["densel"] = "L" });
+        Assert.Equal([new EnabledOption("--retries", "7"), new EnabledOption("--densel", "L")], model.BuildOptions());
+
+        model.EnableTg43();
+        model.EnableHardSectors();
+        model.EnableFakeIndex();
+
+        Assert.False(model.Densel.Enabled);
+        Assert.True(model.Tg43.Enabled);
+        Assert.False(model.HardSectors.Enabled);
+        Assert.True(model.FakeIndex.Enabled);
+        Assert.Contains("gen-tg43", model.CaptureEnabledOptions());
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
