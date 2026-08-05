@@ -18,6 +18,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Les guides FR/EN contiennent chacun une capture recadrée de la distribution portable correspondante à 150 % de DPI; les deux images sont incluses dans la publication et l’installateur.
 - ZIP portable, installateur Inno Setup et SHA-256 sont produits par `scripts/package.ps1`.
 - Sur Windows 10 22H2 (build 19045), `scripts/test-installer.ps1` a installé silencieusement la version 0.1.0 dans un dossier isolé, contrôlé l’exécutable, les guides et captures FR/EN, l’absence de PDB, puis vérifié une désinstallation sans résidu. Le même contrôle est exécuté par le workflow de publication.
+- Sur le même système, `scripts/test-installer-upgrade.ps1` a installé un fixture 0.0.0 puis le paquet 0.1.0 au même emplacement : l’unique inscription de désinstallation et l’exécutable ont pris la nouvelle version, avant une suppression sans résidu. Le script refuse d’écraser une installation utilisateur préexistante et fait aussi partie du workflow.
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.
 - Les réglages avancés de Lecture, Écriture et Conversion possèdent des infobulles FR/EN indiquant l’argument `gw`, son rôle, les incompatibilités utiles et un exemple lorsqu’une valeur est attendue.
@@ -33,7 +34,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 - Contrôleurs et lecteurs Greaseweazle physiques multiples, déconnexion/reconnexion et changement de port COM.
 - Exécution réelle de toutes les commandes avec Host Tools courant et précédent.
-- Windows 11, parcours interactif de l’installateur, mise à niveau d’une version existante et comportement SmartScreen. L’installation/désinstallation silencieuse isolée est prouvée sous Windows 10 22H2.
+- Windows 11, parcours interactif de l’installateur et comportement SmartScreen. L’installation, la mise à niveau et la désinstallation silencieuses isolées sont prouvées sous Windows 10 22H2.
 - Décodage des formats rares sur un corpus de captures physiques libres et représentatives.
 
 ## État architectural

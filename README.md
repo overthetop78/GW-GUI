@@ -35,4 +35,10 @@ Après la création des paquets, le test suivant installe silencieusement l’ap
 powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1
 ```
 
+Un second test fabrique un ancien installateur de contrôle, effectue une mise à niveau vers le paquet courant, vérifie la version inscrite et celle de l’exécutable, puis désinstalle et nettoie tout l’état isolé. Il refuse de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-installer-upgrade.ps1 -CurrentVersion 0.1.0
+```
+
 Les tags Git `v*` déclenchent le même processus dans GitHub Actions et publient les trois fichiers de distribution dans une release GitHub.
