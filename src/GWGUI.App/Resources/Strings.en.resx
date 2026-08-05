@@ -93,4 +93,9 @@
   <data name="Visual.StructureKind.TimingAnomaly"><value>Timing anomaly</value></data>
   <data name="Tool.InvalidParameters"><value>Invalid parameters</value></data>
   <data name="Tool.InvalidParametersHelp"><value>Check the highlighted command parameters before executing.</value></data>
+  <data name="Advanced.Invalid"><value>An advanced setting is invalid: {0}</value></data>
+  <data name="Operation.Error"><value>Error: {0}</value></data>
+  <data name="Read.DestinationFolder"><value>Destination folder</value></data>
+  <data name="Status.ReadyShort"><value>Ready</value></data><data name="Status.Running"><value>Running</value></data><data name="Status.Success"><value>Success</value></data><data name="Status.Error"><value>Error</value></data><data name="Status.Cancelled"><value>Cancelled</value></data>
+  <data name="Tool.BootloaderTitle"><value>Bootloader mode</value></data>
 </root>

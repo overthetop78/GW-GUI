@@ -44,7 +44,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Encore à réaliser avant achèvement
 
 - Valider le scan et le routage des commandes sur plusieurs contrôleurs physiques.
-- Enrichir les infobulles avancées avec exemples détaillés et ajouter une validation syntaxique plus profonde de TSPEC, PLL et précompensation.
+- Enrichir encore les infobulles avancées avec des exemples détaillés. La validation syntaxique de TSPEC, PLL, précompensation, faux index et ajustement de vitesse est désormais appliquée avant l'exécution.
 - Vérifier visuellement les deux langues sur l’application publiée.
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
@@ -56,7 +56,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 92 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 101 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, grammaire des options avancées (TSPEC, PLL, précompensation et vitesse), détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.

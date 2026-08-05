@@ -354,8 +354,8 @@ public sealed class CoreTests
     public void OnlyEnabledReadOptionsAreEmitted()
     {
         var command = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null,
-            [new EnabledOption("--revs", "5"), new EnabledOption("--tracks", "0-79:c=0-79:h=0-1")], "COM3", null));
-        Assert.Equal(["--device", "COM3", "--revs", "5", "--tracks", "0-79:c=0-79:h=0-1", "disk.scp"], command.Arguments);
+            [new EnabledOption("--revs", "5"), new EnabledOption("--tracks", "c=0-79:h=0-1")], "COM3", null));
+        Assert.Equal(["--device", "COM3", "--revs", "5", "--tracks", "c=0-79:h=0-1", "disk.scp"], command.Arguments);
     }
 
     [Fact]
@@ -505,6 +505,33 @@ public sealed class CoreTests
         var command = ToolCommandBuilder.Build(new("gw.exe", "delays", values, new HashSet<string> { "step" }));
         Assert.Equal(["--step", "3000"], command.Arguments);
         Assert.Throws<ArgumentOutOfRangeException>(() => ToolCommandBuilder.Build(new("gw.exe", "delays", new Dictionary<string, string> { ["step"] = "-1" }, new HashSet<string> { "step" })));
+    }
+
+    [Theory]
+    [InlineData("c=0-79:h=0-1")]
+    [InlineData("c=0-39/2,41:h=0:step=2:hswap:h0.off=+1")]
+    [InlineData("c=0-79:h=0-1:step=1/2:h1.off=-2")]
+    public void TrackSpecificationsFollowGreaseweazleGrammar(string value) => GwOptionValidator.ValidateTrackSpec(value);
+
+    [Theory]
+    [InlineData("c=79-0:h=0-1")]
+    [InlineData("c=0-79:h=2")]
+    [InlineData("c=0-79:h=0-1:step=0")]
+    [InlineData("c=0-79")]
+    [InlineData("c=0-79:h=0-1:unknown=1")]
+    public void InvalidTrackSpecificationsAreRejected(string value) => Assert.Throws<ArgumentException>(() => GwOptionValidator.ValidateTrackSpec(value));
+
+    [Fact]
+    public void PllPrecompensationAndSpeedSpecificationsAreValidated()
+    {
+        GwOptionValidator.ValidatePllSpec("period=5:phase=60:lowpass=1.5");
+        GwOptionValidator.ValidatePrecompSpec("type=mfm:40=125:60=150");
+        foreach (var speed in new[] { "300rpm", "200ms", "40000000scp", ".5ms", "300" }) GwOptionValidator.ValidateSpeed(speed);
+        Assert.Throws<ArgumentException>(() => GwOptionValidator.ValidatePllSpec("period=five:phase=60"));
+        Assert.Throws<ArgumentException>(() => GwOptionValidator.ValidatePllSpec("period=5:jitter=2"));
+        Assert.Throws<ArgumentException>(() => GwOptionValidator.ValidatePrecompSpec("type=wrong:40=125"));
+        Assert.Throws<ArgumentException>(() => GwOptionValidator.ValidatePrecompSpec("type=mfm"));
+        Assert.Throws<ArgumentException>(() => GwOptionValidator.ValidateSpeed("300xyz"));
     }
 
     [Fact]

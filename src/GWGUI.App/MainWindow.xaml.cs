@@ -233,14 +233,16 @@ public partial class MainWindow : Window
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
         { MessageBox.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
+        GwCommand command;
+        try { command = BuildWriteCommand(); }
+        catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Write.Title")); return; }
         var warning = LocExtension.Get(WriteNoVerify.IsChecked == true ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (MessageBox.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
-        var command = BuildWriteCommand();
         _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
-        try { var result = await _runner.RunAsync(command, output, _cancellation.Token); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
-        catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
+        try { var result = await _runner.RunAsync(command, output, _cancellation.Token); SetOperationResult(result); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
+        catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
@@ -399,7 +401,7 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
-        try { outputs = PlanConversions(); } catch (Exception exception) { MessageBox.Show(exception.Message, LocExtension.Get("Conversion.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
+        try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception exception) { ShowAdvancedValidation(exception, LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { MessageBox.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
         if (existing.Length > 0)
@@ -425,8 +427,10 @@ public partial class MainWindow : Window
                 var result = await _runner.RunAsync(ConversionCommandBuilder.Build(_settings.GwExecutablePath, ConvertSourceText.Text, planned, GetConvertOptions(), ConvertExpertArguments.Text), progress, _cancellation.Token);
                 if (!result.IsSuccess) failures.Add(Path.GetFileName(planned.OutputPath));
             }
+            if (_cancellation.IsCancellationRequested) SetOperationCancelled(); else if (failures.Count == 0) SetOperationSuccess(); else SetOperationError();
             LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Conversion.Summary", outputs.Count - failures.Count, failures.Count) + (failures.Count > 0 ? LocExtension.Get("Conversion.Failures", string.Join(", ", failures)) : ""));
         }
+        catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); ConvertExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
@@ -690,6 +694,9 @@ public partial class MainWindow : Window
         return false;
     }
 
+    private void ShowAdvancedValidation(Exception exception, string title) =>
+        MessageBox.Show(LocExtension.Get("Advanced.Invalid", exception.Message), title, MessageBoxButton.OK, MessageBoxImage.Warning);
+
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
     {
         if (!string.IsNullOrEmpty(ReadFileName.Text)) Clipboard.SetText(ReadFileName.Text);
@@ -697,7 +704,7 @@ public partial class MainWindow : Window
 
     private void BrowseReadFolder_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFolderDialog { InitialDirectory = ReadFolder.Text, Title = "Dossier de destination" };
+        var dialog = new OpenFolderDialog { InitialDirectory = ReadFolder.Text, Title = LocExtension.Get("Read.DestinationFolder") };
         if (dialog.ShowDialog(this) == true) { ReadFolder.Text = dialog.FolderName; UpdateReadCommand(); }
     }
 
@@ -733,7 +740,9 @@ public partial class MainWindow : Window
                 ReadSequenceValue.Text = available.Value.ToString();
             }
         }
-        var command = BuildReadCommand(target);
+        GwCommand command;
+        try { command = BuildReadCommand(target); }
+        catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Read.Title")); return; }
         _cancellation = new CancellationTokenSource();
         ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
         LogOutput.Clear();
@@ -742,11 +751,12 @@ public partial class MainWindow : Window
         try
         {
             var result = await _runner.RunAsync(command, output, _cancellation.Token);
+            SetOperationResult(result);
             LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g")));
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
             if (result.IsSuccess && ReadAutoNumber.IsChecked == true && long.TryParse(ReadSequenceValue.Text, out var value)) ReadSequenceValue.Text = (value + 1).ToString();
         }
-        catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
+        catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); ReadExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
@@ -918,8 +928,8 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         _cancellation = new CancellationTokenSource(); button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
-        try { var result = await _runner.RunAsync(command, progress, _cancellation.Token); LogOutput.AppendText($"{Environment.NewLine}Fin : code {result.ExitCode}."); }
-        catch (Exception exception) { LogOutput.AppendText($"Erreur : {exception.Message}"); }
+        try { var result = await _runner.RunAsync(command, progress, _cancellation.Token); SetOperationResult(result); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
+        catch (Exception exception) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", exception.Message)); }
         finally { EndProgress(); button.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 
@@ -932,6 +942,7 @@ public partial class MainWindow : Window
     private void BeginProgress()
     {
         _progressTracker.Reset();
+        SetOperationState("Status.Running", Color.FromRgb(45, 125, 210));
         ProgressStatusItem.Visibility = Visibility.Visible;
         OperationProgress.IsIndeterminate = true;
         OperationProgress.Value = 0;
@@ -958,6 +969,22 @@ public partial class MainWindow : Window
         OperationProgress.IsIndeterminate = false;
         OperationProgress.Value = 100;
         ProgressStatusItem.Visibility = Visibility.Collapsed;
+    }
+
+    private void SetOperationResult(GwExecutionResult result)
+    {
+        if (result.WasCancelled) SetOperationCancelled();
+        else if (result.IsSuccess) SetOperationSuccess();
+        else SetOperationError();
+    }
+
+    private void SetOperationSuccess() => SetOperationState("Status.Success", Color.FromRgb(63, 171, 91));
+    private void SetOperationError() => SetOperationState("Status.Error", Color.FromRgb(210, 66, 66));
+    private void SetOperationCancelled() => SetOperationState("Status.Cancelled", Color.FromRgb(220, 148, 45));
+    private void SetOperationState(string resourceKey, Color color)
+    {
+        OperationStatusText.Text = LocExtension.Get(resourceKey);
+        OperationStatusLight.Fill = new SolidColorBrush(color);
     }
 
     private void UpdateProfileStatus()
