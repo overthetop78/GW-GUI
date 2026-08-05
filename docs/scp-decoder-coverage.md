@@ -4,8 +4,8 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 
 | Décodeur | Marques/structures | Identité de secteur | Intégrité actuellement contrôlée |
 |---|---:|---:|---:|
-| ISO MFM — Atari ST / IBM PC | Oui | C/H/R/N et taille | CRC16 d’en-tête |
-| ISO FM | Oui | C/H/R/N et taille | CRC16 d’en-tête |
+| ISO MFM — Atari ST / IBM PC | Marques FE/FB/F8, C/H/R/N, taille et données | CRC16-CCITT des en-têtes et des données, avec préfixe A1×3 ; état valide, incorrect ou indisponible | Oui, y compris les données supprimées F8 |
+| ISO FM | Marques FE/FB/F8, C/H/R/N, taille et données | CRC16-CCITT des en-têtes et des données ; état valide, incorrect ou indisponible | Oui, y compris les données supprimées F8 |
 | NorthStar MFM à secteurs matériels | Oui | Piste, secteur, 512 octets | Checksum rotatif du bloc |
 | Heathkit FM à secteurs matériels | Oui | Volume, cylindre, secteur, 256 octets | Checksum rotatif d’en-tête |
 | Membrain MFM | Marques en-tête/données | Cylindre, face, secteur, 512 octets | CRC16 `0x8005` d’en-tête |

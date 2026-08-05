@@ -26,5 +26,6 @@ Les décodeurs rares sont implémentés à partir des caractéristiques de leur 
 | Apple II GCR | `apple2_gcr_track.c` | Prologues `D5 AA 96` / `D5 AA AD`, adresse 4-and-4, table 6-and-2, reconstruction de 256 octets et chaîne XOR |
 | Commodore GCR | `c64_gcr_track.c` | Synchronisations, table GCR 4/5, blocs `0x08`/`0x07`, en-tête de 6 octets, données de 256 octets et checksums XOR |
 | Amiga MFM | `amiga_mfm_track.c` | Double sync `4489 4489`, identité et données odd/even, bloc de 512 octets et parités XOR séparées |
+| ISO MFM/FM | Greaseweazle `codec/ibm` et conventions WD/IBM | Marques FE/FB/F8, géométrie CHRN, CRC-CCITT avec préfixe A1×3 en MFM et sans préfixe en FM |
 
 Les prochaines familles doivent suivre la même règle : signature justifiée par une référence primaire, corpus synthétique ciblé et résultat visuel réellement exploitable.
