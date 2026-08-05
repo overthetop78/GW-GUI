@@ -2,6 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Hardware;
+using GWGUI.Domain.Maintenance;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.App.Localization;
 
@@ -13,18 +14,19 @@ public partial class GwToolWindow : Window
     private readonly string _verb;
     private readonly string? _device;
     private readonly string? _drive;
-    private readonly IGreaseweazleRunner _runner = new GreaseweazleRunner();
+    private readonly IGreaseweazleRunner _runner;
     private CancellationTokenSource? _cancellation;
     private readonly Dictionary<string, TextBox> _fields = [];
     private readonly Dictionary<string, CheckBox> _checks = [];
 
-    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null)
+    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null)
     {
         InitializeComponent();
         _executable = executable;
         _verb = verb;
         _device = device;
         _drive = drive;
+        _runner = runner ?? new GreaseweazleRunner();
         Heading.Text = Title = TitleFor(verb);
         CreateParameters(); UpdateCommand();
     }
@@ -61,22 +63,16 @@ public partial class GwToolWindow : Window
 
     private GwCommand BuildCommand()
     {
-        var args = new List<string>();
-        switch (_verb)
-        {
-            case "rpm": args.AddRange(["--nr", _fields["nr"].Text]); break;
-            case "seek": args.Add(_fields["cylinder"].Text); if (Checked("force")) args.Add("--force"); if (Checked("motor-on")) args.Add("--motor-on"); break;
-            case "pin": args.Add(Checked("set") ? "set" : "get"); args.Add(_fields["pin"].Text); if (Checked("set")) args.Add(Checked("high") ? "H" : "L"); break;
-            case "delays": foreach (var key in _fields.Keys) if (Checked(key)) args.AddRange(["--" + key, _fields[key].Text]); break;
-            case "update": if (Checked("bootloader")) args.Add("--bootloader"); break;
-        }
-        if (!string.IsNullOrWhiteSpace(_device)) args.AddRange(["--device", _device]);
-        if (!string.IsNullOrWhiteSpace(_drive) && _verb is "rpm" or "seek") args.AddRange(["--drive", _drive]);
-        return new GwCommand(_executable, _verb, args);
+        return ToolCommandBuilder.Build(new(_executable, _verb, _fields.ToDictionary(x => x.Key, x => x.Value.Text), _checks.Where(x => x.Value.IsChecked == true).Select(x => x.Key).ToHashSet(), _device, _drive));
     }
 
     private bool Checked(string key) => _checks.GetValueOrDefault(key)?.IsChecked == true;
-    private void UpdateCommand() { if (CommandText is not null) CommandText.Text = BuildCommand().ToDisplayString(); }
+    private void UpdateCommand()
+    {
+        if (CommandText is null) return;
+        try { CommandText.Text = BuildCommand().ToDisplayString(); ExecuteButton.IsEnabled = true; Summary.Text = L("Tool.Ready"); }
+        catch (ArgumentException) { CommandText.Text = L("Tool.InvalidParameters"); ExecuteButton.IsEnabled = false; Summary.Text = L("Tool.InvalidParametersHelp"); }
+    }
 
     private async void Execute_Click(object sender, RoutedEventArgs e)
     {

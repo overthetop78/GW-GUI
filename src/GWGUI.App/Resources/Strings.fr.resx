@@ -91,4 +91,6 @@
   <data name="Visual.StructureKind.FormatHeader"><value>En-tête du format</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Données du format</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomalie temporelle</value></data>
+  <data name="Tool.InvalidParameters"><value>Paramètres invalides</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Vérifiez les paramètres de la commande avant de l’exécuter.</value></data>
 </root>

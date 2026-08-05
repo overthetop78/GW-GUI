@@ -1012,7 +1012,8 @@ public partial class MainWindow : Window
             return;
         }
         var hardware = SelectedHardware();
-        new GwToolWindow(_settings.GwExecutablePath, verb, hardware?.Port, hardware?.Drive.Selection) { Owner = this }.ShowDialog();
+        var toolRunner = new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
+        new GwToolWindow(_settings.GwExecutablePath, verb, hardware?.Port, hardware?.Drive.Selection, toolRunner) { Owner = this }.ShowDialog();
     }
 }
 

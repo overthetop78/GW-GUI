@@ -488,6 +488,26 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void DiagnosticToolCommandsAreValidatedAndRouted()
+    {
+        var rpm = ToolCommandBuilder.Build(new("gw.exe", "rpm", new Dictionary<string, string> { ["nr"] = "3" }, new HashSet<string>(), "COM7", "B"));
+        Assert.Equal(["--nr", "3", "--device", "COM7", "--drive", "B"], rpm.Arguments);
+        var pin = ToolCommandBuilder.Build(new("gw.exe", "pin", new Dictionary<string, string> { ["pin"] = "26" }, new HashSet<string> { "set", "high" }, "COM7"));
+        Assert.Equal(["set", "26", "H", "--device", "COM7"], pin.Arguments);
+        Assert.Throws<ArgumentOutOfRangeException>(() => ToolCommandBuilder.Build(new("gw.exe", "pin", new Dictionary<string, string> { ["pin"] = "12" }, new HashSet<string>())));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ToolCommandBuilder.Build(new("gw.exe", "rpm", new Dictionary<string, string> { ["nr"] = "0" }, new HashSet<string>())));
+    }
+
+    [Fact]
+    public void DelayToolCommandIncludesOnlyEnabledNonNegativeValues()
+    {
+        var values = new Dictionary<string, string> { ["select"] = "10", ["step"] = "3000" };
+        var command = ToolCommandBuilder.Build(new("gw.exe", "delays", values, new HashSet<string> { "step" }));
+        Assert.Equal(["--step", "3000"], command.Arguments);
+        Assert.Throws<ArgumentOutOfRangeException>(() => ToolCommandBuilder.Build(new("gw.exe", "delays", new Dictionary<string, string> { ["step"] = "-1" }, new HashSet<string> { "step" })));
+    }
+
+    [Fact]
     public void AmigaDecoderFindsTheDouble4489SyncWord()
     {
         var bits = Convert.ToString(0x4489, 2).PadLeft(16, '0') + Convert.ToString(0x4489, 2).PadLeft(16, '0');

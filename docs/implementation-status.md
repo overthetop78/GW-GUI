@@ -12,6 +12,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Écriture avec détection/modification du format, vérification par défaut et confirmation obligatoire.
 - Multiconversion séquentielle, sorties compatibles, extensions implicites/explicites, tags, conflits et bilan.
 - Effacement, nettoyage, diagnostics et commandes matérielles intégrés.
+- Les commandes Diagnostics/Matériel utilisent un constructeur central validé : mesures RPM strictement positives, cylindres et délais non négatifs, broches limitées à 8/26/28 et routage `--device`/`--drive` contrôlé. Leur bouton d’exécution est désactivé tant que les champs sont invalides et leurs sorties alimentent le même journal rotatif que les opérations principales.
 - Profils propres à Lecture, Écriture et Conversion; profil système Par défaut permanent.
 - Renommage et suppression des profils utilisateur dans les Options.
 - Registre matériel persistant : scan des ports Windows, interrogation `gw info --device`, identification stable, disponibilité, ajout et suppression de lecteurs décrits par sélection, taille, densité et RPM.
@@ -55,7 +56,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 90 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 92 réussis, dont localisation, stabilité et modèle des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation des diagnostics et options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/M²FM/GCR, dérive de cadence, anomalies temporelles et sélection multi-révolution, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.
