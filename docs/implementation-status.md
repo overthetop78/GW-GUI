@@ -63,7 +63,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Valider le gestionnaire Host Tools avec une installation réelle et du matériel Greaseweazle.
 - Compléter l’extraction détaillée des secteurs pour les formats rares, renforcer la qualification des anomalies et valider les décodeurs sur un corpus de captures physiques libres.
 - Renforcer la couverture de tests d’intégration/UI/matériel.
-- Compléter l’aide avec des captures d’écran après la validation visuelle finale.
+- Captures finales française et anglaise intégrées aux guides depuis la distribution portable, contrôlées à 150 % de DPI et embarquées dans les paquets.
 
 ## Validation actuelle
 

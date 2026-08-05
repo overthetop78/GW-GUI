@@ -15,6 +15,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - Lecture et Conversion utilisent le même dossier de destination pendant la session; il est réinitialisé depuis les Options au démarrage suivant.
 - Les 14 actions officielles de `greaseweazle/cli.py` ont un parcours vérifié dans `gw-command-coverage.md`; les diagnostics, dont `align`, et le matériel utilisent des dialogues, tandis qu’Effacer et Nettoyer restent dans Outils.
 - Les ressources FR/EN ont une parité automatisée et les deux langues ont été ouvertes et contrôlées sur le paquet portable final.
+- Les guides FR/EN contiennent chacun une capture recadrée de la distribution portable correspondante à 150 % de DPI; les deux images sont incluses dans la publication et l’installateur.
 - ZIP portable, installateur Inno Setup et SHA-256 sont produits par `scripts/package.ps1`.
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.

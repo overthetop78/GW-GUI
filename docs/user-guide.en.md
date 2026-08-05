@@ -1,5 +1,7 @@
 # User guide — GW GUI
 
+![GW GUI main window — Read tab](images/main-read-en.png)
+
 ## First-time setup
 
 1. Open **Options → Preferences**.

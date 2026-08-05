@@ -1,5 +1,7 @@
 # Guide utilisateur — GW GUI
 
+![Fenêtre principale de GW GUI — onglet Lecture](images/main-read-fr.png)
+
 ## Première configuration
 
 1. Ouvrez **Options → Préférences**.
