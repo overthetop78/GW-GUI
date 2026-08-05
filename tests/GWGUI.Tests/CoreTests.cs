@@ -338,6 +338,23 @@ public sealed class CoreTests
         Assert.Equal(["--format", "ibm.720", "--tracks", "c=0-79:h=0-1", "--out-tracks", "c=0-39:h=0", "--adjust-speed", "300rpm", "--pll", "period=5:phase=60", "--reverse", "source.scp", "out/disk.ima"], command.Arguments);
     }
 
+    [Theory]
+    [InlineData("--revs", "0")]
+    [InlineData("--retries", "-1")]
+    [InlineData("--tracks", "")]
+    [InlineData("--densel", "X")]
+    public void InvalidStructuredOptionValuesAreRejected(string argument, string value)
+    {
+        Assert.Throws<ArgumentException>(() => ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null, [new EnabledOption(argument, value)])));
+    }
+
+    [Fact]
+    public void MutuallyExclusiveStructuredOptionsAreRejected()
+    {
+        Assert.Throws<ArgumentException>(() => ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.scp", ReadResultKind.RawScp, null, [new EnabledOption("--fake-index", "300rpm"), new EnabledOption("--hard-sectors")])));
+        Assert.Throws<ArgumentException>(() => WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.adf", null, [new EnabledOption("--densel", "H"), new EnabledOption("--gen-tg43")])));
+    }
+
     [Fact]
     public void ConversionCommandUsesSelectedFormatAndSeparatePaths()
     {

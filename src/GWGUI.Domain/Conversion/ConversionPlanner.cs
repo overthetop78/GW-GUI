@@ -9,6 +9,7 @@ public static class ConversionCommandBuilder
 {
     public static Commands.GwCommand Build(string executable, string source, ConversionOutput output, IReadOnlyList<Read.EnabledOption>? options = null, string? expertArguments = null)
     {
+        if (options is not null) Commands.GwOptionValidator.Validate(options);
         var arguments = new List<string> { "--format", output.FormatId };
         if (options is not null) foreach (var option in options) { arguments.Add(option.Argument); if (!string.IsNullOrWhiteSpace(option.Value)) arguments.Add(option.Value); }
         if (!string.IsNullOrWhiteSpace(expertArguments)) arguments.AddRange(Read.CommandLineTokenizer.Tokenize(expertArguments));

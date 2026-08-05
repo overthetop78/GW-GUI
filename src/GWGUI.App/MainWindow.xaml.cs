@@ -199,6 +199,7 @@ public partial class MainWindow : Window
         if (WriteReverse?.IsChecked == true) options.Add(new("--reverse"));
         if (WriteDenselEnabled?.IsChecked == true) options.Add(new("--densel", SelectedText(WriteDenselValue)));
         if (WriteTg43?.IsChecked == true) options.Add(new("--gen-tg43"));
+        if (WriteDiskDefsEnabled?.IsChecked == true) options.Add(new("--diskdefs", WriteDiskDefsValue.Text.Trim()));
         return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", WriteSourceText.Text,
             (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, options,
             WriteNoVerify?.IsChecked == true, SelectedHardware()?.Port, SelectedHardware()?.Drive.Selection, WriteExpertArguments?.Text));
@@ -214,6 +215,7 @@ public partial class MainWindow : Window
     private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!ValidateDiskDefs(WriteDiskDefsEnabled, WriteDiskDefsValue, LocExtension.Get("Write.Title"))) return;
         if (!File.Exists(WriteSourceText.Text)) { MessageBox.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), MessageBoxButton.OK, MessageBoxImage.Information); return; }
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
@@ -236,11 +238,13 @@ public partial class MainWindow : Window
         WriteNoVerify.IsChecked = profile.EnabledOptions.Contains("no-verify"); WriteEraseEmpty.IsChecked = profile.EnabledOptions.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("retries");
         WriteTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks"); WritePreErase.IsChecked = profile.EnabledOptions.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = profile.EnabledOptions.Contains("fake-index"); WriteHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors");
         WritePrecompEnabled.IsChecked = profile.EnabledOptions.Contains("precomp"); WriteReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); WriteDenselEnabled.IsChecked = profile.EnabledOptions.Contains("densel"); WriteTg43.IsChecked = profile.EnabledOptions.Contains("gen-tg43");
+        WriteDiskDefsEnabled.IsChecked = profile.EnabledOptions.Contains("diskdefs");
         if (profile.Values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries;
         if (profile.Values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks;
         if (profile.Values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex;
         if (profile.Values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp;
         if (profile.Values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
+        if (profile.Values.TryGetValue("diskdefs", out var diskdefs)) WriteDiskDefsValue.Text = diskdefs;
         WriteExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
         if (profile.IsSystem) WriteNoVerify.IsChecked = false;
         UpdateWriteCommand();
@@ -255,7 +259,8 @@ public partial class MainWindow : Window
         var enabled = new HashSet<string>(); if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries");
         if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors");
         if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43");
-        var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text, ["tracks"] = WriteTracksValue.Text, ["fake-index"] = WriteFakeIndexValue.Text, ["precomp"] = WritePrecompValue.Text, ["densel"] = SelectedText(WriteDenselValue), ["expert"] = WriteExpertArguments.Text };
+        if (WriteDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
+        var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text, ["tracks"] = WriteTracksValue.Text, ["fake-index"] = WriteFakeIndexValue.Text, ["precomp"] = WritePrecompValue.Text, ["densel"] = SelectedText(WriteDenselValue), ["diskdefs"] = WriteDiskDefsValue.Text, ["expert"] = WriteExpertArguments.Text };
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
@@ -289,10 +294,12 @@ public partial class MainWindow : Window
     {
         ConvertTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = profile.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = profile.EnabledOptions.Contains("adjust-speed");
         ConvertPllEnabled.IsChecked = profile.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); ConvertTags.IsChecked = profile.EnabledOptions.Contains("tags");
+        ConvertDiskDefsEnabled.IsChecked = profile.EnabledOptions.Contains("diskdefs");
         if (profile.Values.TryGetValue("tracks", out var tracks)) ConvertTracksValue.Text = tracks;
         if (profile.Values.TryGetValue("out-tracks", out var outTracks)) ConvertOutTracksValue.Text = outTracks;
         if (profile.Values.TryGetValue("adjust-speed", out var speed)) ConvertAdjustSpeedValue.Text = speed;
         if (profile.Values.TryGetValue("pll", out var pll)) ConvertPllValue.Text = pll;
+        if (profile.Values.TryGetValue("diskdefs", out var diskdefs)) ConvertDiskDefsValue.Text = diskdefs;
         ConvertExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
         foreach (var control in _conversionControls.ToArray())
         {
@@ -310,8 +317,9 @@ public partial class MainWindow : Window
         var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
         var enabled = new HashSet<string>();
         if (ConvertTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) enabled.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) enabled.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) enabled.Add("pll"); if (ConvertHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) enabled.Add("reverse"); if (ConvertTags.IsChecked == true) enabled.Add("tags");
+        if (ConvertDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
         foreach (var control in _conversionControls.Where(control => control.IsSelected)) enabled.Add("format:" + control.Format.Id);
-        var values = new Dictionary<string, string> { ["tracks"] = ConvertTracksValue.Text, ["out-tracks"] = ConvertOutTracksValue.Text, ["adjust-speed"] = ConvertAdjustSpeedValue.Text, ["pll"] = ConvertPllValue.Text, ["expert"] = ConvertExpertArguments.Text };
+        var values = new Dictionary<string, string> { ["tracks"] = ConvertTracksValue.Text, ["out-tracks"] = ConvertOutTracksValue.Text, ["adjust-speed"] = ConvertAdjustSpeedValue.Text, ["pll"] = ConvertPllValue.Text, ["diskdefs"] = ConvertDiskDefsValue.Text, ["expert"] = ConvertExpertArguments.Text };
         foreach (var control in _conversionControls.Where(control => control.ExplicitExtensions.Count > 0)) values["extensions:" + control.Format.Id] = string.Join(',', control.ExplicitExtensions);
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
@@ -354,6 +362,7 @@ public partial class MainWindow : Window
         if (ConvertPllEnabled.IsChecked == true) options.Add(new("--pll", ConvertPllValue.Text.Trim()));
         if (ConvertHardSectors.IsChecked == true) options.Add(new("--hard-sectors"));
         if (ConvertReverse.IsChecked == true) options.Add(new("--reverse"));
+        if (ConvertDiskDefsEnabled.IsChecked == true) options.Add(new("--diskdefs", ConvertDiskDefsValue.Text.Trim()));
         return options.ToArray();
     }
 
@@ -373,6 +382,7 @@ public partial class MainWindow : Window
     private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!ValidateDiskDefs(ConvertDiskDefsEnabled, ConvertDiskDefsValue, LocExtension.Get("Conversion.Title"))) return;
         if (!File.Exists(ConvertSourceText.Text)) { MessageBox.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { MessageBox.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { MessageBox.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
@@ -421,17 +431,18 @@ public partial class MainWindow : Window
         _settings.Conversion.SelectedFormats = _conversionControls.Where(x => x.IsSelected).Select(x => x.Format.Id).ToHashSet();
         _settings.Conversion.ExplicitExtensions = _conversionControls.Where(x => x.ExplicitExtensions.Count > 0).ToDictionary(x => x.Format.Id, x => x.ExplicitExtensions.ToHashSet());
         _settings.Conversion.EnabledOptions = [];
-        if (ConvertTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("pll"); if (ConvertHardSectors.IsChecked == true) _settings.Conversion.EnabledOptions.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) _settings.Conversion.EnabledOptions.Add("reverse");
-        _settings.Conversion.OptionValues["tracks"] = ConvertTracksValue.Text; _settings.Conversion.OptionValues["out-tracks"] = ConvertOutTracksValue.Text; _settings.Conversion.OptionValues["adjust-speed"] = ConvertAdjustSpeedValue.Text; _settings.Conversion.OptionValues["pll"] = ConvertPllValue.Text; _settings.Conversion.OptionValues["expert"] = ConvertExpertArguments.Text;
+        if (ConvertTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("tracks"); if (ConvertOutTracksEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("out-tracks"); if (ConvertAdjustSpeedEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("adjust-speed"); if (ConvertPllEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("pll"); if (ConvertHardSectors.IsChecked == true) _settings.Conversion.EnabledOptions.Add("hard-sectors"); if (ConvertReverse.IsChecked == true) _settings.Conversion.EnabledOptions.Add("reverse"); if (ConvertDiskDefsEnabled.IsChecked == true) _settings.Conversion.EnabledOptions.Add("diskdefs");
+        _settings.Conversion.OptionValues["tracks"] = ConvertTracksValue.Text; _settings.Conversion.OptionValues["out-tracks"] = ConvertOutTracksValue.Text; _settings.Conversion.OptionValues["adjust-speed"] = ConvertAdjustSpeedValue.Text; _settings.Conversion.OptionValues["pll"] = ConvertPllValue.Text; _settings.Conversion.OptionValues["diskdefs"] = ConvertDiskDefsValue.Text; _settings.Conversion.OptionValues["expert"] = ConvertExpertArguments.Text;
     }
 
     private void RestoreConversionSettings()
     {
-        ConvertTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("adjust-speed"); ConvertPllEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = _settings.Conversion.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = _settings.Conversion.EnabledOptions.Contains("reverse");
+        ConvertTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("tracks"); ConvertOutTracksEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("out-tracks"); ConvertAdjustSpeedEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("adjust-speed"); ConvertPllEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("pll"); ConvertHardSectors.IsChecked = _settings.Conversion.EnabledOptions.Contains("hard-sectors"); ConvertReverse.IsChecked = _settings.Conversion.EnabledOptions.Contains("reverse"); ConvertDiskDefsEnabled.IsChecked = _settings.Conversion.EnabledOptions.Contains("diskdefs");
         if (_settings.Conversion.OptionValues.TryGetValue("tracks", out var tracks)) ConvertTracksValue.Text = tracks;
         if (_settings.Conversion.OptionValues.TryGetValue("out-tracks", out var outTracks)) ConvertOutTracksValue.Text = outTracks;
         if (_settings.Conversion.OptionValues.TryGetValue("adjust-speed", out var speed)) ConvertAdjustSpeedValue.Text = speed;
         if (_settings.Conversion.OptionValues.TryGetValue("pll", out var pll)) ConvertPllValue.Text = pll;
+        if (_settings.Conversion.OptionValues.TryGetValue("diskdefs", out var diskdefs)) ConvertDiskDefsValue.Text = diskdefs;
         ConvertExpertArguments.Text = _settings.Conversion.OptionValues.GetValueOrDefault("expert", "");
     }
 
@@ -484,6 +495,7 @@ public partial class MainWindow : Window
         ReadTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks");
         ReadSeekRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("seek-retries"); ReadFakeIndexEnabled.IsChecked = profile.EnabledOptions.Contains("fake-index"); ReadHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors");
         ReadAdjustSpeedEnabled.IsChecked = profile.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = profile.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = profile.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = profile.EnabledOptions.Contains("gen-tg43");
+        ReadDiskDefsEnabled.IsChecked = profile.EnabledOptions.Contains("diskdefs");
         if (profile.Values.TryGetValue("revs", out var revs)) ReadRevsValue.Text = revs;
         if (profile.Values.TryGetValue("retries", out var retries)) ReadRetriesValue.Text = retries;
         if (profile.Values.TryGetValue("tracks", out var tracks)) ReadTracksValue.Text = tracks;
@@ -492,6 +504,7 @@ public partial class MainWindow : Window
         if (profile.Values.TryGetValue("adjust-speed", out var speed)) ReadAdjustSpeedValue.Text = speed;
         if (profile.Values.TryGetValue("pll", out var pll)) ReadPllValue.Text = pll;
         if (profile.Values.TryGetValue("densel", out var densel)) ReadDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
+        if (profile.Values.TryGetValue("diskdefs", out var diskdefs)) ReadDiskDefsValue.Text = diskdefs;
         ReadExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
         if (profile.IsSystem)
         {
@@ -510,7 +523,8 @@ public partial class MainWindow : Window
         if (ReadTracksEnabled.IsChecked == true) enabled.Add("tracks");
         if (ReadSeekRetriesEnabled.IsChecked == true) enabled.Add("seek-retries"); if (ReadFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (ReadHardSectors.IsChecked == true) enabled.Add("hard-sectors");
         if (ReadAdjustSpeedEnabled.IsChecked == true) enabled.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) enabled.Add("pll"); if (ReadReverse.IsChecked == true) enabled.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) enabled.Add("densel"); if (ReadTg43.IsChecked == true) enabled.Add("gen-tg43");
-        var values = new Dictionary<string, string> { ["revs"] = ReadRevsValue.Text, ["retries"] = ReadRetriesValue.Text, ["tracks"] = ReadTracksValue.Text, ["seek-retries"] = ReadSeekRetriesValue.Text, ["fake-index"] = ReadFakeIndexValue.Text, ["adjust-speed"] = ReadAdjustSpeedValue.Text, ["pll"] = ReadPllValue.Text, ["densel"] = SelectedText(ReadDenselValue), ["expert"] = ReadExpertArguments.Text };
+        if (ReadDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
+        var values = new Dictionary<string, string> { ["revs"] = ReadRevsValue.Text, ["retries"] = ReadRetriesValue.Text, ["tracks"] = ReadTracksValue.Text, ["seek-retries"] = ReadSeekRetriesValue.Text, ["fake-index"] = ReadFakeIndexValue.Text, ["adjust-speed"] = ReadAdjustSpeedValue.Text, ["pll"] = ReadPllValue.Text, ["densel"] = SelectedText(ReadDenselValue), ["diskdefs"] = ReadDiskDefsValue.Text, ["expert"] = ReadExpertArguments.Text };
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); }
         catch (InvalidOperationException)
@@ -611,6 +625,7 @@ public partial class MainWindow : Window
         if (ReadReverse?.IsChecked == true) options.Add(new("--reverse"));
         if (ReadDenselEnabled?.IsChecked == true) options.Add(new("--densel", SelectedText(ReadDenselValue)));
         if (ReadTg43?.IsChecked == true) options.Add(new("--gen-tg43"));
+        if (ReadDiskDefsEnabled?.IsChecked == true) options.Add(new("--diskdefs", ReadDiskDefsValue.Text.Trim()));
         return ReadCommandBuilder.Build(new ReadRequest(
             _settings.GwExecutablePath ?? "gw.exe", target,
             RawScpRadio?.IsChecked == true ? ReadResultKind.RawScp : ReadResultKind.KnownFormat,
@@ -629,6 +644,24 @@ public partial class MainWindow : Window
     private void WriteDensel_Checked(object sender, RoutedEventArgs e) { if (WriteTg43 is not null) WriteTg43.IsChecked = false; WriteInput_Changed(sender, e); }
     private void WriteTg43_Checked(object sender, RoutedEventArgs e) { if (WriteDenselEnabled is not null) WriteDenselEnabled.IsChecked = false; WriteInput_Changed(sender, e); }
 
+    private void BrowseReadDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(ReadDiskDefsValue, ReadDiskDefsEnabled, UpdateReadCommand);
+    private void BrowseWriteDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(WriteDiskDefsValue, WriteDiskDefsEnabled, UpdateWriteCommand);
+    private void BrowseConvertDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(ConvertDiskDefsValue, ConvertDiskDefsEnabled, UpdateConvertCommand);
+
+    private void BrowseDiskDefs(TextBox target, CheckBox enabled, Action refresh)
+    {
+        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Advanced.DiskDefsFilter"), FileName = target.Text };
+        if (dialog.ShowDialog(this) != true) return;
+        target.Text = dialog.FileName; enabled.IsChecked = true; refresh();
+    }
+
+    private bool ValidateDiskDefs(CheckBox enabled, TextBox path, string title)
+    {
+        if (enabled.IsChecked != true || File.Exists(path.Text)) return true;
+        MessageBox.Show(LocExtension.Get("Advanced.DiskDefsMissing"), title, MessageBoxButton.OK, MessageBoxImage.Warning);
+        return false;
+    }
+
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
     {
         if (!string.IsNullOrEmpty(ReadFileName.Text)) Clipboard.SetText(ReadFileName.Text);
@@ -643,6 +676,7 @@ public partial class MainWindow : Window
     private async void ExecuteRead_Click(object sender, RoutedEventArgs e)
     {
         if (_runner.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!ValidateDiskDefs(ReadDiskDefsEnabled, ReadDiskDefsValue, LocExtension.Get("Read.Title"))) return;
         if (string.IsNullOrWhiteSpace(ReadFileName.Text))
         {
             MessageBox.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), MessageBoxButton.OK, MessageBoxImage.Information);
@@ -700,7 +734,7 @@ public partial class MainWindow : Window
         ReadRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("retries");
         ReadTracksEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("tracks");
         ReadSeekRetriesEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("seek-retries"); ReadFakeIndexEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("fake-index"); ReadHardSectors.IsChecked = _settings.Read.EnabledOptions.Contains("hard-sectors");
-        ReadAdjustSpeedEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = _settings.Read.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = _settings.Read.EnabledOptions.Contains("gen-tg43");
+        ReadAdjustSpeedEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("adjust-speed"); ReadPllEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("pll"); ReadReverse.IsChecked = _settings.Read.EnabledOptions.Contains("reverse"); ReadDenselEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("densel"); ReadTg43.IsChecked = _settings.Read.EnabledOptions.Contains("gen-tg43"); ReadDiskDefsEnabled.IsChecked = _settings.Read.EnabledOptions.Contains("diskdefs");
         if (_settings.Read.OptionValues.TryGetValue("revs", out var revs)) ReadRevsValue.Text = revs;
         if (_settings.Read.OptionValues.TryGetValue("retries", out var retries)) ReadRetriesValue.Text = retries;
         if (_settings.Read.OptionValues.TryGetValue("tracks", out var tracks)) ReadTracksValue.Text = tracks;
@@ -709,6 +743,7 @@ public partial class MainWindow : Window
         if (_settings.Read.OptionValues.TryGetValue("adjust-speed", out var speed)) ReadAdjustSpeedValue.Text = speed;
         if (_settings.Read.OptionValues.TryGetValue("pll", out var pll)) ReadPllValue.Text = pll;
         if (_settings.Read.OptionValues.TryGetValue("densel", out var densel)) ReadDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
+        if (_settings.Read.OptionValues.TryGetValue("diskdefs", out var diskdefs)) ReadDiskDefsValue.Text = diskdefs;
         ReadExpertArguments.Text = _settings.Read.OptionValues.GetValueOrDefault("expert", "");
     }
 
@@ -725,27 +760,27 @@ public partial class MainWindow : Window
         if (ReadRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("retries");
         if (ReadTracksEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("tracks");
         if (ReadSeekRetriesEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("seek-retries"); if (ReadFakeIndexEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("fake-index"); if (ReadHardSectors.IsChecked == true) _settings.Read.EnabledOptions.Add("hard-sectors");
-        if (ReadAdjustSpeedEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("pll"); if (ReadReverse.IsChecked == true) _settings.Read.EnabledOptions.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("densel"); if (ReadTg43.IsChecked == true) _settings.Read.EnabledOptions.Add("gen-tg43");
+        if (ReadAdjustSpeedEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("adjust-speed"); if (ReadPllEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("pll"); if (ReadReverse.IsChecked == true) _settings.Read.EnabledOptions.Add("reverse"); if (ReadDenselEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("densel"); if (ReadTg43.IsChecked == true) _settings.Read.EnabledOptions.Add("gen-tg43"); if (ReadDiskDefsEnabled.IsChecked == true) _settings.Read.EnabledOptions.Add("diskdefs");
         _settings.Read.OptionValues["revs"] = ReadRevsValue.Text;
         _settings.Read.OptionValues["retries"] = ReadRetriesValue.Text;
         _settings.Read.OptionValues["tracks"] = ReadTracksValue.Text;
-        _settings.Read.OptionValues["seek-retries"] = ReadSeekRetriesValue.Text; _settings.Read.OptionValues["fake-index"] = ReadFakeIndexValue.Text; _settings.Read.OptionValues["adjust-speed"] = ReadAdjustSpeedValue.Text; _settings.Read.OptionValues["pll"] = ReadPllValue.Text; _settings.Read.OptionValues["densel"] = SelectedText(ReadDenselValue); _settings.Read.OptionValues["expert"] = ReadExpertArguments.Text;
+        _settings.Read.OptionValues["seek-retries"] = ReadSeekRetriesValue.Text; _settings.Read.OptionValues["fake-index"] = ReadFakeIndexValue.Text; _settings.Read.OptionValues["adjust-speed"] = ReadAdjustSpeedValue.Text; _settings.Read.OptionValues["pll"] = ReadPllValue.Text; _settings.Read.OptionValues["densel"] = SelectedText(ReadDenselValue); _settings.Read.OptionValues["diskdefs"] = ReadDiskDefsValue.Text; _settings.Read.OptionValues["expert"] = ReadExpertArguments.Text;
     }
 
     private void RestoreWriteSettings()
     {
         var enabled = _settings.Write.EnabledOptions;
-        WriteNoVerify.IsChecked = enabled.Contains("no-verify"); WriteEraseEmpty.IsChecked = enabled.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = enabled.Contains("retries"); WriteTracksEnabled.IsChecked = enabled.Contains("tracks"); WritePreErase.IsChecked = enabled.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = enabled.Contains("fake-index"); WriteHardSectors.IsChecked = enabled.Contains("hard-sectors"); WritePrecompEnabled.IsChecked = enabled.Contains("precomp"); WriteReverse.IsChecked = enabled.Contains("reverse"); WriteDenselEnabled.IsChecked = enabled.Contains("densel"); WriteTg43.IsChecked = enabled.Contains("gen-tg43");
+        WriteNoVerify.IsChecked = enabled.Contains("no-verify"); WriteEraseEmpty.IsChecked = enabled.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = enabled.Contains("retries"); WriteTracksEnabled.IsChecked = enabled.Contains("tracks"); WritePreErase.IsChecked = enabled.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = enabled.Contains("fake-index"); WriteHardSectors.IsChecked = enabled.Contains("hard-sectors"); WritePrecompEnabled.IsChecked = enabled.Contains("precomp"); WriteReverse.IsChecked = enabled.Contains("reverse"); WriteDenselEnabled.IsChecked = enabled.Contains("densel"); WriteTg43.IsChecked = enabled.Contains("gen-tg43"); WriteDiskDefsEnabled.IsChecked = enabled.Contains("diskdefs");
         var values = _settings.Write.OptionValues;
-        if (values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries; if (values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks; if (values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex; if (values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp; if (values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0; WriteExpertArguments.Text = values.GetValueOrDefault("expert", "");
+        if (values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries; if (values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks; if (values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex; if (values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp; if (values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0; if (values.TryGetValue("diskdefs", out var diskdefs)) WriteDiskDefsValue.Text = diskdefs; WriteExpertArguments.Text = values.GetValueOrDefault("expert", "");
     }
 
     private void CaptureWriteSettings()
     {
         var enabled = _settings.Write.EnabledOptions = [];
-        if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries"); if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43");
+        if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries"); if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43"); if (WriteDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
         var values = _settings.Write.OptionValues;
-        values["retries"] = WriteRetriesValue.Text; values["tracks"] = WriteTracksValue.Text; values["fake-index"] = WriteFakeIndexValue.Text; values["precomp"] = WritePrecompValue.Text; values["densel"] = SelectedText(WriteDenselValue); values["expert"] = WriteExpertArguments.Text;
+        values["retries"] = WriteRetriesValue.Text; values["tracks"] = WriteTracksValue.Text; values["fake-index"] = WriteFakeIndexValue.Text; values["precomp"] = WritePrecompValue.Text; values["densel"] = SelectedText(WriteDenselValue); values["diskdefs"] = WriteDiskDefsValue.Text; values["expert"] = WriteExpertArguments.Text;
     }
 
     private async void Preferences_Click(object sender, RoutedEventArgs e)

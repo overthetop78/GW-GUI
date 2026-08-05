@@ -21,14 +21,13 @@ public static class ReadCommandBuilder
     public static GwCommand Build(ReadRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.DestinationPath)) throw new ArgumentException("A destination is required.");
+        GwOptionValidator.Validate(request.Options);
         var arguments = new List<string>();
         Add(arguments, "--device", request.Device);
         Add(arguments, "--drive", request.Drive);
         if (!string.IsNullOrWhiteSpace(request.FormatId)) Add(arguments, "--format", request.FormatId);
         foreach (var option in request.Options)
         {
-            if (string.IsNullOrWhiteSpace(option.Argument) || !option.Argument.StartsWith("--", StringComparison.Ordinal))
-                throw new ArgumentException("Optional arguments must start with '--'.");
             arguments.Add(option.Argument);
             if (!string.IsNullOrWhiteSpace(option.Value)) arguments.Add(option.Value);
         }

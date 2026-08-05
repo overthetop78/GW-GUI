@@ -128,6 +128,7 @@
                                         <CheckBox x:Name="ReadTg43" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="ReadTg43_Checked" Unchecked="ReadInput_Changed" />
                                     </WrapPanel>
                                     <Separator Margin="8" />
+                                    <DockPanel Margin="8,4"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseReadDiskDefs_Click"/><CheckBox x:Name="ReadDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed"/><TextBox x:Name="ReadDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ReadInput_Changed"/></DockPanel>
                                     <WrapPanel>
                                         <CheckBox x:Name="ReadAutoNumber" Content="{l:Loc Read.AutoNumber}" Margin="8" Checked="ReadInput_Changed" Unchecked="ReadInput_Changed" />
                                         <ComboBox x:Name="ReadSequenceKind" Width="120" SelectedIndex="0" SelectionChanged="ReadInput_Changed">
@@ -234,6 +235,7 @@
                                     <ComboBox x:Name="WriteDenselValue" Width="70" SelectedIndex="0" SelectionChanged="WriteInput_Changed"><ComboBoxItem Content="H"/><ComboBoxItem Content="L"/></ComboBox>
                                     <CheckBox x:Name="WriteTg43" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="WriteTg43_Checked" Unchecked="WriteInput_Changed" />
                                 </WrapPanel>
+                                <DockPanel Margin="8,4"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseWriteDiskDefs_Click"/><CheckBox x:Name="WriteDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed"/><TextBox x:Name="WriteDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="WriteInput_Changed"/></DockPanel>
                                 <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,12,8,4" />
                                 <TextBox x:Name="WriteExpertArguments" Margin="8" TextChanged="WriteInput_Changed" />
                             </StackPanel>
@@ -310,6 +312,7 @@
                                             <CheckBox x:Name="ConvertHardSectors" Content="{l:Loc Advanced.HardSectors}" Margin="18,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                             <CheckBox x:Name="ConvertReverse" Content="{l:Loc Advanced.Reverse}" Margin="8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
                                         </WrapPanel>
+                                        <DockPanel Margin="0,0,0,12"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseConvertDiskDefs_Click"/><CheckBox x:Name="ConvertDiskDefsEnabled" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed"/><TextBox x:Name="ConvertDiskDefsValue" Margin="10,0" IsReadOnly="True" TextChanged="ConvertInput_Changed"/></DockPanel>
                                         <TextBlock Text="{l:Loc Common.ExpertArguments}" />
                                         <TextBox x:Name="ConvertExpertArguments" Margin="0,6,0,0" TextChanged="ConvertInput_Changed" />
                                     </StackPanel>
