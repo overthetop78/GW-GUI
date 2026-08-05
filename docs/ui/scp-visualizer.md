@@ -27,3 +27,4 @@
 - Le moteur doit permettre la couverture complète des analyseurs proposés par HxC.
 - L’architecture reste modulaire afin que chaque famille de codage soit isolée et testable.
 - Les décodeurs actuellement réalisés couvrent Atari/IBM PC (ISO MFM/FM), Amiga MFM, Apple II GCR, Commodore GCR, Membrain MFM, AED 6200P MFM, QD MO5 MFM, Centurion MFM, NorthStar MFM, Heathkit FM, E-mu Emulator FM, TYCOM FM, DEC RX02 M²FM, Arburg et Victor 9000 GCR. Les signatures rares ont été confrontées aux sources officielles HxC. Les autres familles HxC définies dans le plan restent à couvrir intégralement; cela n’est pas présenté comme une version volontairement incomplète.
+- Le niveau exact de chaque analyseur est suivi dans `../scp-decoder-coverage.md`. NorthStar extrait désormais piste/secteur et valide le checksum du bloc de 512 octets; Heathkit extrait volume/cylindre/secteur et valide le checksum bit-inversé de l’en-tête.

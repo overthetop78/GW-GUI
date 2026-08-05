@@ -1,8 +1,9 @@
 namespace GWGUI.Scp.Decoding;
 
 public enum FluxStructureKind { Sync, IdAddressMark, DataAddressMark, DeletedDataAddressMark, AmigaSync, AppleAddress, AppleData, CommodoreSync, CommodoreHeader, FormatHeader, FormatData, TimingAnomaly }
+public enum SectorIntegrityKind { Crc, Checksum }
 public sealed record FluxStructure(FluxStructureKind Kind, int BitOffset, int BitLength, string Description);
-public sealed record DecodedSector(byte Cylinder, byte Head, byte Number, byte SizeCode, int SizeBytes, bool HeaderCrcValid, int BitOffset);
+public sealed record DecodedSector(byte Cylinder, byte Head, byte Number, byte SizeCode, int SizeBytes, bool HeaderCrcValid, int BitOffset, SectorIntegrityKind IntegrityKind = SectorIntegrityKind.Crc);
 public sealed record FluxDecodeResult(string DecoderId, string DisplayName, double Confidence, double EstimatedBitCellTicks, IReadOnlyList<FluxStructure> Structures, IReadOnlyList<byte> DecodedBytes, IReadOnlyList<DecodedSector>? Sectors = null);
 
 public interface IFluxDecoder
@@ -36,7 +37,7 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
     protected virtual bool IsFm => false;
     protected virtual bool IsNrzi => false;
 
-    public FluxDecodeResult Decode(ScpRevolution revolution)
+    public virtual FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = IsNrzi ? FluxBitstream.FromNrziIntervals(revolution.FluxIntervals) : FluxBitstream.FromIntervals(revolution.FluxIntervals, IsFm); var structures = new List<FluxStructure>();
         for (var offset = 0; offset < stream.Bits.Length; offset++)
@@ -100,6 +101,38 @@ public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
     private static readonly byte[] SectorMark = EncodeMfm(0, 0, 0, 0, 0, 0, 0, 0xfb);
     public override string Id => "northstar.mfm"; public override string DisplayName => "NorthStar hard-sectored MFM";
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "NorthStar hard-sector block")];
+
+    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        const int signatureBits = 8 * 16;
+        const int payloadBits = 512 * 16;
+        for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++)
+        {
+            if (!stream.MatchBytes(offset, SectorMark)) continue;
+            var fullBlock = offset + signatureBits + 16 + payloadBits + 16 <= stream.Bits.Length;
+            var info = fullBlock ? stream.DecodeMfmByte(offset + signatureBits) : (byte)0;
+            var cylinder = (byte)(info >> 4); var sectorNumber = (byte)(info & 0x0f); var checksumValid = false;
+            if (fullBlock)
+            {
+                byte checksum = 0;
+                for (var index = 0; index < 512; index++)
+                {
+                    var value = stream.DecodeMfmByte(offset + signatureBits + 16 + index * 16);
+                    checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1));
+                }
+                var stored = stream.DecodeMfmByte(offset + signatureBits + 16 + payloadBits);
+                checksumValid = stored == checksum;
+                sectors.Add(new(cylinder, 0, sectorNumber, 2, 512, checksumValid, offset, SectorIntegrityKind.Checksum));
+                bytes.Add(info);
+            }
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, fullBlock ? signatureBits + 16 + payloadBits + 16 : signatureBits,
+                fullBlock ? $"NorthStar C{cylinder} R{sectorNumber}, checksum {(checksumValid ? "valid" : "invalid")}" : "NorthStar hard-sector block"));
+            offset += signatureBits - 1;
+        }
+        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
 }
 
 public sealed class HeathkitFmDecoder : SignatureMfmDecoder
@@ -108,6 +141,42 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
     public override string Id => "heathkit.fm"; public override string DisplayName => "Heathkit hard-sectored FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Heathkit hard-sector header")];
+
+    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals, fm: true);
+        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        const int signatureBits = 4 * 16;
+        const int headerTailBits = 4 * 16;
+        for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++)
+        {
+            if (!stream.MatchBytes(offset, SectorMark)) continue;
+            var complete = offset + signatureBits + headerTailBits <= stream.Bits.Length;
+            if (complete)
+            {
+                var volume = ReverseBits(stream.DecodeMfmByte(offset + signatureBits));
+                var cylinder = ReverseBits(stream.DecodeMfmByte(offset + signatureBits + 16));
+                var sectorNumber = ReverseBits(stream.DecodeMfmByte(offset + signatureBits + 32));
+                var stored = ReverseBits(stream.DecodeMfmByte(offset + signatureBits + 48));
+                byte checksum = 0;
+                foreach (var value in new[] { volume, cylinder, sectorNumber }) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
+                var valid = stored == checksum;
+                sectors.Add(new(cylinder, 0, sectorNumber, 1, 256, valid, offset, SectorIntegrityKind.Checksum));
+                bytes.AddRange([volume, cylinder, sectorNumber]);
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits + headerTailBits, $"Heathkit volume {volume}, C{cylinder} R{sectorNumber}, checksum {(valid ? "valid" : "invalid")}"));
+            }
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits, "Heathkit hard-sector header"));
+            offset += signatureBits - 1;
+        }
+        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static byte ReverseBits(byte value)
+    {
+        var reversed = 0;
+        for (var bit = 0; bit < 8; bit++) reversed = (reversed << 1) | ((value >> bit) & 1);
+        return (byte)reversed;
+    }
 }
 
 public sealed class EmuFmDecoder : SignatureMfmDecoder

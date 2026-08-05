@@ -59,7 +59,7 @@
   <data name="Options.TagPatternPreview"><value>Exemple : {0}</value></data>
   <data name="Options.TagPatternInvalid"><value>Le modèle de tag doit contenir {tag}.</value></data>
   <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
-  <data name="Visual.SectorDetail"><value>Secteur C{0} H{1} R{2} · {3} octets · CRC {4}</value></data>
+  <data name="Visual.SectorDetail"><value>Secteur C{0} H{1} R{2} · {3} octets · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>valide</value></data>
   <data name="Visual.CrcInvalid"><value>incorrect</value></data>
   <data name="Visual.DecoderName.iso.mfm"><value>ISO MFM (Atari ST / IBM PC)</value></data>
@@ -127,4 +127,6 @@
   <data name="Tool.Field.AlignReads"><value>Nombre de lectures</value></data>
   <data name="Tool.Field.AlignFormat"><value>Format de décodage</value></data>
   <data name="Tool.Field.AlignRaw"><value>Lire le flux brut (--raw)</value></data>
+  <data name="Visual.Integrity.Crc"><value>CRC</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Checksum</value></data>
 </root>
