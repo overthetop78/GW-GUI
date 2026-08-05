@@ -19,11 +19,11 @@ public sealed class RealScpCorpusTests
 
         var reader = new ScpReader();
         var decoders = new FluxDecoderRegistry();
-        foreach (var path in paths)
+        foreach (var entry in paths)
         {
-            var image = await reader.ReadAsync(path);
-            Assert.True(image.ChecksumValid, $"SCP checksum is invalid: {path}");
-            Assert.True(image.Tracks.Count >= 80, $"Too few populated tracks in {path}: {image.Tracks.Count}");
+            var image = await reader.ReadAsync(entry.Path);
+            Assert.True(image.ChecksumValid, $"SCP checksum is invalid: {entry.Path}");
+            Assert.True(image.Tracks.Count >= 80, $"Too few populated tracks in {entry.Path}: {image.Tracks.Count}");
             Assert.Contains(image.Tracks, track => track.Head == 0);
             Assert.Contains(image.Tracks, track => track.Head == 1);
             Assert.All(image.Tracks, track => Assert.Equal(image.Header.Revolutions, track.Revolutions.Count));
@@ -34,7 +34,7 @@ public sealed class RealScpCorpusTests
             {
                 var decoded = decoders.DecodeBest(track.Revolutions);
                 Assert.NotNull(decoded);
-                Assert.StartsWith("iso.", decoded.Value.Result.DecoderId);
+                Assert.StartsWith(entry.DecoderPrefix, decoded.Value.Result.DecoderId);
                 Assert.True(decoded.Value.Result.EstimatedBitCellTicks > 0);
                 Assert.NotEmpty(decoded.Value.Result.Structures);
             }
@@ -52,7 +52,7 @@ public sealed class RealScpCorpusTests
         {
             try
             {
-                var image = new ScpReader().ReadAsync(paths[0]).GetAwaiter().GetResult();
+                var image = new ScpReader().ReadAsync(paths[0].Path).GetAwaiter().GetResult();
                 var tracks = image.Tracks.Where(track => track.Head == 0).Take(10).ToArray();
                 Assert.NotEmpty(tracks);
                 var sample = new ScpImage(image.Header, tracks, image.ChecksumValid, image.FileSize);
@@ -77,14 +77,18 @@ public sealed class RealScpCorpusTests
         if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
     }
 
-    private static string[] CorpusPaths()
+    private static CorpusEntry[] CorpusPaths()
     {
         var specification = Environment.GetEnvironmentVariable("GWGUI_REAL_SCP_CORPUS");
         if (string.IsNullOrWhiteSpace(specification)) return [];
-        var paths = specification.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Select(Path.GetFullPath).ToArray();
-        Assert.True(paths.Length >= 2, "At least two public physical SCP captures are required.");
-        Assert.All(paths, path => Assert.True(File.Exists(path), $"SCP corpus file is missing: {path}"));
-        return paths;
+        var entries = specification.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(value => value.Split('|', 2, StringSplitOptions.TrimEntries))
+            .Select(parts => parts.Length == 2 ? new CorpusEntry(parts[0], Path.GetFullPath(parts[1])) : throw new InvalidDataException("Invalid SCP corpus specification."))
+            .ToArray();
+        Assert.True(entries.Length >= 3, "At least three public physical SCP captures are required.");
+        Assert.All(entries, entry => Assert.True(File.Exists(entry.Path), $"SCP corpus file is missing: {entry.Path}"));
+        return entries;
     }
+
+    private sealed record CorpusEntry(string DecoderPrefix, string Path);
 }
