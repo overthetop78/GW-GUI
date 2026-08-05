@@ -19,7 +19,6 @@ using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
-using Microsoft.Win32;
 using GWGUI.App.Localization;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.App.ViewModels;
@@ -35,6 +34,7 @@ public partial class MainWindow : Window
     private readonly OperationCoordinator _operation = new();
     private readonly OperationResultPresenter _operationResultPresenter = new();
     private readonly IMessageDialogService _dialogs;
+    private readonly IFileDialogService _fileDialogs;
     private IImageFormatCatalog _formatCatalog = null!;
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
@@ -55,12 +55,13 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow() : this(null) { }
+    public MainWindow() : this(null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
+        _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -77,9 +78,9 @@ public partial class MainWindow : Window
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Visual.OpenFilter"), InitialDirectory = ReadFolder.Text };
-        if (dialog.ShowDialog(this) != true) return;
-        await LoadScpAsync(dialog.FileName);
+        var path = _fileDialogs.OpenFile(new(LocExtension.Get("Visual.OpenFilter"), ReadFolder.Text));
+        if (path is null) return;
+        await LoadScpAsync(path);
     }
 
     private async void OpenLastScp_Click(object sender, RoutedEventArgs e)
@@ -190,10 +191,10 @@ public partial class MainWindow : Window
 
     private void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Common.DiskImageFilter"), InitialDirectory = ReadFolder.Text };
-        if (dialog.ShowDialog(this) != true) return;
-        _viewModel.Write.SourcePath = dialog.FileName;
-        _detectedWriteFormat = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
+        var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
+        if (path is null) return;
+        _viewModel.Write.SourcePath = path;
+        _detectedWriteFormat = _formatDetector.Detect(path, new FileInfo(path).Length);
         WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} — {LocExtension.Get(_detectedWriteFormat.ExplanationKey)}";
         WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
         WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
@@ -329,12 +330,12 @@ public partial class MainWindow : Window
 
     private void BrowseConvertSource_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Common.DiskImageFilter"), InitialDirectory = ReadFolder.Text };
-        if (dialog.ShowDialog(this) != true) return;
-        _viewModel.Conversion.SourcePath = dialog.FileName; _viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(dialog.FileName);
-        var detection = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
+        var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
+        if (path is null) return;
+        _viewModel.Conversion.SourcePath = path; _viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
+        var detection = _formatDetector.Detect(path, new FileInfo(path).Length);
         ConvertSourceInfo.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
-        BuildConversionFormats(Path.GetExtension(dialog.FileName), detection); UpdateConvertCommand();
+        BuildConversionFormats(Path.GetExtension(path), detection); UpdateConvertCommand();
     }
 
     private void ConvertInput_Changed(object sender, RoutedEventArgs e) => UpdateConvertCommand();
@@ -510,9 +511,9 @@ public partial class MainWindow : Window
 
     private async void ExportConsole_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new SaveFileDialog { Filter = LocExtension.Get("Logs.ExportFilter"), FileName = $"gw-gui-{DateTime.Now:yyyyMMdd-HHmmss}.txt", DefaultExt = ".txt" };
-        if (dialog.ShowDialog(this) != true) return;
-        await File.WriteAllTextAsync(dialog.FileName, CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
+        var path = _fileDialogs.SaveFile(new(LocExtension.Get("Logs.ExportFilter"), $"gw-gui-{DateTime.Now:yyyyMMdd-HHmmss}.txt", ".txt"));
+        if (path is null) return;
+        await File.WriteAllTextAsync(path, CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
     }
 
     private void SetConsoleVisibility(bool visible)
@@ -609,18 +610,18 @@ public partial class MainWindow : Window
 
     private void BrowseDiskDefs(TextBox target, CheckBox enabled, Action refresh)
     {
-        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Advanced.DiskDefsFilter"), FileName = target.Text };
-        if (dialog.ShowDialog(this) != true) return;
-        try { AddDiskDefs(dialog.FileName); }
+        var path = _fileDialogs.OpenFile(new(LocExtension.Get("Advanced.DiskDefsFilter"), FileName: target.Text));
+        if (path is null) return;
+        try { AddDiskDefs(path); }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException)
         {
             ShowAdvancedValidation(exception, LocExtension.Get("Advanced.DiskDefs"));
             return;
         }
-        if (ReferenceEquals(target, ReadDiskDefsValue)) { _viewModel.Read.DiskDefs.Value = dialog.FileName; _viewModel.Read.DiskDefs.Enabled = true; }
-        else if (ReferenceEquals(target, WriteDiskDefsValue)) { _viewModel.Write.DiskDefs.Value = dialog.FileName; _viewModel.Write.DiskDefs.Enabled = true; }
-        else if (ReferenceEquals(target, ConvertDiskDefsValue)) { _viewModel.Conversion.DiskDefs.Value = dialog.FileName; _viewModel.Conversion.DiskDefs.Enabled = true; }
-        else { target.Text = dialog.FileName; enabled.IsChecked = true; }
+        if (ReferenceEquals(target, ReadDiskDefsValue)) { _viewModel.Read.DiskDefs.Value = path; _viewModel.Read.DiskDefs.Enabled = true; }
+        else if (ReferenceEquals(target, WriteDiskDefsValue)) { _viewModel.Write.DiskDefs.Value = path; _viewModel.Write.DiskDefs.Enabled = true; }
+        else if (ReferenceEquals(target, ConvertDiskDefsValue)) { _viewModel.Conversion.DiskDefs.Value = path; _viewModel.Conversion.DiskDefs.Enabled = true; }
+        else { target.Text = path; enabled.IsChecked = true; }
         RefreshFormatSelectors();
         refresh();
     }
@@ -697,8 +698,8 @@ public partial class MainWindow : Window
 
     private void BrowseReadFolder_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFolderDialog { InitialDirectory = ReadFolder.Text, Title = LocExtension.Get("Read.DestinationFolder") };
-        if (dialog.ShowDialog(this) == true) { _viewModel.Read.Folder = dialog.FolderName; UpdateReadCommand(); }
+        var path = _fileDialogs.SelectFolder(new(LocExtension.Get("Read.DestinationFolder"), ReadFolder.Text));
+        if (path is not null) { _viewModel.Read.Folder = path; UpdateReadCommand(); }
     }
 
     private async void ExecuteRead_Click(object sender, RoutedEventArgs e)

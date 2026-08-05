@@ -89,7 +89,8 @@ public sealed class CoreTests
                 var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
                 app.InitializeComponent();
                 var dialogs = new RecordingMessageDialogService();
-                var window = new MainWindow(dialogs);
+                var files = new RecordingFileDialogService { FolderResult = @"F:\Images" };
+                var window = new MainWindow(dialogs, files);
 
                 Assert.IsType<MainWindowViewModel>(window.DataContext);
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
@@ -126,6 +127,11 @@ public sealed class CoreTests
                 Assert.Equal(UserDialogButtons.Ok, request.Buttons);
                 Assert.Equal(UserDialogIcon.Warning, request.Icon);
                 Assert.Contains("invalid value", request.Message);
+                typeof(MainWindow).GetMethod("BrowseReadFolder_Click", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
+                    .Invoke(window, [window, new RoutedEventArgs()]);
+                Assert.Equal(@"F:\Images", model.Read.Folder);
+                var folderRequest = Assert.Single(files.FolderRequests);
+                Assert.False(string.IsNullOrWhiteSpace(folderRequest.Title));
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -2064,6 +2070,19 @@ public sealed class CoreTests
             Requests.Add((message, title, buttons, icon));
             return result;
         }
+    }
+
+    private sealed class RecordingFileDialogService : IFileDialogService
+    {
+        public string? OpenResult { get; set; }
+        public string? SaveResult { get; set; }
+        public string? FolderResult { get; set; }
+        public List<OpenFileRequest> OpenRequests { get; } = [];
+        public List<SaveFileRequest> SaveRequests { get; } = [];
+        public List<SelectFolderRequest> FolderRequests { get; } = [];
+        public string? OpenFile(OpenFileRequest request) { OpenRequests.Add(request); return OpenResult; }
+        public string? SaveFile(SaveFileRequest request) { SaveRequests.Add(request); return SaveResult; }
+        public string? SelectFolder(SelectFolderRequest request) { FolderRequests.Add(request); return FolderResult; }
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
