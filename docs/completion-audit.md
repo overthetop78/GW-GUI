@@ -29,6 +29,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## Partiellement prouvé
 
+- Le registre matériel possède une matrice automatisée à deux contrôleurs couvrant ports COM initiaux distincts, changement de port, déconnexion, conservation de l’entrée indisponible et reconnexion sur un nouveau port, sans doublon d’identité. L’essai équivalent avec plusieurs Greaseweazle physiques reste classé séparément ci-dessous.
 - Le visualiseur SCP lit et rend le conteneur, les faces présentes, pistes, structures, anomalies, zooms et inspecteur. Les familles déjà décodées ont des tests synthétiques; ISO possède désormais trois captures physiques publiques, dont une FM simple face, et Amiga MFM une capture domaine public vérifiée. La couverture exhaustive des autres analyseurs HxC annoncée dans le plan n’est pas encore démontrée par un corpus physique libre.
 - Le placement et le DPI ont été validés sur l’écran actuel à 125 % puis les captures finales à 150 %. Les noms localisés, pairs UI Automation, motifs `Value`/`Selection`/`Invoke`, étapes principales de tabulation et focus des onglets sont contrôlés automatiquement. `scripts/test-app-accessibility.ps1` lance en plus le véritable exécutable Release, sélectionne les cinq onglets et a vérifié 79 contrôles interactifs visibles sans aucun nom accessible manquant; il est exécuté par le workflow sur le paquet portable. Le test STA charge aussi la vraie fenêtre Options, les neuf dialogues Diagnostics/Matériel, l’éditeur de lecteur, le nommage de profil, les conflits de conversion et l’historique, avec contrôle des noms et motifs de leurs éléments structurants. Les matrices complètes multi-écran et l’essai humain avec NVDA/Narrator restent à exécuter.
 
@@ -41,6 +42,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 
 ## État architectural
 
+- La suite complète compte 226 tests réussis après ajout de la matrice matérielle simulée multi-contrôleurs.
 - `IGwInstallationManager` couvre désormais l’intégralité du contrat annoncé : détection, version disponible, installation, sélection et retour arrière. `MainWindow` et Options partagent une instance injectée; deux tests contrôlent l’historique et les exécutables manquants. La suite complète compte maintenant 225 tests réussis.
 - Le contrat générique `IProfileStore<TProfile>` est concrètement séparé en trois magasins liés aux onglets Lecture, Écriture et Conversion. Chacun fournit son propre profil système immuable et rejette les profils d’une autre opération; la compatibilité du schéma JSON est conservée.
 - La dernière exécution complète compte 223 tests réussis, dont un test dédié à l’isolation des magasins de profils.

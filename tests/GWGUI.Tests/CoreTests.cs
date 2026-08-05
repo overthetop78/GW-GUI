@@ -871,6 +871,48 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task HardwareRegistryTracksMultipleControllersAcrossDisconnectPortChangeAndReconnect()
+    {
+        var discovery = new MutableSerialDeviceDiscovery(
+        [
+            new("COM3", "PNP-A", "Greaseweazle A"),
+            new("COM4", "PNP-B", "Greaseweazle B")
+        ]);
+        var runner = new DeviceInfoRunner(new Dictionary<string, (string Serial, string Model)>
+        {
+            ["COM3"] = ("GW-A", "Greaseweazle V4.1"),
+            ["COM4"] = ("GW-B", "Greaseweazle F7"),
+            ["COM7"] = ("GW-B", "Greaseweazle F7"),
+            ["COM9"] = ("GW-A", "Greaseweazle V4.1")
+        });
+        IHardwareRegistry registry = new GreaseweazleHardwareRegistry(discovery, runner);
+
+        var initial = await registry.ScanAsync("gw.exe", []);
+        Assert.Equal(2, initial.Count);
+        Assert.All(initial, controller => Assert.True(controller.IsAvailable));
+
+        discovery.Devices = [new("COM7", "PNP-B", "Greaseweazle B")];
+        var disconnected = await registry.ScanAsync("gw.exe", initial);
+        var controllerA = Assert.Single(disconnected, controller => controller.UsbId == "GW-A");
+        Assert.False(controllerA.IsAvailable);
+        Assert.Equal("COM3", controllerA.LastPort);
+        var controllerB = Assert.Single(disconnected, controller => controller.UsbId == "GW-B");
+        Assert.True(controllerB.IsAvailable);
+        Assert.Equal("COM7", controllerB.LastPort);
+
+        discovery.Devices =
+        [
+            new("COM9", "PNP-A", "Greaseweazle A"),
+            new("COM7", "PNP-B", "Greaseweazle B")
+        ];
+        var reconnected = await registry.ScanAsync("gw.exe", disconnected);
+        Assert.Equal(2, reconnected.Count);
+        Assert.All(reconnected, controller => Assert.True(controller.IsAvailable));
+        Assert.Equal("COM9", reconnected.Single(controller => controller.UsbId == "GW-A").LastPort);
+        Assert.Equal("COM7", reconnected.Single(controller => controller.UsbId == "GW-B").LastPort);
+    }
+
+    [Fact]
     public void WindowPlacementRejectsAWindowOutsideAllScreens()
     {
         var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1400, Height = 800, Left = 9000, Top = 9000 };
@@ -2375,6 +2417,35 @@ public sealed class CoreTests
     private sealed class StaticSerialDeviceDiscovery(IReadOnlyList<SerialDevice> devices) : ISerialDeviceDiscovery
     {
         public IReadOnlyList<SerialDevice> FindSerialDevices() => devices;
+    }
+
+    private sealed class MutableSerialDeviceDiscovery(IReadOnlyList<SerialDevice> devices) : ISerialDeviceDiscovery
+    {
+        public IReadOnlyList<SerialDevice> Devices { get; set; } = devices;
+        public IReadOnlyList<SerialDevice> FindSerialDevices() => Devices;
+    }
+
+    private sealed class DeviceInfoRunner(IReadOnlyDictionary<string, (string Serial, string Model)> devices) : IGreaseweazleRunner
+    {
+        public bool IsRunning { get; private set; }
+
+        public Task<GwExecutionResult> RunAsync(GwCommand command, IProgress<GwOutputLine>? output = null, CancellationToken cancellationToken = default)
+        {
+            IsRunning = true;
+            try
+            {
+                var deviceIndex = command.Arguments.ToList().IndexOf("--device");
+                var port = deviceIndex >= 0 && deviceIndex + 1 < command.Arguments.Count ? command.Arguments[deviceIndex + 1] : "";
+                if (!devices.TryGetValue(port, out var device)) return Task.FromResult(new GwExecutionResult(1, false, TimeSpan.Zero, []));
+                GwOutputLine[] lines =
+                [
+                    new(DateTimeOffset.UtcNow, GwOutputStream.Standard, $"Model: {device.Model}"),
+                    new(DateTimeOffset.UtcNow, GwOutputStream.Standard, $"Serial: {device.Serial}")
+                ];
+                return Task.FromResult(new GwExecutionResult(0, false, TimeSpan.Zero, lines));
+            }
+            finally { IsRunning = false; }
+        }
     }
 
     private sealed class RecordingMessageDialogService(UserDialogResult result = UserDialogResult.Ok) : IMessageDialogService

@@ -31,6 +31,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Les profils sont servis par trois magasins `IProfileStore<OperationProfile>` liés chacun à un seul onglet. Un magasin refuse à la construction comme à la sauvegarde tout profil portant une autre opération; le profil `Par défaut` de chaque onglet reste unique, permanent et immuable. La liste JSON existante est répartie entre les trois magasins au chargement puis réunie à la sauvegarde, sans rupture de compatibilité.
 - Renommage et suppression des profils utilisateur dans les Options.
 - Registre matériel persistant derrière `IHardwareRegistry` : l’implémentation Windows scanne les ports hors du thread UI, interroge `gw info --device`, fusionne les contrôleurs par numéro de série ou identifiant PNP stable et conserve les contrôleurs absents comme indisponibles. Options ne connaît plus WMI ni la construction des commandes de scan; ajout et suppression de lecteurs restent décrits par sélection, taille, densité et RPM.
+- Une matrice matérielle simulée exerce désormais deux contrôleurs simultanés sur COM3/COM4, le déplacement du second vers COM7, la déconnexion du premier puis sa reconnexion sur COM9. Elle vérifie qu’aucun doublon d’identité n’apparaît, que les disponibilités et derniers ports sont corrects et que les deux contrôleurs redeviennent disponibles. Cette preuve automatisée complète mais ne remplace pas l’essai avec plusieurs appareils physiques.
 - Infrastructure bilingue `.resx` et culture chargée avant la première fenêtre. Toutes les vues utilisent désormais des clés pour leurs libellés naturels; seuls les nombres, valeurs techniques et noms natifs des langues restent littéraux. Options, diagnostics, profils, conflits, inspecteur SCP et messages dynamiques sont migrés. Un test contrôle toutes les vues et la parité exhaustive des catalogues FR/EN.
 - Les noms de décodeurs SCP, catégories de structures, positions de bits, états CRC et détails de secteurs sont localisés dans l’application; les descriptions internes du moteur ne fuient plus dans l’inspecteur.
 - Thèmes clair, sombre et système appliqués au démarrage et après les Options; le mode système suit Windows et reprend sa couleur d’accent.
@@ -78,6 +79,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 
 ## Validation actuelle
 
+- Dernière exécution complète après matrice matérielle simulée : 226 tests réussis.
 - Dernière exécution complète après centralisation Host Tools : 225 tests réussis. Deux tests supplémentaires couvrent sélection, sélection répétée, retour arrière et rejet des chemins disparus.
 - Dernière exécution complète après typage des profils : 223 tests réussis. Le test ajouté prouve le rejet d’un profil Écriture par le magasin Lecture, aussi bien au chargement qu’à la sauvegarde.
 - Dernière exécution complète : 222 tests réussis. L’inventaire détaillé ci-dessous en recensait 221 avant l’ajout du test de couverture de `IGwCommandBuilder`; ce nouveau test couvre les sept chemins Lecture, Écriture, Conversion, Effacement, Nettoyage, Outils et Info.
