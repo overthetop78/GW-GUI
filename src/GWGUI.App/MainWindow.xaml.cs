@@ -114,8 +114,7 @@ public partial class MainWindow : Window
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, "Automatique") }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
-        Width = Math.Max(MinWidth, _settings.Window.Width);
-        Height = Math.Max(MinHeight, _settings.Window.Height);
+        RestoreWindowPlacement();
         ReadFolder.Text = _settings.DefaultImagesFolder;
         ReadFamilyCombo.ItemsSource = _formatCatalog.Formats.Where(x => x.Family != "Raw").Select(x => x.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.SelectedIndex = 0;
@@ -419,7 +418,10 @@ public partial class MainWindow : Window
 
     private void SetConsoleVisibility(bool visible)
     {
+        if (!visible && ConsolePanel.Visibility == Visibility.Visible && ConsoleRow.ActualHeight >= 100)
+            _settings.ConsoleHeight = ConsoleRow.ActualHeight;
         ConsolePanel.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+        ConsoleSplitter.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
         ConsoleRow.Height = visible ? new GridLength(Math.Max(100, _settings.ConsoleHeight)) : new GridLength(0);
     }
 
@@ -594,9 +596,25 @@ public partial class MainWindow : Window
             RefreshReadProfiles(); RefreshWriteProfiles();
             ReadFolder.Text = _settings.DefaultImagesFolder;
             RefreshHardwareSelector();
+            ((App)Application.Current).SetTheme(_settings.Theme);
             await _settingsStore.SaveAsync(_settings);
             UpdateReadCommand();
         }
+    }
+
+    private void RestoreWindowPlacement()
+    {
+        var placement = WindowPlacementPolicy.Normalize(_settings.Window, MinWidth, MinHeight,
+            SystemParameters.VirtualScreenLeft, SystemParameters.VirtualScreenTop, SystemParameters.VirtualScreenWidth, SystemParameters.VirtualScreenHeight);
+        Width = placement.Width;
+        Height = placement.Height;
+        if (placement.Left is double left && placement.Top is double top)
+        {
+            WindowStartupLocation = WindowStartupLocation.Manual;
+            Left = left;
+            Top = top;
+        }
+        if (_settings.Window.Maximized) WindowState = WindowState.Maximized;
     }
 
     private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e)

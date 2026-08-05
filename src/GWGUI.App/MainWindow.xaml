@@ -371,7 +371,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <GridSplitter Grid.Row="2" Height="5" HorizontalAlignment="Stretch" ResizeDirection="Rows" />
+        <GridSplitter x:Name="ConsoleSplitter" Grid.Row="2" Height="5" HorizontalAlignment="Stretch" ResizeDirection="Rows" />
         <Border Grid.Row="3" x:Name="ConsolePanel" Background="#11151B" Padding="12">
             <Grid>
                 <Grid.RowDefinitions>

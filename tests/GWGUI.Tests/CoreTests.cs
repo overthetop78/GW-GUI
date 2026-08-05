@@ -108,6 +108,24 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void WindowPlacementRejectsAWindowOutsideAllScreens()
+    {
+        var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1400, Height = 800, Left = 9000, Top = 9000 };
+        var result = GWGUI.Domain.Settings.WindowPlacementPolicy.Normalize(settings, 1280, 720, 0, 0, 3840, 2160);
+        Assert.Null(result.Left);
+        Assert.Null(result.Top);
+    }
+
+    [Fact]
+    public void WindowPlacementKeepsAVisibleSecondaryScreenPosition()
+    {
+        var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1400, Height = 800, Left = -1500, Top = 120 };
+        var result = GWGUI.Domain.Settings.WindowPlacementPolicy.Normalize(settings, 1280, 720, -1920, 0, 5760, 2160);
+        Assert.Equal(-1500, result.Left);
+        Assert.Equal(120, result.Top);
+    }
+
+    [Fact]
     public void DefaultProfileCannotBeRenamedOrDeleted()
     {
         var store = new InMemoryProfileStore();
