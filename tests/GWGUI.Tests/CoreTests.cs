@@ -99,6 +99,8 @@ public sealed class CoreTests
 
                 Assert.IsType<MainWindowViewModel>(window.DataContext);
                 Assert.Equal("align", Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("AlignMenuItem")).Tag);
+                Assert.Contains('_', Assert.IsType<string>(Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("OptionsMenuItem")).Header));
+                Assert.Contains('_', Assert.IsType<string>(Assert.IsType<System.Windows.Controls.MenuItem>(window.FindName("HelpMenuItem")).Header));
                 var hardwareText = Assert.IsType<System.Windows.Controls.TextBlock>(window.FindName("HardwareStatusText"));
                 var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
                 var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));

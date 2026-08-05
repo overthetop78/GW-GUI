@@ -20,6 +20,8 @@ La liste finale des onglets sera confirmée après l’étude de toutes les opé
 
 Le menu Options ouvre des boîtes de dialogue. Il ne remplace pas les onglets d’opérations.
 
+Le menu est accessible au clavier par `Alt+O`. En français, le menu Aide utilise `Alt+A`; les marqueurs sont fournis par les ressources de langue et non écrits directement dans la vue.
+
 - **Options → Diagnostics**
   - Informations du contrôleur (`gw info`).
   - Bande passante USB (`gw bandwidth`).

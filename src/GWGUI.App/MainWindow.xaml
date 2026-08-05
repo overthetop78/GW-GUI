@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu>
-            <MenuItem Header="{l:Loc Menu.Options}">
+            <MenuItem x:Name="OptionsMenuItem" Header="{l:Loc Menu.Options}">
                 <MenuItem Header="{l:Loc Menu.Preferences}" Click="Preferences_Click" />
                 <MenuItem Header="{l:Loc Logs.History}" Click="LogHistory_Click" />
                 <Separator />
@@ -28,7 +28,7 @@
                     <MenuItem Header="{l:Loc Menu.Firmware}" Tag="update" Click="ToolCommand_Click" />
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="{l:Loc Menu.Help}">
+            <MenuItem x:Name="HelpMenuItem" Header="{l:Loc Menu.Help}">
                 <MenuItem Header="{l:Loc Menu.Documentation}" Click="Documentation_Click" />
                 <MenuItem Header="{l:Loc Menu.About}" Click="About_Click" />
             </MenuItem>
