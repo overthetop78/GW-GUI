@@ -93,7 +93,12 @@ public partial class MainWindow : Window
         UpdateScpInspector();
     }
 
-    private void ScpDecoder_Changed(object sender, SelectionChangedEventArgs e) => UpdateScpInspector();
+    private void ScpDecoder_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        var decoderId = (ScpDecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
+        ScpSide0?.SetDecoder(decoderId); ScpSide1?.SetDecoder(decoderId);
+        UpdateScpInspector();
+    }
 
     private void UpdateScpInspector()
     {
@@ -125,7 +130,7 @@ public partial class MainWindow : Window
             _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)), capabilities);
             _formatDetector = new ImageFormatDetector(_formatCatalog);
         }
-        ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, "Automatique") }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
+        ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
         RestoreWindowPlacement();

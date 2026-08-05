@@ -16,6 +16,7 @@
 - Survol avec informations techniques.
 - Légende claire des couleurs, secteurs et anomalies.
 - Affichage du flux brut et des résultats de décodage.
+- Les marqueurs décodés sont dessinés directement sur chaque anneau : en-têtes/adresses, données et anomalies utilisent des couleurs distinctes de la densité du flux brut.
 
 ## Décodage
 
@@ -23,4 +24,4 @@
 - Décodeurs modulaires.
 - Le moteur doit permettre la couverture complète des analyseurs proposés par HxC.
 - L’architecture reste modulaire afin que chaque famille de codage soit isolée et testable.
-- Atari/IBM PC (ISO MFM/FM) et Amiga MFM font partie du socle, puis les autres familles HxC doivent également être couvertes; cela n’est pas présenté comme une version volontairement incomplète.
+- Les décodeurs actuellement réalisés couvrent Atari/IBM PC (ISO MFM/FM), Amiga MFM, Apple II GCR et Commodore GCR. Les autres familles HxC définies dans le plan restent à couvrir intégralement; cela n’est pas présenté comme une version volontairement incomplète.

@@ -1,6 +1,6 @@
 namespace GWGUI.Scp.Decoding;
 
-public enum FluxStructureKind { Sync, IdAddressMark, DataAddressMark, DeletedDataAddressMark, AmigaSync, TimingAnomaly }
+public enum FluxStructureKind { Sync, IdAddressMark, DataAddressMark, DeletedDataAddressMark, AmigaSync, AppleAddress, AppleData, CommodoreSync, CommodoreHeader, TimingAnomaly }
 public sealed record FluxStructure(FluxStructureKind Kind, int BitOffset, int BitLength, string Description);
 public sealed record DecodedSector(byte Cylinder, byte Head, byte Number, byte SizeCode, int SizeBytes, bool HeaderCrcValid, int BitOffset);
 public sealed record FluxDecodeResult(string DecoderId, string DisplayName, double Confidence, double EstimatedBitCellTicks, IReadOnlyList<FluxStructure> Structures, IReadOnlyList<byte> DecodedBytes, IReadOnlyList<DecodedSector>? Sectors = null);
@@ -14,7 +14,7 @@ public interface IFluxDecoder
 
 public sealed class FluxDecoderRegistry
 {
-    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new RawFluxDecoder()];
+    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new RawFluxDecoder()];
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => x.Decode(revolution)).OrderByDescending(x => x.Confidence).First();
     public FluxDecodeResult Decode(string id, ScpRevolution revolution) => Decoders.First(x => x.Id == id).Decode(revolution);
 }
@@ -50,7 +50,14 @@ public sealed class RawFluxDecoder : IFluxDecoder
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var median = FluxBitstream.EstimateBitCell(revolution.FluxIntervals);
-        var anomalies = revolution.FluxIntervals.Select((value, index) => (value, index)).Where(x => x.value > median * 10).Select(x => new FluxStructure(FluxStructureKind.TimingAnomaly, x.index, 1, "Intervalle de flux exceptionnellement long.")).ToArray();
+        var anomalies = new List<FluxStructure>();
+        var bitOffset = 0;
+        foreach (var interval in revolution.FluxIntervals)
+        {
+            var bitLength = Math.Clamp((int)Math.Round(interval / median), 1, 64);
+            if (interval > median * 10) anomalies.Add(new(FluxStructureKind.TimingAnomaly, bitOffset, bitLength, "Intervalle de flux exceptionnellement long."));
+            bitOffset += bitLength;
+        }
         return new(Id, DisplayName, .05, median, anomalies, []);
     }
 }
@@ -94,6 +101,59 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
     }
 }
 
+public sealed class AppleGcrDecoder : IFluxDecoder
+{
+    public string Id => "apple2.gcr"; public string DisplayName => "Apple II GCR";
+    public FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromNrziIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>();
+        for (var offset = 0; offset + 24 <= stream.Bits.Length; offset++)
+        {
+            var kind = stream.Match(offset, 0xD5AA96, 24) ? FluxStructureKind.AppleAddress : stream.Match(offset, 0xD5AAAD, 24) ? FluxStructureKind.AppleData : (FluxStructureKind?)null;
+            if (kind is null) continue;
+            structures.Add(new(kind.Value, offset, 24, kind == FluxStructureKind.AppleAddress ? "Apple II address prologue D5 AA 96" : "Apple II data prologue D5 AA AD"));
+            bytes.AddRange(kind == FluxStructureKind.AppleAddress ? [0xd5, 0xaa, 0x96] : [0xd5, 0xaa, 0xad]); offset += 23;
+        }
+        return new(Id, DisplayName, Math.Min(1, structures.Count / 16d), stream.BitCellTicks, structures, bytes);
+    }
+}
+
+public sealed class CommodoreGcrDecoder : IFluxDecoder
+{
+    private static readonly Dictionary<int, int> Gcr = new() { [0b01010]=0,[0b01011]=1,[0b10010]=2,[0b10011]=3,[0b01110]=4,[0b01111]=5,[0b10110]=6,[0b10111]=7,[0b01001]=8,[0b11001]=9,[0b11010]=10,[0b11011]=11,[0b01101]=12,[0b11101]=13,[0b11110]=14,[0b10101]=15 };
+    public string Id => "commodore.gcr"; public string DisplayName => "Commodore GCR";
+    public FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromNrziIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>();
+        for (var offset = 0; offset < stream.Bits.Length; offset++)
+        {
+            if (!stream.Bits[offset]) continue; var end = offset; while (end < stream.Bits.Length && stream.Bits[end]) end++;
+            var length = end - offset;
+            if (length >= 10)
+            {
+                structures.Add(new(FluxStructureKind.CommodoreSync, offset, length, "Commodore GCR sync"));
+                if (TryDecodeByte(stream.Bits, end, out var value))
+                {
+                    bytes.Add(value);
+                    if (value == 0x08) structures.Add(new(FluxStructureKind.CommodoreHeader, end, 10, "Commodore GCR header block"));
+                }
+            }
+            offset = end;
+        }
+        var headers = structures.Count(x => x.Kind == FluxStructureKind.CommodoreHeader);
+        return new(Id, DisplayName, Math.Min(1, (headers * 2 + structures.Count(x => x.Kind == FluxStructureKind.CommodoreSync)) / 24d), stream.BitCellTicks, structures, bytes);
+    }
+
+    private static bool TryDecodeByte(bool[] bits, int offset, out byte value)
+    {
+        value = 0; if (offset + 10 > bits.Length) return false;
+        var high = 0; var low = 0;
+        for (var bit = 0; bit < 5; bit++) { high = (high << 1) | (bits[offset + bit] ? 1 : 0); low = (low << 1) | (bits[offset + 5 + bit] ? 1 : 0); }
+        if (!Gcr.TryGetValue(high, out var highNibble) || !Gcr.TryGetValue(low, out var lowNibble)) return false;
+        value = (byte)((highNibble << 4) | lowNibble); return true;
+    }
+}
+
 internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
 {
     public bool[] Bits { get; } = bits; public double BitCellTicks { get; } = bitCellTicks;
@@ -103,11 +163,19 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
         foreach (var interval in intervals) { var cells = Math.Clamp((int)Math.Round(interval / bitCell), 1, 32); for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true); }
         return new(bits.ToArray(), bitCell);
     }
+    public static FluxBitstream FromNrziIntervals(IReadOnlyList<uint> intervals)
+    {
+        var bitCell = EstimateBitCell(intervals, true); var bits = new List<bool>(intervals.Count * 4);
+        foreach (var interval in intervals) { var cells = Math.Clamp((int)Math.Round(interval / bitCell), 1, 64); for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true); }
+        return new(bits.ToArray(), bitCell);
+    }
     public static double EstimateBitCell(IReadOnlyList<uint> intervals, bool fm = false)
     {
         if (intervals.Count == 0) return 1; var sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return 1;
-        var lower = sorted[0]; return Math.Max(1, fm ? lower : lower / 2d);
+        var sampleLength = Math.Max(1, sorted.Length / 5); var lowerCluster = sorted.Take(sampleLength).ToArray(); var robustLower = lowerCluster[lowerCluster.Length / 2];
+        return Math.Max(1, fm ? robustLower : robustLower / 2d);
     }
     public bool Match(int offset, ushort pattern) { if (offset + 16 > Bits.Length) return false; for (var bit = 0; bit < 16; bit++) if (Bits[offset + bit] != ((pattern & (1 << (15 - bit))) != 0)) return false; return true; }
+    public bool Match(int offset, uint pattern, int length) { if (length is < 1 or > 32 || offset + length > Bits.Length) return false; for (var bit = 0; bit < length; bit++) if (Bits[offset + bit] != ((pattern & (1u << (length - 1 - bit))) != 0)) return false; return true; }
     public byte DecodeMfmByte(int offset) { byte value = 0; for (var bit = 0; bit < 8 && offset + bit * 2 + 1 < Bits.Length; bit++) if (Bits[offset + bit * 2 + 1]) value |= (byte)(1 << (7 - bit)); return value; }
 }

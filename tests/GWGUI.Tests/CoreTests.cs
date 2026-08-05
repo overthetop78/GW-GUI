@@ -519,6 +519,35 @@ public sealed class CoreTests
         var sector = Assert.Single(result.Sectors!); Assert.Equal(7, sector.Number); Assert.Equal(256, sector.SizeBytes); Assert.True(sector.HeaderCrcValid);
     }
 
+    [Fact]
+    public void AppleGcrDecoderFindsAddressAndDataProloguesDespiteShortNoise()
+    {
+        var bits = Convert.ToString(0xD5AA96, 2).PadLeft(24, '0') + "0001000" + Convert.ToString(0xD5AAAD, 2).PadLeft(24, '0') + "1";
+        var intervals = BitsToIntervals(bits, 40); intervals.Insert(0, 2);
+        var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData);
+        Assert.Equal(40, result.EstimatedBitCellTicks);
+    }
+
+    [Fact]
+    public void CommodoreGcrDecoderFindsSyncAndHeaderBlock()
+    {
+        const string headerByte08 = "01010" + "01001";
+        var intervals = BitsToIntervals("111111111111" + headerByte08 + "1", 40);
+        var result = new CommodoreGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.CommodoreSync);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.CommodoreHeader);
+        Assert.Contains((byte)0x08, result.DecodedBytes);
+    }
+
+    [Fact]
+    public void DecoderRegistryExposesGcrFamilies()
+    {
+        var ids = new FluxDecoderRegistry().Decoders.Select(decoder => decoder.Id).ToHashSet();
+        Assert.Contains("apple2.gcr", ids); Assert.Contains("commodore.gcr", ids);
+    }
+
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
     private static string EncodeFmBytes(params byte[] values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "1" + (((value >> (7 - bit)) & 1) != 0 ? "1" : "0"))));
     private static List<uint> BitsToIntervals(string bits, uint cellTicks) { var result = new List<uint>(); var cells = 0; foreach (var bit in bits) { cells++; if (bit == '1') { result.Add((uint)cells * cellTicks); cells = 0; } } return result; }

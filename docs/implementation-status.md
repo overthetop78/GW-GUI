@@ -33,8 +33,8 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - La détection en Écriture reconnaît par taille toutes les géométries IBM et Atari cataloguées, ainsi que les ADF Amiga DD/HD et Acorn; ses explications sont localisées en français et en anglais.
 - Tous les noms conviviaux du catalogue et des extensions sont fournis par les ressources de la langue active. Les tags de multiconversion sont des identifiants stables indépendants de la traduction, par exemple `[PC-720]`, `[ST-720]` et `[AMIGA-DD]`.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
-- Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
-- Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
+- Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur. Les structures reconnues sont superposées aux pistes avec une légende distincte pour en-têtes, données et anomalies.
+- Décodeurs flux brut, ISO MFM, ISO FM, Amiga MFM, Apple II GCR et Commodore GCR; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO et détection des prologues/blocs GCR.
 
 ## Encore à réaliser avant achèvement
 
@@ -51,7 +51,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 71 réussis, dont localisation et stabilité des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 75 réussis, dont localisation et stabilité des tags du catalogue, migrations/récupération des réglages, rotation du journal, validation d’options, options avancées, détection des géométries, capacités de formats, décodeurs MFM/FM/GCR, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
 - Packaging local vérifié : ZIP portable et installateur Inno Setup 6.7.3 compilés, deux checksums recalculés avec succès, ressources limitées à EN/FR et aucun PDB distribué.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.
