@@ -216,6 +216,55 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void OperationResultPresenterDistinguishesSingleSuccessFailureAndCancellation()
+    {
+        var presenter = new OperationResultPresenter();
+        static OperationOutcome<GwExecutionResult> Outcome(int code, bool cancelled = false) =>
+            new(true, new GwExecutionResult(code, cancelled, TimeSpan.FromSeconds(2), []), null);
+
+        var success = presenter.Present(Outcome(0));
+        var failure = presenter.Present(Outcome(3));
+        var cancelled = presenter.Present(Outcome(-1, true));
+
+        Assert.Equal(OperationResultState.Success, success.State);
+        Assert.Equal(OperationResultState.Error, failure.State);
+        Assert.Equal(OperationResultState.Cancelled, cancelled.State);
+        Assert.Equal("Operation.Finished", success.Messages.Single().ResourceKey);
+        Assert.Equal([0, "0:00:02"], success.Messages.Single().Arguments);
+        Assert.True(success.Messages.Single().StartOnNewLine);
+    }
+
+    [Fact]
+    public void OperationResultPresenterBuildsExactPartialBatchSummary()
+    {
+        var command = new GwCommand("gw.exe", "convert", []);
+        var items = new[]
+        {
+            new GwBatchItemResult(new GwBatchItem("disk.ima", command), new GwExecutionResult(0, false, TimeSpan.Zero, [])),
+            new GwBatchItemResult(new GwBatchItem("disk.img", command), new GwExecutionResult(2, false, TimeSpan.Zero, []))
+        };
+
+        var presentation = new OperationResultPresenter().Present(new OperationOutcome<GwBatchExecutionResult>(true, new(items, false), null));
+
+        Assert.Equal(OperationResultState.Error, presentation.State);
+        Assert.Collection(presentation.Messages,
+            summary => { Assert.Equal("Conversion.Summary", summary.ResourceKey); Assert.Equal([1, 1], summary.Arguments); Assert.True(summary.StartOnNewLine); },
+            failures => { Assert.Equal("Conversion.Failures", failures.ResourceKey); Assert.Equal(["disk.img"], failures.Arguments); Assert.False(failures.StartOnNewLine); });
+    }
+
+    [Fact]
+    public void OperationResultPresenterTurnsThrownExceptionsIntoLocalizedErrors()
+    {
+        var presentation = new OperationResultPresenter().Present(new OperationOutcome<GwExecutionResult>(false, null, new IOException("broken")));
+
+        Assert.Equal(OperationResultState.Error, presentation.State);
+        var message = Assert.Single(presentation.Messages);
+        Assert.Equal("Operation.Error", message.ResourceKey);
+        Assert.Equal(["broken"], message.Arguments);
+        Assert.False(message.StartOnNewLine);
+    }
+
+    [Fact]
     public async Task RunnerRejectsASecondConcurrentCommand()
     {
         var runner = new GreaseweazleRunner();

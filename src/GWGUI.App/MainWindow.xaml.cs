@@ -32,6 +32,7 @@ public partial class MainWindow : Window
     private readonly IGreaseweazleRunner _runner;
     private AppSettings _settings = new();
     private readonly OperationCoordinator _operation = new();
+    private readonly OperationResultPresenter _operationResultPresenter = new();
     private IImageFormatCatalog _formatCatalog = null!;
     private IProfileStore _profiles = new InMemoryProfileStore();
     private ImageFormatDetector _formatDetector;
@@ -235,8 +236,7 @@ public partial class MainWindow : Window
         WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
-        if (outcome.Error is { } error) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", error.Message)); }
-        else { var result = outcome.Result!; SetOperationResult(result); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
+        ApplyOperationResult(_operationResultPresenter.Present(outcome));
         EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
 
@@ -387,13 +387,7 @@ public partial class MainWindow : Window
             var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), ConversionCommandBuilder.Build(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
             return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); LogOutput.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), token);
         });
-        if (outcome.Error is { } error) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", error.Message)); }
-        else
-        {
-            var result = outcome.Result!;
-            if (result.WasCancelled) SetOperationCancelled(); else if (result.FailedLabels.Count == 0) SetOperationSuccess(); else SetOperationError();
-            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Conversion.Summary", result.SuccessfulCount, result.FailedLabels.Count) + (result.FailedLabels.Count > 0 ? LocExtension.Get("Conversion.Failures", string.Join(", ", result.FailedLabels)) : ""));
-        }
+        ApplyOperationResult(_operationResultPresenter.Present(outcome));
         EndProgress(); ConvertExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
 
@@ -742,12 +736,9 @@ public partial class MainWindow : Window
         BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
-        if (outcome.Error is { } error) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", error.Message)); }
-        else
+        ApplyOperationResult(_operationResultPresenter.Present(outcome));
+        if (outcome.Result is { } result)
         {
-            var result = outcome.Result!;
-            SetOperationResult(result);
-            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g")));
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
             var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
             if (result.IsSuccess) _viewModel.Read.TryAdvanceSequence();
@@ -909,8 +900,7 @@ public partial class MainWindow : Window
         button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, progress, token));
-        if (outcome.Error is { } error) { SetOperationError(); LogOutput.AppendText(LocExtension.Get("Operation.Error", error.Message)); }
-        else { var result = outcome.Result!; SetOperationResult(result); LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Operation.Finished", result.ExitCode, result.Duration.ToString("g"))); }
+        ApplyOperationResult(_operationResultPresenter.Present(outcome));
         EndProgress(); button.Content = LocExtension.Get("Common.Execute");
     }
 
@@ -952,16 +942,20 @@ public partial class MainWindow : Window
         _viewModel.ProgressVisibility = Visibility.Collapsed;
     }
 
-    private void SetOperationResult(GwExecutionResult result)
+    private void ApplyOperationResult(OperationResultPresentation presentation)
     {
-        if (result.WasCancelled) SetOperationCancelled();
-        else if (result.IsSuccess) SetOperationSuccess();
-        else SetOperationError();
+        switch (presentation.State)
+        {
+            case OperationResultState.Success: SetOperationState("Status.Success", Color.FromRgb(63, 171, 91)); break;
+            case OperationResultState.Cancelled: SetOperationState("Status.Cancelled", Color.FromRgb(220, 148, 45)); break;
+            default: SetOperationState("Status.Error", Color.FromRgb(210, 66, 66)); break;
+        }
+        foreach (var message in presentation.Messages)
+        {
+            if (message.StartOnNewLine) LogOutput.AppendText(Environment.NewLine);
+            LogOutput.AppendText(LocExtension.Get(message.ResourceKey, message.Arguments.ToArray()));
+        }
     }
-
-    private void SetOperationSuccess() => SetOperationState("Status.Success", Color.FromRgb(63, 171, 91));
-    private void SetOperationError() => SetOperationState("Status.Error", Color.FromRgb(210, 66, 66));
-    private void SetOperationCancelled() => SetOperationState("Status.Cancelled", Color.FromRgb(220, 148, 45));
     private void SetOperationState(string resourceKey, Color color)
     {
         _viewModel.OperationText = LocExtension.Get(resourceKey);
