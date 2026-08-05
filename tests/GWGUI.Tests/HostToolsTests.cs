@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using GWGUI.Infrastructure.HostTools;
+using GWGUI.Domain.HostTools;
 
 namespace GWGUI.Tests;
 
@@ -108,6 +109,45 @@ public sealed class HostToolsTests
             await Assert.ThrowsAsync<InvalidDataException>(() => manager.InstallAsync(new("1.23", new Uri("https://example.test/win64.zip"), "asset.zip", new string('0', 64))));
         }
         finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
+    }
+
+    [Fact]
+    public void SelectionAndRollbackPreserveBothValidInstallations()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-selection-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var first = Path.Combine(root, "1.22", "gw.exe");
+            var second = Path.Combine(root, "1.23", "gw.exe");
+            Directory.CreateDirectory(Path.GetDirectoryName(first)!);
+            Directory.CreateDirectory(Path.GetDirectoryName(second)!);
+            File.WriteAllText(first, "first");
+            File.WriteAllText(second, "second");
+            IGwInstallationManager manager = new GwInstallationManager(new HttpClient(), root);
+
+            var selected = manager.Select(first, null, new(second, "1.23", true));
+            Assert.Equal(second, selected.ExecutablePath);
+            Assert.Equal(first, selected.PreviousExecutablePath);
+            Assert.Equal("1.23", selected.InstalledVersion);
+
+            var unchanged = manager.Select(selected.ExecutablePath, selected.PreviousExecutablePath, new(second, "1.23", true));
+            Assert.Equal(first, unchanged.PreviousExecutablePath);
+
+            var rolledBack = manager.Rollback(unchanged.ExecutablePath, unchanged.PreviousExecutablePath);
+            Assert.Equal(first, rolledBack.ExecutablePath);
+            Assert.Equal(second, rolledBack.PreviousExecutablePath);
+            Assert.Null(rolledBack.InstalledVersion);
+        }
+        finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
+    }
+
+    [Fact]
+    public void SelectionAndRollbackRejectMissingExecutables()
+    {
+        IGwInstallationManager manager = new GwInstallationManager(new HttpClient(), Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N")));
+        Assert.Throws<FileNotFoundException>(() => manager.Select(null, null, new("missing-gw.exe", null, false)));
+        Assert.Throws<FileNotFoundException>(() => manager.Rollback(null, "missing-previous-gw.exe"));
     }
 
     private static byte[] CreateArchive(params (string Name, string Content)[] entries)

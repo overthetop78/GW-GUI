@@ -29,12 +29,12 @@ public partial class OptionsWindow : Window
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> Profiles { get; } = [];
 
-    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null)
+    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null)
     {
         InitializeComponent();
         _settings = settings;
         var managedRoot = StoragePaths.HostToolsDirectory;
-        _hostTools = new GwInstallationManager(new HttpClient(), managedRoot);
+        _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _previousGwPath = settings.PreviousGwExecutablePath; _installedVersion = settings.InstalledHostToolsVersion; _availableVersion = settings.AvailableHostToolsVersion; _lastHostToolsCheck = settings.LastHostToolsCheckUtc;
         _controllers = settings.Controllers.Select(x => new ControllerSettings { UsbId = x.UsbId, LastPort = x.LastPort, Model = x.Model, IsAvailable = x.IsAvailable }).ToList();
@@ -62,14 +62,14 @@ public partial class OptionsWindow : Window
     private void BrowseGw_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get("Options.ExecutableFilter") };
-        if (dialog.ShowDialog(this) == true) SetGwPath(dialog.FileName, null);
+        if (dialog.ShowDialog(this) == true) SetGwPath(new(dialog.FileName, null, false));
     }
 
     private void DetectHostTools_Click(object sender, RoutedEventArgs e)
     {
         var found = _hostTools.Detect(GwPathText.Text).FirstOrDefault();
         if (found is null) { HostToolsStatus.Text = LocExtension.Get("HostTools.None"); return; }
-        SetGwPath(found.ExecutablePath, found.Version);
+        SetGwPath(found);
         HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", found.ExecutablePath);
     }
 
@@ -91,24 +91,30 @@ public partial class OptionsWindow : Window
             HostToolsProgress.Visibility = Visibility.Visible;
             var progress = new Progress<double>(value => HostToolsProgress.Value = value * 100);
             var installed = await _hostTools.InstallAsync(release, progress);
-            SetGwPath(installed.ExecutablePath, installed.Version);
+            SetGwPath(installed);
             HostToolsStatus.Text = LocExtension.Get("HostTools.Installed", installed.Version ?? release.Version);
         });
     }
 
     private void RollbackHostTools_Click(object sender, RoutedEventArgs e)
     {
-        if (!File.Exists(_previousGwPath)) { MessageBox.Show(this, LocExtension.Get("HostTools.NoPrevious"), LocExtension.Get("HostTools.Title")); return; }
-        var current = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text;
-        GwPathText.Text = _previousGwPath; _previousGwPath = current; _installedVersion = null;
+        HostToolsSelection selection;
+        try { selection = _hostTools.Rollback(GwPathText.Text, _previousGwPath); }
+        catch (FileNotFoundException) { MessageBox.Show(this, LocExtension.Get("HostTools.NoPrevious"), LocExtension.Get("HostTools.Title")); return; }
+        ApplySelection(selection);
         HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", GwPathText.Text);
     }
 
-    private void SetGwPath(string path, string? version)
+    private void SetGwPath(HostToolsInstallation installation)
     {
-        var current = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text;
-        if (!string.Equals(current, path, StringComparison.OrdinalIgnoreCase) && File.Exists(current)) _previousGwPath = current;
-        GwPathText.Text = path; _installedVersion = version;
+        ApplySelection(_hostTools.Select(GwPathText.Text, _previousGwPath, installation));
+    }
+
+    private void ApplySelection(HostToolsSelection selection)
+    {
+        GwPathText.Text = selection.ExecutablePath ?? "";
+        _previousGwPath = selection.PreviousExecutablePath;
+        _installedVersion = selection.InstalledVersion;
     }
 
     private async Task WithHostToolsBusyAsync(Func<Task> action)

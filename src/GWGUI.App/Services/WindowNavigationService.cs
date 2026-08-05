@@ -1,5 +1,6 @@
 using System.Windows;
 using GWGUI.Domain.Settings;
+using GWGUI.Domain.HostTools;
 using GWGUI.Infrastructure.Processes;
 
 namespace GWGUI.App.Services;
@@ -14,9 +15,9 @@ public interface IWindowNavigationService
     void ShowGwTool(GwToolWindowRequest request);
 }
 
-public sealed class WpfWindowNavigationService(Window owner) : IWindowNavigationService
+public sealed class WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools = null) : IWindowNavigationService
 {
-    public bool ShowOptions(AppSettings settings) => new OptionsWindow(settings) { Owner = owner }.ShowDialog() == true;
+    public bool ShowOptions(AppSettings settings) => new OptionsWindow(settings, hostTools: hostTools) { Owner = owner }.ShowDialog() == true;
     public void ShowLogHistory(string logsDirectory) => new LogHistoryWindow(logsDirectory) { Owner = owner }.ShowDialog();
     public void ShowAbout() => new AboutWindow { Owner = owner }.ShowDialog();
     public void ShowGwTool(GwToolWindowRequest request)

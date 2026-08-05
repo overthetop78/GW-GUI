@@ -15,6 +15,7 @@ using GWGUI.Domain.Write;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Maintenance;
 using GWGUI.Domain.Hardware;
+using GWGUI.Domain.HostTools;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Infrastructure.Processes;
@@ -31,6 +32,7 @@ public partial class MainWindow : Window
     private readonly ISettingsStore _settingsStore;
     private readonly IGreaseweazleRunner _runner;
     private readonly IGwCommandBuilder _commandBuilder;
+    private readonly IGwInstallationManager _hostTools;
     private AppSettings _settings = new();
     private readonly OperationCoordinator _operation = new();
     private readonly OperationResultPresenter _operationResultPresenter = new();
@@ -59,16 +61,17 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
 
-    public MainWindow() : this(null, null, null, null, null) { }
+    public MainWindow() : this(null, null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null)
     {
         InitializeComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
-        _navigation = navigation ?? new WpfWindowNavigationService(this);
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
+        _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), StoragePaths.HostToolsDirectory);
+        _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -993,9 +996,7 @@ public partial class MainWindow : Window
         }
         try
         {
-            var root = StoragePaths.HostToolsDirectory;
-            var manager = new GwInstallationManager(new HttpClient(), root);
-            var release = await manager.GetLatestReleaseAsync();
+            var release = await _hostTools.GetLatestReleaseAsync();
             _settings.AvailableHostToolsVersion = release.Version; _settings.LastHostToolsCheckUtc = DateTimeOffset.UtcNow;
             ShowHostToolsUpdateIfNeeded();
         }

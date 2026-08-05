@@ -92,6 +92,22 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
         finally { if (Directory.Exists(temporary)) Directory.Delete(temporary, recursive: true); }
     }
 
+    public HostToolsSelection Select(string? currentPath, string? previousPath, HostToolsInstallation selected)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(selected.ExecutablePath);
+        if (!File.Exists(selected.ExecutablePath)) throw new FileNotFoundException("The selected gw executable does not exist.", selected.ExecutablePath);
+        var previous = !string.Equals(currentPath, selected.ExecutablePath, StringComparison.OrdinalIgnoreCase) && File.Exists(currentPath)
+            ? currentPath
+            : previousPath;
+        return new(selected.ExecutablePath, previous, selected.Version);
+    }
+
+    public HostToolsSelection Rollback(string? currentPath, string? previousPath)
+    {
+        if (!File.Exists(previousPath)) throw new FileNotFoundException("The previous gw executable does not exist.", previousPath);
+        return new(previousPath, string.IsNullOrWhiteSpace(currentPath) ? null : currentPath, null);
+    }
+
     private static string? VersionFromPath(string path) => VersionRegex().Match(path) is { Success: true } match ? match.Groups[1].Value : null;
     private static bool IsInside(string path, string root) { var relative = Path.GetRelativePath(Path.GetFullPath(root), Path.GetFullPath(path)); return relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar); }
     private static void EnsureInside(string path, string root) { if (!IsInside(path, root)) throw new InvalidOperationException("Path escapes the managed Host Tools folder."); }
