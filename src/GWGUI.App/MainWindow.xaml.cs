@@ -186,7 +186,7 @@ public partial class MainWindow : Window
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get("Common.DiskImageFilter"), InitialDirectory = ReadFolder.Text };
         if (dialog.ShowDialog(this) != true) return;
-        WriteSourceText.Text = dialog.FileName;
+        _viewModel.Write.SourcePath = dialog.FileName;
         _detectedWriteFormat = _formatDetector.Detect(dialog.FileName, new FileInfo(dialog.FileName).Length);
         WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} — {LocExtension.Get(_detectedWriteFormat.ExplanationKey)}";
         WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
@@ -205,21 +205,9 @@ public partial class MainWindow : Window
 
     private GwCommand BuildWriteCommand()
     {
-        var options = new List<EnabledOption>();
-        if (WriteEraseEmpty?.IsChecked == true) options.Add(new("--erase-empty"));
-        if (WriteRetriesEnabled?.IsChecked == true) options.Add(new("--retries", WriteRetriesValue.Text.Trim()));
-        if (WriteTracksEnabled?.IsChecked == true) options.Add(new("--tracks", WriteTracksValue.Text.Trim()));
-        if (WritePreErase?.IsChecked == true) options.Add(new("--pre-erase"));
-        if (WriteFakeIndexEnabled?.IsChecked == true) options.Add(new("--fake-index", WriteFakeIndexValue.Text.Trim()));
-        if (WriteHardSectors?.IsChecked == true) options.Add(new("--hard-sectors"));
-        if (WritePrecompEnabled?.IsChecked == true) options.Add(new("--precomp", WritePrecompValue.Text.Trim()));
-        if (WriteReverse?.IsChecked == true) options.Add(new("--reverse"));
-        if (WriteDenselEnabled?.IsChecked == true) options.Add(new("--densel", SelectedText(WriteDenselValue)));
-        if (WriteTg43?.IsChecked == true) options.Add(new("--gen-tg43"));
-        if (WriteDiskDefsEnabled?.IsChecked == true) options.Add(new("--diskdefs", WriteDiskDefsValue.Text.Trim()));
-        return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", WriteSourceText.Text,
-            (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, options,
-            WriteNoVerify?.IsChecked == true, SelectedHardware()?.Port, SelectedDriveArgument(), WriteExpertArguments?.Text));
+        return WriteCommandBuilder.Build(new WriteRequest(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Write.SourcePath,
+            (WriteFormatCombo?.SelectedItem as DiskFormat)?.Id ?? _detectedWriteFormat?.Format?.Id, _viewModel.Write.BuildOptions(),
+            _viewModel.Write.DisableVerification, SelectedHardware()?.Port, SelectedDriveArgument(), _viewModel.Write.ExpertArguments));
     }
 
     private void UpdateWriteCommand()
@@ -241,7 +229,7 @@ public partial class MainWindow : Window
         GwCommand command;
         try { command = BuildWriteCommand(); }
         catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Write.Title")); return; }
-        var warning = LocExtension.Get(WriteNoVerify.IsChecked == true ? "Write.VerifyOff" : "Write.VerifyOn");
+        var warning = LocExtension.Get(_viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (MessageBox.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) return;
         _cancellation = new CancellationTokenSource(); WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
@@ -254,18 +242,7 @@ public partial class MainWindow : Window
     private void WriteProfile_Changed(object sender, SelectionChangedEventArgs e)
     {
         if (WriteProfileCombo.SelectedItem is not OperationProfile profile || WriteNoVerify is null) return;
-        WriteNoVerify.IsChecked = profile.EnabledOptions.Contains("no-verify"); WriteEraseEmpty.IsChecked = profile.EnabledOptions.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = profile.EnabledOptions.Contains("retries");
-        WriteTracksEnabled.IsChecked = profile.EnabledOptions.Contains("tracks"); WritePreErase.IsChecked = profile.EnabledOptions.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = profile.EnabledOptions.Contains("fake-index"); WriteHardSectors.IsChecked = profile.EnabledOptions.Contains("hard-sectors");
-        WritePrecompEnabled.IsChecked = profile.EnabledOptions.Contains("precomp"); WriteReverse.IsChecked = profile.EnabledOptions.Contains("reverse"); WriteDenselEnabled.IsChecked = profile.EnabledOptions.Contains("densel"); WriteTg43.IsChecked = profile.EnabledOptions.Contains("gen-tg43");
-        WriteDiskDefsEnabled.IsChecked = profile.EnabledOptions.Contains("diskdefs");
-        if (profile.Values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries;
-        if (profile.Values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks;
-        if (profile.Values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex;
-        if (profile.Values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp;
-        if (profile.Values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0;
-        if (profile.Values.TryGetValue("diskdefs", out var diskdefs)) WriteDiskDefsValue.Text = diskdefs;
-        WriteExpertArguments.Text = profile.Values.GetValueOrDefault("expert", "");
-        if (profile.IsSystem) WriteNoVerify.IsChecked = false;
+        _viewModel.Write.ApplyOptions(profile.EnabledOptions, profile.Values);
         UpdateWriteCommand();
         UpdateProfileStatus();
     }
@@ -275,11 +252,8 @@ public partial class MainWindow : Window
     private void SaveWriteProfile_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new ProfileNameWindow { Owner = this }; if (dialog.ShowDialog() != true) return;
-        var enabled = new HashSet<string>(); if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries");
-        if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors");
-        if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43");
-        if (WriteDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
-        var values = new Dictionary<string, string> { ["retries"] = WriteRetriesValue.Text, ["tracks"] = WriteTracksValue.Text, ["fake-index"] = WriteFakeIndexValue.Text, ["precomp"] = WritePrecompValue.Text, ["densel"] = SelectedText(WriteDenselValue), ["diskdefs"] = WriteDiskDefsValue.Text, ["expert"] = WriteExpertArguments.Text };
+        var enabled = _viewModel.Write.CaptureEnabledOptions();
+        var values = _viewModel.Write.CaptureValues();
         var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, dialog.ProfileName, values, enabled);
         try { profile = _profiles.Save(profile); } catch (InvalidOperationException) { if (MessageBox.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo) != MessageBoxResult.Yes) return; profile = _profiles.Save(profile, true); }
         RefreshWriteProfiles(profile.Id);
@@ -647,10 +621,10 @@ public partial class MainWindow : Window
     private void ReadHardSectors_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableHardSectors(); ReadInput_Changed(sender, e); }
     private void ReadDensel_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableDensel(); ReadInput_Changed(sender, e); }
     private void ReadTg43_Checked(object sender, RoutedEventArgs e) { _viewModel.Read.EnableTg43(); ReadInput_Changed(sender, e); }
-    private void WriteFakeIndex_Checked(object sender, RoutedEventArgs e) { if (WriteHardSectors is not null) WriteHardSectors.IsChecked = false; WriteInput_Changed(sender, e); }
-    private void WriteHardSectors_Checked(object sender, RoutedEventArgs e) { if (WriteFakeIndexEnabled is not null) WriteFakeIndexEnabled.IsChecked = false; WriteInput_Changed(sender, e); }
-    private void WriteDensel_Checked(object sender, RoutedEventArgs e) { if (WriteTg43 is not null) WriteTg43.IsChecked = false; WriteInput_Changed(sender, e); }
-    private void WriteTg43_Checked(object sender, RoutedEventArgs e) { if (WriteDenselEnabled is not null) WriteDenselEnabled.IsChecked = false; WriteInput_Changed(sender, e); }
+    private void WriteFakeIndex_Checked(object sender, RoutedEventArgs e) { _viewModel.Write.EnableFakeIndex(); WriteInput_Changed(sender, e); }
+    private void WriteHardSectors_Checked(object sender, RoutedEventArgs e) { _viewModel.Write.EnableHardSectors(); WriteInput_Changed(sender, e); }
+    private void WriteDensel_Checked(object sender, RoutedEventArgs e) { _viewModel.Write.EnableDensel(); WriteInput_Changed(sender, e); }
+    private void WriteTg43_Checked(object sender, RoutedEventArgs e) { _viewModel.Write.EnableTg43(); WriteInput_Changed(sender, e); }
 
     private void BrowseReadDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(ReadDiskDefsValue, ReadDiskDefsEnabled, UpdateReadCommand);
     private void BrowseWriteDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(WriteDiskDefsValue, WriteDiskDefsEnabled, UpdateWriteCommand);
@@ -667,6 +641,7 @@ public partial class MainWindow : Window
             return;
         }
         if (ReferenceEquals(target, ReadDiskDefsValue)) { _viewModel.Read.DiskDefs.Value = dialog.FileName; _viewModel.Read.DiskDefs.Enabled = true; }
+        else if (ReferenceEquals(target, WriteDiskDefsValue)) { _viewModel.Write.DiskDefs.Value = dialog.FileName; _viewModel.Write.DiskDefs.Enabled = true; }
         else { target.Text = dialog.FileName; enabled.IsChecked = true; }
         RefreshFormatSelectors();
         refresh();
@@ -826,18 +801,13 @@ public partial class MainWindow : Window
 
     private void RestoreWriteSettings()
     {
-        var enabled = _settings.Write.EnabledOptions;
-        WriteNoVerify.IsChecked = enabled.Contains("no-verify"); WriteEraseEmpty.IsChecked = enabled.Contains("erase-empty"); WriteRetriesEnabled.IsChecked = enabled.Contains("retries"); WriteTracksEnabled.IsChecked = enabled.Contains("tracks"); WritePreErase.IsChecked = enabled.Contains("pre-erase"); WriteFakeIndexEnabled.IsChecked = enabled.Contains("fake-index"); WriteHardSectors.IsChecked = enabled.Contains("hard-sectors"); WritePrecompEnabled.IsChecked = enabled.Contains("precomp"); WriteReverse.IsChecked = enabled.Contains("reverse"); WriteDenselEnabled.IsChecked = enabled.Contains("densel"); WriteTg43.IsChecked = enabled.Contains("gen-tg43"); WriteDiskDefsEnabled.IsChecked = enabled.Contains("diskdefs");
-        var values = _settings.Write.OptionValues;
-        if (values.TryGetValue("retries", out var retries)) WriteRetriesValue.Text = retries; if (values.TryGetValue("tracks", out var tracks)) WriteTracksValue.Text = tracks; if (values.TryGetValue("fake-index", out var fakeIndex)) WriteFakeIndexValue.Text = fakeIndex; if (values.TryGetValue("precomp", out var precomp)) WritePrecompValue.Text = precomp; if (values.TryGetValue("densel", out var densel)) WriteDenselValue.SelectedIndex = densel == "L" ? 1 : 0; if (values.TryGetValue("diskdefs", out var diskdefs)) WriteDiskDefsValue.Text = diskdefs; WriteExpertArguments.Text = values.GetValueOrDefault("expert", "");
+        _viewModel.Write.ApplyOptions(_settings.Write.EnabledOptions, _settings.Write.OptionValues);
     }
 
     private void CaptureWriteSettings()
     {
-        var enabled = _settings.Write.EnabledOptions = [];
-        if (WriteNoVerify.IsChecked == true) enabled.Add("no-verify"); if (WriteEraseEmpty.IsChecked == true) enabled.Add("erase-empty"); if (WriteRetriesEnabled.IsChecked == true) enabled.Add("retries"); if (WriteTracksEnabled.IsChecked == true) enabled.Add("tracks"); if (WritePreErase.IsChecked == true) enabled.Add("pre-erase"); if (WriteFakeIndexEnabled.IsChecked == true) enabled.Add("fake-index"); if (WriteHardSectors.IsChecked == true) enabled.Add("hard-sectors"); if (WritePrecompEnabled.IsChecked == true) enabled.Add("precomp"); if (WriteReverse.IsChecked == true) enabled.Add("reverse"); if (WriteDenselEnabled.IsChecked == true) enabled.Add("densel"); if (WriteTg43.IsChecked == true) enabled.Add("gen-tg43"); if (WriteDiskDefsEnabled.IsChecked == true) enabled.Add("diskdefs");
-        var values = _settings.Write.OptionValues;
-        values["retries"] = WriteRetriesValue.Text; values["tracks"] = WriteTracksValue.Text; values["fake-index"] = WriteFakeIndexValue.Text; values["precomp"] = WritePrecompValue.Text; values["densel"] = SelectedText(WriteDenselValue); values["diskdefs"] = WriteDiskDefsValue.Text; values["expert"] = WriteExpertArguments.Text;
+        _settings.Write.EnabledOptions = _viewModel.Write.CaptureEnabledOptions();
+        _settings.Write.OptionValues = _viewModel.Write.CaptureValues();
     }
 
     private async void Preferences_Click(object sender, RoutedEventArgs e)

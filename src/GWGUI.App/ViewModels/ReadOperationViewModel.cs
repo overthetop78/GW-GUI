@@ -16,18 +16,18 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
     private string _sequenceValue = "1";
     private string _expertArguments = "";
 
-    public ReadValueOption Revs { get; } = new("--revs", "5");
-    public ReadValueOption Retries { get; } = new("--retries", "5");
-    public ReadValueOption Tracks { get; } = new("--tracks", "c=0-79:h=0-1");
-    public ReadValueOption SeekRetries { get; } = new("--seek-retries", "0");
-    public ReadValueOption FakeIndex { get; } = new("--fake-index", "300rpm");
-    public ReadFlagOption HardSectors { get; } = new("--hard-sectors");
-    public ReadValueOption AdjustSpeed { get; } = new("--adjust-speed", "300rpm");
-    public ReadValueOption Pll { get; } = new("--pll", "period=5:phase=60");
-    public ReadFlagOption Reverse { get; } = new("--reverse");
-    public ReadValueOption Densel { get; } = new("--densel", "H");
-    public ReadFlagOption Tg43 { get; } = new("--gen-tg43");
-    public ReadValueOption DiskDefs { get; } = new("--diskdefs", "");
+    public ValueOptionViewModel Revs { get; } = new("--revs", "5");
+    public ValueOptionViewModel Retries { get; } = new("--retries", "5");
+    public ValueOptionViewModel Tracks { get; } = new("--tracks", "c=0-79:h=0-1");
+    public ValueOptionViewModel SeekRetries { get; } = new("--seek-retries", "0");
+    public ValueOptionViewModel FakeIndex { get; } = new("--fake-index", "300rpm");
+    public FlagOptionViewModel HardSectors { get; } = new("--hard-sectors");
+    public ValueOptionViewModel AdjustSpeed { get; } = new("--adjust-speed", "300rpm");
+    public ValueOptionViewModel Pll { get; } = new("--pll", "period=5:phase=60");
+    public FlagOptionViewModel Reverse { get; } = new("--reverse");
+    public ValueOptionViewModel Densel { get; } = new("--densel", "H");
+    public FlagOptionViewModel Tg43 { get; } = new("--gen-tg43");
+    public ValueOptionViewModel DiskDefs { get; } = new("--diskdefs", "");
 
     public string FileName { get => _fileName; set => Set(ref _fileName, value); }
     public string Folder { get => _folder; set => Set(ref _folder, value); }
@@ -57,14 +57,14 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
     }
 
     public IReadOnlyList<EnabledOption> BuildOptions() =>
-        new ReadOptionBase[] { Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs }
+        AllOptions()
             .Where(option => option.Enabled)
             .Select(option => option.ToEnabledOption())
             .ToArray();
 
     public void ResetOptionalSettings()
     {
-        foreach (var option in new ReadOptionBase[] { Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs })
+        foreach (var option in AllOptions())
             option.Enabled = false;
         ExpertArguments = "";
     }
@@ -80,7 +80,7 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
         {
             var key = option.Argument.TrimStart('-');
             option.Enabled = enabled.Contains(key);
-            if (option is ReadValueOption valueOption && values.TryGetValue(key, out var value)) valueOption.Value = value;
+            if (option is ValueOptionViewModel valueOption && values.TryGetValue(key, out var value)) valueOption.Value = value;
         }
         ExpertArguments = values.GetValueOrDefault("expert", "");
     }
@@ -89,12 +89,12 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
 
     public Dictionary<string, string> CaptureValues()
     {
-        var values = AllOptions().OfType<ReadValueOption>().ToDictionary(option => option.Argument.TrimStart('-'), option => option.Value);
+        var values = AllOptions().OfType<ValueOptionViewModel>().ToDictionary(option => option.Argument.TrimStart('-'), option => option.Value);
         values["expert"] = ExpertArguments;
         return values;
     }
 
-    private IEnumerable<ReadOptionBase> AllOptions() => [Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs];
+    private IEnumerable<OperationOptionViewModelBase> AllOptions() => [Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs];
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -105,26 +105,4 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         if (propertyName == nameof(SequenceKindIndex)) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SequenceKind)));
     }
-}
-
-public abstract class ReadOptionBase(string argument) : INotifyPropertyChanged
-{
-    private bool _enabled;
-    public string Argument { get; } = argument;
-    public bool Enabled { get => _enabled; set { if (_enabled == value) return; _enabled = value; PropertyChanged?.Invoke(this, new(nameof(Enabled))); } }
-    public abstract EnabledOption ToEnabledOption();
-    public event PropertyChangedEventHandler? PropertyChanged;
-    protected void Changed(string propertyName) => PropertyChanged?.Invoke(this, new(propertyName));
-}
-
-public sealed class ReadFlagOption(string argument) : ReadOptionBase(argument)
-{
-    public override EnabledOption ToEnabledOption() => new(Argument);
-}
-
-public sealed class ReadValueOption(string argument, string initialValue) : ReadOptionBase(argument)
-{
-    private string _value = initialValue;
-    public string Value { get => _value; set { if (_value == value) return; _value = value; Changed(nameof(Value)); } }
-    public override EnabledOption ToEnabledOption() => new(Argument, Value.Trim());
 }

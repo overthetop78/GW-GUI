@@ -21,6 +21,7 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     private string _hostToolsUpdateText = "";
 
     public ReadOperationViewModel Read { get; } = new();
+    public WriteOperationViewModel Write { get; } = new();
 
     public string HardwareText { get => _hardwareText; set => Set(ref _hardwareText, value); }
     public Brush HardwareBrush { get => _hardwareBrush; set => Set(ref _hardwareBrush, value); }

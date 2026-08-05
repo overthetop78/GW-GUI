@@ -63,10 +63,12 @@ public sealed class CoreTests
                 var progress = Assert.IsType<System.Windows.Controls.ProgressBar>(window.FindName("OperationProgress"));
                 var readFileName = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("ReadFileName"));
                 var readRevs = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("ReadRevsEnabled"));
+                var writeNoVerify = Assert.IsType<System.Windows.Controls.CheckBox>(window.FindName("WriteNoVerify"));
                 Assert.NotNull(BindingOperations.GetBindingExpression(hardwareText, System.Windows.Controls.TextBlock.TextProperty));
                 Assert.NotNull(BindingOperations.GetBindingExpression(progress, System.Windows.Controls.Primitives.RangeBase.ValueProperty));
                 Assert.Equal("Read.FileName", BindingOperations.GetBindingExpression(readFileName, System.Windows.Controls.TextBox.TextProperty)?.ParentBinding.Path.Path);
                 Assert.Equal("Read.Revs.Enabled", BindingOperations.GetBindingExpression(readRevs, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
+                Assert.Equal("Write.NoVerify.Enabled", BindingOperations.GetBindingExpression(writeNoVerify, System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty)?.ParentBinding.Path.Path);
                 window.Close();
             }
             catch (Exception exception) { failure = exception; }
@@ -1035,6 +1037,43 @@ public sealed class CoreTests
         Assert.False(model.HardSectors.Enabled);
         Assert.True(model.FakeIndex.Enabled);
         Assert.Contains("gen-tg43", model.CaptureEnabledOptions());
+    }
+
+    [Fact]
+    public void WriteViewModelDefaultProfileRestoresVerificationAndClearsOptionalArguments()
+    {
+        var model = new WriteOperationViewModel();
+        model.ApplyOptions(new HashSet<string> { "no-verify", "retries", "pre-erase" }, new Dictionary<string, string> { ["retries"] = "4", ["expert"] = "--raw" });
+        Assert.True(model.DisableVerification);
+        Assert.Equal([new EnabledOption("--retries", "4"), new EnabledOption("--pre-erase")], model.BuildOptions());
+
+        model.ApplyOptions(new HashSet<string>(), new Dictionary<string, string>());
+
+        Assert.False(model.DisableVerification);
+        Assert.Empty(model.BuildOptions());
+        Assert.Empty(model.CaptureEnabledOptions());
+        Assert.Equal("", model.ExpertArguments);
+    }
+
+    [Fact]
+    public void WriteViewModelRoundTripsProfilesAndEnforcesHardwareExclusions()
+    {
+        var model = new WriteOperationViewModel();
+        model.ApplyOptions(new HashSet<string> { "tracks", "densel", "diskdefs" }, new Dictionary<string, string>
+        {
+            ["tracks"] = "c=0-39:h=0", ["densel"] = "L", ["diskdefs"] = "formats.cfg", ["expert"] = "--foo bar"
+        });
+        model.EnableTg43();
+        model.EnableHardSectors();
+        model.EnableFakeIndex();
+
+        Assert.Equal("L", model.Densel.Value);
+        Assert.False(model.Densel.Enabled);
+        Assert.True(model.Tg43.Enabled);
+        Assert.False(model.HardSectors.Enabled);
+        Assert.True(model.FakeIndex.Enabled);
+        Assert.Equal("--foo bar", model.CaptureValues()["expert"]);
+        Assert.Contains("diskdefs", model.CaptureEnabledOptions());
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
