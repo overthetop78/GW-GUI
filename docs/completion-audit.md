@@ -19,7 +19,7 @@ Ce document relie le plan aux preuves présentes dans le dépôt. Un élément n
 - La numérotation accepte un départ numérique ou alphabétique, poursuit après `Z` et ne s’incrémente qu’après succès.
 - L’exécuteur de processus est testé avec sorties standard/erreur Unicode, ligne fragmentée, code non nul, concurrence et annulation.
 - Les réglages avancés de Lecture, Écriture et Conversion possèdent des infobulles FR/EN indiquant l’argument `gw`, son rôle, les incompatibilités utiles et un exemple lorsqu’une valeur est attendue.
-- La compilation Release et 143 tests automatisés réussissent; un test STA charge réellement le XAML principal, vérifie les chemins de liaison des trois opérations et contrôle séparément leur flux WPF bidirectionnel. Des tests sans fenêtre contrôlent le coordinateur séquentiel, ses échecs partiels et son annulation, ainsi que nommage, profils, multiconversion, extensions, tags et arguments; des vecteurs bit à bit contrôlent les extractions et intégrités valides, corrompues ou indisponibles NorthStar, Heathkit, Membrain, AED 6200P, Centurion et QD MO5.
+- La compilation Release et 146 tests automatisés réussissent; un test STA charge réellement le XAML principal, vérifie les chemins de liaison des trois opérations et contrôle séparément leur flux WPF bidirectionnel. Des tests sans fenêtre contrôlent le coordinateur séquentiel, ses échecs partiels et son annulation, ainsi que nommage, profils, multiconversion, extensions, tags et arguments; des vecteurs bit à bit contrôlent les extractions et intégrités valides, corrompues ou indisponibles NorthStar, Heathkit, Membrain, AED 6200P, Centurion, QD MO5 et E-mu Emulator.
 
 ## Partiellement prouvé
 

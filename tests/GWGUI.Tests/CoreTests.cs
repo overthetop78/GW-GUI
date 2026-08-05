@@ -1067,6 +1067,53 @@ public sealed class CoreTests
         Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void EmuFmDecoderExtractsTrackIdentityAndValidatesLargeDataCrc(bool corruptDataCrc)
+    {
+        static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
+        static string EncodeEmuFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        byte track = 25, rawTrack = Reverse(track);
+        var headerCrc = TestCrc16([rawTrack], 0x8005, 0x0000);
+        var data = Enumerable.Range(0, 0xe00).Select(index => (byte)(index * 13)).ToArray();
+        var dataCrc = TestCrc16(data, 0x8005, 0x0000);
+        if (corruptDataCrc) dataCrc ^= 1;
+        var marker = EncodeEmuFm([Reverse(0xfa), Reverse(0x96)]);
+        var raw = marker + EncodeEmuFm([rawTrack, (byte)(headerCrc >> 8), (byte)headerCrc]) + new string('1', 64)
+            + marker + EncodeEmuFm(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc])) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new EmuFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(12, sector.Cylinder);
+        Assert.Equal(1, sector.Head);
+        Assert.Equal(1, sector.Number);
+        Assert.Equal(0xe00, sector.SizeBytes);
+        Assert.Equal(!corruptDataCrc, sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptDataCrc ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void EmuFmDecoderReportsUnavailableDataIntegrityWhenOnlyHeaderExists()
+    {
+        static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
+        static string EncodeEmuFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        var rawTrack = Reverse(8); var headerCrc = TestCrc16([rawTrack], 0x8005, 0x0000);
+        var marker = EncodeEmuFm([Reverse(0xfa), Reverse(0x96)]);
+        var raw = marker + EncodeEmuFm([rawTrack, (byte)(headerCrc >> 8), (byte)headerCrc]) + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new EmuFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(4, sector.Cylinder);
+        Assert.Equal(0, sector.Head);
+        Assert.Null(sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
@@ -1101,8 +1148,8 @@ public sealed class CoreTests
     public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var singleCellEncoding = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr";
-        var calibration = singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
+        var singleCellEncoding = decoderId is "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr";
+        var calibration = decoderId == "emu.fm" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);
         var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
