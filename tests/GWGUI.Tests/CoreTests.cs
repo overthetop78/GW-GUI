@@ -1237,6 +1237,56 @@ public sealed class CoreTests
         Assert.Contains(corrupt.Structures, structure => structure.Description.Contains("header CRC invalid", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void ArburgDecoderValidatesFullFmDataTrackChecksum(bool corruptChecksum)
+    {
+        static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
+        static string EncodeArburgFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => { var reversed = Reverse(value); return "01" + ((((reversed >> (7 - bit)) & 1) != 0) ? "01" : "00"); })));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var data = Enumerable.Range(0, 0x9fe).Select(index => (byte)(index * 29)).ToArray(); ushort checksum = 0; foreach (var value in data) checksum += value;
+        if (corruptChecksum) checksum++;
+        var block = data.Concat([(byte)checksum, (byte)(checksum >> 8)]).ToArray();
+        var raw = RawMark("4444444455555555") + EncodeArburgFm(block) + "1"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new ArburgDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!); Assert.Equal(0xa00, sector.SizeBytes); Assert.Equal(!corruptChecksum, sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void ArburgDecoderValidatesFullVariableLengthSystemTrackChecksum(bool corruptChecksum)
+    {
+        static string EncodeSystem(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => ((value >> bit) & 1) != 0 ? "001" : "01")));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var data = Enumerable.Range(0, 0xefe).Select(index => (byte)(index * 31)).ToArray(); ushort checksum = 0; foreach (var value in data) checksum += value;
+        if (corruptChecksum) checksum++;
+        var block = data.Concat([(byte)checksum, (byte)(checksum >> 8)]).ToArray();
+        var raw = RawMark("5555555555249249") + EncodeSystem(block) + "1"; var intervals = BitsToIntervals(raw, 40);
+
+        var result = new ArburgDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!); Assert.Equal(0xf00, sector.SizeBytes); Assert.Equal(!corruptChecksum, sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ArburgDecoderReportsUnavailableIntegrityForTruncatedTrackBlocks()
+    {
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        static FluxDecodeResult Decode(string marker)
+        {
+            var intervals = BitsToIntervals(RawMark(marker) + "1", 40); return new ArburgDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        }
+        var data = Decode("4444444455555555"); var system = Decode("5555555555249249");
+        Assert.Null(Assert.Single(data.Sectors!).IntegrityValid); Assert.Null(Assert.Single(system.Sectors!).IntegrityValid);
+        Assert.All(data.Structures.Concat(system.Structures), structure => Assert.Contains("unavailable", structure.Description, StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
@@ -1271,8 +1321,8 @@ public sealed class CoreTests
     public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var singleCellEncoding = decoderId is "arburg" or "victor9k.gcr";
-        var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
+        var singleCellEncoding = decoderId == "victor9k.gcr";
+        var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);
         var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
