@@ -29,4 +29,10 @@ powershell -ExecutionPolicy Bypass -File scripts/package.ps1 -Version 0.1.0
 
 Le ZIP contient `portable.flag` : réglages, journaux et Host Tools gérés sont alors stockés dans `Data` à côté de l’application. L’installateur ne contient pas ce marqueur et utilise les dossiers utilisateur Windows.
 
+Après la création des paquets, le test suivant installe silencieusement l’application dans un dossier isolé sous `artifacts`, contrôle son contenu et sa version, puis vérifie sa désinstallation complète :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1
+```
+
 Les tags Git `v*` déclenchent le même processus dans GitHub Actions et publient les trois fichiers de distribution dans une release GitHub.
