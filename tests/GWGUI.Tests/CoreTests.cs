@@ -1176,6 +1176,67 @@ public sealed class CoreTests
         Assert.Contains(result.Structures, structure => structure.Description.Contains("header CRC invalid", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData(0xf8, false)]
+    [InlineData(0xf9, false)]
+    [InlineData(0xfa, false)]
+    [InlineData(0xfb, false)]
+    [InlineData(0xfc, false)]
+    [InlineData(0xfd, true)]
+    public void DecRx02DecoderExtractsAllDataMarksAndFmOrM2FmCrc(byte dataMark, bool corruptDataCrc)
+    {
+        static string EncodeRxFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        static string EncodeM2Fm(byte[] values)
+        {
+            var bits = EncodeMfmBytesFromZero(values).ToCharArray(); const string normal = "00101010100", encoded = "01000100010"; var replacements = 0;
+            for (var offset = 1; offset + normal.Length <= bits.Length; offset += 2)
+            {
+                var matches = true; for (var index = 0; index < normal.Length; index++) if (bits[offset + index] != normal[index]) { matches = false; break; }
+                if (!matches) continue; for (var index = 0; index < encoded.Length; index++) bits[offset + index] = encoded[index]; replacements++; offset += normal.Length - 3;
+            }
+            Assert.True(replacements > 0, "The M²FM vector must exercise the DEC 11-bit substitution rule."); return new string(bits);
+        }
+        const byte cylinder = 22, head = 1, sectorNumber = 9, sizeCode = 0;
+        var headerCrc = TestCrc16([0xfe, cylinder, head, sectorNumber, sizeCode], 0x1021, 0xffff);
+        var m2fm = dataMark is 0xf9 or 0xfd; var size = m2fm ? 256 : 128;
+        var data = Enumerable.Range(0, size).Select(index => (byte)(index * 23)).ToArray();
+        var dataCrc = TestCrc16(new byte[] { dataMark }.Concat(data), 0x1021, 0xffff); if (corruptDataCrc) dataCrc ^= 1;
+        var markPattern = dataMark switch { 0xf8 => "55111444", 0xf9 => "55111445", 0xfa => "55111454", 0xfb => "55111455", 0xfc => "55111544", _ => "55111545" };
+        var payload = data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray();
+        var encodedPayload = m2fm ? "0" + EncodeM2Fm(payload) : EncodeRxFm(payload);
+        var raw = RawMark("55111554") + EncodeRxFm([cylinder, head, sectorNumber, sizeCode, (byte)(headerCrc >> 8), (byte)headerCrc]) + new string('1', 64)
+            + RawMark(markPattern) + encodedPayload + "1";
+        var intervals = BitsToIntervals(raw, 40);
+
+        var result = new DecRx02Decoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+
+        var sector = Assert.Single(result.Sectors!);
+        Assert.Equal(cylinder, sector.Cylinder); Assert.Equal(head, sector.Head); Assert.Equal(sectorNumber, sector.Number);
+        Assert.Equal(size, sector.SizeBytes); Assert.Equal(!corruptDataCrc, sector.IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(dataMark.ToString("X2"), StringComparison.Ordinal) && structure.Description.Contains(m2fm ? "M²FM" : "FM", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void DecRx02DecoderReportsUnavailableDataAndRejectsBadHeaderCrc()
+    {
+        static string EncodeRxFm(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "01" + ((((value >> (7 - bit)) & 1) != 0) ? "01" : "00"))));
+        static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
+        var validCrc = TestCrc16([0xfe, 5, 0, 2, 0], 0x1021, 0xffff);
+        var validBits = RawMark("55111554") + EncodeRxFm([5, 0, 2, 0, (byte)(validCrc >> 8), (byte)validCrc]) + "1";
+        var invalidCrc = (ushort)(validCrc ^ 1);
+        var invalidBits = RawMark("55111554") + EncodeRxFm([5, 0, 2, 0, (byte)(invalidCrc >> 8), (byte)invalidCrc]) + "1";
+
+        var validIntervals = BitsToIntervals(validBits, 40); var invalidIntervals = BitsToIntervals(invalidBits, 40);
+        var missing = new DecRx02Decoder().Decode(new ScpRevolution(8_000_000, (uint)validIntervals.Count, validIntervals));
+        var corrupt = new DecRx02Decoder().Decode(new ScpRevolution(8_000_000, (uint)invalidIntervals.Count, invalidIntervals));
+
+        Assert.Null(Assert.Single(missing.Sectors!).IntegrityValid);
+        Assert.Contains(missing.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
+        Assert.Empty(corrupt.Sectors!);
+        Assert.Contains(corrupt.Structures, structure => structure.Description.Contains("header CRC invalid", StringComparison.Ordinal));
+    }
+
     [Fact]
     public void NativeChecksumDecodersReportCorruptedBlocks()
     {
@@ -1210,8 +1271,8 @@ public sealed class CoreTests
     public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var singleCellEncoding = decoderId is "dec.rx02" or "arburg" or "victor9k.gcr";
-        var calibration = decoderId is "emu.fm" or "tycom.fm" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
+        var singleCellEncoding = decoderId is "arburg" or "victor9k.gcr";
+        var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" ? "" : singleCellEncoding ? new string('1', 100) : string.Concat(Enumerable.Repeat("10", 50));
         var bits = calibration + string.Concat(Enumerable.Repeat(mark + "000", 4)) + "001";
         var intervals = BitsToIntervals(bits, 40);
         var result = new FluxDecoderRegistry().Decode(decoderId, new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));

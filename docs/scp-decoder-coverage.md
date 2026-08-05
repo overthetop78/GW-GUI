@@ -17,7 +17,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | Centurion MFM | Cylindre et secteur | CRC16 XMODEM de l’en-tête | Oui pour l’identité et le CRC d’en-tête ; la taille est portée par le bloc de données séparé |
 | E-mu Emulator FM | Cylindre, face, secteur unique et taille fixe de 3584 octets | CRC16 `0x8005` de l’en-tête et des données ; état des données valide, incorrect ou indisponible | Oui pour l’identité, la cadence FM quadruplée et les deux CRC |
 | TYCOM FM | Cylindre, secteur, taille fixe de 128 octets et marques F8–FB | CRC-CCITT de l’en-tête et des données ; état des données valide, incorrect ou indisponible | Oui pour l’identité, les marques, la cadence FM quadruplée et les deux CRC |
-| DEC RX02 M²FM | En-tête FM et marque données FD | Non | Non |
+| DEC RX02 FM/M²FM | Cylindre, face, secteur, code de taille, marques F8–FD ; 128 octets en FM ou 256 octets en M²FM pour F9/FD | CRC-CCITT de l’en-tête et des données ; état des données valide, incorrect ou indisponible | Oui, y compris la substitution DEC M²FM sur 11 bits |
 | Arburg | Blocs système/données | Non | Non |
 | Victor 9000 GCR | Marques en-tête/données | Non | Non |
 | Flux brut | Impulsions courtes et absences longues | Sans objet | Sans objet |
