@@ -14,7 +14,7 @@ if (Test-Path -LiteralPath $working) { throw "SCP corpus directory already exist
 $captures = @(
     [pscustomobject]@{ Identifier='os9sys'; FileName='os9sys.scp'; DecoderPrefix='iso.'; MinimumTracks=80; Heads='0,1'; Size=39322724; Md5='63c931f79f33398ec4026bc1f5109cdb'; Sha1='3f20aeb3ac0b7328eb233b76267527d23b790ea3' },
     [pscustomobject]@{ Identifier='pubsoft1'; FileName='pubsoft1.scp'; DecoderPrefix='iso.'; MinimumTracks=80; Heads='0,1'; Size=38742166; Md5='6d7fccfa3399c6f06e20d269d707c4f0'; Sha1='d9a6ed364506a85579281d7d416bb6bc569e6c97' },
-    [pscustomobject]@{ Identifier='amiga-amos-professional-demo-disc'; FileName='amiga amos professional demo disc.scp'; DecoderPrefix='amiga.mfm'; MinimumTracks=80; Heads='0,1'; Size=27447022; Md5='e5cab62655cb779cb70c91bde6a0a21c'; Sha1='43c8fe6c75a50c964c3f040995608bc810f1364d' },
+    [pscustomobject]@{ Identifier='amiga-amos-professional-demo-disc'; FileName='amiga amos professional demo disc.scp'; DecoderPrefix='amiga.mfm'; MinimumTracks=80; Heads='0,1'; LicenseUrl='https://creativecommons.org/publicdomain/mark/1.0/'; Size=27447022; Md5='e5cab62655cb779cb70c91bde6a0a21c'; Sha1='43c8fe6c75a50c964c3f040995608bc810f1364d' },
     [pscustomobject]@{ Identifier='lexitroncpm'; FileName='cpm2.2e.scp'; DecoderPrefix='iso.fm'; MinimumTracks=40; Heads='0'; LicenseUrl='http://creativecommons.org/publicdomain/mark/1.0/'; Size=8814642; Md5='33548a76df23e6c02b3fc1c4967b9d75'; Sha1='af619d86ae30853fa58fa8ee3ccb66044a0dfdec' }
 )
 $previousEnvironment = $env:GWGUI_REAL_SCP_CORPUS
