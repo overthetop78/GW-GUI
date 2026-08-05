@@ -29,9 +29,9 @@ public partial class MainWindow : Window
     private readonly IGreaseweazleRunner _runner = new GreaseweazleRunner();
     private AppSettings _settings = new();
     private CancellationTokenSource? _cancellation;
-    private readonly IImageFormatCatalog _formatCatalog = new BuiltInImageFormatCatalog();
+    private IImageFormatCatalog _formatCatalog = new BuiltInImageFormatCatalog();
     private IProfileStore _profiles = new InMemoryProfileStore();
-    private readonly ImageFormatDetector _formatDetector;
+    private ImageFormatDetector _formatDetector;
     private DetectedImageFormat? _detectedWriteFormat;
     private readonly List<ConversionFormatControl> _conversionControls = [];
     private ScpImage? _scpImage;
@@ -114,6 +114,12 @@ public partial class MainWindow : Window
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
         _settings = await _settingsStore.LoadAsync();
+        if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
+        {
+            var capabilities = await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath);
+            _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(), capabilities);
+            _formatDetector = new ImageFormatDetector(_formatCatalog);
+        }
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, "Automatique") }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, x.DisplayName))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));

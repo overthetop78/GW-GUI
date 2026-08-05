@@ -16,6 +16,70 @@ namespace GWGUI.Tests;
 public sealed class CoreTests
 {
     [Fact]
+    public void GwHelpCapabilitiesAreParsedBySection()
+    {
+        const string help = """
+            options:
+              --format FORMAT
+
+            FORMAT options:
+              acorn.adfs.800  amiga.amigados  amiga.amigadoshd
+              atarist.720     ibm.720         ibm.scan
+
+            Supported file suffixes:
+              .adf  .hfe  .ima  .img  .scp
+            """;
+
+        var capabilities = GwFormatCapabilitiesParser.ParseReadHelp(help);
+
+        Assert.Contains("amiga.amigados", capabilities.FormatIds);
+        Assert.Contains("ibm.scan", capabilities.FormatIds);
+        Assert.DoesNotContain("--format", capabilities.FormatIds);
+        Assert.Equal(6, capabilities.FormatIds.Count);
+        Assert.Contains(".scp", capabilities.ImageExtensions);
+        Assert.Equal(5, capabilities.ImageExtensions.Count);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("unrelated output")]
+    public void MissingHelpSectionsReturnUnknownCapabilities(string? help)
+    {
+        Assert.False(GwFormatCapabilitiesParser.ParseReadHelp(help).IsKnown);
+    }
+
+    [Fact]
+    public void RuntimeCapabilitiesFilterCuratedFormatsAndExtensions()
+    {
+        var capabilities = new GwFormatCapabilities(
+            new HashSet<string>(["ibm.720"], StringComparer.OrdinalIgnoreCase),
+            new HashSet<string>([".scp", ".img"], StringComparer.OrdinalIgnoreCase));
+
+        var catalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(), capabilities);
+
+        Assert.Contains(catalog.Formats, format => format.Id == "raw.scp");
+        var ibm = Assert.Single(catalog.Formats, format => format.Id == "ibm.720");
+        Assert.Equal(".img", Assert.Single(ibm.Extensions).Extension);
+        Assert.True(ibm.Extensions[0].IsDefault);
+        Assert.DoesNotContain(catalog.Formats, format => format.Id == "atarist.720");
+    }
+
+    [Fact]
+    public void CuratedCatalogContainsOfficialIbmAndAtariProfiles()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        string[] ibm = ["ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan"];
+        string[] atari = ["atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.880"];
+
+        Assert.All(ibm.Concat(atari), id => Assert.Contains(catalog.Formats, format => format.Id == id));
+        Assert.Contains(catalog.Formats, format => format.Id == "amiga.amigados_hd");
+        Assert.DoesNotContain(catalog.Formats, format => format.Id == "amiga.amigadoshd");
+        Assert.All(catalog.Formats.Where(format => format.Family == "IBM PC"), format =>
+            Assert.Equal(".ima", Assert.Single(format.Extensions, extension => extension.IsDefault).Extension));
+    }
+
+    [Fact]
     public void DisplayCommandQuotesPathsWithSpaces()
     {
         var command = new GwCommand("C:\\GW Tools\\gw.exe", "read", ["F:\\Disk Images\\My disk.scp"]);

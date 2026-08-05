@@ -21,6 +21,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Tous les boutons Arrêter demandent confirmation; l’annulation tente une fermeture normale pendant deux secondes puis termine l’arbre du processus si nécessaire.
 - Barre d’état dynamique : matériel et lecteur sélectionnés, profil actif, progression par piste/face extraite des sorties officielles `T<cylindre>.<face>`; les répétitions de tentative ne sont pas comptées deux fois.
 - Gestionnaire Host Tools : détection chemin/configuration/PATH/dossier géré, consultation quotidienne discrète de la release officielle, téléchargement x64 volontaire avec progression, contrôle SHA-256 lorsqu’il est publié, extraction ZIP défensive, installations versionnées et retour au chemin précédent.
+- Catalogue de formats recoupé au démarrage avec `gw read --help` : les profils et suffixes absents de la version active sont retirés, avec repli sur le catalogue intégré si l’interrogation échoue. Le catalogue couvre les géométries IBM PC officielles de 160 Kio à 2,88 Mio, DMF et scan, les six profils Atari ST officiels, et utilise l’identifiant Amiga HD corrigé `amiga.amigados_hd`. IMA reste l’extension IBM implicite sans être cochée automatiquement.
 - Lecture défensive du conteneur SCP, pistes et révolutions, contrôle des limites et checksum.
 - Visualisation circulaire par face, zoom, déplacement, sélection de piste et inspecteur.
 - Décodeurs flux brut, ISO MFM, ISO FM et Amiga MFM; sélection automatique ou manuelle; extraction initiale des en-têtes de secteurs ISO.
@@ -32,7 +33,7 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 - Vérifier visuellement les deux langues et traduire progressivement les descriptions provenant encore du catalogue métier lorsqu’elles sont exposées à l’utilisateur.
 - Ajouter les états visuels succès/erreur et vérifier la progression avec plusieurs versions réelles des Host Tools.
 - Valider le gestionnaire Host Tools avec une installation réelle et finaliser le comportement portable versus installé.
-- Compléter le catalogue dynamique depuis l’aide et les diskdefs de la version de `gw` active.
+- Étendre les noms lisibles et règles de sortie du catalogue aux autres familles publiées dans les diskdefs de la version de `gw` active.
 - Étendre le moteur SCP à tous les décodeurs définis dans le plan et améliorer PLL, anomalies et visualisation des structures.
 - Ajouter journal rotatif, export, migrations et couverture de tests d’intégration/UI/matériel.
 - Réaliser icône, aide utilisateur bilingue, ZIP portable, installateur Inno Setup, sommes SHA-256 et workflow GitHub Actions.
@@ -40,5 +41,5 @@ Ce document complète le plan fonctionnel. Il décrit ce qui existe dans le code
 ## Validation actuelle
 
 - Compilation Release : zéro erreur et zéro avertissement.
-- Tests automatisés : 45 réussis, dont gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
+- Tests automatisés : 51 réussis, dont capacités de formats, gestion release/ZIP/checksum Host Tools, parité FR/EN, placement multi-écran, annulation réelle et progression.
 - Tests matériels Greaseweazle et validation visuelle interactive : non encore effectués sur cette machine.
