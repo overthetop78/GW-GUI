@@ -136,6 +136,7 @@ public partial class MainWindow : Window
         ScpDecoderCombo.SelectedIndex = 0;
         _profiles = new InMemoryProfileStore(_settings.Profiles.Select(ToProfile));
         RestoreWindowPlacement();
+        ConstrainToCurrentWorkArea();
         ReadFolder.Text = _settings.DefaultImagesFolder;
         ReadFamilyCombo.ItemsSource = _formatCatalog.Formats.Where(x => x.Family != "Raw").Select(x => x.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.SelectedIndex = 0;
@@ -850,6 +851,16 @@ public partial class MainWindow : Window
             Top = top;
         }
         if (_settings.Window.Maximized) WindowState = WindowState.Maximized;
+    }
+
+    private void ConstrainToCurrentWorkArea()
+    {
+        if (WindowState == WindowState.Maximized) return;
+        var area = SystemParameters.WorkArea;
+        Width = Math.Min(Width, area.Width);
+        Height = Math.Min(Height, area.Height);
+        Left = Math.Clamp(Left, area.Left, Math.Max(area.Left, area.Right - Width));
+        Top = Math.Clamp(Top, area.Top, Math.Max(area.Top, area.Bottom - Height));
     }
 
     private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
