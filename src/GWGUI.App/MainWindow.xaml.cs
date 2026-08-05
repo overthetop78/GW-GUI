@@ -856,7 +856,9 @@ public partial class MainWindow : Window
     private void ConstrainToCurrentWorkArea()
     {
         if (WindowState == WindowState.Maximized) return;
-        var area = SystemParameters.WorkArea;
+        var dpi = VisualTreeHelper.GetDpi(this);
+        var raw = SystemParameters.WorkArea;
+        var area = new Rect(raw.X / dpi.DpiScaleX, raw.Y / dpi.DpiScaleY, raw.Width / dpi.DpiScaleX, raw.Height / dpi.DpiScaleY);
         Width = Math.Min(Width, area.Width);
         Height = Math.Min(Height, area.Height);
         Left = Math.Clamp(Left, area.Left, Math.Max(area.Left, area.Right - Width));
