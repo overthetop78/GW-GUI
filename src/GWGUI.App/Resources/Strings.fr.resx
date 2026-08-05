@@ -121,4 +121,10 @@
   <data name="Advanced.PreEraseTip"><value>--pre-erase : efface chaque piste avant de l’écrire.</value></data>
   <data name="Advanced.PrecompOptionTip"><value>--precomp : applique une précompensation d’écriture. Exemple : --precomp type=mfm:40=125.</value></data>
   <data name="Advanced.OutputTracksTip"><value>--out-tracks : remappe les pistes dans l’image produite. Exemple : --out-tracks c=0-79:h=0-1.</value></data>
+  <data name="Menu.Align"><value>Alignement du lecteur…</value></data>
+  <data name="Tool.Title.Align"><value>Diagnostic d’alignement du lecteur</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Piste(s) alternées (obligatoire)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Nombre de lectures</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Format de décodage</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Lire le flux brut (--raw)</value></data>
 </root>

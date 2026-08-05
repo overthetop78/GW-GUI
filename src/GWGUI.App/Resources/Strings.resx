@@ -157,4 +157,10 @@
   <data name="Advanced.PreEraseTip"><value>--pre-erase: Erase each track before writing it.</value></data>
   <data name="Advanced.PrecompOptionTip"><value>--precomp: Apply write precompensation. Example: --precomp type=mfm:40=125.</value></data>
   <data name="Advanced.OutputTracksTip"><value>--out-tracks: Remap tracks in the output image. Example: --out-tracks c=0-79:h=0-1.</value></data>
+  <data name="Menu.Align"><value>Drive alignment…</value></data>
+  <data name="Tool.Title.Align"><value>Drive alignment diagnostic</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Alternating track(s) (required)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Number of reads</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Decoding format</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Read raw flux (--raw)</value></data>
 </root>

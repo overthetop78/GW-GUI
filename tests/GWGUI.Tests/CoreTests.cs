@@ -619,6 +619,30 @@ public sealed class CoreTests
         Assert.Throws<ArgumentOutOfRangeException>(() => ToolCommandBuilder.Build(new("gw.exe", "delays", new Dictionary<string, string> { ["step"] = "-1" }, new HashSet<string> { "step" })));
     }
 
+    [Fact]
+    public void AlignCommandCoversRequiredAndAdvancedOptions()
+    {
+        var values = new Dictionary<string, string>
+        {
+            ["tracks"] = "c=40:h=0-1", ["revs"] = "3", ["reads"] = "10",
+            ["format"] = "ibm.720", ["adjust-speed"] = "300rpm", ["densel"] = "H"
+        };
+        var enabled = new HashSet<string> { "format", "adjust-speed", "densel", "reverse" };
+        var command = ToolCommandBuilder.Build(new("gw.exe", "align", values, enabled, "COM7", "B"));
+
+        Assert.Equal("align", command.Verb);
+        Assert.Equal(["--tracks", "c=40:h=0-1", "--revs", "3", "--reads", "10", "--format", "ibm.720", "--adjust-speed", "300rpm", "--densel", "H", "--reverse", "--device", "COM7", "--drive", "B"], command.Arguments);
+    }
+
+    [Fact]
+    public void AlignCommandRejectsInvalidOrExclusiveOptions()
+    {
+        var values = new Dictionary<string, string> { ["tracks"] = "c=40:h=0", ["revs"] = "3", ["reads"] = "10", ["fake-index"] = "300rpm" };
+        Assert.Throws<ArgumentException>(() => ToolCommandBuilder.Build(new("gw.exe", "align", values, new HashSet<string> { "fake-index", "hard-sectors" })));
+        Assert.Throws<ArgumentException>(() => ToolCommandBuilder.Build(new("gw.exe", "align", new Dictionary<string, string> { ["tracks"] = "", ["revs"] = "3", ["reads"] = "10" }, new HashSet<string>())));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ToolCommandBuilder.Build(new("gw.exe", "align", new Dictionary<string, string> { ["tracks"] = "c=40:h=0", ["revs"] = "0", ["reads"] = "10" }, new HashSet<string>())));
+    }
+
     [Theory]
     [InlineData("c=0-79:h=0-1")]
     [InlineData("c=0-39/2,41:h=0:step=2:hswap:h0.off=+1")]

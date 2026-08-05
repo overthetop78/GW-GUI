@@ -13,7 +13,7 @@ public sealed record ToolCommandRequest(
 
 public static class ToolCommandBuilder
 {
-    private static readonly HashSet<string> Supported = ["info", "bandwidth", "rpm", "seek", "pin", "reset", "delays", "update"];
+    private static readonly HashSet<string> Supported = ["info", "bandwidth", "rpm", "seek", "pin", "reset", "delays", "update", "align"];
 
     public static GwCommand Build(ToolCommandRequest request)
     {
@@ -24,11 +24,12 @@ public static class ToolCommandBuilder
             "seek" => Seek(request),
             "pin" => Pin(request),
             "delays" => Delays(request),
+            "align" => Align(request),
             "update" when request.Enabled.Contains("bootloader") => ["--bootloader"],
             _ => []
         };
         if (!string.IsNullOrWhiteSpace(request.Device)) args.AddRange(["--device", request.Device]);
-        if (!string.IsNullOrWhiteSpace(request.Drive) && request.Verb is "rpm" or "seek") args.AddRange(["--drive", request.Drive]);
+        if (!string.IsNullOrWhiteSpace(request.Drive) && request.Verb is "rpm" or "seek" or "align") args.AddRange(["--drive", request.Drive]);
         return new(request.Executable, request.Verb, args);
     }
 
@@ -52,6 +53,43 @@ public static class ToolCommandBuilder
             if (request.Enabled.Contains(key)) args.AddRange(["--" + key, NonNegative(request, key).ToString(CultureInfo.InvariantCulture)]);
         return args;
     }
+
+    private static List<string> Align(ToolCommandRequest request)
+    {
+        var tracks = Required(request, "tracks");
+        var options = new List<Read.EnabledOption>
+        {
+            new("--tracks", tracks),
+            new("--revs", Positive(request, "revs").ToString(CultureInfo.InvariantCulture)),
+            new("--reads", Positive(request, "reads").ToString(CultureInfo.InvariantCulture))
+        };
+        AddOptional(request, options, "format");
+        AddOptional(request, options, "diskdefs");
+        AddOptional(request, options, "fake-index");
+        AddOptional(request, options, "adjust-speed");
+        AddOptional(request, options, "pll");
+        AddOptional(request, options, "densel");
+        foreach (var flag in new[] { "raw", "hard-sectors", "gen-tg43", "reverse" })
+            if (request.Enabled.Contains(flag)) options.Add(new("--" + flag));
+        GwOptionValidator.Validate(options);
+        var args = new List<string>();
+        foreach (var option in options)
+        {
+            args.Add(option.Argument);
+            if (!string.IsNullOrWhiteSpace(option.Value)) args.Add(option.Value);
+        }
+        return args;
+    }
+
+    private static void AddOptional(ToolCommandRequest request, List<Read.EnabledOption> options, string key)
+    {
+        if (request.Enabled.Contains(key)) options.Add(new("--" + key, Required(request, key)));
+    }
+
+    private static string Required(ToolCommandRequest request, string key) =>
+        request.Values.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value)
+            ? value.Trim()
+            : throw new ArgumentException("Value is required.", key);
 
     private static int Positive(ToolCommandRequest request, string key) { var value = Parse(request, key); if (value <= 0) throw new ArgumentOutOfRangeException(key, "Value must be greater than zero."); return value; }
     private static int NonNegative(ToolCommandRequest request, string key) { var value = Parse(request, key); if (value < 0) throw new ArgumentOutOfRangeException(key, "Value must not be negative."); return value; }

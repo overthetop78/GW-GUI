@@ -40,6 +40,12 @@ public partial class GwToolWindow : Window
             case "pin": AddField("pin", L("Tool.Field.Pin"), "26"); AddCheck("set", L("Tool.Field.SetPin")); AddCheck("high", L("Tool.Field.High")); break;
             case "delays":
                 AddOptionalField("select", L("Tool.Field.Select"), "10"); AddOptionalField("step", L("Tool.Field.Step"), "3000"); AddOptionalField("settle", L("Tool.Field.Settle"), "15"); AddOptionalField("motor", L("Tool.Field.Motor"), "750"); AddOptionalField("watchdog", L("Tool.Field.Watchdog"), "10000"); AddOptionalField("pre-write", L("Tool.Field.PreWrite"), "15"); AddOptionalField("post-write", L("Tool.Field.PostWrite"), "15"); AddOptionalField("index-mask", L("Tool.Field.IndexMask"), "15"); break;
+            case "align":
+                AddField("tracks", L("Tool.Field.AlignTracks"), "c=40:h=0-1"); AddField("revs", L("Read.Revolutions"), "3"); AddField("reads", L("Tool.Field.AlignReads"), "10");
+                AddOptionalField("format", L("Tool.Field.AlignFormat"), "ibm.720"); AddOptionalField("diskdefs", L("Advanced.DiskDefs"), "diskdefs.cfg");
+                AddCheck("raw", L("Tool.Field.AlignRaw")); AddOptionalField("fake-index", L("Advanced.FakeIndex"), "300rpm"); AddCheck("hard-sectors", L("Advanced.HardSectors"));
+                AddOptionalField("adjust-speed", L("Advanced.AdjustSpeed"), "300rpm"); AddOptionalField("pll", L("Advanced.Pll"), "period=5:phase=60");
+                AddOptionalField("densel", L("Advanced.DensityPin"), "H"); AddCheck("gen-tg43", L("Advanced.Tg43")); AddCheck("reverse", L("Advanced.Reverse")); break;
             case "update": AddCheck("bootloader", L("Tool.Field.Bootloader")); break;
         }
     }
@@ -106,6 +112,6 @@ public partial class GwToolWindow : Window
     private static string TitleFor(string verb) => verb switch
     {
         "info" => L("Tool.Title.Info"), "bandwidth" => L("Tool.Title.Bandwidth"), "rpm" => L("Tool.Title.Rpm"), "seek" => L("Tool.Title.Seek"),
-        "pin" => L("Tool.Title.Pin"), "reset" => L("Tool.Title.Reset"), "delays" => L("Tool.Title.Delays"), "update" => L("Tool.Title.Update"), _ => verb
+        "pin" => L("Tool.Title.Pin"), "reset" => L("Tool.Title.Reset"), "delays" => L("Tool.Title.Delays"), "update" => L("Tool.Title.Update"), "align" => L("Tool.Title.Align"), _ => verb
     };
 }

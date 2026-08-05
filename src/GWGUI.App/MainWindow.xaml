@@ -18,6 +18,7 @@
                     <MenuItem Header="{l:Loc Menu.Bandwidth}" Tag="bandwidth" Click="ToolCommand_Click" />
                     <MenuItem Header="{l:Loc Menu.Rpm}" Tag="rpm" Click="ToolCommand_Click" />
                     <MenuItem Header="{l:Loc Menu.Seek}" Tag="seek" Click="ToolCommand_Click" />
+                    <MenuItem Header="{l:Loc Menu.Align}" Tag="align" Click="ToolCommand_Click" />
                 </MenuItem>
                 <MenuItem Header="{l:Loc Menu.Hardware}">
                     <MenuItem Header="{l:Loc Menu.Pins}" Tag="pin" Click="ToolCommand_Click" />
