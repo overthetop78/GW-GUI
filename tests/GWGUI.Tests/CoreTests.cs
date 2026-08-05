@@ -545,7 +545,24 @@ public sealed class CoreTests
     public void DecoderRegistryExposesGcrFamilies()
     {
         var ids = new FluxDecoderRegistry().Decoders.Select(decoder => decoder.Id).ToHashSet();
-        Assert.Contains("apple2.gcr", ids); Assert.Contains("commodore.gcr", ids);
+        Assert.Contains("apple2.gcr", ids); Assert.Contains("commodore.gcr", ids); Assert.Contains("northstar.mfm", ids); Assert.Contains("heathkit.fm", ids);
+    }
+
+    [Fact]
+    public void NorthstarDecoderRecognizesHardSectorBlockMark()
+    {
+        var raw = string.Concat(Enumerable.Repeat("10", 60)) + EncodeMfmBytesFromZero(0, 0, 0, 0, 0, 0, 0, 0xfb) + "001";
+        var intervals = BitsToIntervals(raw, 40);
+        var result = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader);
+    }
+
+    [Fact]
+    public void HeathkitDecoderRecognizesBitReversedFdHeaderMark()
+    {
+        var raw = EncodeFmBytes(0, 0, 0, 0xbf) + "001"; var intervals = BitsToIntervals(raw, 40);
+        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader);
     }
 
     [Theory]
@@ -583,6 +600,7 @@ public sealed class CoreTests
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
+    private static string EncodeMfmBytesFromZero(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 0; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
     private static string EncodeFmBytes(params byte[] values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "1" + (((value >> (7 - bit)) & 1) != 0 ? "1" : "0"))));
     private static List<uint> BitsToIntervals(string bits, uint cellTicks) { var result = new List<uint>(); var cells = 0; foreach (var bit in bits) { cells++; if (bit == '1') { result.Add((uint)cells * cellTicks); cells = 0; } } return result; }
     private static ushort TestCrc16(IEnumerable<byte> values) { ushort crc = 0xffff; foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x1021 : crc << 1); } return crc; }

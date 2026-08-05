@@ -16,5 +16,7 @@ Les décodeurs rares sont implémentés à partir des caractéristiques de leur 
 | AED 6200P MFM | `aed6200p_track.c` | `50 94`, `A5 08` |
 | QD MO5 MFM | `qd_mo5_track.c` | cinq répétitions `A9 14`, puis `44 91` ou `91 44` |
 | Centurion MFM | `centurion_mfm_track.c` | `91 22 44 89`, `AA AA AA A9` |
+| NorthStar MFM | `northstar_mfm_track.c` | sept octets nuls suivis de `FB`, encodés en MFM |
+| Heathkit FM | `heathkit_fm_track.c` | trois octets nuls suivis de `FD` inversé bit à bit, encodés en FM |
 
 Les prochaines familles doivent suivre la même règle : signature justifiée par une référence primaire, corpus synthétique ciblé et résultat visuel réellement exploitable.

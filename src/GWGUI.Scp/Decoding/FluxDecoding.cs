@@ -14,7 +14,7 @@ public interface IFluxDecoder
 
 public sealed class FluxDecoderRegistry
 {
-    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new RawFluxDecoder()];
+    public IReadOnlyList<IFluxDecoder> Decoders { get; } = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleGcrDecoder(), new CommodoreGcrDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new RawFluxDecoder()];
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => x.Decode(revolution)).OrderByDescending(x => x.Confidence).First();
     public FluxDecodeResult Decode(string id, ScpRevolution revolution) => Decoders.First(x => x.Id == id).Decode(revolution);
     public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
@@ -33,10 +33,11 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
     public abstract string DisplayName { get; }
     protected abstract IReadOnlyList<(byte[] Pattern, FluxStructureKind Kind, string Description)> Signatures { get; }
     protected virtual double ExpectedStructures => 10;
+    protected virtual bool IsFm => false;
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>();
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals, IsFm); var structures = new List<FluxStructure>();
         for (var offset = 0; offset < stream.Bits.Length; offset++)
         {
             foreach (var signature in Signatures)
@@ -47,6 +48,25 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
             }
         }
         return new(Id, DisplayName, Math.Min(1, structures.Count / ExpectedStructures), stream.BitCellTicks, structures, []);
+    }
+
+    protected static byte[] EncodeMfm(params byte[] data)
+    {
+        var bits = new List<bool>(data.Length * 16); var previousData = false;
+        foreach (var value in data) for (var bit = 7; bit >= 0; bit--) { var current = (value & (1 << bit)) != 0; bits.Add(!previousData && !current); bits.Add(current); previousData = current; }
+        return Pack(bits);
+    }
+
+    protected static byte[] EncodeFm(params byte[] data)
+    {
+        var bits = new List<bool>(data.Length * 16);
+        foreach (var value in data) for (var bit = 7; bit >= 0; bit--) { bits.Add(true); bits.Add((value & (1 << bit)) != 0); }
+        return Pack(bits);
+    }
+
+    private static byte[] Pack(IReadOnlyList<bool> bits)
+    {
+        var bytes = new byte[(bits.Count + 7) / 8]; for (var index = 0; index < bits.Count; index++) if (bits[index]) bytes[index / 8] |= (byte)(1 << (7 - index % 8)); return bytes;
     }
 }
 
@@ -72,6 +92,21 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
 {
     public override string Id => "centurion.mfm"; public override string DisplayName => "Centurion MFM";
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [([0x91, 0x22, 0x44, 0x89], FluxStructureKind.FormatHeader, "Centurion sector mark"), ([0xaa, 0xaa, 0xaa, 0xa9], FluxStructureKind.FormatData, "Centurion data mark")];
+}
+
+public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
+{
+    private static readonly byte[] SectorMark = EncodeMfm(0, 0, 0, 0, 0, 0, 0, 0xfb);
+    public override string Id => "northstar.mfm"; public override string DisplayName => "NorthStar hard-sectored MFM";
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "NorthStar hard-sector block")];
+}
+
+public sealed class HeathkitFmDecoder : SignatureMfmDecoder
+{
+    private static readonly byte[] SectorMark = EncodeFm(0, 0, 0, 0xbf);
+    public override string Id => "heathkit.fm"; public override string DisplayName => "Heathkit hard-sectored FM";
+    protected override bool IsFm => true;
+    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Heathkit hard-sector header")];
 }
 
 public sealed class IsoFmDecoder : IFluxDecoder
