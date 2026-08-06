@@ -328,6 +328,40 @@ public sealed class CoreTests
                 optionsWindow.UpdateLayout();
                 Assert.Single(drives.Items);
                 Assert.True(Assert.IsType<HardwareRow>(drives.Items[0]).Available);
+                var hardwareFlags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+                var configuredHardware = new AppSettings
+                {
+                    Controllers = [new ControllerSettings { UsbId = "GW-ROW-TEST", LastPort = "COM3", IsAvailable = true }],
+                    Drives = [new DriveSettings { ControllerUsbId = "GW-ROW-TEST", Size = "3.5", Density = "HD", NominalRpm = 300 }]
+                };
+                var rowWindow = new OptionsWindow(configuredHardware, settingsStore: new RecordingSettingsStore());
+                var rowList = Assert.IsType<System.Windows.Controls.ListBox>(rowWindow.FindName("DrivesGrid"));
+                rowList.SelectedIndex = 0;
+                typeof(OptionsWindow).GetMethod("AddDrive_Click", hardwareFlags)!.Invoke(rowWindow, [rowWindow, new RoutedEventArgs()]);
+                Assert.Equal(2, rowList.Items.Count);
+                var temporaryRow = Assert.IsType<HardwareRow>(rowList.Items[1]);
+                Assert.Null(temporaryRow.DriveId);
+                typeof(OptionsWindow).GetMethod("RemoveHardwareRow", hardwareFlags)!.Invoke(rowWindow, [temporaryRow]);
+                Assert.Single(rowList.Items);
+                Assert.Single(Assert.IsType<List<DriveSettings>>(typeof(OptionsWindow).GetField("_drives", hardwareFlags)!.GetValue(rowWindow)));
+                rowWindow.Close();
+
+                var orphanSettings = new AppSettings
+                {
+                    UnconfiguredControllers = [new ControllerSettings { UsbId = "GW-ORPHAN", LastPort = "COM4", IsAvailable = true }],
+                    Drives = [new DriveSettings { ControllerUsbId = "GW-ORPHAN", Size = "3.5", Density = "HD", NominalRpm = 300 }]
+                };
+                var orphanWindow = new OptionsWindow(orphanSettings, settingsStore: new RecordingSettingsStore());
+                var orphanList = Assert.IsType<System.Windows.Controls.ListBox>(orphanWindow.FindName("DrivesGrid"));
+                Assert.EndsWith("2", Assert.IsType<HardwareRow>(orphanList.Items[0]).ReaderLabel);
+                typeof(OptionsWindow).GetMethod("MergeUnconfigured", hardwareFlags)!.Invoke(orphanWindow,
+                    [new[] { new ControllerSettings { UsbId = "GW-ORPHAN", LastPort = "COM4", IsAvailable = true } }]);
+                typeof(OptionsWindow).GetMethod("RefreshHardwareRows", hardwareFlags)!.Invoke(orphanWindow, null);
+                var repairedRow = Assert.IsType<HardwareRow>(Assert.Single(orphanList.Items));
+                Assert.EndsWith("1", repairedRow.ReaderLabel);
+                Assert.NotNull(repairedRow.DriveId);
+                Assert.True(repairedRow.Configured);
+                orphanWindow.Close();
                 var expectedDarkText = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["TextBrush"]).Color;
                 var expectedDarkControl = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["ControlBrush"]).Color;
                 Assert.Equal(expectedDarkText, Assert.IsType<System.Windows.Media.SolidColorBrush>(Assert.IsType<System.Windows.Controls.CheckBox>(optionsWindow.FindName("UseTagsCheck")).Foreground).Color);

@@ -373,6 +373,19 @@ public partial class OptionsWindow : Window
         var lastDrive = row.DriveId is not null && _drives.Count(item => item.ControllerUsbId == row.UsbId) == 1;
         var message = lastDrive ? LocExtension.Get("Hardware.ForgetLastConfirm") : LocExtension.Get("Hardware.ForgetConfirm");
         if (MessageBox.Show(this, message, LocExtension.Get("Hardware.Forget"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+        RemoveHardwareRow(row);
+        await PersistSettingsAsync();
+    }
+
+    private void RemoveHardwareRow(HardwareRow row)
+    {
+        // A row added with "Add drive" does not exist in the saved configuration yet.
+        // Removing it must therefore affect only that visible row.
+        if (row.DriveId is null && row.Configured)
+        {
+            Hardware.Remove(row);
+            return;
+        }
         if (row.DriveId is not null)
         {
             _drives.RemoveAll(item => item.Id == row.DriveId);
@@ -385,7 +398,6 @@ public partial class OptionsWindow : Window
             _controllers.RemoveAll(item => item.UsbId == row.UsbId);
         }
         RefreshHardwareRows();
-        await PersistSettingsAsync();
     }
 
     private void RefreshHardwareRows()
@@ -422,11 +434,18 @@ public partial class OptionsWindow : Window
         HardwareRoutingPolicy.AssignAutomaticDriveSelections(_drives, controllerId);
     }
 
-    private void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers)
+    internal void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers)
     {
         foreach (var controller in _unconfiguredControllers) controller.IsAvailable = false;
         foreach (var detected in detectedControllers)
         {
+            if (_drives.Any(drive => string.Equals(drive.ControllerUsbId, detected.UsbId, StringComparison.OrdinalIgnoreCase)))
+            {
+                var configured = _controllers.FirstOrDefault(item => StartupHardwareMonitor.SameController(item, detected));
+                if (configured is null) _controllers.Add(CloneController(detected));
+                _unconfiguredControllers.RemoveAll(item => StartupHardwareMonitor.SameController(item, detected));
+                continue;
+            }
             var known = _unconfiguredControllers.FirstOrDefault(item => StartupHardwareMonitor.SameController(item, detected));
             if (known is null) _unconfiguredControllers.Add(detected);
             else
