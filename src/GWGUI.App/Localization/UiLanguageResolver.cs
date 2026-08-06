@@ -2,10 +2,21 @@ using System.Globalization;
 
 namespace GWGUI.App.Localization;
 
+public sealed record UiLanguage(string Code, string NativeName);
+
+public static class UiLanguageCatalog
+{
+    public static IReadOnlyList<UiLanguage> Available { get; } =
+    [
+        new("fr", "Français"),
+        new("en", "English")
+    ];
+}
+
 public static class UiLanguageResolver
 {
     private static readonly HashSet<string> SupportedLanguages =
-        new(StringComparer.OrdinalIgnoreCase) { "en", "fr" };
+        UiLanguageCatalog.Available.Select(language => language.Code).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
     public static string Resolve(string? savedLanguage, CultureInfo? windowsUiCulture)
     {

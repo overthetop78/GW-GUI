@@ -12,6 +12,7 @@
 - Au premier lancement, l’application utilise la langue d’interface de Windows si elle est prise en charge. Si elle ne l’est pas ou si sa détection échoue, l’application utilise l’anglais, langue de base et de repli.
 - Une langue déjà choisie et enregistrée dans les Options est conservée. La langue de l’installateur est indépendante et ne force pas celle de l’application.
 - Enregistrer une autre langue dans les Options l’applique immédiatement : la fenêtre principale est recréée automatiquement dans la culture choisie, sans demander à l’utilisateur de quitter ou relancer le programme. Les réglages courants sont sauvegardés avant ce rafraîchissement, et la nouvelle fenêtre conserve exactement l’écran, la position, la taille et l’état maximisé de celle qu’elle remplace.
+- La langue s’applique dès sa sélection et est mémorisée sans utiliser le bouton Enregistrer. Les Options se rouvrent automatiquement dans la nouvelle langue afin que l’utilisateur puisse continuer ses réglages. Chaque langue est toujours affichée sous son nom natif; seules les traductions réellement livrées sont proposées.
 - Langues supplémentaires demandées : allemand, espagnol, italien, russe, chinois, japonais, portugais brésilien, néerlandais et polonais.
 - Traduction et relecture réalisées avec ChatGPT/Codex, complétées par les tests de parité et la vérification dans l’interface; aucun relecteur externe n’est requis.
 - L’interface fonctionnelle actuelle sera reprise écran par écran avec l’utilisateur et ne constitue pas une validation visuelle définitive.

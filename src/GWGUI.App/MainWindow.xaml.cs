@@ -958,7 +958,7 @@ public partial class MainWindow : Window
             if (!string.Equals(previousLanguage, _settings.Language, StringComparison.OrdinalIgnoreCase))
             {
                 app.SetLanguage(_settings.Language);
-                app.ReloadMainWindow(this);
+                app.ReloadMainWindow(this, reopenOptions: true);
                 return;
             }
             UpdateReadCommand();
@@ -970,6 +970,9 @@ public partial class MainWindow : Window
         _closeAfterSettingsSave = true;
         Close();
     }
+
+    internal void ReopenOptionsAfterLanguageReload() =>
+        Preferences_Click(this, new RoutedEventArgs());
 
     private void CaptureWindowSettings()
     {

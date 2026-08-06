@@ -53,6 +53,14 @@ public sealed class LocalizationTests
     }
 
     [Fact]
+    public void AvailableLanguagesUseStableNativeNames()
+    {
+        Assert.Collection(UiLanguageCatalog.Available,
+            french => { Assert.Equal("fr", french.Code); Assert.Equal("Français", french.NativeName); },
+            english => { Assert.Equal("en", english.Code); Assert.Equal("English", english.NativeName); });
+    }
+
+    [Fact]
     public void FrenchAndEnglishCatalogsCoverEveryNeutralKey()
     {
         var neutral = LocExtension.GetDefinedKeys(CultureInfo.InvariantCulture);

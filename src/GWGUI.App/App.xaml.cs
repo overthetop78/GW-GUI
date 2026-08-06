@@ -57,7 +57,7 @@ public partial class App : Application
         CultureInfo.CurrentUICulture = culture;
     }
 
-    public void ReloadMainWindow(MainWindow current)
+    public void ReloadMainWindow(MainWindow current, bool reopenOptions = false)
     {
         var replacement = new MainWindow();
         var bounds = current.RestoreBounds;
@@ -72,5 +72,8 @@ public partial class App : Application
         MainWindow = replacement;
         replacement.Show();
         current.CloseForLanguageReload();
+        if (reopenOptions)
+            replacement.Dispatcher.BeginInvoke(replacement.ReopenOptionsAfterLanguageReload,
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle);
     }
 }

@@ -28,6 +28,7 @@ public partial class OptionsWindow : Window
     private string? _installedVersion;
     private string? _availableVersion;
     private DateTimeOffset? _lastHostToolsCheck;
+    private bool _initializingLanguage = true;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> Profiles { get; } = [];
 
@@ -56,7 +57,11 @@ public partial class OptionsWindow : Window
         AssignAllDriveSelections();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = settings.GwExecutablePath;
-        LanguageCombo.SelectedIndex = settings.Language == "fr" ? 0 : 1;
+        LanguageCombo.ItemsSource = UiLanguageCatalog.Available;
+        LanguageCombo.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language =>
+            string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
+            ?? UiLanguageCatalog.Available.First(language => language.Code == "en");
+        _initializingLanguage = false;
         ThemeCombo.SelectedIndex = (int)settings.Theme;
         TagPatternText.Text = settings.Conversion.TagPattern;
         RefreshHardwareRows();
@@ -73,6 +78,15 @@ public partial class OptionsWindow : Window
         if (GeneralPage is null) return;
         var pages = new FrameworkElement[] { GeneralPage, ToolsPage, HardwarePage, ProfilesPage };
         for (var index = 0; index < pages.Length; index++) pages[index].Visibility = index == Navigation.SelectedIndex ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_initializingLanguage || LanguageCombo.SelectedItem is not UiLanguage language ||
+            string.Equals(_settings.Language, language.Code, StringComparison.OrdinalIgnoreCase)) return;
+
+        _settings.Language = language.Code;
+        DialogResult = true;
     }
 
     private void BrowseGw_Click(object sender, RoutedEventArgs e)
@@ -304,7 +318,7 @@ public partial class OptionsWindow : Window
         _settings.InstalledHostToolsVersion = _installedVersion;
         _settings.AvailableHostToolsVersion = _availableVersion;
         _settings.LastHostToolsCheckUtc = _lastHostToolsCheck;
-        _settings.Language = LanguageCombo.SelectedIndex == 1 ? "en" : "fr";
+        if (LanguageCombo.SelectedItem is UiLanguage language) _settings.Language = language.Code;
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _settings.Conversion.TagPattern = TagPatternText.Text;
         _settings.Controllers = _controllers;

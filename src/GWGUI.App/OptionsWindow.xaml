@@ -24,10 +24,9 @@
                     <TextBox x:Name="ImagesFolderText" AutomationProperties.Name="{l:Loc Options.ImagesFolder}" />
                 </DockPanel>
                 <TextBlock Text="{l:Loc Options.Language}" />
-                <ComboBox x:Name="LanguageCombo" Width="240" HorizontalAlignment="Left" Margin="0,6,0,18" AutomationProperties.Name="{l:Loc Options.Language}">
-                    <ComboBoxItem Tag="fr" Content="Français" />
-                    <ComboBoxItem Tag="en" Content="English" />
-                </ComboBox>
+                  <ComboBox x:Name="LanguageCombo" Width="240" HorizontalAlignment="Left" Margin="0,6,0,18"
+                            DisplayMemberPath="NativeName" SelectionChanged="Language_SelectionChanged"
+                            AutomationProperties.Name="{l:Loc Options.Language}" />
                 <TextBlock Text="{l:Loc Options.Theme}" />
                 <ComboBox x:Name="ThemeCombo" Width="240" HorizontalAlignment="Left" Margin="0,6" AutomationProperties.Name="{l:Loc Options.Theme}">
                     <ComboBoxItem Content="{l:Loc Theme.System}" />
