@@ -528,21 +528,39 @@ public partial class OptionsWindow : Window
 
     private async Task SaveAndCloseAsync()
     {
-        try { await PersistSettingsAsync(); }
+        try { await PersistSettingsAsync().ConfigureAwait(false); }
         catch (Exception exception)
         {
             var path = ErrorLog.Write(exception, "Saving Options while closing");
             var detail = path is null ? exception.Message : LocExtension.Get("Error.LogSaved", path);
-            if (IsLoaded) MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            try
+            {
+                if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)
+                    await Dispatcher.InvokeAsync(() => { if (IsLoaded) MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); }).Task.ConfigureAwait(false);
+            }
+            catch (Exception dialogException) { ErrorLog.Write(dialogException, "Displaying Options save error"); }
         }
-        finally
+        try
         {
             if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    if (_closingAfterSave) return;
+                    _closingAfterSave = true;
+                    _closeInProgress = false;
+                    Close();
+                }).Task.ConfigureAwait(false);
+            else
             {
                 _closingAfterSave = true;
                 _closeInProgress = false;
-                Close();
             }
+        }
+        catch (Exception closeException)
+        {
+            _closingAfterSave = true;
+            _closeInProgress = false;
+            ErrorLog.Write(closeException, "Closing Options after save");
         }
     }
 }

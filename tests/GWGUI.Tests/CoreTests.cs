@@ -304,7 +304,7 @@ public sealed class CoreTests
                 Assert.Equal(UserDialogIcon.Warning, saveFailure.Icon);
                 Assert.Contains("test save failure", saveFailure.Message);
 
-                var optionsWindow = new OptionsWindow(new AppSettings(), settingsStore: new RecordingSettingsStore());
+                var optionsWindow = new OptionsWindow(new AppSettings(), settingsStore: new DelayedSettingsStore());
                 var optionsNavigation = Assert.IsType<System.Windows.Controls.TabControl>(optionsWindow.FindName("Navigation"));
                 var imagesFolder = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("ImagesFolderText"));
                 var language = Assert.IsType<System.Windows.Controls.ComboBox>(optionsWindow.FindName("LanguageCombo"));
@@ -319,7 +319,28 @@ public sealed class CoreTests
                 Assert.NotNull(new TabControlAutomationPeer(optionsNavigation).GetPattern(PatternInterface.Selection));
                 Assert.NotNull(new TextBoxAutomationPeer(imagesFolder).GetPattern(PatternInterface.Value));
                 Assert.NotNull(new ComboBoxAutomationPeer(language).GetPattern(PatternInterface.Selection));
+                optionsWindow.Show();
                 optionsWindow.Close();
+                for (var attempt = 0; attempt < 100 && optionsWindow.IsVisible; attempt++)
+                {
+                    Dispatcher.CurrentDispatcher.Invoke(() => { }, DispatcherPriority.Background);
+                    Thread.Sleep(10);
+                }
+                Assert.False(optionsWindow.IsVisible, "Options did not close after its asynchronous save.");
+
+                for (var cycle = 0; cycle < 4; cycle++)
+                {
+                    var repeatedOptions = new OptionsWindow(new AppSettings(), settingsStore: new DelayedSettingsStore());
+                    repeatedOptions.Show();
+                    var closeButton = Assert.IsType<System.Windows.Controls.Button>(repeatedOptions.FindName("CloseButton"));
+                    closeButton.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
+                    for (var attempt = 0; attempt < 100 && repeatedOptions.IsVisible; attempt++)
+                    {
+                        Dispatcher.CurrentDispatcher.Invoke(() => { }, DispatcherPriority.Background);
+                        Thread.Sleep(10);
+                    }
+                    Assert.False(repeatedOptions.IsVisible, $"Options did not close on cycle {cycle + 1}.");
+                }
 
                 var hardwareWindow = new HardwareUnavailableWindow([new ControllerSettings { UsbId = "GW-TEST", LastPort = "COM3", Model = "Greaseweazle" }]);
                 Assert.Single(Assert.IsType<System.Windows.Controls.ListBox>(hardwareWindow.FindName("MissingControllers")).Items);
@@ -2803,6 +2824,12 @@ public sealed class CoreTests
         public int SaveCount { get; private set; }
         public Task<AppSettings> LoadAsync(CancellationToken cancellationToken = default) => Task.FromResult(new AppSettings());
         public Task SaveAsync(AppSettings settings, CancellationToken cancellationToken = default) { SaveCount++; return Task.CompletedTask; }
+    }
+
+    private sealed class DelayedSettingsStore : ISettingsStore
+    {
+        public Task<AppSettings> LoadAsync(CancellationToken cancellationToken = default) => Task.FromResult(new AppSettings());
+        public async Task SaveAsync(AppSettings settings, CancellationToken cancellationToken = default) => await Task.Delay(20, cancellationToken);
     }
 
     private sealed class FailingSettingsStore : ISettingsStore

@@ -148,7 +148,7 @@
             </TabItem>
         </TabControl>
 
-        <Button Grid.Row="1" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="120"
+        <Button x:Name="CloseButton" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="120"
                 Content="{l:Loc Common.Close}" IsDefault="True" Click="Close_Click" />
     </Grid>
 </Window>
