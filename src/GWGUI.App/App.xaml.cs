@@ -47,4 +47,21 @@ public partial class App : Application
     }
 
     public void SetTheme(AppTheme theme) { _theme = theme; ThemeManager.Apply(theme); }
+
+    public void SetLanguage(string language)
+    {
+        var culture = CultureInfo.GetCultureInfo(language);
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+    }
+
+    public void ReloadMainWindow(MainWindow current)
+    {
+        var replacement = new MainWindow();
+        MainWindow = replacement;
+        replacement.Show();
+        current.CloseForLanguageReload();
+    }
 }

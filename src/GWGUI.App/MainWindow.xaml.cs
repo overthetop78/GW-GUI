@@ -946,17 +946,34 @@ public partial class MainWindow : Window
 
     private async void Preferences_Click(object sender, RoutedEventArgs e)
     {
+        var previousLanguage = _settings.Language;
         CaptureProfiles();
         if (_navigation.ShowOptions(_settings))
         {
+            CaptureReadSettings();
+            CaptureWriteSettings();
+            CaptureConversionSettings();
             LoadProfileStores();
             RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
             _viewModel.Read.Folder = _settings.DefaultImagesFolder;
             RefreshHardwareSelector();
-            ((App)Application.Current).SetTheme(_settings.Theme);
+            var app = (App)Application.Current;
+            app.SetTheme(_settings.Theme);
             await _settingsStore.SaveAsync(_settings);
+            if (!string.Equals(previousLanguage, _settings.Language, StringComparison.OrdinalIgnoreCase))
+            {
+                app.SetLanguage(_settings.Language);
+                app.ReloadMainWindow(this);
+                return;
+            }
             UpdateReadCommand();
         }
+    }
+
+    internal void CloseForLanguageReload()
+    {
+        _closeAfterSettingsSave = true;
+        Close();
     }
 
     private void RestoreWindowPlacement()
