@@ -55,25 +55,11 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = culture;
         CultureInfo.CurrentCulture = culture;
         CultureInfo.CurrentUICulture = culture;
-    }
-
-    public void ReloadMainWindow(MainWindow current, bool reopenOptions = false)
-    {
-        var replacement = new MainWindow();
-        var bounds = current.RestoreBounds;
-        replacement.WindowStartupLocation = WindowStartupLocation.Manual;
-        replacement.Left = bounds.Left;
-        replacement.Top = bounds.Top;
-        replacement.Width = bounds.Width;
-        replacement.Height = bounds.Height;
-        replacement.WindowState = current.WindowState == WindowState.Maximized
-            ? WindowState.Maximized
-            : WindowState.Normal;
-        MainWindow = replacement;
-        replacement.Show();
-        current.CloseForLanguageReload();
-        if (reopenOptions)
-            replacement.Dispatcher.BeginInvoke(replacement.ReopenOptionsAfterLanguageReload,
-                System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+        LocalizationSource.Instance.Refresh();
+        foreach (var window in Windows)
+        {
+            if (window is MainWindow main) main.RefreshLocalizedContent();
+            else if (window is OptionsWindow options) options.RefreshLocalizedContent();
+        }
     }
 }

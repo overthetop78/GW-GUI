@@ -9,6 +9,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Settings;
 using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.Processes;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Localization;
 using GWGUI.Domain.HostTools;
 using GWGUI.Infrastructure.HostTools;
@@ -80,13 +81,27 @@ public partial class OptionsWindow : Window
         for (var index = 0; index < pages.Length; index++) pages[index].Visibility = index == Navigation.SelectedIndex ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (_initializingLanguage || LanguageCombo.SelectedItem is not UiLanguage language ||
             string.Equals(_settings.Language, language.Code, StringComparison.OrdinalIgnoreCase)) return;
 
         _settings.Language = language.Code;
-        DialogResult = true;
+        if (Application.Current is App app) app.SetLanguage(language.Code);
+        else LocalizationSource.Instance.Refresh();
+        RefreshLocalizedContent();
+        await new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json")).SaveAsync(_settings);
+    }
+
+    internal void RefreshLocalizedContent()
+    {
+        for (var index = 0; index < Profiles.Count; index++)
+            if (Profiles[index].IsSystem) Profiles[index] = Profiles[index] with { Name = LocExtension.Get("Profile.Default") };
+        ProfilesGrid.Items.Refresh();
+        HostToolsStatus.Text = File.Exists(GwPathText.Text)
+            ? LocExtension.Get("HostTools.Detected", GwPathText.Text)
+            : LocExtension.Get("HostTools.None");
+        TagPattern_Changed(this, new TextChangedEventArgs(TextBox.TextChangedEvent, UndoAction.None));
     }
 
     private void BrowseGw_Click(object sender, RoutedEventArgs e)

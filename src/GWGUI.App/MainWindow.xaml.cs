@@ -940,7 +940,6 @@ public partial class MainWindow : Window
 
     private async void Preferences_Click(object sender, RoutedEventArgs e)
     {
-        var previousLanguage = _settings.Language;
         CaptureProfiles();
         if (_navigation.ShowOptions(_settings))
         {
@@ -955,24 +954,29 @@ public partial class MainWindow : Window
             var app = (App)Application.Current;
             app.SetTheme(_settings.Theme);
             await _settingsStore.SaveAsync(_settings);
-            if (!string.Equals(previousLanguage, _settings.Language, StringComparison.OrdinalIgnoreCase))
-            {
-                app.SetLanguage(_settings.Language);
-                app.ReloadMainWindow(this, reopenOptions: true);
-                return;
-            }
             UpdateReadCommand();
         }
     }
 
-    internal void CloseForLanguageReload()
+    internal void RefreshLocalizedContent()
     {
-        _closeAfterSettingsSave = true;
-        Close();
+        var readProfile = (ReadProfileCombo.SelectedItem as OperationProfile)?.Id;
+        var writeProfile = (WriteProfileCombo.SelectedItem as OperationProfile)?.Id;
+        var convertProfile = (ConvertProfileCombo.SelectedItem as OperationProfile)?.Id;
+        RebuildFormatCatalog();
+        RefreshReadProfiles(readProfile);
+        RefreshWriteProfiles(writeProfile);
+        RefreshConvertProfiles(convertProfile);
+        RefreshHardwareSelector();
+        UpdateReadExtension();
+        UpdateProfileStatus();
+        UpdateReadCommand();
+        UpdateWriteCommand();
+        UpdateConvertCommand();
+        UpdateToolCommand();
+        if (!_operation.IsRunning) SetOperationState("Status.ReadyShort", Color.FromRgb(136, 136, 136));
+        ShowHostToolsUpdateIfNeeded();
     }
-
-    internal void ReopenOptionsAfterLanguageReload() =>
-        Preferences_Click(this, new RoutedEventArgs());
 
     private void CaptureWindowSettings()
     {

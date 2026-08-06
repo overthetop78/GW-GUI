@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.ComponentModel;
 using System.IO;
 using GWGUI.App.Localization;
 using System.Xml.Linq;
@@ -58,6 +59,17 @@ public sealed class LocalizationTests
         Assert.Collection(UiLanguageCatalog.Available,
             french => { Assert.Equal("fr", french.Code); Assert.Equal("Français", french.NativeName); },
             english => { Assert.Equal("en", english.Code); Assert.Equal("English", english.NativeName); });
+    }
+
+    [Fact]
+    public void LocalizationRefreshNotifiesEveryBoundResource()
+    {
+        string? property = null;
+        PropertyChangedEventHandler handler = (_, args) => property = args.PropertyName;
+        LocalizationSource.Instance.PropertyChanged += handler;
+        try { LocalizationSource.Instance.Refresh(); }
+        finally { LocalizationSource.Instance.PropertyChanged -= handler; }
+        Assert.Equal("Item[]", property);
     }
 
     [Fact]
