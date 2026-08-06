@@ -77,7 +77,7 @@ public static class SettingsMigrator
 
     private static void Normalize(AppSettings settings)
     {
-        settings.Language = string.IsNullOrWhiteSpace(settings.Language) ? "fr" : settings.Language;
+        settings.Language = settings.Language?.Trim() ?? "";
         settings.DefaultImagesFolder ??= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];

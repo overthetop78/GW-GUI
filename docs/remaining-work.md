@@ -79,7 +79,7 @@ Travail de traduction de l’installateur :
 - fournir un fichier de messages complémentaire lorsque les textes propres à GW GUI en ont besoin;
 - étendre les scripts de tests qui n’acceptent actuellement que `english` et `french`;
 - tester pour chaque langue les pages du wizard, les tâches, le résumé, la fin, l’inscription de désinstallation et la conservation de la langue après mise à niveau;
-- vérifier que le lancement initial de l’application reprend la langue choisie dans l’installateur, ou documenter explicitement un choix différent;
+- conserver l’indépendance validée entre les deux sélections : l’installateur choisit sa propre langue et l’application choisit au premier lancement la langue Windows prise en charge, avec repli anglais;
 - ne pas considérer une traduction terminée avant une vérification visuelle du véritable installateur.
 
 Langues retenues ou demandées pour organiser le travail :

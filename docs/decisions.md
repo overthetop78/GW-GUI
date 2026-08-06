@@ -9,6 +9,8 @@
 - Commande générée et journaux visibles dans l’application.
 - Interface multilingue. Le français et l’anglais restent les langues de référence; plusieurs langues supplémentaires doivent couvrir à la fois le logiciel et l’installateur.
 - Ressources de traduction `.resx` : `Strings.resx`, `Strings.fr.resx`, `Strings.en.resx`, puis un catalogue complet par culture ajoutée.
+- Au premier lancement, l’application utilise la langue d’interface de Windows si elle est prise en charge. Si elle ne l’est pas ou si sa détection échoue, l’application utilise l’anglais, langue de base et de repli.
+- Une langue déjà choisie et enregistrée dans les Options est conservée. La langue de l’installateur est indépendante et ne force pas celle de l’application.
 - Langues supplémentaires demandées : allemand, espagnol, italien, russe, chinois, japonais, portugais brésilien, néerlandais et polonais.
 - Traduction et relecture réalisées avec ChatGPT/Codex, complétées par les tests de parité et la vérification dans l’interface; aucun relecteur externe n’est requis.
 - L’interface fonctionnelle actuelle sera reprise écran par écran avec l’utilisateur et ne constitue pas une validation visuelle définitive.

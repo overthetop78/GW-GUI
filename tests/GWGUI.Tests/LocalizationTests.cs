@@ -29,6 +29,29 @@ public sealed class LocalizationTests
         finally { CultureInfo.CurrentUICulture = previous; }
     }
 
+    [Theory]
+    [InlineData("", "fr-FR", "fr")]
+    [InlineData("", "fr-CA", "fr")]
+    [InlineData("", "en-US", "en")]
+    [InlineData("", "ru-RU", "en")]
+    [InlineData("", "zh-CN", "en")]
+    [InlineData("", "de-DE", "en")]
+    [InlineData("", "it-IT", "en")]
+    [InlineData("fr", "en-US", "fr")]
+    [InlineData("en", "fr-FR", "en")]
+    public void InitialLanguageUsesSavedChoiceOrSupportedWindowsLanguage(
+        string savedLanguage, string windowsCulture, string expected)
+    {
+        Assert.Equal(expected, UiLanguageResolver.Resolve(savedLanguage, CultureInfo.GetCultureInfo(windowsCulture)));
+    }
+
+    [Fact]
+    public void InitialLanguageFallsBackToEnglishWhenDetectionIsUnavailable()
+    {
+        Assert.Equal("en", UiLanguageResolver.Resolve("", null));
+        Assert.Equal("en", UiLanguageResolver.Resolve("unsupported", CultureInfo.GetCultureInfo("fr-FR")));
+    }
+
     [Fact]
     public void FrenchAndEnglishCatalogsCoverEveryNeutralKey()
     {

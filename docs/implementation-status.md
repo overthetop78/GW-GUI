@@ -94,6 +94,8 @@ La classification détaillée, les prérequis et les tâches nécessitant l’ai
 
 ## Validation actuelle
 
+- La sélection initiale de langue est validée : choix manuel conservé; sinon langue Windows lorsqu’elle est prise en charge; sinon anglais. La langue de l’installateur ne pilote pas celle de l’application.
+- Dernière exécution complète après correction de la langue initiale : 251 tests réussis.
 - Dernière exécution complète après configuration en ligne et routage matériel minimal : 241 tests réussis. Le test matériel opt-in de découverte a également réussi séparément avec le contrôleur branché.
 - Dernière exécution complète après matrice de routage par contrôleur : 232 tests réussis. Le test WPF confirme également qu’un outil n’est pas ouvert pour un lecteur sélectionné indisponible.
 - Le test WPF restaure réellement `atarist.720` avec `.msa`, change l’extension vers `.st`, la recapture, puis vérifie le contenu des profils Lecture et Écriture créés par leurs boutons. La suite complète reste à 231 tests réussis.

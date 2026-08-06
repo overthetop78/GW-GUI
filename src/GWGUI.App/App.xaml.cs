@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using GWGUI.App.Localization;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Domain.Settings;
 using Microsoft.Win32;
@@ -13,8 +14,15 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         var directory = StoragePaths.DataDirectory;
-        var settings = new JsonSettingsStore(Path.Combine(directory, "settings.json")).LoadAsync().GetAwaiter().GetResult();
-        var culture = CultureInfo.GetCultureInfo(settings.Language == "en" ? "en" : "fr");
+        var settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
+        var settings = settingsStore.LoadAsync().GetAwaiter().GetResult();
+        var language = UiLanguageResolver.Resolve(settings.Language, CultureInfo.CurrentUICulture);
+        if (!string.Equals(settings.Language, language, StringComparison.OrdinalIgnoreCase))
+        {
+            settings.Language = language;
+            settingsStore.SaveAsync(settings).GetAwaiter().GetResult();
+        }
+        var culture = CultureInfo.GetCultureInfo(language);
         CultureInfo.DefaultThreadCurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
         CultureInfo.CurrentCulture = culture;

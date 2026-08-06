@@ -56,7 +56,7 @@ public partial class OptionsWindow : Window
         AssignAllDriveSelections();
         ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = settings.GwExecutablePath;
-        LanguageCombo.SelectedIndex = settings.Language == "en" ? 1 : 0;
+        LanguageCombo.SelectedIndex = settings.Language == "fr" ? 0 : 1;
         ThemeCombo.SelectedIndex = (int)settings.Theme;
         TagPatternText.Text = settings.Conversion.TagPattern;
         RefreshHardwareRows();
