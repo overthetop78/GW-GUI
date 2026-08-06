@@ -126,88 +126,27 @@
                 </Grid>
             </TabItem>
             <TabItem Header="{l:Loc Tab.Convert}">
-                <Grid Margin="16">
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Border Style="{StaticResource Card}">
-                        <DockPanel>
-                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button Content="{l:Loc Common.Save}" Click="SaveConvertProfile_Click"/><Button Content="{l:Loc Common.Reset}" Click="ResetConvertProfile_Click"/></StackPanel>
-                            <StackPanel Orientation="Horizontal"><TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="ConvertProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ConvertProfile_Changed" AutomationProperties.Name="{l:Loc Common.Profile}"/></StackPanel>
-                        </DockPanel>
-                    </Border>
-                    <Border Grid.Row="1" Style="{StaticResource Card}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{l:Loc Conversion.Source}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                            <TextBox x:Name="ConvertSourceText" Grid.Column="1" IsReadOnly="True" Text="{Binding Conversion.SourcePath, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Conversion.Source}" />
-                            <Button Grid.Column="2" Content="{l:Loc Common.Choose}" Click="BrowseConvertSource_Click" />
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,12,0,0">
-                                <TextBlock Text="{l:Loc Conversion.OutputNames}" VerticalAlignment="Center" />
-                                <TextBox x:Name="ConvertOutputName" Width="330" Margin="12,0" Text="{Binding Conversion.OutputName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" AutomationProperties.Name="{l:Loc Conversion.OutputNames}" />
-                                <CheckBox x:Name="ConvertTags" IsChecked="{Binding Conversion.AddTags, Mode=TwoWay}" Content="{l:Loc Conversion.AddTags}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" />
-                                <TextBlock x:Name="ConvertSourceInfo" Margin="18,0" VerticalAlignment="Center" />
-                            </StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <Grid Margin="16">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <controls:ConversionAdvancedSection x:Name="ConvertAdvancedBlock" Grid.Row="0"/>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="390"/></Grid.ColumnDefinitions>
+                                <controls:PathSection x:Name="ConvertSourceBlock" Label="{l:Loc Conversion.Source}" Text="{Binding Conversion.SourcePath, Mode=TwoWay}" Margin="0,0,6,12"/>
+                                <controls:ProfileSection x:Name="ConvertProfileBlock" Grid.Column="1" Margin="6,0,0,12"/>
+                            </Grid>
+                            <controls:ConversionOutputSection x:Name="ConvertOutputBlock" Grid.Row="2" Margin="0,0,0,12"/>
+                            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+                                <controls:ConversionFormatsSection x:Name="ConvertFormatsBlock"/>
+                            </ScrollViewer>
                         </Grid>
-                    </Border>
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <TextBlock Text="{l:Loc Conversion.Selected}" FontSize="18" FontWeight="SemiBold" Margin="4,4,4,10" />
-                            <Border Style="{StaticResource Card}">
-                                <ItemsControl x:Name="ConvertPinnedPanel">
-                                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="ConversionSelectionChanged" /></DataTemplate></ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </Border>
-                            <TextBlock Text="{l:Loc Conversion.CommonFormats}" FontSize="17" FontWeight="SemiBold" Margin="4" />
-                            <Border Style="{StaticResource Card}">
-                                <ItemsControl x:Name="ConvertCommonPanel">
-                                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="ConversionSelectionChanged" /></DataTemplate></ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </Border>
-                            <Expander Header="{l:Loc Conversion.ShowRare}">
-                                <Border Style="{StaticResource Card}" Margin="0,10,0,0">
-                                    <ItemsControl x:Name="ConvertRarePanel">
-                                        <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="ConversionSelectionChanged" /></DataTemplate></ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Border>
-                            </Expander>
-                            <Expander Header="{l:Loc Common.Advanced}">
-                                <Border Style="{StaticResource Card}" Margin="0,10,0,0">
-                                    <StackPanel>
-                                        <CheckBox x:Name="ConvertTracksEnabled" IsChecked="{Binding Conversion.Tracks.Enabled}" Content="{l:Loc Conversion.LimitTracks}" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" ToolTip="{l:Loc Advanced.TracksTip}" />
-                                        <TextBox x:Name="ConvertTracksValue" Text="{Binding Conversion.Tracks.Value, UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,12" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
-                                        <WrapPanel>
-                                            <CheckBox x:Name="ConvertOutTracksEnabled" IsChecked="{Binding Conversion.OutputTracks.Enabled}" Content="{l:Loc Advanced.OutputTracks}" Margin="0,0,8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" ToolTip="{l:Loc Advanced.OutputTracksTip}" />
-                                            <TextBox x:Name="ConvertOutTracksValue" Width="190" Text="{Binding Conversion.OutputTracks.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
-                                            <CheckBox x:Name="ConvertAdjustSpeedEnabled" IsChecked="{Binding Conversion.AdjustSpeed.Enabled}" Content="{l:Loc Advanced.AdjustSpeed}" Margin="18,0,8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" ToolTip="{l:Loc Advanced.AdjustSpeedTip}" />
-                                            <TextBox x:Name="ConvertAdjustSpeedValue" Width="90" Text="{Binding Conversion.AdjustSpeed.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
-                                        </WrapPanel>
-                                        <WrapPanel Margin="0,10,0,12">
-                                            <CheckBox x:Name="ConvertPllEnabled" IsChecked="{Binding Conversion.Pll.Enabled}" Content="{l:Loc Advanced.Pll}" Margin="0,0,8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" ToolTip="{l:Loc Advanced.PllOptionTip}" />
-                                            <TextBox x:Name="ConvertPllValue" Width="180" Text="{Binding Conversion.Pll.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Advanced.PllTip}" />
-                                            <CheckBox x:Name="ConvertHardSectors" IsChecked="{Binding Conversion.HardSectors.Enabled}" Content="{l:Loc Advanced.HardSectors}" Margin="18,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" ToolTip="{l:Loc Advanced.HardSectorsTip}" />
-                                            <CheckBox x:Name="ConvertReverse" IsChecked="{Binding Conversion.Reverse.Enabled}" Content="{l:Loc Advanced.Reverse}" Margin="8,0" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed" ToolTip="{l:Loc Advanced.ReverseTip}" />
-                                        </WrapPanel>
-                                        <DockPanel Margin="0,0,0,12" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseConvertDiskDefs_Click"/><CheckBox x:Name="ConvertDiskDefsEnabled" IsChecked="{Binding Conversion.DiskDefs.Enabled}" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="ConvertInput_Changed" Unchecked="ConvertInput_Changed"/><TextBox x:Name="ConvertDiskDefsValue" Margin="10,0" IsReadOnly="True" Text="{Binding Conversion.DiskDefs.Value, Mode=TwoWay}" TextChanged="ConvertInput_Changed"/></DockPanel>
-                                        <TextBlock Text="{l:Loc Common.ExpertArguments}" />
-                                        <TextBox x:Name="ConvertExpertArguments" Margin="0,6,0,0" Text="{Binding Conversion.ExpertArguments, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConvertInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
-                                    </StackPanel>
-                                </Border>
-                            </Expander>
-                        </StackPanel>
                     </ScrollViewer>
-                    <Button Grid.Row="3" x:Name="ConvertExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteConvert_Click" />
+                    <Button Grid.Row="1" x:Name="ConvertExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" Click="ExecuteConvert_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="{l:Loc Tab.Visualize}">

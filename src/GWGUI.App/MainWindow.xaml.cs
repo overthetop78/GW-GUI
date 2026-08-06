@@ -45,6 +45,17 @@ public partial class MainWindow : Window
     private CheckBox WriteNoVerify => WriteAdvancedBlock.NoVerifyCheckBox;
     private CheckBox WriteDiskDefsEnabled => WriteAdvancedBlock.DiskDefinitionsEnabled;
     private TextBox WriteDiskDefsValue => WriteAdvancedBlock.DiskDefinitionsValue;
+    private ComboBox ConvertProfileCombo => ConvertProfileBlock.ProfileCombo;
+    private TextBox ConvertSourceText => ConvertSourceBlock.Input;
+    private TextBox ConvertOutputName => ConvertOutputBlock.OutputNameTextBox;
+    private CheckBox ConvertTags => ConvertOutputBlock.TagsCheckBox;
+    private TextBlock ConvertSourceInfo => ConvertOutputBlock.SourceInformation;
+    private ItemsControl ConvertPinnedPanel => ConvertFormatsBlock.PinnedItems;
+    private ItemsControl ConvertCommonPanel => ConvertFormatsBlock.CommonItems;
+    private ItemsControl ConvertRarePanel => ConvertFormatsBlock.RareItems;
+    private CheckBox ConvertTracksEnabled => ConvertAdvancedBlock.TracksEnabledCheckBox;
+    private CheckBox ConvertDiskDefsEnabled => ConvertAdvancedBlock.DiskDefinitionsEnabled;
+    private TextBox ConvertDiskDefsValue => ConvertAdvancedBlock.DiskDefinitionsValue;
     private TextBox ReadFolder => ReadFolderBlock.Input;
     private TextBox ReadFileName => ReadFileNameBlock.FileNameTextBox;
     private TextBox ReadExtensionText => ReadFileNameBlock.ExtensionTextBox;
@@ -100,6 +111,7 @@ public partial class MainWindow : Window
         ConnectMainMenu();
         ConnectReadComponents();
         ConnectWriteComponents();
+        ConnectConvertComponents();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
@@ -188,6 +200,29 @@ public partial class MainWindow : Window
         RegisterName(nameof(WriteNoVerify), WriteNoVerify);
         RegisterName(nameof(WriteDiskDefsEnabled), WriteDiskDefsEnabled);
         RegisterName(nameof(WriteDiskDefsValue), WriteDiskDefsValue);
+    }
+
+    private void ConnectConvertComponents()
+    {
+        ConvertProfileCombo.SelectionChanged += ConvertProfile_Changed;
+        ConvertProfileBlock.SaveButton.Click += SaveConvertProfile_Click;
+        ConvertProfileBlock.ResetButton.Click += ResetConvertProfile_Click;
+        ConvertSourceBlock.BrowseButton.Click += BrowseConvertSource_Click;
+        ConvertOutputBlock.ValueChanged += ConvertInput_Changed;
+        ConvertFormatsBlock.ValueChanged += ConversionSelectionChanged;
+        ConvertAdvancedBlock.InputChanged += ConvertInput_Changed;
+        ConvertAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseConvertDiskDefs_Click;
+        RegisterName(nameof(ConvertProfileCombo), ConvertProfileCombo);
+        RegisterName(nameof(ConvertSourceText), ConvertSourceText);
+        RegisterName(nameof(ConvertOutputName), ConvertOutputName);
+        RegisterName(nameof(ConvertTags), ConvertTags);
+        RegisterName(nameof(ConvertSourceInfo), ConvertSourceInfo);
+        RegisterName(nameof(ConvertPinnedPanel), ConvertPinnedPanel);
+        RegisterName(nameof(ConvertCommonPanel), ConvertCommonPanel);
+        RegisterName(nameof(ConvertRarePanel), ConvertRarePanel);
+        RegisterName(nameof(ConvertTracksEnabled), ConvertTracksEnabled);
+        RegisterName(nameof(ConvertDiskDefsEnabled), ConvertDiskDefsEnabled);
+        RegisterName(nameof(ConvertDiskDefsValue), ConvertDiskDefsValue);
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
