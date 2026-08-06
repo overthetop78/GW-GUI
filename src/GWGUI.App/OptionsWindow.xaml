@@ -14,7 +14,7 @@
 
         <TabControl x:Name="Navigation" SelectedIndex="0" AutomationProperties.Name="{l:Loc Options.Title}">
             <TabItem Header="{l:Loc Options.General}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
                     <StackPanel Margin="18">
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition Width="390" /></Grid.ColumnDefinitions>
@@ -55,12 +55,13 @@
                                     <TextBlock Text="{l:Loc Options.TagPattern}" Margin="0,12,0,0" />
                                     <TextBox x:Name="TagPatternText" Width="400" HorizontalAlignment="Left" Margin="0,5,0,0" TextChanged="TagPattern_Changed" LostKeyboardFocus="TagPattern_LostKeyboardFocus" AutomationProperties.Name="{l:Loc Options.TagPattern}" />
                                     <TextBlock Text="{l:Loc Options.RecentTagPatterns}" Margin="0,12,0,0" />
-                                    <ListBox x:Name="RecentTagPatterns" Width="400" Height="145" HorizontalAlignment="Left" Margin="0,5,0,0" MouseDoubleClick="RecentTagPattern_DoubleClick" AutomationProperties.Name="{l:Loc Options.RecentTagPatterns}" BorderThickness="0" Background="Transparent">
+                                    <ListBox x:Name="RecentTagPatterns" Width="400" Height="126" HorizontalAlignment="Left" Margin="0,5,0,0" MouseDoubleClick="RecentTagPattern_DoubleClick" AutomationProperties.Name="{l:Loc Options.RecentTagPatterns}" BorderThickness="0" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="Padding" Value="0"/><Setter Property="Margin" Value="0"/><Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="MinHeight" Value="0"/></Style></ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate><DataTemplate>
-                                            <Grid Margin="0,1">
-                                                <Grid.ColumnDefinitions><ColumnDefinition Width="30" /><ColumnDefinition /></Grid.ColumnDefinitions>
+                                            <Grid Height="24" Margin="0,0,0,1">
+                                                <Grid.ColumnDefinitions><ColumnDefinition Width="27" /><ColumnDefinition /></Grid.ColumnDefinitions>
                                                 <Border Background="{DynamicResource AccentBrush}" CornerRadius="4" Margin="0,0,6,0"><TextBlock Text="{Binding Number}" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
-                                                <Border Grid.Column="1" Background="{DynamicResource ControlBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="8,4"><TextBlock Text="{Binding Display}" VerticalAlignment="Center" /></Border>
+                                                <Border Grid.Column="1" Background="{DynamicResource ControlBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="8,1"><TextBlock Text="{Binding Display}" VerticalAlignment="Center" /></Border>
                                             </Grid>
                                         </DataTemplate></ListBox.ItemTemplate>
                                     </ListBox>
@@ -70,9 +71,9 @@
                                         <TextBlock Text="{l:Loc Options.TagVariablesTitle}" FontWeight="SemiBold" Margin="0,0,0,8" />
                                         <ItemsControl x:Name="TagVariablesList">
                                             <ItemsControl.ItemTemplate><DataTemplate>
-                                                <Grid Margin="0,2">
+                                                <Grid Margin="0,1">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="170" /><ColumnDefinition /></Grid.ColumnDefinitions>
-                                                    <Border Background="#17202A" CornerRadius="4" Padding="6,3" Margin="0,0,8,0"><TextBlock Text="{Binding Token}" Foreground="#65E572" FontFamily="Cascadia Mono,Consolas" /></Border>
+                                                    <Border Background="#17202A" CornerRadius="4" Padding="6,2" Margin="0,0,8,0"><TextBlock Text="{Binding Token}" Foreground="#65E572" FontFamily="Cascadia Mono,Consolas" VerticalAlignment="Center" /></Border>
                                                     <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                                 </Grid>
                                             </DataTemplate></ItemsControl.ItemTemplate>
@@ -89,7 +90,7 @@
                             </Grid>
                         </Border>
                     </StackPanel>
-                </ScrollViewer>
+                </Grid>
             </TabItem>
 
             <TabItem Header="{l:Loc Options.Hardware}">

@@ -15,6 +15,7 @@
 - Les cinq derniers modèles personnalisés sont conservés en ordre MRU : un doublon remonte en tête et le sixième chasse le plus ancien. Les modèles prédéfinis ne modifient pas cet historique.
 - L’historique affiche toujours cinq emplacements numérotés de 1 à 5; les emplacements encore vides restent visibles.
 - La légende présente chaque variable dans un cartouche monospace et son explication traduite à côté.
+- À la taille normale de la fenêtre, le bloc complet des tags — réglages, cinq modèles récents, légende et aperçu — tient sans barre de défilement et sans élément coupé.
 - Un changement temporaire dans Conversion n’écrase pas ce réglage général.
 
 ## Matériel
