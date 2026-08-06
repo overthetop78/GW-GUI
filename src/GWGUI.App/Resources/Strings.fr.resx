@@ -184,4 +184,5 @@
   <data name="Visual.SideLabel"><value>Face</value></data><data name="Visual.TrackLabel"><value>Piste</value></data><data name="Visual.ScpEntryLabel"><value>Entrée SCP</value></data><data name="Visual.RevolutionsTitle"><value>Révolutions</value></data><data name="Visual.AnalysisTitle"><value>Analyse</value></data><data name="Visual.ConfidenceLabel"><value>Confiance</value></data><data name="Visual.CellLabel"><value>Cellule estimée</value></data><data name="Visual.StructuresLabel"><value>Structures</value></data><data name="Visual.StructuresTitle"><value>Structures détectées</value></data><data name="Visual.SectorsTitle"><value>Secteurs</value></data><data name="Visual.TransitionsUnit"><value>transitions</value></data>
   <data name="Visual.NumberPrefix"><value>#</value></data><data name="Visual.ValueSeparator"><value>  ·  </value></data>
   <data name="Icon.Save"><value>&#xE74E;</value></data><data name="Icon.Reset"><value>&#xE777;</value></data><data name="Icon.Copy"><value>&#xE8C8;</value></data><data name="Icon.Console"><value>&#xE756;</value></data>
+  <data name="Terminal.Prompt"><value>&gt;</value></data>
 </root>
