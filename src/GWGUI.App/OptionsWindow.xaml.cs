@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Windows;
@@ -174,6 +175,20 @@ public partial class OptionsWindow : Window
     }
 
     private void NumericText_PreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = e.Text.Any(character => !char.IsDigit(character));
+
+    private void OpenLogsFolder_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            Directory.CreateDirectory(StoragePaths.LogsDirectory);
+            Process.Start(new ProcessStartInfo(StoragePaths.LogsDirectory) { UseShellExecute = true });
+        }
+        catch (Exception exception)
+        {
+            ErrorLog.Write(exception, "Opening Logs folder");
+            MessageBox.Show(this, exception.Message, LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+    }
 
     private async void BrowseGw_Click(object sender, RoutedEventArgs e)
     {

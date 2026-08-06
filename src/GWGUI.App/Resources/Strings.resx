@@ -228,6 +228,7 @@
   <data name="Options.LogsDescription"><value>Each action has its own file in the GW GUI Logs folder.</value></data>
   <data name="Options.LogActionErase"><value>Erase</value></data>
   <data name="Options.LogActionClean"><value>Clean heads</value></data>
+  <data name="Options.OpenLogsFolder"><value>Open folder</value></data>
   <data name="Options.LogMaximumSize"><value>Maximum size</value></data>
   <data name="Options.Kilobytes"><value>KiB</value></data>
   <data name="Options.KeepLogArchives"><value>Keep previous logs</value></data>
