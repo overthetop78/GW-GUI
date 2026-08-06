@@ -1450,6 +1450,21 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void GwProgressUsesConvertGeometryForPerSideSegments()
+    {
+        var tracker = new GwProgressTracker();
+        Assert.Null(tracker.Accept("Converting c=0-79:h=0-1 -> c=0-79:h=0-1"));
+
+        var progress = tracker.Accept("T24.0: Raw Flux (120817 flux in 599.49ms)");
+
+        Assert.NotNull(progress);
+        Assert.Equal(80, progress.TotalOnHead);
+        Assert.Equal(160, progress.TotalTracks);
+        Assert.True(progress.Head0Expected);
+        Assert.True(progress.Head1Expected);
+    }
+
+    [Fact]
     public async Task ScpCaptureInfoReadsFinalMetadataWithoutDecodingFlux()
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-scp-summary-{Guid.NewGuid():N}.scp");
