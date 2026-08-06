@@ -5,6 +5,8 @@ using GWGUI.App.Localization;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Domain.Settings;
 using Microsoft.Win32;
+using System.Windows.Threading;
+using GWGUI.App.Services;
 
 namespace GWGUI.App;
 
@@ -13,6 +15,9 @@ public partial class App : Application
     private AppTheme _theme;
     protected override void OnStartup(StartupEventArgs e)
     {
+        DispatcherUnhandledException += OnDispatcherUnhandledException;
+        AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
+        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
         var directory = StoragePaths.DataDirectory;
         var settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         var settings = Task.Run(() => settingsStore.LoadAsync()).GetAwaiter().GetResult();
@@ -43,7 +48,29 @@ public partial class App : Application
     protected override void OnExit(ExitEventArgs e)
     {
         SystemEvents.UserPreferenceChanged -= SystemPreferenceChanged;
+        DispatcherUnhandledException -= OnDispatcherUnhandledException;
+        AppDomain.CurrentDomain.UnhandledException -= OnDomainUnhandledException;
+        TaskScheduler.UnobservedTaskException -= OnUnobservedTaskException;
         base.OnExit(e);
+    }
+
+    private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    {
+        var path = ErrorLog.Write(e.Exception, "WPF dispatcher");
+        var detail = path is null ? e.Exception.Message : LocExtension.Get("Error.LogSaved", path);
+        MessageBox.Show(LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
+        e.Handled = true;
+    }
+
+    private static void OnDomainUnhandledException(object? sender, UnhandledExceptionEventArgs e)
+    {
+        if (e.ExceptionObject is Exception exception) ErrorLog.Write(exception, "AppDomain unhandled exception");
+    }
+
+    private static void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        ErrorLog.Write(e.Exception, "Unobserved task exception");
+        e.SetObserved();
     }
 
     public void SetTheme(AppTheme theme) { _theme = theme; ThemeManager.Apply(theme); }

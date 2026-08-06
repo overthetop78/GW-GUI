@@ -67,6 +67,10 @@
   <data name="Options.RecentTagPatterns"><value>Modèles personnalisés récents</value></data>
   <data name="Options.NextTagExample"><value>Exemple suivant</value></data>
   <data name="Options.NextTagExampleIcon"><value>↻</value></data>
+  <data name="Error.Title"><value>Erreur de GW GUI</value></data>
+  <data name="Error.Unexpected"><value>Une erreur inattendue a été interceptée.&#10;&#10;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Les réglages n’ont pas pu être enregistrés. La fenêtre va tout de même se fermer.&#10;&#10;{0}</value></data>
+  <data name="Error.LogSaved"><value>Le rapport complet a été enregistré dans :&#10;{0}</value></data>
   <data name="Options.TagPatternPreview"><value>Exemple : {0}</value></data>
   <data name="Options.TagPatternInvalid"><value>Le modèle de tag doit contenir {tag}.</value></data>
   <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>

@@ -67,6 +67,10 @@
   <data name="Options.RecentTagPatterns"><value>Recent custom patterns</value></data>
   <data name="Options.NextTagExample"><value>Next example</value></data>
   <data name="Options.NextTagExampleIcon"><value>↻</value></data>
+  <data name="Error.Title"><value>GW GUI error</value></data>
+  <data name="Error.Unexpected"><value>An unexpected error was intercepted.&#10;&#10;{0}</value></data>
+  <data name="Error.SaveFailed"><value>The settings could not be saved. The window will still close.&#10;&#10;{0}</value></data>
+  <data name="Error.LogSaved"><value>The full report was saved to:&#10;{0}</value></data>
   <data name="Options.TagPatternPreview"><value>Example: {0}</value></data>
   <data name="Options.TagPatternInvalid"><value>The tag pattern must contain {tag}.</value></data>
   <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>

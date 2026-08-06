@@ -510,21 +510,39 @@ public partial class OptionsWindow : Window
         finally { _saveLock.Release(); }
     }
 
-    private void Close_Click(object sender, RoutedEventArgs e) => Close();
+    private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
 
-    private async void Window_Closing(object? sender, CancelEventArgs e)
+    private void Window_Closing(object? sender, CancelEventArgs e)
     {
         if (_initializing || _closingAfterSave) return;
         e.Cancel = true;
+        BeginClose();
+    }
+
+    private void BeginClose()
+    {
         if (_closeInProgress) return;
         _closeInProgress = true;
+        _ = SaveAndCloseAsync();
+    }
+
+    private async Task SaveAndCloseAsync()
+    {
         try { await PersistSettingsAsync(); }
-        catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("Options.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); }
+        catch (Exception exception)
+        {
+            var path = ErrorLog.Write(exception, "Saving Options while closing");
+            var detail = path is null ? exception.Message : LocExtension.Get("Error.LogSaved", path);
+            if (IsLoaded) MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
         finally
         {
-            _closingAfterSave = true;
-            _closeInProgress = false;
-            Close();
+            if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)
+            {
+                _closingAfterSave = true;
+                _closeInProgress = false;
+                Close();
+            }
         }
     }
 }

@@ -33,6 +33,22 @@ public sealed class CoreTests
     private static string WindowsPowerShell => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "powershell.exe");
 
     [Fact]
+    public void ErrorLogWritesDiagnosticContextAndException()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-error-log-" + Guid.NewGuid().ToString("N"));
+        try
+        {
+            var path = ErrorLog.Write(new InvalidOperationException("diagnostic failure"), "unit-test", directory);
+            Assert.NotNull(path);
+            var content = File.ReadAllText(path!);
+            Assert.Contains("Context: unit-test", content);
+            Assert.Contains("InvalidOperationException", content);
+            Assert.Contains("diagnostic failure", content);
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    }
+
+    [Fact]
     public void ScpRendererDrawsAHeadWithoutDependingOnWpfControls()
     {
         var revolution = new ScpRevolution(8_000_000, 2_000, Enumerable.Repeat<uint>(80, 2_000).ToArray());
