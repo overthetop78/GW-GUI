@@ -82,8 +82,8 @@
                                 <StackPanel>
                                     <TextBlock Text="{l:Loc Read.Folder}" Margin="0,0,0,5" />
                                     <Grid Height="42"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                                        <TextBox x:Name="ReadFolder" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Read.Folder}" />
-                                        <Button Grid.Column="1" Content="{l:Loc Common.Browse}" Click="BrowseReadFolder_Click" />
+                                        <TextBox x:Name="ReadFolder" Height="38" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Read.Folder}" />
+                                        <Button Grid.Column="1" Height="38" MinHeight="0" Margin="6,0,0,0" VerticalAlignment="Center" Content="{l:Loc Common.Browse}" Click="BrowseReadFolder_Click" />
                                     </Grid>
                                 </StackPanel>
                             </controls:CardSection>
@@ -467,7 +467,7 @@
                 <Button Grid.Row="1" Style="{StaticResource TerminalIconButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="{l:Loc Icon.Copy}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Copy}" AutomationProperties.Name="{l:Loc Common.Copy}" Click="CopyConsole_Click"/>
             </Grid>
         </Border>
-        <StatusBar Grid.Row="4" Height="30" Padding="0" ClipToBounds="True">
+        <StatusBar x:Name="AppStatusBar" Grid.Row="4" Height="30" Padding="0" ClipToBounds="True" HorizontalContentAlignment="Stretch">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="280"/><ColumnDefinition Width="190"/><ColumnDefinition Width="150"/><ColumnDefinition/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/>
@@ -478,7 +478,7 @@
                 <StatusBarItem Grid.Column="3" x:Name="ProgressStatusItem" Visibility="{Binding ProgressVisibility}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition/></Grid.ColumnDefinitions><ProgressBar x:Name="OperationProgress" Height="10" Minimum="0" Maximum="100" IsIndeterminate="{Binding ProgressIndeterminate}" Value="{Binding ProgressValue}"/><TextBlock Grid.Column="1" x:Name="OperationProgressText" Margin="10,0,0,0" Text="{Binding ProgressText}" TextTrimming="CharacterEllipsis"/></Grid></StatusBarItem>
                 <StatusBarItem Grid.Column="4" x:Name="HostToolsUpdateItem" Visibility="{Binding HostToolsUpdateVisibility}"><Button x:Name="HostToolsUpdateButton" Content="{Binding HostToolsUpdateText}" Padding="7,1" MinHeight="22" Click="Preferences_Click"/></StatusBarItem>
                 <StatusBarItem Grid.Column="5" Visibility="{Binding TimerVisibility}"><TextBlock Text="{Binding ElapsedText}" FontFamily="Consolas" Margin="12,0"/></StatusBarItem>
-                <StatusBarItem Grid.Column="6" Padding="2,0"><Button Style="{StaticResource StatusIconButton}" Content="{l:Loc Icon.Console}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Console}" AutomationProperties.Name="{l:Loc Common.Console}" Click="ToggleConsole_Click"/></StatusBarItem>
+                <StatusBarItem Grid.Column="6" Padding="2,0" HorizontalAlignment="Right"><Button Style="{StaticResource StatusIconButton}" Content="{l:Loc Icon.Console}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Console}" AutomationProperties.Name="{l:Loc Common.Console}" Click="ToggleConsole_Click"/></StatusBarItem>
                 <StatusBarItem x:Name="HardwareSelectorItem" Visibility="Collapsed"/>
             </Grid>
         </StatusBar>
