@@ -16,7 +16,15 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
         var candidates = new List<string?> { configuredPath, Path.Combine(AppContext.BaseDirectory, "gw.exe") };
         var path = Environment.GetEnvironmentVariable("PATH") ?? "";
         candidates.AddRange(path.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries).Select(x => Path.Combine(x.Trim(), "gw.exe")));
-        if (Directory.Exists(managedRoot)) candidates.AddRange(Directory.EnumerateFiles(managedRoot, "gw.exe", SearchOption.AllDirectories));
+        if (Directory.Exists(managedRoot))
+        {
+            foreach (var versionDirectory in Directory.EnumerateDirectories(managedRoot)
+                         .Where(directory => !Path.GetFileName(directory).StartsWith(".", StringComparison.Ordinal)))
+            {
+                NormalizeManagedInstallation(versionDirectory);
+            }
+            candidates.AddRange(Directory.EnumerateFiles(managedRoot, "gw.exe", SearchOption.AllDirectories));
+        }
         return candidates.Where(x => !string.IsNullOrWhiteSpace(x) && File.Exists(x)).Select(x => Path.GetFullPath(x!))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Select(x => new HostToolsInstallation(x, VersionFromPath(x), IsInside(x, managedRoot))).ToArray();
@@ -47,7 +55,7 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
         Directory.CreateDirectory(managedRoot);
         var destination = Path.GetFullPath(Path.Combine(managedRoot, release.Version));
         EnsureInside(destination, managedRoot);
-        var existing = Directory.Exists(destination) ? Directory.EnumerateFiles(destination, "gw.exe", SearchOption.AllDirectories).FirstOrDefault() : null;
+        var existing = NormalizeManagedInstallation(destination);
         if (existing is not null) return new(existing, release.Version, true);
 
         var temporary = Path.GetFullPath(Path.Combine(managedRoot, ".install-" + Guid.NewGuid().ToString("N")));
@@ -85,9 +93,10 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
                 await using var input = entry.Open(); await using var output = File.Create(target); await input.CopyToAsync(output, cancellationToken).ConfigureAwait(false);
             }
             var executable = Directory.EnumerateFiles(temporary, "gw.exe", SearchOption.AllDirectories).FirstOrDefault() ?? throw new InvalidDataException("gw.exe is missing from the downloaded archive.");
-            Directory.Move(temporary, destination);
-            var relative = Path.GetRelativePath(temporary, executable);
-            return new(Path.Combine(destination, relative), release.Version, true);
+            var payload = Path.GetDirectoryName(executable)!;
+            Directory.CreateDirectory(destination);
+            PromotePayload(payload, destination);
+            return new(Path.Combine(destination, "gw.exe"), release.Version, true);
         }
         finally { if (Directory.Exists(temporary)) Directory.Delete(temporary, recursive: true); }
     }
@@ -109,6 +118,36 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
     }
 
     private static string? VersionFromPath(string path) => VersionRegex().Match(path) is { Success: true } match ? match.Groups[1].Value : null;
+    private static string? NormalizeManagedInstallation(string destination)
+    {
+        var direct = Path.Combine(destination, "gw.exe");
+        if (File.Exists(direct)) return direct;
+        if (!Directory.Exists(destination)) return null;
+        var nested = Directory.EnumerateFiles(destination, "gw.exe", SearchOption.AllDirectories).FirstOrDefault();
+        if (nested is null) return null;
+        PromotePayload(Path.GetDirectoryName(nested)!, destination);
+        return File.Exists(direct) ? direct : nested;
+    }
+
+    private static void PromotePayload(string payload, string destination)
+    {
+        if (Path.GetFullPath(payload).Equals(Path.GetFullPath(destination), StringComparison.OrdinalIgnoreCase)) return;
+        foreach (var entry in Directory.EnumerateFileSystemEntries(payload).ToArray())
+        {
+            var target = Path.Combine(destination, Path.GetFileName(entry));
+            if (Directory.Exists(entry)) Directory.Move(entry, target);
+            else File.Move(entry, target);
+        }
+        var current = payload;
+        while (!Path.GetFullPath(current).Equals(Path.GetFullPath(destination), StringComparison.OrdinalIgnoreCase)
+               && Directory.Exists(current) && !Directory.EnumerateFileSystemEntries(current).Any())
+        {
+            var parent = Directory.GetParent(current)?.FullName;
+            Directory.Delete(current);
+            if (parent is null) break;
+            current = parent;
+        }
+    }
     private static bool IsInside(string path, string root) { var relative = Path.GetRelativePath(Path.GetFullPath(root), Path.GetFullPath(path)); return relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar); }
     private static void EnsureInside(string path, string root) { if (!IsInside(path, root)) throw new InvalidOperationException("Path escapes the managed Host Tools folder."); }
     [GeneratedRegex(@"^greaseweazle-.*-win64\.zip$", RegexOptions.IgnoreCase)] private static partial Regex Win64AssetRegex();

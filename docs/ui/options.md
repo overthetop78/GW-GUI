@@ -22,6 +22,9 @@
 
 - Plusieurs contrôleurs Greaseweazle et lecteurs mémorisés.
 - Host Tools, contrôleurs et lecteurs sont regroupés dans le même onglet Matériel; Scanner et Ajouter un lecteur sont placés au-dessus de la liste compacte.
+- Chaque lecteur occupe une ligne compacte sans tableau ni en-têtes : port COM, repère du lecteur, taille, densité, vitesse, disponibilité, configuration et actions Enregistrer/Oublier. La liste grandit avec les lecteurs et ne défile que lorsque leur nombre l’exige.
+- Le bouton de recherche des Host Tools s’appelle explicitement Rechercher gw.exe; il ne doit pas être confondu avec Scanner, qui recherche les contrôleurs physiques.
+- Dans une distribution portable, les Host Tools sont rangés sous `Data\Greaseweazle\<version>\gw.exe`. L’ancien dossier `Data\host-tools` et les archives contenant un dossier racine redondant sont migrés automatiquement.
 - Le scan détecte les contrôleurs USB/série, mais Windows et `gw info` ne peuvent pas énumérer les lecteurs physiques placés derrière la nappe. Le premier lecteur est donc configuré sur le contrôleur détecté et le bouton Ajouter un lecteur permet d’en déclarer un autre manuellement.
 - Identification USB et dernier port COM.
 - Type physique du lecteur : 3 pouces, 3,5 pouces, 5,25 pouces ou 8 pouces.

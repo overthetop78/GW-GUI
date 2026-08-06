@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.IO;
+using System.Net.Http;
 using System.Windows;
 using GWGUI.App.Localization;
 using GWGUI.Infrastructure.Settings;
@@ -7,6 +8,7 @@ using GWGUI.Domain.Settings;
 using Microsoft.Win32;
 using System.Windows.Threading;
 using GWGUI.App.Services;
+using GWGUI.Infrastructure.HostTools;
 
 namespace GWGUI.App;
 
@@ -21,8 +23,26 @@ public partial class App : Application
         var directory = StoragePaths.DataDirectory;
         var settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         var settings = Task.Run(() => settingsStore.LoadAsync()).GetAwaiter().GetResult();
+        var previousGwPath = settings.GwExecutablePath;
+        var previousFallbackPath = settings.PreviousGwExecutablePath;
+        settings.GwExecutablePath = StoragePaths.NormalizeHostToolsPath(settings.GwExecutablePath);
+        settings.PreviousGwExecutablePath = StoragePaths.NormalizeHostToolsPath(settings.PreviousGwExecutablePath);
+        using (var httpClient = new HttpClient())
+        {
+            var installations = new GwInstallationManager(httpClient, StoragePaths.HostToolsDirectory)
+                .Detect(settings.GwExecutablePath);
+            if (!string.IsNullOrWhiteSpace(settings.InstalledHostToolsVersion))
+            {
+                var managedInstallation = installations.FirstOrDefault(installation =>
+                    installation.Managed
+                    && string.Equals(installation.Version, settings.InstalledHostToolsVersion, StringComparison.OrdinalIgnoreCase));
+                if (managedInstallation is not null) settings.GwExecutablePath = managedInstallation.ExecutablePath;
+            }
+        }
         var language = UiLanguageResolver.Resolve(settings.Language, CultureInfo.CurrentUICulture);
-        if (!string.Equals(settings.Language, language, StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(settings.Language, language, StringComparison.OrdinalIgnoreCase)
+            || !string.Equals(previousGwPath, settings.GwExecutablePath, StringComparison.OrdinalIgnoreCase)
+            || !string.Equals(previousFallbackPath, settings.PreviousGwExecutablePath, StringComparison.OrdinalIgnoreCase))
         {
             settings.Language = language;
             Task.Run(() => settingsStore.SaveAsync(settings)).GetAwaiter().GetResult();

@@ -316,7 +316,7 @@ public sealed class CoreTests
                 var tagPattern = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("TagPatternText"));
                 var gwPath = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("GwPathText"));
                 var hostToolsProgress = Assert.IsType<System.Windows.Controls.ProgressBar>(optionsWindow.FindName("HostToolsProgress"));
-                var drives = Assert.IsType<System.Windows.Controls.DataGrid>(optionsWindow.FindName("DrivesGrid"));
+                var drives = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("DrivesGrid"));
                 var profiles = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("ReadProfilesList"));
                 foreach (var named in new FrameworkElement[] { optionsNavigation, imagesFolder, language, theme, tagPattern, gwPath, hostToolsProgress, drives, profiles })
                     Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(named)));
@@ -754,6 +754,24 @@ public sealed class CoreTests
             Assert.Equal(Path.Combine(directory, "Data"), StoragePaths.ResolveDataDirectory(directory, "roaming"));
         }
         finally { Directory.Delete(directory, true); }
+    }
+
+    [Fact]
+    public void LegacyHostToolsFolderMovesToGreaseweazleFolderWithoutExtraNesting()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-host-path-" + Guid.NewGuid().ToString("N"));
+        var legacy = Path.Combine(directory, "host-tools");
+        var preferred = Path.Combine(directory, "Greaseweazle");
+        var executable = Path.Combine(legacy, "1.23", "gw.exe");
+        Directory.CreateDirectory(Path.GetDirectoryName(executable)!);
+        File.WriteAllText(executable, "fake");
+        try
+        {
+            StoragePaths.MigrateHostToolsDirectory(legacy, preferred);
+            Assert.True(File.Exists(Path.Combine(preferred, "1.23", "gw.exe")));
+            Assert.False(Directory.Exists(legacy));
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
     }
 
     [Fact]

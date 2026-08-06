@@ -83,6 +83,27 @@ public sealed class HostToolsTests
             Assert.True(File.Exists(installed.ExecutablePath));
             Assert.True(installed.Managed);
             Assert.Equal("1.23", installed.Version);
+            Assert.Equal(Path.Combine(root, "1.23", "gw.exe"), installed.ExecutablePath);
+            Assert.False(Directory.Exists(Path.Combine(root, "1.23", "greaseweazle")));
+        }
+        finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
+    }
+
+    [Fact]
+    public async Task ExistingNestedInstallationIsFlattenedAutomatically()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-test-" + Guid.NewGuid().ToString("N"));
+        var nested = Path.Combine(root, "1.23", "greaseweazle-1.23");
+        Directory.CreateDirectory(nested);
+        await File.WriteAllTextAsync(Path.Combine(nested, "gw.exe"), "fake");
+        await File.WriteAllTextAsync(Path.Combine(nested, "companion.dll"), "fake");
+        try
+        {
+            var manager = new GwInstallationManager(new HttpClient(), root);
+            var installed = await manager.InstallAsync(new("1.23", new Uri("https://example.test/win64.zip"), "greaseweazle-1.23-win64.zip"));
+            Assert.Equal(Path.Combine(root, "1.23", "gw.exe"), installed.ExecutablePath);
+            Assert.True(File.Exists(Path.Combine(root, "1.23", "companion.dll")));
+            Assert.False(Directory.Exists(nested));
         }
         finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
     }

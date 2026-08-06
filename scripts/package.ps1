@@ -15,27 +15,30 @@ if (-not $artifacts.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, 
 
 $publish = Join-Path $artifacts 'publish\win-x64'
 $portable = Join-Path $artifacts 'portable\GW GUI'
-foreach ($target in @($publish, $portable)) {
+$portablePackageRoot = Join-Path $artifacts '.portable-package'
+$portablePackage = Join-Path $portablePackageRoot 'GW GUI'
+foreach ($target in @($publish, $portablePackageRoot)) {
     if (Test-Path -LiteralPath $target) { Remove-Item -LiteralPath $target -Recurse -Force }
 }
-New-Item -ItemType Directory -Path $publish,$portable -Force | Out-Null
+New-Item -ItemType Directory -Path $publish,$portable,$portablePackage -Force | Out-Null
+Get-ChildItem -LiteralPath $portable -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'Data' } | Remove-Item -Recurse -Force
 Get-ChildItem -LiteralPath $artifacts -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^GW-GUI-.+-win-x64-(portable\.zip|setup\.exe)$' -or $_.Name -eq 'SHA256SUMS.txt' } | Remove-Item -Force
 
 dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained true -p:Version=$Version -p:PublishReadyToRun=true -o $publish
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
-Copy-Item -Path (Join-Path $publish '*') -Destination $portable -Recurse -Force
-Copy-Item -LiteralPath (Join-Path $repository 'LICENSE') -Destination $portable
-Copy-Item -LiteralPath (Join-Path $repository 'README.md') -Destination $portable
-New-Item -ItemType File -Path (Join-Path $portable 'portable.flag') -Force | Out-Null
+Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force
+Copy-Item -LiteralPath (Join-Path $repository 'LICENSE') -Destination $portablePackage
+Copy-Item -LiteralPath (Join-Path $repository 'README.md') -Destination $portablePackage
+New-Item -ItemType File -Path (Join-Path $portablePackage 'portable.flag') -Force | Out-Null
 
 $zip = Join-Path $artifacts "GW-GUI-$Version-win-x64-portable.zip"
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
 $zipCreated = $false
 for ($attempt = 1; $attempt -le 5 -and -not $zipCreated; $attempt++) {
     try {
-        Compress-Archive -LiteralPath $portable -DestinationPath $zip -CompressionLevel Optimal -ErrorAction Stop
+        Compress-Archive -LiteralPath $portablePackage -DestinationPath $zip -CompressionLevel Optimal -ErrorAction Stop
         $zipCreated = $true
     }
     catch {
@@ -45,6 +48,9 @@ for ($attempt = 1; $attempt -le 5 -and -not $zipCreated; $attempt++) {
         Start-Sleep -Milliseconds (500 * $attempt)
     }
 }
+
+# Keep the locally runnable portable copy current without deleting its private Data folder.
+Copy-Item -Path (Join-Path $portablePackage '*') -Destination $portable -Recurse -Force
 
 if (-not $SkipInstaller) {
     $iscc = (Get-Command ISCC.exe -ErrorAction SilentlyContinue).Source
@@ -61,3 +67,4 @@ $packages = Get-ChildItem -LiteralPath $artifacts -File | Where-Object { $_.Exte
 $checksums = foreach ($package in $packages) { $hash = Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256; "$($hash.Hash.ToLowerInvariant())  $($package.Name)" }
 Set-Content -LiteralPath (Join-Path $artifacts 'SHA256SUMS.txt') -Value $checksums -Encoding ascii
 $packages | Select-Object Name,Length
+Remove-Item -LiteralPath $portablePackageRoot -Recurse -Force
