@@ -1343,12 +1343,17 @@ public sealed class CoreTests
         var retry = tracker.Accept("T0.0: Retry #1.1");
         var second = tracker.Accept("T0.1: Raw Flux");
         Assert.Equal(160, first!.TotalTracks);
+        Assert.Equal(GwTrackState.Success, first.State);
         Assert.Equal(1, retry!.CompletedTracks);
+        Assert.Equal(GwTrackState.Retry, retry.State);
         Assert.Equal(2, second!.CompletedTracks);
         Assert.Equal(80, second.TotalOnHead);
         Assert.Equal(1, second.CompletedOnHead);
         Assert.True(second.Head0Expected);
         Assert.True(second.Head1Expected);
+        Assert.Equal(Enumerable.Range(0, 80), second.Cylinders);
+        Assert.Equal(1, second.NextCylinder);
+        Assert.Equal(0, second.NextHead);
     }
 
     [Fact]

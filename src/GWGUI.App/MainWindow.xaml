@@ -409,8 +409,11 @@
                 <StatusBarItem Grid.Column="3" x:Name="ProgressStatusItem" Visibility="{Binding ProgressVisibility}" HorizontalContentAlignment="Stretch">
                     <Grid>
                         <Grid x:Name="GlobalProgressPanel" Visibility="{Binding GlobalProgressVisibility}"><Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition/></Grid.ColumnDefinitions><ProgressBar x:Name="OperationProgress" Height="10" Minimum="0" Maximum="100" IsIndeterminate="{Binding ProgressIndeterminate}" Value="{Binding ProgressValue}"/><TextBlock Grid.Column="1" x:Name="OperationProgressText" Margin="10,0,0,0" Text="{Binding ProgressText}" TextTrimming="CharacterEllipsis"/></Grid>
-                        <Grid Visibility="{Binding Face0ProgressVisibility}" HorizontalAlignment="Left"><Grid.ColumnDefinitions><ColumnDefinition Width="105"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><ProgressBar Height="9" Minimum="0" Maximum="100" Value="{Binding Face0ProgressValue}"/><TextBlock Grid.Column="1" Margin="7,0,14,0" Text="{Binding Face0ProgressText}"/></Grid>
-                        <Grid Visibility="{Binding Face1ProgressVisibility}" HorizontalAlignment="Right"><Grid.ColumnDefinitions><ColumnDefinition Width="105"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><ProgressBar Height="9" Minimum="0" Maximum="100" Value="{Binding Face1ProgressValue}"/><TextBlock Grid.Column="1" Margin="7,0,0,0" Text="{Binding Face1ProgressText}"/></Grid>
+                        <Grid>
+                            <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                            <controls:TrackProgressStrip x:Name="Face0TrackProgress" Visibility="{Binding Face0ProgressVisibility}"/>
+                            <controls:TrackProgressStrip x:Name="Face1TrackProgress" Grid.Row="1" Visibility="{Binding Face1ProgressVisibility}"/>
+                        </Grid>
                     </Grid>
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="4" x:Name="HostToolsUpdateItem" Visibility="{Binding HostToolsUpdateVisibility}"><Button x:Name="HostToolsUpdateButton" Content="{Binding HostToolsUpdateText}" Padding="7,1" MinHeight="22" Click="Preferences_Click"/></StatusBarItem>

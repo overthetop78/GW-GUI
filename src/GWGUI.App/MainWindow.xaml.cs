@@ -256,6 +256,8 @@ public partial class MainWindow : Window
         _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressValue = 0;
         _viewModel.Face1ProgressValue = 0;
+        Face0TrackProgress.Reset();
+        Face1TrackProgress.Reset();
     }
 
     private void HideScpProgress()
@@ -1312,7 +1314,25 @@ public partial class MainWindow : Window
             _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
             _viewModel.Face0ProgressVisibility = progress.Head0Expected ? Visibility.Visible : Visibility.Collapsed;
             _viewModel.Face1ProgressVisibility = progress.Head1Expected ? Visibility.Visible : Visibility.Collapsed;
+            if (Face0TrackProgress.Segments.Count == 0 && progress.Head0Expected)
+                Face0TrackProgress.Configure(0, progress.Cylinders, LocExtension.Get("Visual.Side", 0));
+            if (Face1TrackProgress.Segments.Count == 0 && progress.Head1Expected)
+                Face1TrackProgress.Configure(1, progress.Cylinders, LocExtension.Get("Visual.Side", 1));
             var text = LocExtension.Get("Status.FaceTrackProgress", progress.Head, progress.Cylinder, progress.CompletedOnHead, totalOnHead);
+            var segmentState = progress.State switch
+            {
+                GwTrackState.Retry => Controls.TrackSegmentState.Retry,
+                GwTrackState.Failed => Controls.TrackSegmentState.Failed,
+                _ => Controls.TrackSegmentState.Success
+            };
+            (progress.Head == 0 ? Face0TrackProgress : Face1TrackProgress).SetState(progress.Cylinder, segmentState);
+            if (progress.State == GwTrackState.Retry)
+            {
+                Face0TrackProgress.ClearActive();
+                Face1TrackProgress.ClearActive();
+            }
+            else if (progress.NextCylinder is int nextCylinder && progress.NextHead is int nextHead)
+                (nextHead == 0 ? Face0TrackProgress : Face1TrackProgress).SetActive(nextCylinder);
             if (progress.Head == 0)
             {
                 _viewModel.Face0ProgressValue = progress.HeadFraction.GetValueOrDefault() * 100;
