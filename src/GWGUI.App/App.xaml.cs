@@ -15,12 +15,12 @@ public partial class App : Application
     {
         var directory = StoragePaths.DataDirectory;
         var settingsStore = new JsonSettingsStore(Path.Combine(directory, "settings.json"));
-        var settings = settingsStore.LoadAsync().GetAwaiter().GetResult();
+        var settings = Task.Run(() => settingsStore.LoadAsync()).GetAwaiter().GetResult();
         var language = UiLanguageResolver.Resolve(settings.Language, CultureInfo.CurrentUICulture);
         if (!string.Equals(settings.Language, language, StringComparison.OrdinalIgnoreCase))
         {
             settings.Language = language;
-            settingsStore.SaveAsync(settings).GetAwaiter().GetResult();
+            Task.Run(() => settingsStore.SaveAsync(settings)).GetAwaiter().GetResult();
         }
         var culture = CultureInfo.GetCultureInfo(language);
         CultureInfo.DefaultThreadCurrentCulture = culture;
