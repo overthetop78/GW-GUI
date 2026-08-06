@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using GWGUI.App.Localization;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace GWGUI.Tests;
 
@@ -94,5 +95,50 @@ public sealed class LocalizationTests
             .Where(x => visibleAttributes.Contains(x.Name.LocalName) && !x.Value.StartsWith('{') && !technical.IsMatch(x.Value))
             .Select(x => x.Value).Distinct().ToArray();
         Assert.Empty(hardCoded);
+    }
+
+    [Fact]
+    public void CodeGeneratedLabelsContainNoHardCodedNaturalLanguageText()
+    {
+        var root = FindRepositoryRoot();
+        var directVisibleText = new Regex("(?:Text|Content|Title|ToolTip)\\s*=\\s*\\\"([^\\\"]+)\\\"", RegexOptions.CultureInvariant);
+        var naturalLanguage = new Regex(@"[A-Za-zÀ-ÿ]{2,}\s+[A-Za-zÀ-ÿ]{2,}", RegexOptions.CultureInvariant);
+        var offenders = Directory.EnumerateFiles(Path.Combine(root, "src", "GWGUI.App"), "*.cs", SearchOption.AllDirectories)
+            .Where(file => !file.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}") && !file.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}"))
+            .SelectMany(file => directVisibleText.Matches(File.ReadAllText(file)).Select(match => $"{Path.GetFileName(file)}: {match.Groups[1].Value}"))
+            .Where(value => naturalLanguage.IsMatch(value))
+            .ToArray();
+
+        Assert.Empty(offenders);
+    }
+
+    [Fact]
+    public void EveryLiteralLocalizationKeyUsedByTheApplicationExists()
+    {
+        var root = FindRepositoryRoot();
+        var neutral = LocExtension.GetDefinedKeys(CultureInfo.InvariantCulture);
+        var callPattern = new Regex("(?:LocExtension\\.Get|\\bL)\\(\\\"([^\\\"]+)\\\"", RegexOptions.CultureInvariant);
+        var xamlPattern = new Regex(@"\{l:Loc\s+([^},\s]+)", RegexOptions.CultureInvariant);
+        var missing = Directory.EnumerateFiles(Path.Combine(root, "src", "GWGUI.App"), "*.*", SearchOption.AllDirectories)
+            .Where(file => !file.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}") && !file.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}"))
+            .Where(file => Path.GetExtension(file) is ".cs" or ".xaml")
+            .SelectMany(file =>
+            {
+                var text = File.ReadAllText(file);
+                return callPattern.Matches(text).Select(match => match.Groups[1].Value)
+                    .Concat(xamlPattern.Matches(text).Select(match => match.Groups[1].Value));
+            })
+            .Where(key => !key.EndsWith(".", StringComparison.Ordinal) && !neutral.Contains(key))
+            .Distinct(StringComparer.Ordinal)
+            .ToArray();
+
+        Assert.Empty(missing);
+    }
+
+    private static string FindRepositoryRoot()
+    {
+        var directory = new DirectoryInfo(AppContext.BaseDirectory);
+        while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
+        return Assert.IsType<DirectoryInfo>(directory).FullName;
     }
 }

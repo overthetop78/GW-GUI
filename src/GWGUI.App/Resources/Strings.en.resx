@@ -200,4 +200,5 @@
   <data name="Read.CancelledFileDeleteFailed"><value>Read cancelled, but the incomplete file could not be deleted: {0} — {1}</value></data>
   <data name="Write.VisualizeTracks"><value>Visualize tracks</value></data>
   <data name="Write.VisualizeFormatRequired"><value>Select the disk format before visualizing its tracks.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>No available output filename could be found.</value></data>
 </root>

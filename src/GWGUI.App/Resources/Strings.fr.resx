@@ -200,4 +200,5 @@
   <data name="Read.CancelledFileDeleteFailed"><value>Lecture interrompue, mais le fichier incomplet n’a pas pu être supprimé : {0} — {1}</value></data>
   <data name="Write.VisualizeTracks"><value>Visualiser les pistes</value></data>
   <data name="Write.VisualizeFormatRequired"><value>Sélectionnez le format de la disquette avant de visualiser ses pistes.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Impossible de trouver un nom de sortie disponible.</value></data>
 </root>

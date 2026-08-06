@@ -751,7 +751,7 @@ public partial class MainWindow : Window
     {
         var folder = Path.GetDirectoryName(path)!; var name = Path.GetFileNameWithoutExtension(path); var extension = Path.GetExtension(path);
         for (var number = 1; number < int.MaxValue; number++) { var candidate = Path.Combine(folder, $"{name} ({number}){extension}"); if (!File.Exists(candidate)) return candidate; }
-        throw new IOException("Impossible de trouver un nom de sortie disponible.");
+        throw new IOException(LocExtension.Get("Conversion.NoAvailableOutputName"));
     }
 
     private void CaptureConversionSettings()
