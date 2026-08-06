@@ -75,7 +75,7 @@ public sealed partial class GwProgressTracker
         return values;
     }
 
-    [GeneratedRegex(@"^(?:Reading|Writing|Converting)\s+c=([0-9,\-/]+):h=([0-9,\-/]+)", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"^(?:Reading|Writing|Converting|Erasing)\s+c=([0-9,\-/]+):h=([0-9,\-/]+)", RegexOptions.IgnoreCase)]
     private static partial Regex HeaderRegex();
     [GeneratedRegex(@"^T(\d+)\.([01])(?::|\s|$)", RegexOptions.IgnoreCase)]
     private static partial Regex TrackRegex();

@@ -1465,6 +1465,21 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void GwProgressUsesEraseGeometryForPerSideSegments()
+    {
+        var tracker = new GwProgressTracker();
+        Assert.Null(tracker.Accept("Erasing c=0-79:h=0-1, revs=3"));
+
+        var progress = tracker.Accept("T0.1: Erasing Track");
+
+        Assert.NotNull(progress);
+        Assert.Equal(80, progress.TotalOnHead);
+        Assert.Equal(160, progress.TotalTracks);
+        Assert.True(progress.Head0Expected);
+        Assert.True(progress.Head1Expected);
+    }
+
+    [Fact]
     public async Task ScpCaptureInfoReadsFinalMetadataWithoutDecodingFlux()
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-scp-summary-{Guid.NewGuid():N}.scp");
