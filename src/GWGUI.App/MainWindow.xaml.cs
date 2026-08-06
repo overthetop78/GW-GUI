@@ -38,6 +38,7 @@ public partial class MainWindow : Window
     private ComboBox ReadFormatCombo => ReadImageBlock.FormatCombo;
     private ComboBox ReadExtensionCombo => ReadImageBlock.ExtensionCombo;
     private ComboBox ReadProfileCombo => ReadProfileBlock.ProfileCombo;
+    private ComboBox WriteProfileCombo => WriteProfileBlock.ProfileCombo;
     private TextBox ReadFolder => ReadFolderBlock.Input;
     private TextBox ReadFileName => ReadFileNameBlock.FileNameTextBox;
     private TextBox ReadExtensionText => ReadFileNameBlock.ExtensionTextBox;
@@ -92,6 +93,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         ConnectMainMenu();
         ConnectReadComponents();
+        ConnectWriteComponents();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
@@ -156,6 +158,14 @@ public partial class MainWindow : Window
         RegisterName(nameof(ReadExtensionText), ReadExtensionText);
         RegisterName(nameof(CommandPreview), CommandPreview!);
         RegisterName(nameof(LogOutput), LogOutput!);
+    }
+
+    private void ConnectWriteComponents()
+    {
+        WriteProfileCombo.SelectionChanged += WriteProfile_Changed;
+        WriteProfileBlock.SaveButton.Click += SaveWriteProfile_Click;
+        WriteProfileBlock.ResetButton.Click += ResetWriteProfile_Click;
+        RegisterName(nameof(WriteProfileCombo), WriteProfileCombo);
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
