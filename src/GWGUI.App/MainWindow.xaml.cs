@@ -461,6 +461,7 @@ public partial class MainWindow : Window
         WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
+        await FlushPendingOutputAsync();
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
         EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
@@ -618,6 +619,7 @@ public partial class MainWindow : Window
             var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), _commandBuilder.BuildConversion(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
             return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); LogOutput.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), token);
         });
+        await FlushPendingOutputAsync();
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
         EndProgress(); ConvertExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
@@ -1027,10 +1029,16 @@ public partial class MainWindow : Window
         BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
+        await FlushPendingOutputAsync();
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
         if (outcome.Result is { } result)
         {
-            if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)) { _lastScpPath = target; OpenScpBanner.Visibility = Visibility.Visible; }
+            if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
+            {
+                _lastScpPath = target;
+                OpenScpBanner.Visibility = Visibility.Visible;
+                await AppendScpCaptureSummaryAsync(target);
+            }
             var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
             if (result.IsSuccess) _viewModel.Read.TryAdvanceSequence();
         }
@@ -1260,6 +1268,7 @@ public partial class MainWindow : Window
         button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, progress, token));
+        await FlushPendingOutputAsync();
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
         EndProgress(); button.Content = LocExtension.Get("Common.Execute");
     }
@@ -1300,6 +1309,27 @@ public partial class MainWindow : Window
             _viewModel.ProgressText = LocExtension.Get("Status.TrackProgress", progress.Cylinder, progress.Head, progress.CompletedTracks, total);
         }
         else _viewModel.ProgressText = LocExtension.Get("Status.TrackUnknown", progress.Cylinder, progress.Head, progress.CompletedTracks);
+    }
+
+    private async Task FlushPendingOutputAsync() =>
+        await Dispatcher.InvokeAsync(static () => { }, System.Windows.Threading.DispatcherPriority.ContextIdle);
+
+    private async Task AppendScpCaptureSummaryAsync(string path)
+    {
+        try
+        {
+            var info = await ScpCaptureInfoReader.ReadAsync(path);
+            var checksum = LocExtension.Get(info.ChecksumValid ? "Visual.ChecksumValid" : "Visual.ChecksumInvalid");
+            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryTitle") + Environment.NewLine);
+            LogOutput.AppendText(LocExtension.Get("Read.ScpTracksSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides) + Environment.NewLine);
+            LogOutput.AppendText(LocExtension.Get("Read.ScpTechnicalSummary", info.Header.Revolutions, info.Header.ResolutionNanoseconds, info.FileSize, checksum) + Environment.NewLine);
+            LogOutput.AppendText(LocExtension.Get("Read.ScpOutputFile", path) + Environment.NewLine);
+            LogOutput.ScrollToEnd();
+        }
+        catch (Exception exception)
+        {
+            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message) + Environment.NewLine);
+        }
     }
 
     private void EndProgress()

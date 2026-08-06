@@ -15,7 +15,18 @@ public sealed class OperationResultPresenter
         if (outcome.Error is { } error) return Error(error);
         var result = outcome.Result!;
         var state = result.WasCancelled ? OperationResultState.Cancelled : result.IsSuccess ? OperationResultState.Success : OperationResultState.Error;
-        return new(state, [new("Operation.Finished", [result.ExitCode, result.Duration.ToString("g")], true)]);
+        var statusKey = state switch
+        {
+            OperationResultState.Success => "Operation.Succeeded",
+            OperationResultState.Cancelled => "Operation.Cancelled",
+            _ => "Operation.ExitCode"
+        };
+        var statusArguments = state == OperationResultState.Error ? new object[] { result.ExitCode } : [];
+        return new(state,
+        [
+            new(statusKey, statusArguments, true),
+            new("Operation.Finished", [result.ExitCode, result.Duration.ToString("g")], true)
+        ]);
     }
 
     public OperationResultPresentation Present(OperationOutcome<GwBatchExecutionResult> outcome)

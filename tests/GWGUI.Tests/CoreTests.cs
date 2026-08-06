@@ -561,9 +561,9 @@ public sealed class CoreTests
         Assert.Equal(OperationResultState.Success, success.State);
         Assert.Equal(OperationResultState.Error, failure.State);
         Assert.Equal(OperationResultState.Cancelled, cancelled.State);
-        Assert.Equal("Operation.Finished", success.Messages.Single().ResourceKey);
-        Assert.Equal([0, "0:00:02"], success.Messages.Single().Arguments);
-        Assert.True(success.Messages.Single().StartOnNewLine);
+        Assert.Equal(["Operation.Succeeded", "Operation.Finished"], success.Messages.Select(message => message.ResourceKey));
+        Assert.Equal([0, "0:00:02"], success.Messages[1].Arguments);
+        Assert.All(success.Messages, message => Assert.True(message.StartOnNewLine));
     }
 
     [Fact]
@@ -1346,6 +1346,30 @@ public sealed class CoreTests
         tracker.Accept("Writing c=0-39/2,41:h=0");
         var progress = tracker.Accept("T0.0: Writing Track");
         Assert.Equal(21, progress!.TotalTracks);
+    }
+
+    [Fact]
+    public async Task ScpCaptureInfoReadsFinalMetadataWithoutDecodingFlux()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-scp-summary-{Guid.NewGuid():N}.scp");
+        try
+        {
+            var data = BuildSingleTrackScp([100, 120, 140]);
+            await File.WriteAllBytesAsync(path, data);
+            var info = await ScpCaptureInfoReader.ReadAsync(path);
+
+            Assert.Equal(1, info.CapturedTracks);
+            Assert.Equal(0, info.MissingTracks);
+            Assert.Equal(1, info.Cylinders);
+            Assert.Equal(1, info.Sides);
+            Assert.Equal(1, info.Header.Revolutions);
+            Assert.True(info.ChecksumValid);
+            Assert.Equal(data.Length, info.FileSize);
+        }
+        finally
+        {
+            if (File.Exists(path)) File.Delete(path);
+        }
     }
 
     [Fact]
