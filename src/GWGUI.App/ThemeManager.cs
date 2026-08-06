@@ -25,7 +25,7 @@ public static class ThemeManager
         Set("HoverBrush", dark ? "#343A46" : "#EEF2FF");
         Set("SelectedBrush", dark ? "#3D4963" : "#DDE6FF");
         Set("MutedTextBrush", dark ? "#AEB6C4" : "#69707D");
-        Set("StatusBrush", dark ? "#20232A" : "#EFF0F2");
+        Set("StatusBrush", dark ? "#20232A" : "#FFFFFF");
         foreach (Window window in Application.Current.Windows) ApplyWindowTheme(window);
     }
 
@@ -36,16 +36,10 @@ public static class ThemeManager
         var enabled = IsDark ? 1 : 0;
         _ = DwmSetWindowAttribute(handle, 20, ref enabled, sizeof(int));
         _ = DwmSetWindowAttribute(handle, 19, ref enabled, sizeof(int));
-        var captionColor = ToColorRef(IsDark ? Color.FromRgb(32, 35, 42) : Color.FromRgb(239, 240, 242));
-        var borderColor = captionColor;
-        _ = DwmSetWindowAttribute(handle, 35, ref captionColor, sizeof(int));
-        _ = DwmSetWindowAttribute(handle, 34, ref borderColor, sizeof(int));
     }
 
     [DllImport("dwmapi.dll")]
     private static extern int DwmSetWindowAttribute(IntPtr window, int attribute, ref int value, int valueSize);
-
-    private static int ToColorRef(Color color) => color.R | color.G << 8 | color.B << 16;
 
     private static void Set(string key, string color)
     {

@@ -1,0 +1,15 @@
+<UserControl x:Class="GWGUI.App.Controls.ReadImageSection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization" xmlns:controls="clr-namespace:GWGUI.App.Controls">
+    <controls:CardSection>
+        <StackPanel>
+            <TextBlock Text="{l:Loc Read.ImageToCreate}" FontWeight="SemiBold"/>
+            <RadioButton x:Name="RawScp" Content="{l:Loc Read.RawScp}" IsChecked="True" Margin="0,10,0,4"/>
+            <RadioButton x:Name="KnownFormat" Content="{l:Loc Read.KnownFormat}" Margin="0,4"/>
+            <Grid x:Name="KnownFormatOptions" Visibility="Collapsed" Margin="24,12,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <ComboBox x:Name="Family" Margin="0,0,8,0"/>
+                <ComboBox x:Name="Format" Grid.Column="1" Margin="0,0,8,0" DisplayMemberPath="DisplayName"/>
+                <ComboBox x:Name="Extension" Grid.Column="2" DisplayMemberPath="DisplayName"/>
+            </Grid>
+        </StackPanel>
+    </controls:CardSection>
+</UserControl>

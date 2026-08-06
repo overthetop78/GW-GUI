@@ -25,11 +25,25 @@ using GWGUI.Infrastructure.HostTools;
 using GWGUI.Infrastructure.Hardware;
 using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
+using GWGUI.App.Controls;
 
 namespace GWGUI.App;
 
 public partial class MainWindow : Window
 {
+    private RadioButton RawScpRadio => ReadImageBlock.RawScpRadio;
+    private RadioButton KnownFormatRadio => ReadImageBlock.KnownFormatRadio;
+    private Grid KnownFormatPanel => ReadImageBlock.KnownFormatPanel;
+    private ComboBox ReadFamilyCombo => ReadImageBlock.FamilyCombo;
+    private ComboBox ReadFormatCombo => ReadImageBlock.FormatCombo;
+    private ComboBox ReadExtensionCombo => ReadImageBlock.ExtensionCombo;
+    private ComboBox ReadProfileCombo => ReadProfileBlock.ProfileCombo;
+    private TextBox ReadFolder => ReadFolderBlock.Input;
+    private TextBox ReadFileName => ReadFileNameBlock.FileNameTextBox;
+    private TextBox ReadExtensionText => ReadFileNameBlock.ExtensionTextBox;
+    private TextBox CommandPreview => TerminalBlock?.CommandTextBox!;
+    private TextBox LogOutput => TerminalBlock?.OutputTextBox!;
+    private TerminalSection ConsolePanel => TerminalBlock;
     private readonly ISettingsStore _settingsStore;
     private readonly IGreaseweazleRunner _runner;
     private readonly IGwCommandBuilder _commandBuilder;
@@ -75,6 +89,7 @@ public partial class MainWindow : Window
     public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null)
     {
         InitializeComponent();
+        ConnectReadComponents();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
@@ -97,6 +112,34 @@ public partial class MainWindow : Window
         _formatDetector = new ImageFormatDetector(_formatCatalog);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         _startupHardwareMonitor = new StartupHardwareMonitor(_hardwareRegistry, _settingsStore);
+    }
+
+    private void ConnectReadComponents()
+    {
+        RawScpRadio.Checked += ReadMode_Changed;
+        KnownFormatRadio.Checked += ReadMode_Changed;
+        ReadFamilyCombo.SelectionChanged += ReadFamily_Changed;
+        ReadFormatCombo.SelectionChanged += ReadFormat_Changed;
+        ReadExtensionCombo.SelectionChanged += ReadInput_Changed;
+        ReadProfileCombo.SelectionChanged += ReadProfile_Changed;
+        ReadProfileBlock.SaveButton.Click += SaveReadProfile_Click;
+        ReadProfileBlock.ResetButton.Click += ResetReadProfile_Click;
+        ReadFolderBlock.BrowseButton.Click += BrowseReadFolder_Click;
+        ReadFileName.TextChanged += ReadInput_Changed;
+        TerminalBlock.CopyButton.Click += CopyConsole_Click;
+
+        RegisterName(nameof(RawScpRadio), RawScpRadio);
+        RegisterName(nameof(KnownFormatRadio), KnownFormatRadio);
+        RegisterName(nameof(KnownFormatPanel), KnownFormatPanel);
+        RegisterName(nameof(ReadFamilyCombo), ReadFamilyCombo);
+        RegisterName(nameof(ReadFormatCombo), ReadFormatCombo);
+        RegisterName(nameof(ReadExtensionCombo), ReadExtensionCombo);
+        RegisterName(nameof(ReadProfileCombo), ReadProfileCombo);
+        RegisterName(nameof(ReadFolder), ReadFolder);
+        RegisterName(nameof(ReadFileName), ReadFileName);
+        RegisterName(nameof(ReadExtensionText), ReadExtensionText);
+        RegisterName(nameof(CommandPreview), CommandPreview!);
+        RegisterName(nameof(LogOutput), LogOutput!);
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)

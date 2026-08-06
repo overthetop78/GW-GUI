@@ -12,7 +12,7 @@
         <SolidColorBrush x:Key="HoverBrush" Color="#EEF2FF"/>
         <SolidColorBrush x:Key="SelectedBrush" Color="#DDE6FF"/>
         <SolidColorBrush x:Key="MutedTextBrush" Color="#69707D"/>
-        <SolidColorBrush x:Key="StatusBrush" Color="#EFF0F2"/>
+        <SolidColorBrush x:Key="StatusBrush" Color="White"/>
         <Style TargetType="Window"><Setter Property="Background" Value="{DynamicResource WindowBrush}"/><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/><Setter Property="FontFamily" Value="Segoe UI"/><Setter Property="FontSize" Value="14"/><EventSetter Event="Loaded" Handler="Window_Loaded"/></Style>
         <Style TargetType="TextBlock"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/></Style>
         <Style TargetType="Label"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/></Style>
