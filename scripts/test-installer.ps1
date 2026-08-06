@@ -2,7 +2,13 @@ param(
     [string]$SetupPath,
     [string]$InstallDirectory,
     [string]$ExpectedVersion = '0.1.0',
-    [ValidateSet('english', 'french')][string]$InstallerLanguage = 'english'
+    [ValidateSet(
+        'english', 'french', 'german', 'italian', 'spanish', 'polish', 'russian', 'japanese',
+        'chinesesimplified', 'chinesetraditional', 'portuguese', 'brazilianportuguese', 'greek',
+        'korean', 'dutch', 'czech', 'hungarian', 'turkish', 'swedish', 'danish', 'norwegian',
+        'finnish', 'romanian', 'ukrainian', 'arabic', 'hebrew', 'thai', 'indonesian', 'vietnamese'
+    )]
+    [string]$InstallerLanguage = 'english'
 )
 
 $ErrorActionPreference = 'Stop'

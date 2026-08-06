@@ -9,6 +9,14 @@ namespace GWGUI.Tests;
 
 public sealed class LocalizationTests
 {
+    private static readonly string[] RequiredInstallerLanguages =
+    [
+        "english", "french", "german", "italian", "spanish", "polish", "russian", "japanese",
+        "chinesesimplified", "chinesetraditional", "portuguese", "brazilianportuguese", "greek",
+        "korean", "dutch", "czech", "hungarian", "turkish", "swedish", "danish", "norwegian",
+        "finnish", "romanian", "ukrainian", "arabic", "hebrew", "thai", "indonesian", "vietnamese"
+    ];
+
     private static readonly string[] RequiredKeys =
     [
         "Common.Cancel", "Common.Save", "Common.Delete", "Options.Title", "Options.General",
@@ -133,6 +141,24 @@ public sealed class LocalizationTests
             .ToArray();
 
         Assert.Empty(missing);
+    }
+
+    [Fact]
+    public void InstallerContainsEveryRequestedLanguage()
+    {
+        var root = FindRepositoryRoot();
+        var installerDirectory = Path.Combine(root, "installer");
+        var script = File.ReadAllText(Path.Combine(installerDirectory, "GWGUI.iss"));
+        var declarations = Regex.Matches(
+                script,
+                "^Name:\\s*\"([^\"]+)\";\\s*MessagesFile:\\s*\"([^\"]+)\"",
+                RegexOptions.Multiline | RegexOptions.CultureInvariant)
+            .Select(match => (Name: match.Groups[1].Value, MessagesFile: match.Groups[2].Value))
+            .ToArray();
+
+        Assert.Equal(RequiredInstallerLanguages, declarations.Select(declaration => declaration.Name));
+        foreach (var declaration in declarations.Where(declaration => !declaration.MessagesFile.StartsWith("compiler:", StringComparison.OrdinalIgnoreCase)))
+            Assert.True(File.Exists(Path.Combine(installerDirectory, declaration.MessagesFile)), $"Missing installer language file: {declaration.MessagesFile}");
     }
 
     private static string FindRepositoryRoot()
