@@ -2,16 +2,22 @@
 
 ## Options générales
 
+- La fenêtre conserve sa taille, reste modale et utilise des onglets horizontaux. Un bouton Fermer global hors des onglets a le même effet que la croix.
+- Il n’existe aucun bouton général Enregistrer/Annuler : les listes sont appliquées immédiatement, les champs texte à la perte du focus et la fermeture effectue une dernière sauvegarde de sécurité.
 - Dossier d’images par défaut.
 - Langue française ou anglaise.
-- Configuration des tags de conversion.
+- La langue et le thème utilisent des listes déroulantes compactes côte à côte et s’appliquent immédiatement sans fermer ni recréer de fenêtre.
+- Configuration des tags de conversion : activation générale, modèles prédéfinis, champ modifiable, légende des variables, aperçu et cinq modèles personnalisés récents.
 - Gestion des profils utilisateur par onglet : renommer et supprimer.
-- Valeur générale initiale de la case Tags et modèle de tag configurable. Le jeton `{tag}` est obligatoire, la valeur initiale est ` [{tag}]` et un aperçu montre le nom obtenu.
+- La valeur initiale du modèle est ` [{FAMILY}-{FORMAT}]`. Les variables disponibles couvrent nom, famille, format, extension, date et heure dans plusieurs écritures compatibles avec les noms de fichiers Windows.
+- Les cinq derniers modèles personnalisés sont conservés en ordre MRU : un doublon remonte en tête et le sixième chasse le plus ancien. Les modèles prédéfinis ne modifient pas cet historique.
 - Un changement temporaire dans Conversion n’écrase pas ce réglage général.
 
 ## Matériel
 
 - Plusieurs contrôleurs Greaseweazle et lecteurs mémorisés.
+- Host Tools, contrôleurs et lecteurs sont regroupés dans le même onglet Matériel; Scanner et Ajouter un lecteur sont placés au-dessus de la liste compacte.
+- Le scan détecte les contrôleurs USB/série, mais Windows et `gw info` ne peuvent pas énumérer les lecteurs physiques placés derrière la nappe. Le premier lecteur est donc configuré sur le contrôleur détecté et le bouton Ajouter un lecteur permet d’en déclarer un autre manuellement.
 - Identification USB et dernier port COM.
 - Type physique du lecteur : 3 pouces, 3,5 pouces, 5,25 pouces ou 8 pouces.
 - Sélection Greaseweazle A/B ou 0/1 lorsque nécessaire.

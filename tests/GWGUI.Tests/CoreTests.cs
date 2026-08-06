@@ -288,8 +288,8 @@ public sealed class CoreTests
                 Assert.Equal(UserDialogIcon.Warning, saveFailure.Icon);
                 Assert.Contains("test save failure", saveFailure.Message);
 
-                var optionsWindow = new OptionsWindow(new AppSettings());
-                var optionsNavigation = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("Navigation"));
+                var optionsWindow = new OptionsWindow(new AppSettings(), settingsStore: new RecordingSettingsStore());
+                var optionsNavigation = Assert.IsType<System.Windows.Controls.TabControl>(optionsWindow.FindName("Navigation"));
                 var imagesFolder = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("ImagesFolderText"));
                 var language = Assert.IsType<System.Windows.Controls.ComboBox>(optionsWindow.FindName("LanguageCombo"));
                 var theme = Assert.IsType<System.Windows.Controls.ComboBox>(optionsWindow.FindName("ThemeCombo"));
@@ -297,10 +297,10 @@ public sealed class CoreTests
                 var gwPath = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("GwPathText"));
                 var hostToolsProgress = Assert.IsType<System.Windows.Controls.ProgressBar>(optionsWindow.FindName("HostToolsProgress"));
                 var drives = Assert.IsType<System.Windows.Controls.DataGrid>(optionsWindow.FindName("DrivesGrid"));
-                var profiles = Assert.IsType<System.Windows.Controls.DataGrid>(optionsWindow.FindName("ProfilesGrid"));
+                var profiles = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("ReadProfilesList"));
                 foreach (var named in new FrameworkElement[] { optionsNavigation, imagesFolder, language, theme, tagPattern, gwPath, hostToolsProgress, drives, profiles })
                     Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(named)));
-                Assert.NotNull(new ListBoxAutomationPeer(optionsNavigation).GetPattern(PatternInterface.Selection));
+                Assert.NotNull(new TabControlAutomationPeer(optionsNavigation).GetPattern(PatternInterface.Selection));
                 Assert.NotNull(new TextBoxAutomationPeer(imagesFolder).GetPattern(PatternInterface.Value));
                 Assert.NotNull(new ComboBoxAutomationPeer(language).GetPattern(PatternInterface.Selection));
                 optionsWindow.Close();
@@ -2532,6 +2532,18 @@ public sealed class CoreTests
         var output = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_{tag}"));
         Assert.Equal("disk_PC-720.ima", Path.GetFileName(output.OutputPath));
         Assert.Throws<ArgumentException>(() => planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_format"));
+    }
+
+    [Fact]
+    public void ConversionTagVariablesProduceDeterministicFilenameSafeNames()
+    {
+        var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
+        var familyFormat = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, " [{FAMILY}-{FORMAT}-{EXTENSION}]"));
+        Assert.Equal("disk [PC-720-IMA].ima", Path.GetFileName(familyFormat.OutputPath));
+
+        var format = new DiskFormat("ibm.720", "IBM PC", "IBM PC 720", [new ImageExtension(".ima", "IMA", true)], Tag: "PC-720");
+        var rendered = ConversionPlanner.FormatTag("{NAME}_{DATE:YYYY-MM-DD}_{TIME:HH-MM-SS}_{TAG}", format, ".ima", "disk", new DateTime(2026, 8, 6, 14, 35, 42));
+        Assert.Equal("disk_2026-08-06_14-35-42_PC-720", rendered);
     }
 
     [Fact]

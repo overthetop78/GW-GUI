@@ -95,7 +95,12 @@ public static class SettingsMigrator
         settings.Conversion.ExplicitExtensions ??= [];
         settings.Conversion.OptionValues ??= [];
         settings.Conversion.EnabledOptions ??= [];
-        settings.Conversion.TagPattern = string.IsNullOrWhiteSpace(settings.Conversion.TagPattern) || !settings.Conversion.TagPattern.Contains("{tag}", StringComparison.OrdinalIgnoreCase) ? " [{tag}]" : settings.Conversion.TagPattern;
+        settings.Conversion.RecentCustomTagPatterns ??= [];
+        settings.Conversion.RecentCustomTagPatterns = settings.Conversion.RecentCustomTagPatterns
+            .Where(pattern => !string.IsNullOrWhiteSpace(pattern)).Distinct(StringComparer.OrdinalIgnoreCase).Take(5).ToList();
+        settings.Conversion.TagPattern = string.IsNullOrWhiteSpace(settings.Conversion.TagPattern)
+            ? " [{FAMILY}-{FORMAT}]"
+            : settings.Conversion.TagPattern.Replace("{tag}", "{FAMILY}-{FORMAT}", StringComparison.OrdinalIgnoreCase);
         foreach (var profile in settings.Profiles) { profile.Values ??= []; profile.EnabledOptions ??= []; }
     }
 

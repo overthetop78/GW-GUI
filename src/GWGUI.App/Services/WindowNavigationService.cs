@@ -37,7 +37,8 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
     public bool ShowOptions(AppSettings settings, OptionsSection section = OptionsSection.General)
     {
         IHardwareRegistry hardware = new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
-        return new OptionsWindow(settings, hardware, _hostTools, section) { Owner = _owner }.ShowDialog() == true;
+        new OptionsWindow(settings, hardware, _hostTools, section) { Owner = _owner }.ShowDialog();
+        return true;
     }
     public void ShowLogHistory(string logsDirectory) => new LogHistoryWindow(logsDirectory) { Owner = _owner }.ShowDialog();
     public void ShowAbout() => new AboutWindow { Owner = _owner }.ShowDialog();

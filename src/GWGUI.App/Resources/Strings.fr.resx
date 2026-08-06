@@ -54,8 +54,13 @@
   <data name="Visual.StructureData"><value>Données décodées</value></data>
   <data name="Visual.StructureAnomaly"><value>Supprimé/anomalie</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analyse fondée sur la révolution {0}.</value></data>
+  <data name="Options.UseConversionTags"><value>Utiliser les tags dans les noms de conversion</value></data>
+  <data name="Options.TagPreset"><value>Modèle prédéfini</value></data>
   <data name="Options.TagPattern"><value>Modèle des tags de conversion</value></data>
-  <data name="Options.TagPatternHelp"><value>Utilisez {tag} à l’endroit où le tag du format doit apparaître.</value></data>
+  <data name="Options.TagPatternHelp"><value>Variables : {NAME}, {FAMILY}, {FORMAT}, {EXTENSION}, {DATE:YYYY-MM-DD}, {DATE:YYYYMMDD}, {DATE:DD-MM-YYYY}, {TIME:HH-MM-SS}, {TIME:HHMMSS}, {TIME:HH-MM}.</value></data>
+  <data name="Options.RecentTagPatterns"><value>Modèles personnalisés récents</value></data>
+  <data name="Options.NextTagExample"><value>Exemple suivant</value></data>
+  <data name="Options.NextTagExampleIcon"><value>↻</value></data>
   <data name="Options.TagPatternPreview"><value>Exemple : {0}</value></data>
   <data name="Options.TagPatternInvalid"><value>Le modèle de tag doit contenir {tag}.</value></data>
   <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>

@@ -59,6 +59,7 @@
 - L’enregistrement demande uniquement le nom du profil.
 - Enregistrer sous un nouveau nom crée naturellement une copie.
 - Les Options permettent de renommer et supprimer les profils utilisateur, classés par onglet.
+- Les Options affichent trois listes de profils utilisateur côte à côte, sans le profil système Par défaut. Un second clic lent ou F2 renomme; le menu contextuel permet Renommer ou Supprimer, avec confirmation de la suppression.
 - Il n’existe pas de bouton Dupliquer : charger un profil puis l’enregistrer sous un nouveau nom crée sa copie.
 - Si le nom saisi existe déjà, une confirmation demande s’il faut remplacer le profil.
 - Le bouton Réinitialiser recharge le profil actif. Avec `Par défaut`, il restaure complètement l’état sans options facultatives.

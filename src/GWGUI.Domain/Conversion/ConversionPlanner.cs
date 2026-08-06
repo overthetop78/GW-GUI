@@ -22,7 +22,7 @@ public static class ConversionCommandBuilder
 
 public sealed class ConversionPlanner(IImageFormatCatalog catalog)
 {
-    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = " [{tag}]")
+    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = " [{FAMILY}-{FORMAT}]")
     {
         var sourceExtension = Path.GetExtension(sourcePath);
         var compatible = catalog.GetCompatibleOutputs(sourceExtension).ToDictionary(x => x.Id);
@@ -39,8 +39,9 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
             {
                 var known = format.Extensions.FirstOrDefault(x => string.Equals(x.Extension, extension, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidOperationException($"Extension '{extension}' is not valid for '{format.DisplayName}'.");
-                var tag = addTags ? FormatTag(tagPattern, Tag(format)) : "";
-                var outputPath = Path.Combine(destinationFolder, outputBaseName + tag + known.Extension);
+                var tag = addTags ? FormatTag(tagPattern, format, known.Extension, outputBaseName, DateTime.Now) : "";
+                var baseName = addTags && tagPattern.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? "" : outputBaseName;
+                var outputPath = Path.Combine(destinationFolder, baseName + tag + known.Extension);
                 outputs.Add(new ConversionOutput(format.Id, known.Extension, outputPath, selection.ExplicitExtensions.Count == 0));
             }
         }
@@ -50,10 +51,26 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
         return outputs;
     }
 
-    private static string Tag(DiskFormat format) => format.Tag ?? format.Id.ToUpperInvariant().Replace('.', '-');
-    private static string FormatTag(string pattern, string tag)
+    public static string FormatTag(string pattern, DiskFormat format, string extension, string sourceName, DateTime timestamp)
     {
-        if (string.IsNullOrWhiteSpace(pattern) || !pattern.Contains("{tag}", StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("The tag pattern must contain {tag}.", nameof(pattern));
-        return pattern.Replace("{tag}", tag, StringComparison.OrdinalIgnoreCase);
+        var supportedTokens = new[] { "{TAG}", "{NAME}", "{FAMILY}", "{FORMAT}", "{EXTENSION}", "{DATE:", "{TIME:" };
+        if (string.IsNullOrWhiteSpace(pattern) || !supportedTokens.Any(token => pattern.Contains(token, StringComparison.OrdinalIgnoreCase)))
+            throw new ArgumentException("The tag pattern must contain a supported variable.", nameof(pattern));
+        var legacyTag = format.Tag ?? format.Id.ToUpperInvariant().Replace('.', '-');
+        var separator = legacyTag.IndexOf('-');
+        var family = separator < 0 ? legacyTag : legacyTag[..separator];
+        var diskFormat = separator < 0 ? format.Id.Split('.').Last().ToUpperInvariant() : legacyTag[(separator + 1)..];
+        return pattern
+            .Replace("{TAG}", legacyTag, StringComparison.OrdinalIgnoreCase)
+            .Replace("{FAMILY}", family, StringComparison.OrdinalIgnoreCase)
+            .Replace("{FORMAT}", diskFormat, StringComparison.OrdinalIgnoreCase)
+            .Replace("{EXTENSION}", extension.TrimStart('.').ToUpperInvariant(), StringComparison.OrdinalIgnoreCase)
+            .Replace("{NAME}", sourceName, StringComparison.OrdinalIgnoreCase)
+            .Replace("{DATE:YYYY-MM-DD}", timestamp.ToString("yyyy-MM-dd"), StringComparison.OrdinalIgnoreCase)
+            .Replace("{DATE:YYYYMMDD}", timestamp.ToString("yyyyMMdd"), StringComparison.OrdinalIgnoreCase)
+            .Replace("{DATE:DD-MM-YYYY}", timestamp.ToString("dd-MM-yyyy"), StringComparison.OrdinalIgnoreCase)
+            .Replace("{TIME:HH-MM-SS}", timestamp.ToString("HH-mm-ss"), StringComparison.OrdinalIgnoreCase)
+            .Replace("{TIME:HHMMSS}", timestamp.ToString("HHmmss"), StringComparison.OrdinalIgnoreCase)
+            .Replace("{TIME:HH-MM}", timestamp.ToString("HH-mm"), StringComparison.OrdinalIgnoreCase);
     }
 }

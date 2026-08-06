@@ -54,8 +54,13 @@
   <data name="Visual.StructureData"><value>Decoded data</value></data>
   <data name="Visual.StructureAnomaly"><value>Deleted/anomaly</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analysis based on revolution {0}.</value></data>
+  <data name="Options.UseConversionTags"><value>Use tags in conversion filenames</value></data>
+  <data name="Options.TagPreset"><value>Preset</value></data>
   <data name="Options.TagPattern"><value>Conversion tag pattern</value></data>
-  <data name="Options.TagPatternHelp"><value>Use {tag} where the format tag must appear.</value></data>
+  <data name="Options.TagPatternHelp"><value>Variables: {NAME}, {FAMILY}, {FORMAT}, {EXTENSION}, {DATE:YYYY-MM-DD}, {DATE:YYYYMMDD}, {DATE:DD-MM-YYYY}, {TIME:HH-MM-SS}, {TIME:HHMMSS}, {TIME:HH-MM}.</value></data>
+  <data name="Options.RecentTagPatterns"><value>Recent custom patterns</value></data>
+  <data name="Options.NextTagExample"><value>Next example</value></data>
+  <data name="Options.NextTagExampleIcon"><value>↻</value></data>
   <data name="Options.TagPatternPreview"><value>Example: {0}</value></data>
   <data name="Options.TagPatternInvalid"><value>The tag pattern must contain {tag}.</value></data>
   <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
