@@ -1,27 +1,35 @@
 <UserControl x:Class="GWGUI.App.Controls.ConversionFormatsSection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization" xmlns:local="clr-namespace:GWGUI.App" xmlns:controls="clr-namespace:GWGUI.App.Controls">
     <Grid>
         <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
-        <controls:CardSection Margin="0,0,6,12">
-            <StackPanel>
+        <controls:CardSection Height="390" Margin="0,0,6,12">
+            <Grid>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
                 <TextBlock Text="{l:Loc Conversion.Selected}" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <ItemsControl x:Name="Pinned">
-                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="Format_ValueChanged"/></DataTemplate></ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" PanningMode="VerticalOnly">
+                    <ItemsControl x:Name="Pinned">
+                        <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="Format_ValueChanged"/></DataTemplate></ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </controls:CardSection>
-        <controls:CardSection Grid.Column="1" Margin="6,0,6,12">
-            <StackPanel>
+        <controls:CardSection Grid.Column="1" Height="390" Margin="6,0,6,12">
+            <Grid>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
                 <TextBlock Text="{l:Loc Conversion.CommonFormats}" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <ItemsControl x:Name="Common">
-                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="Format_ValueChanged"/></DataTemplate></ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" PanningMode="VerticalOnly">
+                    <ItemsControl x:Name="Common">
+                        <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="Format_ValueChanged"/></DataTemplate></ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </controls:CardSection>
         <Expander Grid.Column="2" Header="{l:Loc Conversion.ShowRare}" Margin="6,0,0,0" VerticalAlignment="Top">
-            <controls:CardSection Margin="0,10,0,12">
-                <ItemsControl x:Name="Rare">
-                    <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="Format_ValueChanged"/></DataTemplate></ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <controls:CardSection Height="350" Margin="0,10,0,12">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" PanningMode="VerticalOnly">
+                    <ItemsControl x:Name="Rare">
+                        <ItemsControl.ItemTemplate><DataTemplate><local:ConversionFormatControl Presentation="{Binding}" IsEnabled="{Binding IsCompatible}" ValueChanged="Format_ValueChanged"/></DataTemplate></ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </controls:CardSection>
         </Expander>
     </Grid>
