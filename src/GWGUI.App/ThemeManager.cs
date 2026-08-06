@@ -17,7 +17,7 @@ public static class ThemeManager
         IsDark = dark;
         var systemAccent = SystemParameters.WindowGlassColor;
         Set("AccentBrush", systemAccent.A == 0 ? Color.FromRgb(77, 118, 232) : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B));
-        Set("WindowBrush", dark ? "#17191F" : "#F6F7FA");
+        Set("WindowBrush", dark ? "#17191F" : "#F1F2F4");
         Set("CardBrush", dark ? "#23262E" : "#FFFFFF");
         Set("ControlBrush", dark ? "#2B2F38" : "#FFFFFF");
         Set("TextBrush", dark ? "#F2F3F5" : "#20242C");

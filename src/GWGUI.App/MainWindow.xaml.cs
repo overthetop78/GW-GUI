@@ -1358,9 +1358,23 @@ public partial class MainWindow : Window
     {
         var available = _settings.AvailableHostToolsVersion;
         var installed = _settings.InstalledHostToolsVersion;
+        if (!Version.TryParse(installed, out _)) installed = HostToolsVersionFromPath(_settings.GwExecutablePath);
         var newer = Version.TryParse(available, out var availableVersion) && (!Version.TryParse(installed, out var installedVersion) || availableVersion > installedVersion);
         _viewModel.HostToolsUpdateVisibility = newer ? Visibility.Visible : Visibility.Collapsed;
         if (newer) _viewModel.HostToolsUpdateText = LocExtension.Get("HostTools.UpdateAvailable", available!);
+    }
+
+    private static string? HostToolsVersionFromPath(string? executablePath)
+    {
+        if (string.IsNullOrWhiteSpace(executablePath)) return null;
+        var directory = Path.GetDirectoryName(executablePath);
+        while (!string.IsNullOrWhiteSpace(directory))
+        {
+            var name = Path.GetFileName(directory);
+            if (Version.TryParse(name, out _)) return name;
+            directory = Path.GetDirectoryName(directory);
+        }
+        return null;
     }
 
     private static string DecoderName(string id) => LocExtension.Get("Visual.DecoderName." + id);
