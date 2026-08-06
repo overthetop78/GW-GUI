@@ -320,6 +320,12 @@ public sealed class CoreTests
                 Assert.NotNull(new TextBoxAutomationPeer(imagesFolder).GetPattern(PatternInterface.Value));
                 Assert.NotNull(new ComboBoxAutomationPeer(language).GetPattern(PatternInterface.Selection));
                 optionsWindow.Show();
+                optionsWindow.UpdateLayout();
+                var generalScroller = Assert.IsType<System.Windows.Controls.ScrollViewer>(optionsWindow.FindName("GeneralScrollViewer"));
+                var recentTags = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("RecentTagPatterns"));
+                Assert.True(generalScroller.ScrollableHeight <= 0, $"General page requires {generalScroller.ScrollableHeight} DIPs of scrolling at the normal window size.");
+                var recentScroller = GetScrollViewer(recentTags);
+                Assert.True(recentScroller.ScrollableHeight <= 0, $"Recent tag patterns require {recentScroller.ScrollableHeight} DIPs of scrolling.");
                 optionsWindow.Close();
                 for (var attempt = 0; attempt < 100 && optionsWindow.IsVisible; attempt++)
                 {
@@ -2868,6 +2874,32 @@ public sealed class CoreTests
         public void ShowLogHistory(string logsDirectory) => LogDirectories.Add(logsDirectory);
         public void ShowAbout() => AboutCount++;
         public void ShowGwTool(GwToolWindowRequest request) => ToolRequests.Add(request);
+    }
+
+    private static System.Windows.Controls.ScrollViewer GetScrollViewer(System.Windows.DependencyObject parent)
+    {
+        for (var index = 0; index < System.Windows.Media.VisualTreeHelper.GetChildrenCount(parent); index++)
+        {
+            var child = System.Windows.Media.VisualTreeHelper.GetChild(parent, index);
+            if (child is System.Windows.Controls.ScrollViewer scrollViewer) return scrollViewer;
+            var nested = GetScrollViewerOrDefault(child);
+            if (nested is not null) return nested;
+        }
+
+        throw new InvalidOperationException("No ScrollViewer found in the visual tree.");
+    }
+
+    private static System.Windows.Controls.ScrollViewer? GetScrollViewerOrDefault(System.Windows.DependencyObject parent)
+    {
+        for (var index = 0; index < System.Windows.Media.VisualTreeHelper.GetChildrenCount(parent); index++)
+        {
+            var child = System.Windows.Media.VisualTreeHelper.GetChild(parent, index);
+            if (child is System.Windows.Controls.ScrollViewer scrollViewer) return scrollViewer;
+            var nested = GetScrollViewerOrDefault(child);
+            if (nested is not null) return nested;
+        }
+
+        return null;
     }
 
     private static string EncodeMfmBytes(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 1; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }
