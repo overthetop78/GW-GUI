@@ -3,7 +3,10 @@
         <Grid>
             <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
             <DockPanel>
-                <Button x:Name="Modify" DockPanel.Dock="Right" Content="{l:Loc Common.Modify}"/>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button x:Name="VisualizeTracks" Content="{l:Loc Write.VisualizeTracks}" IsEnabled="False"/>
+                    <Button x:Name="Modify" Content="{l:Loc Common.Modify}"/>
+                </StackPanel>
                 <StackPanel>
                     <TextBlock Text="{l:Loc Write.Detected}" FontWeight="SemiBold"/>
                     <TextBlock x:Name="Detection" Text="{l:Loc Write.ChooseImage}" Margin="0,5,12,0" TextWrapping="Wrap"/>

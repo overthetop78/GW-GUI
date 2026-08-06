@@ -8,4 +8,5 @@ public partial class WriteFormatSection : UserControl
     public TextBlock DetectionText => Detection;
     public ComboBox FormatCombo => Formats;
     public Button ModifyButton => Modify;
+    public Button VisualizeTracksButton => VisualizeTracks;
 }

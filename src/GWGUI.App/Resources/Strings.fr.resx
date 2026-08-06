@@ -198,4 +198,6 @@
   <data name="Options.LogUnlimitedHint"><value>0 = aucune limite</value></data>
   <data name="Read.CancelledFileDeleted"><value>Lecture interrompue : le fichier incomplet a été supprimé : {0}</value></data>
   <data name="Read.CancelledFileDeleteFailed"><value>Lecture interrompue, mais le fichier incomplet n’a pas pu être supprimé : {0} — {1}</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualiser les pistes</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Sélectionnez le format de la disquette avant de visualiser ses pistes.</value></data>
 </root>

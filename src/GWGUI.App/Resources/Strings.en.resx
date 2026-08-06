@@ -198,4 +198,6 @@
   <data name="Options.LogUnlimitedHint"><value>0 = unlimited</value></data>
   <data name="Read.CancelledFileDeleted"><value>Read cancelled: The incomplete file was deleted: {0}</value></data>
   <data name="Read.CancelledFileDeleteFailed"><value>Read cancelled, but the incomplete file could not be deleted: {0} — {1}</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualize tracks</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Select the disk format before visualizing its tracks.</value></data>
 </root>

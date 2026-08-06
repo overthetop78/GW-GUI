@@ -173,6 +173,7 @@ public partial class MainWindow : Window
         WriteProfileBlock.ResetButton.Click += ResetWriteProfile_Click;
         WriteSourceBlock.BrowseButton.Click += BrowseWriteSource_Click;
         WriteFormatBlock.ModifyButton.Click += ToggleWriteFormat_Click;
+        WriteFormatBlock.VisualizeTracksButton.Click += VisualizeWriteSource_Click;
         WriteFormatCombo.SelectionChanged += WriteInput_Changed;
         WriteAdvancedBlock.InputChanged += WriteInput_Changed;
         WriteAdvancedBlock.FakeIndexChecked += WriteFakeIndex_Checked;
@@ -457,7 +458,54 @@ public partial class MainWindow : Window
         WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
         WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
         WriteFormatCombo.Visibility = _detectedWriteFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
+        WriteFormatBlock.VisualizeTracksButton.IsEnabled = true;
         UpdateWriteCommand();
+    }
+
+    private async void VisualizeWriteSource_Click(object sender, RoutedEventArgs e)
+    {
+        var source = _viewModel.Write.SourcePath;
+        if (string.IsNullOrWhiteSpace(source) || !File.Exists(source)) return;
+        if (Path.GetExtension(source).Equals(".scp", StringComparison.OrdinalIgnoreCase))
+        {
+            MainTabs.SelectedIndex = 3;
+            await LoadScpAsync(source);
+            return;
+        }
+        if (_operation.IsRunning) return;
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
+        {
+            _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"));
+            return;
+        }
+
+        var format = (WriteFormatCombo.SelectedItem as DiskFormat) ?? _detectedWriteFormat?.Format;
+        if (format is null)
+        {
+            _dialogs.Show(LocExtension.Get("Write.VisualizeFormatRequired"), LocExtension.Get("Write.Title"));
+            return;
+        }
+
+        var temporaryPath = Path.Combine(Path.GetTempPath(), $"gwgui-write-{Guid.NewGuid():N}.scp");
+        try
+        {
+            var output = new ConversionOutput(format.Id, ".scp", temporaryPath, false);
+            var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, source, output);
+            LogOutput.Clear();
+            await _consoleLog.BeginAsync("convert", command.ToDisplayString());
+            BeginProgress();
+            var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
+            await FlushPendingOutputAsync();
+            ApplyOperationResult(_operationResultPresenter.Present(outcome));
+            EndProgress();
+            if (outcome.Result?.IsSuccess != true || !File.Exists(temporaryPath)) return;
+            MainTabs.SelectedIndex = 3;
+            await LoadScpAsync(temporaryPath);
+        }
+        finally
+        {
+            try { if (File.Exists(temporaryPath)) File.Delete(temporaryPath); } catch { }
+        }
     }
 
     private void ToggleWriteFormat_Click(object sender, RoutedEventArgs e)
