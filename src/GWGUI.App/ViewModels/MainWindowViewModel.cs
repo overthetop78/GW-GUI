@@ -19,6 +19,8 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     private string _progressText = "";
     private Visibility _hostToolsUpdateVisibility = Visibility.Collapsed;
     private string _hostToolsUpdateText = "";
+    private Visibility _timerVisibility = Visibility.Collapsed;
+    private string _elapsedText = "00:00:00";
 
     public ReadOperationViewModel Read { get; } = new();
     public WriteOperationViewModel Write { get; } = new();
@@ -36,6 +38,8 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     public string ProgressText { get => _progressText; set => Set(ref _progressText, value); }
     public Visibility HostToolsUpdateVisibility { get => _hostToolsUpdateVisibility; set => Set(ref _hostToolsUpdateVisibility, value); }
     public string HostToolsUpdateText { get => _hostToolsUpdateText; set => Set(ref _hostToolsUpdateText, value); }
+    public Visibility TimerVisibility { get => _timerVisibility; set => Set(ref _timerVisibility, value); }
+    public string ElapsedText { get => _elapsedText; set => Set(ref _elapsedText, value); }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

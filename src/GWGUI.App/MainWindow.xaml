@@ -50,62 +50,51 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Border Style="{StaticResource Card}">
-                            <DockPanel>
-                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                                    <Button Content="{l:Loc Common.Save}" Click="SaveReadProfile_Click" />
-                                    <Button Content="{l:Loc Common.Reset}" Click="ResetReadProfile_Click" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{l:Loc Common.Profile}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                    <ComboBox x:Name="ReadProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ReadProfile_Changed" AutomationProperties.Name="{l:Loc Common.Profile}" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
                         <Border Grid.Row="1" Style="{StaticResource Card}">
-                            <StackPanel>
-                                <TextBlock Text="{l:Loc Read.ImageToCreate}" FontWeight="SemiBold" />
-                                <RadioButton x:Name="RawScpRadio" Content="{l:Loc Read.RawScp}" IsChecked="True" Margin="0,10,0,4" Checked="ReadMode_Changed" />
-                                <RadioButton x:Name="KnownFormatRadio" Content="{l:Loc Read.KnownFormat}" Margin="0,4" Checked="ReadMode_Changed" />
-                                <Grid x:Name="KnownFormatPanel" Visibility="Collapsed" Margin="24,12,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <ComboBox x:Name="ReadFamilyCombo" Margin="0,0,8,0" SelectionChanged="ReadFamily_Changed" />
-                                    <ComboBox x:Name="ReadFormatCombo" Grid.Column="1" Margin="0,0,8,0" DisplayMemberPath="DisplayName" SelectionChanged="ReadFormat_Changed" />
-                                    <ComboBox x:Name="ReadExtensionCombo" Grid.Column="2" DisplayMemberPath="DisplayName" SelectionChanged="ReadInput_Changed" />
-                                </Grid>
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{l:Loc Read.ImageToCreate}" FontWeight="SemiBold" />
+                                    <RadioButton x:Name="RawScpRadio" Content="{l:Loc Read.RawScp}" IsChecked="True" Margin="0,10,0,4" Checked="ReadMode_Changed" />
+                                    <RadioButton x:Name="KnownFormatRadio" Content="{l:Loc Read.KnownFormat}" Margin="0,4" Checked="ReadMode_Changed" />
+                                    <Grid x:Name="KnownFormatPanel" Visibility="Collapsed" Margin="24,12,0,0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                        <ComboBox x:Name="ReadFamilyCombo" Margin="0,0,8,0" SelectionChanged="ReadFamily_Changed" />
+                                        <ComboBox x:Name="ReadFormatCombo" Grid.Column="1" Margin="0,0,8,0" DisplayMemberPath="DisplayName" SelectionChanged="ReadFormat_Changed" />
+                                        <ComboBox x:Name="ReadExtensionCombo" Grid.Column="2" DisplayMemberPath="DisplayName" SelectionChanged="ReadInput_Changed" />
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="28,0,0,0">
+                                    <TextBlock Text="{l:Loc Common.Profile}" FontWeight="SemiBold" />
+                                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                        <ComboBox x:Name="ReadProfileCombo" Width="260" DisplayMemberPath="Name" SelectionChanged="ReadProfile_Changed" AutomationProperties.Name="{l:Loc Common.Profile}" />
+                                        <Button Content="{l:Loc Icon.Save}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Save}" AutomationProperties.Name="{l:Loc Common.Save}" Click="SaveReadProfile_Click" />
+                                        <Button Content="{l:Loc Icon.Reset}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Reset}" AutomationProperties.Name="{l:Loc Common.Reset}" Click="ResetReadProfile_Click" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <Border Grid.Row="2" Style="{StaticResource Card}">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="210" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{l:Loc Read.FileName}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <TextBox Grid.Column="1" x:Name="ReadFileName" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" AutomationProperties.Name="{l:Loc Read.FileName}" />
-                                <TextBox Grid.Column="2" x:Name="ReadExtensionText" Margin="8,0" IsReadOnly="True" Text="{l:Loc Read.RawScp}" AutomationProperties.Name="{l:Loc Read.Extension}" />
-                                <Button Grid.Column="3" Content="{l:Loc Common.Copy}" Click="CopyReadName_Click" />
+                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="1.15*"/></Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,10,0">
+                                    <TextBlock Text="{l:Loc Read.Folder}" Margin="0,0,0,5" />
+                                    <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBox x:Name="ReadFolder" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Read.Folder}" />
+                                        <Button Grid.Column="1" Content="{l:Loc Common.Browse}" Click="BrowseReadFolder_Click" />
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="{l:Loc Read.FileName}" Margin="0,0,0,5" />
+                                    <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="190"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBox x:Name="ReadFileName" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" TextChanged="ReadInput_Changed" AutomationProperties.Name="{l:Loc Read.FileName}" />
+                                        <TextBox Grid.Column="1" x:Name="ReadExtensionText" Margin="8,0" IsReadOnly="True" Text="{l:Loc Read.RawScp}" AutomationProperties.Name="{l:Loc Read.Extension}" />
+                                        <Button Grid.Column="2" Content="{l:Loc Icon.Copy}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Copy}" AutomationProperties.Name="{l:Loc Common.Copy}" Click="CopyReadName_Click" />
+                                    </Grid>
+                                </StackPanel>
                             </Grid>
                         </Border>
-                        <Border Grid.Row="3" Style="{StaticResource Card}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{l:Loc Read.Folder}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                <TextBox Grid.Column="1" x:Name="ReadFolder" IsReadOnly="True" Text="{Binding Read.Folder, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Read.Folder}" />
-                                <Button Grid.Column="2" Content="{l:Loc Common.Browse}" Click="BrowseReadFolder_Click" />
-                            </Grid>
-                        </Border>
-                        <Expander Grid.Row="4" Header="{l:Loc Common.Advanced}">
+                        <Expander Grid.Row="0" Header="{l:Loc Common.Advanced}">
                             <Border Style="{StaticResource Card}" Margin="0,10,0,12">
                                 <StackPanel>
                                     <WrapPanel>
@@ -463,7 +452,7 @@
             </TabItem>
         </TabControl>
         <GridSplitter x:Name="ConsoleSplitter" Grid.Row="2" Height="5" HorizontalAlignment="Stretch" ResizeDirection="Rows" />
-        <Border Grid.Row="3" x:Name="ConsolePanel" Background="#11151B" Padding="12">
+        <Border Grid.Row="3" x:Name="ConsolePanel" Background="#11151B" Padding="12" ClipToBounds="True">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -471,38 +460,27 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button Content="{l:Loc Common.Export}" Padding="8,2" MinHeight="24" Click="ExportConsole_Click"/><Button Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleConsole_Click" /></StackPanel>
+                    <Button DockPanel.Dock="Right" Content="{l:Loc Icon.Copy}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Copy}" AutomationProperties.Name="{l:Loc Common.Copy}" Padding="8,2" MinWidth="34" MinHeight="24" Click="CopyConsole_Click"/>
                     <TextBlock Text="{l:Loc Common.Command}" Foreground="White" FontWeight="SemiBold" />
                 </DockPanel>
                 <TextBox Grid.Row="1" x:Name="CommandPreview" Background="Transparent" Foreground="#B7F7C3" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" AutomationProperties.Name="{l:Loc Common.Command}" />
                 <TextBox Grid.Row="2" x:Name="LogOutput" Background="Transparent" Foreground="#D9DEE7" BorderThickness="0" IsReadOnly="True" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{l:Loc Status.Ready}" AutomationProperties.Name="{l:Loc Tool.RawOutput}" />
             </Grid>
         </Border>
-        <StatusBar Grid.Row="4">
-            <StatusBarItem>
-                <Ellipse x:Name="HardwareStatusLight" Width="10" Height="10" Fill="{Binding HardwareBrush}" />
-            </StatusBarItem>
-            <Separator />
-            <StatusBarItem>
-                <TextBlock x:Name="HardwareStatusText" Text="{Binding HardwareText}" />
-            </StatusBarItem>
-            <Separator />
-            <StatusBarItem x:Name="HardwareSelectorItem" Visibility="Collapsed">
-                <ComboBox x:Name="HardwareSelector" MinWidth="260" DisplayMemberPath="Label" SelectionChanged="HardwareSelector_Changed" AutomationProperties.Name="{l:Loc Menu.Hardware}" />
-            </StatusBarItem>
-            <Separator />
-            <StatusBarItem x:Name="ProfileStatusItem" Visibility="{Binding ProfileVisibility}"><TextBlock x:Name="ProfileStatusText" Text="{Binding ProfileText}" /></StatusBarItem>
-            <Separator />
-            <StatusBarItem x:Name="OperationStatusItem">
-                <StackPanel Orientation="Horizontal"><Ellipse x:Name="OperationStatusLight" Width="10" Height="10" Fill="{Binding OperationBrush}" Margin="0,0,6,0"/><TextBlock x:Name="OperationStatusText" Text="{Binding OperationText}"/></StackPanel>
-            </StatusBarItem>
-            <StatusBarItem x:Name="ProgressStatusItem" Visibility="{Binding ProgressVisibility}">
-                <StackPanel Orientation="Horizontal"><ProgressBar x:Name="OperationProgress" Width="180" Height="12" Minimum="0" Maximum="100" IsIndeterminate="{Binding ProgressIndeterminate}" Value="{Binding ProgressValue}"/><TextBlock x:Name="OperationProgressText" Margin="8,0,0,0" Text="{Binding ProgressText}"/></StackPanel>
-            </StatusBarItem>
-            <StatusBarItem x:Name="HostToolsUpdateItem" Visibility="{Binding HostToolsUpdateVisibility}"><Button x:Name="HostToolsUpdateButton" Content="{Binding HostToolsUpdateText}" Padding="8,1" MinHeight="22" Click="Preferences_Click" /></StatusBarItem>
-            <StatusBarItem HorizontalAlignment="Right">
-                <Button Content="{l:Loc Common.Console}" Padding="8,1" MinHeight="22" Click="ToggleConsole_Click" />
-            </StatusBarItem>
+        <StatusBar Grid.Row="4" Padding="6,3">
+            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=StatusBar}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/><ColumnDefinition Width="190"/><ColumnDefinition Width="150"/><ColumnDefinition/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StatusBarItem Grid.Column="0"><StackPanel Orientation="Horizontal"><Ellipse x:Name="HardwareStatusLight" Width="10" Height="10" Fill="{Binding HardwareBrush}" Margin="0,0,8,0"/><TextBlock x:Name="HardwareStatusText" Text="{Binding HardwareText}" TextTrimming="CharacterEllipsis"/><ComboBox x:Name="HardwareSelector" Width="245" DisplayMemberPath="Label" SelectionChanged="HardwareSelector_Changed" AutomationProperties.Name="{l:Loc Menu.Hardware}" Visibility="Collapsed"/></StackPanel></StatusBarItem>
+                <StatusBarItem Grid.Column="1" x:Name="ProfileStatusItem" Visibility="{Binding ProfileVisibility}"><TextBlock x:Name="ProfileStatusText" Text="{Binding ProfileText}" TextTrimming="CharacterEllipsis"/></StatusBarItem>
+                <StatusBarItem Grid.Column="2" x:Name="OperationStatusItem"><StackPanel Orientation="Horizontal"><Ellipse x:Name="OperationStatusLight" Width="10" Height="10" Fill="{Binding OperationBrush}" Margin="0,0,8,0"/><TextBlock x:Name="OperationStatusText" Text="{Binding OperationText}"/></StackPanel></StatusBarItem>
+                <StatusBarItem Grid.Column="3" x:Name="ProgressStatusItem" Visibility="{Binding ProgressVisibility}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition/></Grid.ColumnDefinitions><ProgressBar x:Name="OperationProgress" Height="10" Minimum="0" Maximum="100" IsIndeterminate="{Binding ProgressIndeterminate}" Value="{Binding ProgressValue}"/><TextBlock Grid.Column="1" x:Name="OperationProgressText" Margin="10,0,0,0" Text="{Binding ProgressText}" TextTrimming="CharacterEllipsis"/></Grid></StatusBarItem>
+                <StatusBarItem Grid.Column="4" x:Name="HostToolsUpdateItem" Visibility="{Binding HostToolsUpdateVisibility}"><Button x:Name="HostToolsUpdateButton" Content="{Binding HostToolsUpdateText}" Padding="7,1" MinHeight="22" Click="Preferences_Click"/></StatusBarItem>
+                <StatusBarItem Grid.Column="5" Visibility="{Binding TimerVisibility}"><TextBlock Text="{Binding ElapsedText}" FontFamily="Consolas" Margin="12,0"/></StatusBarItem>
+                <StatusBarItem Grid.Column="6"><Button Content="{l:Loc Icon.Console}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Console}" AutomationProperties.Name="{l:Loc Common.Console}" Padding="7,1" MinWidth="30" MinHeight="22" Click="ToggleConsole_Click"/></StatusBarItem>
+                <StatusBarItem x:Name="HardwareSelectorItem" Visibility="Collapsed"/>
+            </Grid>
         </StatusBar>
     </Grid>
 </Window>

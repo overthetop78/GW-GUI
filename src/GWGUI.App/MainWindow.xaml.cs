@@ -67,6 +67,8 @@ public partial class MainWindow : Window
     private bool _closeAfterSettingsSave;
     private CancellationTokenSource? _scpCancellation;
     private CancellationTokenSource? _scpInspectorCancellation;
+    private readonly Stopwatch _operationStopwatch = new();
+    private readonly System.Windows.Threading.DispatcherTimer _operationTimer = new() { Interval = TimeSpan.FromSeconds(1) };
 
     public MainWindow() : this(null, null, null, null, null, null, null, null, null) { }
 
@@ -84,6 +86,7 @@ public partial class MainWindow : Window
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
+        _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
         _scpInspector = new ScpInspectorPresenter(_fluxDecoders, (key, arguments) => LocExtension.Get(key, arguments));
@@ -735,6 +738,11 @@ public partial class MainWindow : Window
         await File.WriteAllTextAsync(path, CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
     }
 
+    private void CopyConsole_Click(object sender, RoutedEventArgs e)
+    {
+        Clipboard.SetText(CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
+    }
+
     private void SetConsoleVisibility(bool visible)
     {
         if (!visible && ConsolePanel.Visibility == Visibility.Visible && ConsoleRow.ActualHeight >= 100)
@@ -1134,7 +1142,10 @@ public partial class MainWindow : Window
         }).Where(choice => choice is not null).Cast<HardwareChoice>().ToArray();
         HardwareSelector.ItemsSource = choices;
         HardwareSelector.SelectedItem = choices.FirstOrDefault(x => x.Drive.Id == previousId) ?? choices.FirstOrDefault();
-        HardwareSelectorItem.Visibility = choices.Length > 1 ? Visibility.Visible : Visibility.Collapsed;
+        var selectionRequired = choices.Length > 1;
+        HardwareSelectorItem.Visibility = Visibility.Collapsed;
+        HardwareSelector.Visibility = selectionRequired ? Visibility.Visible : Visibility.Collapsed;
+        HardwareStatusText.Visibility = selectionRequired ? Visibility.Collapsed : Visibility.Visible;
         UpdateHardwareStatus();
     }
 
@@ -1204,6 +1215,13 @@ public partial class MainWindow : Window
 
     private void BeginProgress()
     {
+        if (!_operationStopwatch.IsRunning)
+        {
+            _operationStopwatch.Restart();
+            _operationTimer.Start();
+            _viewModel.TimerVisibility = Visibility.Visible;
+            UpdateElapsedTime();
+        }
         _progressTracker.Reset();
         SetOperationState("Status.Running", Color.FromRgb(45, 125, 210));
         _viewModel.ProgressVisibility = Visibility.Visible;
@@ -1229,9 +1247,19 @@ public partial class MainWindow : Window
 
     private void EndProgress()
     {
+        _operationStopwatch.Stop();
+        _operationTimer.Stop();
+        UpdateElapsedTime();
+        _viewModel.TimerVisibility = Visibility.Collapsed;
         _viewModel.ProgressIndeterminate = false;
         _viewModel.ProgressValue = 100;
         _viewModel.ProgressVisibility = Visibility.Collapsed;
+    }
+
+    private void UpdateElapsedTime()
+    {
+        var elapsed = _operationStopwatch.Elapsed;
+        _viewModel.ElapsedText = $"{(int)elapsed.TotalHours:00}:{elapsed.Minutes:00}:{elapsed.Seconds:00}";
     }
 
     private void ApplyOperationResult(OperationResultPresentation presentation)

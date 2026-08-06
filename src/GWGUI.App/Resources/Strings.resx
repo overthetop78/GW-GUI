@@ -220,4 +220,5 @@
   <data name="Visual.AnalysingTrack"><value>Analysing track {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Side</value></data><data name="Visual.TrackLabel"><value>Track</value></data><data name="Visual.ScpEntryLabel"><value>SCP entry</value></data><data name="Visual.RevolutionsTitle"><value>Revolutions</value></data><data name="Visual.AnalysisTitle"><value>Analysis</value></data><data name="Visual.ConfidenceLabel"><value>Confidence</value></data><data name="Visual.CellLabel"><value>Estimated cell</value></data><data name="Visual.StructuresLabel"><value>Structures</value></data><data name="Visual.StructuresTitle"><value>Detected structures</value></data><data name="Visual.SectorsTitle"><value>Sectors</value></data><data name="Visual.TransitionsUnit"><value>transitions</value></data>
   <data name="Visual.NumberPrefix"><value>#</value></data><data name="Visual.ValueSeparator"><value>  ·  </value></data>
+  <data name="Icon.Save"><value>&#xE74E;</value></data><data name="Icon.Reset"><value>&#xE777;</value></data><data name="Icon.Copy"><value>&#xE8C8;</value></data><data name="Icon.Console"><value>&#xE756;</value></data>
 </root>
