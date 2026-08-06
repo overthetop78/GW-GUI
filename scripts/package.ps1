@@ -32,7 +32,19 @@ New-Item -ItemType File -Path (Join-Path $portable 'portable.flag') -Force | Out
 
 $zip = Join-Path $artifacts "GW-GUI-$Version-win-x64-portable.zip"
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
-Compress-Archive -LiteralPath $portable -DestinationPath $zip -CompressionLevel Optimal
+$zipCreated = $false
+for ($attempt = 1; $attempt -le 5 -and -not $zipCreated; $attempt++) {
+    try {
+        Compress-Archive -LiteralPath $portable -DestinationPath $zip -CompressionLevel Optimal -ErrorAction Stop
+        $zipCreated = $true
+    }
+    catch {
+        if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force -ErrorAction SilentlyContinue }
+        if ($attempt -eq 5) { throw "Portable ZIP creation failed after 5 attempts. Close any running GW GUI instance or process using '$portable'. $($_.Exception.Message)" }
+        Write-Warning "Portable ZIP attempt $attempt failed because a file is temporarily in use. Retrying..."
+        Start-Sleep -Milliseconds (500 * $attempt)
+    }
+}
 
 if (-not $SkipInstaller) {
     $iscc = (Get-Command ISCC.exe -ErrorAction SilentlyContinue).Source
