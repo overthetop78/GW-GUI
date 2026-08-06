@@ -8,31 +8,7 @@
             <RowDefinition x:Name="ConsoleRow" Height="190" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Menu>
-            <MenuItem x:Name="OptionsMenuItem" Header="{l:Loc Menu.Options}">
-                <MenuItem Header="{l:Loc Menu.Preferences}" Click="Preferences_Click" />
-                <MenuItem Header="{l:Loc Logs.History}" Click="LogHistory_Click" />
-                <Separator />
-                <MenuItem Header="{l:Loc Menu.Diagnostics}">
-                    <MenuItem Header="{l:Loc Menu.Information}" Tag="info" Click="ToolCommand_Click" />
-                    <MenuItem Header="{l:Loc Menu.Bandwidth}" Tag="bandwidth" Click="ToolCommand_Click" />
-                    <MenuItem Header="{l:Loc Menu.Rpm}" Tag="rpm" Click="ToolCommand_Click" />
-                    <MenuItem Header="{l:Loc Menu.Seek}" Tag="seek" Click="ToolCommand_Click" />
-                    <MenuItem x:Name="AlignMenuItem" Header="{l:Loc Menu.Align}" Tag="align" Click="ToolCommand_Click" />
-                </MenuItem>
-                <MenuItem Header="{l:Loc Menu.Hardware}">
-                    <MenuItem Header="{l:Loc Menu.Pins}" Tag="pin" Click="ToolCommand_Click" />
-                    <MenuItem Header="{l:Loc Menu.Reset}" Tag="reset" Click="ToolCommand_Click" />
-                    <MenuItem Header="{l:Loc Menu.Delays}" Tag="delays" Click="ToolCommand_Click" />
-                    <Separator />
-                    <MenuItem Header="{l:Loc Menu.Firmware}" Tag="update" Click="ToolCommand_Click" />
-                </MenuItem>
-            </MenuItem>
-            <MenuItem x:Name="HelpMenuItem" Header="{l:Loc Menu.Help}">
-                <MenuItem Header="{l:Loc Menu.Documentation}" Click="Documentation_Click" />
-                <MenuItem Header="{l:Loc Menu.About}" Click="About_Click" />
-            </MenuItem>
-        </Menu>
+        <controls:MainMenu x:Name="ApplicationMenu"/>
         <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}">
             <TabItem Header="{l:Loc Tab.Read}">
                 <Grid>

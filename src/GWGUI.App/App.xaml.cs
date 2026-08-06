@@ -25,12 +25,18 @@ public partial class App : Application
         var settings = Task.Run(() => settingsStore.LoadAsync()).GetAwaiter().GetResult();
         var previousGwPath = settings.GwExecutablePath;
         var previousFallbackPath = settings.PreviousGwExecutablePath;
+        var previousInstalledVersion = settings.InstalledHostToolsVersion;
         settings.GwExecutablePath = StoragePaths.NormalizeHostToolsPath(settings.GwExecutablePath);
         settings.PreviousGwExecutablePath = StoragePaths.NormalizeHostToolsPath(settings.PreviousGwExecutablePath);
         using (var httpClient = new HttpClient())
         {
             var installations = new GwInstallationManager(httpClient, StoragePaths.HostToolsDirectory)
                 .Detect(settings.GwExecutablePath);
+            var configuredInstallation = installations.FirstOrDefault(installation =>
+                !string.IsNullOrWhiteSpace(settings.GwExecutablePath)
+                && string.Equals(installation.ExecutablePath, Path.GetFullPath(settings.GwExecutablePath), StringComparison.OrdinalIgnoreCase));
+            if (!string.IsNullOrWhiteSpace(configuredInstallation?.Version))
+                settings.InstalledHostToolsVersion = configuredInstallation.Version;
             if (!string.IsNullOrWhiteSpace(settings.InstalledHostToolsVersion))
             {
                 var managedInstallation = installations.FirstOrDefault(installation =>
@@ -42,7 +48,8 @@ public partial class App : Application
         var language = UiLanguageResolver.Resolve(settings.Language, CultureInfo.CurrentUICulture);
         if (!string.Equals(settings.Language, language, StringComparison.OrdinalIgnoreCase)
             || !string.Equals(previousGwPath, settings.GwExecutablePath, StringComparison.OrdinalIgnoreCase)
-            || !string.Equals(previousFallbackPath, settings.PreviousGwExecutablePath, StringComparison.OrdinalIgnoreCase))
+            || !string.Equals(previousFallbackPath, settings.PreviousGwExecutablePath, StringComparison.OrdinalIgnoreCase)
+            || !string.Equals(previousInstalledVersion, settings.InstalledHostToolsVersion, StringComparison.OrdinalIgnoreCase))
         {
             settings.Language = language;
             Task.Run(() => settingsStore.SaveAsync(settings)).GetAwaiter().GetResult();

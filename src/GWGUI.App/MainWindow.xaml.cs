@@ -89,6 +89,7 @@ public partial class MainWindow : Window
     public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null)
     {
         InitializeComponent();
+        ConnectMainMenu();
         ConnectReadComponents();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
@@ -112,6 +113,19 @@ public partial class MainWindow : Window
         _formatDetector = new ImageFormatDetector(_formatCatalog);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         _startupHardwareMonitor = new StartupHardwareMonitor(_hardwareRegistry, _settingsStore);
+    }
+
+    private void ConnectMainMenu()
+    {
+        ApplicationMenu.PreferencesRequested += Preferences_Click;
+        ApplicationMenu.LogHistoryRequested += LogHistory_Click;
+        ApplicationMenu.DocumentationRequested += Documentation_Click;
+        ApplicationMenu.AboutRequested += About_Click;
+        ApplicationMenu.ToolRequested += (sender, verb) => ToolCommand_Click(sender, new RoutedEventArgs());
+
+        RegisterName("OptionsMenuItem", ApplicationMenu.OptionsMenuItem);
+        RegisterName("HelpMenuItem", ApplicationMenu.HelpMenuItem);
+        RegisterName("AlignMenuItem", ApplicationMenu.AlignMenuItem);
     }
 
     private void ConnectReadComponents()
@@ -1358,23 +1372,9 @@ public partial class MainWindow : Window
     {
         var available = _settings.AvailableHostToolsVersion;
         var installed = _settings.InstalledHostToolsVersion;
-        if (!Version.TryParse(installed, out _)) installed = HostToolsVersionFromPath(_settings.GwExecutablePath);
         var newer = Version.TryParse(available, out var availableVersion) && (!Version.TryParse(installed, out var installedVersion) || availableVersion > installedVersion);
         _viewModel.HostToolsUpdateVisibility = newer ? Visibility.Visible : Visibility.Collapsed;
         if (newer) _viewModel.HostToolsUpdateText = LocExtension.Get("HostTools.UpdateAvailable", available!);
-    }
-
-    private static string? HostToolsVersionFromPath(string? executablePath)
-    {
-        if (string.IsNullOrWhiteSpace(executablePath)) return null;
-        var directory = Path.GetDirectoryName(executablePath);
-        while (!string.IsNullOrWhiteSpace(directory))
-        {
-            var name = Path.GetFileName(directory);
-            if (Version.TryParse(name, out _)) return name;
-            directory = Path.GetDirectoryName(directory);
-        }
-        return null;
     }
 
     private static string DecoderName(string id) => LocExtension.Get("Visual.DecoderName." + id);
