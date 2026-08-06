@@ -1045,12 +1045,13 @@ public partial class MainWindow : Window
         var previousId = (HardwareSelector.SelectedItem as HardwareChoice)?.Drive.Id;
         var choices = _settings.Drives.Select(drive =>
         {
-            var controller = _settings.Controllers.First(item => item.UsbId == drive.ControllerUsbId);
+            var controller = _settings.Controllers.FirstOrDefault(item => item.UsbId == drive.ControllerUsbId);
+            if (controller is null) return null;
             var number = _settings.Drives.Where(item => item.ControllerUsbId == drive.ControllerUsbId).ToList().IndexOf(drive) + 1;
             var label = LocExtension.Get("Hardware.DriveChoice", number, drive.Size, drive.Density, controller.LastPort);
             return new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
                 label + (controller.IsAvailable ? "" : $" ({LocExtension.Get("Hardware.Disconnected")})"));
-        }).ToArray();
+        }).Where(choice => choice is not null).Cast<HardwareChoice>().ToArray();
         HardwareSelector.ItemsSource = choices;
         HardwareSelector.SelectedItem = choices.FirstOrDefault(x => x.Drive.Id == previousId) ?? choices.FirstOrDefault();
         HardwareSelectorItem.Visibility = choices.Length > 1 ? Visibility.Visible : Visibility.Collapsed;

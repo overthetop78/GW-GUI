@@ -196,6 +196,12 @@ public sealed class CoreTests
                     Assert.Equal(".st", persisted.Read.ImageExtension);
                 }
                 var model = Assert.IsType<MainWindowViewModel>(window.DataContext);
+                var orphanMainSettings = Assert.IsType<AppSettings>(typeof(MainWindow).GetField("_settings", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.GetValue(window));
+                orphanMainSettings.Controllers = [];
+                orphanMainSettings.Drives = [new DriveSettings { ControllerUsbId = "GW-MISSING", Size = "3.5", Density = "HD" }];
+                typeof(MainWindow).GetMethod("RefreshHardwareSelector", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.Invoke(window, null);
+                Assert.Empty(Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("HardwareSelector")).Items);
+                Assert.False(string.IsNullOrWhiteSpace(model.HardwareText));
                 static System.Windows.Controls.CheckBox Probe(MainWindowViewModel dataContext, string path)
                 {
                     var probe = new System.Windows.Controls.CheckBox { DataContext = dataContext };
