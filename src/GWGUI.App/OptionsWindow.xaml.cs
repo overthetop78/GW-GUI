@@ -52,6 +52,14 @@ public partial class OptionsWindow : Window
         ("Options.TagPresetFamilyExtension", "[{FAMILY}-{EXTENSION}] "),
         ("Options.TagPresetDetailed", "[{FAMILY}-{FORMAT}-{EXTENSION}] ")
     ];
+    private static readonly (string Token, string Key)[] TagVariableDefinitions =
+    [
+        ("{NAME}", "Options.TagVariableName"), ("{FAMILY}", "Options.TagVariableFamily"),
+        ("{FORMAT}", "Options.TagVariableFormat"), ("{EXTENSION}", "Options.TagVariableExtension"),
+        ("{DATE:YYYY-MM-DD}", "Options.TagVariableDateIso"), ("{DATE:YYYYMMDD}", "Options.TagVariableDateCompact"),
+        ("{DATE:DD-MM-YYYY}", "Options.TagVariableDateLocal"), ("{TIME:HH-MM-SS}", "Options.TagVariableTimeFull"),
+        ("{TIME:HHMMSS}", "Options.TagVariableTimeCompact"), ("{TIME:HH-MM}", "Options.TagVariableTimeShort")
+    ];
 
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
     {
@@ -87,7 +95,8 @@ public partial class OptionsWindow : Window
         UseTagsCheck.IsChecked = settings.Conversion.AddTags;
         TagPatternText.Text = settings.Conversion.TagPattern;
         RefreshTagPresets();
-        RecentTagPatterns.ItemsSource = settings.Conversion.RecentCustomTagPatterns;
+        RefreshRecentTagPatterns();
+        RefreshTagVariables();
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
         foreach (var profile in settings.Profiles)
@@ -120,6 +129,7 @@ public partial class OptionsWindow : Window
             : LocExtension.Get("HostTools.None");
         UpdateTagPreview();
         RefreshTagPresets();
+        RefreshTagVariables();
     }
 
     private async void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -235,8 +245,8 @@ public partial class OptionsWindow : Window
 
     private async void RecentTagPattern_DoubleClick(object sender, MouseButtonEventArgs e)
     {
-        if (RecentTagPatterns.SelectedItem is not string pattern) return;
-        TagPatternText.Text = pattern;
+        if (RecentTagPatterns.SelectedItem is not RecentTagPatternOption { Pattern: not null } item) return;
+        TagPatternText.Text = item.Pattern;
         await PersistSettingsAsync();
     }
 
@@ -277,8 +287,7 @@ public partial class OptionsWindow : Window
         _settings.Conversion.RecentCustomTagPatterns.RemoveAll(item => string.Equals(item, pattern, StringComparison.OrdinalIgnoreCase));
         _settings.Conversion.RecentCustomTagPatterns.Insert(0, pattern);
         if (_settings.Conversion.RecentCustomTagPatterns.Count > 5) _settings.Conversion.RecentCustomTagPatterns.RemoveRange(5, _settings.Conversion.RecentCustomTagPatterns.Count - 5);
-        RecentTagPatterns.ItemsSource = null;
-        RecentTagPatterns.ItemsSource = _settings.Conversion.RecentCustomTagPatterns;
+        RefreshRecentTagPatterns();
     }
 
     private void RefreshTagPresets()
@@ -293,6 +302,20 @@ public partial class OptionsWindow : Window
             TagPresetCombo.SelectedItem = presets.FirstOrDefault(item => string.Equals(item.Pattern, current, StringComparison.OrdinalIgnoreCase));
         }
         finally { _refreshingTagPresets = false; }
+    }
+
+    private void RefreshRecentTagPatterns()
+    {
+        if (RecentTagPatterns is null) return;
+        RecentTagPatterns.ItemsSource = Enumerable.Range(0, 5)
+            .Select(index => new RecentTagPatternOption(index + 1, index < _settings.Conversion.RecentCustomTagPatterns.Count ? _settings.Conversion.RecentCustomTagPatterns[index] : null))
+            .ToArray();
+    }
+
+    private void RefreshTagVariables()
+    {
+        if (TagVariablesList is null) return;
+        TagVariablesList.ItemsSource = TagVariableDefinitions.Select(item => new TagVariableOption(item.Token, LocExtension.Get(item.Key))).ToArray();
     }
 
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await PersistSettingsAsync();
@@ -591,3 +614,8 @@ public sealed record ProfileOptionRow(string Id, string Operation, string Name, 
     public string OperationLabel => Operation switch { "Read" => LocExtension.Get("Tab.Read"), "Write" => LocExtension.Get("Tab.Write"), "Convert" => LocExtension.Get("Tab.Convert"), _ => Operation };
 }
 public sealed record TagPresetOption(string Label, string Pattern);
+public sealed record TagVariableOption(string Token, string Description);
+public sealed record RecentTagPatternOption(int Number, string? Pattern)
+{
+    public string Display => string.IsNullOrWhiteSpace(Pattern) ? "—" : Pattern;
+}

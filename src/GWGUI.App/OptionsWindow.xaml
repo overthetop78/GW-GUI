@@ -16,30 +16,33 @@
             <TabItem Header="{l:Loc Options.General}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="18">
-                        <Border Style="{StaticResource Card}">
-                            <Grid>
-                                <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-                                <TextBlock Text="{l:Loc Options.ImagesFolder}" />
-                                <TextBox Grid.Row="1" x:Name="ImagesFolderText" Width="720" Margin="0,6,8,0" LostKeyboardFocus="AutoSaveText_LostKeyboardFocus" AutomationProperties.Name="{l:Loc Options.ImagesFolder}" />
-                                <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Content="{l:Loc Common.Browse}" Click="BrowseImagesFolder_Click" />
-                            </Grid>
-                        </Border>
-
-                        <Border Style="{StaticResource Card}">
-                            <WrapPanel>
-                                <StackPanel Margin="0,0,28,0">
-                                    <TextBlock Text="{l:Loc Options.Language}" />
-                                    <ComboBox x:Name="LanguageCombo" Width="190" Margin="0,6,0,0" DisplayMemberPath="NativeName" SelectionChanged="Language_SelectionChanged" AutomationProperties.Name="{l:Loc Options.Language}" />
-                                </StackPanel>
-                                <StackPanel>
-                                    <TextBlock Text="{l:Loc Options.Theme}" />
-                                    <ComboBox x:Name="ThemeCombo" Width="150" Margin="0,6,0,0" SelectionChanged="Theme_SelectionChanged" AutomationProperties.Name="{l:Loc Options.Theme}">
-                                        <ComboBoxItem Content="{l:Loc Theme.System}" /><ComboBoxItem Content="{l:Loc Theme.Light}" /><ComboBoxItem Content="{l:Loc Theme.Dark}" />
-                                    </ComboBox>
-                                </StackPanel>
-                            </WrapPanel>
-                        </Border>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition Width="390" /></Grid.ColumnDefinitions>
+                            <Border Style="{StaticResource Card}" Margin="0,0,6,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                                    <TextBlock Text="{l:Loc Options.ImagesFolder}" />
+                                    <TextBox Grid.Row="1" x:Name="ImagesFolderText" Margin="0,6,8,0" VerticalContentAlignment="Center" LostKeyboardFocus="AutoSaveText_LostKeyboardFocus" AutomationProperties.Name="{l:Loc Options.ImagesFolder}" />
+                                    <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Content="{l:Loc Common.Browse}" Click="BrowseImagesFolder_Click" />
+                                </Grid>
+                            </Border>
+                            <Border Grid.Column="1" Style="{StaticResource Card}" Margin="6,0,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition /></Grid.ColumnDefinitions>
+                                    <StackPanel Margin="0,0,10,0">
+                                        <TextBlock Text="{l:Loc Options.Language}" />
+                                        <ComboBox x:Name="LanguageCombo" Margin="0,6,0,0" DisplayMemberPath="NativeName" VerticalContentAlignment="Center" SelectionChanged="Language_SelectionChanged" AutomationProperties.Name="{l:Loc Options.Language}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                        <TextBlock Text="{l:Loc Options.Theme}" />
+                                        <ComboBox x:Name="ThemeCombo" Margin="0,6,0,0" VerticalContentAlignment="Center" SelectionChanged="Theme_SelectionChanged" AutomationProperties.Name="{l:Loc Options.Theme}">
+                                            <ComboBoxItem Content="{l:Loc Theme.System}" /><ComboBoxItem Content="{l:Loc Theme.Light}" /><ComboBoxItem Content="{l:Loc Theme.Dark}" />
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
 
                         <Border Style="{StaticResource Card}">
                             <Grid>
@@ -52,12 +55,28 @@
                                     <TextBlock Text="{l:Loc Options.TagPattern}" Margin="0,12,0,0" />
                                     <TextBox x:Name="TagPatternText" Width="400" HorizontalAlignment="Left" Margin="0,5,0,0" TextChanged="TagPattern_Changed" LostKeyboardFocus="TagPattern_LostKeyboardFocus" AutomationProperties.Name="{l:Loc Options.TagPattern}" />
                                     <TextBlock Text="{l:Loc Options.RecentTagPatterns}" Margin="0,12,0,0" />
-                                    <ListBox x:Name="RecentTagPatterns" Width="400" MaxHeight="78" HorizontalAlignment="Left" Margin="0,5,0,0" MouseDoubleClick="RecentTagPattern_DoubleClick" AutomationProperties.Name="{l:Loc Options.RecentTagPatterns}" />
+                                    <ListBox x:Name="RecentTagPatterns" Width="400" Height="145" HorizontalAlignment="Left" Margin="0,5,0,0" MouseDoubleClick="RecentTagPattern_DoubleClick" AutomationProperties.Name="{l:Loc Options.RecentTagPatterns}" BorderThickness="0" Background="Transparent">
+                                        <ListBox.ItemTemplate><DataTemplate>
+                                            <Grid Margin="0,1">
+                                                <Grid.ColumnDefinitions><ColumnDefinition Width="30" /><ColumnDefinition /></Grid.ColumnDefinitions>
+                                                <Border Background="{DynamicResource AccentBrush}" CornerRadius="4" Margin="0,0,6,0"><TextBlock Text="{Binding Number}" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                                                <Border Grid.Column="1" Background="{DynamicResource ControlBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="8,4"><TextBlock Text="{Binding Display}" VerticalAlignment="Center" /></Border>
+                                            </Grid>
+                                        </DataTemplate></ListBox.ItemTemplate>
+                                    </ListBox>
                                 </StackPanel>
-                                <Border Grid.Row="0" Grid.Column="2" Background="{DynamicResource WindowBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="6" Padding="14">
+                                <Border Grid.Row="0" Grid.Column="2" Background="{DynamicResource WindowBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="8" Padding="14">
                                     <StackPanel>
                                         <TextBlock Text="{l:Loc Options.TagVariablesTitle}" FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <TextBlock Text="{l:Loc Options.TagPatternHelp}" TextWrapping="Wrap" LineHeight="21" />
+                                        <ItemsControl x:Name="TagVariablesList">
+                                            <ItemsControl.ItemTemplate><DataTemplate>
+                                                <Grid Margin="0,2">
+                                                    <Grid.ColumnDefinitions><ColumnDefinition Width="170" /><ColumnDefinition /></Grid.ColumnDefinitions>
+                                                    <Border Background="#17202A" CornerRadius="4" Padding="6,3" Margin="0,0,8,0"><TextBlock Text="{Binding Token}" Foreground="#65E572" FontFamily="Cascadia Mono,Consolas" /></Border>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                                </Grid>
+                                            </DataTemplate></ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </StackPanel>
                                 </Border>
                                 <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="0,12,0,0">
