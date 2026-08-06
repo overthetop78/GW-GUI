@@ -54,6 +54,12 @@ public partial class App : Application
         base.OnExit(e);
     }
 
+    protected override void OnActivated(EventArgs e)
+    {
+        base.OnActivated(e);
+        foreach (Window window in Windows) ThemeManager.ApplyWindowTheme(window);
+    }
+
     private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
         var path = ErrorLog.Write(e.Exception, "WPF dispatcher");
@@ -74,6 +80,13 @@ public partial class App : Application
     }
 
     public void SetTheme(AppTheme theme) { _theme = theme; ThemeManager.Apply(theme); }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Window window) return;
+        ThemeManager.ApplyWindowTheme(window);
+        window.Dispatcher.BeginInvoke(() => ThemeManager.ApplyWindowTheme(window), DispatcherPriority.ApplicationIdle);
+    }
 
     public void SetLanguage(string language)
     {

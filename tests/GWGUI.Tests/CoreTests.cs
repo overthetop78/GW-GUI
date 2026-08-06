@@ -319,8 +319,14 @@ public sealed class CoreTests
                 Assert.NotNull(new TabControlAutomationPeer(optionsNavigation).GetPattern(PatternInterface.Selection));
                 Assert.NotNull(new TextBoxAutomationPeer(imagesFolder).GetPattern(PatternInterface.Value));
                 Assert.NotNull(new ComboBoxAutomationPeer(language).GetPattern(PatternInterface.Selection));
+                ThemeManager.Apply(AppTheme.Dark);
                 optionsWindow.Show();
                 optionsWindow.UpdateLayout();
+                var expectedDarkText = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["TextBrush"]).Color;
+                var expectedDarkControl = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["ControlBrush"]).Color;
+                Assert.Equal(expectedDarkText, Assert.IsType<System.Windows.Media.SolidColorBrush>(Assert.IsType<System.Windows.Controls.CheckBox>(optionsWindow.FindName("UseTagsCheck")).Foreground).Color);
+                Assert.Equal(expectedDarkControl, Assert.IsType<System.Windows.Media.SolidColorBrush>(theme.Background).Color);
+                Assert.Equal(expectedDarkText, Assert.IsType<System.Windows.Media.SolidColorBrush>(Assert.IsType<System.Windows.Controls.TabItem>(optionsNavigation.Items[0]).Foreground).Color);
                 var generalScroller = Assert.IsType<System.Windows.Controls.ScrollViewer>(optionsWindow.FindName("GeneralScrollViewer"));
                 var recentTags = Assert.IsType<System.Windows.Controls.ListBox>(optionsWindow.FindName("RecentTagPatterns"));
                 Assert.True(generalScroller.ScrollableHeight <= 0, $"General page requires {generalScroller.ScrollableHeight} DIPs of scrolling at the normal window size.");
@@ -333,6 +339,7 @@ public sealed class CoreTests
                     Thread.Sleep(10);
                 }
                 Assert.False(optionsWindow.IsVisible, "Options did not close after its asynchronous save.");
+                ThemeManager.Apply(AppTheme.System);
 
                 for (var cycle = 0; cycle < 4; cycle++)
                 {
