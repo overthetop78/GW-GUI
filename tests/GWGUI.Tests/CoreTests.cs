@@ -304,7 +304,11 @@ public sealed class CoreTests
                 Assert.Equal(UserDialogIcon.Warning, saveFailure.Icon);
                 Assert.Contains("test save failure", saveFailure.Message);
 
-                var optionsWindow = new OptionsWindow(new AppSettings(), settingsStore: new DelayedSettingsStore());
+                var optionsSettings = new AppSettings
+                {
+                    Controllers = [new ControllerSettings { UsbId = "GW-UI-TEST", LastPort = "COM3", Model = "Greaseweazle", IsAvailable = true }]
+                };
+                var optionsWindow = new OptionsWindow(optionsSettings, settingsStore: new DelayedSettingsStore());
                 var optionsNavigation = Assert.IsType<System.Windows.Controls.TabControl>(optionsWindow.FindName("Navigation"));
                 var imagesFolder = Assert.IsType<System.Windows.Controls.TextBox>(optionsWindow.FindName("ImagesFolderText"));
                 var language = Assert.IsType<System.Windows.Controls.ComboBox>(optionsWindow.FindName("LanguageCombo"));
@@ -322,6 +326,8 @@ public sealed class CoreTests
                 ThemeManager.Apply(AppTheme.Dark);
                 optionsWindow.Show();
                 optionsWindow.UpdateLayout();
+                Assert.Single(drives.Items);
+                Assert.True(Assert.IsType<HardwareRow>(drives.Items[0]).Available);
                 var expectedDarkText = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["TextBrush"]).Color;
                 var expectedDarkControl = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["ControlBrush"]).Color;
                 Assert.Equal(expectedDarkText, Assert.IsType<System.Windows.Media.SolidColorBrush>(Assert.IsType<System.Windows.Controls.CheckBox>(optionsWindow.FindName("UseTagsCheck")).Foreground).Color);

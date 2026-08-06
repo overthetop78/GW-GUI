@@ -114,7 +114,7 @@
                             <DataGridComboBoxColumn Header="{l:Loc Hardware.DensityDescription}" SelectedValueBinding="{Binding Density}" ItemsSource="{x:Static local:HardwareChoices.Densities}" Width="135" />
                             <DataGridComboBoxColumn Header="{l:Loc Hardware.SpeedDescription}" SelectedValueBinding="{Binding Rpm}" ItemsSource="{x:Static local:HardwareChoices.Speeds}" Width="135" />
                             <DataGridTextColumn Header="{l:Loc Hardware.ConfigurationState}" Binding="{Binding ConfigurationState}" Width="*" IsReadOnly="True" />
-                            <DataGridCheckBoxColumn Header="{l:Loc Hardware.Available}" Binding="{Binding Available}" IsReadOnly="True" Width="85" />
+                            <DataGridCheckBoxColumn Header="{l:Loc Hardware.Available}" Binding="{Binding Available, Mode=OneWay}" IsReadOnly="True" Width="85" />
                             <DataGridTemplateColumn Width="95">
                                 <DataGridTemplateColumn.CellTemplate><DataTemplate><StackPanel Orientation="Horizontal">
                                     <Button Content="{l:Loc Common.SaveIcon}" ToolTip="{l:Loc Common.Save}" AutomationProperties.Name="{l:Loc Common.Save}" Click="SaveHardwareRow_Click" Padding="7,3" />
