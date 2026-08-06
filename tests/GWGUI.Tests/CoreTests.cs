@@ -933,6 +933,25 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task CancelledReadOutputCleanerDeletesOnlyTheRequestedFile()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-cancelled-read-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        var incomplete = Path.Combine(directory, "incomplete.scp");
+        var other = Path.Combine(directory, "keep.scp");
+        try
+        {
+            await File.WriteAllTextAsync(incomplete, "partial");
+            await File.WriteAllTextAsync(other, "keep");
+
+            Assert.Null(CancelledOutputCleaner.TryDelete(incomplete));
+            Assert.False(File.Exists(incomplete));
+            Assert.True(File.Exists(other));
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    }
+
+    [Fact]
     public void GwHelpCapabilitiesAreParsedBySection()
     {
         const string help = """

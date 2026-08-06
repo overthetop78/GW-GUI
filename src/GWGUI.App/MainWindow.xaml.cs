@@ -1043,6 +1043,16 @@ public partial class MainWindow : Window
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
         if (outcome.Result is { } result)
         {
+            if (result.WasCancelled)
+            {
+                var deletionError = CancelledOutputCleaner.TryDelete(target);
+                if (deletionError is null) AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleted", target) + Environment.NewLine);
+                else
+                {
+                    AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleteFailed", target, deletionError.Message) + Environment.NewLine);
+                    _dialogs.Show(LocExtension.Get("Read.CancelledFileDeleteFailed", target, deletionError.Message), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                }
+            }
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
             {
                 _lastScpPath = target;
