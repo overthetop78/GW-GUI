@@ -4,13 +4,15 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$solution = Join-Path $repository 'GWGUI.sln'
+$project = Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj'
+$output = Join-Path $repository 'artifacts\build\GW GUI'
 
-dotnet build $solution -c $Configuration
+if (Test-Path -LiteralPath $output) { Remove-Item -LiteralPath $output -Recurse -Force }
+New-Item -ItemType Directory -Path $output -Force | Out-Null
+
+dotnet build $project -c $Configuration -o $output
 if ($LASTEXITCODE -ne 0) { throw 'dotnet build failed.' }
 
-$outputRoot = Join-Path $repository "src\GWGUI.App\bin\$Configuration"
-$executable = Get-ChildItem -LiteralPath $outputRoot -Recurse -File -Filter 'GW GUI.exe' |
-    Sort-Object LastWriteTimeUtc -Descending |
-    Select-Object -First 1
-if ($executable) { Write-Output "Build ready: $($executable.FullName)" }
+$executable = Join-Path $output 'GW GUI.exe'
+if (-not (Test-Path -LiteralPath $executable)) { throw 'The application executable was not produced.' }
+Write-Output "Build ready: $executable"
