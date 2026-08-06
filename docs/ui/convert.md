@@ -37,9 +37,9 @@
 - Le nom de sortie reprend automatiquement le nom de la source sans extension à chaque nouveau chargement.
 - Le nom reste modifiable.
 - Les fichiers produits utilisent le dossier courant partagé avec Lecture. Ce dossier revient à la valeur générale des Options au prochain démarrage.
-- Une option mémorisée permet d’ajouter des tags précis comme `[ST-720]`, `[PC-1440]` ou `[AMIGA-DD]`.
+- Une option mémorisée permet de placer avant le nom des tags précis comme `[ST-720] Disquette.st`, `[PC-1440] Disquette.ima` ou `[AMIGA-DD] Disquette.adf`.
 - Les Options définissent l’état initial des tags; le changement dans Conversion reste valable pour la session.
-- Les Options proposent des modèles prédéfinis et un modèle personnalisé libre. Le modèle intégré par défaut est `[{FAMILY}-{FORMAT}]`; son résultat est par exemple `[PC-720]`.
+- Les Options proposent des modèles prédéfinis et un modèle personnalisé libre. Le modèle intégré par défaut est `[{FAMILY}-{FORMAT}] `; son résultat est par exemple `[PC-720] Disquette.ima`.
 - Les variables disponibles sont `{NAME}`, `{FAMILY}`, `{FORMAT}`, `{EXTENSION}`, trois écritures de `{DATE:...}` et trois écritures de `{TIME:...}`. L’aperçu peut parcourir plusieurs exemples sans modifier les réglages.
 - La case Tags dans Conversion reprend la valeur générale au lancement, puis peut être changée pour le reste de la session sans modifier les Options.
 - Si les tags sont activés sans modèle personnalisé, les tags intégrés sont utilisés.

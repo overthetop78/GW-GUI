@@ -22,7 +22,7 @@ public static class ConversionCommandBuilder
 
 public sealed class ConversionPlanner(IImageFormatCatalog catalog)
 {
-    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = " [{FAMILY}-{FORMAT}]")
+    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = "[{FAMILY}-{FORMAT}] ")
     {
         var sourceExtension = Path.GetExtension(sourcePath);
         var compatible = catalog.GetCompatibleOutputs(sourceExtension).ToDictionary(x => x.Id);
@@ -40,8 +40,10 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
                 var known = format.Extensions.FirstOrDefault(x => string.Equals(x.Extension, extension, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidOperationException($"Extension '{extension}' is not valid for '{format.DisplayName}'.");
                 var tag = addTags ? FormatTag(tagPattern, format, known.Extension, outputBaseName, DateTime.Now) : "";
-                var baseName = addTags && tagPattern.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? "" : outputBaseName;
-                var outputPath = Path.Combine(destinationFolder, baseName + tag + known.Extension);
+                var fileName = !addTags ? outputBaseName
+                    : tagPattern.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? tag
+                    : tag + outputBaseName;
+                var outputPath = Path.Combine(destinationFolder, fileName + known.Extension);
                 outputs.Add(new ConversionOutput(format.Id, known.Extension, outputPath, selection.ExplicitExtensions.Count == 0));
             }
         }

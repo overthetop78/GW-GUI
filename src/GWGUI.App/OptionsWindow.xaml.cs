@@ -35,16 +35,22 @@ public partial class OptionsWindow : Window
     private readonly ISettingsStore _settingsStore;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
     private int _tagExampleIndex;
+    private bool _closingAfterSave;
+    private bool _closeInProgress;
+    private bool _refreshingTagPresets;
     private ProfileOptionRow? _lastProfileClick;
     private DateTime _lastProfileClickAt;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> ReadProfiles { get; } = [];
     public ObservableCollection<ProfileOptionRow> WriteProfiles { get; } = [];
     public ObservableCollection<ProfileOptionRow> ConvertProfiles { get; } = [];
-    private static readonly string[] TagPresets =
+    private static readonly (string Key, string Pattern)[] TagPresetDefinitions =
     [
-        " [{FAMILY}]", " [{FORMAT}]", " [{FAMILY}-{FORMAT}]",
-        " [{FAMILY}-{EXTENSION}]", " [{FAMILY}-{FORMAT}-{EXTENSION}]"
+        ("Options.TagPresetFamily", "[{FAMILY}] "),
+        ("Options.TagPresetFormat", "[{FORMAT}] "),
+        ("Options.TagPresetFamilyFormat", "[{FAMILY}-{FORMAT}] "),
+        ("Options.TagPresetFamilyExtension", "[{FAMILY}-{EXTENSION}] "),
+        ("Options.TagPresetDetailed", "[{FAMILY}-{FORMAT}-{EXTENSION}] ")
     ];
 
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
@@ -79,9 +85,8 @@ public partial class OptionsWindow : Window
             ?? UiLanguageCatalog.Available.First(language => language.Code == "en");
         ThemeCombo.SelectedIndex = (int)settings.Theme;
         UseTagsCheck.IsChecked = settings.Conversion.AddTags;
-        TagPresetCombo.ItemsSource = TagPresets;
         TagPatternText.Text = settings.Conversion.TagPattern;
-        TagPresetCombo.SelectedItem = TagPresets.FirstOrDefault(pattern => string.Equals(pattern, settings.Conversion.TagPattern, StringComparison.OrdinalIgnoreCase));
+        RefreshTagPresets();
         RecentTagPatterns.ItemsSource = settings.Conversion.RecentCustomTagPatterns;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
@@ -114,6 +119,7 @@ public partial class OptionsWindow : Window
             ? LocExtension.Get("HostTools.Detected", GwPathText.Text)
             : LocExtension.Get("HostTools.None");
         UpdateTagPreview();
+        RefreshTagPresets();
     }
 
     private async void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -209,21 +215,21 @@ public partial class OptionsWindow : Window
 
     private void TagPattern_Changed(object sender, TextChangedEventArgs e)
     {
-        if (!_initializing && TagPresetCombo is not null && !TagPresets.Contains(TagPatternText.Text, StringComparer.OrdinalIgnoreCase))
+        if (!_initializing && TagPresetCombo is not null && !TagPresetDefinitions.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase)))
             TagPresetCombo.SelectedItem = null;
         UpdateTagPreview();
     }
 
     private async void TagPreset_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (_initializing || TagPresetCombo.SelectedItem is not string pattern) return;
-        TagPatternText.Text = pattern;
+        if (_initializing || _refreshingTagPresets || TagPresetCombo.SelectedItem is not TagPresetOption preset) return;
+        TagPatternText.Text = preset.Pattern;
         await PersistSettingsAsync();
     }
 
     private async void TagPattern_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        if (!TagPresets.Contains(TagPatternText.Text, StringComparer.OrdinalIgnoreCase)) RememberCustomTagPattern(TagPatternText.Text);
+        if (!TagPresetDefinitions.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase))) RememberCustomTagPattern(TagPatternText.Text);
         await PersistSettingsAsync();
     }
 
@@ -247,8 +253,8 @@ public partial class OptionsWindow : Window
         var sample = samples[_tagExampleIndex % samples.Length];
         var now = new DateTime(2026, 8, 6, 14, 35, 42);
         var rendered = RenderTagPattern(TagPatternText.Text, sample.Item1, sample.Item2, sample.Item3, sample.Item4, now);
-        var baseName = TagPatternText.Text.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? "" : sample.Item1;
-        TagPatternPreview.Text = LocExtension.Get("Options.TagPatternPreview", baseName + rendered + "." + sample.Item4.ToLowerInvariant());
+        var fileName = TagPatternText.Text.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? rendered : rendered + sample.Item1;
+        TagPatternPreview.Text = LocExtension.Get("Options.TagPatternPreview", fileName + "." + sample.Item4.ToLowerInvariant());
     }
 
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) => pattern
@@ -273,6 +279,20 @@ public partial class OptionsWindow : Window
         if (_settings.Conversion.RecentCustomTagPatterns.Count > 5) _settings.Conversion.RecentCustomTagPatterns.RemoveRange(5, _settings.Conversion.RecentCustomTagPatterns.Count - 5);
         RecentTagPatterns.ItemsSource = null;
         RecentTagPatterns.ItemsSource = _settings.Conversion.RecentCustomTagPatterns;
+    }
+
+    private void RefreshTagPresets()
+    {
+        if (TagPresetCombo is null || TagPatternText is null) return;
+        var current = TagPatternText.Text;
+        var presets = TagPresetDefinitions.Select(item => new TagPresetOption(LocExtension.Get(item.Key), item.Pattern)).ToArray();
+        _refreshingTagPresets = true;
+        try
+        {
+            TagPresetCombo.ItemsSource = presets;
+            TagPresetCombo.SelectedItem = presets.FirstOrDefault(item => string.Equals(item.Pattern, current, StringComparison.OrdinalIgnoreCase));
+        }
+        finally { _refreshingTagPresets = false; }
     }
 
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await PersistSettingsAsync();
@@ -492,13 +512,20 @@ public partial class OptionsWindow : Window
 
     private void Close_Click(object sender, RoutedEventArgs e) => Close();
 
-    private void Window_Closing(object? sender, CancelEventArgs e)
+    private async void Window_Closing(object? sender, CancelEventArgs e)
     {
-        if (_initializing) return;
-        ApplyControlsToSettings();
-        _saveLock.Wait();
-        try { _settingsStore.SaveAsync(_settings).GetAwaiter().GetResult(); }
-        finally { _saveLock.Release(); }
+        if (_initializing || _closingAfterSave) return;
+        e.Cancel = true;
+        if (_closeInProgress) return;
+        _closeInProgress = true;
+        try { await PersistSettingsAsync(); }
+        catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("Options.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); }
+        finally
+        {
+            _closingAfterSave = true;
+            _closeInProgress = false;
+            Close();
+        }
     }
 }
 
@@ -527,3 +554,4 @@ public sealed record ProfileOptionRow(string Id, string Operation, string Name, 
 {
     public string OperationLabel => Operation switch { "Read" => LocExtension.Get("Tab.Read"), "Write" => LocExtension.Get("Tab.Write"), "Convert" => LocExtension.Get("Tab.Convert"), _ => Operation };
 }
+public sealed record TagPresetOption(string Label, string Pattern);

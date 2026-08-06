@@ -89,7 +89,7 @@ Ce journal conserve les questions posées, la réponse retenue et les précision
 | Extensions | Chaque format montre ses extensions compatibles. Aucune extension cochée = extension implicite par défaut. |
 | Extension explicite | Une extension cochée remplace le défaut; plusieurs cochées produisent plusieurs fichiers. Le défaut est indiqué en infobulle uniquement. |
 | Nom | Reprend le nom de la source sans extension à chaque chargement; reste modifiable. |
-| Tags | Option générale mémorisée et case dans Conversion. Les Options proposent des modèles tels que `[{FAMILY}]`, `[{FORMAT}]` et `[{FAMILY}-{FORMAT}]`, un champ libre utilisant les variables documentées, un aperçu immédiat parcourant plusieurs exemples et les cinq derniers modèles personnalisés en ordre MRU. Un modèle choisi remplace entièrement le champ; toute modification est sauvegardée automatiquement. Aucun tag n’est ajouté à Lecture pour le moment. |
+| Tags | Option générale mémorisée et case dans Conversion. Le tag précède toujours le nom (`[PC-720] Disquette.ima`). Les Options proposent des modèles tels que `[{FAMILY}] `, `[{FORMAT}] ` et `[{FAMILY}-{FORMAT}] `, un champ libre utilisant les variables expliquées dans une légende à droite, un aperçu immédiat noir/vert parcourant plusieurs exemples et les cinq derniers modèles personnalisés en ordre MRU. Un modèle choisi remplace entièrement le champ; toute modification est sauvegardée automatiquement. Aucun tag n’est ajouté à Lecture pour le moment. |
 | Échec dans une série | Continuer les autres conversions puis afficher un bilan. |
 | Fichiers existants | Résumé avant lancement avec Écraser, Ignorer ou Numéroter, individuellement ou pour tous. |
 

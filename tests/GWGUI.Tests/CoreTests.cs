@@ -1409,7 +1409,7 @@ public sealed class CoreTests
     {
         var catalog = new BuiltInImageFormatCatalog(key => "translated:" + key);
         var output = Assert.Single(new ConversionPlanner(catalog).Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true));
-        Assert.Equal(Path.Combine("out", "disk [PC-720].ima"), output.OutputPath);
+        Assert.Equal(Path.Combine("out", "[PC-720] disk.ima"), output.OutputPath);
     }
 
     [Fact]
@@ -2529,8 +2529,8 @@ public sealed class CoreTests
     public void ConversionTagPatternIsAppliedWithoutForcingBrackets()
     {
         var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
-        var output = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_{tag}"));
-        Assert.Equal("disk_PC-720.ima", Path.GetFileName(output.OutputPath));
+        var output = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "TAG-{tag} "));
+        Assert.Equal("TAG-PC-720 disk.ima", Path.GetFileName(output.OutputPath));
         Assert.Throws<ArgumentException>(() => planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "_format"));
     }
 
@@ -2538,8 +2538,8 @@ public sealed class CoreTests
     public void ConversionTagVariablesProduceDeterministicFilenameSafeNames()
     {
         var planner = new ConversionPlanner(new BuiltInImageFormatCatalog());
-        var familyFormat = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, " [{FAMILY}-{FORMAT}-{EXTENSION}]"));
-        Assert.Equal("disk [PC-720-IMA].ima", Path.GetFileName(familyFormat.OutputPath));
+        var familyFormat = Assert.Single(planner.Plan("disk.scp", "out", "disk", [new ConversionSelection("ibm.720", new HashSet<string>())], true, "[{FAMILY}-{FORMAT}-{EXTENSION}] "));
+        Assert.Equal("[PC-720-IMA] disk.ima", Path.GetFileName(familyFormat.OutputPath));
 
         var format = new DiskFormat("ibm.720", "IBM PC", "IBM PC 720", [new ImageExtension(".ima", "IMA", true)], Tag: "PC-720");
         var rendered = ConversionPlanner.FormatTag("{NAME}_{DATE:YYYY-MM-DD}_{TIME:HH-MM-SS}_{TAG}", format, ".ima", "disk", new DateTime(2026, 8, 6, 14, 35, 42));

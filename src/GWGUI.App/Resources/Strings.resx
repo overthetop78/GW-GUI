@@ -92,8 +92,14 @@
   <data name="Visual.AnalysedRevolution"><value>Analysis based on revolution {0}.</value></data>
   <data name="Options.UseConversionTags"><value>Use tags in conversion filenames</value></data>
   <data name="Options.TagPreset"><value>Preset</value></data>
+  <data name="Options.TagPresetFamily"><value>Family only</value></data>
+  <data name="Options.TagPresetFormat"><value>Format only</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Family and format</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Family and extension</value></data>
+  <data name="Options.TagPresetDetailed"><value>Family, format and extension</value></data>
   <data name="Options.TagPattern"><value>Conversion tag pattern</value></data>
-  <data name="Options.TagPatternHelp"><value>Variables: {NAME}, {FAMILY}, {FORMAT}, {EXTENSION}, {DATE:YYYY-MM-DD}, {DATE:YYYYMMDD}, {DATE:DD-MM-YYYY}, {TIME:HH-MM-SS}, {TIME:HHMMSS}, {TIME:HH-MM}.</value></data>
+  <data name="Options.TagVariablesTitle"><value>Available variables</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — source filename&#10;{FAMILY} — machine family (PC, ST, AMIGA…)&#10;{FORMAT} — format or geometry (720, 1440, DD…)&#10;{EXTENSION} — output extension (IMA, ST, ADF…)&#10;{DATE:YYYY-MM-DD} — date 2026-08-06&#10;{DATE:YYYYMMDD} — date 20260806&#10;{DATE:DD-MM-YYYY} — date 06-08-2026&#10;{TIME:HH-MM-SS} — time 14-35-42&#10;{TIME:HHMMSS} — time 143542&#10;{TIME:HH-MM} — time 14-35</value></data>
   <data name="Options.RecentTagPatterns"><value>Recent custom patterns</value></data>
   <data name="Options.NextTagExample"><value>Next example</value></data>
   <data name="Options.NextTagExampleIcon"><value>↻</value></data>

@@ -99,8 +99,10 @@ public static class SettingsMigrator
         settings.Conversion.RecentCustomTagPatterns = settings.Conversion.RecentCustomTagPatterns
             .Where(pattern => !string.IsNullOrWhiteSpace(pattern)).Distinct(StringComparer.OrdinalIgnoreCase).Take(5).ToList();
         settings.Conversion.TagPattern = string.IsNullOrWhiteSpace(settings.Conversion.TagPattern)
-            ? " [{FAMILY}-{FORMAT}]"
+            ? "[{FAMILY}-{FORMAT}] "
             : settings.Conversion.TagPattern.Replace("{tag}", "{FAMILY}-{FORMAT}", StringComparison.OrdinalIgnoreCase);
+        if (string.Equals(settings.Conversion.TagPattern, " [{FAMILY}-{FORMAT}]", StringComparison.OrdinalIgnoreCase))
+            settings.Conversion.TagPattern = "[{FAMILY}-{FORMAT}] ";
         foreach (var profile in settings.Profiles) { profile.Values ??= []; profile.EnabledOptions ??= []; }
     }
 

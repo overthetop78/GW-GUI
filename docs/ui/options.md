@@ -9,7 +9,8 @@
 - La langue et le thème utilisent des listes déroulantes compactes côte à côte et s’appliquent immédiatement sans fermer ni recréer de fenêtre.
 - Configuration des tags de conversion : activation générale, modèles prédéfinis, champ modifiable, légende des variables, aperçu et cinq modèles personnalisés récents.
 - Gestion des profils utilisateur par onglet : renommer et supprimer.
-- La valeur initiale du modèle est ` [{FAMILY}-{FORMAT}]`. Les variables disponibles couvrent nom, famille, format, extension, date et heure dans plusieurs écritures compatibles avec les noms de fichiers Windows.
+- La valeur initiale du modèle est `[{FAMILY}-{FORMAT}] ` et le texte produit est placé avant le nom. Les variables disponibles couvrent nom, famille, format, extension, date et heure dans plusieurs écritures compatibles avec les noms de fichiers Windows; chacune est expliquée dans la légende à droite.
+- L’aperçu est présenté dans un cadre sombre à texte vert; le bouton immédiatement voisin parcourt les exemples dans un ordre déterministe.
 - Les cinq derniers modèles personnalisés sont conservés en ordre MRU : un doublon remonte en tête et le sixième chasse le plus ancien. Les modèles prédéfinis ne modifient pas cet historique.
 - Un changement temporaire dans Conversion n’écrase pas ce réglage général.
 
