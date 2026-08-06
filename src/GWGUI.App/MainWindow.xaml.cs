@@ -65,6 +65,7 @@ public partial class MainWindow : Window
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
+    private CancellationTokenSource? _scpCancellation;
 
     public MainWindow() : this(null, null, null, null, null, null, null, null, null) { }
 
@@ -107,10 +108,12 @@ public partial class MainWindow : Window
 
     private async Task LoadScpAsync(string path)
     {
+        var cancellation = ReplaceScpCancellation();
         try
         {
+            ShowScpProgress(LocExtension.Get("Visual.Loading"), 0, true);
             ScpSummary.Text = LocExtension.Get("Visual.Loading");
-            var document = await _scpLoader.LoadAsync(path); _scpImage = document.Image;
+            var document = await _scpLoader.LoadAsync(path, cancellation.Token); _scpImage = document.Image;
             ScpFileName.Text = document.FileName;
             var heads = document.Heads;
             ScpSummary.Text = document.Summary;
@@ -120,8 +123,11 @@ public partial class MainWindow : Window
             Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Count == 1 && heads.Contains(0) ? 2 : 1);
             Grid.SetColumn(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 2 : 1);
             ScpTrackInfo.Text = LocExtension.Get("Visual.SelectTrack");
+            await PrepareScpViewsAsync(cancellation.Token);
         }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); _dialogs.Show(exception.Message, LocExtension.Get("Visual.Title"), icon: UserDialogIcon.Error); }
+        finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
     }
 
     private void ScpTrack_Selected(object? sender, ScpTrack? track)
@@ -130,11 +136,59 @@ public partial class MainWindow : Window
         UpdateScpInspector();
     }
 
-    private void ScpDecoder_Changed(object sender, SelectionChangedEventArgs e)
+    private async void ScpDecoder_Changed(object sender, SelectionChangedEventArgs e)
     {
         var decoderId = (ScpDecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
         ScpSide0?.SetDecoder(decoderId); ScpSide1?.SetDecoder(decoderId);
-        UpdateScpInspector();
+        if (_scpImage is null) { UpdateScpInspector(); return; }
+        var cancellation = ReplaceScpCancellation();
+        try { await PrepareScpViewsAsync(cancellation.Token); UpdateScpInspector(); }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
+        finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
+    }
+
+    private CancellationTokenSource ReplaceScpCancellation()
+    {
+        _scpCancellation?.Cancel();
+        _scpCancellation?.Dispose();
+        return _scpCancellation = new CancellationTokenSource();
+    }
+
+    private async Task PrepareScpViewsAsync(CancellationToken cancellationToken)
+    {
+        if (_scpImage is null) return;
+        var heads = _scpImage.Tracks.Select(track => track.Head).Distinct().Order().ToArray();
+        var total = Math.Max(1, _scpImage.Tracks.Count);
+        var completed = 0;
+        ShowScpProgress(LocExtension.Get("Visual.AnalysingTrack", 0, total), 0, false);
+        foreach (var head in heads)
+        {
+            var initial = completed;
+            var count = _scpImage.Tracks.Count(track => track.Head == head);
+            var progress = new Progress<int>(value =>
+            {
+                if (cancellationToken.IsCancellationRequested) return;
+                var current = Math.Min(total, initial + value);
+                ShowScpProgress(LocExtension.Get("Visual.AnalysingTrack", current, total), current * 100d / total, false);
+            });
+            await (head == 0 ? ScpSide0 : ScpSide1).PrepareAsync(progress, cancellationToken);
+            completed += count;
+        }
+    }
+
+    private void ShowScpProgress(string text, double value, bool indeterminate)
+    {
+        _viewModel.ProgressText = text;
+        _viewModel.ProgressValue = value;
+        _viewModel.ProgressIndeterminate = indeterminate;
+        _viewModel.ProgressVisibility = Visibility.Visible;
+    }
+
+    private void HideScpProgress()
+    {
+        if (_operation.IsRunning) return;
+        _viewModel.ProgressVisibility = Visibility.Collapsed;
+        _viewModel.ProgressIndeterminate = false;
     }
 
     private void UpdateScpInspector()
@@ -507,6 +561,7 @@ public partial class MainWindow : Window
 
     private void Window_Closing(object? sender, CancelEventArgs e)
     {
+        _scpCancellation?.Cancel();
         if (_closeAfterSettingsSave) return;
         e.Cancel = true;
         if (_settingsSaveInProgress) return;

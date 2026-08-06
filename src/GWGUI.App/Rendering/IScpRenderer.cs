@@ -18,5 +18,6 @@ public interface IScpRenderer
 {
     string? DecoderId { get; set; }
     void ClearCache();
+    Task PrepareAsync(ScpImage image, int head, IProgress<int>? progress = null, CancellationToken cancellationToken = default);
     void Render(SKCanvas canvas, ScpRenderRequest request);
 }

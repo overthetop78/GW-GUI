@@ -26,6 +26,12 @@ public partial class ScpDiskView : UserControl
     public ScpDiskView() : this(new SkiaScpRenderer()) { }
     internal ScpDiskView(IScpRenderer renderer) { _renderer = renderer; InitializeComponent(); }
     public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; _renderer.ClearCache(); ResetView(); }
+    public async Task PrepareAsync(IProgress<int>? progress = null, CancellationToken cancellationToken = default)
+    {
+        if (_image is null) return;
+        await _renderer.PrepareAsync(_image, _head, progress, cancellationToken);
+        if (!cancellationToken.IsCancellationRequested) Canvas.InvalidateVisual();
+    }
     public void SetDecoder(string? decoderId) { _renderer.DecoderId = decoderId; Canvas.InvalidateVisual(); }
     public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
     public void ResetView() { _zoom = 1; _panX = _panY = 0; Canvas.InvalidateVisual(); }

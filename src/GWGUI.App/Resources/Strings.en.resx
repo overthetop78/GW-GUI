@@ -180,4 +180,5 @@
   <data name="Hardware.SelectController"><value>Select a row belonging to the relevant Greaseweazle first.</value></data>
   <data name="Hardware.MaximumDrives"><value>At most two drives can be assigned automatically to this Greaseweazle (A and B).</value></data>
   <data name="Common.SaveIcon"><value>💾</value></data><data name="Common.TrashIcon"><value>🗑</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analysing track {0}/{1}…</value></data>
 </root>

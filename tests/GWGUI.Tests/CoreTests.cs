@@ -49,7 +49,7 @@ public sealed class CoreTests
     }
 
     [Fact]
-    public void ScpRendererDrawsAHeadWithoutDependingOnWpfControls()
+    public async Task ScpRendererDrawsAHeadWithoutDependingOnWpfControls()
     {
         var revolution = new ScpRevolution(8_000_000, 2_000, Enumerable.Repeat<uint>(80, 2_000).ToArray());
         var track = new ScpTrack(0, 0, 0, [revolution]);
@@ -58,6 +58,7 @@ public sealed class CoreTests
         using var bitmap = new SKBitmap(256, 256);
         using var canvas = new SKCanvas(bitmap);
 
+        await renderer.PrepareAsync(image, 0);
         renderer.Render(canvas, new ScpRenderRequest(image, 0, track, 256, 256, new SKPoint(128, 128), 1, "No data", "Side 0"));
 
         Assert.NotEqual(SKColors.Transparent, bitmap.GetPixel(128, 20));
@@ -2604,7 +2605,7 @@ public sealed class CoreTests
     [InlineData("victor9k.gcr", "5555555555551111", FluxStructureKind.FormatHeader)]
     [InlineData("tycom.fm", "55111444", FluxStructureKind.FormatData)]
     [InlineData("dec.rx02", "55111545", FluxStructureKind.FormatData)]
-    public void SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
+    public async Task SignatureMfmDecodersRecognizeTheirNativeMarks(string decoderId, string hexadecimal, FluxStructureKind expectedKind)
     {
         var mark = string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
         var calibration = decoderId is "emu.fm" or "tycom.fm" or "dec.rx02" or "arburg" or "victor9k.gcr" ? "" : string.Concat(Enumerable.Repeat("10", 50));
@@ -2622,6 +2623,7 @@ public sealed class CoreTests
         using var bitmap = new SKBitmap(320, 320);
         using var canvas = new SKCanvas(bitmap);
         IScpRenderer renderer = new SkiaScpRenderer { DecoderId = decoderId };
+        await renderer.PrepareAsync(image, 0);
         renderer.Render(canvas, new ScpRenderRequest(image, 0, track, 320, 320, new SKPoint(160, 160), 1, "No data", "Side 0"));
         var overlay = expectedKind == FluxStructureKind.FormatData ? new SKColor(67, 220, 255) : new SKColor(255, 205, 64);
         Assert.Contains(Enumerable.Range(0, bitmap.Height).SelectMany(y => Enumerable.Range(0, bitmap.Width).Select(x => bitmap.GetPixel(x, y))), color => color == overlay);

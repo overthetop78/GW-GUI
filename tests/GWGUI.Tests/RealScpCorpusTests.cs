@@ -59,6 +59,7 @@ public sealed class RealScpCorpusTests
                 var view = new ScpDiskView { Width = 640, Height = 640 };
                 view.SetDecoder("raw");
                 view.SetImage(sample, 0);
+                view.PrepareAsync().GetAwaiter().GetResult();
                 view.Measure(new Size(640, 640));
                 view.Arrange(new Rect(0, 0, 640, 640));
                 view.UpdateLayout();

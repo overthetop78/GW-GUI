@@ -180,4 +180,5 @@
   <data name="Hardware.SelectController"><value>Sélectionnez d’abord une ligne du Greaseweazle concerné.</value></data>
   <data name="Hardware.MaximumDrives"><value>Deux lecteurs au maximum peuvent être associés automatiquement à ce Greaseweazle (A et B).</value></data>
   <data name="Common.SaveIcon"><value>💾</value></data><data name="Common.TrashIcon"><value>🗑</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analyse de la piste {0}/{1}…</value></data>
 </root>
