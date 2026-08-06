@@ -113,71 +113,13 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                    <Expander Grid.Row="0" Header="{l:Loc Common.Advanced}">
-                        <Border Style="{StaticResource Card}" Margin="0,10,0,12">
-                            <StackPanel>
-                                <WrapPanel>
-                                    <CheckBox x:Name="WriteNoVerify" IsChecked="{Binding Write.NoVerify.Enabled, Mode=TwoWay}" Content="{l:Loc Write.NoVerify}" Foreground="#B3261E" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Write.NoVerifyTip}" />
-                                    <CheckBox x:Name="WriteEraseEmpty" IsChecked="{Binding Write.EraseEmpty.Enabled}" Content="{l:Loc Write.EraseEmpty}" Margin="16,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.EraseEmptyTip}" />
-                                    <CheckBox x:Name="WriteRetriesEnabled" IsChecked="{Binding Write.Retries.Enabled}" Content="{l:Loc Read.Retries}" Margin="16,8,8,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.RetriesTip}" />
-                                    <TextBox x:Name="WriteRetriesValue" Width="70" Text="{Binding Write.Retries.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="WriteInput_Changed" />
-                                </WrapPanel>
-                                <WrapPanel>
-                                    <CheckBox x:Name="WriteTracksEnabled" IsChecked="{Binding Write.Tracks.Enabled}" Content="{l:Loc Read.Tracks}" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.TracksTip}" />
-                                    <TextBox x:Name="WriteTracksValue" Width="190" Text="{Binding Write.Tracks.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Advanced.TrackSpecTip}" />
-                                    <CheckBox x:Name="WritePreErase" IsChecked="{Binding Write.PreErase.Enabled}" Content="{l:Loc Advanced.PreErase}" Margin="18,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.PreEraseTip}" />
-                                    <CheckBox x:Name="WriteReverse" IsChecked="{Binding Write.Reverse.Enabled}" Content="{l:Loc Advanced.Reverse}" Margin="8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.ReverseTip}" />
-                                </WrapPanel>
-                                <WrapPanel>
-                                    <CheckBox x:Name="WriteFakeIndexEnabled" IsChecked="{Binding Write.FakeIndex.Enabled}" Content="{l:Loc Advanced.FakeIndex}" Margin="8" Checked="WriteFakeIndex_Checked" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.FakeIndexTip}" />
-                                    <TextBox x:Name="WriteFakeIndexValue" Width="90" Text="{Binding Write.FakeIndex.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Advanced.SpeedTip}" />
-                                    <CheckBox x:Name="WriteHardSectors" IsChecked="{Binding Write.HardSectors.Enabled}" Content="{l:Loc Advanced.HardSectors}" Margin="18,8" Checked="WriteHardSectors_Checked" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.HardSectorsTip}" />
-                                    <CheckBox x:Name="WritePrecompEnabled" IsChecked="{Binding Write.Precomp.Enabled}" Content="{l:Loc Advanced.Precomp}" Margin="18,8,8,8" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.PrecompOptionTip}" />
-                                    <TextBox x:Name="WritePrecompValue" Width="170" Text="{Binding Write.Precomp.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Advanced.PrecompTip}" />
-                                </WrapPanel>
-                                <WrapPanel>
-                                    <CheckBox x:Name="WriteDenselEnabled" IsChecked="{Binding Write.Densel.Enabled}" Content="{l:Loc Advanced.DensityPin}" Margin="8" Checked="WriteDensel_Checked" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.DenselTip}" />
-                                    <ComboBox x:Name="WriteDenselValue" Width="70" SelectedValuePath="Content" SelectedValue="{Binding Write.Densel.Value}" SelectionChanged="WriteInput_Changed"><ComboBoxItem Content="H"/><ComboBoxItem Content="L"/></ComboBox>
-                                    <CheckBox x:Name="WriteTg43" IsChecked="{Binding Write.Tg43.Enabled}" Content="{l:Loc Advanced.Tg43}" Margin="18,8" Checked="WriteTg43_Checked" Unchecked="WriteInput_Changed" ToolTip="{l:Loc Advanced.Tg43Tip}" />
-                                </WrapPanel>
-                                <DockPanel Margin="8,4" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button DockPanel.Dock="Right" Content="{l:Loc Common.Browse}" Click="BrowseWriteDiskDefs_Click"/><CheckBox x:Name="WriteDiskDefsEnabled" IsChecked="{Binding Write.DiskDefs.Enabled}" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="WriteInput_Changed" Unchecked="WriteInput_Changed"/><TextBox x:Name="WriteDiskDefsValue" Margin="10,0" IsReadOnly="True" Text="{Binding Write.DiskDefs.Value, Mode=TwoWay}" TextChanged="WriteInput_Changed"/></DockPanel>
-                                <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,12,8,4" />
-                                <TextBox x:Name="WriteExpertArguments" Margin="8" Text="{Binding Write.ExpertArguments, UpdateSourceTrigger=PropertyChanged}" TextChanged="WriteInput_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}" />
-                            </StackPanel>
-                        </Border>
-                    </Expander>
+                    <controls:WriteAdvancedSection x:Name="WriteAdvancedBlock" Grid.Row="0"/>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="390"/></Grid.ColumnDefinitions>
-                                <Border Style="{StaticResource Card}" Margin="0,0,6,12">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{l:Loc Write.Source}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                                        <TextBox x:Name="WriteSourceText" Grid.Column="1" VerticalAlignment="Center" IsReadOnly="True" Text="{Binding Write.SourcePath, Mode=TwoWay}" AutomationProperties.Name="{l:Loc Write.Source}" />
-                                        <Button Grid.Column="2" VerticalAlignment="Center" Content="{l:Loc Common.Choose}" Click="BrowseWriteSource_Click" />
-                                    </Grid>
-                                </Border>
+                                <controls:PathSection x:Name="WriteSourceBlock" Label="{l:Loc Write.Source}" Text="{Binding Write.SourcePath, Mode=TwoWay}" Margin="0,0,6,12"/>
                                 <controls:ProfileSection x:Name="WriteProfileBlock" Grid.Column="1" Margin="6,0,0,12"/>
                             </Grid>
-                            <Border Grid.Row="2" Style="{StaticResource Card}" Margin="0,0,0,12">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <DockPanel>
-                                        <Button DockPanel.Dock="Right" Content="{l:Loc Common.Modify}" Click="ToggleWriteFormat_Click" />
-                                        <StackPanel>
-                                            <TextBlock Text="{l:Loc Write.Detected}" FontWeight="SemiBold" />
-                                            <TextBlock x:Name="WriteDetectionText" Text="{l:Loc Write.ChooseImage}" Margin="0,5,12,0" TextWrapping="Wrap" />
-                                        </StackPanel>
-                                    </DockPanel>
-                                    <ComboBox Grid.Row="1" x:Name="WriteFormatCombo" Margin="0,12,0,0" Visibility="Collapsed" DisplayMemberPath="DisplayName" SelectionChanged="WriteInput_Changed" AutomationProperties.Name="{l:Loc Write.Detected}" />
-                                </Grid>
-                            </Border>
+                            <controls:WriteFormatSection x:Name="WriteFormatBlock" Grid.Row="2" Margin="0,0,0,12"/>
                         </Grid>
                     </ScrollViewer>
                     <Button Grid.Row="1" x:Name="WriteExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" Click="ExecuteWrite_Click" />

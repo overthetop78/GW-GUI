@@ -39,6 +39,12 @@ public partial class MainWindow : Window
     private ComboBox ReadExtensionCombo => ReadImageBlock.ExtensionCombo;
     private ComboBox ReadProfileCombo => ReadProfileBlock.ProfileCombo;
     private ComboBox WriteProfileCombo => WriteProfileBlock.ProfileCombo;
+    private TextBox WriteSourceText => WriteSourceBlock.Input;
+    private TextBlock WriteDetectionText => WriteFormatBlock.DetectionText;
+    private ComboBox WriteFormatCombo => WriteFormatBlock.FormatCombo;
+    private CheckBox WriteNoVerify => WriteAdvancedBlock.NoVerifyCheckBox;
+    private CheckBox WriteDiskDefsEnabled => WriteAdvancedBlock.DiskDefinitionsEnabled;
+    private TextBox WriteDiskDefsValue => WriteAdvancedBlock.DiskDefinitionsValue;
     private TextBox ReadFolder => ReadFolderBlock.Input;
     private TextBox ReadFileName => ReadFileNameBlock.FileNameTextBox;
     private TextBox ReadExtensionText => ReadFileNameBlock.ExtensionTextBox;
@@ -165,7 +171,22 @@ public partial class MainWindow : Window
         WriteProfileCombo.SelectionChanged += WriteProfile_Changed;
         WriteProfileBlock.SaveButton.Click += SaveWriteProfile_Click;
         WriteProfileBlock.ResetButton.Click += ResetWriteProfile_Click;
+        WriteSourceBlock.BrowseButton.Click += BrowseWriteSource_Click;
+        WriteFormatBlock.ModifyButton.Click += ToggleWriteFormat_Click;
+        WriteFormatCombo.SelectionChanged += WriteInput_Changed;
+        WriteAdvancedBlock.InputChanged += WriteInput_Changed;
+        WriteAdvancedBlock.FakeIndexChecked += WriteFakeIndex_Checked;
+        WriteAdvancedBlock.HardSectorsChecked += WriteHardSectors_Checked;
+        WriteAdvancedBlock.DenselChecked += WriteDensel_Checked;
+        WriteAdvancedBlock.Tg43Checked += WriteTg43_Checked;
+        WriteAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseWriteDiskDefs_Click;
         RegisterName(nameof(WriteProfileCombo), WriteProfileCombo);
+        RegisterName(nameof(WriteSourceText), WriteSourceText);
+        RegisterName(nameof(WriteDetectionText), WriteDetectionText);
+        RegisterName(nameof(WriteFormatCombo), WriteFormatCombo);
+        RegisterName(nameof(WriteNoVerify), WriteNoVerify);
+        RegisterName(nameof(WriteDiskDefsEnabled), WriteDiskDefsEnabled);
+        RegisterName(nameof(WriteDiskDefsValue), WriteDiskDefsValue);
     }
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
