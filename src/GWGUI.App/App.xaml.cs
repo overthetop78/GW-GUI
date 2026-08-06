@@ -60,6 +60,15 @@ public partial class App : Application
     public void ReloadMainWindow(MainWindow current)
     {
         var replacement = new MainWindow();
+        var bounds = current.RestoreBounds;
+        replacement.WindowStartupLocation = WindowStartupLocation.Manual;
+        replacement.Left = bounds.Left;
+        replacement.Top = bounds.Top;
+        replacement.Width = bounds.Width;
+        replacement.Height = bounds.Height;
+        replacement.WindowState = current.WindowState == WindowState.Maximized
+            ? WindowState.Maximized
+            : WindowState.Normal;
         MainWindow = replacement;
         replacement.Show();
         current.CloseForLanguageReload();

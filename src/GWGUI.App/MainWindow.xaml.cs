@@ -518,13 +518,7 @@ public partial class MainWindow : Window
             _operation.RequestCancellation();
         }
 
-        _settings.Window.Width = RestoreBounds.Width;
-        _settings.Window.Height = RestoreBounds.Height;
-        _settings.Window.Left = RestoreBounds.Left;
-        _settings.Window.Top = RestoreBounds.Top;
-        _settings.Window.Maximized = WindowState == WindowState.Maximized;
-        _settings.ConsoleExpanded = ConsolePanel.Visibility == Visibility.Visible;
-        if (_settings.ConsoleExpanded) _settings.ConsoleHeight = ConsoleRow.ActualHeight;
+        CaptureWindowSettings();
         CaptureReadSettings();
         CaptureWriteSettings();
         CaptureProfiles();
@@ -953,6 +947,7 @@ public partial class MainWindow : Window
             CaptureReadSettings();
             CaptureWriteSettings();
             CaptureConversionSettings();
+            CaptureWindowSettings();
             LoadProfileStores();
             RefreshReadProfiles(); RefreshWriteProfiles(); RefreshConvertProfiles();
             _viewModel.Read.Folder = _settings.DefaultImagesFolder;
@@ -974,6 +969,17 @@ public partial class MainWindow : Window
     {
         _closeAfterSettingsSave = true;
         Close();
+    }
+
+    private void CaptureWindowSettings()
+    {
+        _settings.Window.Width = RestoreBounds.Width;
+        _settings.Window.Height = RestoreBounds.Height;
+        _settings.Window.Left = RestoreBounds.Left;
+        _settings.Window.Top = RestoreBounds.Top;
+        _settings.Window.Maximized = WindowState == WindowState.Maximized;
+        _settings.ConsoleExpanded = ConsolePanel.Visibility == Visibility.Visible;
+        if (_settings.ConsoleExpanded) _settings.ConsoleHeight = ConsoleRow.ActualHeight;
     }
 
     private void RestoreWindowPlacement()

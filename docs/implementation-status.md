@@ -96,7 +96,7 @@ La classification détaillée, les prérequis et les tâches nécessitant l’ai
 
 - La sélection initiale de langue est validée : choix manuel conservé; sinon langue Windows lorsqu’elle est prise en charge; sinon anglais. La langue de l’installateur ne pilote pas celle de l’application.
 - Le paquet portable Release a aussi été validé par lancement réel : première ouverture sans `Data` sous Windows français, création de `settings.json` avec `fr`, interface française visible, sélection d’English dans les véritables Préférences, fermeture puis redémarrage avec interface anglaise et réglage `en` conservé. Ce test a permis de détecter et corriger un interblocage de sauvegarde au tout premier démarrage.
-- Le changement de langue depuis les Options recrée désormais automatiquement la fenêtre principale dans la langue choisie après sauvegarde de son état; aucun redémarrage manuel de l’application n’est requis.
+- Le changement de langue depuis les Options recrée désormais automatiquement la fenêtre principale dans la langue choisie après sauvegarde de son état; aucun redémarrage manuel de l’application n’est requis. La fenêtre de remplacement reprend explicitement l’écran, les coordonnées, la taille et l’état maximisé courants au lieu de dépendre de l’écran qui possède le focus.
 - Dernière exécution complète après correction de la langue initiale : 251 tests réussis.
 - Dernière exécution complète après configuration en ligne et routage matériel minimal : 241 tests réussis. Le test matériel opt-in de découverte a également réussi séparément avec le contrôleur branché.
 - Dernière exécution complète après matrice de routage par contrôleur : 232 tests réussis. Le test WPF confirme également qu’un outil n’est pas ouvert pour un lecteur sélectionné indisponible.
