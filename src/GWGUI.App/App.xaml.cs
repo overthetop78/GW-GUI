@@ -55,11 +55,12 @@ public partial class App : Application
             settings.Language = language;
             Task.Run(() => settingsStore.SaveAsync(settings)).GetAwaiter().GetResult();
         }
-        var culture = CultureInfo.GetCultureInfo(language);
+        var culture = UiLanguageResolver.GetCulture(language);
+        var uiCulture = UiLanguageResolver.GetUiCulture(language);
         CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = uiCulture;
         CultureInfo.CurrentCulture = culture;
-        CultureInfo.CurrentUICulture = culture;
+        CultureInfo.CurrentUICulture = uiCulture;
         base.OnStartup(e);
         _theme = settings.Theme;
         ThemeManager.Apply(settings.Theme);
@@ -118,11 +119,12 @@ public partial class App : Application
 
     public void SetLanguage(string language)
     {
-        var culture = CultureInfo.GetCultureInfo(language);
+        var culture = UiLanguageResolver.GetCulture(language);
+        var uiCulture = UiLanguageResolver.GetUiCulture(language);
         CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = uiCulture;
         CultureInfo.CurrentCulture = culture;
-        CultureInfo.CurrentUICulture = culture;
+        CultureInfo.CurrentUICulture = uiCulture;
         LocalizationSource.Instance.Refresh();
         foreach (var window in Windows)
         {

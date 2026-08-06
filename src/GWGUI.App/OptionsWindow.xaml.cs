@@ -100,7 +100,7 @@ public partial class OptionsWindow : Window
         LanguageCombo.ItemsSource = UiLanguageCatalog.Available;
         LanguageCombo.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language =>
             string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
-            ?? UiLanguageCatalog.Available.First(language => language.Code == "en");
+            ?? UiLanguageCatalog.Fallback;
         ThemeCombo.SelectedIndex = (int)settings.Theme;
         RefreshLogOptions();
         LogOptionsList.ItemsSource = LogOptions;

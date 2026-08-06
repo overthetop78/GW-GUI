@@ -25,8 +25,8 @@ public sealed class LocalizationTests
     ];
 
     [Theory]
-    [InlineData("fr")]
-    [InlineData("en")]
+    [InlineData("fr-FR")]
+    [InlineData("en-US")]
     public void RequiredUserInterfaceStringsExist(string cultureName)
     {
         var previous = CultureInfo.CurrentUICulture;
@@ -40,15 +40,23 @@ public sealed class LocalizationTests
     }
 
     [Theory]
-    [InlineData("", "fr-FR", "fr")]
-    [InlineData("", "fr-CA", "fr")]
-    [InlineData("", "en-US", "en")]
-    [InlineData("", "ru-RU", "en")]
-    [InlineData("", "zh-CN", "en")]
-    [InlineData("", "de-DE", "en")]
-    [InlineData("", "it-IT", "en")]
-    [InlineData("fr", "en-US", "fr")]
-    [InlineData("en", "fr-FR", "en")]
+    [InlineData("", "fr-FR", "fr-FR")]
+    [InlineData("", "fr-CA", "fr-FR")]
+    [InlineData("", "en-US", "en-US")]
+    [InlineData("", "en-GB", "en-US")]
+    [InlineData("", "ru-RU", "ru-RU")]
+    [InlineData("", "de-AT", "de-DE")]
+    [InlineData("", "pt-PT", "pt-PT")]
+    [InlineData("", "pt-BR", "pt-BR")]
+    [InlineData("", "pt-AO", "pt-PT")]
+    [InlineData("", "zh-CN", "zh-Hans")]
+    [InlineData("", "zh-SG", "zh-Hans")]
+    [InlineData("", "zh-TW", "zh-Hant")]
+    [InlineData("", "zh-HK", "zh-Hant")]
+    [InlineData("fr", "en-US", "fr-FR")]
+    [InlineData("en", "fr-FR", "en-US")]
+    [InlineData("pt-BR", "fr-FR", "pt-BR")]
+    [InlineData("zh-Hant", "fr-FR", "zh-Hant")]
     public void InitialLanguageUsesSavedChoiceOrSupportedWindowsLanguage(
         string savedLanguage, string windowsCulture, string expected)
     {
@@ -58,16 +66,42 @@ public sealed class LocalizationTests
     [Fact]
     public void InitialLanguageFallsBackToEnglishWhenDetectionIsUnavailable()
     {
-        Assert.Equal("en", UiLanguageResolver.Resolve("", null));
-        Assert.Equal("en", UiLanguageResolver.Resolve("unsupported", CultureInfo.GetCultureInfo("fr-FR")));
+        Assert.Equal("en-US", UiLanguageResolver.Resolve("", null));
+        Assert.Equal("en-US", UiLanguageResolver.Resolve("unsupported", CultureInfo.GetCultureInfo("fr-FR")));
     }
 
     [Fact]
     public void AvailableLanguagesUseStableNativeNames()
     {
-        Assert.Collection(UiLanguageCatalog.Available,
-            french => { Assert.Equal("fr", french.Code); Assert.Equal("Français", french.NativeName); },
-            english => { Assert.Equal("en", english.Code); Assert.Equal("English", english.NativeName); });
+        Assert.Equal(29, UiLanguageCatalog.Available.Count);
+        Assert.Equal(new UiLanguage("fr-FR", "fr-FR", "Français"), UiLanguageCatalog.Available[0]);
+        Assert.Equal(new UiLanguage("en-US", "en-US", "English"), UiLanguageCatalog.Available[1]);
+        Assert.Contains(new UiLanguage("pt-PT", "pt-PT", "Português"), UiLanguageCatalog.Available);
+        Assert.Contains(new UiLanguage("pt-BR", "pt-BR", "Português (Brasil)"), UiLanguageCatalog.Available);
+        Assert.Contains(new UiLanguage("zh-Hans", "zh-CN", "简体中文"), UiLanguageCatalog.Available);
+        Assert.Contains(new UiLanguage("zh-Hant", "zh-TW", "繁體中文"), UiLanguageCatalog.Available);
+        Assert.Equal(UiLanguageCatalog.Available.Count, UiLanguageCatalog.Available.Select(language => language.Code).Distinct(StringComparer.OrdinalIgnoreCase).Count());
+    }
+
+    [Fact]
+    public void EveryAvailableLanguageCanBeSavedAndResolved()
+    {
+        foreach (var language in UiLanguageCatalog.Available)
+        {
+            Assert.Equal(language.Code, UiLanguageResolver.Resolve(language.Code, CultureInfo.GetCultureInfo("en-US")));
+            Assert.Equal(language.CultureName, UiLanguageResolver.GetCulture(language.Code).Name);
+            Assert.Equal(language.Code, UiLanguageResolver.GetUiCulture(language.Code).Name);
+        }
+    }
+
+    [Theory]
+    [InlineData("zh-Hans", "zh-CN")]
+    [InlineData("zh-Hant", "zh-TW")]
+    [InlineData("pt-PT", "pt-PT")]
+    [InlineData("pt-BR", "pt-BR")]
+    public void ScriptAndRegionalVariantsUseTheCorrectFormattingCulture(string languageCode, string expectedCulture)
+    {
+        Assert.Equal(expectedCulture, UiLanguageResolver.GetCulture(languageCode).Name);
     }
 
     [Fact]
@@ -86,8 +120,8 @@ public sealed class LocalizationTests
     {
         var neutral = LocExtension.GetDefinedKeys(CultureInfo.InvariantCulture);
         Assert.NotEmpty(neutral);
-        Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("fr"))));
-        Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("en"))));
+        Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("fr-FR"))));
+        Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(CultureInfo.GetCultureInfo("en-US"))));
     }
 
     [Fact]
