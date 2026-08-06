@@ -37,7 +37,7 @@ public static class ThemeManager
         _ = DwmSetWindowAttribute(handle, 20, ref enabled, sizeof(int));
         _ = DwmSetWindowAttribute(handle, 19, ref enabled, sizeof(int));
         var captionColor = ToColorRef(IsDark ? Color.FromRgb(32, 35, 42) : Color.FromRgb(239, 240, 242));
-        var borderColor = ToColorRef(IsDark ? Color.FromRgb(59, 64, 74) : Color.FromRgb(205, 208, 214));
+        var borderColor = captionColor;
         _ = DwmSetWindowAttribute(handle, 35, ref captionColor, sizeof(int));
         _ = DwmSetWindowAttribute(handle, 34, ref borderColor, sizeof(int));
     }
