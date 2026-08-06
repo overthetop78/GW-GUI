@@ -4,11 +4,6 @@
     </UserControl.Resources>
     <StackPanel>
         <controls:CardSection Margin="0,0,0,12">
-            <controls:CardSection.Style>
-                <Style TargetType="controls:CardSection" BasedOn="{StaticResource {x:Type controls:CardSection}}">
-                    <Style.Triggers><DataTrigger Binding="{Binding HasItems, ElementName=Pinned}" Value="False"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger></Style.Triggers>
-                </Style>
-            </controls:CardSection.Style>
             <StackPanel>
                 <TextBlock Text="{l:Loc Conversion.Selected}" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
                 <ItemsControl x:Name="Pinned" ItemsPanel="{StaticResource ThreeColumnFormatsPanel}">
