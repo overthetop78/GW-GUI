@@ -188,6 +188,9 @@
   <data name="Terminal.Prompt"><value>&gt;</value></data>
   <data name="Options.EnableLogs"><value>Enregistrer les journaux</value></data>
   <data name="Options.Logs"><value>Journaux</value></data>
+  <data name="Options.LogsDescription"><value>Chaque action possède son propre fichier dans le dossier Logs de GW GUI.</value></data>
+  <data name="Options.LogActionErase"><value>Effacement</value></data>
+  <data name="Options.LogActionClean"><value>Nettoyage des têtes</value></data>
   <data name="Options.LogMaximumSize"><value>Taille maximale</value></data>
   <data name="Options.Kilobytes"><value>Kio</value></data>
   <data name="Options.KeepLogArchives"><value>Conserver les anciens journaux</value></data>

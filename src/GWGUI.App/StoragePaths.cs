@@ -6,6 +6,7 @@ public static class StoragePaths
 {
     public static bool IsPortable => File.Exists(Path.Combine(AppContext.BaseDirectory, "portable.flag"));
     public static string DataDirectory => ResolveDataDirectory(AppContext.BaseDirectory, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+    public static string LogsDirectory => Path.Combine(DataDirectory, "Logs");
     public static string HostToolsDirectory
     {
         get

@@ -933,6 +933,29 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task ConsoleLogSettingsAreIndependentForEachAction()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-action-logs-" + Guid.NewGuid().ToString("N"));
+        var settings = new OperationLogSettings();
+        settings.GetOrCreate("read").MaximumKilobytes = 2;
+        settings.GetOrCreate("write").Enabled = false;
+        try
+        {
+            var read = new ConsoleLogSession(directory, () => settings);
+            await read.BeginAsync("read", "gw.exe read disk.scp");
+            await read.AppendAsync("read output");
+            var write = new ConsoleLogSession(directory, () => settings);
+            await write.BeginAsync("write", "gw.exe write disk.scp");
+            await write.AppendAsync("write output");
+
+            Assert.True(File.Exists(Path.Combine(directory, "read.log")));
+            Assert.False(File.Exists(Path.Combine(directory, "write.log")));
+            Assert.Equal(2, settings.ForAction("read").MaximumKilobytes);
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    }
+
+    [Fact]
     public async Task CancelledReadOutputCleanerDeletesOnlyTheRequestedFile()
     {
         var directory = Path.Combine(Path.GetTempPath(), "gwgui-cancelled-read-" + Guid.NewGuid().ToString("N"));

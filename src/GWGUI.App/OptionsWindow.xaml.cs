@@ -44,6 +44,15 @@ public partial class OptionsWindow : Window
     public ObservableCollection<ProfileOptionRow> ReadProfiles { get; } = [];
     public ObservableCollection<ProfileOptionRow> WriteProfiles { get; } = [];
     public ObservableCollection<ProfileOptionRow> ConvertProfiles { get; } = [];
+    public ObservableCollection<LogOptionRow> LogOptions { get; } = [];
+    private static readonly (string Action, string LabelKey)[] LogActionDefinitions =
+    [
+        ("read", "Tab.Read"), ("write", "Tab.Write"), ("convert", "Tab.Convert"),
+        ("erase", "Options.LogActionErase"), ("clean", "Options.LogActionClean"),
+        ("info", "Tool.Title.Info"), ("bandwidth", "Tool.Title.Bandwidth"), ("rpm", "Tool.Title.Rpm"),
+        ("seek", "Tool.Title.Seek"), ("pin", "Tool.Title.Pin"), ("reset", "Tool.Title.Reset"),
+        ("delays", "Tool.Title.Delays"), ("update", "Tool.Title.Update"), ("align", "Tool.Title.Align")
+    ];
     private static readonly (string Key, string Pattern)[] TagPresetDefinitions =
     [
         ("Options.TagPresetFamily", "[{FAMILY}] "),
@@ -92,9 +101,9 @@ public partial class OptionsWindow : Window
             string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
             ?? UiLanguageCatalog.Available.First(language => language.Code == "en");
         ThemeCombo.SelectedIndex = (int)settings.Theme;
-        EnableLogsCheck.IsChecked = settings.Logging.Enabled;
-        LogMaximumSizeText.Text = settings.Logging.MaximumKilobytes.ToString();
-        KeepLogArchivesCheck.IsChecked = settings.Logging.KeepArchives;
+        RefreshLogOptions();
+        LogOptionsList.ItemsSource = LogOptions;
+        LogsDirectoryText.Text = StoragePaths.LogsDirectory;
         UseTagsCheck.IsChecked = settings.Conversion.AddTags;
         TagPatternText.Text = settings.Conversion.TagPattern;
         RefreshTagPresets();
@@ -108,7 +117,7 @@ public partial class OptionsWindow : Window
         WriteProfilesList.ItemsSource = WriteProfiles;
         ConvertProfilesList.ItemsSource = ConvertProfiles;
         HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
-        Navigation.SelectedIndex = section == OptionsSection.Profiles ? 2 : section is OptionsSection.Hardware or OptionsSection.HostTools ? 1 : 0;
+        Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
         _initializing = false;
         UpdateTagPreview();
     }
@@ -133,6 +142,7 @@ public partial class OptionsWindow : Window
         UpdateTagPreview();
         RefreshTagPresets();
         RefreshTagVariables();
+        RefreshLogOptions();
     }
 
     private async void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -150,16 +160,16 @@ public partial class OptionsWindow : Window
         await PersistSettingsAsync();
     }
 
-    private async void LogSettings_Changed(object sender, RoutedEventArgs e)
+    private async void LogRow_Changed(object sender, RoutedEventArgs e)
     {
         if (_initializing) return;
         await PersistSettingsAsync();
     }
 
-    private async void LogMaximumSize_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+    private async void LogRowMaximumSize_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        if (!int.TryParse(LogMaximumSizeText.Text, out var value) || value < 0)
-            LogMaximumSizeText.Text = _settings.Logging.MaximumKilobytes.ToString();
+        if (sender is TextBox textBox && textBox.DataContext is LogOptionRow row && (!int.TryParse(textBox.Text, out var value) || value < 0))
+            textBox.Text = row.Settings.MaximumKilobytes.ToString();
         await PersistSettingsAsync();
     }
 
@@ -554,9 +564,6 @@ public partial class OptionsWindow : Window
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _settings.Conversion.TagPattern = TagPatternText.Text;
         _settings.Conversion.AddTags = UseTagsCheck.IsChecked == true;
-        _settings.Logging.Enabled = EnableLogsCheck.IsChecked == true;
-        if (int.TryParse(LogMaximumSizeText.Text, out var maximumKilobytes) && maximumKilobytes >= 0) _settings.Logging.MaximumKilobytes = maximumKilobytes;
-        _settings.Logging.KeepArchives = KeepLogArchivesCheck.IsChecked == true;
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
         _settings.Drives = _drives;
@@ -571,6 +578,13 @@ public partial class OptionsWindow : Window
         await _saveLock.WaitAsync().ConfigureAwait(false);
         try { await _settingsStore.SaveAsync(_settings).ConfigureAwait(false); }
         finally { _saveLock.Release(); }
+    }
+
+    private void RefreshLogOptions()
+    {
+        LogOptions.Clear();
+        foreach (var definition in LogActionDefinitions)
+            LogOptions.Add(new(definition.Action, LocExtension.Get(definition.LabelKey), _settings.Logging.GetOrCreate(definition.Action)));
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
@@ -656,6 +670,7 @@ public sealed record ProfileOptionRow(string Id, string Operation, string Name, 
 }
 public sealed record TagPresetOption(string Label, string Pattern);
 public sealed record TagVariableOption(string Token, string Description);
+public sealed record LogOptionRow(string Action, string Label, ActionLogSettings Settings);
 public sealed record RecentTagPatternOption(int Number, string? Pattern)
 {
     public string Display => string.IsNullOrWhiteSpace(Pattern) ? "—" : Pattern;

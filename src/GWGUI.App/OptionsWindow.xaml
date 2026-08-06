@@ -44,23 +44,6 @@
                             </Border>
                         </Grid>
 
-                        <Border Style="{StaticResource Card}" Padding="12" Margin="0,0,0,12">
-                            <StackPanel>
-                                <TextBlock Text="{l:Loc Options.Logs}" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                <Grid>
-                                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition/></Grid.ColumnDefinitions>
-                                    <CheckBox x:Name="EnableLogsCheck" Content="{l:Loc Options.EnableLogs}" VerticalAlignment="Center" Checked="LogSettings_Changed" Unchecked="LogSettings_Changed"/>
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="28,0,0,0" VerticalAlignment="Center">
-                                        <TextBlock Text="{l:Loc Options.LogMaximumSize}" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                                        <TextBox x:Name="LogMaximumSizeText" Width="85" VerticalContentAlignment="Center" LostKeyboardFocus="LogMaximumSize_LostKeyboardFocus" PreviewTextInput="NumericText_PreviewTextInput"/>
-                                        <TextBlock Text="{l:Loc Options.Kilobytes}" VerticalAlignment="Center" Margin="7,0,0,0"/>
-                                    </StackPanel>
-                                    <CheckBox Grid.Column="2" x:Name="KeepLogArchivesCheck" Content="{l:Loc Options.KeepLogArchives}" Margin="28,0,0,0" VerticalAlignment="Center" Checked="LogSettings_Changed" Unchecked="LogSettings_Changed"/>
-                                    <TextBlock Grid.Column="3" Text="{l:Loc Options.LogUnlimitedHint}" Foreground="{DynamicResource MutedTextBrush}" VerticalAlignment="Center" Margin="28,0,0,0"/>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
-
                         <Border Style="{StaticResource Card}" Padding="10">
                             <Grid>
                                 <Grid.ColumnDefinitions><ColumnDefinition Width="500" /><ColumnDefinition Width="24" /><ColumnDefinition /></Grid.ColumnDefinitions>
@@ -108,6 +91,36 @@
                         </Border>
                     </StackPanel>
                 </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="{l:Loc Options.Logs}">
+                <Grid Margin="18">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <TextBlock Text="{l:Loc Options.LogsDescription}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                    <ListBox Grid.Row="1" x:Name="LogOptionsList" BorderThickness="0" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="Padding" Value="0"/><Setter Property="Margin" Value="0,0,0,6"/><Setter Property="HorizontalContentAlignment" Value="Stretch"/></Style></ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate><DataTemplate>
+                            <Border Style="{StaticResource Card}" Padding="12,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="190"/><ColumnDefinition Width="210"/><ColumnDefinition Width="280"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Label}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <CheckBox Grid.Column="1" Content="{l:Loc Options.EnableLogs}" IsChecked="{Binding Settings.Enabled, Mode=TwoWay}" VerticalAlignment="Center" Click="LogRow_Changed"/>
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{l:Loc Options.LogMaximumSize}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <TextBox Width="72" Text="{Binding Settings.MaximumKilobytes, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" VerticalContentAlignment="Center" LostKeyboardFocus="LogRowMaximumSize_LostKeyboardFocus" PreviewTextInput="NumericText_PreviewTextInput"/>
+                                        <TextBlock Text="{l:Loc Options.Kilobytes}" VerticalAlignment="Center" Margin="7,0,0,0"/>
+                                    </StackPanel>
+                                    <CheckBox Grid.Column="3" Content="{l:Loc Options.KeepLogArchives}" IsChecked="{Binding Settings.KeepArchives, Mode=TwoWay}" VerticalAlignment="Center" Click="LogRow_Changed"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate></ListBox.ItemTemplate>
+                    </ListBox>
+                    <Grid Grid.Row="2" Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBlock Text="{l:Loc Options.LogUnlimitedHint}" Foreground="{DynamicResource MutedTextBrush}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" x:Name="LogsDirectoryText"/>
+                    </Grid>
+                </Grid>
             </TabItem>
 
             <TabItem Header="{l:Loc Options.Hardware}">

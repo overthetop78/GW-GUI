@@ -13,7 +13,7 @@ public static class ErrorLog
     {
         try
         {
-            directory ??= Path.Combine(StoragePaths.DataDirectory, "Logs");
+            directory ??= StoragePaths.LogsDirectory;
             Directory.CreateDirectory(directory);
             var path = Path.Combine(directory, $"errors-{DateTime.Now:yyyyMMdd}.log");
             var assembly = Assembly.GetEntryAssembly();

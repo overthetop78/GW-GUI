@@ -9,7 +9,7 @@ using GWGUI.Infrastructure.Processes;
 namespace GWGUI.App.Services;
 
 public sealed record GwToolWindowRequest(string Executable, string Verb, string? Device, string? Drive, string LogsDirectory, OperationLogSettings Logging);
-public enum OptionsSection { General, HostTools, Hardware, Profiles }
+public enum OptionsSection { General, Logs, HostTools, Hardware, Profiles }
 
 public interface IWindowNavigationService
 {

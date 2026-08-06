@@ -7,10 +7,12 @@ public sealed class ConsoleLogSession(string directory, Func<OperationLogSetting
 {
     private readonly SemaphoreSlim gate = new(1, 1);
     private string? activePath;
+    private string? activeAction;
 
     public async Task BeginAsync(string action, string command)
     {
-        activePath = Path.Combine(directory, SafeName(action) + ".log");
+        activeAction = SafeName(action);
+        activePath = Path.Combine(directory, activeAction + ".log");
         await AppendAsync("", false).ConfigureAwait(false);
         await AppendAsync(new string('=', 80), false).ConfigureAwait(false);
         await AppendAsync($"{DateTimeOffset.Now:O}", false).ConfigureAwait(false);
@@ -24,7 +26,7 @@ public sealed class ConsoleLogSession(string directory, Func<OperationLogSetting
 
     private async Task AppendCoreAsync(string entry, bool requireActive)
     {
-        var settings = settingsProvider();
+        var settings = settingsProvider().ForAction(activeAction ?? "operation");
         if (!settings.Enabled || activePath is null && requireActive) return;
         if (activePath is null) return;
         await gate.WaitAsync().ConfigureAwait(false);

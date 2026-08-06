@@ -98,7 +98,7 @@ public partial class MainWindow : Window
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), StoragePaths.HostToolsDirectory);
         var directory = StoragePaths.DataDirectory;
-        _logsDirectory = Path.Combine(directory, "logs");
+        _logsDirectory = StoragePaths.LogsDirectory;
         _consoleLog = new ConsoleLogSession(_logsDirectory, () => _settings.Logging);
         _runner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
