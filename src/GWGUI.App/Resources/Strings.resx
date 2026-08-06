@@ -218,4 +218,6 @@
   <data name="Hardware.MaximumDrives"><value>At most two drives can be assigned automatically to this Greaseweazle (A and B).</value></data>
   <data name="Common.SaveIcon"><value>💾</value></data><data name="Common.TrashIcon"><value>🗑</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysing track {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Side</value></data><data name="Visual.TrackLabel"><value>Track</value></data><data name="Visual.ScpEntryLabel"><value>SCP entry</value></data><data name="Visual.RevolutionsTitle"><value>Revolutions</value></data><data name="Visual.AnalysisTitle"><value>Analysis</value></data><data name="Visual.ConfidenceLabel"><value>Confidence</value></data><data name="Visual.CellLabel"><value>Estimated cell</value></data><data name="Visual.StructuresLabel"><value>Structures</value></data><data name="Visual.StructuresTitle"><value>Detected structures</value></data><data name="Visual.SectorsTitle"><value>Sectors</value></data><data name="Visual.TransitionsUnit"><value>transitions</value></data>
+  <data name="Visual.NumberPrefix"><value>#</value></data><data name="Visual.ValueSeparator"><value>  ·  </value></data>
 </root>

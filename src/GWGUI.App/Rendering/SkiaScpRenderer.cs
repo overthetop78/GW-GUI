@@ -1,13 +1,14 @@
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
 using SkiaSharp;
+using System.Collections.Concurrent;
 
 namespace GWGUI.App.Rendering;
 
 public sealed class SkiaScpRenderer : IScpRenderer
 {
     private readonly FluxDecoderRegistry _decoders;
-    private IReadOnlyDictionary<ScpTrack, PreparedTrack> _preparedTracks = new Dictionary<ScpTrack, PreparedTrack>();
+    private IReadOnlyDictionary<ScpTrack, PreparedTrack> _preparedTracks = new ConcurrentDictionary<ScpTrack, PreparedTrack>();
     private string? _decoderId;
 
     public SkiaScpRenderer(FluxDecoderRegistry? decoders = null) => _decoders = decoders ?? new FluxDecoderRegistry();
@@ -27,25 +28,24 @@ public sealed class SkiaScpRenderer : IScpRenderer
     {
         var tracks = image.Tracks.Where(track => track.Head == head).OrderBy(track => track.Cylinder).ToArray();
         var decoderId = DecoderId;
-        var prepared = await Task.Run(() =>
+        var prepared = new ConcurrentDictionary<ScpTrack, PreparedTrack>();
+        _preparedTracks = prepared;
+        await Task.Run(() =>
         {
-            var result = new Dictionary<ScpTrack, PreparedTrack>(tracks.Length);
             for (var trackIndex = 0; trackIndex < tracks.Length; trackIndex++)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 var track = tracks[trackIndex];
                 var revolution = track.Revolutions.FirstOrDefault();
                 if (revolution is not null && revolution.FluxIntervals.Count > 0)
-                    result[track] = PrepareTrack(track, revolution, decoderId, cancellationToken);
+                    prepared[track] = PrepareTrack(track, revolution, decoderId, cancellationToken);
                 progress?.Report(trackIndex + 1);
             }
-            return (IReadOnlyDictionary<ScpTrack, PreparedTrack>)result;
         }, cancellationToken).ConfigureAwait(false);
         cancellationToken.ThrowIfCancellationRequested();
-        _preparedTracks = prepared;
     }
 
-    public void ClearCache() => _preparedTracks = new Dictionary<ScpTrack, PreparedTrack>();
+    public void ClearCache() => _preparedTracks = new ConcurrentDictionary<ScpTrack, PreparedTrack>();
 
     public void Render(SKCanvas canvas, ScpRenderRequest request)
     {

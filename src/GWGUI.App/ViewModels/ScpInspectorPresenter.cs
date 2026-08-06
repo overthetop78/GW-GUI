@@ -5,6 +5,24 @@ namespace GWGUI.App.ViewModels;
 
 public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<string, object[], string> localize)
 {
+    public ScpInspectorModel BuildModel(ScpImage image, ScpTrack track, string? decoderId)
+    {
+        var best = decoders.DecodeBest(track.Revolutions, decoderId);
+        var decoded = best?.Result;
+        var revolutions = track.Revolutions.Select((revolution, index) => new ScpRevolutionInfo(
+            index + 1, revolution.FluxIntervals.Count,
+            revolution.DurationMilliseconds(image.Header.ResolutionNanoseconds),
+            revolution.Rpm(image.Header.ResolutionNanoseconds))).ToArray();
+        var structures = decoded?.Structures.Take(30).Select(structure =>
+            new ScpInspectorEntry(Localize("Visual.StructureKind." + structure.Kind), Localize("Visual.BitOffset", structure.BitOffset))).ToArray() ?? [];
+        var sectors = decoded?.Sectors is { } decodedSectors ? decodedSectors.Take(30).Select(sector =>
+            Localize("Visual.SectorDetail", sector.Cylinder, sector.Head, sector.Number, sector.SizeBytes, Localize("Visual.Integrity." + sector.IntegrityKind),
+                Localize(sector.IntegrityValid is null ? "Visual.IntegrityUnavailable" : sector.IntegrityValid.Value ? "Visual.CrcValid" : "Visual.CrcInvalid"))).ToArray() : [];
+        return new(track.Head, track.Cylinder, track.TrackNumber, revolutions,
+            decoded is null ? null : new ScpDecodeInfo(Localize("Visual.DecoderName." + decoded.DecoderId), decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count, best!.Value.RevolutionIndex + 1),
+            structures, sectors);
+    }
+
     public string Build(ScpImage image, ScpTrack track, string? decoderId)
     {
         var best = decoders.DecodeBest(track.Revolutions, decoderId);
@@ -24,3 +42,8 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);
 }
+
+public sealed record ScpInspectorModel(int Head, int Cylinder, int ScpEntry, IReadOnlyList<ScpRevolutionInfo> Revolutions, ScpDecodeInfo? Decode, IReadOnlyList<ScpInspectorEntry> Structures, IReadOnlyList<string> Sectors);
+public sealed record ScpRevolutionInfo(int Number, int Transitions, double DurationMilliseconds, double Rpm);
+public sealed record ScpDecodeInfo(string Decoder, double Confidence, double CellTicks, int StructureCount, int Revolution);
+public sealed record ScpInspectorEntry(string Name, string Detail);

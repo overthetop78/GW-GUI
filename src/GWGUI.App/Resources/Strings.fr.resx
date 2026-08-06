@@ -181,4 +181,6 @@
   <data name="Hardware.MaximumDrives"><value>Deux lecteurs au maximum peuvent être associés automatiquement à ce Greaseweazle (A et B).</value></data>
   <data name="Common.SaveIcon"><value>💾</value></data><data name="Common.TrashIcon"><value>🗑</value></data>
   <data name="Visual.AnalysingTrack"><value>Analyse de la piste {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Face</value></data><data name="Visual.TrackLabel"><value>Piste</value></data><data name="Visual.ScpEntryLabel"><value>Entrée SCP</value></data><data name="Visual.RevolutionsTitle"><value>Révolutions</value></data><data name="Visual.AnalysisTitle"><value>Analyse</value></data><data name="Visual.ConfidenceLabel"><value>Confiance</value></data><data name="Visual.CellLabel"><value>Cellule estimée</value></data><data name="Visual.StructuresLabel"><value>Structures</value></data><data name="Visual.StructuresTitle"><value>Structures détectées</value></data><data name="Visual.SectorsTitle"><value>Secteurs</value></data><data name="Visual.TransitionsUnit"><value>transitions</value></data>
+  <data name="Visual.NumberPrefix"><value>#</value></data><data name="Visual.ValueSeparator"><value>  ·  </value></data>
 </root>

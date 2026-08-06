@@ -377,8 +377,26 @@
                                     <Button DockPanel.Dock="Right" Content="{l:Loc Common.Hide}" Padding="8,2" MinHeight="24" Click="ToggleScpInspector_Click" />
                                     <TextBlock Text="{l:Loc Visual.Inspector}" FontSize="18" FontWeight="SemiBold" />
                                 </DockPanel>
-                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                                <TextBlock x:Name="ScpTrackInfo" Text="{l:Loc Visual.SelectTrack}" Margin="0,16,0,0" TextWrapping="Wrap" />
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,8">
+                                    <StackPanel x:Name="ScpTrackInfo">
+                                        <UniformGrid Columns="3" Margin="0,0,0,10">
+                                            <Border Style="{StaticResource SubtlePanel}" Margin="0,0,4,0"><StackPanel><TextBlock Text="{l:Loc Visual.SideLabel}" Foreground="#69707D"/><TextBlock Text="{Binding Head}" FontSize="18" FontWeight="SemiBold"/></StackPanel></Border>
+                                            <Border Style="{StaticResource SubtlePanel}" Margin="2,0"><StackPanel><TextBlock Text="{l:Loc Visual.TrackLabel}" Foreground="#69707D"/><TextBlock Text="{Binding Cylinder}" FontSize="18" FontWeight="SemiBold"/></StackPanel></Border>
+                                            <Border Style="{StaticResource SubtlePanel}" Margin="4,0,0,0"><StackPanel><TextBlock Text="{l:Loc Visual.ScpEntryLabel}" Foreground="#69707D"/><TextBlock Text="{Binding ScpEntry}" FontSize="18" FontWeight="SemiBold"/></StackPanel></Border>
+                                        </UniformGrid>
+                                        <TextBlock Text="{l:Loc Visual.RevolutionsTitle}" FontWeight="SemiBold" Margin="0,4"/>
+                                        <ItemsControl ItemsSource="{Binding Revolutions}">
+                                            <ItemsControl.ItemTemplate><DataTemplate><Border Style="{StaticResource SubtlePanel}" Margin="0,2"><StackPanel><TextBlock FontWeight="SemiBold"><Run Text="{l:Loc Visual.NumberPrefix}"/><Run Text="{Binding Number}"/><Run Text="{l:Loc Visual.ValueSeparator}"/><Run Text="{Binding Transitions, StringFormat={}{0:N0} }"/><Run Text="{l:Loc Visual.TransitionsUnit}"/></TextBlock><TextBlock Foreground="#69707D"><Run Text="{Binding DurationMilliseconds, StringFormat={}{0:F2} ms}"/><Run Text="{l:Loc Visual.ValueSeparator}"/><Run Text="{Binding Rpm, StringFormat={}{0:F2} RPM}"/></TextBlock></StackPanel></Border></DataTemplate></ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <StackPanel DataContext="{Binding Decode}" Margin="0,10,0,0">
+                                            <TextBlock Text="{l:Loc Visual.AnalysisTitle}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                            <Border Style="{StaticResource SubtlePanel}"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="{l:Loc Visual.Decoder}" Foreground="#69707D"/><TextBlock Text="{Binding Decoder}" FontWeight="SemiBold"/><TextBlock Text="{l:Loc Visual.ConfidenceLabel}" Foreground="#69707D" Margin="0,6,0,0"/><TextBlock Text="{Binding Confidence, StringFormat={}{0:P0}}" FontWeight="SemiBold"/></StackPanel><StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Visual.CellLabel}" Foreground="#69707D"/><TextBlock Text="{Binding CellTicks, StringFormat={}{0:F1} ticks}" FontWeight="SemiBold"/><TextBlock Text="{l:Loc Visual.StructuresLabel}" Foreground="#69707D" Margin="0,6,0,0"/><TextBlock Text="{Binding StructureCount}" FontWeight="SemiBold"/></StackPanel></Grid></Border>
+                                        </StackPanel>
+                                        <TextBlock Text="{l:Loc Visual.StructuresTitle}" FontWeight="SemiBold" Margin="0,10,0,4"/>
+                                        <ItemsControl ItemsSource="{Binding Structures}"><ItemsControl.ItemTemplate><DataTemplate><Border Style="{StaticResource SubtlePanel}" Margin="0,1"><DockPanel><TextBlock Text="{Binding Detail}" Foreground="#69707D" DockPanel.Dock="Right"/><TextBlock Text="{Binding Name}" TextWrapping="Wrap"/></DockPanel></Border></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                                        <TextBlock Text="{l:Loc Visual.SectorsTitle}" FontWeight="SemiBold" Margin="0,10,0,4"/>
+                                        <ItemsControl ItemsSource="{Binding Sectors}"><ItemsControl.ItemTemplate><DataTemplate><Border Style="{StaticResource SubtlePanel}" Margin="0,1"><TextBlock Text="{Binding}" TextWrapping="Wrap"/></Border></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                                    </StackPanel>
                                 </ScrollViewer>
                                 <TextBlock Grid.Row="2" Text="{l:Loc Visual.Controls}" Foreground="#69707D" TextWrapping="Wrap" />
                             </Grid>

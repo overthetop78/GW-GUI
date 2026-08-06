@@ -18,7 +18,9 @@ public partial class ScpDiskView : UserControl
     private float _panY;
     private Point? _dragOrigin;
     private readonly IScpRenderer _renderer;
+    private ScpTrack? _hoveredTrack;
     public event EventHandler<ScpTrack?>? TrackSelected;
+    public event EventHandler<ScpTrack>? TrackHovered;
     public event EventHandler<float>? ZoomChanged;
     public ScpTrack? SelectedTrack { get; private set; }
     public float Zoom => _zoom;
@@ -33,6 +35,7 @@ public partial class ScpDiskView : UserControl
         if (!cancellationToken.IsCancellationRequested) Canvas.InvalidateVisual();
     }
     public void SetDecoder(string? decoderId) { _renderer.DecoderId = decoderId; Canvas.InvalidateVisual(); }
+    public void RefreshPreparedTracks() => Canvas.InvalidateVisual();
     public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
     public void ResetView() { _zoom = 1; _panX = _panY = 0; Canvas.InvalidateVisual(); }
 
@@ -59,8 +62,9 @@ public partial class ScpDiskView : UserControl
         var position = e.GetPosition(Canvas);
         if (_dragOrigin is Point origin && e.RightButton == MouseButtonState.Pressed) { _panX += (float)(position.X - origin.X); _panY += (float)(position.Y - origin.Y); _dragOrigin = position; Canvas.InvalidateVisual(); return; }
         var track = TrackAt(position); Canvas.ToolTip = track is null ? null : LocExtension.Get("Visual.TrackTooltip", track.Head, track.Cylinder, track.Revolutions.Count);
+        if (track is not null && !ReferenceEquals(track, _hoveredTrack)) { _hoveredTrack = track; TrackHovered?.Invoke(this, track); }
     }
-    private void Canvas_MouseLeave(object sender, MouseEventArgs e) { if (_dragOrigin is null) Canvas.ToolTip = null; }
+    private void Canvas_MouseLeave(object sender, MouseEventArgs e) { _hoveredTrack = null; if (_dragOrigin is null) Canvas.ToolTip = null; }
     private ScpTrack? TrackAt(Point position)
     {
         var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? []; if (tracks.Length == 0) return null;

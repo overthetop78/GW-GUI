@@ -66,6 +66,7 @@ public partial class MainWindow : Window
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
     private CancellationTokenSource? _scpCancellation;
+    private CancellationTokenSource? _scpInspectorCancellation;
 
     public MainWindow() : this(null, null, null, null, null, null, null, null, null) { }
 
@@ -88,6 +89,7 @@ public partial class MainWindow : Window
         _scpInspector = new ScpInspectorPresenter(_fluxDecoders, (key, arguments) => LocExtension.Get(key, arguments));
         _scpLoader = new ScpDocumentLoader(new ScpReader(), (key, arguments) => LocExtension.Get(key, arguments));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
+        ScpSide0.TrackHovered += ScpTrack_Hovered; ScpSide1.TrackHovered += ScpTrack_Hovered;
         ScpSide0.ZoomChanged += ScpZoom_Changed; ScpSide1.ZoomChanged += ScpZoom_Changed;
         _formatDetector = new ImageFormatDetector(_formatCatalog);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
@@ -122,7 +124,7 @@ public partial class MainWindow : Window
             ScpSide0.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed; ScpSide1.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
             Grid.SetColumn(ScpSide0, 0); Grid.SetColumnSpan(ScpSide0, heads.Count == 1 && heads.Contains(0) ? 2 : 1);
             Grid.SetColumn(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 0 : 1); Grid.SetColumnSpan(ScpSide1, heads.Count == 1 && heads.Contains(1) ? 2 : 1);
-            ScpTrackInfo.Text = LocExtension.Get("Visual.SelectTrack");
+            ScpInspector.DataContext = null;
             await PrepareScpViewsAsync(cancellation.Token);
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
@@ -134,6 +136,12 @@ public partial class MainWindow : Window
     {
         _selectedScpTrack = track;
         UpdateScpInspector();
+    }
+
+    private void ScpTrack_Hovered(object? sender, ScpTrack track)
+    {
+        _selectedScpTrack = track;
+        _ = UpdateScpInspectorAsync(track);
     }
 
     private async void ScpDecoder_Changed(object sender, SelectionChangedEventArgs e)
@@ -159,21 +167,22 @@ public partial class MainWindow : Window
         if (_scpImage is null) return;
         var heads = _scpImage.Tracks.Select(track => track.Head).Distinct().Order().ToArray();
         var total = Math.Max(1, _scpImage.Tracks.Count);
-        var completed = 0;
+        var completedByHead = heads.ToDictionary(head => head, _ => 0);
         ShowScpProgress(LocExtension.Get("Visual.AnalysingTrack", 0, total), 0, false);
-        foreach (var head in heads)
+        var preparations = heads.Select(head =>
         {
-            var initial = completed;
-            var count = _scpImage.Tracks.Count(track => track.Head == head);
+            var view = head == 0 ? ScpSide0 : ScpSide1;
             var progress = new Progress<int>(value =>
             {
                 if (cancellationToken.IsCancellationRequested) return;
-                var current = Math.Min(total, initial + value);
+                completedByHead[head] = value;
+                var current = Math.Min(total, completedByHead.Values.Sum());
                 ShowScpProgress(LocExtension.Get("Visual.AnalysingTrack", current, total), current * 100d / total, false);
+                view.RefreshPreparedTracks();
             });
-            await (head == 0 ? ScpSide0 : ScpSide1).PrepareAsync(progress, cancellationToken);
-            completed += count;
-        }
+            return view.PrepareAsync(progress, cancellationToken);
+        });
+        await Task.WhenAll(preparations);
     }
 
     private void ShowScpProgress(string text, double value, bool indeterminate)
@@ -195,8 +204,23 @@ public partial class MainWindow : Window
     {
         var track = _selectedScpTrack;
         if (track is null || _scpImage is null || ScpTrackInfo is null) return;
-        var choice = ScpDecoderCombo.SelectedItem as ScpDecoderChoice;
-        ScpTrackInfo.Text = _scpInspector.Build(_scpImage, track, choice?.Id);
+        _ = UpdateScpInspectorAsync(track);
+    }
+
+    private async Task UpdateScpInspectorAsync(ScpTrack track)
+    {
+        var image = _scpImage;
+        if (image is null) return;
+        _scpInspectorCancellation?.Cancel();
+        _scpInspectorCancellation?.Dispose();
+        var cancellation = _scpInspectorCancellation = new CancellationTokenSource();
+        var decoderId = (ScpDecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
+        try
+        {
+            var model = await Task.Run(() => _scpInspector.BuildModel(image, track, decoderId), cancellation.Token);
+            if (!cancellation.IsCancellationRequested && ReferenceEquals(_scpInspectorCancellation, cancellation)) ScpInspector.DataContext = model;
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
     }
 
     private void ScpZoom_Changed(object? sender, float zoom)
@@ -562,6 +586,7 @@ public partial class MainWindow : Window
     private void Window_Closing(object? sender, CancelEventArgs e)
     {
         _scpCancellation?.Cancel();
+        _scpInspectorCancellation?.Cancel();
         if (_closeAfterSettingsSave) return;
         e.Cancel = true;
         if (_settingsSaveInProgress) return;
