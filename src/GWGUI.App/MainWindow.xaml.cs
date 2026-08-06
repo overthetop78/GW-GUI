@@ -251,6 +251,11 @@ public partial class MainWindow : Window
         _viewModel.ProgressValue = value;
         _viewModel.ProgressIndeterminate = indeterminate;
         _viewModel.ProgressVisibility = Visibility.Visible;
+        _viewModel.GlobalProgressVisibility = Visibility.Visible;
+        _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
+        _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
+        _viewModel.Face0ProgressValue = 0;
+        _viewModel.Face1ProgressValue = 0;
     }
 
     private void HideScpProgress()
@@ -1302,6 +1307,24 @@ public partial class MainWindow : Window
         LogOutput.ScrollToEnd();
         var progress = _progressTracker.Accept(line.Text);
         if (progress is null) return;
+        if (progress.TotalOnHead is int totalOnHead)
+        {
+            _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
+            _viewModel.Face0ProgressVisibility = progress.Head0Expected ? Visibility.Visible : Visibility.Collapsed;
+            _viewModel.Face1ProgressVisibility = progress.Head1Expected ? Visibility.Visible : Visibility.Collapsed;
+            var text = LocExtension.Get("Status.FaceTrackProgress", progress.Head, progress.Cylinder, progress.CompletedOnHead, totalOnHead);
+            if (progress.Head == 0)
+            {
+                _viewModel.Face0ProgressValue = progress.HeadFraction.GetValueOrDefault() * 100;
+                _viewModel.Face0ProgressText = text;
+            }
+            else
+            {
+                _viewModel.Face1ProgressValue = progress.HeadFraction.GetValueOrDefault() * 100;
+                _viewModel.Face1ProgressText = text;
+            }
+            return;
+        }
         if (progress.TotalTracks is int total)
         {
             _viewModel.ProgressIndeterminate = false;
@@ -1324,10 +1347,12 @@ public partial class MainWindow : Window
             LogOutput.AppendText(LocExtension.Get("Read.ScpTracksSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides) + Environment.NewLine);
             LogOutput.AppendText(LocExtension.Get("Read.ScpTechnicalSummary", info.Header.Revolutions, info.Header.ResolutionNanoseconds, info.FileSize, checksum) + Environment.NewLine);
             LogOutput.AppendText(LocExtension.Get("Read.ScpOutputFile", path) + Environment.NewLine);
+            OpenScpSummaryText.Text = LocExtension.Get("Read.ScpBannerSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides, info.Header.Revolutions, info.FileSize, checksum);
             LogOutput.ScrollToEnd();
         }
         catch (Exception exception)
         {
+            OpenScpSummaryText.Text = LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message);
             LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message) + Environment.NewLine);
         }
     }
@@ -1341,6 +1366,9 @@ public partial class MainWindow : Window
         _viewModel.ProgressIndeterminate = false;
         _viewModel.ProgressValue = 100;
         _viewModel.ProgressVisibility = Visibility.Collapsed;
+        _viewModel.GlobalProgressVisibility = Visibility.Visible;
+        _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
+        _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
     }
 
     private void UpdateElapsedTime()

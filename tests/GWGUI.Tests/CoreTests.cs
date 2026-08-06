@@ -110,12 +110,20 @@ public sealed class CoreTests
         model.ProfileVisibility = Visibility.Visible;
         model.ProgressVisibility = Visibility.Visible;
         model.ProgressValue = 50;
+        model.Face0ProgressVisibility = Visibility.Visible;
+        model.Face0ProgressValue = 25;
+        model.Face1ProgressVisibility = Visibility.Visible;
+        model.Face1ProgressValue = 30;
 
         Assert.Equal("Drive 1", model.HardwareText);
         Assert.Equal(Visibility.Visible, model.ProfileVisibility);
         Assert.Equal(50, model.ProgressValue);
+        Assert.Equal(25, model.Face0ProgressValue);
+        Assert.Equal(30, model.Face1ProgressValue);
         Assert.Contains(nameof(model.HardwareText), changed);
         Assert.Contains(nameof(model.ProgressValue), changed);
+        Assert.Contains(nameof(model.Face0ProgressValue), changed);
+        Assert.Contains(nameof(model.Face1ProgressValue), changed);
     }
 
     [Fact]
@@ -1337,6 +1345,10 @@ public sealed class CoreTests
         Assert.Equal(160, first!.TotalTracks);
         Assert.Equal(1, retry!.CompletedTracks);
         Assert.Equal(2, second!.CompletedTracks);
+        Assert.Equal(80, second.TotalOnHead);
+        Assert.Equal(1, second.CompletedOnHead);
+        Assert.True(second.Head0Expected);
+        Assert.True(second.Head1Expected);
     }
 
     [Fact]
