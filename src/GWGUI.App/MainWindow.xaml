@@ -141,9 +141,7 @@
                                 <controls:ProfileSection x:Name="ConvertProfileBlock" Grid.Column="1" Margin="6,0,0,12"/>
                             </Grid>
                             <controls:ConversionOutputSection x:Name="ConvertOutputBlock" Grid.Row="2" Margin="0,0,0,12"/>
-                            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
-                                <controls:ConversionFormatsSection x:Name="ConvertFormatsBlock"/>
-                            </ScrollViewer>
+                            <controls:ConversionFormatsSection x:Name="ConvertFormatsBlock" Grid.Row="3"/>
                         </Grid>
                     </ScrollViewer>
                     <Button Grid.Row="1" x:Name="ConvertExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" Click="ExecuteConvert_Click" />
