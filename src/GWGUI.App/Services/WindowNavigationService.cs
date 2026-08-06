@@ -8,7 +8,7 @@ using GWGUI.Infrastructure.Processes;
 
 namespace GWGUI.App.Services;
 
-public sealed record GwToolWindowRequest(string Executable, string Verb, string? Device, string? Drive, string LogsDirectory);
+public sealed record GwToolWindowRequest(string Executable, string Verb, string? Device, string? Drive, string LogsDirectory, OperationLogSettings Logging);
 public enum OptionsSection { General, HostTools, Hardware, Profiles }
 
 public interface IWindowNavigationService
@@ -44,6 +44,6 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
     public void ShowAbout() => new AboutWindow { Owner = _owner }.ShowDialog();
     public void ShowGwTool(GwToolWindowRequest request)
     {
-        new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, _runner, _commandBuilder) { Owner = _owner }.ShowDialog();
+        new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, _runner, _commandBuilder, new ConsoleLogSession(request.LogsDirectory, () => request.Logging)) { Owner = _owner }.ShowDialog();
     }
 }

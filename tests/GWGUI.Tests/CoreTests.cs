@@ -891,6 +891,48 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task ConsoleLogsUseOneFilePerActionAndTrimOldLines()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-console-log-" + Guid.NewGuid().ToString("N"));
+        var settings = new OperationLogSettings { Enabled = true, MaximumKilobytes = 1, KeepArchives = false };
+        try
+        {
+            var logger = new ConsoleLogSession(directory, () => settings);
+            await logger.BeginAsync("read", "gw.exe read disk.scp");
+            for (var index = 0; index < 40; index++) await logger.AppendAsync($"T{index}.0: {new string('x', 80)}");
+
+            var path = Path.Combine(directory, "read.log");
+            Assert.True(File.Exists(path));
+            Assert.True(new FileInfo(path).Length <= 1024);
+            var text = await File.ReadAllTextAsync(path);
+            Assert.Contains("T39.0", text);
+            Assert.DoesNotContain("T0.0", text);
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    }
+
+    [Fact]
+    public async Task ConsoleLogsCanArchiveWithTimestampAndBeDisabled()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-console-archive-" + Guid.NewGuid().ToString("N"));
+        var settings = new OperationLogSettings { Enabled = true, MaximumKilobytes = 1, KeepArchives = true };
+        try
+        {
+            var logger = new ConsoleLogSession(directory, () => settings);
+            await logger.BeginAsync("write", "gw.exe write disk.adf");
+            for (var index = 0; index < 20; index++) await logger.AppendAsync(new string('x', 100));
+            Assert.NotEmpty(Directory.GetFiles(directory, "write-*.log"));
+            Assert.True(File.Exists(Path.Combine(directory, "write.log")));
+
+            settings.Enabled = false;
+            await logger.BeginAsync("convert", "gw.exe convert source.scp target.ima");
+            await logger.AppendAsync("hidden");
+            Assert.False(File.Exists(Path.Combine(directory, "convert.log")));
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    }
+
+    [Fact]
     public void GwHelpCapabilitiesAreParsedBySection()
     {
         const string help = """

@@ -75,6 +75,7 @@ public partial class MainWindow : Window
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
     private readonly string _logsDirectory;
+    private readonly ConsoleLogSession _consoleLog;
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
     private bool _settingsSaveInProgress;
@@ -98,7 +99,8 @@ public partial class MainWindow : Window
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), StoragePaths.HostToolsDirectory);
         var directory = StoragePaths.DataDirectory;
         _logsDirectory = Path.Combine(directory, "logs");
-        _runner = runner ?? new GreaseweazleRunner(new RotatingOperationLogWriter(_logsDirectory));
+        _consoleLog = new ConsoleLogSession(_logsDirectory, () => _settings.Logging);
+        _runner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
@@ -465,7 +467,7 @@ public partial class MainWindow : Window
         var warning = LocExtension.Get(_viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (_dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
-        WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
+        WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); await _consoleLog.BeginAsync("write", command.ToDisplayString()); BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
         await FlushPendingOutputAsync();
@@ -619,12 +621,12 @@ public partial class MainWindow : Window
             var decisions = _businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
             outputs = ConversionConflictResolver.Apply(outputs, existing, decisions, NumberedPath);
         }
-        ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
+        ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); await _consoleLog.BeginAsync("convert", CommandPreview.Text); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token =>
         {
             var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), _commandBuilder.BuildConversion(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
-            return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); LogOutput.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), token);
+            return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); AppendConsoleText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), token);
         });
         await FlushPendingOutputAsync();
         ApplyOperationResult(_operationResultPresenter.Present(outcome));
@@ -1033,6 +1035,7 @@ public partial class MainWindow : Window
         catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Read.Title")); return; }
         ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
         LogOutput.Clear();
+        await _consoleLog.BeginAsync("read", command.ToDisplayString());
         BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
@@ -1272,7 +1275,7 @@ public partial class MainWindow : Window
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!EnsureSelectedHardwareAvailable()) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
-        button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); BeginProgress();
+        button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); await _consoleLog.BeginAsync(command.Verb, command.ToDisplayString()); BeginProgress();
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, progress, token));
         await FlushPendingOutputAsync();
@@ -1305,8 +1308,7 @@ public partial class MainWindow : Window
 
     private void ReportOutput(GwOutputLine line)
     {
-        LogOutput.AppendText(line.Text + Environment.NewLine);
-        LogOutput.ScrollToEnd();
+        AppendConsoleText(line.Text + Environment.NewLine);
         var progress = _progressTracker.Accept(line.Text);
         if (progress is null) return;
         if (progress.TotalOnHead is int totalOnHead)
@@ -1363,17 +1365,17 @@ public partial class MainWindow : Window
         {
             var info = await ScpCaptureInfoReader.ReadAsync(path);
             var checksum = LocExtension.Get(info.ChecksumValid ? "Visual.ChecksumValid" : "Visual.ChecksumInvalid");
-            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryTitle") + Environment.NewLine);
-            LogOutput.AppendText(LocExtension.Get("Read.ScpTracksSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides) + Environment.NewLine);
-            LogOutput.AppendText(LocExtension.Get("Read.ScpTechnicalSummary", info.Header.Revolutions, info.Header.ResolutionNanoseconds, info.FileSize, checksum) + Environment.NewLine);
-            LogOutput.AppendText(LocExtension.Get("Read.ScpOutputFile", path) + Environment.NewLine);
+            AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryTitle") + Environment.NewLine);
+            AppendConsoleText(LocExtension.Get("Read.ScpTracksSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides) + Environment.NewLine);
+            AppendConsoleText(LocExtension.Get("Read.ScpTechnicalSummary", info.Header.Revolutions, info.Header.ResolutionNanoseconds, info.FileSize, checksum) + Environment.NewLine);
+            AppendConsoleText(LocExtension.Get("Read.ScpOutputFile", path) + Environment.NewLine);
             OpenScpSummaryText.Text = LocExtension.Get("Read.ScpBannerSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides, info.Header.Revolutions, info.FileSize, checksum);
             LogOutput.ScrollToEnd();
         }
         catch (Exception exception)
         {
             OpenScpSummaryText.Text = LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message);
-            LogOutput.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message) + Environment.NewLine);
+            AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message) + Environment.NewLine);
         }
     }
 
@@ -1407,9 +1409,16 @@ public partial class MainWindow : Window
         }
         foreach (var message in presentation.Messages)
         {
-            if (message.StartOnNewLine) LogOutput.AppendText(Environment.NewLine);
-            LogOutput.AppendText(LocExtension.Get(message.ResourceKey, message.Arguments.ToArray()));
+            if (message.StartOnNewLine) AppendConsoleText(Environment.NewLine);
+            AppendConsoleText(LocExtension.Get(message.ResourceKey, message.Arguments.ToArray()));
         }
+    }
+
+    private void AppendConsoleText(string text)
+    {
+        LogOutput.AppendText(text);
+        LogOutput.ScrollToEnd();
+        _ = _consoleLog.AppendTextAsync(text);
     }
     private void SetOperationState(string resourceKey, Color color)
     {
@@ -1470,7 +1479,7 @@ public partial class MainWindow : Window
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
         }
-        _navigation.ShowGwTool(new(_settings.GwExecutablePath, verb, SelectedDeviceArgument(), SelectedDriveArgument(), _logsDirectory));
+        _navigation.ShowGwTool(new(_settings.GwExecutablePath, verb, SelectedDeviceArgument(), SelectedDriveArgument(), _logsDirectory, _settings.Logging));
     }
 }
 

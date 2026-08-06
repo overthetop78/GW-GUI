@@ -15,6 +15,7 @@ public sealed class AppSettings
     public DateTimeOffset? LastHostToolsCheckUtc { get; set; }
     public bool ConsoleExpanded { get; set; } = true;
     public double ConsoleHeight { get; set; } = 190;
+    public OperationLogSettings Logging { get; set; } = new();
     public WindowPlacementSettings Window { get; set; } = new();
     public List<ControllerSettings> Controllers { get; set; } = [];
     public List<ControllerSettings> UnconfiguredControllers { get; set; } = [];
@@ -23,6 +24,13 @@ public sealed class AppSettings
     public AdvancedUiSettings Write { get; set; } = new();
     public List<ProfileSettings> Profiles { get; set; } = [];
     public ConversionUiSettings Conversion { get; set; } = new();
+}
+
+public sealed class OperationLogSettings
+{
+    public bool Enabled { get; set; } = true;
+    public int MaximumKilobytes { get; set; } = 1024;
+    public bool KeepArchives { get; set; }
 }
 
 public sealed class ConversionUiSettings

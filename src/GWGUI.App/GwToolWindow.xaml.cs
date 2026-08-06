@@ -17,11 +17,12 @@ public partial class GwToolWindow : Window
     private readonly string? _drive;
     private readonly IGreaseweazleRunner _runner;
     private readonly IGwCommandBuilder _commandBuilder;
+    private readonly ConsoleLogSession? _consoleLog;
     private CancellationTokenSource? _cancellation;
     private readonly Dictionary<string, TextBox> _fields = [];
     private readonly Dictionary<string, CheckBox> _checks = [];
 
-    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null)
+    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null, ConsoleLogSession? consoleLog = null)
     {
         InitializeComponent();
         _executable = executable;
@@ -30,6 +31,7 @@ public partial class GwToolWindow : Window
         _drive = drive;
         _runner = runner ?? new GreaseweazleRunner();
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
+        _consoleLog = consoleLog;
         Heading.Text = Title = TitleFor(verb);
         CreateParameters(); UpdateCommand();
     }
@@ -94,11 +96,12 @@ public partial class GwToolWindow : Window
         ExecuteButton.Content = LocExtension.Get("Common.Stop");
         RawOutput.Clear();
         Summary.Text = L("Tool.Running");
-        var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); });
+        var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); if (_consoleLog is not null) _ = _consoleLog.AppendAsync(line.Text); });
         try
         {
             if (_verb == "update" && Checked("bootloader") && MessageBox.Show(this, L("Tool.BootloaderWarning"), L("Tool.BootloaderTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
             var command = BuildCommand();
+            if (_consoleLog is not null) await _consoleLog.BeginAsync(_verb, command.ToDisplayString());
             var result = await _runner.RunAsync(command, progress, _cancellation.Token);
             if (_verb == "info")
             {
@@ -106,8 +109,9 @@ public partial class GwToolWindow : Window
                 Summary.Text = $"{info.Model ?? L("Tool.ControllerFallback")} · {info.FirmwareVersion ?? L("Tool.FirmwareUnknown")} · {info.Port ?? L("Tool.PortUnknown")}" + (info.HasNetworkWarning ? "\n" + L("Tool.NetworkWarning") : "");
             }
             else Summary.Text = result.IsSuccess ? L("Operation.Succeeded") : result.WasCancelled ? L("Operation.Cancelled") : LocExtension.Get("Operation.ExitCode", result.ExitCode);
+            if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
         }
-        catch (Exception exception) { Summary.Text = exception.Message; }
+        catch (Exception exception) { Summary.Text = exception.Message; if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text); }
         finally { ExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 

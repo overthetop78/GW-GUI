@@ -20,6 +20,6 @@
 - Aucun lancement via une console visible.
 - Les arguments sont transmis comme une liste structurée afin de préserver correctement espaces, accents et guillemets.
 - L’interface ne se bloque jamais pendant une commande.
-- Une seule commande `gw` peut être active dans l’application : le runner journalisé créé au point de composition est partagé par Lecture, Écriture, Conversion, Maintenance, Diagnostics/Matériel et le scan des contrôleurs. L’ouverture d’un outil est refusée avec un message localisé pendant une commande active; le runner constitue le dernier verrou pour les autres chemins.
+- Une seule commande `gw` peut être active dans l’application : le runner créé au point de composition est partagé par Lecture, Écriture, Conversion, Maintenance, Diagnostics/Matériel et le scan des contrôleurs. L’ouverture d’un outil est refusée avec un message localisé pendant une commande active; le runner constitue le dernier verrou pour les autres chemins. La sortie visible est journalisée progressivement par action dans `Data/Logs` (`read.log`, `write.log`, `convert.log`, `erase.log`, etc.). Les réglages communs permettent de désactiver ces journaux, fixer leur limite en Kio (`0` sans limite) et conserver ou non les anciens fichiers horodatés.
 - La commande affichée correspond exactement aux arguments exécutés.
 - Les options non activées ne sont pas émises.

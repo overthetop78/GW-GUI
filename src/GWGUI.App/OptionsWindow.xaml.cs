@@ -92,6 +92,9 @@ public partial class OptionsWindow : Window
             string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
             ?? UiLanguageCatalog.Available.First(language => language.Code == "en");
         ThemeCombo.SelectedIndex = (int)settings.Theme;
+        EnableLogsCheck.IsChecked = settings.Logging.Enabled;
+        LogMaximumSizeText.Text = settings.Logging.MaximumKilobytes.ToString();
+        KeepLogArchivesCheck.IsChecked = settings.Logging.KeepArchives;
         UseTagsCheck.IsChecked = settings.Conversion.AddTags;
         TagPatternText.Text = settings.Conversion.TagPattern;
         RefreshTagPresets();
@@ -146,6 +149,21 @@ public partial class OptionsWindow : Window
         _settings.Conversion.AddTags = UseTagsCheck.IsChecked == true;
         await PersistSettingsAsync();
     }
+
+    private async void LogSettings_Changed(object sender, RoutedEventArgs e)
+    {
+        if (_initializing) return;
+        await PersistSettingsAsync();
+    }
+
+    private async void LogMaximumSize_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+    {
+        if (!int.TryParse(LogMaximumSizeText.Text, out var value) || value < 0)
+            LogMaximumSizeText.Text = _settings.Logging.MaximumKilobytes.ToString();
+        await PersistSettingsAsync();
+    }
+
+    private void NumericText_PreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = e.Text.Any(character => !char.IsDigit(character));
 
     private async void BrowseGw_Click(object sender, RoutedEventArgs e)
     {
@@ -536,6 +554,9 @@ public partial class OptionsWindow : Window
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _settings.Conversion.TagPattern = TagPatternText.Text;
         _settings.Conversion.AddTags = UseTagsCheck.IsChecked == true;
+        _settings.Logging.Enabled = EnableLogsCheck.IsChecked == true;
+        if (int.TryParse(LogMaximumSizeText.Text, out var maximumKilobytes) && maximumKilobytes >= 0) _settings.Logging.MaximumKilobytes = maximumKilobytes;
+        _settings.Logging.KeepArchives = KeepLogArchivesCheck.IsChecked == true;
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
         _settings.Drives = _drives;

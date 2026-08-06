@@ -186,4 +186,10 @@
   <data name="Visual.NumberPrefix"><value>#</value></data><data name="Visual.ValueSeparator"><value>  ·  </value></data>
   <data name="Icon.Save"><value>&#xE74E;</value></data><data name="Icon.Reset"><value>&#xE777;</value></data><data name="Icon.Copy"><value>&#xE8C8;</value></data><data name="Icon.Console"><value>&#xE756;</value></data>
   <data name="Terminal.Prompt"><value>&gt;</value></data>
+  <data name="Options.EnableLogs"><value>Enregistrer les journaux</value></data>
+  <data name="Options.Logs"><value>Journaux</value></data>
+  <data name="Options.LogMaximumSize"><value>Taille maximale</value></data>
+  <data name="Options.Kilobytes"><value>Kio</value></data>
+  <data name="Options.KeepLogArchives"><value>Conserver les anciens journaux</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = aucune limite</value></data>
 </root>
