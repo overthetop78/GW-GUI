@@ -1573,4 +1573,79 @@ SCP καταχώριση: {2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Εξερεύνηση δίσκου</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Εικόνα δίσκου</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Μορφή</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Άνοιγμα εικόνας…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Αυτόματη ανίχνευση</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Τόμος</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Σύστημα αρχείων</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Χωρητικότητα</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Ελεύθερος χώρος</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Στοιχεία</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Επιλέξτε αρχείο ή φάκελο.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Μέγεθος</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Τροποποιήθηκε</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Σχόλιο</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Προειδοποιήσεις</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Φάκελος</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Αρχείο</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Σύνδεσμος</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Άγνωστο</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Τόμος χωρίς όνομα</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Δεν είναι δυνατό το άνοιγμα της εικόνας: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Εξερεύνηση αρχείων</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Ανάγνωση εικόνας δίσκου…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Ανάγνωση δισκέτας</value>
+  </data>
 </root>

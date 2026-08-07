@@ -36,6 +36,10 @@ Les tags tels que `[PC-720]` ou `[AMIGA-DD]` évitent les collisions lors d’un
 
 Ouvrez une capture SCP pour afficher les deux faces, zoomer, déplacer la vue et sélectionner une piste. L’inspecteur indique les révolutions, la vitesse estimée, le checksum et les structures reconnues par le décodeur automatique ou choisi.
 
+## Explorateur de disque
+
+L’onglet **Explorateur** ouvre directement une image ADF ou SCP Amiga et affiche en lecture seule son nom de volume, son système de fichiers, sa capacité, son espace libre ainsi que l’arborescence des dossiers et fichiers. La détection peut rester automatique ou être forcée sur AmigaDOS. Une capture SCP terminée peut y être envoyée depuis Lecture. **Lire la disquette** crée avec `gw` une capture SCP temporaire, l’analyse puis la supprime automatiquement.
+
 ## Outils, diagnostics et matériel
 
 - **Outils** contient l’effacement de disquette et le nettoyage des têtes, avec confirmation.

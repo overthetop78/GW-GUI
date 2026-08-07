@@ -1573,4 +1573,79 @@ Nincs adat</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Lemezböngésző</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Lemezkép</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Formátum</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Lemezkép megnyitása…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automatikus felismerés</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Kötet</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Fájlrendszer</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapacitás</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Szabad hely</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Elemek</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Válasszon fájlt vagy mappát.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Méret</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Módosítva</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Megjegyzés</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Figyelmeztetések</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Mappa</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Fájl</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Hivatkozás</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Ismeretlen</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Névtelen kötet</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>A lemezkép nem nyitható meg: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Fájlok böngészése</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Lemezkép olvasása…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Lemez olvasása</value>
+  </data>
 </root>

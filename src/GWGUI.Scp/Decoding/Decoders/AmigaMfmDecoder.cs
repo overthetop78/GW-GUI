@@ -11,7 +11,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         {
             if (!stream.Match(offset, 0x4489) || !stream.Match(offset + 16, 0x4489)) continue;
             var encoded = TryDecodeMfmBytes(stream, offset + 32, encodedBytes); var available = encoded ?? TryDecodeMfmBytes(stream, offset + 32, headerBytes);
-            bool? headerValid = null; bool? dataValid = null; byte cylinder = 0; byte head = 0; byte number = 0; var length = 32;
+            bool? headerValid = null; bool? dataValid = null; byte cylinder = 0; byte head = 0; byte number = 0; var length = 32; byte[]? payload = null;
             if (available is not null)
             {
                 var header = DecodeOddEven(available.Take(4).ToArray()); cylinder = (byte)(header[1] >> 1); head = (byte)(header[1] & 1); number = header[2];
@@ -20,11 +20,11 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
                 if (encoded is not null)
                 {
                     var parity = CalculateSplitParity(encoded, dataOffset, dataBytes); dataValid = encoded[26] == parity.High && encoded[27] == parity.Low;
-                    var data = DecodeOddEven(encoded.Skip(dataOffset).Take(dataBytes).ToArray()); bytes.AddRange(data); length = 32 + encodedBytes * 16;
+                    payload = DecodeOddEven(encoded.Skip(dataOffset).Take(dataBytes).ToArray()); bytes.AddRange(payload); length = 32 + encodedBytes * 16;
                 }
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, head, number, 2, 512, integrity, offset, SectorIntegrityKind.Checksum));
+            sectors.Add(new(cylinder, head, number, 2, 512, integrity, offset, SectorIntegrityKind.Checksum, payload));
             structures.Add(new(FluxStructureKind.AmigaSync, offset, length, $"Amiga C{cylinder} H{head} S{number}, header checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
             offset += Math.Max(31, length - 1);
         }

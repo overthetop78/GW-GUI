@@ -1573,4 +1573,79 @@ Tidak ada data</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Penjelajah disk</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Citra disk</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Format</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Buka citra…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Deteksi otomatis</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volume</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Sistem berkas</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapasitas</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Ruang kosong</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Item</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Pilih berkas atau folder.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Ukuran</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Diubah</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Komentar</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Peringatan</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Folder</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Berkas</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Tautan</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Tidak diketahui</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Volume tanpa nama</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Citra ini tidak dapat dibuka: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Jelajahi berkas</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Membaca citra disk…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Baca disket</value>
+  </data>
 </root>

@@ -26,7 +26,7 @@
 - Les deux barres permanentes `Face 0` et `Face 1` du visualiseur ne doivent pas seulement indiquer qu’une piste a été préparée. Elles doivent refléter le résultat réel de l’analyse et utiliser les couleurs de la légende pour rendre visibles les pistes correctes, les structures reconnues et les anomalies.
 - Le panneau de fin d’une lecture doit permettre ultérieurement de renommer l’image produite, mais cette action ne doit pas être ajoutée directement dans le panneau actuel sans définir d’abord son emplacement et son parcours.
 
-## Projet d’onglet Explorateur
+## Onglet Explorateur
 
 Un onglet `Explorateur` est demandé pour afficher, lorsque le contenu peut être reconnu :
 
@@ -42,15 +42,15 @@ L’objectif concerne aussi bien les captures SCP que les autres images de disqu
 - une capture brute inconnue, protégée, non standard ou trop endommagée peut rester visualisable sans permettre de reconstruire une arborescence fiable ;
 - chaque famille de système de fichiers nécessite un module logiciel capable d’en lire les métadonnées. Il ne s’agit pas d’un lecteur physique supplémentaire. Les décodeurs actuels retrouvent principalement les secteurs et leurs contrôles d’intégrité ; ils ne constituent pas encore des interpréteurs complets de FAT, AmigaDOS OFS/FFS, Acorn DFS/ADFS et des autres systèmes de fichiers.
 
-La conception de cet onglet reste à définir avec l’utilisateur avant son développement : systèmes de fichiers à prendre en charge, affichage en lecture seule, informations détaillées, extraction éventuelle et comportement lorsque la reconnaissance est partielle.
+La première famille complète est réalisée en lecture seule pour Amiga : ADF DD/HD, reconstruction des secteurs Amiga MFM depuis SCP, choix de la meilleure révolution, AmigaDOS OFS/FFS, nom de volume, dossiers, fichiers, commentaires, tailles, dates, espace libre et avertissements d’intégrité. Les variantes International, Directory Cache et Long Names sont reconnues par leur DOS type et utilisent la même lecture structurée.
 
 Exigences retenues pour sa réalisation :
 
-- créer un véritable onglet principal `Explorateur` ;
-- permettre de charger directement une image de disquette depuis cet onglet ;
+- le véritable onglet principal `Explorateur` et son composant indépendant sont réalisés ;
+- il charge directement une image ADF ou SCP ;
 - viser tous les formats pris en charge par GW GUI, avec détection automatique puis sélection manuelle du format à essayer lorsque la détection échoue ;
-- proposer l’ouverture dans `Explorateur` à la fin d’une Lecture réussie, comme pour l’ouverture dans `Visualisation` ;
-- permettre une exploration directement depuis une disquette présente dans le lecteur. Le parcours envisagé utilise `gw` pour créer une capture SCP temporaire dans le dossier temporaire de Windows, analyse cette capture, puis gère proprement sa suppression lorsque l’exploration est terminée ou annulée ;
+- l’ouverture dans `Explorateur` est proposée à la fin d’une Lecture SCP réussie ;
+- le bouton de lecture directe utilise `gw` pour créer une capture SCP temporaire dans le dossier temporaire de Windows, l’analyse, puis supprime cette capture ;
 - ne jamais modifier l’image chargée ou la disquette pendant une simple exploration ;
 - afficher clairement les erreurs de décodage et les parties impossibles à reconstruire au lieu d’inventer une arborescence.
 

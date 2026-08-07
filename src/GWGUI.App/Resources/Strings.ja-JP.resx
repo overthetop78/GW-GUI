@@ -1573,4 +1573,79 @@ SCP エントリ: {2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>ディスク エクスプローラー</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>ディスクイメージ</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>形式</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>イメージを開く…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>自動検出</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>ボリューム</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>ファイルシステム</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>容量</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>空き領域</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>項目</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>ファイルまたはフォルダーを選択してください。</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>サイズ</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>更新日時</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>コメント</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>警告</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>フォルダー</value>
+  </data>
+  <data name="Explorer.File">
+    <value>ファイル</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>リンク</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>不明</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>名前のないボリューム</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>このイメージを開けません: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>ファイルを参照</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>ディスクイメージを読み込んでいます…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>ディスクを読み取る</value>
+  </data>
 </root>

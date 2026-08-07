@@ -1573,4 +1573,79 @@ Inga data</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Diskutforskare</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Diskavbildning</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Format</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Öppna en avbildning…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automatisk identifiering</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volym</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Filsystem</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapacitet</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Ledigt utrymme</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Objekt</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Välj en fil eller mapp.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Storlek</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Ändrad</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Kommentar</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Varningar</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Mapp</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Fil</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Länk</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Okänd</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Namnlös volym</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Det gick inte att öppna avbildningen: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Utforska filer</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Läser diskavbildning…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Läs diskett</value>
+  </data>
 </root>

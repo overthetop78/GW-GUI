@@ -36,6 +36,10 @@ Tags such as `[PC-720]` and `[AMIGA-DD]` prevent collisions in multi-conversion.
 
 Open an SCP capture to display both sides, zoom, pan and select a track. The inspector shows revolutions, estimated speed, checksum and structures recognized by the automatic or manually selected decoder.
 
+## Disk Explorer
+
+The **Disk Explorer** tab directly opens an Amiga ADF or SCP image and displays its volume name, file system, capacity, free space, folders and files in read-only mode. Detection can remain automatic or be forced to AmigaDOS. A completed SCP capture can be sent there from Read. **Read disk** uses `gw` to create a temporary SCP capture, analyses it, then removes it automatically.
+
 ## Tools, diagnostics and hardware
 
 - **Tools** contains disk erase and head cleaning, both confirmed before execution.

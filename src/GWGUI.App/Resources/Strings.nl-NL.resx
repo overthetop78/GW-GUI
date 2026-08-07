@@ -1573,4 +1573,79 @@ Geen gegevens</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Schijfverkenner</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Schijfkopie</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Formaat</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Een schijfkopie openen…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automatische detectie</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volume</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Bestandssysteem</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Capaciteit</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Vrije ruimte</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Items</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Selecteer een bestand of map.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Grootte</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Gewijzigd</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Opmerking</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Waarschuwingen</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Map</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Bestand</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Koppeling</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Onbekend</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Naamloos volume</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Deze schijfkopie kan niet worden geopend: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Bestanden verkennen</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Schijfkopie lezen…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Diskette lezen</value>
+  </data>
 </root>

@@ -88,7 +88,10 @@
                         </Expander>
                         <Border Grid.Row="5" x:Name="OpenScpBanner" Visibility="Collapsed" Background="#E7F0FF" BorderBrush="#4D76E8" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,0,10">
                             <DockPanel>
-                                <Button DockPanel.Dock="Right" Content="{l:Loc Read.OpenVisualize}" Click="OpenLastScp_Click" />
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                    <Button Content="{l:Loc Read.OpenExplore}" Click="ExploreLastScp_Click" Margin="0,0,8,0"/>
+                                    <Button Content="{l:Loc Read.OpenVisualize}" Click="OpenLastScp_Click" />
+                                </StackPanel>
                                 <StackPanel VerticalAlignment="Center" Margin="0,0,16,0">
                                     <TextBlock Text="{l:Loc Read.ScpFinished}" FontWeight="SemiBold" TextWrapping="Wrap"/>
                                     <TextBlock x:Name="OpenScpSummaryText" Margin="0,5,0,0" TextWrapping="Wrap"/>
@@ -171,6 +174,9 @@
                         <controls:VisualizerTrackOverview x:Name="VisualizerTrackOverview" Margin="0,6,0,0"/>
                     </StackPanel>
                 </Grid>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Explorer}"><TabItem.Header><controls:MainTabHeader Icon="&#xE838;" Text="{l:Loc Tab.Explorer}"/></TabItem.Header>
+                <controls:ExplorerSection x:Name="DiskExplorer" Margin="16"/>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Tools}"><TabItem.Header><controls:MainTabHeader Icon="&#xE90F;" Text="{l:Loc Tab.Tools}"/></TabItem.Header>
                 <Grid Margin="16">

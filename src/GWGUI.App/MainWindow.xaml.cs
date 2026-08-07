@@ -18,6 +18,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.HostTools;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Images;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Localization;
@@ -94,6 +95,7 @@ public partial class MainWindow : Window
     private readonly FluxDecoderRegistry _fluxDecoders = new();
     private readonly ScpInspectorPresenter _scpInspector;
     private readonly ScpDocumentLoader _scpLoader;
+    private readonly DiskImageExplorer _diskImageExplorer = DiskImageExplorer.CreateDefault();
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
@@ -107,6 +109,7 @@ public partial class MainWindow : Window
     private readonly bool _settingsProvidedAtStartup;
     private CancellationTokenSource? _scpCancellation;
     private CancellationTokenSource? _scpInspectorCancellation;
+    private CancellationTokenSource? _explorerCancellation;
     private ScpInspectorWindow? _detachedScpInspector;
     private readonly Stopwatch _operationStopwatch = new();
     private readonly System.Windows.Threading.DispatcherTimer _operationTimer = new() { Interval = TimeSpan.FromSeconds(1) };
@@ -123,6 +126,7 @@ public partial class MainWindow : Window
         ConnectReadComponents();
         ConnectWriteComponents();
         ConnectConvertComponents();
+        ConnectExplorerComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
@@ -242,6 +246,86 @@ public partial class MainWindow : Window
         RegisterName(nameof(ConvertDiskDefsValue), ConvertDiskDefsValue);
     }
 
+    private void ConnectExplorerComponent()
+    {
+        DiskExplorer.OpenRequested += OpenExplorerImage_Click;
+        DiskExplorer.ReadDiskRequested += ReadDiskIntoExplorer_Click;
+        DiskExplorer.FormatChanged += async (_, _) =>
+        {
+            if (!string.IsNullOrWhiteSpace(_explorerPath)) await LoadExplorerImageAsync(_explorerPath);
+        };
+    }
+
+    private string? _explorerPath;
+
+    private async void OpenExplorerImage_Click(object? sender, RoutedEventArgs e)
+    {
+        var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
+        if (path is not null) await LoadExplorerImageAsync(path);
+    }
+
+    private async void ReadDiskIntoExplorer_Click(object? sender, RoutedEventArgs e)
+    {
+        if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
+        if (!EnsureSelectedHardwareAvailable()) return;
+        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
+        {
+            _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
+            return;
+        }
+
+        var temporaryDirectory = Path.Combine(Path.GetTempPath(), "GW GUI");
+        Directory.CreateDirectory(temporaryDirectory);
+        var temporaryPath = Path.Combine(temporaryDirectory, $"explorer-{Guid.NewGuid():N}.scp");
+        var command = _commandBuilder.BuildRead(new ReadRequest(_settings.GwExecutablePath, temporaryPath, ReadResultKind.RawScp, null, [], SelectedDeviceArgument(), SelectedDriveArgument()));
+        try
+        {
+            DiskExplorer.SetReadDiskRunning(true);
+            BeginProgress();
+            await RenderPendingProgressAsync();
+            LogOutput.Clear();
+            await _consoleLog.BeginAsync("read", command.ToDisplayString());
+            var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
+            await FlushPendingOutputAsync();
+            ApplyOperationResult(_operationResultPresenter.Present(outcome));
+            if (outcome.Result?.IsSuccess == true && File.Exists(temporaryPath)) await LoadExplorerImageAsync(temporaryPath);
+        }
+        catch (Exception exception)
+        {
+            _dialogs.Show(LocExtension.Get("Explorer.LoadFailed", exception.Message), LocExtension.Get("Tab.Explorer"), icon: UserDialogIcon.Error);
+        }
+        finally
+        {
+            EndProgress();
+            DiskExplorer.SetReadDiskRunning(false);
+            try { if (File.Exists(temporaryPath)) File.Delete(temporaryPath); } catch { }
+        }
+    }
+
+    private async Task LoadExplorerImageAsync(string path)
+    {
+        _explorerCancellation?.Cancel();
+        _explorerCancellation?.Dispose();
+        var cancellation = _explorerCancellation = new CancellationTokenSource();
+        _explorerPath = path;
+        DiskExplorer.Clear(path);
+        DiskExplorer.SetLoading(true);
+        try
+        {
+            var document = await _diskImageExplorer.ExploreAsync(path, DiskExplorer.SelectedFormatId, cancellation.Token);
+            if (!cancellation.IsCancellationRequested) DiskExplorer.Display(document);
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
+        catch (Exception exception)
+        {
+            _dialogs.Show(LocExtension.Get("Explorer.LoadFailed", exception.Message), LocExtension.Get("Tab.Explorer"), icon: UserDialogIcon.Error);
+        }
+        finally
+        {
+            if (ReferenceEquals(_explorerCancellation, cancellation)) DiskExplorer.SetLoading(false);
+        }
+    }
+
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
     {
         var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
@@ -272,6 +356,13 @@ public partial class MainWindow : Window
     private async void OpenLastScp_Click(object sender, RoutedEventArgs e)
     {
         if (_lastScpPath is null) return; MainTabs.SelectedIndex = 3; await LoadScpAsync(_lastScpPath);
+    }
+
+    private async void ExploreLastScp_Click(object sender, RoutedEventArgs e)
+    {
+        if (_lastScpPath is null) return;
+        MainTabs.SelectedIndex = 4;
+        await LoadExplorerImageAsync(_lastScpPath);
     }
 
     private async Task LoadScpAsync(string path, string? displayFileName = null)
@@ -544,7 +635,7 @@ public partial class MainWindow : Window
         if (MainTabs?.SelectedIndex == 1) UpdateWriteCommand();
         else if (MainTabs?.SelectedIndex == 0) UpdateReadCommand();
         else if (MainTabs?.SelectedIndex == 2) UpdateConvertCommand();
-        else if (MainTabs?.SelectedIndex == 4) UpdateToolCommand();
+        else if (MainTabs?.SelectedIndex == 5) UpdateToolCommand();
         UpdateProfileStatus();
     }
 
@@ -1351,6 +1442,7 @@ public partial class MainWindow : Window
         RefreshReadProfiles(readProfile);
         RefreshWriteProfiles(writeProfile);
         RefreshConvertProfiles(convertProfile);
+        DiskExplorer.RefreshFormats(DiskExplorer.SelectedFormatId);
         RefreshHardwareSelector();
         UpdateReadExtension();
         UpdateProfileStatus();
@@ -1470,7 +1562,7 @@ public partial class MainWindow : Window
 
     private void UpdateToolCommand()
     {
-        if (CommandPreview is null || ToolsList is null || MainTabs?.SelectedIndex != 4) return;
+        if (CommandPreview is null || ToolsList is null || MainTabs?.SelectedIndex != 5) return;
         try { CommandPreview.Text = (ToolsList.SelectedIndex == 0 ? BuildEraseCommand() : BuildCleanCommand()).ToDisplayString(); }
         catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
     }

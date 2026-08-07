@@ -1573,4 +1573,79 @@ Fără date</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Explorer disc</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Imagine de disc</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Format</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Deschide o imagine…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Detectare automată</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volum</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Sistem de fișiere</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Capacitate</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Spațiu liber</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Elemente</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Selectați un fișier sau un dosar.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Dimensiune</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Modificat</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Comentariu</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Avertismente</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Dosar</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Fișier</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Legătură</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Necunoscut</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Volum fără nume</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Imaginea nu poate fi deschisă: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Explorați fișierele</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Se citește imaginea de disc…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Citește discheta</value>
+  </data>
 </root>

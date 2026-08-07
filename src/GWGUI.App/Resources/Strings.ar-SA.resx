@@ -1573,4 +1573,79 @@ SCP الإدخال: {2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>مستكشف القرص</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>صورة القرص</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>التنسيق</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>فتح صورة…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>اكتشاف تلقائي</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>وحدة التخزين</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>نظام الملفات</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>السعة</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>المساحة الحرة</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>العناصر</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>حدد ملفًا أو مجلدًا.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>الحجم</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>تاريخ التعديل</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>تعليق</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>تحذيرات</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>مجلد</value>
+  </data>
+  <data name="Explorer.File">
+    <value>ملف</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>ارتباط</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>غير معروف</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>وحدة تخزين بلا اسم</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>تعذر فتح هذه الصورة: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>استعراض الملفات</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>جارٍ قراءة صورة القرص…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>قراءة القرص</value>
+  </data>
 </root>

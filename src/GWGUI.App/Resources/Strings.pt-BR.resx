@@ -1573,4 +1573,79 @@ Sem dados</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Explorador de disco</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Imagem de disco</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Formato</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Abrir uma imagem…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Detecção automática</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volume</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Sistema de arquivos</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Capacidade</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Espaço livre</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Itens</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Selecione um arquivo ou uma pasta.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Tamanho</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Modificado</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Comentário</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Avisos</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Pasta</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Arquivo</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Link</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Desconhecido</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Volume sem nome</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Não foi possível abrir esta imagem: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Explorar arquivos</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Lendo a imagem de disco…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Ler disquete</value>
+  </data>
 </root>

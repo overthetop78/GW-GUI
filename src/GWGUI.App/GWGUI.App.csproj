@@ -17,7 +17,7 @@
     <Description>Modern Windows interface for Greaseweazle.</Description>
     <Copyright>Copyright © overthetop78</Copyright>
     <RepositoryUrl>https://github.com/overthetop78/GW-GUI</RepositoryUrl>
-    <SatelliteResourceLanguages>en;fr</SatelliteResourceLanguages>
+    <SatelliteResourceLanguages>ar-SA;cs-CZ;da-DK;de-DE;el-GR;en-US;es-ES;fi-FI;fr-FR;he-IL;hu-HU;id-ID;it-IT;ja-JP;ko-KR;nb-NO;nl-NL;pl-PL;pt-BR;pt-PT;ro-RO;ru-RU;sv-SE;th-TH;tr-TR;uk-UA;vi-VN;zh-Hans;zh-Hant</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1573,4 +1573,79 @@ No data</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Disk Explorer</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Disk image</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Format</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Open an image…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automatic detection</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volume</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>File system</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Capacity</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Free space</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Items</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Select a file or folder.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Size</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Modified</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Comment</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Warnings</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Directory</value>
+  </data>
+  <data name="Explorer.File">
+    <value>File</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Link</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Unknown</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Unnamed volume</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Unable to open this image: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Explore files</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Reading disk image…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Read disk</value>
+  </data>
 </root>

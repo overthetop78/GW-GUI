@@ -1573,4 +1573,79 @@ SCP záznam: {2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Průzkumník disku</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Obraz disku</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Formát</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Otevřít obraz…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automatická detekce</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Svazek</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Systém souborů</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapacita</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Volné místo</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Položky</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Vyberte soubor nebo složku.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Velikost</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Změněno</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Komentář</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Upozornění</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Složka</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Soubor</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Odkaz</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Neznámý</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Svazek bez názvu</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Tento obraz nelze otevřít: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Procházet soubory</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Načítání obrazu disku…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Načíst disketu</value>
+  </data>
 </root>

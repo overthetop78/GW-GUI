@@ -1573,4 +1573,79 @@ SCP 条目：{2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>磁盘资源管理器</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>磁盘映像</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>格式</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>打开映像…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>自动检测</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>卷</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>文件系统</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>容量</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>可用空间</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>项目</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>请选择文件或文件夹。</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>大小</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>修改时间</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>注释</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>警告</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>文件夹</value>
+  </data>
+  <data name="Explorer.File">
+    <value>文件</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>链接</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>未知</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>未命名卷</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>无法打开此映像：{0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>浏览文件</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>正在读取磁盘映像…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>读取磁盘</value>
+  </data>
 </root>

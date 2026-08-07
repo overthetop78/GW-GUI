@@ -1573,4 +1573,79 @@ SCP 題目：{2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>磁碟檔案總管</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>磁碟映像</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>格式</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>開啟映像…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>自動偵測</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>磁碟區</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>檔案系統</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>容量</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>可用空間</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>項目</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>請選取檔案或資料夾。</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>大小</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>修改時間</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>註解</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>警告</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>資料夾</value>
+  </data>
+  <data name="Explorer.File">
+    <value>檔案</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>連結</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>未知</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>未命名磁碟區</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>無法開啟此映像：{0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>瀏覽檔案</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>正在讀取磁碟映像…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>讀取磁碟</value>
+  </data>
 </root>

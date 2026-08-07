@@ -1573,4 +1573,79 @@ Không có dữ liệu</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Trình duyệt đĩa</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Ảnh đĩa</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Định dạng</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Mở ảnh…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Tự động nhận diện</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Ổ đĩa</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Hệ thống tệp</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Dung lượng</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Dung lượng trống</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Mục</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Chọn một tệp hoặc thư mục.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Kích thước</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Đã sửa đổi</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Ghi chú</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Cảnh báo</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Thư mục</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Tệp</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Liên kết</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Không rõ</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Ổ đĩa chưa đặt tên</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Không thể mở ảnh này: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Duyệt tệp</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Đang đọc ảnh đĩa…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Đọc đĩa</value>
+  </data>
 </root>

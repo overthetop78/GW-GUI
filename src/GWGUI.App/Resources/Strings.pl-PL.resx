@@ -1573,4 +1573,79 @@ Brak danych</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Eksplorator dysku</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Obraz dysku</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Format</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Otwórz obraz…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Wykrywanie automatyczne</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Wolumin</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>System plików</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Pojemność</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Wolne miejsce</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Elementy</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Wybierz plik lub folder.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Rozmiar</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Zmodyfikowano</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Komentarz</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Ostrzeżenia</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Folder</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Plik</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Łącze</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Nieznany</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Wolumin bez nazwy</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Nie można otworzyć tego obrazu: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Przeglądaj pliki</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Odczytywanie obrazu dysku…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Odczytaj dyskietkę</value>
+  </data>
 </root>

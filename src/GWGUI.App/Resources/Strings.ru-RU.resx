@@ -1573,4 +1573,79 @@ SCP запись: {2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Проводник диска</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Образ диска</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Формат</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Открыть образ…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Автоматическое определение</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Том</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Файловая система</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Ёмкость</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Свободно</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Элементы</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Выберите файл или папку.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Размер</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Изменён</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Комментарий</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Предупреждения</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Папка</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Файл</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Ссылка</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Неизвестно</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Том без имени</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Не удалось открыть образ: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Просмотреть файлы</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Чтение образа диска…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Прочитать дискету</value>
+  </data>
 </root>

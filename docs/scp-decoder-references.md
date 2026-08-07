@@ -48,3 +48,5 @@ Révisions locales de contrôle utilisées le 7 août 2026 :
 - HxCFloppyEmulator : `b1eee4cd73391ceaf2ad4ac57e28bf11c91333ba`.
 
 Les algorithmes ont été réimplémentés en C# dans l'architecture de GW GUI. Le code HxC sous GPL n'est pas copié dans le projet. Les encodeurs possèdent chacun leur propre classe et partagent uniquement les primitives réellement communes : construction de cellules, conversion en intervalles, CRC, checksums et inversion de bits.
+
+Pour la lecture AmigaDOS, les structures de blocs ont été vérifiées dans les fichiers `adf_blk.h`, `adf_raw.c`, `adf_dir.c`, `adf_file.c` et `adf_bitm.c` d’ADFlib inclus dans la révision HxC indiquée ci-dessus. GW GUI utilise une réimplémentation C# indépendante : blocs racine et répertoires, chaînes de hachage, blocs de données OFS/FFS, extensions de fichiers, bitmaps, dates et sommes de contrôle.

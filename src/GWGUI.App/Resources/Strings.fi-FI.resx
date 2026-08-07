@@ -1573,4 +1573,79 @@ Ei dataa</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Tab.Explorer">
+    <value>Levynhallinta</value>
+  </data>
+  <data name="Explorer.Image">
+    <value>Levykuva</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Muoto</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Avaa levykuva…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automaattinen tunnistus</value>
+  </data>
+  <data name="Explorer.AmigaDos">
+    <value>AmigaDOS</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Taltio</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Tiedostojärjestelmä</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapasiteetti</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Vapaa tila</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Kohteet</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Valitse tiedosto tai kansio.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Koko</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Muokattu</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Kommentti</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Varoitukset</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Kansio</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Tiedosto</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Linkki</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Tuntematon</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Nimetön taltio</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Levykuvaa ei voi avata: {0}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Selaa tiedostoja</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Luetaan levykuvaa…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Lue levyke</value>
+  </data>
 </root>

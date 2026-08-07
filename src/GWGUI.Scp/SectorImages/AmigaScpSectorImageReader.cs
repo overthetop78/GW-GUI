@@ -1,0 +1,39 @@
+using GWGUI.Scp.Decoding;
+
+namespace GWGUI.Scp.SectorImages;
+
+public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderRegistry decoders)
+{
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
+    {
+        var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
+        foreach (var track in scp.Tracks)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
+            {
+                var result = decoders.Decode("amiga.mfm", track.Revolutions[revolution]);
+                foreach (var sector in result.Sectors ?? [])
+                {
+                    if (sector.Data is not { Count: 512 } || sector.Cylinder != track.Cylinder || sector.Head != track.Head) continue;
+                    var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);
+                    if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
+                    list.Add((sector, revolution + 1));
+                }
+            }
+        }
+        if (candidates.Count == 0) throw new InvalidDataException("No Amiga sectors could be decoded from the SCP image.");
+        var sectorsPerTrack = candidates.Keys.Max(address => address.Number) >= 11 ? 22 : 11;
+        var blocks = new List<SectorBlock>();
+        foreach (var (address, values) in candidates)
+        {
+            if (address.Cylinder >= 80 || address.Head >= 2 || address.Number < 0 || address.Number >= sectorsPerTrack) continue;
+            var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true)
+                .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+            var logical = checked((address.Cylinder * 2 + address.Head) * sectorsPerTrack + address.Number);
+            blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
+        }
+        return new("amiga.amigados", 512, 80, 2, sectorsPerTrack, blocks);
+    }
+}
