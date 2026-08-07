@@ -10,3 +10,4 @@ packages/
 settings.json
 gw/
 artifacts/
+image_test/
