@@ -38,11 +38,11 @@ Open an SCP capture to display both sides, zoom, pan and select a track. The ins
 
 ## Disk Explorer
 
-The **Disk Explorer** tab directly opens an Amiga ADF or SCP image and displays its volume name, file system, capacity and free space in read-only mode. Folders appear on the left with `+` and `−` controls; the selected folder contents appear on the right with distinct icons and precise type labels for folders, text, images, audio, archives, programs and disk images. Selection uses a neutral color instead of the blue accent. Loading an image in Disk Explorer also prepares it in Visualization, and conversely, without automatically moving the user to the other tab.
+The **Disk Explorer** tab directly opens Amiga ADF/SCP and Atari ST/MSA/ATR/SCP images. It displays the volume name when available, file system, capacity and free space in read-only mode. The currently interpreted file systems are AmigaDOS OFS/FFS, Atari TOS FAT12 and Atari DOS. Folders appear on the left with `+` and `−` controls; the selected folder contents appear on the right with distinct icons and precise type labels for folders, text, images, audio, archives, programs and disk images. Selection uses a neutral color instead of the blue accent. Loading an image in Disk Explorer also prepares it in Visualization, and conversely, without automatically moving the user to the other tab.
 
 Detection can remain automatic or be forced through the same ordered format list used by the other GW GUI operations. Formats whose file-system reader has not yet been implemented are already visible but cannot produce a directory tree yet. A completed SCP capture can be sent there from Read. **Read disk** first asks the user to confirm that the correct disk is in the displayed drive, then uses `gw` to create a temporary SCP capture, analyses it and removes it automatically.
 
-Visible errors are localized while full technical details are retained in the error log. Technical names such as `AmigaDOS`, `OFS` and `FFS` are never translated.
+Visible errors are localized while full technical details are retained in the error log. Technical names such as `AmigaDOS`, `OFS`, `FFS`, `Atari TOS` and `Atari DOS` are never translated.
 
 ## Tools, diagnostics and hardware
 

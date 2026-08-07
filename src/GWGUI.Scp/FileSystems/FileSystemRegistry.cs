@@ -4,7 +4,12 @@ namespace GWGUI.Scp.FileSystems;
 
 public sealed class FileSystemRegistry
 {
-    public IReadOnlyList<IFileSystemReader> Readers { get; } = [new Readers.AmigaDosFileSystemReader()];
+    public IReadOnlyList<IFileSystemReader> Readers { get; } =
+    [
+        new Readers.AmigaDosFileSystemReader(),
+        new Readers.AtariFat12FileSystemReader(),
+        new Readers.AtariDosFileSystemReader()
+    ];
     public IReadOnlySet<string> SupportedFormatIds => Readers
         .SelectMany(reader => reader.CatalogFormatIds)
         .ToHashSet(StringComparer.OrdinalIgnoreCase);

@@ -20,11 +20,11 @@ Ce document ne remet pas en cause les validations successives déjà effectuées
 - remettre toutes les cases de progression à l’état gris au démarrage de chaque nouvelle commande, sans conserver le résultat de la commande précédente ;
 - faire correspondre les barres permanentes du visualiseur aux résultats réels du décodage et aux anomalies, avec les couleurs de la légende ;
 - définir un emplacement distinct permettant de renommer une image qui vient d’être créée ;
-- étendre l’onglet `Explorateur`, réalisé pour AmigaDOS OFS/FFS sur ADF et SCP, aux autres systèmes de fichiers et conteneurs pris en charge par GW GUI ;
-- le sélecteur de l’Explorateur utilise maintenant exactement le catalogue central et le même ordre que les autres fonctions ; réaliser les lecteurs IBM PC/FAT, Atari, Apple, Acorn et autres afin que chaque choix affiché devienne effectivement ouvrable ;
+- étendre l’onglet `Explorateur`, réalisé pour AmigaDOS OFS/FFS et pour Atari TOS FAT12/Atari DOS, aux autres systèmes de fichiers et conteneurs pris en charge par GW GUI ;
+- le sélecteur de l’Explorateur utilise maintenant exactement le catalogue central et le même ordre que les autres fonctions ; réaliser les lecteurs IBM PC/FAT, Apple, Acorn et autres, puis compléter Atari avec les systèmes protégés ou différents d’Atari DOS, afin que chaque choix affiché devienne effectivement ouvrable ;
 - l’ouverture dans `Explorateur` après une Lecture SCP réussie et la lecture directe d’une disquette via une capture SCP temporaire sont réalisées ; la lecture directe confirme désormais le lecteur et la présence de la disquette avant de démarrer ; vérifier ces deux parcours avec le Greaseweazle réel et plusieurs disquettes Amiga ;
 - découper `FluxDecoding.cs` par contrats, registre, traitement du flux et famille de décodeur ; conserver les encodeurs, décodeurs, conteneurs, reconstruction sectorielle et systèmes de fichiers dans des composants distincts ;
-- brancher les 21 encodeurs de pistes au futur moteur de conversion interne ; généraliser la reconstruction sectorielle Amiga existante, puis ajouter les lecteurs/écrivains ST, IMA, D64 et les autres conteneurs pris en charge ;
+- brancher les 21 encodeurs de pistes au futur moteur de conversion interne ; les lecteurs ST, MSA et ATR ainsi que la reconstruction sectorielle Atari sont réalisés, mais les écrivains de ces conteneurs, IMA, D64 et des autres formats restent à ajouter ;
 - ajouter un écrivain SCP complet autour des flux produits par les encodeurs, avec index, timings, révolutions, tables de pistes, checksum et tests de compatibilité avec Greaseweazle ;
 - pour chacun de ces travaux, ajouter immédiatement les nouvelles clés dans le français, l’anglais et tous les autres fichiers de traduction, sans texte visible écrit en dur.
 

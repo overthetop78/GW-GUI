@@ -78,12 +78,12 @@ GWGUI.Scp/
 │   ├── FluxEncoding.cs                 # générateurs de signatures MFM/FM existants
 │   ├── ITrackEncoder.cs                # futur
 │   └── Encoders/...                    # futurs encodeurs complets
-├── FileSystems/                        # registre et AmigaDOS réalisés
+├── FileSystems/                        # registre, AmigaDOS, Atari TOS FAT12 et Atari DOS réalisés
 │   ├── IFileSystemReader.cs
 │   ├── FileSystemRegistry.cs
 │   ├── FileSystemModels.cs
 │   └── Readers/                         # un fichier par système de fichiers
-└── Images/                             # lecteur ADF et orchestrateur réalisés
+└── Images/                             # lecteurs ADF/ST/MSA/ATR et orchestrateur réalisés
     ├── IImageReader.cs
     ├── IImageWriter.cs
     ├── AdfImageWriter.cs
@@ -102,13 +102,16 @@ Le découpage de `FluxDecoding.cs` est réalisé pour les éléments qui existen
 - chaque famille de flux et chaque décodeur dans son propre fichier ;
 - les utilitaires d’encodage existants dans une arborescence distincte des décodeurs ;
 
-Les éléments suivants ont maintenant une première réalisation complète pour Amiga, sans être encore généralisés aux autres familles :
+Les éléments suivants ont maintenant une réalisation complète pour Amiga et Atari dans le périmètre validé :
 
 - lecture ADF DD/HD vers le modèle sectoriel ;
 - reconstruction de secteurs Amiga depuis les charges utiles SCP et choix de la meilleure révolution ;
 - interprétation AmigaDOS OFS/FFS utilisée par l’onglet `Explorateur`.
+- lecture ST, MSA et ATR vers le modèle sectoriel, y compris les secteurs de taille mixte des ATR ;
+- reconstruction des secteurs ISO FM/MFM depuis les captures SCP Atari et choix de la meilleure révolution ;
+- interprétation Atari TOS FAT12 et Atari DOS utilisée par l’onglet `Explorateur`.
 
-Les écrivains de conteneurs, la reconstruction des autres familles et leurs interpréteurs de systèmes de fichiers restent à développer séparément.
+Les écrivains de conteneurs, la reconstruction des autres familles et leurs interpréteurs de systèmes de fichiers restent à développer séparément. Les systèmes Atari protégés, MyDOS, SpartaDOS et autres variantes non Atari DOS ne sont pas assimilés à Atari DOS.
 
 Le découpage a été effectué sans changement de comportement : les tests existants ont été conservés, chaque décodeur garde exactement son algorithme et les traitements communs ne sont pas dupliqués. Les futurs encodeurs et les décodeurs resteront séparés même lorsqu’ils concernent la même famille MFM, FM ou GCR.
 
@@ -125,7 +128,7 @@ Ces fonctions ne sont pas équivalentes :
 - un **encodeur de piste** effectue le chemin inverse, secteurs vers MFM/FM/GCR et flux;
 - un **écrivain SCP** produit le conteneur brut autour de ce flux.
 
-Le code actuel possède le lecteur SCP, les décodeurs, un modèle sectoriel d'encodage et les 21 encodeurs de pistes correspondants. Pour Amiga, il possède aussi le lecteur ADF, la reconstruction sectorielle SCP, la sélection entre révolutions et le lecteur AmigaDOS. Il ne possède pas encore l’équivalent pour tous les autres formats, les écrivains d’images, l'écrivain SCP complet ni le branchement de ces couches à la conversion interne de l'application.
+Le code actuel possède le lecteur SCP, les décodeurs, un modèle sectoriel d'encodage et les 21 encodeurs de pistes correspondants. Pour Amiga, il possède aussi le lecteur ADF, la reconstruction sectorielle SCP, la sélection entre révolutions et le lecteur AmigaDOS. Pour Atari, il possède les lecteurs ST/MSA/ATR, la reconstruction SCP ISO FM/MFM, Atari TOS FAT12 et Atari DOS. Il ne possède pas encore l’équivalent pour tous les autres formats, les écrivains d’images, l'écrivain SCP complet ni le branchement de ces couches à la conversion interne de l'application.
 
 Les décodeurs de flux ne remplacent pas les interpréteurs de systèmes de fichiers. Cette séparation est maintenant matérialisée : le résultat sectoriel Amiga est transmis à `AmigaDosFileSystemReader`, qui interprète le volume, les répertoires, les fichiers, leurs attributs et les erreurs du système de fichiers.
 

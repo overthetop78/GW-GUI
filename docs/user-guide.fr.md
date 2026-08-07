@@ -38,11 +38,11 @@ Ouvrez une capture SCP pour afficher les deux faces, zoomer, déplacer la vue et
 
 ## Explorateur de disque
 
-L’onglet **Explorateur** ouvre directement une image ADF ou SCP Amiga et affiche en lecture seule son nom de volume, son système de fichiers, sa capacité et son espace libre. Les dossiers sont présentés à gauche avec des commandes `+` et `−`; le contenu du dossier sélectionné apparaît à droite avec des icônes distinctes et un type précis pour les dossiers, textes, images, sons, archives, programmes et images disque. La sélection reste neutre et n’utilise pas le bleu d’accentuation. Charger une image dans l’Explorateur la prépare également dans Visualisation, et inversement, sans déplacer automatiquement l’utilisateur vers l’autre onglet.
+L’onglet **Explorateur** ouvre directement les images Amiga ADF/SCP et Atari ST/MSA/ATR/SCP. Il affiche en lecture seule le nom de volume lorsqu’il existe, le système de fichiers, la capacité et l’espace libre. Les systèmes actuellement interprétés sont AmigaDOS OFS/FFS, Atari TOS FAT12 et Atari DOS. Les dossiers sont présentés à gauche avec des commandes `+` et `−`; le contenu du dossier sélectionné apparaît à droite avec des icônes distinctes et un type précis pour les dossiers, textes, images, sons, archives, programmes et images disque. La sélection reste neutre et n’utilise pas le bleu d’accentuation. Charger une image dans l’Explorateur la prépare également dans Visualisation, et inversement, sans déplacer automatiquement l’utilisateur vers l’autre onglet.
 
 La détection peut rester automatique ou être forcée au moyen de la même liste de formats, dans le même ordre, que les autres fonctions de GW GUI. Les formats dont le lecteur de système de fichiers n’est pas encore réalisé sont déjà visibles mais ne peuvent pas encore produire d’arborescence. Une capture SCP terminée peut être envoyée dans l’Explorateur depuis Lecture. **Lire la disquette** demande d’abord de confirmer que la bonne disquette se trouve dans le lecteur affiché, crée avec `gw` une capture SCP temporaire, l’analyse puis la supprime automatiquement.
 
-Les erreurs visibles sont localisées et les détails techniques complets sont conservés dans le journal d’erreurs. Les noms techniques tels que `AmigaDOS`, `OFS` et `FFS` ne sont pas traduits.
+Les erreurs visibles sont localisées et les détails techniques complets sont conservés dans le journal d’erreurs. Les noms techniques tels que `AmigaDOS`, `OFS`, `FFS`, `Atari TOS` et `Atari DOS` ne sont pas traduits.
 
 ## Outils, diagnostics et matériel
 

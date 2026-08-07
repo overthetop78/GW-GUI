@@ -27,18 +27,18 @@ public sealed class IsoFmDecoder : IFluxDecoder
         for (var index = 0; index < headers.Count; index++)
         {
             var header = headers[index]; var nextHeader = index + 1 < headers.Count ? headers[index + 1].Offset : int.MaxValue;
-            (int Offset, byte Mark)? data = dataMarks.Where(candidate => candidate.Offset > header.Offset + 111 && candidate.Offset < nextHeader).Select(candidate => ((int, byte)?)candidate).FirstOrDefault(); bool? dataValid = null;
+            (int Offset, byte Mark)? data = dataMarks.Where(candidate => candidate.Offset > header.Offset + 111 && candidate.Offset < nextHeader).Select(candidate => ((int, byte)?)candidate).FirstOrDefault(); bool? dataValid = null; byte[]? payload = null;
             if (data is not null && header.Size > 0)
             {
                 var end = data.Value.Offset + 16 + (header.Size + 2) * 16;
                 if (end <= stream.Bits.Length)
                 {
-                    var values = Enumerable.Range(0, header.Size).Select(byteIndex => stream.DecodeMfmByte(data.Value.Offset + 16 + byteIndex * 16)).ToArray();
-                    var stored = (ushort)((stream.DecodeMfmByte(data.Value.Offset + 16 + header.Size * 16) << 8) | stream.DecodeMfmByte(data.Value.Offset + 16 + (header.Size + 1) * 16)); dataValid = stored == Crc16(new[] { data.Value.Mark }.Concat(values)); bytes.AddRange(values);
+                    payload = Enumerable.Range(0, header.Size).Select(byteIndex => stream.DecodeMfmByte(data.Value.Offset + 16 + byteIndex * 16)).ToArray();
+                    var stored = (ushort)((stream.DecodeMfmByte(data.Value.Offset + 16 + header.Size * 16) << 8) | stream.DecodeMfmByte(data.Value.Offset + 16 + (header.Size + 1) * 16)); dataValid = stored == Crc16(new[] { data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
                     structures.RemoveAll(structure => structure.BitOffset == data.Value.Offset); structures.Add(new(data.Value.Mark == 0xfb ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, data.Value.Offset, end - data.Value.Offset, $"FM {(data.Value.Mark == 0xf8 ? "deleted " : "")}data, {header.Size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                 }
             }
-            bool? integrity = header.Valid == false || dataValid == false ? false : dataValid is null ? null : true; sectors.Add(new(header.Cylinder, header.Head, header.Number, header.SizeCode, header.Size, integrity, header.Offset));
+            bool? integrity = header.Valid == false || dataValid == false ? false : dataValid is null ? null : true; sectors.Add(new(header.Cylinder, header.Head, header.Number, header.SizeCode, header.Size, integrity, header.Offset, Data: payload));
             structures.Add(new(FluxStructureKind.IdAddressMark, header.Offset, header.Valid is null ? 16 : 112, $"FM C{header.Cylinder} H{header.Head} R{header.Number} N{header.SizeCode}, header CRC {(header.Valid is null ? "unavailable" : header.Valid == true ? "valid" : "invalid")}, data CRC {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 18d), stream.BitCellTicks, structures, bytes, sectors);

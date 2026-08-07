@@ -13,7 +13,10 @@ public sealed class SectorImage
 {
     private readonly IReadOnlyDictionary<int, SectorBlock> _blocks;
 
-    public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks)
+    private readonly long? _capacity;
+    private readonly bool _allowVariableBlockSize;
+
+    public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks, bool allowVariableBlockSize = false, long? capacity = null)
     {
         if (blockSize <= 0 || cylinders <= 0 || heads <= 0 || sectorsPerTrack <= 0) throw new ArgumentOutOfRangeException(nameof(blockSize));
         FormatId = formatId;
@@ -21,6 +24,8 @@ public sealed class SectorImage
         Cylinders = cylinders;
         Heads = heads;
         SectorsPerTrack = sectorsPerTrack;
+        _allowVariableBlockSize = allowVariableBlockSize;
+        _capacity = capacity;
         _blocks = blocks.GroupBy(block => block.LogicalBlock).ToDictionary(group => group.Key, group => group.First());
     }
 
@@ -30,7 +35,7 @@ public sealed class SectorImage
     public int Heads { get; }
     public int SectorsPerTrack { get; }
     public int BlockCount => checked(Cylinders * Heads * SectorsPerTrack);
-    public long Capacity => (long)BlockCount * BlockSize;
+    public long Capacity => _capacity ?? (long)BlockCount * BlockSize;
     public IReadOnlyCollection<SectorBlock> AvailableBlocks => _blocks.Values.ToArray();
     public IReadOnlyList<int> MissingBlocks => Enumerable.Range(0, BlockCount).Where(block => !_blocks.ContainsKey(block)).ToArray();
 
@@ -39,7 +44,7 @@ public sealed class SectorImage
     public ReadOnlyMemory<byte> GetBlock(int logicalBlock)
     {
         if (!_blocks.TryGetValue(logicalBlock, out var block)) throw new InvalidDataException($"Logical block {logicalBlock} is missing.");
-        if (block.Data.Count != BlockSize) throw new InvalidDataException($"Logical block {logicalBlock} has an invalid size.");
+        if (!_allowVariableBlockSize && block.Data.Count != BlockSize) throw new InvalidDataException($"Logical block {logicalBlock} has an invalid size.");
         return block.Data is byte[] bytes ? bytes : block.Data.ToArray();
     }
 }

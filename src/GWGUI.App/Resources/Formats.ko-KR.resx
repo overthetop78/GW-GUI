@@ -145,6 +145,18 @@
     <value>HxC 플로피 에뮬레이터</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>디스크 이미지|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|모든 파일|*.*</value>
+    <value>디스크 이미지|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64|모든 파일|*.*</value>
+  </data>
+  <data name="Format.atari.90">
+    <value>Atari 8-bit — 90 KiB</value>
+  </data>
+  <data name="Format.atari.130">
+    <value>Atari 8-bit — 130 KiB</value>
+  </data>
+  <data name="Format.atari.180">
+    <value>Atari 8-bit — 180 KiB</value>
+  </data>
+  <data name="Extension.atr">
+    <value>Atari ATR 디스크 이미지</value>
   </data>
 </root>

@@ -1,3 +1,4 @@
+using System.Buffers.Binary;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Read;
 using GWGUI.Domain.Formats;
@@ -27,7 +28,18 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
             var id = knownLength switch { 368640 => "atarist.360", 409600 => "atarist.400", 450560 => "atarist.440", 737280 => "atarist.720", 819200 => "atarist.800", 901120 => "atarist.880", _ => null };
             return id is null ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AtariUnknownSize") : Result(extension, id, FormatConfidence.Certain, candidates, "Detection.AtariSize");
         }
-        if (extension == ".msa") return Result(extension, "atarist.720", FormatConfidence.Inferred, candidates, "Detection.MsaInferred");
+        if (extension == ".msa")
+        {
+            var id = TryDetectMsaFormat(filePath);
+            return id is null
+                ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AtariUnknownSize")
+                : Result(extension, id, FormatConfidence.Certain, candidates, "Detection.AtariSize");
+        }
+        if (extension == ".atr")
+        {
+            var id = knownLength switch { 92176 => "atari.90", 133136 => "atari.130", 183952 => "atari.180", _ => null };
+            return id is null ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AtariUnknownSize") : Result(extension, id, FormatConfidence.Certain, candidates, "Detection.AtariSize");
+        }
         if (extension is ".ima" or ".img")
         {
             var id = knownLength switch { 163840 => "ibm.160", 184320 => "ibm.180", 327680 => "ibm.320", 368640 => "ibm.360", 737280 => "ibm.720", 819200 => "ibm.800", 1228800 => "ibm.1200", 1474560 => "ibm.1440", 1720320 => "ibm.1680", 2949120 => "ibm.2880", _ => null };
@@ -41,6 +53,27 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
 
     private DetectedImageFormat Result(string extension, string? id, FormatConfidence confidence, IReadOnlyList<DiskFormat> candidates, string explanation) =>
         new(extension, catalog.Formats.FirstOrDefault(x => x.Id == id), id is null ? FormatConfidence.Ambiguous : confidence, candidates, explanation);
+
+    private string? TryDetectMsaFormat(string filePath)
+    {
+        try
+        {
+            using var stream = File.OpenRead(filePath);
+            Span<byte> header = stackalloc byte[10];
+            if (stream.Read(header) != header.Length || BinaryPrimitives.ReadUInt16BigEndian(header) != 0x0e0f) return null;
+            var sectorsPerTrack = BinaryPrimitives.ReadUInt16BigEndian(header[2..]);
+            var heads = BinaryPrimitives.ReadUInt16BigEndian(header[4..]) + 1;
+            var firstCylinder = BinaryPrimitives.ReadUInt16BigEndian(header[6..]);
+            var lastCylinder = BinaryPrimitives.ReadUInt16BigEndian(header[8..]);
+            if (sectorsPerTrack is < 1 or > 36 || heads is < 1 or > 2 || lastCylinder < firstCylinder) return null;
+            var capacityKiB = checked((lastCylinder + 1) * heads * sectorsPerTrack / 2);
+            var id = $"atarist.{capacityKiB}";
+            return catalog.Formats.Any(format => format.Id.Equals(id, StringComparison.OrdinalIgnoreCase)) ? id : null;
+        }
+        catch (IOException) { return null; }
+        catch (UnauthorizedAccessException) { return null; }
+        catch (OverflowException) { return null; }
+    }
 
 }
 
