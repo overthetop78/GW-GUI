@@ -155,13 +155,14 @@ public sealed class SkiaScpRenderer : IScpRenderer
         if (decoded is not null)
         {
             var sectors = decoded.Sectors ?? [];
-            if (sectors.Any(sector => sector.IntegrityValid == false)
-                || decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.DeletedDataAddressMark or FluxStructureKind.TimingAnomaly))
+            if (sectors.Any(sector => sector.IntegrityValid == false))
                 return ScpTrackVisualState.Anomaly;
             if (sectors.Count > 0 && sectors.All(sector => sector.IntegrityValid == true))
                 return ScpTrackVisualState.NormalFlux;
-            if (decoded.DecodedBytes.Count > 0 || decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData))
+            if (decoded.DecodedBytes.Count > 0 || decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.DataAddressMark or FluxStructureKind.DeletedDataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData))
                 return ScpTrackVisualState.DecodedData;
+            if (decoded.Structures.Any(structure => structure.Kind == FluxStructureKind.TimingAnomaly))
+                return ScpTrackVisualState.LongTransition;
             if (decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader))
                 return ScpTrackVisualState.Header;
             if (decoded.Structures.Count > 0)
@@ -199,7 +200,8 @@ public sealed class SkiaScpRenderer : IScpRenderer
     {
         FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(255, 205, 64),
         FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(67, 220, 255),
-        FluxStructureKind.DeletedDataAddressMark or FluxStructureKind.TimingAnomaly => new SKColor(255, 75, 96),
+        FluxStructureKind.DeletedDataAddressMark => new SKColor(255, 75, 96),
+        FluxStructureKind.TimingAnomaly => new SKColor(83, 173, 255),
         _ => new SKColor(196, 117, 255)
     };
 

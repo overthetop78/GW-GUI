@@ -87,6 +87,26 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void VisualizerTrackClassificationDoesNotTurnTimingVariationIntoIntegrityFailure()
+    {
+        var timing = new FluxStructure(FluxStructureKind.TimingAnomaly, 10, 2, "timing");
+        var validSector = new DecodedSector(0, 0, 1, 2, 512, true, 20);
+        var invalidSector = validSector with { IntegrityValid = false };
+
+        Assert.Equal(ScpTrackVisualState.NormalFlux, Classify(new FluxDecodeResult("test", "Test", 1, 40, [timing], [], [validSector])));
+        Assert.Equal(ScpTrackVisualState.LongTransition, Classify(new FluxDecodeResult("test", "Test", 1, 40, [timing], [])));
+        Assert.Equal(ScpTrackVisualState.Anomaly, Classify(new FluxDecodeResult("test", "Test", 1, 40, [], [], [invalidSector])));
+
+        static ScpTrackVisualState Classify(FluxDecodeResult result)
+        {
+            var method = typeof(SkiaScpRenderer).GetMethod("Classify", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                ?? throw new MissingMethodException(typeof(SkiaScpRenderer).FullName, "Classify");
+            return (ScpTrackVisualState)(method.Invoke(null, [result, 0, 0, 1])
+                ?? throw new InvalidOperationException("Track classification returned no result."));
+        }
+    }
+
+    [Fact]
     public void ScpInspectorPresenterBuildsLocalizedTrackAnalysisOutsideWindow()
     {
         static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
