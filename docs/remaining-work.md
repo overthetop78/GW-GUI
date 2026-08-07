@@ -21,7 +21,7 @@ Ce document ne remet pas en cause les validations successives déjà effectuées
 - faire correspondre les barres permanentes du visualiseur aux résultats réels du décodage et aux anomalies, avec les couleurs de la légende ;
 - définir un emplacement distinct permettant de renommer une image qui vient d’être créée ;
 - étudier puis concevoir un onglet `Explorateur` pour le nom de volume, les dossiers, les fichiers et leurs informations ;
-- prévoir que l’exploration d’un SCP exige d’abord une reconstruction sectorielle fiable, puis un lecteur du système de fichiers reconnu ; ne pas promettre une arborescence pour une capture inconnue, protégée ou trop endommagée.
+- prévoir que l’exploration d’un SCP exige d’abord une reconstruction sectorielle fiable, puis un module logiciel interprétant le système de fichiers reconnu ; proposer un sélecteur de format lorsque la détection automatique échoue ; ne pas promettre une arborescence pour une capture inconnue, protégée ou trop endommagée.
 
 ### A0 — Reprise progressive de l’interface
 

@@ -37,10 +37,10 @@ Un onglet `Explorateur` est demandé pour afficher, lorsque le contenu peut êtr
 
 L’objectif concerne aussi bien les captures SCP que les autres images de disquette. La capacité réelle dépend toutefois du contenu :
 
-- une image sectorielle peut être parcourue lorsque sa géométrie et son système de fichiers sont reconnus ;
-- une capture SCP doit d’abord être décodée en secteurs, puis son système de fichiers doit être reconnu ;
+- une image sectorielle peut être parcourue lorsque sa géométrie et son système de fichiers sont reconnus. Si la reconnaissance automatique échoue, un sélecteur de format doit permettre à l’utilisateur d’indiquer le format à essayer ;
+- une capture SCP doit d’abord être décodée en secteurs, automatiquement ou à l’aide du format choisi par l’utilisateur, puis son système de fichiers doit être interprété ;
 - une capture brute inconnue, protégée, non standard ou trop endommagée peut rester visualisable sans permettre de reconstruire une arborescence fiable ;
-- chaque famille de système de fichiers nécessite un lecteur dédié. Reconnaître le format physique d’une piste ne suffit pas à interpréter automatiquement ses dossiers et fichiers.
+- chaque famille de système de fichiers nécessite un module logiciel capable d’en lire les métadonnées. Il ne s’agit pas d’un lecteur physique supplémentaire. Les décodeurs actuels retrouvent principalement les secteurs et leurs contrôles d’intégrité ; ils ne constituent pas encore des interpréteurs complets de FAT, AmigaDOS OFS/FFS, Acorn DFS/ADFS et des autres systèmes de fichiers.
 
 La conception de cet onglet reste à définir avec l’utilisateur avant son développement : systèmes de fichiers à prendre en charge, affichage en lecture seule, informations détaillées, extraction éventuelle et comportement lorsque la reconnaissance est partielle.
 
