@@ -132,6 +132,8 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("ibm.1680", "IBM PC", "IBM PC — 1.68 MiB", Ibm(), false, "PC-1680", ".scp", ".ima", ".img", ".hfe"), F("ibm.dmf", "IBM PC", "IBM PC — DMF 1.68 MiB", Ibm(), false, "PC-DMF", ".scp", ".ima", ".img", ".hfe"),
             F("ibm.2880", "IBM PC", "IBM PC — 2.88 MiB", Ibm(), false, "PC-2880", ".scp", ".ima", ".img", ".hfe"), F("ibm.scan", "IBM PC", "IBM PC — FM/MFM scan", Ibm(), false, "PC-SCAN", ".scp", ".hfe"),
             F("commodore.1541", "Commodore", "Commodore 64 — 1541", [E(".d64", "Extension.d64", "Commodore D64 image", true)], true, "C64-1541", ".scp", ".d64", ".hfe"),
+            F("commodore.1571", "Commodore", "Commodore 128 — 1571", [E(".d71", "Extension.d71", "Commodore D71 image", true)], true, "C128-1571", ".scp", ".d71", ".hfe"),
+            F("commodore.1581", "Commodore", "Commodore 128 — 1581", [E(".d81", "Extension.d81", "Commodore D81 image", true)], true, "C128-1581", ".scp", ".d81", ".hfe"),
             F("acorn.adfs.800", "Acorn", "Acorn ADFS — 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", ".scp", ".adf", ".hfe"),
             F("raw.hfe", "Raw", "HxC flux image", [E(".hfe", "Extension.hfe", "HxC Floppy Emulator", true)], false, "RAW-HFE", ".scp", ".hfe")
         ];

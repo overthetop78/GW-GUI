@@ -7,6 +7,8 @@ public sealed class FileSystemRegistry
     public IReadOnlyList<IFileSystemReader> Readers { get; } =
     [
         new Readers.AmigaDosFileSystemReader(),
+        new Readers.CpmFileSystemReader(),
+        new Readers.CommodoreDosFileSystemReader(),
         new Readers.AtariFat12FileSystemReader(),
         new Readers.AtariDosFileSystemReader()
     ];
@@ -22,11 +24,14 @@ public sealed class FileSystemRegistry
 
     public bool TryRead(SectorImage image, string? fileSystemId, out FileSystemVolume volume)
     {
-        if (fileSystemId is not null)
-            fileSystemId = Readers.FirstOrDefault(reader => reader.CatalogFormatIds.Contains(fileSystemId))?.Id ?? fileSystemId;
-        var reader = fileSystemId is null
-            ? Readers.FirstOrDefault(candidate => candidate.CanRead(image))
-            : Readers.FirstOrDefault(candidate => candidate.Id.Equals(fileSystemId, StringComparison.OrdinalIgnoreCase));
+        IFileSystemReader? reader;
+        if (fileSystemId is null) reader = Readers.FirstOrDefault(candidate => candidate.CanRead(image));
+        else
+        {
+            reader = Readers.FirstOrDefault(candidate => candidate.Id.Equals(fileSystemId, StringComparison.OrdinalIgnoreCase));
+            if (reader is null)
+                reader = Readers.FirstOrDefault(candidate => candidate.CatalogFormatIds.Contains(fileSystemId) && candidate.CanRead(image));
+        }
         if (reader is null || !reader.CanRead(image)) { volume = null!; return false; }
         try { volume = reader.Read(image); return true; }
         catch (InvalidDataException) { volume = null!; return false; }

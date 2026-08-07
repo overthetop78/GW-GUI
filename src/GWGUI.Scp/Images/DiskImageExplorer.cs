@@ -11,8 +11,12 @@ public sealed class DiskImageExplorer(
     AtariStImageReader stReader,
     MsaImageReader msaReader,
     AtrImageReader atrReader,
+    CommodoreD64ImageReader d64Reader,
+    CommodoreD71ImageReader d71Reader,
+    CommodoreD81ImageReader d81Reader,
     AmigaScpSectorImageReader amigaScpReader,
     AtariScpSectorImageReader atariScpReader,
+    CommodoreScpSectorImageReader commodoreScpReader,
     FileSystemRegistry fileSystems)
 {
     public IReadOnlySet<string> SupportedFormatIds => fileSystems.SupportedFormatIds;
@@ -21,7 +25,9 @@ public sealed class DiskImageExplorer(
     {
         var scp = new ScpReader(); var decoders = new FluxDecoderRegistry();
         return new(new AdfImageReader(), new AtariStImageReader(), new MsaImageReader(), new AtrImageReader(),
-            new AmigaScpSectorImageReader(scp, decoders), new AtariScpSectorImageReader(scp, decoders), new FileSystemRegistry());
+            new CommodoreD64ImageReader(), new CommodoreD71ImageReader(), new CommodoreD81ImageReader(),
+            new AmigaScpSectorImageReader(scp, decoders), new AtariScpSectorImageReader(scp, decoders),
+            new CommodoreScpSectorImageReader(scp, decoders), new FileSystemRegistry());
     }
 
     public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
@@ -33,6 +39,9 @@ public sealed class DiskImageExplorer(
         else if (extension.Equals(".st", StringComparison.OrdinalIgnoreCase)) image = await stReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".msa", StringComparison.OrdinalIgnoreCase)) image = await msaReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".atr", StringComparison.OrdinalIgnoreCase)) image = await atrReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        else if (extension.Equals(".d64", StringComparison.OrdinalIgnoreCase)) image = await d64Reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        else if (extension.Equals(".d71", StringComparison.OrdinalIgnoreCase)) image = await d71Reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        else if (extension.Equals(".d81", StringComparison.OrdinalIgnoreCase)) image = await d81Reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
             if (formatId is not null && !SupportedFormatIds.Contains(formatId)) throw new NotSupportedException($"The selected format '{formatId}' is not supported by the explorer yet.");
@@ -48,9 +57,27 @@ public sealed class DiskImageExplorer(
     {
         if (formatId?.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase) == true)
             return await amigaScpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        if (formatId?.StartsWith("commodore.", StringComparison.OrdinalIgnoreCase) == true)
+            return await commodoreScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId is not null)
             return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
-        try { return await atariScpReader.ReadAsync(path, null, cancellationToken).ConfigureAwait(false); }
-        catch (InvalidDataException) { return await amigaScpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false); }
+        SectorImage? firstDecoded = null;
+        foreach (var read in new Func<Task<SectorImage>>[]
+        {
+            () => atariScpReader.ReadAsync(path, null, cancellationToken),
+            () => amigaScpReader.ReadAsync(path, cancellationToken),
+            () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken),
+            () => commodoreScpReader.ReadAsync(path, null, cancellationToken)
+        })
+        {
+            try
+            {
+                var candidate = await read().ConfigureAwait(false);
+                firstDecoded ??= candidate;
+                if (fileSystems.TryRead(candidate, null, out _)) return candidate;
+            }
+            catch (InvalidDataException) { }
+        }
+        return firstDecoded ?? throw new InvalidDataException("No supported sectors could be decoded from the SCP image.");
     }
 }

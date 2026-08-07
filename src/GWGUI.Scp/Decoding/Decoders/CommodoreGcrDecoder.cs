@@ -30,17 +30,20 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
             if (block.Bytes is not null) { byte checksum = 0; for (var index = 1; index < 258; index++) checksum ^= block.Bytes[index]; valid = checksum == 0; }
             structures.Add(new(FluxStructureKind.FormatData, block.SyncOffset, Math.Max(10, block.EndOffset - block.SyncOffset), $"Commodore data block, 256 bytes, checksum {(valid is null ? "unavailable" : valid == true ? "valid" : "invalid")}"));
         }
-        foreach (var block in headers)
+        for (var headerIndex = 0; headerIndex < headers.Count; headerIndex++)
         {
+            var block = headers[headerIndex];
             bool? headerValid = null; byte cylinder = 0; byte number = 0;
             if (block.Bytes is not null)
             {
                 cylinder = block.Bytes[3]; number = block.Bytes[2]; headerValid = block.Bytes[0] == 0x08 && (byte)(block.Bytes[1] ^ block.Bytes[2] ^ block.Bytes[3] ^ block.Bytes[4] ^ block.Bytes[5]) == 0;
             }
-            var data = dataBlocks.FirstOrDefault(candidate => candidate.SyncOffset > block.EndOffset && candidate.SyncOffset - block.EndOffset < 784); bool? dataValid = null;
+            var nextHeaderOffset = headerIndex + 1 < headers.Count ? headers[headerIndex + 1].SyncOffset : int.MaxValue;
+            var data = dataBlocks.FirstOrDefault(candidate => candidate.SyncOffset > block.EndOffset && candidate.SyncOffset < nextHeaderOffset); bool? dataValid = null;
             if (data.Bytes is not null) { byte checksum = 0; for (var index = 1; index < 258; index++) checksum ^= data.Bytes[index]; dataValid = checksum == 0; }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, 0, number, 1, 256, integrity, block.SyncOffset, SectorIntegrityKind.Checksum));
+            var payload = data.Bytes is null ? null : data.Bytes.Skip(1).Take(256).ToArray();
+            sectors.Add(new(cylinder, 0, number, 1, 256, integrity, block.SyncOffset, SectorIntegrityKind.Checksum, payload));
             structures.Add(new(FluxStructureKind.CommodoreHeader, block.SyncOffset, Math.Max(10, block.EndOffset - block.SyncOffset), $"Commodore T{cylinder} S{number}, header checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 42d), stream.BitCellTicks, structures, bytes, sectors);

@@ -59,7 +59,7 @@ public static class ExplorerFileIconClassifier
     private static readonly HashSet<string> Audio = new(StringComparer.OrdinalIgnoreCase) { ".mod", ".med", ".xm", ".s3m", ".wav", ".8svx", ".voc", ".snd", ".sid" };
     private static readonly HashSet<string> Archives = new(StringComparer.OrdinalIgnoreCase) { ".lha", ".lzh", ".zip", ".arc", ".zoo", ".sit", ".dms", ".tar", ".gz" };
     private static readonly HashSet<string> Programs = new(StringComparer.OrdinalIgnoreCase) { ".exe", ".com", ".bat", ".cmd", ".prg", ".ttp", ".tos", ".app", ".library", ".device", ".handler" };
-    private static readonly HashSet<string> DiskImages = new(StringComparer.OrdinalIgnoreCase) { ".adf", ".scp", ".hfe", ".ima", ".img", ".st", ".msa", ".atr", ".d64", ".ipf" };
+    private static readonly HashSet<string> DiskImages = new(StringComparer.OrdinalIgnoreCase) { ".adf", ".scp", ".hfe", ".ima", ".img", ".st", ".msa", ".atr", ".d64", ".d71", ".d81", ".ipf" };
 
     public static ExplorerIconKind IconFor(FileSystemEntry entry)
     {
@@ -70,7 +70,7 @@ public static class ExplorerFileIconClassifier
         if (Images.Contains(extension) || HasFormType(entry.Content, "ILBM")) return ExplorerIconKind.Image;
         if (Audio.Contains(extension) || HasFormType(entry.Content, "8SVX")) return ExplorerIconKind.Audio;
         if (Archives.Contains(extension)) return ExplorerIconKind.Archive;
-        if (Programs.Contains(extension) || IsAmigaExecutable(entry.Content)) return ExplorerIconKind.Program;
+        if (Programs.Contains(extension) || IsAmigaExecutable(entry.Content) || entry.Comment.StartsWith("PRG", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Program;
         if (DiskImages.Contains(extension)) return ExplorerIconKind.DiskImage;
         return ExplorerIconKind.File;
     }

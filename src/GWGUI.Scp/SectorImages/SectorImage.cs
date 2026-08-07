@@ -15,10 +15,12 @@ public sealed class SectorImage
 
     private readonly long? _capacity;
     private readonly bool _allowVariableBlockSize;
+    private readonly int? _logicalBlockCount;
 
-    public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks, bool allowVariableBlockSize = false, long? capacity = null)
+    public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks, bool allowVariableBlockSize = false, long? capacity = null, int? logicalBlockCount = null)
     {
         if (blockSize <= 0 || cylinders <= 0 || heads <= 0 || sectorsPerTrack <= 0) throw new ArgumentOutOfRangeException(nameof(blockSize));
+        if (logicalBlockCount is <= 0) throw new ArgumentOutOfRangeException(nameof(logicalBlockCount));
         FormatId = formatId;
         BlockSize = blockSize;
         Cylinders = cylinders;
@@ -26,6 +28,7 @@ public sealed class SectorImage
         SectorsPerTrack = sectorsPerTrack;
         _allowVariableBlockSize = allowVariableBlockSize;
         _capacity = capacity;
+        _logicalBlockCount = logicalBlockCount;
         _blocks = blocks.GroupBy(block => block.LogicalBlock).ToDictionary(group => group.Key, group => group.First());
     }
 
@@ -34,7 +37,7 @@ public sealed class SectorImage
     public int Cylinders { get; }
     public int Heads { get; }
     public int SectorsPerTrack { get; }
-    public int BlockCount => checked(Cylinders * Heads * SectorsPerTrack);
+    public int BlockCount => _logicalBlockCount ?? checked(Cylinders * Heads * SectorsPerTrack);
     public long Capacity => _capacity ?? (long)BlockCount * BlockSize;
     public IReadOnlyCollection<SectorBlock> AvailableBlocks => _blocks.Values.ToArray();
     public IReadOnlyList<int> MissingBlocks => Enumerable.Range(0, BlockCount).Where(block => !_blocks.ContainsKey(block)).ToArray();

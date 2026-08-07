@@ -114,6 +114,12 @@
   <data name="Format.commodore.1541">
     <value>Commodore 64 - 1541</value>
   </data>
+  <data name="Format.commodore.1571">
+    <value>Commodore 128 — 1571</value>
+  </data>
+  <data name="Format.commodore.1581">
+    <value>Commodore 128 — 1581</value>
+  </data>
   <data name="Format.acorn.adfs.800">
     <value>Acorn ADFS – 800 KiB</value>
   </data>
@@ -144,11 +150,17 @@
   <data name="Extension.d64">
     <value>Commodore D64 kuva</value>
   </data>
+  <data name="Extension.d71">
+    <value>Commodore D71 kuva</value>
+  </data>
+  <data name="Extension.d81">
+    <value>Commodore D81 kuva</value>
+  </data>
   <data name="Extension.hfe">
     <value>HxC Levykeemulaattori</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64|Kaikki tiedostot|*.*</value>
+    <value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|Kaikki tiedostot|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

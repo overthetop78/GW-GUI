@@ -8,10 +8,11 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits(); var id2=(byte)Attribute(request,"id2",0xa1); var id1=(byte)Attribute(request,"id1",0x1a);
+        var diskTrack=Attribute(request,"track",request.Cylinder+1+request.Head*35);
         foreach(var sector in request.Sectors)
         {
             if(sector.Data.Count!=256) throw new ArgumentException("Commodore sectors contain 256 bytes.");
-            byte[] header=[0x08,(byte)(sector.Number^request.Cylinder^id2^id1),(byte)sector.Number,(byte)request.Cylinder,id2,id1];
+            byte[] header=[0x08,(byte)(sector.Number^diskTrack^id2^id1),(byte)sector.Number,(byte)diskTrack,id2,id1];
             byte checksum=0; foreach(var value in sector.Data) checksum^=value;
             bits.Gap(100,true); bits.RawBits("000"); bits.Gap(20,true); Gcr(bits,header); bits.Gap(6); bits.Gap(20,true);
             Gcr(bits,new byte[]{0x07}.Concat(sector.Data).Append(checksum)); bits.Gap(32);

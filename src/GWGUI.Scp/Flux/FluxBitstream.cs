@@ -9,7 +9,7 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
     }
     public static FluxBitstream FromNrziIntervals(IReadOnlyList<uint> intervals)
     {
-        return Reconstruct(intervals, EstimateBitCell(intervals, true), 64);
+        return Reconstruct(intervals, EstimateNrziBitCell(intervals), 64);
     }
     public static FluxBitstream FromDoubledNrziIntervals(IReadOnlyList<uint> intervals)
     {
@@ -38,6 +38,19 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
         var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return 1;
         var sampleLength = Math.Max(1, sorted.Length / 5); var lowerCluster = sorted.Take(sampleLength).ToArray(); var robustLower = lowerCluster[lowerCluster.Length / 2];
         return Math.Max(1, fm ? robustLower : robustLower / 2d);
+    }
+    private static double EstimateNrziBitCell(IReadOnlyList<uint> intervals)
+    {
+        if (intervals.Count == 0) return 1;
+        var sorted = intervals.Skip(1).Where(value => value > 0).Order().ToArray();
+        if (sorted.Length == 0) sorted = intervals.Where(value => value > 0).Order().ToArray();
+        if (sorted.Length == 0) return 1;
+        // In GCR, one-cell transitions may represent less than ten percent of a track.
+        // Taking the median of the whole lower quintile can therefore lock onto two cells.
+        // A low, but non-minimum, percentile stays inside the shortest genuine timing cluster
+        // while ignoring isolated capture glitches.
+        var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
+        return Math.Max(1, sorted[percentile]);
     }
     public bool Match(int offset, ushort pattern) { if (offset + 16 > Bits.Length) return false; for (var bit = 0; bit < 16; bit++) if (Bits[offset + bit] != ((pattern & (1 << (15 - bit))) != 0)) return false; return true; }
     public bool Match(int offset, uint pattern, int length) { if (length is < 1 or > 32 || offset + length > Bits.Length) return false; for (var bit = 0; bit < length; bit++) if (Bits[offset + bit] != ((pattern & (1u << (length - 1 - bit))) != 0)) return false; return true; }
