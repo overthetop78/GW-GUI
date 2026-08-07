@@ -7,6 +7,7 @@ public sealed class FileSystemRegistry
     public IReadOnlyList<IFileSystemReader> Readers { get; } =
     [
         new Readers.AmigaDosFileSystemReader(),
+        new Readers.AmstradCpmFileSystemReader(),
         new Readers.CpmFileSystemReader(),
         new Readers.CommodoreDosFileSystemReader(),
         new Readers.AtariFat12FileSystemReader(),

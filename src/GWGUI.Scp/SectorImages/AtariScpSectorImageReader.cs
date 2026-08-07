@@ -9,6 +9,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         var atari8 = formatId?.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) == true;
         var atariSt = formatId?.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) == true;
+        var amstrad = formatId?.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase) == true;
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         foreach (var track in scp.Tracks)
         {
@@ -42,11 +43,14 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             ? (sectorSize, sectorsPerTrack) switch { (128, 18) => "atari.90", (128, 26) => "atari.130", (256, 18) => "atari.180", _ => $"atari.scp.{sectorSize}.{sectorsPerTrack}" }
             : $"atarist.{(cylinders * heads * sectorsPerTrack * sectorSize) / 1024}");
         var blocks = new List<SectorBlock>();
+        var sectorOrder = candidates.Keys.Select(address => address.Number).Distinct().OrderBy(number => number).ToArray();
         foreach (var (address, values) in candidates)
         {
-            if (address.Number > sectorsPerTrack) continue;
+            if (!amstrad && address.Number > sectorsPerTrack) continue;
             var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
-            var logical = (address.Cylinder * heads + address.Head) * sectorsPerTrack + address.Number - 1;
+            var sectorIndex = amstrad ? Array.IndexOf(sectorOrder, address.Number) : address.Number - 1;
+            if (sectorIndex < 0 || sectorIndex >= sectorsPerTrack) continue;
+            var logical = (address.Cylinder * heads + address.Head) * sectorsPerTrack + sectorIndex;
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
         var capacity = is8Bit && sectorSize > 128 ? 3L * 128 + (cylinders * heads * sectorsPerTrack - 3L) * sectorSize : (long)cylinders * heads * sectorsPerTrack * sectorSize;

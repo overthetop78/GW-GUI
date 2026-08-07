@@ -372,7 +372,7 @@ public partial class MainWindow : Window
         var detection = _formatDetector.Detect(path, new FileInfo(path).Length);
         if (!GwVisualizationPolicy.CanConvertToScp(path, detection, _gwCapabilities)) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) return;
-        var format = detection.Format!;
+        var formatId = detection.Format?.Id ?? "raw.scp";
         var temporaryPath = Path.Combine(Path.GetTempPath(), $"gwgui-visual-{Guid.NewGuid():N}.scp");
         string? stagedSourcePath = null;
         var gateEntered = false;
@@ -388,7 +388,7 @@ public partial class MainWindow : Window
                 await AtrImageReader.WriteRawPayloadAsync(path, stagedSourcePath, cancellation.Token);
                 conversionSourcePath = stagedSourcePath;
             }
-            var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, conversionSourcePath, new ConversionOutput(format.Id, ".scp", temporaryPath, false));
+            var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, conversionSourcePath, new ConversionOutput(formatId, ".scp", temporaryPath, false));
             var result = await _visualizationRunner.RunAsync(command, cancellationToken: cancellation.Token);
             cancellation.Token.ThrowIfCancellationRequested();
             if (!result.IsSuccess || !File.Exists(temporaryPath)) return;

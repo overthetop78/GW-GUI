@@ -160,7 +160,7 @@
     <value>HxC אמולטור תקליטונים</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>תמונות דיסק|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|כל הקבצים|*.*</value>
+    <value>תמונות דיסק|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|כל הקבצים|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

@@ -14,6 +14,7 @@ public sealed class DiskImageExplorer(
     CommodoreD64ImageReader d64Reader,
     CommodoreD71ImageReader d71Reader,
     CommodoreD81ImageReader d81Reader,
+    AmstradDskImageReader amstradDskReader,
     AmigaScpSectorImageReader amigaScpReader,
     AtariScpSectorImageReader atariScpReader,
     CommodoreScpSectorImageReader commodoreScpReader,
@@ -26,6 +27,7 @@ public sealed class DiskImageExplorer(
         var scp = new ScpReader(); var decoders = new FluxDecoderRegistry();
         return new(new AdfImageReader(), new AtariStImageReader(), new MsaImageReader(), new AtrImageReader(),
             new CommodoreD64ImageReader(), new CommodoreD71ImageReader(), new CommodoreD81ImageReader(),
+            new AmstradDskImageReader(),
             new AmigaScpSectorImageReader(scp, decoders), new AtariScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new FileSystemRegistry());
     }
@@ -42,6 +44,7 @@ public sealed class DiskImageExplorer(
         else if (extension.Equals(".d64", StringComparison.OrdinalIgnoreCase)) image = await d64Reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".d71", StringComparison.OrdinalIgnoreCase)) image = await d71Reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".d81", StringComparison.OrdinalIgnoreCase)) image = await d81Reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        else if (extension.Equals(".dsk", StringComparison.OrdinalIgnoreCase) || extension.Equals(".edsk", StringComparison.OrdinalIgnoreCase)) image = await amstradDskReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
             if (formatId is not null && !SupportedFormatIds.Contains(formatId)) throw new NotSupportedException($"The selected format '{formatId}' is not supported by the explorer yet.");
@@ -59,6 +62,8 @@ public sealed class DiskImageExplorer(
             return await amigaScpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith("commodore.", StringComparison.OrdinalIgnoreCase) == true)
             return await commodoreScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+        if (formatId?.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase) == true)
+            return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId is not null)
             return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         SectorImage? firstDecoded = null;
@@ -67,7 +72,9 @@ public sealed class DiskImageExplorer(
             () => atariScpReader.ReadAsync(path, null, cancellationToken),
             () => amigaScpReader.ReadAsync(path, cancellationToken),
             () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken),
-            () => commodoreScpReader.ReadAsync(path, null, cancellationToken)
+            () => commodoreScpReader.ReadAsync(path, null, cancellationToken),
+            () => atariScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken),
+            () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken)
         })
         {
             try

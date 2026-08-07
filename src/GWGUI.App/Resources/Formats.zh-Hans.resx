@@ -160,7 +160,7 @@
     <value>HxC 软盘模拟器</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>磁盘映像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|所有文件|*.*</value>
+    <value>磁盘映像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|所有文件|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

@@ -160,7 +160,7 @@
     <value>HxC Disket Emülatörü</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Disk görüntüleri|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|Tüm dosyalar|*.*</value>
+    <value>Disk görüntüleri|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|Tüm dosyalar|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

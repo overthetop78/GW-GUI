@@ -160,7 +160,7 @@
     <value>HxC ฟลอปปี้อีมูเลเตอร์</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>ดิสก์อิมเมจ|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|ไฟล์ทั้งหมด|*.*</value>
+    <value>ดิสก์อิมเมจ|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|ไฟล์ทั้งหมด|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

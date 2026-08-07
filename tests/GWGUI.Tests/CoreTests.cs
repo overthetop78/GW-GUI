@@ -1153,6 +1153,9 @@ public sealed class CoreTests
         Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.st", st, GwFormatCapabilities.Unknown));
         Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.st", st,
             capabilities with { ImageExtensions = new HashSet<string>([".st"], StringComparer.OrdinalIgnoreCase) }));
+        var dskCapabilities = capabilities with { ImageExtensions = new HashSet<string>([".dsk", ".edsk", ".scp"], StringComparer.OrdinalIgnoreCase) };
+        Assert.True(GwVisualizationPolicy.CanConvertToScp("disk.dsk", detector.Detect("disk.dsk", 194816), dskCapabilities));
+        Assert.True(GwVisualizationPolicy.CanConvertToScp("disk.EDSK", detector.Detect("disk.EDSK", 194816), dskCapabilities));
     }
 
     [Fact]

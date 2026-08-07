@@ -160,7 +160,7 @@
     <value>HxC Floppy emulátor</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|Minden fájl|*.*</value>
+    <value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|Minden fájl|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

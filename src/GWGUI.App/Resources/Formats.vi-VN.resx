@@ -160,7 +160,7 @@
     <value>HxC Trình giả lập đĩa mềm</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|Tất cả các tệp|*.*</value>
+    <value>Ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|Tất cả các tệp|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

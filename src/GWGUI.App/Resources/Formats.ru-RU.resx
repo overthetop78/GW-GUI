@@ -160,7 +160,7 @@
     <value>HxC Эмулятор дискет</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Образы дисков|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|Все файлы|*.*</value>
+    <value>Образы дисков|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|Все файлы|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

@@ -160,7 +160,7 @@
     <value>HxC Levykeemulaattori</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81|Kaikki tiedostot|*.*</value>
+    <value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|Kaikki tiedostot|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>
