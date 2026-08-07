@@ -20,6 +20,30 @@
 - Si une piste contient plusieurs révolutions, le visualiseur compare leur décodage et affiche celle qui fournit les structures les plus fiables; l’inspecteur précise le numéro retenu.
 - La cellule de temps est suivie progressivement pendant la révolution : une légère dérive de vitesse ne décale donc pas toute la suite du décodage.
 
+## Corrections et extensions demandées
+
+- Au lancement d’une nouvelle Lecture, Écriture, Conversion ou autre commande utilisant les segments de pistes, l’ancien état doit être immédiatement effacé : toutes les cases redeviennent grises avant que les nouveaux résultats apparaissent.
+- Les deux barres permanentes `Face 0` et `Face 1` du visualiseur ne doivent pas seulement indiquer qu’une piste a été préparée. Elles doivent refléter le résultat réel de l’analyse et utiliser les couleurs de la légende pour rendre visibles les pistes correctes, les structures reconnues et les anomalies.
+- Le panneau de fin d’une lecture doit permettre ultérieurement de renommer l’image produite, mais cette action ne doit pas être ajoutée directement dans le panneau actuel sans définir d’abord son emplacement et son parcours.
+
+## Projet d’onglet Explorateur
+
+Un onglet `Explorateur` est demandé pour afficher, lorsque le contenu peut être reconnu :
+
+- le nom du volume ;
+- l’arborescence des dossiers ;
+- les noms de fichiers ;
+- les informations disponibles sur les fichiers et dossiers.
+
+L’objectif concerne aussi bien les captures SCP que les autres images de disquette. La capacité réelle dépend toutefois du contenu :
+
+- une image sectorielle peut être parcourue lorsque sa géométrie et son système de fichiers sont reconnus ;
+- une capture SCP doit d’abord être décodée en secteurs, puis son système de fichiers doit être reconnu ;
+- une capture brute inconnue, protégée, non standard ou trop endommagée peut rester visualisable sans permettre de reconstruire une arborescence fiable ;
+- chaque famille de système de fichiers nécessite un lecteur dédié. Reconnaître le format physique d’une piste ne suffit pas à interpréter automatiquement ses dossiers et fichiers.
+
+La conception de cet onglet reste à définir avec l’utilisateur avant son développement : systèmes de fichiers à prendre en charge, affichage en lecture seule, informations détaillées, extraction éventuelle et comportement lorsque la reconnaissance est partielle.
+
 ## Décodage
 
 - Lecteur SCP universel.
