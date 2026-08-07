@@ -65,7 +65,7 @@ public partial class App : Application
         _theme = settings.Theme;
         ThemeManager.Apply(settings.Theme);
         SystemEvents.UserPreferenceChanged += SystemPreferenceChanged;
-        MainWindow = new MainWindow();
+        MainWindow = new MainWindow(null, initialSettings: settings);
         MainWindow.Show();
     }
 

@@ -103,17 +103,21 @@ public partial class MainWindow : Window
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
+    private readonly bool _settingsProvidedAtStartup;
     private CancellationTokenSource? _scpCancellation;
     private CancellationTokenSource? _scpInspectorCancellation;
     private ScpInspectorWindow? _detachedScpInspector;
     private readonly Stopwatch _operationStopwatch = new();
     private readonly System.Windows.Threading.DispatcherTimer _operationTimer = new() { Interval = TimeSpan.FromSeconds(1) };
 
-    public MainWindow() : this(null, null, null, null, null, null, null, null, null) { }
+    public MainWindow() : this(null, null, null, null, null, null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null, AppSettings? initialSettings = null)
     {
         InitializeComponent();
+        _settingsProvidedAtStartup = initialSettings is not null;
+        _settings = initialSettings ?? new AppSettings();
+        if (_settingsProvidedAtStartup) RestoreWindowPlacement();
         ConnectMainMenu();
         ConnectReadComponents();
         ConnectWriteComponents();
@@ -255,7 +259,7 @@ public partial class MainWindow : Window
         try
         {
             var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, path, new ConversionOutput(format.Id, ".scp", temporaryPath, false));
-            LogOutput.Clear(); await _consoleLog.BeginAsync("convert", command.ToDisplayString()); BeginProgress();
+            BeginProgress(); await RenderPendingProgressAsync(); LogOutput.Clear(); await _consoleLog.BeginAsync("convert", command.ToDisplayString());
             var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync(); ApplyOperationResult(_operationResultPresenter.Present(outcome)); EndProgress();
             if (outcome.Result?.IsSuccess != true || !File.Exists(temporaryPath)) return;
@@ -441,7 +445,7 @@ public partial class MainWindow : Window
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        _settings = await _settingsStore.LoadAsync();
+        if (!_settingsProvidedAtStartup) _settings = await _settingsStore.LoadAsync();
         if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
             _gwCapabilities = await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath);
         LoadConfiguredDiskDefs();
@@ -449,8 +453,11 @@ public partial class MainWindow : Window
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         LoadProfileStores();
-        RestoreWindowPlacement();
-        ConstrainToCurrentWorkArea();
+        if (!_settingsProvidedAtStartup)
+        {
+            RestoreWindowPlacement();
+            ConstrainToCurrentWorkArea();
+        }
         _viewModel.Read.Folder = _settings.DefaultImagesFolder;
         ReadFamilyCombo.ItemsSource = _formatCatalog.Formats.Where(x => x.Family != "Raw").Select(x => x.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.SelectedIndex = 0;
@@ -597,9 +604,10 @@ public partial class MainWindow : Window
         {
             var output = new ConversionOutput(format.Id, ".scp", temporaryPath, false);
             var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, source, output);
+            BeginProgress();
+            await RenderPendingProgressAsync();
             LogOutput.Clear();
             await _consoleLog.BeginAsync("convert", command.ToDisplayString());
-            BeginProgress();
             var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync();
             ApplyOperationResult(_operationResultPresenter.Present(outcome));
@@ -652,7 +660,7 @@ public partial class MainWindow : Window
         var warning = LocExtension.Get(_viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (_dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
-        WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); await _consoleLog.BeginAsync("write", command.ToDisplayString()); BeginProgress();
+        WriteExecuteButton.Content = LocExtension.Get("Common.Stop"); BeginProgress(); await RenderPendingProgressAsync(); LogOutput.Clear(); await _consoleLog.BeginAsync("write", command.ToDisplayString());
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
         await FlushPendingOutputAsync();
@@ -818,7 +826,7 @@ public partial class MainWindow : Window
             var decisions = _businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
             outputs = ConversionConflictResolver.Apply(outputs, existing, decisions, NumberedPath);
         }
-        ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); await _consoleLog.BeginAsync("convert", CommandPreview.Text); BeginProgress();
+        ConvertExecuteButton.Content = LocExtension.Get("Common.Stop"); BeginProgress(); await RenderPendingProgressAsync(); LogOutput.Clear(); await _consoleLog.BeginAsync("convert", CommandPreview.Text);
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token =>
         {
@@ -1235,9 +1243,10 @@ public partial class MainWindow : Window
         try { command = BuildReadCommand(target); }
         catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Read.Title")); return; }
         ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
+        BeginProgress();
+        await RenderPendingProgressAsync();
         LogOutput.Clear();
         await _consoleLog.BeginAsync("read", command.ToDisplayString());
-        BeginProgress();
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
         await FlushPendingOutputAsync();
@@ -1486,7 +1495,7 @@ public partial class MainWindow : Window
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!EnsureSelectedHardwareAvailable()) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
-        button.Content = LocExtension.Get("Common.Stop"); LogOutput.Clear(); await _consoleLog.BeginAsync(command.Verb, command.ToDisplayString()); BeginProgress();
+        button.Content = LocExtension.Get("Common.Stop"); BeginProgress(); await RenderPendingProgressAsync(); LogOutput.Clear(); await _consoleLog.BeginAsync(command.Verb, command.ToDisplayString());
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, progress, token));
         await FlushPendingOutputAsync();
@@ -1519,6 +1528,9 @@ public partial class MainWindow : Window
         _viewModel.ProgressValue = 0;
         _viewModel.ProgressText = "";
     }
+
+    private async Task RenderPendingProgressAsync() =>
+        await Dispatcher.InvokeAsync(static () => { }, System.Windows.Threading.DispatcherPriority.Render);
 
     private void ReportOutput(GwOutputLine line)
     {
