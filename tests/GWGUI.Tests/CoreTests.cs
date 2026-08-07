@@ -663,8 +663,9 @@ public sealed class CoreTests
 
         Assert.Equal(OperationResultState.Error, presentation.State);
         var message = Assert.Single(presentation.Messages);
-        Assert.Equal("Operation.Error", message.ResourceKey);
-        Assert.Equal(["broken"], message.Arguments);
+        Assert.Equal("Error.Unexpected", message.ResourceKey);
+        var detail = Assert.IsType<string>(Assert.Single(message.Arguments));
+        Assert.DoesNotContain("broken", detail, StringComparison.Ordinal);
         Assert.False(message.StartOnNewLine);
     }
 

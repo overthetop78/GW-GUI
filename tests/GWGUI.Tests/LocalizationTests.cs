@@ -218,6 +218,21 @@ public sealed class LocalizationTests
     }
 
     [Fact]
+    public void UserFacingApplicationCodeDoesNotExposeRawExceptionMessages()
+    {
+        var repository = FindRepositoryRoot();
+        var root = Path.Combine(repository, "src", "GWGUI.App");
+        var rawExceptionMessage = new Regex(@"\b(?:exception|error|outcome\.Error)\.Message\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        var offenders = Directory.EnumerateFiles(root, "*.cs", SearchOption.AllDirectories)
+            .Where(file => !file.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}") && !file.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}"))
+            .Where(file => rawExceptionMessage.IsMatch(File.ReadAllText(file)))
+            .Select(file => Path.GetRelativePath(repository, file))
+            .ToArray();
+
+        Assert.Empty(offenders);
+    }
+
+    [Fact]
     public void InstallerContainsEveryRequestedLanguage()
     {
         var root = FindRepositoryRoot();
