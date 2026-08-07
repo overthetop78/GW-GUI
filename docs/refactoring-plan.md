@@ -123,7 +123,7 @@ Ces fonctions ne sont pas équivalentes :
 - un **encodeur de piste** effectue le chemin inverse, secteurs vers MFM/FM/GCR et flux;
 - un **écrivain SCP** produit le conteneur brut autour de ce flux.
 
-Le code actuel possède le lecteur SCP et les décodeurs. Il ne possède pas encore le modèle sectoriel complet, les politiques de reconstruction, les encodeurs de pistes ni les écrivains de tous les conteneurs.
+Le code actuel possède le lecteur SCP, les décodeurs, un modèle sectoriel d'encodage et les 21 encodeurs de pistes correspondants. Il ne possède pas encore le reconstructeur sectoriel complet, les politiques de choix entre révolutions, les lecteurs/écrivains de tous les formats d'image, l'écrivain SCP complet ni le branchement de ces couches à la conversion interne de l'application.
 
 Les décodeurs de flux actuels ne remplacent pas les interpréteurs de systèmes de fichiers. Pour l’onglet `Explorateur`, le résultat sectoriel devra être transmis à un module distinct capable d’interpréter le volume, les répertoires, les fichiers, leurs attributs et les erreurs propres au système de fichiers.
 

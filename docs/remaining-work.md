@@ -26,6 +26,8 @@ Ce document ne remet pas en cause les validations successives déjà effectuées
 - proposer `Ouvrir dans Explorateur` après une Lecture réussie ;
 - permettre l’exploration directe d’une disquette en demandant à `gw` une capture SCP temporaire dans le dossier temporaire de Windows, puis gérer le cycle de vie et la suppression de ce fichier temporaire ;
 - découper `FluxDecoding.cs` par contrats, registre, traitement du flux et famille de décodeur ; conserver les encodeurs, décodeurs, conteneurs, reconstruction sectorielle et systèmes de fichiers dans des composants distincts ;
+- brancher les 21 encodeurs de pistes au futur moteur de conversion interne ; ajouter la reconstruction sectorielle, les politiques de choix entre révolutions et les lecteurs/écrivains des images ADF, ST, IMA, D64 et des autres conteneurs pris en charge ;
+- ajouter un écrivain SCP complet autour des flux produits par les encodeurs, avec index, timings, révolutions, tables de pistes, checksum et tests de compatibilité avec Greaseweazle ;
 - pour chacun de ces travaux, ajouter immédiatement les nouvelles clés dans le français, l’anglais et tous les autres fichiers de traduction, sans texte visible écrit en dur.
 
 ### A0 — Reprise progressive de l’interface
