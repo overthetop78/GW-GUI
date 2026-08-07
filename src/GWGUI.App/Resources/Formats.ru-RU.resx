@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Detection.Ambiguous">
+    <value>Неоднозначный формат</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Необработанный захват SCP распознан.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Формат Amiga распознается по размеру файла.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Формат Acorn распознается по размеру файла.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Размер не соответствует известному профилю Atari ST.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Геометрия Atari ST распознается по размеру файла.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Контейнер Atari MSA распознан; при необходимости подтвердите геометрию.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Само по себе расширение не может определить геометрию IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>Геометрия IBM PC распознается по размеру файла.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Формат, полученный из расширения.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Возможны несколько форматов; выберите один явно.</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Необработанное изображение флюса</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1.2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — ДМФ 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — сканирование FM/MFM</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC изображение потока</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA образ диска</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG образ диска</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Дисковый файл</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Дисковый файл</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST изображение</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Магический теневой архиватор</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 изображение</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Эмулятор дискет</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Образы дисков|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Все файлы|*.*</value>
+  </data>
+</root>

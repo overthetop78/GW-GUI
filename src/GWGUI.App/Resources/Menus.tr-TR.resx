@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Menu.Options">
+    <value>_Seçenekler</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Tercihler…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Teşhis</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Bilgi</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB bant genişliği</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM hız</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Kafa ara…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Donanım</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pimler…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Sıfırla</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Gecikmeler…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Aygıt yazılımı…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Yardım</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokümantasyon</value>
+  </data>
+  <data name="Menu.About">
+    <value>Hakkında</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Okumak</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Yazmak</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Dönüşüm</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Görselleştirme</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Aletler</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Sürücü hizalaması…</value>
+  </data>
+  <data name="Tab.Explorer">
+    <value>Disk Gezgini</value>
+  </data>
+</root>

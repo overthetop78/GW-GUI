@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Αποκρυπτογράφος</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Ζουμ συνδέσμου</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Ανοίξτε ένα αρχείο SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Δεν έχει ανοίξει αρχείο SCP</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Αναμονή για αρχείο</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Επιθεωρητής</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Επιλέξτε ένα κομμάτι.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Κάντε κλικ: επιλέξτε · Τροχός: μεγέθυνση · Δεξί κλικ: μετατόπιση</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Κανονική ροή</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Σύντομη μετάβαση</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Μακρά μετάβαση/ανωμαλία</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Ανάγνωση αρχείου…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Μη έγκυρο αρχείο</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP οπτικοποίηση</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>έγκυρος</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>άκυρος</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} κομμάτια · {2} στροφές · {3} ανάλυση ns · {4} άθροισμα ελέγχου</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Επανάσταση {0}: {1:N0} μεταβάσεις · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Αποκωδικοποίηση: {0}
+Εμπιστοσύνη: {1:P0}
+Εκτιμώμενο κελί: {2:F1} τικ
+Δομές: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Πλευρά: {0}
+Κομμάτι: {1}
+SCP καταχώριση: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Πλευρά {0}
+Δεν υπάρχουν δεδομένα</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Πλευρά {0} · Κομμάτι {1}
+{2} επαναστάσεις</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Αυτόματο</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Κεφαλίδα/διεύθυνση</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Αποκωδικοποιημένα δεδομένα</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Διαγράφηκε/ανωμαλία</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Ανάλυση βασισμένη στην επανάσταση {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Τομέας C{0} H{1} R{2} · {3} byte · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>έγκυρος</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>άκυρος</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>δυσεύρετος</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (μονής πυκνότητας)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar σκληρού τομέα MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit σκληρού τομέα FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N σκληρού τομέα FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg σύστημα/δεδομένα</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Ακατέργαστη ροή</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Συγχρονισμός</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Κεφαλίδα τομέα</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Στοιχεία κλάδου</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Διαγραμμένα δεδομένα τομέα</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga συγχρονισμός</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Πρόλογος διεύθυνσης Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Πρόλογος δεδομένων της Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore συγχρονισμός</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore κεφαλίδα</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Μορφοποίηση κεφαλίδας</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Μορφοποίηση δεδομένων</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Ανωμαλία χρόνου</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro λήψη (*.scp)|*.scp|Όλα τα αρχεία|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Άθροισμα ελέγχου</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Πλευρά {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Ανάλυση κομματιού {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Πλευρά</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Τροχιά</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP καταχώρηση</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Επαναστάσεις</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Ανάλυση</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Εμπιστοσύνη</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Εκτιμώμενο κελί</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Δομές</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Ανιχνευμένες δομές</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Τομείς</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>μεταβάσεις</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Άνοιγμα εικόνας δίσκου…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Αποσπάστε τον επιθεωρητή</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Συνδέστε τον επιθεωρητή</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Περίληψη</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Εντοπίστηκε μορφή</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Μέση RPM</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Μέση διάρκεια</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

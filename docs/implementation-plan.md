@@ -96,7 +96,7 @@ Le dépôt est public sous licence MIT. Les préversions `0.x` servent au dével
 ## Traductions de l’application et de l’installateur
 
 - Remplacer la sélection binaire français/anglais par un catalogue de cultures extensible.
-- Conserver une ressource `.resx` complète par langue avec contrôle automatique de parité des clés et repli vers l’anglais.
+- Conserver, pour chaque langue, une ressource `.resx` par fonction avec contrôle automatique de parité des clés dans chaque catalogue et repli vers l’anglais.
 - Traduire tous les écrans, dialogues, messages dynamiques, infobulles et noms accessibles; ne pas traduire les arguments `gw` ni les identifiants techniques.
 - Ajouter les mêmes langues à Inno Setup et étendre les tests silencieux, interactifs et de mise à niveau de l’installateur.
 - Vérifier visuellement les textes longs, raccourcis clavier, formats numériques et captures dans chaque langue.

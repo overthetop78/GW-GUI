@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Existing files</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Some files already exist</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Choose an action for each file or apply the same action to all files.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>File</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Action</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Overwrite</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Skip</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Use next number</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Overwrite all</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Skip all</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Number all</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Conversion</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Select at least one output format.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Ambiguous source</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Summary: {0} succeeded, {1} failed.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value> Failures: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Source</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Output names</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Add tags</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Selected</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Common formats</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Show rarely used formats</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Limit tracks</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Choose an existing source image.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Enter the output filenames.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Check at least one output format.</value>
+  </data>
+  <data name="Conversion.More">
+    <value> (+ {0} conversion(s))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>No extension checked: {0} is used by default.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} is not compatible with this source.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>No available output filename could be found.</value>
+  </data>
+</root>

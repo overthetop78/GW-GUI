@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Tùy chọn</value>
+  </data>
+  <data name="Options.General">
+    <value>Tổng quan</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Công cụ</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Bộ điều khiển và ổ đĩa</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Thư mục ảnh đĩa mặc định</value>
+  </data>
+  <data name="Options.Language">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="Options.Theme">
+    <value>chủ đề</value>
+  </data>
+  <data name="Theme.System">
+    <value>Hệ thống</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Ánh sáng</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Tối tăm</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Đường dẫn đến gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Nếu thiếu công cụ, trợ lý sẽ đề nghị tải chúng xuống hoặc chọn bản cài đặt hiện có. Cập nhật chỉ được công bố.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Cài đặt phần cứng vẫn được lưu trữ khi ổ đĩa bị ngắt kết nối.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Có thể thực thi (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Xóa bộ điều khiển được lưu trữ này và tất cả các ổ đĩa của nó?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Phần cứng</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Sử dụng thẻ trong tên tệp chuyển đổi</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>cài sẵn</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Chỉ dành cho gia đình</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Chỉ định dạng</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Gia đình và định dạng</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Gia đình và phần mở rộng</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Gia đình, định dạng và phần mở rộng</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Mẫu thẻ chuyển đổi</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Các biến có sẵn</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Tên tệp nguồn</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Gia đình: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Định dạng: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Gia hạn: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Ngày: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Ngày: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Ngày: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Thời gian: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Thời gian: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Thời gian: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — tên file nguồn
+{FAMILY} — họ máy (PC, ST, AMIGA…)
+{FORMAT} — định dạng hoặc hình học (720, 1440, DD…)
+{EXTENSION} — phần mở rộng đầu ra (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — ngày 2026-08-06
+{DATE:YYYYMMDD} — ngày 20260806
+{DATE:DD-MM-YYYY} — ngày 08-06-2026
+{TIME:HH-MM-SS} — thời gian 14-35-42
+{TIME:HHMMSS} — thời gian 143542
+{TIME:HH-MM} — thời gian 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Các mẫu tùy chỉnh gần đây</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Ví dụ tiếp theo</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Ví dụ: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Mẫu thẻ phải chứa {tag}.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Lưu nhật ký</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Nhật ký</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Mỗi hành động có tệp riêng trong thư mục Nhật ký GW GUI.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Xóa</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Đầu sạch</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Mở thư mục</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Kích thước tối đa</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Giữ nhật ký trước đó</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = không giới hạn</value>
+  </data>
+</root>

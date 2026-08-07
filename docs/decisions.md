@@ -8,7 +8,7 @@
 - Exécution de `gw.exe` sans fenêtre console externe.
 - Commande générée et journaux visibles dans l’application.
 - Interface multilingue. Le français et l’anglais restent les langues de référence; plusieurs langues supplémentaires doivent couvrir à la fois le logiciel et l’installateur.
-- Ressources de traduction `.resx` : `Strings.resx`, `Strings.fr-FR.resx`, `Strings.en-US.resx`, puis un catalogue complet par culture ajoutée.
+- Ressources de traduction `.resx` séparées par fonction (`Common`, `Actions`, `Errors`, `Read`, `Write`, `Conversion`, `Visualizer`, `Explorer`, etc.). Chaque fonction possède une ressource neutre et une déclinaison par culture distribuée.
 - Au premier lancement, l’application utilise la langue d’interface de Windows si elle est prise en charge. Si elle ne l’est pas ou si sa détection échoue, l’application utilise l’anglais, langue de base et de repli.
 - Une langue déjà choisie et enregistrée dans les Options est conservée. La langue de l’installateur est indépendante et ne force pas celle de l’application.
 - La langue s’applique dès sa sélection et est mémorisée sans utiliser le bouton Enregistrer. Tous les textes liés aux ressources sont actualisés sur place dans toutes les fenêtres déjà ouvertes : aucune fenêtre n’est fermée, recréée, déplacée ou rouverte.

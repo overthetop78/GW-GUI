@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>选项</value>
+  </data>
+  <data name="Options.General">
+    <value>一般的</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle 工具</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>控制器和驱动器</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>型材</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>默认磁盘映像文件夹</value>
+  </data>
+  <data name="Options.Language">
+    <value>语言</value>
+  </data>
+  <data name="Options.Theme">
+    <value>主题</value>
+  </data>
+  <data name="Theme.System">
+    <value>系统</value>
+  </data>
+  <data name="Theme.Light">
+    <value>光</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>黑暗的</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>gw.exe 的路径</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>如果缺少工具，助手将提供下载或选择现有安装。更新仅公布。</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>当驱动器断开连接时，硬件设置仍会被存储。</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|可执行文件 (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>删除这个存储的控制器及其所有驱动器？</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>硬件</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>在转换文件名中使用标签</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>预设</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>仅限家庭</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>仅格式</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>家族和格式</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>家庭和延伸</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>系列、格式和扩展</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>转化标签模式</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>可用变量</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>源文件名</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>系列：PC、ST、AMIGA...</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>格式：720、1440、DD...</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>扩展名：IMA、ST、ADF...</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>日期：2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>日期：20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>日期: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>时间：42年14月35日</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>时间：143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>时间：14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — 源文件名
+{FAMILY} — 机器系列（PC、ST、AMIGA…）
+{FORMAT} — 格式或几何形状（720、1440、DD...）
+{EXTENSION} — 输出扩展（IMA、ST、ADF...）
+{DATE:YYYY-MM-DD} — 日期 2026-08-06
+{DATE:YYYYMMDD} — 日期 20260806
+{DATE:DD-MM-YYYY} — 日期 06-08-2026
+{TIME:HH-MM-SS} — 时间 14-35-42
+{TIME:HHMMSS} — 时间 143542
+{TIME:HH-MM} — 时间 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>最近定制的图案</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>下一个例子</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>示例：{0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>标记模式必须包含 {tag}。</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>保存日志</value>
+  </data>
+  <data name="Options.Logs">
+    <value>日志</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>每个操作在 GW GUI Logs 文件夹中都有自己的文件。</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>擦除</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>清洁头部</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>打开文件夹</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>最大尺寸</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>保留以前的日志</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = 无限制</value>
+  </data>
+</root>

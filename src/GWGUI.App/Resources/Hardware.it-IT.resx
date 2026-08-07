@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>Porta</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB identificatore</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Guidare</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Disponibile</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Scansione</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Aggiungi un'unità...</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Nessuna unità definita</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Definire un'unità</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle regolatore</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>La selezione è passata a gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Dimensione fisica</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Misurare</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Densità</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Velocità</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Disponibile</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Non disponibile</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Densità unità (solo descrizione)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Velocità nominale (solo descrizione)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Controller non configurato</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>disconnesso</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>L'unità selezionata viene disconnessa. Ricollegalo o esegui nuovamente la scansione in Opzioni → Controller e unità.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0} pollici · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Guidare</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Scansiona o aggiungi prima un controller Greaseweazle.</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0} pollici · {1} · selezione {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Scansione</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Seleziona o scarica prima gw.exe di seguito.</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Controllo dell'hardware</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Impossibile trovare l'hardware configurato</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>La configurazione viene conservata, ma le relative unità rimarranno non disponibili finché non verrà ritrovato il loro Greaseweazle.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Controller Greaseweazle mancanti</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Cerca di nuovo</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Impostazioni dell'hardware</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Continua senza questa unità</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Il controllo hardware non è riuscito: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Nuovo Greaseweazle rilevato</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} è stato rilevato il {1}. Vuoi configurare la sua unità adesso?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Configurazione</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Configurato</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Rilevato, non configurato</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Configura</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Guida {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Azionamento {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Dimenticare</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Vuoi davvero dimenticare questa unità o dispositivo?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Questa è l'ultima unità configurata per questo Greaseweazle. Vuoi dimenticare sia l'unità che Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Seleziona prima una riga appartenente al Greaseweazle pertinente.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>A questo Greaseweazle possono essere assegnati automaticamente al massimo due azionamenti (A e B).</value>
+  </data>
+</root>

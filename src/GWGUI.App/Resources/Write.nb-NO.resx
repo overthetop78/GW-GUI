@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Skrive</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Velg et eksisterende kildebilde.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formatet er tvetydig. Velg eksplisitt et kompatibelt format.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Bekreftelse etter skriving er deaktivert.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verifisering etter skriving er aktivert.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Bekreft skriving</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Bilde: {0}
+Format: {1}
+Stasjon: {2}
+{3}
+
+Vil du skrive dette bildet til disk?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Kildebilde</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Oppdaget format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Velg et bilde.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Deaktiver verifisering etter skriving</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Legger til --no-verify. Disken vil ikke leses på nytt for å bekrefte skrivingen.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Slett tomme spor</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualiser spor</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Velg diskformatet før du visualiserer sporene.</value>
+  </data>
+</root>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.SettingsSaveFailed">
+    <value>Inställningarna kunde inte sparas.
+
+{0}</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI fel</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Ett oväntat fel fångades upp.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Inställningarna kunde inte sparas. Fönstret stängs fortfarande.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Hela rapporten sparades till:
+{0}</value>
+  </data>
+</root>

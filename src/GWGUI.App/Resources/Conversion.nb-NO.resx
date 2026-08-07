@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Eksisterende filer</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Noen filer eksisterer allerede</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Velg en handling for hver fil eller bruk den samme handlingen på alle filene.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fil</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Handling</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Overskriv</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Hopp over</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Bruk neste nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Overskriv alle</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Hopp over alt</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alle</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Omdannelse</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Velg minst ett utdataformat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Tvetydig kilde</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Sammendrag: {0} lyktes, {1} mislyktes.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Feil: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Kilde</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Utdatanavn</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Legg til tagger</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Valgt</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Vanlige formater</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Vis sjelden brukte formater</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Begrens spor</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Velg et eksisterende kildebilde.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Skriv inn utdatafilnavnene.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Sjekk minst ett utdataformat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konvertering(er))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Ingen utvidelse er merket: {0} brukes som standard.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} er ikke kompatibel med denne kilden.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Finner ikke noe tilgjengelig utdatafilnavn.</value>
+  </data>
+</root>

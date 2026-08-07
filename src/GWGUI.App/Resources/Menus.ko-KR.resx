@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Menu.Options">
+    <value>_옵션</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>환경설정…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>진단</value>
+  </data>
+  <data name="Menu.Information">
+    <value>정보</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB 대역폭</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM 속도</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>머리를 찾아라…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>하드웨어</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>다리…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>다시 놓기</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>지연…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>펌웨어…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_돕다</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>선적 서류 비치</value>
+  </data>
+  <data name="Menu.About">
+    <value>에 대한</value>
+  </data>
+  <data name="Tab.Read">
+    <value>읽다</value>
+  </data>
+  <data name="Tab.Write">
+    <value>쓰다</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>변환</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>시각화</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>도구</value>
+  </data>
+  <data name="Menu.Align">
+    <value>드라이브 정렬…</value>
+  </data>
+  <data name="Tab.Explorer">
+    <value>디스크 탐색기</value>
+  </data>
+</root>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>الملفات الشخصية حسب العملية</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>فاتورة غير مدفوعة</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>اسم</value>
+  </data>
+  <data name="Profiles.System">
+    <value>نظام</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>إعادة تسمية…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>حفظ الملف الشخصي</value>
+  </data>
+  <data name="Profile.Name">
+    <value>اسم الملف الشخصي</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>أدخل اسما.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>حساب تعريفي</value>
+  </data>
+  <data name="Common.Profile">
+    <value>حساب تعريفي</value>
+  </data>
+  <data name="Profile.Default">
+    <value>تقصير</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>ملف التعريف الافتراضي دائم ولا يمكن إعادة تسميته.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>ملف التعريف الافتراضي دائم ولا يمكن حذفه.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>الملف الشخصي الموجود في علامة التبويب هذه يحمل هذا الاسم بالفعل.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>هذا الملف الشخصي موجود بالفعل. استبداله؟</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>هل تريد حذف الملف الشخصي "{0}"؟</value>
+  </data>
+</root>

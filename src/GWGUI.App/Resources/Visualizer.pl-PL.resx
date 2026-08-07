@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Dekoder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Zoom łącza</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Otwórz plik SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Żaden plik SCP nie jest otwarty</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Czekam na plik</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspektor</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Wybierz utwór.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Kliknij: wybierz · Koło: powiększenie · Kliknij prawym przyciskiem myszy: przesuwanie</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normalny strumień</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Krótkie przejście</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Długie przejście/anomalia</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Czytanie pliku…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Nieprawidłowy plik</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP wizualizacja</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>ważny</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>nieważny</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} ścieżki · {2} obrót(y) · {3} rozdzielczość ns · {4} suma kontrolna</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Rewolucja {0}: {1:N0} przejścia · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Dekodowanie: {0}
+Pewność: {1:P0}
+Szacowana komórka: {2:F1} znaczników
+Struktury: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Strona: {0}
+Utwór: {1}
+SCP wpis: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Strona {0}
+Brak danych</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Strona {0} · Ścieżka {1}
+{2} obrót(y)</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automatyczny</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Nagłówek/adres</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Zdekodowane dane</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Usunięto/anomalię</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analiza oparta na rewolucji {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektor C{0} H{1} R{2} · {3} bajtów · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>ważny</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>nieważny</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>nie płynny</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (pojedyncza gęstość)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar sektor twardy MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit sektor twardy FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N sektor twardy FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg system/dane</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Surowy strumień</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synchronizacja</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Nagłówek sektora</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Dane sektorowe</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Usunięte dane sektora</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Synchronizacja Amiga</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Prolog adresu Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Prolog dotyczący danych Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Synchronizacja Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Nagłówek Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Formatuj nagłówek</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Formatuj dane</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Anomalia czasowa</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro przechwytywanie (*.scp)|*.scp|Wszystkie pliki|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Suma kontrolna</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Strona {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Analizuję utwór {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Strona</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Ścieżka</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP wpis</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Rewolucje</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analiza</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Zaufanie</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Szacunkowa komórka</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Struktury</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Wykryte struktury</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektory</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>przejścia</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Otwórz obraz dysku…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Odłącz inspektora</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Dołącz inspektora</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Streszczenie</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Wykryto format</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Średnie obroty</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Średni czas trwania</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

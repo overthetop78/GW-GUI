@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Logs.ExportFilter">
+    <value>Nhật ký văn bản (*.txt)|*.txt|Tất cả các tệp|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Lịch sử hoạt động</value>
+  </data>
+</root>

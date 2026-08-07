@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Các tập tin hiện có</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Một số tệp đã tồn tại</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Chọn một hành động cho mỗi tệp hoặc áp dụng cùng một hành động cho tất cả các tệp.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Tài liệu</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Hoạt động</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Ghi đè</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Nhảy</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Sử dụng số tiếp theo</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Ghi đè tất cả</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Bỏ qua tất cả</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Đánh số tất cả</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>chuyển đổi</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Chọn ít nhất một định dạng đầu ra.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Nguồn mơ hồ</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Tóm tắt: {0} thành công, {1} thất bại.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Lỗi: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Nguồn</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Tên đầu ra</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Thêm thẻ</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Đã chọn</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Các định dạng phổ biến</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Hiển thị các định dạng hiếm khi được sử dụng</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Giới hạn bài hát</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Chọn một hình ảnh nguồn hiện có.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Nhập tên tập tin đầu ra.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Kiểm tra ít nhất một định dạng đầu ra.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} chuyển đổi)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Không có tiện ích mở rộng nào được chọn: {0} được sử dụng theo mặc định.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} không tương thích với nguồn này.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Không thể tìm thấy tên tệp đầu ra có sẵn.</value>
+  </data>
+</root>

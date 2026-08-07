@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Προηγμένες ρυθμίσεις</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Επιχειρήματα ειδικών</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Τα επιχειρήματα περνούν όπως γράφτηκαν μετά την επικύρωση της προσφοράς.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Αναζητήστε επαναλήψεις</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Ψεύτικο ευρετήριο</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Σκληροί τομείς</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Δεδομένα αντίστροφης διαδρομής</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Ρυθμίστε την ταχύτητα</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL παράκαμψη</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Πείρο πυκνότητας 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Δημιουργία TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Προδιαγραφή κομματιών</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Γράψτε προκαταβολή</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Διαδρομές εξόδου</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Προσαρμοσμένοι ορισμοί δίσκου</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle ορισμοί δίσκου (*.cfg)|*.cfg|Όλα τα αρχεία|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Το επιλεγμένο αρχείο ορισμών δίσκου δεν υπάρχει.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Μια σύνθετη ρύθμιση δεν είναι έγκυρη: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Προδιαγραφές κομματιού, για παράδειγμα c=0-79:h=0-1, c=0-79/2:h=0 ή c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Θετική ταχύτητα ή περίοδος, για παράδειγμα 300rpm, 200ms, 200000us ή 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL παράμετροι διαχωρισμένες με άνω και κάτω τελεία, για παράδειγμα period=5:phase=60 ή period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Γράψτε προκαταρκτική αντιστάθμιση, για παράδειγμα type=mfm:40=125. Τύποι: mfm, fm, gcr; οι τιμές είναι σε νανοδευτερόλεπτα.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Χρησιμοποιήστε ένα προσαρμοσμένο αρχείο diskdefs.cfg για να προσθέσετε ή να παρακάμψετε ορισμούς μορφής Greaseweazle.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Αριθμός στροφών που διαβάστηκαν ανά κομμάτι. Παράδειγμα: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Πρόσθετες προσπάθειες μετά από σφάλμα. Παράδειγμα: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Περιορίστε τους κυλίνδρους, τις κεφαλές ή τα βήματα. Παράδειγμα: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Πρόσθετες προσπάθειες μετά την κίνηση του κεφαλιού. Παράδειγμα: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Δημιουργήστε ένα χρονισμένο ευρετήριο για μια μονάδα δίσκου χωρίς σήμα ευρετηρίου. Παράδειγμα: --fake-index 300rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Χειριστείτε έναν δίσκο σκληρού τομέα. Μη συμβατό με --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Αντίστροφα δεδομένα κομματιού για ανεπαρκή μέσα ή καλωδίωση.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Εκ νέου κλίμακα χρονισμού δεδομένων. Παράδειγμα: --adjust-speed 300rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Διαμόρφωση του βρόχου ανάκτησης ρολογιού. Παράδειγμα: --pll περίοδος=5:φάση=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Πιέστε τον πείρο επιλογής πυκνότητας ψηλά ή χαμηλά. Παράδειγμα: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Δημιουργήστε το σήμα TG43 για μονάδες δίσκου που το απαιτούν. Μη συμβατό με --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Διαγραφή κομματιών για τα οποία η εικόνα προέλευσης δεν περιέχει δεδομένα.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Διαγράψτε κάθε κομμάτι πριν το γράψετε.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Εφαρμόστε προκαταβολή εγγραφής. Παράδειγμα: --precomp τύπος=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Αντιστοιχίστε ξανά τα κομμάτια στην εικόνα εξόδου. Παράδειγμα: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>취소</value>
+  </data>
+  <data name="Common.Save">
+    <value>구하다</value>
+  </data>
+  <data name="Common.Delete">
+    <value>삭제</value>
+  </data>
+  <data name="Common.Browse">
+    <value>먹다…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>선택하다…</value>
+  </data>
+  <data name="Common.Close">
+    <value>닫다</value>
+  </data>
+  <data name="Common.Execute">
+    <value>실행하다</value>
+  </data>
+  <data name="Common.Stop">
+    <value>멈추다</value>
+  </data>
+  <data name="Common.Continue">
+    <value>계속하다</value>
+  </data>
+  <data name="Common.Reset">
+    <value>다시 놓기</value>
+  </data>
+  <data name="Common.Copy">
+    <value>복사</value>
+  </data>
+  <data name="Common.Modify">
+    <value>수정하다</value>
+  </data>
+  <data name="Common.Hide">
+    <value>숨다</value>
+  </data>
+  <data name="Common.Export">
+    <value>내보내다</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+</root>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Fișiere existente</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Unele fișiere există deja</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Alegeți o acțiune pentru fiecare fișier sau aplicați aceeași acțiune tuturor fișierelor.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fişier</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Acţiune</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Suprascrie</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Sari peste</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Utilizați următorul număr</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Suprascrie toate</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Sari peste toate</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Număr toate</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Conversie</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Selectați cel puțin un format de ieșire.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Sursă ambiguă</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Rezumat: {0} a reușit, {1} a eșuat.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Eșecuri: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Sursă</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Nume de ieșire</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Adăugați etichete</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Selectat</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Formate comune</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Afișați formatele utilizate rar</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Limitați piese</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Alegeți o imagine sursă existentă.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Introduceți numele fișierelor de ieșire.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Verificați cel puțin un format de ieșire.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} conversie(i))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Nicio extensie nu a fost verificată: {0} este utilizat în mod prestabilit.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} nu este compatibil cu această sursă.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Nu a putut fi găsit niciun nume de fișier de ieșire disponibil.</value>
+  </data>
+</root>

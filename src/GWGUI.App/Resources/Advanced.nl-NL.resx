@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Geavanceerde instellingen</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Deskundige argumenten</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumenten worden doorgegeven zoals geschreven na validatie van de offerte.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Zoek nieuwe pogingen</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Valse index</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Harde sectoren</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Trackgegevens omkeren</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Pas de snelheid aan</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL overschrijven</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Dichtheidspin 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Genereer TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Nummers vooraf wissen</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Precompensatie schrijven</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Uitvoersporen</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Aangepaste schijfdefinities</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle schijfdefinities (*.cfg)|*.cfg|Alle bestanden|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Het geselecteerde schijfdefinitiebestand bestaat niet.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Een geavanceerde instelling is ongeldig: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Trackspecificatie, bijvoorbeeld c=0-79:h=0-1, c=0-79/2:h=0, of c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Positieve snelheid of periode, bijvoorbeeld 300 tpm, 200 ms, 200000us of 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parameters gescheiden door dubbele punten, bijvoorbeeld period=5:phase=60 of period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Schrijf precompensatie, bijvoorbeeld type=mfm:40=125. Typen: mfm, fm, gcr; waarden zijn in nanoseconden.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Gebruik een aangepast diskdefs.cfg-bestand om Greaseweazle-formaatdefinities toe te voegen of te overschrijven.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Aantal afgelezen omwentelingen per spoor. Voorbeeld: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Extra pogingen na een fout. Voorbeeld: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Beperk cilinders, koppen of stappen. Voorbeeld: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Extra pogingen na beweging van het hoofd. Voorbeeld: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Creëer een getimede index voor een schijf zonder indexsignaal. Voorbeeld: --fake-index 300 tpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Behandel een schijf met harde sectoren. Incompatibel met --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Trackgegevens omkeren voor flippy media of bedrading.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Gegevenstiming opnieuw schalen. Voorbeeld: --adjust-speed 300 tpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Configureer de klokherstellus. Voorbeeld: --pll periode=5:fase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Forceer de dichtheidsselectiepin hoog of laag. Voorbeeld: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Genereer het TG43-signaal voor schijven die dit nodig hebben. Incompatibel met --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Wis tracks waarvan de bronafbeelding geen gegevens bevat.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Wis elk nummer voordat u het wegschrijft.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Schrijfvoorcompensatie toepassen. Voorbeeld: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Wijs tracks in de uitvoerafbeelding opnieuw toe. Voorbeeld: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

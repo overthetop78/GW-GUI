@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Write</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Choose an existing source image.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>The format is ambiguous. Explicitly choose a compatible format.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verification after writing is disabled.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verification after writing is enabled.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Confirm write</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Image: {0}
+Format: {1}
+Drive: {2}
+{3}
+
+Write this image to disk?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Source image</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Detected format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Choose an image.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Disable verification after writing</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Adds --no-verify. The disk will not be reread to confirm the write.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Erase empty tracks</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualize tracks</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Select the disk format before visualizing its tracks.</value>
+  </data>
+</root>

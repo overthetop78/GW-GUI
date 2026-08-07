@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>準備執行。</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>原始輸出</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>確認擦除</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>永久刪除插入磁碟上的所有資料？</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>清潔頭部</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>確認已插入清潔盤。切勿使用資料盤。</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>清除磁碟</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>磁碟上的所有資料都將被破壞。</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>限製曲目</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>轉數</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>清潔頭部</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>插入清潔磁碟，切勿插入包含資料的磁碟。</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>汽缸</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>通行證</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>每個氣缸的持續時間（毫秒）</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>測量次數</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>圓柱</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>允許極限氣缸</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>保持馬達活躍</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>腳位（8、26 或 28）</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>更換針腳</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>高電位</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>選擇（微秒）</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>頭步 (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>穩定（毫秒）</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>馬達（毫秒）</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>自動取消選擇（毫秒）</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>寫入前（微秒）</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>寫入後（微秒）</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>索引掩模（μs）</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>更新引導程式（有風險）</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>更新引導程式是一項進階操作，如果中斷，可能會導致控制器無法使用。繼續？</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>控制器</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>未知韌體</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>未知埠</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>本地資訊有效；只是網路檢查失敗。</value>
+  </data>
+  <data name="Tool.Running">
+    <value>命令運行...</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>控制器資訊</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB 頻寬</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>行駛速度</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>求頭</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>硬體引腳</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>重設控制器</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>延誤</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>韌體</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>無效參數</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>執行前檢查突出顯示的命令參數。</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>引導模式</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>驅動器對準診斷</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>交替軌道（必需）</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>讀取次數</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>解碼格式</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>讀取原始通量 (--raw)</value>
+  </data>
+</root>

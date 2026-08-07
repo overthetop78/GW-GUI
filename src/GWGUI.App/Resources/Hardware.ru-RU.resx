@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>Порт</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>идентификатор USB</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Водить машину</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Доступный</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Сканировать</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Добавить диск…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Диск не определен</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Определить диск</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle контроллер</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Выбор передан gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Физический размер</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Размер</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Плотность</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Скорость</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Доступный</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Недоступно</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Плотность дисков (только описание)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Номинальная скорость (только описание)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Контроллер не настроен</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>отключен</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Выбранный диск отключен. Подключите его повторно или выполните сканирование еще раз в разделе «Параметры» → «Контроллеры и приводы».</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-дюйм · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Водить машину</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Сначала отсканируйте или добавьте контроллер Greaseweazle.</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-дюйм · {1} · выбор {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Сканировать</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Сначала выберите или загрузите gw.exe ниже.</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Проверка оборудования</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Настроенное оборудование не найдено</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Конфигурация сохраняется, но ее диски останутся недоступными до тех пор, пока их Greaseweazle не будет найден снова.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Отсутствуют контроллеры Greaseweazle.</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Искать еще раз</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Настройки оборудования</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Продолжить без этого диска</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Проверка оборудования не удалась: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Обнаружен новый Greaseweazle</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} был обнаружен на {1}. Вы хотите настроить его привод сейчас?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Конфигурация</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Настроен</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Обнаружен, не настроен</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Настроить</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Диск {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Диск {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Забывать</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Вы действительно хотите забыть этот диск или устройство?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Это последний настроенный диск для этого Greaseweazle. Хотите забыть и диск, и Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Сначала выберите строку, принадлежащую соответствующему Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Этому Greaseweazle автоматически может быть назначено не более двух приводов (A и B).</value>
+  </data>
+</root>

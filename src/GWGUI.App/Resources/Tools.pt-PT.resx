@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>Pronto a executar.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Saída bruta</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Confirmar eliminação</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Apagar permanentemente todos os dados do disco inserido?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Cabeças limpas</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Confirme se está inserido um disco de limpeza. Nunca utilize um disco de dados.</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Apagar um disco</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Todos os dados do disco serão destruídos.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Limitar faixas</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revoluções</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Cabeças limpas</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Insira um disco de limpeza, nunca um disco que contenha dados.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Cilindros</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Passes</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Duração por cilindro (ms)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Número de medições</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Cilindro</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Permitir cilindros extremos</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Mantenha o motor ativo</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pino (8, 26 ou 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Alterar pino</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Alto nível</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Seleção (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Passo da cabeça (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Liquidar (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Desmarcação automática (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Antes de escrever (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Depois de escrever (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Máscara de índice (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Atualizar bootloader (arriscado)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>A atualização do bootloader é uma operação avançada que pode inutilizar o controlador se for interrompida. Continuar?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Controlador</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Firmware desconhecido</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Porta desconhecida</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>A informação local é válida; apenas a verificação da rede falhou.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Comando em execução…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Informações do controlador</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB largura de banda</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Velocidade de condução</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Procure a cabeça</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Pinos de hardware</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Redefinir controlador</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Atrasos</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Parâmetros inválidos</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Verifique os parâmetros de comando destacados antes de executar.</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Modo bootloader</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnóstico de alinhamento do acionamento</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Faixa(s) alternada(s) (obrigatório)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Número de leituras</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Formato de descodificação</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Leia o fluxo bruto (--raw)</value>
+  </data>
+</root>

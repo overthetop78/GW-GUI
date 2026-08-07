@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>ท่าเรือ</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>ตัวระบุ USB</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>ขับ</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>มีอยู่</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>สแกน</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>เพิ่มไดรฟ์...</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>ไม่มีการกำหนดไดรฟ์</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>กำหนดไดรฟ์</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle คอนโทรลเลอร์</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>การคัดเลือกผ่านไปยัง gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>ขนาดทางกายภาพ</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>ขนาด</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>ความหนาแน่น</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>ความเร็ว</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>มีอยู่</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>ไม่พร้อมใช้งาน</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>ความหนาแน่นของไดรฟ์ (คำอธิบายเท่านั้น)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>ความเร็วที่กำหนด (คำอธิบายเท่านั้น)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>ไม่ได้กำหนดค่าคอนโทรลเลอร์</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>ตัดการเชื่อมต่อ</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>ไดรฟ์ที่เลือกถูกตัดการเชื่อมต่อ เชื่อมต่อใหม่หรือสแกนอีกครั้งในตัวเลือก → ตัวควบคุมและไดรฟ์</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-นิ้ว · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>ขับ</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>สแกนหรือเพิ่มตัวควบคุม Greaseweazle ก่อน</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-นิ้ว · {1} · การเลือก {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>สแกน</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>เลือกหรือดาวน์โหลด gw.exe ด้านล่างก่อน</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>การตรวจสอบฮาร์ดแวร์</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>ไม่พบฮาร์ดแวร์ที่กำหนดค่าไว้</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>การกำหนดค่ายังคงอยู่ แต่ไดรฟ์จะยังคงไม่พร้อมใช้งานจนกว่าจะพบ Greaseweazle อีกครั้ง</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>ตัวควบคุม Greaseweazle หายไป</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>ค้นหาอีกครั้ง</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>การตั้งค่าฮาร์ดแวร์</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>ดำเนินการต่อโดยไม่มีไดรฟ์นี้</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>การตรวจสอบฮาร์ดแวร์ล้มเหลว: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>ตรวจพบ Greaseweazle ใหม่</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>ตรวจพบ {0} ใน {1} คุณต้องการกำหนดค่าไดรฟ์ตอนนี้หรือไม่</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>การกำหนดค่า</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>กำหนดค่าแล้ว</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>ตรวจพบ ไม่ได้กำหนดค่า</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>กำหนดค่า</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>ขับรถ {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>ขับรถ {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>ลืม</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>คุณต้องการที่จะลืมไดรฟ์หรืออุปกรณ์นี้จริงๆ หรือไม่?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>นี่คือไดรฟ์ที่กำหนดค่าล่าสุดสำหรับ Greaseweazle นี้ คุณต้องการที่จะลืมทั้งไดรฟ์และ Greaseweazle หรือไม่?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>เลือกแถวที่เป็นของ Greaseweazle ที่เกี่ยวข้องก่อน</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>สามารถกำหนดไดรฟ์ได้สูงสุดสองไดรฟ์ให้กับ Greaseweazle นี้ (A และ B) โดยอัตโนมัติ</value>
+  </data>
+</root>

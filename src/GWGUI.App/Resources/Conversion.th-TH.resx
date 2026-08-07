@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>ไฟล์ที่มีอยู่</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>มีไฟล์บางไฟล์อยู่แล้ว</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>เลือกการดำเนินการสำหรับแต่ละไฟล์หรือใช้การดำเนินการเดียวกันกับทุกไฟล์</value>
+  </data>
+  <data name="Conflict.File">
+    <value>ไฟล์</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>การกระทำ</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>เขียนทับ</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>ข้าม</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>ใช้หมายเลขถัดไป</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>เขียนทับทั้งหมด</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>ข้ามทั้งหมด</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>หมายเลขทั้งหมด</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>การแปลง</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>เลือกรูปแบบเอาต์พุตอย่างน้อยหนึ่งรูปแบบ</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>แหล่งที่มาที่ไม่ชัดเจน</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>สรุป: {0} สำเร็จ {1} ล้มเหลว</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>ความล้มเหลว: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>แหล่งที่มา</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>ชื่อเอาต์พุต</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>เพิ่มแท็ก</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>เลือกแล้ว</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>รูปแบบทั่วไป</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>แสดงรูปแบบที่ไม่ค่อยได้ใช้</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>จำกัดแทร็ก</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>เลือกอิมเมจต้นฉบับที่มีอยู่</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>ป้อนชื่อไฟล์เอาต์พุต</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>ตรวจสอบรูปแบบเอาต์พุตอย่างน้อยหนึ่งรูปแบบ</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} การแปลง)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>ไม่มีการตรวจสอบส่วนขยาย: {0} ถูกใช้เป็นค่าเริ่มต้น</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} เข้ากันไม่ได้กับแหล่งที่มานี้</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>ไม่พบชื่อไฟล์เอาต์พุตที่ใช้ได้</value>
+  </data>
+</root>

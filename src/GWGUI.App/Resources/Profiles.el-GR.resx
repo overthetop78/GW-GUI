@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>Προφίλ ανά λειτουργία</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Αυτί</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Ονομα</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Σύστημα</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Μετονομάζω…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Αποθήκευση προφίλ</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Όνομα προφίλ</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Εισαγάγετε ένα όνομα.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Προφίλ</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Προφίλ</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Αθέτηση</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Το Προεπιλεγμένο προφίλ είναι μόνιμο και δεν μπορεί να μετονομαστεί.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Το Προεπιλεγμένο προφίλ είναι μόνιμο και δεν μπορεί να διαγραφεί.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Ένα προφίλ σε αυτήν την καρτέλα έχει ήδη αυτό το όνομα.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Αυτό το προφίλ υπάρχει ήδη. Αντικατάσταση;</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Διαγραφή προφίλ "{0}";</value>
+  </data>
+</root>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>gw.exeを探す</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>アップデートをチェックする</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>最新バージョンをダウンロード</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>以前のパスを使用する</value>
+  </data>
+  <data name="HostTools.None">
+    <value>インストールが検出されませんでした。</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>検出されました: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>利用可能な最新バージョン: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>バージョン {0} がインストールされています。</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Windows x64 用 Greaseweazle ホスト ツール {0} をダウンロードしてインストールしますか?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle ホスト ツール</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>有効な以前のパスが保存されていません。</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>ホスト ツール {0} が利用可能</value>
+  </data>
+</root>

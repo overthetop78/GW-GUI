@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Pengaturan lanjutan</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Argumen ahli</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumen disampaikan seperti yang tertulis setelah validasi kutipan.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Carilah percobaan ulang</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Indeks palsu</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Sektor keras</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Membalikkan data trek</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Sesuaikan kecepatan</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL menimpa</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Pin kepadatan 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Hasilkan TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Hapus trek terlebih dahulu</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Tulis prakompensasi</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Trek keluaran</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Definisi disk khusus</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle definisi disk (*.cfg)|*.cfg|Semua file|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>File definisi disk yang dipilih tidak ada.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Pengaturan lanjutan tidak valid: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Spesifikasi track, misalnya c=0-79:h=0-1, c=0-79/2:h=0, atau c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Kecepatan atau periode positif, misalnya 300rpm, 200ms, 200000us, atau 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>Parameter PLL dipisahkan dengan titik dua, misalnya period=5:phase=60 atau period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Tulis prakompensasi, misalnya type=mfm:40=125. Jenis: mfm, fm, gcr; nilainya dalam nanodetik.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Gunakan file diskdefs.cfg khusus untuk menambahkan atau mengganti definisi format Greaseweazle.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Jumlah putaran yang dibaca per trek. Contoh: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Upaya tambahan setelah kesalahan. Contoh: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Batasi silinder, kepala, atau pijakan. Contoh: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Upaya tambahan setelah menggerakkan kepala. Contoh: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Membuat indeks berjangka waktu untuk drive tanpa sinyal indeks. Contoh: --fake-index 300rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Menangani disk yang disektor keras. Tidak kompatibel dengan --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Membalikkan data track untuk media atau kabel yang tidak stabil.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Mengubah skala waktu data. Contoh: --adjust-speed 300rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Konfigurasikan loop pemulihan jam. Contoh: --pll periode=5:fase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Paksa pin pemilihan kepadatan tinggi atau rendah. Contoh: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Menghasilkan sinyal TG43 untuk drive yang memerlukannya. Tidak kompatibel dengan --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Menghapus trek yang gambar sumbernya tidak berisi data.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Hapus setiap trek sebelum menulisnya.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Terapkan prakompensasi tulis. Contoh: --precomp tipe=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Memetakan ulang trek pada gambar keluaran. Contoh: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

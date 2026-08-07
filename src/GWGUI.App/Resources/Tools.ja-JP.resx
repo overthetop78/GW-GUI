@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>実行する準備ができました。</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>生の出力</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>消去の確認</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>挿入されたディスク上のすべてのデータを完全に消去しますか?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>ヘッドをクリーンにする</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>クリーニングディスクが挿入されていることを確認してください。データディスクは絶対に使用しないでください。</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>ディスクを消去する</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>ディスク上のすべてのデータは破壊されます。</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>トラックを制限する</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>回転数</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>ヘッドをクリーンにする</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>クリーニング ディスクを挿入します。データが含まれているディスクは決して挿入しないでください。</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>シリンダー</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>パス</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>シリンダーあたりの持続時間 (ミリ秒)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>測定回数</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>シリンダー</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>極端なシリンダーを許可する</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>モーターをアクティブにしておく</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>ピン (8、26、または 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>ピンを変更する</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>ハイレベル</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>選択 (μs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>ヘッドステップ (μs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>セトリング (ミリ秒)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>モーター (ミリ秒)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>自動選択解除 (ミリ秒)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>書き込み前 (μs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>書き込み後 (μs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>インデックスマスク (μs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>ブートローダーを更新する (危険)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>ブートローダーの更新は高度な操作であり、中断されるとコントローラーが使用できなくなる可能性があります。続く？</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>コントローラ</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>不明なファームウェア</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>不明なポート</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>ローカル情報は有効です。ネットワークチェックのみが失敗しました。</value>
+  </data>
+  <data name="Tool.Running">
+    <value>コマンドを実行中…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>コントローラ情報</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB 帯域幅</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>ドライブ速度</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>シークヘッド</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>ハードウェアピン</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>コントローラーをリセットする</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>遅延</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>ファームウェア</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>無効なパラメータ</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>実行する前に、強調表示されたコマンド パラメータを確認してください。</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>ブートローダーモード</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>ドライブアライメント診断</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>交互トラック (必須)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>読み取り数</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>デコード形式</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>生のフラックスを読み取る (--raw)</value>
+  </data>
+</root>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Dekoder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Perbesar tautan</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Buka file SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Tidak ada file SCP yang terbuka</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Menunggu file</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspektur</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Pilih trek.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Klik: pilih · Roda: zoom · Klik kanan: geser</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Fluks normal</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Transisi singkat</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Transisi panjang/anomali</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Membaca berkas…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Berkas tidak valid</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisasi</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>sah</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>tidak sah</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} trek · {2} revolusi · {3} resolusi ns · {4} checksum</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Revolusi {0}: {1:N0} transisi · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Penguraian kode: {0}
+Keyakinan: {1:P0}
+Perkiraan sel: {2:F1} kutu
+Struktur: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Sisi: {0}
+Jalur: {1}
+SCP entri: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Sisi {0}
+Tidak ada data</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Sisi {0} · Lacak {1}
+{2} revolusi</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Otomatis</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Tajuk/alamat</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Data yang diterjemahkan</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Dihapus/anomali</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analisis berdasarkan revolusi {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>sedikit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>sah</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>tidak sah</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>tidak tersedia</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (kepadatan tunggal)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar sektor keras MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit sektor keras FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N sektor keras FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg sistem/data</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Fluks mentah</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Sinkronisasi</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Tajuk sektor</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Data sektor</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Data sektor dihapus</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>sinkronisasi Amiga</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Prolog alamat Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Prolog data Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>sinkronisasi Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore tajuk</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Format tajuk</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Memformat data</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Anomali waktu</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro menangkap (*.scp)|*.scp|Semua file|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Jumlah pemeriksaan</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Sisi {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Menganalisis trek {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Samping</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Melacak</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP entri</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Revolusi</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analisa</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Kepercayaan diri</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Perkiraan sel</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Struktur</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Struktur yang terdeteksi</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektor</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>transisi</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Buka gambar disk…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Lepaskan inspektur</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Lampirkan inspektur</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Ringkasan</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Format terdeteksi</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>RPM rata-rata</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Durasi rata-rata</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

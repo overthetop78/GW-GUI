@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.SettingsSaveFailed">
+    <value>Les réglages n’ont pas pu être enregistrés.
+
+{0}</value>
+  </data>
+  <data name="Error.Title">
+    <value>Erreur de GW GUI</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Une erreur inattendue a été interceptée.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Les réglages n’ont pas pu être enregistrés. La fenêtre va tout de même se fermer.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Le rapport complet a été enregistré dans :
+{0}</value>
+  </data>
+</root>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>キャンセル</value>
+  </data>
+  <data name="Common.Save">
+    <value>保存</value>
+  </data>
+  <data name="Common.Delete">
+    <value>消去</value>
+  </data>
+  <data name="Common.Browse">
+    <value>ブラウズ…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>選ぶ…</value>
+  </data>
+  <data name="Common.Close">
+    <value>近い</value>
+  </data>
+  <data name="Common.Execute">
+    <value>実行する</value>
+  </data>
+  <data name="Common.Stop">
+    <value>停止</value>
+  </data>
+  <data name="Common.Continue">
+    <value>続く</value>
+  </data>
+  <data name="Common.Reset">
+    <value>リセット</value>
+  </data>
+  <data name="Common.Copy">
+    <value>コピー</value>
+  </data>
+  <data name="Common.Modify">
+    <value>修正する</value>
+  </data>
+  <data name="Common.Hide">
+    <value>隠れる</value>
+  </data>
+  <data name="Common.Export">
+    <value>輸出</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+</root>

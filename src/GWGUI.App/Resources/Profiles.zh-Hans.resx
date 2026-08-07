@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>按操作分类</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>选项卡</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>姓名</value>
+  </data>
+  <data name="Profiles.System">
+    <value>系统</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>重命名...</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>保存个人资料</value>
+  </data>
+  <data name="Profile.Name">
+    <value>个人资料名称</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>输入名称。</value>
+  </data>
+  <data name="Profile.Title">
+    <value>轮廓</value>
+  </data>
+  <data name="Common.Profile">
+    <value>轮廓</value>
+  </data>
+  <data name="Profile.Default">
+    <value>默认</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>默认配置文件是永久性的，无法重命名。</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>默认配置文件是永久性的，无法删除。</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>此选项卡中的配置文件已具有此名称。</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>此配置文件已存在。更换吗？</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>删除个人资料“{0}”？</value>
+  </data>
+</root>

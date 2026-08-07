@@ -121,29 +121,39 @@ public sealed class LocalizationTests
         var neutral = LocExtension.GetDefinedKeys(CultureInfo.InvariantCulture);
         Assert.NotEmpty(neutral);
         foreach (var language in UiLanguageCatalog.Available)
-            Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(UiLanguageResolver.GetUiCulture(language.Code))));
+        {
+            var culture = UiLanguageResolver.GetUiCulture(language.Code);
+            Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(culture)));
+            foreach (var catalog in LocExtension.CatalogNames)
+                Assert.Equal(
+                    LocExtension.GetDefinedKeys(catalog, CultureInfo.InvariantCulture).Order(),
+                    LocExtension.GetDefinedKeys(catalog, culture).Order());
+        }
     }
 
     [Fact]
     public void EverySupportedLanguagePreservesTechnicalTokensAndLayout()
     {
         var resources = Path.Combine(FindRepositoryRoot(), "src", "GWGUI.App", "Resources");
-        var source = ReadResx(Path.Combine(resources, "Strings.en-US.resx"));
         var protectedSyntax = new Regex(@"\{[^{}]+\}|--[a-z0-9][a-z0-9-]*|\*\.[^;|\s]+", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
-        foreach (var language in UiLanguageCatalog.Available)
+        foreach (var catalog in LocExtension.CatalogNames)
         {
-            var target = ReadResx(Path.Combine(resources, $"Strings.{language.Code}.resx"));
-            Assert.Equal(source.Keys.Order(), target.Keys.Order());
-            foreach (var (key, sourceValue) in source)
+            var source = ReadResx(Path.Combine(resources, $"{catalog}.en-US.resx"));
+            foreach (var language in UiLanguageCatalog.Available)
             {
-                var targetValue = target[key];
-                Assert.Equal(
-                    protectedSyntax.Matches(sourceValue).Select(match => match.Value).Order(),
-                    protectedSyntax.Matches(targetValue).Select(match => match.Value).Order());
-                Assert.Equal(sourceValue.Count(character => character == '|'), targetValue.Count(character => character == '|'));
-                Assert.Equal(sourceValue.Count(character => character == '\n'), targetValue.Count(character => character == '\n'));
-                Assert.DoesNotMatch(@"__PH\d+__|ZXQ|IDX\d+", targetValue);
+                var target = ReadResx(Path.Combine(resources, $"{catalog}.{language.Code}.resx"));
+                Assert.Equal(source.Keys.Order(), target.Keys.Order());
+                foreach (var (key, sourceValue) in source)
+                {
+                    var targetValue = target[key];
+                    Assert.Equal(
+                        protectedSyntax.Matches(sourceValue).Select(match => match.Value).Order(),
+                        protectedSyntax.Matches(targetValue).Select(match => match.Value).Order());
+                    Assert.Equal(sourceValue.Count(character => character == '|'), targetValue.Count(character => character == '|'));
+                    Assert.Equal(sourceValue.Count(character => character == '\n'), targetValue.Count(character => character == '\n'));
+                    Assert.DoesNotMatch(@"__PH\d+__|ZXQ|IDX\d+", targetValue);
+                }
             }
         }
     }

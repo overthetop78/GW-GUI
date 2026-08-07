@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Yazmak</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Mevcut bir kaynak görseli seçin.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Biçim belirsizdir. Açıkça uyumlu bir format seçin.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Yazdıktan sonra doğrulama devre dışı bırakıldı.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Yazma sonrası doğrulama etkinleştirildi.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Yazmayı onayla</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Resim: {0}
+Biçim: {1}
+Sürücü: {2}
+{3}
+
+Bu görüntü diske yazılsın mı?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Kaynak resim</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Algılanan format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Bir resim seçin.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Yazdıktan sonra doğrulamayı devre dışı bırak</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>--no-verify ekler. Yazmayı onaylamak için disk yeniden okunmayacaktır.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Boş parçaları sil</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Parçaları görselleştirin</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Parçalarını görselleştirmeden önce disk formatını seçin.</value>
+  </data>
+</root>

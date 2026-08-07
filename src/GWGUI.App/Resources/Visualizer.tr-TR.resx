@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Kod çözücü</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Bağlantı yakınlaştırma</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Bir SCP dosyasını açın…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>SCP dosyası açık değil</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Bir dosya bekleniyor</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Müfettiş</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Bir parça seçin.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Tıklayın: seçin · Tekerlek: yakınlaştırın · Sağ tıklayın: yatay kaydırın</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normal akı</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Kısa geçiş</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Uzun geçiş/anomali</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Dosya okunuyor…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Geçersiz dosya</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP görselleştirme</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>geçerli</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>geçersiz</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} parçalar · {2} devirler · {3} ns çözünürlük · {4} sağlama toplamı</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Devrim {0}: {1:N0} geçişler · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Kod çözme: {0}
+Güven: {1:P0}
+Tahmini hücre: {2:F1} onay işareti
+Yapılar: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Yan: {0}
+Parça: {1}
+SCP girişi: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Taraf {0}
+Veri yok</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Taraf {0} · Parça {1}
+{2} devrim(ler)</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Otomatik</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Başlık/adres</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Kodu çözülmüş veriler</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Silindi/anormallik</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Devrime dayalı analiz {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektör C{0} H{1} R{2} · {3} bayt · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>geçerli</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>geçersiz</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>müsait değil</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (tek yoğunluk)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar sıkı kesimli MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit sıkı kesimli FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N sıkı kesimli FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg sistem/veri</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Ham akı</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Senkronizasyon</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Sektör başlığı</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Sektör verileri</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Silinen sektör verileri</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga senkronizasyon</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Apple adresi önsözü</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Apple veri önsözü</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore senkronizasyon</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore başlığı</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Başlığı biçimlendir</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Verileri biçimlendir</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Zamanlama anormalliği</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro yakalama (*.scp)|*.scp|Tüm dosyalar|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Sağlama toplamı</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Taraf {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>{0}/{1} parçası analiz ediliyor…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Taraf</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>İzlemek</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP girişi</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Devrimler</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analiz</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Kendinden emin</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Tahmini hücre</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Yapılar</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Tespit edilen yapılar</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektörler</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>geçişler</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Bir disk görüntüsünü açın…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Müfettişi ayırın</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Müfettişi bağlayın</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Özet</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Biçim algılandı</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Ortalama BGBG</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Ortalama süre</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

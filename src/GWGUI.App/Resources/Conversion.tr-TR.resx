@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Mevcut dosyalar</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Bazı dosyalar zaten mevcut</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Her dosya için bir eylem seçin veya aynı eylemi tüm dosyalara uygulayın.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Dosya</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Aksiyon</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Üzerine yaz</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Atlamak</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Sonraki numarayı kullan</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Tümünün üzerine yaz</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Tümünü atla</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Hepsini numaralandır</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Dönüşüm</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>En az bir çıktı formatı seçin.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Belirsiz kaynak</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Özet: {0} başarılı oldu, {1} başarısız oldu.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Hatalar: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Kaynak</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Çıkış adları</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Etiket ekle</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Seçildi</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Ortak formatlar</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Nadiren kullanılan formatları göster</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Parçaları sınırla</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Mevcut bir kaynak görseli seçin.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Çıktı dosya adlarını girin.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>En az bir çıktı formatını kontrol edin.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} dönüşüm(ler))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Hiçbir uzantı kontrol edilmedi: Varsayılan olarak {0} kullanılır.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} bu kaynakla uyumlu değil.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Kullanılabilir çıktı dosyası adı bulunamadı.</value>
+  </data>
+</root>

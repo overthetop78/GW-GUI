@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Detection.Ambiguous">
+    <value>Nejednoznačný formát</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Bylo rozpoznáno nezpracované zachycení SCP.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Formát Amiga rozpoznán podle velikosti souboru.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Formát Acorn rozpoznán podle velikosti souboru.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Velikost neodpovídá známému profilu Atari ST.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Geometrie Atari ST rozpoznána z velikosti souboru.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Rozpoznán kontejner Atari MSA; v případě potřeby potvrďte geometrii.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Samotné rozšíření nemůže určit geometrii IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>Geometrie IBM PC rozpoznána z velikosti souboru.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Formát odvozený z rozšíření.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Je možných několik formátů; jednu explicitně vybrat.</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Obraz surového toku</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS – 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST – 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST – 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST – 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST – 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST – 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST – 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC – 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC – 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC – 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC – 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC – 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC – 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1.68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — skenování FM/MFM</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS – 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC obraz toku</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA obraz disku</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG obraz disku</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Diskový soubor</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Diskový soubor</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST obrázek</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Magic Shadow Archiver</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Obrázek Commodore D64</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Floppy Emulator</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Obrazy disků|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Všechny soubory|*.*</value>
+  </data>
+</root>

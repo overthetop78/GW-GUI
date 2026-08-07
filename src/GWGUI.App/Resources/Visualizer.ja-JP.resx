@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>デコーダ</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>リンクズーム</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>SCP ファイルを開きます…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>SCP ファイルが開いていません</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>ファイルを待っています</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>検査官</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>トラックを選択します。</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>クリック：選択・ホイール：ズーム・右クリック：パン</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>通常の磁束</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>短い移行</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>長い移行/異常</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>ファイルを読み取り中…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>無効なファイル</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP の視覚化</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>有効</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>無効</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} トラック · {2} 回転 · {3} ns 分解能 · {4} チェックサム</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>回転 {0}: {1:N0} 遷移 · {2:F2} ミリ秒 · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>デコード: {0}
+自信: {1:P0}
+推定セル: {2:F1} ティック
+構造: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>側面: {0}
+トラック: {1}
+SCP エントリ: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>側面 {0}
+データなし</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>面 {0} · トラック {1}
+{2} 回転</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>自動</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>ヘッダー/アドレス</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>デコードされたデータ</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>削除/異常</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>回転 {0} に基づく解析。</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>ビット {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>セクタ C{0} H{1} R{2} · {3} バイト · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>有効</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>無効</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>利用不可</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (単一密度)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar ハードセクター化 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit ハードセクター化 FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N ハードセクター化 FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg システム/データ</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>生フラックス</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>同期</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>セクターヘッダー</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>セクターデータ</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>削除されたセクターデータ</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga 同期</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Apple のアドレスプロローグ</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Apple データのプロローグ</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore 同期</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore ヘッダー</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>ヘッダーのフォーマット</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>データのフォーマット</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>タイミング異常</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro キャプチャ (*.scp)|*.scp|すべてのファイル|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>チェックサム</value>
+  </data>
+  <data name="Visual.Side">
+    <value>側面 {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>トラック {0}/{1} を分析中…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>側</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>追跡</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP エントリ</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>回転数</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>分析</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>信頼度</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>推定セル</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>構造物</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>検出された構造物</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>セクター</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>トランジション</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>ディスクイメージを開きます…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>検査官を切り離す</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>検査官を付ける</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>まとめ</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>フォーマットが検出されました</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>平均回転数</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>平均持続時間</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

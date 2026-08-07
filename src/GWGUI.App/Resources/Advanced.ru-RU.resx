@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Расширенные настройки</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Аргументы экспертов</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Аргументы передаются в том виде, в котором они написаны, после проверки цитаты.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Искать повторы</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Поддельный индекс</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Жесткие сектора</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Данные обратного трека</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Отрегулировать скорость</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL переопределить</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Контакт плотности 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Создать TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Предварительное стирание треков</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Запись предкомпенсации</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Выходные треки</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Пользовательские определения дисков</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle определения дисков (*.cfg)|*.cfg|Все файлы|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Выбранный файл определений дисков не существует.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Недопустимая расширенная настройка: {0}.</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Спецификация дорожки, например c=0-79:h=0-1, c=0-79/2:h=0 или c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Положительная скорость или период, например 300 об/мин, 200 мс, 200 000 мкс или 2 000 0000 нс.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>Параметры PLL, разделенные двоеточиями, например period=5:phase=60 или period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Напишите предкомпенсацию, например type=mfm:40=125. Типы: mfm, fm, gcr; значения указаны в наносекундах.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Используйте пользовательский файл diskdefs.cfg, чтобы добавить или переопределить определения формата Greaseweazle.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Число оборотов чтения на дорожке. Пример: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Дополнительные попытки после ошибки. Пример: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Ограничьте цилиндры, головки или шаг. Пример: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Дополнительные попытки после движения головы. Пример: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Создайте временной индекс для привода без индексного сигнала. Пример: --fake-index 300 об/мин.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Обработка жесткого диска. Несовместим с --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: обратная дорожка данных для гибких носителей или проводов.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: изменить масштаб времени передачи данных. Пример: --adjust-speed 300 об/мин.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Настройте цикл восстановления тактовой частоты. Пример: --pll период=5:фаза=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Установите высокий или низкий уровень контакта выбора плотности. Пример: --densel Х.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: генерирует сигнал TG43 для приводов, которым он требуется. Несовместим с --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Удалить дорожки, для которых исходное изображение не содержит данных.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Сотрите каждую дорожку перед ее записью.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: применить предкомпенсацию записи. Пример: --precomp тип=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: переназначить дорожки в выходном изображении. Пример: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

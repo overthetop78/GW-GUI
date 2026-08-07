@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>高级设置</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>专家论证</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>参数在引用验证后按写入方式传递。</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>寻求重试</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>假索引</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>硬扇区</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>反向追踪数据</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>调整速度</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL 覆盖</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>密度针 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>生成 TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>预擦除曲目</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>写入预补偿</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>输出曲目</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>自定义磁盘定义</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle 磁盘定义 (*.cfg)|*.cfg|所有文件|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>所选磁盘定义文件不存在。</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>高级设置无效：{0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>轨道规范，例如 c=0-79:h=0-1、c=0-79/2:h=0 或 c=0-79:h=0-1:hswap。</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>正速度或周期，例如 300rpm、200ms、200000us 或 200000000ns。</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL 参数用冒号分隔，例如 period=5:phase=60 或 period=5:phase=60:lowpass=2。</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>写入预补偿，例如 type=mfm:40=125。类型：mfm、fm、gcr；值以纳秒为单位。</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>使用自定义 diskdefs.cfg 文件添加或覆盖 Greaseweazle 格式定义。</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs：每磁道读取的转数。示例：--revs 5。</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries：发生错误后的额外尝试。示例：--retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks：限制柱面、磁头或步进。示例：--tracks c=0-79:h=0-1。</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries：移动头部后的额外尝试。示例：--seek-retries 2。</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index：为没有索引信号的驱动器创建定时索引。示例：--fake-index 300rpm。</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors：处理硬扇区磁盘。与 --fake-index 不兼容。</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse：翻转介质或接线的反向磁道数据。</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed：重新调整数据时序。示例：--adjust-speed 300rpm。</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll：配置时钟恢复环路。示例：--pll period=5:phase=60。</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel：强制密度选择引脚为高电平或低电平。示例：--densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43：为需要的驱动器生成 TG43 信号。与 --densel 不兼容。</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty：擦除源图像不包含数据的轨道。</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase：在写入之前擦除每个磁道。</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp：应用写预补偿。示例：--precomp 类型=mfm:40=125。</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks：重新映射输出图像中的轨道。示例：--out-tracks c=0-79:h=0-1。</value>
+  </data>
+</root>

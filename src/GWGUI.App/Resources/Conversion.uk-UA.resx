@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Існуючі файли</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Деякі файли вже існують</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Виберіть дію для кожного файлу або застосуйте одну дію до всіх файлів.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Файл</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Дія</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Перезаписати</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Пропустити</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Використовуйте наступне число</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Перезаписати все</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Пропустити все</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Пронумерувати все</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Перетворення</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Виберіть принаймні один вихідний формат.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Неоднозначне джерело</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Підсумок: {0} вдалося, {1} не вдалося.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Помилки: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Джерело</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Вихідні назви</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Додайте теги</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Вибране</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Поширені формати</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Показати рідко використовувані формати</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Обмежити доріжки</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Виберіть наявне вихідне зображення.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Введіть імена вихідних файлів.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Перевірте принаймні один вихідний формат.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} конверсій)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Розширення не позначено: {0} використовується за умовчанням.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} несумісний із цим джерелом.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Не вдалося знайти доступну назву вихідного файлу.</value>
+  </data>
+</root>

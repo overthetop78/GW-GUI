@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Lese</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Skriv inn et filnavn.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Velg en kompatibel bildetype.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Eksisterende fil</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Denne filen eksisterer allerede.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Eksisterende fil</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Overskriv</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Bruk neste tall</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>La meg redigere navnet</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Bilde å lage</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Forlengelse</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Råbilde (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Kjent diskformat</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Filnavn</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Mappe</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Omdreininger per spor</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Forsøk på nytt</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Spor/sider</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Automatisk antall vellykkede lesninger</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Sifre</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Bokstaver</value>
+  </data>
+  <data name="Read.Next">
+    <value>Neste:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Åpne i Visualisering</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP-opptaket er fullført. Du kan analysere det uten å avbryte arbeidet ditt.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Endelig SCP resultat:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Spor: {0} bra, {1} mangler eller ugyldige ({2} sylindre, {3} sider).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Revolusjoner: {0} · Oppløsning: {1} ns · Størrelse: {2:N0} byte · Sjekksum: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Fil: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP sammendrag utilgjengelig: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} gode spor · {1} mangler eller er ugyldige · {2} sylindre · {3} sider · {4} omdreininger · {5:N0} byte · {6} kontrollsum</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Velg en bildetype</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Destinasjonsmappe</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Lese avbrutt: Den ufullstendige filen ble slettet: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Lesing avbrutt, men den ufullstendige filen kunne ikke slettes: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Utforsk filer</value>
+  </data>
+</root>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>읽다</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>파일 이름을 입력하세요.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>호환되는 이미지 유형을 선택하세요.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>기존 파일</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>이 파일은 이미 존재합니다.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>기존 파일</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>덮어쓰기</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>다음 번호를 사용하세요</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>이름을 수정하겠습니다.</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>생성할 이미지</value>
+  </data>
+  <data name="Read.Extension">
+    <value>확대</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>원시 이미지(SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>알려진 디스크 형식</value>
+  </data>
+  <data name="Read.FileName">
+    <value>파일 이름</value>
+  </data>
+  <data name="Read.Folder">
+    <value>접는 사람</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>트랙당 회전수</value>
+  </data>
+  <data name="Read.Retries">
+    <value>재시도</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>트랙/사이드</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>성공적인 읽기에 자동으로 번호를 매깁니다.</value>
+  </data>
+  <data name="Read.Digits">
+    <value>숫자</value>
+  </data>
+  <data name="Read.Letters">
+    <value>편지</value>
+  </data>
+  <data name="Read.Next">
+    <value>다음:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>시각화에서 열기</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP 캡처가 완료되었습니다. 작업을 중단하지 않고 분석할 수 있습니다.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>최종 SCP 결과:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>트랙: {0} 양호, {1} 누락 또는 유효하지 않음({2} 실린더, {3} 측면).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>회전 수: {0} · 해상도: {1} ns · 크기: {2:N0} 바이트 · 체크섬: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>파일: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP 요약을 사용할 수 없음: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} 양호한 트랙 · {1} 누락 또는 유효하지 않음 · {2} 실린더 · {3} 측면 · {4} 회전 · {5:N0} 바이트 · {6} 체크섬</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>이미지 유형을 선택하세요</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>대상 폴더</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>읽기 취소됨: 불완전한 파일이 삭제되었습니다: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>읽기가 취소되었지만 불완전한 파일을 삭제할 수 없습니다: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>파일 탐색</value>
+  </data>
+</root>

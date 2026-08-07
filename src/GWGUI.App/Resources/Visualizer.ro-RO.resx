@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Decodor</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Link zoom</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Deschideți un fișier SCP...</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Niciun fișier SCP deschis</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>În așteptarea unui dosar</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspector</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Selectați o piesă.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Faceți clic: selectați · Roată: măriți · Clic dreapta: deplasați</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Fluxul normal</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Scurtă tranziție</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Tranziție lungă/anomalie</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Se citește fișierul…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Fișier nevalid</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP vizualizare</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>valabil</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>invalid</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} piste · {2} revoluție(i) · {3} rezoluție ns · {4} sumă de control</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Revoluție {0}: {1:N0} tranziții · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Decodare: {0}
+Încredere: {1:P0}
+Celulă estimată: {2:F1} bifări
+Structuri: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Parte laterală: {0}
+Piesa: {1}
+SCP intrare: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Partea {0}
+Fără date</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Partea {0} · Piesa {1}
+{2} revoluție(i)</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automat</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Antet/adresă</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Date decodificate</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Șters/anomalie</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analiză bazată pe revoluția {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sector C{0} H{1} R{2} · {3} octeți · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>valabil</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>invalid</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>indisponibil</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (densitate unică)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar sectoare MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit sectoare FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N sectoare FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg sistem/date</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Fluxul brut</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Sincronizare</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Antet sector</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Date sectoriale</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Datele sectorului au fost șterse</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga sincronizare</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Prologul adresei Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Prolog de date Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore sincronizare</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore antet</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Formatați antetul</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Formatați datele</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Anomalie de sincronizare</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro captură (*.scp)|*.scp|Toate fișierele|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Sumă de control</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Partea {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Se analizează piesa {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Latura</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Urmări</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP intrare</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Revoluții</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analiză</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Încredere</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Celulă estimată</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Structuri</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Structuri detectate</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sectoare</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>tranziții</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Deschide o imagine de disc...</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Detașează inspectorul</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Atașați inspectorul</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Rezumat</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Format detectat</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>RPM medie</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Durata medie</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

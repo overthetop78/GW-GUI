@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Menulis</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Pilih gambar sumber yang ada.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formatnya ambigu. Pilih format yang kompatibel secara eksplisit.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verifikasi setelah penulisan dinonaktifkan.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verifikasi setelah penulisan diaktifkan.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Konfirmasi tulis</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Gambar: {0}
+Format: {1}
+Berkendara: {2}
+{3}
+
+Tulis gambar ini ke disk?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Sumber gambar</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Format terdeteksi</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Pilih gambar.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Nonaktifkan verifikasi setelah menulis</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Menambahkan --no-verify. Disk tidak akan dibaca ulang untuk mengonfirmasi penulisan.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Hapus trek kosong</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualisasikan trek</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Pilih format disk sebelum memvisualisasikan treknya.</value>
+  </data>
+</root>

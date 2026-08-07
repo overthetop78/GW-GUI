@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Tools ist nicht konfiguriert. Öffnen Sie Optionen → Einstellungen.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Ein Vorgang läuft. Stoppen Sie es und schließen Sie GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Abgeschlossen: Code {0}, Dauer {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Befehl erfolgreich abgeschlossen.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Befehl abgebrochen.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Der Befehl endete mit dem Code {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsole</value>
+  </data>
+  <data name="Common.Command">
+    <value>Befehl</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Seite {0}: Spur {1} – {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI bereit.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Standard</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Stoppen Sie den Betrieb</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Den aktuellen Greaseweazle-Vorgang stoppen?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Ein Greaseweazle-Befehl wird bereits ausgeführt. Warten Sie, bis der Vorgang abgeschlossen ist, oder stoppen Sie ihn, bevor Sie dieses Tool öffnen.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Spur {0}, Seite {1} – {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Spur {0}, Seite {1} – {2} verarbeitet</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Fehler: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Bereit</value>
+  </data>
+  <data name="Status.Running">
+    <value>Läuft</value>
+  </data>
+  <data name="Status.Success">
+    <value>Erfolg</value>
+  </data>
+  <data name="Status.Error">
+    <value>Fehler</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Abgesagt</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

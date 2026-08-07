@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>查找 gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>检查更新</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>下载最新版本</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>使用之前的路径</value>
+  </data>
+  <data name="HostTools.None">
+    <value>未检测到安装。</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>检测到：{0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>最新可用版本：{0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>安装版本 {0}。</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>下载并安装适用于 Windows x64 的 Greaseweazle 主机工具 {0}？</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle 主机工具</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>没有存储有效的先前路径。</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>主机工具 {0} 可用</value>
+  </data>
+</root>

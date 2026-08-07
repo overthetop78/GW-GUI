@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Menu.Options">
+    <value>_Pilihan</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Preferensi…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostik</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Informasi</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB lebar pita</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM kecepatan</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Carilah kepala…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Perangkat keras</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pin…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Mengatur ulang</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Penundaan…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Membantu</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokumentasi</value>
+  </data>
+  <data name="Menu.About">
+    <value>Tentang</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Membaca</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Menulis</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Konversi</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisasi</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Peralatan</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Keselarasan berkendara…</value>
+  </data>
+  <data name="Tab.Explorer">
+    <value>Penjelajah disk</value>
+  </data>
+</root>

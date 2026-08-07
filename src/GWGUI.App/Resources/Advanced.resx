@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Advanced settings</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Expert arguments</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Arguments are passed as written after quote validation.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Seek retries</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Fake index</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Hard sectors</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Reverse track data</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Adjust speed</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL override</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Density pin 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Generate TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Pre-erase tracks</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Write precompensation</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Output tracks</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Custom disk definitions</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle disk definitions (*.cfg)|*.cfg|All files|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>The selected disk definitions file does not exist.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>An advanced setting is invalid: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Track specification, for example c=0-79:h=0-1, c=0-79/2:h=0, or c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Positive speed or period, for example 300rpm, 200ms, 200000us, or 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parameters separated by colons, for example period=5:phase=60 or period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Write precompensation, for example type=mfm:40=125. Types: mfm, fm, gcr; values are in nanoseconds.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Use a custom diskdefs.cfg file to add or override Greaseweazle format definitions.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Number of revolutions read per track. Example: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Additional attempts after an error. Example: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Limit cylinders, heads, or stepping. Example: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Additional attempts after moving the head. Example: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Create a timed index for a drive without an index signal. Example: --fake-index 300rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Handle a hard-sectored disk. Incompatible with --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Reverse track data for flippy media or wiring.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Rescale data timing. Example: --adjust-speed 300rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Configure the clock-recovery loop. Example: --pll period=5:phase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Force the density-select pin high or low. Example: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Generate the TG43 signal for drives that require it. Incompatible with --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Erase tracks for which the source image contains no data.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Erase each track before writing it.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Apply write precompensation. Example: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Remap tracks in the output image. Example: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

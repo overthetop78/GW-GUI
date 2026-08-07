@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>gw.exe 찾기</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>업데이트 확인</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>최신 버전 다운로드</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>이전 경로 사용</value>
+  </data>
+  <data name="HostTools.None">
+    <value>설치가 감지되지 않았습니다.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>감지됨: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>사용 가능한 최신 버전: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>버전 {0}이(가) 설치되었습니다.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Windows x64용 Greaseweazle 호스트 도구 {0}을(를) 다운로드하여 설치하시겠습니까?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle 호스트 도구</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>유효한 이전 경로가 저장되어 있지 않습니다.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>호스트 도구 {0} 사용 가능</value>
+  </data>
+</root>

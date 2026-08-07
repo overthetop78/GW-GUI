@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Narzędzia nie są skonfigurowane. Otwórz Opcje → Preferencje.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Trwa operacja. Zatrzymaj i zamknij GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Zakończono: kod {0}, czas trwania {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Polecenie zostało wykonane pomyślnie.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Polecenie anulowane.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Komenda zakończyła się kodem {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsola</value>
+  </data>
+  <data name="Common.Command">
+    <value>Rozkaz</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Strona {0}: tor {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI gotowy.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: domyślny</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Zatrzymaj działanie</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Zatrzymać bieżącą operację Greaseweazle?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Komenda Greaseweazle jest już uruchomiona. Poczekaj na zakończenie lub zatrzymaj je przed otwarciem tego narzędzia.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Tor {0}, strona {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Ścieżka {0}, strona {1} — {2} przetworzona</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Błąd: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Gotowy</value>
+  </data>
+  <data name="Status.Running">
+    <value>Działanie</value>
+  </data>
+  <data name="Status.Success">
+    <value>Sukces</value>
+  </data>
+  <data name="Status.Error">
+    <value>Błąd</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Odwołany</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

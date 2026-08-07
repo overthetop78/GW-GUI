@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Đọc</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Nhập tên tập tin.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Chọn loại hình ảnh tương thích.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Tệp hiện có</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Tập tin này đã tồn tại.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Tệp hiện có</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Ghi đè</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Sử dụng số tiếp theo</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Để tôi sửa tên</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Hình ảnh để tạo</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Sự mở rộng</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Hình ảnh thô (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Định dạng đĩa đã biết</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Tên tệp</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Thư mục</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Số vòng quay trên mỗi rãnh</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Thử lại</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Bài hát/bên</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Tự động đánh số lần đọc thành công</value>
+  </data>
+  <data name="Read.Digits">
+    <value>chữ số</value>
+  </data>
+  <data name="Read.Letters">
+    <value>chữ cái</value>
+  </data>
+  <data name="Read.Next">
+    <value>Kế tiếp:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Mở trong trực quan</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Quá trình chụp SCP đã hoàn tất. Bạn có thể phân tích nó mà không làm gián đoạn công việc của bạn.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Kết quả cuối cùng SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Đường ray: {0} tốt, {1} bị thiếu hoặc không hợp lệ ({2} trụ, {3} mặt).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Số vòng quay: {0} · Độ phân giải: {1} ns · Kích thước: {2:N0} byte · Tổng kiểm tra: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Tập tin: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP tóm tắt không có sẵn: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} rãnh tốt · {1} thiếu hoặc không hợp lệ · {2} hình trụ · {3} mặt · {4} vòng quay · {5:N0} byte · {6} tổng kiểm tra</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Chọn loại hình ảnh</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Thư mục đích</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Đã hủy đọc: Tệp chưa hoàn chỉnh đã bị xóa: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Đã hủy đọc nhưng không thể xóa tệp chưa hoàn chỉnh: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Duyệt tệp</value>
+  </data>
+</root>

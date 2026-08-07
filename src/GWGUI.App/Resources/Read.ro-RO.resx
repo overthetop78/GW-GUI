@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Citire</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Introduceți un nume de fișier.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Alegeți un tip de imagine compatibil.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Fișier existent</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Acest fișier există deja.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Fișier existent</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Suprascrie</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Folosiți următorul număr</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Lasă-mă să editez numele</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Imagine de creat</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Extensie</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Imagine brută (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Format de disc cunoscut</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Nume de fișier</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Pliant</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Revoluții pe pistă</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Reîncercări</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Piese/laterale</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Numărează automat citirile reușite</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Cifre</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Scrisori</value>
+  </data>
+  <data name="Read.Next">
+    <value>Următorul:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Deschideți în vizualizare</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Captura SCP este finalizată. Îl poți analiza fără a-ți întrerupe munca.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Rezultatul final SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Piese: {0} bune, {1} lipsă sau nevalide ({2} cilindri, {3} laturi).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Revoluții: {0} · Rezoluție: {1} ns · Dimensiune: {2:N0} octeți · Sumă de control: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Fișier: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP rezumat indisponibil: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} piste bune · {1} lipsă sau invalidă · {2} cilindri · {3} laturi · {4} revoluție(i) · {5:N0} octeți · {6} sumă de control</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Alegeți un tip de imagine</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Dosarul de destinație</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Citire anulată: fișierul incomplet a fost șters: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Citirea a fost anulată, dar fișierul incomplet nu a putut fi șters: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Explorați fișierele</value>
+  </data>
+</root>

@@ -50,6 +50,7 @@ Exigences retenues pour sa réalisation :
 - il charge directement une image ADF ou SCP ;
 - l'image courante est partagée entre `Explorateur` et `Visualisation` : une image ouverte dans l'un est également chargée dans l'autre, sans changer automatiquement l'onglet affiché ;
 - la colonne `Type` de l'Explorateur décrit la nature reconnue du fichier (`Programme`, `Fichier texte`, `Image`, `Fichier audio`, `Archive`, `Image disque`, etc.) et correspond à son icône, au lieu d'afficher systématiquement `Fichier` ;
+- son sélecteur utilise la même liste ordonnée et les mêmes libellés du catalogue central que Lecture, Écriture, Conversion et Visualisation ; la prise en charge effective de l'arborescence reste déterminée par les lecteurs de systèmes de fichiers déjà réalisés ;
 - viser tous les formats pris en charge par GW GUI, avec détection automatique puis sélection manuelle du format à essayer lorsque la détection échoue ;
 - l’ouverture dans `Explorateur` est proposée à la fin d’une Lecture SCP réussie ;
 - le bouton de lecture directe utilise `gw` pour créer une capture SCP temporaire dans le dossier temporaire de Windows, l’analyse, puis supprime cette capture ;

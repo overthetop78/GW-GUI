@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Befintliga filer</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Vissa filer finns redan</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Välj en åtgärd för varje fil eller tillämpa samma åtgärd på alla filer.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fil</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Handling</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Skriva över</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Hoppa</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Använd nästa nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Skriv över alla</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Hoppa över allt</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alla</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Omvandling</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Välj minst ett utdataformat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Tvetydig källa</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Sammanfattning: {0} lyckades, {1} misslyckades.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Fel: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Källa</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Utdatanamn</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Lägg till taggar</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Vald</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Vanliga format</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Visa sällan använda format</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Begränsa spår</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Välj en befintlig källbild.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Ange utdatafilnamnen.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Kontrollera minst ett utdataformat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} omvandling(er))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Ingen tillägg markerad: {0} används som standard.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} är inte kompatibel med den här källan.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Inget tillgängligt utdatafilnamn kunde hittas.</value>
+  </data>
+</root>

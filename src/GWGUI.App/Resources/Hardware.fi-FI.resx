@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>Portti</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB tunniste</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Ajaa</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Saatavilla</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Skannata</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Lisää asema…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Asemaa ei ole määritetty</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Määritä asema</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle ohjain</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Valinta siirtyi gw:lle</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Fyysinen koko</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Koko</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Tiheys</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Nopeus</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Saatavilla</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Ei saatavilla</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Ajotiheys (vain kuvaus)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Nimellinen nopeus (vain kuvaus)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Ohjainta ei ole määritetty</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>irti</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Valitun aseman yhteys on katkaistu. Liitä se uudelleen tai skannaa uudelleen kohdassa Asetukset → Ohjaimet ja asemat.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-tuumaa · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Ajaa</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Skannaa tai lisää ensin Greaseweazle-ohjain.</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-tuumaa · {1} · valinta {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Skannata</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Valitse tai lataa ensin gw.exe alta.</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Laitteiston tarkistus</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Konfiguroitua laitteistoa ei löytynyt</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Määritykset säilytetään, mutta sen asemat eivät ole käytettävissä, kunnes niiden Greaseweazle löydetään uudelleen.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Puuttuu Greaseweazle ohjainta</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Etsi uudelleen</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Laitteiston asetukset</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Jatka ilman tätä asemaa</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Laitteiston tarkistus epäonnistui: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Uusi Greaseweazle havaittu</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} havaittiin {1}. Haluatko määrittää sen aseman nyt?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Kokoonpano</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Määritetty</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Havaittu, ei määritetty</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Määritä</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Aja {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Asema {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Unohtaa</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Haluatko todella unohtaa tämän aseman tai laitteen?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Tämä on viimeinen määritetty asema tälle Greaseweazle. Haluatko unohtaa sekä aseman että Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Valitse ensin rivi, joka kuuluu asiaan Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Tälle Greaseweazle:lle (A ja B) voidaan määrittää automaattisesti enintään kaksi asemaa.</value>
+  </data>
+</root>

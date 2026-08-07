@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Eksisterende filer</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Nogle filer findes allerede</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Vælg en handling for hver fil, eller anvend den samme handling på alle filer.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fil</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Handling</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Overskriv</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Springe</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Brug næste nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Overskriv alle</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Spring alle over</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alle</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Omdannelse</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Vælg mindst ét ​​outputformat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Tvetydig kilde</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Resumé: {0} lykkedes, {1} mislykkedes.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Fejl: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Kilde</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Output navne</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Tilføj tags</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Valgt</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Almindelige formater</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Vis sjældent brugte formater</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Begræns spor</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Vælg et eksisterende kildebillede.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Indtast output filnavne.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Kontroller mindst ét ​​outputformat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konvertering(er))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Ingen udvidelse markeret: {0} bruges som standard.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} er ikke kompatibel med denne kilde.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Der blev ikke fundet noget tilgængeligt outputfilnavn.</value>
+  </data>
+</root>

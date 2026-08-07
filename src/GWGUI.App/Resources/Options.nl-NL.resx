@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Opties</value>
+  </data>
+  <data name="Options.General">
+    <value>Algemeen</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Gereedschap</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Controllers en aandrijvingen</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profielen</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Standaard schijfkopiemap</value>
+  </data>
+  <data name="Options.Language">
+    <value>Taal</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Thema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Systeem</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Licht</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Donker</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Pad naar gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Als de tools ontbreken, biedt de assistent aan om ze te downloaden of een bestaande installatie te kiezen. Updates worden alleen aangekondigd.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Hardware-instellingen blijven opgeslagen wanneer een schijf wordt losgekoppeld.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Uitvoerbaar bestand (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Deze opgeslagen controller en alle bijbehorende schijven verwijderen?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Hardware</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Gebruik tags in conversiebestandsnamen</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Voorinstelling</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Alleen familie</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Alleen formaat</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Familie en formaat</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Familie en uitbreiding</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Familie, formaat en uitbreiding</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Patroon voor conversietags</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Beschikbare variabelen</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Bronbestandsnaam</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Familie: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Formaat: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Extensie: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Datum: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Datum: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Datum: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Tijd: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Tijd: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Tijd: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — bronbestandsnaam
+{FAMILY} — machinefamilie (PC, ST, AMIGA…)
+{FORMAT} — formaat of geometrie (720, 1440, DD…)
+{EXTENSION} — uitgangsuitbreiding (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — datum 06-08-2026
+{DATE:YYYYMMDD} — datum 20260806
+{DATE:DD-MM-YYYY} — datum 06-08-2026
+{TIME:HH-MM-SS} — tijd 14-35-42
+{TIME:HHMMSS} — tijd 143542
+{TIME:HH-MM} — tijd 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Recente aangepaste patronen</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Volgend voorbeeld</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Voorbeeld: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Het tagpatroon moet {tag} bevatten.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Bewaar logboeken</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Logboeken</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Elke actie heeft een eigen bestand in de map GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Wissen</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Schone hoofden</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Map openen</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Maximale grootte</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Bewaar eerdere logboeken</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = onbeperkt</value>
+  </data>
+</root>

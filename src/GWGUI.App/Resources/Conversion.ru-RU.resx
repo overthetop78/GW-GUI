@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Существующие файлы</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Некоторые файлы уже существуют</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Выберите действие для каждого файла или примените одно и то же действие ко всем файлам.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Файл</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Действие</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Перезаписать</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Пропускать</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Использовать следующий номер</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Перезаписать все</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Пропустить все</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Пронумеровать все</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Конверсия</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Выберите хотя бы один выходной формат.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Неоднозначный источник</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Итог: {0} выполнен успешно, {1} не выполнен.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Сбои: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Источник</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Имена выходов</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Добавить теги</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Выбрано</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Общие форматы</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Показать редко используемые форматы</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Ограничить треки</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Выберите существующее исходное изображение.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Введите имена выходных файлов.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Проверьте хотя бы один выходной формат.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ конверсий {0}))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Расширение не выбрано: {0} используется по умолчанию.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} несовместим с этим источником.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Не удалось найти доступное имя выходного файла.</value>
+  </data>
+</root>

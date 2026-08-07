@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>อ่าน</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>ป้อนชื่อไฟล์</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>เลือกประเภทภาพที่เข้ากันได้</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>ไฟล์ที่มีอยู่</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>ไฟล์นี้มีอยู่แล้ว</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>ไฟล์ที่มีอยู่</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>เขียนทับ</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>ใช้หมายเลขถัดไป</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>ขอแก้ไขชื่อครับ</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>รูปภาพที่จะสร้าง</value>
+  </data>
+  <data name="Read.Extension">
+    <value>ส่วนขยาย</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>ภาพดิบ (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>รูปแบบดิสก์ที่รู้จัก</value>
+  </data>
+  <data name="Read.FileName">
+    <value>ชื่อไฟล์</value>
+  </data>
+  <data name="Read.Folder">
+    <value>โฟลเดอร์</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>การปฏิวัติต่อแทร็ก</value>
+  </data>
+  <data name="Read.Retries">
+    <value>ลองอีกครั้ง</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>ราง/ข้าง</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>นับจำนวนการอ่านที่สำเร็จโดยอัตโนมัติ</value>
+  </data>
+  <data name="Read.Digits">
+    <value>ตัวเลข</value>
+  </data>
+  <data name="Read.Letters">
+    <value>จดหมาย</value>
+  </data>
+  <data name="Read.Next">
+    <value>ต่อไป:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>เปิดในการแสดงภาพ</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>การจับภาพ SCP เสร็จสมบูรณ์ คุณสามารถวิเคราะห์ได้โดยไม่รบกวนการทำงานของคุณ</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>ผลลัพธ์ SCP สุดท้าย:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>แทร็ก: {0} ดี {1} หายไปหรือไม่ถูกต้อง ({2} กระบอกสูบ {3} ด้านข้าง)</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>การปฏิวัติ: {0} · ความละเอียด: {1} ns · ขนาด: {2:N0} ไบต์ · ตรวจสอบผลรวม: {3}</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>ไฟล์: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP สรุปไม่พร้อมใช้งาน: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} แทร็กที่ดี · {1} หายไปหรือไม่ถูกต้อง · {2} ไซลินเดอร์ · {3} ข้าง · {4} การปฏิวัติ · {5:N0} ไบต์ · {6} เช็คซัม</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>เลือกประเภทรูปภาพ</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>โฟลเดอร์ปลายทาง</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>ยกเลิกการอ่าน: ไฟล์ที่ไม่สมบูรณ์ถูกลบ: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>ยกเลิกการอ่านแล้ว แต่ไม่สามารถลบไฟล์ที่ไม่สมบูรณ์ได้: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>สำรวจไฟล์</value>
+  </data>
+</root>

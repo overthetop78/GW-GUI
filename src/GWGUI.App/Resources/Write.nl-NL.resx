@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Schrijven</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Kies een bestaande bronafbeelding.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Het formaat is dubbelzinnig. Kies expliciet een compatibel formaat.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verificatie na schrijven is uitgeschakeld.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verificatie na schrijven is ingeschakeld.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Bevestig schrijven</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Afbeelding: {0}
+Formaat: {1}
+Aandrijving: {2}
+{3}
+
+Deze afbeelding naar schijf schrijven?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Bron afbeelding</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Gedetecteerd formaat</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Kies een afbeelding.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Schakel verificatie uit na schrijven</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Voegt --no-verify toe. De schijf wordt niet opnieuw gelezen om het schrijven te bevestigen.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Wis lege nummers</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualiseer sporen</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Selecteer het schijfformaat voordat u de tracks visualiseert.</value>
+  </data>
+</root>

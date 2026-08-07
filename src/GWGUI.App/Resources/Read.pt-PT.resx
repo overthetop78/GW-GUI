@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Ler</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Introduza um nome de ficheiro.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Escolha um tipo de imagem compatível.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Arquivo existente</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Este ficheiro já existe.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Arquivo existente</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Substituir</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Utilize o próximo número</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Deixe-me editar o nome</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Imagem para criar</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Extensão</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Imagem em bruto (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Formato de disco conhecido</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Nome do ficheiro</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Pasta</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Revoluções por faixa</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Novas tentativas</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Trilhos/lados</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Numere automaticamente as leituras bem-sucedidas</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Dígitos</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Cartas</value>
+  </data>
+  <data name="Read.Next">
+    <value>Seguinte:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Abrir na pré-visualização</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>A captura SCP está concluída. Pode analisá-lo sem interromper o seu trabalho.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Resultado final SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Gamas: {0} boas, {1} ausentes ou inválidas ({2} cilindros, {3} lados).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Revoluções: {0} · Resolução: {1} ns · Tamanho: {2:N0} bytes · Checksum: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Ficheiro: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP resumo indisponível: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} rastos bons · {1} em falta ou inválidos · {2} cilindros · {3} lados · {4} revolução(ões) · {5:N0} bytes · {6} checksum</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Escolha um tipo de imagem</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Pasta de destino</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Leitura cancelada: o ficheiro incompleto foi eliminado: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Leitura cancelada, mas o ficheiro incompleto não pôde ser eliminado: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Explorar ficheiros</value>
+  </data>
+</root>

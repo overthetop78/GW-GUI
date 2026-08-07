@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>Hồ sơ theo hoạt động</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Thẻ</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Tên</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Hệ thống</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Đổi tên…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Lưu hồ sơ</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Tên hồ sơ</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Nhập tên.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Mặc định</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Cấu hình mặc định là vĩnh viễn và không thể đổi tên.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Cấu hình mặc định là vĩnh viễn và không thể xóa được.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Một hồ sơ trong tab này đã có tên này.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Hồ sơ này đã tồn tại. Thay thế nó?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Xóa hồ sơ “{0}”?</value>
+  </data>
+</root>

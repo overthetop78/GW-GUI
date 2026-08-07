@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Schreiben</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Wählen Sie ein vorhandenes Quellbild.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Das Format ist nicht eindeutig. Wählen Sie explizit ein kompatibles Format.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Die Überprüfung nach dem Schreiben ist deaktiviert.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Die Überprüfung nach dem Schreiben ist aktiviert.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Bestätigen Sie das Schreiben</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Bild: {0}
+Format: {1}
+Laufwerk: {2}
+{3}
+
+Dieses Bild auf die Festplatte schreiben?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Quellbild</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Erkanntes Format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Wählen Sie ein Bild.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Deaktivieren Sie die Überprüfung nach dem Schreiben</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Fügt --no-verify hinzu. Die Festplatte wird nicht erneut gelesen, um den Schreibvorgang zu bestätigen.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Leere Spuren löschen</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Spuren visualisieren</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Wählen Sie das Festplattenformat aus, bevor Sie die Spuren anzeigen.</value>
+  </data>
+</root>

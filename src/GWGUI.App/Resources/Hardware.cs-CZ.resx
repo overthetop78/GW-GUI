@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>Přístav</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB identifikátor</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Řídit</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>K dispozici</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Skenovat</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Přidat disk…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Není definován žádný disk</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Definujte jednotku</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle ovladač</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Výběr předán gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Fyzická velikost</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Velikost</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Hustota</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Rychlost</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>K dispozici</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Není k dispozici</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Hustota pohonu (pouze popis)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Nominální rychlost (pouze popis)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Ovladač není nakonfigurován</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>odpojeno</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Vybraný disk je odpojen. Znovu jej připojte nebo znovu naskenujte v Options → Controllers and drives.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-inch · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Řídit</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Nejprve naskenujte nebo přidejte ovladač Greaseweazle.</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-inch · {1} · výběr {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Skenovat</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Nejprve vyberte nebo stáhněte gw.exe níže.</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Kontrola hardwaru</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Nakonfigurovaný hardware nebyl nalezen</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Konfigurace je zachována, ale její disky zůstanou nedostupné, dokud nebude znovu nalezen jejich Greaseweazle.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Chybí ovladače Greaseweazle</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Hledejte znovu</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Nastavení hardwaru</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Pokračujte bez této jednotky</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Kontrola hardwaru se nezdařila: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Bylo zjištěno nové Greaseweazle</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} byl zjištěn na {1}. Chcete nyní nakonfigurovat jeho disk?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Konfigurace</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Nakonfigurováno</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Zjištěno, nenakonfigurováno</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Konfigurovat</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Jet {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Disk {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Zapomenout</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Opravdu chcete zapomenout na tento disk nebo zařízení?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Toto je poslední nakonfigurovaná jednotka pro toto Greaseweazle. Chcete zapomenout disk i Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Nejprve vyberte řádek, který patří k příslušné Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>K tomuto Greaseweazle lze automaticky přiřadit maximálně dva disky (A a B).</value>
+  </data>
+</root>

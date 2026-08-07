@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>קבצים קיימים</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>כמה קבצים כבר קיימים</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>בחר פעולה עבור כל קובץ או החל את אותה פעולה על כל הקבצים.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>קוֹבֶץ</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>פְּעוּלָה</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>החלף</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>לְדַלֵג</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>השתמש במספר הבא</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>תחליף הכל</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>דלג על הכל</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>מספר הכל</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>הֲמָרָה</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>בחר פורמט פלט אחד לפחות.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>מקור מעורפל</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>סיכום: {0} הצליח, {1} נכשל.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>כשלים: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>מָקוֹר</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>שמות פלט</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>הוסף תגים</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>נִבחָר</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>פורמטים נפוצים</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>הצג פורמטים בשימוש נדיר</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>הגבל מסלולים</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>בחר תמונת מקור קיימת.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>הזן את שמות קבצי הפלט.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>בדוק לפחות פורמט פלט אחד.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} המרות)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>לא מסומנת הרחבה: {0} משמש כברירת מחדל.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} אינו תואם למקור זה.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>לא נמצא שם קובץ פלט זמין.</value>
+  </data>
+</root>

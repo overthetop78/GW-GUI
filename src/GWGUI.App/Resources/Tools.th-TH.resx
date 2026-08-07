@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>พร้อมดำเนินการ.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>ผลผลิตดิบ</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>ยืนยันการลบ</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>ลบข้อมูลทั้งหมดบนดิสก์ที่ใส่อย่างถาวรหรือไม่</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>ทำความสะอาดหัว</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>ยืนยันว่าใส่ดิสก์ทำความสะอาดแล้ว ห้ามใช้ดิสก์ข้อมูล</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>ลบดิสก์</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>ข้อมูลทั้งหมดบนดิสก์จะถูกทำลาย</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>จำกัดแทร็ก</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>การปฏิวัติ</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>ทำความสะอาดหัว</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>ใส่ดิสก์ทำความสะอาด ห้ามใส่ดิสก์ที่มีข้อมูล</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>กระบอกสูบ</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>ผ่าน</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>ระยะเวลาต่อกระบอกสูบ (มิลลิวินาที)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>จำนวนการวัด</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>กระบอก</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>อนุญาตให้มีกระบอกสูบมาก</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>ให้มอเตอร์ทำงานอยู่เสมอ</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>พิน (8, 26 หรือ 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>เปลี่ยนพิน</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>ระดับสูง</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>การเลือก (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>ขั้นหัวหน้า (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>ชำระหนี้ (มิลลิวินาที)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>มอเตอร์ (มิลลิวินาที)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>ยกเลิกการเลือกอัตโนมัติ (มิลลิวินาที)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>ก่อนเขียน (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>หลังจากเขียน (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>หน้ากากดัชนี (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>อัปเดต bootloader (มีความเสี่ยง)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>การอัพเดต bootloader เป็นการดำเนินการขั้นสูงที่อาจทำให้คอนโทรลเลอร์ไม่สามารถใช้งานได้หากถูกขัดจังหวะ ดำเนินการต่อ?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>คอนโทรลเลอร์</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>เฟิร์มแวร์ที่ไม่รู้จัก</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>พอร์ตที่ไม่รู้จัก</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>ข้อมูลท้องถิ่นนั้นถูกต้อง การตรวจสอบเครือข่ายล้มเหลวเท่านั้น</value>
+  </data>
+  <data name="Tool.Running">
+    <value>คำสั่งทำงาน…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>ข้อมูลตัวควบคุม</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB แบนด์วิธ</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>ความเร็วในการขับขี่</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>แสวงหาหัว</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>หมุดฮาร์ดแวร์</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>รีเซ็ตคอนโทรลเลอร์</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>ความล่าช้า</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>เฟิร์มแวร์</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>พารามิเตอร์ไม่ถูกต้อง</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>ตรวจสอบพารามิเตอร์คำสั่งที่ไฮไลต์ก่อนดำเนินการ</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>โหมดบูตโหลดเดอร์</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>การวินิจฉัยการจัดตำแหน่งไดรฟ์</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>แทร็กสลับ (จำเป็น)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>จำนวนการอ่าน</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>รูปแบบการถอดรหัส</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>อ่านฟลักซ์ดิบ (--raw)</value>
+  </data>
+</root>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>Siap Laksanakan.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Keluaran mentah</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Konfirmasikan penghapusan</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Hapus secara permanen semua data pada disk yang dimasukkan?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Bersihkan kepala</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Konfirmasikan bahwa disk pembersih telah dimasukkan. Jangan pernah menggunakan disk data.</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Hapus disk</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Semua data di disk akan dimusnahkan.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Batasi trek</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revolusi</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Bersihkan kepala</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Masukkan disk pembersih, jangan pernah disk yang berisi data.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Silinder</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Lulus</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Durasi per silinder (ms)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Jumlah pengukuran</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Silinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Izinkan silinder ekstrem</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Jaga motorik tetap aktif</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Sematkan (8, 26 atau 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Ganti pin</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Tingkat tinggi</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Seleksi (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Langkah kepala (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Selesaikan (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motorik (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Batalkan pilihan otomatis (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Sebelum menulis (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Setelah menulis (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Masker indeks (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Perbarui bootloader (berisiko)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Memperbarui bootloader adalah operasi lanjutan yang dapat membuat pengontrol tidak dapat digunakan jika terganggu. Melanjutkan?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Pengendali</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Firmware tidak dikenal</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Pelabuhan tidak dikenal</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Informasi lokalnya valid; hanya pemeriksaan jaringan yang gagal.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Perintah berjalan…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Informasi pengontrol</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB lebar pita</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Kecepatan berkendara</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Carilah kepala</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Pin perangkat keras</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Setel ulang pengontrol</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Penundaan</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Parameter tidak valid</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Periksa parameter perintah yang disorot sebelum menjalankan.</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Mode pemuat boot</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnostik penyelarasan penggerak</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Trek bergantian (wajib)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Jumlah bacaan</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Format penguraian kode</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Baca fluks mentah (--raw)</value>
+  </data>
+</root>

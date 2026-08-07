@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="About.Description">
+    <value>Современный интерфейс Windows для чтения, записи, преобразования и проверки дискет с помощью Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Программное обеспечение с открытым исходным кодом — лицензия MIT.</value>
+  </data>
+  <data name="About.Version">
+    <value>Версия {0}</value>
+  </data>
+</root>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Olemassa olevat tiedostot</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Jotkut tiedostot ovat jo olemassa</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Valitse toiminto jokaiselle tiedostolle tai käytä samaa toimintoa kaikkiin tiedostoihin.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Tiedosto</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Toiminta</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Korvaa</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Ohita</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Käytä seuraavaa numeroa</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Korvaa kaikki</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Ohita kaikki</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Numeroi kaikki</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Muuntaminen</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Valitse vähintään yksi tulostusmuoto.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Epäselvä lähde</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Yhteenveto: {0} onnistui, {1} epäonnistui.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Virheet: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Lähde</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Tulosten nimet</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Lisää tunnisteita</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Valittu</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Yleiset muodot</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Näytä harvoin käytetyt muodot</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Rajoita kappaleita</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Valitse olemassa oleva lähdekuva.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Syötä tulostetiedostojen nimet.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Tarkista vähintään yksi tulostusmuoto.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} tulos(ta))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Laajennuksia ei ole tarkistettu: {0} on oletuksena käytössä.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} ei ole yhteensopiva tämän lähteen kanssa.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Tulostetiedoston nimeä ei löytynyt.</value>
+  </data>
+</root>

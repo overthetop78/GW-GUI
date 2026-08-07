@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>การตั้งค่าขั้นสูง</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>ข้อโต้แย้งของผู้เชี่ยวชาญ</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>อาร์กิวเมนต์จะถูกส่งผ่านตามที่เขียนไว้หลังจากการตรวจสอบความถูกต้องของใบเสนอราคา</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>ลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>ดัชนีปลอม</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>ภาคยาก</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>ข้อมูลแทร็กย้อนกลับ</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>ปรับความเร็ว</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL แทนที่</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>พินความหนาแน่น 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>สร้าง TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>ลบแทร็กล่วงหน้า</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>เขียนการชดเชยล่วงหน้า</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>แทร็กเอาท์พุต</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>คำจำกัดความของดิสก์แบบกำหนดเอง</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle คำจำกัดความของดิสก์ (*.cfg)|*.cfg|ไฟล์ทั้งหมด|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>ไม่มีไฟล์ข้อกำหนดดิสก์ที่เลือก</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>การตั้งค่าขั้นสูงไม่ถูกต้อง: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>ข้อมูลจำเพาะของแทร็ก เช่น c=0-79:h=0-1, c=0-79/2:h=0 หรือ c=0-79:h=0-1:hswap</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>ความเร็วหรือระยะเวลาที่เป็นบวก เช่น 300rpm, 200ms, 200000us หรือ 200000000ns</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>พารามิเตอร์ PLL คั่นด้วยเครื่องหมายทวิภาค เช่น period=5:phase=60 หรือ period=5:phase=60:lowpass=2</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>เขียนการชดเชยล่วงหน้า เช่น type=mfm:40=125 ประเภท: mfm, fm, gcr; ค่าอยู่ในหน่วยนาโนวินาที</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>ใช้ไฟล์ diskdefs.cfg ที่กำหนดเองเพื่อเพิ่มหรือแทนที่คำจำกัดความของรูปแบบ Greaseweazle</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: จำนวนรอบที่อ่านต่อแทร็ก ตัวอย่าง: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: ความพยายามเพิ่มเติมหลังจากเกิดข้อผิดพลาด ตัวอย่าง: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: จำกัดกระบอกสูบ หัว หรือการก้าว ตัวอย่าง: --tracks c=0-79:h=0-1</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: พยายามเพิ่มเติมหลังจากขยับศีรษะ ตัวอย่าง: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: สร้างดัชนีแบบกำหนดเวลาสำหรับไดรฟ์ที่ไม่มีสัญญาณดัชนี ตัวอย่าง: --fake-index 300 รอบต่อนาที</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: จัดการฮาร์ดดิสก์ เข้ากันไม่ได้กับ --fake-index</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: ข้อมูลย้อนกลับสำหรับสื่อฟลิปปีหรือการเดินสาย</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: ปรับขนาดเวลาข้อมูล ตัวอย่าง: --adjust-speed 300 รอบต่อนาที</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: กำหนดค่าลูปการกู้คืนนาฬิกา ตัวอย่าง: --pll ระยะเวลา=5:เฟส=60</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: บังคับพินเลือกความหนาแน่นให้สูงหรือต่ำ ตัวอย่าง: --densel ฮ.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: สร้างสัญญาณ TG43 สำหรับไดรฟ์ที่ต้องการ เข้ากันไม่ได้กับ --densel</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: ลบแทร็กที่รูปภาพต้นฉบับไม่มีข้อมูล</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: ลบแต่ละแทร็กก่อนที่จะเขียน</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: ใช้การชดเชยการเขียนล่วงหน้า ตัวอย่าง: --precomp ประเภท=mfm:40=125</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: ทำการแมปแทร็กในภาพที่ส่งออก ตัวอย่าง: --out-tracks c=0-79:h=0-1</value>
+  </data>
+</root>

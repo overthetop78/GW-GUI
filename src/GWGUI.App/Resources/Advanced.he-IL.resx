@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>הגדרות מתקדמות</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>טיעוני מומחה</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>הטיעונים מועברים כפי שנכתבו לאחר אימות הציטוט.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>חפש ניסיונות חוזרים</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>אינדקס מזויף</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>סקטורים קשים</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>נתוני מסלול הפוך</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>התאם מהירות</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL ביטול</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>סיכת צפיפות 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>צור TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>מחיקת רצועות מראש</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>כתוב פיצוי מראש</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>רצועות פלט</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>הגדרות דיסק מותאמות אישית</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle הגדרות דיסק (*.cfg)|*.cfg|כל הקבצים|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>קובץ הגדרות הדיסק שנבחר אינו קיים.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>הגדרה מתקדמת אינה חוקית: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>מפרט מסלול, לדוגמה c=0-79:h=0-1, c=0-79/2:h=0, או c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>מהירות או תקופה חיובית, למשל 300 סל"ד, 200ms, 200000us או 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL פרמטרים מופרדים על ידי נקודתיים, למשל period=5:phase=60 או period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>כתוב פיצוי מראש, למשל type=mfm:40=125. סוגים: mfm, fm, gcr; הערכים הם בננו-שניות.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>השתמש בקובץ diskdefs.cfg מותאם אישית כדי להוסיף או לעקוף הגדרות פורמט Greaseweazle.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: מספר סיבובים שנקראו בכל רצועה. דוגמה: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: ניסיונות נוספים לאחר שגיאה. דוגמה: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: הגבלת צילינדרים, ראשים או דריכה. דוגמה: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: ניסיונות נוספים לאחר הזזת הראש. דוגמה: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: צור אינדקס מתוזמן עבור כונן ללא אות אינדקס. דוגמה: --fake-index 300 סל"ד.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: טיפול בדיסק בעל מגזר קשיח. לא תואם ל---fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: נתוני מסלול הפוך עבור מדיה או חיווט עקום.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: שינוי קנה מידה של תזמון נתונים. דוגמה: --adjust-speed 300 סל"ד.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: הגדר את לולאת שחזור השעון. דוגמה: --pll period=5:phase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: כפה על פין בחירת הצפיפות גבוה או נמוך. דוגמה: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: צור את האות TG43 עבור כוננים הדורשים זאת. לא תואם ל־--densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: מחק רצועות שעבורן תמונת המקור אינה מכילה נתונים.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: מחק כל רצועה לפני כתיבתה.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: החל פיצוי מראש לכתיבה. דוגמה: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: מיפוי מחדש של רצועות בתמונת הפלט. דוגמה: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

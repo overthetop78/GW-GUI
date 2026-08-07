@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Vaihtoehdot</value>
+  </data>
+  <data name="Options.General">
+    <value>Kenraali</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Työkalut</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Ohjaimet ja asemat</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profiilit</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Oletuslevykuvakansio</value>
+  </data>
+  <data name="Options.Language">
+    <value>Kieli</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Teema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Järjestelmä</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Kevyt</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Tumma</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Polku gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Jos työkalut puuttuvat, avustaja ehdottaa niiden lataamista tai valitse olemassa olevan asennuksen. Päivityksistä ilmoitetaan vain.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Laitteistoasetukset säilyvät tallessa, kun asema irrotetaan.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Suoritettava (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Poistetaanko tämä tallennettu ohjain ja kaikki sen asemat?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Laitteisto</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Käytä tunnisteita muunnostiedostojen nimissä</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Esiasetettu</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Vain perhe</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Vain muoto</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Perhe ja muoto</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Perhe ja laajennus</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Perhe, muoto ja laajennus</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Tulostagin malli</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Saatavilla olevat muuttujat</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Lähdetiedoston nimi</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Perhe: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Muoto: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Laajennus: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Päivämäärä: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Päivämäärä: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Päivämäärä: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Aika: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Aika: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Aika: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} - lähdetiedoston nimi
+{FAMILY} — koneperhe (PC, ST, AMIGA…)
+{FORMAT} — muoto tai geometria (720, 1440, DD…)
+{EXTENSION} — lähtölaajennus (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — päivämäärä 2026-08-06
+{DATE:YYYYMMDD} - päivämäärä 20260806
+{DATE:DD-MM-YYYY} — päivämäärä 06-08-2026
+{TIME:HH-MM-SS} — aika 14-35-42
+{TIME:HHMMSS} — aika 143542
+{TIME:HH-MM} — aika 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Viimeaikaiset mukautetut kuviot</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Seuraava esimerkki</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Esimerkki: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Tunnistemallin tulee sisältää {tag}.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Tallenna lokit</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Lokit</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Jokaisella toiminnolla on oma tiedostonsa GW GUI Lokit -kansiossa.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Poista</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Puhtaat päät</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Avaa kansio</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Suurin koko</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Säilytä aiemmat lokit</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = rajoittamaton</value>
+  </data>
+</root>

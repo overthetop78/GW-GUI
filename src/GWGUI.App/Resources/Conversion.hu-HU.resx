@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Meglévő fájlok</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Néhány fájl már létezik</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Válasszon egy műveletet minden fájlhoz, vagy alkalmazza ugyanazt a műveletet az összes fájlra.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fájl</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Akció</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Átír</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Kihagyás</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Használja a következő számot</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Az összes felülírása</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Az összes kihagyása</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Számozd meg mindet</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Átalakítás</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Válasszon ki legalább egy kimeneti formátumot.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Kétértelmű forrás</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Összegzés: {0} sikerült, {1} sikertelen.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Hibák: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Forrás</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Kimeneti nevek</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Címkék hozzáadása</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Kiválasztott</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Gyakori formátumok</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Ritkán használt formátumok megjelenítése</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Limit tracks</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Válasszon egy meglévő forrásképet.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Írja be a kimeneti fájlneveket.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Ellenőrizze legalább egy kimeneti formátumot.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konverzió)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Nincs kiterjesztés ellenőrizve: alapértelmezés szerint a {0} használatban van.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>A {0} nem kompatibilis ezzel a forrással.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Nem található elérhető kimeneti fájlnév.</value>
+  </data>
+</root>

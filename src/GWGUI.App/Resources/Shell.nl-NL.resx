@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Tools zijn niet geconfigureerd. Open Opties → Voorkeuren.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Er is een bewerking gaande. Stoppen en GW GUI sluiten?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Klaar: code {0}, duur {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Opdracht succesvol voltooid.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Commando geannuleerd.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>De opdracht eindigde met code {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Troosten</value>
+  </data>
+  <data name="Common.Command">
+    <value>Commando</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Kant {0}: spoor {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI klaar.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profiel: Standaard</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Stop de werking</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>De huidige Greaseweazle-bewerking stoppen?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Er wordt al een Greaseweazle-opdracht uitgevoerd. Wacht tot het klaar is of stop het voordat u dit hulpprogramma opent.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profiel: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Spoor {0}, zijkant {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Spoor {0}, zijkant {1} — {2} verwerkt</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Fout: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Klaar</value>
+  </data>
+  <data name="Status.Running">
+    <value>Rennen</value>
+  </data>
+  <data name="Status.Success">
+    <value>Succes</value>
+  </data>
+  <data name="Status.Error">
+    <value>Fout</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Geannuleerd</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.SettingsSaveFailed">
+    <value>Ayarlar kaydedilemedi.
+
+{0}</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI hatası</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Beklenmeyen bir hatayla karşılaşıldı.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Ayarlar kaydedilemedi. Pencere yine de kapanacak.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Raporun tamamı şuraya kaydedildi:
+{0}</value>
+  </data>
+</root>

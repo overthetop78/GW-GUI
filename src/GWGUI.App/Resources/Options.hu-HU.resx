@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Opciók</value>
+  </data>
+  <data name="Options.General">
+    <value>Általános</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Eszközök</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Vezérlők és meghajtók</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profilok</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Alapértelmezett lemezkép mappa</value>
+  </data>
+  <data name="Options.Language">
+    <value>Nyelv</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Téma</value>
+  </data>
+  <data name="Theme.System">
+    <value>Rendszer</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Fény</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Sötét</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Útvonal ide: gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Ha az eszközök hiányoznak, az asszisztens felajánlja azok letöltését vagy egy meglévő telepítés kiválasztását. A frissítéseket csak bejelentik.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>A hardverbeállítások tárolva maradnak, ha a meghajtót leválasztják.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Futtatható (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Eltávolítja ezt a tárolt vezérlőt és az összes meghajtót?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Hardver</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Használjon címkéket a konverziós fájlnevekben</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Előre beállított</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Csak család</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Csak formátum</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Család és forma</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Család és kiterjedés</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Család, formátum és kiterjesztés</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Konverziós címke minta</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Elérhető változók</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Forrásfájlnév</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Család: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Formátum: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Kiterjesztés: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Időpont: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Dátum: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Időpont: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Időpont: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Időpont: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Időpont: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} – forrásfájlnév
+{FAMILY} — gépcsalád (PC, ST, AMIGA…)
+{FORMAT} — formátum vagy geometria (720, 1440, DD…)
+{EXTENSION} – kimeneti kiterjesztés (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — dátum 2026-08-06
+{DATE:YYYYMMDD} – dátum: 20260806
+{DATE:DD-MM-YYYY} — dátum 2026-08-06
+{TIME:HH-MM-SS} — idő 14-35-42
+{TIME:HHMMSS} — idő: 143542
+{TIME:HH-MM} — idő 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Legutóbbi egyedi minták</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Következő példa</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Példa: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>A címkemintának tartalmaznia kell a {tag} értéket.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Mentse el a naplókat</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Naplók</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Minden műveletnek saját fájlja van a GW GUI Naplók mappában.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Törlés</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Tiszta fejek</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Nyissa meg a mappát</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Maximális méret</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Tartsa meg a korábbi naplókat</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = korlátlan</value>
+  </data>
+</root>

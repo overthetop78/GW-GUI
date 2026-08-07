@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>לִכתוֹב</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>בחר תמונת מקור קיימת.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>הפורמט מעורפל. בחר במפורש פורמט תואם.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>אימות לאחר כתיבה מושבת.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>אימות לאחר כתיבה מופעל.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>אשר את הכתיבה</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>תמונה: {0}
+פורמט: {1}
+כונן: {2}
+{3}
+
+לכתוב את התמונה הזו לדיסק?</value>
+  </data>
+  <data name="Write.Source">
+    <value>תמונת מקור</value>
+  </data>
+  <data name="Write.Detected">
+    <value>פורמט זוהה</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>בחר תמונה.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>השבת את האימות לאחר הכתיבה</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>מוסיף --no-verify. הדיסק לא ייקרא מחדש כדי לאשר את הכתיבה.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>מחק רצועות ריקות</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>דמיינו מסלולים</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>בחר את פורמט הדיסק לפני הצגת הרצועות שלו.</value>
+  </data>
+</root>

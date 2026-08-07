@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>Bereit zur Ausführung.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Rohausgabe</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Bestätigen Sie das Löschen</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Alle Daten auf der eingelegten Diskette dauerhaft löschen?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Saubere Köpfe</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Vergewissern Sie sich, dass eine Reinigungsdiskette eingelegt ist. Benutzen Sie niemals eine Datendiskette.</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Eine Festplatte löschen</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Alle Daten auf der Festplatte werden zerstört.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Begrenzen Sie die Titel</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revolutionen</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Saubere Köpfe</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Legen Sie eine Reinigungsdiskette ein, niemals eine Diskette mit Daten.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Zylinder</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Pässe</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Dauer pro Zylinder (ms)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Anzahl der Messungen</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Zylinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Erlauben Sie extreme Zylinder</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Halten Sie den Motor aktiv</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Stift (8, 26 oder 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Pin wechseln</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Hohes Niveau</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Auswahl (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Kopfschritt (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Einschwingen (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatische Abwahl (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Vor dem Schreiben (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Nach dem Schreiben (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indexmaske (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Bootloader aktualisieren (riskant)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Das Aktualisieren des Bootloaders ist ein fortgeschrittener Vorgang, der den Controller bei einer Unterbrechung unbrauchbar machen kann. Weitermachen?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Regler</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Unbekannte Firmware</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Unbekannter Port</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Es gelten die örtlichen Angaben; Lediglich die Netzwerkprüfung ist fehlgeschlagen.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Befehl läuft…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Controller-Informationen</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB Bandbreite</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Fahrgeschwindigkeit</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Kopf suchen</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Hardware-Pins</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Controller zurücksetzen</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Verzögerungen</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Ungültige Parameter</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Überprüfen Sie vor der Ausführung die hervorgehobenen Befehlsparameter.</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-Modus</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnose der Antriebsausrichtung</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Abwechselnde(r) Track(s) (erforderlich)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Anzahl der Lesevorgänge</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Dekodierungsformat</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Rohflussmittel lesen (--raw)</value>
+  </data>
+</root>

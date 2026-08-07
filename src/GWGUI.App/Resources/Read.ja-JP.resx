@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>読む</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>ファイル名を入力します。</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>互換性のある画像タイプを選択してください。</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>既存のファイル</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>このファイルはすでに存在します。</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>既存のファイル</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>上書き</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>次の番号を使用してください</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>名前を編集させてください</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>作成するイメージ</value>
+  </data>
+  <data name="Read.Extension">
+    <value>拡大</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>生の画像 (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>既知のディスクフォーマット</value>
+  </data>
+  <data name="Read.FileName">
+    <value>ファイル名</value>
+  </data>
+  <data name="Read.Folder">
+    <value>フォルダ</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>トラックあたりの回転数</value>
+  </data>
+  <data name="Read.Retries">
+    <value>再試行</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>トラック/サイド</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>成功した読み取りに自動的に番号を付ける</value>
+  </data>
+  <data name="Read.Digits">
+    <value>数字</value>
+  </data>
+  <data name="Read.Letters">
+    <value>手紙</value>
+  </data>
+  <data name="Read.Next">
+    <value>次：</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>ビジュアライゼーションで開く</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP のキャプチャが完了しました。作業を中断することなく分析できます。</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>最終的なSCP結果:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>トラック: {0} は良好、{1} が欠落または無効 ({2} シリンダー、{3} 側面)。</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>回転数: {0} · 解像度: {1} ns · サイズ: {2:N0} バイト · チェックサム: {3}。</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>ファイル: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP 概要は利用できません: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} 良好なトラック · {1} が見つからないか無効です · {2} シリンダ · {3} 側面 · {4} 回転数 · {5:N0} バイト · {6} チェックサム</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>画像の種類を選択してください</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>保存先フォルダー</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>読み取りがキャンセルされました: 不完全なファイルが削除されました: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>読み取りはキャンセルされましたが、不完全なファイルを削除できませんでした: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>ファイルを参照</value>
+  </data>
+</root>

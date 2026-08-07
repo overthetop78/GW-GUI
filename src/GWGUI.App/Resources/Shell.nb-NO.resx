@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Verktøy er ikke konfigurert. Åpne Alternativer → Innstillinger.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>En operasjon kjører. Stopp den og lukk GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Ferdig: kode {0}, varighet {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Kommandoen er fullført.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Kommandoen ble avbrutt.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Kommandoen endte med koden {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsoll</value>
+  </data>
+  <data name="Common.Command">
+    <value>Kommando</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Side {0}: spor {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI klar.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Standard</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Stopp driften</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Vil du stoppe gjeldende Greaseweazle operasjon?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>En Greaseweazle-kommando kjører allerede. Vent til det er ferdig eller stopp det før du åpner dette verktøyet.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Spor {0}, side {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Spor {0}, side {1} — {2} behandlet</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Feil: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Ferdig</value>
+  </data>
+  <data name="Status.Running">
+    <value>Løper</value>
+  </data>
+  <data name="Status.Success">
+    <value>Suksess</value>
+  </data>
+  <data name="Status.Error">
+    <value>Feil</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Kansellert</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

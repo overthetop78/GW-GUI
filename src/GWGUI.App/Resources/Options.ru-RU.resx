@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Параметры</value>
+  </data>
+  <data name="Options.General">
+    <value>Общий</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Инструменты</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Контроллеры и приводы</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Профили</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Папка образа диска по умолчанию</value>
+  </data>
+  <data name="Options.Language">
+    <value>Язык</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Тема</value>
+  </data>
+  <data name="Theme.System">
+    <value>Система</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Свет</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Темный</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Путь к gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Если инструменты отсутствуют, помощник предложит их скачать или выбрать существующую установку. Обновления только анонсируются.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Настройки оборудования сохраняются при отключении диска.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Исполняемый файл (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Удалить этот сохраненный контроллер и все его диски?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Аппаратное обеспечение</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Используйте теги в именах файлов конвертации</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Предустановка</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Только семья</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Только формат</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Семья и формат</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Семья и расширение</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Семейство, формат и расширение</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Шаблон тега конверсии</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Доступные переменные</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Имя исходного файла</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Семья: ПК, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Формат: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Расширение: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Дата: 6 августа 2026 г.</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Дата: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Дата: 08.06.2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Время: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Время: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Время: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — имя исходного файла
+{FAMILY} — семейство машин (PC, ST, AMIGA…)
+{FORMAT} — формат или геометрия (720, 1440, DD…)
+{EXTENSION} — расширение вывода (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — дата 6 августа 2026 г.
+{DATE:YYYYMMDD} — дата 20260806
+{DATE:DD-MM-YYYY} — дата 08.06.2026
+{TIME:HH-MM-SS} — время 14-35-42
+{TIME:HHMMSS} — время 143542
+{TIME:HH-MM} — время 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Последние пользовательские шаблоны</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Следующий пример</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Пример: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Шаблон тега должен содержать {tag}.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Сохранение журналов</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Журналы</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Каждое действие имеет собственный файл в папке GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Стереть</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Чистые головы</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Открыть папку</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Максимальный размер</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Сохраняйте предыдущие журналы</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = неограниченно</value>
+  </data>
+</root>

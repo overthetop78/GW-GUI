@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Декодер</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Збільшення посилання</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Відкрийте файл SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Немає відкритого файлу SCP</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Очікування файлу</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Інспектор</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Виберіть трек.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Клацніть: виберіть · Колесо: масштабування · Клацніть правою кнопкою миші: панорамування</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Нормальний потік</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Короткий перехід</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Довгий перехід/аномалія</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Читання файлу…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Недійсний файл</value>
+  </data>
+  <data name="Visual.Title">
+    <value>Візуалізація SCP</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>дійсний</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>недійсний</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} доріжок · {2} оборотів · {3} роздільна здатність нс · {4} контрольна сума</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Революція {0}: {1:N0} переходів · {2:F2} мс · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Розшифровка: {0}
+Впевненість: {1:P0}
+Очікувана клітинка: {2:F1} кліків
+Структури: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Сторона: {0}
+Трек: {1}
+SCP запис: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Сторона {0}
+Немає даних</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Сторона {0} · Колія {1}
+{2} оборотів</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Автоматичний</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Заголовок/адреса</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Розшифровані дані</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Видалено/аномалія</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Аналіз на основі революції {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>біт {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Сектор C{0} H{1} R{2} · {3} байтів · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>дійсний</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>недійсний</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>недоступний</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (одинарна щільність)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar з жорстким сектором MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit з жорстким сектором FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N з жорстким сектором FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg система/дані</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Сирий флюс</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Синхронізація</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Заголовок сектора</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Дані секторів</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Видалені дані сектора</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga синхронізація</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Пролог адреси Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Пролог даних Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore синхронізація</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>заголовок Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Форматувати заголовок</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Формат даних</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Аномалія синхронізації</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro захоплення (*.scp)|*.scp|Усі файли|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Контрольна сума</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Сторона {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Аналіз доріжки {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>сторона</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Трек</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP запис</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Революції</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Аналіз</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>впевненість</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Розрахункова клітинка</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Конструкції</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Виявлені структури</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Сектори</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>переходи</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Відкрийте образ диска…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Відключити інспектора</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Приєднати інспектора</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Резюме</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Виявлено формат</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Середні оберти</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Середня тривалість</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

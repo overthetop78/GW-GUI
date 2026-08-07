@@ -323,6 +323,9 @@ public sealed class CoreTests
 
                 var writeFormatCombo = Assert.IsType<System.Windows.Controls.ComboBox>(window.FindName("WriteFormatCombo"));
                 var appCatalog = Assert.IsAssignableFrom<IImageFormatCatalog>(typeof(MainWindow).GetField("_formatCatalog", privateFlags)!.GetValue(window));
+                var explorer = Assert.IsType<ExplorerSection>(window.FindName("DiskExplorer"));
+                Assert.Null(explorer.FormatChoices[0].Id);
+                Assert.Equal(appCatalog.Formats.Select(format => format.Id), explorer.FormatChoices.Skip(1).Select(format => format.Id));
                 writeFormatCombo.ItemsSource = appCatalog.Formats.Where(format => format.Family != "Raw").ToArray();
                 writeFormatCombo.SelectedItem = appCatalog.Formats.Single(format => format.Id == "amiga.amigados");
                 typeof(MainWindow).GetMethod("SaveWriteProfile_Click", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>เขียน</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>เลือกอิมเมจต้นฉบับที่มีอยู่</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>รูปแบบไม่ชัดเจน เลือกรูปแบบที่เข้ากันได้อย่างชัดเจน</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>การตรวจสอบหลังจากการเขียนถูกปิดใช้งาน</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>เปิดใช้งานการยืนยันหลังจากเขียนแล้ว</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>ยืนยันการเขียน</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>รูปภาพ: {0}
+รูปแบบ: {1}
+ขับรถ: {2}
+{3}
+
+เขียนภาพนี้ลงดิสก์หรือไม่?</value>
+  </data>
+  <data name="Write.Source">
+    <value>ที่มาของภาพ</value>
+  </data>
+  <data name="Write.Detected">
+    <value>รูปแบบที่ตรวจพบ</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>เลือกรูปภาพ</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>ปิดการใช้งานการตรวจสอบหลังจากเขียน</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>เพิ่ม --no-verify ดิสก์จะไม่ถูกอ่านซ้ำเพื่อยืนยันการเขียน</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>ลบแทร็กที่ว่างเปล่า</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>เห็นภาพแทร็ก</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>เลือกรูปแบบดิสก์ก่อนที่จะแสดงภาพแทร็ก</value>
+  </data>
+</root>

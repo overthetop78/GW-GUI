@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle لم يتم تكوين الأدوات. افتح الخيارات → التفضيلات.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>هناك عملية قيد التشغيل. أوقفه وأغلق GW GUI؟</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>الانتهاء: الكود {0}، المدة {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>اكتمل الأمر بنجاح.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>تم إلغاء الأمر.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>انتهى الأمر بالكود {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>وحدة التحكم</value>
+  </data>
+  <data name="Common.Command">
+    <value>يأمر</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>الجانب {0}: المسار {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI جاهز.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>الملف الشخصي: افتراضي</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>إيقاف العملية</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>هل تريد إيقاف عملية Greaseweazle الحالية؟</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>الأمر Greaseweazle قيد التشغيل بالفعل. انتظر حتى ينتهي أو أوقفه قبل فتح هذه الأداة.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>الملف الشخصي: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>المسار {0}، الجانب {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>المسار {0}، الجانب {1} — {2} تمت معالجته</value>
+  </data>
+  <data name="Operation.Error">
+    <value>خطأ: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>مستعد</value>
+  </data>
+  <data name="Status.Running">
+    <value>جري</value>
+  </data>
+  <data name="Status.Success">
+    <value>نجاح</value>
+  </data>
+  <data name="Status.Error">
+    <value>خطأ</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>تم الإلغاء</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Napsat</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Vyberte existující zdrojový obrázek.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formát je nejednoznačný. Explicitně vyberte kompatibilní formát.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Ověřování po zápisu je zakázáno.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Ověření po zápisu je povoleno.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Potvrďte zápis</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Obrázek: {0}
+Formát: {1}
+Disk: {2}
+{3}
+
+Zapsat tento obrázek na disk?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Zdrojový obrázek</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Zjištěný formát</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Vyberte obrázek.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Zakázat ověřování po zápisu</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Přidá --no-verify. Disk nebude znovu načten pro potvrzení zápisu.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Vymažte prázdné stopy</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Vizualizujte stopy</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Před zobrazením jeho stop vyberte formát disku.</value>
+  </data>
+</root>

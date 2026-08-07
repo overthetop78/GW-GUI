@@ -293,18 +293,18 @@ La migration doit rester centralisée dans `SettingsMigrator.cs`; elle ne doit p
 
 ## 6. Localisation
 
-Les fichiers `.resx` contiennent désormais 539 clés dans 30 catalogues. La difficulté principale est la cohérence entre les langues et la conservation des noms techniques, davantage que la taille d’un fichier individuel.
+Les ressources contiennent désormais 545 clés. Elles sont physiquement réparties dans 19 catalogues fonctionnels, chacun décliné en ressource neutre et dans les 29 cultures distribuées, soit 570 fichiers courts. Le plus grand catalogue reste inférieur à 300 lignes.
 
-Avant les nouvelles traductions :
+Règles désormais appliquées aux traductions :
 
 - reformater les ressources de manière stable et lisible;
 - créer un catalogue central des cultures;
 - ajouter un outil de parité, placeholders, doublons, valeurs vides et longueurs suspectes;
 - maintenir un glossaire technique;
-- conserver un fichier `Strings.<culture>.resx` par langue et organiser les clés par préfixes (`Common`, `Error`, `Read`, `Write`, `Conversion`, `Explorer`, `Visual`, `Menu`, etc.) ; une séparation physique immédiate produirait plusieurs centaines de fichiers et plusieurs `ResourceManager`, avec un risque de repli différent entre modules ;
-- réévaluer une séparation physique par module uniquement avec un chargeur composite et des tests de repli prêts avant la migration. Cette décision évite de casser la traduction dynamique actuelle ; elle n’empêche pas l’organisation logique ni les audits automatisés.
+- conserver les 19 catalogues fonctionnels séparés et leur déclinaison par culture ; le chargeur composite indexe les clés neutres, détecte les doublons et applique le même repli culturel à chaque module ;
+- ajouter toute nouvelle clé au catalogue fonctionnel correspondant et à chacune de ses déclinaisons culturelles, sans recréer de fichier global `Strings`.
 
-`LocExtension.cs` peut rester petit. Il devra dépendre du futur catalogue de cultures et appliquer le repli vers l’anglais.
+`LocExtension.cs` agrège les 19 `ResourceManager`, retrouve automatiquement le catalogue propriétaire de chaque clé et notifie toujours les liaisons lors d’un changement immédiat de langue.
 
 ## 7. Tests
 

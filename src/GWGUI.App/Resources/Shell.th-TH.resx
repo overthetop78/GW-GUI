@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle ไม่ได้กำหนดค่าเครื่องมือ เปิด ตัวเลือก → การตั้งค่า</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>การดำเนินการกำลังทำงานอยู่ หยุดแล้วปิด GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>เสร็จสิ้น: รหัส {0} ระยะเวลา {1}</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>คำสั่งเสร็จสมบูรณ์แล้ว</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>คำสั่งถูกยกเลิก</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>คำสั่งลงท้ายด้วยโค้ด {0}</value>
+  </data>
+  <data name="Common.Console">
+    <value>คอนโซล</value>
+  </data>
+  <data name="Common.Command">
+    <value>สั่งการ</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>ด้านข้าง {0}: แทร็ก {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI พร้อมแล้ว</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>โปรไฟล์: ค่าเริ่มต้น</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>หยุดการดำเนินการ</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>หยุดการดำเนินการ Greaseweazle ปัจจุบันหรือไม่</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>คำสั่ง Greaseweazle กำลังทำงานอยู่แล้ว รอให้เสร็จสิ้นหรือหยุดก่อนที่จะเปิดเครื่องมือนี้</value>
+  </data>
+  <data name="Status.Profile">
+    <value>โปรไฟล์: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>แทร็ก {0} ด้านข้าง {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>แทร็ก {0} ด้านข้าง {1} — {2} ประมวลผลแล้ว</value>
+  </data>
+  <data name="Operation.Error">
+    <value>ข้อผิดพลาด: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>พร้อม</value>
+  </data>
+  <data name="Status.Running">
+    <value>วิ่ง</value>
+  </data>
+  <data name="Status.Success">
+    <value>ความสำเร็จ</value>
+  </data>
+  <data name="Status.Error">
+    <value>ข้อผิดพลาด</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

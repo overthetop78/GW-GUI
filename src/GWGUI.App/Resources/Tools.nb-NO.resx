@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>Klar til å utføre.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Rå utgang</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Bekreft sletting</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Vil du slette alle data på den innsatte disken permanent?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Rengjør hoder</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Bekreft at en rensedisk er satt inn. Bruk aldri en datadisk.</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Slett en disk</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Alle data på disken vil bli ødelagt.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Begrens spor</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revolusjoner</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Rengjør hoder</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Sett inn en rensedisk, aldri en disk som inneholder data.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Sylindre</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Bestått</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Varighet per sylinder (ms)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Antall målinger</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Sylinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Tillat ekstreme sylindre</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Hold motoren aktiv</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pinne (8, 26 eller 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Bytt pinne</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Høyt nivå</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Utvalg (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Hodetrinn (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Avgjøre (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatisk fjernvalg (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Før skriving (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Etter skriving (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indeksmaske (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Oppdater bootloader (risikofylt)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Oppdatering av bootloader er en avansert operasjon som kan gjøre kontrolleren ubrukelig hvis den blir avbrutt. Fortsette?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Kontroller</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Ukjent fastvare</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Ukjent port</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Den lokale informasjonen er gyldig; bare nettverkskontrollen mislyktes.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Kommandoen kjører...</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Kontrollørinformasjon</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB båndbredde</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Kjørehastighet</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Søk hodet</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Maskinvarepinner</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Tilbakestill kontrolleren</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Forsinkelser</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Fastvare</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Ugyldige parametere</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Sjekk de uthevede kommandoparametrene før du utfører.</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-modus</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Drive justering diagnostikk</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Vekslende spor (påkrevd)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Antall avlesninger</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Dekodingsformat</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Les råfluks (--raw)</value>
+  </data>
+</root>

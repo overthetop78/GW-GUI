@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>ตัวถอดรหัส</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>ลิงค์ซูม.</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>เปิดไฟล์ SCP...</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>ไม่มีไฟล์ SCP เปิดอยู่</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>กำลังรอไฟล์</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>สารวัตร</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>เลือกแทร็ก</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>คลิก: เลือก · วงล้อ: ซูม · คลิกขวา: เลื่อน</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>ฟลักซ์ปกติ</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>การเปลี่ยนแปลงระยะสั้น</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>การเปลี่ยนแปลงที่ยาวนาน/ความผิดปกติ</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>กำลังอ่านไฟล์...</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>ไฟล์ไม่ถูกต้อง</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP การสร้างภาพ</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>ถูกต้อง</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>ไม่ถูกต้อง</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} แทร็ก · {2} การปฏิวัติ · ความละเอียด {3} ns · {4} การตรวจสอบ</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>การปฏิวัติ {0}: {1:N0} การเปลี่ยนภาพ · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>ถอดรหัส: {0}
+ความมั่นใจ: {1:P0}
+เซลล์โดยประมาณ: {2:F1} ติ๊ก
+โครงสร้าง: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>ด้านข้าง: {0}
+ติดตาม: {1}
+SCP รายการ: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>ด้านข้าง {0}
+ไม่มีข้อมูล</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>ด้านข้าง {0} · ติดตาม {1}
+{2} การปฏิวัติ</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>อัตโนมัติ</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>ส่วนหัว/ที่อยู่</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>ข้อมูลที่ถอดรหัส</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>ลบแล้ว/ผิดปกติ</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>การวิเคราะห์ตามการปฏิวัติ {0}</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>บิต {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>เซกเตอร์ C{0} H{1} R{2} · {3} ไบต์ · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>ถูกต้อง</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>ไม่ถูกต้อง</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>ไม่พร้อมใช้งาน</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (ความหนาแน่นเดี่ยว)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar ฮาร์ดเซกเตอร์ MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit ฮาร์ดเซกเตอร์ FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N ฮาร์ดเซกเตอร์ FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 ตรม.FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg ระบบ/ข้อมูล</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>ฟลักซ์ดิบ</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>การซิงโครไนซ์</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>ส่วนหัวของภาค</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>ข้อมูลภาคส่วน</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>ข้อมูลเซกเตอร์ที่ถูกลบ</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga การซิงโครไนซ์</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>อารัมภบทที่อยู่ของ Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>ข้อมูลอารัมภบทของ Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore การซิงโครไนซ์</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore ส่วนหัว</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>จัดรูปแบบส่วนหัว</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>จัดรูปแบบข้อมูล</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>ความผิดปกติของเวลา</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro จับภาพ (*.scp)|*.scp|ไฟล์ทั้งหมด|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>เช็คซัม</value>
+  </data>
+  <data name="Visual.Side">
+    <value>ด้านข้าง {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>กำลังวิเคราะห์แทร็ก {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>ด้านข้าง</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>ติดตาม</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP รายการ</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>การปฏิวัติ</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>การวิเคราะห์</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>ความมั่นใจ</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>เซลล์โดยประมาณ</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>โครงสร้าง</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>โครงสร้างที่ตรวจพบ</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>ภาคส่วน</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>การเปลี่ยนภาพ</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>เปิดดิสก์อิมเมจ...</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>ถอดผู้ตรวจสอบออก</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>ติดผู้ตรวจสอบ</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>สรุป</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>ตรวจพบรูปแบบ</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>รอบต่อนาทีเฉลี่ย</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>ระยะเวลาเฉลี่ย</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

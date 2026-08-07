@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>Készen áll a végrehajtásra.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Nyers kimenet</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Erősítse meg a törlést</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Véglegesen törli az összes adatot a behelyezett lemezen?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Tiszta fejek</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Ellenőrizze, hogy be van-e helyezve egy tisztítólemez. Soha ne használjon adatlemezt.</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Lemez törlése</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>A lemezen lévő összes adat megsemmisül.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Limit tracks</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Forradalmak</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Tiszta fejek</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Helyezzen be egy tisztítólemezt, soha ne olyan lemezt, amely adatokat tartalmaz.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Hengerek</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Pass</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Hengerenkénti időtartam (ms)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Mérések száma</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Henger</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Engedje meg az extrém hengereket</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Tartsa aktívan a motort</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pin (8, 26 vagy 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Cserélje ki a tűt</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Magas szintű</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Kijelölés (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Fejlépés (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Elszámolás (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatikus kijelölés megszüntetése (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Írás előtt (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Írás után (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indexmaszk (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Rendszerbetöltő frissítése (kockázatos)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>A rendszerbetöltő frissítése olyan fejlett művelet, amely megszakítás esetén használhatatlanná teheti a vezérlőt. Folytatja?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Vezérlő</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Ismeretlen firmware</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Ismeretlen port</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>A helyi információ érvényes; csak a hálózati ellenőrzés sikertelen.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Parancs fut…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Vezérlő információ</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB sávszélesség</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Vezetési sebesség</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Keresd a fejet</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Hardvercsapok</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Vezérlő visszaállítása</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Késések</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Érvénytelen paraméterek</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>A végrehajtás előtt ellenőrizze a kiemelt parancsparamétereket.</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader mód</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Hajtásbeállítás diagnosztika</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Váltakozó sáv(ok) (kötelező)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Olvasások száma</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Dekódolási formátum</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Nyers fluxus (--raw) olvasása</value>
+  </data>
+</root>

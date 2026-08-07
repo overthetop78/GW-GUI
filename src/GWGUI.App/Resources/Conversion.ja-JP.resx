@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>既存のファイル</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>いくつかのファイルはすでに存在します</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>ファイルごとにアクションを選択するか、同じアクションをすべてのファイルに適用します。</value>
+  </data>
+  <data name="Conflict.File">
+    <value>ファイル</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>アクション</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>上書き</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>スキップ</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>次の番号を使用する</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>すべて上書き</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>すべてスキップ</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>すべてに番号を付ける</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>変換</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>少なくとも 1 つの出力形式を選択します。</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>曖昧な出典</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>概要: {0} は成功しましたが、{1} は失敗しました。</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>失敗: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>ソース</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>出力名</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>タグを追加する</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>選択済み</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>一般的なフォーマット</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>あまり使用されない形式を表示する</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>トラックを制限する</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>既存のソース イメージを選択します。</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>出力ファイル名を入力します。</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>少なくとも 1 つの出力形式を確認してください。</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} コンバージョン)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>拡張子はチェックされていません: {0} がデフォルトで使用されます。</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} はこのソースと互換性がありません。</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>利用可能な出力ファイル名が見つかりませんでした。</value>
+  </data>
+</root>

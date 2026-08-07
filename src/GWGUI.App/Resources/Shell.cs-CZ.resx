@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Nástroje nejsou nakonfigurovány. Otevřete Možnosti → Předvolby.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Probíhá operace. Zastavit to a zavřít GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Dokončeno: kód {0}, trvání {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Příkaz úspěšně dokončen.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Příkaz zrušen.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Příkaz skončil kódem {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Utěšit</value>
+  </data>
+  <data name="Common.Command">
+    <value>Příkaz</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Strana {0}: stopa {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI připraveno.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Výchozí</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Zastavit provoz</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Zastavit aktuální operaci Greaseweazle?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Příkaz Greaseweazle již běží. Před otevřením tohoto nástroje počkejte na dokončení nebo jej zastavte.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Stopa {0}, strana {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Stopa {0}, strana {1} — {2} zpracováno</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Chyba: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Připraveno</value>
+  </data>
+  <data name="Status.Running">
+    <value>Běh</value>
+  </data>
+  <data name="Status.Success">
+    <value>Úspěch</value>
+  </data>
+  <data name="Status.Error">
+    <value>Chyba</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Zrušeno</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

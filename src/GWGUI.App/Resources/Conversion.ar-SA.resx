@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>الملفات الموجودة</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>بعض الملفات موجودة بالفعل</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>اختر إجراءً لكل ملف أو قم بتطبيق نفس الإجراء على جميع الملفات.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>ملف</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>فعل</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>الكتابة فوق</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>يتخطى</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>استخدم الرقم التالي</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>الكتابة فوق الكل</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>تخطي الكل</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>رقم الكل</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>تحويل</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>حدد تنسيق إخراج واحد على الأقل.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>مصدر غامض</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>ملخص: نجح {0}، وفشل {1}.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>حالات الفشل: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>مصدر</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>أسماء المخرجات</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>إضافة العلامات</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>مختارة</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>التنسيقات الشائعة</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>إظهار التنسيقات التي نادرًا ما تستخدم</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>الحد من المسارات</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>اختر صورة مصدر موجودة.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>أدخل أسماء ملفات الإخراج.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>تحقق من تنسيق إخراج واحد على الأقل.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} تحويل (تحويلات))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>لم يتم التحقق من الامتداد: يتم استخدام {0} بشكل افتراضي.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} غير متوافق مع هذا المصدر.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>لا يمكن العثور على اسم ملف الإخراج المتاح.</value>
+  </data>
+</root>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Escribir</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Elija una imagen de origen existente.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>El formato es ambiguo. Elija explícitamente un formato compatible.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>La verificación después de la escritura está deshabilitada.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>La verificación después de la escritura está habilitada.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Confirmar escribir</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Imagen: {0}
+Formato: {1}
+Unidad: {2}
+{3}
+
+¿Escribir esta imagen en el disco?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Imagen fuente</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Formato detectado</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Elige una imagen.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Deshabilitar la verificación después de escribir</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Agrega --no-verify. El disco no se volverá a leer para confirmar la escritura.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Borrar pistas vacías</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualizar pistas</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Seleccione el formato del disco antes de visualizar sus pistas.</value>
+  </data>
+</root>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>Temukan gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Periksa pembaruan</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Unduh versi terbaru</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Gunakan jalur sebelumnya</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Tidak ada instalasi yang terdeteksi.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Terdeteksi: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Versi terbaru yang tersedia: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Versi {0} diinstal.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Unduh dan instal Greaseweazle Alat Host {0} untuk Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Alat Tuan Rumah</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Tidak ada jalur valid sebelumnya yang disimpan.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Alat Host {0} tersedia</value>
+  </data>
+</root>

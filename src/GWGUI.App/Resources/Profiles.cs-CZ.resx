@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>Profily podle operace</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Tab</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Jméno</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Systém</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Přejmenovat…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Uložit profil</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Název profilu</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Zadejte jméno.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Výchozí</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Výchozí profil je trvalý a nelze jej přejmenovat.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Výchozí profil je trvalý a nelze jej smazat.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Profil na této kartě již tento název má.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Tento profil již existuje. Vyměnit?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Smazat profil „{0}“?</value>
+  </data>
+</root>

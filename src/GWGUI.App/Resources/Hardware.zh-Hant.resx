@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>港口</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB 標識符</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>駕駛</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>可用的</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>掃描</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>新增驅動器...</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>未定義驅動器</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>定義一個驅動器</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle 控制器</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>選擇傳遞給 gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>物理尺寸</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>尺寸</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>密度</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>速度</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>可用的</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>不可用</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>驅動器密度（僅描述）</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>標稱速度（僅描述）</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>控制器未配置</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>斷開連接</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>所選驅動器已斷開連接。重新連接或在選項 → 控制器和磁碟機中再次掃描。</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-英吋 · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>駕駛</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>首先掃描或新增 Greaseweazle 控制器。</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-英吋 · {1} · 選擇 {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>掃描</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>先選擇或下載下面的gw.exe。</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>硬體檢查</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>找不到已設定的硬體</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>配置將被保留，但其磁碟機將保持不可用，直到再次找到其 Greaseweazle 為止。</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>缺少 Greaseweazle 控制器</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>再次搜尋</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>硬體設定</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>不使用此驅動器繼續</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>硬體檢查失敗：{0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>偵測到新的 Greaseweazle</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>在 {1} 上偵測到 {0}。您想現在配置其驅動器嗎？</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>配置</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>已配置</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>已偵測到，未配置</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>配置</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>驅動器 {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>驅動器 {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>忘記</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>您真的想忘記這個驅動器或設備嗎？</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>這是為此 Greaseweazle 最後配置的驅動器。您想同時忘記驅動器和 Greaseweazle 嗎？</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>首先選擇屬於相關 Greaseweazle 的行。</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>最多可以將兩個磁碟機自動指派給該 Greaseweazle（A 和 B）。</value>
+  </data>
+</root>

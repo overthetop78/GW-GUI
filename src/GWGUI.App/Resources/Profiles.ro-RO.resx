@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>Profile după operație</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Tab</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Nume</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Sistem</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Redenumiți…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Salvați profilul</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Numele profilului</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Introduceți un nume.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Implicit</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Profilul implicit este permanent și nu poate fi redenumit.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Profilul implicit este permanent și nu poate fi șters.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Un profil din această filă are deja acest nume.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Acest profil există deja. Înlocuiește-l?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Ștergeți profilul „{0}”?</value>
+  </data>
+</root>

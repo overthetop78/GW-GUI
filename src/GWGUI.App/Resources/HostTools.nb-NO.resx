@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>Finn gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Se etter oppdateringer</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Last ned siste versjon</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Bruk forrige bane</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Ingen installasjon oppdaget.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Oppdaget: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Siste tilgjengelige versjon: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Versjon {0} installert.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Laste ned og installere Greaseweazle Host Tools {0} for Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Vertsverktøy</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Ingen gyldig tidligere sti er lagret.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Vertsverktøy {0} tilgjengelig</value>
+  </data>
+</root>

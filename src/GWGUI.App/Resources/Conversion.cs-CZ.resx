@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Existující soubory</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Některé soubory již existují</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Vyberte akci pro každý soubor nebo použijte stejnou akci pro všechny soubory.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Soubor</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Akce</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Přepsat</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Přeskočit</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Použijte další číslo</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Přepsat vše</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Přeskočit vše</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Očíslujte všechny</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Konverze</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Vyberte alespoň jeden výstupní formát.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Nejednoznačný zdroj</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Shrnutí: {0} se podařilo, {1} se nezdařilo.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Selhání: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Zdroj</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Jména výstupů</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Přidejte značky</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Vybraný</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Běžné formáty</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Zobrazit zřídka používané formáty</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Omezit stopy</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Vyberte existující zdrojový obrázek.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Zadejte názvy výstupních souborů.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Zkontrolujte alespoň jeden výstupní formát.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konverzí)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Není zaškrtnuto žádné rozšíření: Ve výchozím nastavení se používá {0}.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} není kompatibilní s tímto zdrojem.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Nebyl nalezen žádný dostupný výstupní název souboru.</value>
+  </data>
+</root>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Menu.Options">
+    <value>_אפשרויות</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>העדפות...</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>אבחון</value>
+  </data>
+  <data name="Menu.Information">
+    <value>מֵידָע</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB רוחב פס</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>מהירות RPM</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>חפש ראש…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>חוּמרָה</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>סיכות...</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>אִתחוּל</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>עיכובים…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>קושחה…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_עֶזרָה</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>תיעוד</value>
+  </data>
+  <data name="Menu.About">
+    <value>אוֹדוֹת</value>
+  </data>
+  <data name="Tab.Read">
+    <value>לִקְרוֹא</value>
+  </data>
+  <data name="Tab.Write">
+    <value>לִכתוֹב</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>הֲמָרָה</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>רְאִיָה</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>כְּלֵי עֲבוֹדָה</value>
+  </data>
+  <data name="Menu.Align">
+    <value>יישור כונן...</value>
+  </data>
+  <data name="Tab.Explorer">
+    <value>סייר הדיסק</value>
+  </data>
+</root>

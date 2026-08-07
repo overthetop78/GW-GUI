@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Common.Save">
+    <value>บันทึก</value>
+  </data>
+  <data name="Common.Delete">
+    <value>ลบ</value>
+  </data>
+  <data name="Common.Browse">
+    <value>เรียกดู...</value>
+  </data>
+  <data name="Common.Choose">
+    <value>เลือก…</value>
+  </data>
+  <data name="Common.Close">
+    <value>ปิด</value>
+  </data>
+  <data name="Common.Execute">
+    <value>ดำเนินการ</value>
+  </data>
+  <data name="Common.Stop">
+    <value>หยุด</value>
+  </data>
+  <data name="Common.Continue">
+    <value>ดำเนินการต่อ</value>
+  </data>
+  <data name="Common.Reset">
+    <value>รีเซ็ต</value>
+  </data>
+  <data name="Common.Copy">
+    <value>สำเนา</value>
+  </data>
+  <data name="Common.Modify">
+    <value>แก้ไข</value>
+  </data>
+  <data name="Common.Hide">
+    <value>ซ่อน</value>
+  </data>
+  <data name="Common.Export">
+    <value>ส่งออก</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+</root>

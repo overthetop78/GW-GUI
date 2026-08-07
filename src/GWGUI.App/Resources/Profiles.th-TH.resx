@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>โปรไฟล์ตามการดำเนินการ</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>แท็บ</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>ชื่อ</value>
+  </data>
+  <data name="Profiles.System">
+    <value>ระบบ</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>เปลี่ยนชื่อ...</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>บันทึกโปรไฟล์</value>
+  </data>
+  <data name="Profile.Name">
+    <value>ชื่อโปรไฟล์</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>ป้อนชื่อ</value>
+  </data>
+  <data name="Profile.Title">
+    <value>ประวัติโดยย่อ</value>
+  </data>
+  <data name="Common.Profile">
+    <value>ประวัติโดยย่อ</value>
+  </data>
+  <data name="Profile.Default">
+    <value>ค่าเริ่มต้น</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>โปรไฟล์เริ่มต้นเป็นแบบถาวรและไม่สามารถเปลี่ยนชื่อได้</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>โปรไฟล์เริ่มต้นเป็นแบบถาวรและไม่สามารถลบได้</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>โปรไฟล์ในแท็บนี้มีชื่อนี้อยู่แล้ว</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>มีโปรไฟล์นี้อยู่แล้ว แทนที่มัน?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>ลบโปรไฟล์ “{0}” หรือไม่</value>
+  </data>
+</root>

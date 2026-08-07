@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>기존 파일</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>일부 파일이 이미 존재합니다.</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>각 파일에 대한 작업을 선택하거나 모든 파일에 동일한 작업을 적용합니다.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>파일</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>행동</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>덮어쓰기</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>건너뛰다</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>다음 번호 사용</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>모두 덮어쓰기</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>모두 건너뛰기</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>모두 번호 매기기</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>변환</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>출력 형식을 하나 이상 선택하세요.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>모호한 소스</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>요약: {0} 성공, {1} 실패.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>실패: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>원천</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>출력 이름</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>태그 추가</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>선택된</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>일반적인 형식</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>거의 사용되지 않는 형식 표시</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>트랙 제한</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>기존 소스 이미지를 선택합니다.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>출력 파일 이름을 입력합니다.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>하나 이상의 출력 형식을 확인하십시오.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} 전환)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>확장자가 선택되지 않았습니다. 기본적으로 {0}이 사용됩니다.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0}은(는) 이 소스와 호환되지 않습니다.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>사용 가능한 출력 파일 이름을 찾을 수 없습니다.</value>
+  </data>
+</root>

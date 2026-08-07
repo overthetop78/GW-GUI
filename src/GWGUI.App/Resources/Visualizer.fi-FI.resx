@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Dekooderi</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Linkin zoomaus</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Avaa tiedosto SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Ei SCP tiedostoa auki</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Odotetaan tiedostoa</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Tarkastaja</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Valitse kappale.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Napsauta: valitse · Pyörä: zoomaus · Napsauta hiiren kakkospainikkeella: panoroi</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normaali virtaus</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Lyhyt siirtymä</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Pitkä siirtymä/poikkeama</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Luetaan tiedostoa…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Virheellinen tiedosto</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisointi</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>voimassa</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>virheellinen</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} raitaa · {2} kierrosta · {3} ns resoluutio · {4} tarkistussumma</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Vallankumous {0}: {1:N0} siirtymiä · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Dekoodaus: {0}
+Luottamus: {1:P0}
+Arvioitu solu: {2:F1} rastia
+Rakenteet: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Sivu: {0}
+Kappale: {1}
+SCP merkintä: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Sivu {0}
+Ei dataa</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Sivu {0} · Raita {1}
+{2} kierrosta</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automaattinen</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Otsikko/osoite</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Dekoodattu data</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Poistettu/poikkeama</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analyysi perustuu vallankumoukseen {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bitti {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektori C{0} H{1} R{2} · {3} tavua · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>voimassa</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>virheellinen</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>ei ole saatavilla</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (yksi tiheys)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar kovasektori MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit kovasektori FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N kovasektori FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg järjestelmä/tiedot</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Raaka juoksutusaine</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synkronointi</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Sektorin otsikko</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Sektoritiedot</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Poistettu sektoritiedot</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga synkronointi</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Applen osoiteprologi</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Applen data-prologi</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore synkronointi</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore otsikko</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Muotoile otsikko</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Muotoile tiedot</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Ajoituspoikkeama</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro sieppaus (*.scp)|*.scp|Kaikki tiedostot|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Tarkistussumma</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Sivu {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Analysoidaan raitaa {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Sivu</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Seurata</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP merkintä</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Vallankumoukset</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analyysi</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Luottamus</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Arvioitu solu</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Rakenteet</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Havaittuja rakenteita</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektorit</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>siirtymät</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Avaa levykuva…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Irrota tarkastaja</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Kiinnitä tarkastaja</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Yhteenveto</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Muoto havaittu</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Keskimääräinen RPM</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Keskimääräinen kesto</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Opciones</value>
+  </data>
+  <data name="Options.General">
+    <value>General</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Herramientas</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Controladores y unidades</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Perfiles</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Carpeta de imagen de disco predeterminada</value>
+  </data>
+  <data name="Options.Language">
+    <value>Idioma</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Sistema</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Luz</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Oscuro</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Camino a gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Si faltan las herramientas, el asistente le ofrecerá descargarlas o elegir una instalación existente. Las actualizaciones sólo se anuncian.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>La configuración del hardware permanece almacenada cuando se desconecta una unidad.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Ejecutable (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>¿Eliminar este controlador almacenado y todas sus unidades?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Hardware</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Utilice etiquetas en los nombres de archivos de conversión</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Programar</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Solo familia</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Sólo formato</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Familia y formato</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Familia y extensión</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Familia, formato y extensión</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Patrón de etiqueta de conversión</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Variables disponibles</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Nombre del archivo fuente</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Familia: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Formato: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Extensión: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Fecha: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Fecha: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Fecha: 08-06-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Hora: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Hora: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Hora: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} - nombre del archivo fuente
+{FAMILY} — familia de máquinas (PC, ST, AMIGA…)
+{FORMAT} — formato o geometría (720, 1440, DD…)
+{EXTENSION} — extensión de salida (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — fecha 2026-08-06
+{DATE:YYYYMMDD} — fecha 20260806
+{DATE:DD-MM-YYYY} — fecha 08-06-2026
+{TIME:HH-MM-SS} — hora 14-35-42
+{TIME:HHMMSS} - hora 143542
+{TIME:HH-MM} - tiempo 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Patrones personalizados recientes</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Siguiente ejemplo</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Ejemplo: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>El patrón de etiqueta debe contener {tag}.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Guardar registros</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Registros</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Cada acción tiene su propio archivo en la carpeta Registros GW GUI.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Borrar</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Cabezas limpias</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Abrir carpeta</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Tamaño máximo</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Mantener registros anteriores</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = ilimitado</value>
+  </data>
+</root>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Instrumentele nu sunt configurate. Deschideți Opțiuni → Preferințe.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Se execută o operațiune. Oprește-l și închide GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Terminat: cod {0}, durata {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Comanda a fost finalizată cu succes.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Comanda a fost anulată.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Comanda s-a încheiat cu codul {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Consolă</value>
+  </data>
+  <data name="Common.Command">
+    <value>Comanda</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Partea {0}: pista {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI gata.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: implicit</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Opriți funcționarea</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Opriți operațiunea curentă Greaseweazle?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>O comandă Greaseweazle rulează deja. Așteptați să se termine sau opriți-l înainte de a deschide acest instrument.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Piesa {0}, lateral {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Piesa {0}, partea {1} — {2} procesată</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Eroare: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Gata</value>
+  </data>
+  <data name="Status.Running">
+    <value>Funcţionare</value>
+  </data>
+  <data name="Status.Success">
+    <value>Succes</value>
+  </data>
+  <data name="Status.Error">
+    <value>Eroare</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Anulat</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

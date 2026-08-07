@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Читать</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Введите имя файла.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Выберите совместимый тип изображения.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Существующий файл</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Этот файл уже существует.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Существующий файл</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Перезаписать</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Используйте следующий номер</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Позвольте мне отредактировать имя</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Изображение для создания</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Расширение</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Необработанное изображение (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Известный формат диска</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Имя файла</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Папка</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Оборотов на дорожку</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Повторные попытки</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Треки/стороны</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Автоматически нумеровать успешные чтения</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Цифры</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Письма</value>
+  </data>
+  <data name="Read.Next">
+    <value>Следующий:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Открыть в визуализации</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Захват SCP завершен. Вы можете проанализировать его, не отрываясь от работы.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Окончательный результат SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Гусеницы: {0} исправны, {1} отсутствуют или недействительны (цилиндры {2}, стороны {3}).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Оборотов: {0} · Разрешение: {1} нс · Размер: {2:N0} байт · Контрольная сумма: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Файл: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>Сводка SCP недоступна: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} хорошие гусеницы · {1} отсутствует или неверен · {2} цилиндры · {3} сторон · {4} оборотов · {5:N0} байт · {6} контрольная сумма</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Выберите тип изображения</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Папка назначения</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Чтение отменено: Неполный файл был удален: {0}.</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Чтение отменено, но неполный файл удалить не удалось: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Просмотреть файлы</value>
+  </data>
+</root>

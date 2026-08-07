@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Impostazioni avanzate</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Argomentazioni degli esperti</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Gli argomenti vengono passati come scritti dopo la convalida del preventivo.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Cerca nuovi tentativi</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Indice falso</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Settori difficili</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Invertire i dati della traccia</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Regola la velocità</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL sovrascrivi</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Perno di densità 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Genera TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Pre-cancellare le tracce</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Scrivi la precompensazione</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Tracce di uscita</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Definizioni del disco personalizzate</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle definizioni del disco (*.cfg)|*.cfg|Tutti i file|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Il file delle definizioni del disco selezionato non esiste.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Un'impostazione avanzata non è valida: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Specifica della traccia, ad esempio c=0-79:h=0-1, c=0-79/2:h=0 o c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Velocità o periodo positivo, ad esempio 300 giri/min, 200 ms, 200000us o 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parametri separati da due punti, ad esempio periodo=5:fase=60 o periodo=5:fase=60:passabasso=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Scrivere la precompensazione, ad esempio type=mfm:40=125. Tipi: mfm, fm, gcr; i valori sono in nanosecondi.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Utilizza un file diskdefs.cfg personalizzato per aggiungere o sovrascrivere le definizioni del formato Greaseweazle.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Numero di giri letti per traccia. Esempio: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: tentativi aggiuntivi dopo un errore. Esempio: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Limita cilindri, teste o gradini. Esempio: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Tentativi aggiuntivi dopo aver mosso la testa. Esempio: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: crea un indice temporizzato per un azionamento senza segnale di indice. Esempio: --fake-index 300 giri/min.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: gestisce un disco con settori rigidi. Incompatibile con --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: invertire i dati di traccia per supporti flippy o cablaggio.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Ridimensiona i tempi dei dati. Esempio: --adjust-speed 300 giri/min.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: configura il ciclo di ripristino dell'orologio. Esempio: --pll periodo=5:fase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: forza il pin di selezione della densità su alto o basso. Esempio: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: genera il segnale TG43 per gli azionamenti che lo richiedono. Incompatibile con --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: cancella le tracce per le quali l'immagine sorgente non contiene dati.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: cancella ogni traccia prima di scriverla.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: applica la precompensazione di scrittura. Esempio: --precomp tipo=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: rimappa le tracce nell'immagine di output. Esempio: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

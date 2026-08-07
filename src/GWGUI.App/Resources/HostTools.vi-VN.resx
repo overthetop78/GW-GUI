@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>Tìm gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Kiểm tra các bản cập nhật</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Tải xuống phiên bản mới nhất</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Sử dụng đường dẫn trước đó</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Không phát hiện thấy cài đặt nào.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Đã phát hiện: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Phiên bản mới nhất hiện có: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Đã cài đặt phiên bản {0}.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Tải xuống và cài đặt Greaseweazle Công cụ máy chủ {0} cho Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Công cụ lưu trữ</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Không có đường dẫn hợp lệ trước đó được lưu trữ.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Công cụ máy chủ {0} có sẵn</value>
+  </data>
+</root>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="About.Description">
+    <value>Moderní rozhraní Windows pro čtení, zápis, konverzi a kontrolu disket s Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Software s otevřeným zdrojovým kódem — MIT Licence</value>
+  </data>
+  <data name="About.Version">
+    <value>Verze {0}</value>
+  </data>
+</root>

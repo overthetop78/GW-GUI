@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>ميناء</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>معرف USB</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>يقود</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>متاح</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>مسح</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>إضافة محرك…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>لم يتم تحديد محرك الأقراص</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>تحديد محرك الأقراص</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle تحكم</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>تم تمرير التحديد إلى غيغاواط</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>الحجم المادي</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>مقاس</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>كثافة</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>سرعة</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>متاح</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>غير متاح</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>كثافة محرك الأقراص (الوصف فقط)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>السرعة الاسمية (الوصف فقط)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>لم يتم تكوين وحدة التحكم</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>غير متصل</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>تم قطع اتصال محرك الأقراص المحدد. أعد توصيله أو قم بالمسح الضوئي مرة أخرى في الخيارات → وحدات التحكم ومحركات الأقراص.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0} بوصة · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>يقود</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>قم بمسح أو إضافة وحدة التحكم Greaseweazle أولاً.</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0} بوصة · {1} · الاختيار {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>مسح</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>حدد أو قم بتنزيل gw.exe أدناه أولاً.</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>فحص الأجهزة</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>تعذر العثور على الأجهزة التي تم تكوينها</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>تم الحفاظ على التكوين، ولكن محركات الأقراص الخاصة به ستظل غير متاحة حتى يتم العثور على Greaseweazle مرة أخرى.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>وحدات تحكم Greaseweazle مفقودة</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>ابحث مرة أخرى</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>إعدادات الأجهزة</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>استمر بدون محرك الأقراص هذا</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>فشل فحص الأجهزة: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>تم اكتشاف Greaseweazle جديد</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>تم اكتشاف {0} على {1}. هل تريد تكوين محرك الأقراص الخاص به الآن؟</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>إعدادات</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>تم تكوينه</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>تم الكشف عنه، ولم يتم تكوينه</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>تكوين</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>محرك {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>قيادة {0} · {1} ″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>ينسى</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>هل تريد حقًا أن تنسى محرك الأقراص أو الجهاز هذا؟</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>هذا هو آخر محرك أقراص تم تكوينه لهذا Greaseweazle. هل تريد أن تنسى كلاً من محرك الأقراص وGreaseweazle؟</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>حدد صفًا ينتمي إلى Greaseweazle ذي الصلة أولاً.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>يمكن تعيين محركي أقراص على الأكثر تلقائيًا إلى Greaseweazle (A وB).</value>
+  </data>
+</root>

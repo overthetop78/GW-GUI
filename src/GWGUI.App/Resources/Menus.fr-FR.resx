@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Menu.Options">
+    <value>_Options</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Préférences…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostics</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Informations</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>Bande passante USB</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>Vitesse RPM</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Déplacer la tête…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Matériel</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Broches…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Temporisations…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Aide</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Documentation</value>
+  </data>
+  <data name="Menu.About">
+    <value>À propos</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Lecture</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Écriture</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Conversion</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisation</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Outils</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Alignement du lecteur…</value>
+  </data>
+  <data name="Tab.Explorer">
+    <value>Explorateur</value>
+  </data>
+</root>

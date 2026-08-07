@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Araçlar yapılandırılmamış. Seçenekler → Tercihler'i açın.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Bir operasyon yürütülüyor. Durdurulsun ve GW GUI kapatılsın mı?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Bitti: kod {0}, süre {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Komut başarıyla tamamlandı.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Komut iptal edildi.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Komut {0} koduyla sona erdi.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsol</value>
+  </data>
+  <data name="Common.Command">
+    <value>Emretmek</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Taraf {0}: parça {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI hazır.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Varsayılan</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>İşlemi durdur</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Mevcut Greaseweazle işlemi durdurulsun mu?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Bir Greaseweazle komutu zaten çalışıyor. Bu aracı açmadan önce bitmesini bekleyin veya durdurun.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Parça {0}, yan {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Parça {0}, taraf {1} — {2} işlendi</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Hata: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Hazır</value>
+  </data>
+  <data name="Status.Running">
+    <value>Koşma</value>
+  </data>
+  <data name="Status.Success">
+    <value>Başarı</value>
+  </data>
+  <data name="Status.Error">
+    <value>Hata</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>İptal edildi</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

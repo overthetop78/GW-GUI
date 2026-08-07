@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Bestaande bestanden</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Sommige bestanden bestaan ​​al</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Kies een actie voor elk bestand of pas dezelfde actie toe op alle bestanden.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Bestand</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Actie</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Overschrijven</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Overslaan</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Gebruik het volgende nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Alles overschrijven</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Alles overslaan</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alles</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Conversie</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Selecteer ten minste één uitvoerformaat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Dubbelzinnige bron</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Samenvatting: {0} geslaagd, {1} mislukt.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Storingen: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Bron</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Uitvoernamen</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Tags toevoegen</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Gekozen</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Veel voorkomende formaten</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Toon zelden gebruikte formaten</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Beperk nummers</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Kies een bestaande bronafbeelding.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Voer de uitvoerbestandsnamen in.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Controleer ten minste één uitvoerformaat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} conversie(s))</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Geen extensie aangevinkt: {0} wordt standaard gebruikt.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} is niet compatibel met deze bron.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Er kon geen beschikbare uitvoerbestandsnaam worden gevonden.</value>
+  </data>
+</root>

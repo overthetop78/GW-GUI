@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>现有文件</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>有些文件已经存在</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>为每个文件选择一个操作或对所有文件应用相同的操作。</value>
+  </data>
+  <data name="Conflict.File">
+    <value>文件</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>行动</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>覆盖</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>跳过</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>使用下一个号码</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>覆盖全部</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>全部跳过</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>全部编号</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>转换</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>选择至少一种输出格式。</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>来源不明确</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>摘要：{0} 成功，{1} 失败。</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>失败：{0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>来源</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>输出名称</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>添加标签</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>已选择</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>常见格式</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>显示很少使用的格式</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>限制曲目</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>选择现有的源图像。</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>输入输出文件名。</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>检查至少一种输出格式。</value>
+  </data>
+  <data name="Conversion.More">
+    <value>（+ {0} 转换）</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>未检查扩展名：默认使用 {0}。</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} 与此源不兼容。</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>找不到可用的输出文件名。</value>
+  </data>
+</root>

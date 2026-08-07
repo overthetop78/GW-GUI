@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>Pilihan</value>
+  </data>
+  <data name="Options.General">
+    <value>Umum</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Alat</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Pengontrol dan drive</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profil</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Folder gambar disk default</value>
+  </data>
+  <data name="Options.Language">
+    <value>Bahasa</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Sistem</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Lampu</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Gelap</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Jalan menuju gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Jika alatnya hilang, asisten akan menawarkan untuk mengunduhnya atau memilih instalasi yang ada. Pembaruan hanya diumumkan.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Pengaturan perangkat keras tetap disimpan ketika drive dicabut.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Dapat dieksekusi (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Hapus pengontrol yang disimpan ini dan semua drive-nya?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Perangkat keras</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Gunakan tag dalam nama file konversi</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Prasetel</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Hanya keluarga</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Hanya formatnya</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Keluarga dan format</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Keluarga dan ekstensi</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Keluarga, format dan ekstensi</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Pola tag konversi</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Variabel yang tersedia</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Nama file sumber</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Keluarga: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Format: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Ekstensi: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Tanggal: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Tanggal: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Tanggal: 08-06-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Waktu: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Waktu: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Waktu: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — nama file sumber
+{FAMILY} — keluarga mesin (PC, ST, AMIGA…)
+{FORMAT} — format atau geometri (720, 1440, DD…)
+{EXTENSION} — ekstensi keluaran (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — tanggal 06-08-2026
+{DATE:YYYYMMDD} — tanggal 20260806
+{DATE:DD-MM-YYYY} — tanggal 08-06-2026
+{TIME:HH-MM-SS} — waktu 14-35-42
+{TIME:HHMMSS} — waktu 143542
+{TIME:HH-MM} — waktu 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Pola khusus terkini</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Contoh selanjutnya</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Contoh: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Pola tag harus berisi {tag}.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Simpan log</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Log</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Setiap tindakan memiliki filenya sendiri di folder GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Menghapus</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Bersihkan kepala</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Buka map</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Ukuran maksimum</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Simpan log sebelumnya</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = tidak terbatas</value>
+  </data>
+</root>

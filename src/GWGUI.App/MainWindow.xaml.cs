@@ -1475,9 +1475,7 @@ public partial class MainWindow : Window
     private void RefreshExplorerFormats()
     {
         var selectedId = DiskExplorer.SelectedFormatId;
-        DiskExplorer.SetFormats(
-            _formatCatalog.Formats.Where(format => _diskImageExplorer.SupportedFormatIds.Contains(format.Id)),
-            selectedId);
+        DiskExplorer.SetFormats(_formatCatalog.Formats, selectedId);
     }
 
     private void ShowLoggedError(Exception exception, string context, string titleKey, string messageKey = "Error.Unexpected")

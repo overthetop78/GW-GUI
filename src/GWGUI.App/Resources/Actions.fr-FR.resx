@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Annuler</value>
+  </data>
+  <data name="Common.Save">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Supprimer</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Parcourir…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Choisir…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Fermer</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Exécuter</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Arrêter</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Continuer</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Copier</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Modifier</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Masquer</value>
+  </data>
+  <data name="Common.Export">
+    <value>Exporter</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+</root>

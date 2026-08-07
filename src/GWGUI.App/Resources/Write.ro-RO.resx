@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>Scrie</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Alegeți o imagine sursă existentă.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formatul este ambiguu. Alegeți în mod explicit un format compatibil.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verificarea după scriere este dezactivată.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verificarea după scriere este activată.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Confirmați scrierea</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Imagine: {0}
+Format: {1}
+Conducere: {2}
+{3}
+
+Scrieți această imagine pe disc?</value>
+  </data>
+  <data name="Write.Source">
+    <value>Imagine sursă</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Format detectat</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Alegeți o imagine.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Dezactivați verificarea după scriere</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Adaugă --no-verify. Discul nu va fi recitit pentru a confirma scrierea.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Ștergeți piesele goale</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Vizualizați piese</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Selectați formatul discului înainte de a-i vizualiza urmele.</value>
+  </data>
+</root>

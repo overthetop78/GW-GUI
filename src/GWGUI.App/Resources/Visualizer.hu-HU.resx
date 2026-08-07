@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Dekóder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Link zoom</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Nyisson meg egy SCP fájlt…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Nincs nyitva SCP fájl</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Fájlra vár</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Ellenőr</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Válasszon ki egy műsorszámot.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Kattintás: kiválasztás · Kerék: nagyítás · Jobb kattintás: pásztázás</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normál fluxus</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Rövid átmenet</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Hosszú átmenet/anomália</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Fájl olvasása…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Érvénytelen fájl</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP vizualizáció</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>érvényes</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>érvénytelen</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} sáv · {2} fordulat · {3} ns felbontás · {4} ellenőrző összeg</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>{0} forradalom: {1:N0} átmenetek · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Dekódolás: {0}
+Bizalom: {1:P0}
+Becsült cella: {2:F1} pipa
+Struktúrák: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Oldal: {0}
+Szám: {1}
+SCP bejegyzés: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>{0} oldal
+Nincs adat</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>{0} oldal · {1} pálya
+{2} forradalom</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automatikus</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Fejléc/cím</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Dekódolt adatok</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Törölve/rendellenesség</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Elemzés a {0} forradalom alapján.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Szektor C{0} H{1} R{2} · {3} bájt · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>érvényes</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>érvénytelen</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>nem elérhető</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (egysűrűség)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar kemény szektorú MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit kemény szektorú FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N kemény szektorú FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg rendszer/adat</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Nyers fluxus</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Szinkronizálás</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Szektor fejléc</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Ágazati adatok</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Szektoradatok törölve</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga szinkronizálás</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Apple cím prológ</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Apple adatprológ</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore szinkronizálás</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore fejléc</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Fejléc formázása</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Adatok formázása</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Időzítési anomália</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro capture (*.scp)|*.scp|Minden fájl|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Ellenőrző összeg</value>
+  </data>
+  <data name="Visual.Side">
+    <value>{0} oldal</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>{0}/{1} műsorszám elemzése…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Oldal</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Pálya</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP bejegyzés</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Forradalmak</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Elemzés</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Bizalom</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Becsült cella</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Struktúrák</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Észlelt szerkezetek</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Szektorok</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>átmenetek</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Lemezkép megnyitása…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Válassza le az ellenőrt</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Csatlakoztassa az ellenőrt</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Összegzés</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Formátum észlelve</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Átlagos fordulatszám</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Átlagos időtartam</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

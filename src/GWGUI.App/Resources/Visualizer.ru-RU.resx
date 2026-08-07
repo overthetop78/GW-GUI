@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Visual.Decoder">
+    <value>Декодер</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Увеличение ссылки</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Откройте файл SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Файл SCP не открыт</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Ожидание файла</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Инспектор</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Выберите трек.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Щелкните: выберите · Колесо: масштабирование · Щелкните правой кнопкой мыши: панорамирование</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Нормальный поток</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Короткий переход</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Длинный переход/аномалия</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Чтение файла…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Неверный файл</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP визуализация</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>действительный</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>неверный</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} треков · {2} оборотов · {3} разрешение нс · {4} контрольная сумма</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Революция {0}: переходы {1:N0} · {2:F2} мс · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Расшифровка: {0}
+Уверенность: {1:P0}
+Предполагаемая ячейка: {2:F1} тиков
+Структуры: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Сторона: {0}
+Трек: {1}
+SCP запись: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Сторона {0}
+Нет данных</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Сторона {0} · Трек {1}
+{2} революции(й)</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Автоматический</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Заголовок/адрес</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Декодированные данные</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Удалено/аномалия</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Анализ на основе революции {0}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>бит {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Сектор C{0} H{1} R{2} · {3} байт · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>действительный</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>неверный</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>недоступен</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (одинарная плотность)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar жесткосекторный MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit жесткосекторный FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N жесткосекторный FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg система/данные</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Необработанный флюс</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Синхронизация</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Заголовок сектора</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Данные сектора</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Удаленные данные сектора</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga синхронизация</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Пролог адреса Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Пролог данных Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore синхронизация</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore заголовок</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Форматировать заголовок</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Форматировать данные</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Аномалия времени</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro захват (*.scp)|*.scp|Все файлы|*.*</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Контрольная сумма</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Сторона {0}</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Анализ дорожки {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Сторона</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Отслеживать</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP запись</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Революции</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Анализ</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Уверенность</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Предполагаемая ячейка</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Структуры</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Обнаруженные структуры</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Секторы</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>переходы</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Visual.OpenImage">
+    <value>Откройте образ диска…</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Отсоединить инспектора</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Прикрепите инспектора</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Краткое содержание</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Обнаружен формат</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Средняя частота вращения</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Средняя продолжительность</value>
+  </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
+</root>

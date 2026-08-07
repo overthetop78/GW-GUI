@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.SettingsSaveFailed">
+    <value>설정을 저장할 수 없습니다.
+
+{0}</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI 오류</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>예상치 못한 오류가 차단되었습니다.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>설정을 저장할 수 없습니다. 창은 여전히 ​​닫힐 것입니다.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>전체 보고서는 다음 위치에 저장되었습니다.
+{0}</value>
+  </data>
+</root>

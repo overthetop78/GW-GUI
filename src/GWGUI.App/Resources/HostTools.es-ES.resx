@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="HostTools.Detect">
+    <value>Encuentra gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Descargar la última versión</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Usar ruta anterior</value>
+  </data>
+  <data name="HostTools.None">
+    <value>No se detectó ninguna instalación.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Detectado: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Última versión disponible: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Versión {0} instalada.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>¿Descargar e instalar Greaseweazle Host Tools {0} para Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Herramientas del host</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>No se almacena ninguna ruta anterior válida.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Herramientas de host {0} disponibles</value>
+  </data>
+</root>

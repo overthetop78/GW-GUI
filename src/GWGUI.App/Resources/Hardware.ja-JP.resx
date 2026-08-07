@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Hardware.Port">
+    <value>ポート</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB 識別子</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>ドライブ</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>利用可能</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>スキャン</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>ドライブを追加…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>ドライブが定義されていません</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>ドライブを定義する</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle コントローラー</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>選択はGWに渡されました</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>物理的なサイズ</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>サイズ</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>密度</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>スピード</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>利用可能</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>利用不可</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>ドライブ密度 (説明のみ)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>公称速度 (説明のみ)</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>コントローラーが設定されていません</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>切断された</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>選択したドライブが切断されました。再接続するか、「オプション」→「コントローラーとドライブ」で再度スキャンしてください。</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0} インチ · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>ドライブ</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>最初に Greaseweazle コントローラーをスキャンまたは追加します。</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0} インチ · {1} · 選択 {2}{3}</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>スキャン</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>まず、以下の gw.exe を選択またはダウンロードします。</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>ハードウェアチェック</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>構成されたハードウェアが見つかりませんでした</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>構成は保存されますが、Greaseweazle が再び見つかるまで、そのドライブは使用できないままになります。</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Greaseweazle コントローラーがありません</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>再検索</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>ハードウェア設定</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>このドライブなしで続行します</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>ハードウェア チェックに失敗しました: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>新しいGreaseweazleが検出されました</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} が {1} で検出されました。今すぐドライブを構成しますか?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>構成</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>設定済み</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>検出されましたが、設定されていません</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>設定する</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>{0} をドライブ</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>ドライブ {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>忘れる</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>本当にこのドライブまたはデバイスを忘れたいですか?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>これは、この Greaseweazle に対して最後に構成されたドライブです。ドライブと Greaseweazle の両方を忘れますか?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>まず、関連する Greaseweazle に属する行を選択します。</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>この Greaseweazle には最大 2 つのドライブ (A および B) を自動的に割り当てることができます。</value>
+  </data>
+</root>

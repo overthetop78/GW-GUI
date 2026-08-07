@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Tool.Ready">
+    <value>Klaar om uit te voeren.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Ruwe uitvoer</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Bevestig het wissen</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Alle gegevens op de geplaatste schijf permanent wissen?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Schone hoofden</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Controleer of er een reinigingsschijf is geplaatst. Gebruik nooit een dataschijf.</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Wis een schijf</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Alle gegevens op de schijf worden vernietigd.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Beperk nummers</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revoluties</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Schone hoofden</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Plaats een reinigingsschijf, nooit een schijf die gegevens bevat.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Cilinders</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Passeert</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Duur per cilinder (ms)</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Aantal metingen</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Cilinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Sta extreme cilinders toe</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Houd de motor actief</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pen (8, 26 of 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Wijzig pincode</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Hoog niveau</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Selectie (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Hoofdstap (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Vereffenen (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatisch deselecteren (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Vóór schrijven (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Na schrijven (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indexmasker (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Update bootloader (riskant)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Het updaten van de bootloader is een geavanceerde handeling die de controller onbruikbaar kan maken als deze wordt onderbroken. Doorgaan?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Controleur</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Onbekende firmware</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Onbekende haven</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>De lokale informatie is geldig; alleen de netwerkcontrole is mislukt.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Commando actief…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Informatie over de controller</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB bandbreedte</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Rijsnelheid</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Zoek hoofd</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Hardware-pinnen</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Regelaar resetten</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Vertragingen</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Ongeldige parameters</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Controleer de gemarkeerde opdrachtparameters voordat u deze uitvoert.</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-modus</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnose van de uitlijning van de aandrijving</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Wisselende track(s) (verplicht)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Aantal lezingen</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Decoderingsformaat</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Ruwe flux lezen (--raw)</value>
+  </data>
+</root>

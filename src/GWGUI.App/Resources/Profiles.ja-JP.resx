@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>操作別のプロファイル</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>タブ</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>名前</value>
+  </data>
+  <data name="Profiles.System">
+    <value>システム</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>名前を変更…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>プロファイルの保存</value>
+  </data>
+  <data name="Profile.Name">
+    <value>プロファイル名</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>名前を入力します。</value>
+  </data>
+  <data name="Profile.Title">
+    <value>プロフィール</value>
+  </data>
+  <data name="Common.Profile">
+    <value>プロフィール</value>
+  </data>
+  <data name="Profile.Default">
+    <value>デフォルト</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>デフォルトのプロファイルは永続的であり、名前を変更することはできません。</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>デフォルトのプロファイルは永続的であり、削除できません。</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>このタブのプロファイルにはすでにこの名前が付いています。</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>このプロファイルはすでに存在します。交換しますか?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>プロフィール「{0}」を削除しますか?</value>
+  </data>
+</root>

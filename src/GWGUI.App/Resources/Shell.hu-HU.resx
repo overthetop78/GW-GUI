@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Az eszközök nincsenek konfigurálva. Nyissa meg az Opciók → Beállítások lehetőséget.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Egy művelet fut. Leállítja és bezárja a GW GUI-t?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Kész: kód {0}, időtartam {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>A parancs sikeresen végrehajtva.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>A parancs megszakítva.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>A parancs a {0} kóddal végződött.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konzol</value>
+  </data>
+  <data name="Common.Command">
+    <value>Parancs</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>{0} oldal: {1} - {2}/{3} sáv</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI készen áll.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Alapértelmezett</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Állítsa le a működést</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Leállítja a jelenlegi Greaseweazle műveletet?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Egy Greaseweazle parancs már fut. Az eszköz kinyitása előtt várja meg, amíg befejeződik, vagy állítsa le.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Nyomvonal {0}, oldal {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>{0} sáv, {1} oldal – {2} feldolgozva</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Hiba: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Kész</value>
+  </data>
+  <data name="Status.Running">
+    <value>Futás</value>
+  </data>
+  <data name="Status.Success">
+    <value>Siker</value>
+  </data>
+  <data name="Status.Error">
+    <value>Hiba</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Törölve</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

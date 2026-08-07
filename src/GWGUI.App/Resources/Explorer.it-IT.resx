@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Image">
+    <value>Immagine disco</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Formato</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Apri un’immagine…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Rilevamento automatico</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volume</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>File system</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Capacità</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Spazio libero</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Elementi</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Selezionare un file o una cartella.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Dimensione</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Modificato</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Commento</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Avvisi</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Cartella</value>
+  </data>
+  <data name="Explorer.File">
+    <value>File</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Collegamento</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Sconosciuto</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Volume senza nome</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Impossibile aprire questa immagine: {0}</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Lettura dell’immagine disco…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Leggi disco</value>
+  </data>
+  <data name="Explorer.Name">
+    <value>Nome</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Tipo</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Leggi disco</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Il disco è inserito nell'unità attualmente selezionata ({0}) ed è pronto per la lettura?</value>
+  </data>
+  <data name="Explorer.Type.Text">
+    <value>File di testo</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Immagine</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>File audio</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archivio</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Programma</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Immagine disco</value>
+  </data>
+</root>

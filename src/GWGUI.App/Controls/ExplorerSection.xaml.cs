@@ -133,6 +133,7 @@ public partial class ExplorerSection : UserControl
     public event RoutedEventHandler? ReadDiskRequested;
     public event EventHandler? FormatChanged;
     public Button OpenImageButton => OpenButton;
+    public IReadOnlyList<ExplorerFormatChoice> FormatChoices => FormatCombo.Items.Cast<ExplorerFormatChoice>().ToArray();
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
     public string? SelectedFormatId => (FormatCombo.SelectedItem as ExplorerFormatChoice)?.Id;
 

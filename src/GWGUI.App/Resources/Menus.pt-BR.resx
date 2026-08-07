@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Menu.Options">
+    <value>_Opções</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Preferências…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnóstico</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Informação</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB largura de banda</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM velocidade</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Procure a cabeça…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Hardware</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Alfinetes…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Reiniciar</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Atrasos…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Ajuda</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Documentação</value>
+  </data>
+  <data name="Menu.About">
+    <value>Sobre</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Ler</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Escrever</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Conversão</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualização</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Ferramentas</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Alinhamento da unidade…</value>
+  </data>
+  <data name="Tab.Explorer">
+    <value>Explorador de disco</value>
+  </data>
+</root>

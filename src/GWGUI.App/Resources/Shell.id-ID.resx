@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Alat tidak dikonfigurasi. Buka Opsi → Preferensi.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Sebuah operasi sedang berjalan. Hentikan dan tutup GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Selesai: kode {0}, durasi {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Perintah berhasil diselesaikan.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Perintah dibatalkan.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Perintah diakhiri dengan kode {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Menghibur</value>
+  </data>
+  <data name="Common.Command">
+    <value>Memerintah</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Sisi {0}: trek {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI siap.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Bawaan</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Hentikan operasi</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Hentikan operasi Greaseweazle saat ini?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Perintah Greaseweazle sudah berjalan. Tunggu hingga selesai atau hentikan sebelum membuka alat ini.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Lacak {0}, sisi {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Lacak {0}, sisi {1} — {2} diproses</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Kesalahan: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Siap</value>
+  </data>
+  <data name="Status.Running">
+    <value>Berlari</value>
+  </data>
+  <data name="Status.Success">
+    <value>Kesuksesan</value>
+  </data>
+  <data name="Status.Error">
+    <value>Kesalahan</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Dibatalkan</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

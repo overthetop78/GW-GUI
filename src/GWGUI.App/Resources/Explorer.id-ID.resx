@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Image">
+    <value>Citra disk</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Format</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Buka citra…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Deteksi otomatis</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Volume</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Sistem berkas</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapasitas</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Ruang kosong</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Item</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Pilih berkas atau folder.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Ukuran</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Diubah</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Komentar</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Peringatan</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Folder</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Berkas</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Tautan</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Tidak diketahui</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Volume tanpa nama</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Citra ini tidak dapat dibuka: {0}</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Membaca citra disk…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Baca disket</value>
+  </data>
+  <data name="Explorer.Name">
+    <value>Nama</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Jenis</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Baca disket</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Apakah disket sudah dimasukkan ke drive yang dipilih saat ini ({0}) dan siap dibaca?</value>
+  </data>
+  <data name="Explorer.Type.Text">
+    <value>Berkas teks</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Gambar</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Berkas audio</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arsip</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Citra diska</value>
+  </data>
+</root>

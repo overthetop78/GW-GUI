@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>File yang ada</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Beberapa file sudah ada</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Pilih tindakan untuk setiap file atau terapkan tindakan yang sama ke semua file.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Mengajukan</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Tindakan</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Timpa</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Melewati</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Gunakan nomor berikutnya</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Timpa semuanya</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Lewati semuanya</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nomor semua</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Konversi</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Pilih setidaknya satu format keluaran.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Sumber yang ambigu</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Ringkasan: {0} berhasil, {1} gagal.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Kegagalan: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Sumber</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Nama keluaran</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Tambahkan tag</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Terpilih</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Format umum</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Tampilkan format yang jarang digunakan</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Batasi trek</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Pilih gambar sumber yang ada.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Masukkan nama file keluaran.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Periksa setidaknya satu format keluaran.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konversi)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Tidak ada ekstensi yang dicentang: {0} digunakan secara default.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} tidak kompatibel dengan sumber ini.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Tidak ada nama file keluaran yang tersedia yang dapat ditemukan.</value>
+  </data>
+</root>

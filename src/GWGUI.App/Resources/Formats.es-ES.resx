@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Detection.Ambiguous">
+    <value>Formato ambiguo</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Se reconoce la captura de SCP sin procesar.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Formato Amiga reconocido por el tamaño del archivo.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Formato Acorn reconocido por el tamaño del archivo.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>El tamaño no coincide con un perfil Atari ST conocido.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST geometría reconocida a partir del tamaño del archivo.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Contenedor Atari MSA reconocido; Confirme la geometría si es necesario.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>La extensión por sí sola no puede determinar la geometría IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC geometría reconocida a partir del tamaño del archivo.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Formato inferido de la extensión.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Son posibles varios formatos; elija uno explícitamente.</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Imagen de flujo sin procesar</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1.2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1.44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1.68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM escaneo</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>AcornADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC imagen de flujo</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA imagen de disco</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG imagen de disco</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Archivo de disco</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Archivo de disco</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST imagen</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Archivador de sombras mágicas</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 imagen</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Emulador de disquete</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Imágenes de disco|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Todos los archivos|*.*</value>
+  </data>
+</root>

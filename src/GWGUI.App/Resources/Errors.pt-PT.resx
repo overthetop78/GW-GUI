@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.SettingsSaveFailed">
+    <value>Não foi possível guardar as definições.
+
+{0}</value>
+  </data>
+  <data name="Error.Title">
+    <value>Erro GW GUI</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Um erro inesperado foi intercetado.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>As definições não puderam ser guardadas. A janela ainda fechará.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>O relatório completo foi guardado em:
+{0}</value>
+  </data>
+</root>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Okumak</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Bir dosya adı girin.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Uyumlu bir görsel türü seçin.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Mevcut dosya</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Bu dosya zaten mevcut.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Mevcut dosya</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Üzerine yaz</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Sonraki numarayı kullan</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>İsmi düzenleyeyim</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Oluşturulacak resim</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Eklenti</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Ham resim (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Bilinen disk formatı</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Dosya adı</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Dosya</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Parça başına devir sayısı</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Yeniden denemeler</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Parçalar/kenarlar</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Başarılı okumaları otomatik olarak numaralandırın</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Rakamlar</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Edebiyat</value>
+  </data>
+  <data name="Read.Next">
+    <value>Sonraki:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Görselleştirmede Aç</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP yakalama işlemi tamamlandı. İşinizi aksatmadan analiz edebilirsiniz.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Nihai SCP sonucu:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Parçalar: {0} iyi, {1} eksik veya geçersiz ({2} silindirler, {3} kenarlar).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Devir sayısı: {0} · Çözünürlük: {1} ns · Boyut: {2:N0} bayt · Sağlama toplamı: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Dosya: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP özeti mevcut değil: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} iyi parçalar · {1} eksik veya geçersiz · {2} silindirler · {3} kenarlar · {4} devir(ler) · {5:N0} bayt · {6} sağlama toplamı</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Bir resim türü seçin</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Hedef klasör</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Okuma iptal edildi: Eksik dosya silindi: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Okuma iptal edildi, ancak tamamlanmamış dosya silinemedi: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Dosyalara göz at</value>
+  </data>
+</root>

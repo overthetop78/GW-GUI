@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Conflict.Title">
+    <value>Istniejące pliki</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Niektóre pliki już istnieją</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Wybierz akcję dla każdego pliku lub zastosuj tę samą akcję do wszystkich plików.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Plik</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Działanie</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Przepisać</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Pominąć</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Użyj następnego numeru</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Nadpisz wszystko</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Pomiń wszystko</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Numeruj wszystkie</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Konwersja</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Wybierz co najmniej jeden format wyjściowy.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Niejednoznaczne źródło</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Podsumowanie: {0} powiodło się, {1} nie powiodło się.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Awarie: {0}</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Źródło</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Nazwy wyjściowe</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Dodaj tagi</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Wybrany</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Typowe formaty</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Pokaż rzadko używane formaty</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Ogranicz utwory</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Wybierz istniejący obraz źródłowy.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Wprowadź nazwy plików wyjściowych.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Sprawdź co najmniej jeden format wyjściowy.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konwersje)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Nie zaznaczono żadnego rozszerzenia: domyślnie używane jest {0}.</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} nie jest kompatybilny z tym źródłem.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Nie znaleziono dostępnej nazwy pliku wyjściowego.</value>
+  </data>
+</root>

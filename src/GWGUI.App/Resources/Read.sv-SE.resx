@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Läsa</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Ange ett filnamn.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Välj en kompatibel bildtyp.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Befintlig fil</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Den här filen finns redan.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Befintlig fil</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Skriva över</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Använd nästa nummer</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Låt mig redigera namnet</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Bild att skapa</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Förlängning</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Råbild (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Känt diskformat</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Filnamn</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Mapp</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Varv per spår</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Försöker igen</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Spår/sidor</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Automatiskt antal framgångsrika läsningar</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Siffror</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Bokstäver</value>
+  </data>
+  <data name="Read.Next">
+    <value>Nästa:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Öppna i Visualisering</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP-infångningen är klar. Du kan analysera det utan att avbryta ditt arbete.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Slutligt SCP resultat:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Spår: {0} bra, {1} saknas eller ogiltigt ({2} cylindrar, {3} sidor).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Varv: {0} · Upplösning: {1} ns · Storlek: {2:N0} byte · Kontrollsumma: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Fil: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP sammanfattning otillgänglig: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} bra spår · {1} saknas eller ogiltig · {2} cylindrar · {3} sidor · {4} varv · {5:N0} byte · {6} kontrollsumma</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Välj en bildtyp</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Destinationsmapp</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Läsningen avbröts: Den ofullständiga filen raderades: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Läsningen avbröts, men den ofullständiga filen kunde inte raderas: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Utforska filer</value>
+  </data>
+</root>

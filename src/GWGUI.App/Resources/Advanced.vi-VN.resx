@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Advanced">
+    <value>Cài đặt nâng cao</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Lập luận của chuyên gia</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Các đối số được thông qua như được viết sau khi xác thực trích dẫn.</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Tìm kiếm lần thử lại</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Chỉ số giả</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Lĩnh vực cứng</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Dữ liệu theo dõi ngược</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Điều chỉnh tốc độ</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL ghi đè</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Chân mật độ 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Tạo TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Xóa trước các bản nhạc</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Viết bù trước</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Bài hát đầu ra</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Định nghĩa đĩa tùy chỉnh</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle định nghĩa đĩa (*.cfg)|*.cfg|Tất cả các tệp|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Tệp định nghĩa đĩa đã chọn không tồn tại.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Cài đặt nâng cao không hợp lệ: {0}</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Thông số theo dõi, ví dụ: c=0-79:h=0-1, c=0-79/2:h=0 hoặc c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Tốc độ hoặc chu kỳ dương, ví dụ: 300rpm, 200ms, 200000us hoặc 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL các tham số được phân tách bằng dấu hai chấm, ví dụ: Period=5:phase=60 hoặc Period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Viết phần bù trước, ví dụ type=mfm:40=125. Các loại: mfm, fm, gcr; giá trị tính bằng nano giây.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Sử dụng tệp diskdefs.cfg tùy chỉnh để thêm hoặc ghi đè định nghĩa định dạng Greaseweazle.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Số vòng quay được đọc trên mỗi rãnh. Ví dụ: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Các lần thử bổ sung sau một lỗi. Ví dụ: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Giới hạn trụ, đầu hoặc bậc. Ví dụ: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Các lần thử bổ sung sau khi di chuyển đầu. Ví dụ: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Tạo chỉ mục theo thời gian cho ổ đĩa không có tín hiệu chỉ mục. Ví dụ: --fake-index 300 vòng/phút.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Xử lý đĩa có phân vùng cứng. Không tương thích với --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Dữ liệu theo dõi ngược cho phương tiện truyền thông flippy hoặc hệ thống dây điện.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Điều chỉnh lại thời gian dữ liệu. Ví dụ: --adjust-speed 300 vòng/phút.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Định cấu hình vòng lặp khôi phục đồng hồ. Ví dụ: --pll chu kỳ=5:pha=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Buộc chân chọn mật độ lên cao hoặc thấp. Ví dụ: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Tạo tín hiệu TG43 cho các ổ đĩa yêu cầu tín hiệu đó. Không tương thích với --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Xóa các bản nhạc mà hình ảnh nguồn không chứa dữ liệu.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Xóa từng bản nhạc trước khi viết.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Áp dụng tính năng bù ghi trước. Ví dụ: --precomp gõ=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Ánh xạ lại các bản nhạc trong hình ảnh đầu ra. Ví dụ: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+</root>

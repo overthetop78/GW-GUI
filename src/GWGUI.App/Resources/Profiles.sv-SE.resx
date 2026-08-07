@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>Profiler efter operation</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Flik</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Namn</value>
+  </data>
+  <data name="Profiles.System">
+    <value>System</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Döpa om…</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Spara profil</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Profilnamn</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Ange ett namn.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Standard</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Standardprofilen är permanent och kan inte byta namn.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Standardprofilen är permanent och kan inte tas bort.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>En profil på den här fliken har redan detta namn.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Den här profilen finns redan. Byt ut den?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Ta bort profilen "{0}"?</value>
+  </data>
+</root>

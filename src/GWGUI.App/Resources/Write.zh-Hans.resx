@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Write.Title">
+    <value>写</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>选择现有的源图像。</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>格式不明确。明确选择兼容的格式。</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>禁用写入后验证。</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>写入后验证启用。</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>确认写入</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>图片：{0}
+格式：{1}
+驱动器：{2}
+{3}
+
+将此图像写入磁盘？</value>
+  </data>
+  <data name="Write.Source">
+    <value>源图片</value>
+  </data>
+  <data name="Write.Detected">
+    <value>检测到的格式</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>选择一个图像。</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>写入后禁用验证</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>添加 --no-verify。不会重新读取磁盘来确认写入。</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>擦除空轨道</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>可视化曲目</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>在查看其磁道之前选择磁盘格式。</value>
+  </data>
+</root>

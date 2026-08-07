@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle ツールが構成されていません。 「オプション」→「設定」を開きます。</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>操作が実行中です。停止してGW GUIを閉じますか?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>完了: コード {0}、期間 {1}。</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>コマンドは正常に完了しました。</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>コマンドがキャンセルされました。</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>コマンドはコード {0} で終了しました。</value>
+  </data>
+  <data name="Common.Console">
+    <value>コンソール</value>
+  </data>
+  <data name="Common.Command">
+    <value>指示</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>サイド {0}: トラック {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI 準備完了。</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>プロファイル: デフォルト</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>運転停止</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>現在の Greaseweazle 操作を停止しますか?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Greaseweazle コマンドはすでに実行されています。完了するまで待つか、このツールを開く前に停止してください。</value>
+  </data>
+  <data name="Status.Profile">
+    <value>プロフィール: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>トラック {0}、サイド {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>トラック {0}、サイド {1} — {2} 処理済み</value>
+  </data>
+  <data name="Operation.Error">
+    <value>エラー: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>準備ができて</value>
+  </data>
+  <data name="Status.Running">
+    <value>ランニング</value>
+  </data>
+  <data name="Status.Success">
+    <value>成功</value>
+  </data>
+  <data name="Status.Error">
+    <value>エラー</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>キャンセル</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

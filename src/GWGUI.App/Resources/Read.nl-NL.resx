@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Lezen</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Voer een bestandsnaam in.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Kies een compatibel afbeeldingstype.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Bestaand bestand</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Dit bestand bestaat al.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Bestaand bestand</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Overschrijven</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Gebruik het volgende nummer</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Laat me de naam bewerken</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Afbeelding om te creëren</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Verlenging</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Ruwe afbeelding (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Bekend schijfformaat</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Bestandsnaam</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Map</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Toeren per spoor</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Nieuwe pogingen</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Sporen/zijkanten</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Nummer automatisch succesvolle leesbewerkingen</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Cijfers</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Brieven</value>
+  </data>
+  <data name="Read.Next">
+    <value>Volgende:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Openen in visualisatie</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Het vastleggen van SCP is voltooid. U kunt het analyseren zonder uw werk te onderbreken.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Uiteindelijk resultaat SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Sporen: {0} goed, {1} ontbreekt of ongeldig ({2} cilinders, {3} zijkanten).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Omwentelingen: {0} · Resolutie: {1} ns · Grootte: {2:N0} bytes · Controlesom: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Bestand: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP samenvatting niet beschikbaar: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} goede sporen · {1} ontbreekt of is ongeldig · {2} cilinders · {3} zijden · {4} omwenteling(en) · {5:N0} bytes · {6} checksum</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Kies een afbeeldingstype</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Bestemmingsmap</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Lezen geannuleerd: Het onvolledige bestand is verwijderd: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Lezen geannuleerd, maar het onvolledige bestand kon niet worden verwijderd: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Bestanden verkennen</value>
+  </data>
+</root>

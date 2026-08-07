@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Lukea</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Anna tiedostonimi.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Valitse yhteensopiva kuvatyyppi.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Olemassa oleva tiedosto</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Tämä tiedosto on jo olemassa.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Olemassa oleva tiedosto</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Korvaa</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Käytä seuraavaa numeroa</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Anna minun muokata nimeä</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Luotava kuva</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Laajennus</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Raakakuva (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Tunnettu levymuoto</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Tiedostonimi</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Kansio</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Kierroksia kappaletta kohden</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Uudelleenyritykset</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Telat/sivut</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Numeroi onnistuneet lukemat automaattisesti</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Numerot</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Kirjeitä</value>
+  </data>
+  <data name="Read.Next">
+    <value>Seuraavaksi:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Avaa Visualisoinnissa</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP -kaappaus on valmis. Voit analysoida sen keskeyttämättä työtäsi.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Lopullinen SCP tulos:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Jäljet: {0} hyvä, {1} puuttuu tai virheellinen ({2} sylinteriä, {3} sivua).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Kierrokset: {0} · Resoluutio: {1} ns · Koko: {2:N0} tavua · Tarkistussumma: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Tiedosto: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP yhteenveto ei saatavilla: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} hyvät raidat · {1} puuttuu tai virheellinen · {2} sylinteriä · {3} sivua · {4} kierrosta · {5:N0} tavua · {6} tarkistussumma</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Valitse kuvatyyppi</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Kohdekansio</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Luku peruutettu: Epätäydellinen tiedosto poistettiin: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Luku peruutettu, mutta keskeneräistä tiedostoa ei voitu poistaa: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Selaa tiedostoja</value>
+  </data>
+</root>

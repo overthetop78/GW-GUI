@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Image">
+    <value>Obraz disku</value>
+  </data>
+  <data name="Explorer.Format">
+    <value>Formát</value>
+  </data>
+  <data name="Explorer.OpenImage">
+    <value>Otevřít obraz…</value>
+  </data>
+  <data name="Explorer.Automatic">
+    <value>Automatická detekce</value>
+  </data>
+  <data name="Explorer.Volume">
+    <value>Svazek</value>
+  </data>
+  <data name="Explorer.FileSystem">
+    <value>Systém souborů</value>
+  </data>
+  <data name="Explorer.Capacity">
+    <value>Kapacita</value>
+  </data>
+  <data name="Explorer.Free">
+    <value>Volné místo</value>
+  </data>
+  <data name="Explorer.Entries">
+    <value>Položky</value>
+  </data>
+  <data name="Explorer.SelectEntry">
+    <value>Vyberte soubor nebo složku.</value>
+  </data>
+  <data name="Explorer.Size">
+    <value>Velikost</value>
+  </data>
+  <data name="Explorer.Modified">
+    <value>Změněno</value>
+  </data>
+  <data name="Explorer.Comment">
+    <value>Komentář</value>
+  </data>
+  <data name="Explorer.Warnings">
+    <value>Upozornění</value>
+  </data>
+  <data name="Explorer.Directory">
+    <value>Složka</value>
+  </data>
+  <data name="Explorer.File">
+    <value>Soubor</value>
+  </data>
+  <data name="Explorer.Link">
+    <value>Odkaz</value>
+  </data>
+  <data name="Explorer.Unknown">
+    <value>Neznámý</value>
+  </data>
+  <data name="Explorer.Unnamed">
+    <value>Svazek bez názvu</value>
+  </data>
+  <data name="Explorer.LoadFailed">
+    <value>Tento obraz nelze otevřít: {0}</value>
+  </data>
+  <data name="Explorer.Loading">
+    <value>Načítání obrazu disku…</value>
+  </data>
+  <data name="Explorer.ReadDisk">
+    <value>Načíst disketu</value>
+  </data>
+  <data name="Explorer.Name">
+    <value>Název</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Typ</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Číst disketu</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Je disketa vložena do aktuálně vybrané jednotky ({0}) a připravena ke čtení?</value>
+  </data>
+  <data name="Explorer.Type.Text">
+    <value>Textový soubor</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Obrázek</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Zvukový soubor</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archiv</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Obraz disku</value>
+  </data>
+</root>

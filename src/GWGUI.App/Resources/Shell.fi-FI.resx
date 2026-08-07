@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Työkaluja ei ole määritetty. Avaa Valinnat → Asetukset.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Operaatio on käynnissä. Lopeta se ja sulje GW GUI?</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Valmis: koodi {0}, kesto {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Komento suoritettu onnistuneesti.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Komento peruutettu.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Komento päättyi koodiin {0}.</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsoli</value>
+  </data>
+  <data name="Common.Command">
+    <value>Komento</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Sivu {0}: raita {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI valmis.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profiili: Oletus</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Lopeta toiminta</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Lopetetaanko nykyinen Greaseweazle-toiminto?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Greaseweazle-komento on jo käynnissä. Odota sen päättymistä tai pysäytä se ennen tämän työkalun avaamista.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profiili: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Raita {0}, sivu {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Raita {0}, sivu {1} — {2} käsitelty</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Virhe: {0}</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Valmis</value>
+  </data>
+  <data name="Status.Running">
+    <value>Juoksemassa</value>
+  </data>
+  <data name="Status.Success">
+    <value>Menestys</value>
+  </data>
+  <data name="Status.Error">
+    <value>Virhe</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Peruutettu</value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+</root>

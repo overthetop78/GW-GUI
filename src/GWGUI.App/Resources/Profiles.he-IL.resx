@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Profiles.ByOperation">
+    <value>פרופילים לפי פעולה</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>כרטיסייה</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>שֵׁם</value>
+  </data>
+  <data name="Profiles.System">
+    <value>מַעֲרֶכֶת</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>שנה שם...</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>שמור פרופיל</value>
+  </data>
+  <data name="Profile.Name">
+    <value>שם פרופיל</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>הזן שם.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>פּרוֹפִיל</value>
+  </data>
+  <data name="Common.Profile">
+    <value>פּרוֹפִיל</value>
+  </data>
+  <data name="Profile.Default">
+    <value>בְּרִירַת מֶחדָל</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>פרופיל ברירת המחדל הוא קבוע ולא ניתן לשנות את שמו.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>פרופיל ברירת המחדל הוא קבוע ולא ניתן למחוק אותו.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>לפרופיל בכרטיסייה זו כבר יש את השם הזה.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>הפרופיל הזה כבר קיים. להחליף אותו?</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>למחוק את הפרופיל "{0}"?</value>
+  </data>
+</root>

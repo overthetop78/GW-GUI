@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Detection.Ambiguous">
+    <value>あいまいな形式</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>生の SCP キャプチャが認識されました。</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>ファイルサイズからAmiga形式が認識されました。</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>ファイルサイズからAcorn形式が認識されました。</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>サイズが既知の Atari ST プロファイルと一致しません。</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST ジオメトリはファイル サイズから認識されました。</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Atari MSA コンテナが認識されました。必要に応じて形状を確認します。</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>拡張だけでは IBM PC ジオメトリを決定できません。</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC ジオメトリはファイル サイズから認識されました。</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>拡張子から推測される形式。</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>いくつかの形式が可能です。明示的に 1 つを選択してください。</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>生のフラックス画像</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1.76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1.2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1.44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1.68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1.68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2.88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM スキャン</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC フラックス画像</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA ディスク イメージ</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG ディスク イメージ</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga ディスク ファイル</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn ディスク ファイル</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST画像</value>
+  </data>
+  <data name="Extension.msa">
+    <value>マジックシャドウアーカイバー</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 画像</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC フロッピー エミュレータ</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>ディスク イメージ|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|すべてのファイル|*.*</value>
+  </data>
+</root>

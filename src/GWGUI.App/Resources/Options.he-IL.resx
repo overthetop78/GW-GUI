@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>אפשרויות</value>
+  </data>
+  <data name="Options.General">
+    <value>כְּלָלִי</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle כלים</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>בקרים וכוננים</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>פרופילים</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>תיקיית תמונת דיסק המוגדרת כברירת מחדל</value>
+  </data>
+  <data name="Options.Language">
+    <value>שָׂפָה</value>
+  </data>
+  <data name="Options.Theme">
+    <value>נוֹשֵׂא</value>
+  </data>
+  <data name="Theme.System">
+    <value>מַעֲרֶכֶת</value>
+  </data>
+  <data name="Theme.Light">
+    <value>אוֹר</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>כֵּהֶה</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>נתיב אל gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>אם הכלים חסרים, העוזר יציע להוריד אותם או לבחור התקנה קיימת. עדכונים מתפרסמים רק.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>הגדרות החומרה נשארות מאוחסנות כאשר כונן מנותק.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|קובץ הפעלה (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>להסיר את הבקר המאוחסן הזה ואת כל הכוננים שלו?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>חוּמרָה</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>השתמש בתגים בשמות קבצי המרה</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>מוגדר מראש</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>משפחה בלבד</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>פורמט בלבד</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>משפחה ופורמט</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>משפחה והרחבה</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>משפחה, פורמט והרחבה</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>דפוס תג המרה</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>משתנים זמינים</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>שם קובץ המקור</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>משפחה: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>פורמט: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>שלוחה: IMA, ST, ADF...</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>תאריך: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>תאריך: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>תאריך: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>זמן: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>זמן: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>זמן: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} - שם קובץ המקור
+{FAMILY} — משפחת מכונות (PC, ST, AMIGA...)
+{FORMAT} - פורמט או גיאומטריה (720, 1440, DD...)
+{EXTENSION} — סיומת פלט (IMA, ST, ADF...)
+{DATE:YYYY-MM-DD} — תאריך 2026-08-06
+{DATE:YYYYMMDD} — תאריך 20260806
+{DATE:DD-MM-YYYY} — תאריך 06-08-2026
+{TIME:HH-MM-SS} - זמן 14-35-42
+{TIME:HHMMSS} - זמן 143542
+{TIME:HH-MM} - זמן 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>דפוסים מותאמים אישית אחרונים</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>הדוגמה הבאה</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>דוגמה: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>תבנית התג חייבת להכיל {tag}.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>שמור יומנים</value>
+  </data>
+  <data name="Options.Logs">
+    <value>יומנים</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>לכל פעולה יש קובץ משלה בתיקייה GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>לִמְחוֹק</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>ראשים נקיים</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>פתח תיקייה</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>גודל מקסימלי</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>שמור יומנים קודמים</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = בלתי מוגבל</value>
+  </data>
+</root>

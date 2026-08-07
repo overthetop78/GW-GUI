@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>オプション</value>
+  </data>
+  <data name="Options.General">
+    <value>一般的な</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle ツール</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>コントローラーとドライブ</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>プロフィール</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>デフォルトのディスクイメージフォルダー</value>
+  </data>
+  <data name="Options.Language">
+    <value>言語</value>
+  </data>
+  <data name="Options.Theme">
+    <value>テーマ</value>
+  </data>
+  <data name="Theme.System">
+    <value>システム</value>
+  </data>
+  <data name="Theme.Light">
+    <value>ライト</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>暗い</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>gw.exe へのパス</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>ツールが見つからない場合、アシスタントはツールをダウンロードするか、既存のインストールを選択するよう提案します。アップデートは発表のみです。</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>ドライブが切断されても、ハードウェア設定は保存されたままになります。</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|実行可能ファイル (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>この格納されたコントローラーとそのすべてのドライブを削除しますか?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>ハードウェア</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>変換ファイル名にタグを使用する</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>プリセット</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>家族のみ</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>フォーマットのみ</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>ファミリーとフォーマット</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>家族と延長</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>ファミリ、フォーマット、拡張子</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>コンバージョンタグパターン</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>利用可能な変数</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>ソースファイル名</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>ファミリ: PC、ST、AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>形式: 720、1440、DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>内線番号: IMA、ST、ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>日付: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>日付: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>日付: 2026 年 6 月 8 日</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>時間: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>時間: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>時間: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — ソースファイル名
+{FAMILY} — マシン ファミリ (PC、ST、AMIGA…)
+{FORMAT} — フォーマットまたはジオメトリ (720、1440、DD…)
+{EXTENSION} — 出力拡張子 (IMA、ST、ADF…)
+{DATE:YYYY-MM-DD} — 日付 2026-08-06
+{DATE:YYYYMMDD} — 日付 20260806
+{DATE:DD-MM-YYYY} — 日付 06-08-2026
+{TIME:HH-MM-SS} — 時間 14-35-42
+{TIME:HHMMSS} — 時刻 143542
+{TIME:HH-MM} — 時間 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>最近のカスタムパターン</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>次の例</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>例: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>タグ パターンには {tag} が含まれている必要があります。</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>ログを保存する</value>
+  </data>
+  <data name="Options.Logs">
+    <value>ログ</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>各アクションには、GW GUI Logs フォルダー内に独自のファイルがあります。</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>消去</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>ヘッドをクリーンにする</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>フォルダーを開く</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>最大サイズ</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>以前のログを保存する</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = 無制限</value>
+  </data>
+</root>

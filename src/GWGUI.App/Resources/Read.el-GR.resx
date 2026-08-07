@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Read.Title">
+    <value>Ανάγνωση</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Εισαγάγετε ένα όνομα αρχείου.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Επιλέξτε έναν συμβατό τύπο εικόνας.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Υπάρχον αρχείο</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Αυτό το αρχείο υπάρχει ήδη.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Υπάρχον αρχείο</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Αντικατάσταση</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Χρησιμοποιήστε τον επόμενο αριθμό</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Επιτρέψτε μου να επεξεργαστώ το όνομα</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Εικόνα για δημιουργία</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Επέκταση</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Ακατέργαστη εικόνα (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Γνωστή μορφή δίσκου</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Όνομα αρχείου</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Ντοσιέ</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Επαναστάσεις ανά κομμάτι</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Επανάληψη</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Διαδρομές/πλευρές</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Αριθμεί αυτόματα τις επιτυχημένες αναγνώσεις</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Ψηφία</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Γράμματα</value>
+  </data>
+  <data name="Read.Next">
+    <value>Επόμενος:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Άνοιγμα στην Οπτικοποίηση</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Η λήψη SCP ολοκληρώθηκε. Μπορείτε να το αναλύσετε χωρίς να διακόψετε την εργασία σας.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Τελικό SCP αποτέλεσμα:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Κομμάτια: {0} καλό, {1} λείπει ή δεν είναι έγκυρο ({2} κύλινδροι, {3} πλευρές).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Περιστροφές: {0} · Ανάλυση: {1} ns · Μέγεθος: {2:N0} bytes · Άθροισμα ελέγχου: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Αρχείο: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>Η περίληψη SCP δεν είναι διαθέσιμη: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} καλά κομμάτια · {1} λείπουν ή δεν είναι έγκυρα · {2} κύλινδροι · {3} πλευρές · {4} στροφές · {5:N0} byte · {6} άθροισμα ελέγχου</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Επιλέξτε έναν τύπο εικόνας</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Φάκελος προορισμού</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Η ανάγνωση ακυρώθηκε: Το ημιτελές αρχείο διαγράφηκε: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Η ανάγνωση ακυρώθηκε, αλλά δεν ήταν δυνατή η διαγραφή του ημιτελούς αρχείου: {0} — {1}</value>
+  </data>
+  <data name="Read.OpenExplore">
+    <value>Εξερεύνηση αρχείων</value>
+  </data>
+</root>

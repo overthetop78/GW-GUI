@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Options.Title">
+    <value>옵션</value>
+  </data>
+  <data name="Options.General">
+    <value>일반적인</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle 도구</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>컨트롤러 및 드라이브</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>프로필</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>기본 디스크 이미지 폴더</value>
+  </data>
+  <data name="Options.Language">
+    <value>언어</value>
+  </data>
+  <data name="Options.Theme">
+    <value>주제</value>
+  </data>
+  <data name="Theme.System">
+    <value>체계</value>
+  </data>
+  <data name="Theme.Light">
+    <value>빛</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>어두운</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>gw.exe에 대한 경로</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>도구가 누락된 경우 도우미는 해당 도구를 다운로드하거나 기존 설치를 선택하도록 제안합니다. 업데이트는 공지만 됩니다.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>드라이브 연결이 끊어져도 하드웨어 설정은 계속 저장되어 있습니다.</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|실행 파일(*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>저장된 컨트롤러와 해당 드라이브를 모두 제거하시겠습니까?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>하드웨어</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>변환 파일 이름에 태그 사용</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>프리셋</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>가족만</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>형식만</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>제품군 및 형식</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>가족 및 확장</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>제품군, 형식 및 확장</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>전환 태그 패턴</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>사용 가능한 변수</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>소스 파일 이름</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>가족: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>형식: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>확장자: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>날짜: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>날짜: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>날짜: 2026년 6월 8일</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>시간: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>시간: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>시간: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — 소스 파일 이름
+{FAMILY} — 머신 계열(PC, ST, AMIGA…)
+{FORMAT} — 형식 또는 기하학(720, 1440, DD…)
+{EXTENSION} — 출력 확장 (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — 날짜 2026-08-06
+{DATE:YYYYMMDD} — 날짜 20260806
+{DATE:DD-MM-YYYY} — 날짜 2026년 6월 8일
+{TIME:HH-MM-SS} — 시간 14-35-42
+{TIME:HHMMSS} — 시간 143542
+{TIME:HH-MM} — 시간 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>최근 커스텀 패턴</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>다음 예</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>예: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>태그 패턴에는 {tag}이 포함되어야 합니다.</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>로그 저장</value>
+  </data>
+  <data name="Options.Logs">
+    <value>로그</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>각 작업에는 GW GUI Logs 폴더에 자체 파일이 있습니다.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>지우다</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>헤드 청소</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>폴더 열기</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>최대 크기</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>이전 로그 유지</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = 무제한</value>
+  </data>
+</root>
