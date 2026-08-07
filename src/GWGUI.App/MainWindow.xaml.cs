@@ -208,6 +208,7 @@ public partial class MainWindow : Window
         ConvertProfileBlock.SaveButton.Click += SaveConvertProfile_Click;
         ConvertProfileBlock.ResetButton.Click += ResetConvertProfile_Click;
         ConvertSourceBlock.BrowseButton.Click += BrowseConvertSource_Click;
+        ConvertSourceBlock.ActionButton.Click += VisualizeConvertSource_Click;
         ConvertOutputBlock.ValueChanged += ConvertInput_Changed;
         ConvertFormatsBlock.ValueChanged += ConversionSelectionChanged;
         ConvertAdvancedBlock.InputChanged += ConvertInput_Changed;
@@ -690,7 +691,19 @@ public partial class MainWindow : Window
         _viewModel.Conversion.SourcePath = path; _viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
         var detection = _formatDetector.Detect(path, new FileInfo(path).Length);
         ConvertSourceInfo.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
+        ConvertSourceBlock.ActionButton.Visibility = Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)
+            ? Visibility.Visible
+            : Visibility.Collapsed;
         BuildConversionFormats(Path.GetExtension(path), detection); UpdateConvertCommand();
+    }
+
+    private async void VisualizeConvertSource_Click(object sender, RoutedEventArgs e)
+    {
+        var source = _viewModel.Conversion.SourcePath;
+        if (string.IsNullOrWhiteSpace(source) || !File.Exists(source) ||
+            !Path.GetExtension(source).Equals(".scp", StringComparison.OrdinalIgnoreCase)) return;
+        MainTabs.SelectedIndex = 3;
+        await LoadScpAsync(source);
     }
 
     private void ConvertInput_Changed(object sender, RoutedEventArgs e) => UpdateConvertCommand();
