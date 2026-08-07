@@ -10,15 +10,18 @@ public sealed record ExplorerDetailsPresentation(string Title, ExplorerIconKind 
 
 public static class ExplorerDetailsPresenter
 {
-    public static ExplorerDetailsPresentation ForDisk(GWGUI.Scp.FileSystems.FileSystemVolume volume)
+    public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document)
     {
-        var title = string.IsNullOrWhiteSpace(volume.Name) ? LocExtension.Get("Explorer.Unnamed") : volume.Name;
+        var volume = document.Volume;
+        var title = !document.FileSystemRecognized
+            ? LocExtension.Get("Explorer.Unknown")
+            : string.IsNullOrWhiteSpace(volume.Name) ? LocExtension.Get("Explorer.Unnamed") : volume.Name;
         return new(title, ExplorerIconKind.DiskImage,
         [
             new("Explorer.Volume", title),
-            new("Explorer.FileSystem", volume.FileSystem),
+            new("Explorer.FileSystem", document.FileSystemRecognized ? volume.FileSystem : LocExtension.Get("Explorer.Unknown")),
             new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
-            new("Explorer.Free", ExplorerFormatting.FormatBytes(volume.FreeBytes)),
+            new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"),
             new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()),
             new("Explorer.Warnings", volume.Warnings.Count.ToString())
         ]);
@@ -93,7 +96,7 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void RenderDisk(ExploredDiskImage document)
     {
-        Apply(ExplorerDetailsPresenter.ForDisk(document.Volume));
+        Apply(ExplorerDetailsPresenter.ForDisk(document));
     }
 
     private void RenderItem(ExplorerContentItem item)

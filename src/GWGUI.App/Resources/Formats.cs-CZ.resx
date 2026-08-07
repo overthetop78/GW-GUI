@@ -72,6 +72,9 @@
   <data name="Format.atarist.880">
     <value>Atari ST – 880 KiB</value>
   </data>
+  <data name="Format.atarist.1440">
+    <value>Atari ST — 1.44 MiB</value>
+  </data>
   <data name="Format.ibm.160">
     <value>IBM PC – 160 KiB</value>
   </data>

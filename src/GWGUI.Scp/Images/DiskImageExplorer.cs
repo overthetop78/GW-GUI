@@ -4,7 +4,7 @@ using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
 
-public sealed record ExploredDiskImage(string SourcePath, SectorImage Image, FileSystemVolume Volume);
+public sealed record ExploredDiskImage(string SourcePath, SectorImage Image, FileSystemVolume Volume, bool FileSystemRecognized = true);
 
 public sealed class DiskImageExplorer(
     AdfImageReader adfReader,
@@ -39,8 +39,9 @@ public sealed class DiskImageExplorer(
             image = await ReadScpAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         }
         else throw new NotSupportedException($"The image extension '{extension}' is not supported by the explorer yet.");
-        var volume = fileSystems.Read(image, formatId);
-        return new(path, image, volume);
+        if (fileSystems.TryRead(image, formatId, out var volume)) return new(path, image, volume);
+        var unknown = new FileSystemVolume(string.Empty, string.Empty, image.Capacity, 0, null, null, [], []);
+        return new(path, image, unknown, false);
     }
 
     private async Task<SectorImage> ReadScpAsync(string path, string? formatId, CancellationToken cancellationToken)

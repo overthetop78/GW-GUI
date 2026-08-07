@@ -116,6 +116,54 @@ public sealed class DiskImageExplorerTests
     }
 
     [Fact]
+    public async Task ValidContainerWithoutKnownFileSystemStillOpensAsDiskInformation()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}.st");
+        try
+        {
+            var bytes = new byte[368640];
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(11), 512);
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(19), 720);
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(24), 9);
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(26), 1);
+            await File.WriteAllBytesAsync(path, bytes);
+
+            var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+            Assert.False(result.FileSystemRecognized);
+            Assert.Equal(368640, result.Volume.Capacity);
+            Assert.Empty(result.Volume.Entries);
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task AtrRawPayloadStagingRemovesOnlyTheContainerHeader()
+    {
+        var source = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}.atr");
+        var destination = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}.img");
+        try
+        {
+            var payload = Enumerable.Range(0, 720 * 128).Select(index => (byte)index).ToArray();
+            var container = new byte[payload.Length + 16];
+            BinaryPrimitives.WriteUInt16LittleEndian(container, 0x0296);
+            BinaryPrimitives.WriteUInt16LittleEndian(container.AsSpan(2), checked((ushort)(payload.Length / 16)));
+            BinaryPrimitives.WriteUInt16LittleEndian(container.AsSpan(4), 128);
+            payload.CopyTo(container, 16);
+            await File.WriteAllBytesAsync(source, container);
+
+            await AtrImageReader.WriteRawPayloadAsync(source, destination);
+
+            Assert.Equal(payload, await File.ReadAllBytesAsync(destination));
+        }
+        finally
+        {
+            if (File.Exists(source)) File.Delete(source);
+            if (File.Exists(destination)) File.Delete(destination);
+        }
+    }
+
+    [Fact]
     public async Task ScpReconstructionAssociatesAmigaPayloadWithLogicalSector()
     {
         var sectors = Enumerable.Range(0, 11).Select(number => new TrackSector(number, Enumerable.Repeat((byte)(number + 1), 512).ToArray())).ToArray();

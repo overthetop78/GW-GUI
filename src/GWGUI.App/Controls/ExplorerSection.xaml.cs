@@ -167,11 +167,13 @@ public partial class ExplorerSection : UserControl
     {
         _document = document;
         PathText.Text = document.SourcePath;
-        var volumeName = string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
+        var volumeName = !document.FileSystemRecognized
+            ? LocExtension.Get("Explorer.Unknown")
+            : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
         VolumeNameText.Text = volumeName;
-        FileSystemText.Text = document.Volume.FileSystem;
+        FileSystemText.Text = document.FileSystemRecognized ? document.Volume.FileSystem : LocExtension.Get("Explorer.Unknown");
         CapacityText.Text = ExplorerFormatting.FormatBytes(document.Volume.Capacity);
-        FreeText.Text = ExplorerFormatting.FormatBytes(document.Volume.FreeBytes);
+        FreeText.Text = document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
         EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
         _rootEntries = document.Volume.Entries;
         _rootFolder = new ExplorerFolderItem(volumeName, null, 0, _rootEntries) { IsExpanded = true };

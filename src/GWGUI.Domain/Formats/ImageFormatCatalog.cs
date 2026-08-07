@@ -33,7 +33,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         }
 
         var curatedFormats = curated.Formats
-            .Where(format => format.Id == "raw.scp" || capabilities.FormatIds.Contains(format.Id))
+            .Where(format => format.Id == "raw.scp" || IsSupported(format, capabilities))
             .Select(format => FilterExtensions(format, capabilities.ImageExtensions))
             .Where(format => format.Extensions.Count > 0)
             .ToList();
@@ -44,6 +44,12 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
             .Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions))
             .Where(format => format.Extensions.Count > 0));
         Formats = curatedFormats;
+    }
+
+    private static bool IsSupported(DiskFormat format, GwFormatCapabilities capabilities)
+    {
+        var gwFormat = GwFormatArgument.FromCatalogId(format.Id);
+        return gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
     }
 
     public IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension)
@@ -115,6 +121,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("atarist.720", "Atari ST", "Atari ST — 720 KiB", [E(".st", "Extension.st", "Atari ST image", true), E(".msa", "Extension.msa", "Magic Shadow Archiver")], true, "ST-720", ".scp", ".st", ".msa", ".hfe"),
             F("atarist.800", "Atari ST", "Atari ST — 800 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-800", ".scp", ".st", ".msa", ".hfe"),
             F("atarist.880", "Atari ST", "Atari ST — 880 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-880", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.1440", "Atari ST", "Atari ST — 1.44 MiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-1440", ".scp", ".st", ".hfe"),
             F("atari.90", "Atari 8-bit", "Atari 8-bit — 90 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-90", ".scp", ".atr", ".hfe"),
             F("atari.130", "Atari 8-bit", "Atari 8-bit — 130 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-130", ".scp", ".atr", ".hfe"),
             F("atari.180", "Atari 8-bit", "Atari 8-bit — 180 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], false, "ATARI8-180", ".scp", ".atr", ".hfe"),

@@ -16,12 +16,19 @@ public sealed class FileSystemRegistry
 
     public FileSystemVolume Read(SectorImage image, string? fileSystemId = null)
     {
+        if (TryRead(image, fileSystemId, out var volume)) return volume;
+        throw new InvalidDataException("No supported file system was detected in the disk image.");
+    }
+
+    public bool TryRead(SectorImage image, string? fileSystemId, out FileSystemVolume volume)
+    {
         if (fileSystemId is not null)
             fileSystemId = Readers.FirstOrDefault(reader => reader.CatalogFormatIds.Contains(fileSystemId))?.Id ?? fileSystemId;
         var reader = fileSystemId is null
             ? Readers.FirstOrDefault(candidate => candidate.CanRead(image))
             : Readers.FirstOrDefault(candidate => candidate.Id.Equals(fileSystemId, StringComparison.OrdinalIgnoreCase));
-        if (reader is null) throw new InvalidDataException("No supported file system was detected in the disk image.");
-        return reader.Read(image);
+        if (reader is null || !reader.CanRead(image)) { volume = null!; return false; }
+        try { volume = reader.Read(image); return true; }
+        catch (InvalidDataException) { volume = null!; return false; }
     }
 }

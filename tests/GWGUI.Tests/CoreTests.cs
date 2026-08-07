@@ -1123,7 +1123,7 @@ public sealed class CoreTests
         var volume = new GWGUI.Scp.FileSystems.FileSystemVolume(
             "TEST", "Atari TOS FAT12", 737280, 249 * 1024, null, null, [folder], ["warning"]);
 
-        var diskDetails = ExplorerDetailsPresenter.ForDisk(volume);
+        var diskDetails = ExplorerDetailsPresenter.ForDisk(new GWGUI.Scp.Images.ExploredDiskImage("test.st", null!, volume));
         var fileDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(child));
         var folderDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(folder));
 
@@ -1153,6 +1153,33 @@ public sealed class CoreTests
         Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.st", st, GwFormatCapabilities.Unknown));
         Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.st", st,
             capabilities with { ImageExtensions = new HashSet<string>([".st"], StringComparer.OrdinalIgnoreCase) }));
+    }
+
+    [Fact]
+    public void AtariStHighDensityUsesTheCompatibleGwIbmGeometry()
+    {
+        var capabilities = new GwFormatCapabilities(
+            new HashSet<string>(["ibm.1440"], StringComparer.OrdinalIgnoreCase),
+            new HashSet<string>([".st", ".scp"], StringComparer.OrdinalIgnoreCase));
+        var catalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(), capabilities);
+        var detection = new ImageFormatDetector(catalog).Detect("disk.st", 1474560);
+
+        Assert.Equal("atarist.1440", detection.Format?.Id);
+        Assert.Equal("ibm.1440", GwFormatArgument.FromCatalogId(detection.Format?.Id));
+        Assert.True(GwVisualizationPolicy.CanConvertToScp("disk.st", detection, capabilities));
+    }
+
+    [Fact]
+    public void AtariAtrVisualizationUsesOnlyNativeGwNinetyAndOneThirtyFormats()
+    {
+        var capabilities = new GwFormatCapabilities(
+            new HashSet<string>(["atari.90", "atari.130"], StringComparer.OrdinalIgnoreCase),
+            new HashSet<string>([".img", ".scp"], StringComparer.OrdinalIgnoreCase));
+        var detector = new ImageFormatDetector(new BuiltInImageFormatCatalog());
+
+        Assert.True(GwVisualizationPolicy.CanConvertToScp("disk.atr", detector.Detect("disk.atr", 92176), capabilities));
+        Assert.True(GwVisualizationPolicy.CanConvertToScp("disk.atr", detector.Detect("disk.atr", 133136), capabilities));
+        Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.atr", detector.Detect("disk.atr", 183952), capabilities));
     }
 
     [Fact]

@@ -329,6 +329,7 @@ public partial class MainWindow : Window
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         catch (Exception exception)
         {
+            if (ReferenceEquals(_explorerCancellation, cancellation)) DiskExplorer.SetLoading(false);
             ShowLoggedError(exception, $"Opening disk image in Explorer: {path}", "Tab.Explorer", "Explorer.LoadFailed");
         }
         finally
@@ -373,13 +374,21 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) return;
         var format = detection.Format!;
         var temporaryPath = Path.Combine(Path.GetTempPath(), $"gwgui-visual-{Guid.NewGuid():N}.scp");
+        string? stagedSourcePath = null;
         var gateEntered = false;
         try
         {
             await _visualizationConversionGate.WaitAsync(cancellation.Token);
             gateEntered = true;
             cancellation.Token.ThrowIfCancellationRequested();
-            var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, path, new ConversionOutput(format.Id, ".scp", temporaryPath, false));
+            var conversionSourcePath = path;
+            if (Path.GetExtension(path).Equals(".atr", StringComparison.OrdinalIgnoreCase))
+            {
+                stagedSourcePath = Path.Combine(Path.GetTempPath(), $"gwgui-visual-{Guid.NewGuid():N}.img");
+                await AtrImageReader.WriteRawPayloadAsync(path, stagedSourcePath, cancellation.Token);
+                conversionSourcePath = stagedSourcePath;
+            }
+            var command = _commandBuilder.BuildConversion(_settings.GwExecutablePath, conversionSourcePath, new ConversionOutput(format.Id, ".scp", temporaryPath, false));
             var result = await _visualizationRunner.RunAsync(command, cancellationToken: cancellation.Token);
             cancellation.Token.ThrowIfCancellationRequested();
             if (!result.IsSuccess || !File.Exists(temporaryPath)) return;
@@ -389,6 +398,7 @@ public partial class MainWindow : Window
         finally
         {
             if (gateEntered) _visualizationConversionGate.Release();
+            try { if (stagedSourcePath is not null && File.Exists(stagedSourcePath)) File.Delete(stagedSourcePath); } catch { }
             try { if (File.Exists(temporaryPath)) File.Delete(temporaryPath); } catch { }
         }
     }

@@ -72,6 +72,9 @@
   <data name="Format.atarist.880">
     <value>Atari ST — 880 Kio</value>
   </data>
+  <data name="Format.atarist.1440">
+    <value>Atari ST — 1,44 Mio</value>
+  </data>
   <data name="Format.ibm.160">
     <value>IBM PC — 160 Kio</value>
   </data>
