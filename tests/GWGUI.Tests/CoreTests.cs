@@ -933,6 +933,29 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task LastDiskImageFolderIsPersistedIndependentlyFromReadDestination()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-last-image-folder-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        var path = Path.Combine(directory, "settings.json");
+        try
+        {
+            var store = new JsonSettingsStore(path);
+            await store.SaveAsync(new AppSettings
+            {
+                DefaultImagesFolder = @"F:\Read destination",
+                LastDiskImageFolder = @"F:\Disk images\Atari"
+            });
+
+            var restored = await store.LoadAsync();
+
+            Assert.Equal(@"F:\Read destination", restored.DefaultImagesFolder);
+            Assert.Equal(@"F:\Disk images\Atari", restored.LastDiskImageFolder);
+        }
+        finally { Directory.Delete(directory, true); }
+    }
+
+    [Fact]
     public async Task OperationLogWriterRotatesAndKeepsCommandAndOutput()
     {
         var directory = Path.Combine(Path.GetTempPath(), "gwgui-log-" + Guid.NewGuid().ToString("N"));
@@ -1087,6 +1110,24 @@ public sealed class CoreTests
         Assert.Equal(".img", Assert.Single(ibm.Extensions).Extension);
         Assert.True(ibm.Extensions[0].IsDefault);
         Assert.DoesNotContain(catalog.Formats, format => format.Id == "atarist.720");
+    }
+
+    [Fact]
+    public void VisualizationUsesGwOnlyForAdvertisedInputAndScpOutput()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        var detector = new ImageFormatDetector(catalog);
+        var capabilities = new GwFormatCapabilities(
+            new HashSet<string>(["atarist.720"], StringComparer.OrdinalIgnoreCase),
+            new HashSet<string>([".st", ".scp"], StringComparer.OrdinalIgnoreCase));
+        var st = detector.Detect("disk.st", 737280);
+        var atr = detector.Detect("disk.atr", 92176);
+
+        Assert.True(GwVisualizationPolicy.CanConvertToScp("disk.st", st, capabilities));
+        Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.atr", atr, capabilities));
+        Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.st", st, GwFormatCapabilities.Unknown));
+        Assert.False(GwVisualizationPolicy.CanConvertToScp("disk.st", st,
+            capabilities with { ImageExtensions = new HashSet<string>([".st"], StringComparer.OrdinalIgnoreCase) }));
     }
 
     [Fact]

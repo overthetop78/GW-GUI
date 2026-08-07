@@ -8,6 +8,7 @@ public sealed class AppSettings
     public string Language { get; set; } = "";
     public AppTheme Theme { get; set; } = AppTheme.System;
     public string DefaultImagesFolder { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    public string? LastDiskImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }
     public string? PreviousGwExecutablePath { get; set; }
     public string? InstalledHostToolsVersion { get; set; }

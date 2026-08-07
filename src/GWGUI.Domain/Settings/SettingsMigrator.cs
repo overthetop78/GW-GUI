@@ -79,6 +79,7 @@ public static class SettingsMigrator
     {
         settings.Language = settings.Language?.Trim() ?? "";
         settings.DefaultImagesFolder ??= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        settings.LastDiskImageFolder = string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) ? null : settings.LastDiskImageFolder.Trim();
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];
         settings.UnconfiguredControllers ??= [];
