@@ -24,6 +24,20 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | Victor 9000 GCR | En-tête GCR de 6 octets, cylindre, secteur et restitution des 512 octets | Contrôle arithmétique de l’en-tête et somme additive 16 bits little-endian des données ; état valide, incorrect ou indisponible | Oui pour l’identité, les données, l’encodage GCR à demi-cellules et les deux contrôles |
 | Flux brut | Impulsions courtes et absences longues | Sans objet | Sans objet |
 
+## Familles Greaseweazle ajoutées
+
+| Décodeur | Extraction réalisée | Contrôles appliqués | État |
+|---|---|---|---|
+| HP MMFM | Cylindre, face, secteur et charge utile de 256 octets, avec inversion des bits et permutation des octets par mots | CRC-CCITT distinct de l'identité et des données | Décodeur et encodeur validés ensemble |
+| Data General 2F | Cylindre, face, secteur matériel et charge utile de 512 octets | Checksum Data General `x^16+x^8+1` | Décodeur et encodeur validés ensemble |
+| Micropolis MFM | Cylindre, secteur, dix octets constructeur et charge utile de 256 octets | Somme additive à retenue circulaire | Décodeur et encodeur validés ensemble |
+
+## Couverture des encodeurs
+
+Les 21 décodeurs sectoriels possèdent maintenant un encodeur de piste portant le même identifiant. Le registre vérifie cette parité automatiquement. Un test aller-retour construit une piste, la transforme en intervalles de flux, appelle le décodeur correspondant et compare l'identité, l'intégrité et la charge utile obtenues. Cela couvre ISO MFM/FM, Amiga, Apple II, Apple Macintosh, Commodore, HP MMFM, Data General, Micropolis, Membrain, AED, QD MO5, Centurion, NorthStar, Heathkit, Micral N, E-mu, TYCOM, DEC RX02, Arburg et Victor 9000.
+
+Le décodeur `raw` n'a pas d'encodeur sectoriel : un flux brut est déjà une suite d'intervalles et ne contient pas de modèle de secteurs à reconstruire. Sa copie ou son écriture relève du conteneur SCP, pas d'un algorithme d'encodage de format.
+
 ## Sources de qualification
 
 Les structures Amiga, NorthStar, Heathkit, Micral N, Membrain, AED 6200P, Apple II et Macintosh 6-and-2, Commodore et Victor 9000 sont alignées sur leurs extracteurs homonymes de libhxcfe. Les tests synthétiques reconstruisent les encodages bit à bit, injectent une intégrité valide puis corrompue et vérifient les champs extraits, y compris les restitutions exactes Amiga, Apple II, Apple Macintosh, Commodore, Micral N, Membrain et AED, les tailles variables et marques C0–C3 AED, ainsi que les échantillonnages GCR Macintosh et Victor. Les 18 fichiers `*_track.c` de cette collection HxC possèdent désormais un décodeur dédié dans GW GUI. Leur validation physique exhaustive demande encore un corpus libre.

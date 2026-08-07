@@ -337,7 +337,7 @@ Tests/
 
 ### À faire au moment de la fonction associée
 
-5. Créer le modèle sectoriel et les écrivains lors d’une future conversion interne depuis SCP sans `gw`; réaliser plus tard les encodeurs et l’écriture SCP lorsque l’utilisateur placera ce chantier dans les priorités.
+5. Le modèle sectoriel et les 21 encodeurs de pistes sont désormais créés dans `GWGUI.Scp/Encoding`, avec un fichier par encodeur et un registre vérifiant la parité avec les décodeurs. L'écriture d'un conteneur SCP complet et son branchement à la conversion native restent des travaux distincts.
 
 6. Séparer les pages Options lors de leur reprise visuelle.
 7. Extraire un client de releases commun lors de la notification de mise à jour GW GUI.

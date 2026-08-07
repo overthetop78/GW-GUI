@@ -1564,4 +1564,13 @@ SCP エントリ: {2}</value>
   <data name="Visual.AverageDuration">
     <value>平均持続時間</value>
   </data>
+  <data name="Visual.DecoderName.hp.mmfm">
+    <value>HP MMFM</value>
+  </data>
+  <data name="Visual.DecoderName.datageneral.fm">
+    <value>Data General 2F</value>
+  </data>
+  <data name="Visual.DecoderName.micropolis.mfm">
+    <value>Micropolis MFM</value>
+  </data>
 </root>

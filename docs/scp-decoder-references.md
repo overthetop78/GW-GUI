@@ -31,3 +31,20 @@ Les décodeurs rares sont implémentés à partir des caractéristiques de leur 
 | ISO MFM/FM | Greaseweazle `codec/ibm` et conventions WD/IBM | Marques FE/FB/F8, géométrie CHRN, CRC-CCITT avec préfixe A1×3 en MFM et sans préfixe en FM |
 
 La comparaison exhaustive confirme que les 18 extracteurs `*_track.c` possèdent un décodeur dédié. Chaque ajout suit la même règle : signature justifiée par la référence primaire, corpus synthétique ciblé et résultat visuel réellement exploitable.
+
+## Références Greaseweazle complémentaires
+
+La comparaison du catalogue HxC avec les codecs Greaseweazle a identifié trois familles supplémentaires :
+
+| Famille GW GUI | Source Greaseweazle étudiée |
+|---|---|
+| HP MMFM | `src/greaseweazle/codec/hp/hp_mmfm.py` |
+| Data General 2F | `src/greaseweazle/codec/datageneral/datageneral.py` |
+| Micropolis MFM | `src/greaseweazle/codec/micropolis/micropolis.py` |
+
+Révisions locales de contrôle utilisées le 7 août 2026 :
+
+- Greaseweazle : `26690f89967d519e0106ab9566019a026b920bb4` ;
+- HxCFloppyEmulator : `b1eee4cd73391ceaf2ad4ac57e28bf11c91333ba`.
+
+Les algorithmes ont été réimplémentés en C# dans l'architecture de GW GUI. Le code HxC sous GPL n'est pas copié dans le projet. Les encodeurs possèdent chacun leur propre classe et partagent uniquement les primitives réellement communes : construction de cellules, conversion en intervalles, CRC, checksums et inversion de bits.
