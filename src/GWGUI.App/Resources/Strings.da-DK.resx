@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Ophæve</value>
+  </data>
+  <data name="Common.Save">
+    <value>Spare</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Slet</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Gennemse...</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Vælge…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Ukendt</value>
+  </data>
+  <data name="Options.Title">
+    <value>Valgmuligheder</value>
+  </data>
+  <data name="Options.General">
+    <value>Generel</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Værktøjer</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Controllere og drev</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profiler</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Standard disk-image-mappe</value>
+  </data>
+  <data name="Options.Language">
+    <value>Sprog</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Theme.System">
+    <value>System</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Lys</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Mørk</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Sti til gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Hvis værktøjerne mangler, vil assistenten tilbyde at downloade dem eller vælge en eksisterende installation. Opdateringer annonceres kun.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Hardwareindstillinger forbliver gemt, når et drev frakobles.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Havn</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB identifikator</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Køre</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Tilgængelig</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Scan</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Tilføj et drev...</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Intet drev defineret</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Definer et drev</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle controller</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Udvælgelsen videregivet til gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Fysisk størrelse</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Størrelse</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Tæthed</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Hastighed</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Tilgængelig</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Ikke tilgængelig</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Drevtæthed (kun beskrivelse)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Nominel hastighed (kun beskrivelse)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Profiler efter operation</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Tab</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Navn</value>
+  </data>
+  <data name="Profiles.System">
+    <value>System</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Omdøb...</value>
+  </data>
+  <data name="Common.Close">
+    <value>Tæt</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Udfør</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Stop</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Fortsætte</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Gem profil</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Profilnavn</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Indtast et navn.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Eksisterende filer</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Nogle filer findes allerede</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Vælg en handling for hver fil, eller anvend den samme handling på alle filer.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fil</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Handling</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Overskriv</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Springe</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Brug næste nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Overskriv alle</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Spring alle over</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alle</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Klar til at udføre.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Rå output</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Værktøjer er ikke konfigureret. Åbn Indstillinger → Indstillinger.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>En operation kører. Stop det og luk GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Indstillinger kunne ikke gemmes.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Færdig: kode {0}, varighed {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Kommandoen er gennemført.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Kommando annulleret.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Kommandoen sluttede med kode {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Skrive</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Vælg et eksisterende kildebillede.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formatet er tvetydigt. Vælg eksplicit et kompatibelt format.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Bekræftelse efter skrivning er deaktiveret.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Bekræftelse efter skrivning er aktiveret.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Bekræft skrivning</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Billede: {0}
+Format: {1}
+Drev: {2}
+{3}
+
+Vil du skrive dette billede til disken?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Læse</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Indtast et filnavn.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Vælg en kompatibel billedtype.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Eksisterende fil</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Denne fil findes allerede.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Eksisterende fil</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Overskriv</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Brug det næste tal</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Lad mig redigere navnet</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Omdannelse</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Vælg mindst ét ​​outputformat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Tvetydig kilde</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Resumé: {0} lykkedes, {1} mislykkedes.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Fejl: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Bekræft sletning</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Vil du slette alle data på den indsatte disk permanent?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Rens hoveder</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Bekræft, at der er isat en rensedisk. Brug aldrig en datadisk.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Controller ikke konfigureret</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>afbrudt</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Det valgte drev afbrydes. Tilslut den igen, eller scan igen i Indstillinger → Controllere og drev.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-tommer · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Køre</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Scan eller tilføj en Greaseweazle controller først.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Valgmuligheder</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Præferencer...</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostik</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Information</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB båndbredde</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM hastighed</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Søg hoved...</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Hardware</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pins...</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Nulstil</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Forsinkelser...</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware...</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Hjælp</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokumentation</value>
+  </data>
+  <data name="Menu.About">
+    <value>Om</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Læse</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Skrive</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Omdannelse</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisering</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Værktøjer</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Nulstil</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Kopi</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Modificere</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Skjule</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsol</value>
+  </data>
+  <data name="Common.Command">
+    <value>Kommando</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Avancerede indstillinger</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Ekspert argumenter</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Billede til at oprette</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Forlængelse</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Råbillede (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Kendt diskformat</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Filnavn</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Folder</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Omdrejninger pr. spor</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Forsøg igen</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Spor/sider</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Automatisk tal vellykkede læsninger</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Cifre</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Breve</value>
+  </data>
+  <data name="Read.Next">
+    <value>Næste:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Åbn i Visualisering</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP-optagelsen er fuldført. Du kan analysere det uden at afbryde dit arbejde.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Endeligt SCP resultat:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Spor: {0} gode, {1} mangler eller er ugyldige ({2} cylindre, {3} sider).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Omdrejninger: {0} · Opløsning: {1} ns · Størrelse: {2:N0} bytes · Kontrolsum: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Fil: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP oversigt utilgængelig: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} gode spor · {1} mangler eller er ugyldige · {2} cylindre · {3} sider · {4} omdrejninger · {5:N0} bytes · {6} kontrolsum</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Side {0}: spor {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Kildebillede</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Registreret format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Vælg et billede.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Deaktiver bekræftelse efter skrivning</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Tilføjer --no-verify. Disken bliver ikke genlæst for at bekræfte skrivningen.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Slet tomme spor</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Kilde</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Output navne</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Tilføj tags</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Valgt</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Almindelige formater</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Vis sjældent brugte formater</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Begræns spor</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Dekoder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Link zoom</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Åbn en SCP fil...</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Ingen SCP fil åben</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Venter på en fil</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspektør</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Vælg et spor.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Klik: vælg · Hjul: zoom · Højreklik: panorer</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normal flux</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Kort overgang</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Lang overgang/anomali</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Slet en disk</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Alle data på disken vil blive ødelagt.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Begræns spor</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revolutioner</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Rens hoveder</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Indsæt en rensedisk, aldrig en disk med data.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Cylindre</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Består</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Varighed pr. cylinder (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI klar.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Standard</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumenter videregives som skrevet efter citatvalidering.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Misligholdelse</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Standardprofilen er permanent og kan ikke omdøbes.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Standardprofilen er permanent og kan ikke slettes.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>En profil på denne fane har allerede dette navn.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Denne profil findes allerede. Vil du udskifte det?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Eksekverbar (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Vil du fjerne denne lagrede controller og alle dens drev?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Hardware</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-tommer · {1} · valg {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Antal målinger</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Cylinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Tillad ekstreme cylindre</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Hold motoren aktiv</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pin (8, 26 eller 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Skift pin</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Højt niveau</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Udvælgelse (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Hovedtrin (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Afregne (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatisk fravælg (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Før skrivning (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Efter skrivning (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indeksmaske (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Opdater bootloader (risikofyldt)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Opdatering af bootloaderen er en avanceret operation, som kan gøre controlleren ubrugelig, hvis den afbrydes. Fortsætte?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Controller</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Ukendt firmware</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Ukendt port</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Den lokale information er gyldig; kun netværkskontrollen mislykkedes.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Kommandoen kører...</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Controller oplysninger</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB båndbredde</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Kørehastighed</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Søg hoved</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Hardware stifter</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Nulstil controller</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Forsinkelser</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Scan</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Vælg eller download gw.exe nedenfor først.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Slet profil "{0}"?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Vælg et eksisterende kildebillede.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Indtast output filnavne.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Kontroller mindst ét ​​outputformat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konvertering(er))</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Vælg en billedtype</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Læser fil...</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Ugyldig fil</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisering</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>gyldig</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>ugyldig</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} spor · {2} omdrejninger · {3} ns opløsning · {4} kontrolsum</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Revolution {0}: {1:N0} overgange · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Afkodning: {0}
+Tillid: {1:P0}
+Estimeret celle: {2:F1} flueben
+Strukturer: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Side: {0}
+Spor: {1}
+SCP indgang: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Side {0}
+Ingen data</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Side {0} · Spor {1}
+{2} omdrejninger</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Ingen udvidelse markeret: {0} bruges som standard.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Stop driften</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Vil du stoppe den aktuelle Greaseweazle handling?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>En Greaseweazle kommando kører allerede. Vent til det er færdigt, eller stop det, før du åbner dette værktøj.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Spor {0}, side {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Spor {0}, side {1} — {2} behandlet</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Find gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Se efter opdateringer</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Download den seneste version</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Brug forrige sti</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Ingen installation fundet.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Registreret: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Seneste tilgængelige version: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Version {0} installeret.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Vil du downloade og installere Greaseweazle Host Tools {0} til Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Værtsværktøjer</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Ingen gyldig tidligere sti er gemt.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Værtsværktøjer {0} tilgængelige</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Søg igen</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Falsk indeks</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Hårde sektorer</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Omvendt spordata</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Juster hastigheden</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL tilsidesættelse</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Tæthedsstift 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Generer TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Forudslet spor</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Skriv forhåndskompensation</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Output spor</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Tvetydigt format</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Rå SCP-optagelse genkendt.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Amiga format genkendt fra filstørrelse.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Acorn format genkendt fra filstørrelse.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Størrelsen matcher ikke en kendt Atari ST profil.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST geometri genkendt fra filstørrelse.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Atari MSA container genkendt; bekræft om nødvendigt geometrien.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Udvidelsen alene kan ikke bestemme IBM PC geometrien.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC geometri genkendt fra filstørrelse.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Format udledt af udvidelsen.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Flere formater er mulige; vælge en eksplicit.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Brugerdefinerede diskdefinitioner</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle diskdefinitioner (*.cfg)|*.cfg|Alle filer|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Den valgte diskdefinitionsfil findes ikke.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Eksportere</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Tekstlog (*.txt)|*.txt|Alle filer|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Driftshistorie</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Rå flux billede</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM scanning</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC fluxbillede</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA diskbillede</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG diskbillede</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Diskfil</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Diskfil</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST billede</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Magic Shadow Archiver</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 billede</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Floppy Emulator</value>
+  </data>
+  <data name="About.Description">
+    <value>En moderne Windows-grænseflade til læsning, skrivning, konvertering og inspektion af disketter med Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Open source-software — MIT Licens</value>
+  </data>
+  <data name="About.Version">
+    <value>Version {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automatisk</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Overskrift/adresse</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Afkodede data</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Slettet/uregelmæssighed</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analyse baseret på revolution {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Brug tags i konverteringsfilnavne</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Forudindstillet</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Kun familie</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Kun format</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Familie og format</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Familie og tilbygning</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Familie, format og udvidelse</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Konverteringstag-mønster</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Tilgængelige variabler</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Kilde filnavn</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Familie: PC, ST, AMIGA...</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Format: 720, 1440, DD...</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Udvidelse: IMA, ST, ADF...</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Dato: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Dato: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Dato: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Tid: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Tid: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Tid: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — kildefilnavn
+{FAMILY} — maskinfamilie (PC, ST, AMIGA...)
+{FORMAT} — format eller geometri (720, 1440, DD...)
+{EXTENSION} — udgangsudvidelse (IMA, ST, ADF...)
+{DATE:YYYY-MM-DD} — dato 2026-08-06
+{DATE:YYYYMMDD} — dato 20260806
+{DATE:DD-MM-YYYY} — dato 06-08-2026
+{TIME:HH-MM-SS} — tid 14-35-42
+{TIME:HHMMSS} — tid 143542
+{TIME:HH-MM} — tid 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Nylige brugerdefinerede mønstre</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Næste eksempel</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI fejl</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>En uventet fejl blev opsnappet.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Indstillingerne kunne ikke gemmes. Vinduet vil stadig lukke.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Den fulde rapport blev gemt på:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Eksempel: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Tagmønsteret skal indeholde {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektor C{0} H{1} R{2} · {3} bytes · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>gyldig</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>ugyldig</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>ikke tilgængelig</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (enkelt tæthed)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar hårdt opdelt MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit hårdt opdelt FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N hårdt opdelt FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg system/data</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Rå flux</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synkronisering</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Sektoroverskrift</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Sektordata</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Slettede sektordata</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga synkronisering</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Apple adresse prolog</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Apples dataprolog</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore synkronisering</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore overskrift</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Formater overskrift</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Formater data</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Timing anomali</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Ugyldige parametre</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Kontroller de fremhævede kommandoparametre, før du udfører.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>En avanceret indstilling er ugyldig: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Fejl: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Destinationsmappe</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Parat</value>
+  </data>
+  <data name="Status.Running">
+    <value>Løb</value>
+  </data>
+  <data name="Status.Success">
+    <value>Succes</value>
+  </data>
+  <data name="Status.Error">
+    <value>Fejl</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Annulleret</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-tilstand</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Sporspecifikation, for eksempel c=0-79:h=0-1, c=0-79/2:h=0 eller c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Positiv hastighed eller periode, for eksempel 300rpm, 200ms, 200000us eller 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parametre adskilt af kolon, for eksempel periode=5:fase=60 eller periode=5:fase=60:lavpas=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Skriv prækompensation, for eksempel type=mfm:40=125. Typer: mfm, fm, gcr; værdier er i nanosekunder.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Brug en tilpasset diskdefs.cfg-fil til at tilføje eller tilsidesætte Greaseweazle-formatdefinitioner.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Diskbilleder|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Alle filer|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro capture (*.scp)|*.scp|Alle filer|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} er ikke kompatibel med denne kilde.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Antal aflæste omdrejninger pr. spor. Eksempel: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Yderligere forsøg efter en fejl. Eksempel: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Begræns cylindre, hoveder eller trin. Eksempel: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Yderligere forsøg efter at have flyttet hovedet. Eksempel: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Opret et tidsindstillet indeks for et drev uden et indekssignal. Eksempel: --fake-index 300rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Håndter en harddisk med harddisk. Inkompatibel med --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Omvendt sporingsdata for flippy medier eller ledninger.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Omskaler datatiming. Eksempel: --adjust-speed 300rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Konfigurer clock-gendannelsesløkken. Eksempel: --pll periode=5:fase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Tving densitetsvælger-stiften høj eller lav. Eksempel: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Generer TG43-signalet for drev, der kræver det. Inkompatibel med --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Slet spor, for hvilke kildebilledet ikke indeholder data.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Slet hvert spor, før du skriver det.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Anvend skriveprækompensation. Eksempel: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Tilknyt spor i outputbilledet. Eksempel: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Drevjustering...</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnostik af drevjustering</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Skiftende spor (påkrævet)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Antal aflæsninger</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Afkodningsformat</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Læs rå flux (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Kontrolsum</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Side {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Hardwarekontrol</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Konfigureret hardware kunne ikke findes</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Konfigurationen er bevaret, men dens drev vil forblive utilgængelige, indtil deres Greaseweazle er fundet igen.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Mangler Greaseweazle controllere</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Søg igen</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Hardwareindstillinger</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Fortsæt uden dette drev</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Hardwarekontrollen mislykkedes: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Ny Greaseweazle fundet</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} blev fundet på {1}. Vil du konfigurere dens drev nu?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Konfiguration</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Konfigureret</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Registreret, ikke konfigureret</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Konfigurer</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Kør {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Drev {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Glemme</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Vil du virkelig glemme dette drev eller denne enhed?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Dette er det sidst konfigurerede drev til denne Greaseweazle. Vil du glemme både drevet og Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Vælg først en række, der tilhører den relevante Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Der kan højst tildeles to drev automatisk til denne Greaseweazle (A og B).</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Analyserer spor {0}/{1}...</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Side</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Spore</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP indgang</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Revolutioner</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analyse</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Tillid</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Anslået celle</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Strukturer</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Opdagede strukturer</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektorer</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>overgange</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Gem logfiler</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Logs</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Hver handling har sin egen fil i mappen GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Slette</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Rens hoveder</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Åbn mappe</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Maksimal størrelse</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Behold tidligere logfiler</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = ubegrænset</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Læsning annulleret: Den ufuldstændige fil blev slettet: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Læsningen blev annulleret, men den ufuldstændige fil kunne ikke slettes: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualiser spor</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Vælg diskformatet, før du visualiserer sporene.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Der blev ikke fundet noget tilgængeligt outputfilnavn.</value>
+  </data>
+</root>

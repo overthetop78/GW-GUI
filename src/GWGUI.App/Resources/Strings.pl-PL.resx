@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Anulować</value>
+  </data>
+  <data name="Common.Save">
+    <value>Ratować</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Usuwać</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Przeglądać…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Wybierać…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Nieznany</value>
+  </data>
+  <data name="Options.Title">
+    <value>Opcje</value>
+  </data>
+  <data name="Options.General">
+    <value>Ogólny</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Narzędzia</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Kontrolery i napędy</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profile</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Domyślny folder obrazu dysku</value>
+  </data>
+  <data name="Options.Language">
+    <value>Język</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Temat</value>
+  </data>
+  <data name="Theme.System">
+    <value>System</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Światło</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Ciemny</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Ścieżka do gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Jeśli brakuje narzędzi, asystent zaproponuje ich pobranie lub wybranie istniejącej instalacji. Aktualizacje są jedynie ogłaszane.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Ustawienia sprzętowe pozostają zapisane po odłączeniu dysku.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Port</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>Identyfikator USB</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Prowadzić</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Dostępny</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Skandować</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Dodaj dysk…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Nie zdefiniowano napędu</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Zdefiniuj napęd</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle kontroler</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Wybór przekazany do gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Rozmiar fizyczny</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Rozmiar</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Gęstość</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Prędkość</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Dostępny</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Nie płynny</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Gęstość dysku (tylko opis)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Prędkość nominalna (tylko opis)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Profile według operacji</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Patka</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Nazwa</value>
+  </data>
+  <data name="Profiles.System">
+    <value>System</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Przemianować…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Zamknąć</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Wykonać</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Zatrzymywać się</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Kontynuować</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Zapisz profil</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Nazwa profilu</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Wpisz nazwę.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Istniejące pliki</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Niektóre pliki już istnieją</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Wybierz akcję dla każdego pliku lub zastosuj tę samą akcję do wszystkich plików.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Plik</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Działanie</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Przepisać</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Pominąć</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Użyj następnego numeru</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Nadpisz wszystko</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Pomiń wszystko</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Numeruj wszystkie</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Gotowy do wykonania.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Surowe wyjście</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Narzędzia nie są skonfigurowane. Otwórz Opcje → Preferencje.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Trwa operacja. Zatrzymaj i zamknij GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Nie można zapisać ustawień.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Zakończono: kod {0}, czas trwania {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Polecenie zostało wykonane pomyślnie.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Polecenie anulowane.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Komenda zakończyła się kodem {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Pisać</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Wybierz istniejący obraz źródłowy.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Format jest niejednoznaczny. Jawnie wybierz zgodny format.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Weryfikacja po zapisie jest wyłączona.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Weryfikacja po zapisie jest włączona.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Potwierdź zapis</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Obraz: {0}
+Format: {1}
+Napęd: {2}
+{3}
+
+Zapisać ten obraz na dysk?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Czytać</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Wprowadź nazwę pliku.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Wybierz zgodny typ obrazu.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Istniejący plik</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Ten plik już istnieje.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Istniejący plik</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Przepisać</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Użyj następnego numeru</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Pozwól, że edytuję nazwę</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Konwersja</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Wybierz co najmniej jeden format wyjściowy.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Niejednoznaczne źródło</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Podsumowanie: {0} powiodło się, {1} nie powiodło się.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Awarie: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Potwierdź usunięcie</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Trwale usunąć wszystkie dane z włożonego dysku?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Czyste głowy</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Sprawdź, czy dysk czyszczący jest włożony. Nigdy nie używaj dysku z danymi.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Kontroler nie skonfigurowany</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>bezładny</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Wybrany dysk jest odłączony. Podłącz go ponownie lub przeskanuj ponownie w Opcje → Kontrolery i dyski.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-cale · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Prowadzić</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Najpierw zeskanuj lub dodaj kontroler Greaseweazle.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Opcje</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Preferencje…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostyka</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Informacja</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB przepustowość</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM prędkość</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Szukaj głowy…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Sprzęt komputerowy</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Kołki…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Nastawić</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Opóźnienia…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Oprogramowanie sprzętowe…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Pomoc</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokumentacja</value>
+  </data>
+  <data name="Menu.About">
+    <value>O</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Czytać</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Pisać</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Konwersja</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Wyobrażanie sobie</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Narzędzia</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Nastawić</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Kopia</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Modyfikować</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Ukrywać</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsola</value>
+  </data>
+  <data name="Common.Command">
+    <value>Rozkaz</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Ustawienia zaawansowane</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Argumenty ekspertów</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Obraz do stworzenia</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Rozszerzenie</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Surowy obraz (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Znany format dysku</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Nazwa pliku</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Falcówka</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Obroty na utwór</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Ponowne próby</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Tory/boki</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Automatycznie numeruj pomyślne odczyty</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Cyfry</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Beletrystyka</value>
+  </data>
+  <data name="Read.Next">
+    <value>Następny:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Otwórz w wizualizacji</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Przechwytywanie SCP zostało zakończone. Możesz to analizować bez przerywania pracy.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Ostateczny wynik SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Gąsienice: {0} dobre, {1} brak lub nieprawidłowe (cylindry {2}, boki {3}).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Obroty: {0} · Rozdzielczość: {1} ns · Rozmiar: {2:N0} bajtów · Suma kontrolna: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Plik: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP podsumowanie niedostępne: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} dobre tory · {1} brak lub nieprawidłowe · {2} cylindry · {3} boki · {4} obroty · {5:N0} bajty · {6} suma kontrolna</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Strona {0}: tor {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Obraz źródłowy</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Wykryty format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Wybierz obraz.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Wyłącz weryfikację po napisaniu</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Dodaje --no-verify. Dysk nie zostanie ponownie odczytany w celu potwierdzenia zapisu.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Usuń puste ścieżki</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Źródło</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Nazwy wyjściowe</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Dodaj tagi</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Wybrany</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Typowe formaty</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Pokaż rzadko używane formaty</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Ogranicz utwory</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Dekoder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Zoom łącza</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Otwórz plik SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Żaden plik SCP nie jest otwarty</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Czekam na plik</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspektor</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Wybierz utwór.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Kliknij: wybierz · Koło: powiększenie · Kliknij prawym przyciskiem myszy: przesuwanie</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normalny strumień</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Krótkie przejście</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Długie przejście/anomalia</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Wymaż dysk</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Wszystkie dane na dysku zostaną zniszczone.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Ogranicz utwory</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Rewolucje</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Czyste głowy</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Włóż dysk czyszczący, nigdy dysk zawierający dane.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Cylindry</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Przechodzi</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Czas trwania na cylinder (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI gotowy.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: domyślny</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumenty są przekazywane w postaci zapisanej po sprawdzeniu poprawności cytatu.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Domyślny</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Profil domyślny jest trwały i nie można zmienić jego nazwy.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Profil domyślny jest trwały i nie można go usunąć.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Profil na tej karcie ma już tę nazwę.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Ten profil już istnieje. Wymienić?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Plik wykonywalny (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Usunąć przechowywany kontroler i wszystkie jego dyski?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Sprzęt komputerowy</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-cale · {1} · wybór {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Liczba pomiarów</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Cylinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Zezwalaj na ekstremalne cylindry</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Utrzymuj silnik aktywny</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Kołek (8, 26 lub 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Zmień pin</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Wysoki poziom</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Wybór (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Krok głowy (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Rozliczenie (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Silnik (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatyczne odznaczanie (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Przed zapisem (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Po zapisie (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Maska indeksu (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Zaktualizuj bootloader (ryzykowne)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Aktualizacja programu ładującego to zaawansowana operacja, która w przypadku przerwania może spowodować, że kontroler nie będzie nadawał się do użytku. Kontynuować?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Kontroler</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Nieznane oprogramowanie</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Nieznany port</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Informacje lokalne są aktualne; tylko sprawdzenie sieci nie powiodło się.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Uruchomienie polecenia…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Informacje o kontrolerze</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB przepustowość</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Prędkość jazdy</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Szukaj głowy</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Kołki sprzętowe</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Zresetuj kontroler</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Opóźnienia</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Oprogramowanie sprzętowe</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Skandować</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Najpierw wybierz lub pobierz gw.exe poniżej.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Usunąć profil „{0}”?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Wybierz istniejący obraz źródłowy.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Wprowadź nazwy plików wyjściowych.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Sprawdź co najmniej jeden format wyjściowy.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konwersje)</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Wybierz typ obrazu</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Czytanie pliku…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Nieprawidłowy plik</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP wizualizacja</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>ważny</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>nieważny</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} ścieżki · {2} obrót(y) · {3} rozdzielczość ns · {4} suma kontrolna</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Rewolucja {0}: {1:N0} przejścia · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Dekodowanie: {0}
+Pewność: {1:P0}
+Szacowana komórka: {2:F1} znaczników
+Struktury: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Strona: {0}
+Utwór: {1}
+SCP wpis: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Strona {0}
+Brak danych</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Strona {0} · Ścieżka {1}
+{2} obrót(y)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Nie zaznaczono żadnego rozszerzenia: domyślnie używane jest {0}.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Zatrzymaj działanie</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Zatrzymać bieżącą operację Greaseweazle?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Komenda Greaseweazle jest już uruchomiona. Poczekaj na zakończenie lub zatrzymaj je przed otwarciem tego narzędzia.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Tor {0}, strona {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Ścieżka {0}, strona {1} — {2} przetworzona</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Znajdź gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Sprawdź aktualizacje</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Pobierz najnowszą wersję</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Użyj poprzedniej ścieżki</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Nie wykryto instalacji.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Wykryto: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Najnowsza dostępna wersja: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Zainstalowano wersję {0}.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Pobrać i zainstalować Greaseweazle Narzędzia hosta {0} dla Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Narzędzia hosta</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Nie zapisano żadnej prawidłowej poprzedniej ścieżki.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Dostępne narzędzia hosta {0}</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Szukaj ponownych prób</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Fałszywy indeks</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Twarde sektory</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Odwróć dane ścieżki</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Dostosuj prędkość</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>Zastąpienie PLL</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Pin gęstości 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Wygeneruj TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Wstępnie usuń utwory</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Napisz wstępną rekompensatę</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Ścieżki wyjściowe</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Niejednoznaczny format</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Rozpoznano nieprzetworzone przechwycenie SCP.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Format Amiga rozpoznany na podstawie rozmiaru pliku.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Format Acorn rozpoznany na podstawie rozmiaru pliku.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Rozmiar nie pasuje do znanego profilu Atari ST.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Geometria Atari ST rozpoznana na podstawie rozmiaru pliku.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Rozpoznano kontener Atari MSA; w razie potrzeby potwierdź geometrię.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Samo rozszerzenie nie może określić geometrii IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>Geometria IBM PC rozpoznana na podstawie rozmiaru pliku.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Format wywnioskowany z rozszerzenia.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Możliwych jest kilka formatów; wybierz jedno wyraźnie.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Niestandardowe definicje dysków</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle definicje dysków (*.cfg)|*.cfg|Wszystkie pliki|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Wybrany plik definicji dysków nie istnieje.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Eksport</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Dziennik tekstowy (*.txt)|*.txt|Wszystkie pliki|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Historia operacji</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Surowy obraz strumienia</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DKZ 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — skanowanie FM/MFM</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC obraz strumienia</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA obraz dysku</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG obraz dysku</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Plik dyskowy</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Plik dyskowy</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST obraz</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Archiwum Magicznego Cienia</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 obraz</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Emulator dyskietki</value>
+  </data>
+  <data name="About.Description">
+    <value>Nowoczesny interfejs Windows do odczytu, zapisu, konwertowania i sprawdzania dyskietek za pomocą Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Oprogramowanie typu open source — MIT Licencja</value>
+  </data>
+  <data name="About.Version">
+    <value>Wersja {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automatyczny</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Nagłówek/adres</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Zdekodowane dane</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Usunięto/anomalię</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analiza oparta na rewolucji {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Użyj tagów w nazwach plików konwersji</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Wstępnie ustawione</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Tylko rodzina</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Tylko formatuj</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Rodzina i format</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Rodzina i rozszerzenie</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Rodzina, format i rozszerzenie</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Wzór tagu konwersji</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Dostępne zmienne</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Nazwa pliku źródłowego</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Rodzina: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Format: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Numer wewnętrzny: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Data: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Data: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Data: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Czas: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Czas: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Czas: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — nazwa pliku źródłowego
+{FAMILY} — rodzina maszyn (PC, ST, AMIGA…)
+{FORMAT} — format lub geometria (720, 1440, DD…)
+{EXTENSION} — rozszerzenie wyjścia (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — data 2026-08-06
+{DATE:YYYYMMDD} — data 20260806
+{DATE:DD-MM-YYYY} — data 06-08-2026
+{TIME:HH-MM-SS} — godzina 14-35-42
+{TIME:HHMMSS} — godzina 143542
+{TIME:HH-MM} — godzina 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Najnowsze niestandardowe wzory</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Następny przykład</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI błąd</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Przechwycono nieoczekiwany błąd.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Nie można zapisać ustawień. Okno będzie nadal zamknięte.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Pełny raport został zapisany w:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Przykład: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Wzorzec tagu musi zawierać {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektor C{0} H{1} R{2} · {3} bajtów · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>ważny</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>nieważny</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>nie płynny</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (pojedyncza gęstość)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar sektor twardy MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit sektor twardy FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N sektor twardy FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg system/dane</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Surowy strumień</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synchronizacja</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Nagłówek sektora</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Dane sektorowe</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Usunięte dane sektora</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Synchronizacja Amiga</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Prolog adresu Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Prolog dotyczący danych Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Synchronizacja Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Nagłówek Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Formatuj nagłówek</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Formatuj dane</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Anomalia czasowa</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Nieprawidłowe parametry</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Przed wykonaniem sprawdź podświetlone parametry polecenia.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Ustawienie zaawansowane jest nieprawidłowe: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Błąd: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Folder docelowy</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Gotowy</value>
+  </data>
+  <data name="Status.Running">
+    <value>Działanie</value>
+  </data>
+  <data name="Status.Success">
+    <value>Sukces</value>
+  </data>
+  <data name="Status.Error">
+    <value>Błąd</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Odwołany</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Tryb bootloadera</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Specyfikacja ścieżki, na przykład c=0-79:h=0-1, c=0-79/2:h=0 lub c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Dodatnia prędkość lub okres, na przykład 300 obr./min, 200 ms, 200 000 us lub 200000000 ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>Parametry PLL oddzielone dwukropkami, na przykład okres=5:faza=60 lub okres=5:faza=60:dolnoprzepustowy=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Zapisz wstępną kompensację, na przykład typ=mfm:40=125. Typy: mfm, fm, gcr; wartości podano w nanosekundach.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Użyj niestandardowego pliku diskdefs.cfg, aby dodać lub zastąpić definicje formatu Greaseweazle.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Obrazy dysków|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Wszystkie pliki|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro przechwytywanie (*.scp)|*.scp|Wszystkie pliki|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} nie jest kompatybilny z tym źródłem.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Liczba obrotów odczytanych na ścieżkę. Przykład: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Dodatkowe próby po błędzie. Przykład: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Ogranicz cylindry, głowice lub stopnie. Przykład: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Dodatkowe próby po poruszeniu głową. Przykład: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Utwórz indeks czasowy dla napędu bez sygnału indeksu. Przykład: --fake-index 300 obr./min.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Obsługuj dysk z twardymi sektorami. Niekompatybilny z --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Odwróć dane ścieżki dla flipperów lub okablowania.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Przeskaluj taktowanie danych. Przykład: --adjust-speed 300 obr./min.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Skonfiguruj pętlę odzyskiwania zegara. Przykład: --pll okres=5:faza=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Wymuś wysoki lub niski poziom pinu wyboru gęstości. Przykład: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Generuje sygnał TG43 dla napędów, które tego wymagają. Niekompatybilny z --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Usuń utwory, dla których obraz źródłowy nie zawiera żadnych danych.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Usuń każdy utwór przed jego zapisaniem.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Zastosuj wstępną kompensację zapisu. Przykład: --precomp typ=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Zmapuj ścieżki na obrazie wyjściowym. Przykład: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Ustawianie napędu…</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnostyka zbieżności napędu</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Ścieżki naprzemienne (wymagane)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Liczba odczytów</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Format dekodowania</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Odczytaj surowy strumień (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Suma kontrolna</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Strona {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Kontrola sprzętu</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Nie można znaleźć skonfigurowanego sprzętu</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Konfiguracja zostanie zachowana, ale dyski pozostaną niedostępne do czasu ponownego znalezienia ich Greaseweazle.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Brak kontrolerów Greaseweazle</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Wyszukaj ponownie</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Ustawienia sprzętowe</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Kontynuuj bez tego napędu</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Kontrola sprzętu nie powiodła się: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Wykryto nowy Greaseweazle</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} wykryto na {1}. Czy chcesz teraz skonfigurować jego dysk?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Konfiguracja</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Skonfigurowane</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Wykryto, nie skonfigurowano</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Skonfiguruj</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Jedź {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Napęd {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Zapominać</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Czy na pewno chcesz zapomnieć o tym dysku lub urządzeniu?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>To jest ostatni skonfigurowany dysk dla tego Greaseweazle. Czy chcesz zapomnieć zarówno o napędzie, jak i Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Najpierw wybierz wiersz należący do odpowiedniego Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Do tego Greaseweazle (A i B) można automatycznie przypisać maksymalnie dwa dyski.</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Analizuję utwór {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Strona</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Ścieżka</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP wpis</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Rewolucje</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analiza</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Zaufanie</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Szacunkowa komórka</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Struktury</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Wykryte struktury</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektory</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>przejścia</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Zapisz logi</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Dzienniki</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Każda akcja ma swój własny plik w folderze GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Usuwać</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Czyste głowy</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Otwórz folder</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Maksymalny rozmiar</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Zachowaj poprzednie logi</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = nieograniczony</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Odczyt anulowany: Usunięto niekompletny plik: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Odczyt anulowany, ale nie można usunąć niekompletnego pliku: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Wizualizuj ścieżki</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Wybierz format dysku przed wizualizacją jego ścieżek.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Nie znaleziono dostępnej nazwy pliku wyjściowego.</value>
+  </data>
+</root>

@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Annuleren</value>
+  </data>
+  <data name="Common.Save">
+    <value>Redden</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Blader…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Kiezen…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Onbekend</value>
+  </data>
+  <data name="Options.Title">
+    <value>Opties</value>
+  </data>
+  <data name="Options.General">
+    <value>Algemeen</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Gereedschap</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Controllers en aandrijvingen</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profielen</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Standaard schijfkopiemap</value>
+  </data>
+  <data name="Options.Language">
+    <value>Taal</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Thema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Systeem</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Licht</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Donker</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Pad naar gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Als de tools ontbreken, biedt de assistent aan om ze te downloaden of een bestaande installatie te kiezen. Updates worden alleen aangekondigd.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Hardware-instellingen blijven opgeslagen wanneer een schijf wordt losgekoppeld.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Haven</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB identificatie</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Drijfveer</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Beschikbaar</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Scannen</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Een schijf toevoegen…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Geen schijf gedefinieerd</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Definieer een schijf</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle regelaar</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Selectie doorgegeven aan g</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Fysieke grootte</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Maat</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Dikte</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Snelheid</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Beschikbaar</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Niet beschikbaar</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Drive-dichtheid (alleen beschrijving)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Nominale snelheid (alleen beschrijving)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Profielen per bewerking</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Tab</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Naam</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Systeem</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Naam wijzigen…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Dichtbij</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Uitvoeren</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Stop</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Doorgaan</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Profiel opslaan</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Profielnaam</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Voer een naam in.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profiel</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Bestaande bestanden</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Sommige bestanden bestaan ​​al</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Kies een actie voor elk bestand of pas dezelfde actie toe op alle bestanden.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Bestand</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Actie</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Overschrijven</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Overslaan</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Gebruik het volgende nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Alles overschrijven</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Alles overslaan</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alles</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Klaar om uit te voeren.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Ruwe uitvoer</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Tools zijn niet geconfigureerd. Open Opties → Voorkeuren.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Er is een bewerking gaande. Stoppen en GW GUI sluiten?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Instellingen konden niet worden opgeslagen.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Klaar: code {0}, duur {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Opdracht succesvol voltooid.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Commando geannuleerd.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>De opdracht eindigde met code {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Schrijven</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Kies een bestaande bronafbeelding.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Het formaat is dubbelzinnig. Kies expliciet een compatibel formaat.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verificatie na schrijven is uitgeschakeld.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verificatie na schrijven is ingeschakeld.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Bevestig schrijven</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Afbeelding: {0}
+Formaat: {1}
+Aandrijving: {2}
+{3}
+
+Deze afbeelding naar schijf schrijven?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Lezen</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Voer een bestandsnaam in.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Kies een compatibel afbeeldingstype.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Bestaand bestand</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Dit bestand bestaat al.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Bestaand bestand</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Overschrijven</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Gebruik het volgende nummer</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Laat me de naam bewerken</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Conversie</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Selecteer ten minste één uitvoerformaat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Dubbelzinnige bron</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Samenvatting: {0} geslaagd, {1} mislukt.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Storingen: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Bevestig het wissen</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Alle gegevens op de geplaatste schijf permanent wissen?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Schone hoofden</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Controleer of er een reinigingsschijf is geplaatst. Gebruik nooit een dataschijf.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Controller niet geconfigureerd</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>losgekoppeld</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>De geselecteerde schijf is losgekoppeld. Sluit hem opnieuw aan of scan opnieuw in Opties → Controllers en schijven.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-inch · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Drijfveer</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Scan of voeg eerst een Greaseweazle-controller toe.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Opties</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Voorkeuren…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostiek</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Informatie</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB bandbreedte</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM snelheid</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Zoek hoofd…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Hardware</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pinnen…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Opnieuw instellen</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Vertragingen…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Hulp</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Documentatie</value>
+  </data>
+  <data name="Menu.About">
+    <value>Over</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Lezen</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Schrijven</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Conversie</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisatie</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Hulpmiddelen</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profiel</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Opnieuw instellen</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Kopiëren</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Bewerken</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Verbergen</value>
+  </data>
+  <data name="Common.Console">
+    <value>Troosten</value>
+  </data>
+  <data name="Common.Command">
+    <value>Commando</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Geavanceerde instellingen</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Deskundige argumenten</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Afbeelding om te creëren</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Verlenging</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Ruwe afbeelding (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Bekend schijfformaat</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Bestandsnaam</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Map</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Toeren per spoor</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Nieuwe pogingen</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Sporen/zijkanten</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Nummer automatisch succesvolle leesbewerkingen</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Cijfers</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Brieven</value>
+  </data>
+  <data name="Read.Next">
+    <value>Volgende:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Openen in visualisatie</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Het vastleggen van SCP is voltooid. U kunt het analyseren zonder uw werk te onderbreken.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Uiteindelijk resultaat SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Sporen: {0} goed, {1} ontbreekt of ongeldig ({2} cilinders, {3} zijkanten).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Omwentelingen: {0} · Resolutie: {1} ns · Grootte: {2:N0} bytes · Controlesom: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Bestand: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP samenvatting niet beschikbaar: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} goede sporen · {1} ontbreekt of is ongeldig · {2} cilinders · {3} zijden · {4} omwenteling(en) · {5:N0} bytes · {6} checksum</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Kant {0}: spoor {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Bron afbeelding</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Gedetecteerd formaat</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Kies een afbeelding.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Schakel verificatie uit na schrijven</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Voegt --no-verify toe. De schijf wordt niet opnieuw gelezen om het schrijven te bevestigen.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Wis lege nummers</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Bron</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Uitvoernamen</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Tags toevoegen</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Gekozen</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Veel voorkomende formaten</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Toon zelden gebruikte formaten</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Beperk nummers</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Decoder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Zoomlink koppelen</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Open een SCP-bestand…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Geen SCP bestand geopend</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Wachten op een bestand</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspecteur</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Selecteer een nummer.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Klik: selecteren · Wiel: zoomen · Klik met de rechtermuisknop: pannen</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normale flux</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Korte overgang</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Lange overgang/anomalie</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Wis een schijf</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Alle gegevens op de schijf worden vernietigd.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Beperk nummers</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revoluties</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Schone hoofden</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Plaats een reinigingsschijf, nooit een schijf die gegevens bevat.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Cilinders</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Passeert</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Duur per cilinder (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI klaar.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profiel: Standaard</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumenten worden doorgegeven zoals geschreven na validatie van de offerte.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Standaard</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Het standaardprofiel is permanent en kan niet worden hernoemd.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Het standaardprofiel is permanent en kan niet worden verwijderd.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Een profiel op dit tabblad heeft deze naam al.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Dit profiel bestaat al. Vervangen?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Uitvoerbaar bestand (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Deze opgeslagen controller en alle bijbehorende schijven verwijderen?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Hardware</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-inch · {1} · selectie {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Aantal metingen</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Cilinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Sta extreme cilinders toe</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Houd de motor actief</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pen (8, 26 of 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Wijzig pincode</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Hoog niveau</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Selectie (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Hoofdstap (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Vereffenen (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Automatisch deselecteren (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Vóór schrijven (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Na schrijven (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indexmasker (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Update bootloader (riskant)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Het updaten van de bootloader is een geavanceerde handeling die de controller onbruikbaar kan maken als deze wordt onderbroken. Doorgaan?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Controleur</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Onbekende firmware</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Onbekende haven</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>De lokale informatie is geldig; alleen de netwerkcontrole is mislukt.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Commando actief…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Informatie over de controller</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB bandbreedte</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Rijsnelheid</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Zoek hoofd</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Hardware-pinnen</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Regelaar resetten</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Vertragingen</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Scannen</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Selecteer of download eerst gw.exe hieronder.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Profiel “{0}” verwijderen?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Kies een bestaande bronafbeelding.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Voer de uitvoerbestandsnamen in.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Controleer ten minste één uitvoerformaat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} conversie(s))</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Kies een afbeeldingstype</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Bestand lezen…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Ongeldig bestand</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisatie</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>geldig</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>ongeldig</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} tracks · {2} revolutie(s) · {3} ns resolutie · {4} checksum</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Revolutie {0}: {1:N0} overgangen · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Decodering: {0}
+Vertrouwen: {1:P0}
+Geschatte cel: {2:F1} ticks
+Structuren: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Zijde: {0}
+Volg: {1}
+SCP invoer: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Zijkant {0}
+Geen gegevens</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Zijkant {0} · Spoor {1}
+{2} revolutie(s)</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Geen extensie aangevinkt: {0} wordt standaard gebruikt.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Stop de werking</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>De huidige Greaseweazle-bewerking stoppen?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Er wordt al een Greaseweazle-opdracht uitgevoerd. Wacht tot het klaar is of stop het voordat u dit hulpprogramma opent.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profiel: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Spoor {0}, zijkant {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Spoor {0}, zijkant {1} — {2} verwerkt</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Vind gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Controleer op updates</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Download de nieuwste versie</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Gebruik het vorige pad</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Geen installatie gedetecteerd.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Gedetecteerd: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Nieuwste beschikbare versie: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Versie {0} geïnstalleerd.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Download en installeer Greaseweazle Host Tools {0} voor Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Hosttools</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Er is geen geldig vorig pad opgeslagen.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Hosttools {0} beschikbaar</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Zoek nieuwe pogingen</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Valse index</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Harde sectoren</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Trackgegevens omkeren</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Pas de snelheid aan</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL overschrijven</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Dichtheidspin 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Genereer TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Nummers vooraf wissen</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Precompensatie schrijven</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Uitvoersporen</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Dubbelzinnig formaat</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Ruwe SCP-opname herkend.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Amiga-indeling herkend aan de hand van de bestandsgrootte.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Acorn-indeling herkend aan de hand van de bestandsgrootte.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>De maat komt niet overeen met een bekend Atari ST profiel.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST geometrie herkend op basis van bestandsgrootte.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Atari MSA container herkend; bevestig indien nodig de geometrie.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>De extensie alleen kan de IBM PC-geometrie niet bepalen.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC geometrie herkend op basis van bestandsgrootte.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Formaat afgeleid van de extensie.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Er zijn meerdere formaten mogelijk; kies er expliciet één.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Aangepaste schijfdefinities</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle schijfdefinities (*.cfg)|*.cfg|Alle bestanden|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Het geselecteerde schijfdefinitiebestand bestaat niet.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Exporteren</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Tekstlogboek (*.txt)|*.txt|Alle bestanden|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Operatie geschiedenis</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Ruw fluxbeeld</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM scannen</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC fluxafbeelding</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA schijfkopie</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG schijfkopie</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Schijfbestand</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Schijfbestand</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST afbeelding</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Magic Shadow-archiveraar</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 afbeelding</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Floppy-emulator</value>
+  </data>
+  <data name="About.Description">
+    <value>Een moderne Windows-interface voor het lezen, schrijven, converteren en inspecteren van diskettes met Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Open-sourcesoftware — MIT Licentie</value>
+  </data>
+  <data name="About.Version">
+    <value>Versie {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automatisch</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Kop/adres</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Gedecodeerde gegevens</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Verwijderd/afwijking</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analyse gebaseerd op revolutie {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Gebruik tags in conversiebestandsnamen</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Voorinstelling</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Alleen familie</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Alleen formaat</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Familie en formaat</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Familie en uitbreiding</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Familie, formaat en uitbreiding</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Patroon voor conversietags</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Beschikbare variabelen</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Bronbestandsnaam</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Familie: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Formaat: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Extensie: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Datum: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Datum: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Datum: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Tijd: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Tijd: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Tijd: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — bronbestandsnaam
+{FAMILY} — machinefamilie (PC, ST, AMIGA…)
+{FORMAT} — formaat of geometrie (720, 1440, DD…)
+{EXTENSION} — uitgangsuitbreiding (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — datum 06-08-2026
+{DATE:YYYYMMDD} — datum 20260806
+{DATE:DD-MM-YYYY} — datum 06-08-2026
+{TIME:HH-MM-SS} — tijd 14-35-42
+{TIME:HHMMSS} — tijd 143542
+{TIME:HH-MM} — tijd 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Recente aangepaste patronen</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Volgend voorbeeld</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI fout</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Er is een onverwachte fout onderschept.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>De instellingen konden niet worden opgeslagen. Het venster gaat nog steeds dicht.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Het volledige rapport is opgeslagen in:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Voorbeeld: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Het tagpatroon moet {tag} bevatten.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>beetje {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>geldig</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>ongeldig</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>niet beschikbaar</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (enkele dichtheid)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar harde sector MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit harde sector FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N harde sector FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg systeem/gegevens</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Ruwe stroom</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synchronisatie</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Sectorkop</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Sectorgegevens</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Sectorgegevens verwijderd</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga synchronisatie</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Proloog van Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Apple data-proloog</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore synchronisatie</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore koptekst</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Koptekst opmaken</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Gegevens opmaken</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Timingafwijking</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Ongeldige parameters</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Controleer de gemarkeerde opdrachtparameters voordat u deze uitvoert.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Een geavanceerde instelling is ongeldig: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Fout: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Bestemmingsmap</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Klaar</value>
+  </data>
+  <data name="Status.Running">
+    <value>Rennen</value>
+  </data>
+  <data name="Status.Success">
+    <value>Succes</value>
+  </data>
+  <data name="Status.Error">
+    <value>Fout</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Geannuleerd</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-modus</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Trackspecificatie, bijvoorbeeld c=0-79:h=0-1, c=0-79/2:h=0, of c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Positieve snelheid of periode, bijvoorbeeld 300 tpm, 200 ms, 200000us of 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parameters gescheiden door dubbele punten, bijvoorbeeld period=5:phase=60 of period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Schrijf precompensatie, bijvoorbeeld type=mfm:40=125. Typen: mfm, fm, gcr; waarden zijn in nanoseconden.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Gebruik een aangepast diskdefs.cfg-bestand om Greaseweazle-formaatdefinities toe te voegen of te overschrijven.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Schijfkopieën|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Alle bestanden|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro vastleggen (*.scp)|*.scp|Alle bestanden|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} is niet compatibel met deze bron.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Aantal afgelezen omwentelingen per spoor. Voorbeeld: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Extra pogingen na een fout. Voorbeeld: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Beperk cilinders, koppen of stappen. Voorbeeld: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Extra pogingen na beweging van het hoofd. Voorbeeld: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Creëer een getimede index voor een schijf zonder indexsignaal. Voorbeeld: --fake-index 300 tpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Behandel een schijf met harde sectoren. Incompatibel met --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Trackgegevens omkeren voor flippy media of bedrading.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Gegevenstiming opnieuw schalen. Voorbeeld: --adjust-speed 300 tpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Configureer de klokherstellus. Voorbeeld: --pll periode=5:fase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Forceer de dichtheidsselectiepin hoog of laag. Voorbeeld: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Genereer het TG43-signaal voor schijven die dit nodig hebben. Incompatibel met --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Wis tracks waarvan de bronafbeelding geen gegevens bevat.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Wis elk nummer voordat u het wegschrijft.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Schrijfvoorcompensatie toepassen. Voorbeeld: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Wijs tracks in de uitvoerafbeelding opnieuw toe. Voorbeeld: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Uitlijning van aandrijving…</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnose van de uitlijning van de aandrijving</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Wisselende track(s) (verplicht)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Aantal lezingen</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Decoderingsformaat</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Ruwe flux lezen (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Controlesom</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Zijkant {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Hardwarecontrole</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Geconfigureerde hardware kan niet worden gevonden</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>De configuratie blijft behouden, maar de bijbehorende schijven blijven onbeschikbaar totdat hun Greaseweazle opnieuw wordt gevonden.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Ontbrekende Greaseweazle-controllers</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Zoek opnieuw</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Hardware-instellingen</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Ga verder zonder deze rit</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>De hardwarecontrole is mislukt: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Nieuwe Greaseweazle gedetecteerd</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} is gedetecteerd op {1}. Wilt u de schijf nu configureren?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Configuratie</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Geconfigureerd</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Gedetecteerd, niet geconfigureerd</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Configureer</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Rijd {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Aandrijving {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Vergeten</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Wil je deze schijf of dit apparaat echt vergeten?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Dit is de laatst geconfigureerde schijf voor deze Greaseweazle. Wilt u zowel de schijf als de Greaseweazle vergeten?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Selecteer eerst een rij die bij de relevante Greaseweazle hoort.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Aan deze Greaseweazle kunnen maximaal twee schijven automatisch worden toegewezen (A en B).</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Track {0}/{1}… analyseren</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Kant</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Spoor</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP invoer</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Revoluties</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analyse</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Vertrouwen</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Geschatte cel</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Structuren</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Gedetecteerde structuren</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sectoren</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>overgangen</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Bewaar logboeken</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Logboeken</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Elke actie heeft een eigen bestand in de map GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Wissen</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Schone hoofden</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Map openen</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Maximale grootte</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Bewaar eerdere logboeken</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = onbeperkt</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Lezen geannuleerd: Het onvolledige bestand is verwijderd: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Lezen geannuleerd, maar het onvolledige bestand kon niet worden verwijderd: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualiseer sporen</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Selecteer het schijfformaat voordat u de tracks visualiseert.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Er kon geen beschikbare uitvoerbestandsnaam worden gevonden.</value>
+  </data>
+</root>

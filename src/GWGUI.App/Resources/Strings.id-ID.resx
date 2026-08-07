@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Membatalkan</value>
+  </data>
+  <data name="Common.Save">
+    <value>Menyimpan</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Menghapus</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Jelajahi…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Memilih…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Tidak dikenal</value>
+  </data>
+  <data name="Options.Title">
+    <value>Pilihan</value>
+  </data>
+  <data name="Options.General">
+    <value>Umum</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Alat</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Pengontrol dan drive</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profil</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Folder gambar disk default</value>
+  </data>
+  <data name="Options.Language">
+    <value>Bahasa</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Sistem</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Lampu</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Gelap</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Jalan menuju gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Jika alatnya hilang, asisten akan menawarkan untuk mengunduhnya atau memilih instalasi yang ada. Pembaruan hanya diumumkan.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Pengaturan perangkat keras tetap disimpan ketika drive dicabut.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Pelabuhan</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB pengenal</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Menyetir</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Tersedia</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Pindai</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Tambahkan drive…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Tidak ada drive yang ditentukan</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Tentukan drive</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle pengontrol</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Seleksi lolos ke gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Ukuran fisik</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Ukuran</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Kepadatan</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Kecepatan</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Tersedia</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Tidak tersedia</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Kepadatan berkendara (hanya deskripsi)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Kecepatan nominal (hanya deskripsi)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Profil berdasarkan operasi</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>tab</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Nama</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Sistem</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Ganti nama…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Menutup</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Menjalankan</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Berhenti</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Melanjutkan</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Simpan profil</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Nama profil</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Masukkan nama.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>File yang ada</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Beberapa file sudah ada</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Pilih tindakan untuk setiap file atau terapkan tindakan yang sama ke semua file.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Mengajukan</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Tindakan</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Timpa</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Melewati</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Gunakan nomor berikutnya</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Timpa semuanya</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Lewati semuanya</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nomor semua</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Siap Laksanakan.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Keluaran mentah</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Alat tidak dikonfigurasi. Buka Opsi → Preferensi.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Sebuah operasi sedang berjalan. Hentikan dan tutup GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Setelan tidak dapat disimpan.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Selesai: kode {0}, durasi {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Perintah berhasil diselesaikan.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Perintah dibatalkan.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Perintah diakhiri dengan kode {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Menulis</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Pilih gambar sumber yang ada.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formatnya ambigu. Pilih format yang kompatibel secara eksplisit.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verifikasi setelah penulisan dinonaktifkan.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verifikasi setelah penulisan diaktifkan.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Konfirmasi tulis</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Gambar: {0}
+Format: {1}
+Berkendara: {2}
+{3}
+
+Tulis gambar ini ke disk?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Membaca</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Masukkan nama file.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Pilih jenis gambar yang kompatibel.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Berkas yang ada</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>File ini sudah ada.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Berkas yang ada</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Timpa</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Gunakan nomor berikutnya</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Biarkan saya mengedit namanya</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Konversi</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Pilih setidaknya satu format keluaran.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Sumber yang ambigu</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Ringkasan: {0} berhasil, {1} gagal.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Kegagalan: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Konfirmasikan penghapusan</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Hapus secara permanen semua data pada disk yang dimasukkan?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Bersihkan kepala</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Konfirmasikan bahwa disk pembersih telah dimasukkan. Jangan pernah menggunakan disk data.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Pengontrol tidak dikonfigurasi</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>terputus</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Drive yang dipilih terputus. Hubungkan kembali atau pindai lagi di Pilihan → Pengontrol dan drive.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-inci · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Menyetir</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Pindai atau tambahkan pengontrol Greaseweazle terlebih dahulu.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Pilihan</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Preferensi…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostik</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Informasi</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB lebar pita</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM kecepatan</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Carilah kepala…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Perangkat keras</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pin…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Mengatur ulang</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Penundaan…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Membantu</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokumentasi</value>
+  </data>
+  <data name="Menu.About">
+    <value>Tentang</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Membaca</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Menulis</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Konversi</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisasi</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Peralatan</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Mengatur ulang</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Menyalin</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Memodifikasi</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Bersembunyi</value>
+  </data>
+  <data name="Common.Console">
+    <value>Menghibur</value>
+  </data>
+  <data name="Common.Command">
+    <value>Memerintah</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Pengaturan lanjutan</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Argumen ahli</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Gambar untuk dibuat</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Perpanjangan</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Gambar mentah (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Format disk yang dikenal</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Nama file</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Map</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Revolusi per trek</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Percobaan ulang</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Trek/sisi</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Secara otomatis memberi nomor pada pembacaan yang berhasil</value>
+  </data>
+  <data name="Read.Digits">
+    <value>angka</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Surat</value>
+  </data>
+  <data name="Read.Next">
+    <value>Berikutnya:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Buka di Visualisasi</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Pengambilan SCP selesai. Anda dapat menganalisisnya tanpa mengganggu pekerjaan Anda.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Hasil akhir SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Trek: {0} bagus, {1} hilang atau tidak valid (silinder {2}, sisi {3}).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Revolusi: {0} · Resolusi: {1} ns · Ukuran: {2:N0} bytes · Checksum: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Berkas: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>Ringkasan SCP tidak tersedia: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} trek bagus · {1} hilang atau tidak valid · {2} silinder · {3} sisi · {4} revolusi · {5:N0} byte · {6} checksum</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Sisi {0}: trek {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Sumber gambar</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Format terdeteksi</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Pilih gambar.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Nonaktifkan verifikasi setelah menulis</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Menambahkan --no-verify. Disk tidak akan dibaca ulang untuk mengonfirmasi penulisan.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Hapus trek kosong</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Sumber</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Nama keluaran</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Tambahkan tag</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Terpilih</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Format umum</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Tampilkan format yang jarang digunakan</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Batasi trek</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Dekoder</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Perbesar tautan</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Buka file SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Tidak ada file SCP yang terbuka</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Menunggu file</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspektur</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Pilih trek.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Klik: pilih · Roda: zoom · Klik kanan: geser</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Fluks normal</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Transisi singkat</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Transisi panjang/anomali</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Hapus disk</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Semua data di disk akan dimusnahkan.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Batasi trek</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revolusi</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Bersihkan kepala</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Masukkan disk pembersih, jangan pernah disk yang berisi data.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Silinder</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Lulus</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Durasi per silinder (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI siap.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Bawaan</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumen disampaikan seperti yang tertulis setelah validasi kutipan.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Bawaan</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Profil Default bersifat permanen dan tidak dapat diubah namanya.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Profil Default bersifat permanen dan tidak dapat dihapus.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Profil di tab ini sudah memiliki nama ini.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Profil ini sudah ada. Gantikan?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Dapat dieksekusi (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Hapus pengontrol yang disimpan ini dan semua drive-nya?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Perangkat keras</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-inci · {1} · pilihan {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Jumlah pengukuran</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Silinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Izinkan silinder ekstrem</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Jaga motorik tetap aktif</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Sematkan (8, 26 atau 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Ganti pin</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Tingkat tinggi</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Seleksi (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Langkah kepala (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Selesaikan (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motorik (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Batalkan pilihan otomatis (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Sebelum menulis (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Setelah menulis (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Masker indeks (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Perbarui bootloader (berisiko)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Memperbarui bootloader adalah operasi lanjutan yang dapat membuat pengontrol tidak dapat digunakan jika terganggu. Melanjutkan?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Pengendali</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Firmware tidak dikenal</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Pelabuhan tidak dikenal</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Informasi lokalnya valid; hanya pemeriksaan jaringan yang gagal.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Perintah berjalan…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Informasi pengontrol</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB lebar pita</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Kecepatan berkendara</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Carilah kepala</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Pin perangkat keras</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Setel ulang pengontrol</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Penundaan</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Pindai</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Pilih atau download gw.exe di bawah terlebih dahulu.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Hapus profil “{0}”?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Pilih gambar sumber yang ada.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Masukkan nama file keluaran.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Periksa setidaknya satu format keluaran.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} konversi)</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Pilih jenis gambar</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Membaca berkas…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Berkas tidak valid</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisasi</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>sah</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>tidak sah</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} trek · {2} revolusi · {3} resolusi ns · {4} checksum</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Revolusi {0}: {1:N0} transisi · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Penguraian kode: {0}
+Keyakinan: {1:P0}
+Perkiraan sel: {2:F1} kutu
+Struktur: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Sisi: {0}
+Jalur: {1}
+SCP entri: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Sisi {0}
+Tidak ada data</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Sisi {0} · Lacak {1}
+{2} revolusi</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Tidak ada ekstensi yang dicentang: {0} digunakan secara default.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Hentikan operasi</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Hentikan operasi Greaseweazle saat ini?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Perintah Greaseweazle sudah berjalan. Tunggu hingga selesai atau hentikan sebelum membuka alat ini.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Lacak {0}, sisi {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Lacak {0}, sisi {1} — {2} diproses</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Temukan gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Periksa pembaruan</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Unduh versi terbaru</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Gunakan jalur sebelumnya</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Tidak ada instalasi yang terdeteksi.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Terdeteksi: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Versi terbaru yang tersedia: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Versi {0} diinstal.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Unduh dan instal Greaseweazle Alat Host {0} untuk Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Alat Tuan Rumah</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Tidak ada jalur valid sebelumnya yang disimpan.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Alat Host {0} tersedia</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Carilah percobaan ulang</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Indeks palsu</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Sektor keras</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Membalikkan data trek</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Sesuaikan kecepatan</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL menimpa</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Pin kepadatan 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Hasilkan TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Hapus trek terlebih dahulu</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Tulis prakompensasi</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Trek keluaran</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Formatnya ambigu</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Tangkapan SCP mentah dikenali.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Format Amiga dikenali dari ukuran file.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Format Acorn dikenali dari ukuran file.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Ukurannya tidak cocok dengan profil Atari ST yang diketahui.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Geometri Atari ST dikenali dari ukuran file.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Kontainer Atari MSA dikenali; konfirmasi geometri jika perlu.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Ekstensi saja tidak dapat menentukan geometri IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>Geometri IBM PC dikenali dari ukuran file.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Format disimpulkan dari ekstensi.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Beberapa format dimungkinkan; pilih salah satu secara eksplisit.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Definisi disk khusus</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle definisi disk (*.cfg)|*.cfg|Semua file|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>File definisi disk yang dipilih tidak ada.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Ekspor</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Log teks (*.txt)|*.txt|Semua file|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Sejarah operasi</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Gambar fluks mentah</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1.2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — pemindaian FM/MFM</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64—1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC gambar fluks</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA gambar disk</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG gambar disk</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Berkas Disk</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Berkas Disk</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST gambar</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Pengarsip Bayangan Ajaib</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 gambar</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Emulator Floppy</value>
+  </data>
+  <data name="About.Description">
+    <value>Antarmuka Windows modern untuk membaca, menulis, mengonversi, dan memeriksa floppy disk dengan Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Perangkat lunak sumber terbuka — Lisensi MIT</value>
+  </data>
+  <data name="About.Version">
+    <value>Versi {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Otomatis</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Tajuk/alamat</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Data yang diterjemahkan</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Dihapus/anomali</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analisis berdasarkan revolusi {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Gunakan tag dalam nama file konversi</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Prasetel</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Hanya keluarga</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Hanya formatnya</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Keluarga dan format</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Keluarga dan ekstensi</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Keluarga, format dan ekstensi</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Pola tag konversi</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Variabel yang tersedia</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Nama file sumber</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Keluarga: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Format: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Ekstensi: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Tanggal: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Tanggal: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Tanggal: 08-06-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Waktu: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Waktu: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Waktu: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — nama file sumber
+{FAMILY} — keluarga mesin (PC, ST, AMIGA…)
+{FORMAT} — format atau geometri (720, 1440, DD…)
+{EXTENSION} — ekstensi keluaran (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — tanggal 06-08-2026
+{DATE:YYYYMMDD} — tanggal 20260806
+{DATE:DD-MM-YYYY} — tanggal 08-06-2026
+{TIME:HH-MM-SS} — waktu 14-35-42
+{TIME:HHMMSS} — waktu 143542
+{TIME:HH-MM} — waktu 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Pola khusus terkini</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Contoh selanjutnya</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>kesalahan GW GUI</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Kesalahan tak terduga berhasil dicegat.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Pengaturan tidak dapat disimpan. Jendela akan tetap tertutup.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Laporan lengkap disimpan ke:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Contoh: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Pola tag harus berisi {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>sedikit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>sah</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>tidak sah</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>tidak tersedia</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (kepadatan tunggal)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar sektor keras MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit sektor keras FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N sektor keras FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg sistem/data</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Fluks mentah</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Sinkronisasi</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Tajuk sektor</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Data sektor</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Data sektor dihapus</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>sinkronisasi Amiga</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Prolog alamat Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Prolog data Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>sinkronisasi Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore tajuk</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Format tajuk</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Memformat data</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Anomali waktu</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Parameter tidak valid</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Periksa parameter perintah yang disorot sebelum menjalankan.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Pengaturan lanjutan tidak valid: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Kesalahan: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Folder tujuan</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Siap</value>
+  </data>
+  <data name="Status.Running">
+    <value>Berlari</value>
+  </data>
+  <data name="Status.Success">
+    <value>Kesuksesan</value>
+  </data>
+  <data name="Status.Error">
+    <value>Kesalahan</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Dibatalkan</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Mode pemuat boot</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Spesifikasi track, misalnya c=0-79:h=0-1, c=0-79/2:h=0, atau c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Kecepatan atau periode positif, misalnya 300rpm, 200ms, 200000us, atau 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>Parameter PLL dipisahkan dengan titik dua, misalnya period=5:phase=60 atau period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Tulis prakompensasi, misalnya type=mfm:40=125. Jenis: mfm, fm, gcr; nilainya dalam nanodetik.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Gunakan file diskdefs.cfg khusus untuk menambahkan atau mengganti definisi format Greaseweazle.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Gambar disk|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Semua file|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro menangkap (*.scp)|*.scp|Semua file|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} tidak kompatibel dengan sumber ini.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Jumlah putaran yang dibaca per trek. Contoh: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Upaya tambahan setelah kesalahan. Contoh: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Batasi silinder, kepala, atau pijakan. Contoh: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Upaya tambahan setelah menggerakkan kepala. Contoh: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Membuat indeks berjangka waktu untuk drive tanpa sinyal indeks. Contoh: --fake-index 300rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Menangani disk yang disektor keras. Tidak kompatibel dengan --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Membalikkan data track untuk media atau kabel yang tidak stabil.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Mengubah skala waktu data. Contoh: --adjust-speed 300rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Konfigurasikan loop pemulihan jam. Contoh: --pll periode=5:fase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Paksa pin pemilihan kepadatan tinggi atau rendah. Contoh: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Menghasilkan sinyal TG43 untuk drive yang memerlukannya. Tidak kompatibel dengan --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Menghapus trek yang gambar sumbernya tidak berisi data.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Hapus setiap trek sebelum menulisnya.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Terapkan prakompensasi tulis. Contoh: --precomp tipe=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Memetakan ulang trek pada gambar keluaran. Contoh: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Keselarasan berkendara…</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnostik penyelarasan penggerak</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Trek bergantian (wajib)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Jumlah bacaan</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Format penguraian kode</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Baca fluks mentah (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Jumlah pemeriksaan</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Sisi {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Pemeriksaan perangkat keras</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Perangkat keras yang dikonfigurasi tidak dapat ditemukan</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Konfigurasi dipertahankan, namun drive-nya akan tetap tidak tersedia hingga Greaseweazle ditemukan lagi.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Pengontrol Greaseweazle tidak ada</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Cari lagi</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Pengaturan perangkat keras</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Lanjutkan tanpa drive ini</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Pemeriksaan perangkat keras gagal: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Greaseweazle baru terdeteksi</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} terdeteksi pada {1}. Apakah Anda ingin mengkonfigurasi drive-nya sekarang?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Konfigurasi</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Dikonfigurasi</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Terdeteksi, tidak dikonfigurasi</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Konfigurasikan</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Berkendara {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Berkendara {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Lupa</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Apakah Anda benar-benar ingin melupakan drive atau perangkat ini?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Ini adalah drive terakhir yang dikonfigurasi untuk Greaseweazle ini. Apakah Anda ingin melupakan drive dan Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Pilih baris milik Greaseweazle yang relevan terlebih dahulu.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Paling banyak dua drive dapat ditetapkan secara otomatis ke Greaseweazle ini (A dan B).</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Menganalisis trek {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Samping</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Melacak</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP entri</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Revolusi</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analisa</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Kepercayaan diri</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Perkiraan sel</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Struktur</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Struktur yang terdeteksi</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektor</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>transisi</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Simpan log</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Log</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Setiap tindakan memiliki filenya sendiri di folder GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Menghapus</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Bersihkan kepala</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Buka map</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Ukuran maksimum</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Simpan log sebelumnya</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = tidak terbatas</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Baca dibatalkan: File yang tidak lengkap telah dihapus: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Baca dibatalkan, tetapi file yang tidak lengkap tidak dapat dihapus: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualisasikan trek</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Pilih format disk sebelum memvisualisasikan treknya.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Tidak ada nama file keluaran yang tersedia yang dapat ditemukan.</value>
+  </data>
+</root>

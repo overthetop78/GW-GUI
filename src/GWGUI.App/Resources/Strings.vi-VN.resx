@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="Common.Save">
+    <value>Cứu</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Xóa bỏ</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Duyệt…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Chọn…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Không xác định</value>
+  </data>
+  <data name="Options.Title">
+    <value>Tùy chọn</value>
+  </data>
+  <data name="Options.General">
+    <value>Tổng quan</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Công cụ</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Bộ điều khiển và ổ đĩa</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Thư mục ảnh đĩa mặc định</value>
+  </data>
+  <data name="Options.Language">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="Options.Theme">
+    <value>chủ đề</value>
+  </data>
+  <data name="Theme.System">
+    <value>Hệ thống</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Ánh sáng</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Tối tăm</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Đường dẫn đến gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Nếu thiếu công cụ, trợ lý sẽ đề nghị tải chúng xuống hoặc chọn bản cài đặt hiện có. Cập nhật chỉ được công bố.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Cài đặt phần cứng vẫn được lưu trữ khi ổ đĩa bị ngắt kết nối.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Cảng</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB mã định danh</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Lái xe</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Có sẵn</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Quét</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Thêm ổ đĩa…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Không có ổ đĩa được xác định</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Xác định một ổ đĩa</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle bộ điều khiển</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Lựa chọn được chuyển tới gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Kích thước vật lý</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Kích cỡ</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Tỉ trọng</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Tốc độ</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Có sẵn</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Không có sẵn</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Mật độ ổ đĩa (chỉ mô tả)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Tốc độ danh nghĩa (chỉ mô tả)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Hồ sơ theo hoạt động</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Thẻ</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Tên</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Hệ thống</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Đổi tên…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Đóng</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Thực hiện</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Dừng lại</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Tiếp tục</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Lưu hồ sơ</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Tên hồ sơ</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Nhập tên.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Các tập tin hiện có</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Một số tệp đã tồn tại</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Chọn một hành động cho mỗi tệp hoặc áp dụng cùng một hành động cho tất cả các tệp.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Tài liệu</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Hoạt động</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Ghi đè</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Nhảy</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Sử dụng số tiếp theo</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Ghi đè tất cả</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Bỏ qua tất cả</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Đánh số tất cả</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Sẵn sàng để thực hiện.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Đầu ra thô</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Công cụ chưa được định cấu hình. Mở Tùy chọn → Tùy chọn.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Một hoạt động đang chạy. Dừng lại và đóng GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Không thể lưu cài đặt.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Đã hoàn thành: mã {0}, thời lượng {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Lệnh đã hoàn tất thành công.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Lệnh bị hủy.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Lệnh kết thúc bằng mã {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Viết</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Chọn một hình ảnh nguồn hiện có.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Định dạng không rõ ràng. Rõ ràng chọn một định dạng tương thích.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Xác minh sau khi viết bị vô hiệu hóa.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Xác minh sau khi viết được kích hoạt.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Xác nhận viết</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Hình ảnh: {0}
+Định dạng: {1}
+Lái xe: {2}
+{3}
+
+Ghi hình ảnh này vào đĩa?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Đọc</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Nhập tên tập tin.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Chọn loại hình ảnh tương thích.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Tệp hiện có</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Tập tin này đã tồn tại.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Tệp hiện có</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Ghi đè</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Sử dụng số tiếp theo</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Để tôi sửa tên</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>chuyển đổi</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Chọn ít nhất một định dạng đầu ra.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Nguồn mơ hồ</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Tóm tắt: {0} thành công, {1} thất bại.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Lỗi: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Xác nhận xóa</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Xóa vĩnh viễn tất cả dữ liệu trên đĩa được chèn?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Đầu sạch</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Xác nhận rằng đĩa dọn dẹp đã được lắp vào. Không bao giờ sử dụng đĩa dữ liệu.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Bộ điều khiển chưa được cấu hình</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>bị ngắt kết nối</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Ổ đĩa đã chọn bị ngắt kết nối. Kết nối lại hoặc quét lại trong Tùy chọn → Bộ điều khiển và ổ đĩa.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-inch · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Lái xe</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Trước tiên hãy quét hoặc thêm bộ điều khiển Greaseweazle.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Tùy chọn</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Sở thích…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Chẩn đoán</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Thông tin</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB băng thông</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM tốc độ</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Tìm đầu…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Phần cứng</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Ghim…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Cài lại</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Sự chậm trễ…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Phần sụn…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Giúp đỡ</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Tài liệu</value>
+  </data>
+  <data name="Menu.About">
+    <value>Về</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Đọc</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Viết</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>chuyển đổi</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Trực quan hóa</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Công cụ</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Cài lại</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Sao chép</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Biến đổi</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Trốn</value>
+  </data>
+  <data name="Common.Console">
+    <value>Bảng điều khiển</value>
+  </data>
+  <data name="Common.Command">
+    <value>Yêu cầu</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Cài đặt nâng cao</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Lập luận của chuyên gia</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Hình ảnh để tạo</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Sự mở rộng</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Hình ảnh thô (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Định dạng đĩa đã biết</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Tên tệp</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Thư mục</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Số vòng quay trên mỗi rãnh</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Thử lại</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Bài hát/bên</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Tự động đánh số lần đọc thành công</value>
+  </data>
+  <data name="Read.Digits">
+    <value>chữ số</value>
+  </data>
+  <data name="Read.Letters">
+    <value>chữ cái</value>
+  </data>
+  <data name="Read.Next">
+    <value>Kế tiếp:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Mở trong trực quan</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Quá trình chụp SCP đã hoàn tất. Bạn có thể phân tích nó mà không làm gián đoạn công việc của bạn.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Kết quả cuối cùng SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Đường ray: {0} tốt, {1} bị thiếu hoặc không hợp lệ ({2} trụ, {3} mặt).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Số vòng quay: {0} · Độ phân giải: {1} ns · Kích thước: {2:N0} byte · Tổng kiểm tra: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Tập tin: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP tóm tắt không có sẵn: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} rãnh tốt · {1} thiếu hoặc không hợp lệ · {2} hình trụ · {3} mặt · {4} vòng quay · {5:N0} byte · {6} tổng kiểm tra</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Bên {0}: đường {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Hình ảnh nguồn</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Định dạng được phát hiện</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Chọn một hình ảnh.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Vô hiệu hóa xác minh sau khi viết</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Thêm --no-verify. Đĩa sẽ không được đọc lại để xác nhận việc ghi.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Xóa các bản nhạc trống</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Nguồn</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Tên đầu ra</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Thêm thẻ</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Đã chọn</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Các định dạng phổ biến</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Hiển thị các định dạng hiếm khi được sử dụng</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Giới hạn bài hát</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Bộ giải mã</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Thu phóng liên kết</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Mở tệp SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Không có tệp SCP nào được mở</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Đang chờ một tập tin</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Thanh tra</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Chọn một bản nhạc.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Click: chọn · Wheel: zoom · Click chuột phải: pan</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Thông lượng bình thường</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Chuyển tiếp ngắn</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Chuyển tiếp dài/bất thường</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Xóa một đĩa</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Tất cả dữ liệu trên đĩa sẽ bị hủy.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Giới hạn bài hát</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>cuộc cách mạng</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Đầu sạch</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Đưa đĩa dọn dẹp vào, không bao giờ đưa đĩa chứa dữ liệu vào.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Xi lanh</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Đường chuyền</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Thời lượng trên mỗi xi lanh (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI sẵn sàng.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Hồ sơ: Mặc định</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Các đối số được thông qua như được viết sau khi xác thực trích dẫn.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Mặc định</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Cấu hình mặc định là vĩnh viễn và không thể đổi tên.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Cấu hình mặc định là vĩnh viễn và không thể xóa được.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Một hồ sơ trong tab này đã có tên này.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Hồ sơ này đã tồn tại. Thay thế nó?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Có thể thực thi (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Xóa bộ điều khiển được lưu trữ này và tất cả các ổ đĩa của nó?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Phần cứng</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-inch · {1} · lựa chọn {2}_{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Số lần đo</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Xi lanh</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Cho phép xi lanh cực đoan</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Giữ cho động cơ hoạt động</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Ghim (8, 26 hoặc 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Thay đổi mã pin</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Cấp độ cao</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Lựa chọn (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Bước đầu (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Giải quyết (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Động cơ (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Tự động bỏ chọn (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Trước khi viết (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Sau khi viết (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Mặt nạ chỉ mục (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Cập nhật bootloader (rủi ro)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Cập nhật bộ nạp khởi động là một thao tác nâng cao có thể khiến bộ điều khiển không sử dụng được nếu bị gián đoạn. Tiếp tục?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Bộ điều khiển</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Phần mềm không xác định</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Cổng không xác định</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Thông tin địa phương là hợp lệ; chỉ kiểm tra mạng không thành công.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Lệnh đang chạy…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Thông tin bộ điều khiển</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB băng thông</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Tốc độ ổ đĩa</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Tìm kiếm đầu</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Chân phần cứng</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Đặt lại bộ điều khiển</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Sự chậm trễ</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Phần sụn</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Quét</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Trước tiên hãy chọn hoặc tải xuống gw.exe bên dưới.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Xóa hồ sơ “{0}”?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Chọn một hình ảnh nguồn hiện có.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Nhập tên tập tin đầu ra.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Kiểm tra ít nhất một định dạng đầu ra.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} chuyển đổi)</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Chọn loại hình ảnh</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Đang đọc tệp…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Tệp không hợp lệ</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP trực quan hóa</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>có hiệu lực</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>không hợp lệ</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} rãnh · {2} vòng quay · {3} độ phân giải ns · {4} tổng kiểm tra</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Cách mạng {0}: {1:N0} chuyển tiếp · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Giải mã: {0}
+Sự tự tin: {1:P0}
+Ô ước tính: {2:F1} tích tắc
+Cấu trúc: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Bên: {0}
+Theo dõi: {1}
+SCP mục nhập: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Bên {0}
+Không có dữ liệu</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Bên {0} · Theo dõi {1}
+{2} cuộc cách mạng</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Không có tiện ích mở rộng nào được chọn: {0} được sử dụng theo mặc định.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Dừng hoạt động</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Dừng hoạt động Greaseweazle hiện tại?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Lệnh Greaseweazle đang chạy. Đợi nó chạy xong hoặc dừng trước khi mở công cụ này.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Hồ sơ: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Đường {0}, bên {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Theo dõi {0}, bên {1} — {2} đã xử lý</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Tìm gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Kiểm tra các bản cập nhật</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Tải xuống phiên bản mới nhất</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Sử dụng đường dẫn trước đó</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Không phát hiện thấy cài đặt nào.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Đã phát hiện: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Phiên bản mới nhất hiện có: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Đã cài đặt phiên bản {0}.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Tải xuống và cài đặt Greaseweazle Công cụ máy chủ {0} cho Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Công cụ lưu trữ</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Không có đường dẫn hợp lệ trước đó được lưu trữ.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Công cụ máy chủ {0} có sẵn</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Tìm kiếm lần thử lại</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Chỉ số giả</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Lĩnh vực cứng</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Dữ liệu theo dõi ngược</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Điều chỉnh tốc độ</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL ghi đè</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Chân mật độ 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Tạo TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Xóa trước các bản nhạc</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Viết bù trước</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Bài hát đầu ra</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>định dạng không rõ ràng</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Đã nhận dạng bản chụp thô SCP.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Định dạng Amiga được nhận dạng từ kích thước tệp.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Định dạng Acorn được nhận dạng từ kích thước tệp.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Kích thước không khớp với hồ sơ Atari ST đã biết.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST hình học được nhận dạng từ kích thước tệp.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Vùng chứa Atari MSA được công nhận; xác nhận hình học nếu cần thiết.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Riêng phần mở rộng không thể xác định hình học IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC hình học được nhận dạng từ kích thước tệp.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Định dạng được suy ra từ phần mở rộng.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Có thể có một số định dạng; chọn một cách rõ ràng.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Định nghĩa đĩa tùy chỉnh</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle định nghĩa đĩa (*.cfg)|*.cfg|Tất cả các tệp|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Tệp định nghĩa đĩa đã chọn không tồn tại.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Xuất khẩu</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Nhật ký văn bản (*.txt)|*.txt|Tất cả các tệp|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Lịch sử hoạt động</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Hình ảnh thông lượng thô</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1.2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM quét</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC hình ảnh thông lượng</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA hình ảnh đĩa</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG hình ảnh đĩa</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Tệp đĩa</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Tệp đĩa</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST hình ảnh</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Trình lưu trữ bóng ma thuật</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 hình ảnh</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Trình giả lập đĩa mềm</value>
+  </data>
+  <data name="About.Description">
+    <value>Giao diện Windows hiện đại để đọc, ghi, chuyển đổi và kiểm tra đĩa mềm với Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Phần mềm nguồn mở — MIT Giấy phép</value>
+  </data>
+  <data name="About.Version">
+    <value>Phiên bản {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Tự động</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Tiêu đề/địa chỉ</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Dữ liệu được giải mã</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Đã xóa/bất thường</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Phân tích dựa trên cuộc cách mạng {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Sử dụng thẻ trong tên tệp chuyển đổi</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>cài sẵn</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Chỉ dành cho gia đình</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Chỉ định dạng</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Gia đình và định dạng</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Gia đình và phần mở rộng</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Gia đình, định dạng và phần mở rộng</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Mẫu thẻ chuyển đổi</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Các biến có sẵn</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Tên tệp nguồn</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Gia đình: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Định dạng: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Gia hạn: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Ngày: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Ngày: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Ngày: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Thời gian: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Thời gian: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Thời gian: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — tên file nguồn
+{FAMILY} — họ máy (PC, ST, AMIGA…)
+{FORMAT} — định dạng hoặc hình học (720, 1440, DD…)
+{EXTENSION} — phần mở rộng đầu ra (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — ngày 2026-08-06
+{DATE:YYYYMMDD} — ngày 20260806
+{DATE:DD-MM-YYYY} — ngày 08-06-2026
+{TIME:HH-MM-SS} — thời gian 14-35-42
+{TIME:HHMMSS} — thời gian 143542
+{TIME:HH-MM} — thời gian 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Các mẫu tùy chỉnh gần đây</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Ví dụ tiếp theo</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI lỗi</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Một lỗi không mong muốn đã bị chặn.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Không thể lưu cài đặt. Cửa sổ sẽ vẫn đóng.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Báo cáo đầy đủ đã được lưu vào:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Ví dụ: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Mẫu thẻ phải chứa {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>chút {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Khu vực C{0} H{1} R{2} · {3} byte · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>có hiệu lực</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>không hợp lệ</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>không có sẵn</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (mật độ đơn)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar khu vực cứng MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit khu vực cứng FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N khu vực cứng FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg hệ thống/dữ liệu</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Thông lượng thô</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Đồng bộ hóa</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Tiêu đề ngành</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Dữ liệu ngành</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Dữ liệu ngành đã xóa</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga đồng bộ hóa</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Lời mở đầu địa chỉ Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Lời mở đầu về dữ liệu của Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore đồng bộ hóa</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore tiêu đề</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Định dạng tiêu đề</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Định dạng dữ liệu</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Bất thường về thời gian</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Thông số không hợp lệ</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Kiểm tra các tham số lệnh được đánh dấu trước khi thực hiện.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Cài đặt nâng cao không hợp lệ: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Lỗi: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Thư mục đích</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Sẵn sàng</value>
+  </data>
+  <data name="Status.Running">
+    <value>Đang chạy</value>
+  </data>
+  <data name="Status.Success">
+    <value>Thành công</value>
+  </data>
+  <data name="Status.Error">
+    <value>Lỗi</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Đã hủy</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Chế độ bộ nạp khởi động</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Thông số theo dõi, ví dụ: c=0-79:h=0-1, c=0-79/2:h=0 hoặc c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Tốc độ hoặc chu kỳ dương, ví dụ: 300rpm, 200ms, 200000us hoặc 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL các tham số được phân tách bằng dấu hai chấm, ví dụ: Period=5:phase=60 hoặc Period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Viết phần bù trước, ví dụ type=mfm:40=125. Các loại: mfm, fm, gcr; giá trị tính bằng nano giây.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Sử dụng tệp diskdefs.cfg tùy chỉnh để thêm hoặc ghi đè định nghĩa định dạng Greaseweazle.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Tất cả các tệp|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro chụp (*.scp)|*.scp|Tất cả các tệp|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} không tương thích với nguồn này.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Số vòng quay được đọc trên mỗi rãnh. Ví dụ: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Các lần thử bổ sung sau một lỗi. Ví dụ: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Giới hạn trụ, đầu hoặc bậc. Ví dụ: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Các lần thử bổ sung sau khi di chuyển đầu. Ví dụ: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Tạo chỉ mục theo thời gian cho ổ đĩa không có tín hiệu chỉ mục. Ví dụ: --fake-index 300 vòng/phút.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Xử lý đĩa có phân vùng cứng. Không tương thích với --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Dữ liệu theo dõi ngược cho phương tiện truyền thông flippy hoặc hệ thống dây điện.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Điều chỉnh lại thời gian dữ liệu. Ví dụ: --adjust-speed 300 vòng/phút.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Định cấu hình vòng lặp khôi phục đồng hồ. Ví dụ: --pll chu kỳ=5:pha=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Buộc chân chọn mật độ lên cao hoặc thấp. Ví dụ: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Tạo tín hiệu TG43 cho các ổ đĩa yêu cầu tín hiệu đó. Không tương thích với --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Xóa các bản nhạc mà hình ảnh nguồn không chứa dữ liệu.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Xóa từng bản nhạc trước khi viết.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Áp dụng tính năng bù ghi trước. Ví dụ: --precomp gõ=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Ánh xạ lại các bản nhạc trong hình ảnh đầu ra. Ví dụ: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Căn chỉnh ổ đĩa…</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Chẩn đoán căn chỉnh ổ đĩa</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>(Các) bản nhạc thay thế (bắt buộc)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Số lần đọc</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Định dạng giải mã</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Đọc thông lượng thô (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Tổng kiểm tra</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Bên {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Kiểm tra phần cứng</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Không thể tìm thấy phần cứng được cấu hình</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Cấu hình được giữ nguyên nhưng các ổ đĩa của nó sẽ không khả dụng cho đến khi tìm thấy lại Greaseweazle của chúng.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Thiếu bộ điều khiển Greaseweazle</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Tìm kiếm lại</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Cài đặt phần cứng</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Tiếp tục mà không cần ổ đĩa này</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Kiểm tra phần cứng không thành công: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Đã phát hiện Greaseweazle mới</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} được phát hiện trên {1}. Bạn có muốn cấu hình ổ đĩa của nó bây giờ không?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Cấu hình</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Đã định cấu hình</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Đã phát hiện, chưa được định cấu hình</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Cấu hình</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Lái xe {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Lái xe {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Quên</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Bạn có thực sự muốn quên ổ đĩa hoặc thiết bị này không?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Đây là ổ đĩa được định cấu hình cuối cùng cho Greaseweazle này. Bạn có muốn quên cả ổ đĩa và Greaseweazle không?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Trước tiên, hãy chọn một hàng thuộc Greaseweazle có liên quan.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Có thể tự động gán tối đa hai ổ đĩa cho Greaseweazle (A và B) này.</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Đang phân tích bản nhạc {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Bên</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Theo dõi</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP mục nhập</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>cuộc cách mạng</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Phân tích</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Sự tự tin</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Ô ước tính</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Cấu trúc</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Cấu trúc được phát hiện</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Lĩnh vực</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>sự chuyển tiếp</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Lưu nhật ký</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Nhật ký</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Mỗi hành động có tệp riêng trong thư mục Nhật ký GW GUI.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Xóa</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Đầu sạch</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Mở thư mục</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Kích thước tối đa</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Giữ nhật ký trước đó</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = không giới hạn</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Đã hủy đọc: Tệp chưa hoàn chỉnh đã bị xóa: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Đã hủy đọc nhưng không thể xóa tệp chưa hoàn chỉnh: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Trực quan hóa các bản nhạc</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Chọn định dạng đĩa trước khi hiển thị các bản nhạc của nó.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Không thể tìm thấy tên tệp đầu ra có sẵn.</value>
+  </data>
+</root>

@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Скасувати</value>
+  </data>
+  <data name="Common.Save">
+    <value>зберегти</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Видалити</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Перегляд…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Виберіть…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Невідомий</value>
+  </data>
+  <data name="Options.Title">
+    <value>Опції</value>
+  </data>
+  <data name="Options.General">
+    <value>Загальний</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Інструменти</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Контролери та приводи</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Профілі</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Стандартна папка образу диска</value>
+  </data>
+  <data name="Options.Language">
+    <value>Мова</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Тема</value>
+  </data>
+  <data name="Theme.System">
+    <value>система</value>
+  </data>
+  <data name="Theme.Light">
+    <value>світло</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Темний</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Шлях до gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Якщо інструменти відсутні, помічник запропонує завантажити їх або вибрати наявну установку. Оновлення лише анонсуються.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Налаштування апаратного забезпечення зберігаються, коли диск від’єднано.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Порт</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>ідентифікатор USB</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Драйв</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>в наявності</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Сканувати</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Додати диск…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Диск не визначено</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Визначте диск</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Контролер Greaseweazle</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Вибір передано gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Фізичний розмір</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Розмір</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Щільність</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>швидкість</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>в наявності</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Недоступний</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Щільність приводу (лише опис)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Номінальна швидкість (лише опис)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Профілі по експлуатації</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>вкладка</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Ім'я</value>
+  </data>
+  <data name="Profiles.System">
+    <value>система</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Перейменувати…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Закрити</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Виконати</value>
+  </data>
+  <data name="Common.Stop">
+    <value>СТІЙ</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Продовжити</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Зберегти профіль</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Ім'я профілю</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Введіть назву.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Профіль</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Існуючі файли</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Деякі файли вже існують</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Виберіть дію для кожного файлу або застосуйте одну дію до всіх файлів.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Файл</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Дія</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Перезаписати</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Пропустити</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Використовуйте наступне число</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Перезаписати все</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Пропустити все</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Пронумерувати все</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Готовий до виконання.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Необроблений вихід</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Інструменти Greaseweazle не налаштовано. Відкрийте Параметри → Параметри.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Проводиться операція. Зупинити це та закрити GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Не вдалося зберегти налаштування.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Завершено: код {0}, тривалість {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Команда виконана успішно.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Команда скасована.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Команда закінчувалася кодом {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Напишіть</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Виберіть наявне вихідне зображення.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Формат неоднозначний. Явно виберіть сумісний формат.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Перевірка після запису вимкнена.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Увімкнено перевірку після запису.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Підтвердити запис</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Зображення: {0}
+Формат: {1}
+Диск: {2}
+{3}
+
+Записати це зображення на диск?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Прочитайте</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Введіть назву файлу.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Виберіть сумісний тип зображення.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Існуючий файл</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Цей файл уже існує.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Існуючий файл</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Перезаписати</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Використовуйте наступне число</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Дозвольте мені відредагувати назву</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Перетворення</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Виберіть принаймні один вихідний формат.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Неоднозначне джерело</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Підсумок: {0} вдалося, {1} не вдалося.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Помилки: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Підтвердити стирання</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Назавжди стерти всі дані на вставленому диску?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Чисті голови</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Переконайтеся, що диск для очищення вставлено. Ніколи не використовуйте диск з даними.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Контролер не налаштований</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>відключений</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Вибраний диск буде відключено. Повторно підключіть його або виконайте сканування знову в Параметри → Контролери та диски.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0} дюймів · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Драйв</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Спочатку відскануйте або додайте контролер Greaseweazle.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Опції</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Налаштування…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>діагностика</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Інформація</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB пропускна здатність</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM швидкість</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Шукайте голову…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Обладнання</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Піни…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Скинути</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Затримки…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Прошивка…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Допомога</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Документація</value>
+  </data>
+  <data name="Menu.About">
+    <value>про</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Прочитайте</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Напишіть</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Перетворення</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Візуалізація</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Інструменти</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Профіль</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Скинути</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Копія</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Змінити</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Сховати</value>
+  </data>
+  <data name="Common.Console">
+    <value>Консоль</value>
+  </data>
+  <data name="Common.Command">
+    <value>Команда</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Розширені налаштування</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Експертні аргументи</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Зображення для створення</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Розширення</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Необроблене зображення (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Відомий формат диска</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Ім'я файлу</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Папка</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Обертів на трек</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Повторні спроби</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Доріжки/борти</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Автоматично нумерувати успішні читання</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Цифри</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Листи</value>
+  </data>
+  <data name="Read.Next">
+    <value>далі:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Відкрити у візуалізації</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>Запис SCP завершено. Ви можете аналізувати його, не відриваючись від роботи.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Кінцевий результат SCP:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Доріжки: {0} хороші, {1} відсутні або недійсні ({2} циліндрів, {3} сторін).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Кількість обертів: {0} · Роздільна здатність: {1} нс · Розмір: {2:N0} байтів · Контрольна сума: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Файл: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>Підсумок SCP недоступний: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} хороших доріжок · {1} відсутні або недійсні · {2} циліндрів · {3} сторін · {4} оберт(ів) · {5:N0} байт · {6} контрольна сума</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Сторона {0}: доріжка {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Вихідне зображення</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Виявлений формат</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Виберіть зображення.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Відключити перевірку після написання</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Додає --no-verify. Диск не буде перечитано для підтвердження запису.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Стерти порожні сліди</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Джерело</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Вихідні назви</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Додайте теги</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Вибране</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Поширені формати</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Показати рідко використовувані формати</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Обмежити доріжки</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Декодер</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Збільшення посилання</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Відкрийте файл SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Немає відкритого файлу SCP</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Очікування файлу</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Інспектор</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Виберіть трек.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Клацніть: виберіть · Колесо: масштабування · Клацніть правою кнопкою миші: панорамування</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Нормальний потік</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Короткий перехід</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Довгий перехід/аномалія</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Очистити диск</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Усі дані на диску будуть знищені.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Обмежити доріжки</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Революції</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Чисті голови</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Вставляйте диск для очищення, а не диск з даними.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Циліндри</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Паси</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Тривалість на циліндр (мс)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI готовий.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Профіль: за замовчуванням</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Аргументи передаються в написаному вигляді після перевірки цитати.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>За замовчуванням</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Профіль за замовчуванням є постійним і не може бути перейменований.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Профіль за замовчуванням є постійним і не може бути видалений.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Профіль у цій вкладці вже має таку назву.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Цей профіль вже існує. Замінити?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Виконуваний файл (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Видалити цей збережений контролер і всі його диски?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Обладнання</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0} дюймів · {1} · вибір {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Кількість вимірювань</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Циліндр</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Дозволяють екстремальні циліндри</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Тримайте моторику активною</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pin (8, 26 або 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Змінити шпильку</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Високий рівень</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Вибір (мкс)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Крок голови (мкс)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Розрахунок (мс)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Двигун (мс)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Автоматичне скасування вибору (мс)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Перед записом (мкс)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Після запису (мкс)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Індексна маска (мкс)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Оновити завантажувач (ризиковано)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Оновлення завантажувача є розширеною операцією, яка може зробити контролер непридатним для використання, якщо її перервати. Продовжити?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Контролер</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Невідома прошивка</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Невідомий порт</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Місцева інформація дійсна; лише перевірка мережі не вдалася.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Виконується команда…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Інформація про контролера</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB пропускна здатність</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Швидкість руху</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Шукайте голову</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Апаратні штифти</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Скинути контролер</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Затримки</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Прошивка</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Сканувати</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Спочатку виберіть або завантажте gw.exe нижче.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Видалити профіль «{0}»?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Виберіть наявне вихідне зображення.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Введіть імена вихідних файлів.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Перевірте принаймні один вихідний формат.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} конверсій)</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Виберіть тип зображення</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Читання файлу…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Недійсний файл</value>
+  </data>
+  <data name="Visual.Title">
+    <value>Візуалізація SCP</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>дійсний</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>недійсний</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} доріжок · {2} оборотів · {3} роздільна здатність нс · {4} контрольна сума</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Революція {0}: {1:N0} переходів · {2:F2} мс · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Розшифровка: {0}
+Впевненість: {1:P0}
+Очікувана клітинка: {2:F1} кліків
+Структури: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Сторона: {0}
+Трек: {1}
+SCP запис: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Сторона {0}
+Немає даних</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Сторона {0} · Колія {1}
+{2} оборотів</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Розширення не позначено: {0} використовується за умовчанням.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Зупинити операцію</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Зупинити поточну операцію Greaseweazle?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Команда Greaseweazle вже запущена. Зачекайте, поки він закінчиться, або зупиніть його, перш ніж відкривати цей інструмент.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Профіль: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Колія {0}, сторона {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Трек {0}, сторона {1} — {2} оброблено</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Знайти gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Перевірте наявність оновлень</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Завантажте останню версію</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Використовувати попередній шлях</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Встановлення не виявлено.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Виявлено: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Остання доступна версія: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Встановлено версію {0}.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Завантажити та встановити Greaseweazle Host Tools {0} для Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Інструменти хосту</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Не збережено дійсний попередній шлях.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Інструменти хосту {0} доступні</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Шукайте повтори</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Підроблений індекс</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Жорсткі сектори</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Дані зворотного треку</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Відрегулюйте швидкість</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>Перевизначення PLL</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Щільність 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Створити TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Попереднє стирання треків</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Напишіть прекомпенсацію</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Вихідні доріжки</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Неоднозначний формат</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Необроблений запис SCP розпізнано.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Формат Amiga розпізнається за розміром файлу.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Формат Acorn розпізнається за розміром файлу.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Розмір не відповідає відомому профілю Atari ST.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Геометрія Atari ST розпізнається за розміром файлу.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>розпізнано контейнер Atari MSA; підтвердити геометрію, якщо необхідно.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Саме розширення не може визначити геометрію IBM PC.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>Геометрія IBM PC розпізнається за розміром файлу.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Формат, отриманий із розширення.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Можливі декілька форматів; виберіть один явно.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Спеціальні визначення дисків</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle визначення дисків (*.cfg)|*.cfg|Усі файли|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Вибраний файл визначення диска не існує.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Експорт</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Текстовий журнал (*.txt)|*.txt|Усі файли|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Історія операції</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Необроблене зображення потоку</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM сканування</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC зображення потоку</value>
+  </data>
+  <data name="Extension.ima">
+    <value>образ диска IMA</value>
+  </data>
+  <data name="Extension.img">
+    <value>образ диска IMG</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Дисковий файл</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Дисковий файл</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST зображення</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Архіватор Magic Shadow</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 зображення</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Floppy Emulator</value>
+  </data>
+  <data name="About.Description">
+    <value>Сучасний інтерфейс Windows для читання, запису, конвертації та перевірки дискет за допомогою Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Програмне забезпечення з відкритим кодом — Ліцензія MIT</value>
+  </data>
+  <data name="About.Version">
+    <value>Версія {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Автоматичний</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Заголовок/адреса</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Розшифровані дані</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Видалено/аномалія</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Аналіз на основі революції {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Використовуйте теги в назвах файлів перетворення</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Попереднє налаштування</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Тільки сім'я</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Тільки формат</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Сім'я і формат</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Сім'я і розширення</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Родина, формат і розширення</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Шаблон тегу конверсії</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Доступні змінні</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Ім'я вихідного файлу</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Сімейство: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Формат: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Розширення: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Дата: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Дата: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Дата: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Час: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Час: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Час: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — ім'я вихідного файлу
+{FAMILY} — сімейство машин (PC, ST, AMIGA…)
+{FORMAT} — формат або геометрія (720, 1440, DD…)
+{EXTENSION} — вихідне розширення (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — дата 2026-08-06
+{DATE:YYYYMMDD} — дата 20260806
+{DATE:DD-MM-YYYY} — дата 06-08-2026
+{TIME:HH-MM-SS} — час 14-35-42
+{TIME:HHMMSS} — час 143542
+{TIME:HH-MM} — час 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Останні шаблони на замовлення</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Наступний приклад</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>Помилка GW GUI</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Неочікувана помилка була перехоплена.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Не вдалося зберегти налаштування. Вікно все одно закриється.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Повний звіт було збережено в:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Приклад: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Шаблон тегу має містити {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>біт {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Сектор C{0} H{1} R{2} · {3} байтів · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>дійсний</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>недійсний</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>недоступний</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (одинарна щільність)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar з жорстким сектором MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit з жорстким сектором FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N з жорстким сектором FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg система/дані</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Сирий флюс</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Синхронізація</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Заголовок сектора</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Дані секторів</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Видалені дані сектора</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga синхронізація</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Пролог адреси Apple</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Пролог даних Apple</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore синхронізація</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>заголовок Commodore</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Форматувати заголовок</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Формат даних</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Аномалія синхронізації</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Недійсні параметри</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Перевірте виділені параметри команди перед виконанням.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Розширене налаштування недійсне: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Помилка: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Цільова папка</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Готовий</value>
+  </data>
+  <data name="Status.Running">
+    <value>Біг</value>
+  </data>
+  <data name="Status.Success">
+    <value>Успіх</value>
+  </data>
+  <data name="Status.Error">
+    <value>Помилка</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Скасовано</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Режим завантажувача</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Специфікація треку, наприклад c=0-79:h=0-1, c=0-79/2:h=0 або c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Позитивна швидкість або період, наприклад 300 об/хв, 200 мс, 200000 мкс або 200000000 нс.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL параметри, розділені двокрапками, наприклад period=5:phase=60 або period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Напишіть попередню компенсацію, наприклад type=mfm:40=125. Типи: mfm, fm, gcr; значення в наносекундах.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Використовуйте спеціальний файл diskdefs.cfg, щоб додати або змінити визначення формату Greaseweazle.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Образи дисків|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Усі файли|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro захоплення (*.scp)|*.scp|Усі файли|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} несумісний із цим джерелом.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: кількість обертів, зчитаних на трек. Приклад: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: додаткові спроби після помилки. Приклад: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: обмеження циліндрів, головок або кроків. Приклад: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: додаткові спроби після руху голови. Приклад: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Створення тимчасового індексу для диска без сигналу індексу. Приклад: --fake-index 300 об/хв.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Обробка диска з жорсткими секторами. Несумісний із --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Дані реверсивної доріжки для дискетних носіїв або проводів.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: перемасштабувати час даних. Приклад: --adjust-speed 300 об/хв.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Налаштувати цикл відновлення годинника. Приклад: --pll період=5:фаза=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: примусово установити високий або низький рівень вибору щільності. Приклад: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: генеруйте сигнал TG43 для дисків, яким це потрібно. Несумісний з --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: стерти доріжки, для яких вихідне зображення не містить даних.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: видаліть кожну доріжку перед її записом.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Застосувати попередню компенсацію запису. Приклад: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: перепризначати доріжки у вихідному зображенні. Приклад: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Вирівнювання приводу…</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Діагностика вирівнювання приводу</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Альтернативна доріжка(и) (обов’язково)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Кількість читань</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Формат декодування</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Читання необробленого потоку (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Контрольна сума</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Сторона {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Перевірка обладнання</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Налаштоване обладнання не знайдено</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Конфігурацію збережено, але диски залишатимуться недоступними, доки їх Greaseweazle не буде знайдено знову.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Відсутні контролери Greaseweazle</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Пошук знову</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Налаштування обладнання</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Продовжити без цього приводу</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Не вдалося перевірити обладнання: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Виявлено новий Greaseweazle</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} було виявлено {1}. Ви бажаєте налаштувати його диск зараз?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Конфігурація</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Налаштовано</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Виявлено, не налаштовано</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Налаштувати</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Диск {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Диск {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Забути</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Ви дійсно хочете забути цей диск або пристрій?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Це останній налаштований диск для цього Greaseweazle. Ви хочете забути диск і Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Спочатку виберіть рядок, що належить до відповідного Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>До цього Greaseweazle можна автоматично призначити не більше двох дисків (A і B).</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Аналіз доріжки {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>сторона</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Трек</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP запис</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Революції</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Аналіз</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>впевненість</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Розрахункова клітинка</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Конструкції</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Виявлені структури</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Сектори</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>переходи</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Зберегти журнали</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Журнали</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Кожна дія має власний файл у папці журналів GW GUI.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Стерти</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Чисті голови</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Відкрити папку</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Максимальний розмір</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Зберігайте попередні журнали</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = необмежений</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Читання скасовано: неповний файл видалено: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Читання скасовано, але неповний файл не вдалося видалити: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Візуалізація треків</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Виберіть формат диска перед візуалізацією його треків.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Не вдалося знайти доступну назву вихідного файлу.</value>
+  </data>
+</root>

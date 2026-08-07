@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>取消</value>
+  </data>
+  <data name="Common.Save">
+    <value>节省</value>
+  </data>
+  <data name="Common.Delete">
+    <value>删除</value>
+  </data>
+  <data name="Common.Browse">
+    <value>浏览…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>选择…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>未知</value>
+  </data>
+  <data name="Options.Title">
+    <value>选项</value>
+  </data>
+  <data name="Options.General">
+    <value>一般的</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle 工具</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>控制器和驱动器</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>型材</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>默认磁盘映像文件夹</value>
+  </data>
+  <data name="Options.Language">
+    <value>语言</value>
+  </data>
+  <data name="Options.Theme">
+    <value>主题</value>
+  </data>
+  <data name="Theme.System">
+    <value>系统</value>
+  </data>
+  <data name="Theme.Light">
+    <value>光</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>黑暗的</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>gw.exe 的路径</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>如果缺少工具，助手将提供下载或选择现有安装。更新仅公布。</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>当驱动器断开连接时，硬件设置仍会被存储。</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>港口</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB 标识符</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>驾驶</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>可用的</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>扫描</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>添加驱动器...</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>未定义驱动器</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>定义一个驱动器</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle 控制器</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>选择传递给 gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>物理尺寸</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>尺寸</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>密度</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>速度</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>可用的</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>不可用</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>驱动器密度（仅描述）</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>标称速度（仅描述）</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>按操作分类</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>选项卡</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>姓名</value>
+  </data>
+  <data name="Profiles.System">
+    <value>系统</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>重命名...</value>
+  </data>
+  <data name="Common.Close">
+    <value>关闭</value>
+  </data>
+  <data name="Common.Execute">
+    <value>执行</value>
+  </data>
+  <data name="Common.Stop">
+    <value>停止</value>
+  </data>
+  <data name="Common.Continue">
+    <value>继续</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>保存个人资料</value>
+  </data>
+  <data name="Profile.Name">
+    <value>个人资料名称</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>输入名称。</value>
+  </data>
+  <data name="Profile.Title">
+    <value>轮廓</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>现有文件</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>有些文件已经存在</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>为每个文件选择一个操作或对所有文件应用相同的操作。</value>
+  </data>
+  <data name="Conflict.File">
+    <value>文件</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>行动</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>覆盖</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>跳过</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>使用下一个号码</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>覆盖全部</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>全部跳过</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>全部编号</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>准备执行。</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>原始输出</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle 工具未配置。打开选项 → 首选项。</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>一项操作正在运行。停止它并关闭 GW GUI？</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>无法保存设置。
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>已完成：代码 {0}，持续时间 {1}。</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>命令成功完成。</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>命令已取消。</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>该命令以代码 {0} 结束。</value>
+  </data>
+  <data name="Write.Title">
+    <value>写</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>选择现有的源图像。</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>格式不明确。明确选择兼容的格式。</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>禁用写入后验证。</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>写入后验证启用。</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>确认写入</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>图片：{0}
+格式：{1}
+驱动器：{2}
+{3}
+
+将此图像写入磁盘？</value>
+  </data>
+  <data name="Read.Title">
+    <value>读</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>输入文件名。</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>选择兼容的图像类型。</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>现有文件</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>该文件已经存在。</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>现有文件</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>覆盖</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>使用下一个数字</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>让我编辑一下名字</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>转换</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>选择至少一种输出格式。</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>来源不明确</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>摘要：{0} 成功，{1} 失败。</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>失败：{0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>确认擦除</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>永久删除插入磁盘上的所有数据？</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>清洁头部</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>确认已插入清洁盘。切勿使用数据盘。</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>控制器未配置</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>断开连接</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>所选驱动器已断开连接。重新连接或在选项 → 控制器和驱动器中再次扫描。</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-英寸 · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>驾驶</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>首先扫描或添加 Greaseweazle 控制器。</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_选项</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>偏好设置...</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>诊断</value>
+  </data>
+  <data name="Menu.Information">
+    <value>信息</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB 带宽</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM 速度</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>求头...</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>硬件</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>针脚…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>重置</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>延误……</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>固件…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_帮助</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>文档</value>
+  </data>
+  <data name="Menu.About">
+    <value>关于</value>
+  </data>
+  <data name="Tab.Read">
+    <value>读</value>
+  </data>
+  <data name="Tab.Write">
+    <value>写</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>转换</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>可视化</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>工具</value>
+  </data>
+  <data name="Common.Profile">
+    <value>轮廓</value>
+  </data>
+  <data name="Common.Reset">
+    <value>重置</value>
+  </data>
+  <data name="Common.Copy">
+    <value>复制</value>
+  </data>
+  <data name="Common.Modify">
+    <value>调整</value>
+  </data>
+  <data name="Common.Hide">
+    <value>隐藏</value>
+  </data>
+  <data name="Common.Console">
+    <value>安慰</value>
+  </data>
+  <data name="Common.Command">
+    <value>命令</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>高级设置</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>专家论证</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>要创建的图像</value>
+  </data>
+  <data name="Read.Extension">
+    <value>扩大</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>原始图像 (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>已知磁盘格式</value>
+  </data>
+  <data name="Read.FileName">
+    <value>文件名</value>
+  </data>
+  <data name="Read.Folder">
+    <value>文件夹</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>每轨转数</value>
+  </data>
+  <data name="Read.Retries">
+    <value>重试</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>轨道/侧面</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>自动对成功读取进行编号</value>
+  </data>
+  <data name="Read.Digits">
+    <value>数字</value>
+  </data>
+  <data name="Read.Letters">
+    <value>信件</value>
+  </data>
+  <data name="Read.Next">
+    <value>下一个：</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>在可视化中打开</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP 捕获已完成。您可以在不中断工作的情况下对其进行分析。</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>最终 SCP 结果：</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>轨迹：{0} 良好，{1} 缺失或无效（{2} 圆柱体，{3} 侧面）。</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>转数：{0} · 分辨率：{1} ns · 大小：{2:N0} 字节 · 校验和：{3}。</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>文件：{0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP 摘要不可用：{0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} 良好磁道 · {1} 缺失或无效 · {2} 柱面 · {3} 边数 · {4} 转数 · {5:N0} 字节 · {6} 校验和</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>侧面 {0}：轨道 {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>源图片</value>
+  </data>
+  <data name="Write.Detected">
+    <value>检测到的格式</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>选择一个图像。</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>写入后禁用验证</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>添加 --no-verify。不会重新读取磁盘来确认写入。</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>擦除空轨道</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>来源</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>输出名称</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>添加标签</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>已选择</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>常见格式</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>显示很少使用的格式</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>限制曲目</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>解码器</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>链接缩放</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>打开 SCP 文件...</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>没有打开 SCP 文件</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>等待文件</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>督察</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>选择一个曲目。</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>单击：选择 · 滚轮：缩放 · 右键单击​​：平移</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>法向通量</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>短暂的过渡</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>长过渡/异常</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>擦除磁盘</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>磁盘上的所有数据都将被破坏。</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>限制曲目</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>转数</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>清洁头部</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>插入清洁磁盘，切勿插入包含数据的磁盘。</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>气缸</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>通行证</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>每个气缸的持续时间（毫秒）</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI 准备好了。</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>配置文件：默认</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>参数在引用验证后按写入方式传递。</value>
+  </data>
+  <data name="Profile.Default">
+    <value>默认</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>默认配置文件是永久性的，无法重命名。</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>默认配置文件是永久性的，无法删除。</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>此选项卡中的配置文件已具有此名称。</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>此配置文件已存在。更换吗？</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|可执行文件 (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>删除这个存储的控制器及其所有驱动器？</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>硬件</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-英寸 · {1} · 选择 {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>测量次数</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>圆柱</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>允许极限气缸</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>保持电机活跃</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>引脚（8、26 或 28）</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>更换针脚</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>高电平</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>选择（微秒）</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>头步 (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>稳定（毫秒）</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>电机（毫秒）</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>自动取消选择（毫秒）</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>写入前（微秒）</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>写入后（微秒）</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>索引掩模（μs）</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>更新引导加载程序（有风险）</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>更新引导加载程序是一项高级操作，如果中断，可能会导致控制器无法使用。继续？</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>控制器</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>未知固件</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>未知端口</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>本地信息有效；只是网络检查失败。</value>
+  </data>
+  <data name="Tool.Running">
+    <value>命令运行...</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>控制器信息</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB 带宽</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>行驶速度</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>求头</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>硬件引脚</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>复位控制器</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>延误</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>固件</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>扫描</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>首先选择或下载下面的gw.exe。</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>删除个人资料“{0}”？</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>选择现有的源图像。</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>输入输出文件名。</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>检查至少一种输出格式。</value>
+  </data>
+  <data name="Conversion.More">
+    <value>（+ {0} 转换）</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>选择图像类型</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>正在读取文件...</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>文件无效</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP 可视化</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>有效的</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>无效的</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} 磁道 · {2} 转数 · {3} ns 分辨率 · {4} 校验和</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>第 {0} 转：{1:N0} 次跃迁 · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>解码：{0}
+置信度：{1:P0}
+估计细胞：{2:F1} 刻度
+结构：{3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>侧面：{0}
+曲目：{1}
+SCP 条目：{2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>侧面 {0}
+无数据</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>面 {0} · 磁道 {1}
+{2} 转</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>未检查扩展名：默认使用 {0}。</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>停止运行</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>停止当前的 Greaseweazle 操作？</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Greaseweazle 命令已在运行。等待其完成或停止，然后再打开此工具。</value>
+  </data>
+  <data name="Status.Profile">
+    <value>简介：{0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>轨道 {0}，侧面 {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>轨道 {0}，侧面 {1} — {2} 已处理</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>查找 gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>检查更新</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>下载最新版本</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>使用之前的路径</value>
+  </data>
+  <data name="HostTools.None">
+    <value>未检测到安装。</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>检测到：{0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>最新可用版本：{0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>安装版本 {0}。</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>下载并安装适用于 Windows x64 的 Greaseweazle 主机工具 {0}？</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle 主机工具</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>没有存储有效的先前路径。</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>主机工具 {0} 可用</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>寻求重试</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>假索引</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>硬扇区</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>反向追踪数据</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>调整速度</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL 覆盖</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>密度针 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>生成 TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>预擦除曲目</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>写入预补偿</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>输出曲目</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>格式不明确</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>已识别原始 SCP 捕获。</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Amiga 格式根据文件大小识别。</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Acorn 格式根据文件大小识别。</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>该尺寸与已知的 Atari ST 配置文件不匹配。</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST 从文件大小识别的几何形状。</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Atari MSA 容器已识别；如有必要，确认几何形状。</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>仅扩展无法确定 IBM PC 几何形状。</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC 从文件大小识别的几何形状。</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>从扩展名推断出的格式。</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>可以采用多种格式；明确选择一个。</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>自定义磁盘定义</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle 磁盘定义 (*.cfg)|*.cfg|所有文件|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>所选磁盘定义文件不存在。</value>
+  </data>
+  <data name="Common.Export">
+    <value>出口</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>文本日志(*.txt)|*.txt|所有文件|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>操作历史</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>原始通量图像</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1.76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1.2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1.44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1.68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1.68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2.88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM 扫描</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC 通量图像</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA 磁盘映像</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG 磁盘映像</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga 磁盘文件</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn 磁盘文件</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST 图像</value>
+  </data>
+  <data name="Extension.msa">
+    <value>魔法影子归档器</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 图像</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC 软盘模拟器</value>
+  </data>
+  <data name="About.Description">
+    <value>现代 Windows 界面，用于使用 Greaseweazle 读取、写入、转换和检查软盘。</value>
+  </data>
+  <data name="About.License">
+    <value>开源软件 — MIT 许可证</value>
+  </data>
+  <data name="About.Version">
+    <value>版本 {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>自动的</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>标头/地址</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>解码数据</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>已删除/异常</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>基于第 {0} 转的分析。</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>在转换文件名中使用标签</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>预设</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>仅限家庭</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>仅格式</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>家族和格式</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>家庭和延伸</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>系列、格式和扩展</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>转化标签模式</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>可用变量</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>源文件名</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>系列：PC、ST、AMIGA...</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>格式：720、1440、DD...</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>扩展名：IMA、ST、ADF...</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>日期：2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>日期：20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>日期: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>时间：42年14月35日</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>时间：143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>时间：14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — 源文件名
+{FAMILY} — 机器系列（PC、ST、AMIGA…）
+{FORMAT} — 格式或几何形状（720、1440、DD...）
+{EXTENSION} — 输出扩展（IMA、ST、ADF...）
+{DATE:YYYY-MM-DD} — 日期 2026-08-06
+{DATE:YYYYMMDD} — 日期 20260806
+{DATE:DD-MM-YYYY} — 日期 06-08-2026
+{TIME:HH-MM-SS} — 时间 14-35-42
+{TIME:HHMMSS} — 时间 143542
+{TIME:HH-MM} — 时间 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>最近定制的图案</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>下一个例子</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI 错误</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>拦截了意外错误。
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>无法保存设置。窗口仍然会关闭。
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>完整报告保存至：
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>示例：{0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>标记模式必须包含 {tag}。</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>位 {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>扇区 C{0} H{1} R{2} · {3} 字节 · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>有效的</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>无效的</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>不可用</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM（单一密度）</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar 硬扇区 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit 硬扇区 FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N 硬扇区 FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 米²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg 系统/数据</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>原焊剂</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>同步</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>扇区标题</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>部门数据</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>已删除的扇区数据</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga 同步</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>苹果地址序言</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>苹果数据序言</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore 同步</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore 标头</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>格式标题</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>格式化数据</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>时序异常</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>无效参数</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>执行前检查突出显示的命令参数。</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>高级设置无效：{0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>错误：{0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>目标文件夹</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>准备好</value>
+  </data>
+  <data name="Status.Running">
+    <value>跑步</value>
+  </data>
+  <data name="Status.Success">
+    <value>成功</value>
+  </data>
+  <data name="Status.Error">
+    <value>错误</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>取消</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>引导加载模式</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>轨道规范，例如 c=0-79:h=0-1、c=0-79/2:h=0 或 c=0-79:h=0-1:hswap。</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>正速度或周期，例如 300rpm、200ms、200000us 或 200000000ns。</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL 参数用冒号分隔，例如 period=5:phase=60 或 period=5:phase=60:lowpass=2。</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>写入预补偿，例如 type=mfm:40=125。类型：mfm、fm、gcr；值以纳秒为单位。</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>使用自定义 diskdefs.cfg 文件添加或覆盖 Greaseweazle 格式定义。</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>磁盘映像|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|所有文件|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro 捕获 (*.scp)|*.scp|所有文件|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} 与此源不兼容。</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs：每磁道读取的转数。示例：--revs 5。</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries：发生错误后的额外尝试。示例：--retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks：限制柱面、磁头或步进。示例：--tracks c=0-79:h=0-1。</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries：移动头部后的额外尝试。示例：--seek-retries 2。</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index：为没有索引信号的驱动器创建定时索引。示例：--fake-index 300rpm。</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors：处理硬扇区磁盘。与 --fake-index 不兼容。</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse：翻转介质或接线的反向磁道数据。</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed：重新调整数据时序。示例：--adjust-speed 300rpm。</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll：配置时钟恢复环路。示例：--pll period=5:phase=60。</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel：强制密度选择引脚为高电平或低电平。示例：--densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43：为需要的驱动器生成 TG43 信号。与 --densel 不兼容。</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty：擦除源图像不包含数据的轨道。</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase：在写入之前擦除每个磁道。</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp：应用写预补偿。示例：--precomp 类型=mfm:40=125。</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks：重新映射输出图像中的轨道。示例：--out-tracks c=0-79:h=0-1。</value>
+  </data>
+  <data name="Menu.Align">
+    <value>驱动器对准...</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>驱动器对准诊断</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>交替轨道（必需）</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>读取次数</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>解码格式</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>读取原始通量 (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>校验和</value>
+  </data>
+  <data name="Visual.Side">
+    <value>侧面 {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>硬件检查</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>找不到已配置的硬件</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>配置将被保留，但其驱动器将保持不可用，直到再次找到其 Greaseweazle 为止。</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>缺少 Greaseweazle 控制器</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>再次搜索</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>硬件设置</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>不使用此驱动器继续</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>硬件检查失败：{0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>检测到新的 Greaseweazle</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>在 {1} 上检测到 {0}。您想现在配置其驱动器吗？</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>配置</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>已配置</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>已检测到，未配置</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>配置</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>驱动器 {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>驱动器 {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>忘记</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>您真的想忘记这个驱动器或设备吗？</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>这是为此 Greaseweazle 最后配置的驱动器。您想同时忘记驱动器和 Greaseweazle 吗？</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>首先选择属于相关 Greaseweazle 的行。</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>最多可以将两个驱动器自动分配给该 Greaseweazle（A 和 B）。</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>正在分析轨道 {0}/{1}...</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>边</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>追踪</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP 条目</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>转数</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>分析</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>置信度</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>估计细胞</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>结构</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>检测到的结构</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>部门</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>跃迁</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>保存日志</value>
+  </data>
+  <data name="Options.Logs">
+    <value>日志</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>每个操作在 GW GUI Logs 文件夹中都有自己的文件。</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>擦除</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>清洁头部</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>打开文件夹</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>最大尺寸</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>保留以前的日志</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = 无限制</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>读取已取消：不完整的文件已删除：{0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>读取已取消，但无法删除不完整的文件：{0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>可视化曲目</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>在查看其磁道之前选择磁盘格式。</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>找不到可用的输出文件名。</value>
+  </data>
+</root>

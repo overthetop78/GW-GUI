@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Avboka</value>
+  </data>
+  <data name="Common.Save">
+    <value>Spara</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Radera</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Bläddra…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Välja…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Okänd</value>
+  </data>
+  <data name="Options.Title">
+    <value>Alternativ</value>
+  </data>
+  <data name="Options.General">
+    <value>Allmän</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Verktyg</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Styrenheter och drivenheter</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profiler</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Standard diskbildsmapp</value>
+  </data>
+  <data name="Options.Language">
+    <value>Språk</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Theme.System">
+    <value>System</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Ljus</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Mörk</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Sökväg till gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Om verktygen saknas kommer assistenten att erbjuda att ladda ner dem eller välja en befintlig installation. Uppdateringar meddelas endast.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Hårdvaruinställningarna förblir lagrade när en enhet kopplas bort.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Hamn</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB identifierare</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Köra</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Tillgänglig</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Avsöka</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Lägg till en enhet...</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Ingen enhet definierad</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Definiera en enhet</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle styrenhet</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Urvalet skickades till gw</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Fysisk storlek</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Storlek</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Densitet</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Hastighet</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Tillgänglig</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Inte tillgänglig</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Drivetäthet (endast beskrivning)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Nominell hastighet (endast beskrivning)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Profiler efter operation</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Flik</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Namn</value>
+  </data>
+  <data name="Profiles.System">
+    <value>System</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Döpa om…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Nära</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Utföra</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Stopp</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Fortsätta</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Spara profil</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Profilnamn</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Ange ett namn.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profil</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Befintliga filer</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Vissa filer finns redan</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Välj en åtgärd för varje fil eller tillämpa samma åtgärd på alla filer.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Fil</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Handling</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Skriva över</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Hoppa</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Använd nästa nummer</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Skriv över alla</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Hoppa över allt</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Nummer alla</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Redo att utföra.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Rå utgång</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Verktyg är inte konfigurerade. Öppna Alternativ → Inställningar.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>En operation pågår. Stoppa det och stänga GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Inställningarna kunde inte sparas.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Färdig: kod {0}, varaktighet {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Kommandot har slutförts.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Kommandot avbröts.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Kommandot slutade med koden {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Skriva</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Välj en befintlig källbild.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Formatet är tvetydigt. Välj uttryckligen ett kompatibelt format.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Verifiering efter skrivning är inaktiverad.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Verifiering efter skrivning är aktiverad.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Bekräfta skrivning</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Bild: {0}
+Format: {1}
+Drive: {2}
+{3}
+
+Skriva den här bilden till disken?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Läsa</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Ange ett filnamn.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Välj en kompatibel bildtyp.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Befintlig fil</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Den här filen finns redan.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Befintlig fil</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Skriva över</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Använd nästa nummer</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Låt mig redigera namnet</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Omvandling</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Välj minst ett utdataformat.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Tvetydig källa</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Sammanfattning: {0} lyckades, {1} misslyckades.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Fel: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Bekräfta radering</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Vill du radera all data på den insatta disken permanent?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Rengör huvuden</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Bekräfta att en rengöringsskiva är isatt. Använd aldrig en datadisk.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Styrenheten är inte konfigurerad</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>osammanhängande</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Den valda enheten är frånkopplad. Anslut den igen eller skanna igen i Alternativ → Styrenheter och enheter.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-tum · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Köra</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Skanna eller lägg till en Greaseweazle-kontroller först.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Alternativ</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Inställningar...</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostik</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Information</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB bandbredd</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM hastighet</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Sök huvud...</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Hårdvara</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pins...</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Återställa</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Förseningar...</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Firmware...</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Hjälp</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokumentation</value>
+  </data>
+  <data name="Menu.About">
+    <value>Om</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Läsa</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Skriva</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Omvandling</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisering</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Verktyg</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profil</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Återställa</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Kopiera</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Ändra</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Dölja</value>
+  </data>
+  <data name="Common.Console">
+    <value>Trösta</value>
+  </data>
+  <data name="Common.Command">
+    <value>Kommando</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Avancerade inställningar</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Expertargument</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Bild att skapa</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Förlängning</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Råbild (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Känt diskformat</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Filnamn</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Mapp</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Varv per spår</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Försöker igen</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Spår/sidor</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Automatiskt antal framgångsrika läsningar</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Siffror</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Bokstäver</value>
+  </data>
+  <data name="Read.Next">
+    <value>Nästa:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Öppna i Visualisering</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP-infångningen är klar. Du kan analysera det utan att avbryta ditt arbete.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Slutligt SCP resultat:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Spår: {0} bra, {1} saknas eller ogiltigt ({2} cylindrar, {3} sidor).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Varv: {0} · Upplösning: {1} ns · Storlek: {2:N0} byte · Kontrollsumma: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Fil: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP sammanfattning otillgänglig: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} bra spår · {1} saknas eller ogiltig · {2} cylindrar · {3} sidor · {4} varv · {5:N0} byte · {6} kontrollsumma</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Sida {0}: spår {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Källbild</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Upptäckt format</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Välj en bild.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Inaktivera verifiering efter att du skrivit</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Lägger till --no-verify. Disken kommer inte att läsas om för att bekräfta skrivningen.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Radera tomma spår</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Källa</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Utdatanamn</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Lägg till taggar</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Vald</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Vanliga format</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Visa sällan använda format</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Begränsa spår</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Avkodare</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Länkzoom</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Öppna en SCP fil...</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Ingen SCP fil öppen</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Väntar på en fil</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Inspektör</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Välj ett spår.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Klicka: välj · Hjul: zoom · Högerklicka: panorera</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normalt flöde</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Kort övergång</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Lång övergång/avvikelse</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Radera en disk</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>All data på disken kommer att förstöras.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Begränsa spår</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Revolutioner</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Rengör huvuden</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Sätt i en rengöringsskiva, aldrig en skiva som innehåller data.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Cylindrar</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Passerar</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Längd per cylinder (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI redo.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profil: Standard</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argument skickas som skrivna efter offertvalidering.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Standard</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Standardprofilen är permanent och kan inte byta namn.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Standardprofilen är permanent och kan inte tas bort.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>En profil på den här fliken har redan detta namn.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Den här profilen finns redan. Byt ut den?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Körbar (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Ta bort denna lagrade kontroller och alla dess enheter?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Hårdvara</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-tum · {1} · urval {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Antal mätningar</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Cylinder</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Tillåt extrema cylindrar</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Håll motorn aktiv</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pin (8, 26 eller 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Byt stift</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Hög nivå</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Urval (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Huvudsteg (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Avgör (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Motor (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Avmarkera automatiskt (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Före skrivning (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Efter skrivning (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indexmask (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Uppdatera bootloader (risk)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Att uppdatera bootloadern är en avancerad operation som kan göra kontrollern oanvändbar om den avbryts. Fortsätta?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Kontroller</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Okänd firmware</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Okänd port</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Den lokala informationen är giltig; bara nätverkskontrollen misslyckades.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Kommandot körs...</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Controllerinformation</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB bandbredd</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Körhastighet</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Sök huvud</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Hårdvarustift</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Återställ styrenheten</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Förseningar</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Firmware</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Avsöka</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Välj eller ladda ner gw.exe nedan först.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Ta bort profilen "{0}"?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Välj en befintlig källbild.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Ange utdatafilnamnen.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Kontrollera minst ett utdataformat.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} omvandling(er))</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Välj en bildtyp</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Läser fil...</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Ogiltig fil</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisering</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>giltig</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>ogiltig</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} spår · {2} varv · {3} ns upplösning · {4} kontrollsumma</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Revolution {0}: {1:N0} övergångar · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Avkodning: {0}
+Självförtroende: {1:P0}
+Beräknad cell: {2:F1} tick
+Strukturer: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Sida: {0}
+Spår: {1}
+SCP post: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Sida {0}
+Inga data</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Sida {0} · Spår {1}
+{2} varv</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Ingen tillägg markerad: {0} används som standard.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Stoppa driften</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Vill du stoppa den aktuella Greaseweazle-operationen?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Ett Greaseweazle-kommando körs redan. Vänta tills det är klart eller stoppa det innan du öppnar det här verktyget.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profil: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Spår {0}, sida {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Spår {0}, sida {1} — {2} bearbetad</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Hitta gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Sök efter uppdateringar</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Ladda ner senaste versionen</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Använd föregående sökväg</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Ingen installation upptäckt.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Upptäckt: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Senaste tillgängliga versionen: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Version {0} installerad.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Ladda ner och installera Greaseweazle Host Tools {0} för Windows x64?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Värdverktyg</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Ingen giltig tidigare sökväg lagras.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Värdverktyg {0} tillgängliga</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Sök efter försök</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Falskt index</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Hårda sektorer</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Omvänd spårdata</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Justera hastigheten</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL åsidosätt</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Densitetsstift 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Generera TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Förradera spår</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Skriv förkompensation</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Utgångsspår</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Tvetydigt format</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Rå SCP fångst igenkänd.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Amiga format känns igen från filstorlek.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Acorn format känns igen från filstorlek.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Storleken matchar inte en känd Atari ST-profil.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST geometri igenkänd från filstorlek.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Atari MSA behållare kändes igen; bekräfta geometrin vid behov.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Enbart tillägget kan inte bestämma IBM PC-geometrin.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC geometri igenkänd från filstorlek.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Format som härleds från tillägget.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Flera format är möjliga; välj en uttryckligen.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Anpassade diskdefinitioner</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle diskdefinitioner (*.cfg)|*.cfg|Alla filer|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Den valda diskdefinitionsfilen finns inte.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Exportera</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Textlogg (*.txt)|*.txt|Alla filer|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Operationshistorik</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Råflödesbild</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD — 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST — 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST — 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST — 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST — 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST — 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC — 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC — 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC — 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC — 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC — 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC — 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC — 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC — 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC — DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC — 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM skanning</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 — 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS — 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC flödesbild</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA diskavbildning</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG diskavbildning</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Diskfil</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Diskfil</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST bild</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Magic Shadow Archiver</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 bild</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Floppy Emulator</value>
+  </data>
+  <data name="About.Description">
+    <value>Ett modernt Windows-gränssnitt för att läsa, skriva, konvertera och inspektera disketter med Greaseweazle.</value>
+  </data>
+  <data name="About.License">
+    <value>Programvara med öppen källkod — MIT Licens</value>
+  </data>
+  <data name="About.Version">
+    <value>Version {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automatisk</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Rubrik/adress</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Avkodad data</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Raderad/avvikelse</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analys baserad på revolution {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Använd taggar i konverteringsfilnamn</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Förinställa</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Endast familj</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Endast format</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Familj och format</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Familj och förlängning</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Familj, format och förlängning</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Konverteringstaggmönster</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Tillgängliga variabler</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Källfilnamn</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Familj: PC, ST, AMIGA...</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Format: 720, 1440, DD...</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Tillägg: IMA, ST, ADF...</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Datum: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Datum: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Datum: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Tid: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Tid: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Tid: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} — källfilnamn
+{FAMILY} — maskinfamilj (PC, ST, AMIGA...)
+{FORMAT} — format eller geometri (720, 1440, DD...)
+{EXTENSION} — utgångsförlängning (IMA, ST, ADF...)
+{DATE:YYYY-MM-DD} — datum 2026-08-06
+{DATE:YYYYMMDD} — datum 20260806
+{DATE:DD-MM-YYYY} — datum 2026-08-06
+{TIME:HH-MM-SS} — tid 14-35-42
+{TIME:HHMMSS} — tid 143542
+{TIME:HH-MM} — tid 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Senaste anpassade mönster</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Nästa exempel</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI fel</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Ett oväntat fel fångades upp.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Inställningarna kunde inte sparas. Fönstret stängs fortfarande.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Hela rapporten sparades till:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Exempel: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Taggmönstret måste innehålla {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bit {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>giltig</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>ogiltig</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>inte tillgänglig</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (enkel densitet)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar hårdsektorad MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit hårdsektorad FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N hårdsektorad FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg system/data</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Råflöde</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synkronisering</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Sektorhuvud</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Sektordata</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Raderade sektordata</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga synkronisering</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Apple adressprolog</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Apples dataprolog</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore synkronisering</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore rubrik</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Formatera rubrik</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Formatera data</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Tidsavvikelse</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Ogiltiga parametrar</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Kontrollera de markerade kommandoparametrarna innan du kör.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>En avancerad inställning är ogiltig: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Fel: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Destinationsmapp</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Redo</value>
+  </data>
+  <data name="Status.Running">
+    <value>Spring</value>
+  </data>
+  <data name="Status.Success">
+    <value>Framgång</value>
+  </data>
+  <data name="Status.Error">
+    <value>Fel</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Avbruten</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-läge</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Spårspecifikation, till exempel c=0-79:h=0-1, c=0-79/2:h=0 eller c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Positiv hastighet eller period, till exempel 300rpm, 200ms, 200000us eller 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parametrar separerade med kolon, till exempel period=5:fas=60 eller period=5:fas=60:lågpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Skriv förkompensation, till exempel typ=mfm:40=125. Typer: mfm, fm, gcr; värden är i nanosekunder.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Använd en anpassad diskdefs.cfg-fil för att lägga till eller åsidosätta Greaseweazle-formatdefinitioner.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Diskbilder|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Alla filer|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro fånga (*.scp)|*.scp|Alla filer|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} är inte kompatibel med den här källan.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Antal avlästa varv per spår. Exempel: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Ytterligare försök efter ett fel. Exempel: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Begränsa cylindrar, toppar eller steg. Exempel: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Ytterligare försök efter att ha flyttat huvudet. Exempel: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Skapa ett tidsbestämt index för en enhet utan en indexsignal. Exempel: --fake-index 300rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Hantera en hårddisk. Inkompatibel med --fake-index.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Omvänd spårdata för flippy media eller kablar.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Skala om datatiming. Exempel: --adjust-speed 300rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Konfigurera klockåterställningsslingan. Exempel: --pll period=5:fas=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Tvinga densitetsvalsstiftet högt eller lågt. Exempel: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Generera TG43-signalen för enheter som kräver det. Inkompatibel med --densel.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Radera spår för vilka källbilden inte innehåller några data.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Radera varje spår innan du skriver det.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Tillämpa skrivförkompensation. Exempel: --precomp typ=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Mappa om spår i utdatabilden. Exempel: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Drive justering...</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Diagnostik för drivinriktning</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Alternerande spår (krävs)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Antal läsningar</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Avkodningsformat</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Läs råflöde (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Kontrollsumma</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Sida {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Hårdvarukontroll</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Konfigurerad hårdvara kunde inte hittas</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Konfigurationen bevaras, men dess enheter kommer att förbli otillgängliga tills deras Greaseweazle hittas igen.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Saknar Greaseweazle kontroller</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Sök igen</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Hårdvaruinställningar</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Fortsätt utan denna enhet</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Hårdvarukontrollen misslyckades: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Ny Greaseweazle upptäckt</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} upptäcktes på {1}. Vill du konfigurera dess enhet nu?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Konfiguration</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Konfigurerad</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Detekterad, inte konfigurerad</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Konfigurera</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Kör {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Drive {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Glömma</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Vill du verkligen glömma den här enheten eller enheten?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Detta är den senast konfigurerade enheten för denna Greaseweazle. Vill du glömma både enheten och Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Välj först en rad som tillhör den relevanta Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Högst två enheter kan tilldelas automatiskt till denna Greaseweazle (A och B).</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Analyserar spår {0}/{1}...</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Sida</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Spåra</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP post</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Revolutioner</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analys</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Förtroende</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Beräknad cell</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Strukturer</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Upptäckta strukturer</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektorer</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>övergångar</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Spara loggar</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Loggar</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Varje åtgärd har sin egen fil i mappen GW GUI Logs.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Radera</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Rengör huvuden</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Öppna mappen</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Maximal storlek</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Spara tidigare loggar</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = obegränsat</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Läsningen avbröts: Den ofullständiga filen raderades: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Läsningen avbröts, men den ofullständiga filen kunde inte raderas: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualisera spår</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Välj skivformat innan du visualiserar dess spår.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Inget tillgängligt utdatafilnamn kunde hittas.</value>
+  </data>
+</root>

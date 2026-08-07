@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Common.Cancel">
+    <value>Peruuttaa</value>
+  </data>
+  <data name="Common.Save">
+    <value>Tallentaa</value>
+  </data>
+  <data name="Common.Delete">
+    <value>Poistaa</value>
+  </data>
+  <data name="Common.Browse">
+    <value>Selaa…</value>
+  </data>
+  <data name="Common.Choose">
+    <value>Valita…</value>
+  </data>
+  <data name="Common.Unknown">
+    <value>Tuntematon</value>
+  </data>
+  <data name="Options.Title">
+    <value>Vaihtoehdot</value>
+  </data>
+  <data name="Options.General">
+    <value>Kenraali</value>
+  </data>
+  <data name="Options.Tools">
+    <value>Greaseweazle Työkalut</value>
+  </data>
+  <data name="Options.Hardware">
+    <value>Ohjaimet ja asemat</value>
+  </data>
+  <data name="Options.Profiles">
+    <value>Profiilit</value>
+  </data>
+  <data name="Options.ImagesFolder">
+    <value>Oletuslevykuvakansio</value>
+  </data>
+  <data name="Options.Language">
+    <value>Kieli</value>
+  </data>
+  <data name="Options.Theme">
+    <value>Teema</value>
+  </data>
+  <data name="Theme.System">
+    <value>Järjestelmä</value>
+  </data>
+  <data name="Theme.Light">
+    <value>Kevyt</value>
+  </data>
+  <data name="Theme.Dark">
+    <value>Tumma</value>
+  </data>
+  <data name="Options.GwPath">
+    <value>Polku gw.exe</value>
+  </data>
+  <data name="Options.ToolsHelp">
+    <value>Jos työkalut puuttuvat, avustaja ehdottaa niiden lataamista tai valitse olemassa olevan asennuksen. Päivityksistä ilmoitetaan vain.</value>
+  </data>
+  <data name="Options.HardwarePersistence">
+    <value>Laitteistoasetukset säilyvät tallessa, kun asema irrotetaan.</value>
+  </data>
+  <data name="Hardware.Port">
+    <value>Portti</value>
+  </data>
+  <data name="Hardware.UsbId">
+    <value>USB tunniste</value>
+  </data>
+  <data name="Hardware.Drive">
+    <value>Ajaa</value>
+  </data>
+  <data name="Hardware.Available">
+    <value>Saatavilla</value>
+  </data>
+  <data name="Hardware.Scan">
+    <value>Skannata</value>
+  </data>
+  <data name="Hardware.AddDrive">
+    <value>Lisää asema…</value>
+  </data>
+  <data name="Hardware.NoDrive">
+    <value>Asemaa ei ole määritetty</value>
+  </data>
+  <data name="Hardware.EditorTitle">
+    <value>Määritä asema</value>
+  </data>
+  <data name="Hardware.Controller">
+    <value>Greaseweazle ohjain</value>
+  </data>
+  <data name="Hardware.GwSelection">
+    <value>Valinta siirtyi gw:lle</value>
+  </data>
+  <data name="Hardware.PhysicalSize">
+    <value>Fyysinen koko</value>
+  </data>
+  <data name="Hardware.SizeShort">
+    <value>Koko</value>
+  </data>
+  <data name="Hardware.DensityShort">
+    <value>Tiheys</value>
+  </data>
+  <data name="Hardware.SpeedShort">
+    <value>Nopeus</value>
+  </data>
+  <data name="Hardware.AvailableState">
+    <value>Saatavilla</value>
+  </data>
+  <data name="Hardware.UnavailableState">
+    <value>Ei saatavilla</value>
+  </data>
+  <data name="Hardware.DensityDescription">
+    <value>Ajotiheys (vain kuvaus)</value>
+  </data>
+  <data name="Hardware.SpeedDescription">
+    <value>Nimellinen nopeus (vain kuvaus)</value>
+  </data>
+  <data name="Profiles.ByOperation">
+    <value>Profiilit toiminnan mukaan</value>
+  </data>
+  <data name="Profiles.Tab">
+    <value>Tab</value>
+  </data>
+  <data name="Profiles.Name">
+    <value>Nimi</value>
+  </data>
+  <data name="Profiles.System">
+    <value>Järjestelmä</value>
+  </data>
+  <data name="Profiles.Rename">
+    <value>Nimeä uudelleen…</value>
+  </data>
+  <data name="Common.Close">
+    <value>Lähellä</value>
+  </data>
+  <data name="Common.Execute">
+    <value>Suorittaa</value>
+  </data>
+  <data name="Common.Stop">
+    <value>Stop</value>
+  </data>
+  <data name="Common.Continue">
+    <value>Jatkaa</value>
+  </data>
+  <data name="Profile.SaveTitle">
+    <value>Tallenna profiili</value>
+  </data>
+  <data name="Profile.Name">
+    <value>Profiilin nimi</value>
+  </data>
+  <data name="Profile.NameRequired">
+    <value>Kirjoita nimi.</value>
+  </data>
+  <data name="Profile.Title">
+    <value>Profiili</value>
+  </data>
+  <data name="Conflict.Title">
+    <value>Olemassa olevat tiedostot</value>
+  </data>
+  <data name="Conflict.Heading">
+    <value>Jotkut tiedostot ovat jo olemassa</value>
+  </data>
+  <data name="Conflict.Help">
+    <value>Valitse toiminto jokaiselle tiedostolle tai käytä samaa toimintoa kaikkiin tiedostoihin.</value>
+  </data>
+  <data name="Conflict.File">
+    <value>Tiedosto</value>
+  </data>
+  <data name="Conflict.Action">
+    <value>Toiminta</value>
+  </data>
+  <data name="Conflict.Overwrite">
+    <value>Korvaa</value>
+  </data>
+  <data name="Conflict.Skip">
+    <value>Ohita</value>
+  </data>
+  <data name="Conflict.Number">
+    <value>Käytä seuraavaa numeroa</value>
+  </data>
+  <data name="Conflict.AllOverwrite">
+    <value>Korvaa kaikki</value>
+  </data>
+  <data name="Conflict.AllSkip">
+    <value>Ohita kaikki</value>
+  </data>
+  <data name="Conflict.AllNumber">
+    <value>Numeroi kaikki</value>
+  </data>
+  <data name="Tool.Ready">
+    <value>Valmiina toteuttamaan.</value>
+  </data>
+  <data name="Tool.RawOutput">
+    <value>Raaka tuotanto</value>
+  </data>
+  <data name="App.Title">
+    <value>GW GUI</value>
+  </data>
+  <data name="App.GwNotConfigured">
+    <value>Greaseweazle Työkaluja ei ole määritetty. Avaa Valinnat → Asetukset.</value>
+  </data>
+  <data name="App.OperationRunningClose">
+    <value>Operaatio on käynnissä. Lopeta se ja sulje GW GUI?</value>
+  </data>
+  <data name="App.SettingsSaveFailed">
+    <value>Asetuksia ei voitu tallentaa.
+
+{0}</value>
+  </data>
+  <data name="Operation.Finished">
+    <value>Valmis: koodi {0}, kesto {1}.</value>
+  </data>
+  <data name="Operation.Succeeded">
+    <value>Komento suoritettu onnistuneesti.</value>
+  </data>
+  <data name="Operation.Cancelled">
+    <value>Komento peruutettu.</value>
+  </data>
+  <data name="Operation.ExitCode">
+    <value>Komento päättyi koodiin {0}.</value>
+  </data>
+  <data name="Write.Title">
+    <value>Kirjoittaa</value>
+  </data>
+  <data name="Write.SelectSource">
+    <value>Valitse olemassa oleva lähdekuva.</value>
+  </data>
+  <data name="Write.Ambiguous">
+    <value>Muoto on epäselvä. Valitse selkeästi yhteensopiva muoto.</value>
+  </data>
+  <data name="Write.VerifyOff">
+    <value>Vahvistus kirjoittamisen jälkeen on poistettu käytöstä.</value>
+  </data>
+  <data name="Write.VerifyOn">
+    <value>Vahvistus kirjoittamisen jälkeen on käytössä.</value>
+  </data>
+  <data name="Write.ConfirmTitle">
+    <value>Vahvista kirjoittaminen</value>
+  </data>
+  <data name="Write.Confirm">
+    <value>Kuva: {0}
+Muoto: {1}
+Ajaa: {2}
+{3}
+
+Kirjoita tämä kuva levylle?</value>
+  </data>
+  <data name="Read.Title">
+    <value>Lukea</value>
+  </data>
+  <data name="Read.NameRequired">
+    <value>Anna tiedostonimi.</value>
+  </data>
+  <data name="Read.TypeRequired">
+    <value>Valitse yhteensopiva kuvatyyppi.</value>
+  </data>
+  <data name="Read.FileExistsTitle">
+    <value>Olemassa oleva tiedosto</value>
+  </data>
+  <data name="Read.FileExists">
+    <value>Tämä tiedosto on jo olemassa.</value>
+  </data>
+  <data name="Read.ConflictPath">
+    <value>Olemassa oleva tiedosto</value>
+  </data>
+  <data name="Read.ConflictOverwrite">
+    <value>Korvaa</value>
+  </data>
+  <data name="Read.ConflictNextNumber">
+    <value>Käytä seuraavaa numeroa</value>
+  </data>
+  <data name="Read.ConflictEditName">
+    <value>Anna minun muokata nimeä</value>
+  </data>
+  <data name="Conversion.Title">
+    <value>Muuntaminen</value>
+  </data>
+  <data name="Conversion.SelectOutput">
+    <value>Valitse vähintään yksi tulostusmuoto.</value>
+  </data>
+  <data name="Conversion.SourceAmbiguous">
+    <value>Epäselvä lähde</value>
+  </data>
+  <data name="Conversion.Summary">
+    <value>Yhteenveto: {0} onnistui, {1} epäonnistui.</value>
+  </data>
+  <data name="Conversion.Failures">
+    <value>Virheet: {0}</value>
+  </data>
+  <data name="Maintenance.EraseTitle">
+    <value>Vahvista poisto</value>
+  </data>
+  <data name="Maintenance.EraseConfirm">
+    <value>Poistetaanko kaikki syötetyn levyn tiedot pysyvästi?</value>
+  </data>
+  <data name="Maintenance.CleanTitle">
+    <value>Puhtaat päät</value>
+  </data>
+  <data name="Maintenance.CleanConfirm">
+    <value>Varmista, että puhdistuslevy on asetettu paikalleen. Älä koskaan käytä datalevyä.</value>
+  </data>
+  <data name="Hardware.NotConfigured">
+    <value>Ohjainta ei ole määritetty</value>
+  </data>
+  <data name="Hardware.Disconnected">
+    <value>irti</value>
+  </data>
+  <data name="Hardware.SelectedDisconnected">
+    <value>Valitun aseman yhteys on katkaistu. Liitä se uudelleen tai skannaa uudelleen kohdassa Asetukset → Ohjaimet ja asemat.</value>
+  </data>
+  <data name="Hardware.DriveLabel">
+    <value>{0}-tuumaa · {1} · {2} · {3}</value>
+  </data>
+  <data name="Hardware.DriveDialogTitle">
+    <value>Ajaa</value>
+  </data>
+  <data name="Hardware.ControllerRequired">
+    <value>Skannaa tai lisää ensin Greaseweazle-ohjain.</value>
+  </data>
+  <data name="Menu.Options">
+    <value>_Vaihtoehdot</value>
+  </data>
+  <data name="Menu.Preferences">
+    <value>Asetukset…</value>
+  </data>
+  <data name="Menu.Diagnostics">
+    <value>Diagnostiikka</value>
+  </data>
+  <data name="Menu.Information">
+    <value>Tiedot</value>
+  </data>
+  <data name="Menu.Bandwidth">
+    <value>USB kaistanleveys</value>
+  </data>
+  <data name="Menu.Rpm">
+    <value>RPM nopeus</value>
+  </data>
+  <data name="Menu.Seek">
+    <value>Etsi päätä…</value>
+  </data>
+  <data name="Menu.Hardware">
+    <value>Laitteisto</value>
+  </data>
+  <data name="Menu.Pins">
+    <value>Pinssit…</value>
+  </data>
+  <data name="Menu.Reset">
+    <value>Nollaa</value>
+  </data>
+  <data name="Menu.Delays">
+    <value>Viiveet…</value>
+  </data>
+  <data name="Menu.Firmware">
+    <value>Laiteohjelmisto…</value>
+  </data>
+  <data name="Menu.Help">
+    <value>_Auttaa</value>
+  </data>
+  <data name="Menu.Documentation">
+    <value>Dokumentaatio</value>
+  </data>
+  <data name="Menu.About">
+    <value>Noin</value>
+  </data>
+  <data name="Tab.Read">
+    <value>Lukea</value>
+  </data>
+  <data name="Tab.Write">
+    <value>Kirjoittaa</value>
+  </data>
+  <data name="Tab.Convert">
+    <value>Muuntaminen</value>
+  </data>
+  <data name="Tab.Visualize">
+    <value>Visualisointi</value>
+  </data>
+  <data name="Tab.Tools">
+    <value>Työkalut</value>
+  </data>
+  <data name="Common.Profile">
+    <value>Profiili</value>
+  </data>
+  <data name="Common.Reset">
+    <value>Nollaa</value>
+  </data>
+  <data name="Common.Copy">
+    <value>Kopioida</value>
+  </data>
+  <data name="Common.Modify">
+    <value>Muuttaa</value>
+  </data>
+  <data name="Common.Hide">
+    <value>Piilottaa</value>
+  </data>
+  <data name="Common.Console">
+    <value>Konsoli</value>
+  </data>
+  <data name="Common.Command">
+    <value>Komento</value>
+  </data>
+  <data name="Common.Advanced">
+    <value>Lisäasetukset</value>
+  </data>
+  <data name="Common.ExpertArguments">
+    <value>Asiantuntijan argumentit</value>
+  </data>
+  <data name="Read.ImageToCreate">
+    <value>Luotava kuva</value>
+  </data>
+  <data name="Read.Extension">
+    <value>Laajennus</value>
+  </data>
+  <data name="Read.RawScp">
+    <value>Raakakuva (SCP)</value>
+  </data>
+  <data name="Read.KnownFormat">
+    <value>Tunnettu levymuoto</value>
+  </data>
+  <data name="Read.FileName">
+    <value>Tiedostonimi</value>
+  </data>
+  <data name="Read.Folder">
+    <value>Kansio</value>
+  </data>
+  <data name="Read.Revolutions">
+    <value>Kierroksia kappaletta kohden</value>
+  </data>
+  <data name="Read.Retries">
+    <value>Uudelleenyritykset</value>
+  </data>
+  <data name="Read.Tracks">
+    <value>Telat/sivut</value>
+  </data>
+  <data name="Read.AutoNumber">
+    <value>Numeroi onnistuneet lukemat automaattisesti</value>
+  </data>
+  <data name="Read.Digits">
+    <value>Numerot</value>
+  </data>
+  <data name="Read.Letters">
+    <value>Kirjeitä</value>
+  </data>
+  <data name="Read.Next">
+    <value>Seuraavaksi:</value>
+  </data>
+  <data name="Read.OpenVisualize">
+    <value>Avaa Visualisoinnissa</value>
+  </data>
+  <data name="Read.ScpFinished">
+    <value>SCP -kaappaus on valmis. Voit analysoida sen keskeyttämättä työtäsi.</value>
+  </data>
+  <data name="Read.ScpSummaryTitle">
+    <value>Lopullinen SCP tulos:</value>
+  </data>
+  <data name="Read.ScpTracksSummary">
+    <value>Jäljet: {0} hyvä, {1} puuttuu tai virheellinen ({2} sylinteriä, {3} sivua).</value>
+  </data>
+  <data name="Read.ScpTechnicalSummary">
+    <value>Kierrokset: {0} · Resoluutio: {1} ns · Koko: {2:N0} tavua · Tarkistussumma: {3}.</value>
+  </data>
+  <data name="Read.ScpOutputFile">
+    <value>Tiedosto: {0}</value>
+  </data>
+  <data name="Read.ScpSummaryUnavailable">
+    <value>SCP yhteenveto ei saatavilla: {0}</value>
+  </data>
+  <data name="Read.ScpBannerSummary">
+    <value>{0} hyvät raidat · {1} puuttuu tai virheellinen · {2} sylinteriä · {3} sivua · {4} kierrosta · {5:N0} tavua · {6} tarkistussumma</value>
+  </data>
+  <data name="Status.FaceTrackProgress">
+    <value>Sivu {0}: raita {1} — {2}/{3}</value>
+  </data>
+  <data name="Write.Source">
+    <value>Lähdekuva</value>
+  </data>
+  <data name="Write.Detected">
+    <value>Havaittu muoto</value>
+  </data>
+  <data name="Write.ChooseImage">
+    <value>Valitse kuva.</value>
+  </data>
+  <data name="Write.NoVerify">
+    <value>Poista vahvistus käytöstä kirjoittamisen jälkeen</value>
+  </data>
+  <data name="Write.NoVerifyTip">
+    <value>Lisää --no-verify. Levyä ei lueta uudelleen kirjoittamisen vahvistamiseksi.</value>
+  </data>
+  <data name="Write.EraseEmpty">
+    <value>Poista tyhjät raidat</value>
+  </data>
+  <data name="Conversion.Source">
+    <value>Lähde</value>
+  </data>
+  <data name="Conversion.OutputNames">
+    <value>Tulosten nimet</value>
+  </data>
+  <data name="Conversion.AddTags">
+    <value>Lisää tunnisteita</value>
+  </data>
+  <data name="Conversion.Selected">
+    <value>Valittu</value>
+  </data>
+  <data name="Conversion.CommonFormats">
+    <value>Yleiset muodot</value>
+  </data>
+  <data name="Conversion.ShowRare">
+    <value>Näytä harvoin käytetyt muodot</value>
+  </data>
+  <data name="Conversion.LimitTracks">
+    <value>Rajoita kappaleita</value>
+  </data>
+  <data name="Visual.Decoder">
+    <value>Dekooderi</value>
+  </data>
+  <data name="Visual.LinkZoom">
+    <value>Linkin zoomaus</value>
+  </data>
+  <data name="Visual.OpenScp">
+    <value>Avaa tiedosto SCP…</value>
+  </data>
+  <data name="Visual.NoFile">
+    <value>Ei SCP tiedostoa auki</value>
+  </data>
+  <data name="Visual.Waiting">
+    <value>Odotetaan tiedostoa</value>
+  </data>
+  <data name="Visual.Inspector">
+    <value>Tarkastaja</value>
+  </data>
+  <data name="Visual.SelectTrack">
+    <value>Valitse kappale.</value>
+  </data>
+  <data name="Visual.Controls">
+    <value>Napsauta: valitse · Pyörä: zoomaus · Napsauta hiiren kakkospainikkeella: panoroi</value>
+  </data>
+  <data name="Visual.NormalFlux">
+    <value>Normaali virtaus</value>
+  </data>
+  <data name="Visual.ShortTransition">
+    <value>Lyhyt siirtymä</value>
+  </data>
+  <data name="Visual.LongTransition">
+    <value>Pitkä siirtymä/poikkeama</value>
+  </data>
+  <data name="Tools.Erase">
+    <value>Tyhjennä levy</value>
+  </data>
+  <data name="Tools.EraseWarning">
+    <value>Kaikki levyllä olevat tiedot tuhoutuvat.</value>
+  </data>
+  <data name="Tools.LimitTracks">
+    <value>Rajoita kappaleita</value>
+  </data>
+  <data name="Tools.Revolutions">
+    <value>Vallankumoukset</value>
+  </data>
+  <data name="Tools.Clean">
+    <value>Puhtaat päät</value>
+  </data>
+  <data name="Tools.CleanWarning">
+    <value>Aseta laitteeseen puhdistuslevy, älä koskaan tietoja sisältävää levyä.</value>
+  </data>
+  <data name="Tools.Cylinders">
+    <value>Sylinterit</value>
+  </data>
+  <data name="Tools.Passes">
+    <value>Passit</value>
+  </data>
+  <data name="Tools.Linger">
+    <value>Kesto sylinteriä kohden (ms)</value>
+  </data>
+  <data name="Status.Ready">
+    <value>GW GUI valmis.</value>
+  </data>
+  <data name="Status.DefaultProfile">
+    <value>Profiili: Oletus</value>
+  </data>
+  <data name="Common.ExpertArgumentsTip">
+    <value>Argumentit välitetään kirjoitettuna lainauksen vahvistamisen jälkeen.</value>
+  </data>
+  <data name="Profile.Default">
+    <value>Oletus</value>
+  </data>
+  <data name="Profile.SystemRename">
+    <value>Oletusprofiili on pysyvä, eikä sitä voi nimetä uudelleen.</value>
+  </data>
+  <data name="Profile.SystemDelete">
+    <value>Oletusprofiili on pysyvä, eikä sitä voi poistaa.</value>
+  </data>
+  <data name="Profile.DuplicateName">
+    <value>Tämän välilehden profiililla on jo tämä nimi.</value>
+  </data>
+  <data name="Profile.Replace">
+    <value>Tämä profiili on jo olemassa. Vaihda se?</value>
+  </data>
+  <data name="Options.ExecutableFilter">
+    <value>Greaseweazle (gw.exe)|gw.exe|Suoritettava (*.exe)|*.exe</value>
+  </data>
+  <data name="Options.RemoveHardware">
+    <value>Poistetaanko tämä tallennettu ohjain ja kaikki sen asemat?</value>
+  </data>
+  <data name="Options.HardwareTitle">
+    <value>Laitteisto</value>
+  </data>
+  <data name="Hardware.Description">
+    <value>{0}-tuumaa · {1} · valinta {2}{3}</value>
+  </data>
+  <data name="Tool.Field.Measurements">
+    <value>Mittausten lukumäärä</value>
+  </data>
+  <data name="Tool.Field.Cylinder">
+    <value>Sylinteri</value>
+  </data>
+  <data name="Tool.Field.Extreme">
+    <value>Salli äärimmäiset sylinterit</value>
+  </data>
+  <data name="Tool.Field.MotorOn">
+    <value>Pidä moottori aktiivisena</value>
+  </data>
+  <data name="Tool.Field.Pin">
+    <value>Pin (8, 26 tai 28)</value>
+  </data>
+  <data name="Tool.Field.SetPin">
+    <value>Vaihda pin</value>
+  </data>
+  <data name="Tool.Field.High">
+    <value>Korkea taso</value>
+  </data>
+  <data name="Tool.Field.Select">
+    <value>Valinta (µs)</value>
+  </data>
+  <data name="Tool.Field.Step">
+    <value>Pään askel (µs)</value>
+  </data>
+  <data name="Tool.Field.Settle">
+    <value>Settle (ms)</value>
+  </data>
+  <data name="Tool.Field.Motor">
+    <value>Moottori (ms)</value>
+  </data>
+  <data name="Tool.Field.Watchdog">
+    <value>Poista valinta automaattisesti (ms)</value>
+  </data>
+  <data name="Tool.Field.PreWrite">
+    <value>Ennen kirjoittamista (µs)</value>
+  </data>
+  <data name="Tool.Field.PostWrite">
+    <value>Kirjoittamisen jälkeen (µs)</value>
+  </data>
+  <data name="Tool.Field.IndexMask">
+    <value>Indeksimaski (µs)</value>
+  </data>
+  <data name="Tool.Field.Bootloader">
+    <value>Päivitä käynnistyslatain (riskillinen)</value>
+  </data>
+  <data name="Tool.BootloaderWarning">
+    <value>Käynnistyslataimen päivittäminen on edistynyt toiminto, joka voi tehdä ohjaimesta käyttökelvottoman, jos se keskeytyy. Jatkaa?</value>
+  </data>
+  <data name="Tool.ControllerFallback">
+    <value>Ohjain</value>
+  </data>
+  <data name="Tool.FirmwareUnknown">
+    <value>Tuntematon laiteohjelmisto</value>
+  </data>
+  <data name="Tool.PortUnknown">
+    <value>Tuntematon portti</value>
+  </data>
+  <data name="Tool.NetworkWarning">
+    <value>Paikalliset tiedot ovat voimassa; vain verkon tarkistus epäonnistui.</value>
+  </data>
+  <data name="Tool.Running">
+    <value>Komento käynnissä…</value>
+  </data>
+  <data name="Tool.Title.Info">
+    <value>Ohjaimen tiedot</value>
+  </data>
+  <data name="Tool.Title.Bandwidth">
+    <value>USB kaistanleveys</value>
+  </data>
+  <data name="Tool.Title.Rpm">
+    <value>Ajonopeus</value>
+  </data>
+  <data name="Tool.Title.Seek">
+    <value>Etsi päätä</value>
+  </data>
+  <data name="Tool.Title.Pin">
+    <value>Laitteistonastat</value>
+  </data>
+  <data name="Tool.Title.Reset">
+    <value>Nollaa ohjain</value>
+  </data>
+  <data name="Tool.Title.Delays">
+    <value>Viiveet</value>
+  </data>
+  <data name="Tool.Title.Update">
+    <value>Laiteohjelmisto</value>
+  </data>
+  <data name="Hardware.ScanTitle">
+    <value>Skannata</value>
+  </data>
+  <data name="Hardware.GwRequired">
+    <value>Valitse tai lataa ensin gw.exe alta.</value>
+  </data>
+  <data name="Profile.DeleteConfirm">
+    <value>Poistetaanko profiili "{0}"?</value>
+  </data>
+  <data name="Conversion.SourceRequired">
+    <value>Valitse olemassa oleva lähdekuva.</value>
+  </data>
+  <data name="Conversion.NameRequired">
+    <value>Syötä tulostetiedostojen nimet.</value>
+  </data>
+  <data name="Conversion.CheckOutput">
+    <value>Tarkista vähintään yksi tulostusmuoto.</value>
+  </data>
+  <data name="Conversion.More">
+    <value>(+ {0} tulos(ta))</value>
+  </data>
+  <data name="Read.ChooseType">
+    <value>Valitse kuvatyyppi</value>
+  </data>
+  <data name="Visual.Loading">
+    <value>Luetaan tiedostoa…</value>
+  </data>
+  <data name="Visual.Invalid">
+    <value>Virheellinen tiedosto</value>
+  </data>
+  <data name="Visual.Title">
+    <value>SCP visualisointi</value>
+  </data>
+  <data name="Visual.ChecksumValid">
+    <value>voimassa</value>
+  </data>
+  <data name="Visual.ChecksumInvalid">
+    <value>virheellinen</value>
+  </data>
+  <data name="Visual.Summary">
+    <value>SCP {0} · {1} raitaa · {2} kierrosta · {3} ns resoluutio · {4} tarkistussumma</value>
+  </data>
+  <data name="Visual.Revolution">
+    <value>Vallankumous {0}: {1:N0} siirtymiä · {2:F2} ms · {3:F2} RPM</value>
+  </data>
+  <data name="Visual.Analysis">
+    <value>Dekoodaus: {0}
+Luottamus: {1:P0}
+Arvioitu solu: {2:F1} rastia
+Rakenteet: {3}</value>
+  </data>
+  <data name="Visual.Track">
+    <value>Sivu: {0}
+Kappale: {1}
+SCP merkintä: {2}</value>
+  </data>
+  <data name="Visual.SideNoData">
+    <value>Sivu {0}
+Ei dataa</value>
+  </data>
+  <data name="Visual.TrackTooltip">
+    <value>Sivu {0} · Raita {1}
+{2} kierrosta</value>
+  </data>
+  <data name="Conversion.DefaultExtensionTip">
+    <value>Laajennuksia ei ole tarkistettu: {0} on oletuksena käytössä.</value>
+  </data>
+  <data name="Operation.StopTitle">
+    <value>Lopeta toiminta</value>
+  </data>
+  <data name="Operation.StopConfirm">
+    <value>Lopetetaanko nykyinen Greaseweazle-toiminto?</value>
+  </data>
+  <data name="Operation.Busy">
+    <value>Greaseweazle-komento on jo käynnissä. Odota sen päättymistä tai pysäytä se ennen tämän työkalun avaamista.</value>
+  </data>
+  <data name="Status.Profile">
+    <value>Profiili: {0}</value>
+  </data>
+  <data name="Status.TrackProgress">
+    <value>Raita {0}, sivu {1} — {2}/{3}</value>
+  </data>
+  <data name="Status.TrackUnknown">
+    <value>Raita {0}, sivu {1} — {2} käsitelty</value>
+  </data>
+  <data name="HostTools.Detect">
+    <value>Etsi gw.exe</value>
+  </data>
+  <data name="HostTools.Check">
+    <value>Tarkista päivitykset</value>
+  </data>
+  <data name="HostTools.Download">
+    <value>Lataa uusin versio</value>
+  </data>
+  <data name="HostTools.Rollback">
+    <value>Käytä edellistä polkua</value>
+  </data>
+  <data name="HostTools.None">
+    <value>Asennusta ei havaittu.</value>
+  </data>
+  <data name="HostTools.Detected">
+    <value>Havaittu: {0}</value>
+  </data>
+  <data name="HostTools.Latest">
+    <value>Viimeisin saatavilla oleva versio: {0}</value>
+  </data>
+  <data name="HostTools.Installed">
+    <value>Versio {0} asennettu.</value>
+  </data>
+  <data name="HostTools.DownloadConfirm">
+    <value>Lataa ja asenna Greaseweazle Host Tools {0} Windows x64:lle?</value>
+  </data>
+  <data name="HostTools.Title">
+    <value>Greaseweazle Isäntätyökalut</value>
+  </data>
+  <data name="HostTools.NoPrevious">
+    <value>Kelvollista aiempaa polkua ei ole tallennettu.</value>
+  </data>
+  <data name="HostTools.UpdateAvailable">
+    <value>Isäntätyökalut {0} saatavilla</value>
+  </data>
+  <data name="Advanced.SeekRetries">
+    <value>Etsi uudelleenyrityksiä</value>
+  </data>
+  <data name="Advanced.FakeIndex">
+    <value>Väärä indeksi</value>
+  </data>
+  <data name="Advanced.HardSectors">
+    <value>Kovat sektorit</value>
+  </data>
+  <data name="Advanced.Reverse">
+    <value>Reverse track data</value>
+  </data>
+  <data name="Advanced.AdjustSpeed">
+    <value>Säädä nopeutta</value>
+  </data>
+  <data name="Advanced.Pll">
+    <value>PLL ohitus</value>
+  </data>
+  <data name="Advanced.DensityPin">
+    <value>Tiheystappi 2</value>
+  </data>
+  <data name="Advanced.Tg43">
+    <value>Luo TG43</value>
+  </data>
+  <data name="Advanced.PreErase">
+    <value>Esipyyhi raidat</value>
+  </data>
+  <data name="Advanced.Precomp">
+    <value>Kirjoita ennakkokorvaus</value>
+  </data>
+  <data name="Advanced.OutputTracks">
+    <value>Tulostusraidat</value>
+  </data>
+  <data name="Detection.Ambiguous">
+    <value>Epäselvä muoto</value>
+  </data>
+  <data name="Detection.RawScp">
+    <value>Raaka SCP -kaappaus tunnistettu.</value>
+  </data>
+  <data name="Detection.AmigaSize">
+    <value>Amiga-muoto tunnistetaan tiedostokoosta.</value>
+  </data>
+  <data name="Detection.AcornSize">
+    <value>Acorn-muoto tunnistetaan tiedostokoosta.</value>
+  </data>
+  <data name="Detection.AtariUnknownSize">
+    <value>Koko ei vastaa tunnettua Atari ST-profiilia.</value>
+  </data>
+  <data name="Detection.AtariSize">
+    <value>Atari ST geometria tunnistettu tiedoston koosta.</value>
+  </data>
+  <data name="Detection.MsaInferred">
+    <value>Atari MSA kontti tunnistettu; vahvista geometria tarvittaessa.</value>
+  </data>
+  <data name="Detection.IbmAmbiguous">
+    <value>Laajennus ei yksin voi määrittää IBM PC-geometriaa.</value>
+  </data>
+  <data name="Detection.IbmSize">
+    <value>IBM PC geometria tunnistettu tiedoston koosta.</value>
+  </data>
+  <data name="Detection.ExtensionInferred">
+    <value>Laajennuksesta päätelty muoto.</value>
+  </data>
+  <data name="Detection.Multiple">
+    <value>Useat formaatit ovat mahdollisia; valitse yksi selkeästi.</value>
+  </data>
+  <data name="Advanced.DiskDefs">
+    <value>Mukautetut levymääritykset</value>
+  </data>
+  <data name="Advanced.DiskDefsFilter">
+    <value>Greaseweazle levymääritykset (*.cfg)|*.cfg|Kaikki tiedostot|*.*</value>
+  </data>
+  <data name="Advanced.DiskDefsMissing">
+    <value>Valittua levynmääritystiedostoa ei ole olemassa.</value>
+  </data>
+  <data name="Common.Export">
+    <value>Viedä</value>
+  </data>
+  <data name="Logs.ExportFilter">
+    <value>Tekstiloki (*.txt)|*.txt|Kaikki tiedostot|*.*</value>
+  </data>
+  <data name="Logs.History">
+    <value>Toimintahistoria</value>
+  </data>
+  <data name="Format.raw.scp">
+    <value>Raaka vuokuva</value>
+  </data>
+  <data name="Format.amiga.amigados">
+    <value>AmigaDOS — 880 KiB</value>
+  </data>
+  <data name="Format.amiga.amigados_hd">
+    <value>AmigaDOS HD - 1,76 MiB</value>
+  </data>
+  <data name="Format.atarist.360">
+    <value>Atari ST - 360 KiB</value>
+  </data>
+  <data name="Format.atarist.400">
+    <value>Atari ST - 400 KiB</value>
+  </data>
+  <data name="Format.atarist.440">
+    <value>Atari ST - 440 KiB</value>
+  </data>
+  <data name="Format.atarist.720">
+    <value>Atari ST - 720 KiB</value>
+  </data>
+  <data name="Format.atarist.800">
+    <value>Atari ST - 800 KiB</value>
+  </data>
+  <data name="Format.atarist.880">
+    <value>Atari ST — 880 KiB</value>
+  </data>
+  <data name="Format.ibm.160">
+    <value>IBM PC - 160 KiB</value>
+  </data>
+  <data name="Format.ibm.180">
+    <value>IBM PC - 180 KiB</value>
+  </data>
+  <data name="Format.ibm.320">
+    <value>IBM PC — 320 KiB</value>
+  </data>
+  <data name="Format.ibm.360">
+    <value>IBM PC - 360 KiB</value>
+  </data>
+  <data name="Format.ibm.720">
+    <value>IBM PC - 720 KiB</value>
+  </data>
+  <data name="Format.ibm.800">
+    <value>IBM PC - 800 KiB</value>
+  </data>
+  <data name="Format.ibm.1200">
+    <value>IBM PC – 1,2 MiB</value>
+  </data>
+  <data name="Format.ibm.1440">
+    <value>IBM PC - 1,44 MiB</value>
+  </data>
+  <data name="Format.ibm.1680">
+    <value>IBM PC – 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.dmf">
+    <value>IBM PC – DMF 1,68 MiB</value>
+  </data>
+  <data name="Format.ibm.2880">
+    <value>IBM PC - 2,88 MiB</value>
+  </data>
+  <data name="Format.ibm.scan">
+    <value>IBM PC — FM/MFM skannaus</value>
+  </data>
+  <data name="Format.commodore.1541">
+    <value>Commodore 64 - 1541</value>
+  </data>
+  <data name="Format.acorn.adfs.800">
+    <value>Acorn ADFS – 800 KiB</value>
+  </data>
+  <data name="Format.raw.hfe">
+    <value>HxC vuokuva</value>
+  </data>
+  <data name="Extension.ima">
+    <value>IMA levykuva</value>
+  </data>
+  <data name="Extension.img">
+    <value>IMG levykuva</value>
+  </data>
+  <data name="Extension.scp">
+    <value>SuperCard Pro</value>
+  </data>
+  <data name="Extension.adf.amiga">
+    <value>Amiga Levytiedosto</value>
+  </data>
+  <data name="Extension.adf.acorn">
+    <value>Acorn Levytiedosto</value>
+  </data>
+  <data name="Extension.st">
+    <value>Atari ST kuva</value>
+  </data>
+  <data name="Extension.msa">
+    <value>Magic Shadow Archiver</value>
+  </data>
+  <data name="Extension.d64">
+    <value>Commodore D64 kuva</value>
+  </data>
+  <data name="Extension.hfe">
+    <value>HxC Levykeemulaattori</value>
+  </data>
+  <data name="About.Description">
+    <value>Moderni Windows-käyttöliittymä levykkeiden lukemiseen, kirjoittamiseen, muuntamiseen ja tarkastamiseen Greaseweazle:lla.</value>
+  </data>
+  <data name="About.License">
+    <value>Avoimen lähdekoodin ohjelmisto — MIT Lisenssi</value>
+  </data>
+  <data name="About.Version">
+    <value>Versio {0}</value>
+  </data>
+  <data name="Visual.Automatic">
+    <value>Automaattinen</value>
+  </data>
+  <data name="Visual.StructureHeader">
+    <value>Otsikko/osoite</value>
+  </data>
+  <data name="Visual.StructureData">
+    <value>Dekoodattu data</value>
+  </data>
+  <data name="Visual.StructureAnomaly">
+    <value>Poistettu/poikkeama</value>
+  </data>
+  <data name="Visual.AnalysedRevolution">
+    <value>Analyysi perustuu vallankumoukseen {0}.</value>
+  </data>
+  <data name="Options.UseConversionTags">
+    <value>Käytä tunnisteita muunnostiedostojen nimissä</value>
+  </data>
+  <data name="Options.TagPreset">
+    <value>Esiasetettu</value>
+  </data>
+  <data name="Options.TagPresetFamily">
+    <value>Vain perhe</value>
+  </data>
+  <data name="Options.TagPresetFormat">
+    <value>Vain muoto</value>
+  </data>
+  <data name="Options.TagPresetFamilyFormat">
+    <value>Perhe ja muoto</value>
+  </data>
+  <data name="Options.TagPresetFamilyExtension">
+    <value>Perhe ja laajennus</value>
+  </data>
+  <data name="Options.TagPresetDetailed">
+    <value>Perhe, muoto ja laajennus</value>
+  </data>
+  <data name="Options.TagPattern">
+    <value>Tulostagin malli</value>
+  </data>
+  <data name="Options.TagVariablesTitle">
+    <value>Saatavilla olevat muuttujat</value>
+  </data>
+  <data name="Options.TagVariableName">
+    <value>Lähdetiedoston nimi</value>
+  </data>
+  <data name="Options.TagVariableFamily">
+    <value>Perhe: PC, ST, AMIGA…</value>
+  </data>
+  <data name="Options.TagVariableFormat">
+    <value>Muoto: 720, 1440, DD…</value>
+  </data>
+  <data name="Options.TagVariableExtension">
+    <value>Laajennus: IMA, ST, ADF…</value>
+  </data>
+  <data name="Options.TagVariableDateIso">
+    <value>Päivämäärä: 2026-08-06</value>
+  </data>
+  <data name="Options.TagVariableDateCompact">
+    <value>Päivämäärä: 20260806</value>
+  </data>
+  <data name="Options.TagVariableDateLocal">
+    <value>Päivämäärä: 06-08-2026</value>
+  </data>
+  <data name="Options.TagVariableTimeFull">
+    <value>Aika: 14-35-42</value>
+  </data>
+  <data name="Options.TagVariableTimeCompact">
+    <value>Aika: 143542</value>
+  </data>
+  <data name="Options.TagVariableTimeShort">
+    <value>Aika: 14-35</value>
+  </data>
+  <data name="Options.TagPatternHelp">
+    <value>{NAME} - lähdetiedoston nimi
+{FAMILY} — koneperhe (PC, ST, AMIGA…)
+{FORMAT} — muoto tai geometria (720, 1440, DD…)
+{EXTENSION} — lähtölaajennus (IMA, ST, ADF…)
+{DATE:YYYY-MM-DD} — päivämäärä 2026-08-06
+{DATE:YYYYMMDD} - päivämäärä 20260806
+{DATE:DD-MM-YYYY} — päivämäärä 06-08-2026
+{TIME:HH-MM-SS} — aika 14-35-42
+{TIME:HHMMSS} — aika 143542
+{TIME:HH-MM} — aika 14-35</value>
+  </data>
+  <data name="Options.RecentTagPatterns">
+    <value>Viimeaikaiset mukautetut kuviot</value>
+  </data>
+  <data name="Options.NextTagExample">
+    <value>Seuraava esimerkki</value>
+  </data>
+  <data name="Options.NextTagExampleIcon">
+    <value>↻</value>
+  </data>
+  <data name="Error.Title">
+    <value>GW GUI virhe</value>
+  </data>
+  <data name="Error.Unexpected">
+    <value>Odottamaton virhe havaittiin.
+
+{0}</value>
+  </data>
+  <data name="Error.SaveFailed">
+    <value>Asetuksia ei voitu tallentaa. Ikkuna sulkeutuu silti.
+
+{0}</value>
+  </data>
+  <data name="Error.LogSaved">
+    <value>Koko raportti tallennettiin osoitteeseen:
+{0}</value>
+  </data>
+  <data name="Options.TagPatternPreview">
+    <value>Esimerkki: {0}</value>
+  </data>
+  <data name="Options.TagPatternInvalid">
+    <value>Tunnistemallin tulee sisältää {tag}.</value>
+  </data>
+  <data name="Visual.BitOffset">
+    <value>bitti {0:N0}</value>
+  </data>
+  <data name="Visual.SectorDetail">
+    <value>Sektori C{0} H{1} R{2} · {3} tavua · {4} {5}</value>
+  </data>
+  <data name="Visual.CrcValid">
+    <value>voimassa</value>
+  </data>
+  <data name="Visual.CrcInvalid">
+    <value>virheellinen</value>
+  </data>
+  <data name="Visual.IntegrityUnavailable">
+    <value>ei ole saatavilla</value>
+  </data>
+  <data name="Visual.DecoderName.iso.mfm">
+    <value>ISO MFM (Atari ST / IBM PC)</value>
+  </data>
+  <data name="Visual.DecoderName.iso.fm">
+    <value>ISO FM (yksi tiheys)</value>
+  </data>
+  <data name="Visual.DecoderName.amiga.mfm">
+    <value>Amiga MFM</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.gcr">
+    <value>Apple II GCR</value>
+  </data>
+  <data name="Visual.DecoderName.applemac.gcr">
+    <value>Apple Macintosh GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore.gcr">
+    <value>Commodore GCR</value>
+  </data>
+  <data name="Visual.DecoderName.membrain.mfm">
+    <value>Membrain MFM</value>
+  </data>
+  <data name="Visual.DecoderName.aed6200p.mfm">
+    <value>AED 6200P MFM</value>
+  </data>
+  <data name="Visual.DecoderName.qdmo5.mfm">
+    <value>QD MO5 MFM</value>
+  </data>
+  <data name="Visual.DecoderName.centurion.mfm">
+    <value>Centurion MFM</value>
+  </data>
+  <data name="Visual.DecoderName.northstar.mfm">
+    <value>NorthStar kovasektori MFM</value>
+  </data>
+  <data name="Visual.DecoderName.heathkit.fm">
+    <value>Heathkit kovasektori FM</value>
+  </data>
+  <data name="Visual.DecoderName.micraln.fm">
+    <value>Micral N kovasektori FM</value>
+  </data>
+  <data name="Visual.DecoderName.emu.fm">
+    <value>E-mu Emulator FM</value>
+  </data>
+  <data name="Visual.DecoderName.tycom.fm">
+    <value>TYCOM FM</value>
+  </data>
+  <data name="Visual.DecoderName.dec.rx02">
+    <value>DEC RX02 M²FM</value>
+  </data>
+  <data name="Visual.DecoderName.arburg">
+    <value>Arburg järjestelmä/tiedot</value>
+  </data>
+  <data name="Visual.DecoderName.victor9k.gcr">
+    <value>Victor 9000 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.raw">
+    <value>Raaka juoksutusaine</value>
+  </data>
+  <data name="Visual.StructureKind.Sync">
+    <value>Synkronointi</value>
+  </data>
+  <data name="Visual.StructureKind.IdAddressMark">
+    <value>Sektorin otsikko</value>
+  </data>
+  <data name="Visual.StructureKind.DataAddressMark">
+    <value>Sektoritiedot</value>
+  </data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark">
+    <value>Poistettu sektoritiedot</value>
+  </data>
+  <data name="Visual.StructureKind.AmigaSync">
+    <value>Amiga synkronointi</value>
+  </data>
+  <data name="Visual.StructureKind.AppleAddress">
+    <value>Applen osoiteprologi</value>
+  </data>
+  <data name="Visual.StructureKind.AppleData">
+    <value>Applen data-prologi</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreSync">
+    <value>Commodore synkronointi</value>
+  </data>
+  <data name="Visual.StructureKind.CommodoreHeader">
+    <value>Commodore otsikko</value>
+  </data>
+  <data name="Visual.StructureKind.FormatHeader">
+    <value>Muotoile otsikko</value>
+  </data>
+  <data name="Visual.StructureKind.FormatData">
+    <value>Muotoile tiedot</value>
+  </data>
+  <data name="Visual.StructureKind.TimingAnomaly">
+    <value>Ajoituspoikkeama</value>
+  </data>
+  <data name="Tool.InvalidParameters">
+    <value>Virheelliset parametrit</value>
+  </data>
+  <data name="Tool.InvalidParametersHelp">
+    <value>Tarkista korostetut komentoparametrit ennen suorittamista.</value>
+  </data>
+  <data name="Advanced.Invalid">
+    <value>Lisäasetus on virheellinen: {0}</value>
+  </data>
+  <data name="Operation.Error">
+    <value>Virhe: {0}</value>
+  </data>
+  <data name="Read.DestinationFolder">
+    <value>Kohdekansio</value>
+  </data>
+  <data name="Status.ReadyShort">
+    <value>Valmis</value>
+  </data>
+  <data name="Status.Running">
+    <value>Juoksemassa</value>
+  </data>
+  <data name="Status.Success">
+    <value>Menestys</value>
+  </data>
+  <data name="Status.Error">
+    <value>Virhe</value>
+  </data>
+  <data name="Status.Cancelled">
+    <value>Peruutettu</value>
+  </data>
+  <data name="Tool.BootloaderTitle">
+    <value>Bootloader-tila</value>
+  </data>
+  <data name="Advanced.TrackSpecTip">
+    <value>Raidan määritykset, esimerkiksi c=0-79:h=0-1, c=0-79/2:h=0 tai c=0-79:h=0-1:hswap.</value>
+  </data>
+  <data name="Advanced.SpeedTip">
+    <value>Positiivinen nopeus tai jakso, esimerkiksi 300 rpm, 200 ms, 200000us tai 200000000ns.</value>
+  </data>
+  <data name="Advanced.PllTip">
+    <value>PLL parametrit erotettuina kaksoispisteillä, esimerkiksi period=5:phase=60 tai period=5:phase=60:lowpass=2.</value>
+  </data>
+  <data name="Advanced.PrecompTip">
+    <value>Kirjoita ennakkokompensaatio, esimerkiksi type=mfm:40=125. Tyypit: mfm, fm, gcr; arvot ovat nanosekunteina.</value>
+  </data>
+  <data name="Advanced.DiskDefsTip">
+    <value>Käytä mukautettua diskdefs.cfg-tiedostoa Greaseweazle-muotomääritelmien lisäämiseen tai ohittamiseen.</value>
+  </data>
+  <data name="Common.DiskImageFilter">
+    <value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.ima;*.img;*.hfe;*.d64|Kaikki tiedostot|*.*</value>
+  </data>
+  <data name="Visual.OpenFilter">
+    <value>SuperCard Pro sieppaus (*.scp)|*.scp|Kaikki tiedostot|*.*</value>
+  </data>
+  <data name="Conversion.Incompatible">
+    <value>{0} ei ole yhteensopiva tämän lähteen kanssa.</value>
+  </data>
+  <data name="Advanced.RevsTip">
+    <value>--revs: Raitaa kohti luettujen kierrosten määrä. Esimerkki: --revs 5.</value>
+  </data>
+  <data name="Advanced.RetriesTip">
+    <value>--retries: Lisäyritykset virheen jälkeen. Esimerkki: --retries 3.</value>
+  </data>
+  <data name="Advanced.TracksTip">
+    <value>--tracks: Rajoita sylintereitä, päitä tai astumista. Esimerkki: --tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Advanced.SeekRetriesTip">
+    <value>--seek-retries: Lisäyritykset pään siirron jälkeen. Esimerkki: --seek-retries 2.</value>
+  </data>
+  <data name="Advanced.FakeIndexTip">
+    <value>--fake-index: Luo ajastettu indeksi asemalle, jossa ei ole indeksisignaalia. Esimerkki: --fake-index 300 rpm.</value>
+  </data>
+  <data name="Advanced.HardSectorsTip">
+    <value>--hard-sectors: Käsittele kovalevyä. Ei yhteensopiva --fake-index:n kanssa.</value>
+  </data>
+  <data name="Advanced.ReverseTip">
+    <value>--reverse: Käänteiset raidat flippy-mediaa tai johdotusta varten.</value>
+  </data>
+  <data name="Advanced.AdjustSpeedTip">
+    <value>--adjust-speed: Skaalaa tietojen ajoitus uudelleen. Esimerkki: --adjust-speed 300 rpm.</value>
+  </data>
+  <data name="Advanced.PllOptionTip">
+    <value>--pll: Määritä kellon palautussilmukka. Esimerkki: --pll period=5:phase=60.</value>
+  </data>
+  <data name="Advanced.DenselTip">
+    <value>--densel: Pakota tiheyden valintanasta korkeaksi tai matalaksi. Esimerkki: --densel H.</value>
+  </data>
+  <data name="Advanced.Tg43Tip">
+    <value>--gen-tg43: Luo signaali TG43 sitä vaativille asemille. Ei yhteensopiva --densel:n kanssa.</value>
+  </data>
+  <data name="Advanced.EraseEmptyTip">
+    <value>--erase-empty: Poista raidat, joille lähdekuva ei sisällä tietoja.</value>
+  </data>
+  <data name="Advanced.PreEraseTip">
+    <value>--pre-erase: Pyyhi jokainen raita ennen sen kirjoittamista.</value>
+  </data>
+  <data name="Advanced.PrecompOptionTip">
+    <value>--precomp: Käytä kirjoitusennakkokompensaatiota. Esimerkki: --precomp type=mfm:40=125.</value>
+  </data>
+  <data name="Advanced.OutputTracksTip">
+    <value>--out-tracks: Yhdistä raidat tulostekuvassa. Esimerkki: --out-tracks c=0-79:h=0-1.</value>
+  </data>
+  <data name="Menu.Align">
+    <value>Ajolinjaus…</value>
+  </data>
+  <data name="Tool.Title.Align">
+    <value>Ajosuuntauksen diagnostiikka</value>
+  </data>
+  <data name="Tool.Field.AlignTracks">
+    <value>Vaihtelevat kappaleet (pakollinen)</value>
+  </data>
+  <data name="Tool.Field.AlignReads">
+    <value>Lukemien määrä</value>
+  </data>
+  <data name="Tool.Field.AlignFormat">
+    <value>Dekoodausmuoto</value>
+  </data>
+  <data name="Tool.Field.AlignRaw">
+    <value>Lue raakavirta (--raw)</value>
+  </data>
+  <data name="Visual.Integrity.Crc">
+    <value>CRC</value>
+  </data>
+  <data name="Visual.Integrity.Checksum">
+    <value>Tarkistussumma</value>
+  </data>
+  <data name="Visual.Side">
+    <value>Sivu {0}</value>
+  </data>
+  <data name="Hardware.StartupTitle">
+    <value>Laitteiston tarkistus</value>
+  </data>
+  <data name="Hardware.StartupMissing">
+    <value>Konfiguroitua laitteistoa ei löytynyt</value>
+  </data>
+  <data name="Hardware.StartupExplanation">
+    <value>Määritykset säilytetään, mutta sen asemat eivät ole käytettävissä, kunnes niiden Greaseweazle löydetään uudelleen.</value>
+  </data>
+  <data name="Hardware.StartupMissingList">
+    <value>Puuttuu Greaseweazle ohjainta</value>
+  </data>
+  <data name="Hardware.StartupRetry">
+    <value>Etsi uudelleen</value>
+  </data>
+  <data name="Hardware.StartupSettings">
+    <value>Laitteiston asetukset</value>
+  </data>
+  <data name="Hardware.StartupContinue">
+    <value>Jatka ilman tätä asemaa</value>
+  </data>
+  <data name="Hardware.StartupCheckFailed">
+    <value>Laitteiston tarkistus epäonnistui: {0}</value>
+  </data>
+  <data name="Hardware.NewDetectedTitle">
+    <value>Uusi Greaseweazle havaittu</value>
+  </data>
+  <data name="Hardware.NewDetected">
+    <value>{0} havaittiin {1}. Haluatko määrittää sen aseman nyt?</value>
+  </data>
+  <data name="Hardware.ConfigurationState">
+    <value>Kokoonpano</value>
+  </data>
+  <data name="Hardware.Configured">
+    <value>Määritetty</value>
+  </data>
+  <data name="Hardware.NotConfiguredState">
+    <value>Havaittu, ei määritetty</value>
+  </data>
+  <data name="Hardware.Configure">
+    <value>Määritä</value>
+  </data>
+  <data name="Hardware.ReaderNumber">
+    <value>Aja {0}</value>
+  </data>
+  <data name="Hardware.DriveChoice">
+    <value>Asema {0} · {1}″ · {2} · {3}</value>
+  </data>
+  <data name="Hardware.Forget">
+    <value>Unohtaa</value>
+  </data>
+  <data name="Hardware.ForgetConfirm">
+    <value>Haluatko todella unohtaa tämän aseman tai laitteen?</value>
+  </data>
+  <data name="Hardware.ForgetLastConfirm">
+    <value>Tämä on viimeinen määritetty asema tälle Greaseweazle. Haluatko unohtaa sekä aseman että Greaseweazle?</value>
+  </data>
+  <data name="Hardware.SelectController">
+    <value>Valitse ensin rivi, joka kuuluu asiaan Greaseweazle.</value>
+  </data>
+  <data name="Hardware.MaximumDrives">
+    <value>Tälle Greaseweazle:lle (A ja B) voidaan määrittää automaattisesti enintään kaksi asemaa.</value>
+  </data>
+  <data name="Common.SaveIcon">
+    <value>💾</value>
+  </data>
+  <data name="Common.TrashIcon">
+    <value>🗑</value>
+  </data>
+  <data name="Visual.AnalysingTrack">
+    <value>Analysoidaan raitaa {0}/{1}…</value>
+  </data>
+  <data name="Visual.SideLabel">
+    <value>Sivu</value>
+  </data>
+  <data name="Visual.TrackLabel">
+    <value>Seurata</value>
+  </data>
+  <data name="Visual.ScpEntryLabel">
+    <value>SCP merkintä</value>
+  </data>
+  <data name="Visual.RevolutionsTitle">
+    <value>Vallankumoukset</value>
+  </data>
+  <data name="Visual.AnalysisTitle">
+    <value>Analyysi</value>
+  </data>
+  <data name="Visual.ConfidenceLabel">
+    <value>Luottamus</value>
+  </data>
+  <data name="Visual.CellLabel">
+    <value>Arvioitu solu</value>
+  </data>
+  <data name="Visual.StructuresLabel">
+    <value>Rakenteet</value>
+  </data>
+  <data name="Visual.StructuresTitle">
+    <value>Havaittuja rakenteita</value>
+  </data>
+  <data name="Visual.SectorsTitle">
+    <value>Sektorit</value>
+  </data>
+  <data name="Visual.TransitionsUnit">
+    <value>siirtymät</value>
+  </data>
+  <data name="Visual.NumberPrefix">
+    <value>#</value>
+  </data>
+  <data name="Visual.ValueSeparator">
+    <value>·</value>
+  </data>
+  <data name="Icon.Save">
+    <value></value>
+  </data>
+  <data name="Icon.Reset">
+    <value></value>
+  </data>
+  <data name="Icon.Copy">
+    <value></value>
+  </data>
+  <data name="Icon.Console">
+    <value></value>
+  </data>
+  <data name="Terminal.Prompt">
+    <value>&gt;</value>
+  </data>
+  <data name="Options.EnableLogs">
+    <value>Tallenna lokit</value>
+  </data>
+  <data name="Options.Logs">
+    <value>Lokit</value>
+  </data>
+  <data name="Options.LogsDescription">
+    <value>Jokaisella toiminnolla on oma tiedostonsa GW GUI Lokit -kansiossa.</value>
+  </data>
+  <data name="Options.LogActionErase">
+    <value>Poista</value>
+  </data>
+  <data name="Options.LogActionClean">
+    <value>Puhtaat päät</value>
+  </data>
+  <data name="Options.OpenLogsFolder">
+    <value>Avaa kansio</value>
+  </data>
+  <data name="Options.LogMaximumSize">
+    <value>Suurin koko</value>
+  </data>
+  <data name="Options.Kilobytes">
+    <value>KiB</value>
+  </data>
+  <data name="Options.KeepLogArchives">
+    <value>Säilytä aiemmat lokit</value>
+  </data>
+  <data name="Options.LogUnlimitedHint">
+    <value>0 = rajoittamaton</value>
+  </data>
+  <data name="Read.CancelledFileDeleted">
+    <value>Luku peruutettu: Epätäydellinen tiedosto poistettiin: {0}</value>
+  </data>
+  <data name="Read.CancelledFileDeleteFailed">
+    <value>Luku peruutettu, mutta keskeneräistä tiedostoa ei voitu poistaa: {0} — {1}</value>
+  </data>
+  <data name="Write.VisualizeTracks">
+    <value>Visualisoi jäljet</value>
+  </data>
+  <data name="Write.VisualizeFormatRequired">
+    <value>Valitse levyn muoto ennen sen kappaleiden visualisointia.</value>
+  </data>
+  <data name="Conversion.NoAvailableOutputName">
+    <value>Tulostetiedoston nimeä ei löytynyt.</value>
+  </data>
+</root>
