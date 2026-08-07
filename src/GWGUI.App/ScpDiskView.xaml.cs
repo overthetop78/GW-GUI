@@ -26,7 +26,7 @@ public partial class ScpDiskView : UserControl
     public ScpDiskView() : this(new SkiaScpRenderer()) { }
     internal ScpDiskView(IScpRenderer renderer) { _renderer = renderer; InitializeComponent(); }
     public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; _renderer.ClearCache(); ResetView(); }
-    public async Task PrepareAsync(IProgress<int>? progress = null, CancellationToken cancellationToken = default)
+    public async Task PrepareAsync(IProgress<ScpTrackPreparation>? progress = null, CancellationToken cancellationToken = default)
     {
         if (_image is null) return;
         await _renderer.PrepareAsync(_image, _head, progress, cancellationToken);

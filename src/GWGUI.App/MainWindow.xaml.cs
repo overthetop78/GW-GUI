@@ -26,6 +26,7 @@ using GWGUI.Infrastructure.Hardware;
 using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
 using GWGUI.App.Controls;
+using GWGUI.App.Rendering;
 
 namespace GWGUI.App;
 
@@ -342,14 +343,14 @@ public partial class MainWindow : Window
             var view = head == 0 ? ScpSide0 : ScpSide1;
             var strip = head == 0 ? Face0TrackProgress : Face1TrackProgress;
             var cylinders = cylindersByHead[head];
-            var progress = new Progress<int>(value =>
+            var progress = new Progress<ScpTrackPreparation>(preparation =>
             {
                 if (cancellationToken.IsCancellationRequested) return;
-                completedByHead[head] = value;
+                var value = ++completedByHead[head];
                 var current = Math.Min(total, completedByHead.Values.Sum());
                 for (var index = 0; index < Math.Min(value, cylinders.Count); index++) strip.SetState(cylinders[index], TrackSegmentState.Success);
                 if (value < cylinders.Count) strip.SetActive(cylinders[value]); else strip.ClearActive();
-                VisualizerTrackOverview.MarkPrepared(head, value);
+                VisualizerTrackOverview.MarkPrepared(preparation);
                 _viewModel.ProgressText = LocExtension.Get("Visual.AnalysingTrack", current, total);
                 view.RefreshPreparedTracks();
             });

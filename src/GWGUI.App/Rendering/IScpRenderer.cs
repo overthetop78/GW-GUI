@@ -14,10 +14,22 @@ public sealed record ScpRenderRequest(
     string EmptySideText,
     string SideText);
 
+public enum ScpTrackVisualState
+{
+    NormalFlux,
+    ShortTransition,
+    LongTransition,
+    Header,
+    DecodedData,
+    Anomaly
+}
+
+public sealed record ScpTrackPreparation(int Cylinder, int Head, ScpTrackVisualState State);
+
 public interface IScpRenderer
 {
     string? DecoderId { get; set; }
     void ClearCache();
-    Task PrepareAsync(ScpImage image, int head, IProgress<int>? progress = null, CancellationToken cancellationToken = default);
+    Task PrepareAsync(ScpImage image, int head, IProgress<ScpTrackPreparation>? progress = null, CancellationToken cancellationToken = default);
     void Render(SKCanvas canvas, ScpRenderRequest request);
 }

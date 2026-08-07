@@ -55,15 +55,35 @@ public sealed class CoreTests
         var track = new ScpTrack(0, 0, 0, [revolution]);
         var image = new ScpImage(new ScpHeader(0x24, 0, 1, 0, 0, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
         IScpRenderer renderer = new SkiaScpRenderer { DecoderId = "raw" };
+        var preparations = new List<ScpTrackPreparation>();
         using var bitmap = new SKBitmap(256, 256);
         using var canvas = new SKCanvas(bitmap);
 
-        await renderer.PrepareAsync(image, 0);
+        await renderer.PrepareAsync(image, 0, new ImmediateProgress<ScpTrackPreparation>(preparations.Add));
         renderer.Render(canvas, new ScpRenderRequest(image, 0, track, 256, 256, new SKPoint(128, 128), 1, "No data", "Side 0"));
 
         Assert.NotEqual(SKColors.Transparent, bitmap.GetPixel(128, 20));
         Assert.NotEqual(new SKColor(7, 10, 14), bitmap.GetPixel(128, 20));
+        var preparation = Assert.Single(preparations);
+        Assert.Equal(0, preparation.Cylinder);
+        Assert.Equal(0, preparation.Head);
+        Assert.Equal(ScpTrackVisualState.NormalFlux, preparation.State);
         renderer.ClearCache();
+    }
+
+    [Fact]
+    public async Task ScpRendererReportsAnomalyForTrackWithoutFlux()
+    {
+        var track = new ScpTrack(8, 4, 0, []);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 8, 8, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
+        IScpRenderer renderer = new SkiaScpRenderer();
+        var preparations = new List<ScpTrackPreparation>();
+
+        await renderer.PrepareAsync(image, 0, new ImmediateProgress<ScpTrackPreparation>(preparations.Add));
+
+        var preparation = Assert.Single(preparations);
+        Assert.Equal(4, preparation.Cylinder);
+        Assert.Equal(ScpTrackVisualState.Anomaly, preparation.State);
     }
 
     [Fact]
@@ -3102,6 +3122,11 @@ public sealed class CoreTests
         public void ShowLogHistory(string logsDirectory) => LogDirectories.Add(logsDirectory);
         public void ShowAbout() => AboutCount++;
         public void ShowGwTool(GwToolWindowRequest request) => ToolRequests.Add(request);
+    }
+
+    private sealed class ImmediateProgress<T>(Action<T> report) : IProgress<T>
+    {
+        public void Report(T value) => report(value);
     }
 
     private static System.Windows.Controls.ScrollViewer GetScrollViewer(System.Windows.DependencyObject parent)

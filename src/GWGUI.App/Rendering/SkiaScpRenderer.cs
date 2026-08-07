@@ -24,7 +24,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
         }
     }
 
-    public async Task PrepareAsync(ScpImage image, int head, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
+    public async Task PrepareAsync(ScpImage image, int head, IProgress<ScpTrackPreparation>? progress = null, CancellationToken cancellationToken = default)
     {
         var tracks = image.Tracks.Where(track => track.Head == head).OrderBy(track => track.Cylinder).ToArray();
         var decoderId = DecoderId;
@@ -37,9 +37,11 @@ public sealed class SkiaScpRenderer : IScpRenderer
                 cancellationToken.ThrowIfCancellationRequested();
                 var track = tracks[trackIndex];
                 var revolution = track.Revolutions.FirstOrDefault();
-                if (revolution is not null && revolution.FluxIntervals.Count > 0)
-                    prepared[track] = PrepareTrack(track, revolution, decoderId, cancellationToken);
-                progress?.Report(trackIndex + 1);
+                var preparedTrack = revolution is not null && revolution.FluxIntervals.Count > 0
+                    ? PrepareTrack(track, revolution, decoderId, cancellationToken)
+                    : new PreparedTrack([], [], ScpTrackVisualState.Anomaly);
+                prepared[track] = preparedTrack;
+                progress?.Report(new ScpTrackPreparation(track.Cylinder, track.Head, preparedTrack.VisualState));
             }
         }, cancellationToken).ConfigureAwait(false);
         cancellationToken.ThrowIfCancellationRequested();
@@ -111,6 +113,9 @@ public sealed class SkiaScpRenderer : IScpRenderer
         Array.Sort(ordered);
         var median = ordered[ordered.Length / 2];
         var fluxArcs = new List<PreparedArc>(Math.Min(720, intervals.Count));
+        var shortTransitionCount = 0;
+        var longTransitionCount = 0;
+        var normalFluxCount = 0;
         double elapsed = 0;
         for (var index = 0; index < intervals.Count; index += sampleStep)
         {
@@ -118,16 +123,21 @@ public sealed class SkiaScpRenderer : IScpRenderer
             double span = 0;
             for (var sample = index; sample < Math.Min(index + sampleStep, intervals.Count); sample++) span += intervals[sample];
             var color = intervals[index] < median * .65 ? new SKColor(143, 104, 255) : intervals[index] > median * 1.8 ? new SKColor(83, 173, 255) : new SKColor(36, 179, 93);
+            if (color == new SKColor(143, 104, 255)) shortTransitionCount++;
+            else if (color == new SKColor(83, 173, 255)) longTransitionCount++;
+            else normalFluxCount++;
             fluxArcs.Add(new((float)(elapsed / total * 360 - 90), Math.Max(.08f, (float)(span / total * 360)), color));
             elapsed += span;
         }
 
         var structureArcs = new List<PreparedArc>();
         var best = _decoders.DecodeBest(track.Revolutions, decoderId);
+        FluxDecodeResult? decodedResult = null;
         if (best is not null)
         {
             var decodedRevolution = track.Revolutions[best.Value.RevolutionIndex];
             var decoded = best.Value.Result;
+            decodedResult = decoded;
             if (decoded.EstimatedBitCellTicks > 0)
             {
                 var totalBits = Math.Max(1d, decodedRevolution.FluxIntervals.Sum(interval => (double)interval) / decoded.EstimatedBitCellTicks);
@@ -137,7 +147,32 @@ public sealed class SkiaScpRenderer : IScpRenderer
                     StructureColor(structure.Kind))));
             }
         }
-        return new(fluxArcs, structureArcs);
+        return new(fluxArcs, structureArcs, Classify(decodedResult, shortTransitionCount, longTransitionCount, normalFluxCount));
+    }
+
+    internal static ScpTrackVisualState Classify(FluxDecodeResult? decoded, int shortTransitions, int longTransitions, int normalFlux)
+    {
+        if (decoded is not null)
+        {
+            var sectors = decoded.Sectors ?? [];
+            if (sectors.Any(sector => sector.IntegrityValid == false)
+                || decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.DeletedDataAddressMark or FluxStructureKind.TimingAnomaly))
+                return ScpTrackVisualState.Anomaly;
+            if (sectors.Count > 0 && sectors.All(sector => sector.IntegrityValid == true))
+                return ScpTrackVisualState.NormalFlux;
+            if (decoded.DecodedBytes.Count > 0 || decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData))
+                return ScpTrackVisualState.DecodedData;
+            if (decoded.Structures.Any(structure => structure.Kind is FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader))
+                return ScpTrackVisualState.Header;
+            if (decoded.Structures.Count > 0)
+                return ScpTrackVisualState.ShortTransition;
+        }
+
+        if (shortTransitions > normalFlux && shortTransitions >= longTransitions)
+            return ScpTrackVisualState.ShortTransition;
+        if (longTransitions > normalFlux)
+            return ScpTrackVisualState.LongTransition;
+        return ScpTrackVisualState.NormalFlux;
     }
 
     private static void DrawDecodedStructures(SKCanvas canvas, SKRect trackRect, IReadOnlyList<PreparedArc> arcs, SKPaint header, SKPaint data, SKPaint error, SKPaint other)
@@ -176,6 +211,6 @@ public sealed class SkiaScpRenderer : IScpRenderer
         for (var index = 0; index < lines.Length; index++) canvas.DrawText(lines[index], center.X, center.Y + index * 20, SKTextAlign.Center, font, paint);
     }
 
-    private sealed record PreparedTrack(IReadOnlyList<PreparedArc> FluxArcs, IReadOnlyList<PreparedArc> StructureArcs);
+    private sealed record PreparedTrack(IReadOnlyList<PreparedArc> FluxArcs, IReadOnlyList<PreparedArc> StructureArcs, ScpTrackVisualState VisualState);
     private sealed record PreparedArc(float Start, float Sweep, SKColor Color);
 }

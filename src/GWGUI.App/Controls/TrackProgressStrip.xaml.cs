@@ -42,6 +42,13 @@ public partial class TrackProgressStrip : UserControl
         });
     }
 
+    public void SetColor(int cylinder, Color color)
+    {
+        var segment = Segments.FirstOrDefault(item => item.Cylinder == cylinder);
+        if (segment is null) return;
+        segment.SetState(TrackSegmentState.Success, Freeze(color));
+    }
+
     public void SetActive(int cylinder)
     {
         ClearActive();
