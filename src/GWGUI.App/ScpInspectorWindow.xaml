@@ -1,0 +1,3 @@
+<Window x:Class="GWGUI.App.ScpInspectorWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:GWGUI.App.Controls" xmlns:l="clr-namespace:GWGUI.App.Localization" Title="{l:Loc App.Title}" Width="470" Height="560" MinWidth="420" MinHeight="440" WindowStartupLocation="CenterOwner">
+ <controls:ScpInspectorPanel x:Name="Panel" Margin="10"/>
+</Window>

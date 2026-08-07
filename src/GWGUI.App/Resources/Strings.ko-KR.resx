@@ -1543,4 +1543,25 @@ SCP 항목: {2}</value>
   <data name="Conversion.NoAvailableOutputName">
     <value>사용 가능한 출력 파일 이름을 찾을 수 없습니다.</value>
   </data>
+  <data name="Visual.OpenImage">
+    <value>Open a disk imageâ€¦</value>
+  </data>
+  <data name="Visual.DetachInspector">
+    <value>Detach inspector</value>
+  </data>
+  <data name="Visual.AttachInspector">
+    <value>Attach inspector</value>
+  </data>
+  <data name="Visual.SummaryTab">
+    <value>Summary</value>
+  </data>
+  <data name="Visual.FormatDetected">
+    <value>Detected format</value>
+  </data>
+  <data name="Visual.AverageRpm">
+    <value>Average RPM</value>
+  </data>
+  <data name="Visual.AverageDuration">
+    <value>Average duration</value>
+  </data>
 </root>

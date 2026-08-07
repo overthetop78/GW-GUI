@@ -43,7 +43,14 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
     private string Localize(string key, params object[] arguments) => localize(key, arguments);
 }
 
-public sealed record ScpInspectorModel(int Head, int Cylinder, int ScpEntry, IReadOnlyList<ScpRevolutionInfo> Revolutions, ScpDecodeInfo? Decode, IReadOnlyList<ScpInspectorEntry> Structures, IReadOnlyList<string> Sectors);
+public sealed record ScpInspectorModel(int Head, int Cylinder, int ScpEntry, IReadOnlyList<ScpRevolutionInfo> Revolutions, ScpDecodeInfo? Decode, IReadOnlyList<ScpInspectorEntry> Structures, IReadOnlyList<string> Sectors)
+{
+    public int RevolutionCount => Revolutions.Count;
+    public int SectorCount => Sectors.Count;
+    public int TotalTransitions => Revolutions.Sum(item => item.Transitions);
+    public double AverageRpm => Revolutions.Count == 0 ? 0 : Revolutions.Average(item => item.Rpm);
+    public double AverageDurationMilliseconds => Revolutions.Count == 0 ? 0 : Revolutions.Average(item => item.DurationMilliseconds);
+}
 public sealed record ScpRevolutionInfo(int Number, int Transitions, double DurationMilliseconds, double Rpm);
 public sealed record ScpDecodeInfo(string Decoder, double Confidence, double CellTicks, int StructureCount, int Revolution);
 public sealed record ScpInspectorEntry(string Name, string Detail);

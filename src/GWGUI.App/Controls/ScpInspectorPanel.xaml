@@ -1,0 +1,42 @@
+<UserControl x:Class="GWGUI.App.Controls.ScpInspectorPanel"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:l="clr-namespace:GWGUI.App.Localization">
+ <Border Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="14" Padding="14">
+  <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.24"/></Border.Effect>
+  <Grid>
+   <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+   <Grid x:Name="DragArea" MouseLeftButtonDown="DragArea_MouseLeftButtonDown" Cursor="SizeAll">
+    <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel>
+     <TextBlock FontSize="20" FontWeight="SemiBold"><Run Text="{l:Loc Visual.SideLabel}"/><Run Text=" "/><Run Text="{Binding Head}"/><Run Text=" · "/><Run Text="{l:Loc Visual.TrackLabel}"/><Run Text=" "/><Run Text="{Binding Cylinder}"/></TextBlock>
+     <TextBlock Foreground="{DynamicResource MutedTextBrush}"><Run Text="{l:Loc Visual.ScpEntryLabel}"/><Run Text=" "/><Run Text="{Binding ScpEntry}"/></TextBlock>
+    </StackPanel>
+    <StackPanel Grid.Column="1" Orientation="Horizontal">
+     <Button x:Name="DetachButton" Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Visual.DetachInspector}" Click="Detach_Click"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;"/></Button>
+     <Button x:Name="AttachButton" Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Visual.AttachInspector}" Visibility="Collapsed" Click="Attach_Click"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A9;"/></Button>
+     <Button Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Common.Close}" Click="Close_Click"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE711;"/></Button>
+    </StackPanel>
+   </Grid>
+   <TabControl Grid.Row="2" Margin="0,12,0,0">
+    <TabItem Header="{l:Loc Visual.SummaryTab}">
+     <Grid Margin="6"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <UniformGrid Columns="2">
+       <Border Style="{StaticResource SubtlePanel}" Margin="3"><StackPanel><TextBlock Text="{l:Loc Visual.FormatDetected}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding Decode.Decoder, TargetNullValue=—}" Foreground="#27A857" FontSize="18" FontWeight="Bold"/></StackPanel></Border>
+       <Border Style="{StaticResource SubtlePanel}" Margin="3"><StackPanel><TextBlock Text="{l:Loc Visual.ConfidenceLabel}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding Decode.Confidence, StringFormat={}{0:P0}, TargetNullValue=—}" Foreground="#27A857" FontSize="18" FontWeight="Bold"/></StackPanel></Border>
+       <Border Style="{StaticResource SubtlePanel}" Margin="3"><StackPanel><TextBlock Text="{l:Loc Visual.RevolutionsTitle}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding RevolutionCount}" Foreground="#27A857" FontSize="18" FontWeight="Bold"/></StackPanel></Border>
+       <Border Style="{StaticResource SubtlePanel}" Margin="3"><StackPanel><TextBlock Text="{l:Loc Visual.SectorsTitle}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding SectorCount}" Foreground="#27A857" FontSize="18" FontWeight="Bold"/></StackPanel></Border>
+      </UniformGrid>
+      <Grid Grid.Row="1" Margin="6,12,6,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+       <StackPanel><TextBlock Text="{l:Loc Visual.Decoder}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding Decode.Decoder, TargetNullValue=—}" FontWeight="SemiBold" Margin="0,0,0,10"/><TextBlock Text="{l:Loc Visual.TransitionsUnit}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding TotalTransitions, StringFormat=N0}" FontWeight="SemiBold"/></StackPanel>
+       <StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Visual.AverageRpm}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding AverageRpm, StringFormat={}{0:F1} RPM}" FontWeight="SemiBold" Margin="0,0,0,10"/><TextBlock Text="{l:Loc Visual.AverageDuration}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding AverageDurationMilliseconds, StringFormat={}{0:F1} ms}" FontWeight="SemiBold"/></StackPanel>
+      </Grid>
+     </Grid>
+    </TabItem>
+    <TabItem Header="{l:Loc Visual.RevolutionsTitle}"><ListBox ItemsSource="{Binding Revolutions}" BorderThickness="0"><ListBox.ItemTemplate><DataTemplate><Border Style="{StaticResource SubtlePanel}" Margin="2"><DockPanel><TextBlock DockPanel.Dock="Right"><Run Text="{Binding DurationMilliseconds, StringFormat={}{0:F2} ms}"/><Run Text=" · "/><Run Text="{Binding Rpm, StringFormat={}{0:F1} RPM}"/></TextBlock><TextBlock FontWeight="SemiBold"><Run Text="#"/><Run Text="{Binding Number}"/><Run Text=" · "/><Run Text="{Binding Transitions, StringFormat=N0}"/></TextBlock></DockPanel></Border></DataTemplate></ListBox.ItemTemplate></ListBox></TabItem>
+    <TabItem Header="{l:Loc Visual.StructuresLabel}"><ListBox ItemsSource="{Binding Structures}" BorderThickness="0"><ListBox.ItemTemplate><DataTemplate><Border Style="{StaticResource SubtlePanel}" Margin="2"><DockPanel><TextBlock Text="{Binding Detail}" DockPanel.Dock="Right" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text="{Binding Name}"/></DockPanel></Border></DataTemplate></ListBox.ItemTemplate></ListBox></TabItem>
+    <TabItem Header="{l:Loc Visual.SectorsTitle}"><ListBox ItemsSource="{Binding Sectors}" BorderThickness="0"/></TabItem>
+   </TabControl>
+  </Grid>
+ </Border>
+</UserControl>
