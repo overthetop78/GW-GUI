@@ -1658,4 +1658,22 @@ Brak danych</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Czy dyskietka jest włożona do aktualnie wybranego napędu ({0}) i gotowa do odczytu?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Plik tekstowy</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Obraz</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Plik dźwiękowy</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archiwum</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Obraz dysku</value>
+  </data>
 </root>

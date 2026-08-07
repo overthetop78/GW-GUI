@@ -1658,4 +1658,22 @@ SCP รายการ: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>ใส่ดิสก์ไว้ในไดรฟ์ที่เลือกอยู่ ({0}) และพร้อมอ่านแล้วหรือไม่?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>ไฟล์ข้อความ</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>รูปภาพ</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>ไฟล์เสียง</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>ไฟล์เก็บถาวร</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>โปรแกรม</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>อิมเมจดิสก์</value>
+  </data>
 </root>

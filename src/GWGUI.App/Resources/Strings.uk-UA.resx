@@ -1658,4 +1658,22 @@ SCP запис: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Дискету вставлено у вибраний зараз дисковод ({0}) і вона готова до читання?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Текстовий файл</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Зображення</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Аудіофайл</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Архів</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Програма</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Образ диска</value>
+  </data>
 </root>

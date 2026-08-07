@@ -1658,4 +1658,22 @@ Aucune donnée</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>La disquette est-elle bien insérée dans le lecteur actuellement sélectionné ({0}) et prête à être lue ?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Fichier texte</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Image</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Fichier audio</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archive</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Programme</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Image disque</value>
+  </data>
 </root>

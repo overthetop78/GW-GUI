@@ -1658,4 +1658,22 @@ SCP 항목: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>현재 선택한 드라이브({0})에 디스크가 삽입되어 있고 읽을 준비가 되었습니까?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>텍스트 파일</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>이미지</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>오디오 파일</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>압축 파일</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>프로그램</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>디스크 이미지</value>
+  </data>
 </root>

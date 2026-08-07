@@ -1658,4 +1658,22 @@ Sin datos</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>¿Está el disco insertado en la unidad seleccionada actualmente ({0}) y listo para la lectura?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Archivo de texto</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Imagen</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Archivo de audio</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archivo comprimido</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Programa</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Imagen de disco</value>
+  </data>
 </root>

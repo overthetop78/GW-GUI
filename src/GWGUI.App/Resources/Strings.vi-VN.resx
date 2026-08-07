@@ -1658,4 +1658,22 @@ Không có dữ liệu</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Đĩa đã được đưa vào ổ đĩa đang chọn ({0}) và sẵn sàng để đọc chưa?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Tệp văn bản</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Hình ảnh</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Tệp âm thanh</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Tệp lưu trữ</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Chương trình</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Ảnh đĩa</value>
+  </data>
 </root>

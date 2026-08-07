@@ -1658,4 +1658,22 @@ SCP الإدخال: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>هل القرص مُدخل في محرك الأقراص المحدد حاليًا ({0}) وجاهز للقراءة؟</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>ملف نصي</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>صورة</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>ملف صوتي</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>أرشيف</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>برنامج</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>صورة قرص</value>
+  </data>
 </root>

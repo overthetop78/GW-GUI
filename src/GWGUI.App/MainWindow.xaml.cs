@@ -262,7 +262,7 @@ public partial class MainWindow : Window
     private async void OpenExplorerImage_Click(object? sender, RoutedEventArgs e)
     {
         var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
-        if (path is not null) await LoadExplorerImageAsync(path);
+        if (path is not null) await LoadImageInExplorerAndVisualizerAsync(path);
     }
 
     private async void ReadDiskIntoExplorer_Click(object? sender, RoutedEventArgs e)
@@ -295,7 +295,7 @@ public partial class MainWindow : Window
             var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync();
             ApplyOperationResult(_operationResultPresenter.Present(outcome));
-            if (outcome.Result?.IsSuccess == true && File.Exists(temporaryPath)) await LoadExplorerImageAsync(temporaryPath);
+            if (outcome.Result?.IsSuccess == true && File.Exists(temporaryPath)) await LoadImageInExplorerAndVisualizerAsync(temporaryPath);
         }
         catch (Exception exception)
         {
@@ -325,7 +325,7 @@ public partial class MainWindow : Window
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         catch (Exception exception)
         {
-            ShowLoggedError(exception, "Opening disk image in Explorer", "Tab.Explorer", "Explorer.LoadFailed");
+            ShowLoggedError(exception, $"Opening disk image in Explorer: {path}", "Tab.Explorer", "Explorer.LoadFailed");
         }
         finally
         {
@@ -337,12 +337,15 @@ public partial class MainWindow : Window
     {
         var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
         if (path is null) return;
-        await OpenDiskImageAsync(path);
+        await LoadImageInExplorerAndVisualizerAsync(path);
     }
 
-    private async Task OpenDiskImageAsync(string path)
+    private Task LoadImageInExplorerAndVisualizerAsync(string path, string? displayFileName = null)
+        => Task.WhenAll(LoadVisualizerImageAsync(path, displayFileName), LoadExplorerImageAsync(path));
+
+    private async Task LoadVisualizerImageAsync(string path, string? displayFileName = null)
     {
-        if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)) { await LoadScpAsync(path); return; }
+        if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)) { await LoadScpAsync(path, displayFileName); return; }
         if (_operation.IsRunning) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         var detection = _formatDetector.Detect(path, new FileInfo(path).Length);
@@ -355,21 +358,21 @@ public partial class MainWindow : Window
             var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync(); ApplyOperationResult(_operationResultPresenter.Present(outcome)); EndProgress();
             if (outcome.Result?.IsSuccess != true || !File.Exists(temporaryPath)) return;
-            await LoadScpAsync(temporaryPath, Path.GetFileName(path));
+            await LoadScpAsync(temporaryPath, displayFileName ?? Path.GetFileName(path));
         }
         finally { try { if (File.Exists(temporaryPath)) File.Delete(temporaryPath); } catch { } }
     }
 
     private async void OpenLastScp_Click(object sender, RoutedEventArgs e)
     {
-        if (_lastScpPath is null) return; MainTabs.SelectedIndex = 3; await LoadScpAsync(_lastScpPath);
+        if (_lastScpPath is null) return; MainTabs.SelectedIndex = 3; await LoadImageInExplorerAndVisualizerAsync(_lastScpPath);
     }
 
     private async void ExploreLastScp_Click(object sender, RoutedEventArgs e)
     {
         if (_lastScpPath is null) return;
         MainTabs.SelectedIndex = 4;
-        await LoadExplorerImageAsync(_lastScpPath);
+        await LoadImageInExplorerAndVisualizerAsync(_lastScpPath);
     }
 
     private async Task LoadScpAsync(string path, string? displayFileName = null)
@@ -393,7 +396,7 @@ public partial class MainWindow : Window
             await PrepareScpViewsAsync(cancellation.Token);
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
-        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); ShowLoggedError(exception, "Opening disk image in Visualizer", "Visual.Title"); }
+        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); ShowLoggedError(exception, $"Opening disk image in Visualizer: {path}", "Visual.Title"); }
         finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
     }
 
@@ -683,7 +686,7 @@ public partial class MainWindow : Window
         if (Path.GetExtension(source).Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
             MainTabs.SelectedIndex = 3;
-            await LoadScpAsync(source);
+            await LoadImageInExplorerAndVisualizerAsync(source);
             return;
         }
         if (_operation.IsRunning) return;
@@ -715,7 +718,7 @@ public partial class MainWindow : Window
             EndProgress();
             if (outcome.Result?.IsSuccess != true || !File.Exists(temporaryPath)) return;
             MainTabs.SelectedIndex = 3;
-            await LoadScpAsync(temporaryPath);
+            await Task.WhenAll(LoadScpAsync(temporaryPath, Path.GetFileName(source)), LoadExplorerImageAsync(source));
         }
         finally
         {
@@ -882,7 +885,7 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(source) || !File.Exists(source) ||
             !Path.GetExtension(source).Equals(".scp", StringComparison.OrdinalIgnoreCase)) return;
         MainTabs.SelectedIndex = 3;
-        await LoadScpAsync(source);
+        await LoadImageInExplorerAndVisualizerAsync(source);
     }
 
     private void ConvertInput_Changed(object sender, RoutedEventArgs e) => UpdateConvertCommand();

@@ -1658,4 +1658,22 @@ Veri yok</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Disket seçili sürücüye ({0}) takılı ve okunmaya hazır mı?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Metin dosyası</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Görüntü</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Ses dosyası</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arşiv</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Disk kalıbı</value>
+  </data>
 </root>

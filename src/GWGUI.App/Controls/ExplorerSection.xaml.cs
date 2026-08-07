@@ -41,7 +41,7 @@ public sealed class ExplorerContentItem
     {
         Entry = entry;
         IconKind = ExplorerFileIconClassifier.IconFor(entry);
-        TypeText = LocExtension.Get("Explorer." + entry.Kind);
+        TypeText = LocExtension.Get(ExplorerFileIconClassifier.TypeResourceKeyFor(IconKind));
     }
 
     public FileSystemEntry Entry { get; }
@@ -74,6 +74,19 @@ public static class ExplorerFileIconClassifier
         if (DiskImages.Contains(extension)) return ExplorerIconKind.DiskImage;
         return ExplorerIconKind.File;
     }
+
+    public static string TypeResourceKeyFor(ExplorerIconKind kind) => kind switch
+    {
+        ExplorerIconKind.Folder => "Explorer.Directory",
+        ExplorerIconKind.Text => "Explorer.Type.Text",
+        ExplorerIconKind.Image => "Explorer.Type.Image",
+        ExplorerIconKind.Audio => "Explorer.Type.Audio",
+        ExplorerIconKind.Archive => "Explorer.Type.Archive",
+        ExplorerIconKind.Program => "Explorer.Type.Program",
+        ExplorerIconKind.DiskImage => "Explorer.Type.DiskImage",
+        ExplorerIconKind.Link => "Explorer.Link",
+        _ => "Explorer.File"
+    };
 
     private static bool IsAmigaExecutable(IReadOnlyList<byte>? data) => data is { Count: >= 4 } && data[0] == 0 && data[1] == 0 && data[2] == 3 && data[3] == 0xF3;
 

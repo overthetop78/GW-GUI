@@ -6,11 +6,25 @@ using System.Runtime.ExceptionServices;
 using GWGUI.App;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Tests;
 
 public sealed class RealScpCorpusTests
 {
+    [Fact]
+    public async Task RealAmigaDosCaptureReconstructsRootBlockWhenRequested()
+    {
+        var path = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
+        if (string.IsNullOrWhiteSpace(path)) return;
+
+        var image = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(path);
+        Assert.True(image.TryGetBlock(image.BlockCount / 2, out _),
+            $"AmigaDOS root block {image.BlockCount / 2} is missing; decoded {image.AvailableBlocks.Count}/{image.BlockCount} blocks.");
+        var volume = new GWGUI.Scp.FileSystems.Readers.AmigaDosFileSystemReader().Read(image);
+        Assert.False(string.IsNullOrWhiteSpace(volume.Name));
+    }
+
     [Fact]
     public async Task PublicPhysicalCapturesLoadAndDecodeWhenRequested()
     {

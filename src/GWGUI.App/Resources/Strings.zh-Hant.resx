@@ -1658,4 +1658,22 @@ SCP 題目：{2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>磁碟是否已插入目前選取的磁碟機（{0}）並準備好讀取？</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>文字檔案</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>影像</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>音訊檔案</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>封存檔</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>程式</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>磁碟映像</value>
+  </data>
 </root>

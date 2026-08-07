@@ -1658,4 +1658,22 @@ Sem dados</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>O disquete está inserido na unidade selecionada atualmente ({0}) e pronto para leitura?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Arquivo de texto</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Imagem</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Arquivo de áudio</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arquivo compactado</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Programa</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Imagem de disco</value>
+  </data>
 </root>

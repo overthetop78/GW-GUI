@@ -1658,4 +1658,22 @@ Ingen data</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Er disketten satt inn i den valgte stasjonen ({0}) og klar til å leses?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Tekstfil</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Bilde</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Lydfil</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arkiv</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Diskbilde</value>
+  </data>
 </root>

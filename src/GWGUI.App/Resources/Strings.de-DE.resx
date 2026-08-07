@@ -1658,4 +1658,22 @@ Keine Daten</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Ist die Diskette in das aktuell ausgewählte Laufwerk ({0}) eingelegt und zum Lesen bereit?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Textdatei</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Bild</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Audiodatei</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archiv</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Programm</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Datenträgerabbild</value>
+  </data>
 </root>

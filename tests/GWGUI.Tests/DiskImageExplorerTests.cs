@@ -37,6 +37,17 @@ public sealed class DiskImageExplorerTests
     }
 
     [Theory]
+    [InlineData(ExplorerIconKind.Text, "Explorer.Type.Text")]
+    [InlineData(ExplorerIconKind.Image, "Explorer.Type.Image")]
+    [InlineData(ExplorerIconKind.Audio, "Explorer.Type.Audio")]
+    [InlineData(ExplorerIconKind.Archive, "Explorer.Type.Archive")]
+    [InlineData(ExplorerIconKind.Program, "Explorer.Type.Program")]
+    [InlineData(ExplorerIconKind.DiskImage, "Explorer.Type.DiskImage")]
+    [InlineData(ExplorerIconKind.File, "Explorer.File")]
+    public void ExplorerTypeMatchesTheDetectedIcon(ExplorerIconKind kind, string expectedResourceKey)
+        => Assert.Equal(expectedResourceKey, ExplorerFileIconClassifier.TypeResourceKeyFor(kind));
+
+    [Theory]
     [InlineData(AdfImageReader.DoubleDensityBytes, 11)]
     [InlineData(AdfImageReader.HighDensityBytes, 22)]
     public async Task AdfReaderBuildsAmigaGeometry(int byteLength, int sectorsPerTrack)
@@ -105,6 +116,22 @@ public sealed class DiskImageExplorerTests
         Assert.Equal(11, image.SectorsPerTrack);
         Assert.Equal(Enumerable.Repeat((byte)8, 512), image.GetBlock(7).ToArray());
         Assert.Equal(11, image.AvailableBlocks.Count);
+    }
+
+    [Fact]
+    public void IsolatedInvalidSectorNumberDoesNotTurnAnAmigaDdImageIntoHd()
+    {
+        var addresses = Enumerable.Range(0, 11).Select(number => new SectorAddress(0, 0, number))
+            .Append(new SectorAddress(12, 1, 19));
+        Assert.Equal(11, AmigaScpSectorImageReader.InferSectorsPerTrack(addresses));
+    }
+
+    [Fact]
+    public void MultipleCompleteTwentyTwoSectorTracksIdentifyAnAmigaHdImage()
+    {
+        var addresses = Enumerable.Range(0, 2)
+            .SelectMany(cylinder => Enumerable.Range(0, 22).Select(number => new SectorAddress(cylinder, 0, number)));
+        Assert.Equal(22, AmigaScpSectorImageReader.InferSectorsPerTrack(addresses));
     }
 
     private static SectorImage BuildAmigaImage(bool fastFileSystem)

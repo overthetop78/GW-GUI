@@ -1658,4 +1658,22 @@ Ei dataa</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Onko levyke asetettu valittuun asemaan ({0}) ja valmis luettavaksi?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Tekstitiedosto</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Kuva</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Äänitiedosto</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arkisto</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Ohjelma</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Levykuva</value>
+  </data>
 </root>

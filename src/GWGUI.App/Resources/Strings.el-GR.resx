@@ -1658,4 +1658,22 @@ SCP καταχώριση: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Έχει τοποθετηθεί η δισκέτα στην επιλεγμένη μονάδα ({0}) και είναι έτοιμη για ανάγνωση;</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Αρχείο κειμένου</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Εικόνα</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Αρχείο ήχου</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Αρχείο</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Πρόγραμμα</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Εικόνα δίσκου</value>
+  </data>
 </root>

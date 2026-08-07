@@ -1658,4 +1658,22 @@ SCP 条目：{2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>磁盘是否已插入当前选定的驱动器（{0}）并准备好读取？</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>文本文件</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>图像</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>音频文件</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>压缩文件</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>程序</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>磁盘映像</value>
+  </data>
 </root>

@@ -24,7 +24,7 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             }
         }
         if (candidates.Count == 0) throw new InvalidDataException("No Amiga sectors could be decoded from the SCP image.");
-        var sectorsPerTrack = candidates.Keys.Max(address => address.Number) >= 11 ? 22 : 11;
+        var sectorsPerTrack = InferSectorsPerTrack(candidates.Keys);
         var blocks = new List<SectorBlock>();
         foreach (var (address, values) in candidates)
         {
@@ -35,5 +35,16 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
         return new("amiga.amigados", 512, 80, 2, sectorsPerTrack, blocks);
+    }
+
+    public static int InferSectorsPerTrack(IEnumerable<SectorAddress> addresses)
+    {
+        // A damaged or copy-protected DD track can yield an isolated bogus sector ID above 10.
+        // Treat the image as HD only when multiple physical tracks contain a convincing 22-sector set.
+        var convincingHighDensityTracks = addresses
+            .Where(address => address.Cylinder < 80 && address.Head < 2 && address.Number is >= 0 and < 22)
+            .GroupBy(address => (address.Cylinder, address.Head))
+            .Count(track => track.Select(address => address.Number).Distinct().Count() >= 17 && track.Any(address => address.Number >= 11));
+        return convincingHighDensityTracks >= 2 ? 22 : 11;
     }
 }

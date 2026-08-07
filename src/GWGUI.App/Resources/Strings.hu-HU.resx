@@ -1658,4 +1658,22 @@ Nincs adat</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>A lemez az aktuálisan kiválasztott meghajtóban ({0}) van, és készen áll az olvasásra?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Szövegfájl</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Kép</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Hangfájl</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archívum</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Lemezkép</value>
+  </data>
 </root>

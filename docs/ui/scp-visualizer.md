@@ -48,11 +48,15 @@ Exigences retenues pour sa réalisation :
 
 - le véritable onglet principal `Explorateur` et son composant indépendant sont réalisés ;
 - il charge directement une image ADF ou SCP ;
+- l'image courante est partagée entre `Explorateur` et `Visualisation` : une image ouverte dans l'un est également chargée dans l'autre, sans changer automatiquement l'onglet affiché ;
+- la colonne `Type` de l'Explorateur décrit la nature reconnue du fichier (`Programme`, `Fichier texte`, `Image`, `Fichier audio`, `Archive`, `Image disque`, etc.) et correspond à son icône, au lieu d'afficher systématiquement `Fichier` ;
 - viser tous les formats pris en charge par GW GUI, avec détection automatique puis sélection manuelle du format à essayer lorsque la détection échoue ;
 - l’ouverture dans `Explorateur` est proposée à la fin d’une Lecture SCP réussie ;
 - le bouton de lecture directe utilise `gw` pour créer une capture SCP temporaire dans le dossier temporaire de Windows, l’analyse, puis supprime cette capture ;
 - ne jamais modifier l’image chargée ou la disquette pendant une simple exploration ;
-- afficher clairement les erreurs de décodage et les parties impossibles à reconstruire au lieu d’inventer une arborescence.
+- afficher clairement les erreurs de décodage et les parties impossibles à reconstruire au lieu d'inventer une arborescence.
+
+La reconstruction Amiga SCP ne déduit pas une géométrie HD d'un simple numéro de secteur anormal. Les disquettes protégées ou hybrides peuvent produire quelques identifiants parasites : plusieurs pistes physiques cohérentes contenant un ensemble de secteurs HD sont nécessaires avant de retenir 22 secteurs par piste. Une capture locale réelle peut être fournie aux tests avec la variable `GWGUI_REAL_AMIGA_SCP`; le fichier reste local et n'est jamais ajouté au dépôt.
 
 Chaque nouveau libellé, message, état, erreur et texte accessible ajouté pour `Explorateur` doit être créé sous forme de clé de traduction et renseigné dans le français, l’anglais et tous les autres catalogues de langues pris en charge.
 

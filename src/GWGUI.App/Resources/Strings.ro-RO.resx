@@ -1658,4 +1658,22 @@ Fără date</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Discheta este introdusă în unitatea selectată în prezent ({0}) și este pregătită pentru citire?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Fișier text</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Imagine</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Fișier audio</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arhivă</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Imagine de disc</value>
+  </data>
 </root>

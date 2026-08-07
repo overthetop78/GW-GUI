@@ -1658,4 +1658,22 @@ SCP エントリ: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>現在選択されているドライブ（{0}）にディスクが挿入され、読み取り可能な状態ですか？</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>テキスト ファイル</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>画像</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>音声ファイル</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>アーカイブ</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>プログラム</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>ディスク イメージ</value>
+  </data>
 </root>

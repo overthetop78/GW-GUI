@@ -1658,4 +1658,22 @@ Geen gegevens</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Is de diskette in het momenteel geselecteerde station ({0}) geplaatst en klaar om te worden gelezen?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Tekstbestand</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Afbeelding</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Audiobestand</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archief</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Programma</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Schijfkopie</value>
+  </data>
 </root>

@@ -1658,4 +1658,22 @@ Inga data</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Är disketten isatt i den valda enheten ({0}) och klar att läsas?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Textfil</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Bild</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Ljudfil</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Arkiv</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Diskavbildning</value>
+  </data>
 </root>

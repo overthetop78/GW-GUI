@@ -1658,4 +1658,22 @@ No data</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Is the disk inserted in the currently selected drive ({0}) and ready to be read?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Text file</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Image</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Audio file</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archive</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Disk image</value>
+  </data>
 </root>

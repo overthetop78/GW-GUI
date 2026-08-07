@@ -1658,4 +1658,22 @@
   <data name="Explorer.ReadDiskConfirm">
     <value>האם הדיסקט נמצא בכונן שנבחר כעת ({0}) ומוכן לקריאה?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>קובץ טקסט</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>תמונה</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>קובץ שמע</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>ארכיון</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>תוכנית</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>תמונת דיסק</value>
+  </data>
 </root>

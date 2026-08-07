@@ -1658,4 +1658,22 @@ SCP záznam: {2}</value>
   <data name="Explorer.ReadDiskConfirm">
     <value>Je disketa vložena do aktuálně vybrané jednotky ({0}) a připravena ke čtení?</value>
   </data>
+  <data name="Explorer.Type.Text">
+    <value>Textový soubor</value>
+  </data>
+  <data name="Explorer.Type.Image">
+    <value>Obrázek</value>
+  </data>
+  <data name="Explorer.Type.Audio">
+    <value>Zvukový soubor</value>
+  </data>
+  <data name="Explorer.Type.Archive">
+    <value>Archiv</value>
+  </data>
+  <data name="Explorer.Type.Program">
+    <value>Program</value>
+  </data>
+  <data name="Explorer.Type.DiskImage">
+    <value>Obraz disku</value>
+  </data>
 </root>
