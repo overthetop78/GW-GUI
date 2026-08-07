@@ -93,7 +93,13 @@
         </controls:CardSection>
 
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions><ColumnDefinition Width="310"/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="340"/>
+            </Grid.ColumnDefinitions>
             <controls:CardSection Padding="8">
                 <ListBox x:Name="FolderList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerFolderItemStyle}" SelectionChanged="FolderList_SelectionChanged">
                     <ListBox.ItemTemplate>
@@ -110,18 +116,22 @@
             </controls:CardSection>
 
             <controls:CardSection Grid.Column="2" Padding="8">
-                <ListView x:Name="ContentsList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerContentItemStyle}" MouseDoubleClick="ContentsList_MouseDoubleClick">
+                <ListView x:Name="ContentsList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerContentItemStyle}" SelectionChanged="ContentsList_SelectionChanged" MouseDoubleClick="ContentsList_MouseDoubleClick">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">
-                            <GridViewColumn Header="{l:Loc Explorer.Name}" Width="480">
+                            <GridViewColumn Header="{l:Loc Explorer.Name}" Width="250">
                                 <GridViewColumn.CellTemplate><DataTemplate><DockPanel><controls:FileEntryIcon Kind="{Binding IconKind}" Width="22" Margin="0,0,8,0" VerticalAlignment="Center"/><TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/></DockPanel></DataTemplate></GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{l:Loc Explorer.Modified}" Width="180" DisplayMemberBinding="{Binding ModifiedText}"/>
-                            <GridViewColumn Header="{l:Loc Explorer.Type}" Width="150" DisplayMemberBinding="{Binding TypeText}"/>
-                            <GridViewColumn Header="{l:Loc Explorer.Size}" Width="110" DisplayMemberBinding="{Binding SizeText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Modified}" Width="135" DisplayMemberBinding="{Binding ModifiedText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Type}" Width="115" DisplayMemberBinding="{Binding TypeText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Size}" Width="75" DisplayMemberBinding="{Binding SizeText}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
+            </controls:CardSection>
+
+            <controls:CardSection Grid.Column="4" Padding="0">
+                <controls:ExplorerDetailsPanel x:Name="DetailsPanel"/>
             </controls:CardSection>
         </Grid>
 

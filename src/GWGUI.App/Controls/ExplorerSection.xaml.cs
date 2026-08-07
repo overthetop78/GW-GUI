@@ -117,6 +117,7 @@ public partial class ExplorerSection : UserControl
 {
     private bool _changingFormat;
     private ExplorerFolderItem? _rootFolder;
+    private ExploredDiskImage? _document;
     private IReadOnlyList<FileSystemEntry> _rootEntries = [];
     private readonly ObservableCollection<ExplorerFolderItem> _visibleFolders = [];
 
@@ -154,14 +155,17 @@ public partial class ExplorerSection : UserControl
         PathText.Text = path ?? string.Empty;
         VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
         _rootFolder = null;
+        _document = null;
         _rootEntries = [];
         _visibleFolders.Clear();
         ContentsList.ItemsSource = null;
         WarningsBadge.Visibility = Visibility.Collapsed;
+        DetailsPanel.Clear();
     }
 
     public void Display(ExploredDiskImage document)
     {
+        _document = document;
         PathText.Text = document.SourcePath;
         var volumeName = string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
         VolumeNameText.Text = volumeName;
@@ -174,12 +178,13 @@ public partial class ExplorerSection : UserControl
         RefreshVisibleFolders(_rootFolder);
         FolderList.SelectedItem = _rootFolder;
         ShowContents(_rootEntries);
+        DetailsPanel.ShowDisk(document);
         var warningCount = document.Volume.Warnings.Count;
         WarningsBadge.Visibility = warningCount == 0 ? Visibility.Collapsed : Visibility.Visible;
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
     }
 
-    private static int CountEntries(IEnumerable<FileSystemEntry> entries) => entries.Sum(entry => 1 + CountEntries(entry.Children));
+    public static int CountEntries(IEnumerable<FileSystemEntry> entries) => entries.Sum(entry => 1 + CountEntries(entry.Children));
 
     private void RefreshVisibleFolders(ExplorerFolderItem? selected = null)
     {
@@ -195,10 +200,22 @@ public partial class ExplorerSection : UserControl
         if (item.IsExpanded) foreach (var child in item.Children) AddVisible(child);
     }
 
-    private void ShowContents(IEnumerable<FileSystemEntry> entries) => ContentsList.ItemsSource = entries
-        .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
-        .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
-        .Select(entry => new ExplorerContentItem(entry)).ToArray();
+    private void ShowContents(IEnumerable<FileSystemEntry> entries)
+    {
+        ContentsList.ItemsSource = entries
+            .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
+            .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
+            .Select(entry => new ExplorerContentItem(entry)).ToArray();
+        ContentsList.SelectedItem = null;
+        if (_document is not null) DetailsPanel.ShowDisk(_document);
+    }
+
+    private void ContentsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_document is null) return;
+        if (ContentsList.SelectedItem is ExplorerContentItem item) DetailsPanel.ShowItem(_document, item);
+        else DetailsPanel.ShowDisk(_document);
+    }
 
     private void FormatCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {

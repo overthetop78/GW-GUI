@@ -1113,6 +1113,31 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ExplorerDetailsSwitchBetweenDiskAndCentralListItemInformation()
+    {
+        var child = new GWGUI.Scp.FileSystems.FileSystemEntry(
+            "README.TXT", GWGUI.Scp.FileSystems.FileSystemEntryKind.File, 42,
+            new DateTimeOffset(1993, 8, 20, 14, 37, 0, TimeSpan.Zero), "Test comment", 0, 1, true, [], [65, 66]);
+        var folder = new GWGUI.Scp.FileSystems.FileSystemEntry(
+            "DOCS", GWGUI.Scp.FileSystems.FileSystemEntryKind.Directory, 0, null, "", 0, 2, true, [child]);
+        var volume = new GWGUI.Scp.FileSystems.FileSystemVolume(
+            "TEST", "Atari TOS FAT12", 737280, 249 * 1024, null, null, [folder], ["warning"]);
+
+        var diskDetails = ExplorerDetailsPresenter.ForDisk(volume);
+        var fileDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(child));
+        var folderDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(folder));
+
+        Assert.Equal("TEST", diskDetails.Title);
+        Assert.Equal(ExplorerIconKind.DiskImage, diskDetails.IconKind);
+        Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.FileSystem" && row.Value == "Atari TOS FAT12");
+        Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.Entries" && row.Value == "2");
+        Assert.Equal("README.TXT", fileDetails.Title);
+        Assert.Equal(ExplorerIconKind.Text, fileDetails.IconKind);
+        Assert.Contains(fileDetails.Rows, row => row.Key == "Explorer.Comment" && row.Value == "Test comment");
+        Assert.Contains(folderDetails.Rows, row => row.Key == "Explorer.Entries" && row.Value == "1");
+    }
+
+    [Fact]
     public void VisualizationUsesGwOnlyForAdvertisedInputAndScpOutput()
     {
         var catalog = new BuiltInImageFormatCatalog();

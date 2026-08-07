@@ -1,0 +1,125 @@
+using System.Windows;
+using System.Windows.Controls;
+using GWGUI.App.Localization;
+using GWGUI.Scp.Images;
+
+namespace GWGUI.App.Controls;
+
+public sealed record ExplorerDetailRow(string Key, string Value);
+public sealed record ExplorerDetailsPresentation(string Title, ExplorerIconKind IconKind, IReadOnlyList<ExplorerDetailRow> Rows);
+
+public static class ExplorerDetailsPresenter
+{
+    public static ExplorerDetailsPresentation ForDisk(GWGUI.Scp.FileSystems.FileSystemVolume volume)
+    {
+        var title = string.IsNullOrWhiteSpace(volume.Name) ? LocExtension.Get("Explorer.Unnamed") : volume.Name;
+        return new(title, ExplorerIconKind.DiskImage,
+        [
+            new("Explorer.Volume", title),
+            new("Explorer.FileSystem", volume.FileSystem),
+            new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
+            new("Explorer.Free", ExplorerFormatting.FormatBytes(volume.FreeBytes)),
+            new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()),
+            new("Explorer.Warnings", volume.Warnings.Count.ToString())
+        ]);
+    }
+
+    public static ExplorerDetailsPresentation ForItem(ExplorerContentItem item)
+    {
+        var rows = new List<ExplorerDetailRow>
+        {
+            new("Explorer.Type", LocExtension.Get(ExplorerFileIconClassifier.TypeResourceKeyFor(item.IconKind))),
+            new("Explorer.Size", item.SizeText),
+            new("Explorer.Modified", item.ModifiedText),
+            new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
+        };
+        if (item.Entry.Kind == GWGUI.Scp.FileSystems.FileSystemEntryKind.Directory)
+            rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
+        return new(item.Name, item.IconKind, rows);
+    }
+}
+
+public partial class ExplorerDetailsPanel : UserControl
+{
+    private ExploredDiskImage? _document;
+    private ExplorerContentItem? _item;
+
+    public ExplorerDetailsPanel()
+    {
+        InitializeComponent();
+        Loaded += (_, _) => System.ComponentModel.PropertyChangedEventManager.AddHandler(LocalizationSource.Instance, LocalizationChanged, "Item[]");
+        Unloaded += (_, _) => System.ComponentModel.PropertyChangedEventManager.RemoveHandler(LocalizationSource.Instance, LocalizationChanged, "Item[]");
+        Clear();
+    }
+
+    public string DisplayedTitle => DetailsTitle.Text;
+    public bool IsShowingDisk => _document is not null && _item is null;
+
+    public void Clear()
+    {
+        _document = null;
+        _item = null;
+        DetailsIcon.Kind = ExplorerIconKind.DiskImage;
+        DetailsTitle.Text = "\u2014";
+        SetRows([]);
+    }
+
+    public void ShowDisk(ExploredDiskImage document)
+    {
+        _document = document;
+        _item = null;
+        Render();
+    }
+
+    public void ShowItem(ExploredDiskImage document, ExplorerContentItem item)
+    {
+        _document = document;
+        _item = item;
+        Render();
+    }
+
+    private void LocalizationChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (Dispatcher.CheckAccess()) Render();
+        else _ = Dispatcher.BeginInvoke(Render);
+    }
+
+    private void Render()
+    {
+        if (_document is null) { Clear(); return; }
+        if (_item is null) RenderDisk(_document);
+        else RenderItem(_item);
+    }
+
+    private void RenderDisk(ExploredDiskImage document)
+    {
+        Apply(ExplorerDetailsPresenter.ForDisk(document.Volume));
+    }
+
+    private void RenderItem(ExplorerContentItem item)
+    {
+        Apply(ExplorerDetailsPresenter.ForItem(item));
+    }
+
+    private void Apply(ExplorerDetailsPresentation presentation)
+    {
+        DetailsIcon.Kind = presentation.IconKind;
+        DetailsTitle.Text = presentation.Title;
+        SetRows(presentation.Rows.Select(row => ((string?)row.Key, (string?)row.Value)).ToArray());
+    }
+
+    private void SetRows(IReadOnlyList<(string? Key, string? Value)> values)
+    {
+        var rows = new[] { DetailRow1, DetailRow2, DetailRow3, DetailRow4, DetailRow5, DetailRow6 };
+        var labels = new[] { DetailLabel1, DetailLabel2, DetailLabel3, DetailLabel4, DetailLabel5, DetailLabel6 };
+        var displayedValues = new[] { DetailValue1, DetailValue2, DetailValue3, DetailValue4, DetailValue5, DetailValue6 };
+        for (var index = 0; index < rows.Length; index++)
+        {
+            var visible = index < values.Count && values[index].Key is not null;
+            rows[index].Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+            if (!visible) continue;
+            labels[index].Text = LocExtension.Get(values[index].Key!);
+            displayedValues[index].Text = string.IsNullOrWhiteSpace(values[index].Value) ? "\u2014" : values[index].Value;
+        }
+    }
+}
