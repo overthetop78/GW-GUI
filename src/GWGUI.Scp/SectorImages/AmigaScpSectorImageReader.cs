@@ -34,7 +34,8 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             var logical = checked((address.Cylinder * 2 + address.Head) * sectorsPerTrack + address.Number);
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
-        return new("amiga.amigados", 512, 80, 2, sectorsPerTrack, blocks);
+        var formatId = sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados";
+        return new(formatId, 512, 80, 2, sectorsPerTrack, blocks);
     }
 
     public static int InferSectorsPerTrack(IEnumerable<SectorAddress> addresses)

@@ -6,12 +6,85 @@ using System.Runtime.ExceptionServices;
 using GWGUI.App;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Tests;
 
 public sealed class RealScpCorpusTests
 {
+    [Fact]
+    public async Task RealAmigaAdfAndScpDecodeToIdenticalSectorImagesWhenRequested()
+    {
+        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
+        if (string.IsNullOrWhiteSpace(adfPath) || string.IsNullOrWhiteSpace(scpPath)) return;
+
+        var expected = await new AdfImageReader().ReadAsync(adfPath);
+        var actual = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(scpPath);
+
+        Assert.Equal(expected.SectorsPerTrack, actual.SectorsPerTrack);
+        Assert.Equal(expected.FormatId, actual.FormatId);
+        Assert.Equal(expected.BlockCount, actual.BlockCount);
+        Assert.True(actual.MissingBlocks.Count == 0,
+            $"Decoded {actual.AvailableBlocks.Count}/{actual.BlockCount} blocks; missing: {string.Join(", ", actual.MissingBlocks.Take(20))}");
+        for (var logical = 0; logical < expected.BlockCount; logical++)
+            Assert.Equal(expected.GetBlock(logical).ToArray(), actual.GetBlock(logical).ToArray());
+    }
+
+    [Fact]
+    public async Task RealAmigaAdfAndScpExposeTheSameFileSystemWhenRequested()
+    {
+        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
+        if (string.IsNullOrWhiteSpace(adfPath) || string.IsNullOrWhiteSpace(scpPath)) return;
+
+        var format = new FileInfo(adfPath).Length == AdfImageReader.HighDensityBytes ? "amiga.amigados_hd" : "amiga.amigados";
+        var explorer = DiskImageExplorer.CreateDefault();
+        var expected = await explorer.ExploreAsync(adfPath, format);
+        var actual = await explorer.ExploreAsync(scpPath, format);
+
+        Assert.Equal(expected.Volume.Name, actual.Volume.Name);
+        Assert.Equal(expected.Volume.FileSystem, actual.Volume.FileSystem);
+        Assert.Equal(expected.Volume.Capacity, actual.Volume.Capacity);
+        Assert.Equal(expected.Volume.FreeBytes, actual.Volume.FreeBytes);
+        Assert.Equal(Flatten(expected.Volume.Entries), Flatten(actual.Volume.Entries));
+        Assert.Equal(expected.Volume.Warnings, actual.Volume.Warnings);
+        Assert.Empty(expected.Volume.Warnings);
+    }
+
+    [Fact]
+    public async Task RealAmigaAdfRoundTripsThroughTheInternalEncoderWhenRequested()
+    {
+        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF");
+        if (string.IsNullOrWhiteSpace(adfPath)) return;
+
+        var expected = await new AdfImageReader().ReadAsync(adfPath);
+        var encoder = new GWGUI.Scp.Encoding.FluxEncoderRegistry();
+        var tracks = new List<ScpTrack>();
+        for (var cylinder = 0; cylinder < expected.Cylinders; cylinder++)
+        for (var head = 0; head < expected.Heads; head++)
+        {
+            var logicalStart = (cylinder * expected.Heads + head) * expected.SectorsPerTrack;
+            var sectors = Enumerable.Range(0, expected.SectorsPerTrack)
+                .Select(number => new GWGUI.Scp.Encoding.TrackSector(number, expected.GetBlock(logicalStart + number).ToArray()))
+                .ToArray();
+            var cellTicks = expected.SectorsPerTrack == 22 ? 20u : 40u;
+            var encoded = encoder.Encode("amiga.mfm", new GWGUI.Scp.Encoding.TrackEncodeRequest(cylinder, head, sectors, BitCellTicks: cellTicks));
+            tracks.Add(new((byte)(cylinder * 2 + head), cylinder, head, [encoded.Revolution]));
+        }
+        var scp = new ScpImage(new(0, 0, 1, 0, 159, ScpFlags.IndexAligned, 16, 0, 0, 0), tracks, true, 0);
+        var actual = await new AmigaScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry()).ReadAsync("memory.scp");
+
+        Assert.Equal(expected.SectorsPerTrack, actual.SectorsPerTrack);
+        Assert.Empty(actual.MissingBlocks);
+        for (var logical = 0; logical < expected.BlockCount; logical++)
+            Assert.Equal(expected.GetBlock(logical).ToArray(), actual.GetBlock(logical).ToArray());
+        var volume = new GWGUI.Scp.FileSystems.Readers.AmigaDosFileSystemReader().Read(actual);
+        Assert.False(string.IsNullOrWhiteSpace(volume.Name));
+        Assert.Empty(volume.Warnings);
+    }
+
     [Fact]
     public async Task RealAmigaDosCaptureReconstructsRootBlockWhenRequested()
     {
@@ -118,5 +191,17 @@ public sealed class RealScpCorpusTests
         return heads;
     }
 
+    private static string[] Flatten(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
+        .SelectMany(entry => new[]
+        {
+            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
+        }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
+        .ToArray();
+
     private sealed record CorpusEntry(string DecoderPrefix, string Path, int MinimumTrackCount, int[] ExpectedHeads);
+
+    private sealed class MemoryScpReader(ScpImage image) : IScpReader
+    {
+        public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) => Task.FromResult(image);
+    }
 }

@@ -121,3 +121,11 @@ La classification détaillée, les prérequis et les tâches nécessitant l’ai
 - Mise à niveau silencieuse réelle 0.0.0 → 0.1.0 validée sous Windows 10 22H2 avec `scripts/test-installer-upgrade.ps1`; inscription, exécutable courant et nettoyage final ont été contrôlés.
 - Parcours interactifs complets anglais et français validés sous Windows 10 22H2 avec `scripts/test-installer-interactive.ps1`; cinq pages, versions/langues, absence de lancement implicite et nettoyage ont été contrôlés.
 - Icône extraite de l’exécutable publiée et contrôlée à 32 px; les deux guides ont été contrôlés dans le ZIP portable.
+
+## Validation locale AmigaDOS DD/HD
+
+- Le corpus local comprend sept couples ADF/SCP couvrant AmigaDOS DD et HD, OFS et FFS, des volumes vides, amorçables et contenant une arborescence réelle. `scripts/test-amiga-corpus.ps1` vérifie chaque couple sans publier les images ignorées par Git.
+- Les ADF et les SCP reconstruits sont comparés sur leurs 1 760 ou 3 520 blocs de 512 octets. Le nom et le type du volume, l’espace libre, toute l’arborescence, les métadonnées et le contenu des fichiers doivent ensuite être identiques et ne produire aucun avertissement d’intégrité.
+- Chaque ADF traverse également l’encodeur interne Amiga MFM sur ses 160 pistes physiques, en 11 secteurs DD ou 22 secteurs HD, puis le décodeur, la reconstruction sectorielle et le lecteur AmigaDOS. Les données finales doivent être strictement identiques à l’ADF initial.
+- Les lecteurs ADF et SCP conservent désormais l’identité `amiga.amigados_hd` pour les images HD. Le lecteur AmigaDOS contrôle le bloc racine indiqué dans le boot block avant de l’utiliser et revient au bloc central conventionnel lorsqu’un ancien pointeur DD `880` subsiste dans une image HD dont le véritable bloc racine est `1760`.
+- État après cette validation : 347 tests automatisés réussis, auxquels s’ajoutent 21 contrôles opt-in sur les sept couples réels du corpus Amiga.

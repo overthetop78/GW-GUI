@@ -42,6 +42,29 @@ public sealed class TrackEncoderTests
         Assert.Equal(data, payload);
     }
 
+    [Theory]
+    [InlineData(11)]
+    [InlineData(22)]
+    public void CompleteAmigaDdAndHdTracksRoundTrip(int sectorCount)
+    {
+        var sectors = Enumerable.Range(0, sectorCount)
+            .Select(number => new TrackSector(number, Enumerable.Range(0, 512).Select(index => (byte)(number * 29 + index * 17)).ToArray()))
+            .ToArray();
+        var cellTicks = sectorCount == 22 ? 20u : 40u;
+        var encoded = new FluxEncoderRegistry().Encode("amiga.mfm", new TrackEncodeRequest(37, 1, sectors, BitCellTicks: cellTicks));
+        var decoded = new FluxDecoderRegistry().Decode("amiga.mfm", encoded.Revolution);
+
+        Assert.Equal(sectorCount, decoded.Sectors!.Count);
+        foreach (var expected in sectors)
+        {
+            var actual = Assert.Single(decoded.Sectors, sector => sector.Number == expected.Number);
+            Assert.True(actual.IntegrityValid);
+            Assert.Equal(expected.Data, actual.Data);
+            Assert.Equal(37, actual.Cylinder);
+            Assert.Equal(1, actual.Head);
+        }
+    }
+
     [Fact]
     public void ArburgDataTrackRoundTrips()
     {

@@ -30,7 +30,8 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
         var boot = image.GetBlock(0).Span;
         var dosType = boot[3];
         var rootPointer = ReadInt32(boot, 8);
-        var rootBlock = rootPointer > 0 && rootPointer < image.BlockCount ? rootPointer : image.BlockCount / 2;
+        var conventionalRootBlock = image.BlockCount / 2;
+        var rootBlock = IsRootBlock(image, rootPointer) ? rootPointer : conventionalRootBlock;
         var root = ReadRequiredBlock(image, rootBlock, "root block");
         if (ReadInt32(root, 0) != 2 || ReadInt32(root, 508) != 1) throw new InvalidDataException("The AmigaDOS root block is invalid.");
         if (!ChecksumValid(root)) warnings.Add($"Root block {rootBlock} has an invalid checksum.");
@@ -169,6 +170,14 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     {
         if (!image.TryGetBlock(blockNumber, out var block)) throw new InvalidDataException($"The AmigaDOS {description} ({blockNumber}) is missing.");
         return block.Data.ToArray();
+    }
+
+    private static bool IsRootBlock(SectorImage image, int blockNumber)
+    {
+        if (blockNumber <= 0 || blockNumber >= image.BlockCount || !image.TryGetBlock(blockNumber, out var block) || block.Data.Count != BlockSize)
+            return false;
+        var data = block.Data is byte[] bytes ? bytes.AsSpan() : block.Data.ToArray().AsSpan();
+        return ReadInt32(data, 0) == 2 && ReadInt32(data, 508) == 1;
     }
 
     private static bool ChecksumValid(ReadOnlySpan<byte> block)

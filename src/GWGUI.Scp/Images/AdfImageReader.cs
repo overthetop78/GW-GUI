@@ -31,6 +31,7 @@ public sealed class AdfImageReader : ISectorImageReader
             var track = logical / sectorsPerTrack;
             blocks[logical] = new(logical, new(track / 2, track % 2, logical % sectorsPerTrack), data.AsSpan(logical * 512, 512).ToArray());
         }
-        return new("amiga.amigados", 512, 80, 2, sectorsPerTrack, blocks);
+        var formatId = sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados";
+        return new(formatId, 512, 80, 2, sectorsPerTrack, blocks);
     }
 }

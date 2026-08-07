@@ -48,15 +48,16 @@ public sealed class DiskImageExplorerTests
         => Assert.Equal(expectedResourceKey, ExplorerFileIconClassifier.TypeResourceKeyFor(kind));
 
     [Theory]
-    [InlineData(AdfImageReader.DoubleDensityBytes, 11)]
-    [InlineData(AdfImageReader.HighDensityBytes, 22)]
-    public async Task AdfReaderBuildsAmigaGeometry(int byteLength, int sectorsPerTrack)
+    [InlineData(AdfImageReader.DoubleDensityBytes, 11, "amiga.amigados")]
+    [InlineData(AdfImageReader.HighDensityBytes, 22, "amiga.amigados_hd")]
+    public async Task AdfReaderBuildsAmigaGeometry(int byteLength, int sectorsPerTrack, string formatId)
     {
         var path = Path.GetTempFileName();
         try
         {
             await File.WriteAllBytesAsync(path, new byte[byteLength]);
             var image = await new AdfImageReader().ReadAsync(path);
+            Assert.Equal(formatId, image.FormatId);
             Assert.Equal(80, image.Cylinders); Assert.Equal(2, image.Heads); Assert.Equal(sectorsPerTrack, image.SectorsPerTrack);
             Assert.Equal(byteLength, image.Capacity); Assert.Empty(image.MissingBlocks);
         }
@@ -88,6 +89,16 @@ public sealed class DiskImageExplorerTests
     }
 
     [Fact]
+    public void AmigaDosHdFallsBackToItsConventionalRootWhenTheBootPointerIsStale()
+    {
+        var image = BuildAmigaImage(fastFileSystem: true, sectorsPerTrack: 22, bootRootPointer: 880);
+        var volume = new AmigaDosFileSystemReader().Read(image);
+
+        Assert.Equal("Workbench", volume.Name);
+        Assert.Equal("AmigaDOS FFS", volume.FileSystem);
+    }
+
+    [Fact]
     public async Task ExplorerReadsAnAdfEndToEndAndAcceptsTheCatalogFormatId()
     {
         var image = BuildAmigaImage(fastFileSystem: true);
@@ -114,6 +125,7 @@ public sealed class DiskImageExplorerTests
         var image = await reader.ReadAsync("memory.scp");
 
         Assert.Equal(11, image.SectorsPerTrack);
+        Assert.Equal("amiga.amigados", image.FormatId);
         Assert.Equal(Enumerable.Repeat((byte)8, 512), image.GetBlock(7).ToArray());
         Assert.Equal(11, image.AvailableBlocks.Count);
     }
@@ -134,11 +146,11 @@ public sealed class DiskImageExplorerTests
         Assert.Equal(22, AmigaScpSectorImageReader.InferSectorsPerTrack(addresses));
     }
 
-    private static SectorImage BuildAmigaImage(bool fastFileSystem)
+    private static SectorImage BuildAmigaImage(bool fastFileSystem, int sectorsPerTrack = 11, int? bootRootPointer = null)
     {
-        const int blocks = 1760; const int rootBlock = 880; const int bitmapBlock = 881;
+        var blocks = 80 * 2 * sectorsPerTrack; var rootBlock = blocks / 2; var bitmapBlock = rootBlock + 1;
         var data = new byte[blocks * 512];
-        data[0] = (byte)'D'; data[1] = (byte)'O'; data[2] = (byte)'S'; data[3] = fastFileSystem ? (byte)1 : (byte)0; WriteInt(data, 8, rootBlock);
+        data[0] = (byte)'D'; data[1] = (byte)'O'; data[2] = (byte)'S'; data[3] = fastFileSystem ? (byte)1 : (byte)0; WriteInt(data, 8, bootRootPointer ?? rootBlock);
 
         var root = Block(data, rootBlock); WriteInt(root, 0, 2); WriteInt(root, 12, 72); WriteInt(root, 24, 10); WriteInt(root, 316, bitmapBlock);
         WriteBString(root, 432, "Workbench"); WriteInt(root, 508, 1); SetChecksum(root);
@@ -155,10 +167,10 @@ public sealed class DiskImageExplorerTests
         var bitmap = Block(data, bitmapBlock); for (var offset = 4; offset < 512; offset += 4) WriteUInt(bitmap, offset, uint.MaxValue); SetChecksum(bitmap, 0);
         var sectorBlocks = Enumerable.Range(0, blocks).Select(logical =>
         {
-            var track = logical / 11;
-            return new SectorBlock(logical, new(track / 2, track % 2, logical % 11), data.AsSpan(logical * 512, 512).ToArray());
+            var track = logical / sectorsPerTrack;
+            return new SectorBlock(logical, new(track / 2, track % 2, logical % sectorsPerTrack), data.AsSpan(logical * 512, 512).ToArray());
         });
-        return new("amiga.amigados", 512, 80, 2, 11, sectorBlocks);
+        return new(sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados", 512, 80, 2, sectorsPerTrack, sectorBlocks);
     }
 
     private static void WriteFileData(Span<byte> block, ReadOnlySpan<byte> content, bool ffs, int header)
