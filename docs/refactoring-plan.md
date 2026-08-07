@@ -17,16 +17,18 @@ Ce document décrit les découpages à envisager sans autoriser leur réalisatio
 
 ## 1. Moteur SCP et formats de disquette
 
-### État de `FluxDecoding.cs`
+### État du moteur de décodage
 
-`FluxDecoding.cs` contient actuellement 1 321 lignes et quatre responsabilités différentes :
+Le monolithe `FluxDecoding.cs` a été supprimé. Ses quatre responsabilités sont maintenant séparées :
 
-1. contrats et résultats de décodage;
-2. registre et sélection automatique des décodeurs;
-3. reconstruction d’un flux en cellules binaires;
-4. dix-neuf décodeurs de familles de disquettes.
+1. contrats et résultats de décodage dans `FluxDecodeModels.cs` et `IFluxDecoder.cs`;
+2. registre et sélection automatique dans `FluxDecoderRegistry.cs`;
+3. reconstruction d’un flux en cellules binaires dans `Flux/FluxBitstream.cs`;
+4. dix-neuf décodeurs, chacun dans son propre fichier sous `Decoding/Decoders`.
 
-Il ne contient pas tous les formats de disquette du produit. Le catalogue Lecture/Écriture/Conversion, les capacités de `gw`, les `diskdefs` et le lecteur du conteneur SCP se trouvent dans d’autres fichiers. D’autres décodeurs devront être ajoutés; garder toutes les futures familles dans ce fichier rendrait rapidement la maintenance difficile.
+La base de reconnaissance commune reste dans `Decoding/Base/SignatureMfmDecoder.cs`. Les générateurs de signatures MFM/FM existants sont isolés dans `Encoding/FluxEncoding.cs`; ce ne sont pas encore des encodeurs complets de pistes ou de conteneurs. Le déplacement a été validé par la compilation Release et les 285 tests existants, sans changement fonctionnel.
+
+Ce moteur ne contient pas encore tous les formats de disquette du produit. Le catalogue Lecture/Écriture/Conversion, les capacités de `gw`, les `diskdefs` et le lecteur du conteneur SCP se trouvent dans d’autres fichiers. Chaque futur décodeur devra conserver cette organisation en obtenant son propre fichier.
 
 ### Découpage cible
 
@@ -40,8 +42,7 @@ GWGUI.Scp/
 │       └── ScpWriter.cs                 # futur, seulement si nécessaire
 ├── Flux/
 │   ├── FluxBitstream.cs
-│   ├── FluxTimingAnalyzer.cs            # estimation et anomalies
-│   └── FluxEncoding.cs                  # futur chemin inverse
+│   └── FluxTimingAnalyzer.cs            # futur : estimation et anomalies partagées
 ├── Decoding/
 │   ├── FluxDecodeModels.cs
 │   ├── IFluxDecoder.cs
@@ -73,9 +74,10 @@ GWGUI.Scp/
 │   ├── SectorCandidate.cs
 │   ├── SectorSelectionPolicy.cs
 │   └── GeometryResolver.cs
-├── Encoding/                           # futur
-│   ├── ITrackEncoder.cs
-│   └── Encoders/...
+├── Encoding/
+│   ├── FluxEncoding.cs                 # générateurs de signatures MFM/FM existants
+│   ├── ITrackEncoder.cs                # futur
+│   └── Encoders/...                    # futurs encodeurs complets
 ├── FileSystems/
 │   ├── IFileSystemReader.cs
 │   ├── FileSystemRegistry.cs
@@ -92,18 +94,21 @@ GWGUI.Scp/
 
 Chaque nouveau décodeur doit avoir son fichier, ses vecteurs de test et une description de référence. Le registre pourra rester explicite afin de connaître l’ordre de détection, mais sa liste ne doit plus partager le fichier des algorithmes.
 
-Le découpage de `FluxDecoding.cs` est requis avant de poursuivre fortement cette partie. Il doit séparer explicitement :
+Le découpage de `FluxDecoding.cs` est réalisé pour les éléments qui existent actuellement. Il sépare explicitement :
 
 - les contrats et résultats communs ;
 - la conversion des timings de flux en cellules ;
 - le registre et la détection automatique ;
 - chaque famille de flux et chaque décodeur dans son propre fichier ;
-- les futurs encodeurs dans une arborescence distincte des décodeurs ;
+- les utilitaires d’encodage existants dans une arborescence distincte des décodeurs ;
+
+Les éléments suivants restent des développements futurs et non de simples déplacements de code existant :
+
 - les lecteurs et écrivains de conteneurs ;
 - la reconstruction sectorielle ;
 - les interpréteurs de systèmes de fichiers utilisés par l’onglet `Explorateur`.
 
-Ce découpage doit être effectué sans changement de comportement : déplacer une famille à la fois, conserver les tests existants, vérifier le résultat après chaque déplacement et ne pas dupliquer les traitements communs. Les encodeurs et décodeurs restent séparés même lorsqu’ils concernent la même famille MFM, FM ou GCR.
+Le découpage a été effectué sans changement de comportement : les tests existants ont été conservés, chaque décodeur garde exactement son algorithme et les traitements communs ne sont pas dupliqués. Les futurs encodeurs et les décodeurs resteront séparés même lorsqu’ils concernent la même famille MFM, FM ou GCR.
 
 Les sources de HxCFloppyEmulator/libhxcfe restent une référence technique majeure pour identifier les structures, marques, encodages, géométries et comportements attendus. Comme `libhxcfe` est distribué sous GPL alors que GW GUI est sous MIT, les algorithmes nécessaires doivent être réimplémentés indépendamment en C#, avec références consignées et vecteurs de tests propres; aucun code HxC n’est copié directement dans le produit.
 
