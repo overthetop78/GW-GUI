@@ -1544,24 +1544,24 @@ SCP 条目：{2}</value>
     <value>找不到可用的输出文件名。</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>打开磁盘映像...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>分离检查员</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>附上检查员</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>概括</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>检测到格式</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>平均转速</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>平均持续时间</value>
   </data>
 </root>

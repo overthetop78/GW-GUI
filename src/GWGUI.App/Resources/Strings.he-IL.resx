@@ -1544,24 +1544,24 @@
     <value>לא נמצא שם קובץ פלט זמין.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>פתח תמונת דיסק...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>נתק את המפקח</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>צרף את המפקח</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>תַקצִיר</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>פורמט זוהה</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>סל"ד ממוצע</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>משך זמן ממוצע</value>
   </data>
 </root>

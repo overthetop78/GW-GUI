@@ -1544,24 +1544,24 @@ SCP الإدخال: {2}</value>
     <value>لا يمكن العثور على اسم ملف الإخراج المتاح.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>افتح صورة القرص...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>فصل المفتش</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>إرفاق المفتش</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>ملخص</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>تم الكشف عن التنسيق</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>متوسط ​​دورة في الدقيقة</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>متوسط ​​المدة</value>
   </data>
 </root>

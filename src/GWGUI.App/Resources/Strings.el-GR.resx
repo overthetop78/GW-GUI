@@ -1544,24 +1544,24 @@ SCP καταχώριση: {2}</value>
     <value>Δεν βρέθηκε διαθέσιμο όνομα αρχείου εξόδου.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Άνοιγμα εικόνας δίσκου…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Αποσπάστε τον επιθεωρητή</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Συνδέστε τον επιθεωρητή</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Περίληψη</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Εντοπίστηκε μορφή</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Μέση RPM</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Μέση διάρκεια</value>
   </data>
 </root>

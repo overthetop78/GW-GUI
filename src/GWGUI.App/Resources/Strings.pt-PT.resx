@@ -1544,24 +1544,24 @@ Sem dados</value>
     <value>Nenhum nome de ficheiro de saída disponível foi encontrado.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Abra uma imagem de disco…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Desligue o inspetor</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Anexe o inspetor</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Resumo</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Formato detectado</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Rotação média</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Duração média</value>
   </data>
 </root>

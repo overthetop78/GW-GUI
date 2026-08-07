@@ -1544,24 +1544,24 @@ Nessun dato</value>
     <value>Impossibile trovare un nome file di output disponibile.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Apri un'immagine disco...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Stacca l'ispettore</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Attacca l'ispettore</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Riepilogo</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Formato rilevato</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Giri/min medi</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Durata media</value>
   </data>
 </root>

@@ -1544,24 +1544,24 @@ Fără date</value>
     <value>Nu a putut fi găsit niciun nume de fișier de ieșire disponibil.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Deschide o imagine de disc...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Detașează inspectorul</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Atașați inspectorul</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Rezumat</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Format detectat</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>RPM medie</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Durata medie</value>
   </data>
 </root>

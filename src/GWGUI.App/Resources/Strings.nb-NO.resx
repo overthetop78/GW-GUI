@@ -1544,24 +1544,24 @@ Ingen data</value>
     <value>Finner ikke noe tilgjengelig utdatafilnavn.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Åpne et diskbilde...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Løsne inspektøren</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Fest inspektøren</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Sammendrag</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Formatet oppdaget</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Gjennomsnittlig RPM</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Gjennomsnittlig varighet</value>
   </data>
 </root>

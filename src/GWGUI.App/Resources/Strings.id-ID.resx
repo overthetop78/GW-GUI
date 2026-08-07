@@ -1544,24 +1544,24 @@ Tidak ada data</value>
     <value>Tidak ada nama file keluaran yang tersedia yang dapat ditemukan.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Buka gambar disk…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Lepaskan inspektur</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Lampirkan inspektur</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Ringkasan</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Format terdeteksi</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>RPM rata-rata</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Durasi rata-rata</value>
   </data>
 </root>

@@ -1544,24 +1544,24 @@ Keine Daten</value>
     <value>Es konnte kein verfügbarer Ausgabedateiname gefunden werden.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Öffnen Sie ein Disk-Image…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Nehmen Sie den Inspektor ab</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Bringen Sie den Inspektor an</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Zusammenfassung</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Format erkannt</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Durchschnittliche Drehzahl</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Durchschnittliche Dauer</value>
   </data>
 </root>

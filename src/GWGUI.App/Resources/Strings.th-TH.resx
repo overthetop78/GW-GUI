@@ -1544,24 +1544,24 @@ SCP รายการ: {2}</value>
     <value>ไม่พบชื่อไฟล์เอาต์พุตที่ใช้ได้</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>เปิดดิสก์อิมเมจ...</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>ถอดผู้ตรวจสอบออก</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>ติดผู้ตรวจสอบ</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>สรุป</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>ตรวจพบรูปแบบ</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>รอบต่อนาทีเฉลี่ย</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>ระยะเวลาเฉลี่ย</value>
   </data>
 </root>

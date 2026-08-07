@@ -325,6 +325,7 @@ public partial class MainWindow : Window
         var total = Math.Max(1, _scpImage.Tracks.Count);
         var completedByHead = heads.ToDictionary(head => head, _ => 0);
         var cylindersByHead = heads.ToDictionary(head => head, head => (IReadOnlyList<int>)_scpImage.Tracks.Where(track => track.Head == head).OrderBy(track => track.Cylinder).Select(track => track.Cylinder).ToArray());
+        VisualizerTrackOverview.Configure(cylindersByHead);
         Face0TrackProgress.Configure(0, cylindersByHead.GetValueOrDefault(0) ?? [], LocExtension.Get("Visual.Side", 0));
         Face1TrackProgress.Configure(1, cylindersByHead.GetValueOrDefault(1) ?? [], LocExtension.Get("Visual.Side", 1));
         _viewModel.ProgressVisibility = Visibility.Visible;
@@ -344,6 +345,7 @@ public partial class MainWindow : Window
                 var current = Math.Min(total, completedByHead.Values.Sum());
                 for (var index = 0; index < Math.Min(value, cylinders.Count); index++) strip.SetState(cylinders[index], TrackSegmentState.Success);
                 if (value < cylinders.Count) strip.SetActive(cylinders[value]); else strip.ClearActive();
+                VisualizerTrackOverview.MarkPrepared(head, value);
                 _viewModel.ProgressText = LocExtension.Get("Visual.AnalysingTrack", current, total);
                 view.RefreshPreparedTracks();
             });
@@ -419,6 +421,8 @@ public partial class MainWindow : Window
     }
     private void PositionScpInspector()
     {
+        ScpInspector.Width = Math.Max(320, Math.Min(390, ScpInspectorLayer.ActualWidth - 12));
+        ScpInspector.Height = Math.Max(280, Math.Min(410, ScpInspectorLayer.ActualHeight - 12));
         var currentLeft = Canvas.GetLeft(ScpInspector);
         var currentTop = Canvas.GetTop(ScpInspector);
         var left = double.IsNaN(currentLeft) ? Math.Max(12, ScpInspectorLayer.ActualWidth - ScpInspector.Width - 20) : Math.Min(currentLeft, Math.Max(0, ScpInspectorLayer.ActualWidth - ScpInspector.Width));

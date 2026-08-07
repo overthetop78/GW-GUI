@@ -1544,24 +1544,24 @@ SCP záznam: {2}</value>
     <value>Nebyl nalezen žádný dostupný výstupní název souboru.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Otevřít obraz disku…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Odpojte inspektora</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Připojte inspektora</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Shrnutí</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Zjištěn formát</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Průměrná RPM</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Průměrná doba trvání</value>
   </data>
 </root>

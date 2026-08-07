@@ -1544,24 +1544,24 @@ Không có dữ liệu</value>
     <value>Không thể tìm thấy tên tệp đầu ra có sẵn.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Mở một hình ảnh đĩa…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Tách thanh tra</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Đính kèm thanh tra</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Bản tóm tắt</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Đã phát hiện định dạng</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>RPM trung bình</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Thời lượng trung bình</value>
   </data>
 </root>

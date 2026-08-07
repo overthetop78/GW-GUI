@@ -1544,24 +1544,24 @@ Aucune donnée</value>
     <value>Impossible de trouver un nom de sortie disponible.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Ouvrir une image disqueâ€¦</value>
+    <value>Ouvrir une image disque…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>DÃ©tacher lâ€™inspecteur</value>
+    <value>Détacher l’inspecteur</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Rattacher lâ€™inspecteur</value>
+    <value>Rattacher l’inspecteur</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>RÃ©sumÃ©</value>
+    <value>Résumé</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Format dÃ©tectÃ©</value>
+    <value>Format détecté</value>
   </data>
   <data name="Visual.AverageRpm">
     <value>RPM moyen</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>DurÃ©e moyenne</value>
+    <value>Durée moyenne</value>
   </data>
 </root>

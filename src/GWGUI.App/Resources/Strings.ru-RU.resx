@@ -1544,24 +1544,24 @@ SCP запись: {2}</value>
     <value>Не удалось найти доступное имя выходного файла.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Откройте образ диска…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Отсоединить инспектора</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Прикрепите инспектора</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Краткое содержание</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Обнаружен формат</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Средняя частота вращения</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Средняя продолжительность</value>
   </data>
 </root>

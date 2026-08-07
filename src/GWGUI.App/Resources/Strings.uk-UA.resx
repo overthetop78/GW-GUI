@@ -1544,24 +1544,24 @@ SCP запис: {2}</value>
     <value>Не вдалося знайти доступну назву вихідного файлу.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Відкрийте образ диска…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Відключити інспектора</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Приєднати інспектора</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Резюме</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Виявлено формат</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Середні оберти</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Середня тривалість</value>
   </data>
 </root>

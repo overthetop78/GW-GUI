@@ -1544,24 +1544,24 @@ Nincs adat</value>
     <value>Nem található elérhető kimeneti fájlnév.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Lemezkép megnyitása…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Válassza le az ellenőrt</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Csatlakoztassa az ellenőrt</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Összegzés</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Formátum észlelve</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Átlagos fordulatszám</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Átlagos időtartam</value>
   </data>
 </root>

@@ -1544,7 +1544,7 @@ No data</value>
     <value>No available output filename could be found.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Open a disk image…</value>
   </data>
   <data name="Visual.DetachInspector">
     <value>Detach inspector</value>

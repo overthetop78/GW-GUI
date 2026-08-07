@@ -1544,24 +1544,24 @@ Veri yok</value>
     <value>Kullanılabilir çıktı dosyası adı bulunamadı.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Bir disk görüntüsünü açın…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Müfettişi ayırın</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Müfettişi bağlayın</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Özet</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Biçim algılandı</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Ortalama BGBG</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Ortalama süre</value>
   </data>
 </root>

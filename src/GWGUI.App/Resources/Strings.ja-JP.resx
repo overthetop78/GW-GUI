@@ -1544,24 +1544,24 @@ SCP エントリ: {2}</value>
     <value>利用可能な出力ファイル名が見つかりませんでした。</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>ディスクイメージを開きます…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>検査官を切り離す</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>検査官を付ける</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>まとめ</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>フォーマットが検出されました</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>平均回転数</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>平均持続時間</value>
   </data>
 </root>

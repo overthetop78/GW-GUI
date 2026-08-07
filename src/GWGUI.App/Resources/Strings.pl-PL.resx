@@ -1544,24 +1544,24 @@ Brak danych</value>
     <value>Nie znaleziono dostępnej nazwy pliku wyjściowego.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Otwórz obraz dysku…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Odłącz inspektora</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Dołącz inspektora</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Streszczenie</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Wykryto format</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Średnie obroty</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Średni czas trwania</value>
   </data>
 </root>

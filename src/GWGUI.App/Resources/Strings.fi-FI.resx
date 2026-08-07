@@ -1544,24 +1544,24 @@ Ei dataa</value>
     <value>Tulostetiedoston nimeä ei löytynyt.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Avaa levykuva…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Irrota tarkastaja</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Kiinnitä tarkastaja</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Yhteenveto</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Muoto havaittu</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Keskimääräinen RPM</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Keskimääräinen kesto</value>
   </data>
 </root>

@@ -1544,24 +1544,24 @@ Geen gegevens</value>
     <value>Er kon geen beschikbare uitvoerbestandsnaam worden gevonden.</value>
   </data>
   <data name="Visual.OpenImage">
-    <value>Open a disk imageâ€¦</value>
+    <value>Een schijfkopie openen…</value>
   </data>
   <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
+    <value>Maak de inspecteur los</value>
   </data>
   <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
+    <value>Bevestig de inspecteur</value>
   </data>
   <data name="Visual.SummaryTab">
-    <value>Summary</value>
+    <value>Samenvatting</value>
   </data>
   <data name="Visual.FormatDetected">
-    <value>Detected format</value>
+    <value>Formaat gedetecteerd</value>
   </data>
   <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
+    <value>Gemiddeld toerental</value>
   </data>
   <data name="Visual.AverageDuration">
-    <value>Average duration</value>
+    <value>Gemiddelde duur</value>
   </data>
 </root>
