@@ -76,6 +76,11 @@ GWGUI.Scp/
 ├── Encoding/                           # futur
 │   ├── ITrackEncoder.cs
 │   └── Encoders/...
+├── FileSystems/
+│   ├── IFileSystemReader.cs
+│   ├── FileSystemRegistry.cs
+│   ├── FileSystemModels.cs
+│   └── Readers/                         # un fichier par système de fichiers
 └── Images/                             # futurs lecteurs/écrivains de fichiers
     ├── IImageReader.cs
     ├── IImageWriter.cs
@@ -86,6 +91,19 @@ GWGUI.Scp/
 ```
 
 Chaque nouveau décodeur doit avoir son fichier, ses vecteurs de test et une description de référence. Le registre pourra rester explicite afin de connaître l’ordre de détection, mais sa liste ne doit plus partager le fichier des algorithmes.
+
+Le découpage de `FluxDecoding.cs` est requis avant de poursuivre fortement cette partie. Il doit séparer explicitement :
+
+- les contrats et résultats communs ;
+- la conversion des timings de flux en cellules ;
+- le registre et la détection automatique ;
+- chaque famille de flux et chaque décodeur dans son propre fichier ;
+- les futurs encodeurs dans une arborescence distincte des décodeurs ;
+- les lecteurs et écrivains de conteneurs ;
+- la reconstruction sectorielle ;
+- les interpréteurs de systèmes de fichiers utilisés par l’onglet `Explorateur`.
+
+Ce découpage doit être effectué sans changement de comportement : déplacer une famille à la fois, conserver les tests existants, vérifier le résultat après chaque déplacement et ne pas dupliquer les traitements communs. Les encodeurs et décodeurs restent séparés même lorsqu’ils concernent la même famille MFM, FM ou GCR.
 
 Les sources de HxCFloppyEmulator/libhxcfe restent une référence technique majeure pour identifier les structures, marques, encodages, géométries et comportements attendus. Comme `libhxcfe` est distribué sous GPL alors que GW GUI est sous MIT, les algorithmes nécessaires doivent être réimplémentés indépendamment en C#, avec références consignées et vecteurs de tests propres; aucun code HxC n’est copié directement dans le produit.
 
@@ -101,6 +119,8 @@ Ces fonctions ne sont pas équivalentes :
 - un **écrivain SCP** produit le conteneur brut autour de ce flux.
 
 Le code actuel possède le lecteur SCP et les décodeurs. Il ne possède pas encore le modèle sectoriel complet, les politiques de reconstruction, les encodeurs de pistes ni les écrivains de tous les conteneurs.
+
+Les décodeurs de flux actuels ne remplacent pas les interpréteurs de systèmes de fichiers. Pour l’onglet `Explorateur`, le résultat sectoriel devra être transmis à un module distinct capable d’interpréter le volume, les répertoires, les fichiers, leurs attributs et les erreurs propres au système de fichiers.
 
 L’architecture prévoit toutes ces couches afin de ne pas devoir la recommencer lorsqu’elles deviendront utiles. L’utilisateur décide de leur ordre de réalisation. Lorsqu’une couche est retenue, elle doit être réalisée complètement selon le périmètre décidé, sans version volontairement minimale.
 

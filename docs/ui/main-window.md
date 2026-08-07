@@ -12,9 +12,10 @@ La fenêtre principale n’utilise pas la page d’accueil de l’ancien GUI ave
 - **Écriture** : écrire une image sur une disquette.
 - **Conversion** : convertir une ou plusieurs représentations d’une image.
 - **Visualisation** : analyser visuellement un fichier SCP.
+- **Explorateur** : charger une image ou lire temporairement une disquette afin d’afficher son nom de volume, ses dossiers et ses fichiers lorsque son format et son système de fichiers peuvent être interprétés.
 - **Outils** : uniquement les actions de maintenance retenues dans la fenêtre principale, actuellement Effacer et Nettoyer les têtes.
 
-La liste finale retenue contient ces cinq onglets. Les diagnostics et contrôles matériels ne deviennent pas des onglets.
+La navigation comprend désormais ce sixième onglet demandé. Les diagnostics et contrôles matériels ne deviennent pas des onglets.
 
 ## Menu Options — Validé
 

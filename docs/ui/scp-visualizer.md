@@ -44,6 +44,18 @@ L’objectif concerne aussi bien les captures SCP que les autres images de disqu
 
 La conception de cet onglet reste à définir avec l’utilisateur avant son développement : systèmes de fichiers à prendre en charge, affichage en lecture seule, informations détaillées, extraction éventuelle et comportement lorsque la reconnaissance est partielle.
 
+Exigences retenues pour sa réalisation :
+
+- créer un véritable onglet principal `Explorateur` ;
+- permettre de charger directement une image de disquette depuis cet onglet ;
+- viser tous les formats pris en charge par GW GUI, avec détection automatique puis sélection manuelle du format à essayer lorsque la détection échoue ;
+- proposer l’ouverture dans `Explorateur` à la fin d’une Lecture réussie, comme pour l’ouverture dans `Visualisation` ;
+- permettre une exploration directement depuis une disquette présente dans le lecteur. Le parcours envisagé utilise `gw` pour créer une capture SCP temporaire dans le dossier temporaire de Windows, analyse cette capture, puis gère proprement sa suppression lorsque l’exploration est terminée ou annulée ;
+- ne jamais modifier l’image chargée ou la disquette pendant une simple exploration ;
+- afficher clairement les erreurs de décodage et les parties impossibles à reconstruire au lieu d’inventer une arborescence.
+
+Chaque nouveau libellé, message, état, erreur et texte accessible ajouté pour `Explorateur` doit être créé sous forme de clé de traduction et renseigné dans le français, l’anglais et tous les autres catalogues de langues pris en charge.
+
 ## Décodage
 
 - Lecteur SCP universel.
