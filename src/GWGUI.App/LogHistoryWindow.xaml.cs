@@ -2,6 +2,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.App.Localization;
+using GWGUI.App.Services;
 using Microsoft.Win32;
 
 namespace GWGUI.App;
@@ -21,7 +22,13 @@ public partial class LogHistoryWindow : Window
     {
         if (FilesList.SelectedItem is not FileInfo file) { ContentText.Clear(); ExportButton.IsEnabled = false; return; }
         try { ContentText.Text = await File.ReadAllTextAsync(file.FullName); ExportButton.IsEnabled = true; }
-        catch (IOException exception) { ContentText.Text = exception.Message; ExportButton.IsEnabled = false; }
+        catch (IOException exception)
+        {
+            var path = ErrorLog.Write(exception, "Reading log history");
+            var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+            ContentText.Text = LocExtension.Get("Error.Unexpected", detail);
+            ExportButton.IsEnabled = false;
+        }
     }
 
     private async void Export_Click(object sender, RoutedEventArgs e)

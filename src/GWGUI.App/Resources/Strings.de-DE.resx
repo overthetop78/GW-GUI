@@ -1588,9 +1588,6 @@ Keine Daten</value>
   <data name="Explorer.Automatic">
     <value>Automatische Erkennung</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Datenträger</value>
   </data>
@@ -1647,5 +1644,18 @@ Keine Daten</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Diskette lesen</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Name</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Typ</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Diskette lesen</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Ist die Diskette in das aktuell ausgewählte Laufwerk ({0}) eingelegt und zum Lesen bereit?</value>
   </data>
 </root>

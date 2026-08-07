@@ -1588,9 +1588,6 @@ Sem dados</value>
   <data name="Explorer.Automatic">
     <value>Deteção automática</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Volume</value>
   </data>
@@ -1647,5 +1644,18 @@ Sem dados</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Ler disquete</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Nome</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Tipo</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Ler disquete</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>A disquete está inserida na unidade atualmente selecionada ({0}) e pronta para ser lida?</value>
   </data>
 </root>

@@ -7,11 +7,35 @@ using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.FileSystems.Readers;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
+using GWGUI.App.Controls;
 
 namespace GWGUI.Tests;
 
 public sealed class DiskImageExplorerTests
 {
+    [Fact]
+    public void ExplorerCapabilitiesComeFromRegisteredFileSystemReaders()
+    {
+        var explorer = DiskImageExplorer.CreateDefault();
+        Assert.Contains("amiga.amigados", explorer.SupportedFormatIds);
+        Assert.Contains("amiga.amigados_hd", explorer.SupportedFormatIds);
+    }
+
+    [Theory]
+    [InlineData("Drawer", FileSystemEntryKind.Directory, ExplorerIconKind.Folder)]
+    [InlineData("ReadMe.txt", FileSystemEntryKind.File, ExplorerIconKind.Text)]
+    [InlineData("Picture.iff", FileSystemEntryKind.File, ExplorerIconKind.Image)]
+    [InlineData("Music.mod", FileSystemEntryKind.File, ExplorerIconKind.Audio)]
+    [InlineData("Files.lha", FileSystemEntryKind.File, ExplorerIconKind.Archive)]
+    [InlineData("Program.exe", FileSystemEntryKind.File, ExplorerIconKind.Program)]
+    [InlineData("Disk.adf", FileSystemEntryKind.File, ExplorerIconKind.DiskImage)]
+    [InlineData("Alias", FileSystemEntryKind.Link, ExplorerIconKind.Link)]
+    public void ExplorerUsesDistinctIconsForEntryTypes(string name, FileSystemEntryKind kind, ExplorerIconKind expected)
+    {
+        var entry = new FileSystemEntry(name, kind, 0, null, string.Empty, 0, 0, true, []);
+        Assert.Equal(expected, ExplorerFileIconClassifier.IconFor(entry));
+    }
+
     [Theory]
     [InlineData(AdfImageReader.DoubleDensityBytes, 11)]
     [InlineData(AdfImageReader.HighDensityBytes, 22)]

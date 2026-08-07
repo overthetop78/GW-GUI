@@ -38,7 +38,11 @@ Ouvrez une capture SCP pour afficher les deux faces, zoomer, déplacer la vue et
 
 ## Explorateur de disque
 
-L’onglet **Explorateur** ouvre directement une image ADF ou SCP Amiga et affiche en lecture seule son nom de volume, son système de fichiers, sa capacité, son espace libre ainsi que l’arborescence des dossiers et fichiers. La détection peut rester automatique ou être forcée sur AmigaDOS. Une capture SCP terminée peut y être envoyée depuis Lecture. **Lire la disquette** crée avec `gw` une capture SCP temporaire, l’analyse puis la supprime automatiquement.
+L’onglet **Explorateur** ouvre directement une image ADF ou SCP Amiga et affiche en lecture seule son nom de volume, son système de fichiers, sa capacité et son espace libre. Les dossiers sont présentés à gauche avec des commandes `+` et `−`; le contenu du dossier sélectionné apparaît à droite avec des icônes distinctes pour les dossiers, textes, images, sons, archives, programmes et images disque. La sélection reste neutre et n’utilise pas le bleu d’accentuation.
+
+La détection peut rester automatique ou être forcée vers l’un des formats réellement pris en charge par les lecteurs de systèmes de fichiers installés. Une capture SCP terminée peut être envoyée dans l’Explorateur depuis Lecture. **Lire la disquette** demande d’abord de confirmer que la bonne disquette se trouve dans le lecteur affiché, crée avec `gw` une capture SCP temporaire, l’analyse puis la supprime automatiquement.
+
+Les erreurs visibles sont localisées et les détails techniques complets sont conservés dans le journal d’erreurs. Les noms techniques tels que `AmigaDOS`, `OFS` et `FFS` ne sont pas traduits.
 
 ## Outils, diagnostics et matériel
 

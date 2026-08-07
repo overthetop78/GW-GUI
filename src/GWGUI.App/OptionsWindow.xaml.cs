@@ -186,7 +186,7 @@ public partial class OptionsWindow : Window
         catch (Exception exception)
         {
             ErrorLog.Write(exception, "Opening Logs folder");
-            MessageBox.Show(this, exception.Message, LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning);
         }
     }
 
@@ -256,7 +256,7 @@ public partial class OptionsWindow : Window
     {
         DownloadHostToolsButton.IsEnabled = false;
         try { await action(); }
-        catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("HostTools.Title"), MessageBoxButton.OK, MessageBoxImage.Error); }
+        catch (Exception exception) { ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error); }
         finally { DownloadHostToolsButton.IsEnabled = true; HostToolsProgress.Visibility = Visibility.Collapsed; }
     }
 
@@ -376,7 +376,7 @@ public partial class OptionsWindow : Window
             RefreshHardwareRows();
             await PersistSettingsAsync();
         }
-        catch (Exception exception) { MessageBox.Show(this, exception.Message, LocExtension.Get("Hardware.ScanTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+        catch (Exception exception) { ShowLoggedError(exception, "Scanning hardware", "Hardware.ScanTitle", MessageBoxImage.Error); }
         finally { ScanButton.IsEnabled = true; }
     }
 
@@ -611,6 +611,13 @@ public partial class OptionsWindow : Window
         BeginClose();
     }
 
+    private void ShowLoggedError(Exception exception, string context, string titleKey, MessageBoxImage icon)
+    {
+        var path = ErrorLog.Write(exception, context);
+        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail), LocExtension.Get(titleKey), MessageBoxButton.OK, icon);
+    }
+
     private void BeginClose()
     {
         if (_closeInProgress) return;
@@ -624,7 +631,7 @@ public partial class OptionsWindow : Window
         catch (Exception exception)
         {
             var path = ErrorLog.Write(exception, "Saving Options while closing");
-            var detail = path is null ? exception.Message : LocExtension.Get("Error.LogSaved", path);
+            var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
             try
             {
                 if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)

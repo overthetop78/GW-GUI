@@ -142,6 +142,7 @@ public partial class MainWindow : Window
         _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
+        RefreshExplorerFormats();
         _scpInspector = new ScpInspectorPresenter(_fluxDecoders, (key, arguments) => LocExtension.Get(key, arguments));
         _scpLoader = new ScpDocumentLoader(new ScpReader(), (key, arguments) => LocExtension.Get(key, arguments));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
@@ -273,6 +274,12 @@ public partial class MainWindow : Window
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
         }
+        var selectedDrive = SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured");
+        if (_dialogs.Show(
+                LocExtension.Get("Explorer.ReadDiskConfirm", selectedDrive),
+                LocExtension.Get("Explorer.ReadDiskConfirmTitle"),
+                UserDialogButtons.YesNo,
+                UserDialogIcon.Question) != UserDialogResult.Yes) return;
 
         var temporaryDirectory = Path.Combine(Path.GetTempPath(), "GW GUI");
         Directory.CreateDirectory(temporaryDirectory);
@@ -292,7 +299,7 @@ public partial class MainWindow : Window
         }
         catch (Exception exception)
         {
-            _dialogs.Show(LocExtension.Get("Explorer.LoadFailed", exception.Message), LocExtension.Get("Tab.Explorer"), icon: UserDialogIcon.Error);
+            ShowLoggedError(exception, "Reading disk into Explorer", "Tab.Explorer", "Explorer.LoadFailed");
         }
         finally
         {
@@ -318,7 +325,7 @@ public partial class MainWindow : Window
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         catch (Exception exception)
         {
-            _dialogs.Show(LocExtension.Get("Explorer.LoadFailed", exception.Message), LocExtension.Get("Tab.Explorer"), icon: UserDialogIcon.Error);
+            ShowLoggedError(exception, "Opening disk image in Explorer", "Tab.Explorer", "Explorer.LoadFailed");
         }
         finally
         {
@@ -386,7 +393,7 @@ public partial class MainWindow : Window
             await PrepareScpViewsAsync(cancellation.Token);
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
-        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); _dialogs.Show(exception.Message, LocExtension.Get("Visual.Title"), icon: UserDialogIcon.Error); }
+        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); ShowLoggedError(exception, "Opening disk image in Visualizer", "Visual.Title"); }
         finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
     }
 
@@ -582,7 +589,9 @@ public partial class MainWindow : Window
                 foreach (var controller in _settings.Controllers) controller.IsAvailable = false;
                 RefreshHardwareSelector();
                 await _settingsStore.SaveAsync(_settings);
-                _dialogs.Show(LocExtension.Get("Hardware.StartupCheckFailed", exception.Message), LocExtension.Get("Hardware.StartupTitle"), icon: UserDialogIcon.Warning);
+                var path = ErrorLog.Write(exception, "Checking configured hardware at startup");
+                var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+                _dialogs.Show(LocExtension.Get("Hardware.StartupCheckFailed", detail), LocExtension.Get("Hardware.StartupTitle"), icon: UserDialogIcon.Warning);
                 check = new(true, _settings.Controllers.ToArray(), []);
             }
             if (!check.Performed) return;
@@ -733,7 +742,7 @@ public partial class MainWindow : Window
     {
         if (CommandPreview is null || WriteSourceText is null || MainTabs?.SelectedIndex != 1) return;
         try { CommandPreview.Text = BuildWriteCommand().ToDisplayString(); }
-        catch (ArgumentException exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+        catch (ArgumentException) { CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
@@ -899,7 +908,7 @@ public partial class MainWindow : Window
             var first = _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
-        catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+        catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
@@ -997,7 +1006,11 @@ public partial class MainWindow : Window
             await Dispatcher.InvokeAsync(() =>
             {
                 if (failure is not null)
-                    _dialogs.Show(LocExtension.Get("App.SettingsSaveFailed", failure.Message), LocExtension.Get("App.Title"), icon: UserDialogIcon.Warning);
+                {
+                    var logPath = ErrorLog.Write(failure, "Saving application settings");
+                    var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+                    _dialogs.Show(LocExtension.Get("App.SettingsSaveFailed", detail), LocExtension.Get("App.Title"), icon: UserDialogIcon.Warning);
+                }
                 _settingsSaveInProgress = false;
                 _closeAfterSettingsSave = true;
                 Close();
@@ -1161,7 +1174,7 @@ public partial class MainWindow : Window
         var target = GetReadTarget(extension);
         if (ReadNamePreview is not null) ReadNamePreview.Text = Path.GetFileName(target);
         try { CommandPreview.Text = BuildReadCommand(target).ToDisplayString(); }
-        catch (ArgumentException exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+        catch (ArgumentException) { CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private string GetReadTarget(string extension)
@@ -1285,7 +1298,7 @@ public partial class MainWindow : Window
     }
 
     private void ShowAdvancedValidation(Exception exception, string title) =>
-        _dialogs.Show(LocExtension.Get("Advanced.Invalid", exception.Message), title, icon: UserDialogIcon.Warning);
+        _dialogs.Show(LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown")), title, icon: UserDialogIcon.Warning);
 
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
     {
@@ -1351,8 +1364,10 @@ public partial class MainWindow : Window
                 if (deletionError is null) AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleted", target) + Environment.NewLine);
                 else
                 {
-                    AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleteFailed", target, deletionError.Message) + Environment.NewLine);
-                    _dialogs.Show(LocExtension.Get("Read.CancelledFileDeleteFailed", target, deletionError.Message), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                    var logPath = ErrorLog.Write(deletionError, "Deleting cancelled read output");
+                    var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+                    AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleteFailed", target, detail) + Environment.NewLine);
+                    _dialogs.Show(LocExtension.Get("Read.CancelledFileDeleteFailed", target, detail), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
                 }
             }
             if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
@@ -1442,7 +1457,7 @@ public partial class MainWindow : Window
         RefreshReadProfiles(readProfile);
         RefreshWriteProfiles(writeProfile);
         RefreshConvertProfiles(convertProfile);
-        DiskExplorer.RefreshFormats(DiskExplorer.SelectedFormatId);
+        RefreshExplorerFormats();
         RefreshHardwareSelector();
         UpdateReadExtension();
         UpdateProfileStatus();
@@ -1452,6 +1467,21 @@ public partial class MainWindow : Window
         UpdateToolCommand();
         if (!_operation.IsRunning) SetOperationState("Status.ReadyShort", Color.FromRgb(136, 136, 136));
         ShowHostToolsUpdateIfNeeded();
+    }
+
+    private void RefreshExplorerFormats()
+    {
+        var selectedId = DiskExplorer.SelectedFormatId;
+        DiskExplorer.SetFormats(
+            _formatCatalog.Formats.Where(format => _diskImageExplorer.SupportedFormatIds.Contains(format.Id)),
+            selectedId);
+    }
+
+    private void ShowLoggedError(Exception exception, string context, string titleKey, string messageKey = "Error.Unexpected")
+    {
+        var path = ErrorLog.Write(exception, context);
+        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+        _dialogs.Show(LocExtension.Get(messageKey, detail), LocExtension.Get(titleKey), icon: UserDialogIcon.Error);
     }
 
     private void CaptureWindowSettings()
@@ -1564,7 +1594,7 @@ public partial class MainWindow : Window
     {
         if (CommandPreview is null || ToolsList is null || MainTabs?.SelectedIndex != 5) return;
         try { CommandPreview.Text = (ToolsList.SelectedIndex == 0 ? BuildEraseCommand() : BuildCleanCommand()).ToDisplayString(); }
-        catch (Exception exception) { CommandPreview.Text = $"⚠ {exception.Message}"; }
+        catch (Exception exception) { ErrorLog.Write(exception, "Building maintenance preview"); CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
@@ -1694,8 +1724,10 @@ public partial class MainWindow : Window
         }
         catch (Exception exception)
         {
-            OpenScpSummaryText.Text = LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message);
-            AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", exception.Message) + Environment.NewLine);
+            var logPath = ErrorLog.Write(exception, "Reading SCP summary");
+            var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+            OpenScpSummaryText.Text = LocExtension.Get("Read.ScpSummaryUnavailable", detail);
+            AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", detail) + Environment.NewLine);
         }
     }
 

@@ -24,6 +24,7 @@ public static class ThemeManager
         Set("BorderBrush", dark ? "#454B57" : "#E1E4EA");
         Set("HoverBrush", dark ? "#343A46" : "#EEF2FF");
         Set("SelectedBrush", dark ? "#3D4963" : "#DDE6FF");
+        Set("ExplorerSelectionBrush", dark ? "#34373D" : "#E7E9EC");
         Set("MutedTextBrush", dark ? "#AEB6C4" : "#69707D");
         Set("StatusBrush", dark ? "#20232A" : "#FFFFFF");
         foreach (Window window in Application.Current.Windows) ApplyWindowTheme(window);

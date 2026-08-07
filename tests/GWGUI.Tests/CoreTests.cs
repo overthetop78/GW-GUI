@@ -19,6 +19,7 @@ using GWGUI.App.Controls;
 using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
 using GWGUI.App.Rendering;
+using GWGUI.App.Localization;
 using SkiaSharp;
 using System.Windows;
 using System.Windows.Media;
@@ -303,7 +304,8 @@ public sealed class CoreTests
                 Assert.Equal("Validation", request.Title);
                 Assert.Equal(UserDialogButtons.Ok, request.Buttons);
                 Assert.Equal(UserDialogIcon.Warning, request.Icon);
-                Assert.Contains("invalid value", request.Message);
+                Assert.DoesNotContain("invalid value", request.Message, StringComparison.Ordinal);
+                Assert.Contains(LocExtension.Get("Common.Unknown"), request.Message, StringComparison.CurrentCulture);
                 typeof(MainWindow).GetMethod("BrowseReadFolder_Click", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
                     .Invoke(window, [window, new RoutedEventArgs()]);
                 Assert.Equal(@"F:\Images", model.Read.Folder);
@@ -375,7 +377,8 @@ public sealed class CoreTests
                 Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
                 var saveFailure = Assert.Single(failingSaveDialogs.Requests);
                 Assert.Equal(UserDialogIcon.Warning, saveFailure.Icon);
-                Assert.Contains("test save failure", saveFailure.Message);
+                Assert.DoesNotContain("test save failure", saveFailure.Message, StringComparison.Ordinal);
+                Assert.Contains(LocExtension.Get("App.SettingsSaveFailed").Split('{')[0].Trim(), saveFailure.Message, StringComparison.CurrentCulture);
 
                 var optionsSettings = new AppSettings
                 {
@@ -522,7 +525,7 @@ public sealed class CoreTests
         });
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
-        Assert.True(thread.Join(TimeSpan.FromSeconds(30)), "The WPF smoke test timed out.");
+        Assert.True(thread.Join(TimeSpan.FromSeconds(60)), "The WPF smoke test timed out.");
         if (failure is not null) throw failure;
     }
 

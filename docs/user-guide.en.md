@@ -38,7 +38,11 @@ Open an SCP capture to display both sides, zoom, pan and select a track. The ins
 
 ## Disk Explorer
 
-The **Disk Explorer** tab directly opens an Amiga ADF or SCP image and displays its volume name, file system, capacity, free space, folders and files in read-only mode. Detection can remain automatic or be forced to AmigaDOS. A completed SCP capture can be sent there from Read. **Read disk** uses `gw` to create a temporary SCP capture, analyses it, then removes it automatically.
+The **Disk Explorer** tab directly opens an Amiga ADF or SCP image and displays its volume name, file system, capacity and free space in read-only mode. Folders appear on the left with `+` and `−` controls; the selected folder contents appear on the right with distinct icons for folders, text, images, audio, archives, programs and disk images. Selection uses a neutral color instead of the blue accent.
+
+Detection can remain automatic or be forced to any format actually supported by an installed file-system reader. A completed SCP capture can be sent there from Read. **Read disk** first asks the user to confirm that the correct disk is in the displayed drive, then uses `gw` to create a temporary SCP capture, analyses it and removes it automatically.
+
+Visible errors are localized while full technical details are retained in the error log. Technical names such as `AmigaDOS`, `OFS` and `FFS` are never translated.
 
 ## Tools, diagnostics and hardware
 

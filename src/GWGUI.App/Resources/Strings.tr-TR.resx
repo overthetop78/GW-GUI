@@ -1588,9 +1588,6 @@ Veri yok</value>
   <data name="Explorer.Automatic">
     <value>Otomatik algılama</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Birim</value>
   </data>
@@ -1647,5 +1644,18 @@ Veri yok</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Disketi oku</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Ad</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Tür</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Disketi oku</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Disket seçili sürücüye ({0}) takılı ve okunmaya hazır mı?</value>
   </data>
 </root>

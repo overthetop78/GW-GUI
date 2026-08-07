@@ -293,7 +293,7 @@ La migration doit rester centralisée dans `SettingsMigrator.cs`; elle ne doit p
 
 ## 6. Localisation
 
-Les fichiers `.resx` contiennent 407 clés mais plusieurs entrées XML sont compactées sur une même ligne. Avec onze langues, la difficulté sera davantage la cohérence que la taille d’un fichier individuel.
+Les fichiers `.resx` contiennent désormais 539 clés dans 30 catalogues. La difficulté principale est la cohérence entre les langues et la conservation des noms techniques, davantage que la taille d’un fichier individuel.
 
 Avant les nouvelles traductions :
 
@@ -301,8 +301,8 @@ Avant les nouvelles traductions :
 - créer un catalogue central des cultures;
 - ajouter un outil de parité, placeholders, doublons, valeurs vides et longueurs suspectes;
 - maintenir un glossaire technique;
-- conserver au départ un fichier `Strings.<culture>.resx` par langue pour ne pas multiplier les `ResourceManager`;
-- ne séparer en plusieurs familles de ressources que si les 407 clés augmentent au point de rendre les outils ou l’édition réellement pénibles.
+- conserver un fichier `Strings.<culture>.resx` par langue et organiser les clés par préfixes (`Common`, `Error`, `Read`, `Write`, `Conversion`, `Explorer`, `Visual`, `Menu`, etc.) ; une séparation physique immédiate produirait plusieurs centaines de fichiers et plusieurs `ResourceManager`, avec un risque de repli différent entre modules ;
+- réévaluer une séparation physique par module uniquement avec un chargeur composite et des tests de repli prêts avant la migration. Cette décision évite de casser la traduction dynamique actuelle ; elle n’empêche pas l’organisation logique ni les audits automatisés.
 
 `LocExtension.cs` peut rester petit. Il devra dépendre du futur catalogue de cultures et appliquer le repli vers l’anglais.
 

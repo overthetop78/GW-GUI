@@ -21,8 +21,8 @@ Ce document ne remet pas en cause les validations successives déjà effectuées
 - faire correspondre les barres permanentes du visualiseur aux résultats réels du décodage et aux anomalies, avec les couleurs de la légende ;
 - définir un emplacement distinct permettant de renommer une image qui vient d’être créée ;
 - étendre l’onglet `Explorateur`, réalisé pour AmigaDOS OFS/FFS sur ADF et SCP, aux autres systèmes de fichiers et conteneurs pris en charge par GW GUI ;
-- conserver le sélecteur de format permettant de forcer AmigaDOS lorsque la détection automatique échoue, puis y ajouter chaque nouveau système de fichiers réellement implémenté ;
-- l’ouverture dans `Explorateur` après une Lecture SCP réussie et la lecture directe d’une disquette via une capture SCP temporaire sont réalisées ; vérifier ces deux parcours avec le Greaseweazle réel et plusieurs disquettes Amiga ;
+- conserver le sélecteur de format alimenté automatiquement par les lecteurs de systèmes de fichiers disponibles ; AmigaDOS est actuellement proposé et chaque nouveau lecteur IBM PC/FAT, Atari, Apple, Acorn ou autre s’y ajoutera par son identifiant de catalogue, sans nouvelle liste codée dans l’interface ;
+- l’ouverture dans `Explorateur` après une Lecture SCP réussie et la lecture directe d’une disquette via une capture SCP temporaire sont réalisées ; la lecture directe confirme désormais le lecteur et la présence de la disquette avant de démarrer ; vérifier ces deux parcours avec le Greaseweazle réel et plusieurs disquettes Amiga ;
 - découper `FluxDecoding.cs` par contrats, registre, traitement du flux et famille de décodeur ; conserver les encodeurs, décodeurs, conteneurs, reconstruction sectorielle et systèmes de fichiers dans des composants distincts ;
 - brancher les 21 encodeurs de pistes au futur moteur de conversion interne ; généraliser la reconstruction sectorielle Amiga existante, puis ajouter les lecteurs/écrivains ST, IMA, D64 et les autres conteneurs pris en charge ;
 - ajouter un écrivain SCP complet autour des flux produits par les encodeurs, avec index, timings, révolutions, tables de pistes, checksum et tests de compatibilité avec Greaseweazle ;

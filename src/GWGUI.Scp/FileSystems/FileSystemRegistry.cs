@@ -5,10 +5,14 @@ namespace GWGUI.Scp.FileSystems;
 public sealed class FileSystemRegistry
 {
     public IReadOnlyList<IFileSystemReader> Readers { get; } = [new Readers.AmigaDosFileSystemReader()];
+    public IReadOnlySet<string> SupportedFormatIds => Readers
+        .SelectMany(reader => reader.CatalogFormatIds)
+        .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
     public FileSystemVolume Read(SectorImage image, string? fileSystemId = null)
     {
-        if (fileSystemId is not null && fileSystemId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase)) fileSystemId = "amigados";
+        if (fileSystemId is not null)
+            fileSystemId = Readers.FirstOrDefault(reader => reader.CatalogFormatIds.Contains(fileSystemId))?.Id ?? fileSystemId;
         var reader = fileSystemId is null
             ? Readers.FirstOrDefault(candidate => candidate.CanRead(image))
             : Readers.FirstOrDefault(candidate => candidate.Id.Equals(fileSystemId, StringComparison.OrdinalIgnoreCase));

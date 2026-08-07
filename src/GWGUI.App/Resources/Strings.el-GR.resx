@@ -1588,9 +1588,6 @@ SCP καταχώριση: {2}</value>
   <data name="Explorer.Automatic">
     <value>Αυτόματη ανίχνευση</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Τόμος</value>
   </data>
@@ -1647,5 +1644,18 @@ SCP καταχώριση: {2}</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Ανάγνωση δισκέτας</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Όνομα</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Τύπος</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Ανάγνωση δισκέτας</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Έχει τοποθετηθεί η δισκέτα στην επιλεγμένη μονάδα ({0}) και είναι έτοιμη για ανάγνωση;</value>
   </data>
 </root>

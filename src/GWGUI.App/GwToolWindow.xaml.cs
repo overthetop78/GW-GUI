@@ -6,6 +6,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Maintenance;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.App.Localization;
+using GWGUI.App.Services;
 
 namespace GWGUI.App;
 
@@ -111,7 +112,13 @@ public partial class GwToolWindow : Window
             else Summary.Text = result.IsSuccess ? L("Operation.Succeeded") : result.WasCancelled ? L("Operation.Cancelled") : LocExtension.Get("Operation.ExitCode", result.ExitCode);
             if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
         }
-        catch (Exception exception) { Summary.Text = exception.Message; if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text); }
+        catch (Exception exception)
+        {
+            var path = ErrorLog.Write(exception, $"Running GW tool '{_verb}'");
+            var detail = path is null ? L("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+            Summary.Text = LocExtension.Get("Error.Unexpected", detail);
+            if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
+        }
         finally { ExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
     }
 

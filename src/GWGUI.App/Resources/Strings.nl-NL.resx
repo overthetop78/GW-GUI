@@ -1588,9 +1588,6 @@ Geen gegevens</value>
   <data name="Explorer.Automatic">
     <value>Automatische detectie</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Volume</value>
   </data>
@@ -1647,5 +1644,18 @@ Geen gegevens</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Diskette lezen</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Naam</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Type</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Diskette lezen</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Is de diskette in het momenteel geselecteerde station ({0}) geplaatst en klaar om te worden gelezen?</value>
   </data>
 </root>

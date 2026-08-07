@@ -1588,9 +1588,6 @@ Tidak ada data</value>
   <data name="Explorer.Automatic">
     <value>Deteksi otomatis</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Volume</value>
   </data>
@@ -1647,5 +1644,18 @@ Tidak ada data</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Baca disket</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Nama</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Jenis</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Baca disket</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Apakah disket sudah dimasukkan ke drive yang dipilih saat ini ({0}) dan siap dibaca?</value>
   </data>
 </root>

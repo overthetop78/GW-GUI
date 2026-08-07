@@ -11,6 +11,11 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     private static readonly DateTimeOffset AmigaEpoch = new(1978, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
     public string Id => "amigados";
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "amiga.amigados",
+        "amiga.amigados_hd"
+    };
 
     public bool CanRead(SectorImage image)
     {

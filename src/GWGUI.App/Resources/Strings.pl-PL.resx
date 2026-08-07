@@ -1588,9 +1588,6 @@ Brak danych</value>
   <data name="Explorer.Automatic">
     <value>Wykrywanie automatyczne</value>
   </data>
-  <data name="Explorer.AmigaDos">
-    <value>AmigaDOS</value>
-  </data>
   <data name="Explorer.Volume">
     <value>Wolumin</value>
   </data>
@@ -1647,5 +1644,18 @@ Brak danych</value>
   </data>
   <data name="Explorer.ReadDisk">
     <value>Odczytaj dyskietkę</value>
+  </data>
+
+  <data name="Explorer.Name">
+    <value>Nazwa</value>
+  </data>
+  <data name="Explorer.Type">
+    <value>Typ</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirmTitle">
+    <value>Odczytaj dyskietkę</value>
+  </data>
+  <data name="Explorer.ReadDiskConfirm">
+    <value>Czy dyskietka jest włożona do aktualnie wybranego napędu ({0}) i gotowa do odczytu?</value>
   </data>
 </root>

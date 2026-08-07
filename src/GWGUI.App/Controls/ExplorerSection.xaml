@@ -3,6 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:GWGUI.App.Controls"
              xmlns:l="clr-namespace:GWGUI.App.Localization">
+    <UserControl.Resources>
+        <Style x:Key="ExplorerFolderItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Row" Background="{TemplateBinding Background}" CornerRadius="5" Padding="5,4">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True"><Setter TargetName="Row" Property="Background" Value="{DynamicResource ExplorerSelectionBrush}"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExplorerContentItemStyle" TargetType="ListViewItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border x:Name="Row" Background="{TemplateBinding Background}" CornerRadius="4" Padding="7,5" Margin="0,1">
+                            <GridViewRowPresenter Columns="{Binding View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True"><Setter TargetName="Row" Property="Background" Value="{DynamicResource ExplorerSelectionBrush}"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,7 +54,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
@@ -39,40 +79,49 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel><TextBlock Text="{l:Loc Explorer.Volume}" Foreground="#687080"/><TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="—"/></StackPanel>
-                <StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="#687080"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="—"/></StackPanel>
-                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="#687080"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="—"/></StackPanel>
-                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="#687080"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="—"/></StackPanel>
-                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="#687080"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="—"/></StackPanel>
+                <StackPanel><TextBlock Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <Border x:Name="WarningsBadge" Grid.Column="5" Visibility="Collapsed" Background="#FFF5DA" BorderBrush="#D99A19" BorderThickness="1" CornerRadius="12" Padding="10,4" VerticalAlignment="Center">
+                    <TextBlock x:Name="WarningsText" Foreground="#8A5A00"/>
+                </Border>
             </Grid>
         </controls:CardSection>
 
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions><ColumnDefinition Width="1.6*"/><ColumnDefinition Width="0.9*"/></Grid.ColumnDefinitions>
-            <controls:CardSection Padding="8" Margin="0,0,6,0">
-                <TreeView x:Name="FileTree" BorderThickness="0" Background="Transparent" SelectedItemChanged="FileTree_SelectedItemChanged">
-                    <TreeView.Resources>
-                        <HierarchicalDataTemplate DataType="{x:Type controls:ExplorerEntryItem}" ItemsSource="{Binding Children}">
-                            <DockPanel Margin="2">
-                                <TextBlock Text="{Binding Icon}" FontFamily="Segoe Fluent Icons" Width="24" Foreground="#2878C8"/>
-                                <TextBlock Text="{Binding Name}"/>
-                                <TextBlock Text="{Binding SizeText}" Foreground="#687080" Margin="12,0,0,0"/>
-                            </DockPanel>
-                        </HierarchicalDataTemplate>
-                    </TreeView.Resources>
-                </TreeView>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="310"/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
+            <controls:CardSection Padding="8">
+                <ListBox x:Name="FolderList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerFolderItemStyle}" SelectionChanged="FolderList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type controls:ExplorerFolderItem}">
+                            <Grid Margin="{Binding Indent}">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="24"/><ColumnDefinition Width="26"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Content="{Binding ToggleText}" Tag="{Binding}" Click="FolderToggle_Click" Width="22" Height="22" MinWidth="0" MinHeight="0" Padding="0" Margin="0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold"/>
+                                <controls:FileEntryIcon Grid.Column="1" Kind="Folder" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </controls:CardSection>
-            <controls:CardSection Grid.Column="1" Padding="16" Margin="6,0,0,0">
-                <Grid>
-                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
-                    <TextBlock x:Name="SelectedNameText" FontSize="21" FontWeight="SemiBold" Text="{l:Loc Explorer.SelectEntry}" TextWrapping="Wrap"/>
-                    <TextBlock x:Name="SelectedTypeText" Grid.Row="1" Foreground="#687080" Margin="0,5,0,18"/>
-                    <Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="{l:Loc Explorer.Size}" Foreground="#687080"/><TextBlock x:Name="SelectedSizeText" FontWeight="SemiBold" Text="—"/></StackPanel><StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Explorer.Modified}" Foreground="#687080"/><TextBlock x:Name="SelectedModifiedText" FontWeight="SemiBold" Text="—"/></StackPanel></Grid>
-                    <TextBlock Grid.Row="3" Text="{l:Loc Explorer.Comment}" Foreground="#687080" Margin="0,18,0,4"/>
-                    <TextBlock x:Name="SelectedCommentText" Grid.Row="4" Text="—" TextWrapping="Wrap"/>
-                    <StackPanel Grid.Row="5" VerticalAlignment="Bottom"><TextBlock x:Name="WarningTitle" Text="{l:Loc Explorer.Warnings}" Foreground="#9A6700" Visibility="Collapsed"/><TextBlock x:Name="WarningsText" Foreground="#9A6700" TextWrapping="Wrap" Visibility="Collapsed"/></StackPanel>
-                </Grid>
+
+            <controls:CardSection Grid.Column="2" Padding="8">
+                <ListView x:Name="ContentsList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerContentItemStyle}" MouseDoubleClick="ContentsList_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn Header="{l:Loc Explorer.Name}" Width="480">
+                                <GridViewColumn.CellTemplate><DataTemplate><DockPanel><controls:FileEntryIcon Kind="{Binding IconKind}" Width="22" Margin="0,0,8,0" VerticalAlignment="Center"/><TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/></DockPanel></DataTemplate></GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{l:Loc Explorer.Modified}" Width="180" DisplayMemberBinding="{Binding ModifiedText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Type}" Width="150" DisplayMemberBinding="{Binding TypeText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Size}" Width="110" DisplayMemberBinding="{Binding SizeText}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </controls:CardSection>
         </Grid>
 

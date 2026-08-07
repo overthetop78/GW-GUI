@@ -27,6 +27,7 @@ public sealed record FileSystemVolume(
 public interface IFileSystemReader
 {
     string Id { get; }
+    IReadOnlySet<string> CatalogFormatIds { get; }
     bool CanRead(SectorImages.SectorImage image);
     FileSystemVolume Read(SectorImages.SectorImage image);
 }
