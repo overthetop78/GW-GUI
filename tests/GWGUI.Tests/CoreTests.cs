@@ -15,11 +15,13 @@ using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Hardware;
 using GWGUI.Domain.Settings;
 using GWGUI.App;
+using GWGUI.App.Controls;
 using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
 using GWGUI.App.Rendering;
 using SkiaSharp;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Data;
 using System.Windows.Threading;
 using System.Windows.Automation;
@@ -103,6 +105,22 @@ public sealed class CoreTests
                 ?? throw new MissingMethodException(typeof(SkiaScpRenderer).FullName, "Classify");
             return (ScpTrackVisualState)(method.Invoke(null, [result, 0, 0, 1])
                 ?? throw new InvalidOperationException("Track classification returned no result."));
+        }
+    }
+
+    [Fact]
+    public void VisualizerTrackOverviewUsesProportionalQualityColors()
+    {
+        Assert.Equal(Color.FromRgb(36, 179, 93), TrackColor(new(0, 0, ScpTrackVisualState.NormalFlux, 11, 0, 0)));
+        Assert.Equal(Color.FromRgb(100, 201, 107), TrackColor(new(0, 0, ScpTrackVisualState.Anomaly, 10, 1, 0)));
+        Assert.Equal(Color.FromRgb(245, 158, 61), TrackColor(new(0, 0, ScpTrackVisualState.Anomaly, 1, 8, 0)));
+        Assert.Equal(Color.FromRgb(255, 75, 96), TrackColor(new(0, 0, ScpTrackVisualState.Anomaly, 0, 11, 0)));
+
+        static Color TrackColor(ScpTrackPreparation preparation)
+        {
+            var method = typeof(VisualizerTrackOverview).GetMethod("ColorFor", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                ?? throw new MissingMethodException(typeof(VisualizerTrackOverview).FullName, "ColorFor");
+            return (Color)(method.Invoke(null, [preparation]) ?? throw new InvalidOperationException("Track color returned no result."));
         }
     }
 
@@ -2834,6 +2852,24 @@ public sealed class CoreTests
         var strong = new ScpRevolution(8_000_000, (uint)strongIntervals.Count, strongIntervals);
         var best = new FluxDecoderRegistry().DecodeBest([weak, strong], "apple2.gcr");
         Assert.NotNull(best); Assert.Equal(1, best.Value.RevolutionIndex); Assert.Equal("apple2.gcr", best.Value.Result.DecoderId);
+    }
+
+    [Fact]
+    public void AutomaticDecoderRejectsInvalidOnlyFalseRecognitionInFavorOfRawFlux()
+    {
+        var invalid = new FluxDecodeResult("false.fm", "False FM", 1, 40, [new(FluxStructureKind.DeletedDataAddressMark, 0, 16, "false")], [], [new(0, 0, 1, 2, 512, false, 0)]);
+        var raw = new FluxDecodeResult("raw", "Raw", .05, 40, [], []);
+        var valid = invalid with { DecoderId = "valid.mfm", Sectors = [new(0, 0, 1, 2, 512, true, 0)] };
+
+        Assert.True(AutomaticScore(raw) > AutomaticScore(invalid));
+        Assert.True(AutomaticScore(valid) > AutomaticScore(raw));
+
+        static double AutomaticScore(FluxDecodeResult result)
+        {
+            var method = typeof(FluxDecoderRegistry).GetMethod("AutomaticScore", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                ?? throw new MissingMethodException(typeof(FluxDecoderRegistry).FullName, "AutomaticScore");
+            return (double)(method.Invoke(null, [result]) ?? throw new InvalidOperationException("Automatic decoder score returned no result."));
+        }
     }
 
     [Fact]

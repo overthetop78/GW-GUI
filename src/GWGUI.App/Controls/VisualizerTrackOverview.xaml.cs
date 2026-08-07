@@ -25,22 +25,41 @@ public partial class VisualizerTrackOverview : UserControl
     {
         var strip = preparation.Head == 0 ? Face0 : Face1;
         var label = preparation.Head == 0 ? Face0Count : Face1Count;
-        strip.SetColor(preparation.Cylinder, ColorFor(preparation.State));
+        strip.SetColor(preparation.Cylinder, ColorFor(preparation));
         if (!_preparedCylinders.TryGetValue(preparation.Head, out var prepared))
             _preparedCylinders[preparation.Head] = prepared = [];
         prepared.Add(preparation.Cylinder);
         label.Text = $"{Math.Min(prepared.Count, strip.Segments.Count)} / {strip.Segments.Count}";
     }
 
-    private static Color ColorFor(ScpTrackVisualState state) => state switch
+    internal static Color ColorFor(ScpTrackPreparation preparation)
     {
-        ScpTrackVisualState.ShortTransition => Color.FromRgb(143, 104, 255),
-        ScpTrackVisualState.LongTransition => Color.FromRgb(83, 173, 255),
-        ScpTrackVisualState.Header => Color.FromRgb(255, 205, 64),
-        ScpTrackVisualState.DecodedData => Color.FromRgb(67, 220, 255),
-        ScpTrackVisualState.Anomaly => Color.FromRgb(255, 75, 96),
-        _ => Color.FromRgb(36, 179, 93)
-    };
+        if (!preparation.HasFlux)
+            return Color.FromRgb(255, 75, 96);
+
+        var sectorCount = preparation.ValidSectors + preparation.InvalidSectors + preparation.UnverifiedSectors;
+        if (sectorCount > 0)
+        {
+            var unreadableRatio = (preparation.InvalidSectors + preparation.UnverifiedSectors * .25) / sectorCount;
+            if (unreadableRatio == 0) return Color.FromRgb(36, 179, 93);
+            if (unreadableRatio <= .10) return Color.FromRgb(100, 201, 107);
+            if (unreadableRatio <= .25) return Color.FromRgb(67, 220, 255);
+            if (unreadableRatio <= .40) return Color.FromRgb(83, 173, 255);
+            if (unreadableRatio <= .60) return Color.FromRgb(255, 205, 64);
+            if (preparation.ValidSectors > 0) return Color.FromRgb(245, 158, 61);
+            return Color.FromRgb(255, 75, 96);
+        }
+
+        return preparation.State switch
+        {
+            ScpTrackVisualState.ShortTransition => Color.FromRgb(143, 104, 255),
+            ScpTrackVisualState.LongTransition => Color.FromRgb(83, 173, 255),
+            ScpTrackVisualState.Header => Color.FromRgb(255, 205, 64),
+            ScpTrackVisualState.DecodedData => Color.FromRgb(67, 220, 255),
+            ScpTrackVisualState.Anomaly => Color.FromRgb(255, 75, 96),
+            _ => Color.FromRgb(36, 179, 93)
+        };
+    }
 
     private static void ConfigureFace(TrackProgressStrip strip, TextBlock label, int head, IReadOnlyList<int> cylinders)
     {

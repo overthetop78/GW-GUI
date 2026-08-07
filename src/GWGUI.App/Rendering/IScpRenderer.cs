@@ -24,7 +24,14 @@ public enum ScpTrackVisualState
     Anomaly
 }
 
-public sealed record ScpTrackPreparation(int Cylinder, int Head, ScpTrackVisualState State);
+public sealed record ScpTrackPreparation(
+    int Cylinder,
+    int Head,
+    ScpTrackVisualState State,
+    int ValidSectors = 0,
+    int InvalidSectors = 0,
+    int UnverifiedSectors = 0,
+    bool HasFlux = true);
 
 public interface IScpRenderer
 {

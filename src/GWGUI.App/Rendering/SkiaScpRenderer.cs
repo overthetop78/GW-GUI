@@ -39,9 +39,16 @@ public sealed class SkiaScpRenderer : IScpRenderer
                 var revolution = track.Revolutions.FirstOrDefault();
                 var preparedTrack = revolution is not null && revolution.FluxIntervals.Count > 0
                     ? PrepareTrack(track, revolution, decoderId, cancellationToken)
-                    : new PreparedTrack([], [], ScpTrackVisualState.Anomaly);
+                    : new PreparedTrack([], [], ScpTrackVisualState.Anomaly, 0, 0, 0, false);
                 prepared[track] = preparedTrack;
-                progress?.Report(new ScpTrackPreparation(track.Cylinder, track.Head, preparedTrack.VisualState));
+                progress?.Report(new ScpTrackPreparation(
+                    track.Cylinder,
+                    track.Head,
+                    preparedTrack.VisualState,
+                    preparedTrack.ValidSectors,
+                    preparedTrack.InvalidSectors,
+                    preparedTrack.UnverifiedSectors,
+                    preparedTrack.HasFlux));
             }
         }, cancellationToken).ConfigureAwait(false);
         cancellationToken.ThrowIfCancellationRequested();
@@ -147,7 +154,15 @@ public sealed class SkiaScpRenderer : IScpRenderer
                     StructureColor(structure.Kind))));
             }
         }
-        return new(fluxArcs, structureArcs, Classify(decodedResult, shortTransitionCount, longTransitionCount, normalFluxCount));
+        var sectors = decodedResult?.Sectors ?? [];
+        return new(
+            fluxArcs,
+            structureArcs,
+            Classify(decodedResult, shortTransitionCount, longTransitionCount, normalFluxCount),
+            sectors.Count(sector => sector.IntegrityValid == true),
+            sectors.Count(sector => sector.IntegrityValid == false),
+            sectors.Count(sector => sector.IntegrityValid is null),
+            true);
     }
 
     internal static ScpTrackVisualState Classify(FluxDecodeResult? decoded, int shortTransitions, int longTransitions, int normalFlux)
@@ -213,6 +228,13 @@ public sealed class SkiaScpRenderer : IScpRenderer
         for (var index = 0; index < lines.Length; index++) canvas.DrawText(lines[index], center.X, center.Y + index * 20, SKTextAlign.Center, font, paint);
     }
 
-    private sealed record PreparedTrack(IReadOnlyList<PreparedArc> FluxArcs, IReadOnlyList<PreparedArc> StructureArcs, ScpTrackVisualState VisualState);
+    private sealed record PreparedTrack(
+        IReadOnlyList<PreparedArc> FluxArcs,
+        IReadOnlyList<PreparedArc> StructureArcs,
+        ScpTrackVisualState VisualState,
+        int ValidSectors,
+        int InvalidSectors,
+        int UnverifiedSectors,
+        bool HasFlux);
     private sealed record PreparedArc(float Start, float Sweep, SKColor Color);
 }
