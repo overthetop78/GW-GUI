@@ -92,6 +92,7 @@ public partial class MainWindow : Window
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
+    private bool _trackProgressNeedsConfiguration;
     private readonly string _logsDirectory;
     private readonly ConsoleLogSession _consoleLog;
     private readonly MainWindowViewModel _viewModel;
@@ -755,8 +756,6 @@ public partial class MainWindow : Window
             var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), _commandBuilder.BuildConversion(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
             return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() =>
             {
-                Face0TrackProgress.ResetToPending();
-                Face1TrackProgress.ResetToPending();
                 BeginProgress();
                 AppendConsoleText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}");
             }, System.Windows.Threading.DispatcherPriority.ContextIdle), token);
@@ -1442,6 +1441,9 @@ public partial class MainWindow : Window
             UpdateElapsedTime();
         }
         _progressTracker.Reset();
+        Face0TrackProgress.ResetToPending();
+        Face1TrackProgress.ResetToPending();
+        _trackProgressNeedsConfiguration = true;
         SetOperationState("Status.Running", Color.FromRgb(45, 125, 210));
         _viewModel.ProgressVisibility = Visibility.Visible;
         _viewModel.ProgressIndeterminate = true;
@@ -1459,10 +1461,11 @@ public partial class MainWindow : Window
             _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
             _viewModel.Face0ProgressVisibility = progress.Head0Expected ? Visibility.Visible : Visibility.Collapsed;
             _viewModel.Face1ProgressVisibility = progress.Head1Expected ? Visibility.Visible : Visibility.Collapsed;
-            if (Face0TrackProgress.Segments.Count == 0 && progress.Head0Expected)
+            if ((_trackProgressNeedsConfiguration || Face0TrackProgress.Segments.Count == 0) && progress.Head0Expected)
                 Face0TrackProgress.Configure(0, progress.Cylinders, LocExtension.Get("Visual.Side", 0));
-            if (Face1TrackProgress.Segments.Count == 0 && progress.Head1Expected)
+            if ((_trackProgressNeedsConfiguration || Face1TrackProgress.Segments.Count == 0) && progress.Head1Expected)
                 Face1TrackProgress.Configure(1, progress.Cylinders, LocExtension.Get("Visual.Side", 1));
+            _trackProgressNeedsConfiguration = false;
             var text = LocExtension.Get("Status.FaceTrackProgress", progress.Head, progress.Cylinder, progress.CompletedOnHead, totalOnHead);
             var segmentState = progress.State switch
             {
