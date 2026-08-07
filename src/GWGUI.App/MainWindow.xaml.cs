@@ -740,7 +740,13 @@ public partial class MainWindow : Window
         var outcome = await _operation.RunAsync(token =>
         {
             var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), _commandBuilder.BuildConversion(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
-            return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() => { BeginProgress(); AppendConsoleText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }), token);
+            return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() =>
+            {
+                Face0TrackProgress.ResetToPending();
+                Face1TrackProgress.ResetToPending();
+                BeginProgress();
+                AppendConsoleText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}");
+            }, System.Windows.Threading.DispatcherPriority.ContextIdle), token);
         });
         await FlushPendingOutputAsync();
         ApplyOperationResult(_operationResultPresenter.Present(outcome));

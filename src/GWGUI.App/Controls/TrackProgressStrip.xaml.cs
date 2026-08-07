@@ -54,6 +54,12 @@ public partial class TrackProgressStrip : UserControl
             item.SetState(TrackSegmentState.Pending, PendingBrush);
     }
 
+    public void ResetToPending()
+    {
+        foreach (var item in Segments)
+            item.SetState(TrackSegmentState.Pending, PendingBrush);
+    }
+
     public void Reset() => Segments.Clear();
 
     private static Brush Freeze(Color color)
