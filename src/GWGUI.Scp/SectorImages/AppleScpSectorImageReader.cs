@@ -41,9 +41,11 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var candidates = DecodeCandidates(scp, "apple2.gcr", 256, cancellationToken);
         if (candidates.Count == 0) throw new InvalidDataException("No Apple II GCR sectors could be decoded from the SCP image.");
         if (prodosOrder) return CreateProDosImage(candidates);
-        var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number is >= 0 and < 16)
-            .Select(pair => Select(pair.Key.Cylinder * 16 + pair.Key.Number, pair.Key, pair.Value)).ToArray();
-        return new("apple2.dos33", 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1), 1, 16, blocks);
+        var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= 13) ? 16 : 13;
+        var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
+            .Select(pair => Select(pair.Key.Cylinder * sectorsPerTrack + pair.Key.Number, pair.Key, pair.Value)).ToArray();
+        var formatId = sectorsPerTrack == 13 ? "apple2.dos32" : "apple2.dos33";
+        return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1), 1, sectorsPerTrack, blocks);
     }
 
     private static SectorImage CreateProDosImage(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)

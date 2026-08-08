@@ -1,7 +1,10 @@
 using System.IO;
+using GWGUI.Scp;
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
+using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Encoding;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;
 
@@ -42,6 +45,24 @@ public sealed class AppleDiskImageTests
             Assert.Equal(35 * 13, image.AvailableBlocks.Count);
         }
         finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task Dos32ScpUsesThirteenSectorGeometry()
+    {
+        var sectors = Enumerable.Range(0, 13)
+            .Select(number => new TrackSector(number, Enumerable.Range(0, 256).Select(index => (byte)(number + index)).ToArray()))
+            .ToArray();
+        var encoded = new FluxEncoderRegistry().Encode("apple2.gcr",
+            new TrackEncodeRequest(0, 0, sectors, Attributes: new Dictionary<string, int> { ["sectorsPerTrack"] = 13 }));
+        var scp = new ScpImage(new(0, 0, 1, 0, 0, ScpFlags.IndexAligned, 16, 0, 0, 0),
+            [new ScpTrack(0, 0, 0, [encoded.Revolution])], true, 0);
+
+        var image = await new AppleScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry()).ReadAsync("memory.scp");
+
+        Assert.Equal("apple2.dos32", image.FormatId);
+        Assert.Equal(13, image.SectorsPerTrack);
+        Assert.Equal(13, image.AvailableBlocks.Count);
     }
 
     [Fact]
@@ -145,8 +166,10 @@ public sealed class AppleDiskImageTests
                 var relativePath = Path.GetRelativePath(root, path);
                 var explicitFormat = relativePath.Contains($"Apple Lisa{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
                     ? null
+                    : relativePath.Contains($"Apple III{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
+                    ? "apple3.sos"
                     : relativePath.Contains($"Apple II{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
-                    ? "apple2.prodos.800"
+                    ? null
                     : relativePath.Contains("400k", StringComparison.OrdinalIgnoreCase) ? "mac.400" : "mac.800";
                 var document = await explorer.ExploreAsync(path, explicitFormat);
                 if (!document.FileSystemRecognized)
@@ -170,5 +193,10 @@ public sealed class AppleDiskImageTests
         foreach (var result in results.Concat(failures)) Console.WriteLine(result);
         Assert.NotEmpty(results);
         Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
+    }
+
+    private sealed class MemoryScpReader(ScpImage image) : IScpReader
+    {
+        public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) => Task.FromResult(image);
     }
 }
