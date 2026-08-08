@@ -5,6 +5,7 @@ namespace GWGUI.Scp.SectorImages;
 public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
     private static readonly int[] ProDosToPhysical = [0, 2, 4, 6, 8, 10, 12, 14, 1, 3, 5, 7, 9, 11, 13, 15];
+    private static readonly int[] PhysicalToDos = [0, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 15];
     private readonly AppleMacGcrDecoder _macDecoder = new();
 
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
@@ -43,7 +44,8 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         if (prodosOrder) return CreateProDosImage(candidates);
         var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= 13) ? 16 : 13;
         var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
-            .Select(pair => Select(pair.Key.Cylinder * sectorsPerTrack + pair.Key.Number, pair.Key, pair.Value)).ToArray();
+            .Select(pair => Select(pair.Key.Cylinder * sectorsPerTrack
+                + (sectorsPerTrack == 16 ? PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
         var formatId = sectorsPerTrack == 13 ? "apple2.dos32" : "apple2.dos33";
         return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1), 1, sectorsPerTrack, blocks);
     }

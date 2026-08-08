@@ -106,10 +106,12 @@ public sealed class AppleDiskImageTests
         var results = new List<string>();
         var failures = new List<string>();
         var recognizedNibbleImages = 0;
-        foreach (var path in appleRoots.SelectMany(directory => Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories))
+        var paths = appleRoots.SelectMany(directory => Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories))
                      .Where(path => supported.Contains(Path.GetExtension(path)))
                      .Where(path => string.IsNullOrWhiteSpace(requestedFile) || path.Contains(requestedFile, StringComparison.OrdinalIgnoreCase))
-                     .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}_generated{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)))
+                     .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}_generated{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase))
+                     .ToArray();
+        foreach (var path in paths)
         {
             try
             {
@@ -139,9 +141,34 @@ public sealed class AppleDiskImageTests
 
         foreach (var result in results.Concat(failures)) Console.WriteLine(result);
         Assert.NotEmpty(results);
-        if (appleRoots.SelectMany(directory => Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)).Any(path => Path.GetExtension(path) is ".woz" or ".nib"))
+        if (paths.Any(path => Path.GetExtension(path) is ".woz" or ".nib"))
             Assert.True(recognizedNibbleImages > 0, "No filesystem was decoded from the WOZ/NIB corpus.");
         Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
+    }
+
+    [Fact]
+    public async Task RealSingleAppleDos33ImageAndFluxRemainEquivalentWhenRequested()
+    {
+        var dskPath = Environment.GetEnvironmentVariable("GWGUI_REAL_APPLE_DOS33_DSK");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_APPLE_DOS33_SCP");
+        if (string.IsNullOrWhiteSpace(dskPath) || string.IsNullOrWhiteSpace(scpPath)) return;
+
+        var explorer = DiskImageExplorer.CreateDefault();
+        var source = await explorer.ExploreAsync(dskPath, "apple2.dos33");
+        var flux = await explorer.ExploreAsync(scpPath);
+
+        Assert.True(source.FileSystemRecognized, dskPath);
+        Assert.True(flux.FileSystemRecognized, scpPath);
+        Assert.Equal(source.Volume.Name, flux.Volume.Name);
+        Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+        Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
+        Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
+        Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
+        Assert.Equal(source.Volume.Warnings, flux.Volume.Warnings);
+
+        var visualization = new SectorImageFluxVisualizer().Create(source.Image);
+        Assert.NotEmpty(visualization.Tracks);
+        Assert.All(visualization.Tracks, track => Assert.Equal(0, track.Head));
     }
 
     [Fact]
@@ -260,6 +287,13 @@ public sealed class AppleDiskImageTests
         Assert.NotEmpty(results);
         Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
     }
+
+    private static string[] Flatten(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
+        .SelectMany(entry => new[]
+        {
+            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
+        }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
+        .ToArray();
 
     private sealed class MemoryScpReader(ScpImage image) : IScpReader
     {
