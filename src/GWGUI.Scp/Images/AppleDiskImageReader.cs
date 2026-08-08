@@ -31,9 +31,18 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         {
             var extension = Path.GetExtension(path);
             if (extension.Equals(".d13", StringComparison.OrdinalIgnoreCase) || extension.Equals(".do", StringComparison.OrdinalIgnoreCase) || extension.Equals(".po", StringComparison.OrdinalIgnoreCase) || extension.Equals(".2mg", StringComparison.OrdinalIgnoreCase) || extension.Equals(".image", StringComparison.OrdinalIgnoreCase) || extension.Equals(".dc42", StringComparison.OrdinalIgnoreCase) || extension.Equals(".nib", StringComparison.OrdinalIgnoreCase) || extension.Equals(".woz", StringComparison.OrdinalIgnoreCase)) return true;
+            if (extension.Equals(".img", StringComparison.OrdinalIgnoreCase))
+            {
+                var raw = File.ReadAllBytes(path);
+                return LooksLikeLisaOfficePayload(raw)
+                    || raw.Length is 409_600 or 819_200 or 1_474_560 && LooksLikeMac(raw);
+            }
             if (!extension.Equals(".dsk", StringComparison.OrdinalIgnoreCase)) return false;
             var bytes = File.ReadAllBytes(path);
-            return bytes.Length == 143_360 && (LooksLikeDos33(bytes) || LooksLikeProDos(bytes) || LooksLikeProDos(ConvertDosOrderToProDosBlocks(bytes)) || LooksLikeSos(bytes))
+            // A raw 140 KiB .dsk is the canonical Apple II 35-track container.
+            // Copy-protected or custom boot disks may intentionally have no DOS,
+            // ProDOS or SOS catalog signature, but remain valid visualizable media.
+            return bytes.Length == 143_360
                 || bytes.Length is 409_600 or 819_200 or 1_474_560 && LooksLikeMac(bytes);
         }
         catch { return false; }
@@ -72,14 +81,53 @@ public sealed class AppleDiskImageReader : ISectorImageReader
             var blocks = new SectorBlock[dataLength / 512];
             for (var logical = 0; logical < blocks.Length; logical++)
             {
-                blocks[logical] = new(logical, new(logical / 10, 0, logical % 10),
+                var address = blocks.Length == 1702 ? LisaFileWareAddress(logical)
+                    : blocks.Length == 800 ? AppleMacZonedAddress(logical, 1)
+                    : new SectorAddress(logical / 10, 0, logical % 10);
+                blocks[logical] = new(logical, address,
                     payload.AsSpan(logical * 512, 512).ToArray(), Tag: tags.Slice(logical * 12, 12).ToArray());
             }
-            return new("applelisa.office", 512, Math.Max(1, blocks.Length / 10), 1, 10, blocks,
+            // MacWorks boot media use the Lisa tagged container but do not contain a
+            // Lisa Office MDDF/catalog. PREBOOT in logical block 2 identifies this
+            // deliberately non-filesystem boot environment.
+            var formatId = payload.Length >= 2 * 512 + 16 &&
+                payload.AsSpan(2 * 512, 16).IndexOf("PREBOOT"u8) >= 0
+                ? "applelisa.macworks"
+                : "applelisa.office";
+            var fileWare = blocks.Length == 1702;
+            return new(formatId, 512, fileWare ? 46 : blocks.Length == 800 ? 80 : Math.Max(1, blocks.Length / 10), fileWare ? 2 : 1,
+                fileWare ? 22 : blocks.Length == 800 ? 12 : 10, blocks,
                 capacity: dataLength, logicalBlockCount: blocks.Length);
         }
         throw new InvalidDataException("The DiskCopy image is neither a recognized Macintosh/ProDOS image nor a tagged Lisa image.");
     }
+
+    private static SectorAddress LisaFileWareAddress(int logicalBlock)
+    {
+        const int sectorsPerSide = 851;
+        var head = logicalBlock / sectorsPerSide;
+        var remaining = logicalBlock % sectorsPerSide;
+        for (var cylinder = 0; cylinder < 46; cylinder++)
+        {
+            var count = LisaFileWareSectors(cylinder);
+            if (remaining < count) return new(cylinder, head, remaining);
+            remaining -= count;
+        }
+        throw new InvalidDataException("The Lisa FileWare logical block is outside the physical geometry.");
+    }
+
+    internal static int LisaFileWareSectors(int cylinder) => cylinder switch
+    {
+        < 4 => 22,
+        < 11 => 21,
+        < 17 => 20,
+        < 23 => 19,
+        < 29 => 18,
+        < 35 => 17,
+        < 42 => 16,
+        < 46 => 15,
+        _ => throw new ArgumentOutOfRangeException(nameof(cylinder))
+    };
 
     private static SectorImage ReadRaw(byte[] data, string extension)
     {
@@ -104,14 +152,23 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         }
         if (data.Length is 409_600 or 819_200 or 1_474_560)
         {
+            // A flat Lisa image can preserve the 512-byte page payload while losing
+            // the 12-byte page tags. It remains a valid image for visualization, but
+            // the Lisa filesystem reader must not invent file ownership without tags.
+            if (data.Length == 409_600 && LooksLikeLisaOfficePayload(data))
+                return CreateAppleMacZoned(data, "applelisa.raw", 1);
             if (LooksLikeMac(data))
             {
                 var signature = BinaryPrimitives.ReadUInt16BigEndian(data.AsSpan(1024));
-                return CreateLinear(data, signature == 0xd2d7 ? "applemac.mfs" : "applemac.hfs", 512,
-                    data.Length == 409_600 ? 80 : 80, data.Length == 409_600 ? 1 : 2, data.Length / 512 / (data.Length == 409_600 ? 80 : 160));
+                var formatId = signature == 0xd2d7 ? "applemac.mfs" : "applemac.hfs";
+                return data.Length == 1_474_560
+                    ? CreateLinear(data, "mac.1440", 512, 80, 2, 18)
+                    : CreateAppleMacZoned(data, formatId, data.Length == 409_600 ? 1 : 2);
             }
             // Apple II 3.5-inch and hard-disk utility images use ProDOS blocks.
-            if (LooksLikeProDos(data)) return CreateLinear(data, "apple2.prodos", 512, 80, 2, data.Length / 512 / 160);
+            if (LooksLikeProDos(data)) return data.Length == 819_200
+                ? CreateAppleMacZoned(data, "apple2.prodos", 2)
+                : CreateLinear(data, "apple2.prodos", 512, 80, 2, data.Length / 512 / 160);
         }
         throw new InvalidDataException("The Apple disk image has an unsupported size or signature.");
     }
@@ -128,6 +185,39 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: data.Length, logicalBlockCount: count);
     }
 
+    private static SectorImage CreateAppleMacZoned(byte[] data, string formatId, int heads)
+    {
+        var count = data.Length / 512;
+        var blocks = new SectorBlock[count];
+        for (var logical = 0; logical < count; logical++)
+            blocks[logical] = new(logical, AppleMacZonedAddress(logical, heads),
+                data.AsSpan(logical * 512, 512).ToArray());
+        return new(formatId, 512, 80, heads, 12, blocks, capacity: data.Length, logicalBlockCount: count);
+    }
+
+    private static SectorAddress AppleMacZonedAddress(int logicalBlock, int heads)
+    {
+        var remaining = logicalBlock;
+        for (var cylinder = 0; cylinder < 80; cylinder++)
+        {
+            var sectors = AppleMacSectors(cylinder);
+            var perCylinder = sectors * heads;
+            if (remaining < perCylinder) return new(cylinder, remaining / sectors, remaining % sectors);
+            remaining -= perCylinder;
+        }
+        throw new InvalidDataException("The Apple GCR logical block is outside the physical geometry.");
+    }
+
+    internal static int AppleMacSectors(int cylinder) => cylinder switch
+    {
+        < 16 => 12,
+        < 32 => 11,
+        < 48 => 10,
+        < 64 => 9,
+        < 80 => 8,
+        _ => throw new ArgumentOutOfRangeException(nameof(cylinder))
+    };
+
     internal static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<GWGUI.Scp.Decoding.DecodedSector> Sectors)> decodedTracks)
     {
         var selected = decodedTracks.SelectMany(item => item.Sectors
@@ -137,7 +227,8 @@ public sealed class AppleDiskImageReader : ISectorImageReader
             .ToDictionary(group => group.Key, group => group.OrderByDescending(item => item.Sector.IntegrityValid == true).First().Sector);
         var trackCount = Math.Max(35, selected.Count == 0 ? 35 : selected.Keys.Max(key => key.Track) + 1);
         var sectorsPerTrack = selected.Count > 0 && selected.Keys.Max(key => key.Number) < 13 ? 13 : 16;
-        var dosBlocks = selected.Where(pair => pair.Key.Number < sectorsPerTrack).Select(pair => new SectorBlock(pair.Key.Track * sectorsPerTrack + pair.Key.Number,
+        var dosBlocks = selected.Where(pair => pair.Key.Number < sectorsPerTrack).Select(pair => new SectorBlock(pair.Key.Track * sectorsPerTrack +
+            (sectorsPerTrack == 16 ? PhysicalToDos[pair.Key.Number] : pair.Key.Number),
             new(pair.Key.Track, 0, pair.Key.Number), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid)).ToArray();
         if (dosBlocks.Length == 0) return new("apple2.gcr", 256, trackCount, 1, 16, []);
 
@@ -188,6 +279,24 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         if (data.Length < 1536) return false;
         var signature = BinaryPrimitives.ReadUInt16BigEndian(data.Slice(1024, 2));
         return signature is 0xd2d7 or 0x4244;
+    }
+
+    internal static bool LooksLikeLisaOfficePayload(ReadOnlySpan<byte> data)
+    {
+        if (data.Length != 409_600) return false;
+        for (var offset = 0; offset + 64 <= data.Length; offset += 512)
+        {
+            var version = BinaryPrimitives.ReadUInt16BigEndian(data.Slice(offset, 2));
+            if (version is not (0x000e or 0x000f or 0x0011)) continue;
+            var nameLength = data[offset + 12];
+            if (nameLength is 0 or > 31 || offset + 13 + nameLength > data.Length) continue;
+            var name = data.Slice(offset + 13, nameLength);
+            var printable = true;
+            foreach (var value in name)
+                if (value is < 0x20 or > 0x7e) { printable = false; break; }
+            if (printable) return true;
+        }
+        return false;
     }
 
     private static bool LooksLikeSos(ReadOnlySpan<byte> data)

@@ -115,6 +115,7 @@ public sealed class TrackEncoderTests
         var sector = Assert.Single(decoded.Sectors!);
         Assert.True(sector.IntegrityValid, string.Join(" | ", decoded.Structures.Select(item => item.Description)));
         Assert.Equal(data, decoded.DecodedBytes.TakeLast(data.Length));
+        Assert.Equal(data, sector.Data);
     }
 
     [Theory]

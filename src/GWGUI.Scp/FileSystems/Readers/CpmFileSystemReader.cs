@@ -8,11 +8,14 @@ public sealed class CpmFileSystemReader : IFileSystemReader
 {
     public string Id => "cpm";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "commodore.1541", "commodore.1571", "commodore.1581" };
+        {
+            "commodore.1541", "commodore.1571", "commodore.1581",
+            "epson.qx10.320", "epson.qx10.396", "epson.qx10.399", "epson.qx10.400", "epson.qx10.logo"
+        };
 
     public bool CanRead(SectorImage image)
     {
-        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != 256) return false;
+        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize is not (256 or 512 or 1024)) return false;
         var layout = Layout.For(image);
         if (layout is null) return false;
         var bytes = Flatten(image);
@@ -34,15 +37,23 @@ public sealed class CpmFileSystemReader : IFileSystemReader
             var entry = bytes.AsSpan(offset, 32);
             var user = entry[0];
             if (user == 0xe5) continue;
-            if (user == 0x20) { volumeName = DecodePart(entry[1..9]); continue; }
+            if (user == 0x20)
+            {
+                var candidate = DecodePart(entry[1..9]);
+                if (IsPlausibleLabel(candidate)) volumeName = candidate;
+                continue;
+            }
             if (user > 31 || !TryDecodeName(entry, out var name)) continue;
             var allocations = ReadAllocations(entry, layout.WideAllocations);
             var extentNumber = entry[12] + (entry[14] << 5);
             extents.Add(new(user, name, extentNumber, entry[15], allocations));
         }
         var entries = new List<FileSystemEntry>();
+        var totalBlocks = Math.Max(0, (bytes.Length - layout.DirectoryOffset) / layout.AllocationBlockSize);
         foreach (var group in extents.GroupBy(extent => (extent.User, extent.Name), new ExtentKeyComparer()))
         {
+            var referenced = group.SelectMany(extent => extent.Allocations).Where(block => block != 0).ToArray();
+            if (referenced.Length > 0 && referenced.Count(block => block < totalBlocks) * 2 < referenced.Length) continue;
             using var content = new MemoryStream();
             var metadataValid = true;
             foreach (var extent in group.OrderBy(extent => extent.Number))
@@ -66,7 +77,6 @@ public sealed class CpmFileSystemReader : IFileSystemReader
                 (uint)group.Key.User, -1, metadataValid, [], content.ToArray()));
         }
         var usedBlocks = extents.SelectMany(extent => extent.Allocations).Where(block => block != 0).Distinct().Count();
-        var totalBlocks = Math.Max(0, (bytes.Length - layout.DirectoryOffset) / layout.AllocationBlockSize);
         return new(volumeName, "CP/M 3", image.Capacity, Math.Max(0, totalBlocks - usedBlocks - layout.DirectoryBlocks) * (long)layout.AllocationBlockSize,
             null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
@@ -90,6 +100,7 @@ public sealed class CpmFileSystemReader : IFileSystemReader
         {
             var value = entry[index] & 0x7f;
             if (value != 0x20 && (value < 0x21 || value > 0x7e)) return false;
+            if (value is >= (byte)'a' and <= (byte)'z') return false;
         }
         var stem = DecodePart(entry[1..9]); var extension = DecodePart(entry[9..12]);
         if (stem.Length == 0) return false;
@@ -104,6 +115,9 @@ public sealed class CpmFileSystemReader : IFileSystemReader
         return System.Text.Encoding.ASCII.GetString(clean).Trim();
     }
 
+    private static bool IsPlausibleLabel(string value) => value.Length > 0
+        && value.All(character => char.IsLetterOrDigit(character) || character is ' ' or '-' or '_' or '.');
+
     private static IReadOnlyList<int> ReadAllocations(ReadOnlySpan<byte> entry, bool wide)
     {
         var result = new List<int>();
@@ -114,11 +128,14 @@ public sealed class CpmFileSystemReader : IFileSystemReader
 
     private static byte[] Flatten(SectorImage image)
     {
-        var bytes = new byte[checked(image.BlockCount * image.BlockSize)];
+        using var output = new MemoryStream(image.Capacity <= int.MaxValue ? (int)image.Capacity : 0);
+        var missing = new byte[image.BlockSize];
         for (var block = 0; block < image.BlockCount; block++)
-            if (image.TryGetBlock(block, out var sector) && sector.Data.Count == image.BlockSize)
-                sector.Data.ToArray().CopyTo(bytes, block * image.BlockSize);
-        return bytes;
+        {
+            if (image.TryGetBlock(block, out var sector)) output.Write(sector.Data.ToArray());
+            else output.Write(missing);
+        }
+        return output.ToArray();
     }
 
     private readonly record struct Extent(int User, string Name, int Number, int RecordCount, IReadOnlyList<int> Allocations);
@@ -129,6 +146,11 @@ public sealed class CpmFileSystemReader : IFileSystemReader
             "commodore.1541" => new(0x0a00, 64, 1024, 2, false),
             "commodore.1571" => new(0x0a00, 128, 2048, 2, true),
             "commodore.1581" => new(0, 128, 2048, 2, true),
+            "epson.qx10.320" => new(4 * 2 * 16 * 256, 64, 2048, 2, false),
+            "epson.qx10.396" => new(4 * 16 * 256, 64, 2048, 2, false),
+            "epson.qx10.399" => new(4 * 16 * 256, 64, 2048, 2, false),
+            "epson.qx10.400" => new(2 * 2 * 5 * 1024, 64, 2048, 2, false),
+            "epson.qx10.logo" => new(4 * 16 * 256, 64, 2048, 2, false),
             _ => null
         };
     }

@@ -31,12 +31,30 @@ public sealed class ScpReader : IScpReader
     public const int HeaderLength = 16;
     public const int FloppyTrackSlots = 168;
     public const int TrackTableOffset = 0x10;
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<FileIdentity, Lazy<Task<ScpImage>>> _cache = new();
 
     public async Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var file = new FileInfo(path);
+        var identity = new FileIdentity(file.FullName, file.Length, file.LastWriteTimeUtc.Ticks);
+        foreach (var obsolete in _cache.Keys.Where(key => key.Path.Equals(identity.Path, StringComparison.OrdinalIgnoreCase) && key != identity))
+            _cache.TryRemove(obsolete, out _);
+        var pending = _cache.GetOrAdd(identity, key => new(() => ReadFileAsync(key.Path), LazyThreadSafetyMode.ExecutionAndPublication));
+        try { return await pending.Value.WaitAsync(cancellationToken).ConfigureAwait(false); }
+        catch
+        {
+            _cache.TryRemove(identity, out _);
+            throw;
+        }
+    }
+
+    private async Task<ScpImage> ReadFileAsync(string path)
+    {
+        var data = await File.ReadAllBytesAsync(path).ConfigureAwait(false);
         return Read(data);
     }
+
+    private readonly record struct FileIdentity(string Path, long Length, long LastWriteTicks);
 
     public ScpImage Read(ReadOnlySpan<byte> data)
     {

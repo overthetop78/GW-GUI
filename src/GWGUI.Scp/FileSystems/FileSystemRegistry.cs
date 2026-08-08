@@ -4,9 +4,15 @@ namespace GWGUI.Scp.FileSystems;
 
 public sealed class FileSystemRegistry
 {
+    public sealed record Match(string ReaderId, FileSystemVolume Volume);
+
     public IReadOnlyList<IFileSystemReader> Readers { get; } =
     [
         new Readers.AmigaDosFileSystemReader(),
+        new Readers.BbcDfsFileSystemReader(),
+        new Readers.CoherentFileSystemReader(),
+        new Readers.Rt11FileSystemReader(),
+        new Readers.UcsdFileSystemReader(),
         new Readers.AppleDosFileSystemReader(),
         new Readers.ProDosFileSystemReader(),
         new Readers.MacMfsFileSystemReader(),
@@ -26,6 +32,18 @@ public sealed class FileSystemRegistry
     {
         if (TryRead(image, fileSystemId, out var volume)) return volume;
         throw new InvalidDataException("No supported file system was detected in the disk image.");
+    }
+
+    public IReadOnlyList<Match> ReadAll(SectorImage image)
+    {
+        var matches = new List<Match>();
+        foreach (var reader in Readers)
+        {
+            if (!reader.CanRead(image)) continue;
+            try { matches.Add(new(reader.Id, reader.Read(image))); }
+            catch (InvalidDataException) { }
+        }
+        return matches;
     }
 
     public bool TryRead(SectorImage image, string? fileSystemId, out FileSystemVolume volume)

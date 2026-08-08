@@ -16,7 +16,11 @@ public enum ExplorerFileSystemFamily
     Macintosh,
     Lisa,
     Commodore,
-    Cpm
+    Cpm,
+    BbcMicro,
+    Dec,
+    Msx,
+    Ucsd
 }
 
 public static class ExplorerFileIconClassifier
@@ -80,7 +84,20 @@ public static class ExplorerFileIconClassifier
             [ExplorerFileSystemFamily.Cpm] = Make(
                 text: [".txt", ".doc", ".asm", ".mac", ".lib", ".bas", ".for", ".c", ".h"],
                 images: [], audio: [], archives: [".arc", ".lbr"], programs: [".com", ".cmd", ".sub"],
-                disks: [".dsk", ".edsk", ".scp"])
+                disks: [".dsk", ".edsk", ".scp"]),
+            [ExplorerFileSystemFamily.BbcMicro] = Make(
+                text: [".txt"], images: [], audio: [], archives: [".zip"], programs: [],
+                disks: [".ssd", ".dsd", ".adl", ".adm", ".adf", ".scp"]),
+            [ExplorerFileSystemFamily.Dec] = Make(
+                text: [".txt", ".mac", ".for", ".bas", ".cmd", ".com"], images: [], audio: [], archives: [".bup"],
+                programs: [".sav", ".lda", ".rel", ".obj", ".sys"], disks: [".img", ".dsk", ".scp"]),
+            [ExplorerFileSystemFamily.Msx] = Make(
+                text: [".txt", ".doc", ".bas", ".asc"], images: [".sc2", ".sc5", ".sc7", ".sc8"],
+                audio: [".mgs", ".bgm"], archives: [".lzh", ".pma"], programs: [".com", ".bas", ".rom"],
+                disks: [".dsk", ".scp"]),
+            [ExplorerFileSystemFamily.Ucsd] = Make(
+                text: [".text"], images: [".foto", ".graf"], audio: [], archives: [], programs: [".code"],
+                disks: [".td0", ".img", ".dsk", ".scp"])
         };
 
     public static ExplorerFileSystemFamily FamilyFor(ExploredDiskImage document)
@@ -88,6 +105,10 @@ public static class ExplorerFileIconClassifier
         var format = document.Image.FormatId;
         var fileSystem = document.Volume.FileSystem;
         if (fileSystem.Contains("CP/M", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Cpm;
+        if (format.StartsWith("acorn.dfs", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.BbcMicro;
+        if (format.StartsWith("dec.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Dec;
+        if (format.StartsWith("msx.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Msx;
+        if (format.StartsWith("ucsd.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Ucsd;
         if (format.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Amiga;
         if (format.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.IbmPc;
         if (format.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.AtariSt;
@@ -151,6 +172,12 @@ public static class ExplorerFileIconClassifier
             if (type.Equals("TEXT", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Text;
             if (type.Equals("PICT", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Image;
             if (type.Equals("snd", StringComparison.OrdinalIgnoreCase) || type.Equals("AIFF", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Audio;
+        }
+        if (family == ExplorerFileSystemFamily.Ucsd)
+        {
+            if (type.Equals("UCSD code file", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Program;
+            if (type.Equals("UCSD text file", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Text;
+            if (type is "UCSD graphics file" or "UCSD photo file") return ExplorerIconKind.Image;
         }
         return null;
     }

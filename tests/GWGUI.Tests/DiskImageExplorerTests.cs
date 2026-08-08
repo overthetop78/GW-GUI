@@ -71,6 +71,23 @@ public sealed class DiskImageExplorerTests
     public void ExplorerTypeMatchesTheDetectedIcon(ExplorerIconKind kind, string expectedResourceKey)
         => Assert.Equal(expectedResourceKey, ExplorerFileIconClassifier.TypeResourceKeyFor(kind));
 
+    [Fact]
+    public void ExplorerIssueDialogIncludesFileSystemWarningsBadSectorsAndMissingSectors()
+    {
+        var blocks = new[]
+        {
+            new SectorBlock(0, new SectorAddress(0, 0, 0), new byte[256]),
+            new SectorBlock(1, new SectorAddress(0, 0, 1), new byte[256], IntegrityValid: false)
+        };
+        var image = new SectorImage("apple2.dos33", 256, 1, 1, 3, blocks);
+        var volume = new FileSystemVolume("TEST", "Apple DOS 3.3", 768, 0, null, null, [], ["Catalog warning"]);
+        var issues = ExplorerSection.BuildIssues(new ExploredDiskImage("test.nib", image, volume));
+
+        Assert.Contains("Catalog warning", issues);
+        Assert.Contains(issues, issue => issue.Contains("1", StringComparison.Ordinal));
+        Assert.Contains(issues, issue => issue.Contains("2", StringComparison.Ordinal));
+    }
+
     [Theory]
     [InlineData(AdfImageReader.DoubleDensityBytes, 11, "amiga.amigados")]
     [InlineData(AdfImageReader.HighDensityBytes, 22, "amiga.amigados_hd")]
@@ -156,6 +173,58 @@ public sealed class DiskImageExplorerTests
 
             Assert.False(result.FileSystemRecognized);
             Assert.Equal(368640, result.Volume.Capacity);
+            Assert.Empty(result.Volume.Entries);
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task ValidFatBpbTakesPriorityOverAnAccidentalCpmDirectoryPattern()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}.img");
+        try
+        {
+            var bytes = new byte[360 * 1024];
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(11), 512);
+            bytes[13] = 2;
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(14), 1);
+            bytes[16] = 2;
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(17), 112);
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(19), 720);
+            bytes[21] = 0xfd;
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(22), 2);
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(24), 9);
+            BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(26), 2);
+
+            const int falseDirectory = 4096;
+            bytes.AsSpan(falseDirectory, 64 * 32).Fill(0xe5);
+            bytes[falseDirectory] = 0;
+            "FAKE    TXT"u8.CopyTo(bytes.AsSpan(falseDirectory + 1));
+            bytes[falseDirectory + 15] = 1;
+            Assert.True(AmstradCpmFileSystemReader.LooksLikeCpcRawImage(bytes));
+
+            await File.WriteAllBytesAsync(path, bytes);
+            var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+            Assert.Equal("ibm.360", result.Image.FormatId);
+            Assert.DoesNotContain(result.DetectedFileSystems ?? [], match => match.FormatId.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase));
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task UnknownImageFormatOpensAsUnrecognizedWithoutThrowing()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}.unknown");
+        try
+        {
+            await File.WriteAllBytesAsync(path, [1, 2, 3, 4, 5]);
+
+            var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+            Assert.False(result.FileSystemRecognized);
+            Assert.Equal("unknown", result.Image.FormatId);
+            Assert.Equal(5, result.Volume.Capacity);
             Assert.Empty(result.Volume.Entries);
         }
         finally { File.Delete(path); }

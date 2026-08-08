@@ -51,9 +51,14 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
                 }
                 else if (type == 2 && data + 102 <= end)
                 {
-                    var logicalLength = U32(node, data + 26); var fileType = System.Text.Encoding.ASCII.GetString(node.Slice(data + 4, 4)).Trim('\0', ' ');
-                    var content = ReadExtents(image, node.Slice(data + 74, 12), allocationStart, allocationSize, logicalLength, warnings, name);
-                    result.Add(new(parent, U32(node, data + 20), name, false, logicalLength, MacDate(U32(node, data + 48)), string.IsNullOrWhiteSpace(fileType) ? "Macintosh file" : fileType, content));
+                    var dataLength = U32(node, data + 26);
+                    var resourceLength = U32(node, data + 36);
+                    var fileType = System.Text.Encoding.ASCII.GetString(node.Slice(data + 4, 4)).Trim('\0', ' ');
+                    var dataFork = ReadExtents(image, node.Slice(data + 74, 12), allocationStart, allocationSize, dataLength, warnings, name);
+                    var resourceFork = ReadExtents(image, node.Slice(data + 86, 12), allocationStart, allocationSize, resourceLength, warnings, $"{name} (resource fork)");
+                    var content = dataFork.Length > 0 ? dataFork : resourceFork;
+                    result.Add(new(parent, U32(node, data + 20), name, false, (long)dataLength + resourceLength,
+                        MacDate(U32(node, data + 48)), string.IsNullOrWhiteSpace(fileType) ? "Macintosh file" : fileType, content));
                 }
             }
         }
@@ -94,5 +99,5 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
     private static string Pascal(ReadOnlySpan<byte> data, int offset, int max) { var length = Math.Min(data[offset], max); return DecodeMac(data.Slice(offset + 1, length)); }
     private static string DecodeMac(ReadOnlySpan<byte> value) => System.Text.Encoding.Latin1.GetString(value).Replace(':', '/');
     private static DateTimeOffset? MacDate(uint seconds) { try { return seconds == 0 ? null : MacEpoch.AddSeconds(seconds); } catch { return null; } }
-    private sealed record CatalogRecord(uint Parent, uint Id, string Name, bool IsDirectory, uint Size, DateTimeOffset? Modified, string Type, IReadOnlyList<byte> Content);
+    private sealed record CatalogRecord(uint Parent, uint Id, string Name, bool IsDirectory, long Size, DateTimeOffset? Modified, string Type, IReadOnlyList<byte> Content);
 }

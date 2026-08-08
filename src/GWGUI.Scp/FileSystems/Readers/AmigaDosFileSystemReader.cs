@@ -20,7 +20,16 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     public bool CanRead(SectorImage image)
     {
         if (image.BlockSize != BlockSize || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 4) return false;
-        return boot.Data[0] == (byte)'D' && boot.Data[1] == (byte)'O' && boot.Data[2] == (byte)'S' && boot.Data[3] <= 7;
+        if (HasDosSignature(boot.Data)) return true;
+
+        // Some protected/demo disks replace the normal AmigaDOS boot block with
+        // custom boot code while keeping a perfectly ordinary AmigaDOS volume.
+        // Accept those only when the conventional root block is structurally
+        // valid and checksums correctly, to avoid mistaking arbitrary MFM data
+        // for a filesystem.
+        var conventionalRoot = image.BlockCount / 2;
+        if (!IsRootBlock(image, conventionalRoot) || !image.TryGetBlock(conventionalRoot, out var root)) return false;
+        return ChecksumValid(root.Data is byte[] bytes ? bytes : root.Data.ToArray());
     }
 
     public FileSystemVolume Read(SectorImage image)
@@ -28,7 +37,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
         if (!CanRead(image)) throw new InvalidDataException("The image does not contain a supported AmigaDOS boot block.");
         var warnings = new List<string>();
         var boot = image.GetBlock(0).Span;
-        var dosType = boot[3];
+        var dosType = HasDosSignature(boot) ? boot[3] : (byte)0;
         var rootPointer = ReadInt32(boot, 8);
         var conventionalRootBlock = image.BlockCount / 2;
         var rootBlock = IsRootBlock(image, rootPointer) ? rootPointer : conventionalRootBlock;
@@ -186,6 +195,12 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
         uint sum = 0; for (var offset = 0; offset < block.Length; offset += 4) sum = unchecked(sum + ReadUInt32(block, offset));
         return sum == 0;
     }
+
+    private static bool HasDosSignature(IReadOnlyList<byte> boot) => boot.Count >= 4
+        && boot[0] == (byte)'D' && boot[1] == (byte)'O' && boot[2] == (byte)'S' && boot[3] <= 7;
+
+    private static bool HasDosSignature(ReadOnlySpan<byte> boot) => boot.Length >= 4
+        && boot[0] == (byte)'D' && boot[1] == (byte)'O' && boot[2] == (byte)'S' && boot[3] <= 7;
 
     private static int ReadInt32(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadInt32BigEndian(data.Slice(offset, 4));
     private static uint ReadUInt32(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt32BigEndian(data.Slice(offset, 4));

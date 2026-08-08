@@ -39,11 +39,22 @@ internal static class AppleNibbleImageDecoder
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         for (var track = 0; track < 40; track++)
         {
-            var descriptor = tmap.Span[track * 4];
-            if (descriptor == 0xff) continue;
-            var bits = version == 1 ? ReadWoz1Track(trks.Span, descriptor) : ReadWoz2Track(data, trks.Span, descriptor);
-            if (bits.Length == 0) continue;
-            tracks.Add((track, decoder.DecodeBits(bits).Sectors ?? []));
+            IReadOnlyList<DecodedSector>? best = null;
+            var bestScore = -1;
+            foreach (var descriptor in tmap.Span.Slice(track * 4, 4).ToArray().Where(value => value != 0xff).Distinct())
+            {
+                var bits = version == 1 ? ReadWoz1Track(trks.Span, descriptor) : ReadWoz2Track(data, trks.Span, descriptor);
+                if (bits.Length == 0) continue;
+                var sectors = (decoder.DecodeBits(bits).Sectors ?? [])
+                    .Where(sector => sector.Cylinder == track && sector.Number is >= 0 and < 16 && sector.Data is { Count: 256 })
+                    .ToArray();
+                var score = sectors.Select(sector => sector.Number).Distinct().Count() * 100
+                    + sectors.Count(sector => sector.IntegrityValid == true) * 10 + sectors.Length;
+                if (score <= bestScore) continue;
+                best = sectors;
+                bestScore = score;
+            }
+            if (best is not null) tracks.Add((track, best));
         }
         return AppleDiskImageReader.CreateAppleIIFromDecodedTracks(tracks);
     }

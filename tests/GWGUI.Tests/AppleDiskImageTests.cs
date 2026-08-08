@@ -1,6 +1,7 @@
 using System.IO;
 using GWGUI.Scp;
 using GWGUI.Scp.FileSystems;
+using GWGUI.Scp.FileSystems.Readers;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
 using GWGUI.Scp.Decoding;
@@ -142,6 +143,71 @@ public sealed class AppleDiskImageTests
             Assert.True(recognizedNibbleImages > 0, "No filesystem was decoded from the WOZ/NIB corpus.");
         Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
     }
+
+    [Fact]
+    public async Task MacWorksTaggedBootDiskIsNotMisidentifiedAsLisaOffice()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+        var path = Directory.EnumerateFiles(root, "*MacWorks*.image", SearchOption.AllDirectories).FirstOrDefault();
+        if (path is null) return;
+
+        var image = await new AppleDiskImageReader().ReadAsync(path);
+
+        Assert.Equal("applelisa.macworks", image.FormatId);
+        Assert.Equal(800, image.AvailableBlocks.Count);
+        Assert.False(new LisaFileSystemReader().CanRead(image));
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(image).Tracks);
+    }
+
+    [Fact]
+    public async Task FlatLisaPayloadWithoutTagsRemainsVisualizableButIsNotInventedAsAFileSystem()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+        var path = Directory.EnumerateFiles(root, "*.scp.img", SearchOption.AllDirectories)
+            .FirstOrDefault(candidate => new FileInfo(candidate).Length == 409_600);
+        if (path is null) return;
+
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+        Assert.Equal("applelisa.raw", document.Image.FormatId);
+        Assert.Equal(800, document.Image.AvailableBlocks.Count);
+        Assert.False(document.FileSystemRecognized);
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(document.Image).Tracks);
+    }
+
+    [Fact]
+    public async Task WozSixAndTwoDecoderResynchronizesProtectedBitstreams()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+        var path = Directory.EnumerateFiles(root, "*816-Paint*.woz", SearchOption.AllDirectories).FirstOrDefault();
+        if (path is null) return;
+
+        var image = await new AppleDiskImageReader().ReadAsync(path);
+
+        Assert.NotEmpty(image.AvailableBlocks);
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(image).Tracks);
+    }
+
+    [Fact]
+    public async Task ProtectedDos32CatalogRemainsReadableAndReportsNonstandardEntries()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+        var path = Directory.EnumerateFiles(root, "*Apple World*.woz", SearchOption.AllDirectories).FirstOrDefault();
+        if (path is null) return;
+
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+        Assert.True(document.FileSystemRecognized);
+        Assert.Equal("Apple DOS 3.2", document.Volume.FileSystem);
+        Assert.Contains(document.Volume.Entries, entry => entry.Name == "AUTODEMO");
+        Assert.Contains(document.Volume.Entries, entry => entry.Name == "THRDIM");
+        Assert.NotEmpty(document.Volume.Warnings);
+    }
+
 
     [Fact]
     public async Task RealAppleScpCorpusCanBeDecodedWhenRequested()

@@ -108,7 +108,7 @@ public partial class ExplorerSection : UserControl
         _rootEntries = [];
         _visibleFolders.Clear();
         ContentsList.ItemsSource = null;
-        WarningsBadge.Visibility = Visibility.Collapsed;
+        WarningsButton.Visibility = Visibility.Collapsed;
         DetailsPanel.Clear();
     }
 
@@ -120,7 +120,9 @@ public partial class ExplorerSection : UserControl
             ? LocExtension.Get("Explorer.Unknown")
             : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
         VolumeNameText.Text = volumeName;
-        FileSystemText.Text = document.FileSystemRecognized ? document.Volume.FileSystem : LocExtension.Get("Explorer.Unknown");
+        FileSystemText.Text = document.FileSystemRecognized
+            ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystem))
+            : LocExtension.Get("Explorer.Unknown");
         CapacityText.Text = ExplorerFormatting.FormatBytes(document.Volume.Capacity);
         FreeText.Text = document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
         EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
@@ -130,8 +132,8 @@ public partial class ExplorerSection : UserControl
         FolderList.SelectedItem = _rootFolder;
         ShowContents(_rootEntries);
         DetailsPanel.ShowDisk(document);
-        var warningCount = document.Volume.Warnings.Count;
-        WarningsBadge.Visibility = warningCount == 0 ? Visibility.Collapsed : Visibility.Visible;
+        var warningCount = BuildIssues(document).Count;
+        WarningsButton.Visibility = warningCount == 0 ? Visibility.Collapsed : Visibility.Visible;
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
     }
 
@@ -196,6 +198,40 @@ public partial class ExplorerSection : UserControl
         ExpandAncestors(_rootFolder, folder);
         RefreshVisibleFolders(folder);
         ShowContents(folder.Entry!.Children);
+    }
+
+    private void WarningsButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_document is null) return;
+        new ExplorerIssuesWindow(BuildIssues(_document)) { Owner = Window.GetWindow(this) }.ShowDialog();
+    }
+
+    public static IReadOnlyList<string> BuildIssues(ExploredDiskImage document)
+    {
+        var issues = new List<string>();
+        foreach (var warning in (document.DetectedFileSystems ?? [])
+                     .SelectMany(item => item.Volume.Warnings)
+                     .Concat(document.Volume.Warnings)
+                     .Where(warning => !string.IsNullOrWhiteSpace(warning))
+                     .Distinct(StringComparer.CurrentCultureIgnoreCase))
+            issues.Add(warning);
+
+        foreach (var block in document.Image.AvailableBlocks.Where(block => block.IntegrityValid == false)
+                     .OrderBy(block => block.Address.Cylinder).ThenBy(block => block.Address.Head).ThenBy(block => block.Address.Number))
+            issues.Add(LocExtension.Get("Visual.SectorDetail", block.Address.Cylinder, block.Address.Head,
+                block.Address.Number, block.Data.Count, LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Visual.CrcInvalid")));
+
+        foreach (var logical in document.Image.MissingBlocks)
+        {
+            var sectorsPerCylinder = Math.Max(1, document.Image.Heads * document.Image.SectorsPerTrack);
+            var cylinder = logical / sectorsPerCylinder;
+            var withinCylinder = logical % sectorsPerCylinder;
+            var head = withinCylinder / Math.Max(1, document.Image.SectorsPerTrack);
+            var sector = withinCylinder % Math.Max(1, document.Image.SectorsPerTrack);
+            issues.Add(LocExtension.Get("Visual.SectorDetail", cylinder, head, sector, 0,
+                LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Explorer.Unknown")));
+        }
+        return issues.Distinct(StringComparer.CurrentCultureIgnoreCase).ToArray();
     }
 
     private static ExplorerFolderItem? FindFolder(ExplorerFolderItem current, FileSystemEntry entry)

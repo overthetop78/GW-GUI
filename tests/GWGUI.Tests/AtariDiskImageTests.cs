@@ -100,12 +100,25 @@ public sealed class AtariDiskImageTests
     public void AtariDosReaderExtractsAFile()
     {
         var blocks = Enumerable.Range(0, 720).Select(index => new GWGUI.Scp.SectorImages.SectorBlock(index, new(index, 0, index + 1), new byte[128])).ToArray();
+        ((byte[])blocks[359].Data)[0] = 2;
         var directory = (byte[])blocks[360].Data; directory[0] = 0x42; BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(1), 1); BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(3), 4);
         System.Text.Encoding.ASCII.GetBytes("HELLO   TXT").CopyTo(directory, 5);
         var content = (byte[])blocks[3].Data; System.Text.Encoding.ASCII.GetBytes("ATARI").CopyTo(content, 0); content[125] = 0; content[126] = 0; content[127] = 5;
         var image = new GWGUI.Scp.SectorImages.SectorImage("atari.90", 128, 720, 1, 1, blocks);
         var volume = new AtariDosFileSystemReader().Read(image); var file = Assert.Single(volume.Entries);
         Assert.Equal("HELLO.TXT", file.Name); Assert.Equal("ATARI", System.Text.Encoding.ASCII.GetString(file.Content!.ToArray()));
+    }
+
+    [Fact]
+    public void AtariDosReaderRejectsRandomDataThatOnlyResemblesDirectoryFlags()
+    {
+        var blocks = Enumerable.Range(0, 720).Select(index => new GWGUI.Scp.SectorImages.SectorBlock(index, new(index, 0, index + 1), new byte[128])).ToArray();
+        ((byte[])blocks[359].Data)[0] = 0x19;
+        ((byte[])blocks[360].Data)[0] = 0xa6;
+        ((byte[])blocks[360].Data)[5] = 0x1a;
+        var image = new GWGUI.Scp.SectorImages.SectorImage("atari.90", 128, 720, 1, 1, blocks);
+
+        Assert.False(new AtariDosFileSystemReader().CanRead(image));
     }
 
     [Fact]

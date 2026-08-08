@@ -26,6 +26,11 @@ public sealed class IbmPcImageReader : ISectorImageReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        return Create(data, cancellationToken);
+    }
+
+    internal static SectorImage Create(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
+    {
         var geometry = DetectGeometry(data);
         var blocks = new SectorBlock[geometry.Cylinders * geometry.Heads * geometry.SectorsPerTrack];
         for (var logical = 0; logical < blocks.Length; logical++)
@@ -33,7 +38,7 @@ public sealed class IbmPcImageReader : ISectorImageReader
             var track = logical / geometry.SectorsPerTrack;
             blocks[logical] = new(logical,
                 new(track / geometry.Heads, track % geometry.Heads, logical % geometry.SectorsPerTrack + 1),
-                data.AsSpan(logical * 512, 512).ToArray());
+                data.Slice(logical * 512, 512).ToArray());
         }
         return new(geometry.FormatId, 512, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks);
     }
@@ -47,6 +52,8 @@ public sealed class IbmPcImageReader : ISectorImageReader
         if (Geometries.TryGetValue(data.Length, out var geometry)) return geometry;
         throw new InvalidDataException("The IBM PC image geometry could not be determined from its boot sector or size.");
     }
+
+    internal static bool HasValidBpbGeometry(ReadOnlySpan<byte> data) => TryReadBpbGeometry(data, out _);
 
     internal static string FormatIdForGeometry(int cylinders, int heads, int sectorsPerTrack, int sectorSize = 512)
     {

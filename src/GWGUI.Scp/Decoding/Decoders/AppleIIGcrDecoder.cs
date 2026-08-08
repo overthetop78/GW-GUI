@@ -25,8 +25,11 @@ public sealed class AppleGcrDecoder : IFluxDecoder
                 volume = DecodeFourAndFour(address[0], address[1]); cylinder = DecodeFourAndFour(address[2], address[3]); number = DecodeFourAndFour(address[4], address[5]);
                 var checksum = DecodeFourAndFour(address[6], address[7]); headerValid = (byte)(volume ^ cylinder ^ number) == checksum; bytes.AddRange([volume, cylinder, number, checksum]);
             }
-            var headerEnd = offset + 24 + (address is null ? 0 : 64); var epilogueOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 512), 0xDEAAEB);
-            var dataOffset = epilogueOffset < 0 ? -1 : Find(stream, epilogueOffset + 24, Math.Min(stream.Bits.Length, epilogueOffset + 24 + 512), 0xD5AAAD); bool? dataValid = null; var structureEnd = headerEnd;
+            var headerEnd = offset + 24 + (address is null ? 0 : 64);
+            // The third address-epilogue byte is not reliable on every protected NIB
+            // image. Pair the address with the following data prologue instead: the
+            // address and data checksums still provide the required integrity checks.
+            var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 1024), 0xD5AAAD); bool? dataValid = null; var structureEnd = headerEnd;
             byte[]? sectorData = null;
             if (dataOffset >= 0)
             {
@@ -63,8 +66,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
                 headerValid = (byte)(volume ^ cylinder ^ number) == checksum;
             }
             var headerEnd = offset + 88;
-            var epilogue = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 512), 0xDEAAEB);
-            var dataOffset = epilogue < 0 ? -1 : Find(stream, epilogue + 24, Math.Min(stream.Bits.Length, epilogue + 24 + 512), 0xD5AAAD);
+            var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 1024), 0xD5AAAD);
             bool? dataValid = null; byte[]? sectorData = null; var structureEnd = headerEnd;
             if (dataOffset >= 0)
             {
@@ -100,7 +102,11 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     }
     private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(bool[] bits, int offset)
     {
-        var encoded = TryReadBytes(bits, offset, 343); if (encoded is null) return null; var values = new byte[343];
+        // A real Disk II controller shifts bits until bit 7 becomes set. WOZ stores
+        // the original bitstream, so sync fields can leave encoded bytes unaligned;
+        // fixed 8-bit reads reject otherwise valid protected tracks.
+        var cursor = offset;
+        var encoded = TryReadLatchedBytes(bits, ref cursor, 343); if (encoded is null) return null; var values = new byte[343];
         for (var index = 0; index < values.Length; index++) if (!InverseSixAndTwo.TryGetValue(encoded[index], out values[index])) return null;
         var decoded = new byte[342]; byte previous = 0; var encodedIndex = 0;
         for (var index = 341; index >= 256; index--) { decoded[index] = (byte)(values[encodedIndex++] ^ previous); previous = decoded[index]; }
@@ -111,7 +117,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
             auxiliaryOffset = (byte)((auxiliaryOffset + 85) % 86); var auxiliary = decoded[256 + auxiliaryOffset]; decoded[256 + auxiliaryOffset] = (byte)(auxiliary >> 2);
             data[index] = (byte)((decoded[index] << 2) | ((auxiliary & 2) >> 1) | ((auxiliary & 1) << 1));
         }
-        return (data, valid, offset + 343 * 8);
+        return (data, valid, cursor);
     }
 
     private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(bool[] bits, int offset)

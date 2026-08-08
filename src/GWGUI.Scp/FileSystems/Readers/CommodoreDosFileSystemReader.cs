@@ -15,7 +15,8 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
         var headerAddress = image.FormatId == "commodore.1581" ? (40, 0) : (18, 0);
         return TryGetSector(image, headerAddress.Item1, headerAddress.Item2, out var header)
             && header.Length == 256
-            && header[2] is 0x41 or 0x44;
+            && header[2] is 0x41 or 0x44
+            && HasPlausibleDirectory(image, header, headerAddress.Item1, image.FormatId == "commodore.1581");
     }
 
     public FileSystemVolume Read(SectorImage image)
@@ -141,6 +142,35 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
     {
         try { return ToLogicalBlock(image, track, sector); }
         catch (ArgumentOutOfRangeException) { return -1; }
+    }
+
+    private static bool HasPlausibleDirectory(SectorImage image, byte[] header, int headerTrack, bool is1581)
+    {
+        var track = header[0] == 0 ? headerTrack : header[0];
+        var sector = header[0] == 0 ? (is1581 ? 3 : 1) : header[1];
+        var visited = new HashSet<(int Track, int Sector)>();
+        var valid = 0;
+        var invalid = 0;
+        while (track != 0 && visited.Count < 64 && visited.Add((track, sector)))
+        {
+            if (!TryGetSector(image, track, sector, out var data)) return false;
+            for (var slot = 0; slot < 8; slot++)
+            {
+                var offset = 2 + slot * 32;
+                var rawType = data[offset];
+                if ((rawType & 0x0f) == 0) continue;
+                var type = rawType & 7;
+                var name = Petscii.Decode(data.AsSpan(offset + 3, 16));
+                var dataTrack = data[offset + 1];
+                var dataSector = data[offset + 2];
+                var plausible = type is >= 1 and <= 5 && name.Length > 0 && !name.Contains('\ufffd')
+                    && (dataTrack == 0 || TryToLogicalBlock(image, dataTrack, dataSector) >= 0);
+                if (plausible) valid++; else invalid++;
+            }
+            track = data[0];
+            sector = data[1];
+        }
+        return invalid == 0 && (valid > 0 || visited.Count == 1);
     }
 
     private static string TypeName(int type) => type switch { 1 => "SEQ", 2 => "PRG", 3 => "USR", 4 => "REL", 5 => "CBM", _ => "DEL" };

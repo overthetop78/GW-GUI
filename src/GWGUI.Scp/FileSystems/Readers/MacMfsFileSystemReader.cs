@@ -34,10 +34,15 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
                 var resourceLogical = U32(bytes, offset); offset += 4; offset += 4; var created = U32(bytes, offset); offset += 4; var modified = U32(bytes, offset); offset += 4;
                 var nameLength = bytes[offset++]; if (nameLength > 63 || offset + nameLength > bytes.Length) { warnings.Add($"Invalid MFS directory entry in block {blockNumber}."); break; }
                 var fileName = DecodeMac(bytes.AsSpan(offset, nameLength)); offset += nameLength; if ((offset & 1) != 0) offset++;
-                var content = ReadFork(image, map, allocationStart, allocationSize, dataStart, dataLogical, warnings, fileName);
+                var dataFork = ReadFork(image, map, allocationStart, allocationSize, dataStart, dataLogical, warnings, $"{fileName} (data fork)");
+                var resourceFork = ReadFork(image, map, allocationStart, allocationSize, resourceStart, resourceLogical, warnings, $"{fileName} (resource fork)");
+                // Classic Macintosh applications commonly keep nearly all their
+                // useful bytes in the resource fork. Report the complete logical
+                // file size and expose that fork when the data fork is empty.
+                var content = dataFork.Count > 0 ? dataFork : resourceFork;
                 var type = System.Text.Encoding.ASCII.GetString(finder, 0, 4).Trim('\0', ' ');
                 var comment = string.IsNullOrWhiteSpace(type) ? "Macintosh file" : type;
-                entries.Add(new(fileName, FileSystemEntryKind.File, dataLogical, MacDate(modified), comment, flags, (int)fileNumber, true, [], content));
+                entries.Add(new(fileName, FileSystemEntryKind.File, (long)dataLogical + resourceLogical, MacDate(modified), comment, flags, (int)fileNumber, true, [], content));
                 if (resourceLogical > 0 && resourceStart == 0) warnings.Add($"{fileName}: resource fork metadata is inconsistent.");
                 if (offset <= start) break;
             }

@@ -168,7 +168,8 @@ public sealed class LocalizationTests
         var technical = new System.Text.RegularExpressions.Regex(@"^(?:\d+(?:\.\d+)?(?: ?(?:RPM|rpm))?|[A-Z]|DD|HD|ED|\d+ / [A-Z]+|\d{2,3} / [A-Z]{2,3}|c=.+|period=.+|type=.+|Français|English)$", System.Text.RegularExpressions.RegexOptions.CultureInvariant);
         var hardCoded = Directory.EnumerateFiles(Path.Combine(directory!.FullName, "src", "GWGUI.App"), "*.xaml")
             .SelectMany(file => XDocument.Load(file).Descendants().Attributes())
-            .Where(x => visibleAttributes.Contains(x.Name.LocalName) && !x.Value.StartsWith('{') && !technical.IsMatch(x.Value))
+            .Where(x => visibleAttributes.Contains(x.Name.LocalName) && !x.Value.StartsWith('{') &&
+                        !x.Value.All(character => character is >= '\uE000' and <= '\uF8FF') && !technical.IsMatch(x.Value))
             .Select(x => x.Value).Distinct().ToArray();
         Assert.Empty(hardCoded);
     }

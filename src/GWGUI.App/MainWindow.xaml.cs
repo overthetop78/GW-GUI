@@ -96,6 +96,7 @@ public partial class MainWindow : Window
     private readonly ScpInspectorPresenter _scpInspector;
     private readonly ScpDocumentLoader _scpLoader;
     private readonly DiskImageExplorer _diskImageExplorer = DiskImageExplorer.CreateDefault();
+    private readonly SectorImageFluxVisualizer _sectorImageFluxVisualizer = new();
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
     private readonly GwProgressTracker _progressTracker = new();
@@ -313,7 +314,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private async Task LoadExplorerImageAsync(string path)
+    private async Task<ExploredDiskImage?> LoadExplorerImageAsync(string path)
     {
         _explorerCancellation?.Cancel();
         _explorerCancellation?.Dispose();
@@ -325,12 +326,14 @@ public partial class MainWindow : Window
         {
             var document = await _diskImageExplorer.ExploreAsync(path, DiskExplorer.SelectedFormatId, cancellation.Token);
             if (!cancellation.IsCancellationRequested) DiskExplorer.Display(document);
+            return cancellation.IsCancellationRequested ? null : document;
         }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return null; }
         catch (Exception exception)
         {
             if (ReferenceEquals(_explorerCancellation, cancellation)) DiskExplorer.SetLoading(false);
             ShowLoggedError(exception, $"Opening disk image in Explorer: {path}", "Tab.Explorer", "Explorer.LoadFailed");
+            return null;
         }
         finally
         {
@@ -355,10 +358,18 @@ public partial class MainWindow : Window
         return path;
     }
 
-    private Task LoadImageInExplorerAndVisualizerAsync(string path, string? displayFileName = null)
-        => Task.WhenAll(LoadVisualizerImageAsync(path, displayFileName), LoadExplorerImageAsync(path));
+    private async Task LoadImageInExplorerAndVisualizerAsync(string path, string? displayFileName = null)
+    {
+        if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
+        {
+            await Task.WhenAll(LoadVisualizerImageAsync(path, displayFileName), LoadExplorerImageAsync(path));
+            return;
+        }
+        var explored = await LoadExplorerImageAsync(path);
+        await LoadVisualizerImageAsync(path, displayFileName, explored);
+    }
 
-    private async Task LoadVisualizerImageAsync(string path, string? displayFileName = null)
+    private async Task LoadVisualizerImageAsync(string path, string? displayFileName = null, ExploredDiskImage? exploredImage = null)
     {
         var cancellation = ReplaceVisualizationConversionCancellation();
         if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
@@ -369,6 +380,21 @@ public partial class MainWindow : Window
 
         ClearVisualizerPreparation(displayFileName ?? Path.GetFileName(path));
         if (_operation.IsRunning) return;
+        try
+        {
+            var explored = exploredImage ?? await _diskImageExplorer.ExploreAsync(path, cancellationToken: cancellation.Token);
+            cancellation.Token.ThrowIfCancellationRequested();
+            if (_sectorImageFluxVisualizer.CanVisualize(explored.Image) && explored.Image.AvailableBlocks.Count > 0)
+            {
+                ShowScpProgress(LocExtension.Get("Visual.Loading"), 0, true);
+                var visualization = await Task.Run(() => _sectorImageFluxVisualizer.Create(explored.Image, cancellation.Token), cancellation.Token);
+                var summary = $"{explored.Image.FormatId} · {explored.Image.Cylinders}×{explored.Image.Heads}×{explored.Image.SectorsPerTrack} · {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
+                await DisplayScpAsync(visualization, displayFileName ?? Path.GetFileName(path), summary, cancellation);
+                return;
+            }
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return; }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException) { }
         var detection = _formatDetector.Detect(path, new FileInfo(path).Length);
         if (!GwVisualizationPolicy.CanConvertToScp(path, detection, _gwCapabilities)) return;
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) return;
@@ -445,10 +471,20 @@ public partial class MainWindow : Window
         {
             ShowScpProgress(LocExtension.Get("Visual.Loading"), 0, true);
             ScpSummary.Text = LocExtension.Get("Visual.Loading");
-            var document = await _scpLoader.LoadAsync(path, cancellation.Token); _scpImage = document.Image;
-            ScpFileName.Text = displayFileName ?? document.FileName;
-            var heads = document.Heads;
-            ScpSummary.Text = document.Summary;
+            var document = await _scpLoader.LoadAsync(path, cancellation.Token);
+            await DisplayScpAsync(document.Image, displayFileName ?? document.FileName, document.Summary, cancellation);
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
+        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); ShowLoggedError(exception, $"Opening disk image in Visualizer: {path}", "Visual.Title"); }
+        finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
+    }
+
+    private async Task DisplayScpAsync(ScpImage image, string fileName, string summary, CancellationTokenSource cancellation)
+    {
+            _scpImage = image;
+            ScpFileName.Text = fileName;
+            var heads = image.Tracks.Select(track => track.Head).ToHashSet();
+            ScpSummary.Text = summary;
             ScpSide0.SetImage(_scpImage, 0); ScpSide1.SetImage(_scpImage, 1);
             _selectedScpTrack = null;
             ScpSide0.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed; ScpSide1.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
@@ -457,10 +493,6 @@ public partial class MainWindow : Window
             ScpInspector.DataContext = null;
             if (_detachedScpInspector is not null) _detachedScpInspector.DataContext = null;
             await PrepareScpViewsAsync(cancellation.Token);
-        }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
-        catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); ShowLoggedError(exception, $"Opening disk image in Visualizer: {path}", "Visual.Title"); }
-        finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
     }
 
     private void ScpTrack_Selected(object? sender, ScpTrack? track)

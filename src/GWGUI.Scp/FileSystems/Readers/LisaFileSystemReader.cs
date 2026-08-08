@@ -39,7 +39,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
             : string.Empty;
         if (string.IsNullOrWhiteSpace(volumeName)) volumeName = "Lisa";
 
-        var names = ReadCatalogNames(image, warnings);
+        var names = ReadCatalogNames(image, version, warnings);
         var entries = new List<FileSystemEntry>();
         foreach (var group in image.AvailableBlocks
                      .Select(block => (Block: block, FileId: TagFileId(block)))
@@ -70,7 +70,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
             null, null, entries, warnings);
     }
 
-    private static Dictionary<ushort, string> ReadCatalogNames(SectorImage image, List<string> warnings)
+    private static Dictionary<ushort, string> ReadCatalogNames(SectorImage image, ushort version, List<string> warnings)
     {
         var result = new Dictionary<ushort, string>();
         var catalogPages = image.AvailableBlocks
@@ -84,6 +84,22 @@ public sealed class LisaFileSystemReader : IFileSystemReader
         }
 
         var bytes = catalogPages.SelectMany(block => block.Data).ToArray();
+        if (version == 0x000e)
+        {
+            // The original table catalog is a flat array of 54-byte records.
+            // Each record starts with a Pascal filename and stores its file ID
+            // at offset 36. Later B-tree catalogs use the 64-byte layout below.
+            for (var offset = 0; offset + 54 <= bytes.Length; offset += 54)
+            {
+                var length = bytes[offset];
+                if (length is 0 or > 31 || offset + 1 + length > bytes.Length) continue;
+                var name = ReadLisaString(bytes.AsSpan(offset + 1, length));
+                var fileId = BinaryPrimitives.ReadUInt16BigEndian(bytes.AsSpan(offset + 36, 2));
+                if (!IsUserFile(fileId) || string.IsNullOrWhiteSpace(name)) continue;
+                result.TryAdd(fileId, name);
+            }
+            return result;
+        }
         // Lisa catalog entries occupy 64 bytes. The first name begins at offset 0x51;
         // its file identifier follows at entry offset + 36 (big endian).
         for (var offset = 0x50; offset + 64 <= bytes.Length; offset += 64)

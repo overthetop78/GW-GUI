@@ -31,7 +31,12 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
             var bytes = catalog.Data.ToArray();
             for (var offset = 0x0b; offset + 35 <= bytes.Length; offset += 35)
             {
-                var tsTrack = bytes[offset]; if (tsTrack is 0 or 0xff) continue;
+                // Apple DOS stops scanning the current catalog sector at the first
+                // unused entry. Bytes beyond it are not catalog entries and may
+                // contain stale data from an earlier disk/file layout.
+                var tsTrack = bytes[offset];
+                if (tsTrack == 0) break;
+                if (tsTrack == 0xff) continue;
                 var tsSector = bytes[offset + 1]; var type = bytes[offset + 2];
                 var name = DecodeName(bytes.AsSpan(offset + 3, 30));
                 var declaredSectors = BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(offset + 33));

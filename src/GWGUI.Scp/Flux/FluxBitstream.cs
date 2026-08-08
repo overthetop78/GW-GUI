@@ -53,8 +53,18 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
         // so it is not a complete cell-spacing sample and must not drive the PLL estimate.
         var samples = fm ? intervals : intervals.Skip(1);
         var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return 1;
+        if (fm)
+        {
+            // FM always contains a clock transition for every data bit, but a mostly-zero
+            // sector can contain far more two-cell intervals than one-cell intervals.
+            // The median of the lower quintile can therefore lock onto two cells and
+            // collapse the complete stream by half. A low non-minimum percentile stays
+            // in the genuine one-cell cluster while still ignoring isolated short noise.
+            var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
+            return Math.Max(1, sorted[percentile]);
+        }
         var sampleLength = Math.Max(1, sorted.Length / 5); var lowerCluster = sorted.Take(sampleLength).ToArray(); var robustLower = lowerCluster[lowerCluster.Length / 2];
-        return Math.Max(1, fm ? robustLower : robustLower / 2d);
+        return Math.Max(1, robustLower / 2d);
     }
     private static double EstimateNrziBitCell(IReadOnlyList<uint> intervals)
     {

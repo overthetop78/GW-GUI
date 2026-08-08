@@ -19,7 +19,9 @@ public static class ExplorerDetailsPresenter
         return new(title, ExplorerIconKind.DiskImage,
         [
             new("Explorer.Volume", title),
-            new("Explorer.FileSystem", document.FileSystemRecognized ? volume.FileSystem : LocExtension.Get("Explorer.Unknown")),
+            new("Explorer.FileSystem", document.FileSystemRecognized
+                ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(volume.FileSystem))
+                : LocExtension.Get("Explorer.Unknown")),
             new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
             new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"),
             new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()),

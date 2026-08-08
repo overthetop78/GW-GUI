@@ -10,6 +10,7 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "atari.90", "atari.130", "atari.180" };
     public bool CanRead(SectorImage image) => image.FormatId.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) &&
         !image.FormatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) && image.BlockCount >= 368 &&
+        image.TryGetBlock(359, out var vtoc) && LooksLikeVtoc(vtoc.Data) &&
         image.TryGetBlock(360, out var directory) && LooksLikeDirectory(directory.Data);
 
     public FileSystemVolume Read(SectorImage image)
@@ -54,6 +55,34 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         return BinaryPrimitives.ReadUInt16LittleEndian(vtoc.AsSpan(3));
     }
     private static bool TrySector(SectorImage image, int sectorNumber, out byte[] data) { if (sectorNumber > 0 && image.TryGetBlock(sectorNumber - 1, out var block)) { data = block.Data.ToArray(); return true; } data = []; return false; }
-    private static bool LooksLikeDirectory(IReadOnlyList<byte> data) { if (data.Count < 128) return false; var plausible = 0; for (var i = 0; i < 8; i++) { var flag = data[i * 16]; if (flag == 0 || (flag & 0x40) != 0 || (flag & 0x80) != 0) plausible++; } return plausible >= 6; }
+    private static bool LooksLikeVtoc(IReadOnlyList<byte> data)
+        => data.Count >= 128 && data[0] == 2;
+
+    private static bool LooksLikeDirectory(IReadOnlyList<byte> data)
+    {
+        if (data.Count < 128) return false;
+        for (var i = 0; i < 8; i++)
+        {
+            var offset = i * 16;
+            var flag = data[offset];
+            if (flag == 0) continue;
+
+            var nameIsBlank = true;
+            for (var j = 0; j < 11; j++)
+            {
+                var value = data[offset + 5 + j];
+                if (value is not (0 or 0x20)) nameIsBlank = false;
+                if (value is not (0 or 0x20) && value is not (>= 0x20 and <= 0x7e)) return false;
+            }
+
+            if ((flag & 0x40) != 0 && (flag & 0x80) == 0)
+            {
+                var sectorCount = data[offset + 1] | data[offset + 2] << 8;
+                var firstSector = data[offset + 3] | data[offset + 4] << 8;
+                if (nameIsBlank || sectorCount == 0 || firstSector == 0) return false;
+            }
+        }
+        return true;
+    }
     private static string DecodeName(ReadOnlySpan<byte> raw) { var name = System.Text.Encoding.ASCII.GetString(raw[..8]).Trim(); var ext = System.Text.Encoding.ASCII.GetString(raw[8..]).Trim(); return ext.Length == 0 ? name : name + "." + ext; }
 }

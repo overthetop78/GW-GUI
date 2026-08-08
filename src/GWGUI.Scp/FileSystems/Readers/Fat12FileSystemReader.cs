@@ -10,7 +10,8 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
         "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880", "atarist.1440",
-        "ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan"
+        "ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan",
+        "msx.1d", "msx.1dd", "msx.2d", "msx.2dd"
     };
 
     public bool CanRead(SectorImage image)
@@ -27,10 +28,21 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         var root = ReadSectors(image, layout.RootStart, layout.RootSectors, warnings);
         var entries = ReadDirectory(image, root, fat, layout, warnings, 0, new HashSet<int>());
         var freeClusters = Enumerable.Range(2, Math.Max(0, layout.ClusterCount - 2)).Count(cluster => ReadFat12(fat, cluster) == 0);
-        var label = ReadVolumeLabel(root) ?? ReadAscii(boot.Data, 43, 11).Trim();
-        var fileSystemName = image.FormatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12" : "Atari TOS FAT12";
+        var label = ReadVolumeLabel(root) ?? ReadBootVolumeLabel(boot.Data);
+        var fileSystemName = image.FormatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12"
+            : image.FormatId.StartsWith("msx.", StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12"
+            : "Atari TOS FAT12";
         return new(label, fileSystemName, image.Capacity, (long)freeClusters * layout.SectorsPerCluster * 512,
             null, null, entries, warnings);
+    }
+
+    private static string ReadBootVolumeLabel(IReadOnlyList<byte> boot)
+    {
+        if (boot.Count < 54) return string.Empty;
+        var bytes = boot.Skip(43).Take(11).ToArray();
+        if (bytes.Any(value => value is < 0x20 or > 0x7e)) return string.Empty;
+        var label = System.Text.Encoding.ASCII.GetString(bytes).Trim();
+        return label.Equals("NO NAME", StringComparison.OrdinalIgnoreCase) ? string.Empty : label;
     }
 
     private static IReadOnlyList<FileSystemEntry> ReadDirectory(SectorImage image, byte[] directory, byte[] fat, Layout layout,
