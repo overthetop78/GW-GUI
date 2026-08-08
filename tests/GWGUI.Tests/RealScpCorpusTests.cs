@@ -4,15 +4,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Runtime.ExceptionServices;
 using GWGUI.App;
+using GWGUI.App.Rendering;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
+using SkiaSharp;
 
 namespace GWGUI.Tests;
 
 public sealed class RealScpCorpusTests
 {
+    [Fact]
+    public async Task RealAmigaScpPreparesAndRendersBothFacesWhenRequested()
+    {
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
+        if (string.IsNullOrWhiteSpace(scpPath)) return;
+
+        var image = await new ScpReader().ReadAsync(scpPath);
+        Assert.True(image.ChecksumValid);
+        foreach (var head in new[] { 0, 1 })
+        {
+            var tracks = image.Tracks.Where(track => track.Head == head).OrderBy(track => track.Cylinder).ToArray();
+            Assert.NotEmpty(tracks);
+            IScpRenderer renderer = new SkiaScpRenderer { DecoderId = "amiga.mfm" };
+            var preparations = new List<ScpTrackPreparation>();
+            await renderer.PrepareAsync(image, head, new ImmediateProgress<ScpTrackPreparation>(preparations.Add));
+            Assert.Equal(tracks.Length, preparations.Count);
+            Assert.All(preparations, preparation => Assert.True(preparation.HasFlux));
+
+            using var bitmap = new SKBitmap(512, 512);
+            using var canvas = new SKCanvas(bitmap);
+            renderer.Render(canvas, new ScpRenderRequest(image, head, tracks[0], 512, 512, new SKPoint(256, 256), 1, "No data", $"Side {head}"));
+            Assert.NotEqual(new SKColor(7, 10, 14), bitmap.GetPixel(256, 30));
+        }
+    }
+
     [Fact]
     public async Task RealAmigaAdfAndScpDecodeToIdenticalSectorImagesWhenRequested()
     {
@@ -199,6 +226,11 @@ public sealed class RealScpCorpusTests
         .ToArray();
 
     private sealed record CorpusEntry(string DecoderPrefix, string Path, int MinimumTrackCount, int[] ExpectedHeads);
+
+    private sealed class ImmediateProgress<T>(Action<T> report) : IProgress<T>
+    {
+        public void Report(T value) => report(value);
+    }
 
     private sealed class MemoryScpReader(ScpImage image) : IScpReader
     {
