@@ -1,18 +1,27 @@
 # Familles d’ordinateurs et formats d’images de disquettes
 
+## État dans GW GUI
+
+- `✅ Fait en interne` : l’image est ouverte directement par GW GUI et le système de fichiers correspondant peut être exploré.
+- `🟡 Partiel` : seule une partie des extensions, variantes ou fonctions indiquées sur la ligne est réalisée ; le détail est précisé.
+- `🔵 Flux` : le décodage et l’encodage des pistes sont présents, mais le conteneur ou l’exploration des fichiers reste à compléter.
+- Une ligne sans marque n’est pas encore réalisée en interne.
+
+Ces états décrivent le code interne de GW GUI, pas les possibilités fournies séparément par `gw.exe`.
+
 * **Acorn**
 
   * **BBC Micro Model A, Model B**
 
-    * 5,25" simple face — `.ssd`, `.img`
-    * 5,25" double face — `.dsd`, `.img`
+    * 5,25" simple face — `.ssd`, `.img` — 🟡 **Partiel : `.ssd` et BBC DFS faits ; `.img` reste à faire**
+    * 5,25" double face — `.dsd`, `.img` — 🟡 **Partiel : `.dsd` et BBC DFS faits ; `.img` reste à faire**
   * **BBC Master 128, Master Compact**
 
-    * 5,25" — `.ssd`, `.dsd`
+    * 5,25" — `.ssd`, `.dsd` — ✅ **Fait en interne : lecture et exploration BBC DFS**
     * 3,5" — `.adf`, `.adl`
   * **Acorn Electron avec interface disquette**
 
-    * 5,25" — `.ssd`, `.dsd`
+    * 5,25" — `.ssd`, `.dsd` — ✅ **Fait en interne : lecture et exploration BBC DFS**
   * **Archimedes A300, A400, A3000**
 
     * 3,5" DD 800 Ko — `.adf`, `.adl`
@@ -25,115 +34,115 @@
 
   * **CPC 464 + DDI-1, CPC 664, CPC 6128**
 
-    * 3" CF2 — `.dsk`, `.edsk`
-    * format étendu CPC — `.dsk`
+    * 3" CF2 — `.dsk`, `.edsk` — ✅ **Fait en interne : CPCEMU DSK standard/étendu et CP/M**
+    * format étendu CPC — `.dsk` — ✅ **Fait en interne**
   * **CPC 464 Plus, CPC 6128 Plus**
 
-    * 3" CF2 — `.dsk`, `.edsk`
+    * 3" CF2 — `.dsk`, `.edsk` — ✅ **Fait en interne**
   * **PCW 8256, PCW 8512**
 
-    * 3" CF2 / CF2DD — `.dsk`, `.edsk`
+    * 3" CF2 / CF2DD — `.dsk`, `.edsk` — ✅ **Fait en interne : lecture et exploration CP/M**
   * **PCW 9512**
 
-    * 3" CF2DD — `.dsk`, `.edsk`
+    * 3" CF2DD — `.dsk`, `.edsk` — ✅ **Fait en interne : lecture et exploration CP/M**
   * **PCW 9256, PCW 9512+**
 
-    * 3,5" — `.dsk`, `.img`
+    * 3,5" — `.dsk`, `.img` — ✅ **Fait en interne pour les géométries PCW reconnues**
   * **PC1512, PC1640**
 
-    * 5,25" DD 360 Ko — `.img`, `.ima`, `.dsk`
+    * 5,25" DD 360 Ko — `.img`, `.ima`, `.dsk` — 🟡 **Partiel : `.img`/`.ima` FAT12 faits ; `.dsk` brut générique reste à faire**
   * **PC2086, PC2286, PC2386**
 
-    * 3,5" DD 720 Ko — `.img`, `.ima`
-    * 3,5" HD 1,44 Mo selon modèle — `.img`, `.ima`
+    * 3,5" DD 720 Ko — `.img`, `.ima` — ✅ **Fait en interne : lecture et exploration FAT12**
+    * 3,5" HD 1,44 Mo selon modèle — `.img`, `.ima` — ✅ **Fait en interne : lecture et exploration FAT12**
 
 * **Apple**
 
   * **Apple II, Apple II+, Apple IIe**
 
-    * 5,25" 13 secteurs — `.d13`
-    * 5,25" 16 secteurs / 140 Ko — `.dsk`, `.do`, `.po`
-    * image nibble — `.nib`
-    * image WOZ — `.woz`
-    * conteneur Apple II — `.2mg`, `.2img`
+    * 5,25" 13 secteurs — `.d13` — ✅ **Fait en interne : Apple DOS 3.2**
+    * 5,25" 16 secteurs / 140 Ko — `.dsk`, `.do`, `.po` — ✅ **Fait en interne : Apple DOS/ProDOS**
+    * image nibble — `.nib` — ✅ **Fait en interne**
+    * image WOZ — `.woz` — ✅ **Fait en interne**
+    * conteneur Apple II — `.2mg`, `.2img` — 🟡 **Partiel : `.2mg` fait ; extension `.2img` reste à ajouter**
   * **Apple IIc**
 
-    * 5,25" 140 Ko — `.dsk`, `.do`, `.po`, `.nib`, `.woz`, `.2mg`
-    * 3,5" 800 Ko avec lecteur compatible — `.po`, `.2mg`
+    * 5,25" 140 Ko — `.dsk`, `.do`, `.po`, `.nib`, `.woz`, `.2mg` — ✅ **Fait en interne**
+    * 3,5" 800 Ko avec lecteur compatible — `.po`, `.2mg` — ✅ **Fait en interne : ProDOS**
   * **Apple IIc Plus**
 
-    * 3,5" 800 Ko — `.po`, `.2mg`, `.2img`
+    * 3,5" 800 Ko — `.po`, `.2mg`, `.2img` — 🟡 **Partiel : `.po`/`.2mg` faits ; extension `.2img` reste à ajouter**
   * **Apple IIgs**
 
-    * 5,25" 140 Ko — `.dsk`, `.do`, `.po`, `.nib`, `.woz`, `.2mg`
-    * 3,5" 800 Ko — `.po`, `.2mg`, `.2img`
+    * 5,25" 140 Ko — `.dsk`, `.do`, `.po`, `.nib`, `.woz`, `.2mg` — ✅ **Fait en interne**
+    * 3,5" 800 Ko — `.po`, `.2mg`, `.2img` — 🟡 **Partiel : `.po`/`.2mg` faits ; extension `.2img` reste à ajouter**
   * **Apple III, Apple III+**
 
-    * 5,25" — `.dsk`, `.po`, `.2mg`
+    * 5,25" — `.dsk`, `.po`, `.2mg` — ✅ **Fait en interne : Apple III SOS**
   * **Lisa 1**
 
-    * 5,25" Twiggy — `.image`, `.dc42`
+    * 5,25" Twiggy — `.image`, `.dc42` — ✅ **Fait en interne : données/tag Lisa et Lisa Office System**
     * format très spécifique : conserver les dumps physiques originaux lorsqu’ils existent
   * **Lisa 2, Lisa 2/5, Lisa 2/10**
 
-    * 3,5" Sony 400 Ko — `.image`, `.dc42`
+    * 3,5" Sony 400 Ko — `.image`, `.dc42` — ✅ **Fait en interne pour les images DiskCopy reconnues**
   * **Macintosh 128K, Macintosh 512K**
 
-    * 3,5" 400 Ko — `.dsk`, `.image`, `.dc42`
+    * 3,5" 400 Ko — `.dsk`, `.image`, `.dc42` — ✅ **Fait en interne : MFS/HFS selon l’image**
   * **Macintosh 512Ke, Macintosh Plus, Macintosh SE**
 
-    * 3,5" 400 Ko — `.dsk`, `.image`, `.dc42`
-    * 3,5" 800 Ko — `.dsk`, `.image`, `.dc42`
+    * 3,5" 400 Ko — `.dsk`, `.image`, `.dc42` — ✅ **Fait en interne : MFS/HFS selon l’image**
+    * 3,5" 800 Ko — `.dsk`, `.image`, `.dc42` — ✅ **Fait en interne : MFS/HFS selon l’image**
   * **Macintosh SE FDHD, Macintosh IIx, IIcx, IIci**
 
-    * 3,5" 800 Ko — `.dsk`, `.image`, `.dc42`
-    * 3,5" HD 1,44 Mo — `.dsk`, `.image`, `.dc42`, `.img`
+    * 3,5" 800 Ko — `.dsk`, `.image`, `.dc42` — ✅ **Fait en interne**
+    * 3,5" HD 1,44 Mo — `.dsk`, `.image`, `.dc42`, `.img` — ✅ **Fait en interne**
   * **Macintosh Classic, LC, Quadra, Centris**
 
-    * 3,5" HD 1,44 Mo — `.dsk`, `.image`, `.dc42`, `.img`
+    * 3,5" HD 1,44 Mo — `.dsk`, `.image`, `.dc42`, `.img` — ✅ **Fait en interne**
   * **Power Macintosh avec lecteur de disquette**
 
-    * 3,5" HD 1,44 Mo — `.dsk`, `.image`, `.dc42`, `.img`
+    * 3,5" HD 1,44 Mo — `.dsk`, `.image`, `.dc42`, `.img` — ✅ **Fait en interne**
 
 * **Atari**
 
   * **Atari 400, Atari 800**
 
-    * 5,25" SD — `.atr`, `.xfd`
+    * 5,25" SD — `.atr`, `.xfd` — 🟡 **Partiel : `.atr` et Atari DOS faits ; `.xfd` reste à faire**
     * formats protégés / bas niveau — `.atx`
   * **Atari 600XL, 800XL, 1200XL**
 
-    * 5,25" SD / Enhanced Density — `.atr`, `.xfd`, `.atx`
+    * 5,25" SD / Enhanced Density — `.atr`, `.xfd`, `.atx` — 🟡 **Partiel : `.atr` et Atari DOS faits ; `.xfd`/`.atx` restent à faire**
   * **Atari 65XE, 130XE, XE Game System**
 
-    * 5,25" SD / ED / DD selon lecteur — `.atr`, `.xfd`, `.atx`
+    * 5,25" SD / ED / DD selon lecteur — `.atr`, `.xfd`, `.atx` — 🟡 **Partiel : `.atr` et Atari DOS faits ; `.xfd`/`.atx` restent à faire**
   * **Atari ST, 520ST, 1040ST, STF, STFM, Mega ST**
 
-    * 3,5" DD 360/720 Ko — `.st`, `.msa`
+    * 3,5" DD 360/720 Ko — `.st`, `.msa` — ✅ **Fait en interne : lecture et exploration Atari TOS FAT12**
     * image protégée / bas niveau — `.stx`
     * préservation — `.ipf`
     * autres images rencontrées — `.dim`
   * **Atari STe, 520STe, 1040STe**
 
-    * 3,5" DD 720 Ko — `.st`, `.msa`, `.stx`, `.ipf`, `.dim`
+    * 3,5" DD 720 Ko — `.st`, `.msa`, `.stx`, `.ipf`, `.dim` — 🟡 **Partiel : `.st`/`.msa` et Atari TOS FAT12 faits ; autres extensions à faire**
   * **Mega STe**
 
-    * 3,5" DD 720 Ko — `.st`, `.msa`, `.stx`, `.ipf`
-    * 3,5" HD 1,44 Mo selon configuration — `.st`
+    * 3,5" DD 720 Ko — `.st`, `.msa`, `.stx`, `.ipf` — 🟡 **Partiel : `.st`/`.msa` faits ; `.stx`/`.ipf` restent à faire**
+    * 3,5" HD 1,44 Mo selon configuration — `.st` — ✅ **Fait en interne**
   * **Atari TT030**
 
-    * 3,5" DD 720 Ko — `.st`, `.msa`
-    * 3,5" HD 1,44 Mo — `.st`
+    * 3,5" DD 720 Ko — `.st`, `.msa` — ✅ **Fait en interne**
+    * 3,5" HD 1,44 Mo — `.st` — ✅ **Fait en interne**
   * **Atari Falcon 030**
 
-    * 3,5" DD 720 Ko — `.st`, `.msa`
-    * 3,5" HD 1,44 Mo — `.st`
+    * 3,5" DD 720 Ko — `.st`, `.msa` — ✅ **Fait en interne**
+    * 3,5" HD 1,44 Mo — `.st` — ✅ **Fait en interne**
 
 * **Commodore**
 
   * **PET / CBM avec 2040, 3040, 4040**
 
-    * 5,25" — `.d64`, `.d67`
+    * 5,25" — `.d64`, `.d67` — 🟡 **Partiel : `.d64` et Commodore DOS faits ; `.d67` reste à faire**
     * image GCR — `.g64`
   * **PET / CBM avec 8050**
 
@@ -143,39 +152,39 @@
     * 5,25" double face — `.d82`
   * **VIC-20**
 
-    * lecteur 1540 / 1541, 5,25" — `.d64`, `.g64`, `.p64`, `.nib`, `.nbz`
+    * lecteur 1540 / 1541, 5,25" — `.d64`, `.g64`, `.p64`, `.nib`, `.nbz` — 🟡 **Partiel : `.d64` et Commodore DOS faits ; autres extensions à faire**
   * **Commodore 16, C116, Plus/4**
 
-    * lecteur 1551 / 1541, 5,25" — `.d64`, `.g64`
+    * lecteur 1551 / 1541, 5,25" — `.d64`, `.g64` — 🟡 **Partiel : `.d64` fait ; `.g64` reste à faire**
   * **Commodore 64, C64C, C64G**
 
-    * 1541 / 1541-II, 5,25" — `.d64`, `.x64`, `.g64`, `.p64`, `.nib`, `.nbz`
-    * 1571, 5,25" double face — `.d71`, `.g71`
-    * 1581, 3,5" 800 Ko — `.d81`
+    * 1541 / 1541-II, 5,25" — `.d64`, `.x64`, `.g64`, `.p64`, `.nib`, `.nbz` — 🟡 **Partiel : `.d64` et Commodore DOS faits ; autres extensions à faire**
+    * 1571, 5,25" double face — `.d71`, `.g71` — 🟡 **Partiel : `.d71` fait ; `.g71` reste à faire**
+    * 1581, 3,5" 800 Ko — `.d81` — ✅ **Fait en interne : lecture et exploration Commodore DOS**
   * **Commodore 128, C128D, C128DCR**
 
-    * 1541, 5,25" — `.d64`, `.g64`, `.p64`
-    * 1571, 5,25" double face — `.d71`, `.g71`
-    * 1581, 3,5" 800 Ko — `.d81`
+    * 1541, 5,25" — `.d64`, `.g64`, `.p64` — 🟡 **Partiel : `.d64` fait ; `.g64`/`.p64` restent à faire**
+    * 1571, 5,25" double face — `.d71`, `.g71` — 🟡 **Partiel : `.d71` fait ; `.g71` reste à faire**
+    * 1581, 3,5" 800 Ko — `.d81` — ✅ **Fait en interne**
   * **Commodore 65**
 
-    * 3,5" — `.d81`
+    * 3,5" — `.d81` — ✅ **Fait en interne**
   * **Amiga 1000, Amiga 500, 500+, Amiga 600, Amiga 2000**
 
-    * 3,5" DD 880 Ko — `.adf`, `.adz`, `.dms`
+    * 3,5" DD 880 Ko — `.adf`, `.adz`, `.dms` — 🟡 **Partiel : `.adf` et AmigaDOS faits ; `.adz`/`.dms` restent à faire**
     * préservation / pistes non standard — `.ipf`
     * images bas niveau compatibles — `.fdi`
   * **Amiga 3000**
 
-    * 3,5" DD 880 Ko — `.adf`, `.adz`, `.dms`, `.ipf`
-    * HD selon lecteur — `.adf`
+    * 3,5" DD 880 Ko — `.adf`, `.adz`, `.dms`, `.ipf` — 🟡 **Partiel : `.adf` fait ; autres extensions à faire**
+    * HD selon lecteur — `.adf` — ✅ **Fait en interne : AmigaDOS HD**
   * **Amiga 1200, Amiga 4000**
 
-    * 3,5" DD 880 Ko — `.adf`, `.adz`, `.dms`, `.ipf`
-    * 3,5" HD 1,76 Mo — `.adf`
+    * 3,5" DD 880 Ko — `.adf`, `.adz`, `.dms`, `.ipf` — 🟡 **Partiel : `.adf` fait ; autres extensions à faire**
+    * 3,5" HD 1,76 Mo — `.adf` — ✅ **Fait en interne : AmigaDOS HD**
   * **Commodore 900**
 
-    * 5,25" — `.img`
+    * 5,25" — `.img` — 🔵 **Flux : décodeur/encodeur C900 GCR et exploration COHERENT présents ; ouverture directe actuellement reconnue via `.bin`, pas encore via `.img`**
     * COHERENT 0.7.3 : plusieurs géométries propres au C900
 
 * **DEC**
@@ -185,11 +194,11 @@
     * 8" RX01 — `.img`, `.dsk`
   * **PDP-8 / PDP-11 avec RX02**
 
-    * 8" RX02 — `.img`, `.dsk`
+    * 8" RX02 — `.img`, `.dsk` — 🟡 **Partiel : `.img`, décodage RX02 et exploration RT-11 faits ; `.dsk` reste à faire**
   * **DEC MINC avec RX02**
 
-    * 8" RX02 512 512 octets — `.img`
-    * RT-11
+    * 8" RX02 512 512 octets — `.img` — ✅ **Fait en interne**
+    * RT-11 — ✅ **Fait en interne : exploration du système de fichiers**
   * **PDP-11 avec RX50**
 
     * 5,25" — `.img`, `.dsk`
@@ -207,12 +216,12 @@
 
   * **Epson QX-10**
 
-    * 5,25" — `.img`, `.dsk`
-    * plusieurs géométries selon TPM, CP/M et Valdocs
+    * 5,25" — `.img`, `.dsk` — 🟡 **Partiel : géométries et exploration CP/M QX-10 présentes ; reconnaissance générique de tous les conteneurs à compléter**
+    * plusieurs géométries selon TPM, CP/M et Valdocs — 🟡 **Partiel : plusieurs dispositions QX-10 sont déjà cataloguées**
   * **Epson Equity / compatibles PC**
 
-    * 5,25" 360 Ko / 1,2 Mo — `.img`, `.ima`
-    * 3,5" 720 Ko / 1,44 Mo — `.img`, `.ima`
+    * 5,25" 360 Ko / 1,2 Mo — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 3,5" 720 Ko / 1,44 Mo — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
 
 * **Fujitsu**
 
@@ -230,41 +239,41 @@
 
   * **IBM PC 5150**
 
-    * 5,25" 160 Ko — `.img`, `.ima`
-    * 5,25" 180 Ko — `.img`, `.ima`
-    * 5,25" 320 Ko — `.img`, `.ima`
-    * 5,25" 360 Ko — `.img`, `.ima`
+    * 5,25" 160 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 5,25" 180 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 5,25" 320 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 5,25" 360 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
   * **IBM PC XT 5160**
 
-    * 5,25" 360 Ko — `.img`, `.ima`
+    * 5,25" 360 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
   * **IBM PC AT 5170**
 
-    * 5,25" 360 Ko — `.img`, `.ima`
-    * 5,25" HD 1,2 Mo — `.img`, `.ima`
+    * 5,25" 360 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 5,25" HD 1,2 Mo — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
   * **IBM PS/2**
 
-    * 3,5" DD 720 Ko — `.img`, `.ima`
-    * 3,5" HD 1,44 Mo — `.img`, `.ima`
-    * 3,5" ED 2,88 Mo sur modèles compatibles — `.img`, `.ima`
+    * 3,5" DD 720 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 3,5" HD 1,44 Mo — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 3,5" ED 2,88 Mo sur modèles compatibles — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
   * **IBM PC compatibles XT / AT / 286 / 386 / 486 / Pentium**
 
-    * 5,25" 160/180/320/360 Ko — `.img`, `.ima`, `.dsk`
-    * 5,25" 1,2 Mo — `.img`, `.ima`, `.dsk`
-    * 3,5" 720 Ko — `.img`, `.ima`, `.dsk`
-    * 3,5" 1,44 Mo — `.img`, `.ima`, `.dsk`
-    * 3,5" 2,88 Mo — `.img`, `.ima`
-    * ImageDisk — `.imd`
-    * TeleDisk — `.td0`
+    * 5,25" 160/180/320/360 Ko — `.img`, `.ima`, `.dsk` — 🟡 **Partiel : `.img`/`.ima` FAT12 faits ; `.dsk` brut générique reste à faire**
+    * 5,25" 1,2 Mo — `.img`, `.ima`, `.dsk` — 🟡 **Partiel : `.img`/`.ima` faits ; `.dsk` brut générique reste à faire**
+    * 3,5" 720 Ko — `.img`, `.ima`, `.dsk` — 🟡 **Partiel : `.img`/`.ima` faits ; `.dsk` brut générique reste à faire**
+    * 3,5" 1,44 Mo — `.img`, `.ima`, `.dsk` — 🟡 **Partiel : `.img`/`.ima` faits ; `.dsk` brut générique reste à faire**
+    * 3,5" 2,88 Mo — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * ImageDisk — `.imd` — 🟡 **Partiel : lecteur de conteneur présent ; exploration selon la géométrie reconnue**
+    * TeleDisk — `.td0` — 🟡 **Partiel : images TD0 ordinaires non compressées seulement**
     * CopyQM — `.cqm`
-    * CopyIIPC / TransCopy — `.cp2`
+    * CopyIIPC / TransCopy — `.cp2` — ✅ **Fait en interne : lecteur de conteneur**
     * AnaDisk — `.ana`
     * DiskDupe — `.ddi`
     * DiskCopy — `.dsk`
-    * WinImage — `.ima`, `.imz`
+    * WinImage — `.ima`, `.imz` — 🟡 **Partiel : `.ima` fait ; `.imz` reste à faire**
     * formats protégés / structurés — `.fdi`
   * **Microsoft DMF**
 
-    * 3,5" ~1,68 Mo — `.img`, `.ima`
+    * 3,5" ~1,68 Mo — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
   * **IBM XDF**
 
     * 3,5" capacité étendue — `.xdf`
@@ -288,16 +297,16 @@
 
   * **MSX1 avec lecteur de disquette**
 
-    * 3,5" / 5,25" — `.dsk`, `.img`
+    * 3,5" / 5,25" — `.dsk`, `.img` — 🟡 **Partiel : `.dsk` avec signature MSX et MSX-DOS FAT12 faits ; `.img` spécifique reste à consolider**
   * **MSX2**
 
-    * 3,5" 360/720 Ko — `.dsk`, `.img`
+    * 3,5" 360/720 Ko — `.dsk`, `.img` — 🟡 **Partiel : `.dsk` et MSX-DOS FAT12 faits ; `.img` spécifique reste à consolider**
   * **MSX2+**
 
-    * 3,5" 720 Ko — `.dsk`, `.img`
+    * 3,5" 720 Ko — `.dsk`, `.img` — 🟡 **Partiel : `.dsk` et MSX-DOS FAT12 faits ; `.img` spécifique reste à consolider**
   * **MSX Turbo R**
 
-    * 3,5" 720 Ko — `.dsk`, `.img`
+    * 3,5" 720 Ko — `.dsk`, `.img` — 🟡 **Partiel : `.dsk` et MSX-DOS FAT12 faits ; `.img` spécifique reste à consolider**
 
 * **NEC**
 
@@ -319,8 +328,8 @@
 
   * **NorthStar Horizon, Advantage**
 
-    * 5,25" — `.img`, `.dsk`, `.imd`
-    * formats hard-sectored selon contrôleur
+    * 5,25" — `.img`, `.dsk`, `.imd` — 🔵 **Flux : décodeur/encodeur NorthStar MFM présents ; conteneurs et exploration restent à compléter**
+    * formats hard-sectored selon contrôleur — 🔵 **Flux : couche de pistes présente**
 
 * **Osborne**
 
@@ -392,8 +401,8 @@
     * 5,25" — `.dsk`, `.dmk`, `.jvc`
   * **Tandy 1000**
 
-    * 5,25" 360 Ko — `.img`, `.ima`
-    * 3,5" 720 Ko / 1,44 Mo selon modèle — `.img`, `.ima`
+    * 5,25" 360 Ko — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
+    * 3,5" 720 Ko / 1,44 Mo selon modèle — `.img`, `.ima` — ✅ **Fait en interne : FAT12**
 
 * **Texas Instruments**
 
@@ -414,8 +423,8 @@
     * 5,25" — `.fd`, `.sap`
   * **MO5, MO6**
 
-    * 5,25" — `.fd`, `.sap`
-    * 3,5" selon lecteur — `.fd`, `.sap`
+    * 5,25" — `.fd`, `.sap` — 🔵 **Flux : décodeur/encodeur QD MO5 MFM présents ; conteneurs et exploration restent à faire**
+    * 3,5" selon lecteur — `.fd`, `.sap` — 🔵 **Flux : décodeur/encodeur QD MO5 MFM présents ; conteneurs et exploration restent à faire**
   * **TO8, TO8D**
 
     * 3,5" — `.fd`, `.sap`
@@ -427,17 +436,17 @@
 
   * **Victor 9000 / Sirius 1**
 
-    * 5,25" vitesse variable / GCR — `.img`
+    * 5,25" vitesse variable / GCR — `.img` — 🔵 **Flux : décodeur/encodeur Victor 9000 GCR présents ; conteneur et exploration restent à faire**
     * cas particulier : géométrie et vitesse variables, donc les images sectorielles classiques ne représentent pas toujours intégralement le disque
 
 * **Heath / Zenith**
 
   * **Heath H8**
 
-    * 5,25" hard-sectored — `.img`, `.h8d`
+    * 5,25" hard-sectored — `.img`, `.h8d` — 🔵 **Flux : décodeur/encodeur Heathkit FM présents ; conteneurs et exploration restent à faire**
   * **Heath H89 / Zenith Z-89**
 
-    * 5,25" — `.h17`, `.h8d`, `.img`, `.imd`
+    * 5,25" — `.h17`, `.h8d`, `.img`, `.imd` — 🔵 **Flux : décodeur/encodeur Heathkit FM présents ; prise en charge complète des conteneurs à faire**
   * **Zenith Z-100**
 
     * 5,25" — `.img`, `.imd`, `.td0`
@@ -485,37 +494,37 @@
 
   * **Nova, Eclipse et systèmes associés**
 
-    * 8" / formats FM — `.img`, `.dsk`, `.imd`
+    * 8" / formats FM — `.img`, `.dsk`, `.imd` — 🔵 **Flux : décodeur/encodeur Data General FM présents ; conteneurs et exploration restent à faire**
 
 * **Micral**
 
   * **Micral N et familles associées**
 
-    * 8" / 5,25" selon configuration — `.img`, `.dsk`, `.imd`
+    * 8" / 5,25" selon configuration — `.img`, `.dsk`, `.imd` — 🔵 **Flux : décodeur/encodeur Micral N FM présents ; conteneurs et exploration restent à faire**
 
 * **Systèmes CP/M génériques**
 
   * **Machines S-100 et compatibles CP/M**
 
-    * 8" IBM 3740 — `.img`, `.dsk`, `.imd`, `.td0`
-    * 8" double densité — `.img`, `.dsk`, `.imd`, `.td0`
-    * 5,25" — `.img`, `.dsk`, `.imd`, `.td0`
-    * 3,5" — `.img`, `.dsk`, `.imd`
+    * 8" IBM 3740 — `.img`, `.dsk`, `.imd`, `.td0` — 🟡 **Partiel : lecteurs `.imd` et TD0 non compressé présents ; géométries CP/M génériques à compléter**
+    * 8" double densité — `.img`, `.dsk`, `.imd`, `.td0` — 🟡 **Partiel : lecteurs `.imd` et TD0 non compressé présents ; géométries CP/M génériques à compléter**
+    * 5,25" — `.img`, `.dsk`, `.imd`, `.td0` — 🟡 **Partiel : lecteurs `.imd` et TD0 non compressé présents ; géométries CP/M génériques à compléter**
+    * 3,5" — `.img`, `.dsk`, `.imd` — 🟡 **Partiel : lecteur `.imd` présent ; géométries CP/M génériques à compléter**
     * attention : une même taille de fichier peut correspondre à de nombreuses géométries CP/M différentes
 
 # Formats transversaux à accepter sans les rattacher à une seule marque
 
 * **Images sectorielles brutes**
 
-  * `.img`
-  * `.ima`
-  * `.dsk`
+  * `.img` — 🟡 **Partiel : accepté pour les tailles, signatures et géométries reconnues**
+  * `.ima` — 🟡 **Partiel : accepté pour les tailles et géométries reconnues**
+  * `.dsk` — 🟡 **Partiel : Apple, Amstrad et MSX reconnus ; pas encore un conteneur brut universel**
   * `.raw` lorsqu’il s’agit réellement de secteurs bruts et non de flux
 
 * **Images avec description de géométrie / secteurs**
 
-  * `.imd` — ImageDisk
-  * `.td0` — TeleDisk
+  * `.imd` — ImageDisk — ✅ **Fait en interne : lecture du conteneur ; exploration selon le format reconnu**
+  * `.td0` — TeleDisk — 🟡 **Partiel : variantes ordinaires non compressées seulement**
   * `.cqm` — CopyQM
   * `.fdi` — Formatted Disk Image
   * `.d88`
@@ -526,8 +535,8 @@
 
   * `.ipf`
   * `.stx`
-  * `.woz`
-  * `.nib`
+  * `.woz` — ✅ **Fait en interne**
+  * `.nib` — ✅ **Fait en interne**
   * `.g64`
   * `.g71`
   * `.p64`
@@ -543,7 +552,7 @@
 
 * **À ne pas classer comme formats machine**
 
-  * `.scp`
+  * `.scp` — 🟡 **Partiel : conteneur, visualisation et nombreuses familles de flux pris en charge ; tous les systèmes de fichiers ne sont pas encore reconstructibles**
   * KryoFlux RAW
   * FluxEngine flux
   * Greaseweazle raw flux
