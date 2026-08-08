@@ -3,11 +3,11 @@ using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
 
-/// <summary>Reads raw Apple II/Macintosh images, 2IMG and DiskCopy 4.2 containers.</summary>
+/// <summary>Reads raw Apple II/Macintosh images, NIB/WOZ, 2IMG and DiskCopy 4.2 containers.</summary>
 public sealed class AppleDiskImageReader : ISectorImageReader
 {
     private static readonly HashSet<string> Extensions = new(StringComparer.OrdinalIgnoreCase)
-        { ".do", ".po", ".2mg", ".image", ".dsk", ".img" };
+        { ".d13", ".do", ".po", ".2mg", ".image", ".dc42", ".nib", ".woz", ".dsk", ".img" };
 
     private static readonly int[] ProDosToPhysical = [0, 2, 4, 6, 8, 10, 12, 14, 1, 3, 5, 7, 9, 11, 13, 15];
     private static readonly int[] PhysicalToDos = [0, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 15];
@@ -19,7 +19,9 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         var extension = Path.GetExtension(path);
         if (bytes.AsSpan().StartsWith("2IMG"u8)) return ReadTwoImg(bytes);
-        if (extension.Equals(".image", StringComparison.OrdinalIgnoreCase)) return ReadDiskCopy(bytes);
+        if (extension.Equals(".image", StringComparison.OrdinalIgnoreCase) || extension.Equals(".dc42", StringComparison.OrdinalIgnoreCase)) return ReadDiskCopy(bytes);
+        if (extension.Equals(".nib", StringComparison.OrdinalIgnoreCase)) return AppleNibbleImageDecoder.ReadNib(bytes);
+        if (extension.Equals(".woz", StringComparison.OrdinalIgnoreCase)) return AppleNibbleImageDecoder.ReadWoz(bytes);
         return ReadRaw(bytes, extension);
     }
 
@@ -28,7 +30,7 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         try
         {
             var extension = Path.GetExtension(path);
-            if (extension.Equals(".do", StringComparison.OrdinalIgnoreCase) || extension.Equals(".po", StringComparison.OrdinalIgnoreCase) || extension.Equals(".2mg", StringComparison.OrdinalIgnoreCase) || extension.Equals(".image", StringComparison.OrdinalIgnoreCase)) return true;
+            if (extension.Equals(".d13", StringComparison.OrdinalIgnoreCase) || extension.Equals(".do", StringComparison.OrdinalIgnoreCase) || extension.Equals(".po", StringComparison.OrdinalIgnoreCase) || extension.Equals(".2mg", StringComparison.OrdinalIgnoreCase) || extension.Equals(".image", StringComparison.OrdinalIgnoreCase) || extension.Equals(".dc42", StringComparison.OrdinalIgnoreCase) || extension.Equals(".nib", StringComparison.OrdinalIgnoreCase) || extension.Equals(".woz", StringComparison.OrdinalIgnoreCase)) return true;
             if (!extension.Equals(".dsk", StringComparison.OrdinalIgnoreCase)) return false;
             var bytes = File.ReadAllBytes(path);
             return bytes.Length == 143_360 && (LooksLikeDos33(bytes) || LooksLikeProDos(bytes) || LooksLikeProDos(ConvertDosOrderToProDosBlocks(bytes)) || LooksLikeSos(bytes))
@@ -46,7 +48,8 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         var dataLength = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(28)));
         if (headerLength < 64 || dataOffset < headerLength || dataLength <= 0 || dataOffset > container.Length - dataLength)
             throw new InvalidDataException("The 2IMG data range is invalid.");
-        if (imageFormat > 1) throw new NotSupportedException("Nibble-encoded 2IMG images are not sector images.");
+        if (imageFormat == 2) return AppleNibbleImageDecoder.ReadNib(container.AsSpan(dataOffset, dataLength));
+        if (imageFormat > 2) throw new NotSupportedException("The 2IMG image format is not supported.");
         var extension = imageFormat == 0 ? ".do" : ".po";
         return ReadRaw(container.AsSpan(dataOffset, dataLength).ToArray(), extension);
     }
@@ -80,6 +83,8 @@ public sealed class AppleDiskImageReader : ISectorImageReader
 
     private static SectorImage ReadRaw(byte[] data, string extension)
     {
+        if (data.Length == 35 * 13 * 256)
+            return CreateLinear(data, "apple2.dos32", 256, 35, 1, 13);
         if (data.Length == 143_360)
         {
             // DOS-order images retain 256-byte track/sector addressing. ProDOS-order images
@@ -121,6 +126,46 @@ public sealed class AppleDiskImageReader : ISectorImageReader
             blocks[logical] = new(logical, new(logical / perCylinder, logical / sectorsPerTrack % heads, logical % sectorsPerTrack), data.AsSpan(logical * blockSize, blockSize).ToArray());
         }
         return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: data.Length, logicalBlockCount: count);
+    }
+
+    internal static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<GWGUI.Scp.Decoding.DecodedSector> Sectors)> decodedTracks)
+    {
+        var selected = decodedTracks.SelectMany(item => item.Sectors
+                .Where(sector => sector.Data is { Count: 256 } && sector.Number is >= 0 and < 16)
+                .Select(sector => (item.Track, Sector: sector)))
+            .GroupBy(item => (item.Track, item.Sector.Number))
+            .ToDictionary(group => group.Key, group => group.OrderByDescending(item => item.Sector.IntegrityValid == true).First().Sector);
+        var trackCount = Math.Max(35, selected.Count == 0 ? 35 : selected.Keys.Max(key => key.Track) + 1);
+        var sectorsPerTrack = selected.Count > 0 && selected.Keys.Max(key => key.Number) < 13 ? 13 : 16;
+        var dosBlocks = selected.Where(pair => pair.Key.Number < sectorsPerTrack).Select(pair => new SectorBlock(pair.Key.Track * sectorsPerTrack + pair.Key.Number,
+            new(pair.Key.Track, 0, pair.Key.Number), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid)).ToArray();
+        if (dosBlocks.Length == 0) return new("apple2.gcr", 256, trackCount, 1, 16, []);
+
+        if (sectorsPerTrack == 13)
+            return new("apple2.dos32", 256, trackCount, 1, 13, dosBlocks);
+
+        var prodosBlocks = new List<SectorBlock>();
+        for (var track = 0; track < trackCount; track++)
+        for (var block = 0; block < 8; block++)
+        {
+            var first = ProDosToPhysical[block * 2]; var second = ProDosToPhysical[block * 2 + 1];
+            if (!selected.TryGetValue((track, first), out var low) || !selected.TryGetValue((track, second), out var high)) continue;
+            var data = low.Data!.Concat(high.Data!).ToArray();
+            prodosBlocks.Add(new(track * 8 + block, new(track, 0, block), data,
+                low.IntegrityValid == true && high.IntegrityValid == true));
+        }
+        var prodosProbe = new byte[trackCount * 8 * 512];
+        foreach (var block in prodosBlocks) block.Data.ToArray().CopyTo(prodosProbe, block.LogicalBlock * 512);
+        if (LooksLikeProDos(prodosProbe)) return new("apple2.prodos", 512, trackCount, 1, 8, prodosBlocks);
+        return new(LooksLikeDos33(ToDense(dosBlocks, trackCount * 16, 256)) ? "apple2.dos33" : "apple2.gcr",
+            256, trackCount, 1, sectorsPerTrack, dosBlocks);
+    }
+
+    private static byte[] ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)
+    {
+        var data = new byte[count * blockSize];
+        foreach (var block in blocks) block.Data.ToArray().CopyTo(data, block.LogicalBlock * blockSize);
+        return data;
     }
 
     private static bool LooksLikeDos33(ReadOnlySpan<byte> data)

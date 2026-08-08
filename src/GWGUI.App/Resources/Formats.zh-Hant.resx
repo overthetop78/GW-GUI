@@ -159,8 +159,14 @@
   <data name="Extension.hfe">
     <value>HxC 軟碟模擬器</value>
   </data>
+  <data name="Format.apple2.appledos.113">
+    <value>Apple II DOS 3.2 — 113 KiB</value>
+  </data>
+  <data name="Extension.d13">
+    <value>D13 (Apple DOS 3.2)</value>
+  </data>
   <data name="Common.DiskImageFilter">
-    <value>磁碟映像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image|所有檔案|*.*</value>
+    <value>磁碟映像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|所有檔案|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>

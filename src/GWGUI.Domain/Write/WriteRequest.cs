@@ -40,10 +40,11 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
             var id = knownLength switch { 92176 => "atari.90", 133136 => "atari.130", 183952 => "atari.180", _ => null };
             return id is null ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AtariUnknownSize") : Result(extension, id, FormatConfidence.Certain, candidates, "Detection.AtariSize");
         }
+        if (extension == ".d13") return Result(extension, "apple2.appledos.113", FormatConfidence.Certain, candidates, "Detection.AppleDosOrder");
         if (extension == ".do") return Result(extension, "apple2.appledos.140", FormatConfidence.Certain, candidates, "Detection.AppleDosOrder");
         if (extension == ".po") return Result(extension, "apple2.prodos.140", FormatConfidence.Certain, candidates, "Detection.AppleProDosOrder");
         if (extension == ".2mg") return new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AppleContainer");
-        if (extension == ".image")
+        if (extension is ".image" or ".dc42")
         {
             var id = knownLength switch { 409684 or 419284 => "mac.400", 819284 or 838484 => "mac.800", 1474644 or 1491844 => "mac.1440", _ => null };
             return id is null

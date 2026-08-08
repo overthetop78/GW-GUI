@@ -10,6 +10,9 @@ public sealed class AppleMacGcrDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxBitstream.FromNrziIntervals(revolution.FluxIntervals));
 
+    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(
+        new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
+
     public FluxDecodeResult DecodeAtBitCell(ScpRevolution revolution, double bitCellTicks) =>
         DecodeCore(revolution, FluxBitstream.FromNrziIntervals(revolution.FluxIntervals, bitCellTicks));
 
@@ -31,7 +34,7 @@ public sealed class AppleMacGcrDecoder : IFluxDecoder
             }
             var headerEnd = offset + markBits + (header is null ? 0 : headerSymbols * 8);
             var dataOffset = headerValid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 512), DataMark) : -1;
-            bool? dataValid = null; byte[]? sectorData = null; var structureEnd = headerEnd;
+            bool? dataValid = null; byte[]? sectorData = null; byte[]? sectorTag = null; var structureEnd = headerEnd;
             if (dataOffset >= 0)
             {
                 pairedData.Add(dataOffset); var encoded = TryReadSymbols(stream, dataOffset + markBits, dataSymbols);
@@ -39,13 +42,13 @@ public sealed class AppleMacGcrDecoder : IFluxDecoder
                 {
                     var values = encoded.Select(value => Inverse[value]).ToArray(); var decoded = DecodeSixAndTwo(values.AsSpan(1, 699), out var checksum);
                     dataValid = checksum[3] == values[700] && checksum[2] == values[701] && checksum[1] == values[702] && checksum[0] == values[703];
-                    sectorData = decoded.Skip(12).Take(512).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * 8;
+                    sectorTag = decoded.Take(12).ToArray(); sectorData = decoded.Skip(12).Take(512).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * 8;
                     structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"Apple Macintosh data block, 512 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
                 }
                 else structures.Add(new(FluxStructureKind.AppleData, dataOffset, markBits, "Apple Macintosh data block, checksum unavailable"));
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, head, number, 2, 512, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
+            sectors.Add(new(cylinder, head, number, 2, 512, integrity, offset, SectorIntegrityKind.Checksum, sectorData, sectorTag));
             structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(markBits, headerEnd - offset), $"Apple Macintosh C{cylinder} H{head} S{number}, address checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
             offset = headerValid == true ? Math.Max(offset + markBits - 1, structureEnd - 1) : offset + markBits - 1;
         }

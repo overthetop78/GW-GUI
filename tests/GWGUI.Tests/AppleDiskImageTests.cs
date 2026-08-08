@@ -13,6 +13,7 @@ public sealed class AppleDiskImageTests
     public void SharedCatalogContainsAppleFormatsAndDetectsAppleContainers()
     {
         var catalog = new BuiltInImageFormatCatalog();
+        Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.113");
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.140");
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.prodos.140");
         Assert.Contains(catalog.Formats, format => format.Id == "apple3.sos");
@@ -20,11 +21,27 @@ public sealed class AppleDiskImageTests
         Assert.Contains(catalog.Formats, format => format.Id == "mac.800");
         Assert.Contains(catalog.Formats, format => format.Id == "mac.1440");
         var detector = new ImageFormatDetector(catalog);
+        Assert.Equal("apple2.appledos.113", detector.Detect("disk.d13", 116_480).Format?.Id);
         Assert.Equal("apple2.appledos.140", detector.Detect("disk.do", 143_360).Format?.Id);
         Assert.Equal("apple2.prodos.140", detector.Detect("disk.po", 143_360).Format?.Id);
         Assert.Equal("mac.400", detector.Detect("disk.image", 419_284).Format?.Id);
+        Assert.Equal("mac.400", detector.Detect("disk.dc42", 419_284).Format?.Id);
         Assert.Equal("apple2.prodos.140", GwFormatArgument.FromCatalogId("apple3.sos"));
         Assert.Equal("ibm.1440", GwFormatArgument.FromCatalogId("mac.1440"));
+    }
+
+    [Fact]
+    public async Task Dos32RawImageUsesThirteenSectorGeometry()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.d13");
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[35 * 13 * 256]);
+            var image = await new AppleDiskImageReader().ReadAsync(path);
+            Assert.Equal("apple2.dos32", image.FormatId);
+            Assert.Equal(35 * 13, image.AvailableBlocks.Count);
+        }
+        finally { File.Delete(path); }
     }
 
     [Fact]
@@ -62,11 +79,14 @@ public sealed class AppleDiskImageTests
 
         var explorer = DiskImageExplorer.CreateDefault();
         var appleRoots = Directory.EnumerateDirectories(root, "Apple *", SearchOption.TopDirectoryOnly).ToArray();
-        var supported = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".dsk", ".do", ".po", ".2mg", ".image" };
+        var supported = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".d13", ".dsk", ".do", ".po", ".2mg", ".image", ".dc42", ".nib", ".woz" };
+        var requestedFile = Environment.GetEnvironmentVariable("GWGUI_APPLE_FILE");
         var results = new List<string>();
         var failures = new List<string>();
+        var recognizedNibbleImages = 0;
         foreach (var path in appleRoots.SelectMany(directory => Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories))
                      .Where(path => supported.Contains(Path.GetExtension(path)))
+                     .Where(path => string.IsNullOrWhiteSpace(requestedFile) || path.Contains(requestedFile, StringComparison.OrdinalIgnoreCase))
                      .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}_generated{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)))
         {
             try
@@ -76,12 +96,18 @@ public sealed class AppleDiskImageTests
                     ? "apple2.dos33" : null;
                 var document = await explorer.ExploreAsync(path, explicitFormat);
                 var relative = Path.GetRelativePath(root, path);
-                var intentionallyNonStandard = relative.Contains("Airheart", StringComparison.OrdinalIgnoreCase)
+                var rawNibbleContainer = Path.GetExtension(path) is ".woz" or ".nib";
+                var intentionallyNonStandard = rawNibbleContainer
+                    || relative.Contains("Airheart", StringComparison.OrdinalIgnoreCase)
                     || relative.Contains("seeds-of-evil", StringComparison.OrdinalIgnoreCase)
                     || relative.Contains("MacWorks 3.0", StringComparison.OrdinalIgnoreCase);
                 if (!document.FileSystemRecognized && !intentionallyNonStandard) failures.Add($"NO FILESYSTEM {relative}: {document.Image.FormatId}");
                 else if (!document.FileSystemRecognized) results.Add($"OPEN CONTAINER {relative}: {document.Image.FormatId}, non-standard/no catalog");
-                else results.Add($"OPEN {Path.GetRelativePath(root, path)}: {document.Volume.FileSystem}, {document.Volume.Entries.Count} root entries");
+                else
+                {
+                    if (rawNibbleContainer) recognizedNibbleImages++;
+                    results.Add($"OPEN {Path.GetRelativePath(root, path)}: {document.Volume.FileSystem}, {document.Volume.Entries.Count} root entries");
+                }
             }
             catch (Exception exception)
             {
@@ -91,6 +117,8 @@ public sealed class AppleDiskImageTests
 
         foreach (var result in results.Concat(failures)) Console.WriteLine(result);
         Assert.NotEmpty(results);
+        if (appleRoots.SelectMany(directory => Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)).Any(path => Path.GetExtension(path) is ".woz" or ".nib"))
+            Assert.True(recognizedNibbleImages > 0, "No filesystem was decoded from the WOZ/NIB corpus.");
         Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
     }
 
@@ -115,7 +143,9 @@ public sealed class AppleDiskImageTests
             try
             {
                 var relativePath = Path.GetRelativePath(root, path);
-                var explicitFormat = relativePath.Contains($"Apple II{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
+                var explicitFormat = relativePath.Contains($"Apple Lisa{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
+                    ? null
+                    : relativePath.Contains($"Apple II{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
                     ? "apple2.prodos.800"
                     : relativePath.Contains("400k", StringComparison.OrdinalIgnoreCase) ? "mac.400" : "mac.800";
                 var document = await explorer.ExploreAsync(path, explicitFormat);

@@ -42,6 +42,26 @@ public sealed class TrackEncoderTests
         Assert.Equal(data, payload);
     }
 
+    [Fact]
+    public void AppleDos32FiveAndThreeTrackRoundTrips()
+    {
+        var sectors = Enumerable.Range(0, 13)
+            .Select(number => new TrackSector(number, Enumerable.Range(0, 256)
+                .Select(index => (byte)(number * 19 + index * 31)).ToArray()))
+            .ToArray();
+        var attributes = new Dictionary<string, int> { ["sectorsPerTrack"] = 13 };
+        var encoded = new FluxEncoderRegistry().Encode("apple2.gcr", new TrackEncodeRequest(12, 0, sectors, attributes));
+        var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", encoded.Revolution);
+
+        Assert.Equal(13, decoded.Sectors!.Count);
+        foreach (var expected in sectors)
+        {
+            var actual = Assert.Single(decoded.Sectors, sector => sector.Number == expected.Number);
+            Assert.True(actual.IntegrityValid);
+            Assert.Equal(expected.Data, actual.Data);
+        }
+    }
+
     [Theory]
     [InlineData(11)]
     [InlineData(22)]

@@ -51,7 +51,9 @@ public sealed class DiskImageExplorer(
             && (formatId?.StartsWith("apple", StringComparison.OrdinalIgnoreCase) == true || AppleDiskImageReader.LooksLikeAppleImage(path)))
             image = await appleReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".do", StringComparison.OrdinalIgnoreCase) || extension.Equals(".po", StringComparison.OrdinalIgnoreCase)
-            || extension.Equals(".2mg", StringComparison.OrdinalIgnoreCase) || extension.Equals(".image", StringComparison.OrdinalIgnoreCase)) image = await appleReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+            || extension.Equals(".2mg", StringComparison.OrdinalIgnoreCase) || extension.Equals(".image", StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(".d13", StringComparison.OrdinalIgnoreCase) || extension.Equals(".dc42", StringComparison.OrdinalIgnoreCase) || extension.Equals(".nib", StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(".woz", StringComparison.OrdinalIgnoreCase)) image = await appleReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".dsk", StringComparison.OrdinalIgnoreCase) || extension.Equals(".edsk", StringComparison.OrdinalIgnoreCase)) image = await amstradDskReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         else if (extension.Equals(".img", StringComparison.OrdinalIgnoreCase) &&
                  (formatId?.StartsWith("mac.", StringComparison.OrdinalIgnoreCase) == true || AppleDiskImageReader.LooksLikeAppleImage(path)))

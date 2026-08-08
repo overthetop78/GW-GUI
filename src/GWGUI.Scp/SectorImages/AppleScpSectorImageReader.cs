@@ -18,18 +18,18 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             formatId?.StartsWith("apple3.sos", StringComparison.OrdinalIgnoreCase) == true)
             return DecodeAppleII(scp, true, cancellationToken);
         if (formatId?.StartsWith("apple2.prodos.800", StringComparison.OrdinalIgnoreCase) == true)
-            return DecodeMacintosh(scp, cancellationToken);
+            return DecodeMacintosh(scp, formatId, cancellationToken);
         if (formatId?.StartsWith("mac.", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("applemac", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("applelisa", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.Equals("apple2.prodos", StringComparison.OrdinalIgnoreCase) == true)
-            return DecodeMacintosh(scp, cancellationToken);
+            return DecodeMacintosh(scp, formatId, cancellationToken);
 
         // Compare both GCR families instead of accepting the first accidental prologue.
         // Macintosh/Apple II 3.5-inch media yield 512-byte sectors; Apple II 5.25-inch
         // media yield 256-byte sectors. The valid family reconstructs far more blocks.
         SectorImage? macintosh = null; SectorImage? appleII = null;
-        try { macintosh = DecodeMacintosh(scp, cancellationToken); } catch (InvalidDataException) { }
+        try { macintosh = DecodeMacintosh(scp, null, cancellationToken); } catch (InvalidDataException) { }
         try { appleII = DecodeAppleII(scp, false, cancellationToken); } catch (InvalidDataException) { }
         if (macintosh is null) return appleII ?? throw new InvalidDataException("No Apple GCR sectors could be decoded from the SCP image.");
         if (appleII is null) return macintosh;
@@ -72,7 +72,7 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         return new("apple2.prodos", 512, tracks, 1, 8, blocks);
     }
 
-    private SectorImage DecodeMacintosh(ScpImage scp, CancellationToken cancellationToken)
+    private SectorImage DecodeMacintosh(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken)
     {
         var candidates = DecodeCandidates(scp, "applemac.gcr", 512, cancellationToken);
         if (candidates.Count == 0) throw new InvalidDataException("No Apple Macintosh GCR sectors could be decoded from the SCP image.");
@@ -90,11 +90,18 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         if (blocks.Count == 0) throw new InvalidDataException("No usable Apple Macintosh sectors could be reconstructed.");
         var count = 400 * heads * 2; // 400 KiB per side, in 512-byte blocks.
         var provisional = new SectorImage("applemac.gcr", 512, 80, heads, 12, blocks, capacity: count * 512L, logicalBlockCount: count);
-        var formatId = "applemac.gcr";
+        var formatId = requestedFormatId?.StartsWith("applelisa", StringComparison.OrdinalIgnoreCase) == true
+            ? "applelisa.office" : "applemac.gcr";
+        // Lisa page tags store the owning file identifier at bytes 4-5. File $0001
+        // is the MDDF and therefore identifies a tagged Lisa Office disk without
+        // requiring the user to select the format manually.
+        if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
+            formatId = "applelisa.office";
         if (provisional.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 2)
         {
             var signature = (mdb.Data[0] << 8) | mdb.Data[1];
-            formatId = signature == 0xd2d7 ? "applemac.mfs" : signature == 0x4244 ? "applemac.hfs" : "apple2.prodos";
+            if (!formatId.StartsWith("applelisa", StringComparison.OrdinalIgnoreCase))
+                formatId = signature == 0xd2d7 ? "applemac.mfs" : signature == 0x4244 ? "applemac.hfs" : "apple2.prodos";
         }
         return new(formatId, 512, 80, heads, 12, blocks, capacity: count * 512L, logicalBlockCount: count);
     }
@@ -145,7 +152,8 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     {
         var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true)
             .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
-        return new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution);
+        return new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution,
+            best.Sector.Tag?.ToArray());
     }
 
     private static int SectorsPerTrack(int cylinder) => cylinder switch { < 16 => 12, < 32 => 11, < 48 => 10, < 64 => 9, _ => 8 };

@@ -12,7 +12,7 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 | Membrain MFM | Marques en-tête/données associées | Cylindre, face, secteur et bloc de 512 octets | CRC16 `0x8005` de l’en-tête et du bloc de données ; état valide, incorrect ou indisponible |
 | AED 6200P MFM | Marque d’en-tête C6 et marques de données C0–C3 associées | Cylindre, secteur et bloc de taille variable | CRC-CCITT de l’en-tête et des données ; état valide, incorrect ou indisponible |
 | Amiga MFM | Double synchronisation, identité odd/even, cylindre, face, secteur, secteurs restants et 512 octets | Parités XOR odd/even de l’en-tête/label et des données ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
-| Apple II GCR 16 secteurs | Adresse 4-and-4 avec volume, piste et secteur ; bloc de 256 octets décodé en 6-and-2 | XOR de l’adresse et chaîne XOR des 343 symboles GCR ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
+| Apple II GCR 13/16 secteurs | Adresse 4-and-4 avec volume, piste et secteur ; blocs de 256 octets décodés en 5-and-3 (DOS 3.2) ou 6-and-2 (DOS 3.3/ProDOS) | XOR de l’adresse et chaîne XOR des symboles GCR ; état valide, incorrect ou indisponible | Oui pour les deux prologues, l’identité, les données, les deux checksums et l’aller-retour avec l’encodeur |
 | Apple Macintosh GCR | En-tête à cinq symboles 6 bits et bloc 6-and-2 de 524 octets | Cylindre 8 bits, face, secteur, 12 octets de tags ignorés et restitution des 512 octets utiles | XOR des quatre champs d’en-tête et quatre checksums de données ; état valide, incorrect ou indisponible |
 | Commodore GCR | Synchronisations, blocs `0x08`/`0x07`, piste, secteur, identifiant disque et 256 octets | XOR des cinq champs d’en-tête et XOR des données avec l’octet stocké ; état valide, incorrect ou indisponible | Oui pour l’identité, les données et les deux checksums |
 | QD MO5 MFM | En-tête et bloc de données associés | Numéro de secteur sur 16 bits et restitution des 128 octets | Somme 8 bits du marqueur et des données ; état valide, incorrect ou indisponible ; aucun CRC d’en-tête |
@@ -35,6 +35,8 @@ Ce tableau distingue volontairement trois niveaux : détection de synchronisatio
 ## Couverture des encodeurs
 
 Les 21 décodeurs sectoriels possèdent maintenant un encodeur de piste portant le même identifiant. Le registre vérifie cette parité automatiquement. Un test aller-retour construit une piste, la transforme en intervalles de flux, appelle le décodeur correspondant et compare l'identité, l'intégrité et la charge utile obtenues. Cela couvre ISO MFM/FM, Amiga, Apple II, Apple Macintosh, Commodore, HP MMFM, Data General, Micropolis, Membrain, AED, QD MO5, Centurion, NorthStar, Heathkit, Micral N, E-mu, TYCOM, DEC RX02, Arburg et Victor 9000.
+
+Pour Apple II, l’encodeur sélectionne automatiquement le 5-and-3 avec prologue `D5 AA B5` pour une géométrie de 13 secteurs, et le 6-and-2 avec prologue `D5 AA 96` pour 16 secteurs. Les deux chemins possèdent un test d’aller-retour secteur par secteur.
 
 Le décodeur `raw` n'a pas d'encodeur sectoriel : un flux brut est déjà une suite d'intervalles et ne contient pas de modèle de secteurs à reconstruire. Sa copie ou son écriture relève du conteneur SCP, pas d'un algorithme d'encodage de format.
 

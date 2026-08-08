@@ -8,19 +8,20 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
 {
     public string Id => "apple-dos";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "apple2.dos33", "apple2.appledos.140" };
+        { "apple2.dos32", "apple2.dos33", "apple2.appledos.140" };
 
     public bool CanRead(SectorImage image)
     {
-        if (image.BlockSize != 256 || image.BlockCount < 35 * 13 || !image.TryGetBlock(17 * 16, out var vtoc) || vtoc.Data.Count < 0x38) return false;
-        return vtoc.Data[1] is > 0 and < 35 && vtoc.Data[2] < 16 && vtoc.Data[0x35] is >= 13 and <= 16
+        var sectors = image.SectorsPerTrack;
+        if (image.BlockSize != 256 || sectors is not (13 or 16) || image.BlockCount < 35 * sectors || !image.TryGetBlock(17 * sectors, out var vtoc) || vtoc.Data.Count < 0x38) return false;
+        return vtoc.Data[1] is > 0 and < 35 && vtoc.Data[2] < sectors && vtoc.Data[0x35] == sectors
             && BinaryPrimitives.ReadUInt16LittleEndian(vtoc.Data.Skip(0x36).Take(2).ToArray()) == 256;
     }
 
     public FileSystemVolume Read(SectorImage image)
     {
         if (!CanRead(image)) throw new InvalidDataException("The image does not contain an Apple DOS catalog.");
-        var vtoc = image.GetBlock(17 * 16).Span; var tracks = vtoc[0x34]; var sectors = vtoc[0x35];
+        var sectors = image.SectorsPerTrack; var vtoc = image.GetBlock(17 * sectors).Span; var tracks = vtoc[0x34];
         var warnings = new List<string>(); var entries = new List<FileSystemEntry>(); var visitedCatalog = new HashSet<int>();
         var track = vtoc[1]; var sector = vtoc[2];
         while (track != 0)
@@ -41,7 +42,7 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
             track = bytes[1]; sector = bytes[2];
         }
         var free = CountFree(vtoc, tracks, sectors);
-        return new($"DOS-{vtoc[6]:D3}", "Apple DOS 3.3", image.Capacity, (long)free * 256, null, null,
+        return new($"DOS-{vtoc[6]:D3}", sectors == 13 ? "Apple DOS 3.2" : "Apple DOS 3.3", image.Capacity, (long)free * 256, null, null,
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
