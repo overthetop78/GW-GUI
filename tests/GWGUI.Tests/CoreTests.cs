@@ -1802,18 +1802,20 @@ public sealed class CoreTests
         Assert.Equal(["--format", "ibm.720", "--tracks", "c=0-79:h=0-1", "--out-tracks", "c=0-39:h=0", "--adjust-speed", "300rpm", "--pll", "period=5:phase=60", "--reverse", "source.scp", "out/disk.ima"], command.Arguments);
     }
 
-    [Fact]
-    public void AtariSt810CommandsUseTheBundledDiskDefinition()
+    [Theory]
+    [InlineData("atarist.810", "disk.st")]
+    [InlineData("amstrad.cpc", "disk.dsk")]
+    public void CommandsUseTheBundledDiskDefinition(string formatId, string outputPath)
     {
-        var read = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.st", ReadResultKind.KnownFormat, "atarist.810", []));
-        var write = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.st", "atarist.810", []));
-        var convert = ConversionCommandBuilder.Build("gw.exe", "source.scp", new("atarist.810", ".st", "disk.st", true));
+        var read = ReadCommandBuilder.Build(new ReadRequest("gw.exe", outputPath, ReadResultKind.KnownFormat, formatId, []));
+        var write = WriteCommandBuilder.Build(new WriteRequest("gw.exe", outputPath, formatId, []));
+        var convert = ConversionCommandBuilder.Build("gw.exe", "source.scp", new(formatId, Path.GetExtension(outputPath), outputPath, true));
 
         foreach (var command in new[] { read, write, convert })
         {
             Assert.Contains("--diskdefs", command.Arguments);
             Assert.Contains(BuiltInDiskDefinitions.FilePath, command.Arguments);
-            Assert.Contains("atarist.810", command.Arguments);
+            Assert.Contains(formatId, command.Arguments);
         }
     }
 

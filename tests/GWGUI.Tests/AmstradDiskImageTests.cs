@@ -6,6 +6,41 @@ namespace GWGUI.Tests;
 public sealed class AmstradDiskImageTests
 {
     [Fact]
+    public async Task RealSingleAmstradCpcImageAndFluxRemainEquivalentWhenRequested()
+    {
+        var dskPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMSTRAD_DSK");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMSTRAD_SCP");
+        var sourceSectorsPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMSTRAD_SOURCE_SECTORS");
+        var decodedSectorsPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMSTRAD_DECODED_SECTORS");
+        if (new[] { dskPath, scpPath, sourceSectorsPath, decodedSectorsPath }.Any(string.IsNullOrWhiteSpace)) return;
+
+        Assert.Equal(
+            await File.ReadAllBytesAsync(sourceSectorsPath!),
+            await File.ReadAllBytesAsync(decodedSectorsPath!));
+
+        var explorer = DiskImageExplorer.CreateDefault();
+        var source = await explorer.ExploreAsync(dskPath!, "amstrad.cpc");
+        var flux = await explorer.ExploreAsync(scpPath!, "amstrad.cpc");
+
+        Assert.True(source.FileSystemRecognized, dskPath);
+        Assert.True(flux.FileSystemRecognized, scpPath);
+        Assert.Equal(source.Volume.Name, flux.Volume.Name);
+        Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+        Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
+        Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
+        Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
+        Assert.Equal(source.Volume.Warnings, flux.Volume.Warnings);
+
+        var visualization = new SectorImageFluxVisualizer().Create(source.Image);
+        Assert.NotEmpty(visualization.Tracks);
+        Assert.Contains(visualization.Tracks, track => track.Head == 0);
+
+        var automatic = await explorer.ExploreAsync(scpPath!);
+        Assert.True(automatic.FileSystemRecognized, $"Automatic detection failed for {scpPath}");
+        Assert.Equal("amstrad.cpc", automatic.Image.FormatId);
+    }
+
+    [Fact]
     public async Task RealAmstradDskCorpusCanBeOpened()
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_AMSTRAD_CORPUS");
@@ -48,4 +83,11 @@ public sealed class AmstradDiskImageTests
             Assert.StartsWith("amstrad.", automatic.Image.FormatId);
         }
     }
+
+    private static string[] Flatten(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
+        .SelectMany(entry => new[]
+        {
+            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
+        }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
+        .ToArray();
 }
