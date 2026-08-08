@@ -7,6 +7,11 @@ public sealed class FileSystemRegistry
     public IReadOnlyList<IFileSystemReader> Readers { get; } =
     [
         new Readers.AmigaDosFileSystemReader(),
+        new Readers.AppleDosFileSystemReader(),
+        new Readers.ProDosFileSystemReader(),
+        new Readers.MacMfsFileSystemReader(),
+        new Readers.MacHfsFileSystemReader(),
+        new Readers.LisaFileSystemReader(),
         new Readers.AmstradCpmFileSystemReader(),
         new Readers.CpmFileSystemReader(),
         new Readers.CommodoreDosFileSystemReader(),

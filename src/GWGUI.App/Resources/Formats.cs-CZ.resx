@@ -160,7 +160,7 @@
     <value>HxC Floppy Emulator</value>
   </data>
   <data name="Common.DiskImageFilter">
-    <value>Obrazy disků|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk|Všechny soubory|*.*</value>
+    <value>Obrazy disků|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image|Všechny soubory|*.*</value>
   </data>
   <data name="Format.atari.90">
     <value>Atari 8-bit — 90 KiB</value>
@@ -174,4 +174,21 @@
   <data name="Extension.atr">
     <value>Obraz disku Atari ATR</value>
   </data>
+
+  <data name="Format.apple2.appledos.140"><value>Apple II DOS 3.3 — 140 KiB</value></data>
+  <data name="Format.apple2.prodos.140"><value>Apple II ProDOS — 140 KiB</value></data>
+  <data name="Format.apple2.prodos.800"><value>Apple II ProDOS — 800 KiB</value></data>
+  <data name="Format.apple3.sos"><value>Apple III SOS — 140 KiB</value></data>
+  <data name="Format.mac.400"><value>Apple Macintosh/Lisa GCR — 400 KiB</value></data>
+  <data name="Format.mac.800"><value>Apple Macintosh GCR — 800 KiB</value></data>
+  <data name="Format.mac.1440"><value>Apple Macintosh MFM — 1.44 MiB</value></data>
+  <data name="Extension.do"><value>DO (Apple DOS)</value></data>
+  <data name="Extension.dsk.apple"><value>DSK (Apple)</value></data>
+  <data name="Extension.po"><value>PO (Apple ProDOS)</value></data>
+  <data name="Extension.2mg"><value>2IMG (Apple)</value></data>
+  <data name="Extension.image.apple"><value>DiskCopy (Apple)</value></data>
+  <data name="Extension.img.apple"><value>IMG (Apple)</value></data>
+  <data name="Detection.AppleDosOrder"><value>Formát Apple II DOS byl rozpoznán podle pořadí sektorů.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Formát Apple II ProDOS byl rozpoznán podle pořadí sektorů.</value></data>
+  <data name="Detection.AppleContainer"><value>Byl zjištěn kontejner obrazu disku Apple.</value></data>
 </root>

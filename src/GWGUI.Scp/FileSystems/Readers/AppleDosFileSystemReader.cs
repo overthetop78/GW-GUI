@@ -1,0 +1,81 @@
+using System.Buffers.Binary;
+using System.Text;
+using GWGUI.Scp.SectorImages;
+
+namespace GWGUI.Scp.FileSystems.Readers;
+
+public sealed class AppleDosFileSystemReader : IFileSystemReader
+{
+    public string Id => "apple-dos";
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        { "apple2.dos33", "apple2.appledos.140" };
+
+    public bool CanRead(SectorImage image)
+    {
+        if (image.BlockSize != 256 || image.BlockCount < 35 * 13 || !image.TryGetBlock(17 * 16, out var vtoc) || vtoc.Data.Count < 0x38) return false;
+        return vtoc.Data[1] is > 0 and < 35 && vtoc.Data[2] < 16 && vtoc.Data[0x35] is >= 13 and <= 16
+            && BinaryPrimitives.ReadUInt16LittleEndian(vtoc.Data.Skip(0x36).Take(2).ToArray()) == 256;
+    }
+
+    public FileSystemVolume Read(SectorImage image)
+    {
+        if (!CanRead(image)) throw new InvalidDataException("The image does not contain an Apple DOS catalog.");
+        var vtoc = image.GetBlock(17 * 16).Span; var tracks = vtoc[0x34]; var sectors = vtoc[0x35];
+        var warnings = new List<string>(); var entries = new List<FileSystemEntry>(); var visitedCatalog = new HashSet<int>();
+        var track = vtoc[1]; var sector = vtoc[2];
+        while (track != 0)
+        {
+            var logical = track * sectors + sector;
+            if (!visitedCatalog.Add(logical) || !image.TryGetBlock(logical, out var catalog)) { warnings.Add($"Catalog sector T{track} S{sector} is missing or cyclic."); break; }
+            var bytes = catalog.Data.ToArray();
+            for (var offset = 0x0b; offset + 35 <= bytes.Length; offset += 35)
+            {
+                var tsTrack = bytes[offset]; if (tsTrack is 0 or 0xff) continue;
+                var tsSector = bytes[offset + 1]; var type = bytes[offset + 2];
+                var name = DecodeName(bytes.AsSpan(offset + 3, 30));
+                var declaredSectors = BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(offset + 33));
+                var content = ReadFile(image, sectors, tsTrack, tsSector, warnings, name);
+                entries.Add(new(name, FileSystemEntryKind.File, content.Count, null, TypeName(type), type, logical, true, [], content));
+                if (declaredSectors > 0 && content.Count > declaredSectors * 256L) warnings.Add($"{name}: catalog size is inconsistent.");
+            }
+            track = bytes[1]; sector = bytes[2];
+        }
+        var free = CountFree(vtoc, tracks, sectors);
+        return new($"DOS-{vtoc[6]:D3}", "Apple DOS 3.3", image.Capacity, (long)free * 256, null, null,
+            entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
+    }
+
+    private static IReadOnlyList<byte> ReadFile(SectorImage image, int sectorsPerTrack, int track, int sector, List<string> warnings, string name)
+    {
+        using var output = new MemoryStream(); var visited = new HashSet<int>();
+        while (track != 0)
+        {
+            var logical = track * sectorsPerTrack + sector;
+            if (!visited.Add(logical) || !image.TryGetBlock(logical, out var list)) { warnings.Add($"{name}: T/S list T{track} S{sector} is missing or cyclic."); break; }
+            var data = list.Data.ToArray();
+            for (var offset = 0x0c; offset + 1 < data.Length; offset += 2)
+            {
+                var dataTrack = data[offset]; var dataSector = data[offset + 1]; if (dataTrack == 0) continue;
+                var dataLogical = dataTrack * sectorsPerTrack + dataSector;
+                if (!image.TryGetBlock(dataLogical, out var block)) { warnings.Add($"{name}: data sector T{dataTrack} S{dataSector} is missing."); continue; }
+                output.Write(block.Data.ToArray());
+            }
+            track = data[1]; sector = data[2];
+        }
+        return output.ToArray();
+    }
+
+    private static int CountFree(ReadOnlySpan<byte> vtoc, int tracks, int sectors)
+    {
+        var free = 0;
+        for (var track = 0; track < tracks && 0x38 + track * 4 + 3 < vtoc.Length; track++)
+        {
+            var bits = BinaryPrimitives.ReadUInt32BigEndian(vtoc.Slice(0x38 + track * 4, 4));
+            for (var sector = 0; sector < sectors; sector++) if ((bits & (1u << sector)) != 0) free++;
+        }
+        return free;
+    }
+
+    private static string DecodeName(ReadOnlySpan<byte> raw) => System.Text.Encoding.ASCII.GetString(raw.ToArray().Select(value => (byte)(value & 0x7f)).ToArray()).TrimEnd(' ', '\0');
+    private static string TypeName(byte type) => (type & 0x7f) switch { 0 => "Text", 1 => "Integer BASIC", 2 => "Applesoft BASIC", 4 => "Binary", 8 => "S", 16 => "Relocatable", 32 => "A", 64 => "B", _ => "File" };
+}

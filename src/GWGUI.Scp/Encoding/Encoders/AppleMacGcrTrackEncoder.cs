@@ -13,10 +13,10 @@ public sealed class AppleMacGcrTrackEncoder : TrackEncoderBase
             if(sector.Data.Count!=512) throw new ArgumentException("Apple Macintosh sectors contain 512 bytes.");
             byte[] header=[(byte)(request.Cylinder&0x3f),(byte)sector.Number,(byte)((request.Cylinder>>6&3)|(request.Head<<5)),format];
             var checksum=(byte)(header.Aggregate(0,(value,item)=>value^item)&0x3f);
-            bits.Gap(100,true); bits.DoubledCells([0xd5,0xaa,0x96]); bits.DoubledCells(header.Append(checksum).Select(value=>Table[value])); bits.Gap(32);
-            bits.DoubledCells([0xd5,0xaa,0xad]);
+            bits.Gap(100,true); bits.Raw(0xd5,0xaa,0x96); bits.Raw(header.Append(checksum).Select(value=>Table[value]).ToArray()); bits.Raw(0xde,0xaa,0xff,0xff); bits.Gap(32,true);
+            bits.Raw(0xd5,0xaa,0xad);
             var tags=Enumerable.Range(0,12).Select(index=>(byte)Attribute(sector,$"tag{index}",0)).ToArray();
-            bits.DoubledCells(EncodeData(tags.Concat(sector.Data).ToArray())); bits.Gap(64);
+            bits.Raw(Table[sector.Number & 0x3f]); bits.Raw(EncodeData(tags.Concat(sector.Data).ToArray())); bits.Raw(0xde,0xaa,0xff); bits.Gap(64,true);
         }
         return bits;
     }
@@ -31,7 +31,7 @@ public sealed class AppleMacGcrTrackEncoder : TrackEncoderBase
             if(position==source.Length)break;
             value=source[position++]; b3[index]=(byte)(value^c2); c1+=value; if(c2>0xff){c1++;c2&=0xff;}
         }
-        var symbols=new List<byte>(704){0};
+        var symbols=new List<byte>(703);
         for(var index=0;index<=174;index++)
         {
             symbols.Add((byte)(((b1[index]>>2)&48)|((b2[index]>>4)&12)|((b3[index]>>6)&3)));

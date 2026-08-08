@@ -7,7 +7,8 @@ public sealed record SectorBlock(
     SectorAddress Address,
     IReadOnlyList<byte> Data,
     bool? IntegrityValid = true,
-    int Revolution = 0);
+    int Revolution = 0,
+    IReadOnlyList<byte>? Tag = null);
 
 public sealed class SectorImage
 {

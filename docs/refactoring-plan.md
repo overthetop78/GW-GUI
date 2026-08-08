@@ -102,7 +102,7 @@ Le découpage de `FluxDecoding.cs` est réalisé pour les éléments qui existen
 - chaque famille de flux et chaque décodeur dans son propre fichier ;
 - les utilitaires d’encodage existants dans une arborescence distincte des décodeurs ;
 
-Les éléments suivants ont maintenant une réalisation complète pour Amiga et Atari dans le périmètre validé :
+Les éléments suivants ont maintenant une réalisation complète pour Amiga, Atari et Apple dans le périmètre validé :
 
 - lecture ADF DD/HD vers le modèle sectoriel ;
 - reconstruction de secteurs Amiga depuis les charges utiles SCP et choix de la meilleure révolution ;
@@ -110,6 +110,9 @@ Les éléments suivants ont maintenant une réalisation complète pour Amiga et 
 - lecture ST, MSA et ATR vers le modèle sectoriel, y compris les secteurs de taille mixte des ATR ;
 - reconstruction des secteurs ISO FM/MFM depuis les captures SCP Atari et choix de la meilleure révolution ;
 - interprétation Atari TOS FAT12 et Atari DOS utilisée par l’onglet `Explorateur`.
+- lecture des conteneurs Apple II/III, DiskCopy Macintosh/Lisa et images sectorielles Macintosh vers le modèle sectoriel ;
+- reconstruction des captures SCP Apple II/Macintosh avec choix de la meilleure révolution et gestion des pistes GCR circulaires ;
+- interprétation Apple DOS 3.3, ProDOS, SOS, MFS, HFS et Lisa Office System utilisée par l’onglet `Explorateur`.
 
 Les écrivains de conteneurs, la reconstruction des autres familles et leurs interpréteurs de systèmes de fichiers restent à développer séparément. Les systèmes Atari protégés, MyDOS, SpartaDOS et autres variantes non Atari DOS ne sont pas assimilés à Atari DOS.
 
@@ -128,7 +131,7 @@ Ces fonctions ne sont pas équivalentes :
 - un **encodeur de piste** effectue le chemin inverse, secteurs vers MFM/FM/GCR et flux;
 - un **écrivain SCP** produit le conteneur brut autour de ce flux.
 
-Le code actuel possède le lecteur SCP, les décodeurs, un modèle sectoriel d'encodage et les 21 encodeurs de pistes correspondants. Pour Amiga, il possède aussi le lecteur ADF, la reconstruction sectorielle SCP, la sélection entre révolutions et le lecteur AmigaDOS. Pour Atari, il possède les lecteurs ST/MSA/ATR, la reconstruction SCP ISO FM/MFM, Atari TOS FAT12 et Atari DOS. Il ne possède pas encore l’équivalent pour tous les autres formats, les écrivains d’images, l'écrivain SCP complet ni le branchement de ces couches à la conversion interne de l'application.
+Le code actuel possède le lecteur SCP, les décodeurs, un modèle sectoriel d'encodage et les 21 encodeurs de pistes correspondants. Pour Amiga, il possède aussi le lecteur ADF, la reconstruction sectorielle SCP, la sélection entre révolutions et le lecteur AmigaDOS. Pour Atari, il possède les lecteurs ST/MSA/ATR, la reconstruction SCP ISO FM/MFM, Atari TOS FAT12 et Atari DOS. Pour Apple, il possède les lecteurs Apple II/III et DiskCopy Macintosh/Lisa, la reconstruction SCP Apple II/Macintosh et les lecteurs Apple DOS, ProDOS, SOS, MFS, HFS et Lisa Office System. Il ne possède pas encore l’équivalent pour tous les autres formats, les écrivains d’images, l'écrivain SCP complet ni le branchement de ces couches à la conversion interne de l'application.
 
 Les décodeurs de flux ne remplacent pas les interpréteurs de systèmes de fichiers. Cette séparation est maintenant matérialisée : le résultat sectoriel Amiga est transmis à `AmigaDosFileSystemReader`, qui interprète le volume, les répertoires, les fichiers, leurs attributs et les erreurs du système de fichiers.
 

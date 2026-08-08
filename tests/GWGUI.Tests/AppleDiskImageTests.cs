@@ -1,0 +1,144 @@
+using System.IO;
+using GWGUI.Scp.FileSystems;
+using GWGUI.Scp.Images;
+using GWGUI.Scp.SectorImages;
+using GWGUI.Domain.Formats;
+using GWGUI.Domain.Write;
+
+namespace GWGUI.Tests;
+
+public sealed class AppleDiskImageTests
+{
+    [Fact]
+    public void SharedCatalogContainsAppleFormatsAndDetectsAppleContainers()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.140");
+        Assert.Contains(catalog.Formats, format => format.Id == "apple2.prodos.140");
+        Assert.Contains(catalog.Formats, format => format.Id == "apple3.sos");
+        Assert.Contains(catalog.Formats, format => format.Id == "mac.400");
+        Assert.Contains(catalog.Formats, format => format.Id == "mac.800");
+        Assert.Contains(catalog.Formats, format => format.Id == "mac.1440");
+        var detector = new ImageFormatDetector(catalog);
+        Assert.Equal("apple2.appledos.140", detector.Detect("disk.do", 143_360).Format?.Id);
+        Assert.Equal("apple2.prodos.140", detector.Detect("disk.po", 143_360).Format?.Id);
+        Assert.Equal("mac.400", detector.Detect("disk.image", 419_284).Format?.Id);
+        Assert.Equal("apple2.prodos.140", GwFormatArgument.FromCatalogId("apple3.sos"));
+        Assert.Equal("ibm.1440", GwFormatArgument.FromCatalogId("mac.1440"));
+    }
+
+    [Fact]
+    public async Task Dos33ImageExposesItsCatalog()
+    {
+        var data = new byte[35 * 16 * 256];
+        var vtoc = (17 * 16 + 0) * 256;
+        data[vtoc + 1] = 17; data[vtoc + 2] = 15; data[vtoc + 0x34] = 35; data[vtoc + 0x35] = 16;
+        data[vtoc + 0x36] = 0; data[vtoc + 0x37] = 1;
+        var catalog = (17 * 16 + 15) * 256;
+        data[catalog + 1] = 0; data[catalog + 2] = 0;
+        data[catalog + 0x0b] = 1; data[catalog + 0x0c] = 0; data[catalog + 0x0d] = 0x04;
+        System.Text.Encoding.ASCII.GetBytes("HELLO").CopyTo(data, catalog + 0x0e);
+        for (var index = catalog + 0x13; index < catalog + 0x2c; index++) data[index] = 0xa0;
+        data[catalog + 0x2c] = 1;
+
+        var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.dsk");
+        try
+        {
+            await File.WriteAllBytesAsync(path, data);
+            var image = await new AppleDiskImageReader().ReadAsync(path);
+            Assert.Equal("apple2.dos33", image.FormatId);
+            var volume = new FileSystemRegistry().Read(image);
+            Assert.Equal("Apple DOS 3.3", volume.FileSystem);
+            Assert.Contains(volume.Entries, entry => entry.Name == "HELLO");
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task RealAppleCorpusIsReadableWhenRequested()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+
+        var explorer = DiskImageExplorer.CreateDefault();
+        var appleRoots = Directory.EnumerateDirectories(root, "Apple *", SearchOption.TopDirectoryOnly).ToArray();
+        var supported = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".dsk", ".do", ".po", ".2mg", ".image" };
+        var results = new List<string>();
+        var failures = new List<string>();
+        foreach (var path in appleRoots.SelectMany(directory => Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories))
+                     .Where(path => supported.Contains(Path.GetExtension(path)))
+                     .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}_generated{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)))
+        {
+            try
+            {
+                var explicitFormat = Path.GetExtension(path).Equals(".dsk", StringComparison.OrdinalIgnoreCase)
+                    && path.Contains($"{Path.DirectorySeparatorChar}Apple II{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
+                    ? "apple2.dos33" : null;
+                var document = await explorer.ExploreAsync(path, explicitFormat);
+                var relative = Path.GetRelativePath(root, path);
+                var intentionallyNonStandard = relative.Contains("Airheart", StringComparison.OrdinalIgnoreCase)
+                    || relative.Contains("seeds-of-evil", StringComparison.OrdinalIgnoreCase)
+                    || relative.Contains("MacWorks 3.0", StringComparison.OrdinalIgnoreCase);
+                if (!document.FileSystemRecognized && !intentionallyNonStandard) failures.Add($"NO FILESYSTEM {relative}: {document.Image.FormatId}");
+                else if (!document.FileSystemRecognized) results.Add($"OPEN CONTAINER {relative}: {document.Image.FormatId}, non-standard/no catalog");
+                else results.Add($"OPEN {Path.GetRelativePath(root, path)}: {document.Volume.FileSystem}, {document.Volume.Entries.Count} root entries");
+            }
+            catch (Exception exception)
+            {
+                failures.Add($"FAIL {Path.GetRelativePath(root, path)}: {exception.GetType().Name}: {exception.Message}");
+            }
+        }
+
+        foreach (var result in results.Concat(failures)) Console.WriteLine(result);
+        Assert.NotEmpty(results);
+        Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
+    }
+
+    [Fact]
+    public async Task RealAppleScpCorpusCanBeDecodedWhenRequested()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+
+        var explorer = DiskImageExplorer.CreateDefault();
+        var paths = Directory.EnumerateDirectories(root, "Apple *", SearchOption.TopDirectoryOnly)
+            .SelectMany(directory => Directory.EnumerateFiles(directory, "*.scp", SearchOption.AllDirectories))
+            .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}_generated{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        var requestedFile = Environment.GetEnvironmentVariable("GWGUI_APPLE_FILE");
+        if (!string.IsNullOrWhiteSpace(requestedFile))
+            paths = paths.Where(path => path.Contains(requestedFile, StringComparison.OrdinalIgnoreCase)).ToArray();
+        var results = new List<string>();
+        var failures = new List<string>();
+        foreach (var path in paths)
+        {
+            try
+            {
+                var relativePath = Path.GetRelativePath(root, path);
+                var explicitFormat = relativePath.Contains($"Apple II{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase)
+                    ? "apple2.prodos.800"
+                    : relativePath.Contains("400k", StringComparison.OrdinalIgnoreCase) ? "mac.400" : "mac.800";
+                var document = await explorer.ExploreAsync(path, explicitFormat);
+                if (!document.FileSystemRecognized)
+                {
+                    var indexes = document.Image.AvailableBlocks.Select(block => block.LogicalBlock).Order().ToArray();
+                    var block2 = document.Image.TryGetBlock(2, out var probe)
+                        ? Convert.ToHexString(probe.Data.Take(16).ToArray()) : "missing";
+                    var addresses = document.Image.AvailableBlocks.Select(block => block.Address).ToArray();
+                    var addressRange = addresses.Length == 0 ? "empty" : $"C{addresses.Min(address => address.Cylinder)}..{addresses.Max(address => address.Cylinder)} H{addresses.Min(address => address.Head)}..{addresses.Max(address => address.Head)} S{addresses.Min(address => address.Number)}..{addresses.Max(address => address.Number)}";
+                    failures.Add($"NO FILESYSTEM SCP {Path.GetRelativePath(root, path)}: {document.Image.FormatId}; blocks={indexes.Length}; range={(indexes.Length == 0 ? "empty" : $"{indexes[0]}..{indexes[^1]}")}; addresses={addressRange}; block2={block2}");
+                }
+                else
+                    results.Add($"OPEN SCP {Path.GetRelativePath(root, path)}: {document.Image.FormatId}, {document.Volume.FileSystem}");
+            }
+            catch (Exception exception)
+            {
+                failures.Add($"FAIL SCP {Path.GetRelativePath(root, path)}: {exception.GetType().Name}: {exception.Message}");
+            }
+        }
+
+        foreach (var result in results.Concat(failures)) Console.WriteLine(result);
+        Assert.NotEmpty(results);
+        Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
+    }
+}

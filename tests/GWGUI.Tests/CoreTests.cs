@@ -2742,7 +2742,7 @@ public sealed class CoreTests
     public void AppleMacGcrDecoderExtractsAddressTagsDataAndChecksums(bool corruptHeader, bool corruptData)
     {
         byte[] table = [0x96,0x97,0x9a,0x9b,0x9d,0x9e,0x9f,0xa6,0xa7,0xab,0xac,0xad,0xae,0xaf,0xb2,0xb3,0xb4,0xb5,0xb6,0xb7,0xb9,0xba,0xbb,0xbc,0xbd,0xbe,0xbf,0xcb,0xcd,0xce,0xcf,0xd3,0xd6,0xd7,0xd9,0xda,0xdb,0xdc,0xdd,0xde,0xdf,0xe5,0xe6,0xe7,0xe9,0xea,0xeb,0xec,0xed,0xee,0xef,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff];
-        static string Cells(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "0" + ((((value >> (7 - bit)) & 1) != 0) ? "1" : "0"))));
+        static string Bits(IEnumerable<byte> values) => string.Concat(values.Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
         static byte[] EncodeData(byte[] source, IReadOnlyList<byte> translation, bool corrupt)
         {
             var b1 = new byte[175]; var b2 = new byte[175]; var b3 = new byte[175]; uint c1 = 0, c2 = 0, c3 = 0; var position = 0;
@@ -2770,8 +2770,8 @@ public sealed class CoreTests
         var headerChecksum = (byte)(header.Aggregate(0, (checksum, value) => checksum ^ value) & 0x3f); if (corruptHeader) headerChecksum ^= 1;
         var payload = Enumerable.Range(0, 512).Select(index => (byte)(index * 19 + 3)).ToArray();
         var tagged = Enumerable.Range(0, 12).Select(index => (byte)(0xa0 + index)).Concat(payload).ToArray();
-        var raw = new string('1', 100) + Cells([0xd5, 0xaa, 0x96]) + Cells(header.Append(headerChecksum).Select(value => table[value])) + new string('0', 32)
-            + Cells([0xd5, 0xaa, 0xad]) + Cells(EncodeData(tagged, table, corruptData)) + "1";
+        var raw = new string('1', 100) + Bits([0xd5, 0xaa, 0x96]) + Bits(header.Append(headerChecksum).Select(value => table[value])) + new string('0', 32)
+            + Bits([0xd5, 0xaa, 0xad]) + Bits(EncodeData(tagged, table, corruptData)) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
         var result = new AppleMacGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
@@ -2786,10 +2786,10 @@ public sealed class CoreTests
     public void AppleMacGcrDecoderReportsUnavailableIntegrityForTruncatedData()
     {
         byte[] table = [0x96,0x97,0x9a,0x9b,0x9d,0x9e,0x9f,0xa6,0xa7,0xab,0xac,0xad,0xae,0xaf,0xb2,0xb3,0xb4,0xb5,0xb6,0xb7,0xb9,0xba,0xbb,0xbc,0xbd,0xbe,0xbf,0xcb,0xcd,0xce,0xcf,0xd3,0xd6,0xd7,0xd9,0xda,0xdb,0xdc,0xdd,0xde,0xdf,0xe5,0xe6,0xe7,0xe9,0xea,0xeb,0xec,0xed,0xee,0xef,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff];
-        static string Cells(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => "0" + ((((value >> (7 - bit)) & 1) != 0) ? "1" : "0"))));
+        static string Bits(IEnumerable<byte> values) => string.Concat(values.Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
         byte[] header = [3, 4, 0, 0x12]; var checksum = (byte)(header.Aggregate(0, (value, item) => value ^ item) & 0x3f);
-        var raw = new string('1', 100) + Cells([0xd5, 0xaa, 0x96]) + Cells(header.Append(checksum).Select(value => table[value])) + new string('0', 32)
-            + Cells([0xd5, 0xaa, 0xad]) + Cells(Enumerable.Repeat((byte)0xff, 650)) + "1";
+        var raw = new string('1', 100) + Bits([0xd5, 0xaa, 0x96]) + Bits(header.Append(checksum).Select(value => table[value])) + new string('0', 32)
+            + Bits([0xd5, 0xaa, 0xad]) + Bits(Enumerable.Repeat((byte)0xff, 650)) + "1";
         var intervals = BitsToIntervals(raw, 40);
         var result = new AppleMacGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);

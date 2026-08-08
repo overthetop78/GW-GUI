@@ -3,6 +3,15 @@ namespace GWGUI.Scp.Decoding;
 internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
 {
     public bool[] Bits { get; } = bits; public double BitCellTicks { get; } = bitCellTicks;
+    public FluxBitstream WithCircularTail(int bitCount)
+    {
+        if (Bits.Length == 0 || bitCount <= 0) return this;
+        var tailLength = Math.Min(bitCount, Bits.Length);
+        var extended = new bool[Bits.Length + tailLength];
+        Array.Copy(Bits, extended, Bits.Length);
+        Array.Copy(Bits, 0, extended, Bits.Length, tailLength);
+        return new(extended, BitCellTicks);
+    }
     public static FluxBitstream FromIntervals(IReadOnlyList<uint> intervals, bool fm = false)
     {
         return Reconstruct(intervals, EstimateBitCell(intervals, fm), 32);
@@ -11,18 +20,26 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
     {
         return Reconstruct(intervals, EstimateNrziBitCell(intervals), 64);
     }
-    public static FluxBitstream FromDoubledNrziIntervals(IReadOnlyList<uint> intervals)
+    public static FluxBitstream FromNrziIntervals(IReadOnlyList<uint> intervals, double bitCellTicks)
     {
-        return Reconstruct(intervals, EstimateBitCell(intervals), 64);
+        return Reconstruct(intervals, Math.Max(1, bitCellTicks), 64, adaptClock: false);
     }
-    private static FluxBitstream Reconstruct(IReadOnlyList<uint> intervals, double initialCell, int maximumCells)
+    public static FluxBitstream FromDoubledNrziIntervals(IReadOnlyList<uint> intervals, bool adaptClock = true)
+    {
+        return Reconstruct(intervals, EstimateBitCell(intervals), 64, adaptClock);
+    }
+    public static FluxBitstream FromDoubledNrziIntervals(IReadOnlyList<uint> intervals, double bitCellTicks)
+    {
+        return Reconstruct(intervals, Math.Max(1, bitCellTicks), 64, adaptClock: false);
+    }
+    private static FluxBitstream Reconstruct(IReadOnlyList<uint> intervals, double initialCell, int maximumCells, bool adaptClock = true)
     {
         var currentCell = initialCell; var accumulatedCell = 0d; var samples = 0; var bits = new List<bool>(intervals.Count * 4);
         for (var index = 0; index < intervals.Count; index++)
         {
             var interval = intervals[index]; var cells = Math.Clamp((int)Math.Round(interval / currentCell), 1, maximumCells);
             for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true);
-            if (index == 0) continue;
+            if (index == 0 || !adaptClock) continue;
             var observedCell = interval / (double)cells;
             if (observedCell >= currentCell * .7 && observedCell <= currentCell * 1.3) currentCell += (observedCell - currentCell) * .08;
             accumulatedCell += currentCell; samples++;
@@ -56,5 +73,6 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
     public bool Match(int offset, uint pattern, int length) { if (length is < 1 or > 32 || offset + length > Bits.Length) return false; for (var bit = 0; bit < length; bit++) if (Bits[offset + bit] != ((pattern & (1u << (length - 1 - bit))) != 0)) return false; return true; }
     public bool MatchBytes(int offset, IReadOnlyList<byte> pattern) { if (offset + pattern.Count * 8 > Bits.Length) return false; for (var index = 0; index < pattern.Count; index++) for (var bit = 0; bit < 8; bit++) if (Bits[offset + index * 8 + bit] != ((pattern[index] & (1 << (7 - bit))) != 0)) return false; return true; }
     public byte DecodeMfmByte(int offset) { byte value = 0; for (var bit = 0; bit < 8 && offset + bit * 2 + 1 < Bits.Length; bit++) if (Bits[offset + bit * 2 + 1]) value |= (byte)(1 << (7 - bit)); return value; }
+    public byte DecodeByte(int offset) { byte value = 0; for (var bit = 0; bit < 8 && offset + bit < Bits.Length; bit++) if (Bits[offset + bit]) value |= (byte)(1 << (7 - bit)); return value; }
     public byte DecodeFmByte32(int offset) { byte value = 0; for (var bit = 0; bit < 8 && offset + bit * 4 + 3 < Bits.Length; bit++) if (Bits[offset + bit * 4 + 3]) value |= (byte)(1 << (7 - bit)); return value; }
 }

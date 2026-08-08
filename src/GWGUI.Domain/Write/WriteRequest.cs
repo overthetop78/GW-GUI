@@ -40,6 +40,18 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
             var id = knownLength switch { 92176 => "atari.90", 133136 => "atari.130", 183952 => "atari.180", _ => null };
             return id is null ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AtariUnknownSize") : Result(extension, id, FormatConfidence.Certain, candidates, "Detection.AtariSize");
         }
+        if (extension == ".do") return Result(extension, "apple2.appledos.140", FormatConfidence.Certain, candidates, "Detection.AppleDosOrder");
+        if (extension == ".po") return Result(extension, "apple2.prodos.140", FormatConfidence.Certain, candidates, "Detection.AppleProDosOrder");
+        if (extension == ".2mg") return new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AppleContainer");
+        if (extension == ".image")
+        {
+            var id = knownLength switch { 409684 or 419284 => "mac.400", 819284 or 838484 => "mac.800", 1474644 or 1491844 => "mac.1440", _ => null };
+            return id is null
+                ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AppleContainer")
+                : Result(extension, id, FormatConfidence.Inferred, candidates, "Detection.AppleContainer");
+        }
+        if (extension == ".img" && TryDetectMacRawImage(filePath, knownLength, out var macId))
+            return Result(extension, macId, FormatConfidence.Certain, candidates, "Detection.AppleContainer");
         if (extension is ".ima" or ".img")
         {
             var id = knownLength switch { 163840 => "ibm.160", 184320 => "ibm.180", 327680 => "ibm.320", 368640 => "ibm.360", 737280 => "ibm.720", 819200 => "ibm.800", 1228800 => "ibm.1200", 1474560 => "ibm.1440", 1720320 => "ibm.1680", 2949120 => "ibm.2880", _ => null };
@@ -49,6 +61,22 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
         }
         if (candidates.Length == 1) return new(extension, candidates[0], FormatConfidence.Inferred, candidates, "Detection.ExtensionInferred");
         return new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.Multiple");
+    }
+
+    private static bool TryDetectMacRawImage(string filePath, long? knownLength, out string? formatId)
+    {
+        formatId = knownLength switch { 409_600 => "mac.400", 819_200 => "mac.800", 1_474_560 => "mac.1440", _ => null };
+        if (formatId is null) return false;
+        try
+        {
+            using var stream = File.OpenRead(filePath);
+            if (stream.Length < 1026) return false;
+            stream.Position = 1024;
+            Span<byte> signature = stackalloc byte[2];
+            return stream.Read(signature) == 2 && BinaryPrimitives.ReadUInt16BigEndian(signature) is 0xd2d7 or 0x4244;
+        }
+        catch (IOException) { return false; }
+        catch (UnauthorizedAccessException) { return false; }
     }
 
     private DetectedImageFormat Result(string extension, string? id, FormatConfidence confidence, IReadOnlyList<DiskFormat> candidates, string explanation) =>

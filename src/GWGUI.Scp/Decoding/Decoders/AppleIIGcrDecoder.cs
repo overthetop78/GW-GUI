@@ -19,18 +19,19 @@ public sealed class AppleGcrDecoder : IFluxDecoder
             }
             var headerEnd = offset + 24 + (address is null ? 0 : 64); var epilogueOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 512), 0xDEAAEB);
             var dataOffset = epilogueOffset < 0 ? -1 : Find(stream, epilogueOffset + 24, Math.Min(stream.Bits.Length, epilogueOffset + 24 + 512), 0xD5AAAD); bool? dataValid = null; var structureEnd = headerEnd;
+            byte[]? sectorData = null;
             if (dataOffset >= 0)
             {
                 pairedData.Add(dataOffset); var data = TryDecodeSixAndTwo(stream.Bits, dataOffset + 24);
                 if (data is not null)
                 {
-                    dataValid = data.Value.Valid; structureEnd = data.Value.EndOffset; bytes.AddRange(data.Value.Data);
+                    dataValid = data.Value.Valid; structureEnd = data.Value.EndOffset; sectorData = data.Value.Data; bytes.AddRange(sectorData);
                     structures.Add(new(FluxStructureKind.AppleData, dataOffset, data.Value.EndOffset - dataOffset, $"Apple II data block, 256 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
                 }
                 else structures.Add(new(FluxStructureKind.AppleData, dataOffset, 24, "Apple II data block, checksum unavailable"));
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, 0, number, 1, 256, integrity, offset, SectorIntegrityKind.Checksum));
+            sectors.Add(new(cylinder, 0, number, 1, 256, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
             structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(24, headerEnd - offset), $"Apple II V{volume} T{cylinder} S{number}, address checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
             offset = headerValid == true ? Math.Max(offset + 23, structureEnd - 1) : offset + 23;
         }
