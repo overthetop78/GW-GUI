@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>根块 {0} 的校验和无效。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>已达到目录嵌套限制。</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>块 {0} 处的目录链无效或循环。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>目录条目块 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}：无效的文件扩展名块 {1}。</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}：缺少 AmigaDOS {1} ({2})。</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>文件数据块 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>OFS 数据块 {0} 具有意外类型。</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>位图块 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>位图块 {0} 的校验和无效。</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}：CP/M 分配块 {1} 在映像之外。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>{0}/{1} 处的循环 CBM DOS 目录链。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>CBM DOS 目录扇区 {0}/{1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}：{1}/{2} 处的循环数据链。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}：数据扇区 {1}/{2} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}：文件链超出图像容量。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>丢失一个或多个 UCSD 目录块。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>UCSD 目录条目 {0} 的名称无效或为空。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}：无效块范围 {1}..{2}。</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}：一个或多个数据块丢失。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>UCSD 目录声明了 {0} 文件，但找到了 {1} 有效条目。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}：无效的 COHERENT inode 0。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}：一致的 inode {1} 在图像之外。</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}：文件太大。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}：一致块 {1} 在图像之外。</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}：无法读取 {1} 字节。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}：间接相干块 {1} 在图像之外。</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>RT-11 目录段 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>RT-11 目录段 {0} 的条目大小无效。</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>块 {0} 处的 RT-11 条目的名称为空。</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>已达到 ProDOS 目录嵌套限制。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>目录块 {0} 丢失或循环。</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}：主索引块 {1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}：数据块 {1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}：索引块 {1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>目录扇区 T{0} S{1} 丢失或循环。</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}：目录大小不一致。</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}：T/S 列表 T{1} S{2} 丢失或循环。</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}：数据扇区 T{1} S{2} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>目录块 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>块 {0} 中的 MFS 目录条目无效。</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}：资源分叉元数据不一致。</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}：无效的 MFS 分配链。</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}：块 {1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}：数据扇区 {1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>HFS 目录不包含可读的叶记录。</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>循环 HFS 目录#{0}。</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}：HFS 块 {1} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}：需要额外的 HFS 扩展区或数据丢失。</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>已达到 FAT 目录嵌套限制。</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}：簇 {1} 处的 FAT 链无效或循环。</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>扇区 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>丽莎目录页丢失；仅从页面标签恢复文件名。</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>目录扇区 {0} 丢失。</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}：Atari DOS 数据扇区无效或丢失。</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>扇区 {0} 属于文件 {1}，预计为 {2}。</value>
+  </data>
+</root>

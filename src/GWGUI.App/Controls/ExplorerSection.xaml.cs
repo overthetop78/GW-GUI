@@ -214,7 +214,7 @@ public partial class ExplorerSection : UserControl
                      .Concat(document.Volume.Warnings)
                      .Where(warning => !string.IsNullOrWhiteSpace(warning))
                      .Distinct(StringComparer.CurrentCultureIgnoreCase))
-            issues.Add(warning);
+            issues.Add(ExplorerWarningLocalizer.Localize(warning));
 
         foreach (var block in document.Image.AvailableBlocks.Where(block => block.IntegrityValid == false)
                      .OrderBy(block => block.Address.Cylinder).ThenBy(block => block.Address.Head).ThenBy(block => block.Address.Number))

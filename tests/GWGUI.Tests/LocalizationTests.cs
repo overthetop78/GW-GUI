@@ -159,6 +159,40 @@ public sealed class LocalizationTests
     }
 
     [Fact]
+    public void EveryExplorerWarningTemplateCanBeLocalizedInEverySupportedLanguage()
+    {
+        var previousCulture = CultureInfo.CurrentCulture;
+        var previousUiCulture = CultureInfo.CurrentUICulture;
+        try
+        {
+            foreach (var key in LocExtension.GetDefinedKeys("ExplorerWarnings", CultureInfo.InvariantCulture))
+            {
+                var template = LocExtension.GetInvariant(key);
+                var indexes = Regex.Matches(template, @"\{(\d+)\}")
+                    .Select(match => int.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture))
+                    .ToArray();
+                var arguments = Enumerable.Range(0, indexes.DefaultIfEmpty(-1).Max() + 1)
+                    .Select(index => (object)$"VALUE{index}")
+                    .ToArray();
+                var rawWarning = string.Format(CultureInfo.InvariantCulture, template, arguments);
+
+                foreach (var language in UiLanguageCatalog.Available)
+                {
+                    var culture = UiLanguageResolver.GetUiCulture(language.Code);
+                    CultureInfo.CurrentCulture = culture;
+                    CultureInfo.CurrentUICulture = culture;
+                    Assert.Equal(LocExtension.Get(key, arguments), ExplorerWarningLocalizer.Localize(rawWarning));
+                }
+            }
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = previousCulture;
+            CultureInfo.CurrentUICulture = previousUiCulture;
+        }
+    }
+
+    [Fact]
     public void ViewsContainNoHardCodedNaturalLanguageLabels()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);

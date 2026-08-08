@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>Khối gốc {0} có tổng kiểm tra không hợp lệ.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>Đã đạt đến giới hạn lồng thư mục.</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>Chuỗi thư mục không hợp lệ hoặc tuần hoàn tại khối {0}.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>Khối mục nhập thư mục {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: Khối mở rộng tệp không hợp lệ {1}.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: Thiếu AmigaDOS {1} ({2}).</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>Khối dữ liệu tệp {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>Khối dữ liệu OFS {0} có loại không mong muốn.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>Khối bitmap {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>Khối bitmap {0} có tổng kiểm tra không hợp lệ.</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: Khối phân bổ CP/M {1} nằm ngoài hình ảnh.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>Chuỗi thư mục CBM DOS tuần hoàn tại {0}/{1}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>Thiếu thư mục CBM DOS {0}/{1}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: Chuỗi dữ liệu tuần hoàn tại {1}/{2}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: Thiếu khu vực dữ liệu {1}/{2}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: chuỗi tệp vượt quá dung lượng hình ảnh.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>Thiếu một hoặc nhiều khối thư mục UCSD.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>Mục nhập thư mục UCSD {0} có tên không hợp lệ hoặc trống.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: phạm vi khối không hợp lệ {1}..{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: thiếu một hoặc nhiều khối dữ liệu.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>Thư mục UCSD khai báo các tệp {0} nhưng tìm thấy các mục nhập hợp lệ {1}.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: Inode COHERENT 0 không hợp lệ.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: Inode COHERENT {1} nằm ngoài hình ảnh.</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: Tệp quá lớn.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: Khối COHERENT {1} nằm ngoài hình ảnh.</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: {1} byte không thể đọc được.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: khối COHERENT gián tiếp {1} nằm ngoài hình ảnh.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>Đoạn thư mục RT-11 {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>Đoạn thư mục RT-11 {0} có kích thước mục nhập không hợp lệ.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>Mục nhập RT-11 tại khối {0} có tên trống.</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>Đã đạt đến giới hạn lồng thư mục ProDOS.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>Khối thư mục {0} bị thiếu hoặc tuần hoàn.</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: khối chỉ mục chính {1} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: khối dữ liệu {1} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: khối chỉ mục {1} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>Khu vực danh mục T{0} S{1} bị thiếu hoặc có tính chu kỳ.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: kích thước danh mục không nhất quán.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: Danh sách T/S T{1} S{2} bị thiếu hoặc bị lặp.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: thiếu khu vực dữ liệu T{1} S{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>Khối thư mục {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>Mục nhập thư mục MFS không hợp lệ trong khối {0}.</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: siêu dữ liệu của nhánh tài nguyên không nhất quán.</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: chuỗi phân bổ MFS không hợp lệ.</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: thiếu khối {1}.</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: thiếu khu vực dữ liệu {1}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>Danh mục HFS không chứa các bản ghi lá có thể đọc được.</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>Thư mục HFS tuần hoàn #{0}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: Khối HFS {1} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: cần có phạm vi HFS bổ sung hoặc thiếu dữ liệu.</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>Đã đạt đến giới hạn lồng thư mục FAT.</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: Chuỗi FAT không hợp lệ hoặc tuần hoàn tại cụm {1}.</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>Khu vực {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>Các trang danh mục Lisa bị thiếu; tên tệp chỉ được phục hồi từ thẻ trang.</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>Khu vực thư mục {0} bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: khu vực dữ liệu Atari DOS không hợp lệ hoặc bị thiếu.</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>Khu vực {0} thuộc tệp {1}, dự kiến ​​{2}.</value>
+  </data>
+</root>

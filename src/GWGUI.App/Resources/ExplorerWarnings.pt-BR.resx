@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>O bloco raiz {0} possui uma soma de verificação inválida.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>O limite de aninhamento de diretório foi atingido.</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>Cadeia de diretórios inválida ou cíclica no bloco {0}.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>O bloco de entrada do diretório {0} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: Bloco de extensão de arquivo inválido {1}.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: O AmigaDOS {1} ({2}) está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>O bloco de dados do arquivo {0} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>O bloco de dados OFS {0} tem um tipo inesperado.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>O bloco de bitmap {0} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>O bloco de bitmap {0} possui uma soma de verificação inválida.</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: O bloco de alocação CP/M {1} está fora da imagem.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>Cadeia de diretórios CBM DOS cíclica em {0}/{1}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>O setor de diretório CBM DOS {0}/{1} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: Cadeia de dados cíclica em {1}/{2}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: O setor de dados {1}/{2} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: a cadeia de arquivos excede a capacidade da imagem.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>Um ou mais blocos de diretório UCSD estão faltando.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>A entrada do diretório UCSD {0} tem um nome inválido ou vazio.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: faixa de bloco inválida {1}..{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: falta um ou mais blocos de dados.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>O diretório UCSD declara arquivos {0}, mas {1} entradas válidas foram encontradas.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: inode COHERENT 0 inválido.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: O inode COERENTE {1} está fora da imagem.</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: O arquivo é muito grande.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: O bloco COHERENT {1} está fora da imagem.</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: {1} byte(s) não puderam ser lidos.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: bloco COHERENT indireto {1} está fora da imagem.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>O segmento de diretório RT-11 {0} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>O segmento de diretório RT-11 {0} tem um tamanho de entrada inválido.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>A entrada RT-11 no bloco {0} possui um nome vazio.</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>O limite de aninhamento de diretório ProDOS foi atingido.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>O bloco de diretório {0} está ausente ou é cíclico.</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: bloco de índice mestre {1} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: bloco de dados {1} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: bloco de índice {1} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>O setor de catálogo T{0} S{1} está ausente ou é cíclico.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: o tamanho do catálogo é inconsistente.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: lista T/S T{1} S{2} está faltando ou é cíclica.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: setor de dados T{1} S{2} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>O bloco de diretório {0} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>Entrada de diretório MFS inválida no bloco {0}.</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: os metadados da bifurcação de recursos são inconsistentes.</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: cadeia de alocação MFS inválida.</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: bloco {1} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: o setor de dados {1} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>O catálogo HFS não contém registros folha legíveis.</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>Diretório HFS cíclico #{0}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: O bloco HFS {1} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: extensões HFS adicionais são necessárias ou faltam dados.</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>O limite de aninhamento do diretório FAT foi atingido.</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: cadeia FAT inválida ou cíclica no cluster {1}.</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>O setor {0} está faltando.</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>As páginas do catálogo do Lisa estão faltando; os nomes dos arquivos foram recuperados apenas das tags de página.</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>O setor de diretório {0} está ausente.</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: setor de dados Atari DOS inválido ou ausente.</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>O setor {0} pertence ao arquivo {1}, esperado {2}.</value>
+  </data>
+</root>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>บล็อกหลัก {0} มีการตรวจสอบที่ไม่ถูกต้อง</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>ถึงขีดจำกัดการซ้อนไดเร็กทอรีแล้ว</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>สายไดเรกทอรีไม่ถูกต้องหรือวนรอบที่บล็อก {0}</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>บล็อกรายการไดเรกทอรี {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: บล็อกนามสกุลไฟล์ไม่ถูกต้อง {1}</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: AmigaDOS {1} ({2}) หายไป</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>บล็อกข้อมูลไฟล์ {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>บล็อกข้อมูล OFS {0} มีประเภทที่ไม่คาดคิด</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>บล็อกบิตแมป {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>บล็อกบิตแมป {0} มีการตรวจสอบที่ไม่ถูกต้อง</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: บล็อกการจัดสรร CP/M {1} อยู่นอกรูปภาพ</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>ห่วงโซ่ไดเรกทอรี CBM DOS แบบวนรอบที่ {0}/{1}</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>เซกเตอร์ไดเรกทอรี CBM DOS {0}/{1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: ห่วงโซ่ข้อมูลแบบวนที่ {1}/{2}</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: ภาคข้อมูล {1}/{2} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: ห่วงโซ่ไฟล์เกินความจุของภาพ</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>บล็อกไดเรกทอรี UCSD อย่างน้อยหนึ่งบล็อกหายไป</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>รายการไดเรกทอรี UCSD {0} มีชื่อที่ไม่ถูกต้องหรือว่างเปล่า</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: ช่วงบล็อกไม่ถูกต้อง {1}..{2}</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: บล็อกข้อมูลอย่างน้อยหนึ่งบล็อกหายไป</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>ไดเร็กทอรี UCSD ประกาศไฟล์ {0} แต่พบรายการที่ถูกต้อง {1}</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: COHERENT ไอโหนด 0 ไม่ถูกต้อง</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: COHERENT inode {1} อยู่นอกรูปภาพ</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: ไฟล์มีขนาดใหญ่เกินไป</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: บล็อก COHERENT {1} อยู่นอกรูปภาพ</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: {1} ไบต์ไม่สามารถอ่านได้</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: บล็อก COHERENT ทางอ้อม {1} อยู่นอกรูปภาพ</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>ส่วนไดเรกทอรี RT-11 {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>ส่วนไดเรกทอรี RT-11 {0} มีขนาดรายการที่ไม่ถูกต้อง</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>รายการ RT-11 ที่บล็อก {0} มีชื่อว่างเปล่า</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>ถึงขีดจำกัดการซ้อนไดเรกทอรี ProDOS แล้ว</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>บล็อกไดเร็กทอรี {0} หายไปหรือวนซ้ำ</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: บล็อกดัชนีหลัก {1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: บล็อกข้อมูล {1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: บล็อกดัชนี {1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>ภาคแค็ตตาล็อก T{0} S{1} หายไปหรือวนซ้ำ</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: ขนาดแค็ตตาล็อกไม่สอดคล้องกัน</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: รายการ T/S T{1} S{2} หายไปหรือเป็นวงจร</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: ภาคข้อมูล T{1} S{2} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>บล็อกไดเรกทอรี {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>รายการไดเรกทอรี MFS ไม่ถูกต้องในบล็อก {0}</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: ข้อมูลเมตาของส้อมทรัพยากรไม่สอดคล้องกัน</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: สายการจัดสรร MFS ไม่ถูกต้อง</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: บล็อก {1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: ภาคข้อมูล {1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>แค็ตตาล็อก HFS ไม่มีบันทึกลีฟที่สามารถอ่านได้</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>ไดเร็กทอรี HFS แบบวนรอบ #{0}</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: บล็อก HFS {1} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: จำเป็นต้องมีขอบเขต HFS เพิ่มเติม มิฉะนั้นข้อมูลขาดหายไป</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>ถึงขีดจำกัดการซ้อนไดเร็กทอรี FAT แล้ว</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: FAT chain ไม่ถูกต้องหรือแบบวนรอบที่คลัสเตอร์ {1}</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>เซกเตอร์ {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>หน้าแค็ตตาล็อกของ Lisa หายไป ชื่อไฟล์ถูกกู้คืนจากแท็กหน้าเท่านั้น</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>เซกเตอร์ไดเรกทอรี {0} หายไป</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: เซกเตอร์ข้อมูล Atari DOS ไม่ถูกต้องหรือหายไป</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>เซกเตอร์ {0} เป็นของไฟล์ {1} คาดว่า {2}</value>
+  </data>
+</root>

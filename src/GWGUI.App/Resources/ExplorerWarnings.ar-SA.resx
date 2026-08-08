@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>تحتوي الكتلة الجذرية {0} على مجموع اختباري غير صالح.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>تم الوصول إلى حد تداخل الدليل.</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>سلسلة دليل غير صالحة أو دورية في الكتلة {0}.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>كتلة إدخال الدليل {0} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: كتلة ملحق الملف غير صالحة {1}.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: AmigaDOS {1} ({2}) مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>كتلة بيانات الملف {0} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>كتلة بيانات OFS {0} لها نوع غير متوقع.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>كتلة الصورة النقطية {0} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>تحتوي كتلة الصورة النقطية {0} على مجموع اختباري غير صالح.</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: كتلة تخصيص CP/M {1} خارج الصورة.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>سلسلة دليل CBM DOS الدورية في {0}/{1}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>قطاع دليل CBM DOS {0}/{1} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: سلسلة بيانات دورية عند {1}/{2}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: قطاع البيانات {1}/{2} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: سلسلة الملفات تتجاوز سعة الصورة.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>واحد أو أكثر من كتل دليل UCSD مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>يحتوي إدخال دليل UCSD {0} على اسم غير صالح أو فارغ.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: نطاق الكتلة غير صالح {1}..{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: كتلة بيانات واحدة أو أكثر مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>يعلن دليل UCSD عن ملفات {0} ولكن تم العثور على {1} إدخالات صالحة.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: inode COHERENT 0 غير صالح.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: العقدة المتماسكة {1} خارج الصورة.</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: الملف كبير جدًا.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: الكتلة المتماسكة {1} خارج الصورة.</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: تعذرت قراءة {1} البايت (البايتات).</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: الكتلة المتماسكة غير المباشرة {1} خارج الصورة.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>مقطع الدليل RT-11 {0} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>يحتوي مقطع الدليل RT-11 {0} على حجم إدخال غير صالح.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>إدخال RT-11 في الكتلة {0} له اسم فارغ.</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>تم الوصول إلى حد تداخل دليل ProDOS.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>كتلة الدليل {0} مفقودة أو دورية.</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: كتلة الفهرس الرئيسية {1} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: كتلة البيانات {1} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: كتلة الفهرس {1} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>قطاع الكتالوج T{0} S{1} مفقود أو دوري.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: حجم الكتالوج غير متناسق.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: قائمة T/S T{1} S{2} مفقودة أو دورية.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: قطاع البيانات T{1} S{2} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>كتلة الدليل {0} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>إدخال دليل MFS غير صالح في الكتلة {0}.</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: بيانات تعريف تفرع المورد غير متناسقة.</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: سلسلة تخصيص MFS غير صالحة.</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: الكتلة {1} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: قطاع البيانات {1} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>لا يحتوي كتالوج HFS على سجلات ورقية قابلة للقراءة.</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>دليل HFS الدوري #{0}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: كتلة HFS {1} مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: هناك حاجة إلى نطاقات HFS إضافية أو أن البيانات مفقودة.</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>تم الوصول إلى حد تداخل دليل FAT.</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: سلسلة FAT غير صالحة أو دورية في المجموعة {1}.</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>القطاع {0} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>صفحات كتالوج Lisa مفقودة؛ تم استرداد أسماء الملفات من علامات الصفحات فقط.</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>قطاع الدليل {0} مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: قطاع بيانات Atari DOS غير صالح أو مفقود.</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>القطاع {0} ينتمي إلى الملف {1}، المتوقع {2}.</value>
+  </data>
+</root>

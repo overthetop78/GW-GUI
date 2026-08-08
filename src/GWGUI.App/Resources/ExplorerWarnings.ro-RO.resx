@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>Blocul rădăcină {0} are o sumă de control nevalidă.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>Limita de imbricare a directorului a fost atinsă.</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>Lanț de directoare nevalid sau ciclic la blocul {0}.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>Blocul de intrare în director {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: Bloc de extensie de fișier nevalid {1}.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: AmigaDOS {1} ({2}) lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>Blocul de date fișier {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>Blocul de date OFS {0} are un tip neașteptat.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>Blocul bitmap {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>Blocul bitmap {0} are o sumă de verificare nevalidă.</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: blocul de alocare CP/M {1} este în afara imaginii.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>Lanțul de directoare CBM DOS ciclic la {0}/{1}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>Sectorul directorului CBM DOS {0}/{1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: lanț de date ciclic la {1}/{2}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: sectorul de date {1}/{2} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: lanțul de fișiere depășește capacitatea imaginii.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>Unul sau mai multe blocuri de directoare UCSD lipsesc.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>Intrarea din directorul UCSD {0} are un nume nevalid sau gol.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: interval de blocuri nevalid {1}...{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: unul sau mai multe blocuri de date lipsesc.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>Directorul UCSD declară {0} fișiere, dar au fost găsite {1} intrări valide.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: inodul COHERENT 0 nevalid.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: inodul COHERENT {1} este în afara imaginii.</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: Fișierul este prea mare.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: blocul COHERENT {1} este în afara imaginii.</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: {1} octeți nu au putut fi citiți.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: bloc COHERENT indirect {1} este în afara imaginii.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>Segmentul de director RT-11 {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>Segmentul de director RT-11 {0} are o dimensiune de intrare nevalidă.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>Intrarea RT-11 din blocul {0} are un nume necompletat.</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>Limita de imbricare a directorului ProDOS a fost atinsă.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>Blocul de director {0} lipsește sau este ciclic.</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: blocul index principal {1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: blocul de date {1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: blocul index {1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>Sectorul catalogului T{0} S{1} lipsește sau este ciclic.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: dimensiunea catalogului este inconsecventă.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: Lista T/S T{1} S{2} lipsește sau este ciclică.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: sectorul de date T{1} S{2} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>Blocul de director {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>Intrare nevalidă în directorul MFS în blocul {0}.</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: metadatele furcii de resurse sunt inconsecvente.</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: lanț de alocare MFS nevalid.</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: blocul {1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: sectorul de date {1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>Catalogul HFS nu conține înregistrări de frunze care pot fi citite.</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>Directorul HFS ciclic #{0}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: blocul HFS {1} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: sunt necesare extensii HFS suplimentare sau lipsesc date.</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>Limita de imbricare a directorului FAT a fost atinsă.</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: lanț FAT nevalid sau ciclic la cluster {1}.</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>Sectorul {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>Lipsesc paginile catalogului Lisa; numele fișierelor au fost recuperate numai din etichetele de pagină.</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>Sectorul directorului {0} lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: sector de date Atari DOS invalid sau lipsește.</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>Sectorul {0} aparține fișierului {1}, așteptat {2}.</value>
+  </data>
+</root>

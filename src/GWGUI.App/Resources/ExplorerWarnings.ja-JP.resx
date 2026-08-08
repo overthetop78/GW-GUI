@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>ルート ブロック {0} に無効なチェックサムがあります。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>ディレクトリのネスト制限に達しました。</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>ブロック {0} のディレクトリ チェーンが無効または循環しています。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>ディレクトリ エントリ ブロック {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: 無効なファイル拡張子ブロック {1}。</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: AmigaDOS {1} ({2}) がありません。</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>ファイル データ ブロック {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>OFS データ ブロック {0} には予期しないタイプがあります。</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>ビットマップ ブロック {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>ビットマップ ブロック {0} に無効なチェックサムがあります。</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: CP/M 割り当てブロック {1} はイメージの外にあります。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>{0}/{1} の循環 CBM DOS ディレクトリ チェーン。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>CBM DOS ディレクトリ セクタ {0}/{1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: {1}/{2} の循環データ チェーン。</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: データ セクター {1}/{2} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: ファイル チェーンがイメージ容量を超えています。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>1 つ以上の UCSD ディレクトリ ブロックが欠落しています。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>UCSD ディレクトリ エントリ {0} の名前が無効または空です。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: 無効なブロック範囲 {1}..{2}。</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: 1 つ以上のデータ ブロックが欠落しています。</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>UCSD ディレクトリは {0} ファイルを宣言していますが、{1} 有効なエントリが見つかりました。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: 無効な COHERENT i ノード 0。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: COHERENT i ノード {1} はイメージの外にあります。</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: ファイルが大きすぎます。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: COHERENT ブロック {1} はイメージの外にあります。</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: {1} バイトを読み取れませんでした。</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: 間接 COHERENT ブロック {1} はイメージの外にあります。</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>RT-11 ディレクトリ セグメント {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>RT-11 ディレクトリ セグメント {0} のエントリ サイズが無効です。</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>ブロック {0} の RT-11 エントリの名前が空です。</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>ProDOS ディレクトリのネスト制限に達しました。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>ディレクトリ ブロック {0} が見つからないか、循環しています。</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: マスター インデックス ブロック {1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: データ ブロック {1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: インデックス ブロック {1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>カタログ セクター T{0} S{1} が欠落しているか、循環しています。</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: カタログ サイズが矛盾しています。</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: T/S リスト T{1} S{2} が欠落しているか、循環しています。</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: データ セクター T{1} S{2} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>ディレクトリ ブロック {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>ブロック {0} の MFS ディレクトリ エントリが無効です。</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: リソース フォークのメタデータが矛盾しています。</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: 無効な MFS 割り当てチェーン。</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: ブロック {1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: データ セクター {1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>HFS カタログには、読み取り可能なリーフ レコードが含まれていません。</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>循環 HFS ディレクトリ #{0}。</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: HFS ブロック {1} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: 追加の HFS エクステントが必要か、データが欠落しています。</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>FAT ディレクトリのネスト制限に達しました。</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: クラスター {1} に無効または循環 FAT チェーンがあります。</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>セクタ {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>Lisa のカタログ ページがありません。ファイル名はページタグからのみ復元されました。</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>ディレクトリ セクター {0} がありません。</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: Atari DOS データ セクターが無効または欠落しています。</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>セクタ {0} はファイル {1} に属しており、{2} が予期されています。</value>
+  </data>
+</root>

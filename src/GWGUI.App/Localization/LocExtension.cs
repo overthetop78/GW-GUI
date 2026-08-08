@@ -12,7 +12,7 @@ public sealed class LocExtension(string key) : MarkupExtension
     public static IReadOnlyList<string> CatalogNames { get; } =
     [
         "Common", "Actions", "Errors", "Shell", "Menus", "Read", "Write", "Conversion",
-        "Visualizer", "Explorer", "Formats", "Advanced", "Tools", "Hardware", "HostTools",
+        "Visualizer", "Explorer", "ExplorerWarnings", "Formats", "Advanced", "Tools", "Hardware", "HostTools",
         "Options", "Profiles", "Logs", "About"
     ];
 
@@ -30,6 +30,11 @@ public sealed class LocExtension(string key) : MarkupExtension
             : $"[{key}]";
         return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
+
+    public static string GetInvariant(string key) =>
+        ResourcesByKey.TryGetValue(key, out var resources)
+            ? resources.GetString(key, CultureInfo.InvariantCulture) ?? $"[{key}]"
+            : $"[{key}]";
 
     public static IReadOnlySet<string> GetDefinedKeys(CultureInfo culture)
     {

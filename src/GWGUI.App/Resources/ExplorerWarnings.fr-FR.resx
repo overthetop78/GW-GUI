@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>Le bloc racine {0} a une somme de contrôle invalide.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>La limite d'imbrication du répertoire a été atteinte.</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>Chaîne de répertoires invalide ou cyclique au bloc {0}.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>Le bloc d'entrée de répertoire {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0} : bloc d'extension de fichier non valide {1}.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0} : le AmigaDOS {1} ({2}) est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>Le bloc de données du fichier {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>Le bloc de données OFS {0} a un type inattendu.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>Le bloc bitmap {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>Le bloc bitmap {0} a une somme de contrôle non valide.</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0} : le bloc d'allocation CP/M {1} est en dehors de l'image.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>Chaîne de répertoires CBM DOS cyclique à {0}/{1}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>Le secteur du répertoire CBM DOS {0}/{1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0} : chaîne de données cyclique à {1}/{2}.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0} : le secteur de données {1}/{2} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0} : la chaîne de fichiers dépasse la capacité de l'image.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>Un ou plusieurs blocs de répertoire UCSD sont manquants.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>L'entrée du répertoire UCSD {0} a un nom non valide ou vide.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0} : plage de blocs non valide {1}..{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0} : il manque un ou plusieurs blocs de données.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>Le répertoire UCSD déclare les fichiers {0} mais {1} entrées valides ont été trouvées.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0} : inode COHERENT 0 non valide.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0} : l'inode COHÉRENT {1} est en dehors de l'image.</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0} : Le fichier est trop volumineux.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0} : le bloc COHERENT {1} est hors de l'image.</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0} : {1} octet(s) n'a pas pu être lu.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0} : le bloc COHÉRENT indirect {1} est hors de l'image.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>Le segment d'annuaire RT-11 {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>Le segment d'annuaire RT-11 {0} a une taille d'entrée non valide.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>L'entrée RT-11 au bloc {0} a un nom vide.</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>La limite d'imbrication du répertoire ProDOS a été atteinte.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>Le bloc de répertoire {0} est manquant ou cyclique.</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0} : le bloc d'index maître {1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0} : le bloc de données {1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0} : le bloc d'index {1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>Le secteur du catalogue T{0} S{1} est manquant ou cyclique.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0} : la taille du catalogue est incohérente.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0} : La liste T/S T{1} S{2} est manquante ou cyclique.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0} : le secteur de données T{1} S{2} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>Le bloc de répertoire {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>Entrée de répertoire MFS non valide dans le bloc {0}.</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0} : les métadonnées de la branche de ressources sont incohérentes.</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0} : chaîne d'allocation MFS non valide.</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0} : le bloc {1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0} : le secteur de données {1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>Le catalogue HFS ne contient aucun enregistrement feuille lisible.</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>Répertoire HFS cyclique #{0}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0} : le bloc HFS {1} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0} : des extensions HFS supplémentaires sont requises ou des données sont manquantes.</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>La limite d'imbrication du répertoire FAT a été atteinte.</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0} : chaîne FAT invalide ou cyclique au cluster {1}.</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>Le secteur {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>Les pages du catalogue Lisa manquent ; les noms de fichiers ont été récupérés uniquement à partir des balises de page.</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>Le secteur d'annuaire {0} est manquant.</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0} : secteur de données Atari DOS invalide ou manquant.</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>Le secteur {0} appartient au fichier {1}, attendu {2}.</value>
+  </data>
+</root>

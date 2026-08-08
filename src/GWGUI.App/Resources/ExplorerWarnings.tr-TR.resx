@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Explorer.Warning.InvalidChecksum">
+    <value>{0} kök bloğunda geçersiz bir sağlama toplamı var.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryNesting">
+    <value>Dizin yerleştirme sınırına ulaşıldı.</value>
+  </data>
+  <data name="Explorer.Warning.InvalidDirectoryChain">
+    <value>{0} bloğunda geçersiz veya döngüsel dizin zinciri.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryEntryMissing">
+    <value>Dizin giriş bloğu {0} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaExtension">
+    <value>{0}: Geçersiz dosya uzantısı bloğu {1}.</value>
+  </data>
+  <data name="Explorer.Warning.AmigaBlock">
+    <value>{0}: AmigaDOS {1} ({2}) eksik.</value>
+  </data>
+  <data name="Explorer.Warning.FileDataMissing">
+    <value>{0} dosya veri bloğu eksik.</value>
+  </data>
+  <data name="Explorer.Warning.OfsType">
+    <value>OFS veri bloğu {0} beklenmeyen bir türe sahip.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapMissing">
+    <value>Bitmap bloğu {0} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.BitmapChecksum">
+    <value>Bitmap bloğu {0} geçersiz bir sağlama toplamına sahip.</value>
+  </data>
+  <data name="Explorer.Warning.CpmAllocation">
+    <value>{0}: CP/M tahsis bloğu {1} görüntünün dışında.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic">
+    <value>{0}/{1} konumunda döngüsel CBM DOS dizin zinciri.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDirectoryMissing">
+    <value>CBM DOS dizin sektörü {0}/{1} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataCyclic">
+    <value>{0}: {1}/{2} adresindeki döngüsel veri zinciri.</value>
+  </data>
+  <data name="Explorer.Warning.CbmDataMissing">
+    <value>{0}: {1}/{2} veri sektörü eksik.</value>
+  </data>
+  <data name="Explorer.Warning.CbmCapacity">
+    <value>{0}: dosya zinciri görüntü kapasitesini aşıyor.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing">
+    <value>Bir veya daha fazla UCSD dizin bloğu eksik.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdEntry">
+    <value>UCSD dizin girişi {0} geçersiz veya boş bir ada sahip.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdRange">
+    <value>{0}: geçersiz blok aralığı {1}..{2}.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlocksMissing">
+    <value>{0}: bir veya daha fazla veri bloğu eksik.</value>
+  </data>
+  <data name="Explorer.Warning.UcsdCount">
+    <value>UCSD dizini {0} dosyalarını bildiriyor ancak {1} geçerli girişler bulundu.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeZero">
+    <value>{0}: Geçersiz COHERENT inode 0.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentInodeOutside">
+    <value>{0}: COHERENT inode {1} görüntünün dışında.</value>
+  </data>
+  <data name="Explorer.Warning.FileTooLarge">
+    <value>{0}: Dosya çok büyük.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentBlock">
+    <value>{0}: COHERENT blok {1} görüntünün dışında.</value>
+  </data>
+  <data name="Explorer.Warning.BytesUnread">
+    <value>{0}: {1} bayt(lar)ı okunamadı.</value>
+  </data>
+  <data name="Explorer.Warning.CoherentIndirect">
+    <value>{0}: dolaylı COHERENT bloğu {1} görüntünün dışında.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11SegmentMissing">
+    <value>RT-11 dizin bölümü {0} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EntrySize">
+    <value>RT-11 dizin bölümü {0} geçersiz giriş boyutuna sahip.</value>
+  </data>
+  <data name="Explorer.Warning.Rt11EmptyName">
+    <value>{0} bloğundaki RT-11 girişinin adı boş.</value>
+  </data>
+  <data name="Explorer.Warning.ProDosNesting">
+    <value>ProDOS dizini yerleştirme sınırına ulaşıldı.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic">
+    <value>{0} dizin bloğu eksik veya döngüsel.</value>
+  </data>
+  <data name="Explorer.Warning.MasterIndexMissing">
+    <value>{0}: ana dizin bloğu {1} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.DataBlockMissing">
+    <value>{0}: {1} veri bloğu eksik.</value>
+  </data>
+  <data name="Explorer.Warning.IndexBlockMissing">
+    <value>{0}: dizin bloğu {1} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogMissing">
+    <value>Katalog sektörü T{0} S{1} eksik veya döngüsel.</value>
+  </data>
+  <data name="Explorer.Warning.CatalogSize">
+    <value>{0}: katalog boyutu tutarsız.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorList">
+    <value>{0}: T/S listesi T{1} S{2} eksik veya döngüsel.</value>
+  </data>
+  <data name="Explorer.Warning.TrackSectorData">
+    <value>{0}: T{1} S{2} veri sektörü eksik.</value>
+  </data>
+  <data name="Explorer.Warning.DirectoryBlockMissing">
+    <value>{0} dizin bloğu eksik.</value>
+  </data>
+  <data name="Explorer.Warning.MfsEntry">
+    <value>{0} bloğunda geçersiz MFS dizini girişi.</value>
+  </data>
+  <data name="Explorer.Warning.ResourceFork">
+    <value>{0}: kaynak çatalı meta verileri tutarsız.</value>
+  </data>
+  <data name="Explorer.Warning.MfsChain">
+    <value>{0}: geçersiz MFS ayırma zinciri.</value>
+  </data>
+  <data name="Explorer.Warning.BlockMissing">
+    <value>{0}: {1} bloğu eksik.</value>
+  </data>
+  <data name="Explorer.Warning.BbcSector">
+    <value>{0}: {1} veri sektörü eksik.</value>
+  </data>
+  <data name="Explorer.Warning.HfsCatalog">
+    <value>HFS kataloğu okunabilir yaprak kaydı içermiyor.</value>
+  </data>
+  <data name="Explorer.Warning.HfsDirectory">
+    <value>Döngüsel HFS dizini #{0}.</value>
+  </data>
+  <data name="Explorer.Warning.HfsBlock">
+    <value>{0}: HFS bloğu {1} eksik.</value>
+  </data>
+  <data name="Explorer.Warning.HfsExtents">
+    <value>{0}: ek HFS kapsamları gerekli veya veriler eksik.</value>
+  </data>
+  <data name="Explorer.Warning.FatNesting">
+    <value>FAT dizini yerleştirme sınırına ulaşıldı.</value>
+  </data>
+  <data name="Explorer.Warning.FatChain">
+    <value>{0}: {1} kümesinde geçersiz veya döngüsel FAT zinciri.</value>
+  </data>
+  <data name="Explorer.Warning.SectorMissing">
+    <value>{0} sektörü eksik.</value>
+  </data>
+  <data name="Explorer.Warning.LisaCatalog">
+    <value>Lisa katalog sayfaları eksik; dosya adları yalnızca sayfa etiketlerinden kurtarıldı.</value>
+  </data>
+  <data name="Explorer.Warning.AtariDirectory">
+    <value>{0} dizin sektörü eksik.</value>
+  </data>
+  <data name="Explorer.Warning.AtariData">
+    <value>{0}: geçersiz veya eksik Atari DOS veri sektörü.</value>
+  </data>
+  <data name="Explorer.Warning.AtariOwner">
+    <value>{0} sektörü {1} dosyasına ait, {2} bekleniyor.</value>
+  </data>
+</root>

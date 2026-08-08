@@ -1,15 +1,18 @@
 param(
     [string[]]$Cultures = @(),
     [string]$CultureCsv = '',
-    [int]$ParallelRequests = 8
+    [int]$ParallelRequests = 8,
+    [string]$Catalog = 'Common',
+    [switch]$MissingOnly
 )
 
 $ErrorActionPreference = 'Stop'
 $repository = Split-Path -Parent $PSScriptRoot
 $resourceDirectory = Join-Path $repository 'src\GWGUI.App\Resources'
-$sourcePath = Join-Path $resourceDirectory 'Strings.en-US.resx'
+$sourcePath = Join-Path $resourceDirectory "$Catalog.en-US.resx"
 
 $languageCodes = [ordered]@{
+    'fr-FR' = 'fr'
     'de-DE' = 'de'; 'it-IT' = 'it'; 'es-ES' = 'es'; 'pl-PL' = 'pl'; 'ru-RU' = 'ru'
     'ja-JP' = 'ja'; 'zh-Hans' = 'zh-CN'; 'zh-Hant' = 'zh-TW'; 'pt-PT' = 'pt-PT'; 'pt-BR' = 'pt-BR'
     'el-GR' = 'el'; 'ko-KR' = 'ko'; 'nl-NL' = 'nl'; 'cs-CZ' = 'cs'; 'hu-HU' = 'hu'
@@ -24,7 +27,7 @@ if ($Cultures.Count -eq 0) { $Cultures = @($languageCodes.Keys) }
 $entries = @($source.root.data)
 
 function Protect-Text([string]$text, [hashtable]$tokens) {
-    $pattern = '\{[^{}]+\}|--[a-z0-9][a-z0-9-]*|(?i)\b(?:gw\.exe|diskdefs\.cfg|SCP|ADF|IMA|IMG|MSA|D64|HFE|MFM|FM|GCR|PLL|TG43|USB|RPM|CRC|MIT|DD|HD|ED|KiB|MiB|SuperCard Pro|Greaseweazle|GW GUI|Commodore|Acorn|Atari ST|AmigaDOS|Amiga|IBM PC|Apple II|Apple Macintosh|NorthStar|Heathkit|Micral N|E-mu Emulator|TYCOM|DEC RX02|Arburg|Victor 9000|Membrain|AED 6200P|QD MO5|Centurion|HxC)\b'
+    $pattern = '__GWGUI_SEPARATOR__|\{[^{}]+\}|--[a-z0-9][a-z0-9-]*|(?i)\b(?:gw\.exe|diskdefs\.cfg|SCP|ADF|IMA|IMG|MSA|D64|HFE|MFM|FM|GCR|PLL|TG43|USB|RPM|CRC|MIT|DD|HD|ED|KiB|MiB|SuperCard Pro|Greaseweazle|GW GUI|Commodore|Acorn|Atari ST|AmigaDOS|Amiga|IBM PC|Apple II|Apple Macintosh|NorthStar|Heathkit|Micral N|E-mu Emulator|TYCOM|DEC RX02|Arburg|Victor 9000|Membrain|AED 6200P|QD MO5|Centurion|HxC)\b'
     $text = [regex]::Replace($text, $pattern, {
         param($match)
         $marker = '__PH{0}__' -f $tokens.Count
@@ -80,6 +83,22 @@ function Translate-Batch([string[]]$texts, [string]$targetLanguage) {
 }
 
 function Translate-All([string[]]$texts, [string]$targetLanguage) {
+    if ($texts.Count -gt 1 -and -not ($texts | Where-Object { $_ -match "`r?`n" })) {
+        $separator = '__GWGUI_SEPARATOR__'
+        $tokens = @{}
+        $query = Protect-Text ($texts -join $separator) $tokens
+        $uri = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' +
+            [uri]::EscapeDataString($targetLanguage) + '&dt=t'
+        try {
+            $response = Invoke-RestMethod -Uri $uri -Method Post -ContentType 'application/x-www-form-urlencoded; charset=UTF-8' -Body @{ q = $query } -TimeoutSec 45
+            $translated = [System.Net.WebUtility]::HtmlDecode((Get-TranslatedText $response)).Trim()
+            foreach ($marker in $tokens.Keys) { $translated = $translated.Replace($marker, $tokens[$marker]) }
+            $combined = @($translated.Split($separator, [System.StringSplitOptions]::None))
+            if ($combined.Count -eq $texts.Count) { return $combined }
+        }
+        catch { Write-Warning "Combined translation failed; falling back to individual requests." }
+    }
+
     Add-Type -AssemblyName System.Net.Http
     $client = [System.Net.Http.HttpClient]::new()
     $client.Timeout = [TimeSpan]::FromSeconds(45)
@@ -119,13 +138,32 @@ function Translate-All([string[]]$texts, [string]$targetLanguage) {
 
 foreach ($culture in $Cultures) {
     if (-not $languageCodes.Contains($culture)) { throw "Unsupported culture: $culture" }
-    Write-Host "[$culture] translating $($entries.Count) resources..."
-    $translatedValues = @(Translate-All @($entries | ForEach-Object { [string]$_.value }) $languageCodes[$culture])
-    if ($translatedValues.Count -ne $entries.Count) { throw "[$culture] incomplete translation." }
+    $targetPath = Join-Path $resourceDirectory "$Catalog.$culture.resx"
+    $targetExists = Test-Path -LiteralPath $targetPath
+    [xml]$target = if ($targetExists) {
+        Get-Content -LiteralPath $targetPath -Raw -Encoding UTF8
+    } else {
+        Get-Content -LiteralPath $sourcePath -Raw -Encoding UTF8
+    }
+    $existing = if ($targetExists) { @($target.root.data | ForEach-Object { [string]$_.name }) } else { @() }
+    $selectedEntries = if ($MissingOnly) { @($entries | Where-Object { [string]$_.name -notin $existing }) } else { $entries }
+    Write-Host "[$culture] translating $($selectedEntries.Count) resources..."
+    if ($selectedEntries.Count -eq 0) { continue }
+    $translatedValues = @(Translate-All @($selectedEntries | ForEach-Object { [string]$_.value }) $languageCodes[$culture])
+    if ($translatedValues.Count -ne $selectedEntries.Count) { throw "[$culture] incomplete translation." }
 
-    [xml]$target = Get-Content -LiteralPath $sourcePath -Raw -Encoding UTF8
-    for ($i = 0; $i -lt $entries.Count; $i++) { $target.root.data[$i].value = $translatedValues[$i] }
-    $targetPath = Join-Path $resourceDirectory "Strings.$culture.resx"
+    for ($i = 0; $i -lt $selectedEntries.Count; $i++) {
+        $name = [string]$selectedEntries[$i].name
+        $node = @($target.root.data | Where-Object { [string]$_.name -eq $name })[0]
+        if ($null -eq $node) {
+            $node = $target.CreateElement('data')
+            $node.SetAttribute('name', $name)
+            $valueNode = $target.CreateElement('value')
+            $node.AppendChild($valueNode) | Out-Null
+            $target.root.AppendChild($node) | Out-Null
+        }
+        $node.value = $translatedValues[$i]
+    }
     $settings = [System.Xml.XmlWriterSettings]::new()
     $settings.Encoding = [System.Text.UTF8Encoding]::new($false)
     $settings.Indent = $true
