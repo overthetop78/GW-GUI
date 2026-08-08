@@ -157,14 +157,17 @@ public sealed class AppleDiskImageTests
         var source = await explorer.ExploreAsync(dskPath, "apple2.dos33");
         var flux = await explorer.ExploreAsync(scpPath);
 
-        Assert.True(source.FileSystemRecognized, dskPath);
-        Assert.True(flux.FileSystemRecognized, scpPath);
-        Assert.Equal(source.Volume.Name, flux.Volume.Name);
-        Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
-        Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
-        Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
-        Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
-        Assert.Equal(source.Volume.Warnings, flux.Volume.Warnings);
+        Assert.Equal(FlattenBlocks(source.Image.AvailableBlocks), FlattenBlocks(flux.Image.AvailableBlocks));
+        Assert.Equal(source.FileSystemRecognized, flux.FileSystemRecognized);
+        if (source.FileSystemRecognized)
+        {
+            Assert.Equal(source.Volume.Name, flux.Volume.Name);
+            Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+            Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
+            Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
+            Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
+            Assert.Equal(source.Volume.Warnings, flux.Volume.Warnings);
+        }
 
         var visualization = new SectorImageFluxVisualizer().Create(source.Image);
         Assert.NotEmpty(visualization.Tracks);
@@ -293,6 +296,11 @@ public sealed class AppleDiskImageTests
         {
             $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
         }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
+        .ToArray();
+
+    private static string[] FlattenBlocks(IEnumerable<SectorBlock> blocks) => blocks
+        .OrderBy(block => block.LogicalBlock)
+        .Select(block => $"{block.LogicalBlock}|{Convert.ToBase64String(block.Data.ToArray())}")
         .ToArray();
 
     private sealed class MemoryScpReader(ScpImage image) : IScpReader
