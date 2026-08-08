@@ -22,18 +22,42 @@ public sealed class DiskImageExplorerTests
     }
 
     [Theory]
-    [InlineData("Drawer", FileSystemEntryKind.Directory, ExplorerIconKind.Folder)]
-    [InlineData("ReadMe.txt", FileSystemEntryKind.File, ExplorerIconKind.Text)]
-    [InlineData("Picture.iff", FileSystemEntryKind.File, ExplorerIconKind.Image)]
-    [InlineData("Music.mod", FileSystemEntryKind.File, ExplorerIconKind.Audio)]
-    [InlineData("Files.lha", FileSystemEntryKind.File, ExplorerIconKind.Archive)]
-    [InlineData("Program.exe", FileSystemEntryKind.File, ExplorerIconKind.Program)]
-    [InlineData("Disk.adf", FileSystemEntryKind.File, ExplorerIconKind.DiskImage)]
-    [InlineData("Alias", FileSystemEntryKind.Link, ExplorerIconKind.Link)]
-    public void ExplorerUsesDistinctIconsForEntryTypes(string name, FileSystemEntryKind kind, ExplorerIconKind expected)
+    [InlineData("Drawer", FileSystemEntryKind.Directory, ExplorerFileSystemFamily.Unknown, ExplorerIconKind.Folder)]
+    [InlineData("ReadMe.txt", FileSystemEntryKind.File, ExplorerFileSystemFamily.IbmPc, ExplorerIconKind.Text)]
+    [InlineData("Picture.iff", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.Image)]
+    [InlineData("Music.mod", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.Audio)]
+    [InlineData("Files.lha", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.Archive)]
+    [InlineData("Program.exe", FileSystemEntryKind.File, ExplorerFileSystemFamily.IbmPc, ExplorerIconKind.Program)]
+    [InlineData("Disk.adf", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.DiskImage)]
+    [InlineData("Alias", FileSystemEntryKind.Link, ExplorerFileSystemFamily.Unknown, ExplorerIconKind.Link)]
+    public void ExplorerUsesDistinctIconsForEntryTypes(string name, FileSystemEntryKind kind, ExplorerFileSystemFamily family, ExplorerIconKind expected)
     {
         var entry = new FileSystemEntry(name, kind, 0, null, string.Empty, 0, 0, true, []);
-        Assert.Equal(expected, ExplorerFileIconClassifier.IconFor(entry));
+        Assert.Equal(expected, ExplorerFileIconClassifier.IconFor(entry, family));
+    }
+
+    [Fact]
+    public void ProgramExtensionsAreInterpretedForTheCurrentMachineOnly()
+    {
+        var batch = new FileSystemEntry("START.BAT", FileSystemEntryKind.File, 0, null, string.Empty, 0, 0, true, []);
+        var atariProgram = new FileSystemEntry("GAME.PRG", FileSystemEntryKind.File, 0, null, string.Empty, 0, 0, true, []);
+
+        Assert.Equal(ExplorerIconKind.Program, ExplorerFileIconClassifier.IconFor(batch, ExplorerFileSystemFamily.IbmPc));
+        Assert.Equal(ExplorerIconKind.File, ExplorerFileIconClassifier.IconFor(batch, ExplorerFileSystemFamily.Amiga));
+        Assert.Equal(ExplorerIconKind.Program, ExplorerFileIconClassifier.IconFor(atariProgram, ExplorerFileSystemFamily.AtariSt));
+        Assert.Equal(ExplorerIconKind.File, ExplorerFileIconClassifier.IconFor(atariProgram, ExplorerFileSystemFamily.IbmPc));
+    }
+
+    [Theory]
+    [InlineData(ExplorerFileSystemFamily.AppleDos, "Applesoft BASIC", ExplorerIconKind.Program)]
+    [InlineData(ExplorerFileSystemFamily.ProDos, "Text", ExplorerIconKind.Text)]
+    [InlineData(ExplorerFileSystemFamily.Commodore, "PRG", ExplorerIconKind.Program)]
+    [InlineData(ExplorerFileSystemFamily.Macintosh, "APPL", ExplorerIconKind.Program)]
+    [InlineData(ExplorerFileSystemFamily.Macintosh, "PICT", ExplorerIconKind.Image)]
+    public void NativeCatalogTypesTakePriority(ExplorerFileSystemFamily family, string nativeType, ExplorerIconKind expected)
+    {
+        var entry = new FileSystemEntry("NO_EXTENSION", FileSystemEntryKind.File, 0, null, nativeType, 0, 0, true, []);
+        Assert.Equal(expected, ExplorerFileIconClassifier.IconFor(entry, family));
     }
 
     [Theory]

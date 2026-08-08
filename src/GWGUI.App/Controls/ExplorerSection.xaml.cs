@@ -37,10 +37,10 @@ public sealed class ExplorerFolderItem
 
 public sealed class ExplorerContentItem
 {
-    public ExplorerContentItem(FileSystemEntry entry)
+    public ExplorerContentItem(FileSystemEntry entry, ExplorerFileSystemFamily family = ExplorerFileSystemFamily.Unknown)
     {
         Entry = entry;
-        IconKind = ExplorerFileIconClassifier.IconFor(entry);
+        IconKind = ExplorerFileIconClassifier.IconFor(entry, family);
         TypeText = LocExtension.Get(ExplorerFileIconClassifier.TypeResourceKeyFor(IconKind));
     }
 
@@ -50,57 +50,6 @@ public sealed class ExplorerContentItem
     public string TypeText { get; }
     public string SizeText => Entry.Kind == FileSystemEntryKind.Directory ? string.Empty : ExplorerFormatting.FormatBytes(Entry.Size);
     public string ModifiedText => Entry.Modified?.LocalDateTime.ToString("g") ?? "—";
-}
-
-public static class ExplorerFileIconClassifier
-{
-    private static readonly HashSet<string> Text = new(StringComparer.OrdinalIgnoreCase) { ".txt", ".nfo", ".info", ".doc", ".guide", ".readme", ".asm", ".s", ".c", ".h", ".bas", ".ini", ".cfg", ".xml", ".html" };
-    private static readonly HashSet<string> Images = new(StringComparer.OrdinalIgnoreCase) { ".iff", ".ilbm", ".lbm", ".bmp", ".gif", ".jpg", ".jpeg", ".png", ".pcx", ".neo", ".pi1", ".pi2", ".pi3", ".pntg" };
-    private static readonly HashSet<string> Audio = new(StringComparer.OrdinalIgnoreCase) { ".mod", ".med", ".xm", ".s3m", ".wav", ".8svx", ".voc", ".snd", ".sid" };
-    private static readonly HashSet<string> Archives = new(StringComparer.OrdinalIgnoreCase) { ".lha", ".lzh", ".zip", ".arc", ".zoo", ".sit", ".dms", ".tar", ".gz" };
-    private static readonly HashSet<string> Programs = new(StringComparer.OrdinalIgnoreCase) { ".exe", ".com", ".bat", ".cmd", ".prg", ".ttp", ".tos", ".app", ".library", ".device", ".handler" };
-    private static readonly HashSet<string> DiskImages = new(StringComparer.OrdinalIgnoreCase) { ".adf", ".scp", ".hfe", ".ima", ".img", ".st", ".msa", ".atr", ".d64", ".d71", ".d81", ".dsk", ".edsk", ".ipf", ".d13", ".do", ".po", ".2mg", ".image", ".dc42", ".nib", ".woz" };
-
-    public static ExplorerIconKind IconFor(FileSystemEntry entry)
-    {
-        if (entry.Kind == FileSystemEntryKind.Directory) return ExplorerIconKind.Folder;
-        if (entry.Kind == FileSystemEntryKind.Link) return ExplorerIconKind.Link;
-        var extension = Path.GetExtension(entry.Name);
-        if (Text.Contains(extension) || LooksLikeText(entry.Content)) return ExplorerIconKind.Text;
-        if (Images.Contains(extension) || HasFormType(entry.Content, "ILBM")) return ExplorerIconKind.Image;
-        if (Audio.Contains(extension) || HasFormType(entry.Content, "8SVX")) return ExplorerIconKind.Audio;
-        if (Archives.Contains(extension)) return ExplorerIconKind.Archive;
-        if (Programs.Contains(extension) || IsAmigaExecutable(entry.Content) || entry.Comment.StartsWith("PRG", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Program;
-        if (DiskImages.Contains(extension)) return ExplorerIconKind.DiskImage;
-        return ExplorerIconKind.File;
-    }
-
-    public static string TypeResourceKeyFor(ExplorerIconKind kind) => kind switch
-    {
-        ExplorerIconKind.Folder => "Explorer.Directory",
-        ExplorerIconKind.Text => "Explorer.Type.Text",
-        ExplorerIconKind.Image => "Explorer.Type.Image",
-        ExplorerIconKind.Audio => "Explorer.Type.Audio",
-        ExplorerIconKind.Archive => "Explorer.Type.Archive",
-        ExplorerIconKind.Program => "Explorer.Type.Program",
-        ExplorerIconKind.DiskImage => "Explorer.Type.DiskImage",
-        ExplorerIconKind.Link => "Explorer.Link",
-        _ => "Explorer.File"
-    };
-
-    private static bool IsAmigaExecutable(IReadOnlyList<byte>? data) => data is { Count: >= 4 } && data[0] == 0 && data[1] == 0 && data[2] == 3 && data[3] == 0xF3;
-
-    private static bool HasFormType(IReadOnlyList<byte>? data, string type) => data is { Count: >= 12 } &&
-        data[0] == (byte)'F' && data[1] == (byte)'O' && data[2] == (byte)'R' && data[3] == (byte)'M' &&
-        data.Skip(8).Take(4).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(type));
-
-    private static bool LooksLikeText(IReadOnlyList<byte>? data)
-    {
-        if (data is not { Count: > 0 }) return false;
-        var sample = data.Take(Math.Min(data.Count, 512)).ToArray();
-        var printable = sample.Count(value => value is 9 or 10 or 13 || value >= 32 && value < 127);
-        return printable >= sample.Length * 0.9;
-    }
 }
 
 public static class ExplorerFormatting
@@ -204,10 +153,11 @@ public partial class ExplorerSection : UserControl
 
     private void ShowContents(IEnumerable<FileSystemEntry> entries)
     {
+        var family = _document is null ? ExplorerFileSystemFamily.Unknown : ExplorerFileIconClassifier.FamilyFor(_document);
         ContentsList.ItemsSource = entries
             .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
             .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
-            .Select(entry => new ExplorerContentItem(entry)).ToArray();
+            .Select(entry => new ExplorerContentItem(entry, family)).ToArray();
         ContentsList.SelectedItem = null;
         if (_document is not null) DetailsPanel.ShowDisk(_document);
     }
