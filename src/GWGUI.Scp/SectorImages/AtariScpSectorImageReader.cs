@@ -1,4 +1,5 @@
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Images;
 
 namespace GWGUI.Scp.SectorImages;
 
@@ -10,6 +11,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var atari8 = formatId?.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) == true;
         var atariSt = formatId?.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) == true;
         var amstrad = formatId?.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase) == true;
+        var ibm = formatId?.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) == true;
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         foreach (var track in scp.Tracks)
         {
@@ -38,15 +40,31 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var cylinders = candidates.Keys.Max(address => address.Cylinder) + 1; var heads = candidates.Keys.Max(address => address.Head) + 1;
         var sectorsPerTrack = candidates.Keys.GroupBy(address => (address.Cylinder, address.Head)).Select(group => group.Select(item => item.Number).Distinct().Count())
             .GroupBy(count => count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
+        if (sectorSize == 512)
+        {
+            var boot = BestData(candidates, new(0, 0, 1));
+            var fat = BestData(candidates, new(0, 0, 2));
+            var fatMedia = fat.Length > 0 ? fat[0] : (byte)0;
+            var detectedAsIbm = ibm
+                ? IbmPcImageReader.TryDetectFluxGeometry(boot, fatMedia, out var detected)
+                : IbmPcImageReader.TryIdentifyFluxGeometry(boot, fatMedia, out detected);
+            if (detectedAsIbm)
+            {
+                ibm = true;
+                cylinders = detected.Cylinders; heads = detected.Heads; sectorsPerTrack = detected.SectorsPerTrack;
+            }
+        }
         var is8Bit = atari8 || (!atariSt && sectorSize is 128 or 256 && heads == 1 && sectorsPerTrack is 18 or 26);
         var resolvedFormat = formatId ?? (is8Bit
             ? (sectorSize, sectorsPerTrack) switch { (128, 18) => "atari.90", (128, 26) => "atari.130", (256, 18) => "atari.180", _ => $"atari.scp.{sectorSize}.{sectorsPerTrack}" }
             : $"atarist.{(cylinders * heads * sectorsPerTrack * sectorSize) / 1024}");
+        if (ibm) resolvedFormat = IbmPcImageReader.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, sectorSize);
         var blocks = new List<SectorBlock>();
         var sectorOrder = candidates.Keys.Select(address => address.Number).Distinct().OrderBy(number => number).ToArray();
         foreach (var (address, values) in candidates)
         {
             if (!amstrad && address.Number > sectorsPerTrack) continue;
+            if (address.Cylinder >= cylinders || address.Head >= heads) continue;
             var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
             var sectorIndex = amstrad ? Array.IndexOf(sectorOrder, address.Number) : address.Number - 1;
             if (sectorIndex < 0 || sectorIndex >= sectorsPerTrack) continue;
@@ -59,4 +77,13 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     }
 
     private static double Score(FluxDecodeResult result) => (result.Sectors?.Count(sector => sector.Data is not null) ?? 0) * 10 + result.Confidence;
+
+    private static byte[] BestData(IReadOnlyDictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates, SectorAddress address)
+    {
+        if (!candidates.TryGetValue(address, out var values)) return [];
+        return values.OrderByDescending(value => value.Sector.IntegrityValid == true)
+            .ThenByDescending(value => value.Sector.IntegrityValid is null)
+            .Select(value => value.Sector.Data?.ToArray() ?? [])
+            .FirstOrDefault(data => data.Length > 0) ?? [];
+    }
 }

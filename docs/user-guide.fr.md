@@ -64,3 +64,5 @@ La commande exacte et les sorties de `gw` sont intégrées en bas de la fenêtre
 - ZIP portable : la présence de `portable.flag` place réglages, journaux et Host Tools gérés dans le dossier `Data` voisin de l’application.
 
 GW GUI n’envoie aucune télémétrie.
+
+L’Explorateur prend aussi en charge IBM PC FAT12 sur IMG, IMA et SCP, des anciennes images DOS 160 Kio sans BPB jusqu’aux géométries 2,88 Mio. La détection automatique distingue IBM PC d’Atari malgré leur utilisation commune de FAT12.

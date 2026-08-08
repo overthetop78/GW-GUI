@@ -142,3 +142,10 @@ La classification détaillée, les prérequis et les tâches nécessitant l’ai
 - `scripts/test-atari-corpus.ps1` valide le corpus local ignoré par Git. Les onze ATR et onze images ST/MSA compatibles sont explorés; quatorze couples source/SCP sont comparés secteur par secteur sans aucune différence. Les encodeurs/décodeurs ISO FM et MFM couvrent notamment 18×128, 26×128, 18×256 et 9/10/11/18×512 octets.
 - La validation du corpus Amiga DD/HD a été rejouée après l’ajout du routage automatique Atari : les sept couples ADF/SCP restent intégralement valides.
 - État après cette validation : 373 tests automatisés réussis, plus les validations opt-in des corpus Atari et Amiga décrites ci-dessus.
+
+### IBM PC FAT12
+
+- L’Explorateur ouvre directement les images sectorielles IMG/IMA de 160, 180, 320, 360, 720, 800, 1 200, 1 440, 1 680 et 2 880 Kio, ainsi que les captures SCP ISO FM/MFM correspondantes.
+- Le moteur FAT12 est partagé avec Atari sans confondre les familles affichées. IBM PC est identifié par le BPB et l’OEM DOS; les anciennes disquettes DOS sans BPB utilisent leur géométrie et le descripteur de média FAT.
+- Le corpus local valide 39 images IMG et 20 captures SCP IBM PC, en sélection explicite comme en détection automatique. Le nom du volume, les dossiers, fichiers, tailles, dates, contenus et l’espace libre sont exposés en lecture seule.
+- État après cette phase : 393 tests automatisés réussis; les validations séparées des corpus IBM PC et Atari réussissent également.

@@ -10,7 +10,7 @@ public sealed class FileSystemRegistry
         new Readers.AmstradCpmFileSystemReader(),
         new Readers.CpmFileSystemReader(),
         new Readers.CommodoreDosFileSystemReader(),
-        new Readers.AtariFat12FileSystemReader(),
+        new Readers.Fat12FileSystemReader(),
         new Readers.AtariDosFileSystemReader()
     ];
     public IReadOnlySet<string> SupportedFormatIds => Readers

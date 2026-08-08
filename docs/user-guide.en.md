@@ -64,3 +64,5 @@ The exact command and `gw` output appear inside the lower console, which can be 
 - Portable ZIP: `portable.flag` places settings, logs and managed Host Tools in the adjacent `Data` directory.
 
 GW GUI sends no telemetry.
+
+Disk Explorer also supports IBM PC FAT12 on IMG, IMA and SCP, from legacy 160 KiB DOS images without a BPB through 2.88 MiB geometries. Automatic detection distinguishes IBM PC from Atari despite their shared use of FAT12.

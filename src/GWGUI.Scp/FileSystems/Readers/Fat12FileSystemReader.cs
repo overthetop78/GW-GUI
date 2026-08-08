@@ -4,28 +4,32 @@ using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.FileSystems.Readers;
 
-public sealed class AtariFat12FileSystemReader : IFileSystemReader
+public sealed class Fat12FileSystemReader : IFileSystemReader
 {
-    public string Id => "atari-fat12";
+    public string Id => "fat12";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880", "atarist.1440" };
+    {
+        "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880", "atarist.1440",
+        "ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan"
+    };
 
     public bool CanRead(SectorImage image)
     {
         if (image.BlockSize != 512 || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 64) return false;
-        return TryReadLayout(boot.Data.ToArray(), image.BlockCount, out _);
+        return TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out _);
     }
 
     public FileSystemVolume Read(SectorImage image)
     {
-        if (!image.TryGetBlock(0, out var boot) || !TryReadLayout(boot.Data.ToArray(), image.BlockCount, out var layout))
-            throw new InvalidDataException("The image does not contain a supported Atari ST FAT12 file system.");
+        if (!image.TryGetBlock(0, out var boot) || !TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout))
+            throw new InvalidDataException("The image does not contain a supported FAT12 file system.");
         var warnings = new List<string>(); var fat = ReadSectors(image, layout.ReservedSectors, layout.SectorsPerFat, warnings);
         var root = ReadSectors(image, layout.RootStart, layout.RootSectors, warnings);
         var entries = ReadDirectory(image, root, fat, layout, warnings, 0, new HashSet<int>());
         var freeClusters = Enumerable.Range(2, Math.Max(0, layout.ClusterCount - 2)).Count(cluster => ReadFat12(fat, cluster) == 0);
         var label = ReadVolumeLabel(root) ?? ReadAscii(boot.Data, 43, 11).Trim();
-        return new(label, "Atari TOS FAT12", image.Capacity, (long)freeClusters * layout.SectorsPerCluster * 512,
+        var fileSystemName = image.FormatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12" : "Atari TOS FAT12";
+        return new(label, fileSystemName, image.Capacity, (long)freeClusters * layout.SectorsPerCluster * 512,
             null, null, entries, warnings);
     }
 
@@ -81,17 +85,39 @@ public sealed class AtariFat12FileSystemReader : IFileSystemReader
         return output;
     }
 
-    private static bool TryReadLayout(ReadOnlySpan<byte> boot, int availableSectors, out Layout layout)
+    private static bool TryReadLayout(ReadOnlySpan<byte> boot, int availableSectors, string formatId, out Layout layout)
     {
         layout = default; var bytes = BinaryPrimitives.ReadUInt16LittleEndian(boot[11..]); var cluster = boot[13];
         var reserved = BinaryPrimitives.ReadUInt16LittleEndian(boot[14..]); var fats = boot[16];
         var roots = BinaryPrimitives.ReadUInt16LittleEndian(boot[17..]); var total = BinaryPrimitives.ReadUInt16LittleEndian(boot[19..]);
         if (total == 0) total = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(boot[32..])));
         var fatSectors = BinaryPrimitives.ReadUInt16LittleEndian(boot[22..]);
-        if (bytes != 512 || cluster == 0 || reserved == 0 || fats == 0 || roots == 0 || total == 0 || total > availableSectors || fatSectors == 0) return false;
+        if (bytes != 512 || cluster == 0 || reserved == 0 || fats == 0 || roots == 0 || total == 0 || total > availableSectors || fatSectors == 0)
+            return TryReadLegacyIbmLayout(formatId, availableSectors, out layout);
         var rootSectors = (roots * 32 + 511) / 512; var rootStart = reserved + fats * fatSectors; var dataStart = rootStart + rootSectors;
         if (dataStart >= total) return false; var clusters = (total - dataStart) / cluster;
         if (clusters >= 4085) return false; layout = new(reserved, fatSectors, rootStart, rootSectors, dataStart, cluster, clusters); return true;
+    }
+
+    private static bool TryReadLegacyIbmLayout(string formatId, int availableSectors, out Layout layout)
+    {
+        layout = default;
+        var parameters = formatId.ToLowerInvariant() switch
+        {
+            "ibm.160" => (Total: 320, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 1),
+            "ibm.180" => (Total: 360, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 2),
+            "ibm.320" => (Total: 640, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 1),
+            "ibm.360" => (Total: 720, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 2),
+            _ => default
+        };
+        if (parameters.Total == 0 || availableSectors < parameters.Total) return false;
+        const int reserved = 1, fats = 2;
+        var rootSectors = (parameters.RootEntries * 32 + 511) / 512;
+        var rootStart = reserved + fats * parameters.SectorsPerFat;
+        var dataStart = rootStart + rootSectors;
+        var clusters = (parameters.Total - dataStart) / parameters.SectorsPerCluster;
+        layout = new(reserved, parameters.SectorsPerFat, rootStart, rootSectors, dataStart, parameters.SectorsPerCluster, clusters);
+        return true;
     }
 
     private static int ReadFat12(ReadOnlySpan<byte> fat, int cluster)

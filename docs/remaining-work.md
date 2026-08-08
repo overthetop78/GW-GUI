@@ -244,3 +244,5 @@ Validations différées pour le moment :
 8. Revenir plus tard aux validations Windows 11 et accessibilité humaine.
 
 Les étapes 1 à 5 peuvent être réalisées dans le dépôt sans matériel supplémentaire. L’étape 6 utilise le matériel et la disquette de test de l’utilisateur; l’étape 7 dépend des captures disponibles. L’étape 8 est volontairement différée.
+
+IBM PC FAT12 sur IMG/IMA/SCP est maintenant réalisé et validé. Restent pour cette famille les conteneurs protégés ou structurés distincts (`86F`, `TD0`, `CP2`, etc.) et les systèmes de fichiers autres que FAT12; ils ne doivent pas être présentés comme explorables tant que leur lecteur interne n’est pas ajouté.
