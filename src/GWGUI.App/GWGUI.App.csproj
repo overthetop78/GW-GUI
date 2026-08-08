@@ -34,6 +34,7 @@
     <Content Include="..\..\docs\user-guide.fr.md" Link="Documentation\user-guide.fr.md" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\docs\user-guide.en.md" Link="Documentation\user-guide.en.md" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\docs\images\*.png" Link="Documentation\images\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\DiskDefinitions\built-in.cfg" CopyToOutputDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />
   </ItemGroup>
 

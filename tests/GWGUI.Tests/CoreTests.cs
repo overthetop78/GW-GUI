@@ -1226,7 +1226,7 @@ public sealed class CoreTests
     {
         var catalog = new BuiltInImageFormatCatalog();
         string[] ibm = ["ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan"];
-        string[] atari = ["atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.880"];
+        string[] atari = ["atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880"];
 
         Assert.All(ibm.Concat(atari), id => Assert.Contains(catalog.Formats, format => format.Id == id));
         Assert.Contains(catalog.Formats, format => format.Id == "amiga.amigados_hd");
@@ -1800,6 +1800,32 @@ public sealed class CoreTests
         EnabledOption[] options = [new("--tracks", "c=0-79:h=0-1"), new("--out-tracks", "c=0-39:h=0"), new("--adjust-speed", "300rpm"), new("--pll", "period=5:phase=60"), new("--reverse")];
         var command = ConversionCommandBuilder.Build("gw.exe", "source.scp", output, options);
         Assert.Equal(["--format", "ibm.720", "--tracks", "c=0-79:h=0-1", "--out-tracks", "c=0-39:h=0", "--adjust-speed", "300rpm", "--pll", "period=5:phase=60", "--reverse", "source.scp", "out/disk.ima"], command.Arguments);
+    }
+
+    [Fact]
+    public void AtariSt810CommandsUseTheBundledDiskDefinition()
+    {
+        var read = ReadCommandBuilder.Build(new ReadRequest("gw.exe", "disk.st", ReadResultKind.KnownFormat, "atarist.810", []));
+        var write = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.st", "atarist.810", []));
+        var convert = ConversionCommandBuilder.Build("gw.exe", "source.scp", new("atarist.810", ".st", "disk.st", true));
+
+        foreach (var command in new[] { read, write, convert })
+        {
+            Assert.Contains("--diskdefs", command.Arguments);
+            Assert.Contains(BuiltInDiskDefinitions.FilePath, command.Arguments);
+            Assert.Contains("atarist.810", command.Arguments);
+        }
+    }
+
+    [Fact]
+    public void CustomDiskDefinitionOverridesTheBundledDefinition()
+    {
+        EnabledOption[] options = [new("--diskdefs", "custom.cfg")];
+        var command = WriteCommandBuilder.Build(new WriteRequest("gw.exe", "disk.st", "atarist.810", options));
+
+        Assert.Equal(1, command.Arguments.Count(argument => argument == "--diskdefs"));
+        Assert.Contains("custom.cfg", command.Arguments);
+        Assert.DoesNotContain(BuiltInDiskDefinitions.FilePath, command.Arguments);
     }
 
     [Theory]

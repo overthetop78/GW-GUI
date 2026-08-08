@@ -48,6 +48,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
 
     private static bool IsSupported(DiskFormat format, GwFormatCapabilities capabilities)
     {
+        if (BuiltInDiskDefinitions.Supports(format.Id)) return true;
         var gwFormat = GwFormatArgument.FromCatalogId(format.Id);
         return gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
     }
@@ -120,6 +121,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("atarist.440", "Atari ST", "Atari ST — 440 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-440", ".scp", ".st", ".msa", ".hfe"),
             F("atarist.720", "Atari ST", "Atari ST — 720 KiB", [E(".st", "Extension.st", "Atari ST image", true), E(".msa", "Extension.msa", "Magic Shadow Archiver")], true, "ST-720", ".scp", ".st", ".msa", ".hfe"),
             F("atarist.800", "Atari ST", "Atari ST — 800 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-800", ".scp", ".st", ".msa", ".hfe"),
+            F("atarist.810", "Atari ST", "Atari ST — 810 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-810", ".scp", ".st", ".msa", ".hfe"),
             F("atarist.880", "Atari ST", "Atari ST — 880 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-880", ".scp", ".st", ".msa", ".hfe"),
             F("atarist.1440", "Atari ST", "Atari ST — 1.44 MiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-1440", ".scp", ".st", ".hfe"),
             F("atari.90", "Atari 8-bit", "Atari 8-bit — 90 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-90", ".scp", ".atr", ".hfe"),

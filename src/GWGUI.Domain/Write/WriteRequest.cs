@@ -25,7 +25,7 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
             return Result(extension, "acorn.adfs.800", FormatConfidence.Certain, candidates, "Detection.AcornSize");
         if (extension == ".st")
         {
-            var id = knownLength switch { 368640 => "atarist.360", 409600 => "atarist.400", 450560 => "atarist.440", 737280 => "atarist.720", 819200 => "atarist.800", 901120 => "atarist.880", 1474560 => "atarist.1440", _ => null };
+            var id = knownLength switch { 368640 => "atarist.360", 409600 => "atarist.400", 450560 => "atarist.440", 737280 => "atarist.720", 819200 => "atarist.800", 829440 => "atarist.810", 901120 => "atarist.880", 1474560 => "atarist.1440", _ => null };
             return id is null ? new(extension, null, FormatConfidence.Ambiguous, candidates, "Detection.AtariUnknownSize") : Result(extension, id, FormatConfidence.Certain, candidates, "Detection.AtariSize");
         }
         if (extension == ".msa")
@@ -115,6 +115,7 @@ public static class WriteCommandBuilder
         if (string.IsNullOrWhiteSpace(request.SourcePath)) throw new ArgumentException("A source image is required.");
         GwOptionValidator.Validate(request.Options);
         var arguments = new List<string>();
+        BuiltInDiskDefinitions.AddArgumentIfRequired(arguments, request.FormatId, request.Options);
         Add(arguments, "--device", request.Device); Add(arguments, "--drive", request.Drive); Add(arguments, "--format", GwFormatArgument.FromCatalogId(request.FormatId));
         if (request.DisableVerify) arguments.Add("--no-verify");
         foreach (var option in request.Options) { arguments.Add(option.Argument); if (!string.IsNullOrWhiteSpace(option.Value)) arguments.Add(option.Value); }

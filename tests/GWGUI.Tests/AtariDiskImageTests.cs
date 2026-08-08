@@ -15,6 +15,7 @@ public sealed class AtariDiskImageTests
     [Theory]
     [InlineData(9, 2, 0, 79, "atarist.720")]
     [InlineData(10, 2, 0, 79, "atarist.800")]
+    [InlineData(10, 2, 0, 80, "atarist.810")]
     [InlineData(11, 2, 0, 79, "atarist.880")]
     public async Task MsaDetectionUsesTheContainerGeometry(int sectors, int heads, int firstCylinder, int lastCylinder, string expected)
     {
@@ -62,6 +63,7 @@ public sealed class AtariDiskImageTests
     [InlineData(368640, "atarist.360", 1, 9)]
     [InlineData(737280, "atarist.720", 2, 9)]
     [InlineData(819200, "atarist.800", 2, 10)]
+    [InlineData(829440, "atarist.810", 2, 10)]
     [InlineData(901120, "atarist.880", 2, 11)]
     [InlineData(1474560, "atarist.1440", 2, 18)]
     public async Task AtariStReaderRecognizesStandardRawGeometries(int length, string format, int heads, int sectors)

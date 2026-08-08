@@ -1,4 +1,5 @@
 using GWGUI.Domain.Commands;
+using GWGUI.Domain.Formats;
 
 namespace GWGUI.Domain.Read;
 
@@ -23,6 +24,7 @@ public static class ReadCommandBuilder
         if (string.IsNullOrWhiteSpace(request.DestinationPath)) throw new ArgumentException("A destination is required.");
         GwOptionValidator.Validate(request.Options);
         var arguments = new List<string>();
+        BuiltInDiskDefinitions.AddArgumentIfRequired(arguments, request.FormatId, request.Options);
         Add(arguments, "--device", request.Device);
         Add(arguments, "--drive", request.Drive);
         if (request.ResultKind == ReadResultKind.KnownFormat)

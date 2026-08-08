@@ -11,6 +11,7 @@ public static class ConversionCommandBuilder
     {
         if (options is not null) Commands.GwOptionValidator.Validate(options);
         var arguments = new List<string>();
+        BuiltInDiskDefinitions.AddArgumentIfRequired(arguments, output.FormatId, options);
         var formatArgument = GwFormatArgument.FromCatalogId(output.FormatId);
         if (formatArgument is not null) arguments.AddRange(["--format", formatArgument]);
         if (options is not null) foreach (var option in options) { arguments.Add(option.Argument); if (!string.IsNullOrWhiteSpace(option.Value)) arguments.Add(option.Value); }

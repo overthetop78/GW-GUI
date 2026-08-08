@@ -20,7 +20,7 @@ public static class GwVisualizationPolicy
         var gwFormat = GwFormatArgument.FromCatalogId(detection.Format.Id);
         return !extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)
             && gwFormat is not null
-            && capabilities.FormatIds.Contains(gwFormat)
+            && (capabilities.FormatIds.Contains(gwFormat) || BuiltInDiskDefinitions.Supports(detection.Format.Id))
             && capabilities.ImageExtensions.Contains(extension)
             && capabilities.ImageExtensions.Contains(".scp");
     }

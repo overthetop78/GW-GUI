@@ -69,6 +69,9 @@
   <data name="Format.atarist.800">
     <value>Atari ST — 800 Kio</value>
   </data>
+  <data name="Format.atarist.810">
+    <value>Atari ST — 810 Kio</value>
+  </data>
   <data name="Format.atarist.880">
     <value>Atari ST — 880 Kio</value>
   </data>
