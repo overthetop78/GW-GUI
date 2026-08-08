@@ -7,7 +7,8 @@ public static class BuiltInDiskDefinitions
     private static readonly HashSet<string> DefinedFormats = new(StringComparer.OrdinalIgnoreCase)
     {
         "atarist.810",
-        "amstrad.cpc"
+        "amstrad.cpc",
+        "amstrad.pcw"
     };
 
     public static bool Supports(string? formatId) =>

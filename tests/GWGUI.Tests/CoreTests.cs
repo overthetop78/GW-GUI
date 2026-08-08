@@ -1805,6 +1805,7 @@ public sealed class CoreTests
     [Theory]
     [InlineData("atarist.810", "disk.st")]
     [InlineData("amstrad.cpc", "disk.dsk")]
+    [InlineData("amstrad.pcw", "disk.dsk")]
     public void CommandsUseTheBundledDiskDefinition(string formatId, string outputPath)
     {
         var read = ReadCommandBuilder.Build(new ReadRequest("gw.exe", outputPath, ReadResultKind.KnownFormat, formatId, []));
