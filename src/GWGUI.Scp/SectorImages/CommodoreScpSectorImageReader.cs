@@ -33,7 +33,11 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         if (candidates.Count == 0) throw new InvalidDataException("No Commodore GCR sectors could be decoded from the SCP image.");
         var maxTrack = candidates.Keys.Max(key => key.Track);
         var is1571 = requestedFormat == "commodore.1571" || maxTrack > 40 || scp.Tracks.Any(track => track.Head == 1);
-        var tracksPerSide = is1571 ? 35 : maxTrack > 35 ? 40 : 35;
+        var hasExtendedData = candidates
+            .Where(candidate => candidate.Key.Track > 35 && candidate.Key.Track <= 40)
+            .SelectMany(candidate => candidate.Value)
+            .Any(candidate => candidate.Sector.Data?.Any(value => value != 0) == true);
+        var tracksPerSide = is1571 ? 35 : maxTrack > 35 && hasExtendedData ? 40 : 35;
         var sides = is1571 ? 2 : 1;
         var count = CommodoreGeometry.BlocksPer1541Side(tracksPerSide) * sides;
         var blocks = new List<SectorBlock>();
