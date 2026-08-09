@@ -511,35 +511,16 @@ public partial class MainWindow : Window
     {
         if (ScpDecoderCombo.ItemsSource is null) return;
         var selector = VisualizerHeader.ClassificationSelector;
-        var decoderId = selector.SelectedProtectionId ?? selector.SelectedMachine switch
-        {
-            "Apple II" => "apple2.gcr",
-            "Apple Macintosh" => "applemac.gcr",
-            "Apple Lisa" => "applelisa.fileware.gcr",
-            "Amiga" => "amiga.mfm",
-            "Commodore" => "commodore.gcr",
-            "DEC" => "dec.rx02",
-            _ => "iso.mfm"
-        };
-        if (selector.AutomaticDetection && string.IsNullOrWhiteSpace(selector.SelectedMachine)) decoderId = null;
+        var classification = DiskVisualizationClassificationPolicy.Resolve(
+            selector.SelectedMachine,
+            selector.SelectedFormatId,
+            selector.SelectedProtectionId,
+            selector.AutomaticDetection);
         var choice = ScpDecoderCombo.Items.Cast<ScpDecoderChoice>()
-            .FirstOrDefault(item => string.Equals(item.Id, decoderId, StringComparison.OrdinalIgnoreCase));
+            .FirstOrDefault(item => string.Equals(item.Id, classification.DecoderId, StringComparison.OrdinalIgnoreCase));
         if (choice is not null && !Equals(ScpDecoderCombo.SelectedItem, choice)) ScpDecoderCombo.SelectedItem = choice;
-        var mediaKind = MediaKindFor(selector.SelectedMachine, selector.SelectedFormatId);
-        ScpSide0.SetMediaKind(mediaKind);
-        ScpSide1.SetMediaKind(mediaKind);
-    }
-
-    private static DiskMediaKind MediaKindFor(string? machine, string? formatId)
-    {
-        var id = formatId?.ToLowerInvariant() ?? string.Empty;
-        if (machine == "Amstrad") return DiskMediaKind.ThreeInch;
-        if (machine == "DEC") return DiskMediaKind.EightInch;
-        if (machine is "Atari ST" or "Amiga" or "IBM PC" or "Apple Macintosh" or "MSX")
-            return id.Contains("1440") || id.Contains("2880") || id.Contains("_hd") ? DiskMediaKind.ThreeHalfHd : DiskMediaKind.ThreeHalfDd;
-        if (machine is "Apple II" or "Commodore" or "Acorn" or "Acorn / BBC Micro")
-            return id.Contains("hd") ? DiskMediaKind.FiveQuarterHd : DiskMediaKind.FiveQuarterDd;
-        return DiskMediaKind.Unknown;
+        ScpSide0.SetMediaKind(classification.MediaKind);
+        ScpSide1.SetMediaKind(classification.MediaKind);
     }
 
     private CancellationTokenSource ReplaceScpCancellation()
