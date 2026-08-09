@@ -60,6 +60,7 @@ public sealed class AtariDiskImageTests
     }
 
     [Theory]
+    [InlineData(184320, "atarist.180", 1, 9)]
     [InlineData(368640, "atarist.360", 1, 9)]
     [InlineData(737280, "atarist.720", 2, 9)]
     [InlineData(819200, "atarist.800", 2, 10)]

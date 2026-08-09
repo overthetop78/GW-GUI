@@ -9,7 +9,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public string Id => "fat12";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
-        "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880", "atarist.1440",
+        "atarist.180", "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880", "atarist.1440",
         "ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan",
         "msx.1d", "msx.1dd", "msx.2d", "msx.2dd"
     };

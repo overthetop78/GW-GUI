@@ -162,7 +162,10 @@ public sealed class DiskImageExplorer(
                     foreach (var match in fileSystems.ReadAll(candidate))
                     {
                         var recognizedImage = NormalizeRecognizedImage(candidate, match.ReaderId);
-                        matches.Add((new(recognizedImage.FormatId, match.ReaderId, match.Volume), recognizedImage));
+                        var recognizedVolume = ReferenceEquals(recognizedImage, candidate) ||
+                            !fileSystems.TryRead(recognizedImage, match.ReaderId, out var normalizedVolume)
+                            ? match.Volume : normalizedVolume;
+                        matches.Add((new(recognizedImage.FormatId, match.ReaderId, recognizedVolume), recognizedImage));
                     }
                     foreach (var interpretation in AdditionalFileSystemInterpretations(candidate))
                         if (fileSystems.TryRead(interpretation, interpretation.FormatId, out var volume))
@@ -179,7 +182,7 @@ public sealed class DiskImageExplorer(
                 foreach (var recognized in inspection.Matches)
                 {
                     var match = recognized.Match;
-                    var key = $"{FormatFamily(match.FormatId)}\0{match.ReaderId}\0{match.Volume.Name}\0{match.Volume.Capacity}\0{match.Volume.Entries.Count}";
+                    var key = FileSystemIdentity(match.Volume);
                     if (!keys.Add(key)) continue;
                     bestRecognized ??= recognized.Image;
                     detected.Add(match);
@@ -202,7 +205,49 @@ public sealed class DiskImageExplorer(
             image.BlockSize == 512 && image.BlockCount == 2880 &&
             !image.FormatId.Equals("mac.1440", StringComparison.OrdinalIgnoreCase))
             return Retag(image, "mac.1440");
+        if (readerId.Equals("fat12", StringComparison.OrdinalIgnoreCase) &&
+            image.FormatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) &&
+            TryReadFatGeometry(image, out var cylinders, out var heads, out var sectorsPerTrack, out var totalSectors) &&
+            totalSectors < image.BlockCount)
+        {
+            var blocks = image.AvailableBlocks.Where(block => block.LogicalBlock < totalSectors).ToArray();
+            return new($"atarist.{totalSectors / 2}", 512, cylinders, heads, sectorsPerTrack, blocks,
+                capacity: totalSectors * 512L, logicalBlockCount: totalSectors);
+        }
         return image;
+    }
+
+    private static bool TryReadFatGeometry(SectorImage image, out int cylinders, out int heads,
+        out int sectorsPerTrack, out int totalSectors)
+    {
+        cylinders = heads = sectorsPerTrack = totalSectors = 0;
+        if (image.BlockSize != 512 || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 36) return false;
+        var bytes = boot.Data;
+        var bytesPerSector = bytes[11] | bytes[12] << 8;
+        totalSectors = bytes[19] | bytes[20] << 8;
+        if (totalSectors == 0)
+            totalSectors = bytes[32] | bytes[33] << 8 | bytes[34] << 16 | bytes[35] << 24;
+        sectorsPerTrack = bytes[24] | bytes[25] << 8;
+        heads = bytes[26] | bytes[27] << 8;
+        if (bytesPerSector != 512 || totalSectors <= 0 || sectorsPerTrack <= 0 || heads <= 0 ||
+            totalSectors > image.BlockCount || totalSectors % (sectorsPerTrack * heads) != 0)
+            return false;
+        cylinders = totalSectors / (sectorsPerTrack * heads);
+        return cylinders > 0;
+    }
+
+    private static string FileSystemIdentity(FileSystemVolume volume)
+    {
+        static IEnumerable<string> Entries(IEnumerable<FileSystemEntry> entries, string prefix = "")
+        {
+            foreach (var entry in entries.OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
+            {
+                var path = prefix + entry.Name;
+                yield return $"{path}\0{entry.Kind}\0{entry.Size}";
+                foreach (var child in Entries(entry.Children, path + "/")) yield return child;
+            }
+        }
+        return $"{volume.Name}\0{string.Join('\u001f', Entries(volume.Entries))}";
     }
 
     private IEnumerable<Func<Task<SectorImage>>> AllScpCandidates(string path, IReadOnlySet<ScpFamily> families, CancellationToken cancellationToken)

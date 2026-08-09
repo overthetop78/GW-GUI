@@ -54,6 +54,9 @@
   <data name="Format.amiga.amigados_hd">
     <value>AmigaDOS HD – 1,76 MiB</value>
   </data>
+  <data name="Format.atarist.180">
+    <value>Atari ST – 180 KiB</value>
+  </data>
   <data name="Format.atarist.360">
     <value>Atari ST – 360 KiB</value>
   </data>

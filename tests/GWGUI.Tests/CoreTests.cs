@@ -1247,7 +1247,7 @@ public sealed class CoreTests
     {
         var catalog = new BuiltInImageFormatCatalog();
         string[] ibm = ["ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan"];
-        string[] atari = ["atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880"];
+        string[] atari = ["atarist.180", "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880"];
 
         Assert.All(ibm.Concat(atari), id => Assert.Contains(catalog.Formats, format => format.Id == id));
         Assert.Contains(catalog.Formats, format => format.Id == "amiga.amigados_hd");
