@@ -312,6 +312,34 @@ public sealed class AppleDiskImageTests
     }
 
     [Fact]
+    public async Task RealSingleAppleImageAndFluxRemainEquivalentWhenRequested()
+    {
+        var sourcePath = Environment.GetEnvironmentVariable("GWGUI_REAL_APPLE_SOURCE");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_APPLE_SCP");
+        if (string.IsNullOrWhiteSpace(sourcePath) || string.IsNullOrWhiteSpace(scpPath)) return;
+
+        var explorer = DiskImageExplorer.CreateDefault();
+        var source = await explorer.ExploreAsync(sourcePath);
+        var flux = await explorer.ExploreAsync(scpPath);
+
+        Assert.Equal(source.Image.FormatId, flux.Image.FormatId);
+        Assert.Equal(FlattenBlocks(source.Image.AvailableBlocks), FlattenBlocks(flux.Image.AvailableBlocks));
+        Assert.Equal(source.FileSystemRecognized, flux.FileSystemRecognized);
+        if (source.FileSystemRecognized)
+        {
+            Assert.Equal(source.Volume.Name, flux.Volume.Name);
+            Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+            Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
+            Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
+            Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
+            Assert.Equal(source.Volume.Warnings, flux.Volume.Warnings);
+        }
+
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(source.Image).Tracks);
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(flux.Image).Tracks);
+    }
+
+    [Fact]
     public async Task MacWorksTaggedBootDiskIsNotMisidentifiedAsLisaOffice()
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
