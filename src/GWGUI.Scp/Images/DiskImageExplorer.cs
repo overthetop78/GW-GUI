@@ -18,7 +18,7 @@ public sealed record ExploredDiskImage(
         get
         {
             var recognized = DetectedFileSystems?.Select(item => item.FormatId).ToArray() ?? [];
-            return DiskImageMetadata.From(Image, recognized.Length > 0 ? recognized : DetectedImageFormatIds ?? []);
+            return DiskImageMetadata.From(Image, recognized.Length > 0 ? recognized : [Image.FormatId]);
         }
     }
 }
