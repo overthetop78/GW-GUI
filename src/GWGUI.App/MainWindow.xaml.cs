@@ -117,10 +117,8 @@ public partial class MainWindow : Window
     private TextBlock ScpSummary => VisualizerHeader.SummaryText;
     private ComboBox ScpDecoderCombo => VisualizerHeader.DecoderCombo;
     private CheckBox LinkScpViews => VisualizerHeader.LinkZoomCheckBox;
-    private System.Windows.Shapes.Ellipse HardwareStatusLight => StatusBarBlock.HardwareLight;
     private TextBlock HardwareStatusText => StatusBarBlock.HardwareText;
     private ComboBox HardwareSelector => StatusBarBlock.HardwareChoices;
-    private StatusBarItem HardwareSelectorItem => StatusBarBlock.HiddenHardwareSelectorItem;
     private StatusBarItem ProfileStatusItem => StatusBarBlock.ProfileItem;
     private TextBlock ProfileStatusText => StatusBarBlock.ProfileText;
     private StatusBarItem OperationStatusItem => StatusBarBlock.OperationItem;
@@ -162,6 +160,7 @@ public partial class MainWindow : Window
     private readonly ScpInspectorController _scpInspectorController;
     private readonly DiskImageWorkspaceController _diskImageWorkspace;
     private readonly OperationProgressController _progress;
+    private readonly HardwareSelectionController _hardwareSelection;
     private readonly string _logsDirectory;
     private readonly ConsoleLogSession _consoleLog;
     private readonly TerminalPanelController _terminalPanel;
@@ -207,6 +206,20 @@ public partial class MainWindow : Window
         _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         _progress = new OperationProgressController(_viewModel, Face0TrackProgress, Face1TrackProgress,
+            (key, arguments) => LocExtension.Get(key, arguments));
+        _hardwareSelection = new HardwareSelectionController(
+            StatusBarBlock,
+            _viewModel,
+            () => _settings,
+            _dialogs,
+            enabled =>
+            {
+                ReadExecuteButton.IsEnabled = enabled;
+                WriteExecuteButton.IsEnabled = enabled;
+                EraseExecuteButton.IsEnabled = enabled;
+                CleanExecuteButton.IsEnabled = enabled;
+            },
+            () => { UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); },
             (key, arguments) => LocExtension.Get(key, arguments));
         _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
@@ -1376,50 +1389,12 @@ public partial class MainWindow : Window
         CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,
         SelectedDeviceArgument(), SelectedDriveArgument(), CleanExpertArguments.Text));
 
-    private void RefreshHardwareSelector()
-    {
-        if (HardwareSelector is null) return;
-        var previousId = (HardwareSelector.SelectedItem as HardwareChoice)?.Drive.Id;
-        var choices = _settings.Drives.Select(drive =>
-        {
-            var controller = _settings.Controllers.FirstOrDefault(item => item.UsbId == drive.ControllerUsbId);
-            if (controller is null) return null;
-            var number = _settings.Drives.Where(item => item.ControllerUsbId == drive.ControllerUsbId).ToList().IndexOf(drive) + 1;
-            var label = LocExtension.Get("Hardware.DriveChoice", number, drive.Size, drive.Density, controller.LastPort);
-            return new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
-                label + (controller.IsAvailable ? "" : $" ({LocExtension.Get("Hardware.Disconnected")})"));
-        }).Where(choice => choice is not null).Cast<HardwareChoice>().ToArray();
-        HardwareSelector.ItemsSource = choices;
-        HardwareSelector.SelectedItem = choices.FirstOrDefault(x => x.Drive.Id == previousId) ?? choices.FirstOrDefault();
-        var selectionRequired = choices.Length > 1;
-        HardwareSelectorItem.Visibility = Visibility.Collapsed;
-        HardwareSelector.Visibility = selectionRequired ? Visibility.Visible : Visibility.Collapsed;
-        HardwareStatusText.Visibility = selectionRequired ? Visibility.Collapsed : Visibility.Visible;
-        UpdateHardwareStatus();
-    }
-
-    private HardwareChoice? SelectedHardware() => HardwareSelector?.SelectedItem as HardwareChoice;
-    private string? SelectedDeviceArgument() => HardwareRoutingPolicy.DeviceArgument(_settings.Controllers, _settings.Drives, SelectedHardware()?.Drive);
-    private string? SelectedDriveArgument() => HardwareRoutingPolicy.DriveArgument(_settings.Drives, SelectedHardware()?.Drive);
-    private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) { UpdateHardwareStatus(); UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); }
-    private void UpdateHardwareStatus()
-    {
-        var selected = SelectedHardware();
-        var enabled = selected is not { Available: false };
-        _viewModel.HardwareText = selected is null ? LocExtension.Get("Hardware.NotConfigured") : selected.Label;
-        _viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
-        if (ReadExecuteButton is not null) ReadExecuteButton.IsEnabled = enabled;
-        if (WriteExecuteButton is not null) WriteExecuteButton.IsEnabled = enabled;
-        if (EraseExecuteButton is not null) EraseExecuteButton.IsEnabled = enabled;
-        if (CleanExecuteButton is not null) CleanExecuteButton.IsEnabled = enabled;
-    }
-
-    private bool EnsureSelectedHardwareAvailable()
-    {
-        if (SelectedHardware() is not { Available: false }) return true;
-        _dialogs.Show(LocExtension.Get("Hardware.SelectedDisconnected"), LocExtension.Get("Menu.Hardware"), icon: UserDialogIcon.Warning);
-        return false;
-    }
+    private void RefreshHardwareSelector() => _hardwareSelection.Refresh();
+    private HardwareChoice? SelectedHardware() => _hardwareSelection.Selected;
+    private string? SelectedDeviceArgument() => _hardwareSelection.DeviceArgument();
+    private string? SelectedDriveArgument() => _hardwareSelection.DriveArgument();
+    private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) => _hardwareSelection.OnSelectionChanged();
+    private bool EnsureSelectedHardwareAvailable() => _hardwareSelection.EnsureAvailable();
 
     private void UpdateToolCommand()
     {
@@ -1603,5 +1578,3 @@ public partial class MainWindow : Window
         _navigation.ShowGwTool(new(_settings.GwExecutablePath, verb, SelectedDeviceArgument(), SelectedDriveArgument(), _logsDirectory, _settings.Logging));
     }
 }
-
-public sealed record HardwareChoice(DriveSettings Drive, string Port, bool Available, string Label);
