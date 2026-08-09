@@ -51,6 +51,12 @@ public partial class MainWindow : Window
     private ConversionOutputSection ConvertOutputBlock => ConvertTabBlock.OutputBlock;
     private ConversionFormatsSection ConvertFormatsBlock => ConvertTabBlock.FormatsBlock;
     private Button ConvertExecuteButton => ConvertTabBlock.ExecuteActionButton;
+    private VisualizerHeaderSection VisualizerHeader => VisualizerTabBlock.Header;
+    private ScpDiskView ScpSide0 => VisualizerTabBlock.FirstSide;
+    private ScpDiskView ScpSide1 => VisualizerTabBlock.SecondSide;
+    private Canvas ScpInspectorLayer => VisualizerTabBlock.InspectorCanvas;
+    private ScpInspectorPanel ScpInspector => VisualizerTabBlock.Inspector;
+    private VisualizerTrackOverview VisualizerTrackOverview => VisualizerTabBlock.Overview;
     private RadioButton RawScpRadio => ReadImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => ReadImageBlock.KnownFormatRadio;
     private Grid KnownFormatPanel => ReadImageBlock.KnownFormatPanel;
@@ -183,6 +189,7 @@ public partial class MainWindow : Window
         ScpInspector.CloseRequested += (_, _) => ScpInspector.Visibility = Visibility.Collapsed;
         ScpInspector.DetachRequested += (_, _) => DetachScpInspector();
         ScpInspector.DragRequested += (_, delta) => MoveScpInspector(delta.X, delta.Y);
+        VisualizerTabBlock.ToggleInspectorRequested += ToggleScpInspector_Click;
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         _startupHardwareMonitor = new StartupHardwareMonitor(_hardwareRegistry, _settingsStore);
     }
