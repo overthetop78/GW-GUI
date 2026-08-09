@@ -43,6 +43,7 @@ public sealed class SectorImageFluxVisualizer(FluxEncoderRegistry? encoders = nu
         if (id.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase)) return "amiga.mfm";
         if (id.StartsWith("commodore.1581", StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
         if (id.StartsWith("commodore.", StringComparison.OrdinalIgnoreCase)) return "commodore.gcr";
+        if (id.Equals("apple2.rwts18", StringComparison.OrdinalIgnoreCase)) return "apple2.rwts18";
         if (id.Equals("apple2.prodos", StringComparison.OrdinalIgnoreCase) && image.BlockSize == 512 && image.Cylinders >= 80) return "applemac.gcr";
         if (id.StartsWith("apple2.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("apple3.", StringComparison.OrdinalIgnoreCase)) return "apple2.gcr";
         if (id.StartsWith("applelisa.", StringComparison.OrdinalIgnoreCase) && image.Cylinders == 46 && image.Heads == 2) return "applelisa.fileware.gcr";

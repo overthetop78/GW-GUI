@@ -1003,7 +1003,9 @@ public partial class MainWindow : Window
         {
             var outputs = PlanConversions();
             if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
-            var first = _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
+            var first = ConversionBatchExecutor.IsInternal(outputs[0])
+                ? new GwCommand("GW GUI", "encode", ["--codec", outputs[0].FormatId, _viewModel.Conversion.SourcePath, outputs[0].OutputPath])
+                : _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
         catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
@@ -1015,10 +1017,12 @@ public partial class MainWindow : Window
         if (!ValidateDiskDefs(ConvertDiskDefsEnabled, ConvertDiskDefsValue, LocExtension.Get("Conversion.Title"))) return;
         if (!File.Exists(ConvertSourceText.Text)) { _dialogs.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { _dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception exception) { ShowAdvancedValidation(exception, LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { _dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
+        if (outputs.Any(output => !ConversionBatchExecutor.IsInternal(output)) &&
+            (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
+        { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
         if (existing.Length > 0)
         {
@@ -1029,8 +1033,8 @@ public partial class MainWindow : Window
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token =>
         {
-            var items = outputs.Select(planned => new GwBatchItem(Path.GetFileName(planned.OutputPath), _commandBuilder.BuildConversion(_settings.GwExecutablePath, _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
-            return new GwBatchExecutor(_runner).RunAsync(items, progress, item => Dispatcher.Invoke(() =>
+            var items = outputs.Select(planned => (Output: planned, Command: _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, planned, GetConvertOptions(), _viewModel.Conversion.ExpertArguments))).ToArray();
+            return new ConversionBatchExecutor(_runner).RunAsync(_viewModel.Conversion.SourcePath, items, progress, item => Dispatcher.Invoke(() =>
             {
                 BeginProgress();
                 AppendConsoleText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}");

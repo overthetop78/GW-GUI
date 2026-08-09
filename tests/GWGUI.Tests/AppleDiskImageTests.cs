@@ -20,6 +20,8 @@ public sealed class AppleDiskImageTests
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.113");
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.140");
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.prodos.140");
+        var rwts18 = Assert.Single(catalog.Formats, format => format.Id == "apple2.rwts18");
+        Assert.Equal([".nib", ".woz"], rwts18.Extensions.Select(extension => extension.Extension));
         Assert.Contains(catalog.Formats, format => format.Id == "apple3.sos");
         Assert.Contains(catalog.Formats, format => format.Id == "mac.400");
         Assert.Contains(catalog.Formats, format => format.Id == "mac.800");
@@ -86,6 +88,49 @@ public sealed class AppleDiskImageTests
         Assert.Equal(6, image.AvailableBlocks.Count);
         foreach (var expected in sectors)
             Assert.Equal(expected.Data, image.GetBlock(4 * 6 + expected.Number).ToArray());
+    }
+
+    [Theory]
+    [InlineData(".nib")]
+    [InlineData(".woz")]
+    public async Task Rwts18UsesRealAppleNibbleContainers(string extension)
+    {
+        var blocks = Enumerable.Range(0, 35).SelectMany(track => Enumerable.Range(0, 6)
+            .Select(sector => new SectorBlock(track * 6 + sector, new(track, 0, sector),
+                Enumerable.Range(0, 768).Select(index => (byte)(track * 7 + sector * 31 + index * 17)).ToArray())))
+            .ToArray();
+        var source = new SectorImage("apple2.rwts18", 768, 35, 1, 6, blocks);
+        var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}{extension}");
+        try
+        {
+            await new AppleNibbleImageWriter().WriteAsync(source, path);
+            var decoded = await new AppleDiskImageReader().ReadAsync(path);
+            Assert.Equal("apple2.rwts18", decoded.FormatId);
+            Assert.Equal(35 * 6, decoded.AvailableBlocks.Count);
+            foreach (var block in blocks) Assert.Equal(block.Data, decoded.GetBlock(block.LogicalBlock).ToArray());
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task ConversionServiceDecodesNibAndReencodesWoz()
+    {
+        var blocks = Enumerable.Range(0, 35).SelectMany(track => Enumerable.Range(0, 6)
+            .Select(sector => new SectorBlock(track * 6 + sector, new(track, 0, sector),
+                Enumerable.Repeat((byte)(track + sector), 768).ToArray())))
+            .ToArray();
+        var image = new SectorImage("apple2.rwts18", 768, 35, 1, 6, blocks);
+        var source = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        var output = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.woz");
+        try
+        {
+            await new AppleNibbleImageWriter().WriteAsync(image, source);
+            await new AppleRwts18ConversionService().ConvertAsync(source, output);
+            var decoded = await new AppleDiskImageReader().ReadAsync(output);
+            Assert.Equal("apple2.rwts18", decoded.FormatId);
+            Assert.Equal(blocks.Length, decoded.AvailableBlocks.Count);
+        }
+        finally { File.Delete(source); File.Delete(output); }
     }
 
     [Fact]

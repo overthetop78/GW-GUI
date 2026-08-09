@@ -200,4 +200,7 @@
   <data name="Detection.AppleDosOrder"><value>Apple II DOS format identified from sector order.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS format identified from sector order.</value></data>
   <data name="Detection.AppleContainer"><value>Apple disk-image container detected.</value></data>
+  <data name="Format.apple2.rwts18"><value>Apple II Brøderbund RWTS18</value></data>
+  <data name="Extension.nib"><value>NIB (Apple II)</value></data>
+  <data name="Extension.woz"><value>WOZ (Apple II)</value></data>
 </root>

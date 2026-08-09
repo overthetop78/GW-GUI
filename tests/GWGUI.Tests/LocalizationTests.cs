@@ -4,11 +4,17 @@ using System.IO;
 using GWGUI.App.Localization;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using GWGUI.Scp.Decoding;
 
 namespace GWGUI.Tests;
 
 public sealed class LocalizationTests
 {
+    private const string InvariantDecoderPrefix = "Visual.DecoderName.";
+    private static bool IsInvariantTechnicalKey(string key) =>
+        key.StartsWith(InvariantDecoderPrefix, StringComparison.Ordinal) ||
+        key.Equals("Format.apple2.rwts18", StringComparison.Ordinal) ||
+        key is "Extension.nib" or "Extension.woz";
     private static readonly string[] RequiredInstallerLanguages =
     [
         "english", "french", "german", "italian", "spanish", "polish", "russian", "japanese",
@@ -123,12 +129,20 @@ public sealed class LocalizationTests
         foreach (var language in UiLanguageCatalog.Available)
         {
             var culture = UiLanguageResolver.GetUiCulture(language.Code);
-            Assert.Empty(neutral.Except(LocExtension.GetDefinedKeys(culture)));
+            Assert.Empty(neutral.Where(key => !IsInvariantTechnicalKey(key)).Except(LocExtension.GetDefinedKeys(culture)));
             foreach (var catalog in LocExtension.CatalogNames)
                 Assert.Equal(
-                    LocExtension.GetDefinedKeys(catalog, CultureInfo.InvariantCulture).Order(),
-                    LocExtension.GetDefinedKeys(catalog, culture).Order());
+                    LocExtension.GetDefinedKeys(catalog, CultureInfo.InvariantCulture).Where(key => !IsInvariantTechnicalKey(key)).Order(),
+                    LocExtension.GetDefinedKeys(catalog, culture).Where(key => !IsInvariantTechnicalKey(key)).Order());
         }
+    }
+
+    [Fact]
+    public void EveryRegisteredFluxDecoderHasOneInvariantLocalizedName()
+    {
+        var neutralKeys = LocExtension.GetDefinedKeys("Visualizer", CultureInfo.InvariantCulture);
+        foreach (var decoder in new FluxDecoderRegistry().Decoders)
+            Assert.Contains(InvariantDecoderPrefix + decoder.Id, neutralKeys);
     }
 
     [Fact]
