@@ -78,9 +78,10 @@ public partial class MainWindow : Window
     private readonly IFileDialogService _fileDialogs;
     private readonly IBusinessDialogService _businessDialogs;
     private readonly IWindowNavigationService _navigation;
+    private readonly ImageFormatWorkspace _formatWorkspace;
     private IImageFormatCatalog _formatCatalog = null!;
     private readonly OperationProfileCollection _profiles = new();
-    private ImageFormatDetector _formatDetector;
+    private ImageFormatDetector _formatDetector = null!;
     private DetectedImageFormat? _detectedWriteFormat;
     private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
     private string? _conversionSourceExtension;
@@ -142,7 +143,8 @@ public partial class MainWindow : Window
             (key, arguments) => LocExtension.Get(key, arguments));
         _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
-        _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
+        _formatWorkspace = new ImageFormatWorkspace(key => LocExtension.Get(key));
+        SynchronizeFormatWorkspace();
         RefreshExplorerFormats();
         VisualizerHeader.SetFormats(_formatCatalog.Formats);
         VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => ApplyVisualizerClassification();
@@ -156,7 +158,6 @@ public partial class MainWindow : Window
         ScpInspector.CloseRequested += (_, _) => ScpInspector.Visibility = Visibility.Collapsed;
         ScpInspector.DetachRequested += (_, _) => DetachScpInspector();
         ScpInspector.DragRequested += (_, delta) => MoveScpInspector(delta.X, delta.Y);
-        _formatDetector = new ImageFormatDetector(_formatCatalog);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         _startupHardwareMonitor = new StartupHardwareMonitor(_hardwareRegistry, _settingsStore);
     }
@@ -680,7 +681,8 @@ public partial class MainWindow : Window
     {
         if (!_settingsProvidedAtStartup) _settings = await _settingsStore.LoadAsync();
         if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
-            _gwCapabilities = await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath);
+            _formatWorkspace.SetCapabilities(await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath));
+        SynchronizeFormatWorkspace();
         LoadConfiguredDiskDefs();
         RebuildFormatCatalog();
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
@@ -1375,19 +1377,21 @@ public partial class MainWindow : Window
 
     private void AddDiskDefs(string path)
     {
-        var discovered = DiskDefsFormatReader.Read(path);
-        var ids = _gwCapabilities.FormatIds.Concat(discovered).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var extensions = _gwCapabilities.ImageExtensions.Count > 0
-            ? _gwCapabilities.ImageExtensions
-            : new HashSet<string>([".scp", ".img", ".ima", ".hfe"], StringComparer.OrdinalIgnoreCase);
-        _gwCapabilities = new GwFormatCapabilities(ids, extensions);
-        RebuildFormatCatalog();
+        _formatWorkspace.AddDiskDefinitions(path);
+        SynchronizeFormatWorkspace();
     }
 
     private void RebuildFormatCatalog()
     {
-        _formatCatalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)), _gwCapabilities);
-        _formatDetector = new ImageFormatDetector(_formatCatalog);
+        _formatWorkspace.SetCapabilities(_gwCapabilities);
+        SynchronizeFormatWorkspace();
+    }
+
+    private void SynchronizeFormatWorkspace()
+    {
+        _gwCapabilities = _formatWorkspace.Capabilities;
+        _formatCatalog = _formatWorkspace.Catalog;
+        _formatDetector = _formatWorkspace.Detector;
     }
 
     private void RefreshFormatSelectors()
