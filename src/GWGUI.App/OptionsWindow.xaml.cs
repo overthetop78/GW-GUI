@@ -18,11 +18,34 @@ using GWGUI.Domain.HostTools;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.App.Services;
 using GWGUI.App.Options;
+using GWGUI.App.Controls;
 
 namespace GWGUI.App;
 
 public partial class OptionsWindow : Window
 {
+    private ScrollViewer GeneralScrollViewer => GeneralSection.Scroller;
+    private TextBox ImagesFolderText => GeneralSection.ImagesFolder;
+    private ComboBox LanguageCombo => GeneralSection.Languages;
+    private ComboBox ThemeCombo => GeneralSection.Themes;
+    private CheckBox UseTagsCheck => GeneralSection.UseTags;
+    private ComboBox TagPresetCombo => GeneralSection.TagPresets;
+    private TextBox TagPatternText => GeneralSection.TagPattern;
+    private ListBox RecentTagPatterns => GeneralSection.RecentTagPatternsList;
+    private ItemsControl TagVariablesList => GeneralSection.TagVariables;
+    private TextBlock TagPatternPreview => GeneralSection.TagPreview;
+    private ItemsControl LogOptionsList => LogsSection.OptionsList;
+    private TextBlock LogsDirectoryText => LogsSection.DirectoryText;
+    private Button ScanButton => HardwareSection.ScanAction;
+    private Button AddDriveButton => HardwareSection.AddDriveAction;
+    private ListBox DrivesGrid => HardwareSection.Drives;
+    private TextBox GwPathText => HardwareSection.GwPath;
+    private Button DownloadHostToolsButton => HardwareSection.DownloadAction;
+    private ProgressBar HostToolsProgress => HardwareSection.DownloadProgress;
+    private TextBlock HostToolsStatus => HardwareSection.HostToolsState;
+    private ListBox ReadProfilesList => ProfilesSection.ReadProfiles;
+    private ListBox WriteProfilesList => ProfilesSection.WriteProfiles;
+    private ListBox ConvertProfilesList => ProfilesSection.ConvertProfiles;
     private readonly AppSettings _settings;
     private readonly HardwareOptionsState _hardwareState;
     private readonly ProfileOptionsState _profileState;
@@ -52,6 +75,7 @@ public partial class OptionsWindow : Window
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
     {
         InitializeComponent();
+        ConnectSections();
         _settings = settings;
         _profileState = new ProfileOptionsState(settings.Profiles);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
@@ -87,6 +111,70 @@ public partial class OptionsWindow : Window
         Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
         _initializing = false;
         UpdateTagPreview();
+    }
+
+    private void ConnectSections()
+    {
+        RegisterSectionNames();
+
+        GeneralSection.LanguageChanged += Language_SelectionChanged;
+        GeneralSection.ThemeChanged += Theme_SelectionChanged;
+        GeneralSection.UseTagsChanged += UseTags_Changed;
+        GeneralSection.BrowseImagesFolderRequested += BrowseImagesFolder_Click;
+        GeneralSection.TagPatternChanged += TagPattern_Changed;
+        GeneralSection.TagPresetChanged += TagPreset_SelectionChanged;
+        GeneralSection.TagPatternEditingFinished += TagPattern_LostKeyboardFocus;
+        GeneralSection.RecentTagPatternActivated += RecentTagPattern_DoubleClick;
+        GeneralSection.NextTagExampleRequested += NextTagExample_Click;
+        GeneralSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
+
+        LogsSection.LogRowChanged += LogRow_Changed;
+        LogsSection.MaximumSizeEditingFinished += LogRowMaximumSize_LostKeyboardFocus;
+        LogsSection.NumericTextEntered += NumericText_PreviewTextInput;
+        LogsSection.OpenLogsFolderRequested += OpenLogsFolder_Click;
+
+        HardwareSection.ScanRequested += ScanHardware_Click;
+        HardwareSection.AddDriveRequested += AddDrive_Click;
+        HardwareSection.SaveDriveRequested += SaveHardwareRow_Click;
+        HardwareSection.ForgetDriveRequested += ForgetHardwareRow_Click;
+        HardwareSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
+        HardwareSection.BrowseGwRequested += BrowseGw_Click;
+        HardwareSection.DetectHostToolsRequested += DetectHostTools_Click;
+        HardwareSection.CheckHostToolsRequested += CheckHostTools_Click;
+        HardwareSection.DownloadHostToolsRequested += DownloadHostTools_Click;
+        HardwareSection.RollbackHostToolsRequested += RollbackHostTools_Click;
+
+        ProfilesSection.RenameRequested += RenameProfile_Click;
+        ProfilesSection.DeleteRequested += DeleteProfile_Click;
+        ProfilesSection.ProfileKeyDown += ProfileList_KeyDown;
+        ProfilesSection.ProfileLeftButtonDown += ProfileList_PreviewMouseLeftButtonDown;
+        ProfilesSection.ProfileRightButtonDown += ProfileList_PreviewMouseRightButtonDown;
+    }
+
+    private void RegisterSectionNames()
+    {
+        RegisterName(nameof(GeneralScrollViewer), GeneralScrollViewer);
+        RegisterName(nameof(ImagesFolderText), ImagesFolderText);
+        RegisterName(nameof(LanguageCombo), LanguageCombo);
+        RegisterName(nameof(ThemeCombo), ThemeCombo);
+        RegisterName(nameof(UseTagsCheck), UseTagsCheck);
+        RegisterName(nameof(TagPresetCombo), TagPresetCombo);
+        RegisterName(nameof(TagPatternText), TagPatternText);
+        RegisterName(nameof(RecentTagPatterns), RecentTagPatterns);
+        RegisterName(nameof(TagVariablesList), TagVariablesList);
+        RegisterName(nameof(TagPatternPreview), TagPatternPreview);
+        RegisterName(nameof(LogOptionsList), LogOptionsList);
+        RegisterName(nameof(LogsDirectoryText), LogsDirectoryText);
+        RegisterName(nameof(ScanButton), ScanButton);
+        RegisterName(nameof(AddDriveButton), AddDriveButton);
+        RegisterName(nameof(DrivesGrid), DrivesGrid);
+        RegisterName(nameof(GwPathText), GwPathText);
+        RegisterName(nameof(DownloadHostToolsButton), DownloadHostToolsButton);
+        RegisterName(nameof(HostToolsProgress), HostToolsProgress);
+        RegisterName(nameof(HostToolsStatus), HostToolsStatus);
+        RegisterName(nameof(ReadProfilesList), ReadProfilesList);
+        RegisterName(nameof(WriteProfilesList), WriteProfilesList);
+        RegisterName(nameof(ConvertProfilesList), ConvertProfilesList);
     }
 
     private async void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)

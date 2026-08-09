@@ -249,6 +249,9 @@ public partial class MainWindow : Window
         StatusBarBlock.HardwareSelectionChanged += HardwareSelector_Changed;
         StatusBarBlock.HostToolsUpdateRequested += Preferences_Click;
         StatusBarBlock.ToggleConsoleRequested += ToggleConsole_Click;
+        RegisterName(nameof(HardwareStatusText), HardwareStatusText);
+        RegisterName(nameof(HardwareSelector), HardwareSelector);
+        RegisterName(nameof(OperationProgress), OperationProgress);
     }
 
     private void ConnectReadComponents()
@@ -285,6 +288,8 @@ public partial class MainWindow : Window
         RegisterName(nameof(ReadFolder), ReadFolder);
         RegisterName(nameof(ReadFileName), ReadFileName);
         RegisterName(nameof(ReadExtensionText), ReadExtensionText);
+        RegisterName(nameof(ReadRevsEnabled), ReadRevsEnabled);
+        RegisterName(nameof(ReadExecuteButton), ReadExecuteButton);
         RegisterName(nameof(CommandPreview), CommandPreview!);
         RegisterName(nameof(LogOutput), LogOutput!);
     }
@@ -312,6 +317,7 @@ public partial class MainWindow : Window
         RegisterName(nameof(WriteNoVerify), WriteNoVerify);
         RegisterName(nameof(WriteDiskDefsEnabled), WriteDiskDefsEnabled);
         RegisterName(nameof(WriteDiskDefsValue), WriteDiskDefsValue);
+        RegisterName(nameof(WriteExecuteButton), WriteExecuteButton);
     }
 
     private void ConnectConvertComponents()
@@ -334,6 +340,8 @@ public partial class MainWindow : Window
         RegisterName(nameof(ConvertTracksEnabled), ConvertTracksEnabled);
         RegisterName(nameof(ConvertDiskDefsEnabled), ConvertDiskDefsEnabled);
         RegisterName(nameof(ConvertDiskDefsValue), ConvertDiskDefsValue);
+        RegisterName(nameof(ConvertFormatsBlock), ConvertFormatsBlock);
+        RegisterName(nameof(ConvertExecuteButton), ConvertExecuteButton);
     }
 
     private void ConnectToolsComponents()
@@ -342,6 +350,8 @@ public partial class MainWindow : Window
         ToolsTabBlock.InputChanged += ToolInput_Changed;
         ToolsTabBlock.EraseRequested += ExecuteErase_Click;
         ToolsTabBlock.CleanRequested += ExecuteClean_Click;
+        RegisterName(nameof(EraseExecuteButton), EraseExecuteButton);
+        RegisterName(nameof(CleanExecuteButton), CleanExecuteButton);
     }
 
     private void ConnectExplorerComponent()
