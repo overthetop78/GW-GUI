@@ -47,6 +47,8 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             epson = true;
         }
         if (epson) candidates = physicalCandidates;
+        if (candidates.Count == 0)
+            throw new InvalidDataException("No consistently addressed Atari ISO FM/MFM sectors could be decoded from the SCP image.");
         var sectorSize = candidates.Values.SelectMany(value => value).GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).First().Key;
         var cylinders = candidates.Keys.Max(address => address.Cylinder) + 1; var heads = candidates.Keys.Max(address => address.Head) + 1;
         var sectorsPerTrack = candidates.Keys.GroupBy(address => (address.Cylinder, address.Head)).Select(group => group.Select(item => item.Number).Distinct().Count())

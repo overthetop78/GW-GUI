@@ -82,7 +82,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             for (var half = 0; half < 2; half++)
             {
                 var logical = logicalBase + half;
-                blocks.Add(new(logical, new(address.Cylinder, address.Head, (address.Number - 1) * 2 + half),
+                blocks.Add(new(logical, new(logical / 40, 0, logical % 40),
                     physical.AsSpan(half * 256, 256).ToArray(), best.Sector.IntegrityValid, best.Revolution));
             }
         }

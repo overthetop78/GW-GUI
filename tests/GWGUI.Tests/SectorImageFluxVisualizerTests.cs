@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
@@ -145,6 +146,23 @@ public sealed class SectorImageFluxVisualizerTests
     }
 
     [Fact]
+    public async Task Commodore1581ScpDecodePreservesBothPhysicalSidesForVisualization()
+    {
+        var blocks = Enumerable.Range(0, 3_200).Select(logical => new SectorBlock(logical,
+            new SectorAddress(logical / 40, 0, logical % 40),
+            Enumerable.Repeat((byte)logical, 256).ToArray())).ToArray();
+        var source = new SectorImage("commodore.1581", 256, 80, 1, 40, blocks);
+        var scp = new SectorImageFluxVisualizer().Create(source);
+        var decoded = await new CommodoreScpSectorImageReader(new FixedScpReader(scp), new FluxDecoderRegistry())
+            .ReadAsync("unused.scp", "commodore.1581");
+
+        var visualization = new SectorImageFluxVisualizer().Create(decoded);
+
+        Assert.Equal(160, visualization.Tracks.Count);
+        Assert.Contains(visualization.Tracks, track => track.Cylinder == 79 && track.Head == 1);
+    }
+
+    [Fact]
     public async Task RealAtrUsesPhysicalTrackGeometryForVisualization()
     {
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test"));
@@ -179,5 +197,11 @@ public sealed class SectorImageFluxVisualizerTests
         Assert.Equal(13, last.Sectors?.Count);
         Assert.All(first.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
         Assert.All(last.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
+    }
+
+    private sealed class FixedScpReader(ScpImage image) : IScpReader
+    {
+        public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default)
+            => Task.FromResult(image);
     }
 }
