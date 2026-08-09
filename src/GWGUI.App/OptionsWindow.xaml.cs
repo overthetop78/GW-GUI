@@ -274,38 +274,15 @@ public partial class OptionsWindow : Window
     private void UpdateTagPreview()
     {
         if (TagPatternPreview is null || TagPatternText is null) return;
-        var samples = new[]
-        {
-            ("Disquette", "PC", "720", "IMA"), ("Workbench", "AMIGA", "DD", "ADF"),
-            ("Jeu", "ST", "720", "ST"), ("Archive", "PC", "1440", "IMG")
-        };
-        var sample = samples[_tagExampleIndex % samples.Length];
-        var now = new DateTime(2026, 8, 6, 14, 35, 42);
-        var rendered = RenderTagPattern(TagPatternText.Text, sample.Item1, sample.Item2, sample.Item3, sample.Item4, now);
-        var fileName = TagPatternText.Text.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? rendered : rendered + sample.Item1;
-        TagPatternPreview.Text = LocExtension.Get("Options.TagPatternPreview", fileName + "." + sample.Item4.ToLowerInvariant());
+        TagPatternPreview.Text = LocExtension.Get("Options.TagPatternPreview", TagPatternFormatter.CreateExample(TagPatternText.Text, _tagExampleIndex));
     }
 
-    internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) => pattern
-        .Replace("{TAG}", family + "-" + format, StringComparison.OrdinalIgnoreCase)
-        .Replace("{NAME}", name, StringComparison.OrdinalIgnoreCase)
-        .Replace("{FAMILY}", family, StringComparison.OrdinalIgnoreCase)
-        .Replace("{FORMAT}", format, StringComparison.OrdinalIgnoreCase)
-        .Replace("{EXTENSION}", extension, StringComparison.OrdinalIgnoreCase)
-        .Replace("{DATE:YYYY-MM-DD}", timestamp.ToString("yyyy-MM-dd"), StringComparison.OrdinalIgnoreCase)
-        .Replace("{DATE:YYYYMMDD}", timestamp.ToString("yyyyMMdd"), StringComparison.OrdinalIgnoreCase)
-        .Replace("{DATE:DD-MM-YYYY}", timestamp.ToString("dd-MM-yyyy"), StringComparison.OrdinalIgnoreCase)
-        .Replace("{TIME:HH-MM-SS}", timestamp.ToString("HH-mm-ss"), StringComparison.OrdinalIgnoreCase)
-        .Replace("{TIME:HHMMSS}", timestamp.ToString("HHmmss"), StringComparison.OrdinalIgnoreCase)
-        .Replace("{TIME:HH-MM}", timestamp.ToString("HH-mm"), StringComparison.OrdinalIgnoreCase);
+    internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>
+        TagPatternFormatter.Render(pattern, name, family, format, extension, timestamp);
 
     private void RememberCustomTagPattern(string pattern)
     {
-        pattern = pattern.Trim();
-        if (string.IsNullOrEmpty(pattern)) return;
-        _settings.Conversion.RecentCustomTagPatterns.RemoveAll(item => string.Equals(item, pattern, StringComparison.OrdinalIgnoreCase));
-        _settings.Conversion.RecentCustomTagPatterns.Insert(0, pattern);
-        if (_settings.Conversion.RecentCustomTagPatterns.Count > 5) _settings.Conversion.RecentCustomTagPatterns.RemoveRange(5, _settings.Conversion.RecentCustomTagPatterns.Count - 5);
+        if (!TagPatternFormatter.Remember(_settings.Conversion.RecentCustomTagPatterns, pattern)) return;
         RefreshRecentTagPatterns();
     }
 
