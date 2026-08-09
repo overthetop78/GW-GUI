@@ -108,4 +108,6 @@
   <data name="Explorer.Type.DiskImage">
     <value>Schijfkopie</value>
   </data>
+  <data name="Explorer.System"><value>Systeem</value></data>
+  <data name="Explorer.Protection"><value>Beveiliging</value></data>
 </root>

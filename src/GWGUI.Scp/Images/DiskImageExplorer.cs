@@ -10,7 +10,10 @@ public sealed record ExploredDiskImage(
     SectorImage Image,
     FileSystemVolume Volume,
     bool FileSystemRecognized = true,
-    IReadOnlyList<ExploredFileSystem>? DetectedFileSystems = null);
+    IReadOnlyList<ExploredFileSystem>? DetectedFileSystems = null)
+{
+    public DiskImageMetadata Metadata => DiskImageMetadata.From(Image, DetectedFileSystems?.Select(item => item.FormatId));
+}
 
 public sealed class DiskImageExplorer(
     AdfImageReader adfReader,

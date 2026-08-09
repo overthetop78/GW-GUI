@@ -108,4 +108,6 @@
   <data name="Explorer.Type.DiskImage">
     <value>Obraz disku</value>
   </data>
+  <data name="Explorer.System"><value>Systém</value></data>
+  <data name="Explorer.Protection"><value>Ochrana</value></data>
 </root>

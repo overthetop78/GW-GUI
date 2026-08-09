@@ -103,6 +103,7 @@ public partial class ExplorerSection : UserControl
     {
         PathText.Text = path ?? string.Empty;
         VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
+        SystemText.Text = ProtectionText.Text = "\u2014";
         _rootFolder = null;
         _document = null;
         _rootEntries = [];
@@ -120,6 +121,8 @@ public partial class ExplorerSection : UserControl
             ? LocExtension.Get("Explorer.Unknown")
             : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
         VolumeNameText.Text = volumeName;
+        SystemText.Text = document.Metadata.SystemName;
+        ProtectionText.Text = document.Metadata.ProtectionName ?? "\u2014";
         FileSystemText.Text = document.FileSystemRecognized
             ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystem))
             : LocExtension.Get("Explorer.Unknown");

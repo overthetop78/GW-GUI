@@ -19,6 +19,8 @@ public static class ExplorerDetailsPresenter
         return new(title, ExplorerIconKind.DiskImage,
         [
             new("Explorer.Volume", title),
+            new("Explorer.System", document.Metadata.SystemName),
+            new("Explorer.Protection", document.Metadata.ProtectionName ?? "\u2014"),
             new("Explorer.FileSystem", document.FileSystemRecognized
                 ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(volume.FileSystem))
                 : LocExtension.Get("Explorer.Unknown")),
@@ -115,9 +117,9 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void SetRows(IReadOnlyList<(string? Key, string? Value)> values)
     {
-        var rows = new[] { DetailRow1, DetailRow2, DetailRow3, DetailRow4, DetailRow5, DetailRow6 };
-        var labels = new[] { DetailLabel1, DetailLabel2, DetailLabel3, DetailLabel4, DetailLabel5, DetailLabel6 };
-        var displayedValues = new[] { DetailValue1, DetailValue2, DetailValue3, DetailValue4, DetailValue5, DetailValue6 };
+        var rows = new[] { DetailRow1, DetailRow2, DetailRow3, DetailRow4, DetailRow5, DetailRow6, DetailRow7, DetailRow8 };
+        var labels = new[] { DetailLabel1, DetailLabel2, DetailLabel3, DetailLabel4, DetailLabel5, DetailLabel6, DetailLabel7, DetailLabel8 };
+        var displayedValues = new[] { DetailValue1, DetailValue2, DetailValue3, DetailValue4, DetailValue5, DetailValue6, DetailValue7, DetailValue8 };
         for (var index = 0; index < rows.Length; index++)
         {
             var visible = index < values.Count && values[index].Key is not null;

@@ -108,4 +108,6 @@
   <data name="Explorer.Type.DiskImage">
     <value>Lemezkép</value>
   </data>
+  <data name="Explorer.System"><value>Rendszer</value></data>
+  <data name="Explorer.Protection"><value>Védelem</value></data>
 </root>

@@ -108,4 +108,6 @@
   <data name="Explorer.Type.DiskImage">
     <value>磁盘映像</value>
   </data>
+  <data name="Explorer.System"><value>系统</value></data>
+  <data name="Explorer.Protection"><value>保护</value></data>
 </root>

@@ -79,14 +79,18 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel><TextBlock Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <Button x:Name="WarningsButton" Grid.Column="5" Visibility="Collapsed" Background="#FFF5DA" BorderBrush="#D99A19"
+                <StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Explorer.System}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="SystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.Protection}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="ProtectionText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="5"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="6"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <Button x:Name="WarningsButton" Grid.Column="7" Visibility="Collapsed" Background="#FFF5DA" BorderBrush="#D99A19"
                         BorderThickness="1" Padding="10,4" MinHeight="0" VerticalAlignment="Center" Click="WarningsButton_Click">
                     <TextBlock x:Name="WarningsText" Foreground="#8A5A00"/>
                 </Button>

@@ -108,4 +108,6 @@
   <data name="Explorer.Type.DiskImage">
     <value>Ảnh đĩa</value>
   </data>
+  <data name="Explorer.System"><value>Hệ thống</value></data>
+  <data name="Explorer.Protection"><value>Bảo vệ</value></data>
 </root>

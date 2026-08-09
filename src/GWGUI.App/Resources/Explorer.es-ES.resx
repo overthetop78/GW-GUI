@@ -108,4 +108,6 @@
   <data name="Explorer.Type.DiskImage">
     <value>Imagen de disco</value>
   </data>
+  <data name="Explorer.System"><value>Sistema</value></data>
+  <data name="Explorer.Protection"><value>Protección</value></data>
 </root>

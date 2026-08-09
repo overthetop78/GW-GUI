@@ -52,6 +52,16 @@
                 <TextBlock x:Name="DetailLabel6" Foreground="{DynamicResource MutedTextBrush}"/>
                 <TextBlock x:Name="DetailValue6" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
             </Grid>
+            <Grid x:Name="DetailRow7" Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <TextBlock x:Name="DetailLabel7" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock x:Name="DetailValue7" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </Grid>
+            <Grid x:Name="DetailRow8" Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <TextBlock x:Name="DetailLabel8" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock x:Name="DetailValue8" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

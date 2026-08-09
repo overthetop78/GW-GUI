@@ -1123,13 +1123,16 @@ public sealed class CoreTests
         var volume = new GWGUI.Scp.FileSystems.FileSystemVolume(
             "TEST", "Atari TOS FAT12", 737280, 249 * 1024, null, null, [folder], ["warning"]);
 
-        var diskDetails = ExplorerDetailsPresenter.ForDisk(new GWGUI.Scp.Images.ExploredDiskImage("test.st", null!, volume));
+        var image = new GWGUI.Scp.SectorImages.SectorImage("atarist.720", 512, 80, 2, 9, []);
+        var diskDetails = ExplorerDetailsPresenter.ForDisk(new GWGUI.Scp.Images.ExploredDiskImage("test.st", image, volume));
         var fileDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(child));
         var folderDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(folder));
 
         Assert.Equal("TEST", diskDetails.Title);
         Assert.Equal(ExplorerIconKind.DiskImage, diskDetails.IconKind);
         Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.FileSystem" && row.Value == "Atari TOS FAT12");
+        Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.System" && row.Value == "Atari ST");
+        Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.Protection" && row.Value == "\u2014");
         Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.Entries" && row.Value == "2");
         Assert.Equal("README.TXT", fileDetails.Title);
         Assert.Equal(ExplorerIconKind.Text, fileDetails.IconKind);

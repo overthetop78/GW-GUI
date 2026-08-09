@@ -14,6 +14,16 @@ namespace GWGUI.Tests;
 public sealed class AppleDiskImageTests
 {
     [Fact]
+    public void DiskMetadataReportsAppleSystemAndRwts18Protection()
+    {
+        var protectedImage = new SectorImage("apple2.rwts18", 768, 35, 1, 6, []);
+        var ordinaryImage = new SectorImage("apple2.dos33", 256, 35, 1, 16, []);
+
+        Assert.Equal(new DiskImageMetadata("Apple II", "Brøderbund RWTS18"), DiskImageMetadata.From(protectedImage));
+        Assert.Equal(new DiskImageMetadata("Apple II", null), DiskImageMetadata.From(ordinaryImage));
+    }
+
+    [Fact]
     public void SharedCatalogContainsAppleFormatsAndDetectsAppleContainers()
     {
         var catalog = new BuiltInImageFormatCatalog();
