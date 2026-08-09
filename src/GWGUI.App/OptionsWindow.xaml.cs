@@ -51,6 +51,7 @@ public partial class OptionsWindow : Window
     private readonly ProfileOptionsState _profileState;
     private readonly ProfileOptionsController _profileOptionsController;
     private readonly TagOptionsController _tagOptionsController;
+    private readonly LoggingOptionsController _loggingOptionsController;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
@@ -65,7 +66,7 @@ public partial class OptionsWindow : Window
     public ObservableCollection<ProfileOptionRow> ReadProfiles => _profileOptionsController.Read;
     public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileOptionsController.Write;
     public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileOptionsController.Convert;
-    public ObservableCollection<LogOptionRow> LogOptions { get; } = [];
+    public ObservableCollection<LogOptionRow> LogOptions => _loggingOptionsController.Options;
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
     {
         InitializeComponent();
@@ -84,6 +85,13 @@ public partial class OptionsWindow : Window
             () => _initializing,
             PersistSettingsAsync,
             (key, arguments) => LocExtension.Get(key, arguments));
+        _loggingOptionsController = new LoggingOptionsController(
+            LogsSection,
+            settings,
+            () => _initializing,
+            PersistSettingsAsync,
+            key => LocExtension.Get(key),
+            exception => ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning));
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
         var managedRoot = StoragePaths.HostToolsDirectory;
         var hostToolsManager = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
@@ -100,9 +108,6 @@ public partial class OptionsWindow : Window
             string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
             ?? UiLanguageCatalog.Fallback;
         ThemeCombo.SelectedIndex = (int)settings.Theme;
-        RefreshLogOptions();
-        LogOptionsList.ItemsSource = LogOptions;
-        LogsDirectoryText.Text = StoragePaths.LogsDirectory;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
         HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
@@ -118,11 +123,6 @@ public partial class OptionsWindow : Window
         GeneralSection.ThemeChanged += Theme_SelectionChanged;
         GeneralSection.BrowseImagesFolderRequested += BrowseImagesFolder_Click;
         GeneralSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
-
-        LogsSection.LogRowChanged += LogRow_Changed;
-        LogsSection.MaximumSizeEditingFinished += LogRowMaximumSize_LostKeyboardFocus;
-        LogsSection.NumericTextEntered += NumericText_PreviewTextInput;
-        LogsSection.OpenLogsFolderRequested += OpenLogsFolder_Click;
 
         HardwareSection.ScanRequested += ScanHardware_Click;
         HardwareSection.AddDriveRequested += AddDrive_Click;
@@ -181,7 +181,7 @@ public partial class OptionsWindow : Window
             ? LocExtension.Get("HostTools.Detected", GwPathText.Text)
             : LocExtension.Get("HostTools.None");
         _tagOptionsController.RefreshLocalizedContent();
-        RefreshLogOptions();
+        _loggingOptionsController.RefreshLocalizedContent();
     }
 
     private async void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -190,35 +190,6 @@ public partial class OptionsWindow : Window
         _settings.Theme = (AppTheme)ThemeCombo.SelectedIndex;
         if (Application.Current is App app) app.SetTheme(_settings.Theme);
         await PersistSettingsAsync();
-    }
-
-    private async void LogRow_Changed(object sender, RoutedEventArgs e)
-    {
-        if (_initializing) return;
-        await PersistSettingsAsync();
-    }
-
-    private async void LogRowMaximumSize_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-    {
-        if (sender is TextBox textBox && textBox.DataContext is LogOptionRow row && (!int.TryParse(textBox.Text, out var value) || value < 0))
-            textBox.Text = row.Settings.MaximumKilobytes.ToString();
-        await PersistSettingsAsync();
-    }
-
-    private void NumericText_PreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = e.Text.Any(character => !char.IsDigit(character));
-
-    private void OpenLogsFolder_Click(object sender, RoutedEventArgs e)
-    {
-        try
-        {
-            Directory.CreateDirectory(StoragePaths.LogsDirectory);
-            Process.Start(new ProcessStartInfo(StoragePaths.LogsDirectory) { UseShellExecute = true });
-        }
-        catch (Exception exception)
-        {
-            ErrorLog.Write(exception, "Opening Logs folder");
-            ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning);
-        }
     }
 
     private async void BrowseGw_Click(object sender, RoutedEventArgs e)
@@ -386,13 +357,6 @@ public partial class OptionsWindow : Window
         await _saveLock.WaitAsync().ConfigureAwait(false);
         try { await _settingsStore.SaveAsync(_settings).ConfigureAwait(false); }
         finally { _saveLock.Release(); }
-    }
-
-    private void RefreshLogOptions()
-    {
-        LogOptions.Clear();
-        foreach (var definition in OptionsDefinitions.LogActions)
-            LogOptions.Add(new(definition.Action, LocExtension.Get(definition.LabelKey), _settings.Logging.GetOrCreate(definition.Action)));
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
