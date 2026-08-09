@@ -14,6 +14,7 @@ public sealed class LocalizationTests
     private static bool IsInvariantTechnicalKey(string key) =>
         key.StartsWith(InvariantDecoderPrefix, StringComparison.Ordinal) ||
         key.Equals("Format.apple2.rwts18", StringComparison.Ordinal) ||
+        key.Equals("Format.ucsd.ibm.mfm", StringComparison.Ordinal) ||
         key is "Extension.nib" or "Extension.woz";
     private static readonly string[] RequiredInstallerLanguages =
     [

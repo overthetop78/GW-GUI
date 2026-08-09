@@ -1,54 +1,107 @@
-# Architecture technique
-
-## Portée de ce document
-
-Ce document décrit l’organisation générale à conserver ou à atteindre. Il ne remplace pas l’audit fichier par fichier demandé dans [la première phase](tasks/01-full-code-audit.md). Aucun fichier n’est considéré comme correctement découpé uniquement parce qu’il apparaît dans cette vue d’ensemble.
+# Architecture technique actuelle
 
 ## Projets de la solution
 
-- `GWGUI.App` : interface WPF, navigation, composants visuels et présentation.
+- `GWGUI.App` : coque WPF, composition des onglets, contrôles visuels et présentation.
 - `GWGUI.Domain` : modèles et règles métier indépendants de WPF et de Windows.
 - `GWGUI.Infrastructure` : exécution de `gw`, matériel Windows, persistance et services externes.
-- `GWGUI.Scp` : conteneurs, flux, décodage, encodage, reconstruction sectorielle et systèmes de fichiers liés aux images de disquette.
-- `GWGUI.Tests` : vérifications automatiques. Son organisation sera revue après les fichiers de production, sans en faire une priorité prématurée.
+- `GWGUI.Scp` : conteneurs, flux, codecs, reconstruction sectorielle, systèmes de fichiers et exploration des images.
+- `GWGUI.Tests` : tests unitaires, tests d’intégration ciblés et contrôles des corpus locaux.
 
-Les frontières réelles entre ces projets et entre leurs fichiers doivent être contrôlées pendant l’audit complet. Les noms actuels ne constituent pas une preuve que les responsabilités sont déjà au bon endroit.
+La cartographie antérieure au refactoring reste conservée dans [`docs/audit`](audit/README.md). Le présent document décrit l’organisation obtenue après la phase 2.
 
-## Chaînes fonctionnelles
+## Traitement des images de disquette
 
-### Opérations utilisant Greaseweazle
+Les niveaux techniques sont séparés :
 
-Lecture, Écriture, Conversion et Outils construisent une commande typée, affichent exactement la commande exécutée, lancent `gw` sans console externe, diffusent sa sortie dans le terminal intégré, journalisent l’action selon les préférences et permettent son interruption contrôlée.
+1. `Images/Containers` reconnaît et lit le conteneur source.
+2. `Decoding/Decoders` transforme le flux en structures et secteurs.
+3. `SectorImages` reconstruit une image sectorielle et applique les règles propres au format.
+4. `FileSystems/Readers` lit le catalogue, le volume, les dossiers et les fichiers.
+5. `Encoding/Encoders` transforme des secteurs en piste encodée.
+6. `Images/Visualization` choisit l’encodage permettant de représenter une image sectorielle.
+7. `Images/ScpDetection` limite les lecteurs à essayer, conserve les interprétations crédibles et classe les résultats automatiques.
 
-### Images de disquette
+Les registres `DiskImageContainerRegistry`, `FluxDecoderRegistry`, `FluxEncoderRegistry`, `FileSystemRegistry`, `ScpCandidateRegistry`, `IsoScpSectorImagePolicyRegistry` et `SectorImageVisualizationPolicyRegistry` centralisent leurs extensions respectives. Ajouter une famille ne demande plus d’allonger un lecteur Atari ou un explorateur monolithique.
 
-Le traitement d’une image doit distinguer clairement :
+### ISO FM/MFM et règles machine
 
-1. le conteneur ou fichier source ;
-2. la géométrie et le format physique ;
-3. le décodage ou l’encodage du flux ;
-4. la reconstruction des pistes et secteurs ;
-5. la protection éventuelle ;
-6. le ou les systèmes présents sur une image multiformat ;
-7. le système de fichiers et son arborescence ;
-8. la présentation dans Conversion, Visualisateur et Explorateur.
+`IsoScpSectorImageReader`, `IsoSectorImageBuilder` et les primitives ISO communes collectent et reconstruisent les secteurs. Les règles propres aux familles restent dans des politiques distinctes :
 
-Une image peut contenir plusieurs systèmes. La détection automatique doit donc pouvoir conserver plusieurs résultats compatibles. Un choix manuel sert à orienter l’opération demandée ; il ne permet pas de conclure arbitrairement que les autres systèmes présents dans l’image n’existent pas.
+- Atari ST ;
+- Atari 8 bits ;
+- Amstrad ;
+- IBM PC ;
+- BBC/Acorn ;
+- Epson QX-10 ;
+- UCSD p-System.
 
-### Interface et état utilisateur
+`AtariScpSectorImageReader` ne route plus que les identifiants `atari.*` et `atarist.*`. Il ne contient plus les comportements Amstrad, IBM, BBC, Epson ou UCSD.
 
-La fenêtre principale accueille les onglets sans concentrer toute leur logique. Les blocs réutilisables doivent être des composants indépendants lorsque cela évite une duplication réelle. Les paramètres, profils, langues, thème, matériel, journaux, dossiers récents et placement des fenêtres sont persistés par des services dédiés.
+### Primitives partagées
 
-## Sources communes attendues
+Les opérations communes de bits, CRC, MFM, FM, GCR, lecture circulaire, sélection de révolution et contrôle d’intégrité sont placées dans `GWGUI.Scp/Primitives`, `Flux` et les composants communs de décodage/encodage. Les différences simples de géométrie ou d’ordre des secteurs sont fournies par des politiques ou définitions de format, sans recopier l’algorithme complet.
 
-- Un catalogue central décrit machines, formats, géométries, protections, extensions et capacités disponibles.
-- Lecture, Écriture, Conversion, Explorateur et Visualisateur consomment ce catalogue commun, avec le filtrage propre à leur opération.
-- Les constantes techniques, enums, modèles, DTO, interfaces et tables de données sont séparés selon leur rôle.
-- Les textes visibles proviennent des ressources de langue ; les identifiants techniques stables ne sont pas dupliqués dans chaque traduction lorsqu’ils ne se traduisent pas.
-- Les algorithmes réellement communs sont mutualisés sans fusionner des formats qui ont des règles différentes.
+La création cohérente des adresses, blocs, pistes, géométries et interprétations passe notamment par `IsoSectorImageBuilder`, `SectorImageInterpretation`, `AppleSectorImageFactory` et les modèles communs de `SectorImages`.
 
-## Problème structurel déjà confirmé
+## Détection, choix manuel et images multiformat
 
-`AtariScpSectorImageReader.cs` contient des responsabilités qui ne sont pas limitées à Atari. C’est un exemple visible du problème, pas la liste du travail à réaliser. L’audit et le refactoring portent sur tout le dépôt : moteurs d’images, systèmes de fichiers, catalogues, services, fenêtres, composants, ressources et code de coordination.
+### Détection automatique SCP
 
-Les contraintes permanentes du refactoring sont définies dans [les règles du projet](rules.md). Le détail ordonné du chantier se trouve dans [docs/tasks](tasks/README.md).
+`ScpFamilyProbe` examine un échantillon de pistes pour déterminer les familles de codecs utiles. `ScpCandidateRegistry` fournit alors uniquement les lecteurs correspondant à ces familles. Cette présélection évite d’exécuter systématiquement tous les lecteurs connus.
+
+`ScpAutomaticImageExplorer` inspecte les candidats compatibles en parallèle. Il :
+
+- conserve tous les systèmes de fichiers reconnus dans `DetectedFileSystems` ;
+- déduplique les résultats représentant le même contenu ;
+- ne supprime pas une interprétation simplement parce qu’une autre famille a obtenu un meilleur résultat ;
+- place en résultat principal l’image reconnue ayant la meilleure proportion de blocs disponibles ;
+- conserve comme alternatives les résultats dont les avertissements restent crédibles.
+
+Le score de reconstruction est : `blocs disponibles / nombre total de blocs`. Pour le décodage d’une révolution, `FluxDecoderRegistry` privilégie d’abord les secteurs valides, puis la confiance et les structures reconnues ; un faux résultat composé uniquement de secteurs invalides ne passe pas devant le flux brut.
+
+### Rôle du choix manuel
+
+Le choix manuel oriente l’opération demandée, sans servir de preuve que l’image ne contient aucun autre système :
+
+- **Lecture** : une image brute SCP n’ajoute aucun `--format`; une lecture au format connu transmet le format choisi à `gw`.
+- **Écriture** : la détection du fichier propose un format et ses candidats ; un choix manuel remplace cette proposition pour la commande courante.
+- **Conversion** : chaque sortie cochée constitue une cible distincte ; la planification, la compatibilité et l’exécution restent séparées et la multiconversion conserve toutes les sorties choisies.
+- **Explorateur** : en automatique, toutes les interprétations crédibles sont conservées ; en manuel, le lecteur correspondant au format sélectionné est utilisé directement pour cette ouverture.
+- **Visualisateur** : en automatique, aucun décodeur n’est forcé ; un choix manuel fixe le codec et la représentation du média correspondant au format choisi.
+
+## Catalogue commun des formats
+
+`ImageFormatWorkspace` possède l’unique catalogue effectif de l’application. Il combine :
+
+- le catalogue intégré ;
+- les capacités signalées par la version de Greaseweazle installée ;
+- les définitions de disquette additionnelles intégrées.
+
+Lecture, Écriture, Conversion, Explorateur et Visualisateur reçoivent ce même catalogue, puis appliquent uniquement le filtrage propre à leur opération. Les identifiants, extensions par défaut et compatibilités ne sont donc plus maintenus dans cinq listes indépendantes.
+
+La Conversion est séparée entre `ConversionPlanner`, `ConversionCompatibilityValidator`, `ConversionOutputFactory`, `ConversionCommandBuilder` et `ConversionBatchExecutor`.
+
+## Application WPF
+
+`MainWindow` reste la coque et le coordinateur des événements qui relient plusieurs parties de l’application. Le contenu visible est réparti dans des contrôles distincts :
+
+- `ReadTabSection`, `WriteTabSection`, `ConversionTabSection`, `VisualizerTabSection`, `ExplorerSection` et `ToolsTabSection` ;
+- `MainMenu`, `TerminalSection`, `ApplicationStatusBar` et `TrackProgressStrip` ;
+- les blocs spécialisés Lecture, Écriture, Conversion, Visualisateur et Explorateur.
+
+Les opérations en cours, la progression, le terminal, le placement de fenêtre, les profils, le matériel et l’espace de travail des images sont pilotés par des contrôleurs ou services dédiés. La coque n’implémente plus directement ces mécanismes.
+
+Les trois blocs `ProfileSection` de Lecture, Écriture et Conversion réutilisent le même type de contrôle, mais chaque instance garde son opération, sa sélection et sa collection de profils propres.
+
+`OptionsWindow` compose quatre pages distinctes : Général, Journaux, Contrôleurs et lecteurs, Profils. Leurs comportements sont répartis entre les contrôles `Options*Section`, les contrôleurs `Options/*` et les classes spécialisées de réglages.
+
+## Persistance et état
+
+Les réglages sont séparés par domaine : matériel, journaux, opérations, profils et placement des fenêtres. Les services de placement appliquent position et taille avant l’affichage. Les contrôleurs de matériel et d’images gèrent leur cycle de vie et leur annulation sans partager un état implicite avec les onglets.
+
+## Garanties de la phase 2
+
+Le refactoring a été effectué responsabilité par responsabilité. Chaque déplacement a supprimé l’ancien chemin après raccordement de ses consommateurs, puis a été compilé et vérifié par les tests concernés. La validation finale de cette phase est consignée dans [la tâche 02](tasks/02-full-refactoring.md).
+
+Les phases suivantes restent distinctes : centralisation exhaustive des constantes et textes techniques, réorganisation complémentaire des contrats et fonctions, puis réorganisation des ressources de langue. Leur existence ne remet pas en cause les frontières structurelles établies ici.
