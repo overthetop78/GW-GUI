@@ -161,6 +161,7 @@ public partial class MainWindow : Window
     private readonly DiskImageWorkspaceController _diskImageWorkspace;
     private readonly OperationProgressController _progress;
     private readonly HardwareSelectionController _hardwareSelection;
+    private readonly MaintenanceToolsController _maintenanceTools;
     private readonly string _logsDirectory;
     private readonly ConsoleLogSession _consoleLog;
     private readonly TerminalPanelController _terminalPanel;
@@ -220,6 +221,15 @@ public partial class MainWindow : Window
                 CleanExecuteButton.IsEnabled = enabled;
             },
             () => { UpdateReadCommand(); UpdateWriteCommand(); UpdateToolCommand(); },
+            (key, arguments) => LocExtension.Get(key, arguments));
+        _maintenanceTools = new MaintenanceToolsController(
+            ToolsTabBlock,
+            () => _settings,
+            _commandBuilder,
+            SelectedDeviceArgument,
+            SelectedDriveArgument,
+            () => MainTabs?.SelectedIndex == 5,
+            command => CommandPreview.Text = command,
             (key, arguments) => LocExtension.Get(key, arguments));
         _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
@@ -1365,29 +1375,13 @@ public partial class MainWindow : Window
 
     private void ConstrainToCurrentWorkArea() => _windowPlacement.ConstrainToCurrentWorkArea(this);
 
-    private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (ErasePanel is null) return;
-        ErasePanel.Visibility = ToolsList.SelectedIndex == 0 ? Visibility.Visible : Visibility.Collapsed;
-        CleanPanel.Visibility = ToolsList.SelectedIndex == 1 ? Visibility.Visible : Visibility.Collapsed;
-        UpdateToolCommand();
-    }
+    private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e) => _maintenanceTools.UpdateSelection();
 
     private void ToolInput_Changed(object sender, RoutedEventArgs e) => UpdateToolCommand();
 
-    private GwCommand BuildEraseCommand()
-    {
-        var options = new List<EnabledOption>();
-        if (EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", EraseTracksValue.Text.Trim()));
-        if (EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", EraseRevsValue.Text.Trim()));
-        return _commandBuilder.BuildErase(new EraseRequest(_settings.GwExecutablePath ?? "gw.exe", options, SelectedDeviceArgument(), SelectedDriveArgument(), EraseExpertArguments.Text));
-    }
+    private GwCommand BuildEraseCommand() => _maintenanceTools.BuildErase();
 
-    private GwCommand BuildCleanCommand() => _commandBuilder.BuildClean(new CleanRequest(_settings.GwExecutablePath ?? "gw.exe",
-        CleanCylindersEnabled.IsChecked == true && int.TryParse(CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
-        CleanPassesEnabled.IsChecked == true && int.TryParse(CleanPassesValue.Text, out var passes) ? passes : null,
-        CleanLingerEnabled.IsChecked == true && int.TryParse(CleanLingerValue.Text, out var linger) ? linger : null,
-        SelectedDeviceArgument(), SelectedDriveArgument(), CleanExpertArguments.Text));
+    private GwCommand BuildCleanCommand() => _maintenanceTools.BuildClean();
 
     private void RefreshHardwareSelector() => _hardwareSelection.Refresh();
     private HardwareChoice? SelectedHardware() => _hardwareSelection.Selected;
@@ -1396,12 +1390,7 @@ public partial class MainWindow : Window
     private void HardwareSelector_Changed(object sender, SelectionChangedEventArgs e) => _hardwareSelection.OnSelectionChanged();
     private bool EnsureSelectedHardwareAvailable() => _hardwareSelection.EnsureAvailable();
 
-    private void UpdateToolCommand()
-    {
-        if (CommandPreview is null || ToolsList is null || MainTabs?.SelectedIndex != 5) return;
-        try { CommandPreview.Text = (ToolsList.SelectedIndex == 0 ? BuildEraseCommand() : BuildCleanCommand()).ToDisplayString(); }
-        catch (Exception exception) { ErrorLog.Write(exception, "Building maintenance preview"); CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
-    }
+    private void UpdateToolCommand() => _maintenanceTools.UpdatePreview();
 
     private async void ExecuteErase_Click(object sender, RoutedEventArgs e)
     {
