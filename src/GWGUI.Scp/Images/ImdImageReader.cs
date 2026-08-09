@@ -87,7 +87,8 @@ public sealed class ImdImageReader : ISectorImageReader
                 }
                 if (recordType > 8) throw new InvalidDataException("The ImageDisk sector-record type is invalid.");
                 sectors.Add(new(cylinders?[index] ?? trackCylinder, (heads?[index] ?? trackHead) & 1,
-                    numbers[index], bytes, recordType != 0 && recordType is not 5 and not 6 and not 7 and not 8));
+                    numbers[index], bytes, recordType != 0,
+                    recordType != 0 && recordType is not 5 and not 6 and not 7 and not 8));
             }
         }
 
@@ -96,13 +97,19 @@ public sealed class ImdImageReader : ISectorImageReader
         var cylindersCount = sectors.Max(sector => sector.Cylinder) + 1;
         var headsCount = sectors.Max(sector => sector.Head) + 1;
         var sectorsPerTrack = sectors.GroupBy(sector => (sector.Cylinder, sector.Head)).Max(group => group.Count());
-        var blocks = sectors.OrderBy(sector => sector.Cylinder).ThenBy(sector => sector.Head).ThenBy(sector => sector.Number)
-            .Select((sector, logical) => new SectorBlock(logical, new(sector.Cylinder, sector.Head, sector.Number),
-                sector.Data, sector.IntegrityValid)).ToArray();
-        var capacity = blocks.Sum(block => (long)block.Data.Count);
+        var ordered = sectors.OrderBy(sector => sector.Cylinder).ThenBy(sector => sector.Head).ThenBy(sector => sector.Number).ToArray();
+        var blocks = ordered.Select((sector, logical) => (sector, logical))
+            .Where(item => item.sector.Available)
+            .Select(item => new SectorBlock(item.logical,
+                new(item.sector.Cylinder, item.sector.Head, item.sector.Number),
+                item.sector.Data, item.sector.IntegrityValid)).ToArray();
+        // Type 0 records still describe a sector in the image geometry, but no
+        // sector data was available. Keep the declared capacity and logical
+        // position while exposing the sector through MissingBlocks.
+        var capacity = ordered.Sum(sector => (long)sector.Data.Length);
         var formatId = DetectFormat(sectors, blockSize, capacity);
         return new(formatId, blockSize, cylindersCount, headsCount, sectorsPerTrack, blocks,
-            sectors.Any(sector => sector.Data.Length != blockSize), capacity, blocks.Length);
+            sectors.Any(sector => sector.Data.Length != blockSize), capacity, ordered.Length);
     }
 
     private static string DetectFormat(IReadOnlyList<ImdSector> sectors, int blockSize, long capacity)
@@ -130,5 +137,5 @@ public sealed class ImdImageReader : ISectorImageReader
             throw new InvalidDataException($"The {description} is truncated.");
     }
 
-    private sealed record ImdSector(int Cylinder, int Head, int Number, byte[] Data, bool IntegrityValid);
+    private sealed record ImdSector(int Cylinder, int Head, int Number, byte[] Data, bool Available, bool IntegrityValid);
 }
