@@ -13,8 +13,14 @@ public sealed record ExploredDiskImage(
     IReadOnlyList<ExploredFileSystem>? DetectedFileSystems = null,
     IReadOnlyList<string>? DetectedImageFormatIds = null)
 {
-    public DiskImageMetadata Metadata => DiskImageMetadata.From(Image,
-        (DetectedFileSystems?.Select(item => item.FormatId) ?? []).Concat(DetectedImageFormatIds ?? []));
+    public DiskImageMetadata Metadata
+    {
+        get
+        {
+            var recognized = DetectedFileSystems?.Select(item => item.FormatId).ToArray() ?? [];
+            return DiskImageMetadata.From(Image, recognized.Length > 0 ? recognized : DetectedImageFormatIds ?? []);
+        }
+    }
 }
 
 public sealed class DiskImageExplorer(
@@ -154,7 +160,10 @@ public sealed class DiskImageExplorer(
                     var candidate = await read().ConfigureAwait(false);
                     var matches = new List<(ExploredFileSystem Match, SectorImage Image)>();
                     foreach (var match in fileSystems.ReadAll(candidate))
-                        matches.Add((new(candidate.FormatId, match.ReaderId, match.Volume), candidate));
+                    {
+                        var recognizedImage = NormalizeRecognizedImage(candidate, match.ReaderId);
+                        matches.Add((new(recognizedImage.FormatId, match.ReaderId, match.Volume), recognizedImage));
+                    }
                     foreach (var interpretation in AdditionalFileSystemInterpretations(candidate))
                         if (fileSystems.TryRead(interpretation, interpretation.FormatId, out var volume))
                             matches.Add((new(interpretation.FormatId, interpretation.FormatId, volume), interpretation));
@@ -185,6 +194,16 @@ public sealed class DiskImageExplorer(
 
     private static double DecodeScore(SectorImage image) =>
         image.AvailableBlocks.Count / (double)Math.Max(1, image.BlockCount);
+
+    private static SectorImage NormalizeRecognizedImage(SectorImage image, string readerId)
+    {
+        if ((readerId.Equals("mac-hfs", StringComparison.OrdinalIgnoreCase) ||
+             readerId.Equals("mac-mfs", StringComparison.OrdinalIgnoreCase)) &&
+            image.BlockSize == 512 && image.BlockCount == 2880 &&
+            !image.FormatId.Equals("mac.1440", StringComparison.OrdinalIgnoreCase))
+            return Retag(image, "mac.1440");
+        return image;
+    }
 
     private IEnumerable<Func<Task<SectorImage>>> AllScpCandidates(string path, IReadOnlySet<ScpFamily> families, CancellationToken cancellationToken)
     {

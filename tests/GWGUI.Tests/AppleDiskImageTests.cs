@@ -323,6 +323,7 @@ public sealed class AppleDiskImageTests
         var flux = await explorer.ExploreAsync(scpPath);
 
         Assert.Equal(source.Image.FormatId, flux.Image.FormatId);
+        Assert.Equal(source.Metadata.SystemName, flux.Metadata.SystemName);
         Assert.Equal(FlattenBlocks(source.Image.AvailableBlocks), FlattenBlocks(flux.Image.AvailableBlocks));
         Assert.Equal(source.FileSystemRecognized, flux.FileSystemRecognized);
         if (source.FileSystemRecognized)
