@@ -25,6 +25,7 @@ public partial class OptionsWindow : Window
 {
     private readonly AppSettings _settings;
     private readonly HardwareOptionsState _hardwareState;
+    private readonly ProfileOptionsState _profileState;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
@@ -44,14 +45,15 @@ public partial class OptionsWindow : Window
     private ProfileOptionRow? _lastProfileClick;
     private DateTime _lastProfileClickAt;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
-    public ObservableCollection<ProfileOptionRow> ReadProfiles { get; } = [];
-    public ObservableCollection<ProfileOptionRow> WriteProfiles { get; } = [];
-    public ObservableCollection<ProfileOptionRow> ConvertProfiles { get; } = [];
+    public ObservableCollection<ProfileOptionRow> ReadProfiles => _profileState.Read;
+    public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileState.Write;
+    public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileState.Convert;
     public ObservableCollection<LogOptionRow> LogOptions { get; } = [];
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
     {
         InitializeComponent();
         _settings = settings;
+        _profileState = new ProfileOptionsState(settings.Profiles);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
         var managedRoot = StoragePaths.HostToolsDirectory;
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
@@ -78,8 +80,6 @@ public partial class OptionsWindow : Window
         RefreshTagVariables();
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
-        foreach (var profile in settings.Profiles)
-            ProfilesFor(profile.Operation).Add(new(profile.Id, profile.Operation, profile.Name, false));
         ReadProfilesList.ItemsSource = ReadProfiles;
         WriteProfilesList.ItemsSource = WriteProfiles;
         ConvertProfilesList.ItemsSource = ConvertProfiles;
@@ -380,9 +380,8 @@ public partial class OptionsWindow : Window
         if (SelectedProfile(sender) is not ProfileOptionRow row) return;
         var dialog = new ProfileNameWindow(row.Name) { Owner = this };
         if (dialog.ShowDialog() != true) return;
-        var profiles = ProfilesFor(row.Operation);
-        if (profiles.Any(x => x.Id != row.Id && string.Equals(x.Name, dialog.ProfileName, StringComparison.CurrentCultureIgnoreCase))) { MessageBox.Show(this, LocExtension.Get("Profile.DuplicateName"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
-        var index = profiles.IndexOf(row); profiles[index] = row with { Name = dialog.ProfileName };
+        if (_profileState.ContainsName(row, dialog.ProfileName)) { MessageBox.Show(this, LocExtension.Get("Profile.DuplicateName"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
+        _profileState.Rename(row, dialog.ProfileName);
         await PersistSettingsAsync();
     }
 
@@ -429,11 +428,7 @@ public partial class OptionsWindow : Window
         return ReadProfilesList.SelectedItem as ProfileOptionRow ?? WriteProfilesList.SelectedItem as ProfileOptionRow ?? ConvertProfilesList.SelectedItem as ProfileOptionRow;
     }
 
-    private ObservableCollection<ProfileOptionRow> ProfilesFor(string operation) => operation switch
-    {
-        "Read" => ReadProfiles, "Write" => WriteProfiles, "Convert" => ConvertProfiles,
-        _ => throw new ArgumentOutOfRangeException(nameof(operation))
-    };
+    private ObservableCollection<ProfileOptionRow> ProfilesFor(string operation) => _profileState.For(operation);
 
     private void ApplyControlsToSettings()
     {
@@ -450,8 +445,7 @@ public partial class OptionsWindow : Window
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
         _settings.Drives = _drives;
-        var retained = ReadProfiles.Concat(WriteProfiles).Concat(ConvertProfiles).ToDictionary(x => x.Id);
-        _settings.Profiles = _settings.Profiles.Where(x => retained.ContainsKey(x.Id)).Select(x => { x.Name = retained[x.Id].Name; return x; }).ToList();
+        _profileState.ApplyTo(_settings);
     }
 
     private async Task PersistSettingsAsync()
