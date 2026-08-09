@@ -21,8 +21,8 @@ public sealed record DiskImageMetadata(string SystemName, string? ProtectionName
         {
             var value when value.StartsWith("apple2.") => "Apple II",
             var value when value.StartsWith("apple3.") => "Apple III",
-            var value when value.StartsWith("mac.") => "Apple Macintosh",
-            var value when value.StartsWith("lisa.") => "Apple Lisa",
+            var value when value.StartsWith("mac.") || value.StartsWith("applemac.") => "Apple Macintosh",
+            var value when value.StartsWith("lisa.") || value.StartsWith("applelisa.") => "Apple Lisa",
             var value when value.StartsWith("amiga.") => "Amiga",
             var value when value.StartsWith("atarist.") => "Atari ST",
             var value when value.StartsWith("atari.") => "Atari 8-bit",

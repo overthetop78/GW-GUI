@@ -110,7 +110,7 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var count = 400 * heads * 2; // 400 KiB per side, in 512-byte blocks.
         var provisional = new SectorImage("applemac.gcr", 512, 80, heads, 12, blocks, capacity: count * 512L, logicalBlockCount: count);
         var formatId = requestedFormatId?.StartsWith("applelisa", StringComparison.OrdinalIgnoreCase) == true
-            ? "applelisa.office" : "applemac.gcr";
+            ? requestedFormatId : "applemac.gcr";
         // Lisa page tags store the owning file identifier at bytes 4-5. File $0001
         // is the MDDF and therefore identifies a tagged Lisa Office disk without
         // requiring the user to select the format manually.
@@ -118,6 +118,8 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             formatId = "applelisa.office";
         if (provisional.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 2)
         {
+            if (mdb.Data.Take(Math.Min(16, mdb.Data.Count)).ToArray().AsSpan().IndexOf("PREBOOT"u8) >= 0)
+                formatId = "applelisa.macworks";
             var signature = (mdb.Data[0] << 8) | mdb.Data[1];
             if (!formatId.StartsWith("applelisa", StringComparison.OrdinalIgnoreCase))
                 formatId = signature == 0xd2d7 ? "applemac.mfs" : signature == 0x4244 ? "applemac.hfs" : "apple2.prodos";

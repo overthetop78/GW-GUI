@@ -325,6 +325,17 @@ public sealed class AppleDiskImageTests
         Assert.Equal(800, image.AvailableBlocks.Count);
         Assert.False(new LisaFileSystemReader().CanRead(image));
         Assert.NotEmpty(new SectorImageFluxVisualizer().Create(image).Tracks);
+        Assert.Equal("Apple Lisa", DiskImageMetadata.From(image).SystemName);
+
+        var scpPath = Directory.EnumerateFiles(root, "*MacWorks*.scp", SearchOption.AllDirectories).FirstOrDefault();
+        if (scpPath is null) return;
+        var scp = await DiskImageExplorer.CreateDefault().ExploreAsync(scpPath);
+        Assert.Equal("applelisa.macworks", scp.Image.FormatId);
+        Assert.Equal("Apple Lisa", scp.Metadata.SystemName);
+        Assert.False(scp.FileSystemRecognized);
+        Assert.NotEmpty(scp.Volume.Entries);
+        Assert.Equal(FlattenBlocks(image.AvailableBlocks), FlattenBlocks(scp.Image.AvailableBlocks));
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(scp.Image).Tracks);
     }
 
     [Fact]
