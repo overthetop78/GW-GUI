@@ -166,10 +166,17 @@ public sealed class SectorImageFluxVisualizerTests
     public async Task RealAtrUsesPhysicalTrackGeometryForVisualization()
     {
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test"));
-        var path = Directory.Exists(root) ? Directory.EnumerateFiles(root, "*.atr", SearchOption.AllDirectories).FirstOrDefault() : null;
-        if (path is null) return;
+        SectorImage? image = null;
+        if (Directory.Exists(root))
+            foreach (var path in Directory.EnumerateFiles(root, "*.atr", SearchOption.AllDirectories))
+            {
+                var candidate = (await DiskImageExplorer.CreateDefault().ExploreAsync(path)).Image;
+                if (!candidate.FormatId.Equals("atari.90", StringComparison.OrdinalIgnoreCase)) continue;
+                image = candidate;
+                break;
+            }
+        if (image is null) return;
 
-        var image = (await DiskImageExplorer.CreateDefault().ExploreAsync(path)).Image;
         var visualization = new SectorImageFluxVisualizer().Create(image);
         var decoded = new FluxDecoderRegistry().Decode("iso.fm", visualization.Tracks[0].Revolutions[0]);
 
