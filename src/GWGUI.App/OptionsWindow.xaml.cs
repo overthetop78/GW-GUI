@@ -49,6 +49,7 @@ public partial class OptionsWindow : Window
     private readonly AppSettings _settings;
     private readonly HardwareOptionsState _hardwareState;
     private readonly ProfileOptionsState _profileState;
+    private readonly ProfileOptionsController _profileOptionsController;
     private readonly TagOptionsController _tagOptionsController;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
@@ -60,12 +61,10 @@ public partial class OptionsWindow : Window
     private readonly SemaphoreSlim _saveLock = new(1, 1);
     private bool _closingAfterSave;
     private bool _closeInProgress;
-    private ProfileOptionRow? _lastProfileClick;
-    private DateTime _lastProfileClickAt;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
-    public ObservableCollection<ProfileOptionRow> ReadProfiles => _profileState.Read;
-    public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileState.Write;
-    public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileState.Convert;
+    public ObservableCollection<ProfileOptionRow> ReadProfiles => _profileOptionsController.Read;
+    public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileOptionsController.Write;
+    public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileOptionsController.Convert;
     public ObservableCollection<LogOptionRow> LogOptions { get; } = [];
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
     {
@@ -73,6 +72,12 @@ public partial class OptionsWindow : Window
         ConnectSections();
         _settings = settings;
         _profileState = new ProfileOptionsState(settings.Profiles);
+        _profileOptionsController = new ProfileOptionsController(
+            this,
+            ProfilesSection,
+            _profileState,
+            PersistSettingsAsync,
+            (key, arguments) => LocExtension.Get(key, arguments));
         _tagOptionsController = new TagOptionsController(
             GeneralSection,
             settings,
@@ -100,9 +105,6 @@ public partial class OptionsWindow : Window
         LogsDirectoryText.Text = StoragePaths.LogsDirectory;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
-        ReadProfilesList.ItemsSource = ReadProfiles;
-        WriteProfilesList.ItemsSource = WriteProfiles;
-        ConvertProfilesList.ItemsSource = ConvertProfiles;
         HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
         Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
         _initializing = false;
@@ -133,11 +135,6 @@ public partial class OptionsWindow : Window
         HardwareSection.DownloadHostToolsRequested += DownloadHostTools_Click;
         HardwareSection.RollbackHostToolsRequested += RollbackHostTools_Click;
 
-        ProfilesSection.RenameRequested += RenameProfile_Click;
-        ProfilesSection.DeleteRequested += DeleteProfile_Click;
-        ProfilesSection.ProfileKeyDown += ProfileList_KeyDown;
-        ProfilesSection.ProfileLeftButtonDown += ProfileList_PreviewMouseLeftButtonDown;
-        ProfilesSection.ProfileRightButtonDown += ProfileList_PreviewMouseRightButtonDown;
     }
 
     private void RegisterSectionNames()
@@ -368,61 +365,6 @@ public partial class OptionsWindow : Window
         _hardwareState.MergeUnconfigured(detectedControllers);
     }
 
-    private async void RenameProfile_Click(object sender, RoutedEventArgs e)
-    {
-        if (SelectedProfile(sender) is not ProfileOptionRow row) return;
-        var dialog = new ProfileNameWindow(row.Name) { Owner = this };
-        if (dialog.ShowDialog() != true) return;
-        if (_profileState.ContainsName(row, dialog.ProfileName)) { MessageBox.Show(this, LocExtension.Get("Profile.DuplicateName"), LocExtension.Get("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); return; }
-        _profileState.Rename(row, dialog.ProfileName);
-        await PersistSettingsAsync();
-    }
-
-    private async void DeleteProfile_Click(object sender, RoutedEventArgs e)
-    {
-        if (SelectedProfile(sender) is not ProfileOptionRow row) return;
-        if (MessageBox.Show(this, LocExtension.Get("Profile.DeleteConfirm", row.Name), LocExtension.Get("Profile.Title"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-        ProfilesFor(row.Operation).Remove(row);
-        await PersistSettingsAsync();
-    }
-
-    private void ProfileList_KeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.F2) { RenameProfile_Click(sender, new RoutedEventArgs()); e.Handled = true; }
-        else if (e.Key == Key.Delete) { DeleteProfile_Click(sender, new RoutedEventArgs()); e.Handled = true; }
-    }
-
-    private void ProfileList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-        if (sender is not ListBox list || ItemsControl.ContainerFromElement(list, e.OriginalSource as DependencyObject) is not ListBoxItem item || item.DataContext is not ProfileOptionRow row) return;
-        var now = DateTime.UtcNow;
-        var delay = now - _lastProfileClickAt;
-        if (Equals(list.SelectedItem, row) && _lastProfileClick == row && delay >= TimeSpan.FromMilliseconds(450) && delay <= TimeSpan.FromSeconds(1.5))
-        {
-            RenameProfile_Click(list, new RoutedEventArgs());
-            _lastProfileClick = null;
-            e.Handled = true;
-            return;
-        }
-        _lastProfileClick = row;
-        _lastProfileClickAt = now;
-    }
-
-    private void ProfileList_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-    {
-        if (sender is ListBox list && ItemsControl.ContainerFromElement(list, e.OriginalSource as DependencyObject) is ListBoxItem item)
-            item.IsSelected = true;
-    }
-
-    private ProfileOptionRow? SelectedProfile(object sender)
-    {
-        if (sender is ListBox list) return list.SelectedItem as ProfileOptionRow;
-        if (sender is MenuItem { Parent: ContextMenu context } && context.PlacementTarget is ListBox contextList) return contextList.SelectedItem as ProfileOptionRow;
-        return ReadProfilesList.SelectedItem as ProfileOptionRow ?? WriteProfilesList.SelectedItem as ProfileOptionRow ?? ConvertProfilesList.SelectedItem as ProfileOptionRow;
-    }
-
-    private ObservableCollection<ProfileOptionRow> ProfilesFor(string operation) => _profileState.For(operation);
-
     private void ApplyControlsToSettings()
     {
         _settings.DefaultImagesFolder = ImagesFolderText.Text.Trim();
@@ -434,7 +376,7 @@ public partial class OptionsWindow : Window
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
         _settings.Drives = _drives;
-        _profileState.ApplyTo(_settings);
+        _profileOptionsController.ApplyTo(_settings);
     }
 
     private async Task PersistSettingsAsync()
