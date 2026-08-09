@@ -12,7 +12,7 @@ public sealed class EpsonQx10DiskImageTests(ITestOutputHelper output)
         await Verify("Valdocs 2.00 for Epson QX-10 disk01.scp", "epson.qx10.399", automatic: true);
     }
 
-    [Fact] public Task RealValdocsDisk02ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk02.scp", "epson.qx10.396");
+    [Fact] public Task RealValdocsDisk02ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk02.scp", "epson.qx10.399", automatic: true);
     [Fact] public Task RealValdocsDisk03ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk03.scp", "epson.qx10.396");
     [Fact] public Task RealValdocsDisk04ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk04.scp", "epson.qx10.396");
     [Fact] public Task RealValdocsDisk05ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk05.scp", "epson.qx10.396");
@@ -36,6 +36,8 @@ public sealed class EpsonQx10DiskImageTests(ITestOutputHelper output)
     private static string TestImage(params string[] parts)
     {
         var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test"));
-        return parts.Aggregate(path, Path.Combine);
+        var expected = parts.Aggregate(path, Path.Combine);
+        if (File.Exists(expected)) return expected;
+        return Directory.EnumerateFiles(path, parts[^1], SearchOption.AllDirectories).FirstOrDefault() ?? expected;
     }
 }

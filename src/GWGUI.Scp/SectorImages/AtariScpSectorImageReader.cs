@@ -178,8 +178,15 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var tracks = candidates.GroupBy(pair => (pair.Key.Cylinder, pair.Key.Head))
             .Select(group => new DetectedEpsonTrack(group.Key.Cylinder, group.Key.Head,
                 group.Select(pair => new DetectedEpsonSector(pair.Key.Number,
-                    pair.Value.Select(value => value.Sector.Data?.Count ?? 0).GroupBy(size => size)
-                        .OrderByDescending(sizes => sizes.Count()).First().Key)).ToArray())).ToArray();
+                    pair.Value
+                        .Where(value => value.Sector.Data is not null)
+                        .GroupBy(value => value.Sector.IntegrityValid == true ? 2 : value.Sector.IntegrityValid is null ? 1 : 0)
+                        .OrderByDescending(group => group.Key)
+                        .First()
+                        .GroupBy(value => value.Sector.Data!.Count)
+                        .OrderByDescending(sizes => sizes.Count())
+                        .ThenByDescending(sizes => sizes.Key)
+                        .First().Key)).ToArray())).ToArray();
         if (tracks.Length == 0) return false;
 
         static bool Matches(DetectedEpsonTrack track, int first, int count, int size) =>

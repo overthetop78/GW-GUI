@@ -148,6 +148,8 @@ public sealed class DiskImageExplorer(
     {
         SectorImage? bestDecoded = null;
         SectorImage? bestRecognized = null;
+        ExploredFileSystem? bestRecognizedFileSystem = null;
+        double bestRecognizedScore = -1;
         var detected = new List<ExploredFileSystem>();
         var decodedFormatIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var keys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -182,9 +184,15 @@ public sealed class DiskImageExplorer(
                 foreach (var recognized in inspection.Matches)
                 {
                     var match = recognized.Match;
+                    var recognizedScore = DecodeScore(recognized.Image);
+                    if (bestRecognized is null || recognizedScore > bestRecognizedScore)
+                    {
+                        bestRecognized = recognized.Image;
+                        bestRecognizedFileSystem = match;
+                        bestRecognizedScore = recognizedScore;
+                    }
                     var key = FileSystemIdentity(match.Volume);
                     if (!keys.Add(key)) continue;
-                    bestRecognized ??= recognized.Image;
                     detected.Add(match);
                 }
             }
@@ -192,7 +200,13 @@ public sealed class DiskImageExplorer(
 
         var families = await ProbeScpFamiliesAsync(path, cancellationToken).ConfigureAwait(false);
         await InspectAsync(AllScpCandidates(path, families, cancellationToken)).ConfigureAwait(false);
-        return bestDecoded is null ? Unknown(path) : CreateDocument(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
+        if (bestDecoded is null) return Unknown(path);
+        if (bestRecognizedFileSystem is null)
+            return CreateDocument(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
+        var primaryIdentity = FileSystemIdentity(bestRecognizedFileSystem.Volume);
+        var orderedDetected = new[] { bestRecognizedFileSystem }.Concat(
+            detected.Where(match => FileSystemIdentity(match.Volume) != primaryIdentity)).ToArray();
+        return CreateDocument(path, bestRecognized ?? bestDecoded, orderedDetected, decodedFormatIds.ToArray());
     }
 
     private static double DecodeScore(SectorImage image) =>
@@ -283,6 +297,11 @@ public sealed class DiskImageExplorer(
             yield return () => atariScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken);
             yield return () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.320", cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.400", cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.logo", cancellationToken);
         }
         if (exhaustive || families.Contains(ScpFamily.Amiga)) yield return () => amigaScpReader.ReadAsync(path, cancellationToken);
         if (exhaustive || families.Contains(ScpFamily.Commodore)) yield return () => commodoreScpReader.ReadAsync(path, null, cancellationToken);
@@ -455,6 +474,7 @@ public sealed class DiskImageExplorer(
             () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken),
             () => atariScpReader.ReadAsync(path, "ibm.scan", cancellationToken),
             () => atariScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken),
+            () => atariScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken),
             () => atariScpReader.ReadAsync(path, "epson.qx10.320", cancellationToken),
             () => atariScpReader.ReadAsync(path, "epson.qx10.400", cancellationToken),
             () => atariScpReader.ReadAsync(path, "epson.qx10.logo", cancellationToken),
