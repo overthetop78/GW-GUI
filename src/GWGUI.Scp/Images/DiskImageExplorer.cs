@@ -1,5 +1,6 @@
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.Images.Containers;
+using GWGUI.Scp.Images.Interpretations;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -53,7 +54,7 @@ public sealed class DiskImageExplorer(
         else
         {
             var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase)
-                ? image : DiskImageInterpretationService.Retag(image, formatId);
+                ? image : SectorImageInterpretation.Retag(image, formatId);
             if (fileSystems.TryRead(selectedImage, formatId, out var selectedVolume) ||
                 fileSystems.TryRead(selectedImage, null, out selectedVolume))
                 detected.Add(new(formatId, formatId, selectedVolume));

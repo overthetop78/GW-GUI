@@ -1,0 +1,18 @@
+using GWGUI.Scp.FileSystems;
+using GWGUI.Scp.SectorImages;
+
+namespace GWGUI.Scp.Images.Interpretations;
+
+internal sealed class MacRecognizedImageNormalizer : IRecognizedImageNormalizer
+{
+    public bool TryNormalize(SectorImage image, string readerId, FileSystemVolume volume, out SectorImage normalized)
+    {
+        normalized = image;
+        if (!readerId.Equals("mac-hfs", StringComparison.OrdinalIgnoreCase) &&
+            !readerId.Equals("mac-mfs", StringComparison.OrdinalIgnoreCase)) return false;
+        if (image.BlockSize != 512 || image.BlockCount != 2880 ||
+            image.FormatId.Equals("mac.1440", StringComparison.OrdinalIgnoreCase)) return false;
+        normalized = SectorImageInterpretation.Retag(image, "mac.1440");
+        return true;
+    }
+}
