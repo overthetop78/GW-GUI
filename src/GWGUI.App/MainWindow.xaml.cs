@@ -45,6 +45,12 @@ public partial class MainWindow : Window
     private ProfileSection WriteProfileBlock => WriteTabBlock.ProfileBlock;
     private WriteFormatSection WriteFormatBlock => WriteTabBlock.FormatBlock;
     private Button WriteExecuteButton => WriteTabBlock.ExecuteActionButton;
+    private ConversionAdvancedSection ConvertAdvancedBlock => ConvertTabBlock.AdvancedBlock;
+    private PathSection ConvertSourceBlock => ConvertTabBlock.SourceBlock;
+    private ProfileSection ConvertProfileBlock => ConvertTabBlock.ProfileBlock;
+    private ConversionOutputSection ConvertOutputBlock => ConvertTabBlock.OutputBlock;
+    private ConversionFormatsSection ConvertFormatsBlock => ConvertTabBlock.FormatsBlock;
+    private Button ConvertExecuteButton => ConvertTabBlock.ExecuteActionButton;
     private RadioButton RawScpRadio => ReadImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => ReadImageBlock.KnownFormatRadio;
     private Grid KnownFormatPanel => ReadImageBlock.KnownFormatPanel;
@@ -268,6 +274,7 @@ public partial class MainWindow : Window
         ConvertFormatsBlock.ValueChanged += ConversionSelectionChanged;
         ConvertAdvancedBlock.InputChanged += ConvertInput_Changed;
         ConvertAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseConvertDiskDefs_Click;
+        ConvertTabBlock.ExecuteRequested += ExecuteConvert_Click;
         RegisterName(nameof(ConvertProfileCombo), ConvertProfileCombo);
         RegisterName(nameof(ConvertSourceText), ConvertSourceText);
         RegisterName(nameof(ConvertOutputName), ConvertOutputName);
