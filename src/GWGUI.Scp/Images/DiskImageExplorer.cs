@@ -161,7 +161,7 @@ public sealed class DiskImageExplorer(
                     var matches = new List<(ExploredFileSystem Match, SectorImage Image)>();
                     foreach (var match in fileSystems.ReadAll(candidate))
                     {
-                        var recognizedImage = NormalizeRecognizedImage(candidate, match.ReaderId);
+                        var recognizedImage = NormalizeRecognizedImage(candidate, match.ReaderId, match.Volume);
                         var recognizedVolume = ReferenceEquals(recognizedImage, candidate) ||
                             !fileSystems.TryRead(recognizedImage, match.ReaderId, out var normalizedVolume)
                             ? match.Volume : normalizedVolume;
@@ -198,7 +198,7 @@ public sealed class DiskImageExplorer(
     private static double DecodeScore(SectorImage image) =>
         image.AvailableBlocks.Count / (double)Math.Max(1, image.BlockCount);
 
-    private static SectorImage NormalizeRecognizedImage(SectorImage image, string readerId)
+    private static SectorImage NormalizeRecognizedImage(SectorImage image, string readerId, FileSystemVolume volume)
     {
         if ((readerId.Equals("mac-hfs", StringComparison.OrdinalIgnoreCase) ||
              readerId.Equals("mac-mfs", StringComparison.OrdinalIgnoreCase)) &&
@@ -214,7 +214,30 @@ public sealed class DiskImageExplorer(
             return new($"atarist.{totalSectors / 2}", 512, cylinders, heads, sectorsPerTrack, blocks,
                 capacity: totalSectors * 512L, logicalBlockCount: totalSectors);
         }
+        if (readerId.Equals("fat12", StringComparison.OrdinalIgnoreCase) &&
+            image.FormatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) &&
+            ContainsAtariStProgram(volume.Entries))
+            return Retag(image, $"atarist.{image.Capacity / 1024}");
         return image;
+    }
+
+    private static bool ContainsAtariStProgram(IEnumerable<FileSystemEntry> entries)
+    {
+        foreach (var entry in entries)
+        {
+            if (entry.Kind == FileSystemEntryKind.File)
+            {
+                var extension = Path.GetExtension(entry.Name);
+                if (extension.Equals(".ttp", StringComparison.OrdinalIgnoreCase) ||
+                    extension.Equals(".tos", StringComparison.OrdinalIgnoreCase) ||
+                    extension.Equals(".acc", StringComparison.OrdinalIgnoreCase) ||
+                    extension.Equals(".gtp", StringComparison.OrdinalIgnoreCase) ||
+                    entry.Content is { Count: >= 2 } && entry.Content[0] == 0x60 && entry.Content[1] == 0x1a)
+                    return true;
+            }
+            if (ContainsAtariStProgram(entry.Children)) return true;
+        }
+        return false;
     }
 
     private static bool TryReadFatGeometry(SectorImage image, out int cylinders, out int heads,
