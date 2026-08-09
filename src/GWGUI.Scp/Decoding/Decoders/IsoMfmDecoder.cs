@@ -5,9 +5,28 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     public string Id => "iso.mfm"; public string DisplayName => "ISO MFM (Atari ST / IBM PC)";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();
+        var centre = FluxBitstream.EstimateBitCell(revolution.FluxIntervals);
+        var first = DecodeCore(FluxBitstream.FromIntervalsPll(revolution.FluxIntervals, centre));
+        if (first.Sectors?.All(sector => sector.Data is not null && sector.IntegrityValid == true) == true) return first;
+
+        var best = first;
+        var bestScore = Score(first);
+        foreach (var factor in new[] { .98, 1.02, .96, 1.04, .94, 1.06 })
+        {
+            var candidate = DecodeCore(FluxBitstream.FromIntervalsPll(revolution.FluxIntervals, centre * factor));
+            var score = Score(candidate);
+            if (score > bestScore) { best = candidate; bestScore = score; }
+        }
+        return best;
+    }
+
+    private FluxDecodeResult DecodeCore(FluxBitstream source)
+    {
+        var originalLength = source.Bits.Length;
+        var stream = source.WithCircularTail(20_000);
+        var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();
         var headers = new List<(int Offset, byte Cylinder, byte Head, byte Number, byte SizeCode, int Size, bool? Valid)>(); var dataMarks = new List<(int Offset, byte Mark)>();
-        for (var offset = 0; offset + 64 <= stream.Bits.Length; offset++)
+        for (var offset = 0; offset + 64 <= originalLength; offset++)
         {
             if (!stream.Match(offset, 0x4489) || !stream.Match(offset + 16, 0x4489) || !stream.Match(offset + 32, 0x4489)) continue;
             var mark = stream.DecodeMfmByte(offset + 48); var kind = mark switch { 0xfe => FluxStructureKind.IdAddressMark, 0xfb => FluxStructureKind.DataAddressMark, 0xf8 => FluxStructureKind.DeletedDataAddressMark, _ => FluxStructureKind.Sync };
@@ -24,6 +43,8 @@ public sealed class IsoMfmDecoder : IFluxDecoder
             else if (mark is 0xfb or 0xf8) dataMarks.Add((offset, mark));
             structures.Add(new(kind, offset, mark == 0xfe ? 160 : 64, description)); bytes.Add(mark); offset += 47;
         }
+        dataMarks.AddRange(dataMarks.Where(mark => mark.Offset < stream.Bits.Length - originalLength)
+            .Select(mark => (mark.Offset + originalLength, mark.Mark)).ToArray());
         structures.RemoveAll(structure => structure.Kind == FluxStructureKind.IdAddressMark);
         for (var index = 0; index < headers.Count; index++)
         {
@@ -44,6 +65,14 @@ public sealed class IsoMfmDecoder : IFluxDecoder
         }
         var confidence = Math.Min(1, (sectors.Count * 2 + structures.Count(x => x.Kind is FluxStructureKind.DataAddressMark or FluxStructureKind.DeletedDataAddressMark)) / 12d);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static int Score(FluxDecodeResult result)
+    {
+        var sectors = result.Sectors ?? [];
+        return sectors.Count(sector => sector.IntegrityValid == true) * 1000
+            + sectors.Count(sector => sector.Data is not null) * 10
+            + sectors.Count;
     }
 
     private static ushort Crc16(IEnumerable<byte> values) { ushort crc = 0xffff; foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x1021 : crc << 1); } return crc; }
