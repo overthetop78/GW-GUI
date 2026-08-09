@@ -139,8 +139,7 @@ public partial class MainWindow : Window
     private readonly IHardwareRegistry _hardwareRegistry;
     private readonly StartupHardwareMonitor _startupHardwareMonitor;
     private AppSettings _settings = new();
-    private readonly OperationCoordinator _operation = new();
-    private readonly OperationResultPresenter _operationResultPresenter = new();
+    private readonly OperationRuntimeController _operation;
     private readonly IMessageDialogService _dialogs;
     private readonly IFileDialogService _fileDialogs;
     private readonly IBusinessDialogService _businessDialogs;
@@ -170,8 +169,6 @@ public partial class MainWindow : Window
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
     private readonly bool _settingsProvidedAtStartup;
-    private readonly Stopwatch _operationStopwatch = new();
-    private readonly System.Windows.Threading.DispatcherTimer _operationTimer = new() { Interval = TimeSpan.FromSeconds(1) };
 
     public MainWindow() : this(null, null, null, null, null, null, null, null, null, null) { }
 
@@ -208,6 +205,13 @@ public partial class MainWindow : Window
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         _progress = new OperationProgressController(_viewModel, Face0TrackProgress, Face1TrackProgress,
             (key, arguments) => LocExtension.Get(key, arguments));
+        _operation = new OperationRuntimeController(
+            Dispatcher,
+            _viewModel,
+            _progress,
+            LogOutput,
+            _consoleLog,
+            (key, arguments) => LocExtension.Get(key, arguments));
         _hardwareSelection = new HardwareSelectionController(
             StatusBarBlock,
             _viewModel,
@@ -231,7 +235,6 @@ public partial class MainWindow : Window
             () => MainTabs?.SelectedIndex == 5,
             command => CommandPreview.Text = command,
             (key, arguments) => LocExtension.Get(key, arguments));
-        _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
         _formatWorkspace = new ImageFormatWorkspace(key => LocExtension.Get(key));
         SynchronizeFormatWorkspace();
@@ -447,7 +450,7 @@ public partial class MainWindow : Window
             await _consoleLog.BeginAsync("read", command.ToDisplayString());
             var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync();
-            ApplyOperationResult(_operationResultPresenter.Present(outcome));
+            ApplyOperationResult(_operation.Present(outcome));
             if (outcome.Result?.IsSuccess == true && File.Exists(temporaryPath)) await LoadImageInExplorerAndVisualizerAsync(temporaryPath);
         }
         catch (Exception exception)
@@ -670,7 +673,7 @@ public partial class MainWindow : Window
             await _consoleLog.BeginAsync("convert", command.ToDisplayString());
             var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync();
-            ApplyOperationResult(_operationResultPresenter.Present(outcome));
+            ApplyOperationResult(_operation.Present(outcome));
             EndProgress();
             if (outcome.Result?.IsSuccess != true || !File.Exists(temporaryPath)) return;
             MainTabs.SelectedIndex = 3;
@@ -724,7 +727,7 @@ public partial class MainWindow : Window
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
         await FlushPendingOutputAsync();
-        ApplyOperationResult(_operationResultPresenter.Present(outcome));
+        ApplyOperationResult(_operation.Present(outcome));
         EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
 
@@ -900,7 +903,7 @@ public partial class MainWindow : Window
             }, System.Windows.Threading.DispatcherPriority.ContextIdle), token);
         });
         await FlushPendingOutputAsync();
-        ApplyOperationResult(_operationResultPresenter.Present(outcome));
+        ApplyOperationResult(_operation.Present(outcome));
         EndProgress(); ConvertExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
 
@@ -1234,7 +1237,7 @@ public partial class MainWindow : Window
         var output = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, output, token));
         await FlushPendingOutputAsync();
-        ApplyOperationResult(_operationResultPresenter.Present(outcome));
+        ApplyOperationResult(_operation.Present(outcome));
         if (outcome.Result is { } result)
         {
             if (result.WasCancelled)
@@ -1417,7 +1420,7 @@ public partial class MainWindow : Window
         var progress = new Progress<GwOutputLine>(ReportOutput);
         var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, progress, token));
         await FlushPendingOutputAsync();
-        ApplyOperationResult(_operationResultPresenter.Present(outcome));
+        ApplyOperationResult(_operation.Present(outcome));
         EndProgress(); button.Content = LocExtension.Get("Common.Execute");
     }
 
@@ -1427,29 +1430,13 @@ public partial class MainWindow : Window
             _operation.RequestCancellation();
     }
 
-    private void BeginProgress()
-    {
-        if (!_operationStopwatch.IsRunning)
-        {
-            _operationStopwatch.Restart();
-            _operationTimer.Start();
-            _viewModel.TimerVisibility = Visibility.Visible;
-            UpdateElapsedTime();
-        }
-        _progress.Begin();
-    }
+    private void BeginProgress() => _operation.Begin();
 
-    private async Task RenderPendingProgressAsync() =>
-        await Dispatcher.InvokeAsync(static () => { }, System.Windows.Threading.DispatcherPriority.Render);
+    private Task RenderPendingProgressAsync() => _operation.RenderPendingAsync();
 
-    private void ReportOutput(GwOutputLine line)
-    {
-        AppendConsoleText(line.Text + Environment.NewLine);
-        _progress.Accept(line.Text);
-    }
+    private void ReportOutput(GwOutputLine line) => _operation.Report(line);
 
-    private async Task FlushPendingOutputAsync() =>
-        await Dispatcher.InvokeAsync(static () => { }, System.Windows.Threading.DispatcherPriority.ContextIdle);
+    private Task FlushPendingOutputAsync() => _operation.FlushPendingAsync();
 
     private async Task AppendScpCaptureSummaryAsync(string path)
     {
@@ -1473,43 +1460,12 @@ public partial class MainWindow : Window
         }
     }
 
-    private void EndProgress()
-    {
-        _operationStopwatch.Stop();
-        _operationTimer.Stop();
-        UpdateElapsedTime();
-        _viewModel.TimerVisibility = Visibility.Collapsed;
-        _progress.End();
-    }
+    private void EndProgress() => _operation.End();
 
-    private void UpdateElapsedTime()
-    {
-        var elapsed = _operationStopwatch.Elapsed;
-        _viewModel.ElapsedText = $"{(int)elapsed.TotalHours:00}:{elapsed.Minutes:00}:{elapsed.Seconds:00}";
-    }
+    private void ApplyOperationResult(OperationResultPresentation presentation) => _operation.Apply(presentation);
 
-    private void ApplyOperationResult(OperationResultPresentation presentation)
-    {
-        switch (presentation.State)
-        {
-            case OperationResultState.Success: SetOperationState("Status.Success", Color.FromRgb(63, 171, 91)); break;
-            case OperationResultState.Cancelled: SetOperationState("Status.Cancelled", Color.FromRgb(220, 148, 45)); break;
-            default: SetOperationState("Status.Error", Color.FromRgb(210, 66, 66)); break;
-        }
-        foreach (var message in presentation.Messages)
-        {
-            if (message.StartOnNewLine) AppendConsoleText(Environment.NewLine);
-            AppendConsoleText(LocExtension.Get(message.ResourceKey, message.Arguments.ToArray()));
-        }
-    }
-
-    private void AppendConsoleText(string text)
-    {
-        LogOutput.AppendText(text);
-        LogOutput.ScrollToEnd();
-        _ = _consoleLog.AppendTextAsync(text);
-    }
-    private void SetOperationState(string resourceKey, Color color) => _progress.SetState(resourceKey, color);
+    private void AppendConsoleText(string text) => _operation.AppendText(text);
+    private void SetOperationState(string resourceKey, Color color) => _operation.SetState(resourceKey, color);
 
     private void UpdateProfileStatus()
     {
