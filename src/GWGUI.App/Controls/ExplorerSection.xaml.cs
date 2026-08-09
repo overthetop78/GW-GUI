@@ -148,20 +148,14 @@ public partial class ExplorerSection : UserControl
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
     }
 
-    public static int CountEntries(IEnumerable<FileSystemEntry> entries) => entries.Sum(entry => 1 + CountEntries(entry.Children));
+    public static int CountEntries(IEnumerable<FileSystemEntry> entries) => ExplorerIssueBuilder.CountEntries(entries);
 
     private void RefreshVisibleFolders(ExplorerFolderItem? selected = null)
     {
         if (_rootFolder is null) return;
         _visibleFolders.Clear();
-        AddVisible(_rootFolder);
+        foreach (var item in ExplorerTreeNavigator.Flatten(_rootFolder)) _visibleFolders.Add(item);
         if (selected is not null) FolderList.SelectedItem = selected;
-    }
-
-    private void AddVisible(ExplorerFolderItem item)
-    {
-        _visibleFolders.Add(item);
-        if (item.IsExpanded) foreach (var child in item.Children) AddVisible(child);
     }
 
     private void ShowContents(IEnumerable<FileSystemEntry> entries)
@@ -199,9 +193,9 @@ public partial class ExplorerSection : UserControl
     private void ContentsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
         if (ContentsList.SelectedItem is not ExplorerContentItem { Entry.Kind: FileSystemEntryKind.Directory } selected || _rootFolder is null) return;
-        var folder = FindFolder(_rootFolder, selected.Entry);
+        var folder = ExplorerTreeNavigator.Find(_rootFolder, selected.Entry);
         if (folder is null) return;
-        ExpandAncestors(_rootFolder, folder);
+        ExplorerTreeNavigator.ExpandPathTo(_rootFolder, folder);
         RefreshVisibleFolders(folder);
         ShowContents(folder.Entry!.Children);
     }
@@ -212,54 +206,5 @@ public partial class ExplorerSection : UserControl
         new ExplorerIssuesWindow(BuildIssues(_document)) { Owner = Window.GetWindow(this) }.ShowDialog();
     }
 
-    public static IReadOnlyList<string> BuildIssues(ExploredDiskImage document)
-    {
-        var issues = new List<string>();
-        foreach (var warning in (document.DetectedFileSystems ?? [])
-                     .SelectMany(item => item.Volume.Warnings)
-                     .Concat(document.Volume.Warnings)
-                     .Where(warning => !string.IsNullOrWhiteSpace(warning))
-                     .Distinct(StringComparer.CurrentCultureIgnoreCase))
-            issues.Add(ExplorerWarningLocalizer.Localize(warning));
-
-        foreach (var block in document.Image.AvailableBlocks.Where(block => block.IntegrityValid == false)
-                     .OrderBy(block => block.Address.Cylinder).ThenBy(block => block.Address.Head).ThenBy(block => block.Address.Number))
-            issues.Add(LocExtension.Get("Visual.SectorDetail", block.Address.Cylinder, block.Address.Head,
-                block.Address.Number, block.Data.Count, LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Visual.CrcInvalid")));
-
-        foreach (var logical in document.Image.MissingBlocks)
-        {
-            var sectorsPerCylinder = Math.Max(1, document.Image.Heads * document.Image.SectorsPerTrack);
-            var cylinder = logical / sectorsPerCylinder;
-            var withinCylinder = logical % sectorsPerCylinder;
-            var head = withinCylinder / Math.Max(1, document.Image.SectorsPerTrack);
-            var sector = withinCylinder % Math.Max(1, document.Image.SectorsPerTrack);
-            issues.Add(LocExtension.Get("Visual.SectorDetail", cylinder, head, sector, 0,
-                LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Explorer.Unknown")));
-        }
-        return issues.Distinct(StringComparer.CurrentCultureIgnoreCase).ToArray();
-    }
-
-    private static ExplorerFolderItem? FindFolder(ExplorerFolderItem current, FileSystemEntry entry)
-    {
-        if (ReferenceEquals(current.Entry, entry)) return current;
-        foreach (var child in current.Children)
-        {
-            var found = FindFolder(child, entry);
-            if (found is not null) return found;
-        }
-        return null;
-    }
-
-    private static bool ExpandAncestors(ExplorerFolderItem current, ExplorerFolderItem target)
-    {
-        if (ReferenceEquals(current, target)) return true;
-        foreach (var child in current.Children)
-        {
-            if (!ExpandAncestors(child, target)) continue;
-            current.IsExpanded = true;
-            return true;
-        }
-        return false;
-    }
+    public static IReadOnlyList<string> BuildIssues(ExploredDiskImage document) => ExplorerIssueBuilder.Build(document);
 }
