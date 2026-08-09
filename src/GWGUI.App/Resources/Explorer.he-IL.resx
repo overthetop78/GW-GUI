@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>מערכת</value></data>
   <data name="Explorer.Protection"><value>הגנה</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>סקטורים פיזיים — לא זוהתה מערכת קבצים</value></data>
 </root>

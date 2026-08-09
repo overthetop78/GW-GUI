@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>النظام</value></data>
   <data name="Explorer.Protection"><value>الحماية</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>القطاعات الفعلية — لم يتم التعرّف على نظام ملفات</value></data>
 </root>

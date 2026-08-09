@@ -1,4 +1,5 @@
 using System.Windows.Controls;
+using GWGUI.Domain.Formats;
 
 namespace GWGUI.App.Controls;
 
@@ -11,4 +12,7 @@ public partial class VisualizerHeaderSection : UserControl
     public CheckBox LinkZoomCheckBox => LinkZoom;
     public Button ResetButton => Reset;
     public Button OpenButton => Open;
+    public DiskClassificationSelector ClassificationSelector => Classification;
+    public void SetFormats(IEnumerable<DiskFormat> formats) => Classification.SetCatalog(formats);
+    public void ApplyDetection(string? formatId, string? protectionId) => Classification.ApplyDetection(formatId, protectionId);
 }

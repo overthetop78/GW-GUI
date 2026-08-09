@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Σύστημα</value></data>
   <data name="Explorer.Protection"><value>Προστασία</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Φυσικοί τομείς — δεν αναγνωρίστηκε σύστημα αρχείων</value></data>
 </root>

@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Đã nhận dạng định dạng Apple II DOS từ thứ tự sector.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Đã nhận dạng định dạng Apple II ProDOS từ thứ tự sector.</value></data>
   <data name="Detection.AppleContainer"><value>Đã phát hiện vùng chứa ảnh đĩa Apple.</value></data>
+  <data name="Classification.Automatic"><value>Tự động nhận diện</value></data><data name="Classification.Machine"><value>Máy tính</value></data><data name="Classification.Format"><value>Định dạng</value></data><data name="Classification.Protection"><value>Bảo vệ</value></data>
 </root>

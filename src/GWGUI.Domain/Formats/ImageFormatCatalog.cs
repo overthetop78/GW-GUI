@@ -48,7 +48,6 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
 
     private static bool IsSupported(DiskFormat format, GwFormatCapabilities capabilities)
     {
-        if (format.Id.Equals("apple2.rwts18", StringComparison.OrdinalIgnoreCase)) return true;
         if (BuiltInDiskDefinitions.Supports(format.Id)) return true;
         var gwFormat = GwFormatArgument.FromCatalogId(format.Id);
         return gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
@@ -141,7 +140,6 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("apple2.appledos.140", "Apple II", "Apple II DOS 3.3 — 140 KiB", [E(".do", "Extension.do", "Apple DOS-order image", true), E(".dsk", "Extension.dsk.apple", "Apple disk image")], true, "APPLE2-DOS33", ".scp", ".do", ".dsk", ".nib", ".woz", ".2mg", ".hfe"),
             F("apple2.prodos.140", "Apple II", "Apple II ProDOS — 140 KiB", [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".2mg", "Extension.2mg", "Apple 2IMG image")], true, "APPLE2-PRODOS", ".scp", ".po", ".do", ".dsk", ".nib", ".woz", ".2mg", ".hfe"),
             F("apple2.prodos.800", "Apple II", "Apple II ProDOS — 800 KiB", [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".2mg", "Extension.2mg", "Apple 2IMG image")], true, "APPLE2-PRODOS-800", ".scp", ".po", ".2mg", ".image", ".hfe"),
-            F("apple2.rwts18", "Apple II", "Apple II Brøderbund RWTS18", [E(".nib", "Extension.nib", "Apple NIB image", true), E(".woz", "Extension.woz", "Apple WOZ image")], false, "APPLE2-RWTS18", ".scp", ".nib", ".woz"),
             F("apple3.sos", "Apple III", "Apple III SOS — 140 KiB", [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".dsk", "Extension.dsk.apple", "Apple disk image")], false, "APPLE3-SOS", ".scp", ".po", ".do", ".dsk", ".2mg", ".hfe"),
             F("mac.400", "Apple Macintosh", "Apple Macintosh/Lisa GCR — 400 KiB", [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")], true, "MAC-400", ".scp", ".image", ".dc42", ".img", ".hfe"),
             F("mac.800", "Apple Macintosh", "Apple Macintosh GCR — 800 KiB", [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")], true, "MAC-800", ".scp", ".image", ".dc42", ".img", ".hfe"),

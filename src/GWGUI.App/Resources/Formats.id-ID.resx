@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Format Apple II DOS dikenali dari urutan sektor.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Format Apple II ProDOS dikenali dari urutan sektor.</value></data>
   <data name="Detection.AppleContainer"><value>Kontainer citra diska Apple terdeteksi.</value></data>
+  <data name="Classification.Automatic"><value>Deteksi otomatis</value></data><data name="Classification.Machine"><value>Komputer</value></data><data name="Classification.Format"><value>Format</value></data><data name="Classification.Protection"><value>Proteksi</value></data>
 </root>

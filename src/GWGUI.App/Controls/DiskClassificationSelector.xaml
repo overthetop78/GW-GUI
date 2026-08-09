@@ -1,0 +1,27 @@
+<UserControl x:Class="GWGUI.App.Controls.DiskClassificationSelector" x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:GWGUI.App.Localization">
+    <Grid VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="105"/>
+            <ColumnDefinition Width="135"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox x:Name="Automatic" Content="{l:Loc Classification.Automatic}" IsChecked="True"
+                  VerticalAlignment="Bottom" Height="38" Margin="0,0,14,0" Checked="Automatic_Changed" Unchecked="Automatic_Changed"/>
+        <StackPanel Grid.Column="1" Margin="0,0,12,0">
+            <TextBlock Text="{l:Loc Classification.Machine}" Margin="0,0,0,5"/>
+            <ComboBox x:Name="Machine" Height="38" VerticalContentAlignment="Center" SelectionChanged="Machine_Changed"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="0,0,12,0">
+            <TextBlock Text="{l:Loc Classification.Format}" Margin="0,0,0,5"/>
+            <ComboBox x:Name="Format" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Format_Changed"/>
+        </StackPanel>
+        <StackPanel x:Name="ProtectionPanel" Grid.Column="3" Width="130" Visibility="Collapsed">
+            <TextBlock Text="{l:Loc Classification.Protection}" Margin="0,0,0,5"/>
+            <ComboBox x:Name="Protection" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Protection_Changed"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

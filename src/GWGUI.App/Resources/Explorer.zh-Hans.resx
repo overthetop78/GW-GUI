@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>系统</value></data>
   <data name="Explorer.Protection"><value>保护</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>物理扇区 — 未识别文件系统</value></data>
 </root>

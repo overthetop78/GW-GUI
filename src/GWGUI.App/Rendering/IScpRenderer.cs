@@ -3,6 +3,8 @@ using SkiaSharp;
 
 namespace GWGUI.App.Rendering;
 
+public enum DiskMediaKind { Unknown, ThreeInch, ThreeHalfDd, ThreeHalfHd, FiveQuarterDd, FiveQuarterHd, EightInch }
+
 public sealed record ScpRenderRequest(
     ScpImage? Image,
     int Head,
@@ -12,7 +14,8 @@ public sealed record ScpRenderRequest(
     SKPoint Center,
     float Zoom,
     string EmptySideText,
-    string SideText);
+    string SideText,
+    DiskMediaKind MediaKind = DiskMediaKind.Unknown);
 
 public enum ScpTrackVisualState
 {

@@ -52,9 +52,6 @@ public partial class MainWindow : Window
     private TextBox ConvertOutputName => ConvertOutputBlock.OutputNameTextBox;
     private CheckBox ConvertTags => ConvertOutputBlock.TagsCheckBox;
     private TextBlock ConvertSourceInfo => ConvertOutputBlock.SourceInformation;
-    private ItemsControl ConvertPinnedPanel => ConvertFormatsBlock.PinnedItems;
-    private ItemsControl ConvertCommonPanel => ConvertFormatsBlock.CommonItems;
-    private ItemsControl ConvertRarePanel => ConvertFormatsBlock.RareItems;
     private CheckBox ConvertTracksEnabled => ConvertAdvancedBlock.TracksEnabledCheckBox;
     private CheckBox ConvertDiskDefsEnabled => ConvertAdvancedBlock.DiskDefinitionsEnabled;
     private TextBox ConvertDiskDefsValue => ConvertAdvancedBlock.DiskDefinitionsValue;
@@ -148,6 +145,8 @@ public partial class MainWindow : Window
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
         RefreshExplorerFormats();
+        VisualizerHeader.SetFormats(_formatCatalog.Formats);
+        VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => ApplyVisualizerClassification();
         _scpInspector = new ScpInspectorPresenter(_fluxDecoders, (key, arguments) => LocExtension.Get(key, arguments));
         _scpLoader = new ScpDocumentLoader(new ScpReader(), (key, arguments) => LocExtension.Get(key, arguments));
         ScpSide0.TrackSelected += ScpTrack_Selected; ScpSide1.TrackSelected += ScpTrack_Selected;
@@ -244,9 +243,6 @@ public partial class MainWindow : Window
         RegisterName(nameof(ConvertOutputName), ConvertOutputName);
         RegisterName(nameof(ConvertTags), ConvertTags);
         RegisterName(nameof(ConvertSourceInfo), ConvertSourceInfo);
-        RegisterName(nameof(ConvertPinnedPanel), ConvertPinnedPanel);
-        RegisterName(nameof(ConvertCommonPanel), ConvertCommonPanel);
-        RegisterName(nameof(ConvertRarePanel), ConvertRarePanel);
         RegisterName(nameof(ConvertTracksEnabled), ConvertTracksEnabled);
         RegisterName(nameof(ConvertDiskDefsEnabled), ConvertDiskDefsEnabled);
         RegisterName(nameof(ConvertDiskDefsValue), ConvertDiskDefsValue);
@@ -325,7 +321,13 @@ public partial class MainWindow : Window
         try
         {
             var document = await _diskImageExplorer.ExploreAsync(path, DiskExplorer.SelectedFormatId, cancellation.Token);
-            if (!cancellation.IsCancellationRequested) DiskExplorer.Display(document);
+            if (!cancellation.IsCancellationRequested)
+            {
+                DiskExplorer.Display(document);
+                VisualizerHeader.ApplyDetection(document.Image.FormatId,
+                    document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
+                ApplyVisualizerClassification();
+            }
             return cancellation.IsCancellationRequested ? null : document;
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return null; }
@@ -510,6 +512,41 @@ public partial class MainWindow : Window
         try { await PrepareScpViewsAsync(cancellation.Token); UpdateScpInspector(); }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
+    }
+
+    private void ApplyVisualizerClassification()
+    {
+        if (ScpDecoderCombo.ItemsSource is null) return;
+        var selector = VisualizerHeader.ClassificationSelector;
+        var decoderId = selector.SelectedProtectionId ?? selector.SelectedMachine switch
+        {
+            "Apple II" => "apple2.gcr",
+            "Apple Macintosh" => "applemac.gcr",
+            "Apple Lisa" => "applelisa.fileware.gcr",
+            "Amiga" => "amiga.mfm",
+            "Commodore" => "commodore.gcr",
+            "DEC" => "dec.rx02",
+            _ => "iso.mfm"
+        };
+        if (selector.AutomaticDetection && string.IsNullOrWhiteSpace(selector.SelectedMachine)) decoderId = null;
+        var choice = ScpDecoderCombo.Items.Cast<ScpDecoderChoice>()
+            .FirstOrDefault(item => string.Equals(item.Id, decoderId, StringComparison.OrdinalIgnoreCase));
+        if (choice is not null && !Equals(ScpDecoderCombo.SelectedItem, choice)) ScpDecoderCombo.SelectedItem = choice;
+        var mediaKind = MediaKindFor(selector.SelectedMachine, selector.SelectedFormatId);
+        ScpSide0.SetMediaKind(mediaKind);
+        ScpSide1.SetMediaKind(mediaKind);
+    }
+
+    private static DiskMediaKind MediaKindFor(string? machine, string? formatId)
+    {
+        var id = formatId?.ToLowerInvariant() ?? string.Empty;
+        if (machine == "Amstrad") return DiskMediaKind.ThreeInch;
+        if (machine == "DEC") return DiskMediaKind.EightInch;
+        if (machine is "Atari ST" or "Amiga" or "IBM PC" or "Apple Macintosh" or "MSX")
+            return id.Contains("1440") || id.Contains("2880") || id.Contains("_hd") ? DiskMediaKind.ThreeHalfHd : DiskMediaKind.ThreeHalfDd;
+        if (machine is "Apple II" or "Commodore" or "Acorn" or "Acorn / BBC Micro")
+            return id.Contains("hd") ? DiskMediaKind.FiveQuarterHd : DiskMediaKind.FiveQuarterDd;
+        return DiskMediaKind.Unknown;
     }
 
     private CancellationTokenSource ReplaceScpCancellation()
@@ -913,7 +950,7 @@ public partial class MainWindow : Window
 
     private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null)
     {
-        if (ConvertCommonPanel is null) return;
+        if (ConvertFormatsBlock is null) return;
         _conversionSourceExtension = sourceExtension;
         _conversionSourceDetection = detection;
         var items = _conversionFormatPresenter.Build(_formatCatalog, sourceExtension, detection, _viewModel.Conversion.SelectedFormats, _viewModel.Conversion.ExplicitExtensions);
@@ -922,9 +959,7 @@ public partial class MainWindow : Window
             if (!item.IsCompatible && _viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 _viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
         }
-        ConvertPinnedPanel.ItemsSource = items.Where(item => item.Group == ConversionFormatGroup.Selected);
-        ConvertCommonPanel.ItemsSource = items.Where(item => item.Group == ConversionFormatGroup.Common);
-        ConvertRarePanel.ItemsSource = items.Where(item => item.Group == ConversionFormatGroup.Rare);
+        ConvertFormatsBlock.SetItems(items);
     }
 
     private void ConvertProfile_Changed(object sender, SelectionChangedEventArgs e)
@@ -1576,6 +1611,7 @@ public partial class MainWindow : Window
     {
         var selectedId = DiskExplorer.SelectedFormatId;
         DiskExplorer.SetFormats(_formatCatalog.Formats, selectedId);
+        VisualizerHeader.SetFormats(_formatCatalog.Formats);
     }
 
     private void ShowLoggedError(Exception exception, string context, string titleKey, string messageKey = "Error.Unexpected")

@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Koruma</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fiziksel sektörler — tanınan dosya sistemi yok</value></data>
 </root>

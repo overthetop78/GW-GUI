@@ -8,6 +8,8 @@ using GWGUI.Scp.Decoding;
 using GWGUI.Scp.Encoding;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;
+using GWGUI.App.Controls;
+using GWGUI.App.Localization;
 
 namespace GWGUI.Tests;
 
@@ -24,14 +26,31 @@ public sealed class AppleDiskImageTests
     }
 
     [Fact]
+    public void DecodedPhysicalAppleDiskDoesNotPresentItsFileSystemAsUnknown()
+    {
+        var image = new SectorImage("apple2.dos33", 256, 35, 1, 16, []);
+        var document = new ExploredDiskImage("airheart.scp", image,
+            new FileSystemVolume("", "apple2.dos33", 143_360, 0, null, null, [], []), false,
+            DetectedImageFormatIds: ["apple2.dos33"]);
+
+        Assert.Equal("Apple II", document.Metadata.SystemName);
+        Assert.NotEqual(LocExtension.Get("Explorer.Unknown"), ExplorerDetailsPresenter.FileSystemText(document));
+        Assert.Equal(LocExtension.Get("Explorer.PhysicalSectorsNoFileSystem"), ExplorerDetailsPresenter.FileSystemText(document));
+    }
+
+    [Fact]
     public void SharedCatalogContainsAppleFormatsAndDetectsAppleContainers()
     {
         var catalog = new BuiltInImageFormatCatalog();
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.113");
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.appledos.140");
         Assert.Contains(catalog.Formats, format => format.Id == "apple2.prodos.140");
-        var rwts18 = Assert.Single(catalog.Formats, format => format.Id == "apple2.rwts18");
-        Assert.Equal([".nib", ".woz"], rwts18.Extensions.Select(extension => extension.Extension));
+        Assert.DoesNotContain(catalog.Formats, format => format.Id == "apple2.rwts18");
+        var classifications = new DiskClassificationCatalog(catalog.Formats);
+        var dos33 = Assert.IsType<DiskFormat>(classifications.ResolveFormat("apple2.rwts18"));
+        Assert.Equal("apple2.appledos.140", dos33.Id);
+        var protection = Assert.Single(classifications.ProtectionsFor("Apple II", dos33.Id));
+        Assert.Equal("apple2.rwts18", protection.Id);
         Assert.Contains(catalog.Formats, format => format.Id == "apple3.sos");
         Assert.Contains(catalog.Formats, format => format.Id == "mac.400");
         Assert.Contains(catalog.Formats, format => format.Id == "mac.800");

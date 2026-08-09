@@ -16,6 +16,7 @@ public partial class ScpDiskView : UserControl
     private float _zoom = 1;
     private float _panX;
     private float _panY;
+    private DiskMediaKind _mediaKind;
     private Point? _dragOrigin;
     private readonly IScpRenderer _renderer;
     public event EventHandler<ScpTrack?>? TrackSelected;
@@ -33,6 +34,7 @@ public partial class ScpDiskView : UserControl
         if (!cancellationToken.IsCancellationRequested) Canvas.InvalidateVisual();
     }
     public void SetDecoder(string? decoderId) { _renderer.DecoderId = decoderId; Canvas.InvalidateVisual(); }
+    public void SetMediaKind(DiskMediaKind mediaKind) { _mediaKind = mediaKind; Canvas.InvalidateVisual(); }
     public void RefreshPreparedTracks() => Canvas.InvalidateVisual();
     public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
     public void ResetView() { _zoom = 1; _panX = _panY = 0; Canvas.InvalidateVisual(); }
@@ -41,7 +43,7 @@ public partial class ScpDiskView : UserControl
     {
         var center = new SKPoint(e.Info.Width / 2f + _panX * e.Info.Width / (float)Math.Max(1, Canvas.ActualWidth), e.Info.Height / 2f + _panY * e.Info.Height / (float)Math.Max(1, Canvas.ActualHeight));
         _renderer.Render(e.Surface.Canvas, new ScpRenderRequest(_image, _head, SelectedTrack, e.Info.Width, e.Info.Height, center, _zoom,
-            LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head)));
+            LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head), _mediaKind));
     }
 
     private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e) { SetZoom(_zoom * (e.Delta > 0 ? 1.12f : .89f), true); e.Handled = true; }

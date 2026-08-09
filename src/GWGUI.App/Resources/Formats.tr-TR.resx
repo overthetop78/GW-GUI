@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Apple II DOS biçimi sektör sırasından tanımlandı.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS biçimi sektör sırasından tanımlandı.</value></data>
   <data name="Detection.AppleContainer"><value>Apple disk kalıbı kapsayıcısı algılandı.</value></data>
+  <data name="Classification.Automatic"><value>Otomatik algılama</value></data><data name="Classification.Machine"><value>Bilgisayar</value></data><data name="Classification.Format"><value>Biçim</value></data><data name="Classification.Protection"><value>Koruma</value></data>
 </root>

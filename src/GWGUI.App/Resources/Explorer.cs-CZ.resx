@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Systém</value></data>
   <data name="Explorer.Protection"><value>Ochrana</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fyzické sektory — nebyl rozpoznán žádný souborový systém</value></data>
 </root>

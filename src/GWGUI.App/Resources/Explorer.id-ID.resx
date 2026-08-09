@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Perlindungan</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sektor fisik — tidak ada sistem berkas yang dikenali</value></data>
 </root>

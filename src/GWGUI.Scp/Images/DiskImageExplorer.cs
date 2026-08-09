@@ -10,9 +10,11 @@ public sealed record ExploredDiskImage(
     SectorImage Image,
     FileSystemVolume Volume,
     bool FileSystemRecognized = true,
-    IReadOnlyList<ExploredFileSystem>? DetectedFileSystems = null)
+    IReadOnlyList<ExploredFileSystem>? DetectedFileSystems = null,
+    IReadOnlyList<string>? DetectedImageFormatIds = null)
 {
-    public DiskImageMetadata Metadata => DiskImageMetadata.From(Image, DetectedFileSystems?.Select(item => item.FormatId));
+    public DiskImageMetadata Metadata => DiskImageMetadata.From(Image,
+        (DetectedFileSystems?.Select(item => item.FormatId) ?? []).Concat(DetectedImageFormatIds ?? []));
 }
 
 public sealed class DiskImageExplorer(
@@ -133,7 +135,7 @@ public sealed class DiskImageExplorer(
         }
         var unique = detected.GroupBy(match => $"{match.FormatId}\0{match.ReaderId}\0{match.Volume.Name}", StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First()).ToArray();
-        return CreateDocument(path, image, unique);
+        return CreateDocument(path, image, unique, [image.FormatId]);
     }
 
     private async Task<ExploredDiskImage> ExploreScpAutomaticallyAsync(string path, CancellationToken cancellationToken)
@@ -141,6 +143,7 @@ public sealed class DiskImageExplorer(
         SectorImage? bestDecoded = null;
         SectorImage? bestRecognized = null;
         var detected = new List<ExploredFileSystem>();
+        var decodedFormatIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var keys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         async Task InspectAsync(IEnumerable<Func<Task<SectorImage>>> candidates)
         {
@@ -163,6 +166,7 @@ public sealed class DiskImageExplorer(
             {
                 if (inspection.Image is null) continue;
                 if (bestDecoded is null || DecodeScore(inspection.Image) > DecodeScore(bestDecoded)) bestDecoded = inspection.Image;
+                if (DecodeScore(inspection.Image) >= .5) decodedFormatIds.Add(inspection.Image.FormatId);
                 foreach (var recognized in inspection.Matches)
                 {
                     var match = recognized.Match;
@@ -176,7 +180,7 @@ public sealed class DiskImageExplorer(
 
         var families = await ProbeScpFamiliesAsync(path, cancellationToken).ConfigureAwait(false);
         await InspectAsync(AllScpCandidates(path, families, cancellationToken)).ConfigureAwait(false);
-        return bestDecoded is null ? Unknown(path) : CreateDocument(path, bestRecognized ?? bestDecoded, detected);
+        return bestDecoded is null ? Unknown(path) : CreateDocument(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
     }
 
     private static double DecodeScore(SectorImage image) =>
@@ -305,9 +309,10 @@ public sealed class DiskImageExplorer(
         image.Cylinders, image.Heads, image.SectorsPerTrack, image.AvailableBlocks,
         image.AvailableBlocks.Any(block => block.Data.Count != image.BlockSize), image.Capacity, image.BlockCount);
 
-    private static ExploredDiskImage CreateDocument(string path, SectorImage image, IReadOnlyList<ExploredFileSystem> detected)
+    private static ExploredDiskImage CreateDocument(string path, SectorImage image, IReadOnlyList<ExploredFileSystem> detected,
+        IReadOnlyList<string>? detectedImageFormatIds = null)
     {
-        if (detected.Count > 0) return new(path, image, detected[0].Volume, true, detected);
+        if (detected.Count > 0) return new(path, image, detected[0].Volume, true, detected, detectedImageFormatIds);
         var physicalTracks = image.AvailableBlocks
             .GroupBy(block => (block.Address.Cylinder, block.Address.Head))
             .OrderBy(group => group.Key.Cylinder).ThenBy(group => group.Key.Head)
@@ -320,7 +325,7 @@ public sealed class DiskImageExplorer(
             .ToArray();
         var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), image.FormatId,
             image.Capacity, 0, null, null, physicalTracks, []);
-        return new(path, image, physical, false, []);
+        return new(path, image, physical, false, [], detectedImageFormatIds);
     }
 
     private static ExploredDiskImage Unknown(string path)

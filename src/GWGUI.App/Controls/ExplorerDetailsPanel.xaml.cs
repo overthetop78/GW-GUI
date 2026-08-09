@@ -10,6 +10,11 @@ public sealed record ExplorerDetailsPresentation(string Title, ExplorerIconKind 
 
 public static class ExplorerDetailsPresenter
 {
+    public static string FileSystemText(ExploredDiskImage document) => document.FileSystemRecognized
+        ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem)
+            .Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystem))
+        : LocExtension.Get("Explorer.PhysicalSectorsNoFileSystem");
+
     public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document)
     {
         var volume = document.Volume;
@@ -21,9 +26,7 @@ public static class ExplorerDetailsPresenter
             new("Explorer.Volume", title),
             new("Explorer.System", document.Metadata.SystemName),
             new("Explorer.Protection", document.Metadata.ProtectionName ?? "\u2014"),
-            new("Explorer.FileSystem", document.FileSystemRecognized
-                ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(volume.FileSystem))
-                : LocExtension.Get("Explorer.Unknown")),
+            new("Explorer.FileSystem", FileSystemText(document)),
             new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
             new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"),
             new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()),

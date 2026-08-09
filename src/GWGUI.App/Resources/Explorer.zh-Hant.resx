@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>系統</value></data>
   <data name="Explorer.Protection"><value>保護</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>實體磁區 — 未識別檔案系統</value></data>
 </root>

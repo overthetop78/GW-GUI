@@ -1,17 +1,51 @@
 using System.Windows.Controls;
 using System.Windows.Input;
+using GWGUI.App.ViewModels;
 
 namespace GWGUI.App.Controls;
 
 public partial class ConversionFormatsSection : UserControl
 {
+    private IReadOnlyList<ConversionFormatPresentation> _items = [];
+
     public ConversionFormatsSection() => InitializeComponent();
     public event EventHandler? ValueChanged;
-    public ItemsControl PinnedItems => Pinned;
-    public ItemsControl CommonItems => Common;
-    public ItemsControl RareItems => Rare;
-    private void Format_ValueChanged(object? sender, EventArgs e) => ValueChanged?.Invoke(sender, e);
+    public IReadOnlyList<string> SelectedOutputLines => SelectedOutputs.Items.Cast<string>().ToArray();
+    public IReadOnlyList<string> MachineChoices => Machines.Items.Cast<string>().ToArray();
+    public IReadOnlyList<ConversionFormatPresentation> VisibleFormats => Formats.Items.Cast<ConversionFormatPresentation>().ToArray();
 
+    public void SetItems(IReadOnlyList<ConversionFormatPresentation> items)
+    {
+        var selectedMachine = Machines.SelectedItem as string;
+        _items = items;
+        SelectedOutputs.ItemsSource = items.Where(item => item.IsSelected)
+            .SelectMany(item => SelectedLines(item)).ToArray();
+        var machines = items.Select(item => item.Format.Family).Distinct(StringComparer.OrdinalIgnoreCase)
+            .Order(StringComparer.CurrentCultureIgnoreCase).ToArray();
+        Machines.ItemsSource = machines;
+        Machines.SelectedItem = machines.FirstOrDefault(machine => machine.Equals(selectedMachine, StringComparison.OrdinalIgnoreCase))
+            ?? machines.FirstOrDefault();
+        RefreshFormats();
+    }
+
+    private static IEnumerable<string> SelectedLines(ConversionFormatPresentation item)
+    {
+        var extensions = item.ExplicitExtensions.Count == 0
+            ? item.Format.Extensions.Where(extension => extension.IsDefault).Take(1).Select(extension => extension.Extension)
+            : item.ExplicitExtensions.Order(StringComparer.OrdinalIgnoreCase);
+        foreach (var extension in extensions) yield return $"{item.Format.DisplayName} · {extension.TrimStart('.').ToUpperInvariant()}";
+    }
+
+    private void RefreshFormats()
+    {
+        if (Machines.SelectedItem is not string machine) { Formats.ItemsSource = null; return; }
+        Formats.ItemsSource = _items.Where(item => item.Format.Family.Equals(machine, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(item => item.IsSelected).ThenByDescending(item => item.Format.IsCommon)
+            .ThenBy(item => item.Format.DisplayName, StringComparer.CurrentCultureIgnoreCase).ToArray();
+    }
+
+    private void Machines_SelectionChanged(object sender, SelectionChangedEventArgs e) => RefreshFormats();
+    private void Format_ValueChanged(object? sender, EventArgs e) => ValueChanged?.Invoke(sender, e);
     private void List_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
     {
         if (sender is not ScrollViewer viewer || viewer.ScrollableHeight <= 0) return;

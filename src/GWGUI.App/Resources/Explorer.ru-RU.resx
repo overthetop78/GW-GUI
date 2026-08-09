@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Система</value></data>
   <data name="Explorer.Protection"><value>Защита</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Физические секторы — файловая система не распознана</value></data>
 </root>

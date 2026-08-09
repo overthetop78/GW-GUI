@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Hệ thống</value></data>
   <data name="Explorer.Protection"><value>Bảo vệ</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sector vật lý — không nhận dạng được hệ thống tệp</value></data>
 </root>

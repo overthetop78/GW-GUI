@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>تم التعرف على تنسيق Apple II DOS من ترتيب القطاعات.</value></data>
   <data name="Detection.AppleProDosOrder"><value>تم التعرف على تنسيق Apple II ProDOS من ترتيب القطاعات.</value></data>
   <data name="Detection.AppleContainer"><value>تم اكتشاف حاوية صورة قرص Apple.</value></data>
+  <data name="Classification.Automatic"><value>اكتشاف تلقائي</value></data><data name="Classification.Machine"><value>الحاسوب</value></data><data name="Classification.Format"><value>التنسيق</value></data><data name="Classification.Protection"><value>الحماية</value></data>
 </root>

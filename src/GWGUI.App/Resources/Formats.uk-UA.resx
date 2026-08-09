@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Формат Apple II DOS визначено за порядком секторів.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Формат Apple II ProDOS визначено за порядком секторів.</value></data>
   <data name="Detection.AppleContainer"><value>Виявлено контейнер образу диска Apple.</value></data>
+  <data name="Classification.Automatic"><value>Автоматичне визначення</value></data><data name="Classification.Machine"><value>Комп’ютер</value></data><data name="Classification.Format"><value>Формат</value></data><data name="Classification.Protection"><value>Захист</value></data>
 </root>

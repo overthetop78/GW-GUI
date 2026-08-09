@@ -10,10 +10,7 @@ using GWGUI.Scp.Images;
 
 namespace GWGUI.App.Controls;
 
-public sealed record ExplorerFormatChoice(string? Id, string Name)
-{
-    public override string ToString() => Name;
-}
+public sealed record ExplorerFormatChoice(string? Id, string Name);
 
 public sealed class ExplorerFolderItem
 {
@@ -64,10 +61,10 @@ public static class ExplorerFormatting
 
 public partial class ExplorerSection : UserControl
 {
-    private bool _changingFormat;
     private ExplorerFolderItem? _rootFolder;
     private ExploredDiskImage? _document;
     private IReadOnlyList<FileSystemEntry> _rootEntries = [];
+    private IReadOnlyList<DiskFormat> _formats = [];
     private readonly ObservableCollection<ExplorerFolderItem> _visibleFolders = [];
 
     public ExplorerSection()
@@ -75,6 +72,7 @@ public partial class ExplorerSection : UserControl
         InitializeComponent();
         FolderList.ItemsSource = _visibleFolders;
         SetFormats([], null);
+        Classification.ValueChanged += (_, _) => FormatChanged?.Invoke(this, EventArgs.Empty);
         OpenButton.Click += (_, e) => OpenRequested?.Invoke(this, e);
         ReadDiskButton.Click += (_, e) => ReadDiskRequested?.Invoke(this, e);
     }
@@ -83,18 +81,17 @@ public partial class ExplorerSection : UserControl
     public event RoutedEventHandler? ReadDiskRequested;
     public event EventHandler? FormatChanged;
     public Button OpenImageButton => OpenButton;
-    public IReadOnlyList<ExplorerFormatChoice> FormatChoices => FormatCombo.Items.Cast<ExplorerFormatChoice>().ToArray();
+    public IReadOnlyList<ExplorerFormatChoice> FormatChoices =>
+        [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
-    public string? SelectedFormatId => (FormatCombo.SelectedItem as ExplorerFormatChoice)?.Id;
+    public string? SelectedFormatId => Classification.SelectedProtectionId ?? Classification.SelectedFormatId;
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
     {
-        _changingFormat = true;
-        var choices = new List<ExplorerFormatChoice> { new(null, LocExtension.Get("Explorer.Automatic")) };
-        choices.AddRange(formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName)));
-        FormatCombo.ItemsSource = choices;
-        FormatCombo.SelectedItem = choices.FirstOrDefault(item => item.Id == selectedId) ?? choices[0];
-        _changingFormat = false;
+        var hadSelection = Classification.SelectedFormatId is not null;
+        _formats = formats.ToArray();
+        Classification.SetCatalog(_formats);
+        if (!hadSelection && selectedId is not null) Classification.ApplyDetection(selectedId, null);
     }
 
     public void SetLoading(bool loading) => LoadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
@@ -117,15 +114,15 @@ public partial class ExplorerSection : UserControl
     {
         _document = document;
         PathText.Text = document.SourcePath;
+        Classification.ApplyDetection(document.Image.FormatId,
+            document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
         var volumeName = !document.FileSystemRecognized
             ? LocExtension.Get("Explorer.Unknown")
             : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
         VolumeNameText.Text = volumeName;
         SystemText.Text = document.Metadata.SystemName;
         ProtectionText.Text = document.Metadata.ProtectionName ?? "\u2014";
-        FileSystemText.Text = document.FileSystemRecognized
-            ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystem))
-            : LocExtension.Get("Explorer.Unknown");
+        FileSystemText.Text = ExplorerDetailsPresenter.FileSystemText(document);
         CapacityText.Text = ExplorerFormatting.FormatBytes(document.Volume.Capacity);
         FreeText.Text = document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
         EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
@@ -172,11 +169,6 @@ public partial class ExplorerSection : UserControl
         if (_document is null) return;
         if (ContentsList.SelectedItem is ExplorerContentItem item) DetailsPanel.ShowItem(_document, item);
         else DetailsPanel.ShowDisk(_document);
-    }
-
-    private void FormatCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!_changingFormat) FormatChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void FolderToggle_Click(object sender, RoutedEventArgs e)

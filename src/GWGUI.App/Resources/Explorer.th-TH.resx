@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>ระบบ</value></data>
   <data name="Explorer.Protection"><value>การป้องกัน</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>เซกเตอร์ทางกายภาพ — ไม่รู้จักระบบไฟล์</value></data>
 </root>

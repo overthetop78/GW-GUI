@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Formát Apple II DOS byl rozpoznán podle pořadí sektorů.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Formát Apple II ProDOS byl rozpoznán podle pořadí sektorů.</value></data>
   <data name="Detection.AppleContainer"><value>Byl zjištěn kontejner obrazu disku Apple.</value></data>
+  <data name="Classification.Automatic"><value>Automatická detekce</value></data><data name="Classification.Machine"><value>Počítač</value></data><data name="Classification.Format"><value>Formát</value></data><data name="Classification.Protection"><value>Ochrana</value></data>
 </root>

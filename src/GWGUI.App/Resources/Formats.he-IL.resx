@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>תבנית Apple II DOS זוהתה לפי סדר הסקטורים.</value></data>
   <data name="Detection.AppleProDosOrder"><value>תבנית Apple II ProDOS זוהתה לפי סדר הסקטורים.</value></data>
   <data name="Detection.AppleContainer"><value>זוהה מכל תמונת דיסק של Apple.</value></data>
+  <data name="Classification.Automatic"><value>זיהוי אוטומטי</value></data><data name="Classification.Machine"><value>מחשב</value></data><data name="Classification.Format"><value>תבנית</value></data><data name="Classification.Protection"><value>הגנה</value></data>
 </root>

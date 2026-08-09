@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Skydd</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiska sektorer — inget identifierat filsystem</value></data>
 </root>

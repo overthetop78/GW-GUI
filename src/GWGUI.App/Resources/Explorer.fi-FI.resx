@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Järjestelmä</value></data>
   <data name="Explorer.Protection"><value>Suojaus</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fyysiset sektorit — tiedostojärjestelmää ei tunnistettu</value></data>
 </root>

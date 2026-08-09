@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Η μορφή Apple II DOS αναγνωρίστηκε από τη σειρά των τομέων.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Η μορφή Apple II ProDOS αναγνωρίστηκε από τη σειρά των τομέων.</value></data>
   <data name="Detection.AppleContainer"><value>Εντοπίστηκε περιέκτης εικόνας δίσκου Apple.</value></data>
+  <data name="Classification.Automatic"><value>Αυτόματη ανίχνευση</value></data><data name="Classification.Machine"><value>Υπολογιστής</value></data><data name="Classification.Format"><value>Μορφή</value></data><data name="Classification.Protection"><value>Προστασία</value></data>
 </root>

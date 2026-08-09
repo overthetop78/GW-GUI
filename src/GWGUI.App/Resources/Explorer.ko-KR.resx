@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>시스템</value></data>
   <data name="Explorer.Protection"><value>보호</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>물리 섹터 — 인식된 파일 시스템 없음</value></data>
 </root>

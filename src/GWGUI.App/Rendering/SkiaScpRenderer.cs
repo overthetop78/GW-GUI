@@ -62,6 +62,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
         var tracks = request.Image?.Tracks.Where(track => track.Head == request.Head).OrderBy(track => track.Cylinder).ToArray() ?? [];
         var outer = Math.Min(request.Width, request.Height) * .47f * request.Zoom;
         var inner = outer * .25f;
+        DrawMedia(canvas, request, outer);
         using var disk = new SKPaint { Color = new SKColor(17, 61, 43), IsAntialias = true };
         canvas.DrawCircle(request.Center, outer, disk);
         using var hub = new SKPaint { Color = new SKColor(4, 6, 8), IsAntialias = true };
@@ -109,6 +110,45 @@ public sealed class SkiaScpRenderer : IScpRenderer
             }
         }
         DrawCentered(canvas, request.Center, request.SideText, new SKColor(210, 218, 228));
+    }
+
+    private static void DrawMedia(SKCanvas canvas, ScpRenderRequest request, float outer)
+    {
+        if (request.MediaKind == DiskMediaKind.Unknown) return;
+        var scale = request.MediaKind == DiskMediaKind.ThreeInch ? 1.27f : 1.18f;
+        var half = outer * scale;
+        var rect = new SKRect(request.Center.X - half, request.Center.Y - half,
+            request.Center.X + half, request.Center.Y + half);
+        var color = request.MediaKind switch
+        {
+            DiskMediaKind.ThreeHalfDd => new SKColor(50, 55, 64),
+            DiskMediaKind.ThreeHalfHd => new SKColor(35, 42, 52),
+            DiskMediaKind.ThreeInch => new SKColor(48, 53, 60),
+            DiskMediaKind.EightInch => new SKColor(34, 35, 38),
+            _ => new SKColor(42, 39, 34)
+        };
+        using var shell = new SKPaint { Color = color, IsAntialias = true };
+        var shellRadius = request.MediaKind is DiskMediaKind.FiveQuarterDd or DiskMediaKind.FiveQuarterHd or DiskMediaKind.EightInch ? half * .025f : half * .08f;
+        canvas.DrawRoundRect(rect, shellRadius, shellRadius, shell);
+        using var edge = new SKPaint { Color = new SKColor(105, 111, 120), IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeWidth = Math.Max(1, outer * .008f) };
+        canvas.DrawRoundRect(rect, half * .04f, half * .04f, edge);
+
+        if (request.MediaKind is DiskMediaKind.ThreeHalfDd or DiskMediaKind.ThreeHalfHd)
+        {
+            var shutter = new SKRect(request.Center.X - half * .34f, rect.Top + half * .05f,
+                request.Center.X + half * .34f, rect.Top + half * .30f);
+            using var metal = new SKPaint { Color = new SKColor(145, 151, 159), IsAntialias = true };
+            canvas.DrawRoundRect(shutter, half * .025f, half * .025f, metal);
+            using var label = new SKPaint { Color = new SKColor(205, 207, 203), IsAntialias = true };
+            canvas.DrawRoundRect(new SKRect(rect.Left + half * .22f, rect.Bottom - half * .38f,
+                rect.Right - half * .22f, rect.Bottom - half * .10f), half * .02f, half * .02f, label);
+        }
+        else
+        {
+            using var label = new SKPaint { Color = new SKColor(190, 182, 155), IsAntialias = true };
+            canvas.DrawRoundRect(new SKRect(rect.Left + half * .18f, rect.Top + half * .12f,
+                rect.Right - half * .18f, rect.Top + half * .42f), half * .02f, half * .02f, label);
+        }
     }
 
     private PreparedTrack PrepareTrack(ScpTrack track, ScpRevolution revolution, string? decoderId, CancellationToken cancellationToken)

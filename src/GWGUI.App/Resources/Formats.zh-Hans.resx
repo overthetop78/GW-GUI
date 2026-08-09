@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>已根据扇区顺序识别 Apple II DOS 格式。</value></data>
   <data name="Detection.AppleProDosOrder"><value>已根据扇区顺序识别 Apple II ProDOS 格式。</value></data>
   <data name="Detection.AppleContainer"><value>已检测到 Apple 磁盘映像容器。</value></data>
+  <data name="Classification.Automatic"><value>自动检测</value></data><data name="Classification.Machine"><value>计算机</value></data><data name="Classification.Format"><value>格式</value></data><data name="Classification.Protection"><value>保护</value></data>
 </root>

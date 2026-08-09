@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>Rendszer</value></data>
   <data name="Explorer.Protection"><value>Védelem</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fizikai szektorok — nem ismerhető fel fájlrendszer</value></data>
 </root>

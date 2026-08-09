@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Format Apple II DOS rozpoznany na podstawie kolejności sektorów.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Format Apple II ProDOS rozpoznany na podstawie kolejności sektorów.</value></data>
   <data name="Detection.AppleContainer"><value>Wykryto kontener obrazu dysku Apple.</value></data>
+  <data name="Classification.Automatic"><value>Automatyczne wykrywanie</value></data><data name="Classification.Machine"><value>Komputer</value></data><data name="Classification.Format"><value>Format</value></data><data name="Classification.Protection"><value>Zabezpieczenie</value></data>
 </root>

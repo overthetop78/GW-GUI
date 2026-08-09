@@ -110,4 +110,5 @@
   </data>
   <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Beskyttelse</value></data>
+  <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiske sektorer — ingen gjenkjent filsystem</value></data>
 </root>

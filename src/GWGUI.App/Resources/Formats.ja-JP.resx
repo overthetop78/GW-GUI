@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>セクター順序から Apple II DOS 形式を識別しました。</value></data>
   <data name="Detection.AppleProDosOrder"><value>セクター順序から Apple II ProDOS 形式を識別しました。</value></data>
   <data name="Detection.AppleContainer"><value>Apple ディスクイメージコンテナーを検出しました。</value></data>
+  <data name="Classification.Automatic"><value>自動検出</value></data><data name="Classification.Machine"><value>コンピューター</value></data><data name="Classification.Format"><value>フォーマット</value></data><data name="Classification.Protection"><value>プロテクト</value></data>
 </root>

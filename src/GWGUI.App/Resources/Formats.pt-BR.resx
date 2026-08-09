@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Formato Apple II DOS identificado pela ordem dos setores.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Formato Apple II ProDOS identificado pela ordem dos setores.</value></data>
   <data name="Detection.AppleContainer"><value>Contêiner de imagem de disco Apple detectado.</value></data>
+  <data name="Classification.Automatic"><value>Detecção automática</value></data><data name="Classification.Machine"><value>Computador</value></data><data name="Classification.Format"><value>Formato</value></data><data name="Classification.Protection"><value>Proteção</value></data>
 </root>

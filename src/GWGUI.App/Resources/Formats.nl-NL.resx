@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>Apple II DOS-indeling herkend aan de sectorvolgorde.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS-indeling herkend aan de sectorvolgorde.</value></data>
   <data name="Detection.AppleContainer"><value>Apple-schijfkopiecontainer gedetecteerd.</value></data>
+  <data name="Classification.Automatic"><value>Automatische detectie</value></data><data name="Classification.Machine"><value>Computer</value></data><data name="Classification.Format"><value>Formaat</value></data><data name="Classification.Protection"><value>Beveiliging</value></data>
 </root>

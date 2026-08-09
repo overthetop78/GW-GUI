@@ -200,4 +200,5 @@
   <data name="Detection.AppleDosOrder"><value>ระบุรูปแบบ Apple II DOS จากลำดับเซกเตอร์แล้ว</value></data>
   <data name="Detection.AppleProDosOrder"><value>ระบุรูปแบบ Apple II ProDOS จากลำดับเซกเตอร์แล้ว</value></data>
   <data name="Detection.AppleContainer"><value>ตรวจพบคอนเทนเนอร์อิมเมจดิสก์ Apple</value></data>
+  <data name="Classification.Automatic"><value>ตรวจหาอัตโนมัติ</value></data><data name="Classification.Machine"><value>คอมพิวเตอร์</value></data><data name="Classification.Format"><value>รูปแบบ</value></data><data name="Classification.Protection"><value>การป้องกัน</value></data>
 </root>
