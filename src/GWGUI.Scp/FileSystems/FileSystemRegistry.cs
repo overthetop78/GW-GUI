@@ -13,6 +13,7 @@ public sealed class FileSystemRegistry
         new Readers.CoherentFileSystemReader(),
         new Readers.Rt11FileSystemReader(),
         new Readers.UcsdFileSystemReader(),
+        new Readers.AppleInformXzipFileSystemReader(),
         new Readers.AppleDosFileSystemReader(),
         new Readers.ProDosFileSystemReader(),
         new Readers.MacMfsFileSystemReader(),

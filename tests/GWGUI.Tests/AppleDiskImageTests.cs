@@ -190,6 +190,49 @@ public sealed class AppleDiskImageTests
     }
 
     [Fact]
+    public void AppleInformXzipImageExposesInterpreterAndStory()
+    {
+        const int storyLength = 65_536;
+        var story = new byte[394 * 256];
+        story[0] = 5;
+        story[0x04] = 0x01; story[0x05] = 0x00;
+        story[0x06] = 0x01; story[0x07] = 0x20;
+        story[0x08] = 0x02; story[0x09] = 0x00;
+        story[0x0a] = 0x03; story[0x0b] = 0x00;
+        story[0x0c] = 0x04; story[0x0d] = 0x00;
+        story[0x0e] = 0x05; story[0x0f] = 0x00;
+        story[0x1a] = 0x40; story[0x1b] = 0x00;
+        for (var index = 0x40; index < storyLength; index++) story[index] = (byte)(index * 17 + 3);
+        var checksum = story.Skip(0x40).Take(storyLength - 0x40).Aggregate(0, (sum, value) => (sum + value) & 0xffff);
+        story[0x1c] = (byte)(checksum >> 8); story[0x1d] = (byte)checksum;
+
+        int[] interleave = [0, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 15];
+        var disk = new byte[35 * 16 * 256];
+        for (var sector = 0; sector < 64; sector++)
+            Array.Fill(disk, (byte)0xa5, sector * 256, 256);
+        for (var sector = 0; sector < 394; sector++)
+        {
+            var stored = 64 + (sector & 0xff0) + Array.IndexOf(interleave, sector & 15);
+            Array.Copy(story, sector * 256, disk, stored * 256, 256);
+        }
+
+        var blocks = Enumerable.Range(0, 35 * 16)
+            .Select(logical => new SectorBlock(logical, new(logical / 16, 0, logical % 16),
+                disk.AsSpan(logical * 256, 256).ToArray()))
+            .ToArray();
+        var image = new SectorImage("apple2.dos33", 256, 35, 1, 16, blocks);
+
+        var volume = new FileSystemRegistry().Read(image);
+
+        Assert.Equal("Apple II Inform/XZIP", volume.FileSystem);
+        Assert.Equal(2, volume.Entries.Count);
+        Assert.Equal(16_384, volume.Entries.Single(entry => entry.Name == "INTERPRETER.BIN").Size);
+        var extractedStory = volume.Entries.Single(entry => entry.Name == "STORY.Z5");
+        Assert.Equal(storyLength, extractedStory.Size);
+        Assert.Equal(story.Take(storyLength), extractedStory.Content);
+    }
+
+    [Fact]
     public async Task RealAppleCorpusIsReadableWhenRequested()
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
