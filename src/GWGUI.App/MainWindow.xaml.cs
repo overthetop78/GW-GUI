@@ -66,6 +66,8 @@ public partial class MainWindow : Window
     private TextBlock ReadNamePreview => ReadAdvancedBlock.NamePreviewTextBlock;
     private CheckBox ReadDiskDefsEnabled => ReadAdvancedBlock.DiskDefinitionsEnabled;
     private TextBox ReadDiskDefsValue => ReadAdvancedBlock.DiskDefinitionsValue;
+    private ReadCompletionBanner OpenScpBanner => ReadCompletionBlock;
+    private TextBlock OpenScpSummaryText => ReadCompletionBlock.SummaryTextBlock;
     private TextBox CommandPreview => TerminalBlock?.CommandTextBox!;
     private TextBox LogOutput => TerminalBlock?.OutputTextBox!;
     private TerminalSection ConsolePanel => TerminalBlock;
@@ -199,6 +201,8 @@ public partial class MainWindow : Window
         ReadAdvancedBlock.Tg43Checked += ReadTg43_Checked;
         ReadAdvancedBlock.SequenceKindChanged += ReadSequenceKind_Changed;
         ReadAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseReadDiskDefs_Click;
+        ReadCompletionBlock.ExploreRequested += ExploreLastScp_Click;
+        ReadCompletionBlock.VisualizeRequested += OpenLastScp_Click;
         TerminalBlock.CopyButton.Click += CopyConsole_Click;
 
         RegisterName(nameof(RawScpRadio), RawScpRadio);
