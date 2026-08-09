@@ -151,6 +151,7 @@ public partial class MainWindow : Window
     private readonly WindowPlacementController _windowPlacement = new();
     private IImageFormatCatalog _formatCatalog = null!;
     private readonly OperationProfileCollection _profiles = new();
+    private readonly OperationProfileController _profileController;
     private ImageFormatDetector _formatDetector = null!;
     private DetectedImageFormat? _detectedWriteFormat;
     private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
@@ -198,6 +199,11 @@ public partial class MainWindow : Window
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
+        _profileController = new OperationProfileController(
+            _profiles,
+            _businessDialogs,
+            _dialogs,
+            (key, arguments) => LocExtension.Get(key, arguments));
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), StoragePaths.HostToolsDirectory);
         var directory = StoragePaths.DataDirectory;
@@ -866,18 +872,10 @@ public partial class MainWindow : Window
     }
 
     private void RefreshWriteProfiles(string? selectedId = null)
-    {
-        var items = LocalizedProfiles(OperationKind.Write);
-        WriteProfileCombo.ItemsSource = items;
-        WriteProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
-    }
+        => _profileController.Refresh(WriteProfileCombo, OperationKind.Write, selectedId);
 
     private void RefreshConvertProfiles(string? selectedId = null)
-    {
-        var items = LocalizedProfiles(OperationKind.Convert);
-        ConvertProfileCombo.ItemsSource = items;
-        ConvertProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
-    }
+        => _profileController.Refresh(ConvertProfileCombo, OperationKind.Convert, selectedId);
 
     private void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
     {
@@ -1021,12 +1019,12 @@ public partial class MainWindow : Window
 
     private void SaveWriteProfile_Click(object sender, RoutedEventArgs e)
     {
-        var profileName = _businessDialogs.PromptProfileName(); if (profileName is null) return;
         var enabled = _viewModel.Write.CaptureEnabledOptions();
         var values = _viewModel.Write.CaptureValues();
         if (WriteFormatCombo.SelectedItem is DiskFormat format) values["format"] = format.Id;
-        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, profileName, values, enabled);
-        try { profile = _profiles.For(OperationKind.Write).Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.For(OperationKind.Write).Save(profile, true); }
+        var profile = _profileController.Save(OperationKind.Write, name =>
+            new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Write, name, values, enabled));
+        if (profile is null) return;
         RefreshWriteProfiles(profile.Id);
     }
 
@@ -1062,11 +1060,11 @@ public partial class MainWindow : Window
 
     private void SaveConvertProfile_Click(object sender, RoutedEventArgs e)
     {
-        var profileName = _businessDialogs.PromptProfileName(); if (profileName is null) return;
         var enabled = _viewModel.Conversion.CaptureProfileEnabled();
         var values = _viewModel.Conversion.CaptureProfileValues();
-        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, profileName, values, enabled);
-        try { profile = _profiles.For(OperationKind.Convert).Save(profile); } catch (InvalidOperationException) { if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo) != UserDialogResult.Yes) return; profile = _profiles.For(OperationKind.Convert).Save(profile, true); }
+        var profile = _profileController.Save(OperationKind.Convert, name =>
+            new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Convert, name, values, enabled));
+        if (profile is null) return;
         RefreshConvertProfiles(profile.Id);
     }
 
@@ -1242,14 +1240,7 @@ public partial class MainWindow : Window
     }
 
     private void RefreshReadProfiles(string? selectedId = null)
-    {
-        var items = LocalizedProfiles(OperationKind.Read);
-        ReadProfileCombo.ItemsSource = items;
-        ReadProfileCombo.SelectedItem = items.FirstOrDefault(x => x.Id == selectedId) ?? items[0];
-    }
-
-    private IReadOnlyList<OperationProfile> LocalizedProfiles(OperationKind operation) =>
-        _profiles.Localized(operation, key => LocExtension.Get(key));
+        => _profileController.Refresh(ReadProfileCombo, OperationKind.Read, selectedId);
 
     private void ReadProfile_Changed(object sender, SelectionChangedEventArgs e)
     {
@@ -1282,21 +1273,15 @@ public partial class MainWindow : Window
 
     private void SaveReadProfile_Click(object sender, RoutedEventArgs e)
     {
-        var profileName = _businessDialogs.PromptProfileName();
-        if (profileName is null) return;
         var enabled = _viewModel.Read.CaptureEnabledOptions();
         var values = _viewModel.Read.CaptureValues();
         values["result"] = RawScpRadio.IsChecked == true ? "raw" : "known";
         if (ReadFormatCombo.SelectedItem is DiskFormat format) values["format"] = format.Id;
         if (ReadExtensionCombo.SelectedItem is ImageExtension extension) values["extension"] = extension.Extension;
         if (!string.IsNullOrWhiteSpace(_viewModel.Read.Folder)) values["folder"] = _viewModel.Read.Folder;
-        var profile = new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, profileName, values, enabled);
-        try { profile = _profiles.For(OperationKind.Read).Save(profile); }
-        catch (InvalidOperationException)
-        {
-            if (_dialogs.Show(LocExtension.Get("Profile.Replace"), LocExtension.Get("Profile.Title"), UserDialogButtons.YesNo, UserDialogIcon.Question) != UserDialogResult.Yes) return;
-            profile = _profiles.For(OperationKind.Read).Save(profile, true);
-        }
+        var profile = _profileController.Save(OperationKind.Read, name =>
+            new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, name, values, enabled));
+        if (profile is null) return;
         RefreshReadProfiles(profile.Id);
     }
 
