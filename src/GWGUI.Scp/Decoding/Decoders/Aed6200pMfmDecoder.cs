@@ -58,9 +58,5 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
     }
 
     private static ushort Crc16(IEnumerable<byte> values)
-    {
-        ushort crc = 0xffff;
-        foreach (var value in values) { crc ^= (ushort)(value << 8); for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ 0x1021 : crc << 1); }
-        return crc;
-    }
+        => Primitives.Crc16Calculator.Compute(values);
 }

@@ -94,15 +94,7 @@ internal static class TrackEncoding
     }
 
     public static ushort Crc16(IEnumerable<byte> values, ushort polynomial = 0x1021, ushort initial = 0xffff)
-    {
-        var crc = initial;
-        foreach (var value in values)
-        {
-            crc ^= (ushort)(value << 8);
-            for (var bit = 0; bit < 8; bit++) crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ polynomial : crc << 1);
-        }
-        return crc;
-    }
+        => Primitives.Crc16Calculator.Compute(values, polynomial, initial);
 
     public static byte[] WithCrc(IEnumerable<byte> values, ushort polynomial = 0x1021, ushort initial = 0xffff)
     {
@@ -120,9 +112,5 @@ internal static class TrackEncoding
     }
 
     public static byte ReverseBits(byte value)
-    {
-        var result = 0;
-        for (var bit = 0; bit < 8; bit++) result = result << 1 | value >> bit & 1;
-        return (byte)result;
-    }
+        => Primitives.BitPrimitives.Reverse(value);
 }

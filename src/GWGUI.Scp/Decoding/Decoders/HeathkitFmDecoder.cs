@@ -62,9 +62,5 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
     }
 
     private static byte ReverseBits(byte value)
-    {
-        var reversed = 0;
-        for (var bit = 0; bit < 8; bit++) reversed = (reversed << 1) | ((value >> bit) & 1);
-        return (byte)reversed;
-    }
+        => Primitives.BitPrimitives.Reverse(value);
 }

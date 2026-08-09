@@ -77,7 +77,5 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
     }
 
     private static byte ReverseBits(byte value)
-    {
-        byte reversed = 0; for (var bit = 0; bit < 8; bit++) reversed = (byte)((reversed << 1) | ((value >> bit) & 1)); return reversed;
-    }
+        => Primitives.BitPrimitives.Reverse(value);
 }
