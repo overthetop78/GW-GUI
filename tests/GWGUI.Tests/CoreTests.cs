@@ -1207,7 +1207,7 @@ public sealed class CoreTests
     }
 
     [Fact]
-    public void RuntimeCapabilitiesExposePreviouslyUnknownDiskDefinitionsAsRareFormats()
+    public void RuntimeCapabilitiesKeepCuratedFormatsAndExposeUnknownDiskDefinitions()
     {
         var capabilities = new GwFormatCapabilities(
             new HashSet<string>(["ibm.720", "dec.rx02", "ensoniq.mirage"], StringComparer.OrdinalIgnoreCase),
@@ -1217,7 +1217,7 @@ public sealed class CoreTests
 
         var dec = Assert.Single(catalog.Formats, format => format.Id == "dec.rx02");
         Assert.Equal("DEC", dec.Family);
-        Assert.Equal("DEC — RX02", dec.DisplayName);
+        Assert.Equal("DEC RX02 — 512 KiB", dec.DisplayName);
         Assert.False(dec.IsCommon);
         Assert.Equal(".img", Assert.Single(dec.Extensions).Extension);
         Assert.Equal("DEC-RX02", dec.Tag);
