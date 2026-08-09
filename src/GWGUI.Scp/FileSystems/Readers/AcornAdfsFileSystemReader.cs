@@ -214,7 +214,13 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     private static string DecodeName(ReadOnlySpan<byte> bytes)
     {
         Span<byte> clean = stackalloc byte[bytes.Length];
-        for (var index = 0; index < bytes.Length; index++) clean[index] = (byte)(bytes[index] & 0x7F);
-        return System.Text.Encoding.ASCII.GetString(clean).TrimEnd('\0', '\r', ' ');
+        var length = 0;
+        foreach (var value in bytes)
+        {
+            var character = (byte)(value & 0x7F);
+            if (character is 0 or (byte)'\r') break;
+            clean[length++] = character;
+        }
+        return System.Text.Encoding.ASCII.GetString(clean[..length]).TrimEnd(' ');
     }
 }
