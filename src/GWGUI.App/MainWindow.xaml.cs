@@ -148,6 +148,7 @@ public partial class MainWindow : Window
     private readonly IBusinessDialogService _businessDialogs;
     private readonly IWindowNavigationService _navigation;
     private readonly ImageFormatWorkspace _formatWorkspace;
+    private readonly DiskDefinitionsController _diskDefinitionsController;
     private readonly WindowPlacementController _windowPlacement = new();
     private IImageFormatCatalog _formatCatalog = null!;
     private readonly OperationProfileCollection _profiles = new();
@@ -218,6 +219,15 @@ public partial class MainWindow : Window
         DataContext = _viewModel;
         _formatWorkspace = new ImageFormatWorkspace(key => LocExtension.Get(key));
         SynchronizeFormatWorkspace();
+        _diskDefinitionsController = new DiskDefinitionsController(
+            ReadAdvancedBlock, WriteAdvancedBlock, ConvertAdvancedBlock,
+            () => _settings, _formatWorkspace, _fileDialogs, _dialogs,
+            () => { SynchronizeFormatWorkspace(); RefreshFormatSelectors(); },
+            path => { _viewModel.Read.DiskDefs.Value = path; _viewModel.Read.DiskDefs.Enabled = true; },
+            path => { _viewModel.Write.DiskDefs.Value = path; _viewModel.Write.DiskDefs.Enabled = true; },
+            path => { _viewModel.Conversion.DiskDefs.Value = path; _viewModel.Conversion.DiskDefs.Enabled = true; },
+            UpdateReadCommand, UpdateWriteCommand, UpdateConvertCommand,
+            (key, arguments) => LocExtension.Get(key, arguments));
         RefreshExplorerFormats();
         VisualizerHeader.SetFormats(_formatCatalog.Formats);
         VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => ApplyVisualizerClassification();
@@ -276,7 +286,6 @@ public partial class MainWindow : Window
         ReadAdvancedBlock.DenselChecked += ReadDensel_Checked;
         ReadAdvancedBlock.Tg43Checked += ReadTg43_Checked;
         ReadAdvancedBlock.SequenceKindChanged += ReadSequenceKind_Changed;
-        ReadAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseReadDiskDefs_Click;
         ReadCompletionBlock.ExploreRequested += ExploreLastScp_Click;
         ReadCompletionBlock.VisualizeRequested += OpenLastScp_Click;
         ReadTabBlock.ExecuteRequested += ExecuteRead_Click;
@@ -312,7 +321,6 @@ public partial class MainWindow : Window
         WriteAdvancedBlock.HardSectorsChecked += WriteHardSectors_Checked;
         WriteAdvancedBlock.DenselChecked += WriteDensel_Checked;
         WriteAdvancedBlock.Tg43Checked += WriteTg43_Checked;
-        WriteAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseWriteDiskDefs_Click;
         WriteTabBlock.ExecuteRequested += ExecuteWrite_Click;
         RegisterName(nameof(WriteProfileCombo), WriteProfileCombo);
         RegisterName(nameof(WriteSourceText), WriteSourceText);
@@ -334,7 +342,6 @@ public partial class MainWindow : Window
         ConvertOutputBlock.ValueChanged += ConvertInput_Changed;
         ConvertFormatsBlock.ValueChanged += ConversionSelectionChanged;
         ConvertAdvancedBlock.InputChanged += ConvertInput_Changed;
-        ConvertAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseConvertDiskDefs_Click;
         ConvertTabBlock.ExecuteRequested += ExecuteConvert_Click;
         RegisterName(nameof(ConvertProfileCombo), ConvertProfileCombo);
         RegisterName(nameof(ConvertSourceText), ConvertSourceText);
@@ -544,6 +551,11 @@ public partial class MainWindow : Window
         return _diskImageCancellation.BeginVisualization();
     }
 
+    private void ShowAdvancedValidation(Exception exception, string title)
+    {
+        _diskDefinitionsController.ShowInvalid(exception, title);
+    }
+
     private void ClearVisualizerPreparation(string fileName)
     {
         _diskImageCancellation.CancelScp();
@@ -686,7 +698,7 @@ public partial class MainWindow : Window
         if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
             _formatWorkspace.SetCapabilities(await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath));
         SynchronizeFormatWorkspace();
-        LoadConfiguredDiskDefs();
+        _diskDefinitionsController.LoadConfigured();
         RebuildFormatCatalog();
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
@@ -880,7 +892,7 @@ public partial class MainWindow : Window
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!EnsureSelectedHardwareAvailable()) return;
-        if (!ValidateDiskDefs(WriteDiskDefsEnabled, WriteDiskDefsValue, LocExtension.Get("Write.Title"))) return;
+        if (!_diskDefinitionsController.Validate(WriteDiskDefsEnabled, WriteDiskDefsValue, LocExtension.Get("Write.Title"))) return;
         if (!File.Exists(WriteSourceText.Text)) { _dialogs.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Information); return; }
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
@@ -888,7 +900,7 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information); return; }
         GwCommand command;
         try { command = BuildWriteCommand(); }
-        catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Write.Title")); return; }
+        catch (ArgumentException) { _diskDefinitionsController.ShowInvalid(LocExtension.Get("Write.Title")); return; }
         var warning = LocExtension.Get(_viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, SelectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (_dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
@@ -1045,11 +1057,11 @@ public partial class MainWindow : Window
     private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
-        if (!ValidateDiskDefs(ConvertDiskDefsEnabled, ConvertDiskDefsValue, LocExtension.Get("Conversion.Title"))) return;
+        if (!_diskDefinitionsController.Validate(ConvertDiskDefsEnabled, ConvertDiskDefsValue, LocExtension.Get("Conversion.Title"))) return;
         if (!File.Exists(ConvertSourceText.Text)) { _dialogs.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(ConvertOutputName.Text)) { _dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
-        try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception exception) { ShowAdvancedValidation(exception, LocExtension.Get("Conversion.Title")); return; }
+        try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception) { _diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { _dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Any(output => !ConversionBatchExecutor.IsInternal(output)) &&
             (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
@@ -1315,49 +1327,6 @@ public partial class MainWindow : Window
     private void WriteDensel_Checked(object sender, RoutedEventArgs e) { _viewModel.Write.EnableDensel(); WriteInput_Changed(sender, e); }
     private void WriteTg43_Checked(object sender, RoutedEventArgs e) { _viewModel.Write.EnableTg43(); WriteInput_Changed(sender, e); }
 
-    private void BrowseReadDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(ReadDiskDefsValue, ReadDiskDefsEnabled, UpdateReadCommand);
-    private void BrowseWriteDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(WriteDiskDefsValue, WriteDiskDefsEnabled, UpdateWriteCommand);
-    private void BrowseConvertDiskDefs_Click(object sender, RoutedEventArgs e) => BrowseDiskDefs(ConvertDiskDefsValue, ConvertDiskDefsEnabled, UpdateConvertCommand);
-
-    private void BrowseDiskDefs(TextBox target, CheckBox enabled, Action refresh)
-    {
-        var path = _fileDialogs.OpenFile(new(LocExtension.Get("Advanced.DiskDefsFilter"), FileName: target.Text));
-        if (path is null) return;
-        try { AddDiskDefs(path); }
-        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException)
-        {
-            ShowAdvancedValidation(exception, LocExtension.Get("Advanced.DiskDefs"));
-            return;
-        }
-        if (ReferenceEquals(target, ReadDiskDefsValue)) { _viewModel.Read.DiskDefs.Value = path; _viewModel.Read.DiskDefs.Enabled = true; }
-        else if (ReferenceEquals(target, WriteDiskDefsValue)) { _viewModel.Write.DiskDefs.Value = path; _viewModel.Write.DiskDefs.Enabled = true; }
-        else if (ReferenceEquals(target, ConvertDiskDefsValue)) { _viewModel.Conversion.DiskDefs.Value = path; _viewModel.Conversion.DiskDefs.Enabled = true; }
-        else { target.Text = path; enabled.IsChecked = true; }
-        RefreshFormatSelectors();
-        refresh();
-    }
-
-    private void LoadConfiguredDiskDefs()
-    {
-        var paths = new[]
-        {
-            _settings.Read.OptionValues.GetValueOrDefault("diskdefs"),
-            _settings.Write.OptionValues.GetValueOrDefault("diskdefs"),
-            _settings.Conversion.OptionValues.GetValueOrDefault("diskdefs")
-        }.Concat(_settings.Profiles.Select(profile => profile.Values.GetValueOrDefault("diskdefs")));
-        foreach (var path in paths.Where(path => !string.IsNullOrWhiteSpace(path) && File.Exists(path)).Distinct(StringComparer.OrdinalIgnoreCase))
-        {
-            try { AddDiskDefs(path!); }
-            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException) { /* Validation is shown when the profile is executed. */ }
-        }
-    }
-
-    private void AddDiskDefs(string path)
-    {
-        _formatWorkspace.AddDiskDefinitions(path);
-        SynchronizeFormatWorkspace();
-    }
-
     private void RebuildFormatCatalog()
     {
         _formatWorkspace.SetCapabilities(_gwCapabilities);
@@ -1394,16 +1363,6 @@ public partial class MainWindow : Window
         BuildConversionFormats(sourceExtension, detection);
     }
 
-    private bool ValidateDiskDefs(CheckBox enabled, TextBox path, string title)
-    {
-        if (enabled.IsChecked != true || File.Exists(path.Text)) return true;
-        _dialogs.Show(LocExtension.Get("Advanced.DiskDefsMissing"), title, icon: UserDialogIcon.Warning);
-        return false;
-    }
-
-    private void ShowAdvancedValidation(Exception exception, string title) =>
-        _dialogs.Show(LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown")), title, icon: UserDialogIcon.Warning);
-
     private void CopyReadName_Click(object sender, RoutedEventArgs e)
     {
         if (!string.IsNullOrEmpty(ReadFileName.Text)) Clipboard.SetText(ReadFileName.Text);
@@ -1419,7 +1378,7 @@ public partial class MainWindow : Window
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!EnsureSelectedHardwareAvailable()) return;
-        if (!ValidateDiskDefs(ReadDiskDefsEnabled, ReadDiskDefsValue, LocExtension.Get("Read.Title"))) return;
+        if (!_diskDefinitionsController.Validate(ReadDiskDefsEnabled, ReadDiskDefsValue, LocExtension.Get("Read.Title"))) return;
         if (string.IsNullOrWhiteSpace(ReadFileName.Text))
         {
             _dialogs.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Information);
@@ -1450,7 +1409,7 @@ public partial class MainWindow : Window
         }
         GwCommand command;
         try { command = BuildReadCommand(target); }
-        catch (ArgumentException exception) { ShowAdvancedValidation(exception, LocExtension.Get("Read.Title")); return; }
+        catch (ArgumentException) { _diskDefinitionsController.ShowInvalid(LocExtension.Get("Read.Title")); return; }
         ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
         BeginProgress();
         await RenderPendingProgressAsync();
