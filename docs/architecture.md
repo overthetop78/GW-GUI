@@ -1,25 +1,54 @@
 # Architecture technique
 
-## Composants
+## Portée de ce document
 
-- **Application WPF/MVVM** : navigation, formulaires, validation et localisation.
-- **Placement de fenêtre** : la restauration valide d’abord les coordonnées dans le bureau virtuel, puis interroge avec `MonitorFromWindow` la zone de travail du moniteur réellement choisi. Les coordonnées natives sont converties par WPF selon le DPI de ce moniteur avant le confinement final.
-- **Gestionnaire de commandes Greaseweazle** : construction typée des arguments, exécution asynchrone, capture de sortie, annulation et codes de retour.
-- **Gestionnaire Host Tools** : `IGwInstallationManager` couvre détection, recherche de version, installation contrôlée, sélection et retour arrière. Une instance est injectée depuis le point de composition dans `MainWindow`, puis partagée avec Options; les fenêtres ne portent plus les règles d’historique des exécutables.
-- **Construction des commandes** : `IGwCommandBuilder` est le contrat unique consommé par les fenêtres et le registre matériel. Son implémentation délègue aux validateurs spécialisés Lecture, Écriture, Conversion, Maintenance et Diagnostics afin que la commande affichée soit exactement celle exécutée.
-- **Catalogue Greaseweazle** : commandes, options, profils de formats, extensions et compatibilités correspondant à la version détectée de `gw`.
-- **Configuration persistante** : options générales, matériel, profils par onglet et préférences de session.
-- **Journal d’erreurs** : les exceptions UI, AppDomain, tâches non observées et échecs de sauvegarde interceptés sont consignés dans `Data/Logs/errors-AAAAMMJJ.log` avec contexte, version, environnement et pile complète. Une erreur de sauvegarde des Options est signalée mais n’empêche jamais leur fermeture.
-- **Profils typés** : trois instances de `IProfileStore<OperationProfile>` sont chacune liées à Lecture, Écriture ou Conversion. Elles possèdent leur propre profil système immuable, refusent les profils d’un autre onglet et partagent uniquement la sérialisation JSON au chargement et à la sauvegarde.
-- **Registre matériel** : `IHardwareRegistry` orchestre découverte série, interrogation `gw info`, identité USB stable et conservation des contrôleurs absents; l’infrastructure Windows fournit son implémentation.
-- **Moteur SCP** : lecture du conteneur, analyse des pistes/révolutions et décodeurs extensibles.
-- **Rendu SkiaSharp** : `IScpRenderer` et `SkiaScpRenderer` dessinent faces, pistes et structures sans dépendre du contrôle WPF; `ScpDiskView` gère zoom, sélection, panoramique et survol.
+Ce document décrit l’organisation générale à conserver ou à atteindre. Il ne remplace pas l’audit fichier par fichier demandé dans [la première phase](tasks/01-full-code-audit.md). Aucun fichier n’est considéré comme correctement découpé uniquement parce qu’il apparaît dans cette vue d’ensemble.
 
-## Principes
+## Projets de la solution
 
-- Aucun lancement via une console visible.
-- Les arguments sont transmis comme une liste structurée afin de préserver correctement espaces, accents et guillemets.
-- L’interface ne se bloque jamais pendant une commande.
-- Une seule commande `gw` peut être active dans l’application : le runner créé au point de composition est partagé par Lecture, Écriture, Conversion, Maintenance, Diagnostics/Matériel et le scan des contrôleurs. L’ouverture d’un outil est refusée avec un message localisé pendant une commande active; le runner constitue le dernier verrou pour les autres chemins. La sortie visible est journalisée progressivement par action dans `Data/Logs` (`read.log`, `write.log`, `convert.log`, `erase.log`, etc.). L’onglet Préférences → Journaux configure séparément chaque action : activation, limite en Kio (`0` sans limite) et conservation ou non des anciens fichiers horodatés.
-- La commande affichée correspond exactement aux arguments exécutés.
-- Les options non activées ne sont pas émises.
+- `GWGUI.App` : interface WPF, navigation, composants visuels et présentation.
+- `GWGUI.Domain` : modèles et règles métier indépendants de WPF et de Windows.
+- `GWGUI.Infrastructure` : exécution de `gw`, matériel Windows, persistance et services externes.
+- `GWGUI.Scp` : conteneurs, flux, décodage, encodage, reconstruction sectorielle et systèmes de fichiers liés aux images de disquette.
+- `GWGUI.Tests` : vérifications automatiques. Son organisation sera revue après les fichiers de production, sans en faire une priorité prématurée.
+
+Les frontières réelles entre ces projets et entre leurs fichiers doivent être contrôlées pendant l’audit complet. Les noms actuels ne constituent pas une preuve que les responsabilités sont déjà au bon endroit.
+
+## Chaînes fonctionnelles
+
+### Opérations utilisant Greaseweazle
+
+Lecture, Écriture, Conversion et Outils construisent une commande typée, affichent exactement la commande exécutée, lancent `gw` sans console externe, diffusent sa sortie dans le terminal intégré, journalisent l’action selon les préférences et permettent son interruption contrôlée.
+
+### Images de disquette
+
+Le traitement d’une image doit distinguer clairement :
+
+1. le conteneur ou fichier source ;
+2. la géométrie et le format physique ;
+3. le décodage ou l’encodage du flux ;
+4. la reconstruction des pistes et secteurs ;
+5. la protection éventuelle ;
+6. le ou les systèmes présents sur une image multiformat ;
+7. le système de fichiers et son arborescence ;
+8. la présentation dans Conversion, Visualisateur et Explorateur.
+
+Une image peut contenir plusieurs systèmes. La détection automatique doit donc pouvoir conserver plusieurs résultats compatibles. Un choix manuel sert à orienter l’opération demandée ; il ne permet pas de conclure arbitrairement que les autres systèmes présents dans l’image n’existent pas.
+
+### Interface et état utilisateur
+
+La fenêtre principale accueille les onglets sans concentrer toute leur logique. Les blocs réutilisables doivent être des composants indépendants lorsque cela évite une duplication réelle. Les paramètres, profils, langues, thème, matériel, journaux, dossiers récents et placement des fenêtres sont persistés par des services dédiés.
+
+## Sources communes attendues
+
+- Un catalogue central décrit machines, formats, géométries, protections, extensions et capacités disponibles.
+- Lecture, Écriture, Conversion, Explorateur et Visualisateur consomment ce catalogue commun, avec le filtrage propre à leur opération.
+- Les constantes techniques, enums, modèles, DTO, interfaces et tables de données sont séparés selon leur rôle.
+- Les textes visibles proviennent des ressources de langue ; les identifiants techniques stables ne sont pas dupliqués dans chaque traduction lorsqu’ils ne se traduisent pas.
+- Les algorithmes réellement communs sont mutualisés sans fusionner des formats qui ont des règles différentes.
+
+## Problème structurel déjà confirmé
+
+`AtariScpSectorImageReader.cs` contient des responsabilités qui ne sont pas limitées à Atari. C’est un exemple visible du problème, pas la liste du travail à réaliser. L’audit et le refactoring portent sur tout le dépôt : moteurs d’images, systèmes de fichiers, catalogues, services, fenêtres, composants, ressources et code de coordination.
+
+Les contraintes permanentes du refactoring sont définies dans [les règles du projet](rules.md). Le détail ordonné du chantier se trouve dans [docs/tasks](tasks/README.md).

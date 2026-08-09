@@ -27,12 +27,12 @@
 
 - C# et .NET 10.
 - WPF avec architecture MVVM.
-- SkiaSharp pour le visualiseur SCP et les rendus graphiques intensifs.
+- SkiaSharp pour le Visualisateur d’images de disquette et les rendus graphiques intensifs.
 - Windows 10/11 x64 comme cible officielle.
 
 ## Navigation
 
-- Onglets principaux pour les opérations fréquentes, notamment Lecture, Écriture, Conversion et Visualisation.
+- Onglets principaux pour Lecture, Écriture, Conversion, Visualisation, Explorateur et Outils.
 - Les opérations ne seront pas choisies dans une liste de boutons radio comme dans l’ancien GUI.
 - Les diagnostics et réglages matériels sont accessibles par le menu Options et des boîtes de dialogue, pas dans la fenêtre principale.
 - Les fonctions rarement utilisées ne doivent pas encombrer les opérations principales.

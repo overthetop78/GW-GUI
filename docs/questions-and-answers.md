@@ -8,11 +8,11 @@ Il est jugé trop fouillis : toutes les actions et les ports série sont mélang
 
 ### Pourquoi C#/.NET, WPF et SkiaSharp ?
 
-Ce socle offre une intégration Windows mature, une exécution fiable de processus sans console, une architecture testable et un rendu accéléré adapté au visualiseur SCP.
+Ce socle offre une intégration Windows mature, une exécution fiable de processus sans console, une architecture testable et un rendu accéléré adapté au Visualisateur d’images de disquette.
 
 ### Les traductions utilisent-elles des fichiers `.lng` ?
 
-Non. Les ressources natives `.resx` de .NET sont retenues. Les écrans utilisent des clés et aucun texte d’une langue distribuée n’est codé directement dans la vue. Le français et l’anglais servent de références; le même système doit maintenant être étendu à plusieurs langues dans l’application et dans l’installateur.
+Non. Les ressources natives `.resx` de .NET sont retenues. Elles sont séparées par domaine fonctionnel et par culture. Les écrans utilisent des clés et aucun texte d’une langue distribuée n’est codé directement dans la vue. Le français et l’anglais servent de références aux langues distribuées dans l’application et dans l’installateur.
 
 ### Que fait le profil Par défaut ?
 
@@ -36,7 +36,7 @@ Le contrôleur et ses lecteurs sont configurés durablement dans Options. L’op
 
 ### Pourquoi séparer SCP et formats connus ?
 
-SCP est une capture brute du flux. ADF, ST, IMG/IMA et les autres formats sectoriels décrivent une représentation connue. Choisir AmigaDOS doit mener directement aux sorties Amiga compatibles, sans parcourir une liste globale d’extensions inutiles.
+SCP est une capture brute du flux. ADF, ST, IMG/IMA et les autres formats sectoriels décrivent une représentation connue. Dans une opération donnée, choisir AmigaDOS doit présenter les sorties Amiga compatibles au lieu d’une liste globale d’extensions inutiles. Ce filtrage d’interface ne signifie pas qu’une image multiformat ne contient qu’un système et ne doit pas supprimer les autres systèmes détectés.
 
 ### Que fait la numérotation automatique ?
 
@@ -59,7 +59,7 @@ Ils sont rarement nécessaires et n’ont pas besoin d’occuper la fenêtre pri
 - La commande et les journaux partagent un panneau inférieur réductible, intégré à la fenêtre principale.
 - Les tags de conversion utilisent des identifiants stables (`PC-720`, `ST-720`, `AMIGA-DD`, etc.) et un modèle personnalisable contenant obligatoirement `{tag}`. Le modèle initial est ` [{tag}]`.
 - Le menu Options contient les dialogues Diagnostics, Matériel, Mise à jour du firmware, historique des journaux et préférences générales.
-- La fenêtre principale utilise les onglets Lecture, Écriture, Conversion, Visualisation et Outils. Effacement et nettoyage sont regroupés dans Outils; les diagnostics rares restent des dialogues.
+- La fenêtre principale utilise les onglets Lecture, Écriture, Conversion, Visualisation, Explorateur et Outils. Effacement et nettoyage sont regroupés dans Outils; les diagnostics rares restent des dialogues.
 - La matrice format ↔ extensions est portée par le catalogue de formats. La source détectée filtre les sorties réellement compatibles; une ligne cochée sans extension explicite utilise son extension implicite, tandis que les coches d’extensions la remplacent ou demandent plusieurs conteneurs.
 - Les paramètres rarement utilisés sont placés dans des panneaux Avancé propres à chaque opération. Ils sont mémorisés, inclus dans les profils de l’onglet et réinitialisés en choisissant le profil système permanent Par défaut.
 

@@ -137,7 +137,7 @@ Cette séparation existe partiellement. Le prochain grand chantier consiste à l
 
 ### 4.7 Interface et réglages
 
-- Onglets Lecture, Écriture, Conversion, Visualisation et Outils.
+- Onglets Lecture, Écriture, Conversion, Visualisation, Explorateur et Outils.
 - Menu Options/Aide externalisé.
 - Plusieurs blocs de Lecture/Écriture/Conversion externalisés en contrôles réutilisables.
 - Console et barre d’état externalisées.
@@ -229,20 +229,22 @@ Les commits récents montrent les corrections successives de formats et de déte
 
 Le dernier état Git observé avant la rédaction était propre. Les répertoires `_generated` suivants étaient vides : Apple Macintosh, Atari 8-bit, Atari ST, BBC Micro et Acorn/Archimedes. Leur nettoyage appartient au protocole de validation, pas à cette rédaction documentaire.
 
-## 7. Problème structurel prioritaire confirmé
+## 7. Exemple confirmé du problème structurel général
 
 `src/GWGUI.Scp/SectorImages/AtariScpSectorImageReader.cs` est mal nommé et trop chargé. Il contient des branches pour Atari, Amstrad, IBM, BBC, Epson et UCSD, ainsi que la collecte de secteurs, la sélection FM/MFM, la détection IBM, les géométries Epson et l’assemblage final.
+
+Ce fichier est seulement un exemple visible. L’ensemble du code doit être audité puis découpé selon les responsabilités réelles. Il ne faut pas limiter le chantier au moteur SCP, à cette classe, à `FluxDecoding.cs` ou aux deux grandes fenêtres WPF.
 
 La correction attendue n’est pas un simple renommage ni le remplacement mécanique de `if` par `switch`. Il faut :
 
 - un moteur commun de collecte ISO FM/MFM ;
 - une stratégie par famille lorsque la géométrie ou l’ordre logique diffère ;
-- un routage direct lorsqu’un format est connu ;
-- une détection limitée aux candidats plausibles en mode automatique ;
+- un routage fondé sur les informations réellement connues, sans supprimer la reconnaissance des disquettes multiformats ;
+- une détection automatique capable de conserver plusieurs résultats compatibles ;
 - des descripteurs de données au lieu de répétitions de chaînes ;
 - des tests de non-régression par famille.
 
-Le détail exécutable de ce chantier figure dans `refactoring-validation-roadmap.md`.
+L’audit complet et le découpage sont décrits dans `tasks/01-full-code-audit.md` et `tasks/02-full-refactoring.md`.
 
 ## 8. Autres dettes structurelles importantes
 
@@ -329,27 +331,27 @@ Pour chaque image :
 13. pousser ce commit avec les autres tâches liées lorsque l’ensemble constitue un bloc complet ;
 14. communiquer le résultat avant de passer à l’image suivante.
 
-## 12. Priorités pour la prochaine discussion
+## 12. Ordre de reprise
 
-1. Valider avec l’utilisateur la feuille de route détaillée.
-2. Refactorer la reconstruction SCP ISO FM/MFM sans changement fonctionnel.
-3. Centraliser identifiants, constantes, descripteurs et routage.
-4. Réorganiser les ressources sous `Languages/<Domaine>` et contrôler les chaînes.
-5. Réduire les monolithes WPF et métier sans changer l’affichage validé.
-6. Faire la revue UI ciblée et les corrections de robustesse/performance.
-7. Créer le workflow GitHub de build continu et auditer le workflow de release.
-8. Reprendre seulement ensuite la validation exhaustive de `image_test`.
-9. Terminer par les contrôles physiques Lecture, Écriture, Conversion, Visualisateur et Explorateur.
+1. Auditer tout le code, fichier par fichier.
+2. Refactoriser et découper tout le code concerné, en séparant modèles et formats.
+3. Centraliser les constantes et retirer les textes bruts.
+4. Structurer enums, DTO, records, modèles de données et interfaces nécessaires.
+5. Séparer les fonctions et services lorsque leur responsabilité le demande.
+6. Réorganiser les traductions sous `Languages/<Domaine>`.
+7. Contrôler l’interface, la robustesse, les performances et la maintenance.
+8. Créer le workflow GitHub de build et auditer le workflow de release.
+9. Reprendre seulement ensuite la validation exhaustive de `image_test`.
+10. Terminer par les contrôles physiques Lecture, Écriture, Conversion, Visualisateur et Explorateur.
 
 ## 13. Documents à consulter en complément
 
-- `refactoring-validation-roadmap.md` : liste exhaustive des tâches futures ;
+- `rules.md` : règles permanentes du projet ;
+- `tasks/README.md` : ordre obligatoire et tâches détaillées ;
 - `decisions.md` : décisions produit ;
 - `questions-and-answers.md` : réponses détaillées ;
-- `implementation-status.md` : historique technique ;
-- `remaining-work.md` : anciens travaux ouverts ;
 - `Liste-imagesdisk.md` : inventaire des familles et formats ;
 - `ui/` : spécifications visuelles par écran ;
 - `versioning.md` : version produit, build et révision Git.
 
-En cas de contradiction, la décision la plus récente de l’utilisateur et la feuille de route datée du 9 août 2026 priment. Une ambiguïté doit être présentée avant modification ; elle ne doit pas être résolue silencieusement par extrapolation.
+Les anciens plans et audits datés sont conservés dans `old/`. En cas de contradiction, la décision la plus récente de l’utilisateur prime. Une ambiguïté doit être présentée avant modification ; elle ne doit pas être résolue silencieusement par extrapolation.

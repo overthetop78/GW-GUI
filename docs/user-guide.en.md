@@ -32,7 +32,7 @@ Format checkboxes handle both single and multiple conversion. Outputs incompatib
 
 Tags such as `[PC-720]` and `[AMIGA-DD]` prevent collisions in multi-conversion. Each output runs separately, and the final report preserves successful outputs when another conversion fails.
 
-## SCP visualization
+## Disk-image visualization
 
 Open an SCP capture to display both sides, zoom, pan and select a track. The inspector shows revolutions, estimated speed, checksum and structures recognized by the automatic or manually selected decoder.
 

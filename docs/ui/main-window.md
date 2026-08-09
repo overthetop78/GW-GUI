@@ -11,7 +11,7 @@ La fenêtre principale n’utilise pas la page d’accueil de l’ancien GUI ave
 - **Lecture** : créer une image depuis une disquette.
 - **Écriture** : écrire une image sur une disquette.
 - **Conversion** : convertir une ou plusieurs représentations d’une image.
-- **Visualisation** : analyser visuellement un fichier SCP.
+- **Visualisation** : analyser visuellement une image de disquette prise en charge.
 - **Explorateur** : charger une image ou lire temporairement une disquette afin d’afficher son nom de volume, ses dossiers et ses fichiers lorsque son format et son système de fichiers peuvent être interprétés.
 - **Outils** : uniquement les actions de maintenance retenues dans la fenêtre principale, actuellement Effacer et Nettoyer les têtes.
 

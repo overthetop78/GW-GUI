@@ -32,7 +32,7 @@ Les cases de formats servent à la conversion simple comme multiple. Les sorties
 
 Les tags tels que `[PC-720]` ou `[AMIGA-DD]` évitent les collisions lors d’une multiconversion. Chaque sortie est exécutée séparément et le bilan final conserve les réussites même si une conversion échoue.
 
-## Visualisation SCP
+## Visualisation des images de disquette
 
 Ouvrez une capture SCP pour afficher les deux faces, zoomer, déplacer la vue et sélectionner une piste. L’inspecteur indique les révolutions, la vitesse estimée, le checksum et les structures reconnues par le décodeur automatique ou choisi.
 

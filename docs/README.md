@@ -1,33 +1,54 @@
-# GW GUI — Documentation de conception
+# GW GUI — Documentation actuelle
 
-Ce dossier est la mémoire de conception complète du nouveau GUI Windows pour Greaseweazle. Il doit permettre de comprendre et construire l’application sans relire la conversation d’origine.
+Cette documentation décrit l’état actuel, les décisions confirmées et l’ordre des travaux. Les documents placés dans [`old`](old/README.md) sont historiques et ne servent plus de référence actuelle.
 
-La documentation distingue systématiquement :
+## Règles et ordre de travail
 
-- **Validé** : décision explicitement confirmée par l’utilisateur.
-- **À étudier** : besoin identifié mais solution non choisie.
-- **Refusé** : proposition examinée et rejetée.
+- [Règles permanentes](rules.md) — règles de décision, code, documentation, corpus et Git ; aucune case à cocher.
+- [Ordre obligatoire des tâches](tasks/README.md) — index des phases à réaliser dans l’ordre demandé.
 
-## Documents
+## État et décisions
 
+- [État du projet pour reprendre une nouvelle discussion](project-handoff.md)
 - [Décisions produit et interface](decisions.md)
-- [Questions et réponses](questions-and-answers.md)
-- [Journal des décisions de conception](design-session-log.md)
-- [Architecture technique](architecture.md)
-- [Plan d’implémentation complet](implementation-plan.md)
-- [État réel de l’implémentation](implementation-status.md)
-- [Audit d’achèvement et preuves](completion-audit.md)
-- [Travail restant, oublis et validations nécessitant de l’aide](remaining-work.md)
-- [Convention de version, build et révision](versioning.md)
-- [Plan détaillé de compréhension et de refactoring](refactoring-plan.md)
-- [Feuille de route de refactoring, qualité et validation](refactoring-validation-roadmap.md)
-- [État du projet pour reprendre dans une nouvelle discussion](project-handoff.md)
-- [Spécification visuelle validée](ui/visual-specification.md)
+- [Questions et réponses confirmées](questions-and-answers.md)
+- [Architecture technique actuelle](architecture.md)
+- [Version, build et révision](versioning.md)
+
+## Tâches détaillées
+
+1. [Audit complet de tout le code](tasks/01-full-code-audit.md)
+2. [Refactorisation et découpage de tout le code](tasks/02-full-refactoring.md)
+3. [Constantes et textes techniques](tasks/03-constants-and-text.md)
+4. [Enums, modèles de données et contrats](tasks/04-models-and-contracts.md)
+5. [Fonctions et services](tasks/05-functions-and-services.md)
+6. [Réorganisation des traductions](tasks/06-localization.md)
+7. [Interface, robustesse et maintenance](tasks/07-ui-robustness-maintenance.md)
+8. [Workflow GitHub de build](tasks/08-github-build.md)
+9. [Validation finale des images et du matériel](tasks/09-final-validation.md)
+
+## Spécifications de l’interface
+
+- [Spécification visuelle générale](ui/visual-specification.md)
 - [Fenêtre principale et navigation](ui/main-window.md)
 - [Onglet Lecture](ui/read.md)
 - [Onglet Écriture](ui/write.md)
 - [Onglet Conversion](ui/convert.md)
-- [Visualiseur SCP](ui/scp-visualizer.md)
+- [Visualisateur et Explorateur](ui/visualizer-explorer.md)
 - [Options, matériel et diagnostics](ui/options.md)
 
-Les choix encore ouverts sont marqués `À étudier` et ne doivent pas être considérés comme validés.
+## Références techniques et couverture
+
+- [Familles et formats d’images](Liste-imagesdisk.md)
+- [Couverture des commandes Greaseweazle](gw-command-coverage.md)
+- [Couverture des décodeurs et encodeurs de flux](scp-decoder-coverage.md)
+- [Références des décodeurs](scp-decoder-references.md)
+
+## Guides
+
+- [Guide utilisateur français](user-guide.fr.md)
+- [English user guide](user-guide.en.md)
+
+## Règle de lecture
+
+En cas de contradiction, la décision la plus récente de l’utilisateur prévaut. Une ambiguïté n’autorise pas à inventer un comportement : elle doit être signalée avant réalisation.

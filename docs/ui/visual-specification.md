@@ -6,7 +6,7 @@
 - Restaurer taille, position, écran, maximisation et thème; recentrer si l’écran précédent a disparu.
 - Thèmes Système, Clair et Sombre; accent Windows.
 - Menus Options et Aide.
-- Onglets Lecture, Écriture, Conversion, Visualisation et Outils.
+- Onglets Lecture, Écriture, Conversion, Visualisation, Explorateur et Outils.
 - Bouton Exécuter/Arrêter stable en bas à droite de l’onglet.
 
 ## Console et état
@@ -45,18 +45,19 @@
 - Profil mémorise sorties et options; pas la source, le nom, le dossier ou les tags temporaires.
 - Aucun résumé avant lancement sauf conflit de fichier.
 
-## Visualisation SCP
+## Visualisateur et Explorateur
 
-- Barre supérieure : fichier, ouverture, décodeur automatique/manuel, lien des vues et réinitialisation.
-- Deux disques circulaires côte à côte.
-- Inspecteur droit masquable pour face, piste, révolution, encodage, secteurs et anomalies.
-- Une face unique est centrée et agrandie.
-- Zoom/déplacement indépendants avec bouton Lier.
-- Légende visible sous la vue.
+- Barre supérieure : image, ouverture, détection automatique/manuelle, machine, format, protection, lien des vues et réinitialisation.
+- Le Visualisateur accepte les images prises en charge, pas uniquement SCP.
+- Deux faces côte à côte lorsque le média possède deux faces ; une face unique est centrée et agrandie.
+- Inspecteur flottant masquable pour face, piste, révolution, encodage, secteurs et anomalies.
+- Zoom et déplacement, avec liaison facultative des faces.
+- Légende et barres Face 0/Face 1 visibles.
+- L’Explorateur partage l’image chargée et conserve ses trois colonnes : dossiers, contenu et informations.
 
 ## Options et dialogues
 
-- Options persistantes dans une fenêtre à navigation latérale.
+- Options persistantes dans une fenêtre à onglets horizontaux.
 - Diagnostics et Matériel restent des dialogues ponctuels.
 - Chaque dialogue montre résumé lisible, sortie brute repliable et ligne de commande en bas.
 - Sélecteur de lecteur dans chaque opération seulement si plusieurs lecteurs sont configurés.
