@@ -67,6 +67,28 @@ public sealed class AppleDiskImageTests
     }
 
     [Fact]
+    public async Task Rwts18ScpUsesSixPhysicalSectorsOfThreePages()
+    {
+        var sectors = Enumerable.Range(0, 6)
+            .Select(number => new TrackSector(number, Enumerable.Range(0, 768)
+                .Select(index => (byte)(number * 31 + index * 17)).ToArray()))
+            .ToArray();
+        var encoded = new FluxEncoderRegistry().Encode("apple2.rwts18", new TrackEncodeRequest(4, 0, sectors));
+        var scp = new ScpImage(new(0, 0, 1, 0, 0, ScpFlags.IndexAligned, 16, 0, 0, 0),
+            [new ScpTrack(8, 4, 0, [encoded.Revolution])], true, 0);
+
+        var image = await new AppleScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry())
+            .ReadAsync("memory.scp", "apple2.rwts18");
+
+        Assert.Equal("apple2.rwts18", image.FormatId);
+        Assert.Equal(768, image.BlockSize);
+        Assert.Equal(6, image.SectorsPerTrack);
+        Assert.Equal(6, image.AvailableBlocks.Count);
+        foreach (var expected in sectors)
+            Assert.Equal(expected.Data, image.GetBlock(4 * 6 + expected.Number).ToArray());
+    }
+
+    [Fact]
     public async Task Dos33ImageExposesItsCatalog()
     {
         var data = new byte[35 * 16 * 256];
@@ -121,12 +143,10 @@ public sealed class AppleDiskImageTests
                 var document = await explorer.ExploreAsync(path, explicitFormat);
                 var relative = Path.GetRelativePath(root, path);
                 var rawNibbleContainer = Path.GetExtension(path) is ".woz" or ".nib";
-                var intentionallyNonStandard = rawNibbleContainer
-                    || relative.Contains("Airheart", StringComparison.OrdinalIgnoreCase)
-                    || relative.Contains("seeds-of-evil", StringComparison.OrdinalIgnoreCase)
-                    || relative.Contains("MacWorks 3.0", StringComparison.OrdinalIgnoreCase);
-                if (!document.FileSystemRecognized && !intentionallyNonStandard) failures.Add($"NO FILESYSTEM {relative}: {document.Image.FormatId}");
-                else if (!document.FileSystemRecognized) results.Add($"OPEN CONTAINER {relative}: {document.Image.FormatId}, non-standard/no catalog");
+                if (!document.FileSystemRecognized && document.Volume.Entries.Count == 0)
+                    failures.Add($"NO DECODABLE STRUCTURE {relative}: {document.Image.FormatId}");
+                else if (!document.FileSystemRecognized)
+                    results.Add($"OPEN PHYSICAL STRUCTURE {relative}: {document.Image.FormatId}, {document.Volume.Entries.Count} tracks");
                 else
                 {
                     if (rawNibbleContainer) recognizedNibbleImages++;

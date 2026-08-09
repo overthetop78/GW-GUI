@@ -215,6 +215,7 @@ public sealed class DiskImageExplorer(
             Probe(ScpFamily.Amiga, "amiga.mfm", revolution);
             Probe(ScpFamily.Commodore, "commodore.gcr", revolution);
             Probe(ScpFamily.Apple, "apple2.gcr", revolution);
+            Probe(ScpFamily.Apple, "apple2.rwts18", revolution);
             Probe(ScpFamily.Apple, "applemac.gcr", revolution);
             Probe(ScpFamily.Dec, "dec.rx02", revolution);
         }, cancellationToken))).ConfigureAwait(false);
@@ -304,8 +305,19 @@ public sealed class DiskImageExplorer(
     private static ExploredDiskImage CreateDocument(string path, SectorImage image, IReadOnlyList<ExploredFileSystem> detected)
     {
         if (detected.Count > 0) return new(path, image, detected[0].Volume, true, detected);
-        var unknown = new FileSystemVolume(string.Empty, string.Empty, image.Capacity, 0, null, null, [], []);
-        return new(path, image, unknown, false, []);
+        var physicalTracks = image.AvailableBlocks
+            .GroupBy(block => (block.Address.Cylinder, block.Address.Head))
+            .OrderBy(group => group.Key.Cylinder).ThenBy(group => group.Key.Head)
+            .Select(group => new FileSystemEntry($"T{group.Key.Cylinder:D2} H{group.Key.Head}", FileSystemEntryKind.Directory,
+                group.Sum(block => (long)block.Data.Count), null, string.Empty, 0, 0,
+                group.All(block => block.IntegrityValid != false),
+                group.OrderBy(block => block.Address.Number).Select(block => new FileSystemEntry(
+                    $"S{block.Address.Number:D2}.bin", FileSystemEntryKind.File, block.Data.Count, null,
+                    string.Empty, 0, block.LogicalBlock, block.IntegrityValid != false, [], block.Data.ToArray())).ToArray()))
+            .ToArray();
+        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), image.FormatId,
+            image.Capacity, 0, null, null, physicalTracks, []);
+        return new(path, image, physical, false, []);
     }
 
     private static ExploredDiskImage Unknown(string path)

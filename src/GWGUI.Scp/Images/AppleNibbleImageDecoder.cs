@@ -14,12 +14,16 @@ internal static class AppleNibbleImageDecoder
         if (data.Length == 0 || data.Length % NibTrackLength != 0)
             throw new InvalidDataException("The Apple NIB image length is invalid.");
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
-        var decoder = new AppleGcrDecoder();
+        var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
+        var decoder = new AppleGcrDecoder(); var rwtsDecoder = new AppleRwts18Decoder();
         for (var track = 0; track < data.Length / NibTrackLength; track++)
         {
             var bits = BytesToBits(data.Slice(track * NibTrackLength, NibTrackLength), NibTrackLength * 8);
             tracks.Add((track, decoder.DecodeBits(bits).Sectors ?? []));
+            rwtsTracks.Add((track, rwtsDecoder.DecodeBits(bits).Sectors ?? []));
         }
+        if (rwtsTracks.Count(item => item.Sectors.Any(sector => sector.Data is { Count: 768 })) > 1)
+            return AppleDiskImageReader.CreateRwts18FromDecodedTracks(rwtsTracks);
         return AppleDiskImageReader.CreateAppleIIFromDecodedTracks(tracks);
     }
 
@@ -35,12 +39,13 @@ internal static class AppleNibbleImageDecoder
         if (!chunks.TryGetValue("TMAP", out var tmap) || tmap.Length < 160 || !chunks.TryGetValue("TRKS", out var trks))
             throw new InvalidDataException("The WOZ track map or track data is missing.");
 
-        var decoder = new AppleGcrDecoder();
+        var decoder = new AppleGcrDecoder(); var rwtsDecoder = new AppleRwts18Decoder();
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
+        var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         for (var track = 0; track < 40; track++)
         {
-            IReadOnlyList<DecodedSector>? best = null;
-            var bestScore = -1;
+            IReadOnlyList<DecodedSector>? best = null; IReadOnlyList<DecodedSector>? bestRwts = null;
+            var bestScore = -1; var bestRwtsScore = -1;
             foreach (var descriptor in tmap.Span.Slice(track * 4, 4).ToArray().Where(value => value != 0xff).Distinct())
             {
                 var bits = version == 1 ? ReadWoz1Track(trks.Span, descriptor) : ReadWoz2Track(data, trks.Span, descriptor);
@@ -50,12 +55,19 @@ internal static class AppleNibbleImageDecoder
                     .ToArray();
                 var score = sectors.Select(sector => sector.Number).Distinct().Count() * 100
                     + sectors.Count(sector => sector.IntegrityValid == true) * 10 + sectors.Length;
-                if (score <= bestScore) continue;
-                best = sectors;
-                bestScore = score;
+                var rwts = (rwtsDecoder.DecodeBits(bits).Sectors ?? [])
+                    .Where(sector => sector.Cylinder == track && sector.Number is >= 0 and < 6 && sector.Data is { Count: 768 })
+                    .ToArray();
+                var rwtsScore = rwts.Select(sector => sector.Number).Distinct().Count() * 100
+                    + rwts.Count(sector => sector.IntegrityValid == true) * 10 + rwts.Length;
+                if (score > bestScore) { best = sectors; bestScore = score; }
+                if (rwtsScore > bestRwtsScore) { bestRwts = rwts; bestRwtsScore = rwtsScore; }
             }
             if (best is not null) tracks.Add((track, best));
+            if (bestRwts is not null) rwtsTracks.Add((track, bestRwts));
         }
+        if (rwtsTracks.Count(item => item.Sectors.Count > 0) > 1)
+            return AppleDiskImageReader.CreateRwts18FromDecodedTracks(rwtsTracks);
         return AppleDiskImageReader.CreateAppleIIFromDecodedTracks(tracks);
     }
 

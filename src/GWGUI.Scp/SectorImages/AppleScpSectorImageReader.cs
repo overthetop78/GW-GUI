@@ -11,6 +11,8 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        if (formatId?.StartsWith("apple2.rwts18", StringComparison.OrdinalIgnoreCase) == true)
+            return DecodeRwts18(scp, cancellationToken);
         if (formatId?.StartsWith("apple2.appledos", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("apple2.nofs", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("apple2.dos", StringComparison.OrdinalIgnoreCase) == true)
@@ -29,12 +31,25 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         // Compare both GCR families instead of accepting the first accidental prologue.
         // Macintosh/Apple II 3.5-inch media yield 512-byte sectors; Apple II 5.25-inch
         // media yield 256-byte sectors. The valid family reconstructs far more blocks.
-        SectorImage? macintosh = null; SectorImage? appleII = null;
+        SectorImage? macintosh = null; SectorImage? appleII = null; SectorImage? rwts18 = null;
         try { macintosh = DecodeMacintosh(scp, null, cancellationToken); } catch (InvalidDataException) { }
         try { appleII = DecodeAppleII(scp, false, cancellationToken); } catch (InvalidDataException) { }
-        if (macintosh is null) return appleII ?? throw new InvalidDataException("No Apple GCR sectors could be decoded from the SCP image.");
-        if (appleII is null) return macintosh;
-        return macintosh.AvailableBlocks.Count >= appleII.AvailableBlocks.Count ? macintosh : appleII;
+        try { rwts18 = DecodeRwts18(scp, cancellationToken); } catch (InvalidDataException) { }
+        var candidates = new[] { macintosh, appleII, rwts18 }.Where(image => image is not null).Cast<SectorImage>().ToArray();
+        if (candidates.Length == 0) throw new InvalidDataException("No Apple GCR sectors could be decoded from the SCP image.");
+        return candidates.OrderByDescending(image => image.AvailableBlocks.Count / (double)Math.Max(1, image.BlockCount))
+            .ThenByDescending(image => image.AvailableBlocks.Count).First();
+    }
+
+    private SectorImage DecodeRwts18(ScpImage scp, CancellationToken cancellationToken)
+    {
+        var candidates = DecodeCandidates(scp, "apple2.rwts18", 768, cancellationToken);
+        if (candidates.Count == 0) throw new InvalidDataException("No Apple II RWTS18 sectors could be decoded from the SCP image.");
+        var blocks = candidates.Where(pair => pair.Key.Cylinder is >= 0 and < 50 && pair.Key.Number is >= 0 and < 6)
+            .Select(pair => Select(pair.Key.Cylinder * 6 + pair.Key.Number, pair.Key, pair.Value)).ToArray();
+        if (blocks.Length == 0) throw new InvalidDataException("No usable Apple II RWTS18 sectors could be reconstructed.");
+        var tracks = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
+        return new("apple2.rwts18", 768, tracks, 1, 6, blocks);
     }
 
     private SectorImage DecodeAppleII(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken)

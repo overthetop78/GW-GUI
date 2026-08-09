@@ -5,7 +5,7 @@ public sealed class FluxEncoderRegistry
     public IReadOnlyList<ITrackEncoder> Encoders { get; } =
     [
         new IsoMfmTrackEncoder(), new IsoFmTrackEncoder(), new AmigaMfmTrackEncoder(),
-        new AppleIIGcrTrackEncoder(), new AppleMacGcrTrackEncoder(), new AppleLisaFileWareGcrTrackEncoder(), new CommodoreGcrTrackEncoder(),
+        new AppleIIGcrTrackEncoder(), new AppleRwts18TrackEncoder(), new AppleMacGcrTrackEncoder(), new AppleLisaFileWareGcrTrackEncoder(), new CommodoreGcrTrackEncoder(),
         new HpMmfmTrackEncoder(), new DataGeneralFmTrackEncoder(), new MicropolisMfmTrackEncoder(),
         new MembrainMfmTrackEncoder(), new Aed6200pMfmTrackEncoder(), new QdMo5MfmTrackEncoder(),
         new CenturionMfmTrackEncoder(), new NorthstarMfmTrackEncoder(), new HeathkitFmTrackEncoder(),

@@ -62,6 +62,25 @@ public sealed class TrackEncoderTests
         }
     }
 
+    [Fact]
+    public void AppleRwts18TrackRoundTrips()
+    {
+        var sectors = Enumerable.Range(0, 6)
+            .Select(number => new TrackSector(number, Enumerable.Range(0, 768)
+                .Select(index => (byte)(number * 23 + index * 41)).ToArray()))
+            .ToArray();
+        var encoded = new FluxEncoderRegistry().Encode("apple2.rwts18", new TrackEncodeRequest(18, 0, sectors));
+        var decoded = new FluxDecoderRegistry().Decode("apple2.rwts18", encoded.Revolution);
+
+        Assert.Equal(6, decoded.Sectors!.Count);
+        foreach (var expected in sectors)
+        {
+            var actual = Assert.Single(decoded.Sectors, sector => sector.Number == expected.Number);
+            Assert.True(actual.IntegrityValid, string.Join(" | ", decoded.Structures.Select(item => item.Description)));
+            Assert.Equal(expected.Data, actual.Data);
+        }
+    }
+
     [Theory]
     [InlineData(11)]
     [InlineData(22)]

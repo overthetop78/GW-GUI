@@ -252,6 +252,21 @@ public sealed class AppleDiskImageReader : ISectorImageReader
             256, trackCount, 1, sectorsPerTrack, dosBlocks);
     }
 
+    internal static SectorImage CreateRwts18FromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<GWGUI.Scp.Decoding.DecodedSector> Sectors)> decodedTracks)
+    {
+        var blocks = decodedTracks.SelectMany(item => item.Sectors
+                .Where(sector => sector.Data is { Count: 768 } && sector.Number is >= 0 and < 6)
+                .Select(sector => (item.Track, Sector: sector)))
+            .GroupBy(item => (item.Track, item.Sector.Number))
+            .Select(group => group.OrderByDescending(item => item.Sector.IntegrityValid == true).First())
+            .Select(item => new SectorBlock(item.Track * 6 + item.Sector.Number,
+                new(item.Track, 0, item.Sector.Number), item.Sector.Data!.ToArray(), item.Sector.IntegrityValid))
+            .ToArray();
+        if (blocks.Length == 0) throw new InvalidDataException("No Apple II RWTS18 sectors could be decoded.");
+        var trackCount = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
+        return new("apple2.rwts18", 768, trackCount, 1, 6, blocks);
+    }
+
     private static byte[] ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)
     {
         var data = new byte[count * blockSize];
