@@ -96,8 +96,7 @@ public partial class MainWindow : Window
     private readonly SectorImageFluxVisualizer _sectorImageFluxVisualizer = new();
     private string? _lastScpPath;
     private ScpTrack? _selectedScpTrack;
-    private readonly GwProgressTracker _progressTracker = new();
-    private bool _trackProgressNeedsConfiguration;
+    private readonly OperationProgressController _progress;
     private readonly string _logsDirectory;
     private readonly ConsoleLogSession _consoleLog;
     private readonly MainWindowViewModel _viewModel;
@@ -141,6 +140,8 @@ public partial class MainWindow : Window
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
+        _progress = new OperationProgressController(_viewModel, Face0TrackProgress, Face1TrackProgress,
+            (key, arguments) => LocExtension.Get(key, arguments));
         _operationTimer.Tick += (_, _) => UpdateElapsedTime();
         DataContext = _viewModel;
         _formatCatalog = new BuiltInImageFormatCatalog(key => LocExtension.Get(key));
@@ -1778,15 +1779,7 @@ public partial class MainWindow : Window
             _viewModel.TimerVisibility = Visibility.Visible;
             UpdateElapsedTime();
         }
-        _progressTracker.Reset();
-        Face0TrackProgress.ResetToPending();
-        Face1TrackProgress.ResetToPending();
-        _trackProgressNeedsConfiguration = true;
-        SetOperationState("Status.Running", Color.FromRgb(45, 125, 210));
-        _viewModel.ProgressVisibility = Visibility.Visible;
-        _viewModel.ProgressIndeterminate = true;
-        _viewModel.ProgressValue = 0;
-        _viewModel.ProgressText = "";
+        _progress.Begin();
     }
 
     private async Task RenderPendingProgressAsync() =>
@@ -1795,52 +1788,7 @@ public partial class MainWindow : Window
     private void ReportOutput(GwOutputLine line)
     {
         AppendConsoleText(line.Text + Environment.NewLine);
-        var progress = _progressTracker.Accept(line.Text);
-        if (progress is null) return;
-        if (progress.TotalOnHead is int totalOnHead)
-        {
-            _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
-            _viewModel.Face0ProgressVisibility = progress.Head0Expected ? Visibility.Visible : Visibility.Collapsed;
-            _viewModel.Face1ProgressVisibility = progress.Head1Expected ? Visibility.Visible : Visibility.Collapsed;
-            if ((_trackProgressNeedsConfiguration || Face0TrackProgress.Segments.Count == 0) && progress.Head0Expected)
-                Face0TrackProgress.Configure(0, progress.Cylinders, LocExtension.Get("Visual.Side", 0));
-            if ((_trackProgressNeedsConfiguration || Face1TrackProgress.Segments.Count == 0) && progress.Head1Expected)
-                Face1TrackProgress.Configure(1, progress.Cylinders, LocExtension.Get("Visual.Side", 1));
-            _trackProgressNeedsConfiguration = false;
-            var text = LocExtension.Get("Status.FaceTrackProgress", progress.Head, progress.Cylinder, progress.CompletedOnHead, totalOnHead);
-            var segmentState = progress.State switch
-            {
-                GwTrackState.Retry => Controls.TrackSegmentState.Retry,
-                GwTrackState.Failed => Controls.TrackSegmentState.Failed,
-                _ => Controls.TrackSegmentState.Success
-            };
-            (progress.Head == 0 ? Face0TrackProgress : Face1TrackProgress).SetState(progress.Cylinder, segmentState);
-            if (progress.State == GwTrackState.Retry)
-            {
-                Face0TrackProgress.ClearActive();
-                Face1TrackProgress.ClearActive();
-            }
-            else if (progress.NextCylinder is int nextCylinder && progress.NextHead is int nextHead)
-                (nextHead == 0 ? Face0TrackProgress : Face1TrackProgress).SetActive(nextCylinder);
-            if (progress.Head == 0)
-            {
-                _viewModel.Face0ProgressValue = progress.HeadFraction.GetValueOrDefault() * 100;
-                _viewModel.Face0ProgressText = text;
-            }
-            else
-            {
-                _viewModel.Face1ProgressValue = progress.HeadFraction.GetValueOrDefault() * 100;
-                _viewModel.Face1ProgressText = text;
-            }
-            return;
-        }
-        if (progress.TotalTracks is int total)
-        {
-            _viewModel.ProgressIndeterminate = false;
-            _viewModel.ProgressValue = progress.Fraction.GetValueOrDefault() * 100;
-            _viewModel.ProgressText = LocExtension.Get("Status.TrackProgress", progress.Cylinder, progress.Head, progress.CompletedTracks, total);
-        }
-        else _viewModel.ProgressText = LocExtension.Get("Status.TrackUnknown", progress.Cylinder, progress.Head, progress.CompletedTracks);
+        _progress.Accept(line.Text);
     }
 
     private async Task FlushPendingOutputAsync() =>
@@ -1874,12 +1822,7 @@ public partial class MainWindow : Window
         _operationTimer.Stop();
         UpdateElapsedTime();
         _viewModel.TimerVisibility = Visibility.Collapsed;
-        _viewModel.ProgressIndeterminate = false;
-        _viewModel.ProgressValue = 100;
-        _viewModel.ProgressVisibility = Visibility.Collapsed;
-        _viewModel.GlobalProgressVisibility = Visibility.Visible;
-        _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
-        _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
+        _progress.End();
     }
 
     private void UpdateElapsedTime()
@@ -1909,11 +1852,7 @@ public partial class MainWindow : Window
         LogOutput.ScrollToEnd();
         _ = _consoleLog.AppendTextAsync(text);
     }
-    private void SetOperationState(string resourceKey, Color color)
-    {
-        _viewModel.OperationText = LocExtension.Get(resourceKey);
-        _viewModel.OperationBrush = new SolidColorBrush(color);
-    }
+    private void SetOperationState(string resourceKey, Color color) => _progress.SetState(resourceKey, color);
 
     private void UpdateProfileStatus()
     {
