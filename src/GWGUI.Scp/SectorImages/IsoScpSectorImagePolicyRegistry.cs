@@ -4,9 +4,10 @@ internal static class IsoScpSectorImagePolicyRegistry
 {
     private static readonly IReadOnlyList<(Predicate<string> Matches, Func<string, IIsoScpSectorImagePolicy> Create)> Policies =
     [
-        (format => format.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) ||
-                   format.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase),
-            format => new AtariIsoScpSectorImagePolicy(format)),
+        (format => format.StartsWith("atari.", StringComparison.OrdinalIgnoreCase),
+            format => new Atari8BitIsoScpSectorImagePolicy(format)),
+        (format => format.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase),
+            _ => new AtariStIsoScpSectorImagePolicy()),
         (format => format.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase),
             _ => new AmstradIsoScpSectorImagePolicy()),
         (format => format.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ||

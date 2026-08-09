@@ -10,6 +10,8 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
             return EpsonQx10SectorImagePolicy.CreateImage(epsonFormat, candidates.Physical);
 
         var measured = IsoSectorImageBuilder.Measure(candidates.Addressed);
+        if (measured.ZeroBased && measured.SectorSize == 256 && measured.SectorsPerTrack == 10)
+            return new BbcIsoScpSectorImagePolicy().Build(null, candidates);
         if (measured.SectorSize == 512 && !measured.ZeroBased)
         {
             var boot = IsoSectorImageBuilder.BestData(candidates.Addressed, new(0, 0, 1));
@@ -19,6 +21,10 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
                 return new IbmPcIsoScpSectorImagePolicy(false).Build(null, candidates);
         }
 
-        return new AtariIsoScpSectorImagePolicy(null).Build(null, candidates);
+        var atari8Bit = measured.SectorSize is 128 or 256 && measured.Heads == 1 &&
+                        measured.SectorsPerTrack is 18 or 26;
+        return atari8Bit
+            ? new Atari8BitIsoScpSectorImagePolicy(null).Build(null, candidates)
+            : new AtariStIsoScpSectorImagePolicy().Build(null, candidates);
     }
 }
