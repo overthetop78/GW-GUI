@@ -14,29 +14,7 @@
                 <controls:ReadTabSection x:Name="ReadTabBlock"/>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Write}"><TabItem.Header><controls:MainTabHeader Icon="&#xE70F;" Text="{l:Loc Tab.Write}"/></TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <Grid Margin="16">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                    <controls:WriteAdvancedSection x:Name="WriteAdvancedBlock" Grid.Row="0"/>
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="390"/></Grid.ColumnDefinitions>
-                                <controls:PathSection x:Name="WriteSourceBlock" Label="{l:Loc Write.Source}" Text="{Binding Write.SourcePath, Mode=TwoWay}" Margin="0,0,6,12"/>
-                                <controls:ProfileSection x:Name="WriteProfileBlock" Grid.Column="1" Margin="6,0,0,12"/>
-                            </Grid>
-                            <controls:WriteFormatSection x:Name="WriteFormatBlock" Grid.Row="2" Margin="0,0,0,12"/>
-                        </Grid>
-                    </ScrollViewer>
-                    <Button Grid.Row="1" x:Name="WriteExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" Click="ExecuteWrite_Click" />
-                </Grid>
+                <controls:WriteTabSection x:Name="WriteTabBlock"/>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Convert}"><TabItem.Header><controls:MainTabHeader Icon="&#xE895;" Text="{l:Loc Tab.Convert}"/></TabItem.Header>
                 <Grid>

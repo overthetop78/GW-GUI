@@ -40,6 +40,11 @@ public partial class MainWindow : Window
     private ReadAdvancedSection ReadAdvancedBlock => ReadTabBlock.AdvancedBlock;
     private ReadCompletionBanner ReadCompletionBlock => ReadTabBlock.CompletionBlock;
     private Button ReadExecuteButton => ReadTabBlock.ExecuteActionButton;
+    private WriteAdvancedSection WriteAdvancedBlock => WriteTabBlock.AdvancedBlock;
+    private PathSection WriteSourceBlock => WriteTabBlock.SourceBlock;
+    private ProfileSection WriteProfileBlock => WriteTabBlock.ProfileBlock;
+    private WriteFormatSection WriteFormatBlock => WriteTabBlock.FormatBlock;
+    private Button WriteExecuteButton => WriteTabBlock.ExecuteActionButton;
     private RadioButton RawScpRadio => ReadImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => ReadImageBlock.KnownFormatRadio;
     private Grid KnownFormatPanel => ReadImageBlock.KnownFormatPanel;
@@ -242,6 +247,7 @@ public partial class MainWindow : Window
         WriteAdvancedBlock.DenselChecked += WriteDensel_Checked;
         WriteAdvancedBlock.Tg43Checked += WriteTg43_Checked;
         WriteAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseWriteDiskDefs_Click;
+        WriteTabBlock.ExecuteRequested += ExecuteWrite_Click;
         RegisterName(nameof(WriteProfileCombo), WriteProfileCombo);
         RegisterName(nameof(WriteSourceText), WriteSourceText);
         RegisterName(nameof(WriteDetectionText), WriteDetectionText);
