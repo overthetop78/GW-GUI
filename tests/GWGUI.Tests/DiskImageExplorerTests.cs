@@ -173,7 +173,8 @@ public sealed class DiskImageExplorerTests
 
             Assert.False(result.FileSystemRecognized);
             Assert.Equal(368640, result.Volume.Capacity);
-            Assert.Empty(result.Volume.Entries);
+            Assert.Equal(80, result.Volume.Entries.Count);
+            Assert.Equal(720, result.Volume.Entries.Sum(track => track.Children.Count));
         }
         finally { File.Delete(path); }
     }
