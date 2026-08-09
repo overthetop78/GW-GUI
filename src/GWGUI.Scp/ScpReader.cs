@@ -2,35 +2,11 @@ using System.Buffers.Binary;
 
 namespace GWGUI.Scp;
 
-[Flags]
-public enum ScpFlags : byte { IndexAligned = 1, Tpi96 = 2, Rpm360 = 4, Normalized = 8, Writable = 16, Footer = 32, Extended = 64, ThirdPartyCreator = 128 }
-
-public sealed record ScpHeader(byte Version, byte DiskType, byte Revolutions, byte StartTrack, byte EndTrack, ScpFlags Flags, byte BitCellEncoding, byte Heads, byte Resolution, uint Checksum)
-{
-    public int TrackCount => EndTrack - StartTrack + 1;
-    public int ResolutionNanoseconds => 25 * (Resolution + 1);
-    public string VersionText => $"{Version >> 4}.{Version & 0x0f}";
-}
-
-public sealed record ScpRevolution(uint IndexTimeTicks, uint DeclaredFluxCount, IReadOnlyList<uint> FluxIntervals)
-{
-    public double DurationMilliseconds(int resolutionNanoseconds) => IndexTimeTicks * resolutionNanoseconds / 1_000_000d;
-    public double Rpm(int resolutionNanoseconds) => 60_000d / DurationMilliseconds(resolutionNanoseconds);
-}
-
-public sealed record ScpTrack(byte TrackNumber, int Cylinder, int Head, IReadOnlyList<ScpRevolution> Revolutions);
-public sealed record ScpImage(ScpHeader Header, IReadOnlyList<ScpTrack> Tracks, bool ChecksumValid, long FileSize);
-
-public interface IScpReader
-{
-    Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default);
-}
-
 public sealed class ScpReader : IScpReader
 {
-    public const int HeaderLength = 16;
-    public const int FloppyTrackSlots = 168;
-    public const int TrackTableOffset = 0x10;
+    public const int HeaderLength = ScpFormatConstants.HeaderLength;
+    public const int FloppyTrackSlots = ScpFormatConstants.FloppyTrackSlots;
+    public const int TrackTableOffset = ScpFormatConstants.TrackTableOffset;
     private readonly System.Collections.Concurrent.ConcurrentDictionary<FileIdentity, Lazy<Task<ScpImage>>> _cache = new();
 
     public async Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default)
@@ -107,7 +83,8 @@ public sealed class ScpReader : IScpReader
             {
                 var value = BinaryPrimitives.ReadUInt16BigEndian(fluxBytes.Slice(position, 2));
                 if (value == 0) { overflow = checked(overflow + 65536); continue; }
-                intervals.Add(checked(overflow + value)); overflow = 0;
+                intervals.Add(checked(overflow + value));
+                overflow = 0;
             }
             if (overflow != 0) intervals.Add(overflow);
             revolutions.Add(new(indexTime, fluxCount, intervals));
@@ -115,8 +92,18 @@ public sealed class ScpReader : IScpReader
         return new((byte)expectedTrack, expectedTrack / 2, expectedTrack % 2, revolutions);
     }
 
-    private static uint ComputeChecksum(ReadOnlySpan<byte> data) { uint sum = 0; foreach (var value in data) sum = unchecked(sum + value); return sum; }
-    private static void Require(ReadOnlySpan<byte> data, int offset, int length, string section) { if (offset < 0 || length < 0 || offset > data.Length - length) throw new InvalidDataException($"Incomplete or invalid {section}."); }
+    private static uint ComputeChecksum(ReadOnlySpan<byte> data)
+    {
+        uint sum = 0;
+        foreach (var value in data) sum = unchecked(sum + value);
+        return sum;
+    }
+
+    private static void Require(ReadOnlySpan<byte> data, int offset, int length, string section)
+    {
+        if (offset < 0 || length < 0 || offset > data.Length - length)
+            throw new InvalidDataException($"Incomplete or invalid {section}.");
+    }
 }
 
 public static class ScpHeaderReader
