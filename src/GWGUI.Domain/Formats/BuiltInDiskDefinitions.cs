@@ -8,7 +8,8 @@ public static class BuiltInDiskDefinitions
     {
         "atarist.810",
         "amstrad.cpc",
-        "amstrad.pcw"
+        "amstrad.pcw",
+        "ucsd.ibm.mfm"
     };
 
     public static bool Supports(string? formatId) =>

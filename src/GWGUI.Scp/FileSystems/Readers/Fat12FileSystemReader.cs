@@ -17,12 +17,14 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public bool CanRead(SectorImage image)
     {
         if (image.BlockSize != 512 || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 64) return false;
-        return TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out _);
+        return TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)
+            && HasPlausibleFatHeader(image, layout);
     }
 
     public FileSystemVolume Read(SectorImage image)
     {
-        if (!image.TryGetBlock(0, out var boot) || !TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout))
+        if (!image.TryGetBlock(0, out var boot) || !TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)
+            || !HasPlausibleFatHeader(image, layout))
             throw new InvalidDataException("The image does not contain a supported FAT12 file system.");
         var warnings = new List<string>(); var fat = ReadSectors(image, layout.ReservedSectors, layout.SectorsPerFat, warnings);
         var root = ReadSectors(image, layout.RootStart, layout.RootSectors, warnings);
@@ -105,15 +107,16 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         if (total == 0) total = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(boot[32..])));
         var fatSectors = BinaryPrimitives.ReadUInt16LittleEndian(boot[22..]);
         if (bytes != 512 || cluster == 0 || reserved == 0 || fats == 0 || roots == 0 || total == 0 || total > availableSectors || fatSectors == 0)
-            return TryReadLegacyIbmLayout(formatId, availableSectors, out layout);
+            return TryReadLegacyIbmLayout(formatId, availableSectors, boot, out layout);
         var rootSectors = (roots * 32 + 511) / 512; var rootStart = reserved + fats * fatSectors; var dataStart = rootStart + rootSectors;
         if (dataStart >= total) return false; var clusters = (total - dataStart) / cluster;
         if (clusters >= 4085) return false; layout = new(reserved, fatSectors, rootStart, rootSectors, dataStart, cluster, clusters); return true;
     }
 
-    private static bool TryReadLegacyIbmLayout(string formatId, int availableSectors, out Layout layout)
+    private static bool TryReadLegacyIbmLayout(string formatId, int availableSectors, ReadOnlySpan<byte> boot, out Layout layout)
     {
         layout = default;
+        if (boot.Length == 0 || boot.IndexOfAnyExcept(boot[0]) < 0) return false;
         var parameters = formatId.ToLowerInvariant() switch
         {
             "ibm.160" => (Total: 320, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 1),
@@ -130,6 +133,12 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         var clusters = (parameters.Total - dataStart) / parameters.SectorsPerCluster;
         layout = new(reserved, parameters.SectorsPerFat, rootStart, rootSectors, dataStart, parameters.SectorsPerCluster, clusters);
         return true;
+    }
+
+    private static bool HasPlausibleFatHeader(SectorImage image, Layout layout)
+    {
+        if (!image.TryGetBlock(layout.ReservedSectors, out var fat) || fat.Data.Count < 3) return false;
+        return fat.Data[0] >= 0xf0 && fat.Data[1] == 0xff && fat.Data[2] == 0xff;
     }
 
     private static int ReadFat12(ReadOnlySpan<byte> fat, int cluster)

@@ -27,7 +27,7 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
 
     private async Task VerifyImage(string fileName)
     {
-        var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "UCSD p-System - IBM MFM", fileName));
+        var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", fileName));
         if (!File.Exists(path)) return;
         var image = await new Td0ImageReader().ReadAsync(path);
         var reader = new UcsdFileSystemReader();

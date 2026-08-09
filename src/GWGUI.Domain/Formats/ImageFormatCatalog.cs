@@ -162,7 +162,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             new("msx.2d", "MSX", "MSX — 360 KiB", [new(".dsk", "DSK", true)], true, Set(".scp", ".dsk", ".img", ".hfe"), "MSX-2D"),
             new("msx.2dd", "MSX", "MSX — 720 KiB", [new(".dsk", "DSK", true)], true, Set(".scp", ".dsk", ".img", ".hfe"), "MSX-2DD"),
             new("dec.rx02", "DEC", "DEC RX02 — 512 KiB", [new(".img", "IMG", true)], false, Set(".scp", ".img", ".imd", ".td0", ".hfe"), "DEC-RX02"),
-            new("ucsd.ibm.mfm", "UCSD p-System", "UCSD p-System — IBM MFM", [new(".img", "IMG", true), new(".td0", "TD0")], false, Set(".scp", ".img", ".td0", ".hfe"), "UCSD-IBM-MFM"),
+            F("ucsd.ibm.mfm", "UCSD p-System", "UCSD p-System — IBM MFM", [new(".img", "IMG", true), new(".td0", "TD0")], false, "UCSD-IBM-MFM", ".scp", ".img", ".td0", ".hfe"),
             new("commodore900.coherent", "Commodore 900", "Commodore 900 — COHERENT", [new(".bin", "BIN", true), new(".img", "IMG")], false, Set(".scp", ".bin", ".img", ".hfe"), "C900-COHERENT"),
             new("applelisa.office", "Apple Lisa", "Apple Lisa Office System", [new(".image", "DiskCopy", true), new(".dc42", "DiskCopy 4.2")], false, Set(".scp", ".image", ".dc42", ".hfe"), "LISA-OFFICE"),
             new("applelisa.macworks", "Apple Lisa", "Apple Lisa — MacWorks", [new(".image", "DiskCopy", true), new(".dc42", "DiskCopy 4.2")], false, Set(".scp", ".image", ".dc42", ".hfe"), "LISA-MACWORKS"),

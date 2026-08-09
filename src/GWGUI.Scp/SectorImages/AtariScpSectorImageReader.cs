@@ -14,6 +14,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var ibm = formatId?.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) == true;
         var bbc = formatId?.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase) == true;
         var epson = formatId?.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase) == true;
+        var ucsd = formatId?.Equals("ucsd.ibm.mfm", StringComparison.OrdinalIgnoreCase) == true;
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         var physicalCandidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         foreach (var track in scp.Tracks)
@@ -46,7 +47,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             formatId = detectedEpsonFormat;
             epson = true;
         }
-        if (epson) candidates = physicalCandidates;
+        if (epson || ucsd) candidates = physicalCandidates;
         if (candidates.Count == 0)
             throw new InvalidDataException("No consistently addressed Atari ISO FM/MFM sectors could be decoded from the SCP image.");
         var sectorSize = candidates.Values.SelectMany(value => value).GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).First().Key;
@@ -59,9 +60,15 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             heads = formatId.Contains(".ds", StringComparison.OrdinalIgnoreCase) ? 2 : 1;
             sectorsPerTrack = 10;
         }
+        if (ucsd)
+        {
+            cylinders = candidates.Keys.Max(address => address.Cylinder) + 1;
+            heads = 1;
+            sectorsPerTrack = 8;
+        }
         var sectorOrder = candidates.Keys.Select(address => address.Number).Distinct().OrderBy(number => number).ToArray();
         var zeroBased = sectorOrder.Length > 0 && sectorOrder[0] == 0;
-        if (sectorSize == 512 && !zeroBased)
+        if (sectorSize == 512 && !zeroBased && (ibm || formatId is null))
         {
             var boot = BestData(candidates, new(0, 0, 1));
             var fat = BestData(candidates, new(0, 0, 2));
@@ -89,7 +96,11 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             if (!amstrad && address.Number > sectorsPerTrack) continue;
             if (address.Cylinder >= cylinders || address.Head >= heads) continue;
             var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
-            var sectorIndex = amstrad || zeroBased ? Array.IndexOf(sectorOrder, address.Number) : address.Number - 1;
+            var sectorIndex = ucsd
+                ? Array.IndexOf(candidates.Keys
+                    .Where(item => item.Cylinder == address.Cylinder && item.Head == address.Head)
+                    .Select(item => item.Number).Distinct().OrderBy(number => number).ToArray(), address.Number)
+                : amstrad || zeroBased ? Array.IndexOf(sectorOrder, address.Number) : address.Number - 1;
             if (sectorIndex < 0 || sectorIndex >= sectorsPerTrack) continue;
             var logical = (address.Cylinder * heads + address.Head) * sectorsPerTrack + sectorIndex;
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));

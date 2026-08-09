@@ -132,6 +132,16 @@ public sealed class DiskImageExplorer(
         if (formatId is null)
         {
             foreach (var match in fileSystems.ReadAll(image)) detected.Add(new(image.FormatId, match.ReaderId, match.Volume));
+            if (detected.Count == 0)
+            {
+                foreach (var interpretation in AdditionalFileSystemInterpretations(image))
+                {
+                    if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var volume)) continue;
+                    image = interpretation;
+                    detected.Add(new(interpretation.FormatId, interpretation.FormatId, volume));
+                    break;
+                }
+            }
         }
         else
         {
@@ -205,9 +215,12 @@ public sealed class DiskImageExplorer(
             return CreateDocument(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
         var primaryIdentity = FileSystemIdentity(bestRecognizedFileSystem.Volume);
         var orderedDetected = new[] { bestRecognizedFileSystem }.Concat(
-            detected.Where(match => FileSystemIdentity(match.Volume) != primaryIdentity)).ToArray();
+            detected.Where(match => FileSystemIdentity(match.Volume) != primaryIdentity && IsCredibleAlternative(match.Volume))).ToArray();
         return CreateDocument(path, bestRecognized ?? bestDecoded, orderedDetected, decodedFormatIds.ToArray());
     }
+
+    private static bool IsCredibleAlternative(FileSystemVolume volume) =>
+        volume.Warnings.Count <= Math.Max(3, volume.Entries.Count);
 
     private static double DecodeScore(SectorImage image) =>
         image.AvailableBlocks.Count / (double)Math.Max(1, image.BlockCount);
@@ -299,6 +312,7 @@ public sealed class DiskImageExplorer(
             yield return () => atariScpReader.ReadAsync(path, "acorn.adfs.800", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "ucsd.ibm.mfm", cancellationToken);
             yield return () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken);
