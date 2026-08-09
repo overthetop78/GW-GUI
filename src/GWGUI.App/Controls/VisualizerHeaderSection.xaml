@@ -16,7 +16,8 @@
                 <Button x:Name="Reset" AutomationProperties.Name="{l:Loc Common.Reset}"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" Margin="0,0,7,0"/><TextBlock Text="{l:Loc Common.Reset}"/></StackPanel></Button>
                 <Button x:Name="Open" AutomationProperties.Name="{l:Loc Visual.OpenImage}"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xED25;" FontFamily="Segoe MDL2 Assets" Margin="0,0,7,0"/><TextBlock Text="{l:Loc Visual.OpenImage}"/></StackPanel></Button>
             </StackPanel>
-            <controls:DiskClassificationSelector xmlns:controls="clr-namespace:GWGUI.App.Controls" x:Name="Classification" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,12,0,0"/>
+            <controls:DiskClassificationSelector xmlns:controls="clr-namespace:GWGUI.App.Controls" x:Name="Classification" Grid.Row="1" Grid.ColumnSpan="2"
+                                                 HorizontalAlignment="Right" Margin="0,12,0,0"/>
         </Grid>
     </Border>
 </UserControl>

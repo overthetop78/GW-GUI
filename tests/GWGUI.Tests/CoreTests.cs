@@ -90,6 +90,28 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ScpRendererUsesDistinctFaithfulMediaColorsAndSides()
+    {
+        static SKBitmap Render(DiskMediaKind kind, int head)
+        {
+            var bitmap = new SKBitmap(256, 256);
+            using var canvas = new SKCanvas(bitmap);
+            new SkiaScpRenderer().Render(canvas, new ScpRenderRequest(null, head, null, 256, 256,
+                new SKPoint(128, 128), 1, string.Empty, string.Empty, kind));
+            return bitmap;
+        }
+
+        using var ddFront = Render(DiskMediaKind.ThreeHalfDd, 0);
+        using var ddBack = Render(DiskMediaKind.ThreeHalfDd, 1);
+        using var hdFront = Render(DiskMediaKind.ThreeHalfHd, 0);
+
+        Assert.True(ddFront.GetPixel(20, 40).Blue > ddFront.GetPixel(20, 40).Red);
+        Assert.True(hdFront.GetPixel(20, 40).Red > hdFront.GetPixel(20, 40).Blue);
+        Assert.NotEqual(ddFront.GetPixel(75, 10), ddBack.GetPixel(75, 10));
+        Assert.Equal(97.28f, ScpMediaGeometry.FluxRadius(256, 256, 1, DiskMediaKind.ThreeHalfDd), 2);
+    }
+
+    [Fact]
     public void VisualizerTrackClassificationDoesNotTurnTimingVariationIntoIntegrityFailure()
     {
         var timing = new FluxStructure(FluxStructureKind.TimingAnomaly, 10, 2, "timing");

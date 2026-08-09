@@ -51,7 +51,7 @@ public partial class ScpDiskView : UserControl
     {
         var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? []; if (tracks.Length == 0) return;
         var position = e.GetPosition(Canvas); var centerX = Canvas.ActualWidth / 2 + _panX; var centerY = Canvas.ActualHeight / 2 + _panY; var distance = Math.Sqrt(Math.Pow(position.X - centerX, 2) + Math.Pow(position.Y - centerY, 2));
-        var outer = Math.Min(Canvas.ActualWidth, Canvas.ActualHeight) * .47 * _zoom; var inner = outer * .25; if (distance < inner || distance > outer) return;
+        var outer = ScpMediaGeometry.FluxRadius((int)Canvas.ActualWidth, (int)Canvas.ActualHeight, _zoom, _mediaKind); var inner = outer * .25; if (distance < inner || distance > outer) return;
         var index = Math.Clamp((int)((outer - distance) / ((outer - inner) / tracks.Length)), 0, tracks.Length - 1); SelectedTrack = tracks[index]; Canvas.InvalidateVisual(); TrackSelected?.Invoke(this, SelectedTrack);
     }
 

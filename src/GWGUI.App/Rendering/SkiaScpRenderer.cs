@@ -60,7 +60,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
     {
         canvas.Clear(new SKColor(7, 10, 14));
         var tracks = request.Image?.Tracks.Where(track => track.Head == request.Head).OrderBy(track => track.Cylinder).ToArray() ?? [];
-        var outer = Math.Min(request.Width, request.Height) * .47f * request.Zoom;
+        var outer = ScpMediaGeometry.FluxRadius(request.Width, request.Height, request.Zoom, request.MediaKind);
         var inner = outer * .25f;
         DrawMedia(canvas, request, outer);
         using var disk = new SKPaint { Color = new SKColor(17, 61, 43), IsAntialias = true };
@@ -115,41 +115,138 @@ public sealed class SkiaScpRenderer : IScpRenderer
     private static void DrawMedia(SKCanvas canvas, ScpRenderRequest request, float outer)
     {
         if (request.MediaKind == DiskMediaKind.Unknown) return;
-        var scale = request.MediaKind == DiskMediaKind.ThreeInch ? 1.27f : 1.18f;
-        var half = outer * scale;
-        var rect = new SKRect(request.Center.X - half, request.Center.Y - half,
-            request.Center.X + half, request.Center.Y + half);
-        var color = request.MediaKind switch
+        switch (request.MediaKind)
         {
-            DiskMediaKind.ThreeHalfDd => new SKColor(50, 55, 64),
-            DiskMediaKind.ThreeHalfHd => new SKColor(35, 42, 52),
-            DiskMediaKind.ThreeInch => new SKColor(48, 53, 60),
-            DiskMediaKind.EightInch => new SKColor(34, 35, 38),
-            _ => new SKColor(42, 39, 34)
-        };
-        using var shell = new SKPaint { Color = color, IsAntialias = true };
-        var shellRadius = request.MediaKind is DiskMediaKind.FiveQuarterDd or DiskMediaKind.FiveQuarterHd or DiskMediaKind.EightInch ? half * .025f : half * .08f;
-        canvas.DrawRoundRect(rect, shellRadius, shellRadius, shell);
-        using var edge = new SKPaint { Color = new SKColor(105, 111, 120), IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeWidth = Math.Max(1, outer * .008f) };
-        canvas.DrawRoundRect(rect, half * .04f, half * .04f, edge);
+            case DiskMediaKind.ThreeHalfDd:
+                DrawThreeHalf(canvas, request, outer, new SKColor(48, 91, 145));
+                break;
+            case DiskMediaKind.ThreeHalfHd:
+                DrawThreeHalf(canvas, request, outer, new SKColor(198, 191, 169));
+                break;
+            case DiskMediaKind.ThreeInch:
+                DrawThreeInch(canvas, request, outer);
+                break;
+            case DiskMediaKind.FiveQuarterDd:
+            case DiskMediaKind.FiveQuarterHd:
+                DrawFlexibleDisk(canvas, request, outer, false);
+                break;
+            case DiskMediaKind.EightInch:
+                DrawFlexibleDisk(canvas, request, outer, true);
+                break;
+        }
+    }
 
-        if (request.MediaKind is DiskMediaKind.ThreeHalfDd or DiskMediaKind.ThreeHalfHd)
+    private static void DrawThreeHalf(SKCanvas canvas, ScpRenderRequest request, float outer, SKColor shellColor)
+    {
+        var halfWidth = outer * 1.28f;
+        var halfHeight = outer * 1.18f;
+        var shellCenter = new SKPoint(request.Center.X, request.Center.Y - halfHeight * .10f);
+        var rect = new SKRect(shellCenter.X - halfWidth, shellCenter.Y - halfHeight, shellCenter.X + halfWidth, shellCenter.Y + halfHeight);
+        using var shell = Fill(shellColor);
+        using var edge = Stroke(Darken(shellColor, 45), outer * .018f);
+        canvas.DrawRoundRect(rect, halfWidth * .055f, halfWidth * .055f, shell);
+        canvas.DrawRoundRect(rect, halfWidth * .055f, halfWidth * .055f, edge);
+
+        using var groove = Stroke(Darken(shellColor, 28), outer * .012f);
+        canvas.DrawRoundRect(new SKRect(rect.Left + halfWidth * .09f, rect.Top + halfHeight * .10f,
+            rect.Right - halfWidth * .09f, rect.Bottom - halfHeight * .08f), halfWidth * .035f, halfWidth * .035f, groove);
+
+        using var metal = Fill(new SKColor(171, 175, 176));
+        using var metalEdge = Stroke(new SKColor(94, 99, 102), outer * .012f);
+        if (request.Head == 0)
         {
-            var shutter = new SKRect(request.Center.X - half * .34f, rect.Top + half * .05f,
-                request.Center.X + half * .34f, rect.Top + half * .30f);
-            using var metal = new SKPaint { Color = new SKColor(145, 151, 159), IsAntialias = true };
-            canvas.DrawRoundRect(shutter, half * .025f, half * .025f, metal);
-            using var label = new SKPaint { Color = new SKColor(205, 207, 203), IsAntialias = true };
-            canvas.DrawRoundRect(new SKRect(rect.Left + half * .22f, rect.Bottom - half * .38f,
-                rect.Right - half * .22f, rect.Bottom - half * .10f), half * .02f, half * .02f, label);
+            var shutter = new SKRect(request.Center.X - halfWidth * .48f, rect.Top,
+                request.Center.X + halfWidth * .48f, rect.Top + halfHeight * .48f);
+            canvas.DrawRoundRect(shutter, halfWidth * .035f, halfWidth * .035f, metal);
+            canvas.DrawRoundRect(shutter, halfWidth * .035f, halfWidth * .035f, metalEdge);
+            using var opening = Fill(Darken(shellColor, 60));
+            canvas.DrawRoundRect(new SKRect(request.Center.X - halfWidth * .12f, rect.Top + halfHeight * .09f,
+                request.Center.X + halfWidth * .12f, rect.Top + halfHeight * .40f), halfWidth * .018f, halfWidth * .018f, opening);
+            DrawLabel(canvas, new SKRect(rect.Left + halfWidth * .14f, rect.Bottom - halfHeight * .42f,
+                rect.Right - halfWidth * .14f, rect.Bottom - halfHeight * .10f));
         }
         else
         {
-            using var label = new SKPaint { Color = new SKColor(190, 182, 155), IsAntialias = true };
-            canvas.DrawRoundRect(new SKRect(rect.Left + half * .18f, rect.Top + half * .12f,
-                rect.Right - half * .18f, rect.Top + half * .42f), half * .02f, half * .02f, label);
+            var shutter = new SKRect(request.Center.X - halfWidth * .35f, rect.Top,
+                request.Center.X + halfWidth * .35f, rect.Top + halfHeight * .43f);
+            canvas.DrawRoundRect(shutter, halfWidth * .03f, halfWidth * .03f, metal);
+            canvas.DrawRoundRect(shutter, halfWidth * .03f, halfWidth * .03f, metalEdge);
+            using var hub = Fill(new SKColor(119, 124, 126));
+            canvas.DrawCircle(request.Center, outer * .24f, hub);
+            using var hubHole = Fill(new SKColor(29, 32, 35));
+            canvas.DrawCircle(request.Center, outer * .105f, hubHole);
+            canvas.DrawRoundRect(new SKRect(request.Center.X - outer * .07f, request.Center.Y - outer * .18f,
+                request.Center.X + outer * .07f, request.Center.Y - outer * .08f), outer * .015f, outer * .015f, hubHole);
         }
+
+        using var hole = Fill(new SKColor(17, 20, 23));
+        canvas.DrawRect(new SKRect(rect.Left + halfWidth * .07f, rect.Bottom - halfHeight * .13f,
+            rect.Left + halfWidth * .14f, rect.Bottom - halfHeight * .05f), hole);
+        canvas.DrawRect(new SKRect(rect.Right - halfWidth * .15f, rect.Bottom - halfHeight * .13f,
+            rect.Right - halfWidth * .08f, rect.Bottom - halfHeight * .05f), hole);
     }
+
+    private static void DrawThreeInch(SKCanvas canvas, ScpRenderRequest request, float outer)
+    {
+        var halfWidth = outer * 1.17f;
+        var halfHeight = outer * 1.29f;
+        var rect = new SKRect(request.Center.X - halfWidth, request.Center.Y - halfHeight,
+            request.Center.X + halfWidth, request.Center.Y + halfHeight);
+        using var shell = Fill(new SKColor(28, 30, 34));
+        using var edge = Stroke(new SKColor(74, 77, 82), outer * .016f);
+        canvas.DrawRoundRect(rect, halfWidth * .025f, halfWidth * .025f, shell);
+        canvas.DrawRoundRect(rect, halfWidth * .025f, halfWidth * .025f, edge);
+        using var recess = Fill(new SKColor(8, 10, 12));
+        canvas.DrawRoundRect(new SKRect(request.Center.X - halfWidth * .18f, rect.Top + halfHeight * .05f,
+            request.Center.X + halfWidth * .18f, rect.Top + halfHeight * .31f), halfWidth * .08f, halfWidth * .08f, recess);
+        canvas.DrawCircle(request.Center.X - halfWidth * .58f, rect.Top + halfHeight * .17f, outer * .07f, recess);
+        canvas.DrawCircle(request.Center.X + halfWidth * .58f, rect.Top + halfHeight * .17f, outer * .07f, recess);
+        using var hub = Fill(new SKColor(210, 206, 184));
+        canvas.DrawCircle(request.Center, outer * .22f, hub);
+        canvas.DrawCircle(request.Center, outer * .105f, recess);
+        DrawLabel(canvas, new SKRect(rect.Left + halfWidth * .10f, rect.Bottom - halfHeight * .45f,
+            rect.Right - halfWidth * .10f, rect.Bottom - halfHeight * .07f));
+    }
+
+    private static void DrawFlexibleDisk(SKCanvas canvas, ScpRenderRequest request, float outer, bool eightInch)
+    {
+        var half = outer * (eightInch ? 1.30f : 1.25f);
+        var rect = new SKRect(request.Center.X - half, request.Center.Y - half, request.Center.X + half, request.Center.Y + half);
+        using var shell = Fill(new SKColor(26, 27, 29));
+        using var edge = Stroke(new SKColor(68, 70, 73), outer * .015f);
+        canvas.DrawRoundRect(rect, half * .018f, half * .018f, shell);
+        canvas.DrawRoundRect(rect, half * .018f, half * .018f, edge);
+
+        using var seam = Stroke(new SKColor(49, 51, 54), outer * .012f);
+        canvas.DrawLine(rect.Left + half * .08f, rect.Top + half * .08f, rect.Left + half * .32f, rect.Top + half * .32f, seam);
+        canvas.DrawLine(rect.Right - half * .08f, rect.Top + half * .08f, rect.Right - half * .32f, rect.Top + half * .32f, seam);
+        canvas.DrawLine(rect.Left + half * .08f, rect.Bottom - half * .08f, rect.Left + half * .32f, rect.Bottom - half * .32f, seam);
+        canvas.DrawLine(rect.Right - half * .08f, rect.Bottom - half * .08f, rect.Right - half * .32f, rect.Bottom - half * .32f, seam);
+
+        using var opening = Fill(new SKColor(7, 9, 11));
+        canvas.DrawRoundRect(new SKRect(request.Center.X - half * .13f, rect.Top + half * .06f,
+            request.Center.X + half * .13f, rect.Top + half * .38f), half * .07f, half * .07f, opening);
+        canvas.DrawRoundRect(new SKRect(request.Center.X - half * .08f, rect.Bottom - half * .42f,
+            request.Center.X + half * .08f, rect.Bottom - half * .08f), half * .07f, half * .07f, opening);
+        canvas.DrawCircle(request.Center.X - half * .55f, request.Center.Y - half * .09f, outer * .07f, opening);
+        using var hubRing = Stroke(new SKColor(133, 132, 126), outer * .055f);
+        canvas.DrawCircle(request.Center, outer * .23f, hubRing);
+        if (request.Head == 0)
+            DrawLabel(canvas, new SKRect(rect.Left + half * .11f, rect.Top + half * .10f, rect.Left + half * .72f, rect.Top + half * .46f));
+    }
+
+    private static void DrawLabel(SKCanvas canvas, SKRect rect)
+    {
+        using var label = Fill(new SKColor(213, 207, 187));
+        using var line = Stroke(new SKColor(168, 91, 72), Math.Max(1, rect.Height * .018f));
+        canvas.DrawRoundRect(rect, rect.Width * .025f, rect.Width * .025f, label);
+        for (var y = rect.Top + rect.Height * .32f; y < rect.Bottom - rect.Height * .08f; y += rect.Height * .19f)
+            canvas.DrawLine(rect.Left + rect.Width * .08f, y, rect.Right - rect.Width * .08f, y, line);
+    }
+
+    private static SKPaint Fill(SKColor color) => new() { Color = color, IsAntialias = true, Style = SKPaintStyle.Fill };
+    private static SKPaint Stroke(SKColor color, float width) => new() { Color = color, IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeWidth = Math.Max(1, width) };
+    private static SKColor Darken(SKColor color, byte amount) => new((byte)Math.Max(0, color.Red - amount), (byte)Math.Max(0, color.Green - amount), (byte)Math.Max(0, color.Blue - amount));
 
     private PreparedTrack PrepareTrack(ScpTrack track, ScpRevolution revolution, string? decoderId, CancellationToken cancellationToken)
     {

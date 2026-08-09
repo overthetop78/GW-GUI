@@ -5,6 +5,12 @@ namespace GWGUI.App.Rendering;
 
 public enum DiskMediaKind { Unknown, ThreeInch, ThreeHalfDd, ThreeHalfHd, FiveQuarterDd, FiveQuarterHd, EightInch }
 
+public static class ScpMediaGeometry
+{
+    public static float FluxRadius(int width, int height, float zoom, DiskMediaKind mediaKind) =>
+        Math.Min(width, height) * (mediaKind == DiskMediaKind.Unknown ? .47f : .38f) * zoom;
+}
+
 public sealed record ScpRenderRequest(
     ScpImage? Image,
     int Head,

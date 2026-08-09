@@ -12,11 +12,22 @@ public partial class DiskClassificationSelector : UserControl
     public DiskClassificationSelector() => InitializeComponent();
 
     public event EventHandler? ValueChanged;
+    public bool ShowAutomatic
+    {
+        get => Automatic.Visibility == Visibility.Visible;
+        set => Automatic.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+    }
     public bool AutomaticDetection => Automatic.IsChecked == true;
     public string? SelectedMachine => Machine.SelectedItem as string;
     public string? SelectedFormatId => (Format.SelectedItem as DiskFormat)?.Id;
     public string? SelectedProtectionId => Protection.SelectedItem is DiskProtection protection && !string.IsNullOrWhiteSpace(protection.Id)
         ? protection.Id : null;
+
+    public void SetAutomaticDetection(bool enabled)
+    {
+        if (Automatic.IsChecked == enabled) return;
+        Automatic.IsChecked = enabled;
+    }
 
     public void SetCatalog(IEnumerable<DiskFormat> formats)
     {

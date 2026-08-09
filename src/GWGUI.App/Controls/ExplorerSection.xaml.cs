@@ -86,6 +86,11 @@ public partial class ExplorerSection : UserControl
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
     public string? SelectedFormatId => Classification.SelectedProtectionId ?? Classification.SelectedFormatId;
 
+    private void AutomaticDetection_Changed(object sender, RoutedEventArgs e)
+    {
+        Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
+    }
+
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
     {
         var hadSelection = Classification.SelectedFormatId is not null;
