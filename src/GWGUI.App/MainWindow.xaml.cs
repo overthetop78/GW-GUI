@@ -168,6 +168,7 @@ public partial class MainWindow : Window
     private readonly OperationProgressController _progress;
     private readonly string _logsDirectory;
     private readonly ConsoleLogSession _consoleLog;
+    private readonly TerminalPanelController _terminalPanel;
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
     private bool _settingsSaveInProgress;
@@ -202,6 +203,7 @@ public partial class MainWindow : Window
         var directory = StoragePaths.DataDirectory;
         _logsDirectory = StoragePaths.LogsDirectory;
         _consoleLog = new ConsoleLogSession(_logsDirectory, () => _settings.Logging);
+        _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, _settings);
         _runner = runner ?? new GreaseweazleRunner();
         _visualizationRunner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
@@ -1308,7 +1310,7 @@ public partial class MainWindow : Window
         _profiles.Reset(_settings.Profiles);
     }
 
-    private void ToggleConsole_Click(object sender, RoutedEventArgs e) => SetConsoleVisibility(ConsolePanel.Visibility != Visibility.Visible);
+    private void ToggleConsole_Click(object sender, RoutedEventArgs e) => _terminalPanel.Toggle();
 
     private void LogHistory_Click(object sender, RoutedEventArgs e) => _navigation.ShowLogHistory(_logsDirectory);
     private void About_Click(object sender, RoutedEventArgs e) => _navigation.ShowAbout();
@@ -1323,22 +1325,15 @@ public partial class MainWindow : Window
     {
         var path = _fileDialogs.SaveFile(new(LocExtension.Get("Logs.ExportFilter"), $"gw-gui-{DateTime.Now:yyyyMMdd-HHmmss}.txt", ".txt"));
         if (path is null) return;
-        await File.WriteAllTextAsync(path, CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
+        await _terminalPanel.ExportAsync(path);
     }
 
     private void CopyConsole_Click(object sender, RoutedEventArgs e)
     {
-        Clipboard.SetText(CommandPreview.Text + Environment.NewLine + Environment.NewLine + LogOutput.Text);
+        _terminalPanel.CopyToClipboard();
     }
 
-    private void SetConsoleVisibility(bool visible)
-    {
-        if (!visible && ConsolePanel.Visibility == Visibility.Visible && ConsoleRow.ActualHeight >= 100)
-            _settings.ConsoleHeight = ConsoleRow.ActualHeight;
-        ConsolePanel.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
-        ConsoleSplitter.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
-        ConsoleRow.Height = visible ? new GridLength(Math.Max(100, _settings.ConsoleHeight)) : new GridLength(0);
-    }
+    private void SetConsoleVisibility(bool visible) => _terminalPanel.SetVisibility(visible);
 
     private void ReadInput_Changed(object sender, RoutedEventArgs e) => UpdateReadCommand();
 
@@ -1696,8 +1691,8 @@ public partial class MainWindow : Window
         _windowPlacement.Capture(
             this,
             _settings,
-            ConsolePanel.Visibility == Visibility.Visible,
-            ConsoleRow.ActualHeight);
+            _terminalPanel.IsVisible,
+            _terminalPanel.ActualHeight);
     }
 
     private void RestoreWindowPlacement() => _windowPlacement.Restore(this, _settings.Window);
