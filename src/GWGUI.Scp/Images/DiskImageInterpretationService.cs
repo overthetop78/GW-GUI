@@ -113,9 +113,18 @@ internal sealed class DiskImageInterpretationService(FileSystemRegistry fileSyst
         return $"{volume.Name}\0{string.Join('\u001f', Entries(volume.Entries))}";
     }
 
+    public static string InterpretationIdentity(ExploredFileSystem interpretation) =>
+        $"{FormatFamily(interpretation.FormatId)}\0{FileSystemIdentity(interpretation.Volume)}";
+
     public static SectorImage Retag(SectorImage image, string formatId) => new(formatId, image.BlockSize,
         image.Cylinders, image.Heads, image.SectorsPerTrack, image.AvailableBlocks,
         image.AvailableBlocks.Any(block => block.Data.Count != image.BlockSize), image.Capacity, image.BlockCount);
+
+    private static string FormatFamily(string formatId)
+    {
+        var separator = formatId.IndexOf('.');
+        return separator < 0 ? formatId : formatId[..separator];
+    }
 
     private bool TryCreateIbmInterpretation(SectorImage image, out SectorImage interpretation)
     {

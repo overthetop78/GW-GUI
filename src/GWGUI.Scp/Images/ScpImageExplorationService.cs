@@ -79,7 +79,7 @@ public sealed class ScpImageExplorationService(
                         bestRecognizedFileSystem = recognized.Match;
                         bestRecognizedScore = score;
                     }
-                    var key = DiskImageInterpretationService.FileSystemIdentity(recognized.Match.Volume);
+                    var key = DiskImageInterpretationService.InterpretationIdentity(recognized.Match);
                     if (keys.Add(key)) detected.Add(recognized.Match);
                 }
             }
@@ -90,9 +90,9 @@ public sealed class ScpImageExplorationService(
         if (bestDecoded is null) return interpretations.Unknown(path);
         if (bestRecognizedFileSystem is null)
             return interpretations.CreateDocument(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
-        var primaryIdentity = DiskImageInterpretationService.FileSystemIdentity(bestRecognizedFileSystem.Volume);
+        var primaryIdentity = DiskImageInterpretationService.InterpretationIdentity(bestRecognizedFileSystem);
         var orderedDetected = new[] { bestRecognizedFileSystem }.Concat(
-            detected.Where(match => DiskImageInterpretationService.FileSystemIdentity(match.Volume) != primaryIdentity &&
+            detected.Where(match => DiskImageInterpretationService.InterpretationIdentity(match) != primaryIdentity &&
                                     DiskImageInterpretationService.IsCredibleAlternative(match.Volume))).ToArray();
         return interpretations.CreateDocument(path, bestRecognized ?? bestDecoded, orderedDetected, decodedFormatIds.ToArray());
     }
@@ -175,6 +175,7 @@ public sealed class ScpImageExplorationService(
             yield return () => isoReader.ReadAsync(path, "acorn.adfs.800", cancellationToken);
             yield return () => amstradReader.ReadAsync(path, "amstrad.cpc", cancellationToken);
             yield return () => amstradReader.ReadAsync(path, "amstrad.pcw", cancellationToken);
+            yield return () => ibmReader.ReadAsync(path, "ibm.scan", cancellationToken);
             yield return () => ucsdReader.ReadAsync(path, cancellationToken);
             yield return () => commodoreReader.ReadAsync(path, "commodore.1581", cancellationToken);
             foreach (var formatId in EpsonFormats)

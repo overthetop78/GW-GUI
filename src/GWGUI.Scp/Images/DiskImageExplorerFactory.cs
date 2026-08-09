@@ -1,5 +1,6 @@
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.FileSystems;
+using GWGUI.Scp.Images.Containers;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -18,10 +19,30 @@ internal static class DiskImageExplorerFactory
             new EpsonQx10ScpSectorImageReader(scp, decoders), new UcsdScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new AppleScpSectorImageReader(scp, decoders),
             new DecRx02ScpSectorImageReader(scp, decoders), fileSystems, scp, decoders);
-        return new(new AdfImageReader(), new AtariStImageReader(), new MsaImageReader(), new AtrImageReader(),
-            new CommodoreD64ImageReader(), new CommodoreD71ImageReader(), new CommodoreD81ImageReader(),
-            new AmstradDskImageReader(), new MsxImageReader(), new IbmPcImageReader(), new AppleDiskImageReader(),
-            new BbcDfsImageReader(), new CoherentImageReader(), new DecRx02ImageReader(), new Td0ImageReader(),
-            new I86fImageReader(decoders), new Cp2ImageReader(), new ImdImageReader(), fileSystems, scpExploration);
+        var apple = new AppleDiskImageReader();
+        var containers = new DiskImageContainerRegistry(
+        [
+            new DirectContainerPolicy(new AdfImageReader(), ".adf"),
+            new DirectContainerPolicy(new BbcDfsImageReader(), ".ssd", ".dsd"),
+            new CoherentContainerPolicy(new CoherentImageReader()),
+            new DecRx02ContainerPolicy(new DecRx02ImageReader()),
+            new DirectContainerPolicy(new AtariStImageReader(), ".st"),
+            new DirectContainerPolicy(new MsaImageReader(), ".msa"),
+            new DirectContainerPolicy(new AtrImageReader(), ".atr"),
+            new DirectContainerPolicy(new CommodoreD64ImageReader(), ".d64"),
+            new DirectContainerPolicy(new CommodoreD71ImageReader(), ".d71"),
+            new DirectContainerPolicy(new CommodoreD81ImageReader(), ".d81"),
+            new AppleContainerPolicy(apple),
+            new MsxContainerPolicy(new MsxImageReader()),
+            new AmstradContainerPolicy(new AmstradDskImageReader()),
+            new RawImgContainerPolicy(),
+            new DirectContainerPolicy(new IbmPcImageReader(), ".ima"),
+            new DirectContainerPolicy(new Td0ImageReader(), ".td0"),
+            new DelegatingContainerPolicy(new I86fImageReader(decoders).ReadAsync, ".86f"),
+            new DelegatingContainerPolicy(new Cp2ImageReader().ReadAsync, ".cp2"),
+            new DirectContainerPolicy(new ImdImageReader(), ".imd"),
+            new ScpContainerPolicy(scpExploration, fileSystems.SupportedFormatIds)
+        ]);
+        return new(containers, fileSystems, scpExploration);
     }
 }
