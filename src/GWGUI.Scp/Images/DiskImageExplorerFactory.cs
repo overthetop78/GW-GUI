@@ -1,6 +1,7 @@
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.Images.Containers;
+using GWGUI.Scp.Images.ScpDetection;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -12,13 +13,16 @@ internal static class DiskImageExplorerFactory
         var scp = new ScpReader();
         var decoders = new FluxDecoderRegistry();
         var fileSystems = new FileSystemRegistry();
-        var scpExploration = new ScpImageExplorationService(
-            new AmigaScpSectorImageReader(scp, decoders), new IsoScpSectorImageReader(scp, decoders),
+        var iso = new IsoScpSectorImageReader(scp, decoders);
+        var candidates = new ScpCandidateRegistry(
+            new AmigaScpSectorImageReader(scp, decoders), iso,
             new AtariScpSectorImageReader(scp, decoders), new AmstradScpSectorImageReader(scp, decoders),
             new BbcScpSectorImageReader(scp, decoders), new IbmPcScpSectorImageReader(scp, decoders),
             new EpsonQx10ScpSectorImageReader(scp, decoders), new UcsdScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new AppleScpSectorImageReader(scp, decoders),
-            new DecRx02ScpSectorImageReader(scp, decoders), fileSystems, scp, decoders);
+            new DecRx02ScpSectorImageReader(scp, decoders));
+        var scpExploration = new ScpImageExplorationService(
+            candidates, new ScpFamilyProbe(scp, decoders), fileSystems);
         var apple = new AppleDiskImageReader();
         var containers = new DiskImageContainerRegistry(
         [
