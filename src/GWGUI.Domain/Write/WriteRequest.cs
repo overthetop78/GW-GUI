@@ -21,7 +21,7 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
         if (extension == ".scp") return Result(extension, "raw.scp", FormatConfidence.Certain, candidates, "Detection.RawScp");
         if (extension == ".adf" && knownLength is 901120 or 1802240)
             return Result(extension, knownLength == 901120 ? "amiga.amigados" : "amiga.amigados_hd", FormatConfidence.Certain, candidates, "Detection.AmigaSize");
-        if (extension == ".adf" && knownLength == 819200)
+        if (extension == ".adf" && knownLength is 819200 or 820224)
             return Result(extension, "acorn.adfs.800", FormatConfidence.Certain, candidates, "Detection.AcornSize");
         if (extension == ".st")
         {

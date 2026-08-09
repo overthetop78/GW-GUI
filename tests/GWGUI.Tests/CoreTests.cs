@@ -1767,6 +1767,7 @@ public sealed class CoreTests
     [Theory]
     [InlineData("disk.adf", 901120, "amiga.amigados")]
     [InlineData("disk.adf", 819200, "acorn.adfs.800")]
+    [InlineData("disk.adf", 820224, "acorn.adfs.800")]
     [InlineData("disk.adf", 1802240, "amiga.amigados_hd")]
     [InlineData("disk.st", 368640, "atarist.360")]
     [InlineData("disk.st", 901120, "atarist.880")]

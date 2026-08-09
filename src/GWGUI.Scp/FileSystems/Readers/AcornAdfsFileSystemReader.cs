@@ -100,6 +100,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     private static IReadOnlyList<byte>? ReadFile(SectorImage image, int startBlock, uint length, string name,
         List<string> warnings, ref bool metadataValid)
     {
+        if (length == 0) return [];
         if (length > int.MaxValue || startBlock <= 0 || (long)startBlock * FileCoreUnitSize >= image.Capacity)
         {
             warnings.Add($"{name}: the ADFS data address or length is invalid.");
