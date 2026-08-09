@@ -51,6 +51,7 @@ public sealed class SectorImageFluxVisualizer(FluxEncoderRegistry? encoders = nu
         if (id.StartsWith("mac.", StringComparison.OrdinalIgnoreCase)) return id.Equals("mac.1440", StringComparison.OrdinalIgnoreCase) ? "iso.mfm" : "applemac.gcr";
         if (id.Equals("dec.rx02", StringComparison.OrdinalIgnoreCase)) return "dec.rx02";
         if (id.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase) || id.Equals("atari.90", StringComparison.OrdinalIgnoreCase)) return "iso.fm";
+        if (id.StartsWith("acorn.adfs.", StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
         if (id.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase)
             || id.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase)
             || id.StartsWith("msx.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("ucsd.", StringComparison.OrdinalIgnoreCase)

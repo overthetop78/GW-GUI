@@ -10,6 +10,7 @@ public interface ISectorImageReader
 
 public sealed class AdfImageReader : ISectorImageReader
 {
+    public const int AcornDoubleDensityBytes = 819_200;
     public const int DoubleDensityBytes = 901_120;
     public const int HighDensityBytes = 1_802_240;
 
@@ -18,6 +19,20 @@ public sealed class AdfImageReader : ISectorImageReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        if (data.Length == AcornDoubleDensityBytes)
+        {
+            const int blockSize = 1024;
+            const int acornSectorsPerTrack = 5;
+            var acornBlocks = new SectorBlock[data.Length / blockSize];
+            for (var logical = 0; logical < acornBlocks.Length; logical++)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var track = logical / acornSectorsPerTrack;
+                acornBlocks[logical] = new(logical, new(track / 2, track % 2, logical % acornSectorsPerTrack),
+                    data.AsSpan(logical * blockSize, blockSize).ToArray());
+            }
+            return new("acorn.adfs.800", blockSize, 80, 2, acornSectorsPerTrack, acornBlocks);
+        }
         var sectorsPerTrack = data.Length switch
         {
             DoubleDensityBytes => 11,

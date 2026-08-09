@@ -9,6 +9,7 @@ public sealed class FileSystemRegistry
     public IReadOnlyList<IFileSystemReader> Readers { get; } =
     [
         new Readers.AmigaDosFileSystemReader(),
+        new Readers.AcornAdfsFileSystemReader(),
         new Readers.BbcDfsFileSystemReader(),
         new Readers.CoherentFileSystemReader(),
         new Readers.Rt11FileSystemReader(),
