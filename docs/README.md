@@ -20,6 +20,8 @@ La documentation distingue systématiquement :
 - [Travail restant, oublis et validations nécessitant de l’aide](remaining-work.md)
 - [Convention de version, build et révision](versioning.md)
 - [Plan détaillé de compréhension et de refactoring](refactoring-plan.md)
+- [Feuille de route de refactoring, qualité et validation](refactoring-validation-roadmap.md)
+- [État du projet pour reprendre dans une nouvelle discussion](project-handoff.md)
 - [Spécification visuelle validée](ui/visual-specification.md)
 - [Fenêtre principale et navigation](ui/main-window.md)
 - [Onglet Lecture](ui/read.md)
