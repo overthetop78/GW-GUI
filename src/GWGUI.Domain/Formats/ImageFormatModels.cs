@@ -10,9 +10,3 @@ public sealed record DiskFormat(
     bool IsCommon = true,
     IReadOnlySet<string>? CompatibleSourceExtensions = null,
     string? Tag = null);
-
-public interface IImageFormatCatalog
-{
-    IReadOnlyList<DiskFormat> Formats { get; }
-    IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension);
-}
