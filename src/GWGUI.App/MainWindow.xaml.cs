@@ -79,6 +79,7 @@ public partial class MainWindow : Window
     private readonly IBusinessDialogService _businessDialogs;
     private readonly IWindowNavigationService _navigation;
     private readonly ImageFormatWorkspace _formatWorkspace;
+    private readonly WindowPlacementController _windowPlacement = new();
     private IImageFormatCatalog _formatCatalog = null!;
     private readonly OperationProfileCollection _profiles = new();
     private ImageFormatDetector _formatDetector = null!;
@@ -1612,40 +1613,16 @@ public partial class MainWindow : Window
 
     private void CaptureWindowSettings()
     {
-        _settings.Window.Width = RestoreBounds.Width;
-        _settings.Window.Height = RestoreBounds.Height;
-        _settings.Window.Left = RestoreBounds.Left;
-        _settings.Window.Top = RestoreBounds.Top;
-        _settings.Window.Maximized = WindowState == WindowState.Maximized;
-        _settings.ConsoleExpanded = ConsolePanel.Visibility == Visibility.Visible;
-        if (_settings.ConsoleExpanded) _settings.ConsoleHeight = ConsoleRow.ActualHeight;
+        _windowPlacement.Capture(
+            this,
+            _settings,
+            ConsolePanel.Visibility == Visibility.Visible,
+            ConsoleRow.ActualHeight);
     }
 
-    private void RestoreWindowPlacement()
-    {
-        var placement = WindowPlacementPolicy.Normalize(_settings.Window, MinWidth, MinHeight,
-            SystemParameters.VirtualScreenLeft, SystemParameters.VirtualScreenTop, SystemParameters.VirtualScreenWidth, SystemParameters.VirtualScreenHeight);
-        Width = placement.Width;
-        Height = placement.Height;
-        if (placement.Left is double left && placement.Top is double top)
-        {
-            WindowStartupLocation = WindowStartupLocation.Manual;
-            Left = left;
-            Top = top;
-        }
-        if (_settings.Window.Maximized) WindowState = WindowState.Maximized;
-    }
+    private void RestoreWindowPlacement() => _windowPlacement.Restore(this, _settings.Window);
 
-    private void ConstrainToCurrentWorkArea()
-    {
-        if (WindowState == WindowState.Maximized) return;
-        var area = MonitorWorkArea.Get(this);
-        var placement = WindowPlacementPolicy.ConstrainToWorkArea(new(Width, Height, Left, Top), area.Left, area.Top, area.Width, area.Height);
-        Width = placement.Width;
-        Height = placement.Height;
-        Left = placement.Left!.Value;
-        Top = placement.Top!.Value;
-    }
+    private void ConstrainToCurrentWorkArea() => _windowPlacement.ConstrainToCurrentWorkArea(this);
 
     private void ToolsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
