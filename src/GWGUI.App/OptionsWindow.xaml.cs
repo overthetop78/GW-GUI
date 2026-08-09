@@ -52,12 +52,8 @@ public partial class OptionsWindow : Window
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
-    private readonly IGwInstallationManager _hostTools;
+    private readonly HostToolsOptionsState _hostToolsState;
     private readonly IHardwareRegistry _hardwareRegistry;
-    private string? _previousGwPath;
-    private string? _installedVersion;
-    private string? _availableVersion;
-    private DateTimeOffset? _lastHostToolsCheck;
     private bool _initializing = true;
     private readonly ISettingsStore _settingsStore;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
@@ -80,15 +76,15 @@ public partial class OptionsWindow : Window
         _profileState = new ProfileOptionsState(settings.Profiles);
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
         var managedRoot = StoragePaths.HostToolsDirectory;
-        _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
+        var hostToolsManager = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
+        _hostToolsState = new HostToolsOptionsState(settings, hostToolsManager);
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
-        _previousGwPath = settings.PreviousGwExecutablePath; _installedVersion = settings.InstalledHostToolsVersion; _availableVersion = settings.AvailableHostToolsVersion; _lastHostToolsCheck = settings.LastHostToolsCheckUtc;
         _hardwareState = new HardwareOptionsState(settings);
         _controllers = _hardwareState.Controllers;
         _unconfiguredControllers = _hardwareState.UnconfiguredControllers;
         _drives = _hardwareState.Drives;
         ImagesFolderText.Text = settings.DefaultImagesFolder;
-        GwPathText.Text = settings.GwExecutablePath;
+        GwPathText.Text = _hostToolsState.CurrentPath;
         LanguageCombo.ItemsSource = UiLanguageCatalog.Available;
         LanguageCombo.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language =>
             string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
@@ -247,14 +243,14 @@ public partial class OptionsWindow : Window
     private async void BrowseGw_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get("Options.ExecutableFilter") };
-        if (dialog.ShowDialog(this) == true) { SetGwPath(new(dialog.FileName, null, false)); await PersistSettingsAsync(); }
+        if (dialog.ShowDialog(this) == true) { SelectHostTools(new(dialog.FileName, null, false)); await PersistSettingsAsync(); }
     }
 
     private async void DetectHostTools_Click(object sender, RoutedEventArgs e)
     {
-        var found = _hostTools.Detect(GwPathText.Text).FirstOrDefault();
+        var found = _hostToolsState.Detect(GwPathText.Text);
         if (found is null) { HostToolsStatus.Text = LocExtension.Get("HostTools.None"); return; }
-        SetGwPath(found);
+        SelectHostTools(found);
         HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", found.ExecutablePath);
         await PersistSettingsAsync();
     }
@@ -263,7 +259,7 @@ public partial class OptionsWindow : Window
     {
         await WithHostToolsBusyAsync(async () =>
         {
-            var release = await _hostTools.GetLatestReleaseAsync(); _availableVersion = release.Version; _lastHostToolsCheck = DateTimeOffset.UtcNow;
+            var release = await _hostToolsState.CheckLatestAsync();
             HostToolsStatus.Text = LocExtension.Get("HostTools.Latest", release.Version);
             await PersistSettingsAsync();
         });
@@ -273,12 +269,12 @@ public partial class OptionsWindow : Window
     {
         await WithHostToolsBusyAsync(async () =>
         {
-            var release = await _hostTools.GetLatestReleaseAsync(); _availableVersion = release.Version; _lastHostToolsCheck = DateTimeOffset.UtcNow;
+            var release = await _hostToolsState.CheckLatestAsync();
             if (MessageBox.Show(this, LocExtension.Get("HostTools.DownloadConfirm", release.Version), LocExtension.Get("HostTools.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
             HostToolsProgress.Visibility = Visibility.Visible;
             var progress = new Progress<double>(value => HostToolsProgress.Value = value * 100);
-            var installed = await _hostTools.InstallAsync(release, progress);
-            SetGwPath(installed);
+            var installed = await _hostToolsState.InstallAsync(release, progress);
+            GwPathText.Text = _hostToolsState.CurrentPath ?? "";
             HostToolsStatus.Text = LocExtension.Get("HostTools.Installed", installed.Version ?? release.Version);
             await PersistSettingsAsync();
         });
@@ -286,24 +282,18 @@ public partial class OptionsWindow : Window
 
     private async void RollbackHostTools_Click(object sender, RoutedEventArgs e)
     {
-        HostToolsSelection selection;
-        try { selection = _hostTools.Rollback(GwPathText.Text, _previousGwPath); }
+        try { _hostToolsState.Rollback(GwPathText.Text); }
         catch (FileNotFoundException) { MessageBox.Show(this, LocExtension.Get("HostTools.NoPrevious"), LocExtension.Get("HostTools.Title")); return; }
-        ApplySelection(selection);
+        GwPathText.Text = _hostToolsState.CurrentPath ?? "";
         HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", GwPathText.Text);
         await PersistSettingsAsync();
     }
 
-    private void SetGwPath(HostToolsInstallation installation)
+    private void SelectHostTools(HostToolsInstallation installation)
     {
-        ApplySelection(_hostTools.Select(GwPathText.Text, _previousGwPath, installation));
-    }
-
-    private void ApplySelection(HostToolsSelection selection)
-    {
-        GwPathText.Text = selection.ExecutablePath ?? "";
-        _previousGwPath = selection.PreviousExecutablePath;
-        _installedVersion = selection.InstalledVersion;
+        _hostToolsState.SetCurrentPath(GwPathText.Text);
+        _hostToolsState.Select(installation);
+        GwPathText.Text = _hostToolsState.CurrentPath ?? "";
     }
 
     private async Task WithHostToolsBusyAsync(Func<Task> action)
@@ -521,11 +511,8 @@ public partial class OptionsWindow : Window
     private void ApplyControlsToSettings()
     {
         _settings.DefaultImagesFolder = ImagesFolderText.Text.Trim();
-        _settings.GwExecutablePath = string.IsNullOrWhiteSpace(GwPathText.Text) ? null : GwPathText.Text.Trim();
-        _settings.PreviousGwExecutablePath = _previousGwPath;
-        _settings.InstalledHostToolsVersion = _installedVersion;
-        _settings.AvailableHostToolsVersion = _availableVersion;
-        _settings.LastHostToolsCheckUtc = _lastHostToolsCheck;
+        _hostToolsState.SetCurrentPath(GwPathText.Text);
+        _hostToolsState.ApplyTo(_settings);
         if (LanguageCombo.SelectedItem is UiLanguage language) _settings.Language = language.Code;
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _settings.Conversion.TagPattern = TagPatternText.Text;
