@@ -8,7 +8,7 @@ public enum DiskMediaKind { Unknown, ThreeInch, ThreeHalfDd, ThreeHalfHd, FiveQu
 public static class ScpMediaGeometry
 {
     public static float FluxRadius(int width, int height, float zoom, DiskMediaKind mediaKind) =>
-        Math.Min(width, height) * (mediaKind == DiskMediaKind.Unknown ? .47f : .38f) * zoom;
+        Math.Min(width, height) * (mediaKind == DiskMediaKind.Unknown ? .47f : .43f) * zoom;
 }
 
 public sealed record ScpRenderRequest(

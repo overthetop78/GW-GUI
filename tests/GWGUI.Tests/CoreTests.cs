@@ -107,8 +107,9 @@ public sealed class CoreTests
 
         Assert.True(ddFront.GetPixel(20, 40).Blue > ddFront.GetPixel(20, 40).Red);
         Assert.True(hdFront.GetPixel(20, 40).Red > hdFront.GetPixel(20, 40).Blue);
-        Assert.NotEqual(ddFront.GetPixel(75, 10), ddBack.GetPixel(75, 10));
-        Assert.Equal(97.28f, ScpMediaGeometry.FluxRadius(256, 256, 1, DiskMediaKind.ThreeHalfDd), 2);
+        Assert.NotEqual(ddFront.GetPixel(80, 15), ddBack.GetPixel(80, 15));
+        Assert.NotEqual(ddFront.GetPixel(20, 236), hdFront.GetPixel(20, 236));
+        Assert.Equal(110.08f, ScpMediaGeometry.FluxRadius(256, 256, 1, DiskMediaKind.ThreeHalfDd), 2);
     }
 
     [Fact]

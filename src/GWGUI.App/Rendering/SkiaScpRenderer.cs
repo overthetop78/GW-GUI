@@ -58,7 +58,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
 
     public void Render(SKCanvas canvas, ScpRenderRequest request)
     {
-        canvas.Clear(new SKColor(7, 10, 14));
+        DrawRecessedBackground(canvas, request.Width, request.Height);
         var tracks = request.Image?.Tracks.Where(track => track.Head == request.Head).OrderBy(track => track.Cylinder).ToArray() ?? [];
         var outer = ScpMediaGeometry.FluxRadius(request.Width, request.Height, request.Zoom, request.MediaKind);
         var inner = outer * .25f;
@@ -118,10 +118,10 @@ public sealed class SkiaScpRenderer : IScpRenderer
         switch (request.MediaKind)
         {
             case DiskMediaKind.ThreeHalfDd:
-                DrawThreeHalf(canvas, request, outer, new SKColor(48, 91, 145));
+                DrawThreeHalf(canvas, request, outer, new SKColor(48, 91, 145), false);
                 break;
             case DiskMediaKind.ThreeHalfHd:
-                DrawThreeHalf(canvas, request, outer, new SKColor(198, 191, 169));
+                DrawThreeHalf(canvas, request, outer, new SKColor(198, 191, 169), true);
                 break;
             case DiskMediaKind.ThreeInch:
                 DrawThreeInch(canvas, request, outer);
@@ -136,39 +136,55 @@ public sealed class SkiaScpRenderer : IScpRenderer
         }
     }
 
-    private static void DrawThreeHalf(SKCanvas canvas, ScpRenderRequest request, float outer, SKColor shellColor)
+    private static void DrawRecessedBackground(SKCanvas canvas, int width, int height)
     {
-        var halfWidth = outer * 1.28f;
-        var halfHeight = outer * 1.18f;
-        var shellCenter = new SKPoint(request.Center.X, request.Center.Y - halfHeight * .10f);
+        var background = new SKColor(222, 216, 202);
+        canvas.Clear(background);
+        var inset = Math.Max(4, Math.Min(width, height) * .012f);
+        var panel = new SKRect(inset, inset, width - inset, height - inset);
+        using var panelFill = Fill(new SKColor(205, 198, 183));
+        using var darkEdge = Stroke(new SKColor(151, 145, 134), Math.Max(2, inset * .45f));
+        using var lightEdge = Stroke(new SKColor(242, 238, 228), Math.Max(1, inset * .22f));
+        canvas.DrawRoundRect(panel, inset * 1.5f, inset * 1.5f, panelFill);
+        canvas.DrawLine(panel.Left, panel.Top, panel.Right, panel.Top, darkEdge);
+        canvas.DrawLine(panel.Left, panel.Top, panel.Left, panel.Bottom, darkEdge);
+        canvas.DrawLine(panel.Left, panel.Bottom, panel.Right, panel.Bottom, lightEdge);
+        canvas.DrawLine(panel.Right, panel.Top, panel.Right, panel.Bottom, lightEdge);
+    }
+
+    private static void DrawThreeHalf(SKCanvas canvas, ScpRenderRequest request, float outer, SKColor shellColor, bool highDensity)
+    {
+        var halfWidth = outer * 1.10f;
+        var halfHeight = outer * 1.08f;
+        var shellCenter = request.Center;
         var rect = new SKRect(shellCenter.X - halfWidth, shellCenter.Y - halfHeight, shellCenter.X + halfWidth, shellCenter.Y + halfHeight);
         using var shell = Fill(shellColor);
         using var edge = Stroke(Darken(shellColor, 45), outer * .018f);
-        canvas.DrawRoundRect(rect, halfWidth * .055f, halfWidth * .055f, shell);
-        canvas.DrawRoundRect(rect, halfWidth * .055f, halfWidth * .055f, edge);
+        canvas.DrawRoundRect(rect, halfWidth * .045f, halfWidth * .045f, shell);
+        canvas.DrawRoundRect(rect, halfWidth * .045f, halfWidth * .045f, edge);
 
         using var groove = Stroke(Darken(shellColor, 28), outer * .012f);
-        canvas.DrawRoundRect(new SKRect(rect.Left + halfWidth * .09f, rect.Top + halfHeight * .10f,
-            rect.Right - halfWidth * .09f, rect.Bottom - halfHeight * .08f), halfWidth * .035f, halfWidth * .035f, groove);
+        canvas.DrawRoundRect(new SKRect(rect.Left + halfWidth * .08f, rect.Top + halfHeight * .08f,
+            rect.Right - halfWidth * .08f, rect.Bottom - halfHeight * .08f), halfWidth * .03f, halfWidth * .03f, groove);
 
         using var metal = Fill(new SKColor(171, 175, 176));
         using var metalEdge = Stroke(new SKColor(94, 99, 102), outer * .012f);
         if (request.Head == 0)
         {
-            var shutter = new SKRect(request.Center.X - halfWidth * .48f, rect.Top,
-                request.Center.X + halfWidth * .48f, rect.Top + halfHeight * .48f);
+            var shutter = new SKRect(request.Center.X - halfWidth * .42f, rect.Top,
+                request.Center.X + halfWidth * .42f, rect.Top + halfHeight * .27f);
             canvas.DrawRoundRect(shutter, halfWidth * .035f, halfWidth * .035f, metal);
             canvas.DrawRoundRect(shutter, halfWidth * .035f, halfWidth * .035f, metalEdge);
             using var opening = Fill(Darken(shellColor, 60));
-            canvas.DrawRoundRect(new SKRect(request.Center.X - halfWidth * .12f, rect.Top + halfHeight * .09f,
-                request.Center.X + halfWidth * .12f, rect.Top + halfHeight * .40f), halfWidth * .018f, halfWidth * .018f, opening);
-            DrawLabel(canvas, new SKRect(rect.Left + halfWidth * .14f, rect.Bottom - halfHeight * .42f,
-                rect.Right - halfWidth * .14f, rect.Bottom - halfHeight * .10f));
+            canvas.DrawRoundRect(new SKRect(request.Center.X - halfWidth * .11f, rect.Top + halfHeight * .04f,
+                request.Center.X + halfWidth * .11f, rect.Top + halfHeight * .23f), halfWidth * .018f, halfWidth * .018f, opening);
+            DrawLabel(canvas, new SKRect(rect.Left + halfWidth * .13f, rect.Bottom - halfHeight * .22f,
+                rect.Right - halfWidth * .13f, rect.Bottom - halfHeight * .06f));
         }
         else
         {
-            var shutter = new SKRect(request.Center.X - halfWidth * .35f, rect.Top,
-                request.Center.X + halfWidth * .35f, rect.Top + halfHeight * .43f);
+            var shutter = new SKRect(request.Center.X - halfWidth * .34f, rect.Top,
+                request.Center.X + halfWidth * .34f, rect.Top + halfHeight * .25f);
             canvas.DrawRoundRect(shutter, halfWidth * .03f, halfWidth * .03f, metal);
             canvas.DrawRoundRect(shutter, halfWidth * .03f, halfWidth * .03f, metalEdge);
             using var hub = Fill(new SKColor(119, 124, 126));
@@ -180,16 +196,19 @@ public sealed class SkiaScpRenderer : IScpRenderer
         }
 
         using var hole = Fill(new SKColor(17, 20, 23));
-        canvas.DrawRect(new SKRect(rect.Left + halfWidth * .07f, rect.Bottom - halfHeight * .13f,
-            rect.Left + halfWidth * .14f, rect.Bottom - halfHeight * .05f), hole);
+        // The write-protect opening exists on DD and HD media.
         canvas.DrawRect(new SKRect(rect.Right - halfWidth * .15f, rect.Bottom - halfHeight * .13f,
             rect.Right - halfWidth * .08f, rect.Bottom - halfHeight * .05f), hole);
+        // The opposite density-identification opening exists only on HD media.
+        if (highDensity)
+            canvas.DrawRect(new SKRect(rect.Left + halfWidth * .07f, rect.Bottom - halfHeight * .13f,
+                rect.Left + halfWidth * .14f, rect.Bottom - halfHeight * .05f), hole);
     }
 
     private static void DrawThreeInch(SKCanvas canvas, ScpRenderRequest request, float outer)
     {
-        var halfWidth = outer * 1.17f;
-        var halfHeight = outer * 1.29f;
+        var halfWidth = outer * 1.08f;
+        var halfHeight = outer * 1.10f;
         var rect = new SKRect(request.Center.X - halfWidth, request.Center.Y - halfHeight,
             request.Center.X + halfWidth, request.Center.Y + halfHeight);
         using var shell = Fill(new SKColor(28, 30, 34));
@@ -210,7 +229,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
 
     private static void DrawFlexibleDisk(SKCanvas canvas, ScpRenderRequest request, float outer, bool eightInch)
     {
-        var half = outer * (eightInch ? 1.30f : 1.25f);
+        var half = outer * (eightInch ? 1.10f : 1.08f);
         var rect = new SKRect(request.Center.X - half, request.Center.Y - half, request.Center.X + half, request.Center.Y + half);
         using var shell = Fill(new SKColor(26, 27, 29));
         using var edge = Stroke(new SKColor(68, 70, 73), outer * .015f);
