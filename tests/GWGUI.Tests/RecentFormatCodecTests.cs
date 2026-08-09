@@ -22,7 +22,7 @@ public sealed class RecentFormatCodecTests
         var decoded = new FluxDecoderRegistry().Decode("iso.fm", revolution);
         Assert.NotNull(decoded.Sectors);
         Assert.NotEmpty(decoded.Sectors);
-        var image = await new AtariScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry())
+        var image = await new BbcScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry())
             .ReadAsync("unused.scp", "acorn.dfs.ss");
 
         Assert.Equal("acorn.dfs.ss", image.FormatId);

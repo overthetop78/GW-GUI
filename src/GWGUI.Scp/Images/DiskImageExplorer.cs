@@ -43,7 +43,13 @@ public sealed class DiskImageExplorer(
     Cp2ImageReader cp2Reader,
     ImdImageReader imdReader,
     AmigaScpSectorImageReader amigaScpReader,
+    IsoScpSectorImageReader isoScpReader,
     AtariScpSectorImageReader atariScpReader,
+    AmstradScpSectorImageReader amstradScpReader,
+    BbcScpSectorImageReader bbcScpReader,
+    IbmPcScpSectorImageReader ibmScpReader,
+    EpsonQx10ScpSectorImageReader epsonScpReader,
+    UcsdScpSectorImageReader ucsdScpReader,
     CommodoreScpSectorImageReader commodoreScpReader,
     AppleScpSectorImageReader appleScpReader,
     DecRx02ScpSectorImageReader decRx02ScpReader,
@@ -59,7 +65,11 @@ public sealed class DiskImageExplorer(
         return new(new AdfImageReader(), new AtariStImageReader(), new MsaImageReader(), new AtrImageReader(),
             new CommodoreD64ImageReader(), new CommodoreD71ImageReader(), new CommodoreD81ImageReader(),
             new AmstradDskImageReader(), new MsxImageReader(), new IbmPcImageReader(), new AppleDiskImageReader(), new BbcDfsImageReader(),
-            new CoherentImageReader(), new DecRx02ImageReader(), new Td0ImageReader(), new I86fImageReader(decoders), new Cp2ImageReader(), new ImdImageReader(), new AmigaScpSectorImageReader(scp, decoders), new AtariScpSectorImageReader(scp, decoders),
+            new CoherentImageReader(), new DecRx02ImageReader(), new Td0ImageReader(), new I86fImageReader(decoders), new Cp2ImageReader(), new ImdImageReader(), new AmigaScpSectorImageReader(scp, decoders),
+            new IsoScpSectorImageReader(scp, decoders), new AtariScpSectorImageReader(scp, decoders),
+            new AmstradScpSectorImageReader(scp, decoders), new BbcScpSectorImageReader(scp, decoders),
+            new IbmPcScpSectorImageReader(scp, decoders), new EpsonQx10ScpSectorImageReader(scp, decoders),
+            new UcsdScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new AppleScpSectorImageReader(scp, decoders),
             new DecRx02ScpSectorImageReader(scp, decoders), new FileSystemRegistry(), scp, decoders);
     }
@@ -308,17 +318,17 @@ public sealed class DiskImageExplorer(
         var exhaustive = families.Count == 0;
         if (exhaustive || families.Contains(ScpFamily.Iso))
         {
-            yield return () => atariScpReader.ReadAsync(path, null, cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "acorn.adfs.800", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "ucsd.ibm.mfm", cancellationToken);
+            yield return () => isoScpReader.ReadAsync(path, null, cancellationToken);
+            yield return () => isoScpReader.ReadAsync(path, "acorn.adfs.800", cancellationToken);
+            yield return () => amstradScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken);
+            yield return () => amstradScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken);
+            yield return () => ucsdScpReader.ReadAsync(path, cancellationToken);
             yield return () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.320", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.400", cancellationToken);
-            yield return () => atariScpReader.ReadAsync(path, "epson.qx10.logo", cancellationToken);
+            yield return () => epsonScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken);
+            yield return () => epsonScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken);
+            yield return () => epsonScpReader.ReadAsync(path, "epson.qx10.320", cancellationToken);
+            yield return () => epsonScpReader.ReadAsync(path, "epson.qx10.400", cancellationToken);
+            yield return () => epsonScpReader.ReadAsync(path, "epson.qx10.logo", cancellationToken);
         }
         if (exhaustive || families.Contains(ScpFamily.Amiga)) yield return () => amigaScpReader.ReadAsync(path, cancellationToken);
         if (exhaustive || families.Contains(ScpFamily.Commodore)) yield return () => commodoreScpReader.ReadAsync(path, null, cancellationToken);
@@ -466,35 +476,42 @@ public sealed class DiskImageExplorer(
         if (formatId?.StartsWith("commodore.", StringComparison.OrdinalIgnoreCase) == true)
             return await commodoreScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase) == true)
-            return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+            return await amstradScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) == true)
-            return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+            return await ibmScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase) == true)
-            return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+            return await bbcScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId?.Equals("dec.rx02", StringComparison.OrdinalIgnoreCase) == true)
             return await decRx02ScpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId?.Equals("mac.1440", StringComparison.OrdinalIgnoreCase) == true)
+            return await ibmScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+        if (formatId?.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase) == true)
+            return await epsonScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+        if (formatId?.Equals("ucsd.ibm.mfm", StringComparison.OrdinalIgnoreCase) == true)
+            return await ucsdScpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        if (formatId?.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) == true ||
+            formatId?.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) == true)
             return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith("apple", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("mac.", StringComparison.OrdinalIgnoreCase) == true)
             return await appleScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         if (formatId is not null)
-            return await atariScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+            return await isoScpReader.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         SectorImage? firstDecoded = null;
         foreach (var read in new Func<Task<SectorImage>>[]
         {
-            () => atariScpReader.ReadAsync(path, null, cancellationToken),
+            () => isoScpReader.ReadAsync(path, null, cancellationToken),
             () => amigaScpReader.ReadAsync(path, cancellationToken),
             () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken),
             () => commodoreScpReader.ReadAsync(path, null, cancellationToken),
-            () => atariScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "ibm.scan", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "epson.qx10.320", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "epson.qx10.400", cancellationToken),
-            () => atariScpReader.ReadAsync(path, "epson.qx10.logo", cancellationToken),
+            () => amstradScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken),
+            () => amstradScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken),
+            () => ibmScpReader.ReadAsync(path, "ibm.scan", cancellationToken),
+            () => epsonScpReader.ReadAsync(path, "epson.qx10.396", cancellationToken),
+            () => epsonScpReader.ReadAsync(path, "epson.qx10.399", cancellationToken),
+            () => epsonScpReader.ReadAsync(path, "epson.qx10.320", cancellationToken),
+            () => epsonScpReader.ReadAsync(path, "epson.qx10.400", cancellationToken),
+            () => epsonScpReader.ReadAsync(path, "epson.qx10.logo", cancellationToken),
             () => appleScpReader.ReadAsync(path, null, cancellationToken)
         })
         {
