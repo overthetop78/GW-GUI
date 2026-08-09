@@ -104,11 +104,7 @@ public partial class MainWindow : Window
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
     private readonly bool _settingsProvidedAtStartup;
-    private CancellationTokenSource? _scpCancellation;
-    private CancellationTokenSource? _scpInspectorCancellation;
-    private CancellationTokenSource? _explorerCancellation;
-    private CancellationTokenSource? _visualizationConversionCancellation;
-    private readonly SemaphoreSlim _visualizationConversionGate = new(1, 1);
+    private readonly DiskImageCancellationScope _diskImageCancellation = new();
     private readonly IGreaseweazleRunner _visualizationRunner;
     private ScpInspectorWindow? _detachedScpInspector;
     private readonly Stopwatch _operationStopwatch = new();
@@ -313,9 +309,7 @@ public partial class MainWindow : Window
 
     private async Task<ExploredDiskImage?> LoadExplorerImageAsync(string path)
     {
-        _explorerCancellation?.Cancel();
-        _explorerCancellation?.Dispose();
-        var cancellation = _explorerCancellation = new CancellationTokenSource();
+        var cancellation = _diskImageCancellation.BeginExplorer();
         _explorerPath = path;
         DiskExplorer.Clear(path);
         DiskExplorer.SetLoading(true);
@@ -334,13 +328,13 @@ public partial class MainWindow : Window
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return null; }
         catch (Exception exception)
         {
-            if (ReferenceEquals(_explorerCancellation, cancellation)) DiskExplorer.SetLoading(false);
+            if (_diskImageCancellation.IsCurrentExplorer(cancellation)) DiskExplorer.SetLoading(false);
             ShowLoggedError(exception, $"Opening disk image in Explorer: {path}", "Tab.Explorer", "Explorer.LoadFailed");
             return null;
         }
         finally
         {
-            if (ReferenceEquals(_explorerCancellation, cancellation)) DiskExplorer.SetLoading(false);
+            if (_diskImageCancellation.IsCurrentExplorer(cancellation)) DiskExplorer.SetLoading(false);
         }
     }
 
@@ -407,7 +401,7 @@ public partial class MainWindow : Window
         var gateEntered = false;
         try
         {
-            await _visualizationConversionGate.WaitAsync(cancellation.Token);
+            await _diskImageCancellation.EnterVisualizationConversionAsync(cancellation.Token);
             gateEntered = true;
             cancellation.Token.ThrowIfCancellationRequested();
             var conversionSourcePath = path;
@@ -426,7 +420,7 @@ public partial class MainWindow : Window
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         finally
         {
-            if (gateEntered) _visualizationConversionGate.Release();
+            if (gateEntered) _diskImageCancellation.ExitVisualizationConversion();
             try { if (stagedSourcePath is not null && File.Exists(stagedSourcePath)) File.Delete(stagedSourcePath); } catch { }
             try { if (File.Exists(temporaryPath)) File.Delete(temporaryPath); } catch { }
         }
@@ -434,14 +428,12 @@ public partial class MainWindow : Window
 
     private CancellationTokenSource ReplaceVisualizationConversionCancellation()
     {
-        _visualizationConversionCancellation?.Cancel();
-        _visualizationConversionCancellation?.Dispose();
-        return _visualizationConversionCancellation = new CancellationTokenSource();
+        return _diskImageCancellation.BeginVisualization();
     }
 
     private void ClearVisualizerPreparation(string fileName)
     {
-        _scpCancellation?.Cancel();
+        _diskImageCancellation.CancelScp();
         _scpImage = null;
         _selectedScpTrack = null;
         ScpFileName.Text = fileName;
@@ -479,7 +471,7 @@ public partial class MainWindow : Window
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         catch (Exception exception) { _scpImage = null; ScpSummary.Text = LocExtension.Get("Visual.Invalid"); ShowLoggedError(exception, $"Opening disk image in Visualizer: {path}", "Visual.Title"); }
-        finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
+        finally { if (_diskImageCancellation.IsCurrentScp(cancellation)) HideScpProgress(); }
     }
 
     private async Task DisplayScpAsync(ScpImage image, string fileName, string summary, CancellationTokenSource cancellation)
@@ -512,7 +504,7 @@ public partial class MainWindow : Window
         var cancellation = ReplaceScpCancellation();
         try { await PrepareScpViewsAsync(cancellation.Token); UpdateScpInspector(); }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
-        finally { if (ReferenceEquals(_scpCancellation, cancellation)) HideScpProgress(); }
+        finally { if (_diskImageCancellation.IsCurrentScp(cancellation)) HideScpProgress(); }
     }
 
     private void ApplyVisualizerClassification()
@@ -552,9 +544,7 @@ public partial class MainWindow : Window
 
     private CancellationTokenSource ReplaceScpCancellation()
     {
-        _scpCancellation?.Cancel();
-        _scpCancellation?.Dispose();
-        return _scpCancellation = new CancellationTokenSource();
+        return _diskImageCancellation.BeginScp();
     }
 
     private async Task PrepareScpViewsAsync(CancellationToken cancellationToken)
@@ -626,14 +616,12 @@ public partial class MainWindow : Window
     {
         var image = _scpImage;
         if (image is null) return;
-        _scpInspectorCancellation?.Cancel();
-        _scpInspectorCancellation?.Dispose();
-        var cancellation = _scpInspectorCancellation = new CancellationTokenSource();
+        var cancellation = _diskImageCancellation.BeginInspector();
         var decoderId = (ScpDecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
         try
         {
             var model = await Task.Run(() => _scpInspector.BuildModel(image, track, decoderId), cancellation.Token);
-            if (!cancellation.IsCancellationRequested && ReferenceEquals(_scpInspectorCancellation, cancellation))
+            if (!cancellation.IsCancellationRequested && _diskImageCancellation.IsCurrentInspector(cancellation))
             {
                 ScpInspector.DataContext = model;
                 ScpInspector.Visibility = _detachedScpInspector is null ? Visibility.Visible : Visibility.Collapsed;
@@ -1105,10 +1093,12 @@ public partial class MainWindow : Window
 
     private void Window_Closing(object? sender, CancelEventArgs e)
     {
-        _scpCancellation?.Cancel();
-        _scpInspectorCancellation?.Cancel();
-        _visualizationConversionCancellation?.Cancel();
-        if (_closeAfterSettingsSave) return;
+        _diskImageCancellation.CancelAll();
+        if (_closeAfterSettingsSave)
+        {
+            _diskImageCancellation.Dispose();
+            return;
+        }
         e.Cancel = true;
         if (_settingsSaveInProgress) return;
 
