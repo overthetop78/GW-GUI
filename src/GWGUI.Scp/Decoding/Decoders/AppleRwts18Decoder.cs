@@ -33,7 +33,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
         {
             if (!stream.Match(offset, 0xd59d, 16)) continue;
             var cursor = offset + 16;
-            var address = TryReadLatchedBytes(stream.Bits, ref cursor, 4);
+            var address = AppleBitLatch.TryReadBytes(stream.Bits, ref cursor, 4);
             if (address is null || !Inverse.TryGetValue(address[0], out var track) ||
                 !Inverse.TryGetValue(address[1], out var sector) ||
                 !Inverse.TryGetValue(address[2], out var checksum) || address[3] != 0xaa ||
@@ -65,7 +65,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     private static (byte[] Data, bool Valid, int StartOffset, int EndOffset)? TryReadData(bool[] bits, int offset)
     {
         var cursor = offset;
-        var stream = TryReadLatchedBytes(bits, ref cursor, 1_100);
+        var stream = AppleBitLatch.TryReadBytes(bits, ref cursor, 1_100);
         if (stream is null) return null;
         // The first byte is a modifiable Brøderbund identifier. Find it by the
         // following uninterrupted run of 1025 valid GCR symbols and D4 epilogue.
@@ -106,21 +106,4 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
         return ([.. page1, .. page2, .. page3], valid);
     }
 
-    private static byte[]? TryReadLatchedBytes(bool[] bits, ref int offset, int count)
-    {
-        var result = new byte[count];
-        for (var index = 0; index < count; index++)
-        {
-            if (offset + 8 > bits.Length) return null;
-            byte value = 0;
-            for (var bit = 0; bit < 8; bit++) value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));
-            while ((value & 0x80) == 0)
-            {
-                if (offset >= bits.Length) return null;
-                value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));
-            }
-            result[index] = value;
-        }
-        return result;
-    }
 }

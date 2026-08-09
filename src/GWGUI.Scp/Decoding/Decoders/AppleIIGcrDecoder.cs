@@ -106,7 +106,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         // the original bitstream, so sync fields can leave encoded bytes unaligned;
         // fixed 8-bit reads reject otherwise valid protected tracks.
         var cursor = offset;
-        var encoded = TryReadLatchedBytes(bits, ref cursor, 343); if (encoded is null) return null; var values = new byte[343];
+        var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, 343); if (encoded is null) return null; var values = new byte[343];
         for (var index = 0; index < values.Length; index++) if (!InverseSixAndTwo.TryGetValue(encoded[index], out values[index])) return null;
         var decoded = new byte[342]; byte previous = 0; var encodedIndex = 0;
         for (var index = 341; index >= 256; index--) { decoded[index] = (byte)(values[encodedIndex++] ^ previous); previous = decoded[index]; }
@@ -123,7 +123,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(bool[] bits, int offset)
     {
         var cursor = offset;
-        var encoded = TryReadLatchedBytes(bits, ref cursor, 411); if (encoded is null) return null;
+        var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, 411); if (encoded is null) return null;
         var values = new byte[411];
         for (var index = 0; index < values.Length; index++)
             if (!InverseFiveAndThree.TryGetValue(encoded[index], out values[index])) return null;
@@ -147,21 +147,4 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         return (data, valid, cursor);
     }
 
-    private static byte[]? TryReadLatchedBytes(bool[] bits, ref int offset, int count)
-    {
-        var result = new byte[count];
-        for (var index = 0; index < count; index++)
-        {
-            if (offset + 8 > bits.Length) return null;
-            byte value = 0;
-            for (var bit = 0; bit < 8; bit++) value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));
-            while ((value & 0x80) == 0)
-            {
-                if (offset >= bits.Length) return null;
-                value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));
-            }
-            result[index] = value;
-        }
-        return result;
-    }
 }
