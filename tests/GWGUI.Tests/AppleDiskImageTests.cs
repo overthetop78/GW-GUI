@@ -356,6 +356,29 @@ public sealed class AppleDiskImageTests
     }
 
     [Fact]
+    public async Task LisaOfficeDataOnlyFluxIsIdentifiedWithoutInventingItsLostCatalog()
+    {
+        var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+        var sourcePath = Directory.EnumerateFiles(root, "*LisaGuide.image", SearchOption.AllDirectories).FirstOrDefault();
+        var scpPath = Directory.EnumerateFiles(root, "*LisaGuide*.scp", SearchOption.AllDirectories).FirstOrDefault();
+        if (sourcePath is null || scpPath is null) return;
+
+        var explorer = DiskImageExplorer.CreateDefault();
+        var source = await explorer.ExploreAsync(sourcePath);
+        var scp = await explorer.ExploreAsync(scpPath);
+
+        Assert.Equal("applelisa.office", source.Image.FormatId);
+        Assert.True(source.FileSystemRecognized);
+        Assert.Equal("applelisa.raw", scp.Image.FormatId);
+        Assert.Equal("Apple Lisa", scp.Metadata.SystemName);
+        Assert.False(scp.FileSystemRecognized);
+        Assert.NotEmpty(scp.Volume.Entries);
+        Assert.Equal(FlattenBlocks(source.Image.AvailableBlocks), FlattenBlocks(scp.Image.AvailableBlocks));
+        Assert.NotEmpty(new SectorImageFluxVisualizer().Create(scp.Image).Tracks);
+    }
+
+    [Fact]
     public async Task WozSixAndTwoDecoderResynchronizesProtectedBitstreams()
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_APPLE_CORPUS");

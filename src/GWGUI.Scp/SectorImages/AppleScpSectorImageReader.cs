@@ -116,6 +116,9 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         // requiring the user to select the format manually.
         if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
             formatId = "applelisa.office";
+        if (requestedFormatId is null && TryFlattenPayload(provisional, out var payload) &&
+            GWGUI.Scp.Images.AppleDiskImageReader.LooksLikeLisaOfficePayload(payload))
+            formatId = "applelisa.raw";
         if (provisional.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 2)
         {
             if (mdb.Data.Take(Math.Min(16, mdb.Data.Count)).ToArray().AsSpan().IndexOf("PREBOOT"u8) >= 0)
@@ -125,6 +128,19 @@ public sealed class AppleScpSectorImageReader(IScpReader scpReader, FluxDecoderR
                 formatId = signature == 0xd2d7 ? "applemac.mfs" : signature == 0x4244 ? "applemac.hfs" : "apple2.prodos";
         }
         return new(formatId, 512, 80, heads, 12, blocks, capacity: count * 512L, logicalBlockCount: count);
+    }
+
+    private static bool TryFlattenPayload(SectorImage image, out byte[] payload)
+    {
+        payload = new byte[image.BlockCount * image.BlockSize];
+        if (image.AvailableBlocks.Count != image.BlockCount) return false;
+        foreach (var block in image.AvailableBlocks)
+        {
+            if (block.LogicalBlock < 0 || block.LogicalBlock >= image.BlockCount || block.Data.Count != image.BlockSize)
+                return false;
+            block.Data.ToArray().CopyTo(payload, block.LogicalBlock * image.BlockSize);
+        }
+        return true;
     }
 
     private Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> DecodeCandidates(ScpImage scp, string decoderId, int size, CancellationToken cancellationToken)
