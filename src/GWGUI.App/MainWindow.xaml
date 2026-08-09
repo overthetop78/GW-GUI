@@ -26,50 +26,7 @@
                 <controls:ExplorerSection x:Name="DiskExplorer" Margin="16"/>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Tools}"><TabItem.Header><controls:MainTabHeader Icon="&#xE90F;" Text="{l:Loc Tab.Tools}"/></TabItem.Header>
-                <Grid Margin="16">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="230" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ListBox x:Name="ToolsList" SelectedIndex="0" SelectionChanged="ToolsList_SelectionChanged">
-                        <ListBoxItem Content="{l:Loc Tools.Erase}" />
-                        <ListBoxItem Content="{l:Loc Tools.Clean}" />
-                    </ListBox>
-                    <Grid Grid.Column="1" Margin="16,0,0,0">
-                        <Border x:Name="ErasePanel" Style="{StaticResource Card}">
-                            <StackPanel>
-                                <TextBlock Text="{l:Loc Tools.Erase}" FontSize="22" FontWeight="SemiBold" />
-                                <TextBlock Text="{l:Loc Tools.EraseWarning}" Foreground="#B3261E" Margin="0,8,0,18" />
-                                <WrapPanel>
-                                    <CheckBox x:Name="EraseTracksEnabled" Content="{l:Loc Tools.LimitTracks}" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="EraseTracksValue" Width="180" Text="c=0-79:h=0-1" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.LimitTracks}" />
-                                    <CheckBox x:Name="EraseRevsEnabled" Content="{l:Loc Tools.Revolutions}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="EraseRevsValue" Width="70" Text="3" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Revolutions}" />
-                                </WrapPanel>
-                                <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,14,8,4" />
-                                <TextBox x:Name="EraseExpertArguments" Margin="8" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Common.ExpertArguments}" />
-                                <Button x:Name="EraseExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteErase_Click" />
-                            </StackPanel>
-                        </Border>
-                        <Border x:Name="CleanPanel" Style="{StaticResource Card}" Visibility="Collapsed">
-                            <StackPanel>
-                                <TextBlock Text="{l:Loc Tools.Clean}" FontSize="22" FontWeight="SemiBold" />
-                                <TextBlock Text="{l:Loc Tools.CleanWarning}" Foreground="#8A4B00" Margin="0,8,0,18" />
-                                <WrapPanel>
-                                    <CheckBox x:Name="CleanCylindersEnabled" Content="{l:Loc Tools.Cylinders}" Margin="8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="CleanCylindersValue" Width="70" Text="80" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Cylinders}" />
-                                    <CheckBox x:Name="CleanPassesEnabled" Content="{l:Loc Tools.Passes}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="CleanPassesValue" Width="70" Text="3" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Passes}" />
-                                    <CheckBox x:Name="CleanLingerEnabled" Content="{l:Loc Tools.Linger}" Margin="18,8,8,8" Checked="ToolInput_Changed" Unchecked="ToolInput_Changed" />
-                                    <TextBox x:Name="CleanLingerValue" Width="80" Text="100" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Tools.Linger}" />
-                                </WrapPanel>
-                                <TextBlock Text="{l:Loc Common.ExpertArguments}" Margin="8,14,8,4" />
-                                <TextBox x:Name="CleanExpertArguments" Margin="8" TextChanged="ToolInput_Changed" AutomationProperties.Name="{l:Loc Common.ExpertArguments}" />
-                                <Button x:Name="CleanExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="ExecuteClean_Click" />
-                            </StackPanel>
-                        </Border>
-                    </Grid>
-                </Grid>
+                <controls:ToolsTabSection x:Name="ToolsTabBlock"/>
             </TabItem>
         </TabControl>
         <GridSplitter x:Name="ConsoleSplitter" Grid.Row="2" Height="4" HorizontalAlignment="Stretch" ResizeDirection="Rows" Background="Transparent" BorderThickness="0" />

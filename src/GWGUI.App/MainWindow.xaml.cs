@@ -57,6 +57,23 @@ public partial class MainWindow : Window
     private Canvas ScpInspectorLayer => VisualizerTabBlock.InspectorCanvas;
     private ScpInspectorPanel ScpInspector => VisualizerTabBlock.Inspector;
     private VisualizerTrackOverview VisualizerTrackOverview => VisualizerTabBlock.Overview;
+    private ListBox ToolsList => ToolsTabBlock.ToolsList;
+    private Border ErasePanel => ToolsTabBlock.ErasePanel;
+    private CheckBox EraseTracksEnabled => ToolsTabBlock.EraseTracksEnabled;
+    private TextBox EraseTracksValue => ToolsTabBlock.EraseTracksValue;
+    private CheckBox EraseRevsEnabled => ToolsTabBlock.EraseRevsEnabled;
+    private TextBox EraseRevsValue => ToolsTabBlock.EraseRevsValue;
+    private TextBox EraseExpertArguments => ToolsTabBlock.EraseExpertArguments;
+    private Button EraseExecuteButton => ToolsTabBlock.EraseExecuteButton;
+    private Border CleanPanel => ToolsTabBlock.CleanPanel;
+    private CheckBox CleanCylindersEnabled => ToolsTabBlock.CleanCylindersEnabled;
+    private TextBox CleanCylindersValue => ToolsTabBlock.CleanCylindersValue;
+    private CheckBox CleanPassesEnabled => ToolsTabBlock.CleanPassesEnabled;
+    private TextBox CleanPassesValue => ToolsTabBlock.CleanPassesValue;
+    private CheckBox CleanLingerEnabled => ToolsTabBlock.CleanLingerEnabled;
+    private TextBox CleanLingerValue => ToolsTabBlock.CleanLingerValue;
+    private TextBox CleanExpertArguments => ToolsTabBlock.CleanExpertArguments;
+    private Button CleanExecuteButton => ToolsTabBlock.CleanExecuteButton;
     private RadioButton RawScpRadio => ReadImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => ReadImageBlock.KnownFormatRadio;
     private Grid KnownFormatPanel => ReadImageBlock.KnownFormatPanel;
@@ -156,6 +173,7 @@ public partial class MainWindow : Window
         ConnectReadComponents();
         ConnectWriteComponents();
         ConnectConvertComponents();
+        ConnectToolsComponents();
         ConnectExplorerComponent();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
@@ -290,6 +308,14 @@ public partial class MainWindow : Window
         RegisterName(nameof(ConvertTracksEnabled), ConvertTracksEnabled);
         RegisterName(nameof(ConvertDiskDefsEnabled), ConvertDiskDefsEnabled);
         RegisterName(nameof(ConvertDiskDefsValue), ConvertDiskDefsValue);
+    }
+
+    private void ConnectToolsComponents()
+    {
+        ToolsTabBlock.ToolSelectionChanged += ToolsList_SelectionChanged;
+        ToolsTabBlock.InputChanged += ToolInput_Changed;
+        ToolsTabBlock.EraseRequested += ExecuteErase_Click;
+        ToolsTabBlock.CleanRequested += ExecuteClean_Click;
     }
 
     private void ConnectExplorerComponent()
