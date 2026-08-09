@@ -30,6 +30,7 @@ public sealed record DiskImageMetadata(string SystemName, string? ProtectionName
             var value when value.StartsWith("commodore.") => "Commodore",
             var value when value.StartsWith("amstrad.") => "Amstrad",
             var value when value.StartsWith("acorn.") || value.StartsWith("bbc.") => "Acorn / BBC Micro",
+            var value when value.StartsWith("epson.qx10.") => "Epson QX-10",
             var value when value.StartsWith("msx.") => "MSX",
             var value when value.StartsWith("dec.") => "DEC",
             var value when value.StartsWith("coherent.") => "COHERENT",

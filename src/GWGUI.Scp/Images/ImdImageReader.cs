@@ -109,6 +109,9 @@ public sealed class ImdImageReader : ISectorImageReader
     {
         var sectors256 = sectors.Count(sector => sector.Data.Length == 256);
         if (sectors256 >= 64 && blockSize == 512) return "epson.qx10.396";
+        // Both the 399 KiB TPM layout and the LOGO layout contain sixteen
+        // 256-byte sectors. Capacity distinguishes them reliably.
+        if (sectors256 == 16 && blockSize == 512 && capacity == 399 * 1024L) return "epson.qx10.399";
         if (sectors256 == 16 && blockSize == 512) return "epson.qx10.logo";
         return (blockSize, capacity) switch
         {

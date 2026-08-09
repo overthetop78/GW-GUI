@@ -13,7 +13,9 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         var amstrad = formatId?.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase) == true;
         var ibm = formatId?.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) == true;
         var bbc = formatId?.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase) == true;
+        var epson = formatId?.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase) == true;
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
+        var physicalCandidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -30,14 +32,21 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
                 }
                 foreach (var sector in result.Sectors ?? [])
                 {
-                    if (sector.Data is null || sector.Cylinder != track.Cylinder || sector.Head != track.Head || sector.Number < 0) continue;
+                    if (sector.Data is null || sector.Number < 0) continue;
+                    AddCandidate(physicalCandidates, new(track.Cylinder, track.Head, sector.Number), sector, revolution + 1);
+                    if (sector.Cylinder != track.Cylinder || sector.Head != track.Head) continue;
                     var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);
-                    if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
-                    list.Add((sector, revolution + 1));
+                    AddCandidate(candidates, address, sector, revolution + 1);
                 }
             }
         }
-        if (candidates.Count == 0) throw new InvalidDataException("No Atari ISO FM/MFM sectors could be decoded from the SCP image.");
+        if (candidates.Count == 0 && physicalCandidates.Count == 0) throw new InvalidDataException("No Atari ISO FM/MFM sectors could be decoded from the SCP image.");
+        if (!epson && formatId is null && TryDetectEpsonQx10Format(physicalCandidates, out var detectedEpsonFormat))
+        {
+            formatId = detectedEpsonFormat;
+            epson = true;
+        }
+        if (epson) candidates = physicalCandidates;
         var sectorSize = candidates.Values.SelectMany(value => value).GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).First().Key;
         var cylinders = candidates.Keys.Max(address => address.Cylinder) + 1; var heads = candidates.Keys.Max(address => address.Head) + 1;
         var sectorsPerTrack = candidates.Keys.GroupBy(address => (address.Cylinder, address.Head)).Select(group => group.Select(item => item.Number).Distinct().Count())
@@ -71,6 +80,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             ? (sectorSize, sectorsPerTrack) switch { (128, 18) => "atari.90", (128, 26) => "atari.130", (256, 18) => "atari.180", _ => $"atari.scp.{sectorSize}.{sectorsPerTrack}" }
             : $"atarist.{(cylinders * heads * sectorsPerTrack * sectorSize) / 1024}");
         if (ibm) resolvedFormat = IbmPcImageReader.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, sectorSize);
+        if (epson) return CreateEpsonQx10Image(formatId!, candidates);
         var blocks = new List<SectorBlock>();
         foreach (var (address, values) in candidates)
         {
@@ -89,6 +99,13 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
 
     private static double Score(FluxDecodeResult result) => (result.Sectors?.Count(sector => sector.Data is not null) ?? 0) * 10 + result.Confidence;
 
+    private static void AddCandidate(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates,
+        SectorAddress address, DecodedSector sector, int revolution)
+    {
+        if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
+        list.Add((sector, revolution));
+    }
+
     private static byte[] BestData(IReadOnlyDictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates, SectorAddress address)
     {
         if (!candidates.TryGetValue(address, out var values)) return [];
@@ -96,5 +113,120 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             .ThenByDescending(value => value.Sector.IntegrityValid is null)
             .Select(value => value.Sector.Data?.ToArray() ?? [])
             .FirstOrDefault(data => data.Length > 0) ?? [];
+    }
+
+    private static SectorImage CreateEpsonQx10Image(string formatId,
+        IReadOnlyDictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
+    {
+        var geometry = EpsonQx10Geometry(formatId);
+        var blocks = new List<SectorBlock>();
+        var logical = 0;
+        long capacity = 0;
+        var maximumSectors = 0;
+        var sizes = new HashSet<int>();
+
+        for (var cylinder = 0; cylinder < geometry.Cylinders; cylinder++)
+        {
+            for (var head = 0; head < geometry.Heads; head++)
+            {
+                var track = geometry.Track(cylinder, head);
+                maximumSectors = Math.Max(maximumSectors, track.Count);
+                for (var index = 0; index < track.Count; index++, logical++)
+                {
+                    var sectorNumber = track.FirstSector + index;
+                    var address = new SectorAddress(cylinder, head, sectorNumber);
+                    capacity += track.SectorSize;
+                    sizes.Add(track.SectorSize);
+                    if (!candidates.TryGetValue(address, out var values)) continue;
+
+                    var best = values.Where(value => value.Sector.Data?.Count == track.SectorSize)
+                        .OrderByDescending(value => value.Sector.IntegrityValid == true)
+                        .ThenByDescending(value => value.Sector.IntegrityValid is null)
+                        .FirstOrDefault();
+                    if (best.Sector?.Data is null) continue;
+                    blocks.Add(new(logical, address, best.Sector.Data.ToArray(), best.Sector.IntegrityValid, best.Revolution));
+                }
+            }
+        }
+
+        var blockSize = sizes.GroupBy(size => size).OrderByDescending(group =>
+            geometry.AllTracks.Where(track => track.SectorSize == group.Key).Sum(track => track.Count)).First().Key;
+        return new(formatId, blockSize, geometry.Cylinders, geometry.Heads, maximumSectors, blocks,
+            allowVariableBlockSize: sizes.Count > 1, capacity: capacity, logicalBlockCount: logical);
+    }
+
+    private static EpsonGeometry EpsonQx10Geometry(string formatId) => formatId.ToLowerInvariant() switch
+    {
+        "epson.qx10.320" => EpsonGeometry.Uniform(40, 2, new(1, 16, 256)),
+        "epson.qx10.400" => EpsonGeometry.Uniform(40, 2, new(1, 5, 1024)),
+        "epson.qx10.booter" => new(15, 1, (cylinder, _) => cylinder == 0 ? new(1, 16, 256) : new(1, 17, 256)),
+        "epson.qx10.399" => new(40, 2, (cylinder, head) => cylinder == 0 && head == 0 ? new(1, 16, 256) : new(1, 10, 512)),
+        "epson.qx10.logo" => new(40, 2, (cylinder, _) => cylinder switch
+        {
+            0 or 1 or 4 => new(1, 16, 256),
+            5 or 6 => new(2, 10, 512),
+            3 or 7 => default,
+            _ => new(1, 10, 512)
+        }),
+        _ => new(40, 2, (cylinder, _) => cylinder <= 1 ? new(1, 16, 256) : new(1, 10, 512))
+    };
+
+    private static bool TryDetectEpsonQx10Format(
+        IReadOnlyDictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates, out string formatId)
+    {
+        formatId = string.Empty;
+        var tracks = candidates.GroupBy(pair => (pair.Key.Cylinder, pair.Key.Head))
+            .Select(group => new DetectedEpsonTrack(group.Key.Cylinder, group.Key.Head,
+                group.Select(pair => new DetectedEpsonSector(pair.Key.Number,
+                    pair.Value.Select(value => value.Sector.Data?.Count ?? 0).GroupBy(size => size)
+                        .OrderByDescending(sizes => sizes.Count()).First().Key)).ToArray())).ToArray();
+        if (tracks.Length == 0) return false;
+
+        static bool Matches(DetectedEpsonTrack track, int first, int count, int size) =>
+            track.Sectors.Count == count && track.Sectors.All(sector =>
+                sector.Number >= first && sector.Number < first + count && sector.Size == size);
+
+        if (tracks.All(track => Matches(track, 1, 16, 256))) formatId = "epson.qx10.320";
+        else if (tracks.All(track => Matches(track, 1, 5, 1024))) formatId = "epson.qx10.400";
+        else if (tracks.Length <= 15 && tracks.All(track => track.Head == 0 &&
+                     Matches(track, 1, track.Cylinder == 0 ? 16 : 17, 256))) formatId = "epson.qx10.booter";
+        else
+        {
+            var smallTracks = tracks.Where(track => Matches(track, 1, 16, 256)).ToArray();
+            var normalTracks = tracks.Where(track => Matches(track, 1, 10, 512)).ToArray();
+            if (smallTracks.Length == 1 && smallTracks[0].Cylinder == 0 && smallTracks[0].Head == 0 &&
+                smallTracks.Length + normalTracks.Length == tracks.Length) formatId = "epson.qx10.399";
+            else if (smallTracks.Length >= 4 && smallTracks.All(track => track.Cylinder <= 1) &&
+                     smallTracks.Length + normalTracks.Length == tracks.Length) formatId = "epson.qx10.396";
+            else
+            {
+                var shiftedTracks = tracks.Where(track => Matches(track, 2, 10, 512)).ToArray();
+                if (smallTracks.Length >= 6 && smallTracks.All(track => track.Cylinder is 0 or 1 or 4) &&
+                    shiftedTracks.All(track => track.Cylinder is 5 or 6) &&
+                    smallTracks.Length + normalTracks.Length + shiftedTracks.Length == tracks.Length)
+                    formatId = "epson.qx10.logo";
+            }
+        }
+        return formatId.Length > 0;
+    }
+
+    private readonly record struct EpsonTrack(int FirstSector, int Count, int SectorSize);
+    private readonly record struct DetectedEpsonSector(int Number, int Size);
+    private readonly record struct DetectedEpsonTrack(int Cylinder, int Head, IReadOnlyList<DetectedEpsonSector> Sectors);
+
+    private sealed record EpsonGeometry(int Cylinders, int Heads, Func<int, int, EpsonTrack> Track)
+    {
+        public IEnumerable<EpsonTrack> AllTracks
+        {
+            get
+            {
+                for (var cylinder = 0; cylinder < Cylinders; cylinder++)
+                    for (var head = 0; head < Heads; head++)
+                        yield return Track(cylinder, head);
+            }
+        }
+
+        public static EpsonGeometry Uniform(int cylinders, int heads, EpsonTrack track) =>
+            new(cylinders, heads, (_, _) => track);
     }
 }

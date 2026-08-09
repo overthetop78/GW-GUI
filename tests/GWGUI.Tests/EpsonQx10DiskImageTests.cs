@@ -9,15 +9,15 @@ public sealed class EpsonQx10DiskImageTests(ITestOutputHelper output)
     [Fact]
     public async Task RealValdocsDisk01ExposesItsTpmDirectory()
     {
-        await Verify("Valdocs 2.00 for Epson QX-10 disk01.scp", automatic: true);
+        await Verify("Valdocs 2.00 for Epson QX-10 disk01.scp", "epson.qx10.399", automatic: true);
     }
 
-    [Fact] public Task RealValdocsDisk02ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk02.scp");
-    [Fact] public Task RealValdocsDisk03ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk03.scp");
-    [Fact] public Task RealValdocsDisk04ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk04.scp");
-    [Fact] public Task RealValdocsDisk05ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk05.scp");
+    [Fact] public Task RealValdocsDisk02ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk02.scp", "epson.qx10.396");
+    [Fact] public Task RealValdocsDisk03ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk03.scp", "epson.qx10.396");
+    [Fact] public Task RealValdocsDisk04ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk04.scp", "epson.qx10.396");
+    [Fact] public Task RealValdocsDisk05ExposesItsTpmDirectory() => Verify("Valdocs 2.00 for Epson QX-10 disk05.scp", "epson.qx10.396");
 
-    private async Task Verify(string fileName, bool automatic = false)
+    private async Task Verify(string fileName, string expectedFormat, bool automatic = false)
     {
         var path = TestImage("Epson QX-10", fileName);
         if (!File.Exists(path)) return;
@@ -26,7 +26,8 @@ public sealed class EpsonQx10DiskImageTests(ITestOutputHelper output)
         foreach (var entry in disk.Volume.Entries)
             output.WriteLine($"{entry.Name}\t{entry.Size}\t{entry.Modified:O}\tvalid={entry.MetadataValid}");
         Assert.True(disk.FileSystemRecognized);
-        Assert.Equal("epson.qx10.396", disk.Image.FormatId);
+        Assert.Equal(expectedFormat, disk.Image.FormatId);
+        Assert.Equal("Epson QX-10", disk.Metadata.SystemName);
         Assert.Contains("CP/M", disk.Volume.FileSystem, StringComparison.OrdinalIgnoreCase);
         Assert.NotEmpty(disk.Volume.Entries);
         Assert.All(disk.Volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));

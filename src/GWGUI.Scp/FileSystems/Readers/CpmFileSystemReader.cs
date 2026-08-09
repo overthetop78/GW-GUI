@@ -19,13 +19,14 @@ public sealed class CpmFileSystemReader : IFileSystemReader
         var layout = Layout.For(image);
         if (layout is null) return false;
         var bytes = Flatten(image);
-        return ScoreDirectory(bytes, layout.Value) >= 4;
+        return ScoreDirectory(bytes, ResolveLayout(image, bytes, layout.Value)) >= 4;
     }
 
     public FileSystemVolume Read(SectorImage image)
     {
-        var layout = Layout.For(image) ?? throw new InvalidDataException("The CP/M disk layout is not supported.");
+        var configuredLayout = Layout.For(image) ?? throw new InvalidDataException("The CP/M disk layout is not supported.");
         var bytes = Flatten(image);
+        var layout = ResolveLayout(image, bytes, configuredLayout);
         if (ScoreDirectory(bytes, layout) < 4) throw new InvalidDataException("The image does not contain a supported CP/M directory.");
         var warnings = new List<string>();
         var extents = new List<Extent>();
@@ -92,6 +93,29 @@ public sealed class CpmFileSystemReader : IFileSystemReader
         return score;
     }
 
+    private static Layout ResolveLayout(SectorImage image, byte[] bytes, Layout configured)
+    {
+        if (!image.FormatId.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase)) return configured;
+        var best = configured;
+        var bestScore = ScoreDirectory(bytes, configured);
+        var limit = Math.Min(bytes.Length - configured.DirectoryEntries * 32, 64 * 1024);
+        // CP/M directory entries are 32-byte records. Epson TPM disks may place
+        // the directory on a 128-byte logical boundary inside a physical sector,
+        // so restricting the search to physical 256-byte boundaries skips valid
+        // directories (notably the mixed 256/512-byte QX-10 layouts).
+        for (var offset = 0; offset <= limit; offset += 32)
+        {
+            var candidate = configured with { DirectoryOffset = offset };
+            var score = ScoreDirectory(bytes, candidate);
+            if (score > bestScore)
+            {
+                best = candidate;
+                bestScore = score;
+            }
+        }
+        return best;
+    }
+
     private static bool TryDecodeName(ReadOnlySpan<byte> entry, out string name)
     {
         name = string.Empty;
@@ -148,7 +172,7 @@ public sealed class CpmFileSystemReader : IFileSystemReader
             "commodore.1581" => new(0, 128, 2048, 2, true),
             "epson.qx10.320" => new(4 * 2 * 16 * 256, 64, 2048, 2, false),
             "epson.qx10.396" => new(4 * 16 * 256, 64, 2048, 2, false),
-            "epson.qx10.399" => new(4 * 16 * 256, 64, 2048, 2, false),
+            "epson.qx10.399" => new(16 * 256, 64, 2048, 2, false),
             "epson.qx10.400" => new(2 * 2 * 5 * 1024, 64, 2048, 2, false),
             "epson.qx10.logo" => new(4 * 16 * 256, 64, 2048, 2, false),
             _ => null
