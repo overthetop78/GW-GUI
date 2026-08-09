@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Settings;
@@ -116,6 +117,23 @@ public partial class MainWindow : Window
     private TextBlock ScpSummary => VisualizerHeader.SummaryText;
     private ComboBox ScpDecoderCombo => VisualizerHeader.DecoderCombo;
     private CheckBox LinkScpViews => VisualizerHeader.LinkZoomCheckBox;
+    private System.Windows.Shapes.Ellipse HardwareStatusLight => StatusBarBlock.HardwareLight;
+    private TextBlock HardwareStatusText => StatusBarBlock.HardwareText;
+    private ComboBox HardwareSelector => StatusBarBlock.HardwareChoices;
+    private StatusBarItem HardwareSelectorItem => StatusBarBlock.HiddenHardwareSelectorItem;
+    private StatusBarItem ProfileStatusItem => StatusBarBlock.ProfileItem;
+    private TextBlock ProfileStatusText => StatusBarBlock.ProfileText;
+    private StatusBarItem OperationStatusItem => StatusBarBlock.OperationItem;
+    private System.Windows.Shapes.Ellipse OperationStatusLight => StatusBarBlock.OperationLight;
+    private TextBlock OperationStatusText => StatusBarBlock.OperationText;
+    private StatusBarItem ProgressStatusItem => StatusBarBlock.ProgressItem;
+    private Grid GlobalProgressPanel => StatusBarBlock.GlobalProgress;
+    private ProgressBar OperationProgress => StatusBarBlock.ProgressBar;
+    private TextBlock OperationProgressText => StatusBarBlock.ProgressText;
+    private TrackProgressStrip Face0TrackProgress => StatusBarBlock.Face0Progress;
+    private TrackProgressStrip Face1TrackProgress => StatusBarBlock.Face1Progress;
+    private StatusBarItem HostToolsUpdateItem => StatusBarBlock.HostToolsItem;
+    private Button HostToolsUpdateButton => StatusBarBlock.HostToolsButton;
     private readonly ISettingsStore _settingsStore;
     private readonly IGreaseweazleRunner _runner;
     private readonly IGwCommandBuilder _commandBuilder;
@@ -175,6 +193,7 @@ public partial class MainWindow : Window
         ConnectConvertComponents();
         ConnectToolsComponents();
         ConnectExplorerComponent();
+        ConnectStatusBar();
         _dialogs = dialogs ?? new WpfMessageDialogService(this);
         _fileDialogs = fileDialogs ?? new WpfFileDialogService(this);
         _businessDialogs = businessDialogs ?? new WpfBusinessDialogService(this);
@@ -223,6 +242,13 @@ public partial class MainWindow : Window
         RegisterName("OptionsMenuItem", ApplicationMenu.OptionsMenuItem);
         RegisterName("HelpMenuItem", ApplicationMenu.HelpMenuItem);
         RegisterName("AlignMenuItem", ApplicationMenu.AlignMenuItem);
+    }
+
+    private void ConnectStatusBar()
+    {
+        StatusBarBlock.HardwareSelectionChanged += HardwareSelector_Changed;
+        StatusBarBlock.HostToolsUpdateRequested += Preferences_Click;
+        StatusBarBlock.ToggleConsoleRequested += ToggleConsole_Click;
     }
 
     private void ConnectReadComponents()
