@@ -14,6 +14,7 @@ Cette documentation décrit l’état actuel, les décisions confirmées et l’
 - [Questions et réponses confirmées](questions-and-answers.md)
 - [Architecture technique actuelle](architecture.md)
 - [Version, build et révision](versioning.md)
+- [Audit complet du code](audit/README.md)
 
 ## Tâches détaillées
 
