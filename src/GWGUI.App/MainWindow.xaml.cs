@@ -33,6 +33,13 @@ namespace GWGUI.App;
 
 public partial class MainWindow : Window
 {
+    private ReadImageSection ReadImageBlock => ReadTabBlock.ImageBlock;
+    private ProfileSection ReadProfileBlock => ReadTabBlock.ProfileBlock;
+    private PathSection ReadFolderBlock => ReadTabBlock.FolderBlock;
+    private ReadFileNameSection ReadFileNameBlock => ReadTabBlock.FileNameBlock;
+    private ReadAdvancedSection ReadAdvancedBlock => ReadTabBlock.AdvancedBlock;
+    private ReadCompletionBanner ReadCompletionBlock => ReadTabBlock.CompletionBlock;
+    private Button ReadExecuteButton => ReadTabBlock.ExecuteActionButton;
     private RadioButton RawScpRadio => ReadImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => ReadImageBlock.KnownFormatRadio;
     private Grid KnownFormatPanel => ReadImageBlock.KnownFormatPanel;
@@ -203,6 +210,7 @@ public partial class MainWindow : Window
         ReadAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseReadDiskDefs_Click;
         ReadCompletionBlock.ExploreRequested += ExploreLastScp_Click;
         ReadCompletionBlock.VisualizeRequested += OpenLastScp_Click;
+        ReadTabBlock.ExecuteRequested += ExecuteRead_Click;
         TerminalBlock.CopyButton.Click += CopyConsole_Click;
 
         RegisterName(nameof(RawScpRadio), RawScpRadio);

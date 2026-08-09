@@ -11,37 +11,7 @@
         <controls:MainMenu x:Name="ApplicationMenu"/>
         <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}">
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Read}"><TabItem.Header><controls:MainTabHeader Icon="&#xE768;" Text="{l:Loc Tab.Read}"/></TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid Margin="16">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="390"/></Grid.ColumnDefinitions>
-                            <controls:ReadImageSection x:Name="ReadImageBlock" Margin="0,0,6,12"/>
-                            <controls:ProfileSection x:Name="ReadProfileBlock" Grid.Column="1" Margin="6,0,0,12"/>
-                        </Grid>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="1.15*"/></Grid.ColumnDefinitions>
-                            <controls:PathSection x:Name="ReadFolderBlock" Label="{l:Loc Read.Folder}" Text="{Binding Read.Folder, Mode=TwoWay}" Margin="0,0,6,12"/>
-                            <controls:ReadFileNameSection x:Name="ReadFileNameBlock" Grid.Column="1" Margin="6,0,0,12"/>
-                        </Grid>
-                        <controls:ReadAdvancedSection x:Name="ReadAdvancedBlock" Grid.Row="0"/>
-                        <controls:ReadCompletionBanner Grid.Row="5" x:Name="ReadCompletionBlock"/>
-                    </Grid>
-                </ScrollViewer>
-                    <Button Grid.Row="1" x:Name="ReadExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" Click="ExecuteRead_Click" />
-                </Grid>
+                <controls:ReadTabSection x:Name="ReadTabBlock"/>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Write}"><TabItem.Header><controls:MainTabHeader Icon="&#xE70F;" Text="{l:Loc Tab.Write}"/></TabItem.Header>
                 <Grid>
