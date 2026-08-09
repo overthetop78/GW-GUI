@@ -56,7 +56,7 @@ public partial class OptionsWindow : Window
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
-    private readonly HostToolsOptionsState _hostToolsState;
+    private readonly HostToolsOptionsController _hostToolsOptionsController;
     private readonly IHardwareRegistry _hardwareRegistry;
     private bool _initializing = true;
     private readonly ISettingsStore _settingsStore;
@@ -104,16 +104,21 @@ public partial class OptionsWindow : Window
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
         var managedRoot = StoragePaths.HostToolsDirectory;
         var hostToolsManager = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
-        _hostToolsState = new HostToolsOptionsState(settings, hostToolsManager);
+        _hostToolsOptionsController = new HostToolsOptionsController(
+            this,
+            HardwareSection,
+            settings,
+            hostToolsManager,
+            PersistSettingsAsync,
+            exception => ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error),
+            (key, arguments) => LocExtension.Get(key, arguments));
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _hardwareState = new HardwareOptionsState(settings);
         _controllers = _hardwareState.Controllers;
         _unconfiguredControllers = _hardwareState.UnconfiguredControllers;
         _drives = _hardwareState.Drives;
-        GwPathText.Text = _hostToolsState.CurrentPath;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
-        HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
         Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
         _initializing = false;
     }
@@ -127,11 +132,6 @@ public partial class OptionsWindow : Window
         HardwareSection.SaveDriveRequested += SaveHardwareRow_Click;
         HardwareSection.ForgetDriveRequested += ForgetHardwareRow_Click;
         HardwareSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
-        HardwareSection.BrowseGwRequested += BrowseGw_Click;
-        HardwareSection.DetectHostToolsRequested += DetectHostTools_Click;
-        HardwareSection.CheckHostToolsRequested += CheckHostTools_Click;
-        HardwareSection.DownloadHostToolsRequested += DownloadHostTools_Click;
-        HardwareSection.RollbackHostToolsRequested += RollbackHostTools_Click;
 
     }
 
@@ -163,75 +163,9 @@ public partial class OptionsWindow : Window
 
     internal void RefreshLocalizedContent()
     {
-        HostToolsStatus.Text = File.Exists(GwPathText.Text)
-            ? LocExtension.Get("HostTools.Detected", GwPathText.Text)
-            : LocExtension.Get("HostTools.None");
+        _hostToolsOptionsController.RefreshLocalizedContent();
         _tagOptionsController.RefreshLocalizedContent();
         _loggingOptionsController.RefreshLocalizedContent();
-    }
-
-    private async void BrowseGw_Click(object sender, RoutedEventArgs e)
-    {
-        var dialog = new OpenFileDialog { Filter = LocExtension.Get("Options.ExecutableFilter") };
-        if (dialog.ShowDialog(this) == true) { SelectHostTools(new(dialog.FileName, null, false)); await PersistSettingsAsync(); }
-    }
-
-    private async void DetectHostTools_Click(object sender, RoutedEventArgs e)
-    {
-        var found = _hostToolsState.Detect(GwPathText.Text);
-        if (found is null) { HostToolsStatus.Text = LocExtension.Get("HostTools.None"); return; }
-        SelectHostTools(found);
-        HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", found.ExecutablePath);
-        await PersistSettingsAsync();
-    }
-
-    private async void CheckHostTools_Click(object sender, RoutedEventArgs e)
-    {
-        await WithHostToolsBusyAsync(async () =>
-        {
-            var release = await _hostToolsState.CheckLatestAsync();
-            HostToolsStatus.Text = LocExtension.Get("HostTools.Latest", release.Version);
-            await PersistSettingsAsync();
-        });
-    }
-
-    private async void DownloadHostTools_Click(object sender, RoutedEventArgs e)
-    {
-        await WithHostToolsBusyAsync(async () =>
-        {
-            var release = await _hostToolsState.CheckLatestAsync();
-            if (MessageBox.Show(this, LocExtension.Get("HostTools.DownloadConfirm", release.Version), LocExtension.Get("HostTools.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
-            HostToolsProgress.Visibility = Visibility.Visible;
-            var progress = new Progress<double>(value => HostToolsProgress.Value = value * 100);
-            var installed = await _hostToolsState.InstallAsync(release, progress);
-            GwPathText.Text = _hostToolsState.CurrentPath ?? "";
-            HostToolsStatus.Text = LocExtension.Get("HostTools.Installed", installed.Version ?? release.Version);
-            await PersistSettingsAsync();
-        });
-    }
-
-    private async void RollbackHostTools_Click(object sender, RoutedEventArgs e)
-    {
-        try { _hostToolsState.Rollback(GwPathText.Text); }
-        catch (FileNotFoundException) { MessageBox.Show(this, LocExtension.Get("HostTools.NoPrevious"), LocExtension.Get("HostTools.Title")); return; }
-        GwPathText.Text = _hostToolsState.CurrentPath ?? "";
-        HostToolsStatus.Text = LocExtension.Get("HostTools.Detected", GwPathText.Text);
-        await PersistSettingsAsync();
-    }
-
-    private void SelectHostTools(HostToolsInstallation installation)
-    {
-        _hostToolsState.SetCurrentPath(GwPathText.Text);
-        _hostToolsState.Select(installation);
-        GwPathText.Text = _hostToolsState.CurrentPath ?? "";
-    }
-
-    private async Task WithHostToolsBusyAsync(Func<Task> action)
-    {
-        DownloadHostToolsButton.IsEnabled = false;
-        try { await action(); }
-        catch (Exception exception) { ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error); }
-        finally { DownloadHostToolsButton.IsEnabled = true; HostToolsProgress.Visibility = Visibility.Collapsed; }
     }
 
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>
@@ -241,11 +175,11 @@ public partial class OptionsWindow : Window
 
     private async void ScanHardware_Click(object sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(GwPathText.Text) || !File.Exists(GwPathText.Text)) { MessageBox.Show(this, LocExtension.Get("Hardware.GwRequired"), LocExtension.Get("Hardware.ScanTitle")); return; }
+        if (string.IsNullOrWhiteSpace(_hostToolsOptionsController.CurrentPath) || !File.Exists(_hostToolsOptionsController.CurrentPath)) { MessageBox.Show(this, LocExtension.Get("Hardware.GwRequired"), LocExtension.Get("Hardware.ScanTitle")); return; }
         ScanButton.IsEnabled = false;
         try
         {
-            var scanned = await _hardwareRegistry.ScanAsync(GwPathText.Text, _controllers);
+            var scanned = await _hardwareRegistry.ScanAsync(_hostToolsOptionsController.CurrentPath, _controllers);
             _controllers.Clear();
             _controllers.AddRange(scanned.ConfiguredControllers);
             MergeUnconfigured(scanned.UnconfiguredControllers);
@@ -311,8 +245,7 @@ public partial class OptionsWindow : Window
     private void ApplyControlsToSettings()
     {
         _generalOptionsController.ApplyTo(_settings);
-        _hostToolsState.SetCurrentPath(GwPathText.Text);
-        _hostToolsState.ApplyTo(_settings);
+        _hostToolsOptionsController.ApplyTo(_settings);
         _tagOptionsController.ApplyTo(_settings);
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
