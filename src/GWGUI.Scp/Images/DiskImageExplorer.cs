@@ -279,6 +279,7 @@ public sealed class DiskImageExplorer(
         if (exhaustive || families.Contains(ScpFamily.Iso))
         {
             yield return () => atariScpReader.ReadAsync(path, null, cancellationToken);
+            yield return () => atariScpReader.ReadAsync(path, "acorn.adfs.800", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "amstrad.cpc", cancellationToken);
             yield return () => atariScpReader.ReadAsync(path, "amstrad.pcw", cancellationToken);
             yield return () => commodoreScpReader.ReadAsync(path, "commodore.1581", cancellationToken);

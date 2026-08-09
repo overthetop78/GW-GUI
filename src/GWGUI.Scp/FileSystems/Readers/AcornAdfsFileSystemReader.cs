@@ -21,25 +21,27 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     {
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != BlockSize || image.BlockCount != 800)
             return false;
-        return TryReadDirectory(image, 4, out _);
+        var layout = CreateLayout(image);
+        return TryReadDirectory(image, layout.RootAddress, layout.Resolve, out _);
     }
 
     public FileSystemVolume Read(SectorImage image)
     {
         if (!CanRead(image)) throw new InvalidDataException("The image does not contain a supported Acorn ADFS catalogue.");
         var warnings = new List<string>();
+        var layout = CreateLayout(image);
         var visited = new HashSet<int>();
-        var root = ReadDirectory(image, 4, visited, warnings, 0);
-        var map = image.GetBlock(0).Span;
-        var volumeName = ReadOldMapName(map);
-        var freeBytes = ReadOldMapFreeBytes(map, image.Capacity);
+        var root = ReadDirectory(image, layout.RootAddress, layout.Resolve, visited, warnings, 0);
+        var volumeName = layout.VolumeName;
+        var freeBytes = layout.FreeBytes;
         return new(volumeName.Length == 0 ? root.Name : volumeName, "Acorn ADFS", image.Capacity, freeBytes,
             null, null, root.Children, warnings);
     }
 
     private sealed record DirectoryData(string Name, string Title, IReadOnlyList<FileSystemEntry> Children);
 
-    private static DirectoryData ReadDirectory(SectorImage image, int startBlock, HashSet<int> visited,
+    private static DirectoryData ReadDirectory(SectorImage image, int startBlock, AddressResolver resolve,
+        HashSet<int> visited,
         List<string> warnings, int depth)
     {
         if (depth > 64)
@@ -52,7 +54,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
             warnings.Add($"The ADFS directory at sector {startBlock} is cyclic or referenced more than once.");
             return new("", "", []);
         }
-        if (!TryReadDirectory(image, startBlock, out var directory))
+        if (!TryReadDirectory(image, startBlock, resolve, out var directory))
             throw new InvalidDataException($"The ADFS directory at sector {startBlock} is invalid or incomplete.");
 
         var entries = new List<FileSystemEntry>();
@@ -70,15 +72,15 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
             var isDirectory = (attributes & 0x08) != 0;
             IReadOnlyList<FileSystemEntry> children = [];
             IReadOnlyList<byte>? content = null;
-            var metadataValid = indirectAddress > 0 && (long)indirectAddress * FileCoreUnitSize < image.Capacity;
+            var metadataValid = resolve(indirectAddress, 0, out _);
             if (isDirectory && metadataValid)
             {
-                try { children = ReadDirectory(image, indirectAddress, visited, warnings, depth + 1).Children; }
+                try { children = ReadDirectory(image, indirectAddress, resolve, visited, warnings, depth + 1).Children; }
                 catch (InvalidDataException exception) { warnings.Add($"{name}: {exception.Message}"); metadataValid = false; }
             }
             else if (!isDirectory)
             {
-                content = ReadFile(image, indirectAddress, length, name, warnings, ref metadataValid);
+                content = ReadFile(image, indirectAddress, length, resolve, name, warnings, ref metadataValid);
             }
             var type = HasRiscOsTimestamp(load) ? (load >> 8) & 0xFFF : 0u;
             var comment = HasRiscOsTimestamp(load)
@@ -97,11 +99,12 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
             .ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray());
     }
 
-    private static IReadOnlyList<byte>? ReadFile(SectorImage image, int startBlock, uint length, string name,
+    private static IReadOnlyList<byte>? ReadFile(SectorImage image, int startBlock, uint length, AddressResolver resolve,
+        string name,
         List<string> warnings, ref bool metadataValid)
     {
         if (length == 0) return [];
-        if (length > int.MaxValue || startBlock <= 0 || (long)startBlock * FileCoreUnitSize >= image.Capacity)
+        if (length > int.MaxValue || startBlock <= 0 || !resolve(startBlock, 0, out _))
         {
             warnings.Add($"{name}: the ADFS data address or length is invalid.");
             metadataValid = false;
@@ -109,9 +112,14 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
         }
         var output = new byte[(int)length];
         var copied = 0;
-        var byteOffset = (long)startBlock * FileCoreUnitSize;
         while (copied < output.Length)
         {
+            if (!resolve(startBlock, copied, out var byteOffset))
+            {
+                warnings.Add($"{name}: the ADFS data address is invalid.");
+                metadataValid = false;
+                break;
+            }
             var blockNumber = checked((int)(byteOffset / BlockSize));
             var offsetInBlock = checked((int)(byteOffset % BlockSize));
             if (!image.TryGetBlock(blockNumber, out var block))
@@ -123,35 +131,52 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
             var count = Math.Min(block.Data.Count - offsetInBlock, output.Length - copied);
             block.Data.Skip(offsetInBlock).Take(count).ToArray().CopyTo(output, copied);
             copied += count;
-            byteOffset += count;
         }
         return output;
     }
 
-    private static bool TryReadDirectory(SectorImage image, int startBlock, out byte[] directory)
+    private static bool TryReadDirectory(SectorImage image, int startBlock, AddressResolver resolve,
+        out byte[] directory)
     {
-        if (!TryReadBytes(image, (long)startBlock * FileCoreUnitSize, DirectorySize, out directory)) return false;
+        if (!TryReadBytes(image, startBlock, resolve, DirectorySize, out directory)) return false;
         var header = System.Text.Encoding.ASCII.GetString(directory, 1, 4);
         var footer = System.Text.Encoding.ASCII.GetString(directory, DirectorySize - 5, 4);
         return (header is "Hugo" or "Nick") && footer == header && directory[0] == directory[DirectorySize - 6];
     }
 
-    private static bool TryReadBytes(SectorImage image, long byteOffset, int length, out byte[] output)
+    private static bool TryReadBytes(SectorImage image, int indirectAddress, AddressResolver resolve, int length,
+        out byte[] output)
     {
         output = new byte[length];
         var copied = 0;
         while (copied < length)
         {
+            if (!resolve(indirectAddress, copied, out var byteOffset)) return false;
             var blockNumber = checked((int)(byteOffset / BlockSize));
             var offsetInBlock = checked((int)(byteOffset % BlockSize));
             if (!image.TryGetBlock(blockNumber, out var block) || block.Data.Count != BlockSize) return false;
             var count = Math.Min(BlockSize - offsetInBlock, length - copied);
             block.Data.Skip(offsetInBlock).Take(count).ToArray().CopyTo(output, copied);
             copied += count;
-            byteOffset += count;
         }
         return true;
     }
+
+    private static Layout CreateLayout(SectorImage image)
+    {
+        if (AcornFileCoreNewMap.TryCreate(image, out var map) && map is not null)
+            return new(map.Record.RootAddress, map.Record.DiscName, map.ReadFreeBytes(), map.TryResolveByteOffset);
+        var oldMap = image.GetBlock(0).Span;
+        return new(4, ReadOldMapName(oldMap), ReadOldMapFreeBytes(oldMap, image.Capacity),
+            (int address, long offset, out long physicalOffset) =>
+            {
+                physicalOffset = (long)address * FileCoreUnitSize + offset;
+                return address > 0 && offset >= 0 && physicalOffset >= 0 && physicalOffset < image.Capacity;
+            });
+    }
+
+    private delegate bool AddressResolver(int indirectAddress, long objectByteOffset, out long physicalByteOffset);
+    private sealed record Layout(int RootAddress, string VolumeName, long FreeBytes, AddressResolver Resolve);
 
     private static string ReadOldMapName(ReadOnlySpan<byte> map)
     {
