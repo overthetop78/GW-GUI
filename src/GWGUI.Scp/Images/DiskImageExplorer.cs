@@ -220,6 +220,9 @@ public sealed class DiskImageExplorer(
             !image.FormatId.Equals("mac.1440", StringComparison.OrdinalIgnoreCase))
             return Retag(image, "mac.1440");
         if (readerId.Equals("fat12", StringComparison.OrdinalIgnoreCase) &&
+            TryCreateMsxInterpretation(image, out var msxInterpretation))
+            return msxInterpretation;
+        if (readerId.Equals("fat12", StringComparison.OrdinalIgnoreCase) &&
             image.FormatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) &&
             TryReadFatGeometry(image, out var cylinders, out var heads, out var sectorsPerTrack, out var totalSectors) &&
             totalSectors < image.BlockCount)
