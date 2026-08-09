@@ -50,6 +50,7 @@ public partial class OptionsWindow : Window
     private readonly HardwareOptionsState _hardwareState;
     private readonly ProfileOptionsState _profileState;
     private readonly ProfileOptionsController _profileOptionsController;
+    private readonly GeneralOptionsController _generalOptionsController;
     private readonly TagOptionsController _tagOptionsController;
     private readonly LoggingOptionsController _loggingOptionsController;
     private readonly List<ControllerSettings> _controllers;
@@ -72,6 +73,14 @@ public partial class OptionsWindow : Window
         InitializeComponent();
         ConnectSections();
         _settings = settings;
+        _generalOptionsController = new GeneralOptionsController(
+            this,
+            GeneralSection,
+            settings,
+            () => _initializing,
+            PersistSettingsAsync,
+            RefreshLocalizedContent,
+            (key, arguments) => LocExtension.Get(key, arguments));
         _profileState = new ProfileOptionsState(settings.Profiles);
         _profileOptionsController = new ProfileOptionsController(
             this,
@@ -101,13 +110,7 @@ public partial class OptionsWindow : Window
         _controllers = _hardwareState.Controllers;
         _unconfiguredControllers = _hardwareState.UnconfiguredControllers;
         _drives = _hardwareState.Drives;
-        ImagesFolderText.Text = settings.DefaultImagesFolder;
         GwPathText.Text = _hostToolsState.CurrentPath;
-        LanguageCombo.ItemsSource = UiLanguageCatalog.Available;
-        LanguageCombo.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language =>
-            string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
-            ?? UiLanguageCatalog.Fallback;
-        ThemeCombo.SelectedIndex = (int)settings.Theme;
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
         HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
@@ -118,11 +121,6 @@ public partial class OptionsWindow : Window
     private void ConnectSections()
     {
         RegisterSectionNames();
-
-        GeneralSection.LanguageChanged += Language_SelectionChanged;
-        GeneralSection.ThemeChanged += Theme_SelectionChanged;
-        GeneralSection.BrowseImagesFolderRequested += BrowseImagesFolder_Click;
-        GeneralSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
 
         HardwareSection.ScanRequested += ScanHardware_Click;
         HardwareSection.AddDriveRequested += AddDrive_Click;
@@ -163,18 +161,6 @@ public partial class OptionsWindow : Window
         RegisterName(nameof(ConvertProfilesList), ConvertProfilesList);
     }
 
-    private async void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (_initializing || LanguageCombo.SelectedItem is not UiLanguage language ||
-            string.Equals(_settings.Language, language.Code, StringComparison.OrdinalIgnoreCase)) return;
-
-        _settings.Language = language.Code;
-        if (Application.Current is App app) app.SetLanguage(language.Code);
-        else LocalizationSource.Instance.Refresh();
-        RefreshLocalizedContent();
-        await PersistSettingsAsync();
-    }
-
     internal void RefreshLocalizedContent()
     {
         HostToolsStatus.Text = File.Exists(GwPathText.Text)
@@ -182,14 +168,6 @@ public partial class OptionsWindow : Window
             : LocExtension.Get("HostTools.None");
         _tagOptionsController.RefreshLocalizedContent();
         _loggingOptionsController.RefreshLocalizedContent();
-    }
-
-    private async void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (_initializing || ThemeCombo.SelectedIndex < 0) return;
-        _settings.Theme = (AppTheme)ThemeCombo.SelectedIndex;
-        if (Application.Current is App app) app.SetTheme(_settings.Theme);
-        await PersistSettingsAsync();
     }
 
     private async void BrowseGw_Click(object sender, RoutedEventArgs e)
@@ -254,12 +232,6 @@ public partial class OptionsWindow : Window
         try { await action(); }
         catch (Exception exception) { ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error); }
         finally { DownloadHostToolsButton.IsEnabled = true; HostToolsProgress.Visibility = Visibility.Collapsed; }
-    }
-
-    private async void BrowseImagesFolder_Click(object sender, RoutedEventArgs e)
-    {
-        var dialog = new OpenFolderDialog { Multiselect = false, Title = LocExtension.Get("Options.ImagesFolder") };
-        if (dialog.ShowDialog(this) == true) { ImagesFolderText.Text = dialog.FolderName; await PersistSettingsAsync(); }
     }
 
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>
@@ -338,11 +310,9 @@ public partial class OptionsWindow : Window
 
     private void ApplyControlsToSettings()
     {
-        _settings.DefaultImagesFolder = ImagesFolderText.Text.Trim();
+        _generalOptionsController.ApplyTo(_settings);
         _hostToolsState.SetCurrentPath(GwPathText.Text);
         _hostToolsState.ApplyTo(_settings);
-        if (LanguageCombo.SelectedItem is UiLanguage language) _settings.Language = language.Code;
-        _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
         _tagOptionsController.ApplyTo(_settings);
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
