@@ -53,6 +53,7 @@ public partial class OptionsWindow : Window
     private readonly GeneralOptionsController _generalOptionsController;
     private readonly TagOptionsController _tagOptionsController;
     private readonly LoggingOptionsController _loggingOptionsController;
+    private readonly HardwareOptionsController _hardwareOptionsController;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
@@ -117,8 +118,16 @@ public partial class OptionsWindow : Window
         _controllers = _hardwareState.Controllers;
         _unconfiguredControllers = _hardwareState.UnconfiguredControllers;
         _drives = _hardwareState.Drives;
-        RefreshHardwareRows();
-        DrivesGrid.ItemsSource = Hardware;
+        _hardwareOptionsController = new HardwareOptionsController(
+            this,
+            HardwareSection,
+            _hardwareState,
+            Hardware,
+            _hardwareRegistry,
+            () => _hostToolsOptionsController.CurrentPath,
+            PersistSettingsAsync,
+            ShowLoggedError);
+        _hardwareOptionsController.Initialize();
         Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
         _initializing = false;
     }
@@ -173,73 +182,29 @@ public partial class OptionsWindow : Window
 
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await PersistSettingsAsync();
 
-    private async void ScanHardware_Click(object sender, RoutedEventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(_hostToolsOptionsController.CurrentPath) || !File.Exists(_hostToolsOptionsController.CurrentPath)) { MessageBox.Show(this, LocExtension.Get("Hardware.GwRequired"), LocExtension.Get("Hardware.ScanTitle")); return; }
-        ScanButton.IsEnabled = false;
-        try
-        {
-            var scanned = await _hardwareRegistry.ScanAsync(_hostToolsOptionsController.CurrentPath, _controllers);
-            _controllers.Clear();
-            _controllers.AddRange(scanned.ConfiguredControllers);
-            MergeUnconfigured(scanned.UnconfiguredControllers);
-            RefreshHardwareRows();
-            await PersistSettingsAsync();
-        }
-        catch (Exception exception) { ShowLoggedError(exception, "Scanning hardware", "Hardware.ScanTitle", MessageBoxImage.Error); }
-        finally { ScanButton.IsEnabled = true; }
-    }
+    private async void ScanHardware_Click(object sender, RoutedEventArgs e) => await _hardwareOptionsController.ScanAsync();
 
-    private void AddDrive_Click(object sender, RoutedEventArgs e)
-    {
-        var selected = DrivesGrid.SelectedItem as HardwareRow;
-        var controllerId = selected?.UsbId ?? (_controllers.Count == 1 ? _controllers[0].UsbId : null);
-        if (controllerId is null) { MessageBox.Show(this, LocExtension.Get("Hardware.SelectController"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
-        if (_hardwareState.HasMaximumDrives(controllerId)) { MessageBox.Show(this, LocExtension.Get("Hardware.MaximumDrives"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
-        Hardware.Add(_hardwareState.CreateDraftRow(controllerId));
-        DrivesGrid.SelectedItem = Hardware[^1];
-    }
+    private void AddDrive_Click(object sender, RoutedEventArgs e) => _hardwareOptionsController.AddDrive();
 
     private async void SaveHardwareRow_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not FrameworkElement { DataContext: HardwareRow row }) return;
-        if (!_hardwareState.Save(row)) { MessageBox.Show(this, LocExtension.Get("Hardware.MaximumDrives"), LocExtension.Get("Hardware.DriveDialogTitle")); return; }
-        RefreshHardwareRows();
-        await PersistSettingsAsync();
+        await _hardwareOptionsController.SaveAsync(row);
     }
 
     private async void ForgetHardwareRow_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not FrameworkElement { DataContext: HardwareRow row }) return;
-        var lastDrive = row.DriveId is not null && _drives.Count(item => item.ControllerUsbId == row.UsbId) == 1;
-        var message = lastDrive ? LocExtension.Get("Hardware.ForgetLastConfirm") : LocExtension.Get("Hardware.ForgetConfirm");
-        if (MessageBox.Show(this, message, LocExtension.Get("Hardware.Forget"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-        RemoveHardwareRow(row);
-        await PersistSettingsAsync();
+        await _hardwareOptionsController.ForgetAsync(row);
     }
 
-    private void RemoveHardwareRow(HardwareRow row)
-    {
-        // A row added with "Add drive" does not exist in the saved configuration yet.
-        // Removing it must therefore affect only that visible row.
-        if (row.DriveId is null && row.Configured)
-        {
-            Hardware.Remove(row);
-            return;
-        }
-        _hardwareState.Remove(row);
-        RefreshHardwareRows();
-    }
+    private void RemoveHardwareRow(HardwareRow row) => _hardwareOptionsController.Remove(row);
 
-    private void RefreshHardwareRows()
-    {
-        Hardware.Clear();
-        foreach (var row in _hardwareState.CreateRows()) Hardware.Add(row);
-    }
+    private void RefreshHardwareRows() => _hardwareOptionsController.RefreshRows();
 
     internal void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers)
     {
-        _hardwareState.MergeUnconfigured(detectedControllers);
+        _hardwareOptionsController.MergeUnconfigured(detectedControllers);
     }
 
     private void ApplyControlsToSettings()
@@ -247,9 +212,7 @@ public partial class OptionsWindow : Window
         _generalOptionsController.ApplyTo(_settings);
         _hostToolsOptionsController.ApplyTo(_settings);
         _tagOptionsController.ApplyTo(_settings);
-        _settings.Controllers = _controllers;
-        _settings.UnconfiguredControllers = _unconfiguredControllers;
-        _settings.Drives = _drives;
+        _hardwareOptionsController.ApplyTo(_settings);
         _profileOptionsController.ApplyTo(_settings);
     }
 
