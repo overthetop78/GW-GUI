@@ -49,6 +49,7 @@ public partial class OptionsWindow : Window
     private readonly AppSettings _settings;
     private readonly HardwareOptionsState _hardwareState;
     private readonly ProfileOptionsState _profileState;
+    private readonly TagOptionsController _tagOptionsController;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
@@ -57,10 +58,8 @@ public partial class OptionsWindow : Window
     private bool _initializing = true;
     private readonly ISettingsStore _settingsStore;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
-    private int _tagExampleIndex;
     private bool _closingAfterSave;
     private bool _closeInProgress;
-    private bool _refreshingTagPresets;
     private ProfileOptionRow? _lastProfileClick;
     private DateTime _lastProfileClickAt;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
@@ -74,6 +73,12 @@ public partial class OptionsWindow : Window
         ConnectSections();
         _settings = settings;
         _profileState = new ProfileOptionsState(settings.Profiles);
+        _tagOptionsController = new TagOptionsController(
+            GeneralSection,
+            settings,
+            () => _initializing,
+            PersistSettingsAsync,
+            (key, arguments) => LocExtension.Get(key, arguments));
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
         var managedRoot = StoragePaths.HostToolsDirectory;
         var hostToolsManager = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
@@ -93,11 +98,6 @@ public partial class OptionsWindow : Window
         RefreshLogOptions();
         LogOptionsList.ItemsSource = LogOptions;
         LogsDirectoryText.Text = StoragePaths.LogsDirectory;
-        UseTagsCheck.IsChecked = settings.Conversion.AddTags;
-        TagPatternText.Text = settings.Conversion.TagPattern;
-        RefreshTagPresets();
-        RefreshRecentTagPatterns();
-        RefreshTagVariables();
         RefreshHardwareRows();
         DrivesGrid.ItemsSource = Hardware;
         ReadProfilesList.ItemsSource = ReadProfiles;
@@ -106,7 +106,6 @@ public partial class OptionsWindow : Window
         HostToolsStatus.Text = File.Exists(settings.GwExecutablePath) ? LocExtension.Get("HostTools.Detected", settings.GwExecutablePath!) : LocExtension.Get("HostTools.None");
         Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
         _initializing = false;
-        UpdateTagPreview();
     }
 
     private void ConnectSections()
@@ -115,13 +114,7 @@ public partial class OptionsWindow : Window
 
         GeneralSection.LanguageChanged += Language_SelectionChanged;
         GeneralSection.ThemeChanged += Theme_SelectionChanged;
-        GeneralSection.UseTagsChanged += UseTags_Changed;
         GeneralSection.BrowseImagesFolderRequested += BrowseImagesFolder_Click;
-        GeneralSection.TagPatternChanged += TagPattern_Changed;
-        GeneralSection.TagPresetChanged += TagPreset_SelectionChanged;
-        GeneralSection.TagPatternEditingFinished += TagPattern_LostKeyboardFocus;
-        GeneralSection.RecentTagPatternActivated += RecentTagPattern_DoubleClick;
-        GeneralSection.NextTagExampleRequested += NextTagExample_Click;
         GeneralSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
 
         LogsSection.LogRowChanged += LogRow_Changed;
@@ -190,9 +183,7 @@ public partial class OptionsWindow : Window
         HostToolsStatus.Text = File.Exists(GwPathText.Text)
             ? LocExtension.Get("HostTools.Detected", GwPathText.Text)
             : LocExtension.Get("HostTools.None");
-        UpdateTagPreview();
-        RefreshTagPresets();
-        RefreshTagVariables();
+        _tagOptionsController.RefreshLocalizedContent();
         RefreshLogOptions();
     }
 
@@ -201,13 +192,6 @@ public partial class OptionsWindow : Window
         if (_initializing || ThemeCombo.SelectedIndex < 0) return;
         _settings.Theme = (AppTheme)ThemeCombo.SelectedIndex;
         if (Application.Current is App app) app.SetTheme(_settings.Theme);
-        await PersistSettingsAsync();
-    }
-
-    private async void UseTags_Changed(object sender, RoutedEventArgs e)
-    {
-        if (_initializing) return;
-        _settings.Conversion.AddTags = UseTagsCheck.IsChecked == true;
         await PersistSettingsAsync();
     }
 
@@ -310,77 +294,8 @@ public partial class OptionsWindow : Window
         if (dialog.ShowDialog(this) == true) { ImagesFolderText.Text = dialog.FolderName; await PersistSettingsAsync(); }
     }
 
-    private void TagPattern_Changed(object sender, TextChangedEventArgs e)
-    {
-        if (!_initializing && TagPresetCombo is not null && !OptionsDefinitions.TagPresets.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase)))
-            TagPresetCombo.SelectedItem = null;
-        UpdateTagPreview();
-    }
-
-    private async void TagPreset_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (_initializing || _refreshingTagPresets || TagPresetCombo.SelectedItem is not TagPresetOption preset) return;
-        TagPatternText.Text = preset.Pattern;
-        await PersistSettingsAsync();
-    }
-
-    private async void TagPattern_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-    {
-        if (!OptionsDefinitions.TagPresets.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase))) RememberCustomTagPattern(TagPatternText.Text);
-        await PersistSettingsAsync();
-    }
-
-    private async void RecentTagPattern_DoubleClick(object sender, MouseButtonEventArgs e)
-    {
-        if (RecentTagPatterns.SelectedItem is not RecentTagPatternOption { Pattern: not null } item) return;
-        TagPatternText.Text = item.Pattern;
-        await PersistSettingsAsync();
-    }
-
-    private void NextTagExample_Click(object sender, RoutedEventArgs e) { _tagExampleIndex++; UpdateTagPreview(); }
-
-    private void UpdateTagPreview()
-    {
-        if (TagPatternPreview is null || TagPatternText is null) return;
-        TagPatternPreview.Text = LocExtension.Get("Options.TagPatternPreview", TagPatternFormatter.CreateExample(TagPatternText.Text, _tagExampleIndex));
-    }
-
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>
         TagPatternFormatter.Render(pattern, name, family, format, extension, timestamp);
-
-    private void RememberCustomTagPattern(string pattern)
-    {
-        if (!TagPatternFormatter.Remember(_settings.Conversion.RecentCustomTagPatterns, pattern)) return;
-        RefreshRecentTagPatterns();
-    }
-
-    private void RefreshTagPresets()
-    {
-        if (TagPresetCombo is null || TagPatternText is null) return;
-        var current = TagPatternText.Text;
-        var presets = OptionsDefinitions.TagPresets.Select(item => new TagPresetOption(LocExtension.Get(item.Key), item.Pattern)).ToArray();
-        _refreshingTagPresets = true;
-        try
-        {
-            TagPresetCombo.ItemsSource = presets;
-            TagPresetCombo.SelectedItem = presets.FirstOrDefault(item => string.Equals(item.Pattern, current, StringComparison.OrdinalIgnoreCase));
-        }
-        finally { _refreshingTagPresets = false; }
-    }
-
-    private void RefreshRecentTagPatterns()
-    {
-        if (RecentTagPatterns is null) return;
-        RecentTagPatterns.ItemsSource = Enumerable.Range(0, 5)
-            .Select(index => new RecentTagPatternOption(index + 1, index < _settings.Conversion.RecentCustomTagPatterns.Count ? _settings.Conversion.RecentCustomTagPatterns[index] : null))
-            .ToArray();
-    }
-
-    private void RefreshTagVariables()
-    {
-        if (TagVariablesList is null) return;
-        TagVariablesList.ItemsSource = OptionsDefinitions.TagVariables.Select(item => new TagVariableOption(item.Token, LocExtension.Get(item.Key))).ToArray();
-    }
 
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await PersistSettingsAsync();
 
@@ -515,8 +430,7 @@ public partial class OptionsWindow : Window
         _hostToolsState.ApplyTo(_settings);
         if (LanguageCombo.SelectedItem is UiLanguage language) _settings.Language = language.Code;
         _settings.Theme = (AppTheme)Math.Max(0, ThemeCombo.SelectedIndex);
-        _settings.Conversion.TagPattern = TagPatternText.Text;
-        _settings.Conversion.AddTags = UseTagsCheck.IsChecked == true;
+        _tagOptionsController.ApplyTo(_settings);
         _settings.Controllers = _controllers;
         _settings.UnconfiguredControllers = _unconfiguredControllers;
         _settings.Drives = _drives;
