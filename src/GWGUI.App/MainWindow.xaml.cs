@@ -58,6 +58,14 @@ public partial class MainWindow : Window
     private TextBox ReadFolder => ReadFolderBlock.Input;
     private TextBox ReadFileName => ReadFileNameBlock.FileNameTextBox;
     private TextBox ReadExtensionText => ReadFileNameBlock.ExtensionTextBox;
+    private CheckBox ReadRevsEnabled => ReadAdvancedBlock.RevsEnabledCheckBox;
+    private CheckBox ReadAutoNumber => ReadAdvancedBlock.AutoNumberCheckBox;
+    private ComboBox ReadSequenceKind => ReadAdvancedBlock.SequenceKindComboBox;
+    private ComboBox ReadSequenceWidth => ReadAdvancedBlock.SequenceWidthComboBox;
+    private TextBox ReadSequenceValue => ReadAdvancedBlock.SequenceValueTextBox;
+    private TextBlock ReadNamePreview => ReadAdvancedBlock.NamePreviewTextBlock;
+    private CheckBox ReadDiskDefsEnabled => ReadAdvancedBlock.DiskDefinitionsEnabled;
+    private TextBox ReadDiskDefsValue => ReadAdvancedBlock.DiskDefinitionsValue;
     private TextBox CommandPreview => TerminalBlock?.CommandTextBox!;
     private TextBox LogOutput => TerminalBlock?.OutputTextBox!;
     private TerminalSection ConsolePanel => TerminalBlock;
@@ -184,6 +192,13 @@ public partial class MainWindow : Window
         ReadProfileBlock.ResetButton.Click += ResetReadProfile_Click;
         ReadFolderBlock.BrowseButton.Click += BrowseReadFolder_Click;
         ReadFileName.TextChanged += ReadInput_Changed;
+        ReadAdvancedBlock.InputChanged += ReadInput_Changed;
+        ReadAdvancedBlock.FakeIndexChecked += ReadFakeIndex_Checked;
+        ReadAdvancedBlock.HardSectorsChecked += ReadHardSectors_Checked;
+        ReadAdvancedBlock.DenselChecked += ReadDensel_Checked;
+        ReadAdvancedBlock.Tg43Checked += ReadTg43_Checked;
+        ReadAdvancedBlock.SequenceKindChanged += ReadSequenceKind_Changed;
+        ReadAdvancedBlock.BrowseDiskDefinitionsRequested += BrowseReadDiskDefs_Click;
         TerminalBlock.CopyButton.Click += CopyConsole_Click;
 
         RegisterName(nameof(RawScpRadio), RawScpRadio);
