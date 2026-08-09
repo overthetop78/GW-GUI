@@ -17,6 +17,7 @@ using GWGUI.App.Localization;
 using GWGUI.Domain.HostTools;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.App.Services;
+using GWGUI.App.Options;
 
 namespace GWGUI.App;
 
@@ -46,31 +47,6 @@ public partial class OptionsWindow : Window
     public ObservableCollection<ProfileOptionRow> WriteProfiles { get; } = [];
     public ObservableCollection<ProfileOptionRow> ConvertProfiles { get; } = [];
     public ObservableCollection<LogOptionRow> LogOptions { get; } = [];
-    private static readonly (string Action, string LabelKey)[] LogActionDefinitions =
-    [
-        ("read", "Tab.Read"), ("write", "Tab.Write"), ("convert", "Tab.Convert"),
-        ("erase", "Options.LogActionErase"), ("clean", "Options.LogActionClean"),
-        ("info", "Tool.Title.Info"), ("bandwidth", "Tool.Title.Bandwidth"), ("rpm", "Tool.Title.Rpm"),
-        ("seek", "Tool.Title.Seek"), ("pin", "Tool.Title.Pin"), ("reset", "Tool.Title.Reset"),
-        ("delays", "Tool.Title.Delays"), ("update", "Tool.Title.Update"), ("align", "Tool.Title.Align")
-    ];
-    private static readonly (string Key, string Pattern)[] TagPresetDefinitions =
-    [
-        ("Options.TagPresetFamily", "[{FAMILY}] "),
-        ("Options.TagPresetFormat", "[{FORMAT}] "),
-        ("Options.TagPresetFamilyFormat", "[{FAMILY}-{FORMAT}] "),
-        ("Options.TagPresetFamilyExtension", "[{FAMILY}-{EXTENSION}] "),
-        ("Options.TagPresetDetailed", "[{FAMILY}-{FORMAT}-{EXTENSION}] ")
-    ];
-    private static readonly (string Token, string Key)[] TagVariableDefinitions =
-    [
-        ("{NAME}", "Options.TagVariableName"), ("{FAMILY}", "Options.TagVariableFamily"),
-        ("{FORMAT}", "Options.TagVariableFormat"), ("{EXTENSION}", "Options.TagVariableExtension"),
-        ("{DATE:YYYY-MM-DD}", "Options.TagVariableDateIso"), ("{DATE:YYYYMMDD}", "Options.TagVariableDateCompact"),
-        ("{DATE:DD-MM-YYYY}", "Options.TagVariableDateLocal"), ("{TIME:HH-MM-SS}", "Options.TagVariableTimeFull"),
-        ("{TIME:HHMMSS}", "Options.TagVariableTimeCompact"), ("{TIME:HH-MM}", "Options.TagVariableTimeShort")
-    ];
-
     public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
     {
         InitializeComponent();
@@ -268,7 +244,7 @@ public partial class OptionsWindow : Window
 
     private void TagPattern_Changed(object sender, TextChangedEventArgs e)
     {
-        if (!_initializing && TagPresetCombo is not null && !TagPresetDefinitions.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase)))
+        if (!_initializing && TagPresetCombo is not null && !OptionsDefinitions.TagPresets.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase)))
             TagPresetCombo.SelectedItem = null;
         UpdateTagPreview();
     }
@@ -282,7 +258,7 @@ public partial class OptionsWindow : Window
 
     private async void TagPattern_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        if (!TagPresetDefinitions.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase))) RememberCustomTagPattern(TagPatternText.Text);
+        if (!OptionsDefinitions.TagPresets.Any(item => string.Equals(item.Pattern, TagPatternText.Text, StringComparison.OrdinalIgnoreCase))) RememberCustomTagPattern(TagPatternText.Text);
         await PersistSettingsAsync();
     }
 
@@ -337,7 +313,7 @@ public partial class OptionsWindow : Window
     {
         if (TagPresetCombo is null || TagPatternText is null) return;
         var current = TagPatternText.Text;
-        var presets = TagPresetDefinitions.Select(item => new TagPresetOption(LocExtension.Get(item.Key), item.Pattern)).ToArray();
+        var presets = OptionsDefinitions.TagPresets.Select(item => new TagPresetOption(LocExtension.Get(item.Key), item.Pattern)).ToArray();
         _refreshingTagPresets = true;
         try
         {
@@ -358,7 +334,7 @@ public partial class OptionsWindow : Window
     private void RefreshTagVariables()
     {
         if (TagVariablesList is null) return;
-        TagVariablesList.ItemsSource = TagVariableDefinitions.Select(item => new TagVariableOption(item.Token, LocExtension.Get(item.Key))).ToArray();
+        TagVariablesList.ItemsSource = OptionsDefinitions.TagVariables.Select(item => new TagVariableOption(item.Token, LocExtension.Get(item.Key))).ToArray();
     }
 
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await PersistSettingsAsync();
@@ -598,7 +574,7 @@ public partial class OptionsWindow : Window
     private void RefreshLogOptions()
     {
         LogOptions.Clear();
-        foreach (var definition in LogActionDefinitions)
+        foreach (var definition in OptionsDefinitions.LogActions)
             LogOptions.Add(new(definition.Action, LocExtension.Get(definition.LabelKey), _settings.Logging.GetOrCreate(definition.Action)));
     }
 
@@ -662,38 +638,4 @@ public partial class OptionsWindow : Window
             ErrorLog.Write(closeException, "Closing Options after save");
         }
     }
-}
-
-public sealed class HardwareRow(string? driveId, string port, string usbId, string readerLabel, string size, string density, string rpm, bool available, bool configured, string configurationState)
-{
-    public string? DriveId { get; } = driveId;
-    public string Port { get; } = port;
-    public string UsbId { get; } = usbId;
-    public string ReaderLabel { get; } = readerLabel;
-    public string Size { get; set; } = size;
-    public string Density { get; set; } = density;
-    public string Rpm { get; set; } = rpm;
-    public bool Available { get; } = available;
-    public string AvailabilityState => LocExtension.Get(Available ? "Hardware.AvailableState" : "Hardware.UnavailableState");
-    public bool Configured { get; } = configured;
-    public string ConfigurationState { get; } = configurationState;
-}
-
-public static class HardwareChoices
-{
-    public const string UnknownSpeed = "—";
-    public static IReadOnlyList<string> Sizes { get; } = ["3", "3.5", "5.25", "8"];
-    public static IReadOnlyList<string> Densities { get; } = ["Unknown", "DD", "HD", "ED"];
-    public static IReadOnlyList<string> Speeds { get; } = [UnknownSpeed, "300 RPM", "360 RPM"];
-}
-public sealed record ProfileOptionRow(string Id, string Operation, string Name, bool IsSystem)
-{
-    public string OperationLabel => Operation switch { "Read" => LocExtension.Get("Tab.Read"), "Write" => LocExtension.Get("Tab.Write"), "Convert" => LocExtension.Get("Tab.Convert"), _ => Operation };
-}
-public sealed record TagPresetOption(string Label, string Pattern);
-public sealed record TagVariableOption(string Token, string Description);
-public sealed record LogOptionRow(string Action, string Label, ActionLogSettings Settings);
-public sealed record RecentTagPatternOption(int Number, string? Pattern)
-{
-    public string Display => string.IsNullOrWhiteSpace(Pattern) ? "—" : Pattern;
 }
