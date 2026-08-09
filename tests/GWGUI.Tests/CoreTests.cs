@@ -1266,6 +1266,52 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void CuratedCatalogContainsEveryInternallyExplorableMachineFamily()
+    {
+        var catalog = new BuiltInImageFormatCatalog();
+        string[] formats =
+        [
+            "amstrad.cpc", "amstrad.pcw",
+            "acorn.dfs.ss", "acorn.dfs.ss80", "acorn.dfs.ds", "acorn.dfs.ds80",
+            "epson.qx10.320", "epson.qx10.396", "epson.qx10.399", "epson.qx10.400", "epson.qx10.logo",
+            "msx.1d", "msx.1dd", "msx.2d", "msx.2dd",
+            "dec.rx02", "ucsd.ibm.mfm", "commodore900.coherent",
+            "applelisa.office", "applelisa.macworks"
+        ];
+
+        Assert.All(formats, id => Assert.Contains(catalog.Formats, format => format.Id == id));
+        Assert.Contains(catalog.Formats, format => format.Family == "Amstrad");
+    }
+
+    [Fact]
+    public void AutomaticClassificationReplacesOrClearsThePreviousImageSelection()
+    {
+        Exception? failure = null;
+        var thread = new Thread(() =>
+        {
+            try
+            {
+                var selector = new DiskClassificationSelector();
+                selector.SetCatalog(new BuiltInImageFormatCatalog().Formats);
+
+                selector.ApplyDetection("atarist.360", null);
+                Assert.Equal("Atari ST", selector.SelectedMachine);
+                Assert.Equal("atarist.360", selector.SelectedFormatId);
+
+                selector.ApplyDetection("unknown", null);
+                Assert.Null(selector.SelectedMachine);
+                Assert.Null(selector.SelectedFormatId);
+            }
+            catch (Exception exception) { failure = exception; }
+            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
+        });
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        Assert.True(thread.Join(TimeSpan.FromSeconds(10)), "The automatic classification test timed out.");
+        if (failure is not null) throw failure;
+    }
+
+    [Fact]
     public void DisplayCommandQuotesPathsWithSpaces()
     {
         var command = new GwCommand("C:\\GW Tools\\gw.exe", "read", ["F:\\Disquettes été\\Tilt n°117 漢字.scp"]);

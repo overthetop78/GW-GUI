@@ -47,11 +47,22 @@ public partial class DiskClassificationSelector : UserControl
     {
         if (!AutomaticDetection) return;
         var format = _catalog.ResolveFormat(detectedFormatId);
-        if (format is null) return;
         _updating = true;
-        Machine.SelectedItem = format.Family;
-        RefreshFormats(format.Id);
-        RefreshProtections(detectedProtectionId);
+        if (format is null)
+        {
+            Machine.SelectedItem = null;
+            Format.ItemsSource = Array.Empty<DiskFormat>();
+            Format.SelectedItem = null;
+            Protection.ItemsSource = Array.Empty<DiskProtection>();
+            Protection.SelectedItem = null;
+            ProtectionPanel.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            Machine.SelectedItem = format.Family;
+            RefreshFormats(format.Id);
+            RefreshProtections(detectedProtectionId);
+        }
         _updating = false;
     }
 

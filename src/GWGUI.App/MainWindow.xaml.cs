@@ -320,7 +320,7 @@ public partial class MainWindow : Window
         DiskExplorer.SetLoading(true);
         try
         {
-            var document = await _diskImageExplorer.ExploreAsync(path, DiskExplorer.SelectedFormatId, cancellation.Token);
+            var document = await _diskImageExplorer.ExploreAsync(path, DiskExplorer.FormatIdForLoading, cancellation.Token);
             if (!cancellation.IsCancellationRequested)
             {
                 DiskExplorer.Display(document);

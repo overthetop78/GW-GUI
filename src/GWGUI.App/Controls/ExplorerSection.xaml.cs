@@ -85,10 +85,15 @@ public partial class ExplorerSection : UserControl
         [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
     public string? SelectedFormatId => Classification.SelectedProtectionId ?? Classification.SelectedFormatId;
+    public string? FormatIdForLoading => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
 
     private void AutomaticDetection_Changed(object sender, RoutedEventArgs e)
     {
-        Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
+        var enabled = AutomaticDetection.IsChecked == true;
+        Classification.SetAutomaticDetection(enabled);
+        if (enabled && _document is not null)
+            Classification.ApplyDetection(_document.Image.FormatId,
+                _document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -119,6 +124,7 @@ public partial class ExplorerSection : UserControl
     {
         _document = document;
         PathText.Text = document.SourcePath;
+        Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         Classification.ApplyDetection(document.Image.FormatId,
             document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
         var volumeName = !document.FileSystemRecognized
