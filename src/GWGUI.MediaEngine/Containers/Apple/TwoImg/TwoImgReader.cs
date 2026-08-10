@@ -38,8 +38,7 @@ internal static class TwoImgReader
             throw TwoImgExceptions.UnsupportedVersion(version);
 
         var headerLength = checked((int)BinaryPrimitives.ReadUInt16LittleEndian(container.AsSpan(TwoImgLayout.HeaderSizeOffset)));
-        var imageFormat = (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(
-            container.AsSpan(TwoImgLayout.ImageFormatOffset));
+        var imageFormat = (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.ImageFormatOffset));
         var dataOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataOffsetOffset)));
         var dataLength = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataLengthOffset)));
         if (headerLength < TwoImgLayout.MinimumHeaderSize || dataOffset < headerLength || dataLength <= 0 ||

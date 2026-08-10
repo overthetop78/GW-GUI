@@ -519,11 +519,11 @@
     - [x] Exécuter les tests ciblés des conteneurs, géométries, politiques, explorateurs, encodeurs et reconstructeurs modifiés.
     - [x] Vérifier que les 205 tests ciblés réussissent sans test ignoré.
 - [ ] Retours à la ligne courts encore présents après le premier contrôle
-  - [ ] Conteneurs et reconnaissance
-    - [ ] Remettre sur une ligne la lecture de `ImageFormat` dans `Containers/Apple/TwoImg/TwoImgReader.cs`.
-    - [ ] Remettre sur une ligne la déclaration du record `ScpHeader` dans `Containers/Scp/ScpHeader.cs` si elle reste sous la limite de longueur retenue.
-    - [ ] Remettre sur une ligne la signature de `PolicyRejectedContent` dans `Recognition/DiskImageRecognitionExceptions.cs`.
-    - [ ] Remettre sur une ligne l'appel à `ConvertToBits` dans `Recognition/Apple/NibTrackImageReader.cs`.
+  - [x] Conteneurs et reconnaissance
+    - [x] Remettre sur une ligne la lecture de `ImageFormat` dans `Containers/Apple/TwoImg/TwoImgReader.cs`.
+    - [x] Remettre sur une ligne la déclaration du record `ScpHeader` dans `Containers/Scp/ScpHeader.cs` si elle reste sous la limite de longueur retenue.
+    - [x] Remettre sur une ligne la signature de `PolicyRejectedContent` dans `Recognition/DiskImageRecognitionExceptions.cs`.
+    - [x] Remettre sur une ligne l'appel à `ConvertToBits` dans `Recognition/Apple/NibTrackImageReader.cs`.
   - [ ] Décodage
     - [ ] Remettre sur une ligne l'expression de `DecodeBits` dans `Decoding/Decoders/AppleMacGcrDecoder.cs`.
   - [ ] Reconstruction sectorielle Apple et Atari

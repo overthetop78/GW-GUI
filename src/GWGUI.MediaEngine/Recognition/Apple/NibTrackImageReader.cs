@@ -26,9 +26,7 @@ internal static class NibTrackImageReader
         var rwtsDecoder = new AppleRwts18Decoder();
         for (var track = 0; track < data.Length / NibTrackFormat.TrackLength; track++)
         {
-            var bits = ConvertToBits(
-                data.Slice(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength),
-                NibTrackFormat.TrackLength * NibTrackFormat.BitsPerByte);
+            var bits = ConvertToBits(data.Slice(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength), NibTrackFormat.TrackLength * NibTrackFormat.BitsPerByte);
             tracks.Add((track, decoder.DecodeBits(bits).Sectors ?? []));
             rwtsTracks.Add((track, rwtsDecoder.DecodeBits(bits).Sectors ?? []));
         }
