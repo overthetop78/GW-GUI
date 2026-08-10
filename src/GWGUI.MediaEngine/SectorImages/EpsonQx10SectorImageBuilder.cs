@@ -2,9 +2,7 @@ namespace GWGUI.MediaEngine.SectorImages;
 
 internal static class EpsonQx10SectorImageBuilder
 {
-    public static SectorImage Create(
-        string formatId,
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates)
+    public static SectorImage Create(string formatId, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates)
     {
         var geometry = EpsonQx10GeometryCatalog.Resolve(formatId);
         var blocks = new List<SectorBlock>();

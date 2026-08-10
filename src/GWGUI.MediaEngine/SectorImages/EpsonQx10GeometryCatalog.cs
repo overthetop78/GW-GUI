@@ -26,10 +26,7 @@ internal static class EpsonQx10GeometryCatalog
 
 internal readonly record struct EpsonQx10TrackGeometry(int FirstSector, int Count, int SectorSize);
 
-internal sealed record EpsonQx10Geometry(
-    int Cylinders,
-    int Heads,
-    Func<int, int, EpsonQx10TrackGeometry> Track)
+internal sealed record EpsonQx10Geometry(int Cylinders, int Heads, Func<int, int, EpsonQx10TrackGeometry> Track)
 {
     public IEnumerable<EpsonQx10TrackGeometry> AllTracks
     {
@@ -41,9 +38,5 @@ internal sealed record EpsonQx10Geometry(
         }
     }
 
-    public static EpsonQx10Geometry Uniform(
-        int cylinders,
-        int heads,
-        EpsonQx10TrackGeometry track) =>
-        new(cylinders, heads, (_, _) => track);
+    public static EpsonQx10Geometry Uniform(int cylinders, int heads, EpsonQx10TrackGeometry track) => new(cylinders, heads, (_, _) => track);
 }

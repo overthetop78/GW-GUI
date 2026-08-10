@@ -46,9 +46,7 @@ internal static class IsoSectorImageBuilder
             allowVariableBlockSize: allowVariableBlockSize, capacity: capacity);
     }
 
-    public static byte[] BestData(
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates,
-        SectorAddress address)
+    public static byte[] BestData(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates, SectorAddress address)
     {
         if (!candidates.TryGetValue(address, out var values)) return [];
         return values.OrderByDescending(value => value.Sector.IntegrityValid == true)

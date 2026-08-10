@@ -532,15 +532,15 @@
     - [x] Remettre sur une ligne la signature de `DecodeCandidates` dans `SectorImages/AppleScpSectorDecoder.cs`.
     - [x] Remettre sur une ligne la signature de `ReadAsync` dans `SectorImages/AtariScpSectorImageReader.cs`.
     - [x] Remettre sur une ligne l'appel à `AtariStFromCapacity` dans `SectorImages/AtariStIsoScpSectorImagePolicy.cs`.
-  - [ ] Reconstruction sectorielle DEC et Epson
-    - [ ] Remettre sur une ligne la signature de `Best` dans `SectorImages/DecRx02ScpSectorImageReader.cs`.
-    - [ ] Remettre sur une ligne la signature de `TryDetect` dans `SectorImages/EpsonQx10FormatDetector.cs`.
-    - [ ] Remettre sur une ligne la déclaration de `EpsonQx10Geometry` dans `SectorImages/EpsonQx10GeometryCatalog.cs`.
-    - [ ] Remettre sur une ligne la signature de `Uniform` dans `SectorImages/EpsonQx10GeometryCatalog.cs`.
-    - [ ] Remettre sur une ligne la signature de `Create` dans `SectorImages/EpsonQx10SectorImageBuilder.cs`.
-    - [ ] Remettre sur une ligne la signature de `CreateImage` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
-    - [ ] Remettre sur une ligne la signature de `TryDetectFormat` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
-    - [ ] Remettre sur une ligne la signature de `BestData` dans `SectorImages/IsoSectorImageBuilder.cs`.
+  - [x] Reconstruction sectorielle DEC et Epson
+    - [x] Remettre sur une ligne la signature de `Best` dans `SectorImages/DecRx02ScpSectorImageReader.cs`.
+    - [x] Remettre sur une ligne la signature de `TryDetect` dans `SectorImages/EpsonQx10FormatDetector.cs`.
+    - [x] Remettre sur une ligne la déclaration de `EpsonQx10Geometry` dans `SectorImages/EpsonQx10GeometryCatalog.cs`.
+    - [x] Remettre sur une ligne la signature de `Uniform` dans `SectorImages/EpsonQx10GeometryCatalog.cs`.
+    - [x] Remettre sur une ligne la signature de `Create` dans `SectorImages/EpsonQx10SectorImageBuilder.cs`.
+    - [x] Remettre sur une ligne la signature de `CreateImage` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
+    - [x] Remettre sur une ligne la signature de `TryDetectFormat` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
+    - [x] Remettre sur une ligne la signature de `BestData` dans `SectorImages/IsoSectorImageBuilder.cs`.
   - [ ] Vérification du formatage
     - [ ] Relancer le contrôle des constructions parenthésées complètes de `180` caractères ou moins sur tous les fichiers C# de production.
     - [ ] Exécuter les tests ciblés des fichiers dont seule la mise en forme a changé.

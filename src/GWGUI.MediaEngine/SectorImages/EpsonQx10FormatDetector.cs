@@ -4,9 +4,7 @@ namespace GWGUI.MediaEngine.SectorImages;
 
 internal static class EpsonQx10FormatDetector
 {
-    public static bool TryDetect(
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates,
-        out string formatId)
+    public static bool TryDetect(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates, out string formatId)
     {
         formatId = string.Empty;
         var tracks = candidates.GroupBy(pair => (pair.Key.Cylinder, pair.Key.Head))

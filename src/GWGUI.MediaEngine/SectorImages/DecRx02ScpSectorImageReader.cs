@@ -44,8 +44,7 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
         return new(DiskImageFormatIds.DecRx02, 512, 77, 1, 13, blocks, capacity: DecRx02ImageReader.ImageSize, logicalBlockCount: 1001);
     }
 
-    private static (DecodedSector Sector, int Revolution)? Best(
-        IReadOnlyDictionary<int, List<(DecodedSector Sector, int Revolution)>> sectors, int logical)
+    private static (DecodedSector Sector, int Revolution)? Best(IReadOnlyDictionary<int, List<(DecodedSector Sector, int Revolution)>> sectors, int logical)
     {
         if (!sectors.TryGetValue(logical, out var values)) return null;
         return values.OrderByDescending(value => value.Sector.IntegrityValid == true)
