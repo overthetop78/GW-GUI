@@ -51,7 +51,7 @@
     - [x] Adapter le namespace dans `ScpReader`, les reconstructeurs, `ScpDocumentLoader.cs` et les doubles de tests.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IScpReader`.
-- [ ] `src/GWGUI.MediaEngine/ScpCaptureInfo.cs`
+- [x] `src/GWGUI.MediaEngine/ScpCaptureInfo.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Exploration/ScpCaptureInfo.cs`.
     - [x] Déplacer le record `ScpCaptureInfo` dans le nouveau fichier.
@@ -62,11 +62,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpCaptureInfo, ScpCaptureInfoReader`.
     - [x] Ajouter la documentation XML des méthodes `ScpCaptureInfo, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Valeurs brutes de `Exploration/ScpCaptureInfoReader.cs`
-    - [ ] Ajouter une constante nommée pour la taille `81920` des deux tampons de lecture.
-    - [ ] Remplacer les deux occurrences de `81920` dans la création du flux et du tampon par cette constante.
-    - [ ] Documenter cette constante en français.
-    - [ ] Exécuter les tests ciblés de `ScpCaptureInfoReader` après le remplacement.
+  - [x] Valeurs brutes de `Exploration/ScpCaptureInfoReader.cs`
+    - [x] Ajouter une constante nommée pour la taille `81920` des deux tampons de lecture.
+    - [x] Remplacer les deux occurrences de `81920` dans la création du flux et du tampon par cette constante.
+    - [x] Documenter cette constante en français.
+    - [x] Exécuter les tests ciblés de `ScpCaptureInfoReader` après le remplacement.
   - [x] Tests déterministes
     - [x] Réutiliser une capture SCP locale contenant pistes présentes et absentes, plusieurs cylindres, deux faces et une somme de contrôle connue.
     - [x] Vérifier en lisant réellement ce fichier les nombres de pistes, cylindres et faces, l’état du checksum et la taille en octets.

@@ -9,6 +9,11 @@ namespace GWGUI.MediaEngine.Exploration;
 public static class ScpCaptureInfoReader
 {
     /// <summary>
+    /// Taille, en octets, du tampon utilisé pour les lectures séquentielles du fichier SCP.
+    /// </summary>
+    private const int ReadBufferSize = 81920;
+
+    /// <summary>
     /// Lit l'en-tête, la table des pistes et la somme de contrôle d'un fichier SCP.
     /// </summary>
     /// <param name="path">Chemin du fichier SCP à examiner.</param>
@@ -26,7 +31,7 @@ public static class ScpCaptureInfoReader
     /// <exception cref="OperationCanceledException"><paramref name="cancellationToken"/> demande l'annulation de l'opération.</exception>
     public static async Task<ScpCaptureInfo> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 81920, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, ReadBufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var tableLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * 4;
         var table = new byte[tableLength];
         await stream.ReadExactlyAsync(table, cancellationToken).ConfigureAwait(false);
@@ -38,7 +43,7 @@ public static class ScpCaptureInfoReader
         }
 
         stream.Position = ScpFormatConstants.TrackTableOffset;
-        var buffer = new byte[81920];
+        var buffer = new byte[ReadBufferSize];
         uint checksum = 0;
         while (true)
         {
