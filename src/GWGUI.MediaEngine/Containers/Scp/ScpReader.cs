@@ -75,12 +75,14 @@ public sealed class ScpReader : IScpReader
     {
         var header = ReadHeader(data);
         if ((header.Flags & ScpFlags.Extended) != 0) throw new NotSupportedException("Extended SCP media are not floppy images.");
-        var tableBytes = checked(ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * 4);
+        var tableBytes = checked(ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize);
         Require(data, 0, tableBytes, "track-offset table");
         var tracks = new List<ScpTrack>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
-            var offset = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(ScpFormatConstants.TrackTableOffset + slot * 4, 4));
+            var offset = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(
+                ScpFormatConstants.TrackTableOffset + slot * ScpFormatConstants.TrackTableEntrySize,
+                ScpFormatConstants.TrackTableEntrySize));
             if (offset == 0) continue;
             tracks.Add(ReadTrack(data, checked((int)offset), slot, header));
         }
@@ -98,12 +100,22 @@ public sealed class ScpReader : IScpReader
     public static ScpHeader ReadHeader(ReadOnlySpan<byte> data)
     {
         Require(data, 0, ScpFormatConstants.HeaderLength, "SCP header");
-        if (!data[..3].SequenceEqual("SCP"u8)) throw new InvalidDataException("The file does not contain an SCP signature.");
-        if (data[5] is 0 or > 64) throw new InvalidDataException("The SCP revolution count is invalid.");
-        if (data[7] < data[6] || data[7] >= ScpFormatConstants.FloppyTrackSlots) throw new InvalidDataException("The SCP track range is invalid.");
-        if (data[9] is not (0 or 16)) throw new NotSupportedException($"Unsupported SCP bit-cell width: {data[9]}.");
-        if (data[10] > 2) throw new InvalidDataException("The SCP head selector is invalid.");
-        return new(data[3], data[4], data[5], data[6], data[7], (ScpFlags)data[8], data[9], data[10], data[11], BinaryPrimitives.ReadUInt32LittleEndian(data[12..16]));
+        if (!data[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature)) throw new InvalidDataException("The file does not contain an SCP signature.");
+        if (data[ScpFormatConstants.RevolutionCountOffset] is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount) throw new InvalidDataException("The SCP revolution count is invalid.");
+        if (data[ScpFormatConstants.EndTrackOffset] < data[ScpFormatConstants.StartTrackOffset] || data[ScpFormatConstants.EndTrackOffset] >= ScpFormatConstants.FloppyTrackSlots) throw new InvalidDataException("The SCP track range is invalid.");
+        if (data[ScpFormatConstants.BitCellWidthOffset] is not (ScpFormatConstants.StandardBitCellWidth or ScpFormatConstants.AlternateBitCellWidth)) throw new NotSupportedException($"Unsupported SCP bit-cell width: {data[ScpFormatConstants.BitCellWidthOffset]}.");
+        if (data[ScpFormatConstants.HeadsOffset] > ScpFormatConstants.MaximumHeadSelector) throw new InvalidDataException("The SCP head selector is invalid.");
+        return new(
+            data[ScpFormatConstants.VersionOffset],
+            data[ScpFormatConstants.DiskTypeOffset],
+            data[ScpFormatConstants.RevolutionCountOffset],
+            data[ScpFormatConstants.StartTrackOffset],
+            data[ScpFormatConstants.EndTrackOffset],
+            (ScpFlags)data[ScpFormatConstants.FlagsOffset],
+            data[ScpFormatConstants.BitCellWidthOffset],
+            data[ScpFormatConstants.HeadsOffset],
+            data[ScpFormatConstants.ResolutionOffset],
+            BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength)));
     }
 
     /// <summary>
@@ -118,27 +130,27 @@ public sealed class ScpReader : IScpReader
     /// <exception cref="OverflowException">Une taille, une position ou un intervalle de flux dépasse la plage numérique prise en charge.</exception>
     private static ScpTrack ReadTrack(ReadOnlySpan<byte> data, int offset, int expectedTrack, ScpHeader header)
     {
-        var descriptorSize = checked(4 + header.Revolutions * 12);
+        var descriptorSize = checked(ScpFormatConstants.TrackDescriptorHeaderSize + header.Revolutions * ScpFormatConstants.RevolutionDescriptorSize);
         Require(data, offset, descriptorSize, $"track {expectedTrack} header");
         var trackData = data[offset..];
-        if (!trackData[..3].SequenceEqual("TRK"u8)) throw new InvalidDataException($"Track {expectedTrack} has no TRK signature.");
-        if (trackData[3] != expectedTrack) throw new InvalidDataException($"Track table entry {expectedTrack} points to track {trackData[3]}.");
+        if (!trackData[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.TrackSignature)) throw new InvalidDataException($"Track {expectedTrack} has no TRK signature.");
+        if (trackData[ScpFormatConstants.TrackNumberOffset] != expectedTrack) throw new InvalidDataException($"Track table entry {expectedTrack} points to track {trackData[ScpFormatConstants.TrackNumberOffset]}.");
         var revolutions = new List<ScpRevolution>(header.Revolutions);
         for (var index = 0; index < header.Revolutions; index++)
         {
-            var descriptor = 4 + index * 12;
-            var indexTime = BinaryPrimitives.ReadUInt32LittleEndian(trackData.Slice(descriptor, 4));
-            var fluxCount = BinaryPrimitives.ReadUInt32LittleEndian(trackData.Slice(descriptor + 4, 4));
-            var relativeOffset = BinaryPrimitives.ReadUInt32LittleEndian(trackData.Slice(descriptor + 8, 4));
-            var byteCount = checked((int)fluxCount * 2);
+            var descriptor = ScpFormatConstants.TrackDescriptorHeaderSize + index * ScpFormatConstants.RevolutionDescriptorSize;
+            var indexTime = BinaryPrimitives.ReadUInt32LittleEndian(trackData.Slice(descriptor + ScpFormatConstants.RevolutionIndexTimeOffset, sizeof(uint)));
+            var fluxCount = BinaryPrimitives.ReadUInt32LittleEndian(trackData.Slice(descriptor + ScpFormatConstants.RevolutionFluxCountOffset, sizeof(uint)));
+            var relativeOffset = BinaryPrimitives.ReadUInt32LittleEndian(trackData.Slice(descriptor + ScpFormatConstants.RevolutionDataOffset, sizeof(uint)));
+            var byteCount = checked((int)fluxCount * ScpFormatConstants.FluxIntervalSize);
             Require(data, checked(offset + (int)relativeOffset), byteCount, $"track {expectedTrack}, revolution {index + 1} flux");
             var fluxBytes = data.Slice(offset + (int)relativeOffset, byteCount);
             var intervals = new List<uint>((int)Math.Min(fluxCount, (uint)int.MaxValue));
             uint overflow = 0;
-            for (var position = 0; position < fluxBytes.Length; position += 2)
+            for (var position = 0; position < fluxBytes.Length; position += ScpFormatConstants.FluxIntervalSize)
             {
-                var value = BinaryPrimitives.ReadUInt16BigEndian(fluxBytes.Slice(position, 2));
-                if (value == 0) { overflow = checked(overflow + 65536); continue; }
+                var value = BinaryPrimitives.ReadUInt16BigEndian(fluxBytes.Slice(position, ScpFormatConstants.FluxIntervalSize));
+                if (value == 0) { overflow = checked(overflow + ScpFormatConstants.ZeroFluxIntervalOverflow); continue; }
                 intervals.Add(checked(overflow + value));
                 overflow = 0;
             }

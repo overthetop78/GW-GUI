@@ -72,21 +72,21 @@
     - [x] Vérifier en lisant réellement ce fichier les nombres de pistes, cylindres et faces, l’état du checksum et la taille en octets.
     - [x] Vérifier avec des copies locale tronquée et corrompue le rejet de la table incomplète et le signalement du checksum invalide.
     - [x] Vérifier l’annulation de `ScpCaptureInfoReader.ReadAsync` sans dépendre d’une variable d’environnement.
-- [ ] `src/GWGUI.MediaEngine/ScpFormatConstants.cs`
+- [x] `src/GWGUI.MediaEngine/ScpFormatConstants.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Containers/Scp/ScpFormatConstants.cs`.
     - [x] Remplacer les copies de `HeaderLength`, `FloppyTrackSlots` et `TrackTableOffset` dans `ScpReader.cs` par ces constantes.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpFormatConstants`.
-  - [ ] Complément des définitions SCP
-    - [ ] Ajouter à `Containers/Scp/ScpFormatConstants.cs` la signature de fichier `SCP` et la signature de piste `TRK` actuellement écrites dans `ScpReader.cs`.
-    - [ ] Ajouter les offsets de version, type de disque, nombre de révolutions, première piste, dernière piste, drapeaux, largeur de cellule, sélection de tête, résolution et checksum de l’en-tête SCP.
-    - [ ] Ajouter la taille d’une entrée de table de pistes, la taille fixe d’un descripteur de piste et la taille d’un descripteur de révolution.
-    - [ ] Ajouter les offsets du numéro de piste, du temps d’index, du nombre de flux et de l’offset relatif des flux.
-    - [ ] Ajouter la valeur `65536` représentant le débordement d’un intervalle SCP nul.
-    - [ ] Ajouter les valeurs acceptées pour la largeur de cellule et les limites de sélection de tête.
-    - [ ] Remplacer dans `ScpReader.cs` toutes les signatures, offsets, tailles, limites et unités correspondantes par `ScpFormatConstants`.
-    - [ ] Documenter en français chaque constante ajoutée.
+  - [x] Complément des définitions SCP
+    - [x] Ajouter à `Containers/Scp/ScpFormatConstants.cs` la signature de fichier `SCP` et la signature de piste `TRK` actuellement écrites dans `ScpReader.cs`.
+    - [x] Ajouter les offsets de version, type de disque, nombre de révolutions, première piste, dernière piste, drapeaux, largeur de cellule, sélection de tête, résolution et checksum de l’en-tête SCP.
+    - [x] Ajouter la taille d’une entrée de table de pistes, la taille fixe d’un descripteur de piste et la taille d’un descripteur de révolution.
+    - [x] Ajouter les offsets du numéro de piste, du temps d’index, du nombre de flux et de l’offset relatif des flux.
+    - [x] Ajouter la valeur `65536` représentant le débordement d’un intervalle SCP nul.
+    - [x] Ajouter les valeurs acceptées pour la largeur de cellule et les limites de sélection de tête.
+    - [x] Remplacer dans `ScpReader.cs` toutes les signatures, offsets, tailles, limites et unités correspondantes par `ScpFormatConstants`.
+    - [x] Documenter en français chaque constante ajoutée.
 - [ ] `src/GWGUI.MediaEngine/ScpModels.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs` et `ScpImage.cs`.

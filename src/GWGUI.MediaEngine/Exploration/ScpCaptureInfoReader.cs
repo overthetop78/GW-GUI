@@ -32,14 +32,17 @@ public static class ScpCaptureInfoReader
     public static async Task<ScpCaptureInfo> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, ReadBufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
-        var tableLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * 4;
+        var tableLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize;
         var table = new byte[tableLength];
         await stream.ReadExactlyAsync(table, cancellationToken).ConfigureAwait(false);
         var header = ScpHeaderReader.Read(table);
         var slots = new List<int>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
-            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(ScpFormatConstants.TrackTableOffset + slot * 4, 4)) != 0) slots.Add(slot);
+            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(
+                    ScpFormatConstants.TrackTableOffset + slot * ScpFormatConstants.TrackTableEntrySize,
+                    ScpFormatConstants.TrackTableEntrySize)) != 0)
+                slots.Add(slot);
         }
 
         stream.Position = ScpFormatConstants.TrackTableOffset;
