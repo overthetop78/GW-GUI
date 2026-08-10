@@ -92,9 +92,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         return result;
     }
 
-    private static ushort Crc16(IEnumerable<byte> values)
-        => Primitives.Crc16Calculator.Compute(values);
+    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 
-    private static ushort UpdateCrc(ushort crc, byte value)
-        => Primitives.Crc16Calculator.Update(crc, value);
+    private static ushort UpdateCrc(ushort crc, byte value) => Primitives.Crc16Calculator.Update(crc, value);
 }

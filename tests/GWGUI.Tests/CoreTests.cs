@@ -58,8 +58,7 @@ public sealed class CoreTests
     {
         var revolution = new ScpRevolution(8_000_000, 2_000, Enumerable.Repeat<uint>(80, 2_000).ToArray());
         var track = new ScpTrack(0, 0, 0, [revolution]);
-        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 0, 0, ScpFlags.IndexAligned,
-            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 0, 0, ScpFlags.IndexAligned, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
         IScpRenderer renderer = new SkiaScpRenderer { DecoderId = "raw" };
         var preparations = new List<ScpTrackPreparation>();
         using var bitmap = new SKBitmap(256, 256);
@@ -81,8 +80,7 @@ public sealed class CoreTests
     public async Task ScpRendererReportsAnomalyForTrackWithoutFlux()
     {
         var track = new ScpTrack(8, 4, 0, []);
-        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 8, 8, ScpFlags.IndexAligned,
-            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 8, 8, ScpFlags.IndexAligned, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
         IScpRenderer renderer = new SkiaScpRenderer();
         var preparations = new List<ScpTrackPreparation>();
 
@@ -159,8 +157,7 @@ public sealed class CoreTests
         var presenter = new ScpInspectorPresenter(new FluxDecoderRegistry(), Localize);
         var revolution = new ScpRevolution(8_000_000, 4, [80, 80, 160, 80]);
         var track = new ScpTrack(11, 5, 1, [revolution]);
-        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 11, 11, ScpFlags.IndexAligned,
-            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 11, 11, ScpFlags.IndexAligned, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
 
         var text = presenter.Build(image, track, "raw");
 
@@ -174,8 +171,7 @@ public sealed class CoreTests
     public async Task ScpDocumentLoaderBuildsLocalizedModelThroughReaderContract()
     {
         static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
-        var header = new ScpHeader(0x24, 0, 1, 4, 5, ScpFlags.IndexAligned,
-            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 1, 0);
+        var header = new ScpHeader(0x24, 0, 1, 4, 5, ScpFlags.IndexAligned, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 1, 0);
         var image = new ScpImage(header, [new ScpTrack(4, 2, 0, []), new ScpTrack(5, 2, 1, [])], true, 1024);
         var reader = new StubScpReader(image); var loader = new ScpDocumentLoader(reader, Localize);
 
@@ -1358,9 +1354,7 @@ public sealed class CoreTests
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c2, 2), 0);
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c4, 2), 50);
         var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(
-            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
-            checksum);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), checksum);
         var image = new ScpReader().Read(data);
         Assert.True(image.ChecksumValid);
         Assert.Equal([100u, 65_586u], image.Tracks[0].Revolutions[0].FluxIntervals);
@@ -3432,9 +3426,7 @@ public sealed class CoreTests
         System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2bc, 4), 16);
         for (var index = 0; index < intervals.Count; index++) System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c0 + index * 2, 2), (ushort)intervals[index]);
         var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(
-            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
-            checksum);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), checksum);
         return data;
     }
     private static string EncodeMfmBytesFromZero(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 0; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

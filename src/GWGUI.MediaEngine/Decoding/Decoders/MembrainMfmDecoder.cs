@@ -59,6 +59,5 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
         return -1;
     }
 
-    private static ushort Crc16(IEnumerable<byte> values)
-        => Primitives.Crc16Calculator.Compute(values, polynomial: 0x8005, initial: 0);
+    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, polynomial: 0x8005, initial: 0);
 }

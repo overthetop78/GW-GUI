@@ -101,8 +101,7 @@ public sealed class RealScpCorpusTests
             var encoded = encoder.Encode("amiga.mfm", new GWGUI.MediaEngine.Encoding.TrackEncodeRequest(cylinder, head, sectors, BitCellTicks: cellTicks));
             tracks.Add(new((byte)(cylinder * 2 + head), cylinder, head, [encoded.Revolution]));
         }
-        var scp = new ScpImage(new(0, 0, 1, 0, 159, ScpFlags.IndexAligned,
-            ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0), tracks, true, 0);
+        var scp = new ScpImage(new(0, 0, 1, 0, 159, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0), tracks, true, 0);
         var actual = await new AmigaScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry()).ReadAsync("memory.scp");
 
         Assert.Equal(expected.SectorsPerTrack, actual.SectorsPerTrack);

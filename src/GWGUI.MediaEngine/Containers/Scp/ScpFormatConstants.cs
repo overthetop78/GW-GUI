@@ -142,8 +142,7 @@ public static class ScpFormatConstants
     /// <see langword="true"/> lorsque les deux sommes sont identiques, ou lorsque la somme déclarée est nulle
     /// pour une capture marquée réinscriptible ; sinon <see langword="false"/>.
     /// </returns>
-    public static bool IsChecksumValid(uint declaredChecksum, ScpFlags flags, uint computedChecksum) =>
-        declaredChecksum == 0 && (flags & ScpFlags.Writable) != 0 || declaredChecksum == computedChecksum;
+    public static bool IsChecksumValid(uint declaredChecksum, ScpFlags flags, uint computedChecksum) => declaredChecksum == 0 && (flags & ScpFlags.Writable) != 0 || declaredChecksum == computedChecksum;
 
     /// <summary>
     /// Convertit un numéro d'entrée de piste SCP en cylindre et face physiques.

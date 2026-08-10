@@ -65,6 +65,5 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
         return 0;
     }
 
-    private static ushort Crc16(IEnumerable<byte> values)
-        => Primitives.Crc16Calculator.Compute(values, initial: 0);
+    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, initial: 0);
 }

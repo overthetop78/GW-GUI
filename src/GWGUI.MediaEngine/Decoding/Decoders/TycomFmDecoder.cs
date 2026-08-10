@@ -61,9 +61,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
         return (-1, 0);
     }
 
-    private static ushort Crc16(IEnumerable<byte> values)
-        => Primitives.Crc16Calculator.Compute(values);
+    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 
-    private static ushort UpdateCrc(ushort crc, byte value)
-        => Primitives.Crc16Calculator.Update(crc, value);
+    private static ushort UpdateCrc(ushort crc, byte value) => Primitives.Crc16Calculator.Update(crc, value);
 }

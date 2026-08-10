@@ -59,6 +59,5 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
         return 0;
     }
 
-    private static ushort Crc16(IEnumerable<byte> values)
-        => Primitives.Crc16Calculator.Compute(values);
+    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 }

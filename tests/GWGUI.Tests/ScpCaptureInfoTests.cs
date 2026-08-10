@@ -109,9 +109,7 @@ public sealed class ScpCaptureInfoTests
     private static void WriteChecksum(byte[] data)
     {
         var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
-        BinaryPrimitives.WriteUInt32LittleEndian(
-            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
-            checksum);
+        BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), checksum);
     }
 
     private sealed record TestImages(string Source, string MissingTrack, string Corrupted, string Truncated);

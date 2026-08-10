@@ -25,17 +25,14 @@ public sealed class ScpReaderDeterministicTests
     [Theory]
     [InlineData(-1)]
     [InlineData(ScpFormatConstants.FloppyTrackSlots)]
-    public void RejectsScpTrackNumbersOutsideTheTrackTable(int trackNumber) =>
-        Assert.Throws<ArgumentOutOfRangeException>(() => ScpFormatConstants.ToTrackAddress(trackNumber));
+    public void RejectsScpTrackNumbersOutsideTheTrackTable(int trackNumber) => Assert.Throws<ArgumentOutOfRangeException>(() => ScpFormatConstants.ToTrackAddress(trackNumber));
 
     [Fact]
     public void ComputesUpdatesAndValidatesScpChecksums()
     {
         byte[] first = [byte.MaxValue, 1];
         byte[] second = [2, 3];
-        var checksum = ScpFormatConstants.UpdateChecksum(
-            ScpFormatConstants.ComputeChecksum(first),
-            second);
+        var checksum = ScpFormatConstants.UpdateChecksum(ScpFormatConstants.ComputeChecksum(first), second);
 
         Assert.Equal(261u, checksum);
         Assert.True(ScpFormatConstants.IsChecksumValid(checksum, ScpFlags.None, checksum));
@@ -412,9 +409,7 @@ public sealed class ScpReaderDeterministicTests
     private static void WriteChecksum(byte[] data)
     {
         var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
-        BinaryPrimitives.WriteUInt32LittleEndian(
-            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
-            checksum);
+        BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), checksum);
     }
 
     private static int FirstTrackOffset => ScpFormatConstants.TrackTableOffset
