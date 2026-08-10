@@ -402,17 +402,20 @@
     - [x] Créer trois politiques factices ordonnées : une politique incompatible, une politique dont le Reader rejette le contenu et une politique dont le Reader accepte le contenu.
     - [x] Vérifier que le rejet du Reader de la deuxième politique ne termine pas la recherche et que la troisième politique reçoit le même contenu.
     - [x] Vérifier que chaque politique est appelée au plus une fois, que l’absence de résultat produit l’erreur de format non pris en charge et que l’annulation interrompt la boucle.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/AppleContainerPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AppleImageRecognitionPolicy.cs`.
-    - [ ] Séparer les signatures 2IMG, DiskCopy et WOZ des indices DO, PO, D13, NIB, DSK et IMG.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleContainerPolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `AppleContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Vérifier que les images locales 2IMG, DiskCopy et WOZ sont sélectionnées par leur signature même avec une extension inhabituelle.
-    - [ ] Vérifier séparément que l’extension DO, PO, D13, NIB, DSK ou IMG ne suffit pas à faire réussir la lecture lorsque le contenu ne respecte pas le format attendu.
-    - [ ] Vérifier qu’un parser Apple qui rejette un candidat permet au registre d’essayer la politique suivante.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/AppleContainerPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Recognition/Policies/AppleImageRecognitionPolicy.cs`.
+    - [x] Séparer les signatures 2IMG, DiskCopy et WOZ des indices DO, PO, D13, NIB, DSK et IMG.
+    - [x] Ajouter dans `DiskCopyFormat` et `DiskCopyLayout` le mot magique `0x0100` et son offset `82`, puis le valider dans `DiskCopyReader`.
+    - [x] Faire router `AppleDiskImageReader` vers 2IMG, DiskCopy et WOZ d’après leur contenu afin que leur extension ne décide plus du parser.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML du type `AppleImageRecognitionPolicy`.
+    - [x] Ajouter la documentation XML des méthodes `AppleImageRecognitionPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [x] Mettre à jour en français la documentation XML de `AppleDiskImageReader` et de chaque membre modifié par le routage selon le contenu.
+  - [x] Tests déterministes
+    - [x] Vérifier que les images locales 2IMG, DiskCopy et WOZ sont sélectionnées par leur signature même avec une extension inhabituelle.
+    - [x] Vérifier séparément que l’extension DO, PO, D13, NIB, DSK ou IMG ne suffit pas à faire réussir la lecture lorsque le contenu ne respecte pas le format attendu.
+    - [x] Vérifier qu’un parser Apple qui rejette un candidat permet au registre d’essayer la politique suivante.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/CoherentContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/CoherentImageRecognitionPolicy.cs`.

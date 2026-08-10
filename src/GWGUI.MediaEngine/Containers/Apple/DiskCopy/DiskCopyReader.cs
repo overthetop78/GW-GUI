@@ -26,6 +26,9 @@ internal static class DiskCopyReader
     {
         if (container.Length < DiskCopyLayout.HeaderSize)
             throw DiskCopyExceptions.TruncatedHeader();
+        var privateWord = BinaryPrimitives.ReadUInt16BigEndian(container.AsSpan(DiskCopyLayout.PrivateWordOffset));
+        if (privateWord != DiskCopyFormat.PrivateWord)
+            throw DiskCopyExceptions.InvalidPrivateWord(privateWord, DiskCopyFormat.PrivateWord);
         var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(
             container.AsSpan(DiskCopyLayout.DataLengthOffset)));
         var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(
@@ -83,6 +86,13 @@ internal static class DiskCopyReader
             blocks,
             capacity: dataLength, logicalBlockCount: blocks.Length);
     }
+
+    /// <summary>Indique si un contenu possède l'en-tête minimal et le mot magique DiskCopy 4.2.</summary>
+    /// <param name="container">Contenu complet ou partiel à examiner.</param>
+    /// <returns><see langword="true"/> lorsque le mot magique est présent à son offset ; sinon <see langword="false"/>.</returns>
+    public static bool HasPrivateWord(ReadOnlySpan<byte> container) =>
+        container.Length >= DiskCopyLayout.HeaderSize &&
+        BinaryPrimitives.ReadUInt16BigEndian(container[DiskCopyLayout.PrivateWordOffset..]) == DiskCopyFormat.PrivateWord;
 
     /// <summary>
     /// Compare les checksums non nuls de l’en-tête avec ceux des données et des tags extraits.

@@ -3,6 +3,9 @@ namespace GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 /// <summary>Regroupe les marqueurs et valeurs conventionnelles propres au format Apple DiskCopy 4.2.</summary>
 public static class DiskCopyFormat
 {
+    /// <summary>Mot magique big-endian stocké à la fin de l'en-tête DiskCopy 4.2.</summary>
+    public const ushort PrivateWord = 0x0100;
+
     /// <summary>Valeur indiquant qu’aucun checksum exploitable n’est stocké dans l’en-tête.</summary>
     public const uint MissingChecksum = 0;
 

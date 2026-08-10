@@ -20,6 +20,9 @@ public static class DiskCopyLayout
     /// <summary>Offset du checksum 32 bits big-endian des tags sectoriels.</summary>
     public const int TagChecksumOffset = 76;
 
+    /// <summary>Offset du mot magique big-endian terminant l'en-tête.</summary>
+    public const int PrivateWordOffset = 82;
+
     /// <summary>Taille, en octets, des données d’un bloc logique DiskCopy.</summary>
     public const int DataBlockSize = 512;
 

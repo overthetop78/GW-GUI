@@ -72,6 +72,9 @@ public sealed class AppleContainerReaderTests
         var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(
             bytes.AsSpan(DiskCopyLayout.TagChecksumOffset));
 
+        Assert.Equal(DiskCopyFormat.PrivateWord,
+            BinaryPrimitives.ReadUInt16BigEndian(bytes.AsSpan(DiskCopyLayout.PrivateWordOffset)));
+
         var image = await new AppleDiskImageReader().ReadAsync(Images.Value.TaggedDiskCopy);
         var orderedBlocks = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).ToArray();
 
@@ -108,6 +111,7 @@ public sealed class AppleContainerReaderTests
     [InlineData("invalid-data-length")]
     [InlineData("invalid-data-checksum")]
     [InlineData("invalid-tag-checksum")]
+    [InlineData("invalid-private-word")]
     [InlineData("truncated-header")]
     public async Task RejectsInvalidDiskCopyStructures(string variant)
     {
@@ -171,6 +175,9 @@ public sealed class AppleContainerReaderTests
             ["invalid-tag-checksum"] = WriteVariant(output, "invalid-tag-checksum.image", validDiskCopy,
                 bytes => bytes[DiskCopyLayout.HeaderSize + diskCopyDataLength +
                                DiskCopyLayout.TagChecksumExcludedPrefixSize] ^= byte.MaxValue),
+            ["invalid-private-word"] = WriteVariant(output, "invalid-private-word.image", validDiskCopy,
+                bytes => BinaryPrimitives.WriteUInt16BigEndian(
+                    bytes.AsSpan(DiskCopyLayout.PrivateWordOffset), ushort.MaxValue)),
             ["truncated-header"] = Write(output, "truncated-header.image",
                 validDiskCopy[..(DiskCopyLayout.HeaderSize - 1)])
         };

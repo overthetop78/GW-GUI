@@ -202,7 +202,7 @@ Politiques observées :
 
 - directes par extensions : `DirectContainerPolicy` ;
 - déléguées par fonction : `DelegatingContainerPolicy` ;
-- spécialisées : `AmstradImageRecognitionPolicy`, `AppleContainerPolicy`, `CoherentContainerPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
+- spécialisées : `AmstradImageRecognitionPolicy`, `AppleImageRecognitionPolicy`, `CoherentContainerPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
 
 Constats :
 
@@ -227,7 +227,7 @@ Lecteurs inventoriés :
 
 Constats détaillés :
 
-- `AppleDiskImageReader` est maintenant un routeur d’environ 74 lignes et délègue à plusieurs composants spécialisés. Il conserve toutefois une liste d’extensions et une seconde logique `LooksLikeAppleImage`, ce qui duplique partiellement la connaissance détenue par `AppleContainerPolicy` et les signatures.
+- `AppleImageRecognitionPolicy` distingue maintenant les marqueurs 2IMG, DiskCopy et WOZ des indices propres aux représentations brutes. `AppleDiskImageReader` route également ces trois conteneurs par leur contenu. Il conserve encore la liste générale d’extensions et `LooksLikeAppleImage`, dont le déplacement est prévu dans son groupe dédié ultérieur.
 - `AppleDiskImageReader` expose aussi des façades statiques vers géométrie, signatures et factory Apple. Ces façades semblent préserver d’anciens consommateurs et masquent les propriétaires réels.
 - `IbmPcImageReader` contient à la fois lecture brute, catalogue de géométries, analyse BPB, détection de géométrie de flux, reconnaissance OEM DOS et génération d’identifiant. Ce fichier reste réellement mélangé.
 - Les géométries IBM sont utilisées au-delà de la seule lecture de `.img/.ima` et méritent un propriétaire distinct du lecteur de conteneur.
@@ -554,7 +554,7 @@ La lecture croisée des politiques et des lecteurs montre que « format d’imag
 |---|---|---|---|---|
 | SCP | conteneur de captures de flux | révolutions et intervalles de flux, puis décodage choisi séparément | plusieurs familles | `ScpContainerPolicy` déclenche directement l’exploration et le système de fichiers |
 | 2IMG | conteneur avec métadonnées et charge utile | secteurs DOS/ProDOS ou pistes NIB selon l’en-tête | principalement Apple II/III | le lecteur du conteneur choisit immédiatement le décodeur ou le lecteur sectoriel final |
-| DiskCopy | conteneur avec données et tags | secteurs ou secteurs tagués | Macintosh, Lisa ou ProDOS | parsing du conteneur, détection et reconstruction sont réunis |
+| DiskCopy | conteneur avec données et tags | secteurs ou secteurs tagués | Macintosh, Lisa ou ProDOS | reconnaissance par le mot privé `0x0100` à l’offset 82, puis validation des longueurs et checksums par `DiskCopyReader` |
 | NIB | représentation brute de pistes nibblisées, pas une machine | découpage par `NibTrackImageReader`, puis décodage GCR Apple II ou RWTS18 | Apple II | longueur et erreurs NIB sont isolées dans `NibTrackFormat` et `NibTrackExceptions` |
 | WOZ | conteneur de pistes sous forme de flux de bits | validation par `WozReader`, extraction du bitstream, puis codec Apple II | Apple II | signatures, disposition, CRC32 et erreurs sont isolés dans les définitions du module WOZ |
 | CPCEMU DSK/EDSK | conteneur structuré de pistes et secteurs | secteurs déjà décrits par l’en-tête | généralement CPC ou PCW | le lecteur déduit immédiatement l’identifiant machine depuis la géométrie |

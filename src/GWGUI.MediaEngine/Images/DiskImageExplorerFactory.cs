@@ -42,7 +42,7 @@ internal static class DiskImageExplorerFactory
             new DirectContainerPolicy(new CommodoreD64ImageReader(), DiskImageFileExtensions.D64),
             new DirectContainerPolicy(new CommodoreD71ImageReader(), DiskImageFileExtensions.D71),
             new DirectContainerPolicy(new CommodoreD81ImageReader(), DiskImageFileExtensions.D81),
-            new AppleContainerPolicy(apple),
+            new AppleImageRecognitionPolicy(apple),
             new MsxContainerPolicy(new MsxImageReader()),
             new AmstradImageRecognitionPolicy(new CpcDskReader()),
             new RawImgContainerPolicy(),

@@ -8,6 +8,13 @@ internal static class DiskCopyExceptions
     public static InvalidDataException TruncatedHeader() =>
         new("The DiskCopy header is truncated.");
 
+    /// <summary>Crée l'erreur signalant un mot magique DiskCopy invalide.</summary>
+    /// <param name="observedPrivateWord">Mot observé à la fin de l'en-tête.</param>
+    /// <param name="expectedPrivateWord">Mot magique attendu.</param>
+    /// <returns>Exception contenant les valeurs observée et attendue.</returns>
+    public static InvalidDataException InvalidPrivateWord(ushort observedPrivateWord, ushort expectedPrivateWord) =>
+        new($"The DiskCopy private word is 0x{observedPrivateWord:X4}; expected 0x{expectedPrivateWord:X4}.");
+
     /// <summary>Crée l’erreur signalant une charge utile absente ou située hors du conteneur.</summary>
     /// <returns>L’exception décrivant la charge utile invalide.</returns>
     public static InvalidDataException InvalidPayload() =>
