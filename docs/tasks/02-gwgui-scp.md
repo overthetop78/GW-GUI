@@ -135,7 +135,7 @@
     - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une plage, d’un offset, d’une signature de piste et de données de flux tronqués ou incohérents.
     - [x] Vérifier que ces tests locaux atteignent leurs assertions sans corpus SCP externe.
 
-- [ ] Compléments issus de la relecture complète du conteneur SCP
+- [x] Compléments issus de la relecture complète du conteneur SCP
   - [x] `Containers/Scp/ScpFormatConstants.cs`
     - [x] Ajouter une définition commune pour le calcul et la validation du checksum SCP utilisée par le Reader et les tests.
     - [x] Ajouter une fonction nommée convertissant un numéro de piste SCP en cylindre et tête.
@@ -181,10 +181,10 @@
     - [x] Remplacer les noms de sections construits en texte brut par des identifiants de section nommés passés aux erreurs SCP.
     - [x] Documenter en français chaque type et membre créé ou modifié.
     - [x] Tester séparément le cache, son invalidation, le parsing de piste, les débordements de flux et les révolutions tronquées.
-  - [ ] `Exploration/ScpCaptureInfo.cs` et `ScpCaptureInfoReader.cs`
-    - [ ] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
-    - [ ] Utiliser les calculs de piste et checksum communs du conteneur SCP.
-    - [ ] Tester l'absence de piste, plusieurs révolutions, les deux têtes et un checksum invalide.
+  - [x] `Exploration/ScpCaptureInfo.cs` et `ScpCaptureInfoReader.cs`
+    - [x] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
+    - [x] Utiliser les calculs de piste et checksum communs du conteneur SCP.
+    - [x] Tester l'absence de piste, plusieurs révolutions, les deux têtes et un checksum invalide.
 
 ## 3. Conteneurs et reconnaissance des fichiers
 

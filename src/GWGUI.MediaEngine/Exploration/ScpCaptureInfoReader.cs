@@ -39,10 +39,7 @@ public static class ScpCaptureInfoReader
         var slots = new List<int>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
-            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(
-                    ScpFormatConstants.TrackTableOffset + slot * ScpFormatConstants.TrackTableEntrySize,
-                    ScpFormatConstants.TrackTableEntrySize)) != 0)
-                slots.Add(slot);
+            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(ScpFormatConstants.TrackTableOffset + slot * ScpFormatConstants.TrackTableEntrySize, ScpFormatConstants.TrackTableEntrySize)) != 0) slots.Add(slot);
         }
 
         stream.Position = ScpFormatConstants.TrackTableOffset;
