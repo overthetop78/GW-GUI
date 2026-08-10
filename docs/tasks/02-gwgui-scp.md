@@ -526,12 +526,12 @@
     - [x] Remettre sur une ligne l'appel à `ConvertToBits` dans `Recognition/Apple/NibTrackImageReader.cs`.
   - [x] Décodage
     - [x] Remettre sur une ligne l'expression de `DecodeBits` dans `Decoding/Decoders/AppleMacGcrDecoder.cs`.
-  - [ ] Reconstruction sectorielle Apple et Atari
-    - [ ] Remettre sur une ligne la signature de `CreateProDosImage` dans `SectorImages/AppleIIScpSectorReconstructor.cs`.
-    - [ ] Remettre sur une ligne l'appel à `AppleScpSectorDecoder.Select` dans `SectorImages/AppleRwts18ScpSectorReconstructor.cs`.
-    - [ ] Remettre sur une ligne la signature de `DecodeCandidates` dans `SectorImages/AppleScpSectorDecoder.cs`.
-    - [ ] Remettre sur une ligne la signature de `ReadAsync` dans `SectorImages/AtariScpSectorImageReader.cs`.
-    - [ ] Remettre sur une ligne l'appel à `AtariStFromCapacity` dans `SectorImages/AtariStIsoScpSectorImagePolicy.cs`.
+  - [x] Reconstruction sectorielle Apple et Atari
+    - [x] Remettre sur une ligne la signature de `CreateProDosImage` dans `SectorImages/AppleIIScpSectorReconstructor.cs`.
+    - [x] Remettre sur une ligne l'appel à `AppleScpSectorDecoder.Select` dans `SectorImages/AppleRwts18ScpSectorReconstructor.cs`.
+    - [x] Remettre sur une ligne la signature de `DecodeCandidates` dans `SectorImages/AppleScpSectorDecoder.cs`.
+    - [x] Remettre sur une ligne la signature de `ReadAsync` dans `SectorImages/AtariScpSectorImageReader.cs`.
+    - [x] Remettre sur une ligne l'appel à `AtariStFromCapacity` dans `SectorImages/AtariStIsoScpSectorImagePolicy.cs`.
   - [ ] Reconstruction sectorielle DEC et Epson
     - [ ] Remettre sur une ligne la signature de `Best` dans `SectorImages/DecRx02ScpSectorImageReader.cs`.
     - [ ] Remettre sur une ligne la signature de `TryDetect` dans `SectorImages/EpsonQx10FormatDetector.cs`.

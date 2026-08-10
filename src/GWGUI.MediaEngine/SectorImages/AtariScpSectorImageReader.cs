@@ -8,10 +8,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
 {
     private readonly IsoScpSectorImageReader reader = new(scpReader, decoders);
 
-    public Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId = null,
-        CancellationToken cancellationToken = default)
+    public Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         if (formatId is not null &&
             !formatId.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) &&

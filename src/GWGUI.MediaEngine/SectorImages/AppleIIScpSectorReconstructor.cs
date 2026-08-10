@@ -25,8 +25,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
             1, sectorsPerTrack, blocks);
     }
 
-    private static SectorImage CreateProDosImage(
-        Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
+    private static SectorImage CreateProDosImage(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
     {
         var tracks = Math.Max(35, candidates.Keys.Where(key => key.Cylinder < 50)
             .Max(key => key.Cylinder) + 1);

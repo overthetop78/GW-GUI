@@ -10,9 +10,7 @@ internal sealed class AtariStIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
     {
         var candidates = candidateSet.Addressed;
         var measured = IsoSectorImageBuilder.Measure(candidates);
-        var resolvedFormat = formatId ??
-            DiskImageFormatIds.AtariStFromCapacity(
-                (long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
+        var resolvedFormat = formatId ?? DiskImageFormatIds.AtariStFromCapacity((long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
         return IsoSectorImageBuilder.CreateUniform(resolvedFormat, candidates, measured.SectorSize,
             measured.Cylinders, measured.Heads, measured.SectorsPerTrack,
             address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1);

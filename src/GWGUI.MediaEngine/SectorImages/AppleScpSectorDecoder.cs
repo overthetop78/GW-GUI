@@ -8,8 +8,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
 {
     private readonly AppleMacGcrDecoder _macDecoder = new();
 
-    public Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> DecodeCandidates(
-        ScpImage scp, string decoderId, int size, CancellationToken cancellationToken)
+    public Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> DecodeCandidates(ScpImage scp, string decoderId, int size, CancellationToken cancellationToken)
     {
         var result = new Dictionary<SectorAddress, List<(DecodedSector, int)>>();
         foreach (var track in scp.Tracks)
