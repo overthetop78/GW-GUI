@@ -103,4 +103,22 @@ public static class ScpFormatConstants
 
     /// <summary>Valeur maximale du sélecteur de tête SCP.</summary>
     public const byte MaximumHeadSelector = 2;
+
+    /// <summary>Durée, en nanosecondes, d’une milliseconde.</summary>
+    public const double NanosecondsPerMillisecond = 1_000_000d;
+
+    /// <summary>Durée, en millisecondes, d’une minute.</summary>
+    public const double MillisecondsPerMinute = 60_000d;
+
+    /// <summary>Durée élémentaire, en nanosecondes, d’un pas de résolution SCP.</summary>
+    public const int ResolutionStepNanoseconds = 25;
+
+    /// <summary>Décalage ajouté à l’indice de résolution stocké dans l’en-tête SCP.</summary>
+    public const int ResolutionIndexOffset = 1;
+
+    /// <summary>Nombre de bits séparant les composantes majeure et mineure de la version SCP.</summary>
+    public const int VersionMajorShift = 4;
+
+    /// <summary>Masque permettant d’extraire la composante mineure de la version SCP.</summary>
+    public const byte VersionMinorMask = 0x0f;
 }

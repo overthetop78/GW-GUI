@@ -10,6 +10,18 @@ public sealed class ScpReaderDeterministicTests
     private static readonly Lazy<TestImages> Images = new(CreateTestImages);
 
     [Fact]
+    public void ConvertsScpVersionResolutionDurationAndRotationSpeed()
+    {
+        var header = new ScpHeader(0x25, 0, 1, 0, 0, (ScpFlags)0, 0, 0, 1, 0);
+        var revolution = new ScpRevolution(4_000_000, 0, []);
+
+        Assert.Equal("2.5", header.VersionText);
+        Assert.Equal(50, header.ResolutionNanoseconds);
+        Assert.Equal(200d, revolution.DurationMilliseconds(header.ResolutionNanoseconds));
+        Assert.Equal(300d, revolution.Rpm(header.ResolutionNanoseconds));
+    }
+
+    [Fact]
     public async Task ReadsTwoTracksTwoRevolutionsAndFluxOverflow()
     {
         var image = await new ScpReader().ReadAsync(Images.Value.Valid);

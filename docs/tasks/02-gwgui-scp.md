@@ -87,7 +87,7 @@
     - [x] Ajouter les valeurs acceptées pour la largeur de cellule et les limites de sélection de tête.
     - [x] Remplacer dans `ScpReader.cs` toutes les signatures, offsets, tailles, limites et unités correspondantes par `ScpFormatConstants`.
     - [x] Documenter en français chaque constante ajoutée.
-- [ ] `src/GWGUI.MediaEngine/ScpModels.cs`
+- [x] `src/GWGUI.MediaEngine/ScpModels.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs` et `ScpImage.cs`.
     - [x] Déplacer chaque type public dans le fichier portant son nom.
@@ -96,11 +96,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpFlags, ScpHeader, ScpRevolution, ScpTrack, ScpImage`.
     - [x] Ajouter la documentation XML des méthodes `ScpHeader, ScpRevolution, DurationMilliseconds, Rpm, ScpTrack, ScpImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Valeurs brutes des modèles SCP déplacés
-    - [ ] Ajouter dans `ScpFormatConstants` la durée d’une milliseconde en nanosecondes, la durée d’une minute en millisecondes, la durée élémentaire SCP de `25` nanosecondes et les masques de version utilisés par `ScpHeader`.
-    - [ ] Remplacer dans `ScpHeader.ResolutionNanoseconds`, `ScpHeader.VersionText`, `ScpRevolution.DurationMilliseconds` et `ScpRevolution.Rpm` les valeurs brutes correspondantes.
-    - [ ] Documenter en français les constantes et les calculs modifiés.
-    - [ ] Tester les conversions de résolution, version, durée et vitesse avec des valeurs SCP connues.
+  - [x] Valeurs brutes des modèles SCP déplacés
+    - [x] Ajouter dans `ScpFormatConstants` la durée d’une milliseconde en nanosecondes, la durée d’une minute en millisecondes, la durée élémentaire SCP de `25` nanosecondes et les masques de version utilisés par `ScpHeader`.
+    - [x] Remplacer dans `ScpHeader.ResolutionNanoseconds`, `ScpHeader.VersionText`, `ScpRevolution.DurationMilliseconds` et `ScpRevolution.Rpm` les valeurs brutes correspondantes.
+    - [x] Documenter en français les constantes et les calculs modifiés.
+    - [x] Tester les conversions de résolution, version, durée et vitesse avec des valeurs SCP connues.
 - [ ] `src/GWGUI.MediaEngine/ScpReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Containers/Scp/ScpReader.cs`.

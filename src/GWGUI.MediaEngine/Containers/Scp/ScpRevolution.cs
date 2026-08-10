@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Containers.Scp;
+
 namespace GWGUI.MediaEngine;
 
 /// <summary>
@@ -13,12 +15,12 @@ public sealed record ScpRevolution(uint IndexTimeTicks, uint DeclaredFluxCount, 
     /// </summary>
     /// <param name="resolutionNanoseconds">Durée strictement positive d'un pas temporel, en nanosecondes.</param>
     /// <returns>Durée de la révolution en millisecondes.</returns>
-    public double DurationMilliseconds(int resolutionNanoseconds) => IndexTimeTicks * resolutionNanoseconds / 1_000_000d;
+    public double DurationMilliseconds(int resolutionNanoseconds) => IndexTimeTicks * resolutionNanoseconds / ScpFormatConstants.NanosecondsPerMillisecond;
 
     /// <summary>
     /// Calcule la vitesse de rotation correspondant à la durée déclarée de la révolution.
     /// </summary>
     /// <param name="resolutionNanoseconds">Durée strictement positive d'un pas temporel, en nanosecondes.</param>
     /// <returns>Vitesse de rotation en tours par minute.</returns>
-    public double Rpm(int resolutionNanoseconds) => 60_000d / DurationMilliseconds(resolutionNanoseconds);
+    public double Rpm(int resolutionNanoseconds) => ScpFormatConstants.MillisecondsPerMinute / DurationMilliseconds(resolutionNanoseconds);
 }

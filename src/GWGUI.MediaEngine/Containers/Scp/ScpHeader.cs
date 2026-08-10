@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Containers.Scp;
+
 namespace GWGUI.MediaEngine;
 
 /// <summary>
@@ -33,10 +35,10 @@ public sealed record ScpHeader(
     /// <summary>
     /// Obtient la durée d'un pas temporel de flux, en nanosecondes.
     /// </summary>
-    public int ResolutionNanoseconds => 25 * (Resolution + 1);
+    public int ResolutionNanoseconds => ScpFormatConstants.ResolutionStepNanoseconds * (Resolution + ScpFormatConstants.ResolutionIndexOffset);
 
     /// <summary>
     /// Obtient la version sous la forme textuelle « majeur.mineur ».
     /// </summary>
-    public string VersionText => $"{Version >> 4}.{Version & 0x0f}";
+    public string VersionText => $"{Version >> ScpFormatConstants.VersionMajorShift}.{Version & ScpFormatConstants.VersionMinorMask}";
 }
