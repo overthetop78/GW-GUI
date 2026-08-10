@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 
 /// <summary>Présélectionne les conteneurs et images brutes pris en charge par le lecteur Apple.</summary>
 /// <param name="reader">Lecteur public des images disque Apple.</param>
-internal sealed class AppleContainerPolicy(AppleDiskImageReader reader) : IDiskImageContainerPolicy
+internal sealed class AppleContainerPolicy(AppleDiskImageReader reader) : IDiskImageRecognitionPolicy
 {
     private static readonly HashSet<string> AppleExtensions = new(StringComparer.OrdinalIgnoreCase)
         { DiskImageFileExtensions.Do, DiskImageFileExtensions.Po, DiskImageFileExtensions.TwoMg,

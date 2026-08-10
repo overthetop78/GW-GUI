@@ -8,7 +8,7 @@ namespace GWGUI.MediaEngine.Recognition.Policies;
 
 /// <summary>Reconnaît les signatures CPCEMU DSK puis applique l'interprétation Amstrad correspondant à la géométrie lue.</summary>
 /// <param name="reader">Lecteur neutre des conteneurs CPCEMU DSK.</param>
-internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDiskImageContainerPolicy
+internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDiskImageRecognitionPolicy
 {
     /// <summary>Recherche une signature CPCEMU DSK Standard ou Extended au début du contenu, indépendamment de l'extension.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>

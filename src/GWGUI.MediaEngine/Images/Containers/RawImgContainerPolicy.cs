@@ -6,7 +6,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.Containers;
 
-internal sealed class RawImgContainerPolicy : IDiskImageContainerPolicy
+internal sealed class RawImgContainerPolicy : IDiskImageRecognitionPolicy
 {
     public ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) =>
         ValueTask.FromResult(context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase));

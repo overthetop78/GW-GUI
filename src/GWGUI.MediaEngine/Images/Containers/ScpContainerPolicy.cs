@@ -10,7 +10,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 /// <param name="supportedFormatIds">Formats sectoriels pouvant être explicitement demandés.</param>
 internal sealed class ScpContainerPolicy(
     ScpImageExplorationService exploration,
-    IReadOnlySet<string> supportedFormatIds) : IDiskImageContainerPolicy
+    IReadOnlySet<string> supportedFormatIds) : IDiskImageRecognitionPolicy
 {
     /// <summary>Vérifie la signature SCP dans le contenu, indépendamment de l’extension du fichier.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>

@@ -7,7 +7,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 /// <param name="reader">Lecteur sectoriel chargé de valider le contenu présélectionné.</param>
 /// <param name="extensions">Extensions normalisées acceptées comme indices.</param>
 internal sealed class DirectContainerPolicy(ISectorImageReader reader, params string[] extensions)
-    : IDiskImageContainerPolicy
+    : IDiskImageRecognitionPolicy
 {
     private readonly HashSet<string> supportedExtensions = new(extensions, StringComparer.OrdinalIgnoreCase);
 

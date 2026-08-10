@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 
 /// <summary>Reconnaît les images brutes MSX-DOS à partir de leur indice DSK et de leur BPB.</summary>
 /// <param name="reader">Lecteur des images sectorielles MSX.</param>
-internal sealed class MsxContainerPolicy(MsxImageReader reader) : IDiskImageContainerPolicy
+internal sealed class MsxContainerPolicy(MsxImageReader reader) : IDiskImageRecognitionPolicy
 {
     /// <summary>Vérifie l’indice DSK, le format demandé et les champs internes du BPB MSX.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>

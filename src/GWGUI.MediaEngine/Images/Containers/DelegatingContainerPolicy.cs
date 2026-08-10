@@ -8,7 +8,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 /// <param name="extensions">Extensions normalisées acceptées comme indices.</param>
 internal sealed class DelegatingContainerPolicy(
     Func<string, CancellationToken, Task<SectorImage>> read,
-    params string[] extensions) : IDiskImageContainerPolicy
+    params string[] extensions) : IDiskImageRecognitionPolicy
 {
     private readonly HashSet<string> supportedExtensions = new(extensions, StringComparer.OrdinalIgnoreCase);
 

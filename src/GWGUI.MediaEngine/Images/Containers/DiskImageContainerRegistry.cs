@@ -5,9 +5,9 @@ namespace GWGUI.MediaEngine.Images.Containers;
 
 public sealed class DiskImageContainerRegistry
 {
-    private readonly IReadOnlyList<IDiskImageContainerPolicy> policies;
+    private readonly IReadOnlyList<IDiskImageRecognitionPolicy> policies;
 
-    internal DiskImageContainerRegistry(IReadOnlyList<IDiskImageContainerPolicy> policies) =>
+    internal DiskImageContainerRegistry(IReadOnlyList<IDiskImageRecognitionPolicy> policies) =>
         this.policies = policies;
 
     public async Task<SectorImage> ReadAsync(

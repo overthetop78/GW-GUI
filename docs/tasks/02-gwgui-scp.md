@@ -379,15 +379,15 @@
   - [x] Tests déterministes
     - [x] Vérifier avec un fichier temporaire déterministe que chemin, longueur, extension normalisée et format demandé sont conservés exactement.
     - [x] Vérifier que plusieurs appels à la lecture du contenu réutilisent les mêmes octets et qu’une annulation avant la première lecture est propagée.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/IDiskImageContainerPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `Recognition/IDiskImageRecognitionPolicy.cs`.
-    - [ ] Déplacer sans le modifier le contrat composé de `CanReadAsync` et `ReadAsync` vers la nouvelle interface.
-    - [ ] Supprimer l’ancien contrat après migration des politiques.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `IDiskImageRecognitionPolicy`, `CanReadAsync` et `ReadAsync`.
-  - [ ] Tests déterministes
-    - [ ] Vérifier qu’une implémentation factice expose bien la présélection par `CanReadAsync` et la lecture par `ReadAsync` après le déplacement du contrat.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/IDiskImageContainerPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `Recognition/IDiskImageRecognitionPolicy.cs`.
+    - [x] Déplacer sans le modifier le contrat composé de `CanReadAsync` et `ReadAsync` vers la nouvelle interface.
+    - [x] Supprimer l’ancien contrat après migration des politiques.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `IDiskImageRecognitionPolicy`, `CanReadAsync` et `ReadAsync`.
+  - [x] Tests déterministes
+    - [x] Vérifier qu’une implémentation factice expose bien la présélection par `CanReadAsync` et la lecture par `ReadAsync` après le déplacement du contrat.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DiskImageContainerRegistry.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionRegistry.cs`.

@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 
 /// <summary>Reconnaît les dumps DEC RX02 explicitement demandés ou contenant une structure RT-11 crédible.</summary>
 /// <param name="reader">Lecteur des dumps physiques DEC RX02.</param>
-internal sealed class DecRx02ContainerPolicy(DecRx02ImageReader reader) : IDiskImageContainerPolicy
+internal sealed class DecRx02ContainerPolicy(DecRx02ImageReader reader) : IDiskImageRecognitionPolicy
 {
     /// <summary>Vérifie l’indice IMG, le format demandé et la structure interne RT-11.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>

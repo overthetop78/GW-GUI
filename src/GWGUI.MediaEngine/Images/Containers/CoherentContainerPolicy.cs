@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 
 /// <summary>Reconnaît les images brutes dont le superbloc correspond à un système Coherent.</summary>
 /// <param name="reader">Lecteur des images sectorielles Coherent.</param>
-internal sealed class CoherentContainerPolicy(CoherentImageReader reader) : IDiskImageContainerPolicy
+internal sealed class CoherentContainerPolicy(CoherentImageReader reader) : IDiskImageRecognitionPolicy
 {
     /// <summary>Vérifie l’indice BIN puis la signature interne du superbloc Coherent.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>
