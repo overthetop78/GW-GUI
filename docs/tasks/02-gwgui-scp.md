@@ -416,17 +416,17 @@
     - [x] Vérifier que les images locales 2IMG, DiskCopy et WOZ sont sélectionnées par leur signature même avec une extension inhabituelle.
     - [x] Vérifier séparément que l’extension DO, PO, D13, NIB, DSK ou IMG ne suffit pas à faire réussir la lecture lorsque le contenu ne respecte pas le format attendu.
     - [x] Vérifier qu’un parser Apple qui rejette un candidat permet au registre d’essayer la politique suivante.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/CoherentContainerPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/CoherentImageRecognitionPolicy.cs`.
-    - [ ] Remplacer `.bin` comme décision par un indice.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `CoherentContainerPolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `CoherentContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Utiliser dans `image_test` une image brute Coherent avec superbloc et géométrie connus ; appliquer la règle d’obtention d’image si elle manque.
-    - [ ] Vérifier que la signature interne reconnaît cette image indépendamment de son extension et que géométrie, secteurs et contenu sont conservés.
-    - [ ] Vérifier qu’une image brute de même taille sans signature Coherent est rejetée par le Reader Coherent et que le registre essaie ensuite la politique suivante.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/CoherentContainerPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Recognition/Policies/CoherentImageRecognitionPolicy.cs`.
+    - [x] Remplacer `.bin` comme décision par un indice.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML du type `CoherentImageRecognitionPolicy`.
+    - [x] Ajouter la documentation XML des méthodes `CoherentImageRecognitionPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Utiliser dans `image_test` une image brute Coherent avec superbloc et géométrie connus ; appliquer la règle d’obtention d’image si elle manque.
+    - [x] Vérifier que la signature interne reconnaît cette image indépendamment de son extension et que géométrie, secteurs et contenu sont conservés.
+    - [x] Vérifier qu’une image brute de même taille sans signature Coherent est rejetée par le Reader Coherent et que le registre essaie ensuite la politique suivante.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DecRx02ContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.

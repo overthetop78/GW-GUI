@@ -202,7 +202,7 @@ Politiques observées :
 
 - directes par extensions : `DirectContainerPolicy` ;
 - déléguées par fonction : `DelegatingContainerPolicy` ;
-- spécialisées : `AmstradImageRecognitionPolicy`, `AppleImageRecognitionPolicy`, `CoherentContainerPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
+- spécialisées : `AmstradImageRecognitionPolicy`, `AppleImageRecognitionPolicy`, `CoherentImageRecognitionPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
 
 Constats :
 
@@ -570,7 +570,7 @@ La lecture croisée des politiques et des lecteurs montre que « format d’imag
 | 86F | conteneur de pistes encodées | bitstream puis FM ou MFM selon les drapeaux | plusieurs géométries de type PC | le lecteur parse, décode et reconstruit directement un `SectorImage` |
 | CP2 | conteneur structuré de descripteurs et blocs de secteurs | secteurs décrits par piste | géométrie détectée ensuite | parsing et interprétation sont encore regroupés |
 | RX02 brut | ordre physique particulier de secteurs | remise en ordre vers des blocs logiques | DEC, souvent RT-11 | la signature RT-11 participe à la détection du lecteur physique |
-| Coherent brut | image sectorielle identifiée par son contenu | secteurs, avec géométrie zonée pour Commodore 900 | plateformes Coherent, dont C900 | signature du système de fichiers et géométrie de machine décident du lecteur |
+| Coherent brut | image sectorielle identifiée par son contenu | secteurs, avec géométrie zonée pour Commodore 900 | plateformes Coherent, dont C900 | `CoherentImageRecognitionPolicy` utilise le superbloc indépendamment de l’extension ; le Reader valide ensuite taille et géométrie |
 
 ### Conséquence architecturale établie par cette matrice
 
