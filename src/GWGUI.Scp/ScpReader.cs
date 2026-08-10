@@ -5,9 +5,6 @@ namespace GWGUI.Scp;
 
 public sealed class ScpReader : IScpReader
 {
-    public const int HeaderLength = ScpFormatConstants.HeaderLength;
-    public const int FloppyTrackSlots = ScpFormatConstants.FloppyTrackSlots;
-    public const int TrackTableOffset = ScpFormatConstants.TrackTableOffset;
     private readonly System.Collections.Concurrent.ConcurrentDictionary<FileIdentity, Lazy<Task<ScpImage>>> _cache = new();
 
     public async Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default)
@@ -37,25 +34,25 @@ public sealed class ScpReader : IScpReader
     {
         var header = ReadHeader(data);
         if ((header.Flags & ScpFlags.Extended) != 0) throw new NotSupportedException("Extended SCP media are not floppy images.");
-        var tableBytes = checked(TrackTableOffset + FloppyTrackSlots * 4);
+        var tableBytes = checked(ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * 4);
         Require(data, 0, tableBytes, "track-offset table");
         var tracks = new List<ScpTrack>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
-            var offset = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(TrackTableOffset + slot * 4, 4));
+            var offset = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(ScpFormatConstants.TrackTableOffset + slot * 4, 4));
             if (offset == 0) continue;
             tracks.Add(ReadTrack(data, checked((int)offset), slot, header));
         }
-        var checksumValid = header.Checksum == 0 && (header.Flags & ScpFlags.Writable) != 0 || ComputeChecksum(data[TrackTableOffset..]) == header.Checksum;
+        var checksumValid = header.Checksum == 0 && (header.Flags & ScpFlags.Writable) != 0 || ComputeChecksum(data[ScpFormatConstants.TrackTableOffset..]) == header.Checksum;
         return new ScpImage(header, tracks, checksumValid, data.Length);
     }
 
     public static ScpHeader ReadHeader(ReadOnlySpan<byte> data)
     {
-        Require(data, 0, HeaderLength, "SCP header");
+        Require(data, 0, ScpFormatConstants.HeaderLength, "SCP header");
         if (!data[..3].SequenceEqual("SCP"u8)) throw new InvalidDataException("The file does not contain an SCP signature.");
         if (data[5] is 0 or > 64) throw new InvalidDataException("The SCP revolution count is invalid.");
-        if (data[7] < data[6] || data[7] >= FloppyTrackSlots) throw new InvalidDataException("The SCP track range is invalid.");
+        if (data[7] < data[6] || data[7] >= ScpFormatConstants.FloppyTrackSlots) throw new InvalidDataException("The SCP track range is invalid.");
         if (data[9] is not (0 or 16)) throw new NotSupportedException($"Unsupported SCP bit-cell width: {data[9]}.");
         if (data[10] > 2) throw new InvalidDataException("The SCP head selector is invalid.");
         return new(data[3], data[4], data[5], data[6], data[7], (ScpFlags)data[8], data[9], data[10], data[11], BinaryPrimitives.ReadUInt32LittleEndian(data[12..16]));

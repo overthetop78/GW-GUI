@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Containers.Scp;
 
 namespace GWGUI.Scp.Exploration;
 
@@ -26,17 +27,17 @@ public static class ScpCaptureInfoReader
     public static async Task<ScpCaptureInfo> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 81920, FileOptions.Asynchronous | FileOptions.SequentialScan);
-        var tableLength = ScpReader.TrackTableOffset + ScpReader.FloppyTrackSlots * 4;
+        var tableLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * 4;
         var table = new byte[tableLength];
         await stream.ReadExactlyAsync(table, cancellationToken).ConfigureAwait(false);
         var header = ScpHeaderReader.Read(table);
         var slots = new List<int>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
-            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(ScpReader.TrackTableOffset + slot * 4, 4)) != 0) slots.Add(slot);
+            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(ScpFormatConstants.TrackTableOffset + slot * 4, 4)) != 0) slots.Add(slot);
         }
 
-        stream.Position = ScpReader.TrackTableOffset;
+        stream.Position = ScpFormatConstants.TrackTableOffset;
         var buffer = new byte[81920];
         uint checksum = 0;
         while (true)

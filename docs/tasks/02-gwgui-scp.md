@@ -28,12 +28,12 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpCaptureInfo, ScpCaptureInfoReader`.
     - [x] Ajouter la documentation XML des méthodes `ScpCaptureInfo, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.Scp/ScpFormatConstants.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Containers/Scp/ScpFormatConstants.cs`.
-    - [ ] Remplacer les copies de `HeaderLength`, `FloppyTrackSlots` et `TrackTableOffset` dans `ScpReader.cs` par ces constantes.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ScpFormatConstants`.
+- [x] `src/GWGUI.Scp/ScpFormatConstants.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Containers/Scp/ScpFormatConstants.cs`.
+    - [x] Remplacer les copies de `HeaderLength`, `FloppyTrackSlots` et `TrackTableOffset` dans `ScpReader.cs` par ces constantes.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `ScpFormatConstants`.
 - [ ] `src/GWGUI.Scp/ScpModels.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs` et `ScpImage.cs`.
