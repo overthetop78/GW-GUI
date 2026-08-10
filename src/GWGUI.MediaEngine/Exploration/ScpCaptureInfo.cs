@@ -10,11 +10,4 @@ namespace GWGUI.MediaEngine.Exploration;
 /// <param name="Sides">Nombre de faces distinctes représentées par les entrées présentes.</param>
 /// <param name="ChecksumValid"><see langword="true"/> lorsque la somme de contrôle de la capture est valide selon les règles du format SCP.</param>
 /// <param name="FileSize">Taille totale du fichier, en octets.</param>
-public sealed record ScpCaptureInfo(
-    ScpHeader Header,
-    int CapturedTracks,
-    int MissingTracks,
-    int Cylinders,
-    int Sides,
-    bool ChecksumValid,
-    long FileSize);
+public sealed record ScpCaptureInfo(ScpHeader Header, int CapturedTracks, int MissingTracks, int Cylinders, int Sides, bool ChecksumValid, long FileSize);

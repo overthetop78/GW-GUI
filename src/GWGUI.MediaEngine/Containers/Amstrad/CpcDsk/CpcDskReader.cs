@@ -56,8 +56,7 @@ public sealed class CpcDskReader
             cancellationToken.ThrowIfCancellationRequested();
             var trackSize = extended
                 ? bytes[CpcDskLayout.ExtendedTrackSizeTableOffset + trackIndex] * CpcDskLayout.ExtendedTrackSizeUnit
-                : BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(
-                    CpcDskLayout.StandardTrackSizeOffset, CpcDskLayout.StoredSizeFieldLength));
+                : BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(CpcDskLayout.StandardTrackSizeOffset, CpcDskLayout.StoredSizeFieldLength));
             if (trackSize == 0) continue;
             if (position + trackSize > bytes.Length || trackSize < CpcDskLayout.TrackInformationBlockSize)
                 throw CpcDskExceptions.TruncatedTrack(trackIndex);
@@ -86,8 +85,7 @@ public sealed class CpcDskReader
                                CpcDskLayout.SectorSizeCodeMask;
                 var nominalSize = CpcDskLayout.MinimumSectorSize << sizeCode;
                 var storedSize = extended
-                    ? BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(
-                        descriptor + CpcDskLayout.SectorStoredSizeOffset, CpcDskLayout.StoredSizeFieldLength))
+                    ? BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(descriptor + CpcDskLayout.SectorStoredSizeOffset, CpcDskLayout.StoredSizeFieldLength))
                     : nominalSize;
                 if (storedSize == 0) storedSize = nominalSize;
                 if (dataPosition + storedSize > position + trackSize)

@@ -3,14 +3,9 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.ScpDetection;
 
-internal sealed class ScpSectorImageReader(
-    ScpCandidateRegistry candidates,
-    FileSystemRegistry fileSystems)
+internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, FileSystemRegistry fileSystems)
 {
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken)
     {
         var selected = candidates.Selected(path, formatId, cancellationToken);
         if (selected is not null) return await selected().ConfigureAwait(false);

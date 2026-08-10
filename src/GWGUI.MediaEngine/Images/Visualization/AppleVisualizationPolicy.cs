@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.SectorImages;
 
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Images.Visualization;
 
@@ -19,11 +20,11 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
         if (image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase))
             return "apple2.rwts18";
         if (image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) &&
-            image.BlockSize == 512 && image.Cylinders >= 80) return "applemac.gcr";
+            image.BlockSize == 512 && image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount) return "applemac.gcr";
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) ||
             image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return "apple2.gcr";
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) &&
-            image.Cylinders == 46 && image.Heads == 2) return "applelisa.fileware.gcr";
+            image.Cylinders == AppleDiskGeometry.LisaFileWareCylinderCount && image.Heads == AppleDiskGeometry.LisaFileWareHeadCount) return "applelisa.fileware.gcr";
         if (image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
         return "applemac.gcr";
     }
@@ -33,7 +34,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     {
         if ((image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) ||
              image.FormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase)) &&
-            image.Cylinders < 80)
+            image.Cylinders < DiskGeometryConstants.EightyTrackCylinderCount)
         {
             var sectors = new List<TrackSector>(items.Count * 2);
             foreach (var block in items.Select(item => item.Block))
@@ -59,7 +60,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
             return new Dictionary<string, int>
             {
                 ["sectorsPerTrack"] = sectorCount,
-                ["format"] = image.Cylinders >= 80 ? 0x24 : 0
+                ["format"] = image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount ? 0x24 : 0
             };
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int> { ["format"] = image.Heads == 1 ? 0x02 : 0x22 };

@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Images;
 
 internal static class CommodoreGeometry
@@ -40,7 +42,7 @@ internal static class CommodoreGeometry
 
     public static int To1581LogicalBlock(int track, int sector)
     {
-        if (track is < 1 or > 80 || sector is < 0 or >= 40) throw new ArgumentOutOfRangeException();
+        if (track is < 1 or > DiskGeometryConstants.EightyTrackCylinderCount || sector is < 0 or >= 40) throw new ArgumentOutOfRangeException();
         return (track - 1) * 40 + sector;
     }
 }

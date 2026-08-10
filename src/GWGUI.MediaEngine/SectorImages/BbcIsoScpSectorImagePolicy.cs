@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class BbcIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
@@ -8,8 +10,8 @@ internal sealed class BbcIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
     {
         ArgumentNullException.ThrowIfNull(formatId);
         var measured = IsoSectorImageBuilder.Measure(candidateSet.Addressed);
-        var cylinders = formatId.EndsWith("80", StringComparison.OrdinalIgnoreCase) ? 80 : 40;
-        var heads = formatId.Contains(".ds", StringComparison.OrdinalIgnoreCase) ? 2 : 1;
+        var cylinders = formatId.EndsWith("80", StringComparison.OrdinalIgnoreCase) ? DiskGeometryConstants.EightyTrackCylinderCount : DiskGeometryConstants.FortyTrackCylinderCount;
+        var heads = formatId.Contains(".ds", StringComparison.OrdinalIgnoreCase) ? DiskGeometryConstants.DoubleSidedHeadCount : DiskGeometryConstants.SingleSidedHeadCount;
         return IsoSectorImageBuilder.CreateUniform(formatId, candidateSet.Addressed, measured.SectorSize,
             cylinders, heads, 10, address => Array.IndexOf(measured.SectorOrder, address.Number));
     }

@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -25,7 +26,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                 var decoded = decoders.Decode("commodore.gcr", physicalTrack.Revolutions[revolution]);
                 foreach (var sector in decoded.Sectors ?? [])
                 {
-                    if (sector.Data is null || sector.Cylinder is < 1 or > 80 || sector.Number < 0) continue;
+                    if (sector.Data is null || sector.Cylinder is < 1 or > DiskGeometryConstants.EightyTrackCylinderCount || sector.Number < 0) continue;
                     var key = ((int)sector.Cylinder, sector.Number);
                     if (!candidates.TryGetValue(key, out var list)) candidates[key] = list = [];
                     list.Add((sector, revolution + 1));
@@ -88,6 +89,6 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                     physical.AsSpan(half * 256, 256).ToArray(), best.Sector.IntegrityValid, best.Revolution));
             }
         }
-        return new(DiskImageFormatIds.Commodore1581, 256, 80, 1, 40, blocks);
+        return new(DiskImageFormatIds.Commodore1581, 256, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 40, blocks);
     }
 }

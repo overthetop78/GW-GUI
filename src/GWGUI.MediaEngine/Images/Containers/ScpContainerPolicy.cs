@@ -8,9 +8,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 /// <summary>Reconnaît un conteneur SCP par sa signature et le transmet au service d’exploration du flux.</summary>
 /// <param name="exploration">Service reconstruisant une image sectorielle depuis le conteneur SCP.</param>
 /// <param name="supportedFormatIds">Formats sectoriels pouvant être explicitement demandés.</param>
-internal sealed class ScpContainerPolicy(
-    ScpImageExplorationService exploration,
-    IReadOnlySet<string> supportedFormatIds) : IDiskImageRecognitionPolicy
+internal sealed class ScpContainerPolicy(ScpImageExplorationService exploration, IReadOnlySet<string> supportedFormatIds) : IDiskImageRecognitionPolicy
 {
     /// <summary>Vérifie la signature SCP dans le contenu, indépendamment de l’extension du fichier.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>

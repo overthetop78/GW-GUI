@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 
 /// <summary>
@@ -40,7 +42,7 @@ public static class CpcDskLayout
     public const int MaximumCylinderCount = 168;
 
     /// <summary>Nombre maximal de faces accepté dans la géométrie déclarée.</summary>
-    public const int MaximumHeadCount = 2;
+    public const int MaximumHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
 
     /// <summary>Nombre d’octets lus au début d’une piste pour reconnaître sa signature.</summary>
     public const int TrackSignatureLength = 12;

@@ -42,13 +42,13 @@ internal static class AppleRawImageReader
             var signature = BinaryPrimitives.ReadUInt16BigEndian(data.AsSpan(1024));
             var formatId = signature == 0xd2d7 ? DiskImageFormatIds.AppleMacMfs : DiskImageFormatIds.AppleMacHfs;
             return data.Length == 1_474_560
-                ? AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.Mac1440, 512, 80, 2, 18)
+                ? AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.Mac1440, 512, AppleDiskGeometry.MacintoshCylinderCount, AppleDiskGeometry.MacintoshDoubleSidedHeadCount, 18)
                 : AppleSectorImageFactory.CreateAppleMacZoned(data, formatId, data.Length == 409_600 ? 1 : 2);
         }
         if (AppleDiskImageSignatures.LooksLikeProDos(data))
             return data.Length == 819_200
                 ? AppleSectorImageFactory.CreateAppleMacZoned(data, DiskImageFormatIds.AppleIIProDos, 2)
-                : AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIProDos, 512, 80, 2,
+                : AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIProDos, 512, AppleDiskGeometry.MacintoshCylinderCount, AppleDiskGeometry.MacintoshDoubleSidedHeadCount,
                     data.Length / 512 / 160);
         throw new InvalidDataException("The Apple disk image has an unsupported size or signature.");
     }

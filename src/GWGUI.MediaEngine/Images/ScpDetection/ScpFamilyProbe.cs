@@ -18,9 +18,7 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         (ScpFormatFamily.Dec, "dec.rx02")
     ];
 
-    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(
-        string path,
-        CancellationToken cancellationToken)
+    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (scp.Tracks.Count == 0) return new HashSet<ScpFormatFamily>();

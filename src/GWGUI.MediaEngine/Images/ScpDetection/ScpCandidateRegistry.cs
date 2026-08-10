@@ -88,10 +88,7 @@ internal sealed class ScpCandidateRegistry
         };
     }
 
-    public Func<Task<SectorImage>>? Selected(
-        string path,
-        string? formatId,
-        CancellationToken cancellationToken)
+    public Func<Task<SectorImage>>? Selected(string path, string? formatId, CancellationToken cancellationToken)
     {
         if (formatId is null) return null;
         var registration = selectedReaders.FirstOrDefault(item => item.Matches(formatId));
@@ -103,10 +100,7 @@ internal sealed class ScpCandidateRegistry
     public IEnumerable<Func<Task<SectorImage>>> Default(string path, CancellationToken cancellationToken) =>
         defaultReaders.Select(reader => (Func<Task<SectorImage>>)(() => reader(path, null, cancellationToken)));
 
-    public IEnumerable<Func<Task<SectorImage>>> Automatic(
-        string path,
-        IReadOnlySet<ScpFormatFamily> families,
-        CancellationToken cancellationToken)
+    public IEnumerable<Func<Task<SectorImage>>> Automatic(string path, IReadOnlySet<ScpFormatFamily> families, CancellationToken cancellationToken)
     {
         var selectedFamilies = families.Count == 0 ? familyReaders.Keys : families;
         return selectedFamilies.SelectMany(family => familyReaders[family])

@@ -15,7 +15,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         foreach (var pair in candidates)
         {
             var address = pair.Key;
-            if (address.Cylinder >= 80 || address.Head >= heads) continue;
+            if (address.Cylinder >= AppleDiskGeometry.MacintoshCylinderCount || address.Head >= heads) continue;
             var sectorsPerTrack = AppleDiskGeometry.AppleMacSectors(address.Cylinder);
             if (address.Number < 0 || address.Number >= sectorsPerTrack) continue;
             var priorCylinderBlocks = Enumerable.Range(0, address.Cylinder)
@@ -26,7 +26,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         if (blocks.Count == 0)
             throw new InvalidDataException("No usable Apple Macintosh sectors could be reconstructed.");
         var count = 400 * heads * 2;
-        var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, 512, 80, heads, 12, blocks,
+        var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
             capacity: count * 512L, logicalBlockCount: count);
         var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true
             ? requestedFormatId
@@ -49,7 +49,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
                         ? DiskImageFormatIds.AppleMacHfs
                         : DiskImageFormatIds.AppleIIProDos;
         }
-        return new(formatId, 512, 80, heads, 12, blocks,
+        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
             capacity: count * 512L, logicalBlockCount: count);
     }
 }

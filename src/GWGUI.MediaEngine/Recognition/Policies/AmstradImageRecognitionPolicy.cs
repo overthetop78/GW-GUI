@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Images.Containers;
 using GWGUI.MediaEngine.Images.Interpretations;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -17,8 +18,7 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     public async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
-        return StartsWith(bytes, CpcDskFormat.StandardSignature) ||
-               StartsWith(bytes, CpcDskFormat.ExtendedSignature);
+        return StartsWith(bytes, CpcDskFormat.StandardSignature) || StartsWith(bytes, CpcDskFormat.ExtendedSignature);
     }
 
     /// <summary>Lit le conteneur neutre puis lui attribue l'identifiant CPC ou PCW déterminé par sa géométrie.</summary>
@@ -29,7 +29,7 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     public async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var image = await reader.ReadAsync(context.Path, cancellationToken).ConfigureAwait(false);
-        var formatId = image.Cylinders >= 80 && image.Heads == 2
+        var formatId = image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount && image.Heads == DiskGeometryConstants.DoubleSidedHeadCount
             ? DiskImageFormatIds.AmstradPcw
             : DiskImageFormatIds.AmstradCpc;
         return SectorImageInterpretation.Retag(image, formatId);
@@ -39,6 +39,5 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     /// <param name="bytes">Contenu du fichier.</param>
     /// <param name="signature">Signature CPCEMU attendue.</param>
     /// <returns><see langword="true"/> lorsque la signature est complète et identique.</returns>
-    private static bool StartsWith(byte[] bytes, string signature) =>
-        bytes.AsSpan().StartsWith(System.Text.Encoding.ASCII.GetBytes(signature));
+    private static bool StartsWith(byte[] bytes, string signature) => bytes.AsSpan().StartsWith(System.Text.Encoding.ASCII.GetBytes(signature));
 }

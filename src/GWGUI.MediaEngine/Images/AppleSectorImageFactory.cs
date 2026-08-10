@@ -28,12 +28,11 @@ internal static class AppleSectorImageFactory
         for (var logical = 0; logical < count; logical++)
             blocks[logical] = new(logical, AppleDiskGeometry.AppleMacZonedAddress(logical, heads),
                 data.AsSpan(logical * 512, 512).ToArray());
-        return new(formatId, 512, 80, heads, 12, blocks,
+        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
             capacity: data.Length, logicalBlockCount: count);
     }
 
-    public static SectorImage CreateAppleIIFromDecodedTracks(
-        IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
+    public static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
     {
         var selected = decodedTracks.SelectMany(item => item.Sectors
                 .Where(sector => sector.Data is { Count: 256 } && sector.Number is >= 0 and < 16)
@@ -78,8 +77,7 @@ internal static class AppleSectorImageFactory
             256, trackCount, 1, sectorsPerTrack, dosBlocks);
     }
 
-    public static SectorImage CreateRwts18FromDecodedTracks(
-        IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
+    public static SectorImage CreateRwts18FromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
     {
         var blocks = decodedTracks.SelectMany(item => item.Sectors
                 .Where(sector => sector.Data is { Count: 768 } && sector.Number is >= 0 and < 6)

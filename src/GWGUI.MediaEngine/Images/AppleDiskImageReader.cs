@@ -91,15 +91,13 @@ public sealed class AppleDiskImageReader : ISectorImageReader
     /// <summary>Construit une image Apple II depuis des pistes déjà décodées.</summary>
     /// <param name="decodedTracks">Pistes et secteurs décodés dans leur ordre physique.</param>
     /// <returns>Image sectorielle Apple II reconstruite.</returns>
-    internal static SectorImage CreateAppleIIFromDecodedTracks(
-        IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks) =>
+    internal static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks) =>
         AppleSectorImageFactory.CreateAppleIIFromDecodedTracks(decodedTracks);
 
     /// <summary>Construit une image Apple II RWTS18 depuis des pistes déjà décodées.</summary>
     /// <param name="decodedTracks">Pistes et secteurs RWTS18 décodés.</param>
     /// <returns>Image sectorielle RWTS18 reconstruite.</returns>
-    internal static SectorImage CreateRwts18FromDecodedTracks(
-        IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks) =>
+    internal static SectorImage CreateRwts18FromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks) =>
         AppleSectorImageFactory.CreateRwts18FromDecodedTracks(decodedTracks);
 
     /// <summary>Indique si une charge utile possède les structures attendues de Lisa Office System.</summary>

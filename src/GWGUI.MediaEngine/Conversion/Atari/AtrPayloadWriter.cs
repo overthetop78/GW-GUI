@@ -11,15 +11,9 @@ public static class AtrPayloadWriter
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture ou l'écriture.</param>
     /// <returns>Tâche représentant l'extraction asynchrone.</returns>
     /// <exception cref="InvalidDataException">Le conteneur source ne respecte pas la disposition ATR attendue.</exception>
-    public static async Task WriteRawPayloadAsync(
-        string sourcePath,
-        string destinationPath,
-        CancellationToken cancellationToken = default)
+    public static async Task WriteRawPayloadAsync(string sourcePath, string destinationPath, CancellationToken cancellationToken = default)
     {
         var data = await AtrReader.ReadValidatedContainerAsync(sourcePath, cancellationToken).ConfigureAwait(false);
-        await File.WriteAllBytesAsync(
-            destinationPath,
-            data.AsMemory(AtrLayout.HeaderSize),
-            cancellationToken).ConfigureAwait(false);
+        await File.WriteAllBytesAsync(destinationPath, data.AsMemory(AtrLayout.HeaderSize), cancellationToken).ConfigureAwait(false);
     }
 }

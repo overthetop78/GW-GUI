@@ -27,8 +27,7 @@ internal static class DiskImageExplorerFactory
             new EpsonQx10ScpSectorImageReader(scp, decoders), new UcsdScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new AppleScpSectorImageReader(scp, decoders),
             new DecRx02ScpSectorImageReader(scp, decoders));
-        var scpExploration = new ScpImageExplorationService(
-            candidates, new ScpFamilyProbe(scp, decoders), fileSystems);
+        var scpExploration = new ScpImageExplorationService(candidates, new ScpFamilyProbe(scp, decoders), fileSystems);
         var apple = new AppleDiskImageReader();
         var containers = new DiskImageRecognitionRegistry(
         [

@@ -29,10 +29,8 @@ internal static class DiskCopyReader
         var privateWord = BinaryPrimitives.ReadUInt16BigEndian(container.AsSpan(DiskCopyLayout.PrivateWordOffset));
         if (privateWord != DiskCopyFormat.PrivateWord)
             throw DiskCopyExceptions.InvalidPrivateWord(privateWord, DiskCopyFormat.PrivateWord);
-        var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(
-            container.AsSpan(DiskCopyLayout.DataLengthOffset)));
-        var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(
-            container.AsSpan(DiskCopyLayout.TagLengthOffset)));
+        var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(container.AsSpan(DiskCopyLayout.DataLengthOffset)));
+        var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(container.AsSpan(DiskCopyLayout.TagLengthOffset)));
         if (dataLength <= 0 || DiskCopyLayout.HeaderSize + (long)dataLength + tagLength > container.Length)
             throw DiskCopyExceptions.InvalidPayload();
 
@@ -54,10 +52,7 @@ internal static class DiskCopyReader
                 ? AppleDiskGeometry.LisaFileWareAddress(logical)
                 : blocks.Length == AppleDiskGeometry.Macintosh400KBlockCount
                     ? AppleDiskGeometry.AppleMacZonedAddress(logical, AppleDiskGeometry.Macintosh400KHeadCount)
-                    : new SectorAddress(
-                        logical / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack,
-                        0,
-                        logical % AppleDiskGeometry.GenericTaggedImageSectorsPerTrack);
+                    : new SectorAddress(logical / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack, 0, logical % AppleDiskGeometry.GenericTaggedImageSectorsPerTrack);
             blocks[logical] = new(logical, address,
                 payload.AsSpan(logical * DiskCopyLayout.DataBlockSize, DiskCopyLayout.DataBlockSize).ToArray(),
                 Tag: tags.Slice(logical * DiskCopyLayout.TagSizePerBlock, DiskCopyLayout.TagSizePerBlock).ToArray());
@@ -74,9 +69,7 @@ internal static class DiskCopyReader
                 ? AppleDiskGeometry.LisaFileWareCylinderCount
                 : blocks.Length == AppleDiskGeometry.Macintosh400KBlockCount
                     ? AppleDiskGeometry.MacintoshCylinderCount
-                    : Math.Max(
-                        AppleDiskGeometry.MinimumCylinderCount,
-                        blocks.Length / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack),
+                    : Math.Max(AppleDiskGeometry.MinimumCylinderCount, blocks.Length / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack),
             fileWare ? AppleDiskGeometry.LisaFileWareHeadCount : AppleDiskGeometry.GenericTaggedImageHeadCount,
             fileWare
                 ? AppleDiskGeometry.LisaFileWareMaximumSectorsPerTrack
@@ -102,13 +95,9 @@ internal static class DiskCopyReader
     /// <param name="payload">Données sectorielles dont le checksum doit être vérifié.</param>
     /// <param name="tags">Tags sectoriels dont le checksum doit être vérifié.</param>
     /// <exception cref="InvalidDataException">Un checksum présent est invalide ou sa plage de tags est incomplète.</exception>
-    private static void ValidateChecksums(
-        ReadOnlySpan<byte> container,
-        ReadOnlySpan<byte> payload,
-        ReadOnlySpan<byte> tags)
+    private static void ValidateChecksums(ReadOnlySpan<byte> container, ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags)
     {
-        var storedDataChecksum = BinaryPrimitives.ReadUInt32BigEndian(
-            container.Slice(DiskCopyLayout.DataChecksumOffset));
+        var storedDataChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.DataChecksumOffset));
         if (storedDataChecksum != DiskCopyFormat.MissingChecksum)
         {
             var calculatedDataChecksum = CalculateChecksum(payload);
@@ -116,8 +105,7 @@ internal static class DiskCopyReader
                 throw DiskCopyExceptions.InvalidDataChecksum(storedDataChecksum, calculatedDataChecksum);
         }
 
-        var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(
-            container.Slice(DiskCopyLayout.TagChecksumOffset));
+        var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.TagChecksumOffset));
         if (storedTagChecksum == DiskCopyFormat.MissingChecksum)
             return;
         if (tags.Length < DiskCopyLayout.TagChecksumExcludedPrefixSize)

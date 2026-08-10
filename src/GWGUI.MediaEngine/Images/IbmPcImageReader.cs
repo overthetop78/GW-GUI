@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -8,16 +9,16 @@ public sealed class IbmPcImageReader : ISectorImageReader
 {
     private static readonly IReadOnlyDictionary<int, IbmPcGeometry> Geometries = new Dictionary<int, IbmPcGeometry>
     {
-        [160 * 1024] = new(DiskImageFormatIds.Ibm160, 40, 1, 8),
-        [180 * 1024] = new(DiskImageFormatIds.Ibm180, 40, 1, 9),
-        [320 * 1024] = new(DiskImageFormatIds.Ibm320, 40, 2, 8),
-        [360 * 1024] = new(DiskImageFormatIds.Ibm360, 40, 2, 9),
-        [720 * 1024] = new(DiskImageFormatIds.Ibm720, 80, 2, 9),
-        [800 * 1024] = new(DiskImageFormatIds.Ibm800, 80, 2, 10),
-        [1200 * 1024] = new(DiskImageFormatIds.Ibm1200, 80, 2, 15),
-        [1440 * 1024] = new(DiskImageFormatIds.Ibm1440, 80, 2, 18),
-        [1680 * 1024] = new(DiskImageFormatIds.Ibm1680, 80, 2, 21),
-        [2880 * 1024] = new(DiskImageFormatIds.Ibm2880, 80, 2, 36)
+        [160 * 1024] = new(DiskImageFormatIds.Ibm160, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 8),
+        [180 * 1024] = new(DiskImageFormatIds.Ibm180, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9),
+        [320 * 1024] = new(DiskImageFormatIds.Ibm320, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8),
+        [360 * 1024] = new(DiskImageFormatIds.Ibm360, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
+        [720 * 1024] = new(DiskImageFormatIds.Ibm720, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
+        [800 * 1024] = new(DiskImageFormatIds.Ibm800, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 10),
+        [1200 * 1024] = new(DiskImageFormatIds.Ibm1200, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 15),
+        [1440 * 1024] = new(DiskImageFormatIds.Ibm1440, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 18),
+        [1680 * 1024] = new(DiskImageFormatIds.Ibm1680, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 21),
+        [2880 * 1024] = new(DiskImageFormatIds.Ibm2880, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 36)
     };
 
     public bool CanRead(string path) => Path.GetExtension(path) is var extension

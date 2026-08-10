@@ -17,11 +17,7 @@ internal sealed class DiskImageInterpretationService(FileSystemRegistry fileSyst
     public IEnumerable<SectorImage> AdditionalFileSystemInterpretations(SectorImage image) =>
         additionalInterpretations.Create(image);
 
-    public ExploredDiskImage CreateDocument(
-        string path,
-        SectorImage image,
-        IReadOnlyList<ExploredFileSystem> detected,
-        IReadOnlyList<string>? detectedImageFormatIds = null)
+    public ExploredDiskImage CreateDocument(string path, SectorImage image, IReadOnlyList<ExploredFileSystem> detected, IReadOnlyList<string>? detectedImageFormatIds = null)
     {
         if (detected.Count > 0)
             return new(path, image, detected[0].Volume, true, detected, detectedImageFormatIds);

@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -22,7 +23,7 @@ public sealed class CoherentImageReader
         var blockCount = bytes.Length / 512;
         var sectors = new List<SectorBlock>(blockCount);
         var block = 0;
-        for (var cylinder = 0; cylinder < 80 && block < blockCount; cylinder++)
+        for (var cylinder = 0; cylinder < DiskGeometryConstants.EightyTrackCylinderCount && block < blockCount; cylinder++)
         {
             var sectorsPerTrack = SectorsPerTrack(cylinder);
             for (var head = 0; head < 2 && block < blockCount; head++)
@@ -30,7 +31,7 @@ public sealed class CoherentImageReader
                     sectors.Add(new(block, new(cylinder, head, sector),
                         bytes.AsSpan(block * 512, 512).ToArray(), true));
         }
-        return new SectorImage(DiskImageFormatIds.Commodore900Coherent, 512, 80, 2, 16, sectors,
+        return new SectorImage(DiskImageFormatIds.Commodore900Coherent, 512, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 16, sectors,
             capacity: bytes.Length, logicalBlockCount: blockCount);
     }
 

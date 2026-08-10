@@ -6,10 +6,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
 
-public sealed class DiskImageExplorer(
-    DiskImageRecognitionRegistry containers,
-    FileSystemRegistry fileSystems,
-    ScpImageExplorationService scpExploration)
+public sealed class DiskImageExplorer(DiskImageRecognitionRegistry containers, FileSystemRegistry fileSystems, ScpImageExplorationService scpExploration)
 {
     private readonly DiskImageInterpretationService interpretations = new(fileSystems);
 
@@ -17,10 +14,7 @@ public sealed class DiskImageExplorer(
 
     public static DiskImageExplorer CreateDefault() => DiskImageExplorerFactory.CreateDefault();
 
-    public async Task<ExploredDiskImage> ExploreAsync(
-        string path,
-        string? formatId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         if (!File.Exists(path)) throw new FileNotFoundException("The disk image does not exist.", path);
         if (Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) && formatId is null)

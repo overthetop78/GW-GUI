@@ -108,12 +108,8 @@ internal static class WozReader
         var offset = WozLayout.ChunksOffset;
         while (offset <= data.Length - WozLayout.ChunkHeaderLength)
         {
-            var id = System.Text.Encoding.ASCII.GetString(data.Slice(
-                offset + WozLayout.ChunkIdOffset,
-                WozLayout.ChunkIdLength));
-            var declaredLength = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(
-                offset + WozLayout.ChunkLengthOffset,
-                WozLayout.ChunkLengthSize));
+            var id = System.Text.Encoding.ASCII.GetString(data.Slice(offset + WozLayout.ChunkIdOffset, WozLayout.ChunkIdLength));
+            var declaredLength = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(offset + WozLayout.ChunkLengthOffset, WozLayout.ChunkLengthSize));
             offset += WozLayout.ChunkHeaderLength;
             if (declaredLength > int.MaxValue || offset > data.Length - (int)declaredLength)
                 throw WozExceptions.TruncatedChunk(id);
@@ -139,13 +135,9 @@ internal static class WozReader
         var offset = checked(index * WozLayout.Woz1TrackEntryLength);
         if (offset > trks.Length - WozLayout.Woz1TrackEntryLength)
             throw WozExceptions.TrackReferenceOutOfBounds(track, index);
-        var bitCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(
-            offset + WozLayout.Woz1BitCountOffset,
-            WozLayout.Woz1BitCountLength));
+        var bitCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(offset + WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength));
         if (bitCount == 0 || bitCount > WozLayout.Woz1BitCountOffset * NibTrackFormat.BitsPerByte) return [];
-        return NibTrackImageReader.ConvertToBits(
-            trks.Slice(offset, (bitCount + NibTrackFormat.BitsPerByte - 1) / NibTrackFormat.BitsPerByte),
-            bitCount);
+        return NibTrackImageReader.ConvertToBits(trks.Slice(offset, (bitCount + NibTrackFormat.BitsPerByte - 1) / NibTrackFormat.BitsPerByte), bitCount);
     }
 
     /// <summary>
@@ -164,15 +156,9 @@ internal static class WozReader
         var descriptorOffset = checked(index * WozLayout.Woz2TrackDescriptorLength);
         if (descriptorOffset > trks.Length - WozLayout.Woz2TrackDescriptorLength)
             throw WozExceptions.TrackReferenceOutOfBounds(track, index);
-        var startBlock = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(
-            descriptorOffset + WozLayout.Woz2StartBlockOffset,
-            WozLayout.Woz2BlockFieldLength));
-        var blockCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(
-            descriptorOffset + WozLayout.Woz2BlockCountOffset,
-            WozLayout.Woz2BlockFieldLength));
-        var bitCount = BinaryPrimitives.ReadUInt32LittleEndian(trks.Slice(
-            descriptorOffset + WozLayout.Woz2BitCountOffset,
-            WozLayout.Woz2BitCountLength));
+        var startBlock = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(descriptorOffset + WozLayout.Woz2StartBlockOffset, WozLayout.Woz2BlockFieldLength));
+        var blockCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(descriptorOffset + WozLayout.Woz2BlockCountOffset, WozLayout.Woz2BlockFieldLength));
+        var bitCount = BinaryPrimitives.ReadUInt32LittleEndian(trks.Slice(descriptorOffset + WozLayout.Woz2BitCountOffset, WozLayout.Woz2BitCountLength));
         var offset = checked(startBlock * WozLayout.Woz2BlockLength);
         var byteCount = checked((int)((bitCount + NibTrackFormat.BitsPerByte - 1) / NibTrackFormat.BitsPerByte));
         if (startBlock == 0 || blockCount == 0 || bitCount == 0 ||

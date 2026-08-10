@@ -6,9 +6,7 @@ namespace GWGUI.MediaEngine.Images.Containers;
 /// <summary>Présélectionne une fonction de lecture à partir d’un ensemble d’indices d’extension.</summary>
 /// <param name="read">Fonction chargée de lire et valider le contenu présélectionné.</param>
 /// <param name="extensions">Extensions normalisées acceptées comme indices.</param>
-internal sealed class DelegatingContainerPolicy(
-    Func<string, CancellationToken, Task<SectorImage>> read,
-    params string[] extensions) : IDiskImageRecognitionPolicy
+internal sealed class DelegatingContainerPolicy(Func<string, CancellationToken, Task<SectorImage>> read, params string[] extensions) : IDiskImageRecognitionPolicy
 {
     private readonly HashSet<string> supportedExtensions = new(extensions, StringComparer.OrdinalIgnoreCase);
 

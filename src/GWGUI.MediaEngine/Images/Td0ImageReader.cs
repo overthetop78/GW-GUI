@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -114,11 +115,11 @@ public sealed class Td0ImageReader : ISectorImageReader
             {
                 (40, 1, 8) => DiskImageFormatIds.Ibm160,
                 (40, 1, 9) => DiskImageFormatIds.Ibm180,
-                (40, 2, 8) => DiskImageFormatIds.Ibm320,
-                (40, 2, 9) => DiskImageFormatIds.Ibm360,
-                (80, 2, 9) => DiskImageFormatIds.Ibm720,
-                (80, 2, 15) => DiskImageFormatIds.Ibm1200,
-                (80, 2, 18) => DiskImageFormatIds.Ibm1440,
+                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8) => DiskImageFormatIds.Ibm320,
+                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm360,
+                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm720,
+                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 15) => DiskImageFormatIds.Ibm1200,
+                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 18) => DiskImageFormatIds.Ibm1440,
                 _ => DiskImageFormatIds.IbmScan
             };
         }

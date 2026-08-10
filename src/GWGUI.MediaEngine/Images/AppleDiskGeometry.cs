@@ -1,18 +1,22 @@
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Images;
 
 internal static class AppleDiskGeometry
 {
     public const int LisaFileWareBlockCount = 1702;
     public const int LisaFileWareCylinderCount = 46;
-    public const int LisaFileWareHeadCount = 2;
+    public const int LisaFileWareHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
     public const int LisaFileWareMaximumSectorsPerTrack = 22;
     public const int Macintosh400KBlockCount = 800;
-    public const int MacintoshCylinderCount = 80;
-    public const int Macintosh400KHeadCount = 1;
+    public const int MacintoshCylinderCount = DiskGeometryConstants.EightyTrackCylinderCount;
+    public const int Macintosh400KHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
+    /// <summary>Nombre de têtes d'une disquette Macintosh double face.</summary>
+    public const int MacintoshDoubleSidedHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
     public const int MacintoshMaximumSectorsPerTrack = 12;
-    public const int GenericTaggedImageHeadCount = 1;
+    public const int GenericTaggedImageHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
     public const int GenericTaggedImageSectorsPerTrack = 10;
     public const int MinimumCylinderCount = 1;
 

@@ -59,16 +59,12 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         {
             var entry = trks.AsSpan(track * WozLayout.Woz1TrackEntryLength, WozLayout.Woz1TrackEntryLength);
             PackBits(tracks[track], entry[..WozLayout.Woz1BitCountOffset]);
-            BinaryPrimitives.WriteUInt16LittleEndian(
-                entry.Slice(WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength),
-                checked((ushort)tracks[track].Count));
+            BinaryPrimitives.WriteUInt16LittleEndian(entry.Slice(WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength), checked((ushort)tracks[track].Count));
         }
         WriteChunk(stream, WozFormat.TracksChunkId, trks);
 
         var output = stream.ToArray();
-        BinaryPrimitives.WriteUInt32LittleEndian(
-            output.AsSpan(WozLayout.CrcOffset, WozLayout.CrcLength),
-            Crc32(output.AsSpan(WozLayout.ChunksOffset)));
+        BinaryPrimitives.WriteUInt32LittleEndian(output.AsSpan(WozLayout.CrcOffset, WozLayout.CrcLength), Crc32(output.AsSpan(WozLayout.ChunksOffset)));
         await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
     }
 

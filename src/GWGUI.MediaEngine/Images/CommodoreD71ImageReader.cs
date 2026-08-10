@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -26,6 +27,6 @@ public sealed class CommodoreD71ImageReader : ISectorImageReader
             var integrity = !geometry.ErrorMap || data[count * 256 + logical] == 1;
             blocks[logical] = new(logical, new(address.Track - 1, address.Side, address.Sector), data.AsSpan(logical * 256, 256).ToArray(), integrity);
         }
-        return new(DiskImageFormatIds.Commodore1571, 256, geometry.Tracks, 2, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
+        return new(DiskImageFormatIds.Commodore1571, 256, geometry.Tracks, DiskGeometryConstants.DoubleSidedHeadCount, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
     }
 }

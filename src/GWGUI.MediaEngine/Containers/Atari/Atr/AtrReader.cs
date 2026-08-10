@@ -65,11 +65,7 @@ public sealed class AtrReader : ISectorImageReader
 
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
         if (!AtrLayout.IsSupportedSectorSize(sectorSize))
-            throw AtrExceptions.UnsupportedSectorSize(
-                sectorSize,
-                AtrLayout.SingleDensitySectorSize,
-                AtrLayout.DoubleDensitySectorSize,
-                AtrLayout.ExtendedSectorSize);
+            throw AtrExceptions.UnsupportedSectorSize(sectorSize, AtrLayout.SingleDensitySectorSize, AtrLayout.DoubleDensitySectorSize, AtrLayout.ExtendedSectorSize);
 
         var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16)
             | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));

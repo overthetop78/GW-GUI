@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -13,10 +14,10 @@ public sealed class MsxImageReader : ISectorImageReader
         if (!LooksLikeMsx(data)) throw new InvalidDataException("The image does not contain an MSX-DOS boot sector.");
         var (format, cylinders, heads, sectors) = data.Length switch
         {
-            184_320 => (DiskImageFormatIds.Msx1D, 40, 1, 9),
-            368_640 when data[21] == 0xf8 => (DiskImageFormatIds.Msx1Dd, 80, 1, 9),
-            368_640 => (DiskImageFormatIds.Msx2D, 40, 2, 9),
-            737_280 => (DiskImageFormatIds.Msx2Dd, 80, 2, 9),
+            184_320 => (DiskImageFormatIds.Msx1D, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9),
+            368_640 when data[21] == 0xf8 => (DiskImageFormatIds.Msx1Dd, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9),
+            368_640 => (DiskImageFormatIds.Msx2D, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
+            737_280 => (DiskImageFormatIds.Msx2Dd, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
             _ => throw new InvalidDataException("The MSX disk geometry is not supported.")
         };
         var blocks = new SectorBlock[data.Length / 512];

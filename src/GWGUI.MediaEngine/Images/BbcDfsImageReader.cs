@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -24,7 +25,7 @@ public sealed class BbcDfsImageReader : ISectorImageReader
         if (data.Length == 0 || data.Length % (TrackBytes * heads) != 0)
             throw new InvalidDataException("The BBC DFS image does not contain a whole number of tracks.");
         var cylinders = data.Length / (TrackBytes * heads);
-        if (cylinders is not (40 or 80))
+        if (cylinders is not (DiskGeometryConstants.FortyTrackCylinderCount or DiskGeometryConstants.EightyTrackCylinderCount))
             throw new InvalidDataException("The BBC DFS image is not a 40-track or 80-track SSD/DSD image.");
 
         var blocks = new List<SectorBlock>(data.Length / SectorSize);
@@ -40,7 +41,7 @@ public sealed class BbcDfsImageReader : ISectorImageReader
         }
         var format = heads == 1
             ? cylinders == 40 ? DiskImageFormatIds.AcornDfsSingleSided : DiskImageFormatIds.AcornDfsSingleSided80
-            : cylinders == 40 ? DiskImageFormatIds.AcornDfsDoubleSided : DiskImageFormatIds.AcornDfsDoubleSided80;
+            : cylinders == DiskGeometryConstants.FortyTrackCylinderCount ? DiskImageFormatIds.AcornDfsDoubleSided : DiskImageFormatIds.AcornDfsDoubleSided80;
         return new(format, SectorSize, cylinders, heads, SectorsPerTrack, blocks);
     }
 }

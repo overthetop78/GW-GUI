@@ -438,6 +438,33 @@
     - [x] Utiliser dans `image_test` une image RX02 avec structure RT-11 connue ; appliquer la règle d’obtention d’image si elle manque.
     - [x] Vérifier la reconnaissance par contenu, la remise en ordre physique vers les blocs logiques et le contenu de plusieurs secteurs de pistes différentes.
     - [x] Vérifier qu’une image de même taille sans structure RX02/RT-11 crédible est rejetée sans bloquer les candidats suivants.
+- [x] Corriger les valeurs géométriques communes, les délégations répétées et les retours à la ligne courts
+  - [x] Centraliser les nombres de cylindres et de têtes réellement communs
+    - [x] Créer `Primitives/DiskGeometryConstants.cs` avec les nombres nommés de 40 cylindres, 80 cylindres, une tête et deux têtes.
+    - [x] Documenter en français `DiskGeometryConstants` et chacune de ses constantes.
+    - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `Containers/Amstrad/CpcDsk/CpcDskLayout.cs`.
+    - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `Images/AdfImageReader.cs`, `Images/CoherentImageReader.cs`, `Images/IbmPcImageReader.cs`, `Images/MsxImageReader.cs` et `Images/Td0ImageReader.cs`.
+    - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `Images/AppleDiskGeometry.cs`, `Images/AppleRawImageReader.cs`, `Images/AppleSectorImageFactory.cs`, `Images/BbcDfsImageReader.cs`, `Images/CommodoreD71ImageReader.cs`, `Images/CommodoreD81ImageReader.cs` et `Images/CommodoreGeometry.cs`.
+    - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `SectorImages/AmigaScpSectorImageReader.cs`, `SectorImages/AppleMacScpSectorReconstructor.cs`, `SectorImages/BbcIsoScpSectorImagePolicy.cs` et `SectorImages/CommodoreScpSectorImageReader.cs`.
+    - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `Images/Visualization/AppleVisualizationPolicy.cs` et `Images/Visualization/AtariVisualizationPolicy.cs`.
+    - [x] Conserver distincts les nombres `40` et `80` qui désignent un offset, une durée, une piste Commodore, un index ou une autre donnée propre à un format.
+  - [x] Centraliser la délégation identique des politiques vers leur Reader
+    - [x] Créer `Recognition/Policies/ReaderBackedRecognitionPolicy.cs` avec l’unique implémentation commune de `ReadAsync`.
+    - [x] Documenter en français le type, son constructeur, `CanReadAsync` et `ReadAsync`.
+    - [x] Faire hériter `Recognition/Policies/AppleImageRecognitionPolicy.cs` de `ReaderBackedRecognitionPolicy` et supprimer sa délégation répétée.
+    - [x] Faire hériter `Recognition/Policies/CoherentImageRecognitionPolicy.cs` de `ReaderBackedRecognitionPolicy` et supprimer sa délégation répétée.
+    - [x] Faire hériter `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs` de `ReaderBackedRecognitionPolicy` et supprimer sa délégation répétée.
+    - [x] Conserver dans `Recognition/Policies/AmstradImageRecognitionPolicy.cs` son `ReadAsync` particulier, car il réidentifie l’image CPC ou PCW après lecture.
+  - [x] Supprimer les retours à la ligne ajoutés aux constructions courtes
+    - [x] Remettre sur une ligne les constructions courtes de `CpcDskReader.cs`, `DiskCopyReader.cs`, `TwoImgReader.cs`, `WozReader.cs`, `AtrReader.cs`, `AtrPayloadWriter.cs`, `TrackEncodeModels.cs` et `ScpCaptureInfo.cs`.
+    - [x] Remettre sur une ligne les constructions courtes de `AppleDiskImageReader.cs`, `AppleNibbleImageWriter.cs`, `AppleSectorImageFactory.cs`, `DiskImageExplorer.cs`, `DiskImageExplorerFactory.cs`, `DiskImageInterpretationService.cs`, `DiskImageMetadata.cs` et `ScpImageExplorationService.cs`.
+    - [x] Remettre sur une ligne les constructions courtes de `Images/Containers/DelegatingContainerPolicy.cs`, `Images/Containers/ScpContainerPolicy.cs`, `Images/ScpDetection/ScpCandidateRegistry.cs`, `Images/ScpDetection/ScpFamilyProbe.cs` et `Images/ScpDetection/ScpSectorImageReader.cs`.
+    - [x] Remettre sur une ligne les constructions courtes de `Recognition/IDiskImageRecognitionPolicy.cs`, `Recognition/DiskImageRecognitionRegistry.cs`, `Recognition/Policies/AmstradImageRecognitionPolicy.cs`, `Recognition/Policies/AppleImageRecognitionPolicy.cs`, `Recognition/Policies/CoherentImageRecognitionPolicy.cs` et `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.
+    - [x] Vérifier dans tous les fichiers C# de production qu’aucune construction parenthésée complète de 180 caractères ou moins ne reste répartie sur plusieurs lignes.
+  - [x] Vérifier le groupe
+    - [x] Compiler la solution sans restauration et vérifier l’absence d’erreur et d’avertissement.
+    - [x] Exécuter les tests ciblés des conteneurs, géométries, politiques, explorateurs, encodeurs et reconstructeurs modifiés.
+    - [x] Vérifier que les 205 tests ciblés réussissent sans test ignoré.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Migrer ses enregistrements vers `ExtensionHintRecognitionPolicy`.
