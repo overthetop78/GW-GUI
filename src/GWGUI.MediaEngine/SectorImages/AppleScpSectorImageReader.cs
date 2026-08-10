@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -24,20 +25,20 @@ public sealed class AppleScpSectorImageReader
         CancellationToken cancellationToken = default)
     {
         var scp = await _scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
-        if (formatId?.StartsWith("apple2.rwts18", StringComparison.OrdinalIgnoreCase) == true)
+        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) == true)
             return _rwts18.Decode(scp, cancellationToken);
-        if (formatId?.StartsWith("apple2.appledos", StringComparison.OrdinalIgnoreCase) == true ||
-            formatId?.StartsWith("apple2.nofs", StringComparison.OrdinalIgnoreCase) == true ||
-            formatId?.StartsWith("apple2.dos", StringComparison.OrdinalIgnoreCase) == true)
+        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIAppleDosPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+            formatId?.StartsWith(DiskImageFormatIds.AppleIINoFileSystemPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+            formatId?.StartsWith(DiskImageFormatIds.AppleIIDosPrefix, StringComparison.OrdinalIgnoreCase) == true)
             return _appleII.Decode(scp, false, cancellationToken);
-        if (formatId?.StartsWith("apple2.prodos.140", StringComparison.OrdinalIgnoreCase) == true ||
-            formatId?.StartsWith("apple3.sos", StringComparison.OrdinalIgnoreCase) == true)
+        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) == true ||
+            formatId?.StartsWith(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) == true)
             return _appleII.Decode(scp, true, cancellationToken);
-        if (formatId?.StartsWith("apple2.prodos.800", StringComparison.OrdinalIgnoreCase) == true ||
+        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("mac.", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("applemac", StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith("applelisa", StringComparison.OrdinalIgnoreCase) == true ||
-            formatId?.Equals("apple2.prodos", StringComparison.OrdinalIgnoreCase) == true)
+            formatId?.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) == true)
             return _macintosh.Decode(scp, formatId, cancellationToken);
 
         return DetectAutomatically(scp, cancellationToken);

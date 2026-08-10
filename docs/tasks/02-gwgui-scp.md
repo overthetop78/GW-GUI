@@ -152,18 +152,18 @@
     - [x] Vérifier que chaque constante commence par un point et est en minuscules.
     - [x] Vérifier qu’aucune valeur d’extension n’est déclarée deux fois dans `DiskImageFileExtensions`.
     - [x] Exécuter les tests de reconnaissance et de lecture existants après remplacement des textes bruts.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
-  - [ ] Définition des identifiants de formats
-    - [ ] Compléter `DiskImageFormatIds.cs`, qui ne contient actuellement que `AppleLisaMacWorks` et `AppleLisaOffice`.
-    - [ ] Ajouter une constante pour chaque identifiant fixe encore écrit en brut dans les Readers, reconstructeurs, systèmes de fichiers, registres, interprétations et visualisations.
-    - [ ] Ajouter des méthodes nommées pour construire les identifiants contenant une capacité, une taille sectorielle ou une géométrie calculée.
-    - [ ] Remplacer les identifiants bruts par les constantes ou méthodes correspondantes dans chaque groupe de fichier qui les utilise.
-  - [ ] Documentation XML
-    - [ ] Documenter en français `DiskImageFormatIds`, chaque constante et chaque méthode de construction.
-  - [ ] Tests ciblés
-    - [ ] Vérifier les valeurs des identifiants fixes utilisés comme contrat public.
-    - [ ] Vérifier chaque méthode de construction avec les capacités et géométries réellement produites par les Readers.
-    - [ ] Exécuter les tests ciblés des Readers et registres après raccordement de leurs identifiants.
+- [x] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
+  - [x] Définition des identifiants de formats
+    - [x] Compléter `DiskImageFormatIds.cs`, qui ne contient actuellement que `AppleLisaMacWorks` et `AppleLisaOffice`.
+    - [x] Ajouter une constante pour chaque identifiant fixe encore écrit en brut dans les Readers, reconstructeurs, systèmes de fichiers, registres, interprétations et visualisations.
+    - [x] Ajouter des méthodes nommées pour construire les identifiants contenant une capacité, une taille sectorielle ou une géométrie calculée.
+    - [x] Remplacer les identifiants bruts par les constantes ou méthodes correspondantes dans chaque groupe de fichier qui les utilise.
+  - [x] Documentation XML
+    - [x] Documenter en français `DiskImageFormatIds`, chaque constante et chaque méthode de construction.
+  - [x] Tests ciblés
+    - [x] Vérifier les valeurs des identifiants fixes utilisés comme contrat public.
+    - [x] Vérifier chaque méthode de construction avec les capacités et géométries réellement produites par les Readers.
+    - [x] Exécuter les tests ciblés des Readers et registres après raccordement de leurs identifiants.
 - [ ] Données brutes des politiques de reconnaissance
   - [ ] Politiques Amstrad, Apple, Coherent, DEC et MSX
     - [ ] Remplacer les extensions par `DiskImageFileExtensions`.

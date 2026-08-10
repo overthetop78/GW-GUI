@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.ScpDetection;
 
 internal sealed class ScpCandidateRegistry
@@ -33,15 +35,15 @@ internal sealed class ScpCandidateRegistry
                 (path, id, token) => commodoreReader.ReadAsync(path, id, token)),
             (id => id.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => amstradReader.ReadAsync(path, id!, token)),
-            (id => id.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) || id.Equals("mac.1440", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || id.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => ibmReader.ReadAsync(path, id!, token)),
-            (id => id.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => bbcReader.ReadAsync(path, id!, token)),
-            (id => id.Equals("dec.rx02", StringComparison.OrdinalIgnoreCase),
+            (id => id.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase),
                 (path, _, token) => decReader.ReadAsync(path, token)),
-            (id => id.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => epsonReader.ReadAsync(path, id!, token)),
-            (id => id.Equals("ucsd.ibm.mfm", StringComparison.OrdinalIgnoreCase),
+            (id => id.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase),
                 (path, _, token) => ucsdReader.ReadAsync(path, token)),
             (id => id.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => atariReader.ReadAsync(path, id, token)),
@@ -52,12 +54,12 @@ internal sealed class ScpCandidateRegistry
         var isoCandidates = new List<Candidate>
         {
             (path, _, token) => isoReader.ReadAsync(path, null, token),
-            (path, _, token) => isoReader.ReadAsync(path, "acorn.adfs.800", token),
-            (path, _, token) => amstradReader.ReadAsync(path, "amstrad.cpc", token),
-            (path, _, token) => amstradReader.ReadAsync(path, "amstrad.pcw", token),
-            (path, _, token) => ibmReader.ReadAsync(path, "ibm.scan", token),
+            (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AcornAdfs800, token),
+            (path, _, token) => amstradReader.ReadAsync(path, DiskImageFormatIds.AmstradCpc, token),
+            (path, _, token) => amstradReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
+            (path, _, token) => ibmReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
             (path, _, token) => ucsdReader.ReadAsync(path, token),
-            (path, _, token) => commodoreReader.ReadAsync(path, "commodore.1581", token)
+            (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token)
         };
         isoCandidates.AddRange(EpsonFormats.Select<string, Candidate>(formatId =>
             (path, _, token) => epsonReader.ReadAsync(path, formatId, token)));
@@ -66,11 +68,11 @@ internal sealed class ScpCandidateRegistry
         [
             (path, _, token) => isoReader.ReadAsync(path, null, token),
             (path, _, token) => amigaReader.ReadAsync(path, token),
-            (path, _, token) => commodoreReader.ReadAsync(path, "commodore.1581", token),
+            (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token),
             (path, _, token) => commodoreReader.ReadAsync(path, null, token),
-            (path, _, token) => amstradReader.ReadAsync(path, "amstrad.cpc", token),
-            (path, _, token) => amstradReader.ReadAsync(path, "amstrad.pcw", token),
-            (path, _, token) => ibmReader.ReadAsync(path, "ibm.scan", token),
+            (path, _, token) => amstradReader.ReadAsync(path, DiskImageFormatIds.AmstradCpc, token),
+            (path, _, token) => amstradReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
+            (path, _, token) => ibmReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
             .. EpsonFormats.Select<string, Candidate>(formatId =>
                 (path, _, token) => epsonReader.ReadAsync(path, formatId, token)),
             (path, _, token) => appleReader.ReadAsync(path, null, token)
@@ -112,5 +114,6 @@ internal sealed class ScpCandidateRegistry
     }
 
     private static readonly string[] EpsonFormats =
-        ["epson.qx10.396", "epson.qx10.399", "epson.qx10.320", "epson.qx10.400", "epson.qx10.logo"];
+        [DiskImageFormatIds.EpsonQx10_396, DiskImageFormatIds.EpsonQx10_399,
+            DiskImageFormatIds.EpsonQx10_320, DiskImageFormatIds.EpsonQx10_400, DiskImageFormatIds.EpsonQx10Logo];
 }

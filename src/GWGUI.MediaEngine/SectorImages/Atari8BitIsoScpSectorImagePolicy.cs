@@ -1,8 +1,10 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class Atari8BitIsoScpSectorImagePolicy(string? requestedFormatId) : IIsoScpSectorImagePolicy
 {
-    public IReadOnlyList<string> DecoderIds { get; } = requestedFormatId == "atari.90"
+    public IReadOnlyList<string> DecoderIds { get; } = requestedFormatId == DiskImageFormatIds.Atari90
         ? ["iso.fm"] : ["iso.mfm"];
 
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
@@ -11,10 +13,10 @@ internal sealed class Atari8BitIsoScpSectorImagePolicy(string? requestedFormatId
         var measured = IsoSectorImageBuilder.Measure(candidates);
         var resolvedFormat = formatId ?? (measured.SectorSize, measured.SectorsPerTrack) switch
         {
-            (128, 18) => "atari.90",
-            (128, 26) => "atari.130",
-            (256, 18) => "atari.180",
-            _ => $"atari.scp.{measured.SectorSize}.{measured.SectorsPerTrack}"
+            (128, 18) => DiskImageFormatIds.Atari90,
+            (128, 26) => DiskImageFormatIds.Atari130,
+            (256, 18) => DiskImageFormatIds.Atari180,
+            _ => DiskImageFormatIds.AtariScp(measured.SectorSize, measured.SectorsPerTrack)
         };
         var capacity = measured.SectorSize > 128
             ? 3L * 128 + (measured.Cylinders * measured.Heads * measured.SectorsPerTrack - 3L) * measured.SectorSize

@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -29,7 +30,7 @@ public sealed class CoherentImageReader
                     sectors.Add(new(block, new(cylinder, head, sector),
                         bytes.AsSpan(block * 512, 512).ToArray(), true));
         }
-        return new SectorImage("commodore900.coherent", 512, 80, 2, 16, sectors,
+        return new SectorImage(DiskImageFormatIds.Commodore900Coherent, 512, 80, 2, 16, sectors,
             capacity: bytes.Length, logicalBlockCount: blockCount);
     }
 

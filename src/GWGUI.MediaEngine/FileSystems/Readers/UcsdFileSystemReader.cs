@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class UcsdFileSystemReader : IFileSystemReader
@@ -9,7 +11,8 @@ public sealed class UcsdFileSystemReader : IFileSystemReader
     private const int EntrySize = 26;
 
     public string Id => "ucsd";
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "ucsd.ibm.mfm" };
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        { DiskImageFormatIds.UcsdIbmMfm };
 
     public bool CanRead(SectorImage image)
     {

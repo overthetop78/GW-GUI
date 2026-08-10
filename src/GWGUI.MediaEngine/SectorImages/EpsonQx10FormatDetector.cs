@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal static class EpsonQx10FormatDetector
@@ -21,25 +23,25 @@ internal static class EpsonQx10FormatDetector
                         .First().Key)).ToArray())).ToArray();
         if (tracks.Length == 0) return false;
 
-        if (tracks.All(track => Matches(track, 1, 16, 256))) formatId = "epson.qx10.320";
-        else if (tracks.All(track => Matches(track, 1, 5, 1024))) formatId = "epson.qx10.400";
+        if (tracks.All(track => Matches(track, 1, 16, 256))) formatId = DiskImageFormatIds.EpsonQx10_320;
+        else if (tracks.All(track => Matches(track, 1, 5, 1024))) formatId = DiskImageFormatIds.EpsonQx10_400;
         else if (tracks.Length <= 15 && tracks.All(track => track.Head == 0 &&
-                     Matches(track, 1, track.Cylinder == 0 ? 16 : 17, 256))) formatId = "epson.qx10.booter";
+                     Matches(track, 1, track.Cylinder == 0 ? 16 : 17, 256))) formatId = DiskImageFormatIds.EpsonQx10Booter;
         else
         {
             var smallTracks = tracks.Where(track => Matches(track, 1, 16, 256)).ToArray();
             var normalTracks = tracks.Where(track => Matches(track, 1, 10, 512)).ToArray();
             if (smallTracks.Length == 1 && smallTracks[0].Cylinder == 0 && smallTracks[0].Head == 0 &&
-                smallTracks.Length + normalTracks.Length == tracks.Length) formatId = "epson.qx10.399";
+                smallTracks.Length + normalTracks.Length == tracks.Length) formatId = DiskImageFormatIds.EpsonQx10_399;
             else if (smallTracks.Length >= 4 && smallTracks.All(track => track.Cylinder <= 1) &&
-                     smallTracks.Length + normalTracks.Length == tracks.Length) formatId = "epson.qx10.396";
+                     smallTracks.Length + normalTracks.Length == tracks.Length) formatId = DiskImageFormatIds.EpsonQx10_396;
             else
             {
                 var shiftedTracks = tracks.Where(track => Matches(track, 2, 10, 512)).ToArray();
                 if (smallTracks.Length >= 6 && smallTracks.All(track => track.Cylinder is 0 or 1 or 4) &&
                     shiftedTracks.All(track => track.Cylinder is 5 or 6) &&
                     smallTracks.Length + normalTracks.Length + shiftedTracks.Length == tracks.Length)
-                    formatId = "epson.qx10.logo";
+                    formatId = DiskImageFormatIds.EpsonQx10Logo;
             }
         }
         return formatId.Length > 0;

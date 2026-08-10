@@ -27,7 +27,7 @@ public sealed class AdfImageReader : ISectorImageReader
                 acornBlocks[logical] = new(logical, new(track / 2, track % 2, logical % acornSectorsPerTrack),
                     data.AsSpan(logical * blockSize, blockSize).ToArray());
             }
-            return new("acorn.adfs.800", blockSize, 80, 2, acornSectorsPerTrack, acornBlocks);
+            return new(DiskImageFormatIds.AcornAdfs800, blockSize, 80, 2, acornSectorsPerTrack, acornBlocks);
         }
         var sectorsPerTrack = data.Length switch
         {
@@ -42,7 +42,7 @@ public sealed class AdfImageReader : ISectorImageReader
             var track = logical / sectorsPerTrack;
             blocks[logical] = new(logical, new(track / 2, track % 2, logical % sectorsPerTrack), data.AsSpan(logical * 512, 512).ToArray());
         }
-        var formatId = sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados";
+        var formatId = sectorsPerTrack == 22 ? DiskImageFormatIds.AmigaDosHighDensity : DiskImageFormatIds.AmigaDos;
         return new(formatId, 512, 80, 2, sectorsPerTrack, blocks);
     }
 }

@@ -2,6 +2,8 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class MacMfsFileSystemReader : IFileSystemReader
@@ -9,7 +11,7 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
     private static readonly DateTimeOffset MacEpoch = new(1904, 1, 1, 0, 0, 0, TimeSpan.Zero);
     public string Id => "mac-mfs";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "applemac.mfs", "mac.400", "mac.800", "mac.1440" };
+        { DiskImageFormatIds.AppleMacMfs, DiskImageFormatIds.Mac400, DiskImageFormatIds.Mac800, DiskImageFormatIds.Mac1440 };
 
     public bool CanRead(SectorImage image) => image.BlockSize == 512 && image.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 64
         && mdb.Data[0] == 0xd2 && mdb.Data[1] == 0xd7;

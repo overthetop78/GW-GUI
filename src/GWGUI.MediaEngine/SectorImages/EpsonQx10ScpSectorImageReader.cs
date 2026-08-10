@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -10,7 +11,7 @@ public sealed class EpsonQx10ScpSectorImageReader(IScpReader scpReader, FluxDeco
 
     public Task<SectorImage> ReadAsync(string path, string formatId, CancellationToken cancellationToken = default)
     {
-        if (!formatId.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase))
+        if (!formatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("The selected format is not an Epson QX-10 format.", nameof(formatId));
         return reader.ReadAsync(path, formatId, cancellationToken);
     }

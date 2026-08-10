@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -9,7 +10,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
-        if (formatId == "commodore.1581") return Read1581(scp, cancellationToken);
+        if (formatId == DiskImageFormatIds.Commodore1581) return Read1581(scp, cancellationToken);
         return ReadGcr(scp, formatId, cancellationToken);
     }
 
@@ -33,7 +34,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         }
         if (candidates.Count == 0) throw new InvalidDataException("No Commodore GCR sectors could be decoded from the SCP image.");
         var maxTrack = candidates.Keys.Max(key => key.Track);
-        var is1571 = requestedFormat == "commodore.1571" || maxTrack > 40 || scp.Tracks.Any(track => track.Head == 1);
+        var is1571 = requestedFormat == DiskImageFormatIds.Commodore1571 || maxTrack > 40 || scp.Tracks.Any(track => track.Head == 1);
         var hasExtendedData = candidates
             .Where(candidate => candidate.Key.Track > 35 && candidate.Key.Track <= 40)
             .SelectMany(candidate => candidate.Value)
@@ -51,7 +52,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             var logical = CommodoreGeometry.To1541LogicalBlock(track, key.Sector, tracksPerSide, side);
             blocks.Add(new(logical, new(track - 1, side, key.Sector), best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
-        var formatId = is1571 ? "commodore.1571" : "commodore.1541";
+        var formatId = is1571 ? DiskImageFormatIds.Commodore1571 : DiskImageFormatIds.Commodore1541;
         return new(formatId, 256, tracksPerSide, sides, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
     }
 
@@ -87,6 +88,6 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                     physical.AsSpan(half * 256, 256).ToArray(), best.Sector.IntegrityValid, best.Revolution));
             }
         }
-        return new("commodore.1581", 256, 80, 1, 40, blocks);
+        return new(DiskImageFormatIds.Commodore1581, 256, 80, 1, 40, blocks);
     }
 }

@@ -21,7 +21,13 @@ public sealed class AtrImageReader : ISectorImageReader
             var length = sector <= 3 ? 128 : sectorSize;
             blocks.Add(new(sector - 1, new(sector - 1, 0, sector), data.AsSpan(offset, length).ToArray())); offset += length;
         }
-        var formatId = (sectorSize, sectorCount) switch { (128, 720) => "atari.90", (128, 1040) => "atari.130", (256, 720) => "atari.180", _ => $"atari.atr.{sectorSize}.{sectorCount}" };
+        var formatId = (sectorSize, sectorCount) switch
+        {
+            (128, 720) => DiskImageFormatIds.Atari90,
+            (128, 1040) => DiskImageFormatIds.Atari130,
+            (256, 720) => DiskImageFormatIds.Atari180,
+            _ => DiskImageFormatIds.AtariAtr(sectorSize, sectorCount)
+        };
         return new(formatId, sectorSize, sectorCount, 1, 1, blocks, allowVariableBlockSize: sectorSize != 128, capacity: payload);
     }
 

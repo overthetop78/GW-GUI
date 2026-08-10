@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -11,7 +12,7 @@ public sealed class IbmPcScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     public Task<SectorImage> ReadAsync(string path, string formatId, CancellationToken cancellationToken = default)
     {
         if (!formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) &&
-            !formatId.Equals("mac.1440", StringComparison.OrdinalIgnoreCase))
+            !formatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("The selected format is not an IBM-compatible ISO format.", nameof(formatId));
         return reader.ReadAsync(path, formatId, cancellationToken);
     }

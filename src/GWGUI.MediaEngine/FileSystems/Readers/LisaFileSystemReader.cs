@@ -2,6 +2,8 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 /// <summary>
@@ -17,10 +19,10 @@ public sealed class LisaFileSystemReader : IFileSystemReader
 
     public string Id => "lisa";
     public IReadOnlySet<string> CatalogFormatIds { get; } =
-        new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "applelisa.office", "mac.400" };
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase) { DiskImageFormatIds.AppleLisaOffice, DiskImageFormatIds.Mac400 };
 
     public bool CanRead(SectorImage image) =>
-        image.FormatId.Equals("applelisa.office", StringComparison.OrdinalIgnoreCase) &&
+        image.FormatId.Equals(DiskImageFormatIds.AppleLisaOffice, StringComparison.OrdinalIgnoreCase) &&
         image.AvailableBlocks.Any(block => TagFileId(block) == MddfFileId);
 
     public FileSystemVolume Read(SectorImage image)

@@ -1,25 +1,27 @@
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.Visualization;
 
 internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPolicy
 {
     public override bool CanHandle(SectorImage image) =>
-        image.FormatId.StartsWith("commodore.", StringComparison.OrdinalIgnoreCase) ||
-        image.FormatId.StartsWith("commodore900.", StringComparison.OrdinalIgnoreCase);
+        image.FormatId.StartsWith(DiskImageFormatIds.CommodorePrefix, StringComparison.OrdinalIgnoreCase) ||
+        image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase);
 
     public override string EncoderId(SectorImage image)
     {
-        if (image.FormatId.StartsWith("commodore.1581", StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
-        if (image.FormatId.StartsWith("commodore900.", StringComparison.OrdinalIgnoreCase)) return "commodore900.gcr";
+        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
+        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return "commodore900.gcr";
         return "commodore.gcr";
     }
 
     public override IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image,
         IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items)
     {
-        if (!image.FormatId.StartsWith("commodore.1581", StringComparison.OrdinalIgnoreCase))
+        if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase))
             return base.CreateTrackSectors(image, items);
         return items.Select(item => item.Block).GroupBy(block => block.LogicalBlock / 2)
             .OrderBy(group => group.Key).Select(group =>
@@ -32,7 +34,7 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
 
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address)
     {
-        if (!image.FormatId.StartsWith("commodore.1581", StringComparison.OrdinalIgnoreCase)) return address;
+        if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return address;
         var logical = address.Cylinder * image.SectorsPerTrack + address.Number;
         var physical = logical / 2;
         return new(physical / 20, physical % 20 / 10, physical % 10 + 1);
@@ -40,7 +42,7 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
 
     public override uint BitCellTicks(SectorImage image, int cylinder)
     {
-        if (!image.FormatId.StartsWith("commodore900.", StringComparison.OrdinalIgnoreCase)) return 40;
+        if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return 40;
         return cylinder switch { < 39 => 86, < 53 => 93, < 64 => 100, _ => 106 };
     }
 }

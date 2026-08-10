@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -27,7 +28,7 @@ public sealed class DecRx02ImageReader
             logicalSectors[block * 2 + 1].CopyTo(data, 256);
             blocks[block] = new(block, new(block / 13, 0, block % 13 + 1), data, true);
         }
-        return new SectorImage("dec.rx02", 512, 77, 1, 13, blocks, capacity: ImageSize, logicalBlockCount: 1001);
+        return new SectorImage(DiskImageFormatIds.DecRx02, 512, 77, 1, 13, blocks, capacity: ImageSize, logicalBlockCount: 1001);
     }
 
     public static bool LooksLikeRt11(ReadOnlySpan<byte> bytes)

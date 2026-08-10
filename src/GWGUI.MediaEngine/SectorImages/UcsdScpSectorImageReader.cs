@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -9,5 +10,5 @@ public sealed class UcsdScpSectorImageReader(IScpReader scpReader, FluxDecoderRe
     private readonly IsoScpSectorImageReader reader = new(scpReader, decoders);
 
     public Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) =>
-        reader.ReadAsync(path, "ucsd.ibm.mfm", cancellationToken);
+        reader.ReadAsync(path, DiskImageFormatIds.UcsdIbmMfm, cancellationToken);
 }

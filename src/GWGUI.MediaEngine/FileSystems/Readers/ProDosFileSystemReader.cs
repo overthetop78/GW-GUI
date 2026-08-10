@@ -2,13 +2,16 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class ProDosFileSystemReader : IFileSystemReader
 {
     public string Id => "prodos";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "apple2.prodos", "apple2.prodos.140", "apple2.prodos.800", "apple3.sos" };
+        { DiskImageFormatIds.AppleIIProDos, DiskImageFormatIds.AppleIIProDos140,
+            DiskImageFormatIds.AppleIIProDos800, DiskImageFormatIds.AppleIIISos };
 
     public bool CanRead(SectorImage image)
     {

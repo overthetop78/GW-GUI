@@ -3,6 +3,8 @@ using System.Text;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 /// <summary>Read-only reader for the V7-style COHERENT file system used by the Commodore 900.</summary>
@@ -15,7 +17,7 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
 
     public string Id => "coherent";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "commodore900.coherent" };
+        { DiskImageFormatIds.Commodore900Coherent };
 
     public bool CanRead(SectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockSize == BlockSize;
 

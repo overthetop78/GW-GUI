@@ -2,6 +2,8 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AmigaDosFileSystemReader : IFileSystemReader
@@ -13,8 +15,8 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     public string Id => "amigados";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
-        "amiga.amigados",
-        "amiga.amigados_hd"
+        DiskImageFormatIds.AmigaDos,
+        DiskImageFormatIds.AmigaDosHighDensity
     };
 
     public bool CanRead(SectorImage image)

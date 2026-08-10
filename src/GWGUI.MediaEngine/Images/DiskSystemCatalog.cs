@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images;
 
 internal static class DiskSystemCatalog
@@ -18,7 +20,7 @@ internal static class DiskSystemCatalog
             var value when value.StartsWith("commodore.") => "Commodore",
             var value when value.StartsWith("amstrad.") => "Amstrad",
             var value when value.StartsWith("acorn.") || value.StartsWith("bbc.") => "Acorn / BBC Micro",
-            var value when value.StartsWith("epson.qx10.") => "Epson QX-10",
+            var value when value.StartsWith(DiskImageFormatIds.EpsonQx10Prefix) => "Epson QX-10",
             var value when value.StartsWith("msx.") => "MSX",
             var value when value.StartsWith("dec.") => "DEC",
             var value when value.StartsWith("coherent.") => "COHERENT",

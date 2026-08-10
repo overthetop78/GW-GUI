@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal static class IsoScpSectorImagePolicyRegistry
@@ -11,13 +13,13 @@ internal static class IsoScpSectorImagePolicyRegistry
         (format => format.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase),
             _ => new AmstradIsoScpSectorImagePolicy()),
         (format => format.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ||
-                   format.Equals("mac.1440", StringComparison.OrdinalIgnoreCase),
+                   format.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase),
             _ => new IbmPcIsoScpSectorImagePolicy(true)),
-        (format => format.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase),
+        (format => format.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase),
             _ => new BbcIsoScpSectorImagePolicy()),
-        (format => format.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase),
+        (format => format.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase),
             _ => new EpsonQx10IsoScpSectorImagePolicy()),
-        (format => format.Equals("ucsd.ibm.mfm", StringComparison.OrdinalIgnoreCase),
+        (format => format.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase),
             _ => new UcsdIsoScpSectorImagePolicy())
     ];
 

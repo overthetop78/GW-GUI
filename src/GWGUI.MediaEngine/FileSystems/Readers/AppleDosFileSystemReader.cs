@@ -2,13 +2,15 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AppleDosFileSystemReader : IFileSystemReader
 {
     public string Id => "apple-dos";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "apple2.dos32", "apple2.dos33", "apple2.appledos.140" };
+        { DiskImageFormatIds.AppleIIDos32, DiskImageFormatIds.AppleIIDos33, DiskImageFormatIds.AppleIIAppleDos140 };
 
     public bool CanRead(SectorImage image)
     {

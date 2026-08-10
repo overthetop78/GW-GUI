@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.Interpretations;
 
 internal static class SectorImageInterpretation
@@ -50,16 +52,16 @@ internal static class SectorImageInterpretation
     public static bool TryCreateMsx(SectorImage image, out SectorImage interpretation)
     {
         interpretation = null!;
-        if (image.FormatId.StartsWith("msx.", StringComparison.OrdinalIgnoreCase) ||
+        if (image.FormatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ||
             !image.TryGetBlock(0, out var boot) || boot.Data.Count != 512 ||
             !MsxImageReader.LooksLikeMsx(boot.Data.ToArray()))
             return false;
         var formatId = image.BlockCount switch
         {
-            360 => "msx.1d",
-            720 when boot.Data.Count > 21 && boot.Data[21] == 0xf8 => "msx.1dd",
-            720 => "msx.2d",
-            1440 => "msx.2dd",
+            360 => DiskImageFormatIds.Msx1D,
+            720 when boot.Data.Count > 21 && boot.Data[21] == 0xf8 => DiskImageFormatIds.Msx1Dd,
+            720 => DiskImageFormatIds.Msx2D,
+            1440 => DiskImageFormatIds.Msx2Dd,
             _ => string.Empty
         };
         if (formatId.Length == 0) return false;

@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -35,7 +36,7 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             var logical = checked((address.Cylinder * 2 + address.Head) * sectorsPerTrack + address.Number);
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
-        var formatId = sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados";
+        var formatId = sectorsPerTrack == 22 ? DiskImageFormatIds.AmigaDosHighDensity : DiskImageFormatIds.AmigaDos;
         return new(formatId, 512, 80, 2, sectorsPerTrack, blocks);
     }
 

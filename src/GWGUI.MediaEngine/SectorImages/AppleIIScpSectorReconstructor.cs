@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -7,7 +8,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
 {
     public SectorImage Decode(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken)
     {
-        var candidates = decoder.DecodeCandidates(scp, "apple2.gcr", 256, cancellationToken);
+        var candidates = decoder.DecodeCandidates(scp, DiskImageFormatIds.AppleIIGcr, 256, cancellationToken);
         if (candidates.Count == 0)
             throw new InvalidDataException("No Apple II GCR sectors could be decoded from the SCP image.");
         if (prodosOrder) return CreateProDosImage(candidates);
@@ -18,7 +19,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
                 pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == 16
                     ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number]
                     : pair.Key.Number), pair.Key, pair.Value)).ToArray();
-        var formatId = sectorsPerTrack == 13 ? "apple2.dos32" : "apple2.dos33";
+        var formatId = sectorsPerTrack == 13 ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
         return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1),
             1, sectorsPerTrack, blocks);
     }
@@ -56,6 +57,6 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         }
         if (blocks.Count == 0)
             throw new InvalidDataException("No usable Apple II ProDOS blocks could be reconstructed.");
-        return new("apple2.prodos", 512, tracks, 1, 8, blocks);
+        return new(DiskImageFormatIds.AppleIIProDos, 512, tracks, 1, 8, blocks);
     }
 }

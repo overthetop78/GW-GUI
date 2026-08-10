@@ -16,9 +16,9 @@ internal sealed class RawImgContainerPolicy : IDiskImageContainerPolicy
         var hasFatBpb = IbmPcImageReader.HasValidBpbGeometry(bytes);
         var image = IbmPcImageReader.Create(bytes, cancellationToken);
         if (!hasFatBpb && AmstradCpmFileSystemReader.LooksLikeCpcRawImage(bytes))
-            return SectorImageInterpretation.Retag(image, "amstrad.cpc");
+            return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradCpc);
         if (!hasFatBpb && AmstradCpmFileSystemReader.LooksLikePcwDiskSpecification(bytes))
-            return SectorImageInterpretation.Retag(image, "amstrad.pcw");
+            return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradPcw);
         return image;
     }
 }

@@ -1,36 +1,38 @@
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.Visualization;
 
 internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
 {
     public override bool CanHandle(SectorImage image) =>
-        image.FormatId.StartsWith("apple2.", StringComparison.OrdinalIgnoreCase) ||
-        image.FormatId.StartsWith("apple3.", StringComparison.OrdinalIgnoreCase) ||
-        image.FormatId.StartsWith("applemac.", StringComparison.OrdinalIgnoreCase) ||
-        image.FormatId.StartsWith("applelisa.", StringComparison.OrdinalIgnoreCase) ||
-        image.FormatId.StartsWith("mac.", StringComparison.OrdinalIgnoreCase);
+        image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) ||
+        image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) ||
+        image.FormatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) ||
+        image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) ||
+        image.FormatId.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase);
 
     public override string EncoderId(SectorImage image)
     {
-        if (image.FormatId.Equals("apple2.rwts18", StringComparison.OrdinalIgnoreCase))
+        if (image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase))
             return "apple2.rwts18";
-        if (image.FormatId.Equals("apple2.prodos", StringComparison.OrdinalIgnoreCase) &&
+        if (image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) &&
             image.BlockSize == 512 && image.Cylinders >= 80) return "applemac.gcr";
-        if (image.FormatId.StartsWith("apple2.", StringComparison.OrdinalIgnoreCase) ||
-            image.FormatId.StartsWith("apple3.", StringComparison.OrdinalIgnoreCase)) return "apple2.gcr";
-        if (image.FormatId.StartsWith("applelisa.", StringComparison.OrdinalIgnoreCase) &&
+        if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) ||
+            image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return "apple2.gcr";
+        if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) &&
             image.Cylinders == 46 && image.Heads == 2) return "applelisa.fileware.gcr";
-        if (image.FormatId.Equals("mac.1440", StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
+        if (image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
         return "applemac.gcr";
     }
 
     public override IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image,
         IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items)
     {
-        if ((image.FormatId.Equals("apple2.prodos", StringComparison.OrdinalIgnoreCase) ||
-             image.FormatId.Equals("apple3.sos", StringComparison.OrdinalIgnoreCase)) &&
+        if ((image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) ||
+             image.FormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase)) &&
             image.Cylinders < 80)
         {
             var sectors = new List<TrackSector>(items.Count * 2);
@@ -46,22 +48,22 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     }
 
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address) =>
-        image.FormatId.StartsWith("applelisa.", StringComparison.OrdinalIgnoreCase) &&
+        image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) &&
         image.Heads == 1 && image.Cylinders > 84
             ? new(address.Cylinder / 2, address.Cylinder % 2, address.Number)
             : address;
 
     public override IReadOnlyDictionary<string, int>? TrackAttributes(SectorImage image, int sectorCount)
     {
-        if (image.FormatId.StartsWith("apple2.", StringComparison.OrdinalIgnoreCase))
+        if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int>
             {
                 ["sectorsPerTrack"] = sectorCount,
                 ["format"] = image.Cylinders >= 80 ? 0x24 : 0
             };
-        if (image.FormatId.StartsWith("applemac.", StringComparison.OrdinalIgnoreCase))
+        if (image.FormatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int> { ["format"] = image.Heads == 1 ? 0x02 : 0x22 };
-        if (image.FormatId.StartsWith("applelisa.", StringComparison.OrdinalIgnoreCase))
+        if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int> { ["format"] = 0x12 };
         return null;
     }

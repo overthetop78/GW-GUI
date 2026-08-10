@@ -14,7 +14,9 @@ internal sealed class AmstradContainerPolicy(CpcDskReader reader) : IDiskImageCo
     public async Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
     {
         var image = await reader.ReadAsync(context.Path, cancellationToken).ConfigureAwait(false);
-        var formatId = image.Cylinders >= 80 && image.Heads == 2 ? "amstrad.pcw" : "amstrad.cpc";
+        var formatId = image.Cylinders >= 80 && image.Heads == 2
+            ? DiskImageFormatIds.AmstradPcw
+            : DiskImageFormatIds.AmstradCpc;
         return SectorImageInterpretation.Retag(image, formatId);
     }
 }

@@ -1,12 +1,14 @@
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.Visualization;
 
 internal sealed class DecRx02VisualizationPolicy : SectorImageVisualizationPolicy
 {
     public override bool CanHandle(SectorImage image) =>
-        image.FormatId.Equals("dec.rx02", StringComparison.OrdinalIgnoreCase);
+        image.FormatId.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase);
 
     public override string EncoderId(SectorImage image) => "dec.rx02";
 

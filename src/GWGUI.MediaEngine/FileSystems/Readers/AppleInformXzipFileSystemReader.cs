@@ -1,6 +1,8 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 /// <summary>
@@ -18,7 +20,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
 
     public string Id => "apple-inform-xzip";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "apple2.dos33", "apple2.appledos.140" };
+        { DiskImageFormatIds.AppleIIDos33, DiskImageFormatIds.AppleIIAppleDos140 };
 
     public bool CanRead(SectorImage image)
     {

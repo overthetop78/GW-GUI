@@ -1,28 +1,30 @@
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class CommodoreDosFileSystemReader : IFileSystemReader
 {
     public string Id => "commodore-dos";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "commodore.1541", "commodore.1571", "commodore.1581" };
+        { DiskImageFormatIds.Commodore1541, DiskImageFormatIds.Commodore1571, DiskImageFormatIds.Commodore1581 };
 
     public bool CanRead(SectorImage image)
     {
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != 256) return false;
-        var headerAddress = image.FormatId == "commodore.1581" ? (40, 0) : (18, 0);
+        var headerAddress = image.FormatId == DiskImageFormatIds.Commodore1581 ? (40, 0) : (18, 0);
         return TryGetSector(image, headerAddress.Item1, headerAddress.Item2, out var header)
             && header.Length == 256
             && header[2] is 0x41 or 0x44
-            && HasPlausibleDirectory(image, header, headerAddress.Item1, image.FormatId == "commodore.1581");
+            && HasPlausibleDirectory(image, header, headerAddress.Item1, image.FormatId == DiskImageFormatIds.Commodore1581);
     }
 
     public FileSystemVolume Read(SectorImage image)
     {
         if (!CanRead(image)) throw new InvalidDataException("The image does not contain a supported CBM DOS file system.");
-        var is1581 = image.FormatId == "commodore.1581";
+        var is1581 = image.FormatId == DiskImageFormatIds.Commodore1581;
         var headerTrack = is1581 ? 40 : 18;
         var headerSector = 0;
         if (!TryGetSector(image, headerTrack, headerSector, out var header)) throw new InvalidDataException("The CBM DOS header sector is missing.");
@@ -131,7 +133,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
 
     internal static int ToLogicalBlock(SectorImage image, int track, int sector)
     {
-        if (image.FormatId == "commodore.1581") return CommodoreGeometry.To1581LogicalBlock(track, sector);
+        if (image.FormatId == DiskImageFormatIds.Commodore1581) return CommodoreGeometry.To1581LogicalBlock(track, sector);
         var tracksPerSide = image.Cylinders;
         var side = track > tracksPerSide ? 1 : 0;
         var sideTrack = side == 0 ? track : track - tracksPerSide;

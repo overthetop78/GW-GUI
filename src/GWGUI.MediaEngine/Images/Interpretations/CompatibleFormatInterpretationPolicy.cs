@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.Interpretations;
 
 internal sealed class CompatibleFormatInterpretationPolicy : IAdditionalImageInterpretationPolicy
@@ -8,10 +10,12 @@ internal sealed class CompatibleFormatInterpretationPolicy : IAdditionalImageInt
     {
         var formatIds = image.BlockSize switch
         {
-            512 => (IReadOnlyList<string>)["ucsd.ibm.mfm", "commodore900.coherent", "epson.qx10.396",
-                "epson.qx10.399", "epson.qx10.logo"],
-            256 => ["acorn.dfs.ss", "acorn.dfs.ss80", "acorn.dfs.ds", "acorn.dfs.ds80", "epson.qx10.320"],
-            1024 => ["epson.qx10.400"],
+            512 => (IReadOnlyList<string>)[DiskImageFormatIds.UcsdIbmMfm, DiskImageFormatIds.Commodore900Coherent,
+                DiskImageFormatIds.EpsonQx10_396, DiskImageFormatIds.EpsonQx10_399, DiskImageFormatIds.EpsonQx10Logo],
+            256 => [DiskImageFormatIds.AcornDfsSingleSided, DiskImageFormatIds.AcornDfsSingleSided80,
+                DiskImageFormatIds.AcornDfsDoubleSided, DiskImageFormatIds.AcornDfsDoubleSided80,
+                DiskImageFormatIds.EpsonQx10_320],
+            1024 => [DiskImageFormatIds.EpsonQx10_400],
             _ => []
         };
         foreach (var formatId in formatIds)

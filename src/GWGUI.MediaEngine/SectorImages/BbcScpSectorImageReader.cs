@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -10,8 +11,8 @@ public sealed class BbcScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
 
     public Task<SectorImage> ReadAsync(string path, string formatId, CancellationToken cancellationToken = default)
     {
-        if (!formatId.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase) &&
-            !formatId.StartsWith("acorn.adfs.", StringComparison.OrdinalIgnoreCase))
+        if (!formatId.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase) &&
+            !formatId.StartsWith(DiskImageFormatIds.AcornAdfsPrefix, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("The selected format is not a BBC or Acorn format.", nameof(formatId));
         return reader.ReadAsync(path, formatId, cancellationToken);
     }

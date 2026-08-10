@@ -39,8 +39,8 @@ public sealed class BbcDfsImageReader : ISectorImageReader
             blocks.Add(new(logical, new(cylinder, head, sector), data.AsSpan(source, SectorSize).ToArray()));
         }
         var format = heads == 1
-            ? cylinders == 40 ? "acorn.dfs.ss" : "acorn.dfs.ss80"
-            : cylinders == 40 ? "acorn.dfs.ds" : "acorn.dfs.ds80";
+            ? cylinders == 40 ? DiskImageFormatIds.AcornDfsSingleSided : DiskImageFormatIds.AcornDfsSingleSided80
+            : cylinders == 40 ? DiskImageFormatIds.AcornDfsDoubleSided : DiskImageFormatIds.AcornDfsDoubleSided80;
         return new(format, SectorSize, cylinders, heads, SectorsPerTrack, blocks);
     }
 }

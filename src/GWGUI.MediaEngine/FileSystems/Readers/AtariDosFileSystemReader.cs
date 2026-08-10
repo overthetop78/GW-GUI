@@ -2,12 +2,15 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AtariDosFileSystemReader : IFileSystemReader
 {
     public string Id => "atari-dos";
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "atari.90", "atari.130", "atari.180" };
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        { DiskImageFormatIds.Atari90, DiskImageFormatIds.Atari130, DiskImageFormatIds.Atari180 };
     public bool CanRead(SectorImage image) => image.FormatId.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) &&
         !image.FormatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) && image.BlockCount >= 368 &&
         image.TryGetBlock(359, out var vtoc) && LooksLikeVtoc(vtoc.Data) &&

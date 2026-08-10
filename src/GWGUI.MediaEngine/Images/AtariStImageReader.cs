@@ -19,7 +19,7 @@ public sealed class AtariStImageReader : ISectorImageReader
 
 internal readonly record struct AtariStGeometry(int Cylinders, int Heads, int SectorsPerTrack)
 {
-    public string FormatId => $"atarist.{(Cylinders * Heads * SectorsPerTrack * 512) / 1024}";
+    public string FormatId => DiskImageFormatIds.AtariStFromCapacity(Cylinders * Heads * SectorsPerTrack * 512L);
 
     public static AtariStGeometry Detect(ReadOnlySpan<byte> data)
     {

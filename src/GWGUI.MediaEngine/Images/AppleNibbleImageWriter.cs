@@ -69,7 +69,7 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
 
     private IReadOnlyList<IReadOnlyList<bool>> EncodeTracks(SectorImage image, int maximumBits, CancellationToken cancellationToken)
     {
-        if (!image.FormatId.Equals("apple2.rwts18", StringComparison.OrdinalIgnoreCase))
+        if (!image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("The source does not contain an Apple II RWTS18 image.");
         var tracks = new List<IReadOnlyList<bool>>(image.Cylinders);
         for (var cylinder = 0; cylinder < image.Cylinders; cylinder++)
@@ -83,7 +83,7 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
                     throw new InvalidDataException($"RWTS18 track {cylinder} sector {sector} is missing or invalid.");
                 sectors.Add(new(sector, block.Data));
             }
-            var encoded = _encoders.Encode("apple2.rwts18", new(cylinder, 0, sectors));
+            var encoded = _encoders.Encode(DiskImageFormatIds.AppleIIRwts18, new(cylinder, 0, sectors));
             if (encoded.Bits.Count > maximumBits)
                 throw new InvalidDataException($"RWTS18 track {cylinder} does not fit in an Apple nibble track.");
             tracks.Add(encoded.Bits);

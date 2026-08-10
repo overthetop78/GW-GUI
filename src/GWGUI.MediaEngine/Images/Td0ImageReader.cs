@@ -112,17 +112,17 @@ public sealed class Td0ImageReader : ISectorImageReader
         {
             return (cylinders, heads, sectorsPerTrack) switch
             {
-                (40, 1, 8) => "ibm.160",
-                (40, 1, 9) => "ibm.180",
-                (40, 2, 8) => "ibm.320",
-                (40, 2, 9) => "ibm.360",
-                (80, 2, 9) => "ibm.720",
-                (80, 2, 15) => "ibm.1200",
-                (80, 2, 18) => "ibm.1440",
-                _ => "ibm.scan"
+                (40, 1, 8) => DiskImageFormatIds.Ibm160,
+                (40, 1, 9) => DiskImageFormatIds.Ibm180,
+                (40, 2, 8) => DiskImageFormatIds.Ibm320,
+                (40, 2, 9) => DiskImageFormatIds.Ibm360,
+                (80, 2, 9) => DiskImageFormatIds.Ibm720,
+                (80, 2, 15) => DiskImageFormatIds.Ibm1200,
+                (80, 2, 18) => DiskImageFormatIds.Ibm1440,
+                _ => DiskImageFormatIds.IbmScan
             };
         }
-        return "ucsd.ibm.mfm";
+        return DiskImageFormatIds.UcsdIbmMfm;
     }
 
     private static byte[] DecodeSector(ReadOnlySpan<byte> encoded, byte encoding, int expectedLength)

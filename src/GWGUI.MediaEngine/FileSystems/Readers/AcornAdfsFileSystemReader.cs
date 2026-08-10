@@ -2,6 +2,8 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AcornAdfsFileSystemReader : IFileSystemReader
@@ -15,7 +17,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
 
     public string Id => "acorn-adfs";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "acorn.adfs.800" };
+        { DiskImageFormatIds.AcornAdfs800 };
 
     public bool CanRead(SectorImage image)
     {

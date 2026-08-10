@@ -13,13 +13,13 @@ public sealed class AppleRwts18ConversionService
     private readonly AppleNibbleImageWriter _writer = new();
 
     public static bool CanCreate(string formatId, string extension) =>
-        formatId.Equals("apple2.rwts18", StringComparison.OrdinalIgnoreCase) &&
+        formatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) &&
         extension is DiskImageFileExtensions.Nib or DiskImageFileExtensions.Woz;
 
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         SectorImage image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
-            ? await _scpReader.ReadAsync(sourcePath, "apple2.rwts18", cancellationToken).ConfigureAwait(false)
+            ? await _scpReader.ReadAsync(sourcePath, DiskImageFormatIds.AppleIIRwts18, cancellationToken).ConfigureAwait(false)
             : await _appleReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         await _writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
     }

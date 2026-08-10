@@ -32,7 +32,8 @@ public sealed class MsaImageReader : ISectorImageReader
                 blocks.Add(new(logical, new(cylinder, head, sector + 1), track.AsSpan(sector * 512, 512).ToArray()));
             }
         }
-        return new($"atarist.{((endCylinder + 1) * heads * sectors * 512) / 1024}", 512, endCylinder + 1, heads, sectors, blocks);
+        return new(DiskImageFormatIds.AtariStFromCapacity((endCylinder + 1) * heads * sectors * 512L), 512,
+            endCylinder + 1, heads, sectors, blocks);
     }
 
     private static byte[] Unpack(ReadOnlySpan<byte> packed, int expected)

@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.Text;
+using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -9,8 +10,9 @@ public sealed class CpmFileSystemReader : IFileSystemReader
     public string Id => "cpm";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "commodore.1541", "commodore.1571", "commodore.1581",
-            "epson.qx10.320", "epson.qx10.396", "epson.qx10.399", "epson.qx10.400", "epson.qx10.logo"
+            DiskImageFormatIds.Commodore1541, DiskImageFormatIds.Commodore1571, DiskImageFormatIds.Commodore1581,
+            DiskImageFormatIds.EpsonQx10_320, DiskImageFormatIds.EpsonQx10_396,
+            DiskImageFormatIds.EpsonQx10_399, DiskImageFormatIds.EpsonQx10_400, DiskImageFormatIds.EpsonQx10Logo
         };
 
     public bool CanRead(SectorImage image)
@@ -95,7 +97,7 @@ public sealed class CpmFileSystemReader : IFileSystemReader
 
     private static Layout ResolveLayout(SectorImage image, byte[] bytes, Layout configured)
     {
-        if (!image.FormatId.StartsWith("epson.qx10.", StringComparison.OrdinalIgnoreCase)) return configured;
+        if (!image.FormatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase)) return configured;
         var best = configured;
         var bestScore = ScoreDirectory(bytes, configured);
         var limit = Math.Min(bytes.Length - configured.DirectoryEntries * 32, 64 * 1024);
@@ -167,14 +169,14 @@ public sealed class CpmFileSystemReader : IFileSystemReader
     {
         public static Layout? For(SectorImage image) => image.FormatId switch
         {
-            "commodore.1541" => new(0x0a00, 64, 1024, 2, false),
-            "commodore.1571" => new(0x0a00, 128, 2048, 2, true),
-            "commodore.1581" => new(0, 128, 2048, 2, true),
-            "epson.qx10.320" => new(4 * 2 * 16 * 256, 64, 2048, 2, false),
-            "epson.qx10.396" => new(4 * 16 * 256, 64, 2048, 2, false),
-            "epson.qx10.399" => new(16 * 256, 64, 2048, 2, false),
-            "epson.qx10.400" => new(2 * 2 * 5 * 1024, 64, 2048, 2, false),
-            "epson.qx10.logo" => new(4 * 16 * 256, 64, 2048, 2, false),
+            DiskImageFormatIds.Commodore1541 => new(0x0a00, 64, 1024, 2, false),
+            DiskImageFormatIds.Commodore1571 => new(0x0a00, 128, 2048, 2, true),
+            DiskImageFormatIds.Commodore1581 => new(0, 128, 2048, 2, true),
+            DiskImageFormatIds.EpsonQx10_320 => new(4 * 2 * 16 * 256, 64, 2048, 2, false),
+            DiskImageFormatIds.EpsonQx10_396 => new(4 * 16 * 256, 64, 2048, 2, false),
+            DiskImageFormatIds.EpsonQx10_399 => new(16 * 256, 64, 2048, 2, false),
+            DiskImageFormatIds.EpsonQx10_400 => new(2 * 2 * 5 * 1024, 64, 2048, 2, false),
+            DiskImageFormatIds.EpsonQx10Logo => new(4 * 16 * 256, 64, 2048, 2, false),
             _ => null
         };
     }

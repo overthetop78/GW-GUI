@@ -366,13 +366,13 @@ Le `break` dans les interprétations supplémentaires peut perdre plusieurs inte
 
 Politiques de visualisation : `ISectorImageVisualizationPolicy`, `SectorImageVisualizationPolicy`, `SectorImageVisualizationPolicyRegistry`, `AppleVisualizationPolicy`, `AtariVisualizationPolicy`, `CommodoreVisualizationPolicy`, `DecRx02VisualizationPolicy`, `ExactVisualizationPolicy`, `PrefixVisualizationPolicy`.
 
-Les politiques exactes et par préfixe confirment que les identifiants de formats sont encore utilisés comme mécanisme de routage dispersé. Une définition de format partagée à l’intérieur du moteur doit fournir codec et géométrie sans faire dépendre `GWGUI.MediaEngine` de `GWGUI.Domain`.
+Les politiques exactes et par préfixe continuent d’utiliser les identifiants de formats comme mécanisme de routage. Leurs valeurs et préfixes sont désormais fournis par `DiskImageFormatIds`, sans faire dépendre `GWGUI.MediaEngine` de `GWGUI.Domain`.
 
 ## Sources de vérité dispersées confirmées
 
 ### Identifiants de formats
 
-Ils apparaissent au minimum dans :
+Les consommateurs sont notamment :
 
 - `ScpCandidateRegistry` ;
 - `IsoScpSectorImagePolicyRegistry` ;
@@ -383,7 +383,7 @@ Ils apparaissent au minimum dans :
 - politiques de visualisation ;
 - `DiskSystemCatalog` et `DiskProtectionCatalog`.
 
-Ces identifiants sont extensibles et ne doivent pas devenir un enum fermé. Ils nécessitent des constantes ou objets-identifiants regroupés par domaine, puis des définitions cataloguées reliant format, conteneur, géométrie, codec et système de fichiers lorsque la relation est réellement stable.
+Ces identifiants sont extensibles et ne forment donc pas un enum fermé. Leurs valeurs fixes et leurs préfixes sont centralisés dans `Recognition/Definitions/DiskImageFormatIds.cs`. Ce fichier fournit également les constructions calculées utilisées pour les capacités Atari ST et IBM ainsi que les géométries ATR et SCP Atari. Les identifiants de codecs restent une responsabilité distincte.
 
 ### Géométries
 

@@ -1,16 +1,18 @@
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal static class EpsonQx10GeometryCatalog
 {
     public static EpsonQx10Geometry Resolve(string formatId) => formatId.ToLowerInvariant() switch
     {
-        "epson.qx10.320" => EpsonQx10Geometry.Uniform(40, 2, new(1, 16, 256)),
-        "epson.qx10.400" => EpsonQx10Geometry.Uniform(40, 2, new(1, 5, 1024)),
-        "epson.qx10.booter" => new(15, 1, (cylinder, _) =>
+        DiskImageFormatIds.EpsonQx10_320 => EpsonQx10Geometry.Uniform(40, 2, new(1, 16, 256)),
+        DiskImageFormatIds.EpsonQx10_400 => EpsonQx10Geometry.Uniform(40, 2, new(1, 5, 1024)),
+        DiskImageFormatIds.EpsonQx10Booter => new(15, 1, (cylinder, _) =>
             cylinder == 0 ? new(1, 16, 256) : new(1, 17, 256)),
-        "epson.qx10.399" => new(40, 2, (cylinder, head) =>
+        DiskImageFormatIds.EpsonQx10_399 => new(40, 2, (cylinder, head) =>
             cylinder == 0 && head == 0 ? new(1, 16, 256) : new(1, 10, 512)),
-        "epson.qx10.logo" => new(40, 2, (cylinder, _) => cylinder switch
+        DiskImageFormatIds.EpsonQx10Logo => new(40, 2, (cylinder, _) => cylinder switch
         {
             0 or 1 or 4 => new(1, 16, 256),
             5 or 6 => new(2, 10, 512),

@@ -20,6 +20,6 @@ public sealed class CommodoreD81ImageReader : ISectorImageReader
             var sector = logical % 40;
             blocks[logical] = new(logical, new(track - 1, 0, sector), data.AsSpan(logical * 256, 256).ToArray());
         }
-        return new("commodore.1581", 256, 80, 1, 40, blocks);
+        return new(DiskImageFormatIds.Commodore1581, 256, 80, 1, 40, blocks);
     }
 }

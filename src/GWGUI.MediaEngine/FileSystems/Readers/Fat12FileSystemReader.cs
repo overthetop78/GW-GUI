@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.Text;
+using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -9,9 +10,14 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public string Id => "fat12";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
-        "atarist.180", "atarist.360", "atarist.400", "atarist.440", "atarist.720", "atarist.800", "atarist.810", "atarist.880", "atarist.1440",
-        "ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200", "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan",
-        "msx.1d", "msx.1dd", "msx.2d", "msx.2dd"
+        DiskImageFormatIds.AtariSt180, DiskImageFormatIds.AtariSt360, DiskImageFormatIds.AtariSt400,
+        DiskImageFormatIds.AtariSt440, DiskImageFormatIds.AtariSt720, DiskImageFormatIds.AtariSt800,
+        DiskImageFormatIds.AtariSt810, DiskImageFormatIds.AtariSt880, DiskImageFormatIds.AtariSt1440,
+        DiskImageFormatIds.Ibm160, DiskImageFormatIds.Ibm180, DiskImageFormatIds.Ibm320,
+        DiskImageFormatIds.Ibm360, DiskImageFormatIds.Ibm720, DiskImageFormatIds.Ibm800,
+        DiskImageFormatIds.Ibm1200, DiskImageFormatIds.Ibm1440, DiskImageFormatIds.Ibm1680,
+        DiskImageFormatIds.IbmDmf, DiskImageFormatIds.Ibm2880, DiskImageFormatIds.IbmScan,
+        DiskImageFormatIds.Msx1D, DiskImageFormatIds.Msx1Dd, DiskImageFormatIds.Msx2D, DiskImageFormatIds.Msx2Dd
     };
 
     public bool CanRead(SectorImage image)
@@ -119,10 +125,10 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         if (boot.Length == 0 || boot.IndexOfAnyExcept(boot[0]) < 0) return false;
         var parameters = formatId.ToLowerInvariant() switch
         {
-            "ibm.160" => (Total: 320, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 1),
-            "ibm.180" => (Total: 360, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 2),
-            "ibm.320" => (Total: 640, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 1),
-            "ibm.360" => (Total: 720, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 2),
+            DiskImageFormatIds.Ibm160 => (Total: 320, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 1),
+            DiskImageFormatIds.Ibm180 => (Total: 360, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 2),
+            DiskImageFormatIds.Ibm320 => (Total: 640, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 1),
+            DiskImageFormatIds.Ibm360 => (Total: 720, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 2),
             _ => default
         };
         if (parameters.Total == 0 || availableSectors < parameters.Total) return false;

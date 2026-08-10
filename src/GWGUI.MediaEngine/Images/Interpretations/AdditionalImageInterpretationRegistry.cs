@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images.Interpretations;
 
 internal sealed class AdditionalImageInterpretationRegistry(FileSystemRegistry fileSystems)
@@ -21,9 +23,9 @@ internal sealed class AdditionalImageInterpretationRegistry(FileSystemRegistry f
     }
 
     private static bool IsIsoCompatible(string formatId) =>
-        formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase) ||
-        formatId.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) ||
-        formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ||
-        formatId.StartsWith("acorn.dfs.", StringComparison.OrdinalIgnoreCase) ||
-        formatId.Equals("imd", StringComparison.OrdinalIgnoreCase);
+        formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase) ||
+        formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) ||
+        formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ||
+        formatId.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase) ||
+        formatId.Equals(DiskImageFormatIds.Imd, StringComparison.OrdinalIgnoreCase);
 }

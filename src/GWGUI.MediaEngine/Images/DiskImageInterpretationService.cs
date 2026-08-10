@@ -2,6 +2,8 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Recognition.Definitions;
+
 namespace GWGUI.MediaEngine.Images;
 
 internal sealed class DiskImageInterpretationService(FileSystemRegistry fileSystems)
@@ -41,7 +43,7 @@ internal sealed class DiskImageInterpretationService(FileSystemRegistry fileSyst
     public ExploredDiskImage Unknown(string path)
     {
         var capacity = new FileInfo(path).Length;
-        var image = new SectorImage("unknown", 1, 1, 1, 1, [], capacity: capacity, logicalBlockCount: 1);
+        var image = new SectorImage(DiskImageFormatIds.Unknown, 1, 1, 1, 1, [], capacity: capacity, logicalBlockCount: 1);
         return CreateDocument(path, image, []);
     }
 

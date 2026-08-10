@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -40,7 +41,7 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
             blocks.Add(new(block, new(block / 13, 0, block % 13 + 1), data, valid,
                 Math.Max(first.Value.Revolution, second.Value.Revolution)));
         }
-        return new("dec.rx02", 512, 77, 1, 13, blocks, capacity: DecRx02ImageReader.ImageSize, logicalBlockCount: 1001);
+        return new(DiskImageFormatIds.DecRx02, 512, 77, 1, 13, blocks, capacity: DecRx02ImageReader.ImageSize, logicalBlockCount: 1001);
     }
 
     private static (DecodedSector Sector, int Revolution)? Best(

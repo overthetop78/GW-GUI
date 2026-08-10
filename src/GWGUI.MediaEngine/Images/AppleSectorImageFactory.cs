@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -49,10 +50,10 @@ internal static class AppleSectorImageFactory
                     : pair.Key.Number),
                 new(pair.Key.Track, 0, pair.Key.Number), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid))
             .ToArray();
-        if (dosBlocks.Length == 0) return new("apple2.gcr", 256, trackCount, 1, 16, []);
+        if (dosBlocks.Length == 0) return new(DiskImageFormatIds.AppleIIGcr, 256, trackCount, 1, 16, []);
 
         if (sectorsPerTrack == 13)
-            return new("apple2.dos32", 256, trackCount, 1, 13, dosBlocks);
+            return new(DiskImageFormatIds.AppleIIDos32, 256, trackCount, 1, 13, dosBlocks);
 
         var prodosBlocks = new List<SectorBlock>();
         for (var track = 0; track < trackCount; track++)
@@ -70,10 +71,10 @@ internal static class AppleSectorImageFactory
         foreach (var block in prodosBlocks)
             block.Data.ToArray().CopyTo(prodosProbe, block.LogicalBlock * 512);
         if (AppleDiskImageSignatures.LooksLikeProDos(prodosProbe))
-            return new("apple2.prodos", 512, trackCount, 1, 8, prodosBlocks);
+            return new(DiskImageFormatIds.AppleIIProDos, 512, trackCount, 1, 8, prodosBlocks);
         return new(AppleDiskImageSignatures.LooksLikeDos33(ToDense(dosBlocks, trackCount * 16, 256))
-                ? "apple2.dos33"
-                : "apple2.gcr",
+                ? DiskImageFormatIds.AppleIIDos33
+                : DiskImageFormatIds.AppleIIGcr,
             256, trackCount, 1, sectorsPerTrack, dosBlocks);
     }
 
@@ -91,7 +92,7 @@ internal static class AppleSectorImageFactory
         if (blocks.Length == 0)
             throw new InvalidDataException("No Apple II RWTS18 sectors could be decoded.");
         var trackCount = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
-        return new("apple2.rwts18", 768, trackCount, 1, 6, blocks);
+        return new(DiskImageFormatIds.AppleIIRwts18, 768, trackCount, 1, 6, blocks);
     }
 
     private static byte[] ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)

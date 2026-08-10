@@ -8,7 +8,7 @@ internal sealed class DecRx02ContainerPolicy(DecRx02ImageReader reader) : IDiskI
     public async ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
     {
         if (!context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase)) return false;
-        return context.FormatId?.Equals("dec.rx02", StringComparison.OrdinalIgnoreCase) == true ||
+        return context.FormatId?.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) == true ||
                DecRx02ImageReader.LooksLikeRt11(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false));
     }
 

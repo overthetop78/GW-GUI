@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.Text;
+using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -9,7 +10,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
 {
     public string Id => "amstrad.cpm";
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { "amstrad.cpc", "amstrad.pcw" };
+        { DiskImageFormatIds.AmstradCpc, DiskImageFormatIds.AmstradPcw };
 
     public bool CanRead(SectorImage image)
     {
@@ -17,7 +18,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         var bytes = Flatten(image);
         var layout = GetLayout(image, bytes);
         return layout is not null && LooksLikeDirectory(bytes, layout.Value,
-            allowEmpty: image.FormatId.Equals("amstrad.pcw", StringComparison.OrdinalIgnoreCase));
+            allowEmpty: image.FormatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase));
     }
 
     public static bool LooksLikePcwDiskSpecification(ReadOnlySpan<byte> bytes)
@@ -41,7 +42,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         var bytes = Flatten(image);
         var layout = GetLayout(image, bytes) ?? throw new InvalidDataException("The Amstrad CP/M disk layout is not supported.");
         if (!LooksLikeDirectory(bytes, layout,
-                allowEmpty: image.FormatId.Equals("amstrad.pcw", StringComparison.OrdinalIgnoreCase)))
+                allowEmpty: image.FormatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidDataException("The image does not contain a supported Amstrad CP/M directory.");
         var extents = new List<Extent>();
         var warnings = new List<string>();
@@ -90,14 +91,14 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         var usedBlocks = extents.SelectMany(extent => extent.Allocations).Where(block => block != 0).Distinct().Count();
         var totalBlocks = Math.Max(0, (bytes.Length - layout.AllocationOrigin) / layout.AllocationBlockSize);
         var freeBlocks = Math.Max(0, totalBlocks - usedBlocks - layout.DirectoryBlocks);
-        var system = image.FormatId.Equals("amstrad.pcw", StringComparison.OrdinalIgnoreCase) ? "Amstrad PCW CP/M Plus" : "Amstrad CPC CP/M";
+        var system = image.FormatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase) ? "Amstrad PCW CP/M Plus" : "Amstrad CPC CP/M";
         return new(volumeName, system, image.Capacity, freeBlocks * (long)layout.AllocationBlockSize, null, null,
             files.OrderBy(file => file.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
     private static Layout? GetLayout(SectorImage image, byte[] bytes)
     {
-        if (image.FormatId.Equals("amstrad.cpc", StringComparison.OrdinalIgnoreCase))
+        if (image.FormatId.Equals(DiskImageFormatIds.AmstradCpc, StringComparison.OrdinalIgnoreCase))
         {
             var first = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).FirstOrDefault();
             if (first is null) return null;

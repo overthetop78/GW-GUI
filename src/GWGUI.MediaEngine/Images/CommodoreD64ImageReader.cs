@@ -26,6 +26,6 @@ public sealed class CommodoreD64ImageReader : ISectorImageReader
             var integrity = !geometry.ErrorMap || data[count * 256 + logical] == 1;
             blocks[logical] = new(logical, new(address.Track - 1, 0, address.Sector), data.AsSpan(logical * 256, 256).ToArray(), integrity);
         }
-        return new("commodore.1541", 256, geometry.Tracks, 1, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
+        return new(DiskImageFormatIds.Commodore1541, 256, geometry.Tracks, 1, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
     }
 }
