@@ -19,35 +19,50 @@ internal static class WozReader
     /// <param name="data">Octets complets du conteneur WOZ.</param>
     /// <returns>L’image sectorielle Apple II reconstruite à partir des pistes décodées.</returns>
     /// <exception cref="InvalidDataException">
-    /// L’en-tête est invalide, un chunk est tronqué, ou les chunks TMAP et TRKS requis sont absents.
+    /// L’en-tête ou le CRC32 est invalide, un chunk est tronqué, ou un chunk obligatoire est absent.
     /// </exception>
     /// <exception cref="NotSupportedException">Le conteneur ne décrit pas une disquette Apple II 5,25 pouces.</exception>
     /// <exception cref="OverflowException">Une longueur ou une position déclarée dépasse les limites des entiers utilisés.</exception>
     public static SectorImage Read(ReadOnlySpan<byte> data)
     {
-        if (data.Length < 256 || !(data[..4].SequenceEqual("WOZ1"u8) || data[..4].SequenceEqual("WOZ2"u8)) ||
-            !data.Slice(4, 4).SequenceEqual(new byte[] { 0xff, 0x0a, 0x0d, 0x0a }))
-            throw new InvalidDataException("The WOZ header is invalid.");
-        var version = data[3] - (byte)'0';
+        if (data.Length < WozLayout.MinimumFileLength ||
+            !(data[..WozLayout.SignatureLength].SequenceEqual(WozFormat.Version1Signature) ||
+              data[..WozLayout.SignatureLength].SequenceEqual(WozFormat.Version2Signature)) ||
+            !data.Slice(WozLayout.HeaderMarkerOffset, WozLayout.HeaderMarkerLength).SequenceEqual(WozFormat.HeaderMarker))
+            throw WozExceptions.InvalidHeader();
+        var storedCrc = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(WozLayout.CrcOffset, WozLayout.CrcLength));
+        var computedCrc = ComputeCrc32(data[WozLayout.ChunksOffset..]);
+        if (storedCrc != computedCrc) throw WozExceptions.InvalidCrc(storedCrc, computedCrc);
+        var version = data[..WozLayout.SignatureLength].SequenceEqual(WozFormat.Version1Signature) ? 1 : 2;
         var chunks = ReadChunks(data);
-        if (!chunks.TryGetValue("INFO", out var info) || info.Length < 2 || info.Span[1] != 1)
-            throw new NotSupportedException("Only Apple II 5.25-inch WOZ images are supported by this reader.");
-        if (!chunks.TryGetValue("TMAP", out var tmap) || tmap.Length < 160 || !chunks.TryGetValue("TRKS", out var trks))
-            throw new InvalidDataException("The WOZ track map or track data is missing.");
+        if (!chunks.TryGetValue(WozFormat.InfoChunkId, out var info) || info.Length < WozLayout.MinimumInfoLength)
+            throw WozExceptions.MissingRequiredChunk(WozFormat.InfoChunkId);
+        if (info.Span[WozLayout.InfoDiskTypeOffset] != WozFormat.AppleII525DiskType)
+            throw WozExceptions.UnsupportedDiskType(info.Span[WozLayout.InfoDiskTypeOffset]);
+        if (!chunks.TryGetValue(WozFormat.TrackMapChunkId, out var tmap) || tmap.Length < WozLayout.TrackMapLength)
+            throw WozExceptions.MissingRequiredChunk(WozFormat.TrackMapChunkId);
+        if (!chunks.TryGetValue(WozFormat.TracksChunkId, out var trks))
+            throw WozExceptions.MissingRequiredChunk(WozFormat.TracksChunkId);
 
         var decoder = new AppleGcrDecoder();
         var rwtsDecoder = new AppleRwts18Decoder();
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
-        for (var track = 0; track < 40; track++)
+        for (var track = 0; track < WozLayout.AppleIITrackCount; track++)
         {
             IReadOnlyList<DecodedSector>? best = null;
             IReadOnlyList<DecodedSector>? bestRwts = null;
             var bestScore = -1;
             var bestRwtsScore = -1;
-            foreach (var descriptor in tmap.Span.Slice(track * 4, 4).ToArray().Where(value => value != 0xff).Distinct())
+            foreach (var descriptor in tmap.Span
+                         .Slice(track * WozLayout.TrackMapEntriesPerTrack, WozLayout.TrackMapEntriesPerTrack)
+                         .ToArray()
+                         .Where(value => value != WozLayout.MissingTrackDescriptor)
+                         .Distinct())
             {
-                var bits = version == 1 ? ReadWoz1Track(trks.Span, descriptor) : ReadWoz2Track(data, trks.Span, descriptor);
+                var bits = version == 1
+                    ? ReadWoz1Track(trks.Span, track, descriptor)
+                    : ReadWoz2Track(data, trks.Span, track, descriptor);
                 if (bits.Length == 0) continue;
                 var sectors = (decoder.DecodeBits(bits).Sectors ?? [])
                     .Where(sector => sector.Cylinder == track && sector.Number is >= 0 and < 16 && sector.Data is { Count: 256 })
@@ -90,14 +105,19 @@ internal static class WozReader
     private static Dictionary<string, ReadOnlyMemory<byte>> ReadChunks(ReadOnlySpan<byte> data)
     {
         var chunks = new Dictionary<string, ReadOnlyMemory<byte>>(StringComparer.Ordinal);
-        var offset = 12;
-        while (offset <= data.Length - 8)
+        var offset = WozLayout.ChunksOffset;
+        while (offset <= data.Length - WozLayout.ChunkHeaderLength)
         {
-            var id = System.Text.Encoding.ASCII.GetString(data.Slice(offset, 4));
-            var length = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(offset + 4, 4)));
-            offset += 8;
-            if (length < 0 || offset > data.Length - length)
-                throw new InvalidDataException($"The WOZ {id} chunk is truncated.");
+            var id = System.Text.Encoding.ASCII.GetString(data.Slice(
+                offset + WozLayout.ChunkIdOffset,
+                WozLayout.ChunkIdLength));
+            var declaredLength = BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(
+                offset + WozLayout.ChunkLengthOffset,
+                WozLayout.ChunkLengthSize));
+            offset += WozLayout.ChunkHeaderLength;
+            if (declaredLength > int.MaxValue || offset > data.Length - (int)declaredLength)
+                throw WozExceptions.TruncatedChunk(id);
+            var length = (int)declaredLength;
             chunks[id] = data.Slice(offset, length).ToArray();
             offset += length;
         }
@@ -109,18 +129,23 @@ internal static class WozReader
     /// Les octets de piste occupent le début de l’entrée et le nombre exact de bits est stocké à son offset dédié.
     /// </summary>
     /// <param name="trks">Charge utile du chunk TRKS WOZ1.</param>
+    /// <param name="track">Numéro de piste Apple II associé à la référence TMAP.</param>
     /// <param name="index">Index de l’entrée de piste référencée par TMAP.</param>
-    /// <returns>Bits de la piste, ou un tableau vide lorsque l’entrée ou son nombre de bits est invalide.</returns>
+    /// <returns>Bits de la piste, ou un tableau vide lorsque son nombre de bits est nul ou invalide.</returns>
+    /// <exception cref="InvalidDataException">La référence TMAP sort du chunk TRKS.</exception>
     /// <exception cref="OverflowException">Le calcul de la position de l’entrée dépasse les limites d’un entier signé.</exception>
-    private static bool[] ReadWoz1Track(ReadOnlySpan<byte> trks, int index)
+    private static bool[] ReadWoz1Track(ReadOnlySpan<byte> trks, int track, int index)
     {
-        const int entryLength = 6656;
-        const int bitCountOffset = 6648;
-        var offset = checked(index * entryLength);
-        if (offset > trks.Length - entryLength) return [];
-        var bitCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(offset + bitCountOffset, 2));
-        if (bitCount == 0 || bitCount > bitCountOffset * 8) return [];
-        return NibTrackImageReader.ConvertToBits(trks.Slice(offset, (bitCount + 7) / 8), bitCount);
+        var offset = checked(index * WozLayout.Woz1TrackEntryLength);
+        if (offset > trks.Length - WozLayout.Woz1TrackEntryLength)
+            throw WozExceptions.TrackReferenceOutOfBounds(track, index);
+        var bitCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(
+            offset + WozLayout.Woz1BitCountOffset,
+            WozLayout.Woz1BitCountLength));
+        if (bitCount == 0 || bitCount > WozLayout.Woz1BitCountOffset * NibTrackFormat.BitsPerByte) return [];
+        return NibTrackImageReader.ConvertToBits(
+            trks.Slice(offset, (bitCount + NibTrackFormat.BitsPerByte - 1) / NibTrackFormat.BitsPerByte),
+            bitCount);
     }
 
     /// <summary>
@@ -129,20 +154,45 @@ internal static class WozReader
     /// </summary>
     /// <param name="file">Conteneur WOZ2 complet contenant les blocs de piste.</param>
     /// <param name="trks">Charge utile du chunk TRKS contenant les descripteurs WOZ2.</param>
+    /// <param name="track">Numéro de piste Apple II associé à la référence TMAP.</param>
     /// <param name="index">Index du descripteur de piste référencé par TMAP.</param>
-    /// <returns>Bits de la piste, ou un tableau vide lorsque le descripteur ou sa plage est invalide.</returns>
+    /// <returns>Bits de la piste référencée par le descripteur.</returns>
+    /// <exception cref="InvalidDataException">Le descripteur ou les blocs qu’il référence sortent du conteneur.</exception>
     /// <exception cref="OverflowException">Une position ou un nombre de bits dépasse les limites des entiers utilisés.</exception>
-    private static bool[] ReadWoz2Track(ReadOnlySpan<byte> file, ReadOnlySpan<byte> trks, int index)
+    private static bool[] ReadWoz2Track(ReadOnlySpan<byte> file, ReadOnlySpan<byte> trks, int track, int index)
     {
-        var descriptorOffset = checked(index * 8);
-        if (descriptorOffset > trks.Length - 8) return [];
-        var startBlock = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(descriptorOffset, 2));
-        var blockCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(descriptorOffset + 2, 2));
-        var bitCount = BinaryPrimitives.ReadUInt32LittleEndian(trks.Slice(descriptorOffset + 4, 4));
-        var offset = checked(startBlock * 512);
-        var byteCount = checked((int)((bitCount + 7) / 8));
-        if (startBlock == 0 || blockCount == 0 || bitCount == 0 || byteCount > blockCount * 512 ||
-            offset > file.Length - byteCount) return [];
+        var descriptorOffset = checked(index * WozLayout.Woz2TrackDescriptorLength);
+        if (descriptorOffset > trks.Length - WozLayout.Woz2TrackDescriptorLength)
+            throw WozExceptions.TrackReferenceOutOfBounds(track, index);
+        var startBlock = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(
+            descriptorOffset + WozLayout.Woz2StartBlockOffset,
+            WozLayout.Woz2BlockFieldLength));
+        var blockCount = BinaryPrimitives.ReadUInt16LittleEndian(trks.Slice(
+            descriptorOffset + WozLayout.Woz2BlockCountOffset,
+            WozLayout.Woz2BlockFieldLength));
+        var bitCount = BinaryPrimitives.ReadUInt32LittleEndian(trks.Slice(
+            descriptorOffset + WozLayout.Woz2BitCountOffset,
+            WozLayout.Woz2BitCountLength));
+        var offset = checked(startBlock * WozLayout.Woz2BlockLength);
+        var byteCount = checked((int)((bitCount + NibTrackFormat.BitsPerByte - 1) / NibTrackFormat.BitsPerByte));
+        if (startBlock == 0 || blockCount == 0 || bitCount == 0 ||
+            byteCount > blockCount * WozLayout.Woz2BlockLength || offset > file.Length - byteCount)
+            throw WozExceptions.TrackReferenceOutOfBounds(track, index);
         return NibTrackImageReader.ConvertToBits(file.Slice(offset, byteCount), checked((int)bitCount));
+    }
+
+    /// <summary>Calcule le CRC32 WOZ des octets fournis.</summary>
+    /// <param name="data">Octets couverts par le CRC.</param>
+    /// <returns>CRC32 calculé avec le polynôme du format WOZ.</returns>
+    private static uint ComputeCrc32(ReadOnlySpan<byte> data)
+    {
+        var crc = uint.MaxValue;
+        foreach (var value in data)
+        {
+            crc ^= value;
+            for (var bit = 0; bit < NibTrackFormat.BitsPerByte; bit++)
+                crc = (crc >> 1) ^ (WozFormat.Crc32Polynomial & (uint)-(int)(crc & 1));
+        }
+        return ~crc;
     }
 }

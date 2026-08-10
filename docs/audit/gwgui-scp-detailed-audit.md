@@ -218,7 +218,7 @@ Lecteurs inventoriés :
 
 - Amiga : `AdfImageReader` ;
 - Amstrad : `Containers/Amstrad/CpcDsk/CpcDskReader` ;
-- Apple : `AppleDiskImageReader`, `AppleRawImageReader`, `AppleNibbleImageWriter`, `AppleSectorImageFactory`, `AppleDiskGeometry`, `AppleDiskImageSignatures`, `Containers/Apple/TwoImg/TwoImgReader`, `Containers/Apple/DiskCopy/DiskCopyReader`, `Containers/Apple/Woz/WozReader` et `Recognition/Apple/NibTrackImageReader` ;
+- Apple : `AppleDiskImageReader`, `AppleRawImageReader`, `AppleNibbleImageWriter`, `AppleSectorImageFactory`, `AppleDiskGeometry`, `AppleDiskImageSignatures`, `Containers/Apple/TwoImg/TwoImgReader`, `Containers/Apple/DiskCopy/DiskCopyReader`, `Containers/Apple/Woz/WozReader`, `WozFormat`, `WozLayout`, `WozExceptions`, `Recognition/Apple/NibTrackImageReader`, `NibTrackFormat` et `NibTrackExceptions` ;
 - Atari : `AtariStImageReader`, `MsaImageReader`, `AtrImageReader` ;
 - BBC : `BbcDfsImageReader` ;
 - Commodore : `CommodoreD64ImageReader`, `CommodoreD71ImageReader`, `CommodoreD81ImageReader`, `CommodoreGeometry` ;
@@ -555,8 +555,8 @@ La lecture croisée des politiques et des lecteurs montre que « format d’imag
 | SCP | conteneur de captures de flux | révolutions et intervalles de flux, puis décodage choisi séparément | plusieurs familles | `ScpContainerPolicy` déclenche directement l’exploration et le système de fichiers |
 | 2IMG | conteneur avec métadonnées et charge utile | secteurs DOS/ProDOS ou pistes NIB selon l’en-tête | principalement Apple II/III | le lecteur du conteneur choisit immédiatement le décodeur ou le lecteur sectoriel final |
 | DiskCopy | conteneur avec données et tags | secteurs ou secteurs tagués | Macintosh, Lisa ou ProDOS | parsing du conteneur, détection et reconstruction sont réunis |
-| NIB | représentation brute de pistes nibblisées, pas une machine | décodage GCR Apple II ou RWTS18 | Apple II | le même composant traite aussi WOZ et reconstruit directement l’image sectorielle |
-| WOZ | conteneur de pistes sous forme de flux de bits | extraction du bitstream, puis codec Apple II | Apple II | parsing WOZ, choix du codec et reconstruction sont réunis avec NIB |
+| NIB | représentation brute de pistes nibblisées, pas une machine | découpage par `NibTrackImageReader`, puis décodage GCR Apple II ou RWTS18 | Apple II | longueur et erreurs NIB sont isolées dans `NibTrackFormat` et `NibTrackExceptions` |
+| WOZ | conteneur de pistes sous forme de flux de bits | validation par `WozReader`, extraction du bitstream, puis codec Apple II | Apple II | signatures, disposition, CRC32 et erreurs sont isolés dans les définitions du module WOZ |
 | CPCEMU DSK/EDSK | conteneur structuré de pistes et secteurs | secteurs déjà décrits par l’en-tête | généralement CPC ou PCW | le lecteur déduit immédiatement l’identifiant machine depuis la géométrie |
 | `.dsk` brut | extension ambiguë, pas un format unique | secteurs bruts dont l’ordre et la géométrie doivent être interprétés | Apple, MSX et autres | plusieurs politiques se disputent la même extension selon un ordre fonctionnel |
 | `.img`, `.ima` ou `.bin` bruts | extensions ambiguës, pas des formats uniques | secteurs bruts | IBM PC, Macintosh, Lisa, Amstrad, DEC, Coherent et autres | la sélection dépend de signatures de systèmes de fichiers placées dans les politiques de conteneurs |

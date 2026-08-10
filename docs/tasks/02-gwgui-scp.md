@@ -292,49 +292,49 @@
     - [x] Créer des tests locaux de `TwoImgReader` vérifiant signature, version, format d’image, offset, longueur, ordre DOS/ProDOS et extraction de la charge utile.
     - [x] Créer des tests locaux de `DiskCopyReader` vérifiant en-tête, tailles, données, tags et sommes de contrôle.
     - [x] Vérifier le rejet des signatures, versions, offsets, longueurs, sommes de contrôle et fichiers tronqués invalides à partir de copies modifiées des images locales.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleNibbleImageDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Images/AppleNibbleImageDecoder.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Apple/Woz/WozReader.cs` et y déplacer le parsing WOZ1/WOZ2.
     - [x] Créer `Recognition/Apple/NibTrackImageReader.cs` et y déplacer la lecture NIB.
     - [x] Raccorder les pistes produites aux décodeurs Apple.
     - [x] Supprimer `AppleNibbleImageDecoder.cs`.
-  - [ ] Définitions du conteneur WOZ
-    - [ ] Créer `Containers/Apple/Woz/WozFormat.cs`.
-    - [ ] Sortir de `WozReader.cs` les signatures `WOZ1`, `WOZ2` et la marque binaire `FF 0A 0D 0A`.
-    - [ ] Sortir de `WozReader.cs` les identifiants de chunks `INFO`, `TMAP` et `TRKS`.
-    - [ ] Créer `Containers/Apple/Woz/WozLayout.cs`.
-    - [ ] Sortir de `WozReader.cs` la taille minimale du fichier, le début des chunks, la taille de leur en-tête et les offsets de leur identifiant et de leur longueur.
-    - [ ] Sortir de `WozReader.cs` la longueur de `TMAP`, le nombre de pistes Apple II parcourues et le nombre d’entrées `TMAP` examinées par piste.
-    - [ ] Sortir de `WozReader.cs` la taille d’une entrée WOZ1, l’offset de son nombre de bits et la taille d’un bloc WOZ2.
-    - [ ] Sortir de `WozReader.cs` les offsets et tailles des descripteurs WOZ2 utilisés pour le bloc de départ, le nombre de blocs et le nombre de bits.
-    - [ ] Remplacer chaque valeur brute correspondante dans `WozReader.cs` par `WozFormat` ou `WozLayout`.
-  - [ ] Validation et erreurs WOZ
-    - [ ] Créer `Containers/Apple/Woz/WozExceptions.cs`.
-    - [ ] Ajouter les méthodes construisant les erreurs d’en-tête invalide, type de disque non pris en charge et chunks obligatoires absents.
-    - [ ] Ajouter une méthode recevant l’identifiant du chunk pour l’erreur de chunk tronqué.
-    - [ ] Ajouter une méthode recevant la piste et le descripteur pour l’erreur de référence hors limites.
-    - [ ] Ajouter dans `WozReader.Read` la validation du CRC32 stocké dans l’en-tête WOZ.
-    - [ ] Ajouter une méthode d’erreur recevant le CRC stocké et le CRC calculé.
-    - [ ] Remplacer les textes et constructions directes d’exception de `WozReader.cs` par `WozExceptions`.
-  - [ ] Définitions et erreurs NIB
-    - [ ] Créer `Recognition/Apple/NibTrackFormat.cs`.
-    - [ ] Déplacer la longueur de piste NIB `6656` de `NibTrackImageReader.cs` et `AppleNibbleImageWriter.cs` vers une constante commune.
-    - [ ] Ajouter dans `NibTrackFormat` le nombre de bits par octet utilisé pour convertir une piste NIB.
-    - [ ] Créer `Recognition/Apple/NibTrackExceptions.cs`.
-    - [ ] Ajouter une méthode recevant la longueur observée et la longueur de piste attendue pour l’erreur de longueur NIB invalide.
-    - [ ] Remplacer le texte et la construction directe d’exception de `NibTrackImageReader.Read`.
-  - [ ] Documentation XML
-    - [ ] Mettre à jour la documentation XML française de `WozReader` après remplacement des valeurs et erreurs brutes.
-    - [ ] Documenter en français `WozFormat`, `WozLayout`, `WozExceptions` et chacun de leurs membres.
-    - [ ] Mettre à jour la documentation XML française de `NibTrackImageReader` après déplacement de la longueur de piste.
-    - [ ] Documenter en français `NibTrackFormat`, `NibTrackExceptions` et chacun de leurs membres.
-  - [ ] Tests du lecteur public Apple
-    - [ ] Utiliser une image WOZ1, une image WOZ2 et une image NIB de `image_test` dont les pistes et secteurs attendus sont connus.
-    - [ ] Si l’une de ces images manque, la créer directement dans `image_test` sans ajouter de code ; si ce n’est pas possible, demander l’image ou la rechercher, la télécharger et la placer dans `image_test`.
-    - [ ] Lire les trois images par `AppleDiskImageReader` sans rendre publics `WozReader` ni `NibTrackImageReader`.
-    - [ ] Vérifier pour WOZ1 et WOZ2 la signature, le CRC, les chunks, la table des pistes, le nombre de bits et les données extraites.
-    - [ ] Vérifier pour NIB la longueur exacte des pistes, leur ordre et le raccordement au décodeur Apple attendu.
-    - [ ] Vérifier le rejet d’un CRC WOZ invalide, d’un chunk tronqué, d’une référence de piste hors limites et d’une longueur NIB invalide.
+  - [x] Définitions du conteneur WOZ
+    - [x] Créer `Containers/Apple/Woz/WozFormat.cs`.
+    - [x] Sortir de `WozReader.cs` les signatures `WOZ1`, `WOZ2` et la marque binaire `FF 0A 0D 0A`.
+    - [x] Sortir de `WozReader.cs` les identifiants de chunks `INFO`, `TMAP` et `TRKS`.
+    - [x] Créer `Containers/Apple/Woz/WozLayout.cs`.
+    - [x] Sortir de `WozReader.cs` la taille minimale du fichier, le début des chunks, la taille de leur en-tête et les offsets de leur identifiant et de leur longueur.
+    - [x] Sortir de `WozReader.cs` la longueur de `TMAP`, le nombre de pistes Apple II parcourues et le nombre d’entrées `TMAP` examinées par piste.
+    - [x] Sortir de `WozReader.cs` la taille d’une entrée WOZ1, l’offset de son nombre de bits et la taille d’un bloc WOZ2.
+    - [x] Sortir de `WozReader.cs` les offsets et tailles des descripteurs WOZ2 utilisés pour le bloc de départ, le nombre de blocs et le nombre de bits.
+    - [x] Remplacer chaque valeur brute correspondante dans `WozReader.cs` par `WozFormat` ou `WozLayout`.
+  - [x] Validation et erreurs WOZ
+    - [x] Créer `Containers/Apple/Woz/WozExceptions.cs`.
+    - [x] Ajouter les méthodes construisant les erreurs d’en-tête invalide, type de disque non pris en charge et chunks obligatoires absents.
+    - [x] Ajouter une méthode recevant l’identifiant du chunk pour l’erreur de chunk tronqué.
+    - [x] Ajouter une méthode recevant la piste et le descripteur pour l’erreur de référence hors limites.
+    - [x] Ajouter dans `WozReader.Read` la validation du CRC32 stocké dans l’en-tête WOZ.
+    - [x] Ajouter une méthode d’erreur recevant le CRC stocké et le CRC calculé.
+    - [x] Remplacer les textes et constructions directes d’exception de `WozReader.cs` par `WozExceptions`.
+  - [x] Définitions et erreurs NIB
+    - [x] Créer `Recognition/Apple/NibTrackFormat.cs`.
+    - [x] Déplacer la longueur de piste NIB `6656` de `NibTrackImageReader.cs` et `AppleNibbleImageWriter.cs` vers une constante commune.
+    - [x] Ajouter dans `NibTrackFormat` le nombre de bits par octet utilisé pour convertir une piste NIB.
+    - [x] Créer `Recognition/Apple/NibTrackExceptions.cs`.
+    - [x] Ajouter une méthode recevant la longueur observée et la longueur de piste attendue pour l’erreur de longueur NIB invalide.
+    - [x] Remplacer le texte et la construction directe d’exception de `NibTrackImageReader.Read`.
+  - [x] Documentation XML
+    - [x] Mettre à jour la documentation XML française de `WozReader` après remplacement des valeurs et erreurs brutes.
+    - [x] Documenter en français `WozFormat`, `WozLayout`, `WozExceptions` et chacun de leurs membres.
+    - [x] Mettre à jour la documentation XML française de `NibTrackImageReader` après déplacement de la longueur de piste.
+    - [x] Documenter en français `NibTrackFormat`, `NibTrackExceptions` et chacun de leurs membres.
+  - [x] Tests du lecteur public Apple
+    - [x] Utiliser une image WOZ1, une image WOZ2 et une image NIB de `image_test` dont les pistes et secteurs attendus sont connus.
+    - [x] Si l’une de ces images manque, la créer directement dans `image_test` sans ajouter de code ; si ce n’est pas possible, demander l’image ou la rechercher, la télécharger et la placer dans `image_test`.
+    - [x] Lire les trois images par `AppleDiskImageReader` sans rendre publics `WozReader` ni `NibTrackImageReader`.
+    - [x] Vérifier pour WOZ1 et WOZ2 la signature, le CRC, les chunks, la table des pistes, le nombre de bits et les données extraites.
+    - [x] Vérifier pour NIB la longueur exacte des pistes, leur ordre et le raccordement au décodeur Apple attendu.
+    - [x] Vérifier le rejet d’un CRC WOZ invalide, d’un chunk tronqué, d’une référence de piste hors limites et d’une longueur NIB invalide.
 - [ ] `src/GWGUI.MediaEngine/Images/AtrImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.

@@ -9,9 +9,6 @@ namespace GWGUI.MediaEngine.Recognition.Apple;
 /// </summary>
 internal static class NibTrackImageReader
 {
-    /// <summary>Longueur exacte, en octets, d’une piste dans une image NIB Apple II.</summary>
-    private const int NibTrackLength = 6656;
-
     /// <summary>
     /// Valide la longueur de l’image NIB, décode chaque piste avec les codecs Apple II et RWTS18,
     /// puis conserve la famille ayant produit la structure sectorielle pertinente.
@@ -21,17 +18,17 @@ internal static class NibTrackImageReader
     /// <exception cref="InvalidDataException">La charge utile est vide ou sa longueur n’est pas un multiple d’une piste NIB.</exception>
     public static SectorImage Read(ReadOnlySpan<byte> data)
     {
-        if (data.Length == 0 || data.Length % NibTrackLength != 0)
-            throw new InvalidDataException("The Apple NIB image length is invalid.");
+        if (data.Length == 0 || data.Length % NibTrackFormat.TrackLength != 0)
+            throw NibTrackExceptions.InvalidLength(data.Length, NibTrackFormat.TrackLength);
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var decoder = new AppleGcrDecoder();
         var rwtsDecoder = new AppleRwts18Decoder();
-        for (var track = 0; track < data.Length / NibTrackLength; track++)
+        for (var track = 0; track < data.Length / NibTrackFormat.TrackLength; track++)
         {
             var bits = ConvertToBits(
-                data.Slice(track * NibTrackLength, NibTrackLength),
-                NibTrackLength * 8);
+                data.Slice(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength),
+                NibTrackFormat.TrackLength * NibTrackFormat.BitsPerByte);
             tracks.Add((track, decoder.DecodeBits(bits).Sectors ?? []));
             rwtsTracks.Add((track, rwtsDecoder.DecodeBits(bits).Sectors ?? []));
         }
@@ -49,7 +46,8 @@ internal static class NibTrackImageReader
     {
         var bits = new bool[bitCount];
         for (var bit = 0; bit < bitCount; bit++)
-            bits[bit] = (bytes[bit / 8] & (1 << (7 - bit % 8))) != 0;
+            bits[bit] = (bytes[bit / NibTrackFormat.BitsPerByte] &
+                         (1 << (NibTrackFormat.BitsPerByte - 1 - bit % NibTrackFormat.BitsPerByte))) != 0;
         return bits;
     }
 }

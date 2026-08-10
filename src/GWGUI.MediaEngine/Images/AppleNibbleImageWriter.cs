@@ -1,5 +1,7 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Recognition.Apple;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -8,8 +10,6 @@ namespace GWGUI.MediaEngine.Images;
 /// <summary>Writes Apple II 5.25-inch nibble streams without inventing a new image format.</summary>
 public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
 {
-    private const int NibTrackLength = 6_656;
-    private const int WozTrackDataLength = 6_648;
     private readonly FluxEncoderRegistry _encoders = encoders ?? new FluxEncoderRegistry();
 
     public Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default) =>
@@ -22,48 +22,53 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
 
     public async Task WriteNibAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
-        var tracks = EncodeTracks(image, WozTrackDataLength * 8, cancellationToken);
-        var output = new byte[tracks.Count * NibTrackLength];
+        var tracks = EncodeTracks(image, WozLayout.Woz1BitCountOffset * NibTrackFormat.BitsPerByte, cancellationToken);
+        var output = new byte[tracks.Count * NibTrackFormat.TrackLength];
         Array.Fill(output, (byte)0xff);
         for (var track = 0; track < tracks.Count; track++)
-            PackBits(tracks[track], output.AsSpan(track * NibTrackLength, NibTrackLength));
+            PackBits(tracks[track], output.AsSpan(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength));
         await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
     }
 
     public async Task WriteWozAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
-        var tracks = EncodeTracks(image, WozTrackDataLength * 8, cancellationToken);
+        var tracks = EncodeTracks(image, WozLayout.Woz1BitCountOffset * NibTrackFormat.BitsPerByte, cancellationToken);
         using var stream = new MemoryStream();
-        stream.Write("WOZ1"u8);
-        stream.Write([0xff, 0x0a, 0x0d, 0x0a]);
-        stream.Write(new byte[4]);
+        stream.Write(WozFormat.Version1Signature);
+        stream.Write(WozFormat.HeaderMarker);
+        stream.Write(new byte[WozLayout.CrcLength]);
 
         var info = new byte[60];
         info[0] = 1; // INFO version.
-        info[1] = 1; // Apple II 5.25-inch disk.
+        info[WozLayout.InfoDiskTypeOffset] = WozFormat.AppleII525DiskType;
         info[2] = 0; // Write protected: no.
         info[3] = 1; // Synchronized tracks.
         info[4] = 1; // Cleaned image.
         System.Text.Encoding.ASCII.GetBytes("GW GUI").CopyTo(info, 5);
-        WriteChunk(stream, "INFO", info);
+        WriteChunk(stream, WozFormat.InfoChunkId, info);
 
-        var tmap = new byte[160];
-        Array.Fill(tmap, (byte)0xff);
-        for (var track = 0; track < tracks.Count && track < 40; track++)
-            for (var quarter = 0; quarter < 4; quarter++) tmap[track * 4 + quarter] = (byte)track;
-        WriteChunk(stream, "TMAP", tmap);
+        var tmap = new byte[WozLayout.TrackMapLength];
+        Array.Fill(tmap, WozLayout.MissingTrackDescriptor);
+        for (var track = 0; track < tracks.Count && track < WozLayout.AppleIITrackCount; track++)
+            for (var quarter = 0; quarter < WozLayout.TrackMapEntriesPerTrack; quarter++)
+                tmap[track * WozLayout.TrackMapEntriesPerTrack + quarter] = (byte)track;
+        WriteChunk(stream, WozFormat.TrackMapChunkId, tmap);
 
-        var trks = new byte[tracks.Count * NibTrackLength];
+        var trks = new byte[tracks.Count * WozLayout.Woz1TrackEntryLength];
         for (var track = 0; track < tracks.Count; track++)
         {
-            var entry = trks.AsSpan(track * NibTrackLength, NibTrackLength);
-            PackBits(tracks[track], entry[..WozTrackDataLength]);
-            BinaryPrimitives.WriteUInt16LittleEndian(entry.Slice(WozTrackDataLength, 2), checked((ushort)tracks[track].Count));
+            var entry = trks.AsSpan(track * WozLayout.Woz1TrackEntryLength, WozLayout.Woz1TrackEntryLength);
+            PackBits(tracks[track], entry[..WozLayout.Woz1BitCountOffset]);
+            BinaryPrimitives.WriteUInt16LittleEndian(
+                entry.Slice(WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength),
+                checked((ushort)tracks[track].Count));
         }
-        WriteChunk(stream, "TRKS", trks);
+        WriteChunk(stream, WozFormat.TracksChunkId, trks);
 
         var output = stream.ToArray();
-        BinaryPrimitives.WriteUInt32LittleEndian(output.AsSpan(8, 4), Crc32(output.AsSpan(12)));
+        BinaryPrimitives.WriteUInt32LittleEndian(
+            output.AsSpan(WozLayout.CrcOffset, WozLayout.CrcLength),
+            Crc32(output.AsSpan(WozLayout.ChunksOffset)));
         await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
     }
 
@@ -96,16 +101,16 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         destination.Fill(0xff);
         for (var bit = 0; bit < bits.Count; bit++)
         {
-            var mask = (byte)(1 << (7 - bit % 8));
-            if (bits[bit]) destination[bit / 8] |= mask;
-            else destination[bit / 8] &= (byte)~mask;
+            var mask = (byte)(1 << (NibTrackFormat.BitsPerByte - 1 - bit % NibTrackFormat.BitsPerByte));
+            if (bits[bit]) destination[bit / NibTrackFormat.BitsPerByte] |= mask;
+            else destination[bit / NibTrackFormat.BitsPerByte] &= (byte)~mask;
         }
     }
 
     private static void WriteChunk(Stream stream, string id, byte[] data)
     {
         stream.Write(System.Text.Encoding.ASCII.GetBytes(id));
-        Span<byte> length = stackalloc byte[4];
+        Span<byte> length = stackalloc byte[WozLayout.ChunkLengthSize];
         BinaryPrimitives.WriteUInt32LittleEndian(length, checked((uint)data.Length));
         stream.Write(length);
         stream.Write(data);
@@ -117,7 +122,8 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         foreach (var value in data)
         {
             crc ^= value;
-            for (var bit = 0; bit < 8; bit++) crc = (crc >> 1) ^ (0xedb88320u & (uint)-(int)(crc & 1));
+            for (var bit = 0; bit < NibTrackFormat.BitsPerByte; bit++)
+                crc = (crc >> 1) ^ (WozFormat.Crc32Polynomial & (uint)-(int)(crc & 1));
         }
         return ~crc;
     }
