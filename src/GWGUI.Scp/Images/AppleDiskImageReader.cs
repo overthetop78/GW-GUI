@@ -1,4 +1,7 @@
+using GWGUI.Scp.Containers.Apple.DiskCopy;
+using GWGUI.Scp.Containers.Apple.TwoImg;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -7,7 +10,10 @@ namespace GWGUI.Scp.Images;
 public sealed class AppleDiskImageReader : ISectorImageReader
 {
     private static readonly HashSet<string> Extensions = new(StringComparer.OrdinalIgnoreCase)
-        { ".d13", ".do", ".po", ".2mg", ".image", ".dc42", ".nib", ".woz", ".dsk", ".img" };
+        { DiskImageFileExtensions.D13, DiskImageFileExtensions.Do, DiskImageFileExtensions.Po,
+            DiskImageFileExtensions.TwoMg, DiskImageFileExtensions.Image, DiskImageFileExtensions.Dc42,
+            DiskImageFileExtensions.Nib, DiskImageFileExtensions.Woz, DiskImageFileExtensions.Dsk,
+            DiskImageFileExtensions.Img };
 
     public bool CanRead(string path) => Extensions.Contains(Path.GetExtension(path));
 
@@ -15,13 +21,13 @@ public sealed class AppleDiskImageReader : ISectorImageReader
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         var extension = Path.GetExtension(path);
-        if (bytes.AsSpan().StartsWith("2IMG"u8)) return AppleContainerImageReader.ReadTwoImg(bytes);
-        if (extension.Equals(".image", StringComparison.OrdinalIgnoreCase) ||
-            extension.Equals(".dc42", StringComparison.OrdinalIgnoreCase))
-            return AppleContainerImageReader.ReadDiskCopy(bytes);
-        if (extension.Equals(".nib", StringComparison.OrdinalIgnoreCase))
+        if (bytes.AsSpan().StartsWith("2IMG"u8)) return TwoImgReader.Read(bytes);
+        if (extension.Equals(DiskImageFileExtensions.Image, StringComparison.OrdinalIgnoreCase) ||
+            extension.Equals(DiskImageFileExtensions.Dc42, StringComparison.OrdinalIgnoreCase))
+            return DiskCopyReader.Read(bytes);
+        if (extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase))
             return AppleNibbleImageDecoder.ReadNib(bytes);
-        if (extension.Equals(".woz", StringComparison.OrdinalIgnoreCase))
+        if (extension.Equals(DiskImageFileExtensions.Woz, StringComparison.OrdinalIgnoreCase))
             return AppleNibbleImageDecoder.ReadWoz(bytes);
         return AppleRawImageReader.Read(bytes, extension);
     }
@@ -31,22 +37,22 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         try
         {
             var extension = Path.GetExtension(path);
-            if (extension.Equals(".d13", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".do", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".po", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".2mg", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".image", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".dc42", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".nib", StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(".woz", StringComparison.OrdinalIgnoreCase)) return true;
-            if (extension.Equals(".img", StringComparison.OrdinalIgnoreCase))
+            if (extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.Image, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.Dc42, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(DiskImageFileExtensions.Woz, StringComparison.OrdinalIgnoreCase)) return true;
+            if (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase))
             {
                 var raw = File.ReadAllBytes(path);
                 return AppleDiskImageSignatures.LooksLikeLisaOfficePayload(raw) ||
                        raw.Length is 409_600 or 819_200 or 1_474_560 &&
                        AppleDiskImageSignatures.LooksLikeMac(raw);
             }
-            if (!extension.Equals(".dsk", StringComparison.OrdinalIgnoreCase)) return false;
+            if (!extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)) return false;
             var bytes = File.ReadAllBytes(path);
             return bytes.Length == 143_360 ||
                    bytes.Length is 409_600 or 819_200 or 1_474_560 &&

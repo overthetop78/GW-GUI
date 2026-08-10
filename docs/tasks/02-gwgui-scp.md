@@ -8,6 +8,17 @@
 - Une action indique explicitement le fichier créé, déplacé, renommé, modifié, raccordé, supprimé ou documenté.
 - Les constantes, enums et définitions partagées sont extraits dans le groupe des fichiers qui les possèdent et les consomment.
 - L’interface graphique reste le dernier travail, hors de ce document consacré à `GWGUI.Scp`.
+- Un test conditionné par une variable d’environnement et quittant sans assertion lorsque le corpus est absent ne valide aucune tâche.
+- Chaque format lu ou écrit doit posséder au moins une image de test locale, versionnée ou générée de façon déterministe, utilisable sans matériel ni corpus externe.
+- Les corpus externes complètent les images de test locales ; ils ne les remplacent pas.
+- Une tâche de test n’est cochée qu’après vérification que le code testé a réellement été exécuté et que les assertions portent sur le contenu obtenu.
+- Une signature de fichier, une extension, un identifiant de format, de codec ou de système de fichiers ne reste jamais écrit en texte brut dans un Reader, une politique, un registre, un convertisseur ou une visualisation : son propriétaire technique fournit une constante nommée.
+- Une liste fermée de valeurs définie par un format binaire devient un enum lorsque cela supprime des nombres ou textes conventionnels sans empêcher les formats extensibles.
+- Un nombre devient une constante lorsqu’il représente une taille, un offset, un masque, une limite, une unité, une géométrie ou une valeur imposée par un format. Les index de boucle, zéros d’initialisation et résultats calculés restent locaux.
+- Les valeurs identiques ne sont mutualisées que si elles ont la même signification. Deux formats qui utilisent fortuitement le même nombre conservent des constantes distinctes.
+- Les textes d’exceptions techniques ne restent pas dispersés dans les méthodes de parsing, décodage, reconstruction ou lecture de système de fichiers. Une fabrique d’erreurs du module construit l’exception et reçoit les données variables utiles : piste, face, secteur, bloc, offset, taille, identifiant ou valeur observée.
+- Les erreurs de modules différents ne sont pas regroupées artificiellement dans un catalogue global ; chaque format ou famille conserve ses propres invariants et son propre contexte.
+- Les constantes, enums, layouts, catalogues et fabriques d’erreurs créés reçoivent une documentation XML en français au même moment que leur création.
 
 ## 1. Conteneur SCP
 
@@ -28,6 +39,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpCaptureInfo, ScpCaptureInfoReader`.
     - [x] Ajouter la documentation XML des méthodes `ScpCaptureInfo, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Réutiliser une capture SCP locale contenant pistes présentes et absentes, plusieurs cylindres, deux faces et une somme de contrôle connue.
+    - [x] Vérifier en lisant réellement ce fichier les nombres de pistes, cylindres et faces, l’état du checksum et la taille en octets.
+    - [x] Vérifier avec des copies locale tronquée et corrompue le rejet de la table incomplète et le signalement du checksum invalide.
+    - [x] Vérifier l’annulation de `ScpCaptureInfoReader.ReadAsync` sans dépendre d’une variable d’environnement.
 - [x] `src/GWGUI.Scp/ScpFormatConstants.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Containers/Scp/ScpFormatConstants.cs`.
@@ -53,24 +69,140 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpReader, ScpHeaderReader`.
     - [x] Ajouter la documentation XML des méthodes `ReadAsync, ReadFileAsync, FileIdentity, Read, ReadHeader, ReadTrack, ComputeChecksum, Require`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Ajouter sous `image_test/_generated/scp-reader/` une capture locale avec au moins deux pistes, deux révolutions et un mot de dépassement de flux dont les valeurs attendues sont documentées.
+    - [x] Vérifier par `ReadAsync` la version, les drapeaux, la plage, la résolution, la table, les pistes, les révolutions, les intervalles, le checksum et la taille du fichier.
+    - [x] Vérifier le cache avec le même fichier inchangé puis modifié, afin de prouver la réutilisation et l’invalidation par identité de fichier.
+    - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une plage, d’un offset, d’une signature de piste et de données de flux tronqués ou incohérents.
+    - [x] Vérifier que ces tests locaux atteignent leurs assertions sans corpus SCP externe.
 
 ## 2. Conteneurs et reconnaissance des fichiers
 
-- [x] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
+- [x] `src/GWGUI.Scp/Recognition/Definitions/DiskImageFileExtensions.cs`
+  - [x] Création des définitions communes
+    - [x] Créer le fichier `Recognition/Definitions/DiskImageFileExtensions.cs`.
+    - [x] Déclarer une constante nommée pour chaque extension d’image disque effectivement utilisée par `GWGUI.Scp`.
+    - [x] Conserver une seule constante par extension même lorsque plusieurs machines ou formats utilisent cette extension.
+  - [x] Raccordement des consommateurs
+    - [x] Remplacer les extensions écrites en texte brut dans les lecteurs de conteneurs et d’images par les constantes communes.
+    - [x] Remplacer les extensions écrites en texte brut dans les politiques de reconnaissance par les constantes communes.
+    - [x] Remplacer les extensions écrites en texte brut dans les convertisseurs et writers par les constantes communes.
+    - [x] Supprimer les listes d’extensions dupliquées lorsque leurs propriétaires utilisent exactement le même ensemble.
+    - [x] Conserver des listes distinctes lorsque les extensions acceptées diffèrent réellement, en les construisant uniquement avec les constantes communes.
+  - [x] Documentation XML
+    - [x] Documenter en français `DiskImageFileExtensions` et chaque constante publique.
+  - [x] Tests déterministes
+    - [x] Vérifier que chaque constante commence par un point et est en minuscules.
+    - [x] Vérifier qu’aucune valeur d’extension n’est déclarée deux fois dans `DiskImageFileExtensions`.
+    - [x] Exécuter les tests de reconnaissance et de lecture existants après remplacement des textes bruts.
+- [ ] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.
     - [x] Faire produire des pistes sectorielles sans décider CPC ou PCW.
+  - [ ] Définitions du format CPCEMU DSK
+    - [ ] Créer `Containers/Amstrad/CpcDsk/CpcDskFormat.cs`.
+    - [ ] Déplacer la signature Standard `MV - CPC` dans une constante nommée de `CpcDskFormat`.
+    - [ ] Déplacer la signature Extended `EXTENDED CPC DSK File` dans une constante nommée de `CpcDskFormat`.
+    - [ ] Déplacer la signature de piste `Track-Info` dans une constante nommée de `CpcDskFormat`.
+    - [ ] Déplacer l’identifiant neutre `cpcemu.dsk` dans une constante publique nommée de `CpcDskFormat`.
+    - [ ] Remplacer dans `CpcDskReader` les signatures et l’identifiant écrits en texte brut par ces constantes.
+  - [ ] Description de la disposition binaire CPCEMU DSK
+    - [ ] Créer `Containers/Amstrad/CpcDsk/CpcDskLayout.cs`.
+    - [ ] Remplacer `HeaderSize` par deux constantes nommées distinguant la taille du bloc d’informations disque et celle du bloc d’informations de piste.
+    - [ ] Nommer la longueur de signature du bloc d’informations disque.
+    - [ ] Nommer les offsets du nombre de cylindres, du nombre de faces et de la taille de piste Standard.
+    - [ ] Nommer l’offset de la table des tailles de pistes Extended et l’unité de taille de ses entrées.
+    - [ ] Nommer les limites de cylindres et de faces acceptées par le conteneur.
+    - [ ] Nommer la longueur de signature d’une piste.
+    - [ ] Nommer les offsets du cylindre, de la face et du nombre de secteurs dans le bloc d’informations de piste.
+    - [ ] Nommer l’offset de la table des descripteurs de secteurs et la taille d’un descripteur.
+    - [ ] Nommer dans un descripteur les offsets du cylindre, de la face, de l’identifiant, du code de taille, des deux octets d’état et de la taille stockée.
+    - [ ] Nommer la taille sectorielle minimale, le masque du code de taille et le masque d’erreur d’intégrité.
+    - [ ] Remplacer dans `CpcDskReader` chaque valeur structurelle brute correspondante par la constante de `CpcDskLayout`.
+    - [ ] Laisser locaux les index de boucle, les valeurs booléennes et les bornes calculées qui ne constituent pas une définition du format.
+  - [ ] Construction des erreurs de validation CPCEMU DSK
+    - [ ] Créer `Containers/Amstrad/CpcDsk/CpcDskExceptions.cs`.
+    - [ ] Ajouter une méthode créant l’erreur d’en-tête tronqué.
+    - [ ] Ajouter une méthode créant l’erreur de signature CPCEMU non reconnue.
+    - [ ] Ajouter une méthode créant l’erreur de géométrie invalide.
+    - [ ] Ajouter une méthode créant l’erreur de table de pistes Extended invalide.
+    - [ ] Ajouter des méthodes recevant `trackIndex` pour les erreurs de piste tronquée, d’en-tête de piste invalide et de table de secteurs invalide.
+    - [ ] Ajouter une méthode recevant cylindre, face et identifiant pour l’erreur de secteur tronqué.
+    - [ ] Ajouter une méthode créant l’erreur d’image sans secteur.
+    - [ ] Déplacer tous les textes des `InvalidDataException` de `CpcDskReader` dans ces méthodes.
+    - [ ] Remplacer chaque construction directe d’`InvalidDataException` dans `CpcDskReader` par la méthode correspondante.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmstradDskImageReader`.
     - [x] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Documentation XML des nouvelles définitions
+    - [ ] Documenter en français `CpcDskFormat` et chacune de ses constantes.
+    - [ ] Documenter en français `CpcDskLayout` et chacune de ses constantes avec son unité et sa position de référence.
+    - [ ] Documenter en français `CpcDskExceptions` et chacune de ses méthodes avec ses paramètres et son résultat.
+  - [x] Tests déterministes
+    - [x] Utiliser une image CPCEMU DSK Standard réelle de `image_test` avec géométrie, identifiants de secteurs et contenu connus.
+    - [x] Ajouter sous `image_test/_generated/cpcdsk/` une image CPCEMU EDSK minimale avec tailles de secteurs variables et états d’intégrité connus.
+    - [x] Créer `CpcDskReaderTests.cs` et vérifier la signature, la géométrie, les adresses, l’ordre, le contenu, l’intégrité et l’identifiant neutre `cpcemu.dsk` des deux images.
+    - [x] Vérifier avec des copies tronquées ou corrompues des images locales que l’en-tête, la table des pistes, les descripteurs et les données incomplètes sont rejetés.
+    - [x] Vérifier que ces tests exécutent réellement `CpcDskReader.ReadAsync` sans variable d’environnement ni retour anticipé.
+  - [ ] Tests des définitions et erreurs extraites
+    - [ ] Remplacer dans `CpcDskReaderTests` l’identifiant `cpcemu.dsk` écrit en brut par `CpcDskFormat.FormatId`.
+    - [ ] Construire les images CPCEMU générées avec les signatures et valeurs de disposition publiques utilisables sans recopier leurs valeurs.
+    - [ ] Vérifier qu’une erreur de piste contient l’index de la piste rejetée.
+    - [ ] Vérifier qu’une erreur de secteur contient le cylindre, la face et l’identifiant du secteur rejeté.
+    - [ ] Exécuter tous les tests de `CpcDskReaderTests` après extraction des définitions et erreurs.
 - [ ] `src/GWGUI.Scp/Images/AppleContainerImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.
-    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyReader.cs` et y déplacer le parsing DiskCopy.
-    - [ ] Supprimer `AppleContainerImageReader.cs` après raccordement.
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.
+    - [x] Créer `Containers/Apple/DiskCopy/DiskCopyReader.cs` et y déplacer le parsing DiskCopy.
+    - [x] Supprimer `AppleContainerImageReader.cs` après raccordement.
+  - [ ] Définitions du format 2IMG
+    - [ ] Créer `Containers/Apple/TwoImg/TwoImgFormat.cs`.
+    - [ ] Déplacer la signature `2IMG` dans une constante nommée de `TwoImgFormat`.
+    - [ ] Créer l’enum `TwoImgImageFormat` avec les valeurs fermées DOS, ProDOS et NIB définies par 2IMG.
+    - [ ] Créer `Containers/Apple/TwoImg/TwoImgLayout.cs`.
+    - [ ] Nommer la taille minimale de l’en-tête et les offsets de sa taille, de sa version, du format d’image, de l’offset des données et de leur longueur.
+    - [ ] Remplacer dans `TwoImgReader` chaque offset, taille et valeur de format brute par `TwoImgLayout` ou `TwoImgImageFormat`.
+    - [ ] Remplacer les extensions DOS et ProDOS écrites en brut par les constantes communes de `DiskImageFileExtensions`.
+    - [ ] Faire valider par `TwoImgReader` la signature et la version du conteneur avant d’utiliser ses champs.
+  - [ ] Erreurs de validation 2IMG
+    - [ ] Créer `Containers/Apple/TwoImg/TwoImgExceptions.cs`.
+    - [ ] Ajouter les méthodes construisant les erreurs de signature, de version, d’en-tête tronqué et de plage de données invalide.
+    - [ ] Ajouter une méthode recevant `TwoImgImageFormat` pour construire l’erreur de format d’image non pris en charge.
+    - [ ] Remplacer dans `TwoImgReader` les textes et constructions directes d’exceptions par ces méthodes.
+  - [ ] Définitions du format DiskCopy
+    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyFormat.cs` pour les marqueurs et propriétés propres au conteneur.
+    - [ ] Déplacer le marqueur `PREBOOT` dans une constante binaire nommée de `DiskCopyFormat`.
+    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyLayout.cs`.
+    - [ ] Nommer la taille de l’en-tête et les offsets des longueurs de données et de tags.
+    - [ ] Nommer les offsets des checksums de données et de tags afin de permettre leur validation.
+    - [ ] Nommer la taille d’un bloc de données et la taille du tag associé.
+    - [ ] Remplacer dans `DiskCopyReader` les tailles, offsets et multiplicateurs bruts correspondants par `DiskCopyLayout`.
+    - [ ] Remplacer l’extension `.image` écrite en brut par la constante commune de `DiskImageFileExtensions`.
+    - [ ] Remplacer les identifiants `applelisa.macworks` et `applelisa.office` par leurs constantes communes de format.
+  - [ ] Géométries utilisées par DiskCopy
+    - [ ] Déplacer vers `AppleDiskGeometry` le nombre de blocs d’une image Lisa FileWare.
+    - [ ] Déplacer vers `AppleDiskGeometry` le nombre de blocs d’une image Macintosh 400 Kio.
+    - [ ] Nommer dans `AppleDiskGeometry` les nombres de cylindres, faces et secteurs maximaux associés à ces géométries.
+    - [ ] Remplacer dans `DiskCopyReader` les valeurs `1702`, `800`, `46`, `80`, `22`, `12` et `10` par les définitions géométriques correspondantes.
+    - [ ] Conserver dans `DiskCopyReader` uniquement les calculs de position qui dépendent de la charge utile courante.
+  - [ ] Erreurs et validations DiskCopy
+    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyExceptions.cs`.
+    - [ ] Ajouter les méthodes construisant les erreurs d’en-tête tronqué, de charge utile invalide et de combinaison données/tags non reconnue.
+    - [ ] Remplacer dans `DiskCopyReader` les textes et constructions directes d’`InvalidDataException` par ces méthodes.
+    - [ ] Extraire le calcul du checksum DiskCopy dans une fonction nommée et réutilisable par les données et les tags.
+    - [ ] Valider le checksum des données lorsqu’il est présent dans l’en-tête.
+    - [ ] Valider le checksum des tags lorsqu’ils sont présents dans l’en-tête.
+    - [ ] Ajouter des méthodes d’erreur distinctes pour les checksums de données et de tags invalides.
   - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML de `TwoImgReader`, de ses méthodes et des validations 2IMG.
-    - [ ] Ajouter la documentation XML de `DiskCopyReader`, de ses méthodes et des validations DiskCopy.
+    - [ ] Ajouter en français la documentation XML de `TwoImgReader`, de ses méthodes et des validations 2IMG.
+    - [ ] Documenter en français `TwoImgFormat`, `TwoImgImageFormat`, `TwoImgLayout`, `TwoImgExceptions` et chacun de leurs membres.
+    - [ ] Ajouter en français la documentation XML de `DiskCopyReader`, de ses méthodes et des validations DiskCopy.
+    - [ ] Documenter en français `DiskCopyFormat`, `DiskCopyLayout`, `DiskCopyExceptions` et chacun de leurs membres.
+  - [ ] Tests déterministes
+    - [ ] Ajouter sous `tests/GWGUI.Tests/TestImages/Apple/Containers/` une image 2IMG sectorielle, une image 2IMG nibblisée et une image DiskCopy avec tags dont les charges utiles sont connues.
+    - [ ] Créer des tests locaux de `TwoImgReader` vérifiant signature, version, format d’image, offset, longueur, ordre DOS/ProDOS et extraction de la charge utile.
+    - [ ] Créer des tests locaux de `DiskCopyReader` vérifiant en-tête, tailles, données, tags et sommes de contrôle.
+    - [ ] Vérifier le rejet des signatures, versions, offsets, longueurs, sommes de contrôle et fichiers tronqués invalides à partir de copies modifiées des images locales.
 - [ ] `src/GWGUI.Scp/Images/AppleNibbleImageDecoder.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Containers/Apple/Woz/WozReader.cs` et y déplacer le parsing WOZ1/WOZ2.
@@ -80,6 +212,11 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML de `WozReader`, de ses méthodes et des structures WOZ1/WOZ2.
     - [ ] Ajouter la documentation XML de `NibTrackImageReader`, de ses méthodes et de la longueur des pistes NIB.
+  - [ ] Tests déterministes
+    - [ ] Ajouter sous `tests/GWGUI.Tests/TestImages/Apple/Tracks/` une image WOZ1, une image WOZ2 et une image NIB contenant des pistes et secteurs connus.
+    - [ ] Vérifier pour WOZ1 et WOZ2 la signature, le CRC, les chunks, la table des pistes, le nombre de bits et les données extraites.
+    - [ ] Vérifier pour NIB la longueur exacte des pistes, leur ordre et le raccordement au décodeur Apple attendu.
+    - [ ] Vérifier le rejet d’un CRC WOZ invalide, d’un chunk tronqué, d’une référence de piste hors limites et d’une longueur NIB invalide.
 - [ ] `src/GWGUI.Scp/Images/AtrImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.
@@ -87,6 +224,11 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AtrImageReader`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, WriteRawPayloadAsync, ReadValidatedContainerAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter sous `tests/GWGUI.Tests/TestImages/Atari/Atr/` une image ATR à secteurs de 128 octets et une image ATR à secteurs de 256 octets avec les trois secteurs d’amorçage attendus.
+    - [ ] Vérifier la signature, la longueur en paragraphes, la taille des secteurs, les adresses, la capacité et le contenu lus depuis chaque image.
+    - [ ] Vérifier l’extraction de la charge utile puis sa relecture secteur par secteur.
+    - [ ] Vérifier le rejet d’une signature, d’une taille de secteur, d’une longueur déclarée ou d’une charge utile tronquée invalide.
 - [ ] `src/GWGUI.Scp/Images/Containers/AmstradContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AmstradImageRecognitionPolicy.cs`.
@@ -94,6 +236,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AmstradContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `AmstradContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Vérifier avec les images CPCEMU locales que les signatures Standard et Extended sont reconnues quelle que soit l’extension du fichier.
+    - [ ] Vérifier qu’un fichier brut portant `.dsk` ou `.edsk` sans signature CPCEMU est rejeté par cette politique et reste disponible pour les politiques suivantes.
+    - [ ] Vérifier que l’interprétation CPC ou PCW est appliquée après le parsing du conteneur, sans modifier la représentation neutre produite par `CpcDskReader`.
 - [ ] `src/GWGUI.Scp/Images/Containers/AppleContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AppleImageRecognitionPolicy.cs`.
@@ -101,6 +247,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AppleContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `AppleContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Vérifier que les images locales 2IMG, DiskCopy et WOZ sont sélectionnées par leur signature même avec une extension inhabituelle.
+    - [ ] Vérifier séparément que DO, PO, D13, NIB, DSK et IMG sans signature restent des candidats ambigus et ne sont pas déclarés certains par leur seule extension.
+    - [ ] Vérifier qu’un parser Apple qui rejette un candidat permet au registre d’essayer la politique suivante.
 - [ ] `src/GWGUI.Scp/Images/Containers/CoherentContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/CoherentImageRecognitionPolicy.cs`.
@@ -108,6 +258,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `CoherentContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `CoherentContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image brute Coherent minimale avec superbloc et géométrie connus sous `tests/GWGUI.Tests/TestImages/Coherent/`.
+    - [ ] Vérifier que la signature interne reconnaît cette image indépendamment de son extension et que géométrie, secteurs et contenu sont conservés.
+    - [ ] Vérifier qu’une image brute de même taille sans signature Coherent est rejetée et transmise au candidat suivant.
 - [ ] `src/GWGUI.Scp/Images/Containers/DecRx02ContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.
@@ -115,10 +269,17 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `DecRx02ContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `DecRx02ContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image RX02 minimale avec structure RT-11 connue sous `tests/GWGUI.Tests/TestImages/Dec/Rx02/`.
+    - [ ] Vérifier la reconnaissance par contenu, la remise en ordre physique vers les blocs logiques et le contenu de plusieurs secteurs de pistes différentes.
+    - [ ] Vérifier qu’une image de même taille sans structure RX02/RT-11 crédible est rejetée sans bloquer les candidats suivants.
 - [ ] `src/GWGUI.Scp/Images/Containers/DelegatingContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Migrer ses enregistrements vers `ExtensionHintRecognitionPolicy`.
     - [ ] Supprimer `DelegatingContainerPolicy.cs`.
+  - [ ] Tests déterministes
+    - [ ] Vérifier avant suppression qu’une extension compatible appelle le Reader délégué une seule fois et qu’une extension incompatible ne l’appelle pas.
+    - [ ] Reporter ce scénario sur les politiques explicites de remplacement et supprimer le test de l’ancien type avec le fichier.
 - [ ] `src/GWGUI.Scp/Images/Containers/DirectContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Recognition/Policies/ExtensionHintRecognitionPolicy.cs`.
@@ -126,6 +287,9 @@
     - [ ] Supprimer `DirectContainerPolicy.cs` après migration de ses enregistrements.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML de `ExtensionHintRecognitionPolicy`, de son constructeur et de ses méthodes.
+  - [ ] Tests déterministes
+    - [ ] Vérifier qu’une extension configurée produit seulement un candidat faible et qu’une extension absente produit un rejet.
+    - [ ] Vérifier qu’un indice d’extension ne l’emporte jamais sur une signature certaine contradictoire.
 - [ ] `src/GWGUI.Scp/Images/Containers/DiskImageContainerContext.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionContext.cs`.
@@ -134,6 +298,9 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `DiskImageContainerContext`.
     - [ ] Ajouter la documentation XML des méthodes `DiskImageContainerContext, ReadBytesAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Vérifier avec un fichier temporaire déterministe que chemin, longueur, extension normalisée et format demandé sont conservés exactement.
+    - [ ] Vérifier que plusieurs appels à la lecture du contenu réutilisent les mêmes octets et qu’une annulation avant la première lecture est propagée.
 - [ ] `src/GWGUI.Scp/Images/Containers/DiskImageContainerRegistry.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionRegistry.cs`.
@@ -144,6 +311,11 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `DiskImageContainerRegistry`.
     - [ ] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Créer un jeu de politiques factices ordonnées représentant rejet, candidat faible, structure cohérente et signature confirmée.
+    - [ ] Vérifier qu’un rejet de validation d’un candidat faible ne termine pas la recherche et que la politique suivante reçoit le même contenu.
+    - [ ] Vérifier qu’une corruption après signature confirmée arrête la recherche au lieu de masquer le fichier corrompu.
+    - [ ] Vérifier le classement des candidats, le résultat inconnu lorsque tous échouent, l’appel unique de chaque politique et l’annulation de la boucle.
 - [ ] `src/GWGUI.Scp/Images/Containers/IDiskImageContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Recognition/IDiskImageRecognitionPolicy.cs`.
@@ -151,6 +323,9 @@
     - [ ] Supprimer l’ancien contrat après migration des politiques.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML de `IDiskImageRecognitionPolicy` et des types de résultat créés.
+  - [ ] Tests déterministes
+    - [ ] Vérifier les niveaux rejet, candidat faible, structure cohérente et signature confirmée, ainsi que leur ordre de confiance.
+    - [ ] Vérifier la conservation de l’identifiant candidat et de la raison technique dans chaque résultat.
 - [ ] `src/GWGUI.Scp/Images/Containers/MsxContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/MsxImageRecognitionPolicy.cs`.
@@ -158,6 +333,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `MsxContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `MsxContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image MSX-DOS brute minimale avec BPB et secteurs connus sous `tests/GWGUI.Tests/TestImages/Msx/`.
+    - [ ] Vérifier la reconnaissance par contenu avec une extension inhabituelle, puis la géométrie, le format et le contenu des secteurs.
+    - [ ] Vérifier qu’un fichier `.dsk` de même taille sans BPB MSX crédible reste disponible pour les autres interprétations.
 - [ ] `src/GWGUI.Scp/Images/Containers/RawImgContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/RawSectorImageRecognitionPolicy.cs`.
@@ -167,6 +346,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `RawImgContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Réutiliser des images brutes locales IBM, Atari ST, MSX, Amstrad, Macintosh, Lisa, DEC et Coherent partageant `.img`, `.ima`, `.dsk` ou `.bin`.
+    - [ ] Vérifier que chaque image est classée par ses données et sa géométrie, jamais par une priorité IBM par défaut.
+    - [ ] Vérifier qu’une image réellement ambiguë produit plusieurs candidats ou un résultat indéterminé au lieu d’un classement arbitraire.
 - [ ] `src/GWGUI.Scp/Images/Containers/ScpContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/ScpRecognitionPolicy.cs`.
@@ -175,6 +358,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `ScpContainerPolicy`.
     - [ ] Ajouter la documentation XML des méthodes `ScpContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une capture SCP locale minimale contenant au moins une piste, deux révolutions et des intervalles de flux connus.
+    - [ ] Vérifier la reconnaissance par signature avec une extension inhabituelle et le rejet d’un fichier `.scp` sans signature SCP.
+    - [ ] Vérifier que la politique retourne le conteneur de flux sans lancer directement la détection de machine, le système de fichiers ou l’exploration.
 - [ ] `src/GWGUI.Scp/Images/Cp2ImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/CopyIIPc/Cp2Reader.cs`.
@@ -182,6 +369,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `Cp2ImageReader, TrackDescriptor`.
     - [ ] Ajouter la documentation XML des méthodes `ReadAsync, ReadSectorBlocks, ParseTrackDescriptor, TrackDescriptor, Cp2SectorDescriptor`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image CP2 locale minimale avec plusieurs descripteurs de pistes, secteurs et tailles connus.
+    - [ ] Vérifier les offsets, adresses, tailles, ordre logique, contenu et états d’intégrité produits.
+    - [ ] Vérifier le rejet des tables, offsets, tailles et blocs tronqués ou hors limites.
 - [ ] `src/GWGUI.Scp/Images/I86fImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/86F/I86fReader.cs`.
@@ -189,6 +380,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `I86fImageReader`.
     - [ ] Ajouter la documentation XML des méthodes `I86fImageReader, ReadAsync, ReadTrack, NextOffset, BuildSectorImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image 86F locale FM et une image 86F locale MFM avec table de pistes et bitstream connus.
+    - [ ] Vérifier version, drapeaux, offsets, ordre des bits, pistes produites puis secteurs décodés.
+    - [ ] Vérifier le rejet d’une version, d’une table, d’un offset ou d’une piste tronquée invalide.
 - [ ] `src/GWGUI.Scp/Images/ImdImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
@@ -196,6 +391,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `ImdImageReader, ImdSector`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Read, DetectFormat, EnsureAvailable, ImdSector`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image IMD locale combinant secteurs normaux, compressés, supprimés, absents et marqués en erreur.
+    - [ ] Vérifier le commentaire, les modes FM/MFM, les cartes de cylindres et de faces, les tailles, le contenu et l’intégrité de chaque secteur.
+    - [ ] Vérifier le rejet d’un en-tête, d’une carte, d’un type de secteur ou d’une charge utile tronquée invalide.
 - [ ] `src/GWGUI.Scp/Images/ISectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Containers/IContainerReader.cs` pour les parsers de conteneurs.
@@ -212,6 +411,10 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `MsaImageReader`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Unpack, ReadWord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image MSA locale contenant une piste brute et une piste compressée avec données connues.
+    - [ ] Vérifier la signature, la géométrie, la décompression RLE, l’ordre des pistes et le contenu des secteurs.
+    - [ ] Vérifier le rejet d’une signature, d’une géométrie, d’une longueur de piste ou d’une séquence RLE invalide.
 - [ ] `src/GWGUI.Scp/Images/Td0ImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/TeleDisk/Td0Reader.cs`.
@@ -219,6 +422,11 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `Td0ImageReader, Td0Sector`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Read, DetectFormat, DecodeSector, EnsureAvailable, ReadUInt16, Td0Sector`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [ ] Tests déterministes
+    - [ ] Ajouter une image TD0 locale non compressée contenant secteurs bruts, répétés et encodés par motif avec états connus.
+    - [ ] Vérifier l’en-tête, le commentaire, les pistes, les tailles, les trois encodages de données, l’ordre logique et l’intégrité.
+    - [ ] Vérifier explicitement le comportement attendu pour une signature TD0 compressée en minuscules.
+    - [ ] Vérifier le rejet d’un commentaire, d’une piste, d’un secteur ou d’une séquence encodée tronquée ou invalide.
 
 ## 3. Modèles sectoriels, représentations et primitives
 
@@ -540,10 +748,33 @@
     - [ ] Ajouter la documentation XML des types `AppleDiskGeometry`.
     - [ ] Ajouter la documentation XML des méthodes `LisaFileWareAddress, LisaFileWareSectors, AppleMacZonedAddress, AppleMacSectors, ConvertDosOrderToProDosBlocks`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.Scp/Images/AppleDiskImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer ses décisions vers `AppleImageRecognitionPolicy`.
-    - [ ] Raccorder ses consommateurs aux propriétaires finaux.
-    - [ ] Supprimer le fichier.
+  - [ ] Extraction de la reconnaissance Apple
+    - [ ] Déplacer la liste des extensions Apple vers `AppleImageRecognitionPolicy`.
+    - [ ] Construire cette liste avec les constantes de `DiskImageFileExtensions`.
+    - [ ] Déplacer `LooksLikeAppleImage` vers `Recognition/Apple/AppleImageRecognitionPolicy.cs`.
+    - [ ] Remplacer dans cette méthode chaque comparaison d’extension brute par la constante commune correspondante.
+    - [ ] Conserver dans `AppleDiskImageSignatures` les vérifications du contenu Lisa, Macintosh, DOS, ProDOS et SOS.
+    - [ ] Faire utiliser ces signatures par la politique sans repasser par `AppleDiskImageReader`.
+    - [ ] Retirer `CanRead` avec l’implémentation de `ISectorImageReader` lorsque tous ses consommateurs utilisent la politique.
+  - [ ] Extraction du routage de lecture
+    - [ ] Raccorder les fichiers signés 2IMG directement à `TwoImgReader`.
+    - [ ] Raccorder les fichiers DiskCopy directement à `DiskCopyReader` après leur reconnaissance.
+    - [ ] Raccorder les fichiers WOZ au futur `WozReader`.
+    - [ ] Raccorder les fichiers NIB au futur `NibTrackImageReader`.
+    - [ ] Raccorder les images sectorielles Apple brutes à `AppleRawImageReader` après sélection de leur interprétation.
+    - [ ] Supprimer `ReadAsync` lorsque chaque branche possède son raccordement final.
+  - [ ] Suppression des relais internes
+    - [ ] Raccorder `AppleNibbleImageDecoder` directement à la méthode qui remplace `AppleSectorImageFactory.CreateAppleIIFromDecodedTracks`.
+    - [ ] Raccorder `AppleNibbleImageDecoder` directement à la méthode qui remplace `AppleSectorImageFactory.CreateRwts18FromDecodedTracks`.
+    - [ ] Supprimer le relais `CreateAppleIIFromDecodedTracks` de `AppleDiskImageReader`.
+    - [ ] Supprimer le relais `CreateRwts18FromDecodedTracks` de `AppleDiskImageReader`.
+    - [ ] Supprimer les relais inutilisés `LisaFileWareSectors` et `AppleMacSectors` de `AppleDiskImageReader`.
+    - [ ] Supprimer le relais inutilisé `LooksLikeLisaOfficePayload` de `AppleDiskImageReader`.
+  - [ ] Suppression du fichier
+    - [ ] Vérifier qu’aucun fichier de production ni test ne référence encore `AppleDiskImageReader`.
+    - [ ] Supprimer `AppleDiskImageReader.cs`.
+    - [ ] Supprimer son enregistrement direct dans `DiskImageExplorerFactory`.
+    - [ ] Compiler la solution après suppression.
 - [ ] `src/GWGUI.Scp/Images/AppleDiskImageSignatures.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Apple/AppleDiskImageSignatures.cs`.
@@ -1190,31 +1421,304 @@
 
 ## 10. Données communes et validation finale
 
-- [ ] Identifiants techniques
-  - [ ] Formats, codecs et systèmes extensibles
-    - [ ] Créer des constantes nommées pour chaque identifiant utilisé par plusieurs fichiers.
-    - [ ] Remplacer les chaînes recopiées dans les Readers, registres, politiques et visualisation.
-    - [ ] Refuser les identifiants dupliqués lors de la construction des registres.
-  - [ ] États fermés
-    - [ ] Créer ou conserver un enum uniquement pour les états dont la liste est fermée.
-- [ ] Géométries et tables binaires
-  - [ ] Géométries
-    - [ ] Extraire les géométries IBM de `IbmPcImageReader.cs` dans un catalogue IBM partagé.
-    - [ ] Extraire les géométries Apple de `AppleDiskGeometry.cs` par Apple II, Apple III, Macintosh et Lisa.
-    - [ ] Réutiliser `CommodoreGeometry.cs` pour D64, D71, D81 et les reconstructeurs concernés.
-    - [ ] Extraire une définition RX02 commune au Reader brut, au reconstructeur et à la visualisation.
-  - [ ] Tables de codecs
-    - [ ] Partager les tables Apple 5-and-3, 6-and-2 et RWTS18 entre décodeurs et encodeurs.
-    - [ ] Partager l’alphabet Commodore GCR sans fusionner les structures de pistes 1541 et C900.
-    - [ ] Partager les marques et paramètres CRC strictement identiques entre chaque paire décodeur/encodeur.
+- [ ] Identifiants techniques communs
+  - [ ] `Recognition/Definitions/DiskImageFormatIds.cs`
+    - [ ] Créer la classe publique `DiskImageFormatIds`.
+    - [ ] Ajouter les constantes des identifiants Acorn, Amiga, Amstrad, Apple II, Apple III, Lisa, Macintosh, Atari, BBC, Coherent, Commodore, DEC, Epson, IBM, MSX et UCSD actuellement construits ou comparés dans `GWGUI.Scp`.
+    - [ ] Conserver des méthodes de construction nommées pour les identifiants comportant une capacité ou une géométrie variable.
+    - [ ] Remplacer les identifiants bruts dans les lecteurs de conteneurs et d’images.
+    - [ ] Remplacer les identifiants bruts dans les reconstructeurs et politiques ISO.
+    - [ ] Remplacer les identifiants bruts dans les Readers de systèmes de fichiers.
+    - [ ] Remplacer les identifiants bruts dans `ScpCandidateRegistry`, les normalizers, les politiques d’interprétation et les politiques de visualisation.
+    - [ ] Remplacer les identifiants bruts des tests par les constantes publiques lorsqu’ils désignent le contrat de production attendu.
+  - [ ] `Decoding/Definitions/FluxCodecIds.cs`
+    - [ ] Créer la classe publique `FluxCodecIds`.
+    - [ ] Ajouter une constante pour chaque identifiant actuellement retourné par un décodeur ou un encodeur FM, MFM, MMFM, M2FM, GCR ou flux brut.
+    - [ ] Remplacer les identifiants bruts dans les décodeurs, encodeurs et leurs registres.
+    - [ ] Remplacer les identifiants bruts dans `ScpFamilyProbe`, `ScpCandidateRegistry`, les politiques ISO et les politiques de visualisation.
+    - [ ] Faire refuser explicitement les identifiants dupliqués par `FluxDecoderRegistry` et `FluxEncoderRegistry`.
+  - [ ] `FileSystems/Definitions/FileSystemIds.cs`
+    - [ ] Créer la classe publique `FileSystemIds`.
+    - [ ] Ajouter une constante pour chaque identifiant de système de fichiers utilisé par plusieurs Readers, catalogues ou résultats d’exploration.
+    - [ ] Remplacer les identifiants bruts dans `FileSystemRegistry`, tous les Readers de systèmes de fichiers et `DiskImageInterpretationService`.
+    - [ ] Séparer les identifiants techniques des noms affichés à l’utilisateur.
+  - [ ] Documentation et tests des identifiants
+    - [ ] Documenter en français chaque classe, constante et méthode de construction d’identifiant.
+    - [ ] Vérifier par réflexion l’absence de valeur dupliquée au sein de chaque famille d’identifiants fermée par le projet.
+    - [ ] Exécuter les tests de lecture, reconstruction, systèmes de fichiers et visualisation après remplacement des identifiants bruts.
+- [ ] Définitions et erreurs des conteneurs
+  - [ ] SCP : `ScpReader.cs` et `ScpHeaderReader.cs`
+    - [ ] Compléter `ScpFormatConstants` avec les signatures de fichier et de piste, les offsets, tailles, unités et bornes encore écrits en brut dans `ScpReader`.
+    - [ ] Créer `Containers/Scp/ScpExceptions.cs` avec une méthode par validation et des paramètres pour numéro de piste, offset, longueur et révolution concernés.
+    - [ ] Remplacer toutes les constructions directes d’exceptions et leurs textes dans `ScpReader` par ces méthodes.
+    - [ ] Supprimer le relais `ScpHeaderReader.Read` s’il reste un simple appel à `ScpReader.ReadHeader`; sinon lui donner la propriété complète du parsing d’en-tête.
+  - [ ] ATR : `AtrImageReader.cs`
+    - [ ] Créer `AtrFormat`, `AtrLayout` et l’enum fermé des tailles sectorielles ATR prises en charge.
+    - [ ] Extraire la signature `0x0296`, la taille d’en-tête, les offsets, l’unité de paragraphe et les trois secteurs d’amorçage.
+    - [ ] Créer `AtrExceptions` avec les erreurs de signature, taille sectorielle, longueur déclarée et charge utile, paramétrées avec les valeurs observées.
+    - [ ] Remplacer les identifiants Atari construits en brut par `DiskImageFormatIds`.
+  - [ ] MSA : `MsaImageReader.cs`
+    - [ ] Créer `MsaFormat`, `MsaLayout` et `MsaExceptions`.
+    - [ ] Extraire la signature, les offsets d’en-tête, les limites de géométrie et le marqueur RLE.
+    - [ ] Paramétrer les erreurs avec la piste, la longueur compressée, la longueur attendue et la position concernées.
+  - [ ] TeleDisk : `Td0ImageReader.cs`
+    - [ ] Créer `Td0Format`, `Td0Layout`, l’enum des types d’encodage de secteur et `Td0Exceptions`.
+    - [ ] Extraire signatures, drapeaux, offsets, masques, codes de tailles, marqueurs de fin et valeurs d’encodage.
+    - [ ] Paramétrer les erreurs avec cylindre, face, secteur, encodage, position et longueurs observées.
+    - [ ] Remplacer les identifiants IBM déduits de la géométrie par `DiskImageFormatIds` et le catalogue IBM commun.
+  - [ ] ImageDisk : `ImdImageReader.cs`
+    - [ ] Créer `ImdFormat`, `ImdLayout`, les enums des modes et types d’enregistrement, puis `ImdExceptions`.
+    - [ ] Extraire la signature, le terminateur de commentaire, les drapeaux de cartes, codes de tailles et types d’enregistrements.
+    - [ ] Paramétrer les erreurs avec piste, secteur, type d’enregistrement, position et longueur requise.
+    - [ ] Déplacer la correspondance géométrie/identifiant vers les catalogues Epson, IBM et autres familles concernées.
+  - [ ] 86F : `I86fImageReader.cs`
+    - [ ] Créer `I86fFormat`, `I86fLayout`, des enums de drapeaux et `I86fExceptions`.
+    - [ ] Extraire signature, version, offsets, masques de codage, unités de longueur et structure des entrées de piste.
+    - [ ] Paramétrer les erreurs avec piste, offset, nombre de bits et longueur attendue.
+    - [ ] Remplacer les identifiants FM/MFM et les identifiants d’image par leurs constantes communes.
+  - [ ] CP2 : `Cp2ImageReader.cs`
+    - [ ] Créer `Cp2Format`, `Cp2Layout`, les enums des types de blocs et `Cp2Exceptions`.
+    - [ ] Extraire signature, tailles de blocs, offsets, marqueurs et limites des descripteurs de piste et de secteur.
+    - [ ] Paramétrer les erreurs avec type de bloc, piste, secteur, offset et longueur.
+  - [ ] CPCEMU, 2IMG et DiskCopy
+    - [ ] Exécuter les groupes détaillés `CpcDskFormat/CpcDskLayout/CpcDskExceptions`, `TwoImgFormat/TwoImgLayout/TwoImgExceptions` et `DiskCopyFormat/DiskCopyLayout/DiskCopyExceptions` définis dans la section 2.
+- [ ] Définitions, géométries et erreurs des images brutes
+  - [ ] ADF : `AdfImageReader.cs`
+    - [ ] Créer des définitions distinctes pour ADF Acorn et ADF Amiga afin de ne pas confondre une extension commune avec un format commun.
+    - [ ] Déplacer capacités, tailles de blocs, cylindres, faces et secteurs par piste dans leurs géométries nommées.
+    - [ ] Créer une erreur ADF paramétrée par la taille observée et les interprétations essayées.
+  - [ ] Apple : `AppleRawImageReader.cs`, `AppleDiskGeometry.cs`, `AppleDiskImageSignatures.cs` et `AppleSectorImageFactory.cs`
+    - [ ] Séparer les géométries Apple II, Apple III, Macintosh et Lisa sans dupliquer les tailles de blocs ou nombres de pistes identiques.
+    - [ ] Nommer les ordres DOS, ProDOS et physiques et exposer des collections en lecture seule.
+    - [ ] Extraire les offsets, signatures et bornes DOS 3.3, ProDOS, SOS, MFS, HFS et Lisa dans des définitions de reconnaissance Apple.
+    - [ ] Remplacer toutes les capacités et géométries brutes de `AppleRawImageReader` et `AppleSectorImageFactory`.
+    - [ ] Créer des erreurs Apple paramétrées pour taille, signature, bloc logique, cylindre et absence de secteurs décodés.
+    - [ ] Remplacer tous les identifiants Apple et Macintosh bruts par `DiskImageFormatIds`.
+  - [ ] Atari ST : `AtariStImageReader.cs`
+    - [ ] Créer `AtariStGeometryCatalog` avec taille de secteur, géométries de repli et calcul d’identifiant.
+    - [ ] Extraire les offsets et validations BPB dans une définition FAT/Atari ST partagée lorsque les champs ont exactement le même sens.
+    - [ ] Créer des erreurs paramétrées pour taille, BPB et géométrie observées.
+  - [ ] BBC DFS : `BbcDfsImageReader.cs`
+    - [ ] Déplacer taille de secteur, secteurs par piste, capacités SSD/DSD et ordre des faces dans `BbcDfsGeometry`.
+    - [ ] Créer des erreurs paramétrées pour extension, taille et nombre incomplet de pistes.
+    - [ ] Remplacer les identifiants DFS bruts par `DiskImageFormatIds`.
+  - [ ] Coherent : `CoherentImageReader.cs`
+    - [ ] Créer `CoherentDiskLayout` pour taille de bloc, offsets du superbloc, signatures, bornes et géométries acceptées.
+    - [ ] Créer `CoherentImageExceptions` avec valeurs de taille et de superbloc observées.
+    - [ ] Remplacer les identifiants Coherent bruts par `DiskImageFormatIds`.
+  - [ ] Commodore : `CommodoreD64ImageReader.cs`, `CommodoreD71ImageReader.cs`, `CommodoreD81ImageReader.cs` et `CommodoreGeometry.cs`
+    - [ ] Regrouper dans `CommodoreDiskGeometryCatalog` les capacités avec et sans carte d’erreurs, tailles de secteurs, pistes, faces et secteurs maximaux.
+    - [ ] Conserver distincts les calculs 1541, 1571 et 1581 tout en partageant leurs primitives réellement identiques.
+    - [ ] Créer des erreurs paramétrées par type d’image, taille, piste, face et secteur.
+    - [ ] Remplacer les identifiants Commodore bruts par `DiskImageFormatIds`.
+  - [ ] DEC RX02 : `DecRx02ImageReader.cs`
+    - [ ] Créer `DecRx02Geometry` partagé par le Reader, le reconstructeur, le système de fichiers et la visualisation.
+    - [ ] Y déplacer pistes, secteurs, tailles physiques/logiques, entrelacement et capacité totale.
+    - [ ] Créer une erreur de taille RX02 paramétrée et remplacer l’identifiant brut.
+  - [ ] IBM PC : `IbmPcImageReader.cs`
+    - [ ] Créer `IbmPcGeometryCatalog` et y déplacer toutes les capacités et géométries actuellement contenues dans le dictionnaire privé.
+    - [ ] Créer `FatBpbLayout` pour les offsets, tailles et signatures BPB partagés avec FAT12 et les formats compatibles.
+    - [ ] Créer des erreurs IBM paramétrées par taille et géométrie observées.
+    - [ ] Remplacer la construction textuelle des identifiants IBM par `DiskImageFormatIds`.
+  - [ ] MSX : `MsxImageReader.cs`
+    - [ ] Créer `MsxDiskGeometryCatalog` pour 1D, 1DD, 2D et 2DD.
+    - [ ] Réutiliser `FatBpbLayout` uniquement pour les champs BPB identiques et conserver les signatures MSX spécifiques dans `MsxDiskSignatures`.
+    - [ ] Créer des erreurs MSX paramétrées par signature, taille et géométrie.
+    - [ ] Remplacer les identifiants MSX bruts par `DiskImageFormatIds`.
+- [ ] Définitions partagées par les décodeurs et encodeurs
+  - [ ] ISO FM et MFM
+    - [ ] Créer des définitions communes pour marques d’adresse, marques de données, sync, gaps, codes de tailles et polynômes CRC utilisés par `IsoFmDecoder`, `IsoMfmDecoder`, `IsoFmTrackEncoder` et `IsoMfmTrackEncoder`.
+    - [ ] Ne mutualiser entre FM et MFM que les valeurs dont le sens et la valeur sont identiques.
+  - [ ] Apple II, Macintosh, Lisa et RWTS18
+    - [ ] Extraire les tables 5-and-3 et 6-and-2 de `AppleIIGcrDecoder` et `AppleIIGcrTrackEncoder` dans une définition commune.
+    - [ ] Extraire alphabet, prologues, épilogues, tailles de champs et checksums de `AppleMacGcrDecoder` et `AppleMacGcrTrackEncoder`.
+    - [ ] Extraire les différences Lisa FileWare dans une définition distincte utilisée par son décodeur et son encodeur.
+    - [ ] Extraire tables, marques, tailles de pages et checksum RWTS18 dans une définition utilisée par `AppleRwts18Decoder`, `AppleRwts18TrackEncoder`, le Reader NIB/WOZ et la conversion RWTS18.
+    - [ ] Créer des fabriques d’erreurs Apple paramétrées pour taille de secteur, piste, secteur et longueur encodée.
+  - [ ] Commodore 1541, 900 et Victor 9000
+    - [ ] Extraire l’alphabet GCR commun de `CommodoreGcrDecoder` et `CommodoreGcrTrackEncoder`.
+    - [ ] Conserver dans des définitions distinctes les marques, checksums et dispositions de piste Commodore 1541 et Commodore 900.
+    - [ ] Extraire les tables, marques, zones de vitesse et checksums Victor 9000 communs à son décodeur et son encodeur.
+    - [ ] Paramétrer les erreurs d’encodage avec taille, piste et secteur observés.
+  - [ ] DEC RX02
+    - [ ] Partager marques FM, transformation M2FM, tailles, CRC et dispositions entre `DecRx02Decoder` et `DecRx02TrackEncoder`.
+    - [ ] Utiliser `DecRx02Geometry` pour toutes les valeurs géométriques.
+  - [ ] Formats AED, Arburg, Centurion, Data General, EMU, Heathkit, HP, Membrain, Micral N, Micropolis, North Star, QD MO5 et Tycom
+    - [ ] Créer une définition de format par paire décodeur/encodeur contenant identifiant, marques, tailles, gaps, masques et checksum ou CRC propres à cette paire.
+    - [ ] Remplacer les tables et valeurs recopiées dans `Aed6200pMfmDecoder`/`Aed6200pMfmTrackEncoder`, `ArburgDecoder`/`ArburgTrackEncoder`, `CenturionMfmDecoder`/`CenturionMfmTrackEncoder`, `DataGeneralFmDecoder`/`DataGeneralFmTrackEncoder`, `EmuFmDecoder`/`EmuFmTrackEncoder`, `HeathkitFmDecoder`/`HeathkitFmTrackEncoder`, `HpMmfmDecoder`/`HpMmfmTrackEncoder`, `MembrainMfmDecoder`/`MembrainMfmTrackEncoder`, `MicralNFmDecoder`/`MicralNFmTrackEncoder`, `MicropolisMfmDecoder`/`MicropolisMfmTrackEncoder`, `NorthstarMfmDecoder`/`NorthstarMfmTrackEncoder`, `QdMo5MfmDecoder`/`QdMo5MfmTrackEncoder` et `TycomFmDecoder`/`TycomFmTrackEncoder`.
+    - [ ] Ne pas fusionner deux formats uniquement parce qu’ils utilisent le même codage FM ou MFM.
+  - [ ] Erreurs communes d’encodage
+    - [ ] Créer une fabrique d’erreurs d’encodage pour les validations identiques de secteur absent, taille invalide et données trop longues.
+    - [ ] Conserver dans la définition du format les erreurs dont les paramètres ou invariants sont spécifiques.
+- [ ] Dispositions et erreurs des systèmes de fichiers
+  - [ ] Acorn ADFS/FileCore
+    - [ ] Extraire tailles de blocs, signatures, offsets du DiscRecord, masques et limites de zones de `AcornAdfsFileSystemReader` et `AcornFileCoreNewMap` dans des layouts Acorn nommés.
+    - [ ] Créer des erreurs Acorn paramétrées par bloc, zone, fragment et offset.
+  - [ ] AmigaDOS
+    - [ ] Extraire types de blocs, offsets, tailles, constantes de checksum et époque des dates de `AmigaDosFileSystemReader`.
+    - [ ] Créer des erreurs AmigaDOS paramétrées par numéro et type de bloc.
+  - [ ] CP/M générique, CPC et PCW
+    - [ ] Extraire dans un layout CP/M commun les champs d’extent, utilisateur, allocation et nom réellement identiques entre `CpmFileSystemReader` et `AmstradCpmFileSystemReader`.
+    - [ ] Conserver les DPB, offsets de répertoire et signatures CPC/PCW dans des définitions Amstrad distinctes.
+    - [ ] Créer des erreurs paramétrées par extent, bloc, utilisateur et taille de répertoire.
+  - [ ] Apple DOS, ProDOS et Inform/Xzip
+    - [ ] Extraire VTOC, catalogue, bitmap, entrées de fichiers, types de stockage et offsets de dates dans trois layouts distincts.
+    - [ ] Réutiliser uniquement les géométries Apple et encodages de noms effectivement communs.
+    - [ ] Créer des erreurs paramétrées par piste, secteur, bloc, entrée et chaîne de blocs.
+  - [ ] Atari DOS et BBC DFS
+    - [ ] Extraire secteurs VTOC/catalogue, offsets d’entrées, drapeaux et tailles dans `AtariDosFileSystemLayout` et `BbcDfsFileSystemLayout` distincts.
+    - [ ] Créer des erreurs paramétrées par secteur de catalogue et chaîne de données.
+  - [ ] Coherent et Commodore DOS
+    - [ ] Extraire superbloc, inode, zones et entrées de répertoire Coherent dans un layout dédié.
+    - [ ] Extraire BAM, en-tête, entrées et chaînes de secteurs D64/D71/D81 dans des définitions s’appuyant sur `CommodoreDiskGeometryCatalog`.
+    - [ ] Créer des erreurs paramétrées par inode, bloc, piste, secteur et chaîne cyclique.
+  - [ ] FAT12
+    - [ ] Réutiliser `FatBpbLayout` pour tous les offsets BPB de `Fat12FileSystemReader`.
+    - [ ] Créer `FatDirectoryLayout` pour les entrées, attributs, dates, clusters et marqueurs de fin ou suppression.
+    - [ ] Créer des erreurs FAT12 paramétrées par cluster, secteur FAT et entrée de répertoire.
+  - [ ] Lisa, Macintosh MFS et HFS
+    - [ ] Extraire signatures, offsets, tailles d’entrées, types de records, époques et structures B-tree/extents dans des layouts Lisa, MFS et HFS distincts.
+    - [ ] Partager seulement les primitives Macintosh dont la structure binaire est identique.
+    - [ ] Créer des erreurs paramétrées par bloc, record, nœud et extent.
+  - [ ] RT-11 et UCSD
+    - [ ] Extraire home block, segments de répertoire, statuts, tailles de mots et radices dans `Rt11FileSystemLayout`.
+    - [ ] Extraire catalogue, entrées, types et dates dans `UcsdFileSystemLayout`.
+    - [ ] Créer des erreurs paramétrées par bloc, segment et entrée.
+- [ ] Valeurs et erreurs de reconnaissance, reconstruction et visualisation
+  - [ ] Politiques de reconnaissance
+    - [ ] Remplacer toutes les extensions brutes des politiques par `DiskImageFileExtensions`.
+    - [ ] Remplacer tous les préfixes et identifiants bruts par `DiskImageFormatIds`.
+    - [ ] Déplacer les signatures et tailles utilisées par `AmstradContainerPolicy`, `AppleContainerPolicy`, `CoherentContainerPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy` et `ScpContainerPolicy` vers les définitions de leurs formats.
+    - [ ] Créer des erreurs de registre paramétrées par politique, candidat, format demandé et cause de rejet.
+  - [ ] Reconstruction sectorielle
+    - [ ] Remplacer dans tous les Readers et politiques sous `SectorImages` les identifiants, tailles de secteurs, géométries et identifiants de codecs bruts par les définitions communes correspondantes.
+    - [ ] Déplacer les seuils de score réutilisés vers des politiques nommées et conserver locaux les scores propres à un seul algorithme.
+    - [ ] Créer des erreurs de reconstruction paramétrées par famille, piste, face, format demandé et nombre de secteurs décodés.
+  - [ ] Interprétations et normalizers
+    - [ ] Remplacer les préfixes et identifiants bruts de tous les fichiers sous `Images/Interpretations` par `DiskImageFormatIds`.
+    - [ ] Déplacer les correspondances capacité/géométrie vers les catalogues Apple, Atari, IBM et MSX concernés.
+    - [ ] Remplacer les séparateurs techniques d’identité construits en texte brut par une fonction commune d’identité structurée.
+  - [ ] Exploration et registres
+    - [ ] Remplacer dans `DiskImageExplorerFactory`, `ScpCandidateRegistry` et `ScpFamilyProbe` chaque identifiant brut par les constantes communes.
+    - [ ] Sortir les listes d’enregistrement dans des méthodes nommées par famille sans recréer une façade géante.
+    - [ ] Créer des erreurs paramétrées pour format inconnu, format explicitement non pris en charge, absence de secteurs et encodeur absent.
+  - [ ] Visualisation
+    - [ ] Remplacer les préfixes, identifiants de formats et identifiants d’encodeurs bruts de toutes les politiques de visualisation par les constantes communes.
+    - [ ] Réutiliser les géométries Apple, Atari, Commodore et DEC pour les adresses, tailles, zones et cellules de bits.
+    - [ ] Déplacer la correspondance taille de secteur/code de taille vers une primitive commune aux encodeurs, décodeurs et visualisation.
+    - [ ] Remplacer les clés techniques de tags construites en texte brut par une fonction nommée recevant l’index.
+  - [ ] Conversion NIB, WOZ, ATR et RWTS18
+    - [ ] Remplacer extensions, signatures, chunks, CRC, tailles de pistes et identifiants bruts par les définitions 2IMG/NIB/WOZ/ATR/RWTS18 correspondantes.
+    - [ ] Créer des erreurs paramétrées avec piste, secteur, longueur disponible, longueur attendue et extension demandée.
+- [ ] Valeurs et erreurs des modèles, primitives et registres
+  - [ ] `SectorImage.cs`
+    - [ ] Créer `SectorImageExceptions` avec des méthodes distinctes pour dimensions invalides, nombre logique invalide, bloc manquant et taille de bloc invalide.
+    - [ ] Faire recevoir aux erreurs le nom de la dimension, sa valeur, le bloc logique, la taille observée et la taille attendue selon le cas.
+    - [ ] Remplacer les constructions directes d’exceptions de `SectorImage` par cette fabrique.
+    - [ ] Conserver les calculs de capacité et de nombre de blocs dans `SectorImage`, car ils appartiennent au modèle et ne sont pas des constantes de format.
+  - [ ] `TrackEncoderBase.cs` et `TrackEncoding.cs`
+    - [ ] Créer `TrackEncodingLimits` pour les bornes de cylindre, face et code de taille sectorielle communes à tous les encodeurs.
+    - [ ] Déplacer la correspondance taille/code de taille de `TrackEncoding.SizeCode` vers une primitive partagée avec décodage et visualisation.
+    - [ ] Déplacer les valeurs par défaut du CRC-16 CCITT vers la définition CRC commune sans imposer ces valeurs aux formats utilisant une autre variante.
+    - [ ] Créer `TrackEncodingExceptions` avec des méthodes paramétrées pour piste vide, taille sectorielle non prise en charge, cylindre, face et cellule de bit invalides.
+    - [ ] Remplacer les textes d’exceptions bruts de `TrackEncoderBase` et `TrackEncoding`.
+  - [ ] `FluxDecoderRegistry.cs` et `FluxEncoderRegistry.cs`
+    - [ ] Remplacer la liste linéaire et les recherches `First` par des dictionnaires construits une fois par identifiant de `FluxCodecIds`.
+    - [ ] Créer des erreurs paramétrées pour identifiant dupliqué et identifiant absent.
+    - [ ] Déplacer les coefficients `4`, `3`, `2`, `1`, `0.1` et `0.01` de `AutomaticScore` dans une politique de score nommée, avec un nom indiquant le sens de chaque poids.
+    - [ ] Remplacer l’identifiant `raw` brut par `FluxCodecIds.Raw`.
+  - [ ] `FileSystemRegistry.cs`
+    - [ ] Construire le registre par `FileSystemIds` et refuser les identifiants de Reader dupliqués.
+    - [ ] Créer une erreur paramétrée pour absence de système de fichiers compatible avec le format d’image examiné.
+    - [ ] Remplacer le texte d’exception brut de `Read` par cette fabrique.
+  - [ ] `FluxBitstream.cs`, `BitPrimitives.cs` et `Crc16Calculator.cs`
+    - [ ] Nommer uniquement les tolérances, fenêtres, largeurs de mot, polynômes et valeurs initiales qui définissent leurs algorithmes.
+    - [ ] Conserver locaux les compteurs, décalages calculés et index de bits qui ne sont pas réutilisables.
+    - [ ] Raccorder les variantes CRC des formats aux paramètres nommés de `Crc16Calculator` au lieu de recopier polynôme et valeur initiale.
 - [ ] Validation
   - [ ] Compilation
     - [ ] Compiler `GWGUI.Scp` après chaque groupe autonome.
     - [ ] Compiler `GWGUI.App` après chaque modification d’une API consommée.
   - [ ] Tests
-    - [ ] Exécuter les tests existants du format ou du module modifié.
-    - [ ] Exécuter les tests complets de `GWGUI.Tests` après le dernier groupe.
+    - [ ] Socle local des images de test
+      - [ ] Créer `tests/GWGUI.Tests/TestImages/` et un sous-dossier explicite pour chaque format lu ou écrit.
+      - [ ] Ajouter pour chaque image un manifeste indiquant format, provenance ou générateur, taille, somme SHA-256, géométrie et contenu attendu.
+      - [ ] Ajouter un générateur déterministe lorsque conserver le binaire serait inutilement volumineux ; vérifier que deux générations produisent les mêmes octets.
+      - [ ] Raccorder les images au projet de tests sans dépendre du répertoire courant, d’un chemin utilisateur ou d’une variable d’environnement.
+      - [ ] Ajouter un contrôle échouant si un test local retourne avant ses assertions faute d’image.
+      - [ ] Conserver les corpus réels externes dans des catégories séparées et explicitement facultatives.
+    - [ ] Représentations et primitives
+      - [ ] Tester `SectorImage` avec blocs complets, manquants, variables, dupliqués et hors limites ; vérifier capacité, nombre logique, adresses et contenu retourné.
+      - [ ] Tester `FluxBitstream` et `BitPrimitives` sur des vecteurs binaires connus couvrant limites d’octets, rotations, motifs absents et entrées vides.
+      - [ ] Tester `Crc16Calculator` sur les vecteurs de référence de chaque variante réellement utilisée et sur un octet corrompu.
+      - [ ] Tester les conversions de durée, résolution et vitesse des modèles SCP avec des valeurs dont le résultat exact est connu.
+    - [ ] Lecteurs d’images sectorielles brutes
+      - [ ] Ajouter et lire des images ADF locales Acorn et Amiga de tailles prises en charge ; vérifier que la même extension ne mélange pas les deux familles.
+      - [ ] Ajouter et lire des images Apple D13, DO, PO, DSK et IMG locales ; vérifier ordre physique/logique, géométrie, signatures DOS, ProDOS, SOS, MFS, HFS et Lisa.
+      - [ ] Ajouter et lire des images Atari ST brutes avec et sans BPB ; vérifier géométrie, ordre des secteurs et rejet d’une taille incompatible.
+      - [ ] Ajouter et lire des images BBC SSD et DSD locales ; vérifier entrelacement des faces, catalogue et contenu de fichiers connus.
+      - [ ] Ajouter et lire une image locale pour chacun de D64, D71 et D81 ; vérifier géométrie, ordre logique, carte d’erreurs et contenu connu.
+      - [ ] Ajouter et lire des images IBM IMG et IMA locales pour chaque géométrie cataloguée, avec et sans BPB cohérent.
+      - [ ] Ajouter et lire des images MSX brutes locales pour 1D, 1DD, 2D et 2DD ; vérifier le BPB, la géométrie et le format retenu.
+      - [ ] Vérifier pour ADF, images Apple brutes, Atari ST, BBC, Commodore, IBM et MSX le rejet des tailles ou structures impossibles à partir de copies locales corrompues.
+    - [ ] Décodeurs de flux
+      - [ ] Créer pour `IsoFmDecoder`, `IsoMfmDecoder`, `DataGeneralFmDecoder`, `NorthstarMfmDecoder`, `HeathkitFmDecoder`, `HpMmfmDecoder`, `MicralNFmDecoder`, `QdMo5MfmDecoder`, `EmuFmDecoder` et `TycomFmDecoder` un vecteur de piste valide avec adresse, données et CRC attendus.
+      - [ ] Créer pour `AppleGcrDecoder`, `AppleMacGcrDecoder`, `AppleLisaFileWareGcrDecoder` et `AppleRwts18Decoder` un vecteur valide par encodage Apple réellement différent.
+      - [ ] Créer pour `CommodoreGcrDecoder`, `Commodore900GcrDecoder` et `Victor9kGcrDecoder` un vecteur valide vérifiant marques, numérotation et checksum propres à chacun.
+      - [ ] Créer pour `Aed6200pMfmDecoder`, `ArburgDecoder`, `CenturionMfmDecoder`, `MembrainMfmDecoder` et `MicropolisMfmDecoder` un vecteur valide issu de leur structure documentée.
+      - [ ] Créer pour `DecRx02Decoder` un vecteur couvrant marque FM, charge M2FM et réassemblage du secteur physique.
+      - [ ] Vérifier pour chaque décodeur qu’une marque absente, une adresse incohérente, un CRC ou checksum corrompu et une piste tronquée produisent le rejet ou l’état d’intégrité attendu.
+      - [ ] Vérifier `RawFluxDecoder` sur des intervalles normaux, nuls, très longs et une révolution vide.
+      - [ ] Vérifier dans `FluxDecoderRegistry` l’unicité des identifiants, la sélection explicite, la sélection automatique, le meilleur résultat et le cache sans partager un résultat entre deux révolutions différentes.
+    - [ ] Encodeurs de pistes
+      - [ ] Pour chaque encodeur ISO FM/MFM, encoder des secteurs connus puis les redécoder avec le décodeur correspondant et comparer adresse, données et intégrité.
+      - [ ] Faire le même aller-retour pour les encodeurs Apple II, Macintosh, Lisa FileWare et RWTS18.
+      - [ ] Faire le même aller-retour pour les encodeurs Commodore 1541, Commodore 900 et Victor 9000.
+      - [ ] Faire le même aller-retour pour AED 6200P, Arburg, Centurion, Data General, DEC RX02, EMU, Heathkit, HP MMFM, Membrain, Micral N, Micropolis, North Star, QD MO5 et Tycom.
+      - [ ] Vérifier les marques, gaps, synchronisations, CRC, checksums, index temporel et nombre de transitions produits pour un vecteur connu de chaque famille.
+      - [ ] Vérifier dans `FluxEncoderRegistry` l’unicité des identifiants et le rejet d’un encodeur absent ou dupliqué.
+    - [ ] Reconstruction des images sectorielles depuis SCP
+      - [ ] Générer une capture SCP locale à partir de secteurs Amiga, la reconstruire et comparer tous les secteurs source et résultat.
+      - [ ] Faire le même aller-retour pour Amstrad CPC et PCW, Atari 8-bit et ST, BBC DFS, IBM PC, UCSD et Epson QX-10.
+      - [ ] Faire le même aller-retour pour Apple DOS 3.2, DOS 3.3, ProDOS, RWTS18, Macintosh et Lisa.
+      - [ ] Faire le même aller-retour pour Commodore D64, D71, D81 et Commodore 900, ainsi que DEC RX02.
+      - [ ] Vérifier la sélection entre plusieurs révolutions, la préférence pour un secteur intègre, la conservation d’un secteur corrompu, les doublons et les secteurs manquants.
+      - [ ] Vérifier que les façades supprimées et les politiques ISO mutualisées produisent exactement les mêmes adresses, tailles et données qu’avant leur raccordement.
+    - [ ] Systèmes de fichiers
+      - [ ] Ajouter une image locale Acorn ADFS/FileCore contenant répertoires, fichier fragmenté et espace libre connus ; vérifier noms, contenu, tailles et métadonnées.
+      - [ ] Ajouter une image locale AmigaDOS contenant répertoires et fichier multi-blocs ; vérifier checksum, contenu et espace libre.
+      - [ ] Ajouter des images locales CP/M générique, Amstrad CPC et Amstrad PCW avec extents multiples, utilisateurs, fichiers supprimés et blocs libres connus.
+      - [ ] Ajouter des images locales Apple DOS, ProDOS et Inform/Xzip avec fichiers chaînés ou fragmentés et métadonnées connues.
+      - [ ] Ajouter une image locale Atari DOS et une image BBC DFS avec catalogue, fichiers et espace libre connus.
+      - [ ] Ajouter une image locale Coherent et des images Commodore DOS D64, D71 et D81 avec fichiers multi-blocs et chaînes invalides contrôlées.
+      - [ ] Ajouter une image locale FAT12 avec sous-répertoire, fichier fragmenté, horodatage et clusters libres connus.
+      - [ ] Ajouter des images locales Lisa, Macintosh MFS et Macintosh HFS avec catalogue, forks ou extents et dates connues.
+      - [ ] Ajouter des images locales RT-11 et UCSD avec catalogue, contenu de fichiers et capacité libre connus.
+      - [ ] Pour chaque système de fichiers, altérer une structure critique de l’image locale et vérifier le rejet, les avertissements et l’absence de faux positif par un autre Reader.
+      - [ ] Vérifier dans `FileSystemRegistry` l’unicité des identifiants, la sélection explicite, la détection automatique et la conservation de tous les résultats crédibles.
+    - [ ] Reconnaissance, interprétation et exploration
+      - [ ] Ouvrir chaque image locale de conteneur et chaque image brute via `DiskImageExplorer` sans format imposé ; vérifier le Reader choisi, l’identifiant final, la géométrie et le système de fichiers.
+      - [ ] Ouvrir les mêmes images avec un format explicitement demandé compatible puis incompatible ; vérifier le retagging autorisé et le rejet des interprétations impossibles.
+      - [ ] Tester les extensions ambiguës `.dsk`, `.img`, `.ima`, `.bin` et `.adf` avec plusieurs contenus contradictoires ; vérifier que contenu et structure priment sur l’extension.
+      - [ ] Tester une signature valide avec extension incorrecte, une extension plausible avec contenu invalide, un fichier tronqué après signature certaine et un fichier entièrement inconnu.
+      - [ ] Vérifier qu’un candidat faible rejeté laisse essayer le suivant, qu’une corruption après preuve certaine est signalée et qu’aucune boucle ne relit inutilement le fichier.
+      - [ ] Vérifier la normalisation Atari, Macintosh et MSX ainsi que chaque interprétation supplémentaire IBM ou compatible sur des images locales dont le résultat attendu est connu.
+      - [ ] Vérifier `ScpFamilyProbe`, `ScpCandidateRegistry` et `ScpAutomaticImageExplorer` avec des captures locales appartenant à chaque famille reconstruite et avec une capture ambiguë.
+      - [ ] Vérifier l’annulation pendant lecture du conteneur, décodage SCP, reconstruction, lecture du système de fichiers et création du document exploré.
+    - [ ] Conversion et visualisation technique
+      - [ ] Écrire une image NIB puis la relire ; comparer pistes, secteurs et données avec la source.
+      - [ ] Écrire une image WOZ puis la relire ; vérifier chunks, CRC, nombre de bits, pistes et données décodées.
+      - [ ] Extraire puis reconstruire une charge utile ATR et comparer tous les secteurs avec l’image source.
+      - [ ] Convertir une image RWTS18 locale entre SCP, NIB et WOZ puis comparer les six secteurs physiques et leurs trois pages logiques.
+      - [ ] Visualiser une image locale de chaque famille d’encodeur, redécoder le flux produit et comparer les secteurs avec l’image sectorielle source.
+      - [ ] Vérifier la politique de visualisation choisie, les adresses visuelles, attributs de piste et de tags, tailles de secteurs, cellules de bit et deux faces lorsqu’elles existent.
+      - [ ] Vérifier qu’un format non visualisable est refusé et qu’une annulation interrompt la préparation sans résultat partiel réutilisé.
+    - [ ] Exécution des suites
+      - [ ] Exécuter après chaque groupe le filtre de tests locaux correspondant et consigner le nombre exact de tests ayant atteint leurs assertions.
+      - [ ] Exécuter les tests complets de `GWGUI.Tests` après le dernier groupe sans exclure les tests déterministes locaux.
+      - [ ] Exécuter séparément les corpus externes disponibles et signaler explicitement ceux qui n’étaient pas configurés.
+      - [ ] Vérifier qu’aucun test déterministe local n’est ignoré, conditionné par l’environnement ou réduit à une vérification de texte d’interface.
   - [ ] Couverture
-    - [ ] Vérifier que chacun des 195 fichiers de production est présent dans un groupe du document.
+    - [ ] Vérifier que chaque fichier de production retourné par `rg --files src/GWGUI.Scp -g '*.cs'` est présent dans un groupe du document, y compris les nouveaux fichiers créés pendant le refactor.
     - [ ] Vérifier qu’aucune tâche du dernier niveau ne décrit un état déjà satisfait sans modification.
     - [ ] Vérifier qu’aucun ancien fichier ou namespace ne subsiste après son déplacement ou sa suppression.

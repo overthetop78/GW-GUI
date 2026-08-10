@@ -1,3 +1,4 @@
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -10,7 +11,7 @@ public sealed class CommodoreD71ImageReader : ISectorImageReader
         [393_216] = (40, false), [394_752] = (40, true)
     };
 
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".d71", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

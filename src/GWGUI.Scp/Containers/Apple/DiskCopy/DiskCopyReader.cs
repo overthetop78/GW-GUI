@@ -1,29 +1,13 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Images;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
-namespace GWGUI.Scp.Images;
+namespace GWGUI.Scp.Containers.Apple.DiskCopy;
 
-internal static class AppleContainerImageReader
+internal static class DiskCopyReader
 {
-    public static SectorImage ReadTwoImg(byte[] container)
-    {
-        if (container.Length < 64) throw new InvalidDataException("The 2IMG header is truncated.");
-        var headerLength = checked((int)BinaryPrimitives.ReadUInt16LittleEndian(container.AsSpan(8)));
-        var imageFormat = BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(12));
-        var dataOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(24)));
-        var dataLength = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(28)));
-        if (headerLength < 64 || dataOffset < headerLength || dataLength <= 0 ||
-            dataOffset > container.Length - dataLength)
-            throw new InvalidDataException("The 2IMG data range is invalid.");
-        if (imageFormat == 2)
-            return AppleNibbleImageDecoder.ReadNib(container.AsSpan(dataOffset, dataLength));
-        if (imageFormat > 2)
-            throw new NotSupportedException("The 2IMG image format is not supported.");
-        return AppleRawImageReader.Read(container.AsSpan(dataOffset, dataLength).ToArray(),
-            imageFormat == 0 ? ".do" : ".po");
-    }
-
-    public static SectorImage ReadDiskCopy(byte[] container)
+    public static SectorImage Read(byte[] container)
     {
         const int headerLength = 84;
         if (container.Length < headerLength)
@@ -35,7 +19,7 @@ internal static class AppleContainerImageReader
         var payload = container.AsSpan(headerLength, dataLength).ToArray();
         if (AppleDiskImageSignatures.LooksLikeMac(payload) ||
             AppleDiskImageSignatures.LooksLikeProDos(payload))
-            return AppleRawImageReader.Read(payload, ".image");
+            return AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image);
 
         if (tagLength != dataLength / 512 * 12)
             throw new InvalidDataException(

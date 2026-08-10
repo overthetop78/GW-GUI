@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using GWGUI.Scp.Encoding;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -14,8 +15,8 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
     public Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default) =>
         Path.GetExtension(path).ToLowerInvariant() switch
         {
-            ".nib" => WriteNibAsync(image, path, cancellationToken),
-            ".woz" => WriteWozAsync(image, path, cancellationToken),
+            DiskImageFileExtensions.Nib => WriteNibAsync(image, path, cancellationToken),
+            DiskImageFileExtensions.Woz => WriteWozAsync(image, path, cancellationToken),
             _ => throw new NotSupportedException("Apple nibble output must use the NIB or WOZ extension.")
         };
 

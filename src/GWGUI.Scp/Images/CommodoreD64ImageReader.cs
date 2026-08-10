@@ -1,3 +1,4 @@
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -10,7 +11,7 @@ public sealed class CommodoreD64ImageReader : ISectorImageReader
         [196_608] = (40, false), [197_376] = (40, true)
     };
 
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".d64", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.D64, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

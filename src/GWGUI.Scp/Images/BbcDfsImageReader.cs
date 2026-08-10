@@ -1,3 +1,4 @@
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -11,15 +12,15 @@ public sealed class BbcDfsImageReader : ISectorImageReader
     public bool CanRead(string path)
     {
         var extension = Path.GetExtension(path);
-        return extension.Equals(".ssd", StringComparison.OrdinalIgnoreCase)
-            || extension.Equals(".dsd", StringComparison.OrdinalIgnoreCase);
+        return extension.Equals(DiskImageFileExtensions.Ssd, StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(DiskImageFileExtensions.Dsd, StringComparison.OrdinalIgnoreCase);
     }
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         var extension = Path.GetExtension(path);
-        var heads = extension.Equals(".dsd", StringComparison.OrdinalIgnoreCase) ? 2 : 1;
+        var heads = extension.Equals(DiskImageFileExtensions.Dsd, StringComparison.OrdinalIgnoreCase) ? 2 : 1;
         if (data.Length == 0 || data.Length % (TrackBytes * heads) != 0)
             throw new InvalidDataException("The BBC DFS image does not contain a whole number of tracks.");
         var cylinders = data.Length / (TrackBytes * heads);

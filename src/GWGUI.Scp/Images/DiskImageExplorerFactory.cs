@@ -4,6 +4,7 @@ using GWGUI.Scp.Decoding;
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.Images.Containers;
 using GWGUI.Scp.Images.ScpDetection;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -28,25 +29,25 @@ internal static class DiskImageExplorerFactory
         var apple = new AppleDiskImageReader();
         var containers = new DiskImageContainerRegistry(
         [
-            new DirectContainerPolicy(new AdfImageReader(), ".adf"),
-            new DirectContainerPolicy(new BbcDfsImageReader(), ".ssd", ".dsd"),
+            new DirectContainerPolicy(new AdfImageReader(), DiskImageFileExtensions.Adf),
+            new DirectContainerPolicy(new BbcDfsImageReader(), DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
             new CoherentContainerPolicy(new CoherentImageReader()),
             new DecRx02ContainerPolicy(new DecRx02ImageReader()),
-            new DirectContainerPolicy(new AtariStImageReader(), ".st"),
-            new DirectContainerPolicy(new MsaImageReader(), ".msa"),
-            new DirectContainerPolicy(new AtrImageReader(), ".atr"),
-            new DirectContainerPolicy(new CommodoreD64ImageReader(), ".d64"),
-            new DirectContainerPolicy(new CommodoreD71ImageReader(), ".d71"),
-            new DirectContainerPolicy(new CommodoreD81ImageReader(), ".d81"),
+            new DirectContainerPolicy(new AtariStImageReader(), DiskImageFileExtensions.St),
+            new DirectContainerPolicy(new MsaImageReader(), DiskImageFileExtensions.Msa),
+            new DirectContainerPolicy(new AtrImageReader(), DiskImageFileExtensions.Atr),
+            new DirectContainerPolicy(new CommodoreD64ImageReader(), DiskImageFileExtensions.D64),
+            new DirectContainerPolicy(new CommodoreD71ImageReader(), DiskImageFileExtensions.D71),
+            new DirectContainerPolicy(new CommodoreD81ImageReader(), DiskImageFileExtensions.D81),
             new AppleContainerPolicy(apple),
             new MsxContainerPolicy(new MsxImageReader()),
             new AmstradContainerPolicy(new CpcDskReader()),
             new RawImgContainerPolicy(),
-            new DirectContainerPolicy(new IbmPcImageReader(), ".ima"),
-            new DirectContainerPolicy(new Td0ImageReader(), ".td0"),
-            new DelegatingContainerPolicy(new I86fImageReader(decoders).ReadAsync, ".86f"),
-            new DelegatingContainerPolicy(new Cp2ImageReader().ReadAsync, ".cp2"),
-            new DirectContainerPolicy(new ImdImageReader(), ".imd"),
+            new DirectContainerPolicy(new IbmPcImageReader(), DiskImageFileExtensions.Ima),
+            new DirectContainerPolicy(new Td0ImageReader(), DiskImageFileExtensions.Td0),
+            new DelegatingContainerPolicy(new I86fImageReader(decoders).ReadAsync, DiskImageFileExtensions.Format86F),
+            new DelegatingContainerPolicy(new Cp2ImageReader().ReadAsync, DiskImageFileExtensions.Cp2),
+            new DirectContainerPolicy(new ImdImageReader(), DiskImageFileExtensions.Imd),
             new ScpContainerPolicy(scpExploration, fileSystems.SupportedFormatIds)
         ]);
         return new(containers, fileSystems, scpExploration);

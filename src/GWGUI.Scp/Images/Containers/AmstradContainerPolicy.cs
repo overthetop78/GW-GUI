@@ -1,5 +1,6 @@
 using GWGUI.Scp.Containers.Amstrad.CpcDsk;
 using GWGUI.Scp.Images.Interpretations;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images.Containers;
@@ -7,8 +8,8 @@ namespace GWGUI.Scp.Images.Containers;
 internal sealed class AmstradContainerPolicy(CpcDskReader reader) : IDiskImageContainerPolicy
 {
     public ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
-        ValueTask.FromResult(context.Extension.Equals(".dsk", StringComparison.OrdinalIgnoreCase) ||
-                             context.Extension.Equals(".edsk", StringComparison.OrdinalIgnoreCase));
+        ValueTask.FromResult(context.Extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase) ||
+                             context.Extension.Equals(DiskImageFileExtensions.Edsk, StringComparison.OrdinalIgnoreCase));
 
     public async Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
     {

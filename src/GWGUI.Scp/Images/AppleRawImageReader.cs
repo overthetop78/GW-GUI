@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -18,7 +19,7 @@ internal static class AppleRawImageReader
 
     private static SectorImage ReadAppleTwo525(byte[] data, string extension)
     {
-        if (extension.Equals(".po", StringComparison.OrdinalIgnoreCase) ||
+        if (extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) ||
             AppleDiskImageSignatures.LooksLikeProDos(data))
             return AppleSectorImageFactory.CreateLinear(data, "apple2.prodos", 512, 35, 1, 8);
         if (AppleDiskImageSignatures.LooksLikeDos33(data))

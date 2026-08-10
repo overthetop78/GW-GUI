@@ -1,6 +1,7 @@
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.Images.Containers;
 using GWGUI.Scp.Images.Interpretations;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -22,7 +23,7 @@ public sealed class DiskImageExplorer(
         CancellationToken cancellationToken = default)
     {
         if (!File.Exists(path)) throw new FileNotFoundException("The disk image does not exist.", path);
-        if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase) && formatId is null)
+        if (Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) && formatId is null)
             return await scpExploration.ExploreAutomaticallyAsync(path, cancellationToken).ConfigureAwait(false);
 
         SectorImage image;

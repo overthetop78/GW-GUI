@@ -1,11 +1,12 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
 
 public sealed class MsaImageReader : ISectorImageReader
 {
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".msa", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

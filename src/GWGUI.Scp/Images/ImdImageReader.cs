@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -6,7 +7,7 @@ namespace GWGUI.Scp.Images;
 /// <summary>Reads Dave Dunfield ImageDisk (IMD) sector images.</summary>
 public sealed class ImdImageReader : ISectorImageReader
 {
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".imd", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Imd, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

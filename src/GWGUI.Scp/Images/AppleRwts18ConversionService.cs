@@ -1,5 +1,6 @@
 using GWGUI.Scp.Containers.Scp;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -13,11 +14,11 @@ public sealed class AppleRwts18ConversionService
 
     public static bool CanCreate(string formatId, string extension) =>
         formatId.Equals("apple2.rwts18", StringComparison.OrdinalIgnoreCase) &&
-        extension is ".nib" or ".woz";
+        extension is DiskImageFileExtensions.Nib or DiskImageFileExtensions.Woz;
 
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
-        SectorImage image = Path.GetExtension(sourcePath).Equals(".scp", StringComparison.OrdinalIgnoreCase)
+        SectorImage image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
             ? await _scpReader.ReadAsync(sourcePath, "apple2.rwts18", cancellationToken).ConfigureAwait(false)
             : await _appleReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         await _writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);

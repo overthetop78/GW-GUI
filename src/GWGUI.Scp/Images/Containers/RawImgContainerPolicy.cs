@@ -1,5 +1,6 @@
 using GWGUI.Scp.FileSystems.Readers;
 using GWGUI.Scp.Images.Interpretations;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images.Containers;
@@ -7,7 +8,7 @@ namespace GWGUI.Scp.Images.Containers;
 internal sealed class RawImgContainerPolicy : IDiskImageContainerPolicy
 {
     public ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
-        ValueTask.FromResult(context.Extension.Equals(".img", StringComparison.OrdinalIgnoreCase));
+        ValueTask.FromResult(context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase));
 
     public async Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
     {

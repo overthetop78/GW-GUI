@@ -1,11 +1,12 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
 
 public sealed class AtariStImageReader : ISectorImageReader
 {
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".st", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.St, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

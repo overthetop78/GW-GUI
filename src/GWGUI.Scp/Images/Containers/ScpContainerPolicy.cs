@@ -1,3 +1,4 @@
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images.Containers;
@@ -7,7 +8,7 @@ internal sealed class ScpContainerPolicy(
     IReadOnlySet<string> supportedFormatIds) : IDiskImageContainerPolicy
 {
     public ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
-        ValueTask.FromResult(context.Extension.Equals(".scp", StringComparison.OrdinalIgnoreCase));
+        ValueTask.FromResult(context.Extension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase));
 
     public Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
     {

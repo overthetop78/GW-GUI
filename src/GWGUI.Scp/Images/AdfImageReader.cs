@@ -1,3 +1,4 @@
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -9,7 +10,7 @@ public sealed class AdfImageReader : ISectorImageReader
     public const int DoubleDensityBytes = 901_120;
     public const int HighDensityBytes = 1_802_240;
 
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".adf", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Adf, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

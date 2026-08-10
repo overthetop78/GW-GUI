@@ -1,3 +1,4 @@
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -5,7 +6,7 @@ namespace GWGUI.Scp.Images;
 /// <summary>Reads ordinary (uppercase TD signature) TeleDisk images.</summary>
 public sealed class Td0ImageReader : ISectorImageReader
 {
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(".td0", StringComparison.OrdinalIgnoreCase);
+    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase);
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

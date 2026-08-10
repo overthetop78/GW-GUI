@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.Scp.Recognition.Definitions;
 using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Images;
@@ -20,8 +21,8 @@ public sealed class IbmPcImageReader : ISectorImageReader
     };
 
     public bool CanRead(string path) => Path.GetExtension(path) is var extension
-        && (extension.Equals(".img", StringComparison.OrdinalIgnoreCase)
-            || extension.Equals(".ima", StringComparison.OrdinalIgnoreCase));
+        && (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(DiskImageFileExtensions.Ima, StringComparison.OrdinalIgnoreCase));
 
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
