@@ -95,61 +95,63 @@
     - [x] Vérifier que chaque constante commence par un point et est en minuscules.
     - [x] Vérifier qu’aucune valeur d’extension n’est déclarée deux fois dans `DiskImageFileExtensions`.
     - [x] Exécuter les tests de reconnaissance et de lecture existants après remplacement des textes bruts.
-- [ ] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
+- [x] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.
     - [x] Faire produire des pistes sectorielles sans décider CPC ou PCW.
-  - [ ] Définitions du format CPCEMU DSK
-    - [ ] Créer `Containers/Amstrad/CpcDsk/CpcDskFormat.cs`.
-    - [ ] Déplacer la signature Standard `MV - CPC` dans une constante nommée de `CpcDskFormat`.
-    - [ ] Déplacer la signature Extended `EXTENDED CPC DSK File` dans une constante nommée de `CpcDskFormat`.
-    - [ ] Déplacer la signature de piste `Track-Info` dans une constante nommée de `CpcDskFormat`.
-    - [ ] Déplacer l’identifiant neutre `cpcemu.dsk` dans une constante publique nommée de `CpcDskFormat`.
-    - [ ] Remplacer dans `CpcDskReader` les signatures et l’identifiant écrits en texte brut par ces constantes.
-  - [ ] Description de la disposition binaire CPCEMU DSK
-    - [ ] Créer `Containers/Amstrad/CpcDsk/CpcDskLayout.cs`.
-    - [ ] Remplacer `HeaderSize` par deux constantes nommées distinguant la taille du bloc d’informations disque et celle du bloc d’informations de piste.
-    - [ ] Nommer la longueur de signature du bloc d’informations disque.
-    - [ ] Nommer les offsets du nombre de cylindres, du nombre de faces et de la taille de piste Standard.
-    - [ ] Nommer l’offset de la table des tailles de pistes Extended et l’unité de taille de ses entrées.
-    - [ ] Nommer les limites de cylindres et de faces acceptées par le conteneur.
-    - [ ] Nommer la longueur de signature d’une piste.
-    - [ ] Nommer les offsets du cylindre, de la face et du nombre de secteurs dans le bloc d’informations de piste.
-    - [ ] Nommer l’offset de la table des descripteurs de secteurs et la taille d’un descripteur.
-    - [ ] Nommer dans un descripteur les offsets du cylindre, de la face, de l’identifiant, du code de taille, des deux octets d’état et de la taille stockée.
-    - [ ] Nommer la taille sectorielle minimale, le masque du code de taille et le masque d’erreur d’intégrité.
-    - [ ] Remplacer dans `CpcDskReader` chaque valeur structurelle brute correspondante par la constante de `CpcDskLayout`.
-    - [ ] Laisser locaux les index de boucle, les valeurs booléennes et les bornes calculées qui ne constituent pas une définition du format.
-  - [ ] Construction des erreurs de validation CPCEMU DSK
-    - [ ] Créer `Containers/Amstrad/CpcDsk/CpcDskExceptions.cs`.
-    - [ ] Ajouter une méthode créant l’erreur d’en-tête tronqué.
-    - [ ] Ajouter une méthode créant l’erreur de signature CPCEMU non reconnue.
-    - [ ] Ajouter une méthode créant l’erreur de géométrie invalide.
-    - [ ] Ajouter une méthode créant l’erreur de table de pistes Extended invalide.
-    - [ ] Ajouter des méthodes recevant `trackIndex` pour les erreurs de piste tronquée, d’en-tête de piste invalide et de table de secteurs invalide.
-    - [ ] Ajouter une méthode recevant cylindre, face et identifiant pour l’erreur de secteur tronqué.
-    - [ ] Ajouter une méthode créant l’erreur d’image sans secteur.
-    - [ ] Déplacer tous les textes des `InvalidDataException` de `CpcDskReader` dans ces méthodes.
-    - [ ] Remplacer chaque construction directe d’`InvalidDataException` dans `CpcDskReader` par la méthode correspondante.
+  - [x] Définitions du format CPCEMU DSK
+    - [x] Créer `Containers/Amstrad/CpcDsk/CpcDskFormat.cs`.
+    - [x] Déplacer la signature Standard `MV - CPC` dans une constante nommée de `CpcDskFormat`.
+    - [x] Déplacer la signature Extended `EXTENDED CPC DSK File` dans une constante nommée de `CpcDskFormat`.
+    - [x] Déplacer la signature de piste `Track-Info` dans une constante nommée de `CpcDskFormat`.
+    - [x] Déplacer l’identifiant neutre `cpcemu.dsk` dans une constante publique nommée de `CpcDskFormat`.
+    - [x] Remplacer dans `CpcDskReader` les signatures et l’identifiant écrits en texte brut par ces constantes.
+  - [x] Description de la disposition binaire CPCEMU DSK
+    - [x] Créer `Containers/Amstrad/CpcDsk/CpcDskLayout.cs`.
+    - [x] Remplacer `HeaderSize` par deux constantes nommées distinguant la taille du bloc d’informations disque et celle du bloc d’informations de piste.
+    - [x] Nommer la longueur de signature du bloc d’informations disque.
+    - [x] Nommer l’offset et la longueur du champ créateur du bloc d’informations disque.
+    - [x] Nommer les offsets du nombre de cylindres, du nombre de faces et de la taille de piste Standard.
+    - [x] Nommer l’offset de la table des tailles de pistes Extended et l’unité de taille de ses entrées.
+    - [x] Nommer les limites de cylindres et de faces acceptées par le conteneur.
+    - [x] Nommer la longueur de signature d’une piste.
+    - [x] Nommer les offsets du cylindre, de la face et du nombre de secteurs dans le bloc d’informations de piste.
+    - [x] Nommer les offsets du code de taille par défaut, de GAP#3 et de l’octet de remplissage dans le bloc d’informations de piste.
+    - [x] Nommer l’offset de la table des descripteurs de secteurs et la taille d’un descripteur.
+    - [x] Nommer dans un descripteur les offsets du cylindre, de la face, de l’identifiant, du code de taille, des deux octets d’état et de la taille stockée.
+    - [x] Nommer la taille sectorielle minimale, le masque du code de taille et le masque d’erreur d’intégrité.
+    - [x] Remplacer dans `CpcDskReader` chaque valeur structurelle brute correspondante par la constante de `CpcDskLayout`.
+    - [x] Laisser locaux les index de boucle, les valeurs booléennes et les bornes calculées qui ne constituent pas une définition du format.
+  - [x] Construction des erreurs de validation CPCEMU DSK
+    - [x] Créer `Containers/Amstrad/CpcDsk/CpcDskExceptions.cs`.
+    - [x] Ajouter une méthode créant l’erreur d’en-tête tronqué.
+    - [x] Ajouter une méthode créant l’erreur de signature CPCEMU non reconnue.
+    - [x] Ajouter une méthode créant l’erreur de géométrie invalide.
+    - [x] Ajouter une méthode créant l’erreur de table de pistes Extended invalide.
+    - [x] Ajouter des méthodes recevant `trackIndex` pour les erreurs de piste tronquée, d’en-tête de piste invalide et de table de secteurs invalide.
+    - [x] Ajouter une méthode recevant cylindre, face et identifiant pour l’erreur de secteur tronqué.
+    - [x] Ajouter une méthode créant l’erreur d’image sans secteur.
+    - [x] Déplacer tous les textes des `InvalidDataException` de `CpcDskReader` dans ces méthodes.
+    - [x] Remplacer chaque construction directe d’`InvalidDataException` dans `CpcDskReader` par la méthode correspondante.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmstradDskImageReader`.
     - [x] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Documentation XML des nouvelles définitions
-    - [ ] Documenter en français `CpcDskFormat` et chacune de ses constantes.
-    - [ ] Documenter en français `CpcDskLayout` et chacune de ses constantes avec son unité et sa position de référence.
-    - [ ] Documenter en français `CpcDskExceptions` et chacune de ses méthodes avec ses paramètres et son résultat.
+  - [x] Documentation XML des nouvelles définitions
+    - [x] Documenter en français `CpcDskFormat` et chacune de ses constantes.
+    - [x] Documenter en français `CpcDskLayout` et chacune de ses constantes avec son unité et sa position de référence.
+    - [x] Documenter en français `CpcDskExceptions` et chacune de ses méthodes avec ses paramètres et son résultat.
   - [x] Tests déterministes
     - [x] Utiliser une image CPCEMU DSK Standard réelle de `image_test` avec géométrie, identifiants de secteurs et contenu connus.
     - [x] Ajouter sous `image_test/_generated/cpcdsk/` une image CPCEMU EDSK minimale avec tailles de secteurs variables et états d’intégrité connus.
     - [x] Créer `CpcDskReaderTests.cs` et vérifier la signature, la géométrie, les adresses, l’ordre, le contenu, l’intégrité et l’identifiant neutre `cpcemu.dsk` des deux images.
     - [x] Vérifier avec des copies tronquées ou corrompues des images locales que l’en-tête, la table des pistes, les descripteurs et les données incomplètes sont rejetés.
     - [x] Vérifier que ces tests exécutent réellement `CpcDskReader.ReadAsync` sans variable d’environnement ni retour anticipé.
-  - [ ] Tests des définitions et erreurs extraites
-    - [ ] Remplacer dans `CpcDskReaderTests` l’identifiant `cpcemu.dsk` écrit en brut par `CpcDskFormat.FormatId`.
-    - [ ] Construire les images CPCEMU générées avec les signatures et valeurs de disposition publiques utilisables sans recopier leurs valeurs.
-    - [ ] Vérifier qu’une erreur de piste contient l’index de la piste rejetée.
-    - [ ] Vérifier qu’une erreur de secteur contient le cylindre, la face et l’identifiant du secteur rejeté.
-    - [ ] Exécuter tous les tests de `CpcDskReaderTests` après extraction des définitions et erreurs.
+  - [x] Tests des définitions et erreurs extraites
+    - [x] Remplacer dans `CpcDskReaderTests` l’identifiant `cpcemu.dsk` écrit en brut par `CpcDskFormat.FormatId`.
+    - [x] Construire les images CPCEMU générées avec les signatures et valeurs de disposition publiques utilisables sans recopier leurs valeurs.
+    - [x] Vérifier qu’une erreur de piste contient l’index de la piste rejetée.
+    - [x] Vérifier qu’une erreur de secteur contient le cylindre, la face et l’identifiant du secteur rejeté.
+    - [x] Exécuter tous les tests de `CpcDskReaderTests` après extraction des définitions et erreurs.
 - [ ] `src/GWGUI.Scp/Images/AppleContainerImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.

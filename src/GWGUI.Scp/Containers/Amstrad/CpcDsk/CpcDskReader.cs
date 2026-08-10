@@ -10,11 +10,6 @@ namespace GWGUI.Scp.Containers.Amstrad.CpcDsk;
 public sealed class CpcDskReader
 {
     /// <summary>
-    /// Taille, en octets, de l'en-tête du conteneur et de chaque en-tête de piste CPCEMU DSK.
-    /// </summary>
-    private const int HeaderSize = 0x100;
-
-    /// <summary>
     /// Lit et valide un conteneur CPCEMU DSK standard ou étendu.
     /// </summary>
     /// <param name="path">Chemin du conteneur DSK à lire.</param>
@@ -35,22 +30,23 @@ public sealed class CpcDskReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        if (bytes.Length < HeaderSize) throw new InvalidDataException("The Amstrad DSK header is truncated.");
-        var signature = System.Text.Encoding.ASCII.GetString(bytes, 0, 34);
-        var extended = signature.StartsWith("EXTENDED CPC DSK File", StringComparison.Ordinal);
-        if (!extended && !signature.StartsWith("MV - CPC", StringComparison.Ordinal))
-            throw new InvalidDataException("The file is not a CPCEMU DSK image.");
+        if (bytes.Length < CpcDskLayout.DiskInformationBlockSize) throw CpcDskExceptions.TruncatedHeader();
+        var signature = System.Text.Encoding.ASCII.GetString(bytes, 0, CpcDskLayout.DiskSignatureLength);
+        var extended = signature.StartsWith(CpcDskFormat.ExtendedSignature, StringComparison.Ordinal);
+        if (!extended && !signature.StartsWith(CpcDskFormat.StandardSignature, StringComparison.Ordinal))
+            throw CpcDskExceptions.UnrecognizedSignature();
 
-        var cylinders = bytes[48];
-        var heads = bytes[49];
-        if (cylinders is 0 or > 168 || heads is 0 or > 2)
-            throw new InvalidDataException("The Amstrad DSK geometry is invalid.");
+        var cylinders = bytes[CpcDskLayout.CylinderCountOffset];
+        var heads = bytes[CpcDskLayout.HeadCountOffset];
+        if (cylinders is 0 or > CpcDskLayout.MaximumCylinderCount ||
+            heads is 0 or > CpcDskLayout.MaximumHeadCount)
+            throw CpcDskExceptions.InvalidGeometry();
         var trackCount = checked(cylinders * heads);
-        if (extended && 52 + trackCount > HeaderSize)
-            throw new InvalidDataException("The extended Amstrad DSK track table is invalid.");
+        if (extended && CpcDskLayout.ExtendedTrackSizeTableOffset + trackCount > CpcDskLayout.DiskInformationBlockSize)
+            throw CpcDskExceptions.InvalidExtendedTrackTable();
 
         var blocks = new List<SectorBlock>();
-        var position = HeaderSize;
+        var position = CpcDskLayout.DiskInformationBlockSize;
         var logicalBlock = 0;
         var dominantSize = 0;
         var maximumSectors = 0;
@@ -58,37 +54,48 @@ public sealed class CpcDskReader
         for (var trackIndex = 0; trackIndex < trackCount; trackIndex++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var trackSize = extended ? bytes[52 + trackIndex] * 256 : BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(50, 2));
+            var trackSize = extended
+                ? bytes[CpcDskLayout.ExtendedTrackSizeTableOffset + trackIndex] * CpcDskLayout.ExtendedTrackSizeUnit
+                : BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(
+                    CpcDskLayout.StandardTrackSizeOffset, CpcDskLayout.StoredSizeFieldLength));
             if (trackSize == 0) continue;
-            if (position + trackSize > bytes.Length || trackSize < HeaderSize)
-                throw new InvalidDataException($"Amstrad DSK track {trackIndex} is truncated.");
-            if (!System.Text.Encoding.ASCII.GetString(bytes, position, 12).StartsWith("Track-Info", StringComparison.Ordinal))
-                throw new InvalidDataException($"Amstrad DSK track {trackIndex} has an invalid header.");
+            if (position + trackSize > bytes.Length || trackSize < CpcDskLayout.TrackInformationBlockSize)
+                throw CpcDskExceptions.TruncatedTrack(trackIndex);
+            if (!System.Text.Encoding.ASCII.GetString(bytes, position, CpcDskLayout.TrackSignatureLength)
+                    .StartsWith(CpcDskFormat.TrackSignature, StringComparison.Ordinal))
+                throw CpcDskExceptions.InvalidTrackHeader(trackIndex);
 
-            var cylinder = bytes[position + 16];
-            var head = bytes[position + 17];
-            var sectorCount = bytes[position + 21];
+            var cylinder = bytes[position + CpcDskLayout.TrackCylinderOffset];
+            var head = bytes[position + CpcDskLayout.TrackHeadOffset];
+            var sectorCount = bytes[position + CpcDskLayout.TrackSectorCountOffset];
             maximumSectors = Math.Max(maximumSectors, sectorCount);
-            if (position + 24 + sectorCount * 8 > position + HeaderSize)
-                throw new InvalidDataException($"Amstrad DSK track {trackIndex} has an invalid sector table.");
-            var dataPosition = position + HeaderSize;
+            if (position + CpcDskLayout.SectorDescriptorTableOffset +
+                sectorCount * CpcDskLayout.SectorDescriptorSize >
+                position + CpcDskLayout.TrackInformationBlockSize)
+                throw CpcDskExceptions.InvalidSectorTable(trackIndex);
+            var dataPosition = position + CpcDskLayout.TrackInformationBlockSize;
             var trackSectors = new List<(int Cylinder, int Head, int Id, byte[] Data, bool Valid)>();
             for (var sectorIndex = 0; sectorIndex < sectorCount; sectorIndex++)
             {
-                var descriptor = position + 24 + sectorIndex * 8;
-                var sectorCylinder = bytes[descriptor];
-                var sectorHead = bytes[descriptor + 1];
-                var sectorId = bytes[descriptor + 2];
-                var sizeCode = bytes[descriptor + 3] & 7;
-                var nominalSize = 128 << sizeCode;
-                var storedSize = extended ? BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(descriptor + 6, 2)) : nominalSize;
+                var descriptor = position + CpcDskLayout.SectorDescriptorTableOffset +
+                                 sectorIndex * CpcDskLayout.SectorDescriptorSize;
+                var sectorCylinder = bytes[descriptor + CpcDskLayout.SectorCylinderOffset];
+                var sectorHead = bytes[descriptor + CpcDskLayout.SectorHeadOffset];
+                var sectorId = bytes[descriptor + CpcDskLayout.SectorIdOffset];
+                var sizeCode = bytes[descriptor + CpcDskLayout.SectorSizeCodeOffset] &
+                               CpcDskLayout.SectorSizeCodeMask;
+                var nominalSize = CpcDskLayout.MinimumSectorSize << sizeCode;
+                var storedSize = extended
+                    ? BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(
+                        descriptor + CpcDskLayout.SectorStoredSizeOffset, CpcDskLayout.StoredSizeFieldLength))
+                    : nominalSize;
                 if (storedSize == 0) storedSize = nominalSize;
                 if (dataPosition + storedSize > position + trackSize)
-                    throw new InvalidDataException($"Amstrad DSK sector {cylinder}:{head}:{sectorId} is truncated.");
+                    throw CpcDskExceptions.TruncatedSector(cylinder, head, sectorId);
                 var data = bytes.AsSpan(dataPosition, Math.Min(nominalSize, storedSize)).ToArray();
-                var status1 = bytes[descriptor + 4];
-                var status2 = bytes[descriptor + 5];
-                var crcValid = (status1 & 0x20) == 0;
+                var status1 = bytes[descriptor + CpcDskLayout.SectorStatus1Offset];
+                var status2 = bytes[descriptor + CpcDskLayout.SectorStatus2Offset];
+                var crcValid = (status1 & CpcDskLayout.DataErrorMask) == 0;
                 trackSectors.Add((sectorCylinder, sectorHead, sectorId, data, crcValid));
                 sectorSizes[nominalSize] = sectorSizes.GetValueOrDefault(nominalSize) + 1;
                 dataPosition += storedSize;
@@ -97,9 +104,9 @@ public sealed class CpcDskReader
                 blocks.Add(new(logicalBlock++, new(sector.Cylinder, sector.Head, sector.Id), sector.Data, sector.Valid));
             position += trackSize;
         }
-        if (blocks.Count == 0) throw new InvalidDataException("The Amstrad DSK image contains no sectors.");
+        if (blocks.Count == 0) throw CpcDskExceptions.NoSectors();
         dominantSize = sectorSizes.OrderByDescending(item => item.Value).First().Key;
-        return new("cpcemu.dsk", dominantSize, cylinders, heads, Math.Max(1, maximumSectors), blocks,
+        return new(CpcDskFormat.FormatId, dominantSize, cylinders, heads, Math.Max(1, maximumSectors), blocks,
             allowVariableBlockSize: sectorSizes.Count > 1, capacity: blocks.Sum(block => (long)block.Data.Count), logicalBlockCount: blocks.Count);
     }
 }
