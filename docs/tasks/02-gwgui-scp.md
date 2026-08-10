@@ -43,16 +43,16 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpFlags, ScpHeader, ScpRevolution, ScpTrack, ScpImage`.
     - [x] Ajouter la documentation XML des méthodes `ScpHeader, ScpRevolution, DurationMilliseconds, Rpm, ScpTrack, ScpImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.Scp/ScpReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Containers/Scp/ScpReader.cs`.
-    - [ ] Créer `Containers/Scp/ScpHeaderReader.cs`.
-    - [ ] Déplacer `ScpHeaderReader` dans le nouveau fichier.
-    - [ ] Retirer `ScpHeaderReader` de `ScpReader.cs`.
-    - [ ] Adapter les namespaces de ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ScpReader, ScpHeaderReader`.
-    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, ReadFileAsync, FileIdentity, Read, ReadHeader, ReadTrack, ComputeChecksum, Require`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.Scp/ScpReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Containers/Scp/ScpReader.cs`.
+    - [x] Créer `Containers/Scp/ScpHeaderReader.cs`.
+    - [x] Déplacer `ScpHeaderReader` dans le nouveau fichier.
+    - [x] Retirer `ScpHeaderReader` de `ScpReader.cs`.
+    - [x] Adapter les namespaces de ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `ScpReader, ScpHeaderReader`.
+    - [x] Ajouter la documentation XML des méthodes `ReadAsync, ReadFileAsync, FileIdentity, Read, ReadHeader, ReadTrack, ComputeChecksum, Require`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
 ## 2. Conteneurs et reconnaissance des fichiers
 
