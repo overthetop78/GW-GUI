@@ -152,59 +152,59 @@
     - [x] Vérifier qu’une erreur de piste contient l’index de la piste rejetée.
     - [x] Vérifier qu’une erreur de secteur contient le cylindre, la face et l’identifiant du secteur rejeté.
     - [x] Exécuter tous les tests de `CpcDskReaderTests` après extraction des définitions et erreurs.
-- [ ] `src/GWGUI.Scp/Images/AppleContainerImageReader.cs`
+- [x] `src/GWGUI.Scp/Images/AppleContainerImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.
     - [x] Créer `Containers/Apple/DiskCopy/DiskCopyReader.cs` et y déplacer le parsing DiskCopy.
     - [x] Supprimer `AppleContainerImageReader.cs` après raccordement.
-  - [ ] Définitions du format 2IMG
-    - [ ] Créer `Containers/Apple/TwoImg/TwoImgFormat.cs`.
-    - [ ] Déplacer la signature `2IMG` dans une constante nommée de `TwoImgFormat`.
-    - [ ] Créer l’enum `TwoImgImageFormat` avec les valeurs fermées DOS, ProDOS et NIB définies par 2IMG.
-    - [ ] Créer `Containers/Apple/TwoImg/TwoImgLayout.cs`.
-    - [ ] Nommer la taille minimale de l’en-tête et les offsets de sa taille, de sa version, du format d’image, de l’offset des données et de leur longueur.
-    - [ ] Remplacer dans `TwoImgReader` chaque offset, taille et valeur de format brute par `TwoImgLayout` ou `TwoImgImageFormat`.
-    - [ ] Remplacer les extensions DOS et ProDOS écrites en brut par les constantes communes de `DiskImageFileExtensions`.
-    - [ ] Faire valider par `TwoImgReader` la signature et la version du conteneur avant d’utiliser ses champs.
-  - [ ] Erreurs de validation 2IMG
-    - [ ] Créer `Containers/Apple/TwoImg/TwoImgExceptions.cs`.
-    - [ ] Ajouter les méthodes construisant les erreurs de signature, de version, d’en-tête tronqué et de plage de données invalide.
-    - [ ] Ajouter une méthode recevant `TwoImgImageFormat` pour construire l’erreur de format d’image non pris en charge.
-    - [ ] Remplacer dans `TwoImgReader` les textes et constructions directes d’exceptions par ces méthodes.
-  - [ ] Définitions du format DiskCopy
-    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyFormat.cs` pour les marqueurs et propriétés propres au conteneur.
-    - [ ] Déplacer le marqueur `PREBOOT` dans une constante binaire nommée de `DiskCopyFormat`.
-    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyLayout.cs`.
-    - [ ] Nommer la taille de l’en-tête et les offsets des longueurs de données et de tags.
-    - [ ] Nommer les offsets des checksums de données et de tags afin de permettre leur validation.
-    - [ ] Nommer la taille d’un bloc de données et la taille du tag associé.
-    - [ ] Remplacer dans `DiskCopyReader` les tailles, offsets et multiplicateurs bruts correspondants par `DiskCopyLayout`.
-    - [ ] Remplacer l’extension `.image` écrite en brut par la constante commune de `DiskImageFileExtensions`.
-    - [ ] Remplacer les identifiants `applelisa.macworks` et `applelisa.office` par leurs constantes communes de format.
-  - [ ] Géométries utilisées par DiskCopy
-    - [ ] Déplacer vers `AppleDiskGeometry` le nombre de blocs d’une image Lisa FileWare.
-    - [ ] Déplacer vers `AppleDiskGeometry` le nombre de blocs d’une image Macintosh 400 Kio.
-    - [ ] Nommer dans `AppleDiskGeometry` les nombres de cylindres, faces et secteurs maximaux associés à ces géométries.
-    - [ ] Remplacer dans `DiskCopyReader` les valeurs `1702`, `800`, `46`, `80`, `22`, `12` et `10` par les définitions géométriques correspondantes.
-    - [ ] Conserver dans `DiskCopyReader` uniquement les calculs de position qui dépendent de la charge utile courante.
-  - [ ] Erreurs et validations DiskCopy
-    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyExceptions.cs`.
-    - [ ] Ajouter les méthodes construisant les erreurs d’en-tête tronqué, de charge utile invalide et de combinaison données/tags non reconnue.
-    - [ ] Remplacer dans `DiskCopyReader` les textes et constructions directes d’`InvalidDataException` par ces méthodes.
-    - [ ] Extraire le calcul du checksum DiskCopy dans une fonction nommée et réutilisable par les données et les tags.
-    - [ ] Valider le checksum des données lorsqu’il est présent dans l’en-tête.
-    - [ ] Valider le checksum des tags lorsqu’ils sont présents dans l’en-tête.
-    - [ ] Ajouter des méthodes d’erreur distinctes pour les checksums de données et de tags invalides.
-  - [ ] Documentation XML
-    - [ ] Ajouter en français la documentation XML de `TwoImgReader`, de ses méthodes et des validations 2IMG.
-    - [ ] Documenter en français `TwoImgFormat`, `TwoImgImageFormat`, `TwoImgLayout`, `TwoImgExceptions` et chacun de leurs membres.
-    - [ ] Ajouter en français la documentation XML de `DiskCopyReader`, de ses méthodes et des validations DiskCopy.
-    - [ ] Documenter en français `DiskCopyFormat`, `DiskCopyLayout`, `DiskCopyExceptions` et chacun de leurs membres.
-  - [ ] Tests déterministes
-    - [ ] Ajouter sous `tests/GWGUI.Tests/TestImages/Apple/Containers/` une image 2IMG sectorielle, une image 2IMG nibblisée et une image DiskCopy avec tags dont les charges utiles sont connues.
-    - [ ] Créer des tests locaux de `TwoImgReader` vérifiant signature, version, format d’image, offset, longueur, ordre DOS/ProDOS et extraction de la charge utile.
-    - [ ] Créer des tests locaux de `DiskCopyReader` vérifiant en-tête, tailles, données, tags et sommes de contrôle.
-    - [ ] Vérifier le rejet des signatures, versions, offsets, longueurs, sommes de contrôle et fichiers tronqués invalides à partir de copies modifiées des images locales.
+  - [x] Définitions du format 2IMG
+    - [x] Créer `Containers/Apple/TwoImg/TwoImgFormat.cs`.
+    - [x] Déplacer la signature `2IMG` dans une constante nommée de `TwoImgFormat`.
+    - [x] Créer l’enum `TwoImgImageFormat` avec les valeurs fermées DOS, ProDOS et NIB définies par 2IMG.
+    - [x] Créer `Containers/Apple/TwoImg/TwoImgLayout.cs`.
+    - [x] Nommer la taille minimale de l’en-tête et les offsets de sa taille, de sa version, du format d’image, de l’offset des données et de leur longueur.
+    - [x] Remplacer dans `TwoImgReader` chaque offset, taille et valeur de format brute par `TwoImgLayout` ou `TwoImgImageFormat`.
+    - [x] Remplacer les extensions DOS et ProDOS écrites en brut par les constantes communes de `DiskImageFileExtensions`.
+    - [x] Faire valider par `TwoImgReader` la signature et la version du conteneur avant d’utiliser ses champs.
+  - [x] Erreurs de validation 2IMG
+    - [x] Créer `Containers/Apple/TwoImg/TwoImgExceptions.cs`.
+    - [x] Ajouter les méthodes construisant les erreurs de signature, de version, d’en-tête tronqué et de plage de données invalide.
+    - [x] Ajouter une méthode recevant `TwoImgImageFormat` pour construire l’erreur de format d’image non pris en charge.
+    - [x] Remplacer dans `TwoImgReader` les textes et constructions directes d’exceptions par ces méthodes.
+  - [x] Définitions du format DiskCopy
+    - [x] Créer `Containers/Apple/DiskCopy/DiskCopyFormat.cs` pour les marqueurs et propriétés propres au conteneur.
+    - [x] Déplacer le marqueur `PREBOOT` dans une constante binaire nommée de `DiskCopyFormat`.
+    - [x] Créer `Containers/Apple/DiskCopy/DiskCopyLayout.cs`.
+    - [x] Nommer la taille de l’en-tête et les offsets des longueurs de données et de tags.
+    - [x] Nommer les offsets des checksums de données et de tags afin de permettre leur validation.
+    - [x] Nommer la taille d’un bloc de données et la taille du tag associé.
+    - [x] Remplacer dans `DiskCopyReader` les tailles, offsets et multiplicateurs bruts correspondants par `DiskCopyLayout`.
+    - [x] Remplacer l’extension `.image` écrite en brut par la constante commune de `DiskImageFileExtensions`.
+    - [x] Remplacer les identifiants `applelisa.macworks` et `applelisa.office` par leurs constantes communes de format.
+  - [x] Géométries utilisées par DiskCopy
+    - [x] Déplacer vers `AppleDiskGeometry` le nombre de blocs d’une image Lisa FileWare.
+    - [x] Déplacer vers `AppleDiskGeometry` le nombre de blocs d’une image Macintosh 400 Kio.
+    - [x] Nommer dans `AppleDiskGeometry` les nombres de cylindres, faces et secteurs maximaux associés à ces géométries.
+    - [x] Remplacer dans `DiskCopyReader` les valeurs `1702`, `800`, `46`, `80`, `22`, `12` et `10` par les définitions géométriques correspondantes.
+    - [x] Conserver dans `DiskCopyReader` uniquement les calculs de position qui dépendent de la charge utile courante.
+  - [x] Erreurs et validations DiskCopy
+    - [x] Créer `Containers/Apple/DiskCopy/DiskCopyExceptions.cs`.
+    - [x] Ajouter les méthodes construisant les erreurs d’en-tête tronqué, de charge utile invalide et de combinaison données/tags non reconnue.
+    - [x] Remplacer dans `DiskCopyReader` les textes et constructions directes d’`InvalidDataException` par ces méthodes.
+    - [x] Extraire le calcul du checksum DiskCopy dans une fonction nommée et réutilisable par les données et les tags.
+    - [x] Valider le checksum des données lorsqu’il est présent dans l’en-tête.
+    - [x] Valider le checksum des tags lorsqu’ils sont présents dans l’en-tête.
+    - [x] Ajouter des méthodes d’erreur distinctes pour les checksums de données et de tags invalides.
+  - [x] Documentation XML
+    - [x] Ajouter en français la documentation XML de `TwoImgReader`, de ses méthodes et des validations 2IMG.
+    - [x] Documenter en français `TwoImgFormat`, `TwoImgImageFormat`, `TwoImgLayout`, `TwoImgExceptions` et chacun de leurs membres.
+    - [x] Ajouter en français la documentation XML de `DiskCopyReader`, de ses méthodes et des validations DiskCopy.
+    - [x] Documenter en français `DiskCopyFormat`, `DiskCopyLayout`, `DiskCopyExceptions` et chacun de leurs membres.
+  - [x] Tests déterministes
+    - [x] Utiliser dans `image_test` une image 2IMG sectorielle, une image 2IMG nibblisée et une image DiskCopy avec tags dont les charges utiles sont connues, sans les ajouter à Git.
+    - [x] Créer des tests locaux de `TwoImgReader` vérifiant signature, version, format d’image, offset, longueur, ordre DOS/ProDOS et extraction de la charge utile.
+    - [x] Créer des tests locaux de `DiskCopyReader` vérifiant en-tête, tailles, données, tags et sommes de contrôle.
+    - [x] Vérifier le rejet des signatures, versions, offsets, longueurs, sommes de contrôle et fichiers tronqués invalides à partir de copies modifiées des images locales.
 - [ ] `src/GWGUI.Scp/Images/AppleNibbleImageDecoder.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Containers/Apple/Woz/WozReader.cs` et y déplacer le parsing WOZ1/WOZ2.

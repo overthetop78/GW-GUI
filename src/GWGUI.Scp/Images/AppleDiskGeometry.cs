@@ -4,15 +4,27 @@ namespace GWGUI.Scp.Images;
 
 internal static class AppleDiskGeometry
 {
+    public const int LisaFileWareBlockCount = 1702;
+    public const int LisaFileWareCylinderCount = 46;
+    public const int LisaFileWareHeadCount = 2;
+    public const int LisaFileWareMaximumSectorsPerTrack = 22;
+    public const int Macintosh400KBlockCount = 800;
+    public const int MacintoshCylinderCount = 80;
+    public const int Macintosh400KHeadCount = 1;
+    public const int MacintoshMaximumSectorsPerTrack = 12;
+    public const int GenericTaggedImageHeadCount = 1;
+    public const int GenericTaggedImageSectorsPerTrack = 10;
+    public const int MinimumCylinderCount = 1;
+
     public static readonly int[] ProDosToPhysical = [0, 2, 4, 6, 8, 10, 12, 14, 1, 3, 5, 7, 9, 11, 13, 15];
     public static readonly int[] PhysicalToDos = [0, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 15];
 
     public static SectorAddress LisaFileWareAddress(int logicalBlock)
     {
-        const int sectorsPerSide = 851;
+        const int sectorsPerSide = LisaFileWareBlockCount / LisaFileWareHeadCount;
         var head = logicalBlock / sectorsPerSide;
         var remaining = logicalBlock % sectorsPerSide;
-        for (var cylinder = 0; cylinder < 46; cylinder++)
+        for (var cylinder = 0; cylinder < LisaFileWareCylinderCount; cylinder++)
         {
             var count = LisaFileWareSectors(cylinder);
             if (remaining < count) return new(cylinder, head, remaining);
@@ -23,7 +35,7 @@ internal static class AppleDiskGeometry
 
     public static int LisaFileWareSectors(int cylinder) => cylinder switch
     {
-        < 4 => 22,
+        < 4 => LisaFileWareMaximumSectorsPerTrack,
         < 11 => 21,
         < 17 => 20,
         < 23 => 19,
@@ -37,7 +49,7 @@ internal static class AppleDiskGeometry
     public static SectorAddress AppleMacZonedAddress(int logicalBlock, int heads)
     {
         var remaining = logicalBlock;
-        for (var cylinder = 0; cylinder < 80; cylinder++)
+        for (var cylinder = 0; cylinder < MacintoshCylinderCount; cylinder++)
         {
             var sectors = AppleMacSectors(cylinder);
             var perCylinder = sectors * heads;
@@ -49,11 +61,11 @@ internal static class AppleDiskGeometry
 
     public static int AppleMacSectors(int cylinder) => cylinder switch
     {
-        < 16 => 12,
+        < 16 => MacintoshMaximumSectorsPerTrack,
         < 32 => 11,
         < 48 => 10,
         < 64 => 9,
-        < 80 => 8,
+        < MacintoshCylinderCount => 8,
         _ => throw new ArgumentOutOfRangeException(nameof(cylinder))
     };
 

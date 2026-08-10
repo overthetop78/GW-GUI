@@ -5,47 +5,141 @@ using GWGUI.Scp.SectorImages;
 
 namespace GWGUI.Scp.Containers.Apple.DiskCopy;
 
+/// <summary>
+/// Lit un conteneur Apple DiskCopy 4.2, valide ses plages et checksums, puis reconstruit son image sectorielle.
+/// </summary>
 internal static class DiskCopyReader
 {
+    /// <summary>
+    /// Extrait les données et tags d’un conteneur DiskCopy, vérifie leur intégrité et détermine leur géométrie Apple.
+    /// </summary>
+    /// <param name="container">Octets complets du conteneur DiskCopy, en-tête inclus.</param>
+    /// <returns>L’image sectorielle reconstruite, avec les tags associés lorsqu’ils sont présents.</returns>
+    /// <exception cref="InvalidDataException">
+    /// L’en-tête ou la charge utile est invalide, un checksum présent ne correspond pas aux données,
+    /// ou la combinaison des données et tags n’est pas reconnue.
+    /// </exception>
+    /// <exception cref="OverflowException">
+    /// Une longueur 32 bits déclarée par l’en-tête ne peut pas être représentée par un entier signé.
+    /// </exception>
     public static SectorImage Read(byte[] container)
     {
-        const int headerLength = 84;
-        if (container.Length < headerLength)
-            throw new InvalidDataException("The DiskCopy header is truncated.");
-        var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(container.AsSpan(64)));
-        var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(container.AsSpan(68)));
-        if (dataLength <= 0 || headerLength + (long)dataLength + tagLength > container.Length)
-            throw new InvalidDataException("The DiskCopy payload is invalid.");
-        var payload = container.AsSpan(headerLength, dataLength).ToArray();
+        if (container.Length < DiskCopyLayout.HeaderSize)
+            throw DiskCopyExceptions.TruncatedHeader();
+        var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(
+            container.AsSpan(DiskCopyLayout.DataLengthOffset)));
+        var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(
+            container.AsSpan(DiskCopyLayout.TagLengthOffset)));
+        if (dataLength <= 0 || DiskCopyLayout.HeaderSize + (long)dataLength + tagLength > container.Length)
+            throw DiskCopyExceptions.InvalidPayload();
+
+        var payload = container.AsSpan(DiskCopyLayout.HeaderSize, dataLength).ToArray();
+        var tags = container.AsSpan(DiskCopyLayout.HeaderSize + dataLength, tagLength);
+        ValidateChecksums(container, payload, tags);
+
         if (AppleDiskImageSignatures.LooksLikeMac(payload) ||
             AppleDiskImageSignatures.LooksLikeProDos(payload))
             return AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image);
 
-        if (tagLength != dataLength / 512 * 12)
-            throw new InvalidDataException(
-                "The DiskCopy image is neither a recognized Macintosh/ProDOS image nor a tagged Lisa image.");
+        if (tagLength != dataLength / DiskCopyLayout.DataBlockSize * DiskCopyLayout.TagSizePerBlock)
+            throw DiskCopyExceptions.UnrecognizedDataAndTags();
 
-        var tags = container.AsSpan(headerLength + dataLength, tagLength);
-        var blocks = new SectorBlock[dataLength / 512];
+        var blocks = new SectorBlock[dataLength / DiskCopyLayout.DataBlockSize];
         for (var logical = 0; logical < blocks.Length; logical++)
         {
-            var address = blocks.Length == 1702
+            var address = blocks.Length == AppleDiskGeometry.LisaFileWareBlockCount
                 ? AppleDiskGeometry.LisaFileWareAddress(logical)
-                : blocks.Length == 800
-                    ? AppleDiskGeometry.AppleMacZonedAddress(logical, 1)
-                    : new SectorAddress(logical / 10, 0, logical % 10);
+                : blocks.Length == AppleDiskGeometry.Macintosh400KBlockCount
+                    ? AppleDiskGeometry.AppleMacZonedAddress(logical, AppleDiskGeometry.Macintosh400KHeadCount)
+                    : new SectorAddress(
+                        logical / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack,
+                        0,
+                        logical % AppleDiskGeometry.GenericTaggedImageSectorsPerTrack);
             blocks[logical] = new(logical, address,
-                payload.AsSpan(logical * 512, 512).ToArray(),
-                Tag: tags.Slice(logical * 12, 12).ToArray());
+                payload.AsSpan(logical * DiskCopyLayout.DataBlockSize, DiskCopyLayout.DataBlockSize).ToArray(),
+                Tag: tags.Slice(logical * DiskCopyLayout.TagSizePerBlock, DiskCopyLayout.TagSizePerBlock).ToArray());
         }
-        var formatId = payload.Length >= 2 * 512 + 16 &&
-                       payload.AsSpan(2 * 512, 16).IndexOf("PREBOOT"u8) >= 0
-            ? "applelisa.macworks"
-            : "applelisa.office";
-        var fileWare = blocks.Length == 1702;
-        return new(formatId, 512,
-            fileWare ? 46 : blocks.Length == 800 ? 80 : Math.Max(1, blocks.Length / 10),
-            fileWare ? 2 : 1, fileWare ? 22 : blocks.Length == 800 ? 12 : 10, blocks,
+        var prebootSearchOffset = DiskCopyLayout.PrebootSearchBlockIndex * DiskCopyLayout.DataBlockSize;
+        var formatId = payload.Length >= prebootSearchOffset + DiskCopyLayout.PrebootSearchLength &&
+                       payload.AsSpan(prebootSearchOffset, DiskCopyLayout.PrebootSearchLength)
+                           .IndexOf(DiskCopyFormat.PrebootMarker) >= 0
+            ? DiskImageFormatIds.AppleLisaMacWorks
+            : DiskImageFormatIds.AppleLisaOffice;
+        var fileWare = blocks.Length == AppleDiskGeometry.LisaFileWareBlockCount;
+        return new(formatId, DiskCopyLayout.DataBlockSize,
+            fileWare
+                ? AppleDiskGeometry.LisaFileWareCylinderCount
+                : blocks.Length == AppleDiskGeometry.Macintosh400KBlockCount
+                    ? AppleDiskGeometry.MacintoshCylinderCount
+                    : Math.Max(
+                        AppleDiskGeometry.MinimumCylinderCount,
+                        blocks.Length / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack),
+            fileWare ? AppleDiskGeometry.LisaFileWareHeadCount : AppleDiskGeometry.GenericTaggedImageHeadCount,
+            fileWare
+                ? AppleDiskGeometry.LisaFileWareMaximumSectorsPerTrack
+                : blocks.Length == AppleDiskGeometry.Macintosh400KBlockCount
+                    ? AppleDiskGeometry.MacintoshMaximumSectorsPerTrack
+                    : AppleDiskGeometry.GenericTaggedImageSectorsPerTrack,
+            blocks,
             capacity: dataLength, logicalBlockCount: blocks.Length);
+    }
+
+    /// <summary>
+    /// Compare les checksums non nuls de l’en-tête avec ceux des données et des tags extraits.
+    /// Le premier tag DiskCopy est exclu du calcul du checksum des tags conformément au format.
+    /// </summary>
+    /// <param name="container">Conteneur contenant les checksums stockés dans son en-tête.</param>
+    /// <param name="payload">Données sectorielles dont le checksum doit être vérifié.</param>
+    /// <param name="tags">Tags sectoriels dont le checksum doit être vérifié.</param>
+    /// <exception cref="InvalidDataException">Un checksum présent est invalide ou sa plage de tags est incomplète.</exception>
+    private static void ValidateChecksums(
+        ReadOnlySpan<byte> container,
+        ReadOnlySpan<byte> payload,
+        ReadOnlySpan<byte> tags)
+    {
+        var storedDataChecksum = BinaryPrimitives.ReadUInt32BigEndian(
+            container.Slice(DiskCopyLayout.DataChecksumOffset));
+        if (storedDataChecksum != DiskCopyFormat.MissingChecksum)
+        {
+            var calculatedDataChecksum = CalculateChecksum(payload);
+            if (storedDataChecksum != calculatedDataChecksum)
+                throw DiskCopyExceptions.InvalidDataChecksum(storedDataChecksum, calculatedDataChecksum);
+        }
+
+        var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(
+            container.Slice(DiskCopyLayout.TagChecksumOffset));
+        if (storedTagChecksum == DiskCopyFormat.MissingChecksum)
+            return;
+        if (tags.Length < DiskCopyLayout.TagChecksumExcludedPrefixSize)
+            throw DiskCopyExceptions.InvalidTagChecksum(storedTagChecksum, DiskCopyFormat.MissingChecksum);
+
+        var calculatedTagChecksum = CalculateChecksum(tags[DiskCopyLayout.TagChecksumExcludedPrefixSize..]);
+        if (storedTagChecksum != calculatedTagChecksum)
+            throw DiskCopyExceptions.InvalidTagChecksum(storedTagChecksum, calculatedTagChecksum);
+    }
+
+    /// <summary>
+    /// Calcule le checksum DiskCopy en additionnant chaque mot 16 bits big-endian,
+    /// puis en effectuant une rotation circulaire d’un bit vers la droite après chaque addition.
+    /// </summary>
+    /// <param name="data">Séquence de longueur paire sur laquelle calculer le checksum.</param>
+    /// <returns>Checksum DiskCopy 32 bits de la séquence.</returns>
+    /// <exception cref="ArgumentException">La séquence contient un nombre impair d’octets.</exception>
+    internal static uint CalculateChecksum(ReadOnlySpan<byte> data)
+    {
+        const int wordSize = sizeof(ushort);
+        const int rotation = 1;
+        if (data.Length % wordSize != 0)
+            throw DiskCopyExceptions.InvalidChecksumByteCount(data.Length, nameof(data));
+
+        uint checksum = 0;
+        for (var offset = 0; offset < data.Length; offset += wordSize)
+        {
+            var word = BinaryPrimitives.ReadUInt16BigEndian(data[offset..]);
+            checksum = unchecked(checksum + word);
+            checksum = checksum >> rotation | checksum << (sizeof(uint) * 8 - rotation);
+        }
+
+        return checksum;
     }
 }
