@@ -11,6 +11,7 @@ using GWGUI.Domain.Settings;
 using GWGUI.Domain.Write;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Services;

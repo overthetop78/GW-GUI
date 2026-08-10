@@ -168,12 +168,12 @@
     - [x] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.
     - [x] Documenter en français le record, chaque paramètre et chaque propriété.
     - [x] Tester la protection de la collection et la conservation du numéro de piste, du cylindre et de la face.
-  - [ ] `Containers/Scp/ScpImage.cs`
-    - [ ] Adapter le namespace de `ScpImage` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
-    - [ ] Copier ou figer `Tracks` à la construction afin que la collection source ne puisse plus modifier l'image.
-    - [ ] Rejeter une taille de fichier négative à la construction.
-    - [ ] Documenter en français le record, chaque paramètre et chaque propriété.
-    - [ ] Tester la protection de la collection, le checksum valide ou invalide et le rejet d'une taille négative.
+  - [x] `Containers/Scp/ScpImage.cs`
+    - [x] Adapter le namespace de `ScpImage` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [x] Copier ou figer `Tracks` à la construction afin que la collection source ne puisse plus modifier l'image.
+    - [x] Rejeter une taille de fichier négative à la construction.
+    - [x] Documenter en français le record, chaque paramètre et chaque propriété.
+    - [x] Tester la protection de la collection, le checksum valide ou invalide et le rejet d'une taille négative.
   - [ ] `Containers/Scp/ScpReader.cs`
     - [ ] Créer `Containers/Scp/ScpFileCache.cs` pour isoler l'identité de fichier, le cache et son invalidation du parsing SCP.
     - [ ] Conserver dans `ScpReader` l'orchestration de lecture et le parsing de l'en-tête et des pistes.

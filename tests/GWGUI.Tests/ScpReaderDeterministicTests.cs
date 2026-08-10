@@ -171,6 +171,33 @@ public sealed class ScpReaderDeterministicTests
         Assert.Same(first, Assert.Single(track.Revolutions));
     }
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void ProtectsScpImageTracksAndPreservesChecksumState(bool checksumValid)
+    {
+        var header = ScpReader.ReadHeader(CreateValidHeader());
+        var first = new ScpTrack(0, 0, 0, []);
+        var source = new List<ScpTrack> { first };
+        var image = new ScpImage(header, source, checksumValid, 1024);
+
+        source[0] = new ScpTrack(1, 0, 1, []);
+        source.Clear();
+
+        Assert.Same(header, image.Header);
+        Assert.Same(first, Assert.Single(image.Tracks));
+        Assert.Equal(checksumValid, image.ChecksumValid);
+        Assert.Equal(1024, image.FileSize);
+    }
+
+    [Fact]
+    public void RejectsNegativeScpImageFileSize()
+    {
+        var header = ScpReader.ReadHeader(CreateValidHeader());
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => new ScpImage(header, [], true, -1));
+    }
+
     [Fact]
     public async Task ReadsTwoTracksTwoRevolutionsAndFluxOverflow()
     {
