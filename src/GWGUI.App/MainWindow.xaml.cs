@@ -19,6 +19,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.HostTools;
 using GWGUI.Scp;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Exploration;
 using GWGUI.Scp.Images;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;

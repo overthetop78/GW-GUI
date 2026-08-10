@@ -17,17 +17,17 @@
     - [x] Adapter le namespace dans `ScpReader`, les reconstructeurs, `ScpDocumentLoader.cs` et les doubles de tests.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IScpReader`.
-- [ ] `src/GWGUI.Scp/ScpCaptureInfo.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `Exploration/ScpCaptureInfo.cs`.
-    - [ ] Déplacer le record `ScpCaptureInfo` dans le nouveau fichier.
-    - [ ] Créer `Exploration/ScpCaptureInfoReader.cs`.
-    - [ ] Déplacer `ScpCaptureInfoReader` dans le nouveau fichier.
-    - [ ] Adapter `MainWindow.xaml.cs` et les tests.
-    - [ ] Supprimer le fichier racine d’origine.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ScpCaptureInfo, ScpCaptureInfoReader`.
-    - [ ] Ajouter la documentation XML des méthodes `ScpCaptureInfo, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.Scp/ScpCaptureInfo.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `Exploration/ScpCaptureInfo.cs`.
+    - [x] Déplacer le record `ScpCaptureInfo` dans le nouveau fichier.
+    - [x] Créer `Exploration/ScpCaptureInfoReader.cs`.
+    - [x] Déplacer `ScpCaptureInfoReader` dans le nouveau fichier.
+    - [x] Adapter `MainWindow.xaml.cs` et les tests.
+    - [x] Supprimer le fichier racine d’origine.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `ScpCaptureInfo, ScpCaptureInfoReader`.
+    - [x] Ajouter la documentation XML des méthodes `ScpCaptureInfo, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.Scp/ScpFormatConstants.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Containers/Scp/ScpFormatConstants.cs`.

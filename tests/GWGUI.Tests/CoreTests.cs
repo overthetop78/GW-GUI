@@ -11,6 +11,7 @@ using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Exploration;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Hardware;

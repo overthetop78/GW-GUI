@@ -1,18 +1,28 @@
 using System.Buffers.Binary;
 
-namespace GWGUI.Scp;
+namespace GWGUI.Scp.Exploration;
 
-public sealed record ScpCaptureInfo(
-    ScpHeader Header,
-    int CapturedTracks,
-    int MissingTracks,
-    int Cylinders,
-    int Sides,
-    bool ChecksumValid,
-    long FileSize);
-
+/// <summary>
+/// Lit les métadonnées finales d'une capture SCP sans décoder les données de flux des pistes.
+/// </summary>
 public static class ScpCaptureInfoReader
 {
+    /// <summary>
+    /// Lit l'en-tête, la table des pistes et la somme de contrôle d'un fichier SCP.
+    /// </summary>
+    /// <param name="path">Chemin du fichier SCP à examiner.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler les lectures asynchrones.</param>
+    /// <returns>
+    /// Les métadonnées de la capture. Les nombres de pistes, de cylindres et de faces sont des décomptes
+    /// positifs ou nuls ; la taille du fichier est exprimée en octets.
+    /// </returns>
+    /// <exception cref="ArgumentException"><paramref name="path"/> est vide ou n'est pas un chemin valide.</exception>
+    /// <exception cref="FileNotFoundException">Le fichier désigné par <paramref name="path"/> n'existe pas.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès en lecture au fichier est refusé.</exception>
+    /// <exception cref="EndOfStreamException">Le fichier ne contient pas l'intégralité de l'en-tête et de la table des pistes SCP.</exception>
+    /// <exception cref="InvalidDataException">L'en-tête SCP est absent, incomplet ou invalide.</exception>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="OperationCanceledException"><paramref name="cancellationToken"/> demande l'annulation de l'opération.</exception>
     public static async Task<ScpCaptureInfo> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 81920, FileOptions.Asynchronous | FileOptions.SequentialScan);
