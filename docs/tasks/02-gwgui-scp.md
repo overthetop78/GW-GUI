@@ -164,24 +164,24 @@
     - [x] Vérifier les valeurs des identifiants fixes utilisés comme contrat public.
     - [x] Vérifier chaque méthode de construction avec les capacités et géométries réellement produites par les Readers.
     - [x] Exécuter les tests ciblés des Readers et registres après raccordement de leurs identifiants.
-- [ ] Données brutes des politiques de reconnaissance
-  - [ ] Politiques Amstrad, Apple, Coherent, DEC et MSX
-    - [ ] Remplacer les extensions par `DiskImageFileExtensions`.
-    - [ ] Remplacer les identifiants et préfixes par `DiskImageFormatIds`.
-    - [ ] Remplacer les signatures, tailles et géométries examinées par les définitions des formats concernés.
-  - [ ] Politiques directes et déléguées
-    - [ ] Construire leurs ensembles d’extensions uniquement avec `DiskImageFileExtensions`.
-  - [ ] Registre et politique SCP
-    - [ ] Remplacer l’identifiant et la signature SCP par `DiskImageFormatIds` et `ScpFormatConstants` selon leur rôle.
-    - [ ] Créer `Recognition/DiskImageRecognitionExceptions.cs` avec les erreurs permettant d’injecter extension, format demandé et politique ayant rejeté le contenu.
-    - [ ] Remplacer les textes d’exception bruts du registre et de `ScpContainerPolicy`.
-  - [ ] Documentation XML
-    - [ ] Documenter en français `DiskImageRecognitionExceptions` et chacune de ses méthodes.
-    - [ ] Mettre à jour la documentation française de chaque politique après son raccordement.
-  - [ ] Tests ciblés
-    - [ ] Tester chaque politique par l’API publique de reconnaissance avec une image appropriée de `image_test`.
-    - [ ] Appliquer la règle d’obtention d’image du document lorsqu’une image manque.
-    - [ ] Exécuter uniquement les tests de la politique ou du registre traité.
+- [x] Données brutes des politiques de reconnaissance
+  - [x] Politiques Amstrad, Apple, Coherent, DEC et MSX
+    - [x] Remplacer les extensions par `DiskImageFileExtensions`.
+    - [x] Remplacer les identifiants et préfixes par `DiskImageFormatIds`.
+    - [x] Remplacer les signatures, tailles et géométries examinées par les définitions des formats concernés.
+  - [x] Politiques directes et déléguées
+    - [x] Construire leurs ensembles d’extensions uniquement avec `DiskImageFileExtensions`.
+  - [x] Registre et politique SCP
+    - [x] Remplacer l’identifiant et la signature SCP par `DiskImageFormatIds` et `ScpFormatConstants` selon leur rôle.
+    - [x] Créer `Recognition/DiskImageRecognitionExceptions.cs` avec les erreurs permettant d’injecter extension, format demandé et politique ayant rejeté le contenu.
+    - [x] Remplacer les textes d’exception bruts du registre et de `ScpContainerPolicy`.
+  - [x] Documentation XML
+    - [x] Documenter en français `DiskImageRecognitionExceptions` et chacune de ses méthodes.
+    - [x] Mettre à jour la documentation française de chaque politique après son raccordement.
+  - [x] Tests ciblés
+    - [x] Tester chaque politique par l’API publique de reconnaissance avec une image appropriée de `image_test`.
+    - [x] Appliquer la règle d’obtention d’image du document lorsqu’une image manque.
+    - [x] Exécuter uniquement les tests de la politique ou du registre traité.
 - [x] `src/GWGUI.MediaEngine/Images/AmstradDskImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.

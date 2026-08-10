@@ -196,7 +196,7 @@ Il est central et utilisé par lecteurs, reconstructeurs, systèmes de fichiers,
 
 ### Registre de conteneurs
 
-`DiskImageContainerContext` met en cache les octets du fichier pendant la sélection d’une politique. `IDiskImageContainerPolicy` définit la frontière interne entre reconnaissance et lecture. `DiskImageContainerRegistry` essaie les politiques dans l’ordre et retourne le premier succès. La composition complète se trouve dans `DiskImageExplorerFactory`.
+`DiskImageContainerContext` met en cache les octets du fichier pendant la sélection d’une politique. `IDiskImageContainerPolicy` définit la frontière interne entre reconnaissance et lecture. `DiskImageContainerRegistry` essaie les politiques dans l’ordre et retourne le premier succès. `DiskImageRecognitionExceptions` centralise les erreurs paramétrées par l’extension, le format demandé ou la politique qui a rejeté le contenu. La composition complète se trouve dans `DiskImageExplorerFactory`.
 
 Politiques observées :
 
@@ -209,7 +209,8 @@ Constats :
 - L’ordre du registre est un comportement fonctionnel pour les extensions ambiguës `.img` et `.dsk`.
 - Les politiques spécialisées utilisent signatures, tailles ou format demandé pour arbitrer ces ambiguïtés.
 - `DiskImageContainerRegistry` ne conserve qu’un conteneur gagnant. Cela est acceptable pour ouvrir le conteneur, à condition que les interprétations internes multiples soient conservées ensuite.
-- Les extensions sont encore recopiées entre lecteurs, politiques, factory et parfois détection.
+- Les valeurs d’extension sont centralisées dans `DiskImageFileExtensions`; les ensembles propres à chaque politique restent distincts lorsqu’ils représentent des indices différents.
+- `ScpContainerPolicy` vérifie désormais `ScpFormatConstants.FileSignature` et ne dépend plus de l’extension pour reconnaître le conteneur.
 
 ### Lecteurs sectoriels directs
 

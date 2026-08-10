@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.Containers;
@@ -21,6 +22,6 @@ public sealed class DiskImageContainerRegistry
             if (!await policy.CanReadAsync(context, cancellationToken).ConfigureAwait(false)) continue;
             return await policy.ReadAsync(context, cancellationToken).ConfigureAwait(false);
         }
-        throw new NotSupportedException($"The image extension '{context.Extension}' is not supported by the explorer yet.");
+        throw DiskImageRecognitionExceptions.UnsupportedExtension(context.Extension);
     }
 }
