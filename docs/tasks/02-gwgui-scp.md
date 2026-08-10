@@ -4,6 +4,8 @@
 
 - Les tâches du dernier niveau sont les seules actions à exécuter.
 - Tous les niveaux précédents sont des groupes de travail.
+- Une ligne contenant une action (`Créer`, `Modifier`, `Déplacer`, `Renommer`, `Ajouter`, `Remplacer`, `Raccorder`, `Documenter`, `Tester`, `Supprimer`) ne contient jamais de sous-tâche.
+- Un niveau qui contient des sous-tâches porte uniquement le nom du fichier traité ou celui du groupe de travail réalisé par ses enfants.
 - Les actions d’un groupe réalisent entièrement ce groupe.
 - Une action indique explicitement le fichier créé, déplacé, renommé, modifié, raccordé, supprimé ou documenté.
 - Tout ce qui reste écrit en brut dans un fichier traité doit être sorti dans des constantes ou des enums, selon le besoin réel.
@@ -132,6 +134,57 @@
     - [x] Vérifier le cache avec le même fichier inchangé puis modifié, afin de prouver la réutilisation et l’invalidation par identité de fichier.
     - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une plage, d’un offset, d’une signature de piste et de données de flux tronqués ou incohérents.
     - [x] Vérifier que ces tests locaux atteignent leurs assertions sans corpus SCP externe.
+
+- [ ] Compléments issus de la relecture complète du conteneur SCP
+  - [x] `Containers/Scp/ScpFormatConstants.cs`
+    - [x] Ajouter une définition commune pour le calcul et la validation du checksum SCP utilisée par le Reader et les tests.
+    - [x] Ajouter une fonction nommée convertissant un numéro de piste SCP en cylindre et tête.
+    - [x] Remplacer les copies de ce calcul dans l'exploration, la reconstruction et les tests.
+    - [x] Documenter en français chaque membre ajouté.
+    - [x] Tester les pistes paires, impaires et les deux limites de la table SCP.
+  - [ ] `Containers/Scp/ScpFlags.cs`
+    - [ ] Adapter le namespace de `ScpFlags` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [ ] Adapter les consommateurs de `ScpFlags` au namespace du conteneur SCP.
+    - [ ] Documenter en français le fait que les valeurs peuvent être combinées et la valeur binaire de chaque drapeau.
+    - [ ] Tester la lecture de chaque drapeau isolé et de plusieurs combinaisons de drapeaux.
+  - [ ] `Containers/Scp/ScpHeader.cs`
+    - [ ] Créer `Containers/Scp/ScpBitCellEncoding.cs` pour les valeurs de largeur de cellule acceptées par `ScpReader`.
+    - [ ] Créer `Containers/Scp/ScpHeadSelection.cs` pour les valeurs de sélection de face acceptées par `ScpReader`.
+    - [ ] Remplacer les paramètres primitifs `BitCellEncoding` et `Heads` par ces enums sans modifier leurs valeurs binaires.
+    - [ ] Conserver `DiskType` sous forme numérique tant que le Reader accepte des identifiants de disque non fermés.
+    - [ ] Adapter le namespace de `ScpHeader` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [ ] Adapter tous les consommateurs de `ScpHeader` et supprimer l'import de son propre namespace devenu inutile.
+    - [ ] Documenter en français les deux enums, chacune de leurs valeurs, les paramètres du record et les propriétés calculées.
+    - [ ] Tester la désérialisation de chaque largeur de cellule et sélection de face acceptée.
+    - [ ] Tester le rejet de chaque valeur de largeur de cellule ou de sélection de face hors contrat.
+  - [ ] `Containers/Scp/ScpRevolution.cs`
+    - [ ] Adapter le namespace de `ScpRevolution` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [ ] Copier ou figer `FluxIntervals` à la construction afin que la collection source ne puisse plus modifier la révolution.
+    - [ ] Valider que `resolutionNanoseconds` est strictement positif avant les calculs de durée et de vitesse.
+    - [ ] Documenter en français le record, chaque paramètre, chaque propriété et les unités des deux calculs.
+    - [ ] Tester la protection de la collection, la durée, la vitesse et le rejet d'une résolution nulle ou négative.
+  - [ ] `Containers/Scp/ScpTrack.cs`
+    - [ ] Adapter le namespace de `ScpTrack` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [ ] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.
+    - [ ] Documenter en français le record, chaque paramètre et chaque propriété.
+    - [ ] Tester la protection de la collection et la conservation du numéro de piste, du cylindre et de la face.
+  - [ ] `Containers/Scp/ScpImage.cs`
+    - [ ] Adapter le namespace de `ScpImage` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [ ] Copier ou figer `Tracks` à la construction afin que la collection source ne puisse plus modifier l'image.
+    - [ ] Rejeter une taille de fichier négative à la construction.
+    - [ ] Documenter en français le record, chaque paramètre et chaque propriété.
+    - [ ] Tester la protection de la collection, le checksum valide ou invalide et le rejet d'une taille négative.
+  - [ ] `Containers/Scp/ScpReader.cs`
+    - [ ] Créer `Containers/Scp/ScpFileCache.cs` pour isoler l'identité de fichier, le cache et son invalidation du parsing SCP.
+    - [ ] Conserver dans `ScpReader` l'orchestration de lecture et le parsing de l'en-tête et des pistes.
+    - [ ] Créer `Containers/Scp/ScpRevolutionReader.cs` pour isoler la validation d'un descripteur de révolution et le décodage de ses intervalles de flux.
+    - [ ] Remplacer les noms de sections construits en texte brut par des identifiants de section nommés passés aux erreurs SCP.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester séparément le cache, son invalidation, le parsing de piste, les débordements de flux et les révolutions tronquées.
+  - [ ] `Exploration/ScpCaptureInfo.cs` et `ScpCaptureInfoReader.cs`
+    - [ ] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
+    - [ ] Utiliser les calculs de piste et checksum communs du conteneur SCP.
+    - [ ] Tester l'absence de piste, plusieurs révolutions, les deux têtes et un checksum invalide.
 
 ## 3. Conteneurs et reconnaissance des fichiers
 
@@ -438,8 +491,8 @@
     - [x] Utiliser dans `image_test` une image RX02 avec structure RT-11 connue ; appliquer la règle d’obtention d’image si elle manque.
     - [x] Vérifier la reconnaissance par contenu, la remise en ordre physique vers les blocs logiques et le contenu de plusieurs secteurs de pistes différentes.
     - [x] Vérifier qu’une image de même taille sans structure RX02/RT-11 crédible est rejetée sans bloquer les candidats suivants.
-- [x] Corriger les valeurs géométriques communes, les délégations répétées et les retours à la ligne courts
-  - [x] Centraliser les nombres de cylindres et de têtes réellement communs
+- [x] Valeurs géométriques communes, délégations répétées et retours à la ligne courts
+  - [x] Nombres de cylindres et de têtes réellement communs
     - [x] Créer `Primitives/DiskGeometryConstants.cs` avec les nombres nommés de 40 cylindres, 80 cylindres, une tête et deux têtes.
     - [x] Documenter en français `DiskGeometryConstants` et chacune de ses constantes.
     - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `Containers/Amstrad/CpcDsk/CpcDskLayout.cs`.
@@ -448,23 +501,49 @@
     - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `SectorImages/AmigaScpSectorImageReader.cs`, `SectorImages/AppleMacScpSectorReconstructor.cs`, `SectorImages/BbcIsoScpSectorImagePolicy.cs` et `SectorImages/CommodoreScpSectorImageReader.cs`.
     - [x] Remplacer les nombres de cylindres et de têtes correspondants dans `Images/Visualization/AppleVisualizationPolicy.cs` et `Images/Visualization/AtariVisualizationPolicy.cs`.
     - [x] Conserver distincts les nombres `40` et `80` qui désignent un offset, une durée, une piste Commodore, un index ou une autre donnée propre à un format.
-  - [x] Centraliser la délégation identique des politiques vers leur Reader
+  - [x] Délégation identique des politiques vers leur Reader
     - [x] Créer `Recognition/Policies/ReaderBackedRecognitionPolicy.cs` avec l’unique implémentation commune de `ReadAsync`.
     - [x] Documenter en français le type, son constructeur, `CanReadAsync` et `ReadAsync`.
     - [x] Faire hériter `Recognition/Policies/AppleImageRecognitionPolicy.cs` de `ReaderBackedRecognitionPolicy` et supprimer sa délégation répétée.
     - [x] Faire hériter `Recognition/Policies/CoherentImageRecognitionPolicy.cs` de `ReaderBackedRecognitionPolicy` et supprimer sa délégation répétée.
     - [x] Faire hériter `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs` de `ReaderBackedRecognitionPolicy` et supprimer sa délégation répétée.
     - [x] Conserver dans `Recognition/Policies/AmstradImageRecognitionPolicy.cs` son `ReadAsync` particulier, car il réidentifie l’image CPC ou PCW après lecture.
-  - [x] Supprimer les retours à la ligne ajoutés aux constructions courtes
+  - [x] Retours à la ligne ajoutés aux constructions courtes
     - [x] Remettre sur une ligne les constructions courtes de `CpcDskReader.cs`, `DiskCopyReader.cs`, `TwoImgReader.cs`, `WozReader.cs`, `AtrReader.cs`, `AtrPayloadWriter.cs`, `TrackEncodeModels.cs` et `ScpCaptureInfo.cs`.
     - [x] Remettre sur une ligne les constructions courtes de `AppleDiskImageReader.cs`, `AppleNibbleImageWriter.cs`, `AppleSectorImageFactory.cs`, `DiskImageExplorer.cs`, `DiskImageExplorerFactory.cs`, `DiskImageInterpretationService.cs`, `DiskImageMetadata.cs` et `ScpImageExplorationService.cs`.
     - [x] Remettre sur une ligne les constructions courtes de `Images/Containers/DelegatingContainerPolicy.cs`, `Images/Containers/ScpContainerPolicy.cs`, `Images/ScpDetection/ScpCandidateRegistry.cs`, `Images/ScpDetection/ScpFamilyProbe.cs` et `Images/ScpDetection/ScpSectorImageReader.cs`.
     - [x] Remettre sur une ligne les constructions courtes de `Recognition/IDiskImageRecognitionPolicy.cs`, `Recognition/DiskImageRecognitionRegistry.cs`, `Recognition/Policies/AmstradImageRecognitionPolicy.cs`, `Recognition/Policies/AppleImageRecognitionPolicy.cs`, `Recognition/Policies/CoherentImageRecognitionPolicy.cs` et `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.
     - [x] Vérifier dans tous les fichiers C# de production qu’aucune construction parenthésée complète de 180 caractères ou moins ne reste répartie sur plusieurs lignes.
-  - [x] Vérifier le groupe
+  - [x] Vérification du groupe
     - [x] Compiler la solution sans restauration et vérifier l’absence d’erreur et d’avertissement.
     - [x] Exécuter les tests ciblés des conteneurs, géométries, politiques, explorateurs, encodeurs et reconstructeurs modifiés.
     - [x] Vérifier que les 205 tests ciblés réussissent sans test ignoré.
+- [ ] Retours à la ligne courts encore présents après le premier contrôle
+  - [ ] Conteneurs et reconnaissance
+    - [ ] Remettre sur une ligne la lecture de `ImageFormat` dans `Containers/Apple/TwoImg/TwoImgReader.cs`.
+    - [ ] Remettre sur une ligne la déclaration du record `ScpHeader` dans `Containers/Scp/ScpHeader.cs` si elle reste sous la limite de longueur retenue.
+    - [ ] Remettre sur une ligne la signature de `PolicyRejectedContent` dans `Recognition/DiskImageRecognitionExceptions.cs`.
+    - [ ] Remettre sur une ligne l'appel à `ConvertToBits` dans `Recognition/Apple/NibTrackImageReader.cs`.
+  - [ ] Décodage
+    - [ ] Remettre sur une ligne l'expression de `DecodeBits` dans `Decoding/Decoders/AppleMacGcrDecoder.cs`.
+  - [ ] Reconstruction sectorielle Apple et Atari
+    - [ ] Remettre sur une ligne la signature de `CreateProDosImage` dans `SectorImages/AppleIIScpSectorReconstructor.cs`.
+    - [ ] Remettre sur une ligne l'appel à `AppleScpSectorDecoder.Select` dans `SectorImages/AppleRwts18ScpSectorReconstructor.cs`.
+    - [ ] Remettre sur une ligne la signature de `DecodeCandidates` dans `SectorImages/AppleScpSectorDecoder.cs`.
+    - [ ] Remettre sur une ligne la signature de `ReadAsync` dans `SectorImages/AtariScpSectorImageReader.cs`.
+    - [ ] Remettre sur une ligne l'appel à `AtariStFromCapacity` dans `SectorImages/AtariStIsoScpSectorImagePolicy.cs`.
+  - [ ] Reconstruction sectorielle DEC et Epson
+    - [ ] Remettre sur une ligne la signature de `Best` dans `SectorImages/DecRx02ScpSectorImageReader.cs`.
+    - [ ] Remettre sur une ligne la signature de `TryDetect` dans `SectorImages/EpsonQx10FormatDetector.cs`.
+    - [ ] Remettre sur une ligne la déclaration de `EpsonQx10Geometry` dans `SectorImages/EpsonQx10GeometryCatalog.cs`.
+    - [ ] Remettre sur une ligne la signature de `Uniform` dans `SectorImages/EpsonQx10GeometryCatalog.cs`.
+    - [ ] Remettre sur une ligne la signature de `Create` dans `SectorImages/EpsonQx10SectorImageBuilder.cs`.
+    - [ ] Remettre sur une ligne la signature de `CreateImage` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
+    - [ ] Remettre sur une ligne la signature de `TryDetectFormat` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
+    - [ ] Remettre sur une ligne la signature de `BestData` dans `SectorImages/IsoSectorImageBuilder.cs`.
+  - [ ] Vérification du formatage
+    - [ ] Relancer le contrôle des constructions parenthésées complètes de `180` caractères ou moins sur tous les fichiers C# de production.
+    - [ ] Exécuter les tests ciblés des fichiers dont seule la mise en forme a changé.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Migrer ses enregistrements vers `ExtensionHintRecognitionPolicy`.
@@ -633,6 +712,156 @@
     - [ ] Vérifier explicitement le comportement attendu pour une signature TD0 compressée en minuscules.
     - [ ] Vérifier le rejet d’un commentaire, d’une piste, d’un secteur ou d’une séquence encodée tronquée ou invalide.
 
+- [ ] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
+  - [ ] `Recognition/DiskImageRecognitionContext.cs`
+    - [ ] Remplacer le tableau d'octets modifiable exposé par une mémoire en lecture seule.
+    - [ ] Garantir qu'une seule lecture du fichier alimente toutes les politiques essayées.
+    - [ ] Documenter en français le type, le constructeur, chaque propriété et `ReadBytesAsync`.
+    - [ ] Tester la réutilisation des mêmes octets, l'annulation et l'impossibilité de modifier le contenu partagé.
+  - [ ] `Recognition/DiskImageRecognitionRegistry.cs`
+    - [ ] Distinguer l'absence de politique candidate du rejet de contenu par toutes les politiques candidates.
+    - [ ] Conserver l'identité et l'exception de chaque politique dont le Reader rejette le contenu.
+    - [ ] Propager l'erreur d'une signature certaine corrompue sans la masquer par un candidat fondé uniquement sur une extension.
+    - [ ] Documenter en français le type, le constructeur et chaque méthode.
+    - [ ] Tester une politique incompatible, deux rejets successifs, une réussite suivante, une signature corrompue et l'absence de candidat.
+  - [ ] `Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
+    - [ ] Faire utiliser au Reader les octets déjà détenus par le contexte lorsqu'il possède une API de lecture en mémoire.
+    - [ ] Conserver la lecture par chemin uniquement pour les Readers dont le contrat exige réellement un chemin.
+    - [ ] Documenter en français le type, son constructeur et chaque méthode.
+  - [ ] `Recognition/Policies/AmstradImageRecognitionPolicy.cs`
+    - [ ] Encoder une seule fois les signatures CPCEMU Standard et Extended au lieu de convertir les chaînes à chaque détection.
+    - [ ] Remplacer les valeurs brutes `80` cylindres et `2` têtes par les définitions géométriques communes ayant le même sens.
+    - [ ] Conserver dans cette politique la réidentification CPC/PCW particulière après lecture.
+    - [ ] Documenter en français chaque membre modifié.
+    - [ ] Tester la détection des deux signatures et la réidentification CPC/PCW.
+  - [ ] `Recognition/Policies/AppleImageRecognitionPolicy.cs`
+    - [ ] Faire examiner à la politique les octets déjà chargés dans le contexte sans rouvrir le fichier par son chemin.
+    - [ ] Utiliser les signatures 2IMG, DiskCopy et WOZ ainsi que les définitions NIB déjà extraites.
+    - [ ] Documenter en français chaque membre modifié.
+    - [ ] Tester les conteneurs signés, les images Apple brutes ambiguës et le passage au candidat suivant après rejet.
+  - [ ] `Images/ISectorImageReader.cs`
+    - [ ] Adapter `ExtensionHintRecognitionPolicy` pour recevoir directement une fonction de lecture asynchrone.
+    - [ ] Remplacer dans la composition chaque utilisation de `ISectorImageReader` par la fonction du Reader correspondant.
+    - [ ] Supprimer les implémentations `CanRead` qui ne servent qu'à satisfaire cette interface.
+    - [ ] Supprimer `ISectorImageReader.cs` après migration de tous ses consommateurs.
+    - [ ] Tester chaque Reader migré par l'API publique de reconnaissance.
+  - [ ] `Images/Cp2ImageReader.cs`
+    - [ ] Conserver les petits records privés uniquement s'ils restent propres au parsing CP2 et sans autre consommateur.
+    - [ ] Extraire dans une définition CP2 les marqueurs, tailles d'en-tête, tailles d'enregistrement, codes et valeurs synthétiques écrits en brut.
+    - [ ] Remplacer les textes d'exception par des méthodes permettant d'injecter piste, face, offset et taille.
+    - [ ] Séparer la lecture de l'en-tête, des pistes et des enregistrements dans des méthodes nommées.
+    - [ ] Documenter en français le type et chaque membre.
+    - [ ] Tester une image CP2 valide, tronquée, incohérente et contenant plusieurs types d'enregistrement.
+  - [ ] `Images/I86fImageReader.cs`
+    - [ ] Extraire la signature, les versions, drapeaux, offsets, tailles de pistes et valeur de cellule `40` dans des définitions 86F.
+    - [ ] Déplacer les décisions sectorielles hors du parser de conteneur 86F.
+    - [ ] Remplacer les identifiants de codecs écrits en brut par `FluxCodecIds`.
+    - [ ] Remplacer les textes d'exception par des méthodes permettant d'injecter version, piste, offset et taille.
+    - [ ] Documenter en français le type et chaque membre.
+    - [ ] Tester la signature, les versions acceptées, les pistes, les drapeaux et les rejets de données invalides.
+  - [ ] `Images/ImdImageReader.cs`
+    - [ ] Conserver les petits records privés propres au seul parsing IMD.
+    - [ ] Extraire les marqueurs, modes, tables de cylindres et faces, codes de taille et types de secteurs dans des définitions IMD.
+    - [ ] Déplacer l'identification Epson hors du parser IMD.
+    - [ ] Séparer la lecture de l'en-tête texte, de la piste, des maps, des tailles et des enregistrements sectoriels.
+    - [ ] Remplacer les textes d'exception par des méthodes injectant piste, secteur, type et longueur.
+    - [ ] Documenter en français le type et chaque membre.
+    - [ ] Tester les secteurs normaux, compressés, absents, supprimés, erronés et les maps optionnelles.
+  - [ ] `Images/MsaImageReader.cs`
+    - [ ] Extraire la signature, les bornes de pistes, tailles, marqueur RLE et longueur de piste dans des définitions MSA.
+    - [ ] Séparer la validation de l'en-tête et la décompression de chaque piste.
+    - [ ] Remplacer les instructions multiples écrites sur une même ligne par des instructions distinctes.
+    - [ ] Remplacer les textes d'exception par des méthodes injectant piste, offset et taille.
+    - [ ] Documenter en français le type et chaque membre.
+    - [ ] Tester une piste brute, une piste compressée, une répétition tronquée et une longueur incohérente.
+  - [ ] `Images/Td0ImageReader.cs`
+    - [ ] Conserver les petits records privés propres au seul parsing TD0.
+    - [ ] Extraire les signatures, versions, drapeaux, tailles, méthodes de compression, codes et CRC dans des définitions TD0.
+    - [ ] Déplacer l'identification IBM et UCSD hors du parser TD0.
+    - [ ] Séparer la lecture de l'en-tête, des pistes, des secteurs et la décompression avancée.
+    - [ ] Remplacer les textes d'exception par des méthodes injectant piste, secteur, méthode, offset et taille.
+    - [ ] Documenter en français le type et chaque membre.
+    - [ ] Tester les deux signatures, les méthodes de données prises en charge, les CRC et les rejets de données tronquées.
+  - [ ] `Containers/Amstrad/CpcDsk/CpcDskReader.cs`
+    - [ ] Extraire la validation de l'en-tête disque dans une méthode utilisant uniquement `CpcDskFormat` et `CpcDskLayout`.
+    - [ ] Extraire la validation de la table de tailles Extended dans une méthode injectant l'index rejeté aux erreurs CPCEMU.
+    - [ ] Extraire la lecture d'une piste et de ses descripteurs de secteurs dans des méthodes distinctes.
+    - [ ] Supprimer l'initialisation inutile de `dominantSize` à zéro si elle est toujours remplacée avant lecture.
+    - [ ] Ajouter une constante nommée pour le minimum d'un secteur actuellement imposé par `Math.Max(1, maximumSectors)`.
+    - [ ] Documenter en français chaque méthode privée extraite.
+    - [ ] Tester séparément en-tête, table Extended, piste, descripteur, secteur et absence de secteur.
+  - [ ] `Containers/Apple/TwoImg/TwoImgImageFormat.cs`
+    - [ ] Renommer les membres `DOS`, `ProDOS` et `NIB` selon la casse C# retenue sans modifier leurs valeurs binaires.
+    - [ ] Adapter chaque consommateur et chaque test aux noms retenus.
+    - [ ] Documenter en français l'enum et chacune de ses valeurs.
+  - [ ] `Containers/Apple/TwoImg/TwoImgReader.cs`
+    - [ ] Extraire la validation de l'en-tête, la validation de la plage de données et le routage DOS/ProDOS/NIB dans trois méthodes distinctes.
+    - [ ] Remplacer chaque valeur encore brute par `TwoImgFormat`, `TwoImgLayout` ou `TwoImgImageFormat`.
+    - [ ] Documenter en français chaque méthode privée extraite.
+    - [ ] Tester chaque format interne, version, taille d'en-tête et plage de données.
+  - [ ] `Containers/Apple/DiskCopy/DiskCopyFormat.cs`
+    - [ ] Stocker le marqueur PREBOOT sous forme d'octets immuables sans l'encoder depuis une chaîne à chaque détection.
+    - [ ] Ajouter les constantes du mot de checksum, de sa rotation et du nombre de bits utilisés par l'algorithme DiskCopy.
+    - [ ] Documenter en français chaque définition ajoutée.
+    - [ ] Tester les valeurs binaires de chaque définition ajoutée.
+  - [ ] `Containers/Apple/DiskCopy/DiskCopyReader.cs`
+    - [ ] Extraire la détection d'une image sans tags, la validation des tags, la sélection d'adresses, la sélection de format et la géométrie dans des méthodes distinctes.
+    - [ ] Remplacer les ternaires imbriqués par des sélections nommées testables.
+    - [ ] Remplacer chaque valeur encore brute par `DiskCopyFormat`, `DiskCopyLayout` ou `AppleDiskGeometry`.
+    - [ ] Documenter en français chaque méthode privée extraite.
+    - [ ] Tester données seules, données et tags, checksums, PREBOOT, Lisa, Macintosh et combinaison inconnue.
+  - [ ] `Containers/Apple/Woz/WozFormat.cs` et `WozLayout.cs`
+    - [ ] Ajouter des constantes nommées pour WOZ1, WOZ2, les 40 cylindres, les limites de pistes et les marqueurs communs.
+    - [ ] Ajouter un propriétaire commun pour la conversion octets/bits utilisée par le Reader et le Writer.
+    - [ ] Documenter en français chaque définition.
+    - [ ] Tester la valeur exacte de chaque définition.
+  - [ ] `Containers/Apple/Woz/WozReader.cs`
+    - [ ] Extraire la validation de l'en-tête, le parcours des chunks et la lecture des descripteurs de pistes dans des méthodes distinctes.
+    - [ ] Remplacer chaque valeur encore brute par `WozFormat` ou `WozLayout`.
+    - [ ] Documenter en français chaque méthode privée extraite.
+    - [ ] Tester WOZ1, WOZ2, CRC, chunks inconnus, références et longueurs de bits invalides.
+  - [ ] `Recognition/Apple/NibTrackImageReader.cs`
+    - [ ] Déplacer le score et le décodage Apple communs aux pistes NIB, WOZ et SCP dans un composant partagé lorsqu'ils utilisent réellement la même règle.
+    - [ ] Remplacer les poids, minimums de pistes et secteurs attendus par des constantes Apple nommées.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester un NIB valide, une longueur invalide et une piste sans secteur crédible.
+  - [ ] `Containers/Atari/Atr/AtrFormat.cs` et `AtrLayout.cs`
+    - [ ] Ajouter des constantes nommées pour les 720 et 1040 secteurs et le décalage de 16 bits des paragraphes hauts.
+    - [ ] Centraliser le calcul de la zone d'amorçage et du nombre de secteurs utilisé par Reader et Writer.
+    - [ ] Documenter en français chaque définition.
+    - [ ] Tester les deux tailles sectorielles et les paragraphes hauts.
+  - [ ] `Containers/Atari/Atr/AtrReader.cs`
+    - [ ] Remplacer les dernières géométries construites avec des nombres bruts par des définitions Atari nommées.
+    - [ ] Utiliser les calculs ATR communs de zone d'amorçage et de nombre de secteurs.
+    - [ ] Documenter en français chaque membre modifié.
+    - [ ] Tester les capacités standards et étendues.
+  - [ ] `Recognition/Policies/DirectContainerPolicy.cs` et `DelegatingContainerPolicy.cs`
+    - [ ] Faire hériter `ExtensionHintRecognitionPolicy` de `ReaderBackedRecognitionPolicy`.
+    - [ ] Faire recevoir au nouveau type une fonction de lecture asynchrone et les extensions indices.
+    - [ ] Migrer chaque inscription directe ou déléguée vers ce type commun.
+    - [ ] Supprimer les deux anciens fichiers après migration de tous les consommateurs.
+    - [ ] Documenter en français le nouveau type.
+    - [ ] Tester une extension compatible, une extension incompatible et un Reader rejetant le contenu.
+  - [ ] `Recognition/Policies/MsxContainerPolicy.cs`
+    - [ ] Renommer le fichier et le type en `MsxImageRecognitionPolicy`.
+    - [ ] Utiliser `.dsk` uniquement comme indice et le BPB MSX commun comme validation.
+    - [ ] Faire hériter la politique de `ReaderBackedRecognitionPolicy`.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une extension inhabituelle, un BPB valide et un faux `.dsk`.
+  - [ ] `Recognition/Policies/RawImgContainerPolicy.cs`
+    - [ ] Renommer le fichier et le type en `RawSectorImageRecognitionPolicy`.
+    - [ ] Remplacer le choix IBM par défaut par l'énumération ordonnée des détecteurs bruts spécialisés.
+    - [ ] Retirer les appels aux Readers de systèmes de fichiers Amstrad.
+    - [ ] Conserver le diagnostic de chaque détecteur rejeté et continuer avec le suivant.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les branches IBM, Atari, MSX, Amstrad, Macintosh, Lisa, DEC, Coherent et inconnue.
+  - [ ] `Recognition/Policies/ScpContainerPolicy.cs`
+    - [ ] Renommer le fichier et le type en `ScpRecognitionPolicy`.
+    - [ ] Utiliser `ScpFormatConstants` pour reconnaître la signature indépendamment de l'extension.
+    - [ ] Retirer la construction directe du service d'exploration de la politique.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une signature valide, une extension inhabituelle, un faux `.scp` et un contenu tronqué.
+
 ## 4. Modèles sectoriels, représentations et primitives
 
 - [ ] `src/GWGUI.MediaEngine/Flux/FluxBitstream.cs`
@@ -657,9 +886,22 @@
   - [ ] Paramètres CRC bruts
     - [ ] Ajouter des constantes nommées pour le polynôme CCITT `0x1021`, la valeur initiale `0xFFFF` et le masque de bit fort `0x8000`.
     - [ ] Remplacer les valeurs brutes utilisées comme paramètres par défaut et dans `Update`.
+    - [ ] Remplacer le nombre brut de huit itérations par la constante commune du nombre de bits d'un octet.
   - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `Crc16Calculator`.
-    - [ ] Ajouter la documentation XML des méthodes `Compute, Update`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [ ] Documenter en français `Crc16Calculator` et chacune de ses constantes.
+    - [ ] Documenter en français `Compute` et `Update`, leurs paramètres, leur résultat et les valeurs initiales utilisées.
+  - [ ] Tests ciblés
+    - [ ] Tester `Compute` avec le vecteur CCITT de référence déjà utilisé par les formats du moteur.
+    - [ ] Tester que les appels successifs à `Update` produisent le même CRC que `Compute`.
+    - [ ] Tester un polynôme et une valeur initiale fournis explicitement.
+- [ ] `src/GWGUI.MediaEngine/Primitives/DiskGeometryConstants.cs`
+  - [ ] Portée des constantes géométriques
+    - [ ] Vérifier que les quatre constantes décrivent uniquement un nombre de cylindres ou de têtes et non une famille de machine.
+  - [ ] Raccordement des valeurs réellement communes
+    - [ ] Remplacer les valeurs brutes `40`, `80`, `1` et `2` uniquement lorsqu'elles représentent respectivement les mêmes nombres de cylindres ou de têtes.
+    - [ ] Laisser inchangées les valeurs identiques utilisées comme offset, taille, identifiant ou limite sans rapport avec une géométrie.
+  - [ ] Tests ciblés
+    - [ ] Exécuter les tests ciblés des Readers et politiques dont une valeur géométrique a été remplacée.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/SectorImage.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `SectorImages/SectorAddress.cs` avec le namespace actuel.
@@ -683,6 +925,28 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `SectorAddress, SectorBlock, SectorImage`.
     - [ ] Ajouter la documentation XML des méthodes `SectorAddress, SectorBlock, TryGetBlock, GetBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+- [ ] Compléments issus de la relecture complète des modèles et primitives
+  - [ ] `Flux/FluxBitstream.cs`
+    - [ ] Remplacer l'exposition du tableau `Bits` par une collection en lecture seule.
+    - [ ] Copier les bits reçus au constructeur afin que l'appelant ne puisse plus modifier le flux construit.
+    - [ ] Remplacer les instructions multiples écrites sur une même ligne par des instructions distinctes.
+    - [ ] Documenter en français le type, le constructeur, chaque propriété et chaque méthode.
+    - [ ] Tester la lecture des bits, les limites et l'absence de modification par la collection source.
+  - [ ] `Primitives/BitPrimitives.cs`
+    - [ ] Ajouter les constantes communes du nombre de bits par octet, du masque de bit et des tailles de mots réellement réutilisées.
+    - [ ] Remplacer uniquement les occurrences ayant exactement ce sens dans les décodeurs, encodeurs et formats.
+    - [ ] Documenter en français chaque constante et chaque méthode.
+    - [ ] Tester chaque conversion et chaque limite d'index.
+  - [ ] `SectorImages/SectorImage.cs`
+    - [ ] Valider le format, la taille de bloc, les cylindres, les têtes, les secteurs par piste, la capacité et le nombre logique de blocs reçus.
+    - [ ] Refuser deux blocs portant le même numéro logique.
+    - [ ] Refuser un bloc logique négatif ou supérieur au nombre logique annoncé.
+    - [ ] Refuser une capacité inférieure aux blocs décrits.
+    - [ ] Copier les collections de blocs et les données exposées qui restent modifiables.
+    - [ ] Créer des erreurs sectorielles permettant d'injecter propriété, valeur observée, valeur attendue et bloc concerné.
+    - [ ] Documenter en français le type, chaque constructeur, champ, propriété et méthode.
+    - [ ] Tester chaque invariant, les doublons, les limites, la capacité et la protection des collections.
 
 ## 5. Décodage
 
@@ -754,26 +1018,42 @@
     - [ ] Exécuter uniquement les tests de la paire traitée avant de terminer son groupe.
 
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/AppleBitLatch.cs`
+  - [ ] Paramètres du verrou de bits
+    - [ ] Remplacer les deux usages du nombre brut `8` par la définition commune du nombre de bits d'un octet.
+    - [ ] Ajouter une constante nommée pour le masque `0x80` indiquant qu'un octet Apple synchronisé a été trouvé.
+    - [ ] Remplacer le masque brut utilisé dans la boucle de synchronisation par cette constante.
+  - [ ] Validation des paramètres
+    - [ ] Rejeter un nombre d'octets négatif avant l'allocation du résultat.
+    - [ ] Rejeter un offset négatif ou supérieur à la longueur du tableau de bits.
   - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleBitLatch`.
-    - [ ] Ajouter la documentation XML des méthodes `TryReadBytes`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [ ] Documenter en français `AppleBitLatch`, son masque de synchronisation et `TryReadBytes`.
+    - [ ] Documenter le déplacement de l'offset, le résultat nul lorsque les bits manquent et les exceptions de paramètres.
+  - [ ] Tests ciblés
+    - [ ] Tester un octet déjà synchronisé et un octet nécessitant un décalage jusqu'au premier bit haut.
+    - [ ] Tester plusieurs octets successifs et vérifier la valeur finale de l'offset.
+    - [ ] Tester un flux tronqué, un nombre négatif et un offset hors limites.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/SignatureMfmDecoder.cs`
+  - [ ] Modèle des signatures de flux
+    - [ ] Créer `Decoding/FluxSignature.cs` pour remplacer le tuple `(byte[] Pattern, FluxStructureKind Kind, string Description)`.
+    - [ ] Copier le motif reçu par `FluxSignature` avant de l'exposer.
+    - [ ] Remplacer le type de `Signatures` dans la classe de base et dans chacun de ses décodeurs dérivés.
+    - [ ] Déplacer le texte de description destiné à l'affichage hors de la signature technique et conserver un identifiant technique de structure.
+  - [ ] Valeurs et découpage de `Decode`
+    - [ ] Remplacer la valeur brute `10` de `ExpectedStructures` par une constante nommée décrivant le nombre attendu par défaut.
+    - [ ] Remplacer les multiplications par `8` par la définition commune du nombre de bits d'un octet.
+    - [ ] Séparer la création du `FluxBitstream`, la recherche des signatures et le calcul de confiance en méthodes nommées.
+    - [ ] Remettre les instructions actuellement juxtaposées sur une même ligne sur des lignes distinctes sans casser artificiellement les signatures courtes.
   - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `SignatureMfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [ ] Documenter en français `FluxSignature`, ses propriétés et son constructeur.
+    - [ ] Documenter en français `SignatureMfmDecoder`, chaque propriété abstraite ou virtuelle et `Decode`.
+  - [ ] Tests ciblés
+    - [ ] Tester avec un décodeur factice la recherche d'aucune, d'une et de plusieurs signatures.
+    - [ ] Tester les branches FM, MFM et NRZI de construction du flux.
+    - [ ] Tester le plafonnement du score à `1` et un nombre attendu propre à une classe dérivée.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/Aed6200pMfmDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `Aed6200pMfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindDataMark, SizeCode, Crc16`, avec paramètres, résultat, exce…14783 tokens truncated…Definitions/`.
-    - [ ] Déplacer la correspond…14186 tokens truncated…ileSystemReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier sous `FileSystems/Cpm/`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Raccorder le cœur CP/M commun.
-    - [ ] Déplacer `LooksLikeCpcRawImage` et `LooksLikePcwDiskSpecification` vers `Recognition/Amstrad/`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AmstradCpmFileSystemReader, ExtentKeyComparer`.
-    - [ ] Ajouter la documentation XML des méthodes `CanRead, LooksLikePcwDiskSpecification, LooksLikeCpcRawImage, Read, GetLayout, FindDirectory, LooksLikeDirectory, TryDecodeName, DecodePart, ReadAllocations, Flatten, Layout, Extent, Equals, GetHashCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindDataMark, SizeCode, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AmigaMfmDecoder.cs`
   - [ ] Documentation XML
@@ -821,7 +1101,7 @@
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/DecRx02Decoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `DecRx02Decoder`.
-    - [ ] Ajouter la documentation XML des méthodes `readonly, Decode, DecodeM2Fm, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [ ] Ajouter la documentation XML des méthodes `Decode`, `FindNextDataMark`, `DecodeM2Fm`, `Crc16` et `UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/EmuFmDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `EmuFmDecoder`.
@@ -869,7 +1149,7 @@
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/TycomFmDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `TycomFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `readonly, Decode, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [ ] Ajouter la documentation XML des méthodes `Decode`, `FindNextDataMark`, `Crc16` et `UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/Victor9kGcrDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `Victor9kGcrDecoder`.
@@ -898,6 +1178,161 @@
 - [ ] `src/GWGUI.MediaEngine/Decoding/IFluxDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `IFluxDecoder`.
+
+- [ ] Compléments issus de la relecture complète du décodage
+  - [ ] `Decoding/FluxDecoderRegistry.cs`
+    - [ ] Faire recevoir au constructeur la collection des décodeurs au lieu de créer toutes les implémentations dans le registre.
+    - [ ] Construire un dictionnaire par identifiant de codec.
+    - [ ] Refuser une collection nulle, un décodeur nul, un identifiant vide et deux identifiants identiques.
+    - [ ] Conserver dans une erreur dédiée l'identifiant de codec absent ou dupliqué.
+    - [ ] Définir explicitement la règle de score et de sélection lorsqu'un appel demande plusieurs décodeurs.
+    - [ ] Documenter en français le type, le constructeur et chaque méthode.
+    - [ ] Tester une collection vide, un doublon, un identifiant absent, l'ordre et la sélection du meilleur résultat.
+  - [ ] `Decoding/FluxDecodeModels.cs`
+    - [ ] Créer un fichier par type public actuellement regroupé dans `FluxDecodeModels.cs`.
+    - [ ] Copier les collections reçues par les modèles avant de les exposer.
+    - [ ] Documenter en français chaque type, valeur d'enum, propriété et paramètre de record.
+    - [ ] Supprimer `FluxDecodeModels.cs` après déplacement de tous ses types.
+    - [ ] Tester que la modification d'une collection source ne change pas un résultat de décodage construit.
+  - [ ] `Decoding/IFluxDecoder.cs`
+    - [ ] Remplacer les identifiants de codecs bruts des implémentations par `FluxCodecIds`.
+    - [ ] Documenter en français le contrat, chaque propriété et chaque méthode.
+  - [ ] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
+    - [ ] Remplacer les marques, synchronisations, tailles, masques et paramètres CRC bruts par `Aed6200pMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes AED injectant piste, secteur, offset et taille.
+    - [ ] Documenter en français le type, son identifiant, chaque champ et les méthodes `Decode`, `FindDataMark`, `SizeCode` et `Crc16`.
+    - [ ] Tester une piste AED valide, une marque absente, une taille invalide et un CRC erroné.
+  - [ ] `Decoding/Decoders/AmigaMfmDecoder.cs`
+    - [ ] Remplacer synchronisations, mots odd/even, tailles, masques, gaps et checksum bruts par `AmigaMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Amiga injectant piste, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et les méthodes `Decode`, `TryDecodeMfmBytes`, `DecodeOddEven` et `Interleave`.
+    - [ ] Tester un secteur Amiga valide, une adresse incohérente, un checksum faux et des données tronquées.
+  - [ ] `Decoding/Decoders/AppleIIGcrDecoder.cs`
+    - [ ] Remplacer prologues, épilogues, tables 5-and-3 et 6-and-2, tailles et checksums bruts par `AppleIIGcrFormat`.
+    - [ ] Partager les tables avec `AppleIIGcrTrackEncoder` sans en conserver de copie dans le décodeur.
+    - [ ] Remplacer les erreurs brutes par les méthodes Apple II injectant piste, secteur, encodage et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode de décodage.
+    - [ ] Tester DOS 3.2, DOS 3.3, prologue absent, symbole invalide et checksum faux.
+  - [ ] `Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
+    - [ ] Remplacer marques, table 6-and-2, tailles de tags et de secteurs et checksum bruts par `AppleLisaFileWareGcrFormat`.
+    - [ ] Partager la table avec l'encodeur Lisa sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Lisa injectant cylindre, tête, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester un secteur FileWare valide, un tag invalide, un symbole inconnu et un checksum faux.
+  - [ ] `Decoding/Decoders/AppleMacGcrDecoder.cs`
+    - [ ] Remplacer marques, table 6-and-2, tailles, tags et checksums bruts par `AppleMacGcrFormat`.
+    - [ ] Partager la table avec l'encodeur Macintosh sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Macintosh injectant piste, secteur, tag et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste Macintosh valide, une marque absente, un tag incohérent et un checksum faux.
+  - [ ] `Decoding/Decoders/AppleRwts18Decoder.cs`
+    - [ ] Remplacer synchronisations, tailles, ordre des secteurs et tables brutes par `AppleRwts18Format`.
+    - [ ] Partager les définitions avec l'encodeur, le Reader NIB, le Writer NIB et le convertisseur RWTS18.
+    - [ ] Remplacer les erreurs brutes par les méthodes RWTS18 injectant piste, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste RWTS18 valide, une synchronisation absente et une charge utile invalide.
+  - [ ] `Decoding/Decoders/ArburgDecoder.cs`
+    - [ ] Remplacer signatures FM et système, tailles, masques et ordre des bits bruts par `ArburgFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Arburg injectant marque, offset et longueur.
+    - [ ] Documenter en français le type, chaque champ et les méthodes `Decode`, `ScanFmData`, `ScanSystemData` et `ReverseBits`.
+    - [ ] Tester les deux structures Arburg, une marque absente et une longueur tronquée.
+  - [ ] `Decoding/Decoders/CenturionMfmDecoder.cs`
+    - [ ] Remplacer marques, synchronisations, tailles, masques et CRC bruts par `CenturionMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Centurion injectant piste, secteur, offset et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, une taille invalide et un CRC faux.
+  - [ ] `Decoding/Decoders/Commodore900GcrDecoder.cs`
+    - [ ] Remplacer table GCR, marques, tailles, masques et checksum bruts par `Commodore900GcrFormat`.
+    - [ ] Partager la table avec l'encodeur Commodore 900 sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Commodore 900 injectant piste, secteur, symbole et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester un secteur valide, un nibble invalide, une marque absente et un checksum faux.
+  - [ ] `Decoding/Decoders/CommodoreGcrDecoder.cs`
+    - [ ] Remplacer table GCR, marques, tailles et checksum bruts par `CommodoreGcrFormat`.
+    - [ ] Partager la table avec l'encodeur Commodore sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Commodore injectant piste, secteur, symbole et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester un secteur 1541 valide, un code GCR invalide, une marque absente et un checksum faux.
+  - [ ] `Decoding/Decoders/DataGeneralFmDecoder.cs`
+    - [ ] Remplacer marques, tailles, offsets et checksum bruts par `DataGeneralFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Data General injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et les méthodes `Decode`, `FindAll` et `Checksum`.
+    - [ ] Tester une piste valide, plusieurs marques, une donnée tronquée et un checksum faux.
+  - [ ] `Decoding/Decoders/DecRx02Decoder.cs`
+    - [ ] Remplacer marques, tailles, codage M2FM et CRC bruts par `DecRx02Format` et `DecRx02Geometry`.
+    - [ ] Documenter en français `FindNextDataMark`, ses paramètres, son résultat et la distance maximale de recherche.
+    - [ ] Remplacer les erreurs brutes par les méthodes RX02 injectant piste, secteur, marque et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode réelle.
+    - [ ] Tester une piste RX02 valide, une marque absente, un M2FM invalide et un CRC faux.
+  - [ ] `Decoding/Decoders/EmuFmDecoder.cs`
+    - [ ] Remplacer marques, tailles, ordre des bits et CRC bruts par `EmuFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes EMU injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, un ordre de bits invalide et un CRC faux.
+  - [ ] `Decoding/Decoders/HeathkitFmDecoder.cs`
+    - [ ] Remplacer marques, tailles, ordre des bits et checksum bruts par `HeathkitFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Heathkit injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, une donnée tronquée et un checksum faux.
+  - [ ] `Decoding/Decoders/HpMmfmDecoder.cs`
+    - [ ] Remplacer synchronisations, marques, tailles, ordre des bits et CRC bruts par `HpMmfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes HP injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une synchronisation absente, une donnée tronquée et un CRC faux.
+  - [ ] `Decoding/Decoders/IsoFmDecoder.cs`
+    - [ ] Remplacer marques d'adresse et de données, tailles, gaps, codes de taille et CRC bruts par `IsoFmFormat`.
+    - [ ] Partager ces définitions avec `IsoFmTrackEncoder`.
+    - [ ] Remplacer les erreurs brutes par les méthodes ISO FM injectant cylindre, tête, secteur, taille et marque.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester marques normales et supprimées, codes de taille, CRC et données tronquées.
+  - [ ] `Decoding/Decoders/IsoMfmDecoder.cs`
+    - [ ] Remplacer octets A1, marques, tailles, gaps, codes de taille et CRC bruts par `IsoMfmFormat`.
+    - [ ] Partager ces définitions avec `IsoMfmTrackEncoder`.
+    - [ ] Remplacer les erreurs brutes par les méthodes ISO MFM injectant cylindre, tête, secteur, taille et marque.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester marques normales et supprimées, codes de taille, score, CRC et données tronquées.
+  - [ ] `Decoding/Decoders/MembrainMfmDecoder.cs`
+    - [ ] Remplacer marques, tailles et CRC bruts par `MembrainMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Membrain injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, une longueur invalide et un CRC faux.
+  - [ ] `Decoding/Decoders/MicralNFmDecoder.cs`
+    - [ ] Remplacer marques, tailles et checksum bruts par `MicralNFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Micral N injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, une longueur invalide et un checksum faux.
+  - [ ] `Decoding/Decoders/MicropolisMfmDecoder.cs`
+    - [ ] Remplacer marques, tailles et checksum bruts par `MicropolisMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Micropolis injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, une longueur invalide et un checksum faux.
+  - [ ] `Decoding/Decoders/NorthstarMfmDecoder.cs`
+    - [ ] Remplacer marques, tailles, ordre des bits et checksum bruts par `NorthstarMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Northstar injectant piste, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et la méthode `Decode`.
+    - [ ] Tester une piste valide, une marque absente, une longueur invalide et un checksum faux.
+  - [ ] `Decoding/Decoders/QdMo5MfmDecoder.cs`
+    - [ ] Remplacer marques, tailles et checksum bruts par `QdMo5MfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes QD MO5 injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, une marque absente, une longueur invalide et un checksum faux.
+  - [ ] `Decoding/Decoders/RawFluxDecoder.cs`
+    - [ ] Remplacer l'identifiant brut `raw` par `FluxCodecIds.Raw`.
+    - [ ] Définir explicitement les unités et le comportement d'un résultat sans secteur.
+    - [ ] Documenter en français le type, l'identifiant et la méthode `Decode`.
+    - [ ] Tester un flux vide, un flux non vide et les unités des intervalles conservés.
+  - [ ] `Decoding/Decoders/TycomFmDecoder.cs`
+    - [ ] Remplacer marques, tailles et CRC bruts par `TycomFmFormat`.
+    - [ ] Documenter en français `FindNextDataMark`, ses paramètres, son résultat et la distance maximale de recherche.
+    - [ ] Remplacer les erreurs brutes par les méthodes Tycom injectant marque, secteur et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode réelle.
+    - [ ] Tester une piste valide, une marque absente, une longueur invalide et un CRC faux.
+  - [ ] `Decoding/Decoders/Victor9kGcrDecoder.cs`
+    - [ ] Remplacer table GCR, marques, tailles et checksum bruts par `Victor9kGcrFormat`.
+    - [ ] Partager ces définitions avec `Victor9kGcrTrackEncoder`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Victor 9000 injectant piste, secteur, nibble et longueur.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester une piste valide, un nibble inconnu, une marque absente et un checksum faux.
 
 ## 6. Encodage
 
@@ -1042,6 +1477,150 @@
     - [ ] Ajouter la documentation XML française de `TrackEncoding`, `SectorSizeCode` et `TrackEncodingExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `ToRevolution, Bits, Raw, RawHex, RawBits, DoubledCells, Mfm, Fm, DoubleFm, Gap, SizeCode, Crc16, WithCrc, RotatingChecksum, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
+- [ ] Compléments issus de la relecture complète de l'encodage
+  - [ ] `Encoding/FluxEncoderRegistry.cs`
+    - [ ] Faire recevoir au constructeur la collection des encodeurs au lieu de créer toutes les implémentations dans le registre.
+    - [ ] Construire un dictionnaire par identifiant de codec et refuser les identifiants vides ou dupliqués.
+    - [ ] Ajouter une erreur dédiée permettant d'injecter l'identifiant absent ou dupliqué.
+    - [ ] Documenter en français le type, le constructeur et chaque méthode.
+    - [ ] Tester une collection vide, un doublon, un identifiant absent et la sélection de chaque encodeur.
+  - [ ] `Encoding/TrackEncodeModels.cs`
+    - [ ] Remplacer la valeur par défaut `40` de cellule par une constante technique nommée.
+    - [ ] Remplacer la valeur par défaut `8000000` de fréquence par une constante technique nommée avec son unité.
+    - [ ] Sortir les clés d'attributs de piste écrites en brut dans des constantes communes.
+    - [ ] Copier les collections reçues par chaque modèle avant de les exposer.
+    - [ ] Créer un fichier par type public regroupé dans `TrackEncodeModels.cs`.
+    - [ ] Documenter en français chaque type, propriété et paramètre de record.
+    - [ ] Supprimer `TrackEncodeModels.cs` après déplacement de tous ses types.
+  - [ ] `Encoding/TrackEncoderBase.cs`
+    - [ ] Utiliser `BitPrimitives` pour les tailles et masques de bits communs.
+    - [ ] Remplacer les textes d'exception bruts par des méthodes injectant codec, piste, secteur et taille.
+    - [ ] Documenter en français le type, le constructeur et chaque méthode.
+    - [ ] Tester les contrôles communs utilisés par tous les encodeurs.
+  - [ ] `Encoding/FluxEncoding.cs`
+    - [ ] Remplacer tous les consommateurs par l'enum technique unique déjà utilisé par les modèles de flux.
+    - [ ] Supprimer `FluxEncoding.cs` après migration complète si ce fichier duplique effectivement cet enum.
+  - [ ] `Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
+    - [ ] Remplacer marques, synchronisations, tailles, gaps et CRC bruts par `Aed6200pMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes AED injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste AED et le rejet d'une taille non prise en charge.
+  - [ ] `Encoding/Encoders/AmigaMfmTrackEncoder.cs`
+    - [ ] Remplacer synchronisations, mots odd/even, gaps, masques et checksum bruts par `AmigaMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Amiga injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et les méthodes `EncodeBits`, `Nibble` et `EncodeOddEven`.
+    - [ ] Tester l'aller-retour d'une piste Amiga, l'ordre odd/even et un checksum attendu.
+  - [ ] `Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
+    - [ ] Utiliser les prologues, épilogues, tables, tailles et checksums de `AppleIIGcrFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Apple II injectant piste, secteur, encodage et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode d'encodage.
+    - [ ] Tester les allers-retours DOS 3.2 et DOS 3.3 et les deux tables GCR.
+  - [ ] `Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
+    - [ ] Utiliser marques, table, tags, tailles et checksums de `AppleLisaFileWareGcrFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Lisa injectant cylindre, tête, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste Lisa avec tags et checksum connus.
+  - [ ] `Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
+    - [ ] Utiliser marques, table, tags, tailles et checksums de `AppleMacGcrFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Macintosh injectant piste, secteur, tag et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste Macintosh avec tags et checksum connus.
+  - [ ] `Encoding/Encoders/AppleRwts18TrackEncoder.cs`
+    - [ ] Utiliser synchronisations, ordre sectoriel, tailles et tables de `AppleRwts18Format` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes RWTS18 injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste RWTS18 complète et une taille invalide.
+  - [ ] `Encoding/Encoders/ArburgTrackEncoder.cs`
+    - [ ] Remplacer signatures, tailles, gaps et ordre des bits bruts par `ArburgFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Arburg injectant piste et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester les allers-retours des structures FM et système Arburg.
+  - [ ] `Encoding/Encoders/CenturionMfmTrackEncoder.cs`
+    - [ ] Remplacer marques, synchronisations, tailles, gaps et CRC bruts par `CenturionMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Centurion injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Centurion et un CRC connu.
+  - [ ] `Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
+    - [ ] Utiliser table, marques, tailles, zones de cellules et checksum de `Commodore900GcrFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Commodore 900 injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste Commodore 900 dans chaque zone de cellules.
+  - [ ] `Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
+    - [ ] Utiliser table, marques, tailles, gaps et checksum de `CommodoreGcrFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Commodore injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste 1541 dans chaque zone de vitesse.
+  - [ ] `Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps et checksum bruts par `DataGeneralFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Data General injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Data General et un checksum connu.
+  - [ ] `Encoding/Encoders/DecRx02TrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, M2FM, gaps et CRC bruts par `DecRx02Format` et `DecRx02Geometry`.
+    - [ ] Remplacer les erreurs brutes par les méthodes RX02 injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste RX02 et les tailles physiques/logiques attendues.
+  - [ ] `Encoding/Encoders/EmuFmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps, ordre des bits et CRC bruts par `EmuFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes EMU injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste EMU et un CRC connu.
+  - [ ] `Encoding/Encoders/HeathkitFmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps, ordre des bits et checksum bruts par `HeathkitFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Heathkit injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste Heathkit et un checksum connu.
+  - [ ] `Encoding/Encoders/HpMmfmTrackEncoder.cs`
+    - [ ] Remplacer synchronisations, marques, tailles, gaps, ordre des bits et CRC bruts par `HpMmfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes HP injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste HP MMFM et un CRC connu.
+  - [ ] `Encoding/Encoders/IsoFmTrackEncoder.cs`
+    - [ ] Utiliser marques, tailles, gaps, codes de taille et CRC de `IsoFmFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes ISO FM injectant cylindre, tête, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester les allers-retours de plusieurs codes de taille et d'une marque supprimée.
+  - [ ] `Encoding/Encoders/IsoMfmTrackEncoder.cs`
+    - [ ] Utiliser octets A1, marques, tailles, gaps, codes de taille et CRC de `IsoMfmFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes ISO MFM injectant cylindre, tête, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester les allers-retours de plusieurs codes de taille et d'une marque supprimée.
+  - [ ] `Encoding/Encoders/MembrainMfmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps et CRC bruts par `MembrainMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Membrain injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Membrain et un CRC connu.
+  - [ ] `Encoding/Encoders/MicralNFmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps et checksum bruts par `MicralNFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Micral N injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Micral N et un checksum connu.
+  - [ ] `Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps et checksum bruts par `MicropolisMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Micropolis injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Micropolis et un checksum connu.
+  - [ ] `Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps, ordre des bits et checksum bruts par `NorthstarMfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Northstar injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Northstar et un checksum connu.
+  - [ ] `Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps et checksum bruts par `QdMo5MfmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes QD MO5 injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste QD MO5 et un checksum connu.
+  - [ ] `Encoding/Encoders/TycomFmTrackEncoder.cs`
+    - [ ] Remplacer marques, tailles, gaps et CRC bruts par `TycomFmFormat`.
+    - [ ] Remplacer les erreurs brutes par les méthodes Tycom injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et `EncodeBits`.
+    - [ ] Tester l'aller-retour d'une piste Tycom et un CRC connu.
+  - [ ] `Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
+    - [ ] Utiliser table, marques, tailles, zones de cellules et checksum de `Victor9kGcrFormat` sans copie locale.
+    - [ ] Remplacer les erreurs brutes par les méthodes Victor 9000 injectant piste, secteur et taille.
+    - [ ] Documenter en français le type, chaque champ et chaque méthode.
+    - [ ] Tester l'aller-retour d'une piste Victor 9000 dans chaque zone de cellules.
+
 ## 7. Reconstruction des images sectorielles
 
 - [ ] Données brutes des reconstructeurs SCP
@@ -1049,12 +1628,14 @@
     - [ ] Remplacer tous les identifiants de formats et de codecs par `DiskImageFormatIds` et `FluxCodecIds`.
     - [ ] Remplacer les tailles sectorielles, pistes, faces et secteurs par les définitions Amiga, Apple, Commodore et DEC correspondantes.
     - [ ] Créer `Reconstruction/Apple/AppleScpReconstructionDefinitions.cs` et y déplacer les facteurs de cellule Apple Macintosh utilisés par `AppleScpSectorDecoder`.
-    - [ ] Créer `Reconstruction/ScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter famille, piste, format demandé et nombre de secteurs décodés puis remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/ScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter famille, piste, format demandé et nombre de secteurs décodés.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `ScpReconstructionExceptions`.
   - [ ] Reconstruction ISO FM/MFM
     - [ ] Remplacer dans toutes les politiques ISO les identifiants de codecs par `FluxCodecIds`.
     - [ ] Remplacer les identifiants de formats, préfixes et géométries bruts par `DiskImageFormatIds` et les catalogues concernés.
     - [ ] Créer `Reconstruction/Iso/IsoScpReconstructionDefinitions.cs` avec les valeurs nommées du score utilisé par `IsoScpSectorImageReader`.
-    - [ ] Créer `Reconstruction/Iso/IsoScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter format demandé et nombre de candidats cohérents puis remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Iso/IsoScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter format demandé et nombre de candidats cohérents.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `IsoScpReconstructionExceptions`.
   - [ ] Epson QX-10
     - [ ] Remplacer dans les cinq fichiers Epson tous les identifiants bruts par `DiskImageFormatIds`.
     - [ ] Déplacer dans `EpsonQx10GeometryCatalog` les géométries encore écrites dans `EpsonQx10FormatDetector`.
@@ -1075,7 +1656,8 @@
     - [ ] Créer `Reconstruction/Adf/AdfGeometryCatalog.cs` avec des définitions distinctes pour les géométries ADF Acorn et ADF Amiga.
     - [ ] Sortir les capacités `819200`, `820224`, `901120` et `1802240`, les tailles de blocs, les cylindres, les faces et les secteurs par piste.
     - [ ] Remplacer les identifiants Acorn et Amiga écrits en brut par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Adf/AdfImageExceptions.cs` avec une erreur recevant la taille ADF observée et remplacer le texte d’exception brut.
+    - [ ] Créer `Reconstruction/Adf/AdfImageExceptions.cs` avec une erreur recevant la taille ADF observée.
+    - [ ] Remplacer le texte d’exception brut par la méthode de `AdfImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `AdfSectorImageReader`, `AdfGeometryCatalog` et `AdfImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1088,7 +1670,8 @@
     - [ ] Déplacer les tables d’ordre ProDOS/physique et physique/DOS dans la définition Apple II et les exposer en lecture seule.
     - [ ] Sortir les bornes des zones de pistes Macintosh et Lisa utilisées par les calculs de secteurs par piste.
     - [ ] Remplacer les tailles `16 × 256` de la conversion d’ordre Apple II par les constantes Apple II.
-    - [ ] Créer `Reconstruction/Apple/AppleDiskGeometryExceptions.cs` avec les erreurs permettant d’injecter le bloc logique ou le cylindre hors géométrie et remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Apple/AppleDiskGeometryExceptions.cs` avec les erreurs permettant d’injecter le bloc logique ou le cylindre hors géométrie.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `AppleDiskGeometryExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `AppleDiskGeometry`, `AppleIIGeometry`, `MacintoshDiskGeometry`, `LisaDiskGeometry` et `AppleDiskGeometryExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `LisaFileWareAddress, LisaFileWareSectors, AppleMacZonedAddress, AppleMacSectors, ConvertDosOrderToProDosBlocks`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1142,7 +1725,8 @@
     - [ ] Remplacer les capacités, tailles de secteurs, nombres de pistes, faces et secteurs par les définitions Apple correspondantes.
     - [ ] Remplacer les signatures MFS/HFS et leur offset par les définitions de reconnaissance Apple.
     - [ ] Remplacer les identifiants Apple II, Apple III, Lisa et Macintosh écrits en brut par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Apple/AppleRawImageExceptions.cs` avec les erreurs permettant d’injecter la taille et la signature observées et remplacer les deux textes d’exception bruts.
+    - [ ] Créer `Reconstruction/Apple/AppleRawImageExceptions.cs` avec les erreurs permettant d’injecter la taille et la signature observées.
+    - [ ] Remplacer les deux textes d’exception bruts par les méthodes de `AppleRawImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `AppleRawImageReader` et `AppleRawImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `Read, ReadAppleTwo525, ReadApple35`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1169,7 +1753,8 @@
     - [ ] Créer `AtariStBootSectorLayout.cs` avec les offsets BPB `11`, `19`, `24`, `26` et `32`.
     - [ ] Sortir les limites de secteurs, faces et cylindres et les géométries 9, 10, 11 et 18 secteurs par piste.
     - [ ] Remplacer toutes les valeurs brutes correspondantes dans le Reader et `AtariStGeometry`.
-    - [ ] Créer `Reconstruction/Atari/AtariStImageExceptions.cs` avec les erreurs recevant taille et géométrie observées et remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Atari/AtariStImageExceptions.cs` avec les erreurs recevant taille et géométrie observées.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `AtariStImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `AtariStRawSectorImageReader`, `AtariStGeometryCatalog`, `AtariStBootSectorLayout` et `AtariStImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, AtariStGeometry, Detect, CreateSectorImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1181,7 +1766,8 @@
     - [ ] Créer `Reconstruction/Acorn/BbcDfsGeometry.cs` avec la taille sectorielle, les secteurs par piste, la taille d’une piste et les nombres de pistes 40 et 80.
     - [ ] Ajouter les capacités et règles d’ordre des faces SSD et DSD utilisées par le Reader.
     - [ ] Remplacer les identifiants DFS bruts par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Acorn/BbcDfsImageExceptions.cs` avec les erreurs recevant l’extension, la taille et le nombre de pistes observés et remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Acorn/BbcDfsImageExceptions.cs` avec les erreurs recevant l’extension, la taille et le nombre de pistes observés.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `BbcDfsImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `BbcSsdDsdSectorImageReader`, `BbcDfsGeometry` et `BbcDfsImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1194,7 +1780,8 @@
     - [ ] Sortir les signatures `noname`, `nopack` et `xxxxx` utilisées par la reconnaissance.
     - [ ] Sortir les bornes de cylindres et les secteurs par piste du zonage Commodore 900.
     - [ ] Remplacer l’identifiant `commodore900.coherent` par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Coherent/CoherentImageExceptions.cs` avec les erreurs recevant la taille observée et la taille du système de fichiers déclarée puis remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Coherent/CoherentImageExceptions.cs` avec les erreurs recevant la taille observée et la taille du système de fichiers déclarée.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `CoherentImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `CoherentRawSectorImageReader`, `CoherentDiskLayout` et `CoherentImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `ReadAsync, LooksLikeCoherent, ReadCanonicalUInt32, SectorsPerTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1206,7 +1793,8 @@
     - [ ] Créer `Reconstruction/Commodore/CommodoreImageLayout.cs` et y ajouter les tailles D64 avec 35 ou 40 pistes, avec ou sans carte d’erreurs.
     - [ ] Sortir la taille sectorielle, la valeur d’intégrité valide et le nombre maximal de secteurs par piste.
     - [ ] Remplacer l’identifiant `commodore.1541` par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Commodore/CommodoreImageExceptions.cs` avec une erreur recevant la taille D64 observée et remplacer le texte brut.
+    - [ ] Créer `Reconstruction/Commodore/CommodoreImageExceptions.cs` avec une erreur recevant la taille D64 observée.
+    - [ ] Remplacer le texte brut correspondant par la méthode de `CommodoreImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `CommodoreD64ImageReader`, `CommodoreImageLayout` et `CommodoreImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1218,7 +1806,8 @@
     - [ ] Ajouter à `CommodoreImageLayout` les tailles D71 avec 35 ou 40 pistes par face, avec ou sans carte d’erreurs.
     - [ ] Réutiliser la taille sectorielle et la valeur d’intégrité communes au format de carte d’erreurs Commodore.
     - [ ] Remplacer l’identifiant `commodore.1571` par `DiskImageFormatIds`.
-    - [ ] Ajouter à `CommodoreImageExceptions` une erreur recevant la taille D71 observée et remplacer le texte brut.
+    - [ ] Ajouter à `CommodoreImageExceptions` une erreur recevant la taille D71 observée.
+    - [ ] Remplacer le texte brut correspondant par la méthode de `CommodoreImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `CommodoreD71ImageReader` et des membres ajoutés à `CommodoreImageLayout` et `CommodoreImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1230,7 +1819,8 @@
     - [ ] Ajouter à `CommodoreImageLayout` la capacité D81, la taille sectorielle, les pistes, les faces et les secteurs par piste.
     - [ ] Remplacer les calculs bruts de 40 secteurs et 256 octets par ces définitions.
     - [ ] Remplacer l’identifiant `commodore.1581` par `DiskImageFormatIds`.
-    - [ ] Ajouter à `CommodoreImageExceptions` une erreur recevant la taille D81 observée et attendue puis remplacer le texte brut.
+    - [ ] Ajouter à `CommodoreImageExceptions` une erreur recevant la taille D81 observée et attendue.
+    - [ ] Remplacer le texte brut correspondant par la méthode de `CommodoreImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `CommodoreD81ImageReader` et des membres ajoutés à `CommodoreImageLayout` et `CommodoreImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1241,7 +1831,8 @@
   - [ ] Valeurs brutes de géométrie Commodore
     - [ ] Sortir les bornes de zones 1541 `17`, `24`, `30` et `40` et leurs nombres de secteurs `21`, `19`, `18` et `17`.
     - [ ] Sortir les limites de pistes et secteurs 1581 et les 40 secteurs par piste.
-    - [ ] Ajouter à `CommodoreImageExceptions` les erreurs permettant d’injecter piste, face, secteur ou bloc logique invalide puis remplacer les exceptions sans message.
+    - [ ] Ajouter à `CommodoreImageExceptions` les erreurs permettant d’injecter piste, face, secteur ou bloc logique invalide.
+    - [ ] Remplacer les exceptions sans message par les méthodes de `CommodoreImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `CommodoreGeometry` et des méthodes ajoutées à `CommodoreImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `SectorsFor1541Track, BlocksPer1541Side, To1541LogicalBlock, To1581LogicalBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1254,7 +1845,8 @@
     - [ ] Sortir les constantes de l’entrelacement physique et des 1001 blocs logiques.
     - [ ] Sortir les offsets `468` et `496`, la longueur de l’identifiant système et la signature `DECRT11` utilisés par `LooksLikeRt11`.
     - [ ] Remplacer l’identifiant `dec.rx02` par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Dec/DecRx02ImageExceptions.cs` avec une erreur recevant la taille observée et attendue puis remplacer le texte brut.
+    - [ ] Créer `Reconstruction/Dec/DecRx02ImageExceptions.cs` avec une erreur recevant la taille observée et attendue.
+    - [ ] Remplacer le texte brut correspondant par la méthode de `DecRx02ImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `DecRx02SectorImageReader`, `DecRx02Geometry` et `DecRx02ImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `ReadAsync, LooksLikeRt11, CopyLogicalSector, ReadUInt16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1268,7 +1860,8 @@
     - [ ] Sortir les valeurs de médias FAT `FE`, `FC`, `FF` et `FD` et leurs géométries IBM.
     - [ ] Sortir les identifiants OEM examinés par `TryIdentifyFluxGeometry` dans une définition nommée.
     - [ ] Remplacer les identifiants IBM fixes et construits en brut par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Ibm/IbmRawImageExceptions.cs` avec les erreurs recevant taille et géométrie observées puis remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Ibm/IbmRawImageExceptions.cs` avec les erreurs recevant taille et géométrie observées.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `IbmRawImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `IbmRawSectorImageReader`, `IbmPcGeometryCatalog`, `FatBpbLayout` et `IbmRawImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Create, DetectGeometry, HasValidBpbGeometry, FormatIdForGeometry, TryDetectFluxGeometry, TryIdentifyFluxGeometry, TryReadBpbGeometry, IbmPcGeometry`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1281,7 +1874,8 @@
     - [ ] Créer `MsxDiskSignatures.cs` avec le préfixe OEM `MSX`, la valeur média `F8` et les champs spécifiques examinés.
     - [ ] Utiliser `FatBpbLayout` pour les offsets BPB partagés avec IBM et conserver les valeurs MSX dans `MsxDiskSignatures`.
     - [ ] Remplacer les identifiants MSX bruts par `DiskImageFormatIds`.
-    - [ ] Créer `Reconstruction/Msx/MsxRawImageExceptions.cs` avec les erreurs recevant signature, taille et géométrie observées puis remplacer les textes bruts.
+    - [ ] Créer `Reconstruction/Msx/MsxRawImageExceptions.cs` avec les erreurs recevant signature, taille et géométrie observées.
+    - [ ] Remplacer les textes bruts correspondants par les méthodes de `MsxRawImageExceptions`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `MsxRawSectorImageReader`, `MsxDiskGeometryCatalog`, `MsxDiskSignatures` et `MsxRawImageExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, LooksLikeMsx`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1499,6 +2093,62 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `IsoScpSectorImagePolicyRegistry`.
     - [ ] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+- [ ] Compléments issus de la relecture complète de la conversion et de la visualisation
+  - [ ] `Images/AppleNibbleImageWriter.cs`
+    - [ ] Remplacer chaque signature, taille, chunk, piste et CRC brut par `NibTrackFormat`, `WozFormat`, `WozLayout` ou la définition Apple GCR correspondante.
+    - [ ] Sortir le créateur `GW GUI` dans une constante WOZ nommée.
+    - [ ] Utiliser le même composant de conversion de bits que le Reader WOZ.
+    - [ ] Remplacer les exceptions brutes par des méthodes injectant extension, piste, secteur et longueurs.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'écriture puis la relecture NIB, WOZ1 et WOZ2.
+  - [ ] `Images/AppleRwts18ConversionService.cs`
+    - [ ] Remplacer les extensions, formats et codecs bruts par `DiskImageFileExtensions`, `DiskImageFormatIds` et `FluxCodecIds`.
+    - [ ] Remplacer l'erreur brute par une méthode injectant chemin et format.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les conversions réellement prises en charge et leur rejet.
+  - [ ] `Images/SectorImageFluxVisualizer.cs`
+    - [ ] Injecter le registre de politiques au lieu de le construire dans la classe.
+    - [ ] Remplacer les identifiants de formats et encodeurs bruts par les définitions communes.
+    - [ ] Remplacer les erreurs brutes par des méthodes injectant format, encodeur et nombre de pistes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une visualisation reconnue, une image sans politique et une image sans encodeur.
+  - [ ] `Images/Visualization/AppleVisualizationPolicy.cs`
+    - [ ] Remplacer formats, codecs, géométries, tailles et attributs bruts par les définitions Apple II, Macintosh, Lisa et RWTS18.
+    - [ ] Sortir les clés `sectorsPerTrack` et `format` dans les constantes d'attributs de piste.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque famille Apple prise en charge.
+  - [ ] `Images/Visualization/AtariVisualizationPolicy.cs`
+    - [ ] Remplacer formats, codecs, nombres de secteurs et limites de pistes bruts par les définitions Atari et ISO communes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester Atari 8-bit et Atari ST.
+  - [ ] `Images/Visualization/CommodoreVisualizationPolicy.cs`
+    - [ ] Remplacer formats, codecs, géométries 1581, regroupements de blocs et zones de cellules bruts par les définitions Commodore.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester 1541, 1571, 1581 et Commodore 900.
+  - [ ] `Images/Visualization/DecRx02VisualizationPolicy.cs`
+    - [ ] Remplacer format, codec, tailles et division des blocs bruts par `DecRx02Geometry` et les identifiants communs.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une image RX02 connue.
+  - [ ] `Images/Visualization/ExactVisualizationPolicy.cs`
+    - [ ] Remplacer tous les identifiants bruts par les constantes correspondantes.
+    - [ ] Documenter en français chaque type, constructeur, propriété et méthode.
+    - [ ] Tester une correspondance exacte, une absence de correspondance et la casse de l'identifiant.
+  - [ ] `Images/Visualization/PrefixVisualizationPolicy.cs`
+    - [ ] Remplacer tous les préfixes et codecs bruts par les constantes correspondantes.
+    - [ ] Documenter en français chaque type, constructeur, propriété et méthode.
+    - [ ] Tester une correspondance de préfixe, une absence de correspondance et la casse de l'identifiant.
+  - [ ] `Images/Visualization/SectorImageVisualizationPolicy.cs`
+    - [ ] Remplacer la table taille/code par la définition sectorielle commune.
+    - [ ] Créer une fonction nommée pour construire la clé `tag{index}`.
+    - [ ] Remplacer la valeur de cellule `40` par la constante technique commune.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les tailles, tags et attributs produits.
+  - [ ] `Images/Visualization/SectorImageVisualizationPolicyRegistry.cs`
+    - [ ] Faire recevoir au constructeur la collection ordonnée des politiques.
+    - [ ] Refuser une collection nulle, une politique nulle et deux inscriptions exactes identiques.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'ordre, une collection vide, un doublon et l'absence de politique.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImageReader.cs`.
@@ -1540,6 +2190,217 @@
     - [ ] Adapter les consommateurs et les tests.
     - [ ] Supprimer le fichier.
 
+- [ ] Compléments issus de la relecture complète de la reconstruction sectorielle
+  - [ ] `Images/AdfImageReader.cs`
+    - [ ] Extraire les capacités ADF reconnues, la taille de bloc et les géométries DD/HD dans des définitions Amiga communes.
+    - [ ] Remplacer les identifiants de formats et textes d'erreur bruts par les définitions correspondantes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester ADF DD, ADF HD et une taille invalide.
+  - [ ] `Images/AppleDiskGeometry.cs`
+    - [ ] Séparer les géométries Apple II, Apple III, Lisa et Macintosh dans des définitions nommées sans recopier les valeurs communes.
+    - [ ] Remplacer les tuples de géométrie par un type nommé validant cylindres, têtes, secteurs, taille de bloc et capacité.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester la capacité calculée de chaque géométrie.
+  - [ ] `Images/AppleDiskImageReader.cs`
+    - [ ] Sortir les extensions, signatures, formats et tailles encore écrits en brut vers les définitions Apple correspondantes.
+    - [ ] Séparer le routage des conteneurs signés, des pistes NIB et des images sectorielles brutes.
+    - [ ] Faire retourner à chaque tentative un rejet explicite permettant au routeur d'essayer le candidat Apple suivant.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester 2IMG, DiskCopy, WOZ, NIB et chaque image brute prise en charge.
+  - [ ] `Images/AppleDiskImageSignatures.cs`
+    - [ ] Remplacer les tableaux modifiables par des mémoires en lecture seule.
+    - [ ] Conserver une seule définition de chaque signature réutilisée par Reader, Writer et reconnaissance.
+    - [ ] Documenter en français chaque signature avec son format.
+    - [ ] Tester les octets exacts de chaque signature.
+  - [ ] `Images/AppleRawImageReader.cs` et `AppleSectorImageFactory.cs`
+    - [ ] Déplacer chaque capacité, ordre sectoriel, géométrie et format dans le catalogue Apple approprié.
+    - [ ] Séparer la détection d'une géométrie de la construction des blocs sectoriels.
+    - [ ] Remplacer les erreurs brutes par des méthodes injectant format, taille, ordre et secteur.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester DOS, ProDOS, D13, Lisa et Macintosh bruts.
+  - [ ] `Images/AtariStImageReader.cs`
+    - [ ] Extraire les capacités, géométries et identifiants Atari ST dans un catalogue commun aux Readers et à FAT12.
+    - [ ] Utiliser `FatBpbLayout` pour les champs du boot sector.
+    - [ ] Remplacer les erreurs brutes par des méthodes injectant taille et géométrie.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque capacité ST prise en charge et une image incohérente.
+  - [ ] `Images/BbcDfsImageReader.cs`
+    - [ ] Extraire tailles, faces, pistes, secteurs et ordres SSD/DSD dans les définitions Acorn communes.
+    - [ ] Remplacer les erreurs brutes par des méthodes injectant extension, taille et géométrie.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester SSD/DSD 40 et 80 pistes.
+  - [ ] `Images/CoherentImageReader.cs`
+    - [ ] Déplacer la validation du superbloc et les entiers canoniques dans une définition commune au Reader de système de fichiers.
+    - [ ] Extraire les capacités, cylindres, têtes et secteurs Commodore 900 dans un catalogue de géométrie.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une image valide, un superbloc invalide et une taille incohérente.
+  - [ ] `Images/CommodoreD64ImageReader.cs`, `CommodoreD71ImageReader.cs`, `CommodoreD81ImageReader.cs` et `CommodoreGeometry.cs`
+    - [ ] Déplacer dans `CommodoreGeometry` chaque zone de pistes, nombre de secteurs, capacité et conversion piste/secteur réellement commune.
+    - [ ] Conserver dans chaque Reader uniquement la validation et l'ordre propres à son conteneur.
+    - [ ] Remplacer les identifiants et erreurs bruts par les définitions communes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester D64 avec et sans erreurs, D71 deux faces et D81.
+  - [ ] `Images/DecRx02ImageReader.cs`
+    - [ ] Extraire toutes les tailles, pistes, secteurs et règles d'entrelacement dans `DecRx02Geometry`.
+    - [ ] Séparer la reconnaissance RT-11 de la conversion physique vers logique RX02.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'ordre de plusieurs pistes et une structure invalide.
+  - [ ] `Images/IbmPcImageReader.cs`
+    - [ ] Déplacer les géométries IBM et la détection BPB/FAT dans un catalogue et un détecteur communs.
+    - [ ] Remplacer les capacités, médias FAT, tailles et identifiants bruts par ces définitions.
+    - [ ] Faire utiliser le détecteur commun par les interprétations IBM au lieu d'exposer une méthode du Reader.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque géométrie IBM prise en charge, un BPB valide et un layout historique.
+  - [ ] `Images/MsxImageReader.cs`
+    - [ ] Déplacer la validation du boot sector dans une définition commune aux politiques et interprétations MSX.
+    - [ ] Extraire les quatre géométries et l'octet média distinguant les variantes de 720 blocs.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les quatre formats et un boot invalide.
+  - [ ] `SectorImages/IsoScpSectorImagePolicyRegistry.cs`
+    - [ ] Faire recevoir au constructeur la collection ordonnée des politiques ISO au lieu de les créer dans le registre.
+    - [ ] Construire un index pour les sélections explicites et refuser deux inscriptions identiques.
+    - [ ] Remplacer les préfixes de formats bruts par `DiskImageFormatIds`.
+    - [ ] Définir explicitement l'ordre des politiques de repli automatique.
+    - [ ] Documenter en français le type, le constructeur et chaque méthode.
+    - [ ] Tester l'ordre, les doublons, la sélection explicite et le repli automatique.
+  - [ ] `SectorImages/IsoSectorImageBuilder.cs`
+    - [ ] Créer un type nommé pour le résultat à six valeurs actuellement retourné par `Measure`.
+    - [ ] Extraire la règle de sélection du meilleur secteur dans un composant commun aux reconstructeurs qui l'appliquent réellement.
+    - [ ] Remplacer l'exception brute d'absence de candidats cohérents par une erreur injectant format, piste, face et candidats observés.
+    - [ ] Documenter en français le type, le résultat de mesure et chaque méthode.
+    - [ ] Tester les candidats identiques, divergents, intègres, invalides et l'absence de candidat cohérent.
+  - [ ] `SectorImages/AmigaScpSectorImageReader.cs`
+    - [ ] Remplacer format, codec, géométrie, tailles et seuils bruts par les définitions Amiga communes.
+    - [ ] Remplacer les erreurs brutes par une méthode injectant piste, secteur et nombre de candidats.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une capture Amiga DD, une capture Amiga HD et une capture sans secteur valide.
+  - [ ] `SectorImages/AmstradIsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer formats CPC/PCW, géométries et tailles brutes par les définitions Amstrad correspondantes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les sélections CPC, PCW et le rejet d'une géométrie incompatible.
+  - [ ] `SectorImages/AmstradScpSectorImageReader.cs`
+    - [ ] Remplacer codec, formats et messages bruts par les définitions Amstrad et erreurs de reconstruction.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester la lecture explicite CPC, PCW et un format absent.
+  - [ ] `SectorImages/AppleIIScpSectorReconstructor.cs`
+    - [ ] Remplacer ordres sectoriels, tailles, pistes et formats bruts par `AppleIIGeometry` et `AppleIIGcrFormat`.
+    - [ ] Utiliser le sélecteur Apple commun uniquement pour la règle de meilleur secteur identique.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester DOS 3.2, DOS 3.3, les doublons et les secteurs manquants.
+  - [ ] `SectorImages/AppleMacScpSectorReconstructor.cs`
+    - [ ] Remplacer zones, secteurs par piste, tags et capacités bruts par `MacintoshDiskGeometry` et `AppleMacGcrFormat`.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les zones Macintosh, les tags, les doublons et les secteurs manquants.
+  - [ ] `SectorImages/AppleRwts18ScpSectorReconstructor.cs`
+    - [ ] Remplacer pistes, secteurs, ordre et tailles bruts par `AppleRwts18Format`.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une capture RWTS18 complète, partielle et incohérente.
+  - [ ] `SectorImages/AppleScpSectorDecoder.cs`
+    - [ ] Remplacer les identifiants des codecs Apple bruts par `FluxCodecIds`.
+    - [ ] Déplacer les poids de score et seuils de sélection dans des constantes Apple nommées.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester la sélection Apple II, RWTS18, Macintosh et Lisa.
+  - [ ] `SectorImages/AppleScpSectorImageReader.cs`
+    - [ ] Remplacer formats, familles et erreurs bruts par les définitions Apple et erreurs de reconstruction.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une sélection explicite, une sélection automatique et une sélection sans candidat.
+  - [ ] `SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer tailles, géométries 90K/130K/180K et formats bruts par le catalogue Atari 8-bit.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les trois géométries et une capacité inconnue.
+  - [ ] `SectorImages/AtariStIsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer capacités, géométries et formats bruts par le catalogue Atari ST commun.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque capacité ST réellement prise en charge.
+  - [ ] `SectorImages/AtariScpSectorImageReader.cs`
+    - [ ] Remplacer codecs, préfixes et erreurs bruts par les définitions Atari et erreurs de reconstruction.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester Atari 8-bit, Atari ST, un format explicite et la sélection automatique.
+  - [ ] `SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
+    - [ ] Extraire les seuils, poids et limites de géométrie automatique dans des constantes nommées.
+    - [ ] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester un candidat unique, ambigu, insuffisant et absent.
+  - [ ] `SectorImages/BbcIsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer géométries SSD/DSD, pistes, faces, secteurs et formats bruts par les définitions BBC DFS.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester SSD/DSD 40 et 80 pistes.
+  - [ ] `SectorImages/BbcScpSectorImageReader.cs`
+    - [ ] Remplacer codec, formats et erreurs bruts par les définitions BBC et erreurs de reconstruction.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester un format explicite, la sélection automatique et une capture sans secteur valide.
+  - [ ] `SectorImages/CommodoreScpSectorImageReader.cs`
+    - [ ] Remplacer codecs, zones, géométries et formats bruts par `CommodoreGeometry` et `FluxCodecIds`.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester 1541, 1571, 1581, Commodore 900 et la sélection automatique.
+  - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`
+    - [ ] Remplacer codec, géométrie, format et erreurs bruts par `DecRx02Geometry`, `FluxCodecIds` et les erreurs communes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une capture RX02 complète, partielle et invalide.
+  - [ ] `SectorImages/EpsonQx10FormatDetector.cs`
+    - [ ] Déplacer chaque capacité, secteur, taille, seuil et format Epson dans `EpsonQx10GeometryCatalog`.
+    - [ ] Conserver dans le détecteur uniquement le score des secteurs observés et la sélection d'une entrée du catalogue.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque format Epson, une ambiguïté et l'absence de correspondance.
+  - [ ] `SectorImages/EpsonQx10GeometryCatalog.cs`
+    - [ ] Créer un type nommé pour chaque géométrie Epson avec format, cylindres, têtes, secteurs, tailles et ordre.
+    - [ ] Protéger la collection du catalogue et refuser deux identifiants ou géométries identiques.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'unicité et la capacité de chaque entrée.
+  - [ ] `SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer toute copie de géométrie ou format par une entrée de `EpsonQx10GeometryCatalog`.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque sélection Epson.
+  - [ ] `SectorImages/EpsonQx10ScpSectorImageReader.cs`
+    - [ ] Remplacer codecs, formats et erreurs bruts par les définitions Epson et erreurs de reconstruction.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une sélection explicite, détectée et absente.
+  - [ ] `SectorImages/EpsonQx10SectorImageBuilder.cs`
+    - [ ] Remplacer géométries, ordres et tailles bruts par l'entrée Epson reçue du catalogue.
+    - [ ] Utiliser le sélecteur commun du meilleur secteur lorsque sa règle est identique à celle d'ISO.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester des secteurs variables, des doublons et des secteurs manquants.
+  - [ ] `SectorImages/EpsonQx10SectorImagePolicy.cs`
+    - [ ] Remplacer les formats et listes Epson bruts par le catalogue commun.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester chaque format accepté et un format étranger.
+  - [ ] `SectorImages/GenericIsoScpSectorImagePolicy.cs`
+    - [ ] Extraire les bornes de géométrie, tailles sectorielles et seuils génériques dans des constantes nommées.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester plusieurs géométries uniformes et une géométrie incohérente.
+  - [ ] `SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer géométries, capacités, médias FAT et formats bruts par le catalogue IBM commun.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les géométries IBM prises en charge et `IbmScan`.
+  - [ ] `SectorImages/IbmPcScpSectorImageReader.cs`
+    - [ ] Remplacer codecs, formats et erreurs bruts par les définitions IBM et erreurs de reconstruction.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une sélection explicite, un scan et l'absence de candidat.
+  - [ ] `SectorImages/IIsoScpSectorImagePolicy.cs`
+    - [ ] Documenter en français le contrat, chaque paramètre et le résultat de construction.
+    - [ ] Ajouter uniquement les annotations de nullabilité nécessaires aux consommateurs existants.
+  - [ ] `SectorImages/IsoScpSectorImageReader.cs`
+    - [ ] Remplacer les identifiants de codecs, formats et erreurs bruts par les définitions ISO communes.
+    - [ ] Conserver les diagnostics des politiques rejetées lors de la sélection automatique.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une sélection explicite, automatique, de repli et un échec total.
+  - [ ] `SectorImages/IsoSectorCandidate.cs`
+    - [ ] Valider adresse, taille, données, intégrité et provenance reçues au constructeur.
+    - [ ] Protéger les données exposées et documenter en français chaque propriété et paramètre.
+    - [ ] Tester les valeurs valides, nulles, négatives et incohérentes.
+  - [ ] `SectorImages/IsoSectorCandidateSet.cs`
+    - [ ] Copier la collection de candidats et refuser une collection nulle ou un candidat nul.
+    - [ ] Documenter en français chaque propriété et paramètre.
+    - [ ] Tester collection vide, doublons et modification de la collection source.
+  - [ ] `SectorImages/UcsdIsoScpSectorImagePolicy.cs`
+    - [ ] Remplacer géométrie, format et taille bruts par les définitions UCSD et IBM MFM communes.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une géométrie UCSD valide et une géométrie incompatible.
+  - [ ] `SectorImages/UcsdScpSectorImageReader.cs`
+    - [ ] Raccorder directement le registre à `UcsdIsoScpSectorImagePolicy`.
+    - [ ] Adapter les consommateurs puis supprimer ce wrapper sans responsabilité supplémentaire.
+    - [ ] Reporter son scénario de test sur la politique appelée par l'API publique.
+
 ## 8. Systèmes de fichiers
 
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs`
@@ -1555,84 +2416,435 @@
     - [ ] Vérifier la sélection explicite de chaque Reader avec la constante correspondante.
     - [ ] Exécuter les tests ciblés de `FileSystemRegistry`.
 - [ ] Définitions utilisées par les Readers de systèmes de fichiers
-  - [ ] Acorn ADFS et FileCore
-    - [ ] Créer `FileSystems/Acorn/AcornAdfsLayout.cs` et `AcornFileCoreLayout.cs`.
-    - [ ] Déplacer les tailles de blocs, unités FileCore, tailles et nombres d’entrées de répertoire, offsets du DiscRecord, masques, signatures `Hugo` et `Nick` et époque RISC OS.
-    - [ ] Créer `FileSystems/Acorn/AcornFileSystemExceptions.cs` avec les erreurs permettant d’injecter bloc, zone, fragment, offset et longueur puis remplacer les textes bruts des deux Readers Acorn.
-    - [ ] Documenter en français `AcornAdfsLayout`, `AcornFileCoreLayout`, `AcornFileSystemExceptions` et leurs membres.
   - [ ] AmigaDOS
-    - [ ] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
-    - [ ] Déplacer la taille de bloc, les 72 entrées de hash, les types de blocs, offsets, limites, signatures DOS, constantes de checksum et époque Amiga.
-    - [ ] Créer `FileSystems/Amiga/AmigaDosExceptions.cs` avec les erreurs permettant d’injecter numéro et type de bloc puis remplacer les textes bruts.
-    - [ ] Documenter en français `AmigaDosLayout`, `AmigaDosExceptions` et leurs membres.
+    - [ ] `FileSystems/Amiga/AmigaDosLayout.cs`
+      - [ ] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
+      - [ ] Ajouter la taille de bloc `512` et les `72` entrées de la table de hash racine.
+      - [ ] Ajouter les offsets `0`, `12`, `16`, `24`, `312`, `324`, `328`, `432`, `508` utilisés pour les types, pointeurs, noms, dates et types secondaires.
+      - [ ] Ajouter les longueurs maximales `30` et `107` des deux formes de nom AmigaDOS.
+      - [ ] Ajouter les limites de profondeur `64`, de minutes par jour, de ticks par seconde et la durée d'un tick.
+      - [ ] Ajouter les signatures de boot `DOS` et les huit valeurs de variante actuellement reconnues.
+      - [ ] Ajouter les types primaires et secondaires de racine, fichier, répertoire, lien et extension.
+      - [ ] Ajouter l'époque Amiga du 1er janvier 1978.
+      - [ ] Remplacer chaque valeur correspondante dans `AmigaDosFileSystemReader`.
+      - [ ] Documenter en français `AmigaDosLayout` et chacune de ses définitions.
+    - [ ] `FileSystems/Amiga/AmigaDosVariant.cs`
+      - [ ] Créer l'enum `AmigaDosVariant` avec les huit valeurs OFS, FFS, International, Directory Cache et Long Names reconnues par le Reader.
+      - [ ] Remplacer le `switch` sur l'octet de variante par cet enum.
+      - [ ] Conserver les libellés d'affichage hors de l'enum technique.
+      - [ ] Documenter en français l'enum et chacune de ses valeurs.
+    - [ ] `FileSystems/Amiga/AmigaDosExceptions.cs`
+      - [ ] Créer `FileSystems/Amiga/AmigaDosExceptions.cs`.
+      - [ ] Ajouter une méthode recevant la variante observée pour l'erreur de boot non pris en charge.
+      - [ ] Ajouter une méthode recevant le bloc racine observé pour l'erreur de racine invalide.
+      - [ ] Ajouter une méthode recevant le numéro du bloc d'extension invalide.
+      - [ ] Ajouter une méthode recevant la description et le numéro d'un bloc absent.
+      - [ ] Ajouter une méthode recevant la profondeur observée pour la limite de répertoire.
+      - [ ] Remplacer tous les textes d'erreur et d'avertissement correspondants dans le Reader.
+      - [ ] Documenter en français `AmigaDosExceptions` et chacune de ses méthodes.
+    - [ ] Tests des définitions AmigaDOS
+      - [ ] Tester les huit variantes reconnues par le Reader public.
+      - [ ] Tester un bloc racine valide, un checksum invalide et un type secondaire invalide.
+      - [ ] Tester les noms ordinaires et longs, une date valide et une date hors limites.
+      - [ ] Tester un bloc d'extension valide, invalide et absent.
   - [ ] CP/M et Amstrad CP/M
-    - [ ] Créer `FileSystems/Cpm/CpmDirectoryLayout.cs` pour les champs d’utilisateur, nom, extent, compte d’enregistrements et allocations identiques dans les deux Readers.
-    - [ ] Créer `FileSystems/Amstrad/AmstradCpmLayout.cs` pour les offsets, DPB, limites et dispositions CPC et PCW.
-    - [ ] Remplacer les valeurs brutes dans `CpmFileSystemReader.cs` et `AmstradCpmFileSystemReader.cs` par la définition correspondante.
-    - [ ] Créer `FileSystems/Cpm/CpmFileSystemExceptions.cs` avec les erreurs permettant d’injecter extent, bloc, utilisateur, offset et taille de répertoire puis remplacer les textes bruts.
-    - [ ] Documenter en français `CpmDirectoryLayout`, `AmstradCpmLayout`, `CpmFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Cpm/CpmFormat.cs`
+      - [ ] Créer `FileSystems/Cpm/CpmFormat.cs`.
+      - [ ] Ajouter `DirectoryEntrySize` avec la valeur commune `32` utilisée pour avancer entre deux entrées CP/M.
+      - [ ] Ajouter `RecordSize` avec la valeur commune `128` utilisée pour convertir le compteur d'enregistrements en longueur.
+      - [ ] Ajouter `FileNameLength` avec la valeur `8` et `FileExtensionLength` avec la valeur `3`.
+      - [ ] Ajouter `FileNameOffset`, `FileExtensionOffset`, `ExtentLowOffset`, `ExtentHighOffset`, `RecordCountOffset` et `AllocationOffset` avec les positions réellement lues dans les deux Readers.
+      - [ ] Ajouter `UnusedEntryMarker`, `VolumeLabelUser`, `PasswordLabelUser`, `MaximumUserNumber` et `AttributeBitMask` avec les valeurs réellement comparées dans les deux Readers.
+      - [ ] Ajouter `ExtentHighShift` avec la valeur `5` utilisée par les deux Readers pour reconstruire le numéro d'extent.
+      - [ ] Ajouter `NarrowAllocationCount`, `WideAllocationCount` et `WideAllocationSize` avec les valeurs correspondant aux champs `16..31`.
+      - [ ] Documenter en français `CpmFormat` et chacune de ses constantes.
+    - [ ] `FileSystems/Cpm/CpmLayout.cs`
+      - [ ] Créer `FileSystems/Cpm/CpmLayout.cs`.
+      - [ ] Déplacer dans `CpmLayout` les propriétés `DirectoryOffset`, `AllocationOrigin`, `DirectoryEntries`, `AllocationBlockSize`, `DirectoryBlocks` et `WideAllocations` nécessaires aux deux Readers.
+      - [ ] Ajouter au constructeur de `CpmLayout` la validation des offsets, nombres d'entrées, tailles d'allocation et nombres de blocs de répertoire.
+      - [ ] Documenter en français `CpmLayout`, son constructeur et chacune de ses propriétés.
+    - [ ] `FileSystems/Cpm/CpmExtent.cs`
+      - [ ] Créer `FileSystems/Cpm/CpmExtent.cs`.
+      - [ ] Déplacer dans `CpmExtent` l'utilisateur, le nom, le numéro, le compteur d'enregistrements et les allocations actuellement dupliqués dans deux records privés.
+      - [ ] Copier la collection d'allocations reçue afin qu'elle ne puisse pas être modifiée après construction.
+      - [ ] Documenter en français `CpmExtent`, son constructeur et chacune de ses propriétés.
+    - [ ] `FileSystems/Cpm/CpmExtentKeyComparer.cs`
+      - [ ] Créer `FileSystems/Cpm/CpmExtentKeyComparer.cs`.
+      - [ ] Déplacer l'égalité utilisateur/nom insensible à la casse actuellement dupliquée dans les deux `ExtentKeyComparer` privés.
+      - [ ] Documenter en français `CpmExtentKeyComparer`, `Equals` et `GetHashCode`.
+    - [ ] `FileSystems/Cpm/CpmDirectoryReader.cs`
+      - [ ] Créer `FileSystems/Cpm/CpmDirectoryReader.cs`.
+      - [ ] Déplacer dans `CpmDirectoryReader` la validation des caractères et le décodage commun du nom 8.3.
+      - [ ] Déplacer dans `CpmDirectoryReader` la lecture commune des allocations étroites et larges.
+      - [ ] Déplacer dans `CpmDirectoryReader` le regroupement des extents par utilisateur et nom.
+      - [ ] Déplacer dans `CpmDirectoryReader` la reconstruction ordonnée du contenu à partir des blocs d'allocation.
+      - [ ] Faire recevoir à `CpmDirectoryReader` un `CpmLayout` afin de conserver hors du cœur commun les dispositions propres aux machines.
+      - [ ] Documenter en français `CpmDirectoryReader` et chacune de ses méthodes.
+    - [ ] `FileSystems/Cpm/CpmFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Cpm/CpmFileSystemExceptions.cs`.
+      - [ ] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de layout CP/M absent.
+      - [ ] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de répertoire CP/M non reconnu.
+      - [ ] Ajouter une méthode recevant le nom, le bloc, l'offset observé et la longueur de l'image pour produire l'erreur d'allocation hors limites.
+      - [ ] Documenter en français `CpmFileSystemExceptions` et chacune de ses méthodes.
+    - [ ] `FileSystems/Cpm/CpmFileSystemReader.cs`
+      - [ ] Remplacer la taille brute `512` contrôlée dans `CanRead` par la définition sectorielle commune correspondante.
+      - [ ] Remplacer les tailles brutes `256`, `512` et `1024` acceptées par un ensemble nommé de tailles CP/M prises en charge.
+      - [ ] Remplacer le seuil brut `4` de `ScoreDirectory` par `MinimumDirectoryScore`.
+      - [ ] Remplacer la limite brute `64 * 1024` de recherche Epson par `MaximumEpsonDirectorySearchLength`.
+      - [ ] Remplacer le pas brut `32` de recherche Epson par `CpmFormat.DirectoryEntrySize`.
+      - [ ] Remplacer les chaînes `cpm` et `CP/M 3` par les identifiants techniques communs correspondants.
+      - [ ] Remplacer les textes d'erreur et d'avertissement bruts par `CpmFileSystemExceptions`.
+      - [ ] Remplacer `TryDecodeName`, `DecodePart`, `ReadAllocations`, `Extent` et `ExtentKeyComparer` par les composants CP/M communs.
+      - [ ] Déplacer le fichier vers `FileSystems/Cpm/CpmFileSystemReader.cs`.
+      - [ ] Adapter son namespace et tous ses consommateurs.
+      - [ ] Supprimer les types et méthodes privés remplacés après raccordement de leurs appels.
+      - [ ] Documenter en français `CpmFileSystemReader` et chacun de ses membres restants.
+      - [ ] Tester par le Reader public les layouts Commodore et Epson réellement pris en charge avec des images de `image_test`.
+      - [ ] Tester les noms, labels, utilisateurs, extents successifs, allocations étroites et allocations larges.
+      - [ ] Tester le rejet d'un layout absent, d'un score insuffisant et d'un bloc d'allocation hors limites.
+    - [ ] `FileSystems/Cpm/AmstradCpmLayout.cs`
+      - [ ] Créer `FileSystems/Cpm/AmstradCpmLayout.cs`.
+      - [ ] Ajouter un layout nommé pour un disque CPC système dont les identifiants de secteurs vont de `C1` à `C9`.
+      - [ ] Ajouter un layout nommé pour un disque CPC données dont les identifiants de secteurs vont de `41` à `49`.
+      - [ ] Ajouter une fabrique de layout PCW recevant les champs validés du Disk Specification.
+      - [ ] Remplacer les nombres bruts `64`, `1024`, `2`, `9` et `512` par les propriétés nommées du layout auquel ils appartiennent.
+      - [ ] Documenter en français `AmstradCpmLayout` et chacun de ses membres.
+    - [ ] `Recognition/Amstrad/AmstradCpmDiskSpecification.cs`
+      - [ ] Créer `Recognition/Amstrad/AmstradCpmDiskSpecification.cs`.
+      - [ ] Ajouter les offsets nommés des pistes, secteurs par piste, code de taille sectorielle, pistes réservées, code de taille d'allocation et blocs de répertoire.
+      - [ ] Ajouter les limites nommées actuellement comparées à `96`, `64`, `8`, `16`, `128`, `4096`, `512` et `16384`.
+      - [ ] Déplacer `LooksLikePcwDiskSpecification` dans une méthode retournant les champs validés du Disk Specification.
+      - [ ] Documenter en français le type, ses champs et sa méthode de validation.
+    - [ ] `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`
+      - [ ] Remplacer le record privé `Layout` par `CpmLayout` et `AmstradCpmLayout`.
+      - [ ] Remplacer le record privé `Extent` et le comparateur privé par les composants CP/M communs.
+      - [ ] Remplacer `TryDecodeName`, `DecodePart` et `ReadAllocations` par `CpmDirectoryReader`.
+      - [ ] Remplacer les identifiants et noms de systèmes écrits en brut par `FileSystemIds` et les définitions techniques correspondantes.
+      - [ ] Remplacer les textes d'erreur et d'avertissement bruts par `CpmFileSystemExceptions`.
+      - [ ] Déplacer le fichier vers `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`.
+      - [ ] Adapter son namespace et tous ses consommateurs.
+      - [ ] Supprimer les types et méthodes privés remplacés après raccordement de leurs appels.
+      - [ ] Documenter en français `AmstradCpmFileSystemReader` et chacun de ses membres restants.
+      - [ ] Tester par le Reader public un CPC système, un CPC données et un PCW avec Disk Specification valide.
+      - [ ] Tester un PCW vide autorisé, un répertoire CPC trouvé par recherche et les deux largeurs d'allocation.
+      - [ ] Tester le rejet d'un Disk Specification invalide, d'un identifiant de secteur hors plage et d'un bloc d'allocation hors image.
   - [ ] Apple DOS
-    - [ ] Créer `FileSystems/Apple/AppleDosFileSystemLayout.cs`.
-    - [ ] Déplacer les positions du VTOC, du catalogue, des entrées, des chaînes T/S, les masques, types de fichiers et tailles sectorielles.
-    - [ ] Créer `FileSystems/Apple/AppleDosFileSystemExceptions.cs` avec les erreurs permettant d’injecter piste, secteur, entrée et chaîne cyclique puis remplacer les textes bruts.
-    - [ ] Documenter en français `AppleDosFileSystemLayout`, `AppleDosFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`.
+      - [ ] Ajouter la taille sectorielle `256`, les capacités de `35` pistes et les nombres de secteurs `13` et `16`.
+      - [ ] Ajouter la piste VTOC `17`, ses offsets de pointeur de catalogue, de numéro de volume, de nombre de pistes et de secteurs par piste.
+      - [ ] Ajouter l'offset de la première entrée de catalogue, la taille d'une entrée et le nombre d'entrées par secteur.
+      - [ ] Ajouter les offsets de piste, secteur, type, nom et nombre de secteurs d'une entrée.
+      - [ ] Ajouter les offsets des couples piste/secteur et leur nombre par secteur de liste T/S.
+      - [ ] Ajouter le masque `0x7F` utilisé pour les noms et les types.
+      - [ ] Remplacer chaque nombre brut correspondant dans `AppleDosFileSystemReader`.
+      - [ ] Documenter en français chaque constante avec sa structure et son unité.
+    - [ ] `FileSystems/Apple/Dos/AppleDosFileType.cs`
+      - [ ] Créer l'enum `AppleDosFileType` avec les valeurs Text, Integer BASIC, Applesoft BASIC, Binary, S, Relocatable, A et B.
+      - [ ] Remplacer le `switch` numérique de `TypeName` par l'enum.
+      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
+      - [ ] Documenter en français l'enum et chacune de ses valeurs.
+    - [ ] `FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de catalogue absent avec piste et secteur VTOC observés.
+      - [ ] Ajouter l'erreur de chaîne T/S cyclique avec nom, piste et secteur.
+      - [ ] Ajouter l'erreur de secteur de données absent avec nom, piste et secteur.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions Apple DOS
+      - [ ] Tester une image DOS 3.2 à `13` secteurs et une image DOS 3.3 à `16` secteurs par piste.
+      - [ ] Tester chaque type de fichier, un nom avec bit fort et une extension vide.
+      - [ ] Tester plusieurs secteurs de liste T/S, une chaîne cyclique et un secteur absent.
   - [ ] Apple Inform/XZIP
-    - [ ] Créer `FileSystems/Apple/AppleInformXzipLayout.cs`.
-    - [ ] Déplacer les 64 secteurs d’interpréteur, 394 secteurs maximum, l’entrelacement, les offsets d’en-tête Z-code et le calcul de checksum.
-    - [ ] Créer `FileSystems/Apple/AppleInformXzipExceptions.cs` avec les erreurs permettant d’injecter bloc, secteur et longueur puis remplacer les textes bruts.
-    - [ ] Documenter en français `AppleInformXzipLayout`, `AppleInformXzipExceptions` et leurs membres.
+    - [ ] `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`
+      - [ ] Créer `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`.
+      - [ ] Ajouter la taille sectorielle `256`, les `64` secteurs d'interpréteur et les `394` secteurs maximum de l'histoire.
+      - [ ] Ajouter la table d'entrelacement des seize secteurs dans son ordre exact actuel.
+      - [ ] Ajouter la version Z-machine `5` et la taille minimale d'en-tête `64`.
+      - [ ] Ajouter les offsets de high memory, initial PC, dictionnaire, objets, variables globales, static memory, longueur et checksum.
+      - [ ] Ajouter l'unité de longueur propre à la version Z-machine reconnue.
+      - [ ] Remplacer chaque valeur brute correspondante dans `AppleInformXzipFileSystemReader`.
+      - [ ] Documenter en français chaque constante et la table d'entrelacement.
+    - [ ] `FileSystems/Apple/InformXzip/ZMachineStoryHeader.cs`
+      - [ ] Créer `ZMachineStoryHeader` avec les champs actuellement validés par `TryReadStoryLength`.
+      - [ ] Déplacer dans sa fabrique la validation des adresses, de la longueur déclarée et de la version.
+      - [ ] Déplacer le calcul de checksum dans une méthode du type validé.
+      - [ ] Remplacer `TryReadStoryLength` et `ChecksumMatches` par ce type.
+      - [ ] Documenter en français le type, ses champs et ses méthodes.
+    - [ ] `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`
+      - [ ] Créer `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`.
+      - [ ] Ajouter l'erreur de layout absent avec version et longueur observées.
+      - [ ] Ajouter l'erreur de secteur logique absent avec son numéro.
+      - [ ] Ajouter l'erreur de longueur d'histoire incohérente avec longueurs déclarée et disponible.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions Inform/XZIP
+      - [ ] Tester l'ordre exact des seize secteurs entrelacés.
+      - [ ] Tester une histoire version 5 valide et son checksum.
+      - [ ] Tester une version, une adresse, une longueur et un checksum invalides.
+      - [ ] Tester un secteur logique absent.
   - [ ] Apple ProDOS
-    - [ ] Créer `FileSystems/Apple/ProDosFileSystemLayout.cs`.
-    - [ ] Déplacer les tailles de blocs et d’entrées, offsets du volume et des fichiers, types de stockage, types de fichiers, bitmap, dates et pointeurs d’index.
-    - [ ] Créer `FileSystems/Apple/ProDosFileSystemExceptions.cs` avec les erreurs permettant d’injecter bloc, entrée, index et chaîne puis remplacer les textes bruts.
-    - [ ] Documenter en français `ProDosFileSystemLayout`, `ProDosFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`.
+      - [ ] Ajouter la taille de bloc `512`, le bloc racine `2`, l'offset d'en-tête `4` et la taille d'entrée `0x27`.
+      - [ ] Ajouter les offsets du nom, du type, du bloc clé, du nombre de blocs, de la longueur, des dates et du pointeur de sous-répertoire.
+      - [ ] Ajouter les types de stockage seedling, sapling, tree, sous-répertoire et en-tête de volume.
+      - [ ] Ajouter la disposition des pointeurs bas et hauts d'un bloc d'index.
+      - [ ] Ajouter les offsets du bitmap et du nombre total de blocs.
+      - [ ] Ajouter la limite de profondeur `64` avec un nom décrivant la protection contre les cycles.
+      - [ ] Remplacer chaque valeur correspondante dans `ProDosFileSystemReader`.
+      - [ ] Documenter en français chaque constante et son unité.
+    - [ ] `FileSystems/Apple/ProDos/ProDosFileType.cs`
+      - [ ] Créer l'enum `ProDosFileType` avec les valeurs Text, Binary, Directory, BASIC, Variables et System actuellement reconnues.
+      - [ ] Remplacer le `switch` numérique de `TypeName` par cet enum.
+      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
+      - [ ] Documenter en français l'enum et chacune de ses valeurs.
+    - [ ] `FileSystems/Apple/ProDos/ProDosFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Apple/ProDos/ProDosFileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de volume non reconnu avec bloc et octets observés.
+      - [ ] Ajouter l'avertissement de profondeur avec profondeur et répertoire.
+      - [ ] Ajouter l'avertissement de bloc d'index absent avec nom et numéro de bloc.
+      - [ ] Ajouter l'erreur de chaîne de blocs invalide avec nom, stockage et bloc.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions ProDOS
+      - [ ] Tester les stockages seedling, sapling et tree avec un contenu attendu.
+      - [ ] Tester un sous-répertoire, le bitmap et les dates.
+      - [ ] Tester un bloc d'index absent, un cycle et la limite de profondeur.
   - [ ] Atari DOS
-    - [ ] Créer `FileSystems/Atari/AtariDosFileSystemLayout.cs`.
-    - [ ] Déplacer les secteurs VTOC et catalogue, tailles d’entrées, drapeaux, liens, bornes et masques.
-    - [ ] Créer `FileSystems/Atari/AtariDosFileSystemExceptions.cs` avec les erreurs permettant d’injecter secteur, fichier et chaîne puis remplacer les textes bruts.
-    - [ ] Documenter en français `AtariDosFileSystemLayout`, `AtariDosFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.
+      - [ ] Ajouter le secteur VTOC `360` et les huit secteurs de catalogue commençant à `361`.
+      - [ ] Ajouter la taille minimale de secteur `128`, la taille d'entrée `16` et les huit entrées par secteur de catalogue.
+      - [ ] Ajouter les offsets de drapeau, compteur, premier secteur, nom et extension.
+      - [ ] Ajouter les offsets des liens de secteur, le masque du numéro de secteur et les bits du propriétaire de fichier.
+      - [ ] Ajouter les marqueurs de caractères acceptés et les longueurs `8` et `3` du nom Atari.
+      - [ ] Remplacer chaque valeur brute correspondante dans `AtariDosFileSystemReader`.
+      - [ ] Documenter en français chaque constante avec sa base d'indexation.
+    - [ ] `FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de répertoire non reconnu avec format et taille sectorielle.
+      - [ ] Ajouter l'avertissement de secteur absent avec nom et numéro de secteur.
+      - [ ] Ajouter l'avertissement de cycle avec nom et numéro de secteur.
+      - [ ] Ajouter l'avertissement de propriétaire incohérent avec fichier, propriétaire attendu et observé.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions Atari DOS
+      - [ ] Tester les images Atari de `128`, `256` et `512` octets par secteur prises en charge.
+      - [ ] Tester le VTOC, les huit secteurs de catalogue et le décodage du nom 8.3.
+      - [ ] Tester une chaîne complète, un cycle, un secteur absent et un propriétaire incohérent.
   - [ ] BBC DFS
-    - [ ] Créer `FileSystems/Acorn/BbcDfsFileSystemLayout.cs`.
-    - [ ] Déplacer les deux secteurs de catalogue, tailles et nombres d’entrées, offsets, masques de longueur, chargement, exécution et verrouillage.
-    - [ ] Créer `FileSystems/Acorn/BbcDfsFileSystemExceptions.cs` avec les erreurs permettant d’injecter secteur et entrée puis remplacer les textes bruts.
-    - [ ] Documenter en français `BbcDfsFileSystemLayout`, `BbcDfsFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`.
+      - [ ] Ajouter la taille sectorielle `256` et les secteurs `0` et `1` du catalogue.
+      - [ ] Ajouter le nombre maximal de `31` entrées, la taille de huit octets de chaque partie d'entrée et le pas de huit octets.
+      - [ ] Ajouter les offsets du titre, du compteur d'entrées, du nombre total de secteurs et du numéro de cycle.
+      - [ ] Ajouter les masques et décalages utilisés pour reconstruire longueur, adresse de chargement, adresse d'exécution et secteur initial sur 18 bits.
+      - [ ] Ajouter le bit de verrouillage porté par le caractère de répertoire.
+      - [ ] Remplacer chaque valeur brute correspondante dans `BbcDfsFileSystemReader`.
+      - [ ] Documenter en français chaque constante et chaque masque.
+    - [ ] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de catalogue invalide avec compte et nombre total de secteurs observés.
+      - [ ] Ajouter l'avertissement de plage de fichier hors image avec nom, premier secteur et longueur.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions BBC DFS
+      - [ ] Tester un catalogue SSD et un catalogue DSD par le Reader public.
+      - [ ] Tester le titre, le répertoire, le verrouillage et les champs 18 bits.
+      - [ ] Tester un compte d'entrées invalide et une plage de fichier hors image.
   - [ ] Coherent
-    - [ ] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
-    - [ ] Déplacer la taille de bloc, la taille d’inode, les modes, offsets du superbloc, pointeurs directs et indirects et tailles d’entrées.
-    - [ ] Créer `FileSystems/Coherent/CoherentFileSystemExceptions.cs` avec les erreurs permettant d’injecter inode, bloc, niveau d’indirection et longueur puis remplacer les textes bruts.
-    - [ ] Documenter en français `CoherentFileSystemLayout`, `CoherentFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Coherent/CoherentFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
+      - [ ] Ajouter la taille de bloc `512`, la taille d'inode `64` et les offsets du superbloc.
+      - [ ] Ajouter le mode répertoire `0x4000`, le masque de type `0xF000` et les autres modes effectivement interprétés.
+      - [ ] Ajouter les offsets du mode, de la taille, des pointeurs de blocs et de la date d'un inode.
+      - [ ] Ajouter le nombre de pointeurs directs et les trois niveaux d'indirection parcourus par le Reader.
+      - [ ] Ajouter la taille et les offsets d'une entrée de répertoire Coherent.
+      - [ ] Déplacer `ReadCanonicalUInt32` et la reconnaissance du superbloc depuis `CoherentImageReader` vers une primitive Coherent commune.
+      - [ ] Remplacer chaque valeur brute correspondante dans le Reader d'image et le Reader de système de fichiers.
+      - [ ] Documenter en français chaque constante, masque et primitive.
+    - [ ] `FileSystems/Coherent/CoherentInode.cs`
+      - [ ] Créer `FileSystems/Coherent/CoherentInode.cs`.
+      - [ ] Déplacer le record privé `Inode` hors de `CoherentFileSystemReader`.
+      - [ ] Copier ou figer sa collection de blocs avant de l'exposer.
+      - [ ] Documenter en français le type, chaque propriété et chaque paramètre.
+    - [ ] `FileSystems/Coherent/CoherentFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Coherent/CoherentFileSystemExceptions.cs`.
+      - [ ] Ajouter les erreurs de superbloc absent et de zone d'inodes invalide avec les valeurs observées.
+      - [ ] Ajouter les erreurs d'inode nul, d'inode hors image et de fichier trop grand.
+      - [ ] Ajouter l'avertissement de bloc indirect hors image avec nom, bloc et niveau.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions Coherent
+      - [ ] Tester le superbloc, la zone d'inodes, un répertoire et un fichier connus.
+      - [ ] Tester les pointeurs directs et chacun des trois niveaux indirects.
+      - [ ] Tester un inode nul, hors image, un fichier trop grand et un bloc indirect absent.
   - [ ] Commodore DOS
-    - [ ] Créer `FileSystems/Commodore/CommodoreDosLayout.cs` avec des dispositions distinctes pour D64/D71 et D81.
-    - [ ] Déplacer les pistes et secteurs BAM, en-tête et répertoire, tailles d’entrées, drapeaux, types de fichiers et règles PETSCII.
-    - [ ] Créer `FileSystems/Commodore/CommodoreDosExceptions.cs` avec les erreurs permettant d’injecter piste, secteur et chaîne cyclique puis remplacer les textes bruts.
-    - [ ] Documenter en français `CommodoreDosLayout`, `CommodoreDosExceptions` et leurs membres.
+    - [ ] `FileSystems/Commodore/CommodoreDosLayout.cs`
+      - [ ] Créer `FileSystems/Commodore/CommodoreDosLayout.cs`.
+      - [ ] Ajouter des dispositions nommées distinctes pour D64/D71 et D81.
+      - [ ] Ajouter pour chaque disposition les adresses piste/secteur du BAM, de l'en-tête et du premier répertoire.
+      - [ ] Ajouter la taille sectorielle `256`, les offsets des liens, des entrées et du nom de volume.
+      - [ ] Ajouter les tailles, nombres et offsets des entrées de répertoire et de BAM.
+      - [ ] Remplacer les tests directs de `Commodore1581` par la disposition résolue.
+      - [ ] Remplacer chaque valeur brute correspondante dans `CommodoreDosFileSystemReader`.
+      - [ ] Documenter en français chaque disposition et chaque propriété.
+    - [ ] `FileSystems/Commodore/CommodoreDosFileType.cs`
+      - [ ] Créer l'enum `CommodoreDosFileType` avec DEL, SEQ, PRG, USR, REL et CBM.
+      - [ ] Ajouter les drapeaux Closed et Locked sans les confondre avec le type de base.
+      - [ ] Remplacer le `switch` numérique de `TypeName` par l'enum et ses drapeaux.
+      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
+      - [ ] Documenter en français chaque valeur et chaque drapeau.
+    - [ ] `FileSystems/Commodore/PetsciiDecoder.cs`
+      - [ ] Créer `FileSystems/Commodore/PetsciiDecoder.cs`.
+      - [ ] Déplacer la classe privée `Petscii` hors du Reader.
+      - [ ] Remplacer le caractère de remplacement corrompu par le caractère Unicode prévu.
+      - [ ] Documenter en français le décodeur, ses plages et sa méthode.
+      - [ ] Tester les plages `0x20..0x5F`, `0x60..0x7A`, les espaces insécables et un octet inconnu.
+    - [ ] `FileSystems/Commodore/CommodoreDosExceptions.cs`
+      - [ ] Créer `FileSystems/Commodore/CommodoreDosExceptions.cs`.
+      - [ ] Ajouter les erreurs d'en-tête absent et de système non pris en charge avec la disposition observée.
+      - [ ] Ajouter l'erreur de chaîne cyclique avec nom, piste et secteur.
+      - [ ] Ajouter l'erreur de secteur absent avec nom, piste et secteur.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions Commodore DOS
+      - [ ] Tester une image D64, D71 et D81 par le Reader public.
+      - [ ] Tester BAM, répertoire, chaque type de fichier et les drapeaux Closed et Locked.
+      - [ ] Tester PETSCII, une chaîne cyclique et un secteur absent.
   - [ ] FAT12
-    - [ ] Utiliser `FatBpbLayout` pour les offsets BPB de `Fat12FileSystemReader.cs`.
-    - [ ] Créer `FileSystems/Fat/FatDirectoryLayout.cs` pour les tailles d’entrées, attributs, dates, clusters et marqueurs de fin ou suppression.
-    - [ ] Sortir les dispositions IBM historiques actuellement contenues dans `TryReadLegacyIbmLayout` vers le catalogue IBM.
-    - [ ] Créer `FileSystems/Fat/Fat12FileSystemExceptions.cs` avec les erreurs permettant d’injecter cluster, secteur FAT et entrée puis remplacer les textes bruts.
-    - [ ] Documenter en français `FatDirectoryLayout`, `Fat12FileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Fat/Fat12Layout.cs`
+      - [ ] Créer `FileSystems/Fat/Fat12Layout.cs` pour remplacer le record privé `Layout`.
+      - [ ] Y déplacer secteurs réservés, secteurs par FAT, début et taille de racine, début des données, secteurs par cluster et nombre de clusters.
+      - [ ] Valider chaque champ et la limite FAT12 de `4085` clusters à la construction.
+      - [ ] Utiliser `FatBpbLayout` pour lire chaque champ BPB au lieu de recopier ses offsets.
+      - [ ] Documenter en français le type, son constructeur et chaque propriété.
+    - [ ] `FileSystems/Fat/FatDirectoryLayout.cs`
+      - [ ] Créer `FileSystems/Fat/FatDirectoryLayout.cs`.
+      - [ ] Ajouter la taille d'entrée `32`, les longueurs de nom `8` et d'extension `3` et leurs offsets.
+      - [ ] Ajouter les offsets des attributs, date, heure, premier cluster et taille de fichier.
+      - [ ] Ajouter les marqueurs `0x00` de fin et `0xE5` de suppression.
+      - [ ] Créer un enum de drapeaux pour ReadOnly, Hidden, System, VolumeLabel, Directory et Archive.
+      - [ ] Remplacer chaque valeur brute correspondante dans le Reader.
+      - [ ] Documenter en français chaque constante et chaque drapeau.
+    - [ ] `FileSystems/Fat/Fat12Table.cs`
+      - [ ] Créer `FileSystems/Fat/Fat12Table.cs`.
+      - [ ] Déplacer le décodage des entrées 12 bits paires et impaires de `ReadFat12`.
+      - [ ] Ajouter les plages nommées de cluster libre, réservé, défectueux et fin de chaîne.
+      - [ ] Retourner un résultat explicite lorsqu'une entrée dépasse les octets disponibles.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Catalogue des layouts IBM historiques
+      - [ ] Déplacer les quatre tuples IBM 160, 180, 320 et 360 hors de `TryReadLegacyIbmLayout` vers le catalogue IBM commun.
+      - [ ] Remplacer les nombres de secteurs, secteurs par cluster, entrées racine et secteurs par FAT par les propriétés du catalogue.
+      - [ ] Conserver dans le Reader uniquement la construction du `Fat12Layout` à partir de la disposition résolue.
+      - [ ] Documenter en français chaque disposition historique.
+    - [ ] `FileSystems/Fat/Fat12FileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Fat/Fat12FileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de layout non pris en charge avec format et champs BPB observés.
+      - [ ] Ajouter l'erreur de chaîne invalide ou cyclique avec nom et cluster.
+      - [ ] Ajouter l'avertissement de secteur absent avec premier secteur et nombre demandé.
+      - [ ] Ajouter l'avertissement de limite de profondeur avec chemin et profondeur.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions FAT12
+      - [ ] Tester un BPB valide et chacun des quatre layouts IBM historiques.
+      - [ ] Tester une entrée paire, impaire, libre, défectueuse et de fin de chaîne.
+      - [ ] Tester un volume label `NO NAME`, un nom 8.3, une date et chaque attribut.
+      - [ ] Tester une chaîne cyclique, un cluster hors plage et un secteur absent.
   - [ ] Lisa
-    - [ ] Créer `FileSystems/Apple/LisaFileSystemLayout.cs`.
-    - [ ] Déplacer les identifiants de fichiers système, versions de catalogue, tailles d’enregistrements, offsets de tags, masques et bornes de noms.
-    - [ ] Créer `FileSystems/Apple/LisaFileSystemExceptions.cs` avec les erreurs permettant d’injecter page, fichier et version de catalogue puis remplacer les textes bruts.
-    - [ ] Documenter en français `LisaFileSystemLayout`, `LisaFileSystemExceptions` et leurs membres.
-  - [ ] Macintosh MFS et HFS
-    - [ ] Créer `FileSystems/Apple/MacMfsFileSystemLayout.cs` et `FileSystems/Apple/MacHfsFileSystemLayout.cs`.
-    - [ ] Déplacer séparément signatures, offsets MDB, tailles d’entrées, cartes d’allocation, extents et structures de catalogue.
-    - [ ] Créer `FileSystems/Apple/MacFileSystemTime.cs` et y placer l’époque Macintosh commune réutilisée par les deux Readers.
-    - [ ] Créer `FileSystems/Apple/MacFileSystemExceptions.cs` avec les erreurs permettant d’injecter bloc, record, nœud, extent et longueur puis remplacer les textes bruts.
-    - [ ] Documenter en français les deux layouts, `MacFileSystemTime`, `MacFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`.
+      - [ ] Ajouter les identifiants MDDF `0x0001`, bitmap `0x0002`, S-records `0x0003` et catalogue `0x0004`.
+      - [ ] Ajouter les marqueurs de page libre `0x0000` et `0x7FFF` et les bornes des identifiants de fichiers utilisateur.
+      - [ ] Ajouter les versions de catalogue table `0x000E`, hash `0x000F` et B-tree `0x0011`.
+      - [ ] Ajouter les offsets `4`, `5`, `6` et `7` des identifiants et numéros de page dans les tags.
+      - [ ] Ajouter le masque `0x07FF` du numéro de page.
+      - [ ] Ajouter les tailles, offsets et bornes de nom utilisés pour chaque version de catalogue effectivement lue.
+      - [ ] Remplacer chaque valeur brute correspondante dans `LisaFileSystemReader`.
+      - [ ] Documenter en français chaque constante, version et masque.
+    - [ ] `FileSystems/Apple/Lisa/LisaCatalogReader.cs`
+      - [ ] Créer `FileSystems/Apple/Lisa/LisaCatalogReader.cs`.
+      - [ ] Déplacer `ReadCatalogNames` et les branches table, hash et B-tree hors du Reader principal.
+      - [ ] Retourner un résultat contenant les noms trouvés et les avertissements de catalogue.
+      - [ ] Remplacer les noms de secours construits en texte brut par une fonction recevant l'identifiant du fichier.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] `FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de système tagué absent avec nombre de pages examinées.
+      - [ ] Ajouter l'avertissement de catalogue absent avec version observée.
+      - [ ] Ajouter l'avertissement de page manquante avec identifiant de fichier et numéro de page.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions Lisa
+      - [ ] Tester chaque version de catalogue que le Reader sait effectivement lire.
+      - [ ] Tester l'ordre des pages, les fichiers utilisateur et le comptage des pages libres.
+      - [ ] Tester un MDDF absent, un catalogue absent et une page manquante.
   - [ ] RT-11
-    - [ ] Créer `FileSystems/Dec/Rt11FileSystemLayout.cs`.
-    - [ ] Déplacer les statuts, la table RADIX-50, offsets du home block, tailles de segments et d’entrées et règles de date.
-    - [ ] Créer `FileSystems/Dec/Rt11FileSystemExceptions.cs` avec les erreurs permettant d’injecter bloc, segment et entrée puis remplacer les textes bruts.
-    - [ ] Documenter en français `Rt11FileSystemLayout`, `Rt11FileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`.
+      - [ ] Ajouter la taille de bloc `512`, le home block `1` et la signature système `DECRT11`.
+      - [ ] Ajouter les offsets du nom de volume, de l'identifiant système et du premier segment de répertoire.
+      - [ ] Ajouter les limites `2` et `1001` du premier bloc de répertoire avec des noms explicites.
+      - [ ] Ajouter la taille de l'en-tête de segment, la taille d'entrée et les offsets de statut, nom, longueur et date.
+      - [ ] Ajouter la table RADIX-50 exacte actuellement utilisée.
+      - [ ] Ajouter les règles de décodage de l'année, du mois et du jour RT-11.
+      - [ ] Remplacer chaque valeur brute correspondante dans `Rt11FileSystemReader`.
+      - [ ] Documenter en français chaque constante, table et règle de date.
+    - [ ] `FileSystems/Dec/Rt11/Rt11DirectoryEntryStatus.cs`
+      - [ ] Créer l'enum à drapeaux `Rt11DirectoryEntryStatus`.
+      - [ ] Ajouter Tentative `0x0100`, Empty `0x0200`, Permanent `0x0400`, EndOfSegment `0x0800` et Protected `0x8000`.
+      - [ ] Remplacer les cinq constantes privées du Reader par cet enum.
+      - [ ] Documenter en français l'enum et chaque drapeau.
+    - [ ] `FileSystems/Dec/Rt11/Rt11DirectoryReader.cs`
+      - [ ] Créer `FileSystems/Dec/Rt11/Rt11DirectoryReader.cs`.
+      - [ ] Déplacer le parcours des segments et le décodage des entrées hors du Reader principal.
+      - [ ] Supprimer `commentParts` et son test toujours faux.
+      - [ ] Retourner les entrées, le nombre de blocs libres et les avertissements dans un résultat nommé.
+      - [ ] Documenter en français le type, son résultat et chacune de ses méthodes.
+    - [ ] `FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de home block invalide avec signature et bloc de répertoire observés.
+      - [ ] Ajouter l'avertissement de paire de blocs absente avec premier bloc demandé.
+      - [ ] Ajouter l'avertissement de contenu tronqué avec bloc initial et nombre de blocs.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions RT-11
+      - [ ] Tester chaque drapeau d'entrée et plusieurs drapeaux combinés.
+      - [ ] Tester un nom RADIX-50, une date valide et une date invalide.
+      - [ ] Tester plusieurs segments, une paire de blocs absente et un contenu tronqué.
   - [ ] UCSD p-System
-    - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemLayout.cs`.
-    - [ ] Déplacer la taille de bloc, le bloc de catalogue, la taille d’entrée, les offsets, types de fichiers, bornes de noms et règles de date.
-    - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemExceptions.cs` avec les erreurs permettant d’injecter bloc, entrée et plage puis remplacer les textes bruts.
-    - [ ] Documenter en français `UcsdFileSystemLayout`, `UcsdFileSystemExceptions` et leurs membres.
+    - [ ] `FileSystems/Ucsd/UcsdFileSystemLayout.cs`
+      - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemLayout.cs`.
+      - [ ] Ajouter la taille de bloc `512`, le bloc de répertoire `2` et la taille d'entrée `26`.
+      - [ ] Ajouter les deux fins de répertoire acceptées `6` et `10`.
+      - [ ] Ajouter la longueur maximale de volume `7`, le nombre maximal de fichiers `77` et les bornes ASCII des noms.
+      - [ ] Ajouter les offsets du volume, du nombre de blocs, du nombre de fichiers et de la date.
+      - [ ] Ajouter les offsets d'une entrée de fichier, de sa plage de blocs, de sa taille, de son type et de sa date.
+      - [ ] Remplacer chaque valeur brute correspondante dans `UcsdFileSystemReader`.
+      - [ ] Documenter en français chaque constante et chaque offset.
+    - [ ] `FileSystems/Ucsd/UcsdByteOrder.cs`
+      - [ ] Créer l'enum `UcsdByteOrder` avec LittleEndian et BigEndian.
+      - [ ] Remplacer le `bool?` retourné par `DetectByteOrder` par un résultat explicite contenant succès et ordre.
+      - [ ] Remplacer le booléen `littleEndian` de `ReadUInt16` par l'enum.
+      - [ ] Documenter en français l'enum et chacune de ses valeurs.
+    - [ ] `FileSystems/Ucsd/UcsdFileKind.cs`
+      - [ ] Créer l'enum `UcsdFileKind` avec Untyped, ExternalDisk, Code, Text, Info, Data, Graphics, Photo et SecureDirectory.
+      - [ ] Remplacer le `switch` numérique de `FileKindName` par cet enum.
+      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
+      - [ ] Documenter en français l'enum et chacune de ses valeurs.
+    - [ ] `FileSystems/Ucsd/UcsdFileSystemExceptions.cs`
+      - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemExceptions.cs`.
+      - [ ] Ajouter l'erreur de répertoire absent avec bloc et taille observée.
+      - [ ] Ajouter l'erreur d'ordre des octets indéterminé avec les quatre premiers octets.
+      - [ ] Ajouter l'avertissement de plage incomplète avec premier bloc, nombre de blocs et longueur obtenue.
+      - [ ] Ajouter l'erreur d'entrée invalide avec index, nom et plage déclarée.
+      - [ ] Remplacer les textes bruts correspondants dans le Reader.
+      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tests des définitions UCSD
+      - [ ] Tester les deux ordres d'octets et les deux valeurs de fin de répertoire.
+      - [ ] Tester chaque type de fichier et une date valide.
+      - [ ] Tester un ordre indéterminé, un nom invalide et une plage incomplète.
 
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Readers/AppleDosFileSystemReader.cs`
   - [ ] Structure, emplacement et raccordements
@@ -1664,14 +2876,6 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `CommodoreDosFileSystemReader, Petscii`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadDirectory, ReadFile, ReadFreeBlocks, TryGetSector, ToLogicalBlock, TryToLogicalBlock, HasPlausibleDirectory, TypeName, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/FileSystems/Readers/CpmFileSystemReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier sous `FileSystems/Cpm/`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Extraire le décodage commun des noms, extents, allocations et fichiers dans un cœur CP/M.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `CpmFileSystemReader, ExtentKeyComparer`.
-    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ScoreDirectory, ResolveLayout, TryDecodeName, DecodePart, IsPlausibleLabel, ReadAllocations, Flatten, Extent, Layout, For, Equals, GetHashCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Readers/Fat12FileSystemReader.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `Fat12FileSystemReader`.
@@ -1748,15 +2952,6 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AmigaDosFileSystemReader`.
     - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadDirectory, ReadFile, CountFreeBlocks, ReadEntryName, ReadBString, ReadDate, ReadRequiredBlock, IsRootBlock, ChecksumValid, HasDosSignature, ReadInt32, ReadUInt32`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/FileSystems/Readers/AmstradCpmFileSystemReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier sous `FileSystems/Cpm/`.
-    - [ ] Adapter son namespace et ses consommateurs.
-    - [ ] Raccorder le cœur CP/M commun.
-    - [ ] Déplacer les détecteurs CPC/PCW vers `Recognition/Amstrad/`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AmstradCpmFileSystemReader, ExtentKeyComparer`.
-    - [ ] Ajouter la documentation XML des méthodes `CanRead, LooksLikePcwDiskSpecification, LooksLikeCpcRawImage, Read, GetLayout, FindDirectory, LooksLikeDirectory, TryDecodeName, DecodePart, ReadAllocations, Flatten, Layout, Extent, Equals, GetHashCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] Vérification des Readers de systèmes de fichiers modifiés
   - [ ] Acorn et BBC
     - [ ] Tester les Readers publics avec des images ADFS, FileCore, SSD et DSD de `image_test` dont les répertoires, catalogues et fichiers attendus sont connus.
@@ -1782,6 +2977,172 @@
   - [ ] Exécution ciblée
     - [ ] Appliquer la règle d’obtention d’image du document pour chaque image manquante.
     - [ ] Exécuter uniquement les tests du Reader traité.
+
+- [ ] Compléments issus de la relecture complète des systèmes de fichiers
+  - [ ] `FileSystems/Readers/AcornAdfsFileSystemReader.cs`
+    - [ ] Créer `FileSystems/Acorn/Adfs/AcornAdfsLayout.cs` avec blocs, unités FileCore, répertoire, entrées, signatures Hugo/Nick, champs et ancien map.
+    - [ ] Créer `AcornFileSystemTime.cs` avec époque RISC OS, masque de type et conversion des centisecondes.
+    - [ ] Créer `IFileCoreAddressResolver.cs` avec résolution d'adresse, racine, nom de volume et espace libre.
+    - [ ] Créer `AcornFileCoreOldMap.cs` pour la résolution linéaire, le nom entrelacé et l'espace libre de l'ancien map.
+    - [ ] Créer `AcornAdfsDirectoryReader.cs` pour valider Hugo/Nick, parcourir les entrées et lire les contenus.
+    - [ ] Déplacer `DirectoryData` dans son propre fichier et protéger sa collection d'enfants.
+    - [ ] Remplacer le delegate et le record `Layout` privés par `IFileCoreAddressResolver`.
+    - [ ] Remplacer les textes bruts par des erreurs injectant nom, secteur, adresse, offset, longueur et profondeur.
+    - [ ] Déplacer le Reader vers `FileSystems/Acorn/Adfs/` et adapter ses consommateurs.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester old-map, new-map, Hugo, Nick, timestamp, sous-répertoire, cycle, adresse invalide et secteur absent.
+  - [ ] `FileSystems/Readers/AcornFileCoreNewMap.cs`
+    - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreLayout.cs` avec DiscRecord, zones, fragments, liens libres, offsets, tailles et masques.
+    - [ ] Déplacer le record `DiscRecord` dans `AcornFileCoreDiscRecord.cs` et conserver sa validation complète.
+    - [ ] Déplacer le record `Zone` dans `AcornFileCoreZone.cs` et protéger ses données.
+    - [ ] Créer `AcornFileCoreBitReader.cs` pour `GetBits` et `FindNextSetBit` avec validation des bornes.
+    - [ ] Faire implémenter `IFileCoreAddressResolver` à `AcornFileCoreNewMap`.
+    - [ ] Conserver dans le new-map la construction des zones, la résolution des fragments et l'espace libre.
+    - [ ] Remplacer la documentation et les commentaires anglais par du français.
+    - [ ] Déplacer le fichier vers `FileSystems/Acorn/FileCore/` et adapter ses consommateurs.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester DiscRecord, plusieurs zones, fragment racine, partage, liens libres, limites de bits et adresse hors image.
+  - [ ] `FileSystems/FileSystemModels.cs`
+    - [ ] Documenter en français chaque valeur de `FileSystemEntryKind`.
+    - [ ] Documenter en français chaque propriété et chaque paramètre des records déplacés.
+    - [ ] Copier ou figer `Children`, `Content`, `Entries`, `Warnings` et `CatalogFormatIds` avant de les exposer.
+    - [ ] Tester qu'une modification de la collection source ne change pas un modèle déjà construit.
+  - [ ] `FileSystems/FileSystemRegistry.cs`
+    - [ ] Faire recevoir au constructeur la collection ordonnée des Readers au lieu de créer les dix-sept Readers dans le registre.
+    - [ ] Construire un dictionnaire par `FileSystemIds` et refuser deux identifiants identiques.
+    - [ ] Déplacer le record `Match` dans `FileSystems/FileSystemMatch.cs`.
+    - [ ] Conserver pour chaque Reader rejeté son identifiant et son `InvalidDataException` au lieu de vider les `catch` de `ReadAll` et `TryRead`.
+    - [ ] Distinguer un système non reconnu d'un système reconnu mais corrompu.
+    - [ ] Documenter en français le registre, le résultat, le constructeur et chaque méthode.
+    - [ ] Tester l'ordre, les doublons, l'identifiant absent et la conservation des diagnostics.
+  - [ ] `FileSystems/Readers/AmigaDosFileSystemReader.cs`
+    - [ ] Extraire la signature DOS, les huit types DOS, les types de blocs, offsets, tailles, limites, checksum et époque dans les définitions AmigaDOS.
+    - [ ] Remplacer le `switch` de noms de variantes OFS/FFS par un enum et des identifiants techniques.
+    - [ ] Réunir les deux surcharges identiques de `HasDosSignature` autour d'une donnée en lecture seule.
+    - [ ] Séparer la lecture des blocs et le parcours des répertoires du seul assemblage du volume.
+    - [ ] Remplacer chaque texte d'erreur brut par une méthode injectant bloc, fichier, profondeur et valeur observée.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester OFS, FFS, noms longs, sous-répertoires, blocs d'extension, bitmap, cycles et blocs absents.
+  - [ ] `FileSystems/Readers/AppleDosFileSystemReader.cs`
+    - [ ] Extraire le VTOC, le catalogue, les entrées, les listes piste/secteur, le bitmap, les drapeaux et tailles dans `AppleDosFileSystemLayout`.
+    - [ ] Créer un enum pour les types de fichiers Apple DOS et supprimer le `switch` de textes bruts.
+    - [ ] Extraire la lecture d'une chaîne piste/secteur dans un composant retournant contenu, validité et avertissements.
+    - [ ] Remplacer chaque texte d'erreur brut par une méthode injectant nom, piste, secteur et tailles.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester DOS 3.2, DOS 3.3, bitmap, chaînes multiples, cycles, secteurs absents et tailles incohérentes.
+  - [ ] `FileSystems/Readers/AppleInformXzipFileSystemReader.cs`
+    - [ ] Extraire la géométrie, les secteurs d'interpréteur, les secteurs d'histoire et l'entrelacement dans `AppleInformXzipLayout`.
+    - [ ] Extraire les offsets, unités, adresses et checksum Z-machine v5 dans un type d'en-tête validé.
+    - [ ] Supprimer le paramètre `headerOnly` qui n'est appelé qu'avec `false` ou lui donner un consommateur réel.
+    - [ ] Remplacer les noms de fichiers et textes d'erreur bruts par des définitions injectables.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester une histoire valide, une version différente, une adresse hors limites, une longueur impossible, un checksum faux et un secteur absent.
+  - [ ] `FileSystems/Readers/AtariDosFileSystemReader.cs`
+    - [ ] Extraire VTOC, catalogue, entrées, drapeaux et liens de secteurs dans `AtariDosFileSystemLayout`.
+    - [ ] Remplacer les préfixes Atari bruts par `DiskImageFormatIds`.
+    - [ ] Faire porter à chaque entrée l'état de validité réel de sa chaîne au lieu de toujours fournir `true`.
+    - [ ] Remplacer `Math.Max(expectedSectors, 1)` par une règle nommée distinguant compteur nul et chaîne sans fin.
+    - [ ] Remplacer les textes bruts par des erreurs injectant fichier, secteur et propriétaire.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les trois capacités, les cycles, les propriétaires et les secteurs absents.
+  - [ ] `FileSystems/Readers/BbcDfsFileSystemReader.cs`
+    - [ ] Extraire les deux secteurs de catalogue, entrées, offsets, masques et drapeaux dans `BbcDfsFileSystemLayout`.
+    - [ ] Remplacer les textes bruts par des erreurs injectant entrée et secteur.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester SSD, DSD, le verrouillage, les adresses 18 bits et un secteur absent.
+  - [ ] `FileSystems/Readers/CoherentFileSystemReader.cs`
+    - [ ] Déplacer `LooksLikeCoherent` et `ReadCanonicalUInt32` de `CoherentImageReader` vers une définition commune aux deux Readers.
+    - [ ] Supprimer la dépendance du système de fichiers vers l'espace de noms `Images`.
+    - [ ] Extraire superbloc, inodes, modes, pointeurs et entrées dans `CoherentFileSystemLayout` et un enum de modes.
+    - [ ] Extraire la lecture des pointeurs directs et indirects dans un composant retournant contenu et validité.
+    - [ ] Remplacer les textes bruts par des erreurs injectant inode, bloc, niveau et octets manquants.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les pointeurs directs, les trois niveaux indirects, un nœud de périphérique et les limites.
+  - [ ] `FileSystems/Readers/CommodoreDosFileSystemReader.cs`
+    - [ ] Extraire séparément les layouts D64/D71 et D81, leurs BAM, catalogues, drapeaux et types.
+    - [ ] Créer un enum pour DEL, SEQ, PRG, USR, REL et CBM.
+    - [ ] Déplacer PETSCII dans un composant réutilisable et remplacer la chaîne mojibake par le caractère Unicode correct.
+    - [ ] Déplacer la conversion piste/secteur dans la géométrie Commodore commune.
+    - [ ] Faire retourner par la lecture d'une chaîne son contenu et sa validité réelle.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester D64, D71, D81, BAM, les types, les drapeaux, les cycles et les secteurs absents.
+  - [ ] `FileSystems/Readers/Fat12FileSystemReader.cs`
+    - [ ] Utiliser `FatBpbLayout` pour chaque champ BPB et créer un type `Fat12Layout` validé.
+    - [ ] Extraire entrées, attributs, dates, clusters et marqueurs dans `FatDirectoryLayout` et un enum de drapeaux.
+    - [ ] Extraire la lecture des entrées FAT 12 bits paires et impaires dans `Fat12Table`.
+    - [ ] Déplacer les quatre layouts IBM historiques vers le catalogue IBM.
+    - [ ] Remplacer les préfixes, noms de systèmes, `NO NAME` et erreurs brutes par les définitions correspondantes.
+    - [ ] Faire retourner par chaque chaîne de clusters son contenu et sa validité réelle.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester Atari, IBM, MSX, les layouts historiques, les chaînes et les secteurs absents.
+  - [ ] `FileSystems/Readers/LisaFileSystemReader.cs`
+    - [ ] Extraire les identifiants système, pages libres, versions, tags, tailles et offsets dans `LisaFileSystemLayout`.
+    - [ ] Créer un enum pour les versions table, hash et B-tree.
+    - [ ] Extraire la lecture des catalogues dans `LisaCatalogReader`.
+    - [ ] Remplacer les noms de secours et erreurs brutes par des définitions injectables.
+    - [ ] Remplacer les commentaires anglais par du français et documenter chaque membre.
+    - [ ] Tester les versions disponibles, pages ordonnées, catalogue absent et récupération par tags.
+  - [ ] `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`
+    - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`.
+    - [ ] Déplacer la lecture big-endian des entiers 16 et 32 bits dupliquée dans les Readers HFS et MFS.
+    - [ ] Déplacer le décodage des chaînes Pascal et des noms contenant le séparateur Macintosh.
+    - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [ ] Tester les deux tailles d'entiers, une chaîne Pascal vide, maximale et un nom contenant `:`.
+  - [ ] `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`
+    - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`.
+    - [ ] Déplacer l'époque Macintosh de 1904 actuellement dupliquée dans HFS et MFS.
+    - [ ] Déplacer la conversion protégée des secondes et définir son unité.
+    - [ ] Documenter en français le type, l'époque et la méthode de conversion.
+    - [ ] Tester zéro, une date valide et une valeur provoquant un dépassement.
+  - [ ] `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`
+    - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`.
+    - [ ] Ajouter une méthode recevant système et signature pour l'erreur de volume non reconnu.
+    - [ ] Ajouter une méthode recevant fichier, fork et bloc pour l'avertissement de bloc absent.
+    - [ ] Ajouter une méthode recevant fichier, fork, longueur obtenue et attendue pour l'avertissement de données incomplètes.
+    - [ ] Ajouter une méthode recevant identifiant de dossier pour l'erreur de cycle.
+    - [ ] Documenter en français le type et chacune de ses méthodes.
+  - [ ] `FileSystems/Readers/MacHfsFileSystemReader.cs`
+    - [ ] Créer `FileSystems/Apple/Macintosh/Hfs/MacHfsFileSystemLayout.cs` avec signature, MDB, allocations, extents, nœuds et records HFS.
+    - [ ] Créer `MacHfsCatalogRecord.cs` et protéger sa collection de contenu.
+    - [ ] Créer `MacHfsCatalogReader.cs` pour parcourir les nœuds feuilles et lire dossiers, fichiers et extents intégrés.
+    - [ ] Créer `MacHfsDirectoryBuilder.cs` pour construire l'arborescence et détecter les cycles.
+    - [ ] Faire retourner aux lectures d'extents le contenu, la validité et le besoin d'extents supplémentaires.
+    - [ ] Remplacer toutes les fonctions primitives dupliquées par `MacFileSystemPrimitives` et `MacFileSystemTime`.
+    - [ ] Remplacer les textes bruts par `MacFileSystemExceptions`.
+    - [ ] Déplacer le fichier vers `FileSystems/Apple/Macintosh/Hfs/MacHfsFileSystemReader.cs` et adapter ses consommateurs.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester MDB, catalogue, dossiers, data fork, resource fork, plusieurs extents, cycle, bloc absent et catalogue tronqué.
+  - [ ] `FileSystems/Readers/MacMfsFileSystemReader.cs`
+    - [ ] Créer `FileSystems/Apple/Macintosh/Mfs/MacMfsFileSystemLayout.cs` avec signature, MDB, records, forks et carte d'allocation MFS.
+    - [ ] Créer `MacMfsAllocationMap.cs` pour décoder les entrées 12 bits paires et impaires.
+    - [ ] Déplacer le parcours protégé d'une chaîne d'allocation dans `MacMfsAllocationMap`.
+    - [ ] Faire retourner à la lecture d'un fork le contenu et sa validité réelle.
+    - [ ] Remplacer toutes les fonctions primitives dupliquées par `MacFileSystemPrimitives` et `MacFileSystemTime`.
+    - [ ] Remplacer les textes bruts par `MacFileSystemExceptions`.
+    - [ ] Déplacer le fichier vers `FileSystems/Apple/Macintosh/Mfs/MacMfsFileSystemReader.cs` et adapter ses consommateurs.
+    - [ ] Documenter en français chaque type et membre créé ou modifié.
+    - [ ] Tester MDB, répertoire, entrées 12 bits paires/impaires, deux forks, cycle, bloc absent et métadonnées incohérentes.
+  - [ ] `FileSystems/Readers/ProDosFileSystemReader.cs`
+    - [ ] Extraire blocs, entrées, types de stockage, bitmap, dates et pointeurs dans `ProDosFileSystemLayout`.
+    - [ ] Créer un enum pour les types de fichiers ProDOS connus.
+    - [ ] Extraire la lecture seedling, sapling et tree dans un composant retournant contenu et validité.
+    - [ ] Remplacer les textes bruts par des erreurs injectant fichier, bloc, stockage et profondeur.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester ProDOS 140K, 800K, SOS, les sous-répertoires, le bitmap et les blocs absents.
+  - [ ] `FileSystems/Readers/Rt11FileSystemReader.cs`
+    - [ ] Extraire home block, segments, entrées, statuts, RADIX-50 et dates dans `Rt11FileSystemLayout` et un enum de drapeaux.
+    - [ ] Supprimer `commentParts`, son test toujours faux et la chaîne mojibake inatteignable.
+    - [ ] Extraire le parcours des segments dans `Rt11DirectoryReader`.
+    - [ ] Remplacer les textes bruts par des erreurs injectant segment, bloc, taille et nom.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les segments, les statuts, les dates, les tailles invalides et les blocs absents.
+  - [ ] `FileSystems/Readers/UcsdFileSystemReader.cs`
+    - [ ] Extraire blocs, répertoires, entrées, noms et dates dans `UcsdFileSystemLayout`.
+    - [ ] Remplacer le booléen d'ordre des octets par un enum LittleEndian/BigEndian.
+    - [ ] Créer un enum pour les types de fichiers UCSD et supprimer les noms bruts du `switch`.
+    - [ ] Remplacer les textes bruts par des erreurs injectant entrée, nom, plage et nombres déclarés.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les deux ordres, les deux tailles de répertoire, les dates, les plages et les blocs absents.
 
 ## 9. Interprétation et exploration
 
@@ -1926,8 +3287,13 @@
     - [ ] Ajouter la documentation XML des types `ScpFamilyProbe`.
     - [ ] Ajouter la documentation XML des méthodes `ScpFamilyProbe, DetectAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpFormatFamily.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ScpFormatFamily`.
+  - [ ] Valeurs de famille
+    - [ ] Documenter en français `ScpFormatFamily`.
+    - [ ] Documenter en français les valeurs `Iso`, `Amiga`, `Commodore`, `Apple` et `Dec` avec le type de sondes qu'elles regroupent.
+    - [ ] Remplacer dans les consommateurs tout entier ou texte brut représentant l'une de ces familles par la valeur d'enum correspondante.
+  - [ ] Tests ciblés
+    - [ ] Tester que chaque inscription de `ScpCandidateRegistry` appartient à une valeur définie de `ScpFormatFamily`.
+    - [ ] Tester que chaque valeur de famille possède au moins un candidat enregistré.
 - [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpSectorImageReader.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `ScpSectorImageReader`.
@@ -1936,6 +3302,133 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `ScpImageExplorationService`.
     - [ ] Ajouter la documentation XML des méthodes `ExploreAutomaticallyAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+- [ ] Compléments issus de la relecture complète de l'interprétation et de l'exploration
+  - [ ] `Images/DiskImageExplorer.cs`
+    - [ ] Injecter `DiskImageInterpretationService` au lieu de le construire dans un champ.
+    - [ ] Déclencher l'exploration SCP automatique par reconnaissance de la signature et non par la seule extension.
+    - [ ] Conserver le diagnostic d'un conteneur signé mais corrompu au lieu de le convertir en résultat inconnu.
+    - [ ] Ne plus utiliser un identifiant de format comme identifiant de Reader de système de fichiers.
+    - [ ] Remplacer la clé de déduplication brute par le composant commun d'identité d'interprétation.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester un conteneur signé, une image brute, SCP, un format explicite, une corruption et une image inconnue.
+  - [ ] `Images/DiskImageExplorerFactory.cs`
+    - [ ] Renommer la composition racine en `MediaEngineFactory`.
+    - [ ] Séparer la composition des décodeurs, encodeurs, reconstructeurs, conteneurs, systèmes de fichiers, interprétations et visualisation.
+    - [ ] Fournir à chaque registre sa collection injectée au lieu de laisser les registres créer leurs implémentations.
+    - [ ] Supprimer l'ancien fichier après raccordement de `DiskImageExplorer.CreateDefault`.
+    - [ ] Documenter en français chaque méthode de composition.
+    - [ ] Tester l'unicité et la présence de chaque inscription.
+  - [ ] `Images/DiskImageInterpretationService.cs`
+    - [ ] Injecter les registres de normalizers et de politiques supplémentaires.
+    - [ ] Déplacer la création des documents dans `DiskImageDocumentFactory`.
+    - [ ] Déplacer le score dans `DiskImageScore`.
+    - [ ] Déplacer l'identité récursive dans `FileSystemInterpretationIdentity`.
+    - [ ] Déplacer la règle de crédibilité dans `FileSystemAlternativePolicy`.
+    - [ ] Sortir les noms techniques `Txx Hxx`, `Sxx.bin`, les séparateurs et le seuil de trois avertissements dans des définitions nommées.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester séparément les cinq responsabilités.
+  - [ ] `Images/DiskImageMetadata.cs`, `DiskSystemCatalog.cs` et `DiskProtectionCatalog.cs`
+    - [ ] Remplacer les libellés d'affichage par des identifiants techniques de systèmes et de protections.
+    - [ ] Exposer une collection de systèmes reconnus au lieu de concaténer plusieurs noms dans une chaîne.
+    - [ ] Remplacer tous les préfixes bruts par `DiskImageFormatIds`.
+    - [ ] Supprimer les chaînes mojibake et déplacer les libellés vers le consommateur d'interface.
+    - [ ] Protéger les collections du modèle et documenter en français chaque membre.
+    - [ ] Tester une image à un système, plusieurs systèmes, une protection et aucun système reconnu.
+  - [ ] `Images/ExploredDiskImage.cs`
+    - [ ] Créer un fichier distinct pour `ExploredFileSystem`.
+    - [ ] Copier ou figer `DetectedFileSystems` et `DetectedImageFormatIds` à la construction.
+    - [ ] Documenter en français les deux records, chaque propriété et chaque paramètre.
+    - [ ] Tester l'absence de modification par les collections sources.
+  - [ ] `Images/Interpretations/AdditionalImageInterpretationRegistry.cs`
+    - [ ] Injecter la collection ordonnée de politiques au lieu de créer les trois politiques dans un champ.
+    - [ ] Déplacer les familles ISO compatibles dans un catalogue utilisant `DiskImageFormatIds`.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'ordre, une collection vide et un format incompatible.
+  - [ ] `Images/Interpretations/RecognizedImageNormalizerRegistry.cs`
+    - [ ] Injecter la collection ordonnée de normalizers au lieu de créer les trois implémentations dans un champ.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'ordre, le premier succès, l'absence de succès et une collection vide.
+  - [ ] `Images/Interpretations/SectorImageInterpretation.cs`
+    - [ ] Déplacer `Retag` dans une fabrique de `SectorImage`.
+    - [ ] Déplacer les extensions et la signature de programmes Atari dans `AtariProgramDefinitions`.
+    - [ ] Déplacer la recherche récursive de programmes Atari dans `AtariProgramDetector`.
+    - [ ] Déplacer la lecture de géométrie FAT dans un composant utilisant `FatBpbLayout` et retournant un résultat nommé.
+    - [ ] Déplacer l'interprétation MSX dans un composant utilisant le détecteur de boot MSX commun.
+    - [ ] Supprimer `SectorImageInterpretation.cs` après migration de tous ses consommateurs.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester séparément les quatre responsabilités extraites.
+  - [ ] `Images/Interpretations/IAdditionalImageInterpretationPolicy.cs`
+    - [ ] Documenter en français le contrat, le paramètre image et l'énumération de candidats retournée.
+    - [ ] Ajouter uniquement les annotations de nullabilité nécessaires aux consommateurs existants.
+    - [ ] Tester une politique factice sans candidat et avec plusieurs candidats ordonnés.
+  - [ ] `Images/Interpretations/IRecognizedImageNormalizer.cs`
+    - [ ] Documenter en français le contrat, chaque paramètre, le booléen et l'image normalisée retournée.
+    - [ ] Utiliser `FileSystemIds` chez chaque appelant du paramètre `readerId`.
+    - [ ] Tester un normalizer factice qui accepte et un autre qui refuse l'image.
+  - [ ] `Images/Interpretations/CompatibleFormatInterpretationPolicy.cs`
+    - [ ] Créer `CompatibleFormatCatalog.cs` associant séparément les tailles 256, 512 et 1024 aux formats compatibles.
+    - [ ] Remplacer le `switch` et ses listes recréées à chaque appel par le catalogue immuable.
+    - [ ] Utiliser les constantes communes de tailles sectorielles lorsqu'elles ont le même sens.
+    - [ ] Documenter en français le catalogue, la politique et chacun de leurs membres.
+    - [ ] Tester les trois tailles, une taille inconnue et l'exclusion du format déjà porté par l'image.
+  - [ ] `Images/Interpretations/IbmAdditionalImageInterpretationPolicy.cs`
+    - [ ] Remplacer l'appel à `IbmPcImageReader.TryDetectFluxGeometry` par le détecteur IBM commun extrait du Reader.
+    - [ ] Remplacer boot, FAT, taille 512 et octet média par les définitions FAT/IBM communes.
+    - [ ] Conserver le choix entre le format détecté pris en charge et `IbmScan`.
+    - [ ] Documenter en français le type, son constructeur et `Create`.
+    - [ ] Tester format pris en charge, repli `IbmScan`, image déjà IBM, boot absent et géométrie invalide.
+  - [ ] `Images/Interpretations/MsxAdditionalImageInterpretationPolicy.cs`
+    - [ ] Remplacer l'appel à `MsxImageReader.LooksLikeMsx` par le détecteur de boot MSX commun.
+    - [ ] Remplacer la taille 512 par la définition sectorielle MSX correspondante.
+    - [ ] Documenter en français le type et `Create`.
+    - [ ] Tester boot MSX valide, taille invalide, boot invalide et image déjà MSX.
+  - [ ] `Images/Interpretations/AtariRecognizedImageNormalizer.cs`
+    - [ ] Remplacer `fat12` par `FileSystemIds.Fat12`.
+    - [ ] Remplacer la lecture de géométrie générale par `FatGeometryReader` fondé sur `FatBpbLayout`.
+    - [ ] Remplacer la détection générale de programme par `AtariProgramDetector`.
+    - [ ] Remplacer les tailles 512 par la définition sectorielle commune.
+    - [ ] Documenter en français le type et `TryNormalize`.
+    - [ ] Tester réduction selon BPB, programme par extension, programme par signature, autre système et BPB invalide.
+  - [ ] `Images/Interpretations/MacRecognizedImageNormalizer.cs`
+    - [ ] Remplacer `mac-hfs` et `mac-mfs` par `FileSystemIds.MacHfs` et `FileSystemIds.MacMfs`.
+    - [ ] Remplacer 512 et 2880 par la géométrie Macintosh 1,44 Mo commune.
+    - [ ] Documenter en français le type et `TryNormalize`.
+    - [ ] Tester HFS, MFS, autre capacité, autre système et image déjà `Mac1440`.
+  - [ ] `Images/Interpretations/MsxRecognizedImageNormalizer.cs`
+    - [ ] Remplacer `fat12` par `FileSystemIds.Fat12`.
+    - [ ] Utiliser `MsxSectorImageInterpreter` et le détecteur de boot commun.
+    - [ ] Documenter en français le type et `TryNormalize`.
+    - [ ] Tester les quatre capacités MSX, les deux variantes de 720 blocs, autre système et image déjà MSX.
+  - [ ] `Images/ScpDetection/ScpCandidateRegistry.cs`
+    - [ ] Créer des types nommés pour un candidat et son inscription au lieu des tuples, prédicats et delegates privés.
+    - [ ] Déplacer les inscriptions dans un catalogue et supprimer les préfixes bruts de formats.
+    - [ ] Utiliser `EpsonQx10GeometryCatalog` comme propriétaire de la liste Epson.
+    - [ ] Ne plus rediriger silencieusement un format explicite inconnu vers le Reader ISO.
+    - [ ] Conserver l'identité de chaque candidat retourné par les sélections explicite, par défaut et automatique.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester l'ordre, les familles, les doublons et un identifiant inconnu.
+  - [ ] `Images/ScpDetection/ScpFamilyProbe.cs`
+    - [ ] Remplacer les huit identifiants bruts par `FluxCodecIds` dans un catalogue de sondes.
+    - [ ] Nommer le maximum de six pistes et l'indice de révolution sondé.
+    - [ ] Extraire la sélection uniformément répartie des pistes dans une méthode testable.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester une capture vide, courte, longue, chaque famille et l'annulation.
+  - [ ] `Images/ScpDetection/ScpSectorImageReader.cs`
+    - [ ] Conserver l'identité et l'exception de chaque candidat rejeté au lieu de vider le `catch`.
+    - [ ] Continuer avec le candidat suivant après un rejet.
+    - [ ] Retourner le premier décodage lorsqu'aucun système de fichiers n'est reconnu.
+    - [ ] Produire une erreur détaillée lorsque tous les candidats échouent.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester un rejet suivi d'une réussite, le premier décodage et un échec total.
+  - [ ] `Images/ScpDetection/ScpAutomaticImageExplorer.cs`
+    - [ ] Extraire l'inspection d'un candidat dans `ScpCandidateInspector`.
+    - [ ] Extraire le classement et la déduplication dans `ScpCandidateRanker`.
+    - [ ] Remplacer le seuil brut `.5` par une constante nommée.
+    - [ ] Ne plus utiliser un identifiant de format comme identifiant de Reader pour les interprétations supplémentaires.
+    - [ ] Conserver les diagnostics des candidats rejetés.
+    - [ ] Documenter en français chaque membre.
+    - [ ] Tester les scores, la normalisation, les alternatives, la déduplication et une image inconnue.
 
 ## 10. Conversion et visualisation technique
 
@@ -2046,8 +3539,13 @@
     - [ ] Déplacer le fichier sous `Visualization/Policies/`.
     - [ ] Adapter son namespace et tous ses consommateurs.
     - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+    - [ ] Remettre la signature complète et courte de `CreateTrackSectors` sur une seule ligne.
   - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ISectorImageVisualizationPolicy`.
+    - [ ] Documenter en français `ISectorImageVisualizationPolicy`.
+    - [ ] Documenter en français `CanHandle`, `EncoderId`, `VisualAddress`, `CreateTrackSectors`, `TrackAttributes` et `BitCellTicks` avec leurs paramètres, résultats et unités.
+  - [ ] Tests du contrat
+    - [ ] Tester une politique factice qui conserve l'adresse et une politique factice qui la transforme.
+    - [ ] Tester une politique sans attributs de piste et une politique fournissant des attributs.
 - [ ] `src/GWGUI.MediaEngine/Images/Visualization/PrefixVisualizationPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier sous `Visualization/Policies/`.

@@ -1353,8 +1353,10 @@ public sealed class CoreTests
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c0, 2), 100);
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c2, 2), 0);
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c4, 2), 50);
-        uint checksum = 0; foreach (var value in data.AsSpan(0x10)) checksum = unchecked(checksum + value);
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x0c, 4), checksum);
+        var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(
+            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
+            checksum);
         var image = new ScpReader().Read(data);
         Assert.True(image.ChecksumValid);
         Assert.Equal([100u, 65_586u], image.Tracks[0].Revolutions[0].FluxIntervals);
@@ -3425,8 +3427,10 @@ public sealed class CoreTests
         System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2b8, 4), (uint)intervals.Count);
         System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x2bc, 4), 16);
         for (var index = 0; index < intervals.Count; index++) System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(0x2c0 + index * 2, 2), (ushort)intervals[index]);
-        uint checksum = 0; foreach (var value in data.AsSpan(0x10)) checksum = unchecked(checksum + value);
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(0x0c, 4), checksum);
+        var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(
+            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
+            checksum);
         return data;
     }
     private static string EncodeMfmBytesFromZero(params byte[] values) { var result = new System.Text.StringBuilder(); var previous = 0; foreach (var value in values) for (var bit = 7; bit >= 0; bit--) { var data = (value >> bit) & 1; var clock = previous == 0 && data == 0 ? 1 : 0; result.Append(clock).Append(data); previous = data; } return result.ToString(); }

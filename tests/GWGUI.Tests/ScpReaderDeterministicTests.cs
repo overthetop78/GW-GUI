@@ -9,6 +9,41 @@ public sealed class ScpReaderDeterministicTests
 {
     private static readonly Lazy<TestImages> Images = new(CreateTestImages);
 
+    [Theory]
+    [InlineData(0, 0, 0)]
+    [InlineData(1, 0, 1)]
+    [InlineData(166, 83, 0)]
+    [InlineData(167, 83, 1)]
+    public void ConvertsScpTrackNumbersToCylinderAndHead(int trackNumber, int expectedCylinder, int expectedHead)
+    {
+        var address = ScpFormatConstants.ToTrackAddress(trackNumber);
+
+        Assert.Equal(expectedCylinder, address.Cylinder);
+        Assert.Equal(expectedHead, address.Head);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(ScpFormatConstants.FloppyTrackSlots)]
+    public void RejectsScpTrackNumbersOutsideTheTrackTable(int trackNumber) =>
+        Assert.Throws<ArgumentOutOfRangeException>(() => ScpFormatConstants.ToTrackAddress(trackNumber));
+
+    [Fact]
+    public void ComputesUpdatesAndValidatesScpChecksums()
+    {
+        byte[] first = [byte.MaxValue, 1];
+        byte[] second = [2, 3];
+        var checksum = ScpFormatConstants.UpdateChecksum(
+            ScpFormatConstants.ComputeChecksum(first),
+            second);
+
+        Assert.Equal(261u, checksum);
+        Assert.True(ScpFormatConstants.IsChecksumValid(checksum, 0, checksum));
+        Assert.False(ScpFormatConstants.IsChecksumValid(checksum + 1, 0, checksum));
+        Assert.True(ScpFormatConstants.IsChecksumValid(0, ScpFlags.Writable, checksum));
+        Assert.False(ScpFormatConstants.IsChecksumValid(0, ScpFlags.IndexAligned, checksum));
+    }
+
     [Fact]
     public void ConvertsScpVersionResolutionDurationAndRotationSpeed()
     {
@@ -266,8 +301,7 @@ public sealed class ScpReaderDeterministicTests
 
     private static void WriteChecksum(byte[] data)
     {
-        uint checksum = 0;
-        foreach (var value in data.AsSpan(ScpFormatConstants.TrackTableOffset)) checksum = unchecked(checksum + value);
+        var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
         BinaryPrimitives.WriteUInt32LittleEndian(
             data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
             checksum);

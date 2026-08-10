@@ -52,15 +52,16 @@ public static class ScpCaptureInfoReader
         {
             var read = await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false);
             if (read == 0) break;
-            for (var index = 0; index < read; index++) checksum = unchecked(checksum + buffer[index]);
+            checksum = ScpFormatConstants.UpdateChecksum(checksum, buffer.AsSpan(0, read));
         }
-        var checksumValid = header.Checksum == 0 && (header.Flags & ScpFlags.Writable) != 0 || checksum == header.Checksum;
+        var checksumValid = ScpFormatConstants.IsChecksumValid(header.Checksum, header.Flags, checksum);
+        var addresses = slots.Select(ScpFormatConstants.ToTrackAddress).ToArray();
         return new(
             header,
             slots.Count,
             Math.Max(0, header.TrackCount - slots.Count),
-            slots.Select(slot => slot / 2).Distinct().Count(),
-            slots.Select(slot => slot % 2).Distinct().Count(),
+            addresses.Select(address => address.Cylinder).Distinct().Count(),
+            addresses.Select(address => address.Head).Distinct().Count(),
             checksumValid,
             stream.Length);
     }

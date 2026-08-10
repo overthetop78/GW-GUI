@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration;
 
 namespace GWGUI.Tests;
@@ -107,9 +108,10 @@ public sealed class ScpCaptureInfoTests
 
     private static void WriteChecksum(byte[] data)
     {
-        uint checksum = 0;
-        foreach (var value in data.AsSpan(16)) checksum = unchecked(checksum + value);
-        BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(12, 4), checksum);
+        var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
+        BinaryPrimitives.WriteUInt32LittleEndian(
+            data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength),
+            checksum);
     }
 
     private sealed record TestImages(string Source, string MissingTrack, string Corrupted, string Truncated);

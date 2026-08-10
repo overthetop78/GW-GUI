@@ -86,7 +86,8 @@ public sealed class ScpReader : IScpReader
             if (offset == 0) continue;
             tracks.Add(ReadTrack(data, checked((int)offset), slot, header));
         }
-        var checksumValid = header.Checksum == 0 && (header.Flags & ScpFlags.Writable) != 0 || ComputeChecksum(data[ScpFormatConstants.TrackTableOffset..]) == header.Checksum;
+        var checksum = ScpFormatConstants.ComputeChecksum(data[ScpFormatConstants.TrackTableOffset..]);
+        var checksumValid = ScpFormatConstants.IsChecksumValid(header.Checksum, header.Flags, checksum);
         return new ScpImage(header, tracks, checksumValid, data.Length);
     }
 
@@ -157,19 +158,8 @@ public sealed class ScpReader : IScpReader
             if (overflow != 0) intervals.Add(overflow);
             revolutions.Add(new(indexTime, fluxCount, intervals));
         }
-        return new((byte)expectedTrack, expectedTrack / 2, expectedTrack % 2, revolutions);
-    }
-
-    /// <summary>
-    /// Additionne les octets couverts par la somme de contrôle SCP avec un cumul non signé sur 32 bits.
-    /// </summary>
-    /// <param name="data">Octets à additionner.</param>
-    /// <returns>Somme des octets modulo 2<sup>32</sup>.</returns>
-    private static uint ComputeChecksum(ReadOnlySpan<byte> data)
-    {
-        uint sum = 0;
-        foreach (var value in data) sum = unchecked(sum + value);
-        return sum;
+        var address = ScpFormatConstants.ToTrackAddress(expectedTrack);
+        return new((byte)expectedTrack, address.Cylinder, address.Head, revolutions);
     }
 
     /// <summary>
