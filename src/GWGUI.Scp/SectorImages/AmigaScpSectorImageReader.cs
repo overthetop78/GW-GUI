@@ -1,4 +1,5 @@
 using GWGUI.Scp.Decoding;
+using GWGUI.Scp.Containers.Scp;
 
 namespace GWGUI.Scp.SectorImages;
 

@@ -1,0 +1,1220 @@
+# 02 — Refactor complet de `GWGUI.Scp`
+
+## Règles de découpage
+
+- Les tâches du dernier niveau sont les seules actions à exécuter.
+- Tous les niveaux précédents sont des groupes de travail.
+- Les actions d’un groupe réalisent entièrement ce groupe.
+- Une action indique explicitement le fichier créé, déplacé, renommé, modifié, raccordé, supprimé ou documenté.
+- Les constantes, enums et définitions partagées sont extraits dans le groupe des fichiers qui les possèdent et les consomment.
+- L’interface graphique reste le dernier travail, hors de ce document consacré à `GWGUI.Scp`.
+
+## 1. Conteneur SCP
+
+- [x] `src/GWGUI.Scp/IScpReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Containers/Scp/IScpReader.cs`.
+    - [x] Adapter le namespace dans `ScpReader`, les reconstructeurs, `ScpDocumentLoader.cs` et les doubles de tests.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IScpReader`.
+- [ ] `src/GWGUI.Scp/ScpCaptureInfo.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Exploration/ScpCaptureInfo.cs`.
+    - [ ] Déplacer le record `ScpCaptureInfo` dans le nouveau fichier.
+    - [ ] Créer `Exploration/ScpCaptureInfoReader.cs`.
+    - [ ] Déplacer `ScpCaptureInfoReader` dans le nouveau fichier.
+    - [ ] Adapter `MainWindow.xaml.cs` et les tests.
+    - [ ] Supprimer le fichier racine d’origine.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpCaptureInfo, ScpCaptureInfoReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ScpCaptureInfo, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/ScpFormatConstants.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Containers/Scp/ScpFormatConstants.cs`.
+    - [ ] Remplacer les copies de `HeaderLength`, `FloppyTrackSlots` et `TrackTableOffset` dans `ScpReader.cs` par ces constantes.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpFormatConstants`.
+- [ ] `src/GWGUI.Scp/ScpModels.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs` et `ScpImage.cs`.
+    - [ ] Déplacer chaque type public dans le fichier portant son nom.
+    - [ ] Retirer les cinq déclarations de `ScpModels.cs`.
+    - [ ] Supprimer `ScpModels.cs` après le déplacement.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpFlags, ScpHeader, ScpRevolution, ScpTrack, ScpImage`.
+    - [ ] Ajouter la documentation XML des méthodes `ScpHeader, ScpRevolution, DurationMilliseconds, Rpm, ScpTrack, ScpImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/ScpReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Containers/Scp/ScpReader.cs`.
+    - [ ] Créer `Containers/Scp/ScpHeaderReader.cs`.
+    - [ ] Déplacer `ScpHeaderReader` dans le nouveau fichier.
+    - [ ] Retirer `ScpHeaderReader` de `ScpReader.cs`.
+    - [ ] Adapter les namespaces de ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpReader, ScpHeaderReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, ReadFileAsync, FileIdentity, Read, ReadHeader, ReadTrack, ComputeChecksum, Require`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 2. Conteneurs et reconnaissance des fichiers
+
+- [ ] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.
+    - [ ] Faire produire des pistes sectorielles sans décider CPC ou PCW.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmstradDskImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/AppleContainerImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.
+    - [ ] Créer `Containers/Apple/DiskCopy/DiskCopyReader.cs` et y déplacer le parsing DiskCopy.
+    - [ ] Supprimer `AppleContainerImageReader.cs` après raccordement.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML de `TwoImgReader`, de ses méthodes et des validations 2IMG.
+    - [ ] Ajouter la documentation XML de `DiskCopyReader`, de ses méthodes et des validations DiskCopy.
+- [ ] `src/GWGUI.Scp/Images/AppleNibbleImageDecoder.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Containers/Apple/Woz/WozReader.cs` et y déplacer le parsing WOZ1/WOZ2.
+    - [ ] Créer `Recognition/Apple/NibTrackImageReader.cs` et y déplacer la lecture NIB.
+    - [ ] Raccorder les pistes produites aux décodeurs Apple.
+    - [ ] Supprimer `AppleNibbleImageDecoder.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML de `WozReader`, de ses méthodes et des structures WOZ1/WOZ2.
+    - [ ] Ajouter la documentation XML de `NibTrackImageReader`, de ses méthodes et de la longueur des pistes NIB.
+- [ ] `src/GWGUI.Scp/Images/AtrImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.
+    - [ ] Déplacer `WriteRawPayloadAsync` vers `Conversion/Atari/AtrPayloadWriter.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtrImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, WriteRawPayloadAsync, ReadValidatedContainerAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/AmstradContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AmstradImageRecognitionPolicy.cs`.
+    - [ ] Remplacer l’acceptation de `.dsk` et `.edsk` par les signatures CPCEMU Standard et Extended.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmstradContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `AmstradContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/AppleContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AppleImageRecognitionPolicy.cs`.
+    - [ ] Séparer les signatures 2IMG, DiskCopy et WOZ des indices DO, PO, D13, NIB, DSK et IMG.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `AppleContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/CoherentContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/CoherentImageRecognitionPolicy.cs`.
+    - [ ] Remplacer `.bin` comme décision par un indice.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CoherentContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CoherentContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/DecRx02ContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.
+    - [ ] Séparer la géométrie RX02 de la reconnaissance RT-11.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DecRx02ContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `DecRx02ContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/DelegatingContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Migrer ses enregistrements vers `ExtensionHintRecognitionPolicy`.
+    - [ ] Supprimer `DelegatingContainerPolicy.cs`.
+- [ ] `src/GWGUI.Scp/Images/Containers/DirectContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Recognition/Policies/ExtensionHintRecognitionPolicy.cs`.
+    - [ ] Déplacer la présélection par extension dans le nouveau type.
+    - [ ] Supprimer `DirectContainerPolicy.cs` après migration de ses enregistrements.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML de `ExtensionHintRecognitionPolicy`, de son constructeur et de ses méthodes.
+- [ ] `src/GWGUI.Scp/Images/Containers/DiskImageContainerContext.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionContext.cs`.
+    - [ ] Ajouter longueur, extension normalisée, format demandé et lecture du contenu au contexte.
+    - [ ] Adapter toutes les politiques et le registre.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskImageContainerContext`.
+    - [ ] Ajouter la documentation XML des méthodes `DiskImageContainerContext, ReadBytesAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/DiskImageContainerRegistry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionRegistry.cs`.
+    - [ ] Remplacer le retour au premier candidat par la collecte et le classement de tous les candidats.
+    - [ ] Continuer avec le candidat suivant après incompatibilité d’un candidat faible.
+    - [ ] Arrêter sur corruption après signature confirmée, annulation ou erreur d’accès.
+    - [ ] Adapter `DiskImageExplorer` et la factory.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskImageContainerRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/IDiskImageContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Recognition/IDiskImageRecognitionPolicy.cs`.
+    - [ ] Remplacer le booléen par un résultat distinguant rejet, candidat faible, structure cohérente et signature confirmée.
+    - [ ] Supprimer l’ancien contrat après migration des politiques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML de `IDiskImageRecognitionPolicy` et des types de résultat créés.
+- [ ] `src/GWGUI.Scp/Images/Containers/MsxContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/MsxImageRecognitionPolicy.cs`.
+    - [ ] Utiliser `.dsk` comme indice et le BPB MSX comme preuve structurelle.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MsxContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `MsxContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/RawImgContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/RawSectorImageRecognitionPolicy.cs`.
+    - [ ] Supprimer le choix IBM par défaut.
+    - [ ] Retirer les appels à `AmstradCpmFileSystemReader`.
+    - [ ] Raccorder les détecteurs bruts spécialisés.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `RawImgContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Containers/ScpContainerPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/ScpRecognitionPolicy.cs`.
+    - [ ] Remplacer le test d’extension par la signature SCP.
+    - [ ] Retirer l’appel direct à `ScpImageExplorationService`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpContainerPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `ScpContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Cp2ImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Containers/CopyIIPc/Cp2Reader.cs`.
+    - [ ] Séparer `TrackDescriptor` et `Cp2SectorDescriptor` dans des fichiers du même module.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Cp2ImageReader, TrackDescriptor`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, ReadSectorBlocks, ParseTrackDescriptor, TrackDescriptor, Cp2SectorDescriptor`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/I86fImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Containers/86F/I86fReader.cs`.
+    - [ ] Faire produire des pistes de bits au lieu d’appeler directement les décodeurs FM/MFM.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `I86fImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `I86fImageReader, ReadAsync, ReadTrack, NextOffset, BuildSectorImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ImdImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
+    - [ ] Séparer le record `ImdSector` dans `Containers/ImageDisk/ImdSector.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ImdImageReader, ImdSector`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Read, DetectFormat, EnsureAvailable, ImdSector`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ISectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `Containers/IContainerReader.cs` pour les parsers de conteneurs.
+    - [ ] Créer `Reconstruction/ISectorImageBuilder.cs` pour les reconstructeurs.
+    - [ ] Créer `Reconstruction/IRawSectorImageReader.cs` pour les lecteurs bruts.
+    - [ ] Migrer chaque implémentation vers le contrat correspondant.
+    - [ ] Supprimer `Images/ISectorImageReader.cs` après migration.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML de `IContainerReader`, `ISectorImageBuilder` et `IRawSectorImageReader`.
+- [ ] `src/GWGUI.Scp/Images/MsaImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Containers/Atari/Msa/MsaReader.cs`.
+    - [ ] Extraire la décompression RLE dans le même module.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MsaImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Unpack, ReadWord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Td0ImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Containers/TeleDisk/Td0Reader.cs`.
+    - [ ] Séparer le record `Td0Sector` dans `Containers/TeleDisk/Td0Sector.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Td0ImageReader, Td0Sector`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Read, DetectFormat, DecodeSector, EnsureAvailable, ReadUInt16, Td0Sector`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 3. Modèles sectoriels, représentations et primitives
+
+- [ ] `src/GWGUI.Scp/Flux/FluxBitstream.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Representations/Flux/FluxBitstream.cs`.
+    - [ ] Créer `Representations/Flux/FluxTimingEstimator.cs` et y déplacer les deux estimations de cellule.
+    - [ ] Créer `Representations/Flux/FluxBitstreamDecoder.cs` et y déplacer les constructions PLL, NRZI et doubled-NRZI.
+    - [ ] Adapter les namespaces de tous les décodeurs et reconstructeurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `FluxBitstream`.
+    - [ ] Ajouter la documentation XML des méthodes `FluxBitstream, WithCircularTail, FromIntervals, FromIntervalsPll, FromNrziIntervals, FromDoubledNrziIntervals, Reconstruct, ReconstructPll, EstimateBitCell, EstimateNrziBitCell, Match, MatchBytes, DecodeMfmByte, DecodeByte, DecodeFmByte32`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Primitives/BitPrimitives.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `BitPrimitives`.
+    - [ ] Ajouter la documentation XML des méthodes `Reverse`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Primitives/Crc16Calculator.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Crc16Calculator`.
+    - [ ] Ajouter la documentation XML des méthodes `Compute, Update`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/SectorImage.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer `SectorImages/SectorAddress.cs` avec le namespace actuel.
+    - [ ] Déplacer le record `SectorAddress` sans modifier sa signature.
+    - [ ] Retirer `SectorAddress` de `SectorImage.cs`.
+    - [ ] Créer `SectorImages/SectorBlock.cs` avec le namespace actuel.
+    - [ ] Déplacer le record `SectorBlock` sans modifier sa signature.
+    - [ ] Retirer `SectorBlock` de `SectorImage.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `SectorAddress, SectorBlock, SectorImage`.
+    - [ ] Ajouter la documentation XML des méthodes `SectorAddress, SectorBlock, TryGetBlock, GetBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 4. Décodage
+
+- [ ] `src/GWGUI.Scp/Decoding/Base/AppleBitLatch.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleBitLatch`.
+    - [ ] Ajouter la documentation XML des méthodes `TryReadBytes`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Base/SignatureMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `SignatureMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/Aed6200pMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Aed6200pMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindDataMark, SizeCode, Crc16`, avec paramètres, résultat, exce…14783 tokens truncated…Definitions/`.
+    - [ ] Déplacer la correspond…14186 tokens truncated…ileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Cpm/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Raccorder le cœur CP/M commun.
+    - [ ] Déplacer `LooksLikeCpcRawImage` et `LooksLikePcwDiskSpecification` vers `Recognition/Amstrad/`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmstradCpmFileSystemReader, ExtentKeyComparer`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, LooksLikePcwDiskSpecification, LooksLikeCpcRawImage, Read, GetLayout, FindDirectory, LooksLikeDirectory, TryDecodeName, DecodePart, ReadAllocations, Flatten, Layout, Extent, Equals, GetHashCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/AmigaMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmigaMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, TryDecodeMfmBytes, DecodeOddEven, Interleave`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/AppleIIGcrDecoder.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder`.
+    - [ ] Adapter le registre et les consommateurs.
+    - [ ] Extraire les tables Apple II partagées avec l’encodeur.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleGcrDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore, DecodeFiveAndThree, DecodeFourAndFour, TryReadBytes, Find`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleLisaFileWareGcrDecoder`.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/AppleMacGcrDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleMacGcrDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeAtBitCell, DecodeCore, DecodeSixAndTwo, TryReadSymbols, FindMark`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/AppleRwts18Decoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleRwts18Decoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/ArburgDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ArburgDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, ScanFmData, ScanSystemData, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/CenturionMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CenturionMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindDataMark, SizeCode, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/Commodore900GcrDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Commodore900GcrDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, TryDecodeBytes, TryNibble`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/CommodoreGcrDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreGcrDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, TryDecodeBytes, TryDecodeByte`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/DataGeneralFmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DataGeneralFmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindAll, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/DecRx02Decoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DecRx02Decoder`.
+    - [ ] Ajouter la documentation XML des méthodes `readonly, Decode, DecodeM2Fm, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/EmuFmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EmuFmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindNextMark, ReverseBits, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/HeathkitFmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `HeathkitFmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindNextMark, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/HpMmfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `HpMmfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBytes, Find, ReverseBits, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/IsoFmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoFmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/IsoMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeCore, Score, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/MembrainMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MembrainMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindMark, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/MicralNFmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MicralNFmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, UpdateChecksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/MicropolisMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MicropolisMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/NorthstarMfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `NorthstarMfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/QdMo5MfmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `QdMo5MfmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindNextData`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/RawFluxDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `RawFluxDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/TycomFmDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `TycomFmDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `readonly, Decode, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/Decoders/Victor9kGcrDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Victor9kGcrDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `Decode, FindMark, TryDecodeNibble`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/FluxDecodeModels.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer un fichier par type déclaré.
+    - [ ] Déplacer les cinq types.
+    - [ ] Supprimer `FluxDecodeModels.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `FluxStructureKind, SectorIntegrityKind, FluxStructure, DecodedSector, FluxDecodeResult`.
+    - [ ] Ajouter la documentation XML des méthodes `FluxStructure, DecodedSector, FluxDecodeResult`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/FluxDecoderRegistry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Construire un dictionnaire par identifiant.
+    - [ ] Refuser les doublons.
+    - [ ] Remplacer les recherches `First` par une erreur explicite.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `FluxDecoderRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `DecodeAutomatic, Decode, AutomaticScore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Decoding/IFluxDecoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IFluxDecoder`.
+
+## 5. Encodage
+
+
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Aed6200pMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/AmigaMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmigaMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Nibble, EncodeOddEven`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleIIGcrTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, EncodeSixAndTwo, EncodeFiveAndThree`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleLisaFileWareGcrTrackEncoder`.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleMacGcrTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, EncodeData`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/AppleRwts18TrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleRwts18TrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, EncodePayload`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/ArburgTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ArburgTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/CenturionMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CenturionMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Commodore900GcrTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Gcr`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreGcrTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Gcr`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DataGeneralFmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/DecRx02TrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DecRx02TrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, ReplaceM2Fm`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/EmuFmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EmuFmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/HeathkitFmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `HeathkitFmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/HpMmfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `HpMmfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/IsoFmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoFmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/IsoMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/MembrainMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MembrainMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/MicralNFmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MicralNFmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Update`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MicropolisMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `NorthstarMfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `QdMo5MfmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/TycomFmTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `TycomFmTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Victor9kGcrTrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, AddBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/FluxEncoderRegistry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Construire un dictionnaire par identifiant.
+    - [ ] Refuser les doublons.
+    - [ ] Remplacer les recherches `First` par une erreur explicite.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `FluxEncoderRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `Get, Encode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/FluxEncoding.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer les primitives FM/MFM dans `TrackEncoding.cs`.
+    - [ ] Adapter ses consommateurs.
+    - [ ] Supprimer `FluxEncoding.cs`.
+- [ ] `src/GWGUI.Scp/Encoding/TrackEncodeModels.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer un fichier pour chacun des quatre types.
+    - [ ] Déplacer les quatre types.
+    - [ ] Supprimer `TrackEncodeModels.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `TrackSector, TrackEncodeRequest, EncodedTrack, ITrackEncoder`.
+    - [ ] Ajouter la documentation XML des méthodes `TrackSector, TrackEncodeRequest, EncodedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/TrackEncoderBase.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `TrackEncoderBase`.
+    - [ ] Ajouter la documentation XML des méthodes `Encode, EncodeBits, Attribute`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Encoding/TrackEncoding.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `TrackEncoding`.
+    - [ ] Ajouter la documentation XML des méthodes `ToRevolution, Bits, Raw, RawHex, RawBits, DoubledCells, Mfm, Fm, DoubleFm, Gap, SizeCode, Crc16, WithCrc, RotatingChecksum, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 6. Reconstruction des images sectorielles
+
+
+- [ ] `src/GWGUI.Scp/Images/AdfImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Adf/AdfSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AdfImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/AppleDiskGeometry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Apple/AppleDiskGeometry.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleDiskGeometry`.
+    - [ ] Ajouter la documentation XML des méthodes `LisaFileWareAddress, LisaFileWareSectors, AppleMacZonedAddress, AppleMacSectors, ConvertDosOrderToProDosBlocks`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/AppleDiskImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer ses décisions vers `AppleImageRecognitionPolicy`.
+    - [ ] Raccorder ses consommateurs aux propriétaires finaux.
+    - [ ] Supprimer le fichier.
+- [ ] `src/GWGUI.Scp/Images/AppleDiskImageSignatures.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Apple/AppleDiskImageSignatures.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleDiskImageSignatures`.
+    - [ ] Ajouter la documentation XML des méthodes `LooksLikeDos33, LooksLikeProDos, LooksLikeMac, LooksLikeLisaOfficePayload, LooksLikeSos`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/AppleRawImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Apple/AppleRawImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleRawImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `Read, ReadAppleTwo525, ReadApple35`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/AppleSectorImageFactory.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer ses méthodes vers les builders Apple ou neutres concernés.
+    - [ ] Adapter ses consommateurs.
+    - [ ] Supprimer le fichier.
+- [ ] `src/GWGUI.Scp/Images/AtariStImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Atari/AtariStRawSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtariStImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, AtariStGeometry, Detect, CreateSectorImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/BbcDfsImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Acorn/BbcSsdDsdSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `BbcDfsImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/CoherentImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Coherent/CoherentRawSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CoherentImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, LooksLikeCoherent, ReadCanonicalUInt32, SectorsPerTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/CommodoreD64ImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Commodore/CommodoreD64ImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreD64ImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/CommodoreD71ImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Commodore/CommodoreD71ImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreD71ImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/CommodoreD81ImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Commodore/CommodoreD81ImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreD81ImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/CommodoreGeometry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Commodore/CommodoreGeometry.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreGeometry`.
+    - [ ] Ajouter la documentation XML des méthodes `SectorsFor1541Track, BlocksPer1541Side, To1541LogicalBlock, To1581LogicalBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/DecRx02ImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Dec/DecRx02SectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DecRx02ImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, LooksLikeRt11, CopyLogicalSector, ReadUInt16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/IbmPcImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Ibm/IbmRawSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IbmPcImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, Create, DetectGeometry, HasValidBpbGeometry, FormatIdForGeometry, TryDetectFluxGeometry, TryIdentifyFluxGeometry, TryReadBpbGeometry, IbmPcGeometry`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/MsxImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Reconstruction/Msx/MsxRawSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MsxImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, LooksLikeMsx`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AmigaScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Amiga/AmigaScpSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmigaScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `AmigaScpSectorImageReader, ReadAsync, InferSectorsPerTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AmstradIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmstradIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AmstradScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Raccorder le registre directement à la politique correspondante.
+    - [ ] Adapter les consommateurs et les tests.
+    - [ ] Supprimer le fichier.
+- [ ] `src/GWGUI.Scp/SectorImages/AppleIIScpSectorReconstructor.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleIIScpSectorReconstructor.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleIIScpSectorReconstructor`.
+    - [ ] Ajouter la documentation XML des méthodes `AppleIIScpSectorReconstructor, Decode, CreateProDosImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AppleMacScpSectorReconstructor.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleMacScpSectorReconstructor.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleMacScpSectorReconstructor`.
+    - [ ] Ajouter la documentation XML des méthodes `AppleMacScpSectorReconstructor, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AppleRwts18ScpSectorReconstructor.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleRwts18ScpSectorReconstructor`.
+    - [ ] Ajouter la documentation XML des méthodes `AppleRwts18ScpSectorReconstructor, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AppleScpSectorDecoder.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorDecoder.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleScpSectorDecoder`.
+    - [ ] Ajouter la documentation XML des méthodes `AppleScpSectorDecoder, Select, TryFlattenPayload, DecodeMacTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AppleScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, DetectAutomatically, TryAdd`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Atari8BitIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Atari8BitIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AtariScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Atari/AtariScpSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtariScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `AtariScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AtariStIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtariStIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AutomaticIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/BbcIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `BbcIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/BbcScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Raccorder le registre directement à la politique correspondante.
+    - [ ] Adapter les consommateurs et les tests.
+    - [ ] Supprimer le fichier.
+- [ ] `src/GWGUI.Scp/SectorImages/CommodoreScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Commodore/CommodoreScpSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CommodoreScpSectorImageReader, ReadAsync, ReadGcr, Read1581`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/DecRx02ScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Dec/DecRx02ScpSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DecRx02ScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `DecRx02ScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/EpsonQx10FormatDetector.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10FormatDetector.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EpsonQx10FormatDetector`.
+    - [ ] Ajouter la documentation XML des méthodes `TryDetect, Matches, DetectedSector, DetectedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/EpsonQx10GeometryCatalog.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10GeometryCatalog.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EpsonQx10GeometryCatalog, EpsonQx10Geometry`.
+    - [ ] Ajouter la documentation XML des méthodes `Resolve, EpsonQx10TrackGeometry, EpsonQx10Geometry, Uniform`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EpsonQx10IsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/EpsonQx10ScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Raccorder le registre directement à la politique correspondante.
+    - [ ] Adapter les consommateurs et les tests.
+    - [ ] Supprimer le fichier.
+- [ ] `src/GWGUI.Scp/SectorImages/EpsonQx10SectorImageBuilder.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EpsonQx10SectorImageBuilder`.
+    - [ ] Ajouter la documentation XML des méthodes `Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/EpsonQx10SectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10SectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `EpsonQx10SectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CreateImage, TryDetectFormat`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/GenericIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `GenericIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IbmPcIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `IbmPcIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/IbmPcScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Raccorder le registre directement à la politique correspondante.
+    - [ ] Adapter les consommateurs et les tests.
+    - [ ] Supprimer le fichier.
+- [ ] `src/GWGUI.Scp/SectorImages/IIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IIsoScpSectorImagePolicy`.
+- [ ] `src/GWGUI.Scp/SectorImages/IsoScpSectorImagePolicyRegistry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoScpSectorImagePolicyRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/IsoScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImageReader.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `IsoScpSectorImageReader, ReadAsync, Score, AddCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/IsoSectorCandidate.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidate.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoSectorCandidate`.
+    - [ ] Ajouter la documentation XML des méthodes `IsoSectorCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/IsoSectorCandidateSet.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidateSet.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoSectorCandidateSet`.
+    - [ ] Ajouter la documentation XML des méthodes `IsoSectorCandidateSet`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/IsoSectorImageBuilder.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorImageBuilder.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IsoSectorImageBuilder`.
+    - [ ] Ajouter la documentation XML des méthodes `CreateUniform, BestData, Best`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/UcsdIsoScpSectorImagePolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `UcsdIsoScpSectorImagePolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/SectorImages/UcsdScpSectorImageReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Raccorder le registre directement à la politique correspondante.
+    - [ ] Adapter les consommateurs et les tests.
+    - [ ] Supprimer le fichier.
+
+## 7. Systèmes de fichiers
+
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AppleDosFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Apple/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleDosFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadFile, CountFree, DecodeName, TypeName`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AppleInformXzipFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Apple/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleInformXzipFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadStory, ReadLinear, TryReadStoryLength, ChecksumMatches`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AtariDosFileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtariDosFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadFile, ReadFreeSectors, TrySector, LooksLikeVtoc, LooksLikeDirectory, DecodeName`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/BbcDfsFileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `BbcDfsFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/CoherentFileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CoherentFileSystemReader, Inode`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadDirectory, ReadInode, ReadFileData, AddIndirect, DecodeFixed, DecodeTime, Flatten, Inode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/CommodoreDosFileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreDosFileSystemReader, Petscii`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadDirectory, ReadFile, ReadFreeBlocks, TryGetSector, ToLogicalBlock, TryToLogicalBlock, HasPlausibleDirectory, TypeName, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/CpmFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Cpm/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Extraire le décodage commun des noms, extents, allocations et fichiers dans un cœur CP/M.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CpmFileSystemReader, ExtentKeyComparer`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ScoreDirectory, ResolveLayout, TryDecodeName, DecodePart, IsPlausibleLabel, ReadAllocations, Flatten, Extent, Layout, For, Equals, GetHashCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/Fat12FileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Fat12FileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadBootVolumeLabel, ReadDirectory, ReadClusterChain, ReadSectors, TryReadLayout, TryReadLegacyIbmLayout, HasPlausibleFatHeader, ReadFat12, ReadVolumeLabel, DecodeName, ReadAscii, DecodeDateTime, Layout`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/LisaFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Apple/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `LisaFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadCatalogNames, TagFileId, TagPageNumber, IsUserFile, ReadLisaString`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/MacHfsFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Apple/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MacHfsFileSystemReader, CatalogRecord`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ParseCatalog, BuildChildren, ReadExtents, U16, U32, Pascal, DecodeMac, MacDate, CatalogRecord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/MacMfsFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Apple/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MacMfsFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadFork, DecodeAllocationMap, ReadBlocks, U16, U32, Pascal, DecodeMac, MacDate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/ProDosFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Apple/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ProDosFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadDirectory, ReadFile, ReadIndex, Pointer, CountFreeBlocks, ReadU16, ReadName, ReadDate, TypeName`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/Rt11FileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `Rt11FileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, TryReadPair, TryReadContent, DecodeRadix50, DecodeDate, DecodeAscii, ReadUInt16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/UcsdFileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `UcsdFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, DetectByteOrder, ReadBlocks, ReadFile, DecodeName, IsName, ReadUInt16, DecodeDate, FileKindName`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+- [ ] `src/GWGUI.Scp/FileSystems/FileSystemModels.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Créer un fichier pour chacun des quatre types.
+    - [ ] Déplacer les quatre types.
+    - [ ] Supprimer `FileSystemModels.cs`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `FileSystemEntryKind, FileSystemEntry, FileSystemVolume, IFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `FileSystemEntry, FileSystemVolume`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/FileSystemRegistry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Supprimer `Read`.
+    - [ ] Adapter ses consommateurs vers `ReadAll`, `TryRead` ou un Reader explicite.
+    - [ ] Construire un dictionnaire par identifiant.
+    - [ ] Refuser les doublons.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `FileSystemRegistry, Match`.
+    - [ ] Ajouter la documentation XML des méthodes `Match, Read, ReadAll, TryRead`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AcornAdfsFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Acorn/`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AcornAdfsFileSystemReader, DirectoryData, Layout`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, DirectoryData, ReadDirectory, ReadFile, TryReadDirectory, TryReadBytes, CreateLayout, AddressResolver, Layout, ReadOldMapName, ReadOldMapFreeBytes, ReadUInt24, HasRiscOsTimestamp, ReadTimestamp, DecodeName`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AcornFileCoreNewMap.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Acorn/`.
+    - [ ] Adapter son namespace et ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AcornFileCoreNewMap, Zone, DiscRecord`.
+    - [ ] Ajouter la documentation XML des méthodes `TryCreate, TryResolveByteOffset, ReadFreeBytes, TryResolveBlock, TryLookupZone, GetBits, FindNextSetBit, Shift, Zone, DiscRecord, TryParse`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AmigaDosFileSystemReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmigaDosFileSystemReader`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, Read, ReadDirectory, ReadFile, CountFreeBlocks, ReadEntryName, ReadBString, ReadDate, ReadRequiredBlock, IsRootBlock, ChecksumValid, HasDosSignature, ReadInt32, ReadUInt32`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/FileSystems/Readers/AmstradCpmFileSystemReader.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `FileSystems/Cpm/`.
+    - [ ] Adapter son namespace et ses consommateurs.
+    - [ ] Raccorder le cœur CP/M commun.
+    - [ ] Déplacer les détecteurs CPC/PCW vers `Recognition/Amstrad/`.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AmstradCpmFileSystemReader, ExtentKeyComparer`.
+    - [ ] Ajouter la documentation XML des méthodes `CanRead, LooksLikePcwDiskSpecification, LooksLikeCpcRawImage, Read, GetLayout, FindDirectory, LooksLikeDirectory, TryDecodeName, DecodePart, ReadAllocations, Flatten, Layout, Extent, Equals, GetHashCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 8. Interprétation et exploration
+
+- [ ] `src/GWGUI.Scp/Images/DiskImageExplorer.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Exploration/DiskImageExplorer.cs`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskImageExplorer`.
+    - [ ] Ajouter la documentation XML des méthodes `DiskImageExplorer, CreateDefault, ExploreAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/DiskImageExplorerFactory.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Exploration/DiskImageExplorerFactory.cs`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskImageExplorerFactory`.
+    - [ ] Ajouter la documentation XML des méthodes `CreateDefault`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/DiskImageInterpretationService.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Exploration/DiskImageInterpretationService.cs`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskImageInterpretationService`.
+    - [ ] Ajouter la documentation XML des méthodes `DiskImageInterpretationService, NormalizeRecognizedImage, AdditionalFileSystemInterpretations, CreateDocument, Unknown, IsCredibleAlternative, DecodeScore, FileSystemIdentity, InterpretationIdentity, FormatFamily`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/DiskImageMetadata.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Exploration/DiskImageMetadata.cs`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskImageMetadata`.
+    - [ ] Ajouter la documentation XML des méthodes `DiskImageMetadata, From`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/DiskProtectionCatalog.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Renommer et déplacer le fichier vers `Recognition/Definitions/DiskProtectionDefinitions.cs`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskProtectionCatalog`.
+    - [ ] Ajouter la documentation XML des méthodes `NameFor`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+- [ ] `src/GWGUI.Scp/Images/DiskSystemCatalog.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DiskSystemCatalog`.
+    - [ ] Ajouter la documentation XML des méthodes `NameFor`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ExploredDiskImage.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ExploredFileSystem, ExploredDiskImage`.
+    - [ ] Ajouter la documentation XML des méthodes `ExploredFileSystem, ExploredDiskImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/AdditionalImageInterpretationRegistry.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AdditionalImageInterpretationRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `AdditionalImageInterpretationRegistry, Create, IsIsoCompatible`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/AtariRecognizedImageNormalizer.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtariRecognizedImageNormalizer`.
+    - [ ] Ajouter la documentation XML des méthodes `TryNormalize`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/CompatibleFormatInterpretationPolicy.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CompatibleFormatInterpretationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/IAdditionalImageInterpretationPolicy.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IAdditionalImageInterpretationPolicy`.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/IbmAdditionalImageInterpretationPolicy.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IbmAdditionalImageInterpretationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `IbmAdditionalImageInterpretationPolicy, Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/IRecognizedImageNormalizer.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `IRecognizedImageNormalizer`.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/MacRecognizedImageNormalizer.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MacRecognizedImageNormalizer`.
+    - [ ] Ajouter la documentation XML des méthodes `TryNormalize`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/MsxAdditionalImageInterpretationPolicy.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MsxAdditionalImageInterpretationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/MsxRecognizedImageNormalizer.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `MsxRecognizedImageNormalizer`.
+    - [ ] Ajouter la documentation XML des méthodes `TryNormalize`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/RecognizedImageNormalizerRegistry.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `RecognizedImageNormalizerRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `Normalize`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Interpretations/SectorImageInterpretation.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `SectorImageInterpretation`.
+    - [ ] Ajouter la documentation XML des méthodes `Retag, ContainsAtariStProgram, TryReadFatGeometry, TryCreateMsx`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ScpDetection/ScpAutomaticImageExplorer.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpAutomaticImageExplorer`.
+    - [ ] Ajouter la documentation XML des méthodes `ScpAutomaticImageExplorer, ExploreAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ScpDetection/ScpCandidateRegistry.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpCandidateRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `Candidate, Selected, Default, Automatic`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ScpDetection/ScpFamilyProbe.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpFamilyProbe`.
+    - [ ] Ajouter la documentation XML des méthodes `ScpFamilyProbe, DetectAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ScpDetection/ScpFormatFamily.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpFormatFamily`.
+- [ ] `src/GWGUI.Scp/Images/ScpDetection/ScpSectorImageReader.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpSectorImageReader`.
+    - [ ] Ajouter la documentation XML des méthodes `ScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/ScpImageExplorationService.cs`
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ScpImageExplorationService`.
+    - [ ] Ajouter la documentation XML des méthodes `ExploreAutomaticallyAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 9. Conversion et visualisation technique
+
+- [ ] `src/GWGUI.Scp/Images/AppleNibbleImageWriter.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Conversion/Apple/AppleNibbleImageWriter.cs`.
+    - [ ] Raccorder les définitions NIB, WOZ et Apple GCR partagées.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleNibbleImageWriter`.
+    - [ ] Ajouter la documentation XML des méthodes `AppleNibbleImageWriter, WriteAsync, WriteNibAsync, WriteWozAsync, EncodeTracks, PackBits, WriteChunk, Crc32`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/AppleRwts18ConversionService.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Conversion/Apple/AppleRwts18ConversionService.cs`.
+    - [ ] Raccorder les définitions RWTS18 partagées.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleRwts18ConversionService`.
+    - [ ] Ajouter la documentation XML des méthodes `CanCreate, ConvertAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/SectorImageFluxVisualizer.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier vers `Visualization/SectorImageFluxVisualizer.cs`.
+    - [ ] Injecter le registre de politiques au lieu de le construire dans la classe.
+    - [ ] Raccorder les identifiants d’encodeurs aux définitions de codecs.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `SectorImageFluxVisualizer`.
+    - [ ] Ajouter la documentation XML des méthodes `SectorImageFluxVisualizer, CanVisualize, Create, EncoderIdFor`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/AppleVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AppleVisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CanHandle, EncoderId, CreateTrackSectors, VisualAddress, TrackAttributes`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/AtariVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `AtariVisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CanHandle, EncoderId, VisualAddress`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/CommodoreVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `CommodoreVisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CanHandle, EncoderId, CreateTrackSectors, VisualAddress, BitCellTicks`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/DecRx02VisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `DecRx02VisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CanHandle, EncoderId, CreateTrackSectors`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/ExactVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ExactVisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `ExactVisualizationPolicy, CanHandle, EncoderId`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/ISectorImageVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `ISectorImageVisualizationPolicy`.
+- [ ] `src/GWGUI.Scp/Images/Visualization/PrefixVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `PrefixVisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `PrefixVisualizationPolicy, CanHandle, EncoderId`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/SectorImageVisualizationPolicy.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `SectorImageVisualizationPolicy`.
+    - [ ] Ajouter la documentation XML des méthodes `CanHandle, EncoderId, VisualAddress, CreateTrackSectors, TrackAttributes, BitCellTicks, TagAttributes, SizeCode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] `src/GWGUI.Scp/Images/Visualization/SectorImageVisualizationPolicyRegistry.cs`
+  - [ ] Structure, emplacement et raccordements
+    - [ ] Déplacer le fichier sous `Visualization/Policies/`.
+    - [ ] Adapter son namespace et tous ses consommateurs.
+    - [ ] Remplacer les chaînes de formats et codecs recopiées par leurs définitions techniques.
+  - [ ] Documentation XML
+    - [ ] Ajouter la documentation XML des types `SectorImageVisualizationPolicyRegistry`.
+    - [ ] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+
+## 10. Données communes et validation finale
+
+- [ ] Identifiants techniques
+  - [ ] Formats, codecs et systèmes extensibles
+    - [ ] Créer des constantes nommées pour chaque identifiant utilisé par plusieurs fichiers.
+    - [ ] Remplacer les chaînes recopiées dans les Readers, registres, politiques et visualisation.
+    - [ ] Refuser les identifiants dupliqués lors de la construction des registres.
+  - [ ] États fermés
+    - [ ] Créer ou conserver un enum uniquement pour les états dont la liste est fermée.
+- [ ] Géométries et tables binaires
+  - [ ] Géométries
+    - [ ] Extraire les géométries IBM de `IbmPcImageReader.cs` dans un catalogue IBM partagé.
+    - [ ] Extraire les géométries Apple de `AppleDiskGeometry.cs` par Apple II, Apple III, Macintosh et Lisa.
+    - [ ] Réutiliser `CommodoreGeometry.cs` pour D64, D71, D81 et les reconstructeurs concernés.
+    - [ ] Extraire une définition RX02 commune au Reader brut, au reconstructeur et à la visualisation.
+  - [ ] Tables de codecs
+    - [ ] Partager les tables Apple 5-and-3, 6-and-2 et RWTS18 entre décodeurs et encodeurs.
+    - [ ] Partager l’alphabet Commodore GCR sans fusionner les structures de pistes 1541 et C900.
+    - [ ] Partager les marques et paramètres CRC strictement identiques entre chaque paire décodeur/encodeur.
+- [ ] Validation
+  - [ ] Compilation
+    - [ ] Compiler `GWGUI.Scp` après chaque groupe autonome.
+    - [ ] Compiler `GWGUI.App` après chaque modification d’une API consommée.
+  - [ ] Tests
+    - [ ] Exécuter les tests existants du format ou du module modifié.
+    - [ ] Exécuter les tests complets de `GWGUI.Tests` après le dernier groupe.
+  - [ ] Couverture
+    - [ ] Vérifier que chacun des 195 fichiers de production est présent dans un groupe du document.
+    - [ ] Vérifier qu’aucune tâche du dernier niveau ne décrit un état déjà satisfait sans modification.
+    - [ ] Vérifier qu’aucun ancien fichier ou namespace ne subsiste après son déplacement ou sa suppression.

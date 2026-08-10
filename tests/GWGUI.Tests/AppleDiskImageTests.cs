@@ -1,5 +1,6 @@
 using System.IO;
 using GWGUI.Scp;
+using GWGUI.Scp.Containers.Scp;
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.FileSystems.Readers;
 using GWGUI.Scp.Images;

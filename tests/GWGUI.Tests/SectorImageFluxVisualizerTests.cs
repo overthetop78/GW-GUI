@@ -1,5 +1,6 @@
 using System.IO;
 using GWGUI.Scp;
+using GWGUI.Scp.Containers.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;

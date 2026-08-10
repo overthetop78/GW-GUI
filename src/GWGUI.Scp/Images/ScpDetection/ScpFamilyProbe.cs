@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using GWGUI.Scp.Containers.Scp;
 using GWGUI.Scp.Decoding;
 
 namespace GWGUI.Scp.Images.ScpDetection;

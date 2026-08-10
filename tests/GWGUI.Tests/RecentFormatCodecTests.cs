@@ -1,4 +1,5 @@
 using GWGUI.Scp;
+using GWGUI.Scp.Containers.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.Encoding;
 using GWGUI.Scp.FileSystems;

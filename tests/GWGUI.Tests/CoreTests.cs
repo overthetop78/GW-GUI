@@ -2,6 +2,7 @@ using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Profiles;
 using GWGUI.Scp;
+using GWGUI.Scp.Containers.Scp;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Naming;
 using GWGUI.Domain.Hardware;

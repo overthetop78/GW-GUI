@@ -1,5 +1,6 @@
 using System.IO;
 using GWGUI.Scp;
+using GWGUI.Scp.Containers.Scp;
 
 namespace GWGUI.App.ViewModels;
 

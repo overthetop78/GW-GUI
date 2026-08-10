@@ -6,6 +6,7 @@ using System.Runtime.ExceptionServices;
 using GWGUI.App;
 using GWGUI.App.Rendering;
 using GWGUI.Scp;
+using GWGUI.Scp.Containers.Scp;
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.Images;
 using GWGUI.Scp.SectorImages;
