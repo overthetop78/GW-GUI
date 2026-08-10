@@ -199,7 +199,7 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
-    public async Task ReadsTwoTracksTwoRevolutionsAndFluxOverflow()
+    public async Task ReadsTrackDescriptorsAndTheirRevolutions()
     {
         var image = await new ScpReader().ReadAsync(Images.Value.Valid);
 
@@ -217,7 +217,6 @@ public sealed class ScpReaderDeterministicTests
         Assert.Equal(0, first.Head);
         Assert.Equal(2, first.Revolutions.Count);
         Assert.Equal(4u, first.Revolutions[0].DeclaredFluxCount);
-        Assert.Equal(new uint[] { 100, 65_556, 200 }, first.Revolutions[0].FluxIntervals);
         Assert.Equal(new uint[] { 120, 140 }, first.Revolutions[1].FluxIntervals);
 
         var second = image.Tracks[1];
@@ -229,7 +228,28 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
-    public async Task ReusesUnchangedFileAndInvalidatesModifiedFile()
+    public async Task DecodesScpFluxOverflowMarkers()
+    {
+        var image = await new ScpReader().ReadAsync(Images.Value.Valid);
+
+        Assert.Equal(new uint[] { 100, 65_556, 200 }, image.Tracks[0].Revolutions[0].FluxIntervals);
+    }
+
+    [Fact]
+    public async Task ReusesUnchangedFileFromCache()
+    {
+        var images = Images.Value;
+        var reader = new ScpReader();
+        File.WriteAllBytes(images.Cache, File.ReadAllBytes(images.Valid));
+
+        var first = await reader.ReadAsync(images.Cache);
+        var unchanged = await reader.ReadAsync(images.Cache);
+
+        Assert.Same(first, unchanged);
+    }
+
+    [Fact]
+    public async Task InvalidatesCacheWhenFileChanges()
     {
         var images = Images.Value;
         var reader = new ScpReader();
@@ -237,20 +257,10 @@ public sealed class ScpReaderDeterministicTests
         var initialWriteTime = File.GetLastWriteTimeUtc(images.Cache);
 
         var first = await reader.ReadAsync(images.Cache);
-        var unchanged = await reader.ReadAsync(images.Cache);
-
-        Assert.Same(first, unchanged);
-
         var modifiedBytes = File.ReadAllBytes(images.Cache);
-        var firstTrackOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(modifiedBytes.AsSpan(
-            ScpFormatConstants.TrackTableOffset,
-            ScpFormatConstants.TrackTableEntrySize)));
-        var firstFluxOffset = firstTrackOffset
-            + ScpFormatConstants.TrackDescriptorHeaderSize
-            + 2 * ScpFormatConstants.RevolutionDescriptorSize;
-        BinaryPrimitives.WriteUInt16BigEndian(
-            modifiedBytes.AsSpan(firstFluxOffset, ScpFormatConstants.FluxIntervalSize),
-            101);
+        var firstTrackOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(modifiedBytes.AsSpan(ScpFormatConstants.TrackTableOffset, ScpFormatConstants.TrackTableEntrySize)));
+        var firstFluxOffset = firstTrackOffset + ScpFormatConstants.TrackDescriptorHeaderSize + 2 * ScpFormatConstants.RevolutionDescriptorSize;
+        BinaryPrimitives.WriteUInt16BigEndian(modifiedBytes.AsSpan(firstFluxOffset, ScpFormatConstants.FluxIntervalSize), 101);
         WriteChecksum(modifiedBytes);
         File.WriteAllBytes(images.Cache, modifiedBytes);
         File.SetLastWriteTimeUtc(images.Cache, initialWriteTime.AddSeconds(2));
@@ -267,11 +277,18 @@ public sealed class ScpReaderDeterministicTests
     [InlineData("invalid-range")]
     [InlineData("invalid-offset")]
     [InlineData("invalid-track-signature")]
-    [InlineData("truncated-flux")]
     public async Task RejectsInvalidContainerStructures(string variant)
     {
         await Assert.ThrowsAsync<InvalidDataException>(() =>
             new ScpReader().ReadAsync(Images.Value.Invalid[variant]));
+    }
+
+    [Fact]
+    public async Task RejectsTruncatedScpRevolutionFlux()
+    {
+        var exception = await Assert.ThrowsAsync<InvalidDataException>(() => new ScpReader().ReadAsync(Images.Value.Invalid["truncated-flux"]));
+
+        Assert.Contains("track 3, revolution 2 flux", exception.Message, StringComparison.Ordinal);
     }
 
     [Theory]

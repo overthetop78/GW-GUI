@@ -174,13 +174,13 @@
     - [x] Rejeter une taille de fichier négative à la construction.
     - [x] Documenter en français le record, chaque paramètre et chaque propriété.
     - [x] Tester la protection de la collection, le checksum valide ou invalide et le rejet d'une taille négative.
-  - [ ] `Containers/Scp/ScpReader.cs`
-    - [ ] Créer `Containers/Scp/ScpFileCache.cs` pour isoler l'identité de fichier, le cache et son invalidation du parsing SCP.
-    - [ ] Conserver dans `ScpReader` l'orchestration de lecture et le parsing de l'en-tête et des pistes.
-    - [ ] Créer `Containers/Scp/ScpRevolutionReader.cs` pour isoler la validation d'un descripteur de révolution et le décodage de ses intervalles de flux.
-    - [ ] Remplacer les noms de sections construits en texte brut par des identifiants de section nommés passés aux erreurs SCP.
-    - [ ] Documenter en français chaque type et membre créé ou modifié.
-    - [ ] Tester séparément le cache, son invalidation, le parsing de piste, les débordements de flux et les révolutions tronquées.
+  - [x] `Containers/Scp/ScpReader.cs`
+    - [x] Créer `Containers/Scp/ScpFileCache.cs` pour isoler l'identité de fichier, le cache et son invalidation du parsing SCP.
+    - [x] Conserver dans `ScpReader` l'orchestration de lecture et le parsing de l'en-tête et des pistes.
+    - [x] Créer `Containers/Scp/ScpRevolutionReader.cs` pour isoler la validation d'un descripteur de révolution et le décodage de ses intervalles de flux.
+    - [x] Remplacer les noms de sections construits en texte brut par des identifiants de section nommés passés aux erreurs SCP.
+    - [x] Documenter en français chaque type et membre créé ou modifié.
+    - [x] Tester séparément le cache, son invalidation, le parsing de piste, les débordements de flux et les révolutions tronquées.
   - [ ] `Exploration/ScpCaptureInfo.cs` et `ScpCaptureInfoReader.cs`
     - [ ] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
     - [ ] Utiliser les calculs de piste et checksum communs du conteneur SCP.
