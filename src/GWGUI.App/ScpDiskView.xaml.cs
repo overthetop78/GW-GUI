@@ -4,6 +4,7 @@ using System.Windows.Input;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.App.Localization;
 using GWGUI.App.Rendering;
 

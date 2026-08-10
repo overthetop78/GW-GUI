@@ -156,6 +156,22 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
+    public void ProtectsScpTrackRevolutionsAndPreservesItsAddress()
+    {
+        var first = new ScpRevolution(4_000_000, 0, []);
+        var source = new List<ScpRevolution> { first };
+        var track = new ScpTrack(11, 5, 1, source);
+
+        source[0] = new ScpRevolution(8_000_000, 0, []);
+        source.Clear();
+
+        Assert.Equal((byte)11, track.TrackNumber);
+        Assert.Equal(5, track.Cylinder);
+        Assert.Equal(1, track.Head);
+        Assert.Same(first, Assert.Single(track.Revolutions));
+    }
+
+    [Fact]
     public async Task ReadsTwoTracksTwoRevolutionsAndFluxOverflow()
     {
         var image = await new ScpReader().ReadAsync(Images.Value.Valid);

@@ -163,11 +163,11 @@
     - [x] Valider que `resolutionNanoseconds` est strictement positif avant les calculs de durée et de vitesse.
     - [x] Documenter en français le record, chaque paramètre, chaque propriété et les unités des deux calculs.
     - [x] Tester la protection de la collection, la durée, la vitesse et le rejet d'une résolution nulle ou négative.
-  - [ ] `Containers/Scp/ScpTrack.cs`
-    - [ ] Adapter le namespace de `ScpTrack` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
-    - [ ] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.
-    - [ ] Documenter en français le record, chaque paramètre et chaque propriété.
-    - [ ] Tester la protection de la collection et la conservation du numéro de piste, du cylindre et de la face.
+  - [x] `Containers/Scp/ScpTrack.cs`
+    - [x] Adapter le namespace de `ScpTrack` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [x] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.
+    - [x] Documenter en français le record, chaque paramètre et chaque propriété.
+    - [x] Tester la protection de la collection et la conservation du numéro de piste, du cylindre et de la face.
   - [ ] `Containers/Scp/ScpImage.cs`
     - [ ] Adapter le namespace de `ScpImage` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [ ] Copier ou figer `Tracks` à la construction afin que la collection source ne puisse plus modifier l'image.

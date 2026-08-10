@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using GWGUI.App.Controls;
 using GWGUI.App.ViewModels;
 using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.App.Services;
