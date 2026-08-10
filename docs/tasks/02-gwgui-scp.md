@@ -157,12 +157,12 @@
     - [x] Documenter en français les deux enums, chacune de leurs valeurs, les paramètres du record et les propriétés calculées.
     - [x] Tester la désérialisation de chaque largeur de cellule et sélection de face acceptée.
     - [x] Tester le rejet de chaque valeur de largeur de cellule ou de sélection de face hors contrat.
-  - [ ] `Containers/Scp/ScpRevolution.cs`
-    - [ ] Adapter le namespace de `ScpRevolution` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
-    - [ ] Copier ou figer `FluxIntervals` à la construction afin que la collection source ne puisse plus modifier la révolution.
-    - [ ] Valider que `resolutionNanoseconds` est strictement positif avant les calculs de durée et de vitesse.
-    - [ ] Documenter en français le record, chaque paramètre, chaque propriété et les unités des deux calculs.
-    - [ ] Tester la protection de la collection, la durée, la vitesse et le rejet d'une résolution nulle ou négative.
+  - [x] `Containers/Scp/ScpRevolution.cs`
+    - [x] Adapter le namespace de `ScpRevolution` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [x] Copier ou figer `FluxIntervals` à la construction afin que la collection source ne puisse plus modifier la révolution.
+    - [x] Valider que `resolutionNanoseconds` est strictement positif avant les calculs de durée et de vitesse.
+    - [x] Documenter en français le record, chaque paramètre, chaque propriété et les unités des deux calculs.
+    - [x] Tester la protection de la collection, la durée, la vitesse et le rejet d'une résolution nulle ou négative.
   - [ ] `Containers/Scp/ScpTrack.cs`
     - [ ] Adapter le namespace de `ScpTrack` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [ ] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.

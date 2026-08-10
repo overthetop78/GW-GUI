@@ -136,6 +136,29 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
+    public void ProtectsScpRevolutionFluxIntervalsFromSourceChanges()
+    {
+        var source = new List<uint> { 100, 200 };
+        var revolution = new ScpRevolution(4_000_000, 2, source);
+
+        source[0] = 999;
+        source.Add(300);
+
+        Assert.Equal(new uint[] { 100, 200 }, revolution.FluxIntervals);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public void RejectsNonPositiveResolutionForScpRevolutionCalculations(int resolutionNanoseconds)
+    {
+        var revolution = new ScpRevolution(4_000_000, 0, []);
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => revolution.DurationMilliseconds(resolutionNanoseconds));
+        Assert.Throws<ArgumentOutOfRangeException>(() => revolution.Rpm(resolutionNanoseconds));
+    }
+
+    [Fact]
     public async Task ReadsTwoTracksTwoRevolutionsAndFluxOverflow()
     {
         var image = await new ScpReader().ReadAsync(Images.Value.Valid);

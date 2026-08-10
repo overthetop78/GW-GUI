@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Containers.Scp;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class EmuFmDecoder : SignatureMfmDecoder

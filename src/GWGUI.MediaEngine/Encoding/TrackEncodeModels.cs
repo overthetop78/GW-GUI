@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Containers.Scp;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed record TrackSector(int Number, IReadOnlyList<byte> Data, bool Deleted = false, byte? SizeCode = null, IReadOnlyDictionary<string, int>? Attributes = null);

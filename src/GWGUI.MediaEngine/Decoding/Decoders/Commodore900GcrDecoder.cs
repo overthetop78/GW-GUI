@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Containers.Scp;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Decodes the zoned 512-byte GCR sectors used by the Commodore 900.</summary>
