@@ -1,4 +1,5 @@
 using GWGUI.Scp.Containers.Scp;
+using GWGUI.Scp.Containers.Amstrad.CpcDsk;
 using GWGUI.Scp.Decoding;
 using GWGUI.Scp.FileSystems;
 using GWGUI.Scp.Images.Containers;
@@ -39,7 +40,7 @@ internal static class DiskImageExplorerFactory
             new DirectContainerPolicy(new CommodoreD81ImageReader(), ".d81"),
             new AppleContainerPolicy(apple),
             new MsxContainerPolicy(new MsxImageReader()),
-            new AmstradContainerPolicy(new AmstradDskImageReader()),
+            new AmstradContainerPolicy(new CpcDskReader()),
             new RawImgContainerPolicy(),
             new DirectContainerPolicy(new IbmPcImageReader(), ".ima"),
             new DirectContainerPolicy(new Td0ImageReader(), ".td0"),

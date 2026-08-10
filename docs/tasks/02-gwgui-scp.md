@@ -56,13 +56,13 @@
 
 ## 2. Conteneurs et reconnaissance des fichiers
 
-- [ ] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.
-    - [ ] Faire produire des pistes sectorielles sans décider CPC ou PCW.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AmstradDskImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.Scp/Images/AmstradDskImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.
+    - [x] Faire produire des pistes sectorielles sans décider CPC ou PCW.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AmstradDskImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.Scp/Images/AppleContainerImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.

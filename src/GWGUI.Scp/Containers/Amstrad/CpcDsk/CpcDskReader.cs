@@ -1,14 +1,37 @@
 using System.Buffers.Binary;
-using System.Text;
 using GWGUI.Scp.SectorImages;
 
-namespace GWGUI.Scp.Images;
+namespace GWGUI.Scp.Containers.Amstrad.CpcDsk;
 
-/// <summary>Reads standard and extended CPCEMU DSK containers without using Greaseweazle.</summary>
-public sealed class AmstradDskImageReader
+/// <summary>
+/// Lit les conteneurs CPCEMU DSK standard et étendu et restitue leurs pistes sous forme de secteurs,
+/// sans attribuer la capture à une machine CPC ou PCW.
+/// </summary>
+public sealed class CpcDskReader
 {
+    /// <summary>
+    /// Taille, en octets, de l'en-tête du conteneur et de chaque en-tête de piste CPCEMU DSK.
+    /// </summary>
     private const int HeaderSize = 0x100;
 
+    /// <summary>
+    /// Lit et valide un conteneur CPCEMU DSK standard ou étendu.
+    /// </summary>
+    /// <param name="path">Chemin du conteneur DSK à lire.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du fichier et le parcours des pistes.</param>
+    /// <returns>
+    /// Une image sectorielle neutre identifiée par <c>cpcemu.dsk</c>. Les adresses de cylindre, de face et de secteur
+    /// proviennent des descripteurs de pistes ; les tailles et la capacité sont exprimées en octets.
+    /// </returns>
+    /// <exception cref="ArgumentException"><paramref name="path"/> est vide ou n'est pas un chemin valide.</exception>
+    /// <exception cref="FileNotFoundException">Le fichier désigné par <paramref name="path"/> n'existe pas.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès en lecture au fichier est refusé.</exception>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="InvalidDataException">
+    /// La signature, la géométrie, la table des pistes, un en-tête de piste ou un secteur est absent, tronqué ou invalide,
+    /// ou le conteneur ne contient aucun secteur.
+    /// </exception>
+    /// <exception cref="OperationCanceledException"><paramref name="cancellationToken"/> demande l'annulation de l'opération.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
@@ -76,8 +99,7 @@ public sealed class AmstradDskImageReader
         }
         if (blocks.Count == 0) throw new InvalidDataException("The Amstrad DSK image contains no sectors.");
         dominantSize = sectorSizes.OrderByDescending(item => item.Value).First().Key;
-        var formatId = cylinders >= 80 && heads == 2 ? "amstrad.pcw" : "amstrad.cpc";
-        return new(formatId, dominantSize, cylinders, heads, Math.Max(1, maximumSectors), blocks,
+        return new("cpcemu.dsk", dominantSize, cylinders, heads, Math.Max(1, maximumSectors), blocks,
             allowVariableBlockSize: sectorSizes.Count > 1, capacity: blocks.Sum(block => (long)block.Data.Count), logicalBlockCount: blocks.Count);
     }
 }
