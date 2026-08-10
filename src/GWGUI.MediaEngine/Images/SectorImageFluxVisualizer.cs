@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.SectorImages;
 

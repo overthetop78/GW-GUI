@@ -142,11 +142,11 @@
     - [x] Remplacer les copies de ce calcul dans l'exploration, la reconstruction et les tests.
     - [x] Documenter en français chaque membre ajouté.
     - [x] Tester les pistes paires, impaires et les deux limites de la table SCP.
-  - [ ] `Containers/Scp/ScpFlags.cs`
-    - [ ] Adapter le namespace de `ScpFlags` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
-    - [ ] Adapter les consommateurs de `ScpFlags` au namespace du conteneur SCP.
-    - [ ] Documenter en français le fait que les valeurs peuvent être combinées et la valeur binaire de chaque drapeau.
-    - [ ] Tester la lecture de chaque drapeau isolé et de plusieurs combinaisons de drapeaux.
+  - [x] `Containers/Scp/ScpFlags.cs`
+    - [x] Adapter le namespace de `ScpFlags` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [x] Adapter les consommateurs de `ScpFlags` au namespace du conteneur SCP.
+    - [x] Documenter en français le fait que les valeurs peuvent être combinées et la valeur binaire de chaque drapeau.
+    - [x] Tester la lecture de chaque drapeau isolé et de plusieurs combinaisons de drapeaux.
   - [ ] `Containers/Scp/ScpHeader.cs`
     - [ ] Créer `Containers/Scp/ScpBitCellEncoding.cs` pour les valeurs de largeur de cellule acceptées par `ScpReader`.
     - [ ] Créer `Containers/Scp/ScpHeadSelection.cs` pour les valeurs de sélection de face acceptées par `ScpReader`.

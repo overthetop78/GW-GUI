@@ -38,16 +38,42 @@ public sealed class ScpReaderDeterministicTests
             second);
 
         Assert.Equal(261u, checksum);
-        Assert.True(ScpFormatConstants.IsChecksumValid(checksum, 0, checksum));
-        Assert.False(ScpFormatConstants.IsChecksumValid(checksum + 1, 0, checksum));
+        Assert.True(ScpFormatConstants.IsChecksumValid(checksum, ScpFlags.None, checksum));
+        Assert.False(ScpFormatConstants.IsChecksumValid(checksum + 1, ScpFlags.None, checksum));
         Assert.True(ScpFormatConstants.IsChecksumValid(0, ScpFlags.Writable, checksum));
         Assert.False(ScpFormatConstants.IsChecksumValid(0, ScpFlags.IndexAligned, checksum));
+    }
+
+    [Theory]
+    [InlineData(ScpFlags.None)]
+    [InlineData(ScpFlags.IndexAligned)]
+    [InlineData(ScpFlags.Tpi96)]
+    [InlineData(ScpFlags.Rpm360)]
+    [InlineData(ScpFlags.Normalized)]
+    [InlineData(ScpFlags.Writable)]
+    [InlineData(ScpFlags.Footer)]
+    [InlineData(ScpFlags.Extended)]
+    [InlineData(ScpFlags.ThirdPartyCreator)]
+    [InlineData(ScpFlags.IndexAligned | ScpFlags.Writable)]
+    [InlineData(ScpFlags.Tpi96 | ScpFlags.Rpm360 | ScpFlags.Normalized)]
+    [InlineData(ScpFlags.IndexAligned | ScpFlags.Tpi96 | ScpFlags.Rpm360 | ScpFlags.Normalized |
+                ScpFlags.Writable | ScpFlags.Footer | ScpFlags.Extended | ScpFlags.ThirdPartyCreator)]
+    public void ReadsIndividualAndCombinedScpFlags(ScpFlags expectedFlags)
+    {
+        var data = new byte[ScpFormatConstants.HeaderLength];
+        ScpFormatConstants.FileSignature.CopyTo(data);
+        data[ScpFormatConstants.RevolutionCountOffset] = ScpFormatConstants.MinimumRevolutionCount;
+        data[ScpFormatConstants.FlagsOffset] = (byte)expectedFlags;
+
+        var header = ScpReader.ReadHeader(data);
+
+        Assert.Equal(expectedFlags, header.Flags);
     }
 
     [Fact]
     public void ConvertsScpVersionResolutionDurationAndRotationSpeed()
     {
-        var header = new ScpHeader(0x25, 0, 1, 0, 0, (ScpFlags)0, 0, 0, 1, 0);
+        var header = new ScpHeader(0x25, 0, 1, 0, 0, ScpFlags.None, 0, 0, 1, 0);
         var revolution = new ScpRevolution(4_000_000, 0, []);
 
         Assert.Equal("2.5", header.VersionText);
