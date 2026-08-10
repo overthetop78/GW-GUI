@@ -388,20 +388,20 @@
     - [x] Ajouter la documentation XML française de `IDiskImageRecognitionPolicy`, `CanReadAsync` et `ReadAsync`.
   - [x] Tests déterministes
     - [x] Vérifier qu’une implémentation factice expose bien la présélection par `CanReadAsync` et la lecture par `ReadAsync` après le déplacement du contrat.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/DiskImageContainerRegistry.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionRegistry.cs`.
-    - [ ] Parcourir les politiques compatibles dans leur ordre d’enregistrement au lieu d’arrêter la recherche après la première politique compatible.
-    - [ ] Continuer avec la politique suivante lorsque le Reader de la politique courante rejette le contenu comme incompatible.
-    - [ ] Propager l’annulation et les erreurs d’accès au fichier au lieu de les transformer en incompatibilité de format.
-    - [ ] Adapter `DiskImageExplorer` et la factory.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DiskImageContainerRegistry`.
-    - [ ] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Créer trois politiques factices ordonnées : une politique incompatible, une politique dont le Reader rejette le contenu et une politique dont le Reader accepte le contenu.
-    - [ ] Vérifier que le rejet du Reader de la deuxième politique ne termine pas la recherche et que la troisième politique reçoit le même contenu.
-    - [ ] Vérifier que chaque politique est appelée au plus une fois, que l’absence de résultat produit l’erreur de format non pris en charge et que l’annulation interrompt la boucle.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/DiskImageContainerRegistry.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Recognition/DiskImageRecognitionRegistry.cs`.
+    - [x] Parcourir les politiques compatibles dans leur ordre d’enregistrement au lieu d’arrêter la recherche après la première politique compatible.
+    - [x] Continuer avec la politique suivante lorsque le Reader de la politique courante rejette le contenu comme incompatible.
+    - [x] Propager l’annulation et les erreurs d’accès au fichier au lieu de les transformer en incompatibilité de format.
+    - [x] Adapter `DiskImageExplorer` et la factory.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML du type `DiskImageRecognitionRegistry` et de son constructeur.
+    - [x] Ajouter la documentation XML de la méthode `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Créer trois politiques factices ordonnées : une politique incompatible, une politique dont le Reader rejette le contenu et une politique dont le Reader accepte le contenu.
+    - [x] Vérifier que le rejet du Reader de la deuxième politique ne termine pas la recherche et que la troisième politique reçoit le même contenu.
+    - [x] Vérifier que chaque politique est appelée au plus une fois, que l’absence de résultat produit l’erreur de format non pris en charge et que l’annulation interrompt la boucle.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/AppleContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AppleImageRecognitionPolicy.cs`.

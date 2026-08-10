@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Containers;
 using GWGUI.MediaEngine.Images.ScpDetection;
+using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
@@ -29,7 +30,7 @@ internal static class DiskImageExplorerFactory
         var scpExploration = new ScpImageExplorationService(
             candidates, new ScpFamilyProbe(scp, decoders), fileSystems);
         var apple = new AppleDiskImageReader();
-        var containers = new DiskImageContainerRegistry(
+        var containers = new DiskImageRecognitionRegistry(
         [
             new DirectContainerPolicy(new AdfImageReader(), DiskImageFileExtensions.Adf),
             new DirectContainerPolicy(new BbcDfsImageReader(), DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),

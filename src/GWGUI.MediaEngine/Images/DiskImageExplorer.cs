@@ -1,13 +1,13 @@
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Images.Containers;
 using GWGUI.MediaEngine.Images.Interpretations;
+using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
 
 public sealed class DiskImageExplorer(
-    DiskImageContainerRegistry containers,
+    DiskImageRecognitionRegistry containers,
     FileSystemRegistry fileSystems,
     ScpImageExplorationService scpExploration)
 {

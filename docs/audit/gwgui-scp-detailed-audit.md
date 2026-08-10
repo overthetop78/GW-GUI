@@ -44,7 +44,7 @@ L’audit général doit être mis à jour avant d’utiliser ces deux fichiers 
 
 ```text
 chemin + format demandé
-→ DiskImageContainerRegistry
+→ DiskImageRecognitionRegistry
 → politique de conteneur
 → lecteur sectoriel concret
 → SectorImage
@@ -196,7 +196,7 @@ Il est central et utilisé par lecteurs, reconstructeurs, systèmes de fichiers,
 
 ### Registre de conteneurs
 
-`DiskImageRecognitionContext` conserve le chemin, la longueur, l’extension normalisée et le format demandé, puis met en cache les mêmes octets pendant toute la sélection des politiques. `IDiskImageRecognitionPolicy` définit la frontière entre présélection et lecture. `DiskImageContainerRegistry` essaie encore les politiques dans l’ordre et retourne le premier lecteur présélectionné. `DiskImageRecognitionExceptions` centralise les erreurs paramétrées par l’extension, le format demandé ou la politique qui a rejeté le contenu. La composition complète se trouve dans `DiskImageExplorerFactory`.
+`DiskImageRecognitionContext` conserve le chemin, la longueur, l’extension normalisée et le format demandé, puis met en cache les mêmes octets pendant toute la sélection des politiques. `IDiskImageRecognitionPolicy` définit la frontière entre présélection et lecture. `DiskImageRecognitionRegistry` essaie les politiques dans l’ordre, poursuit après le rejet d’un candidat et retourne le premier contenu entièrement validé. `DiskImageRecognitionExceptions` centralise les erreurs paramétrées par l’extension, le format demandé ou la politique qui a rejeté le contenu. La composition complète se trouve dans `DiskImageExplorerFactory`.
 
 Politiques observées :
 
@@ -208,7 +208,7 @@ Constats :
 
 - L’ordre du registre est un comportement fonctionnel pour les extensions ambiguës `.img` et `.dsk`.
 - Les politiques spécialisées utilisent signatures, tailles ou format demandé pour arbitrer ces ambiguïtés.
-- `DiskImageContainerRegistry` ne conserve qu’un conteneur gagnant. Cela est acceptable pour ouvrir le conteneur, à condition que les interprétations internes multiples soient conservées ensuite.
+- `DiskImageRecognitionRegistry` retourne un seul lecteur gagnant après avoir essayé dans l’ordre tous les candidats compatibles nécessaires. Les interprétations internes multiples restent conservées ensuite.
 - Les valeurs d’extension sont centralisées dans `DiskImageFileExtensions`; les ensembles propres à chaque politique restent distincts lorsqu’ils représentent des indices différents.
 - `ScpContainerPolicy` vérifie désormais `ScpFormatConstants.FileSignature` et ne dépend plus de l’extension pour reconnaître le conteneur.
 
@@ -438,7 +438,7 @@ Le parcours observé est :
 
 ```text
 DSK
-→ DiskImageContainerRegistry
+→ DiskImageRecognitionRegistry
 → AmstradImageRecognitionPolicy
 → AmstradDskImageReader
 → SectorImage amstrad.cpc
@@ -592,7 +592,7 @@ Cette conclusion implique aussi de revoir le contrat actuel `ISectorImageReader`
 
 La relecture du 10 août 2026 a parcouru les 215 fichiers C# de production actuellement retournés sous `src/GWGUI.MediaEngine`, hors `bin` et `obj`. Pour chaque fichier, les types, membres, données statiques, textes d’exception et responsabilités visibles ont été contrôlés. Le renommage prioritaire décidé pour ce moteur est `GWGUI.MediaEngine`, afin de produire `GWGUI.MediaEngine.dll`. Cette passe confirme notamment les points suivants, désormais traduits en tâches précises dans `docs/tasks/02-gwgui-scp.md` :
 
-- `DiskImageContainerRegistry.ReadAsync` retourne dès le premier `CanReadAsync` positif et n’essaie pas la politique suivante lorsque le Reader choisi rejette ensuite le contenu.
+- `DiskImageRecognitionRegistry.ReadAsync` poursuit maintenant la recherche lorsqu’un Reader présélectionné rejette le contenu comme invalide ou non pris en charge ; l’annulation et les erreurs d’accès restent propagées.
 - `DirectContainerPolicy` et `DelegatingContainerPolicy` dupliquent la même sélection par extension et ne diffèrent que par la forme de l'appel au Reader.
 - `DiskImageExplorerFactory` est la racine de composition actuelle : elle construit le Reader SCP, les registres, les reconstructeurs, les politiques de conteneurs et l'exploration.
 - `RawImgContainerPolicy` choisit IBM par défaut et appelle directement deux détecteurs logiques de `AmstradCpmFileSystemReader`, ce qui couple reconnaissance physique et système de fichiers.
