@@ -12,8 +12,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxBitstream.FromNrziIntervals(revolution.FluxIntervals));
 
-    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(
-        new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
+    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
 
     public FluxDecodeResult DecodeAtBitCell(ScpRevolution revolution, double bitCellTicks) =>
         DecodeCore(revolution, FluxBitstream.FromNrziIntervals(revolution.FluxIntervals, bitCellTicks));

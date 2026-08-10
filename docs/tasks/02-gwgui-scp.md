@@ -524,8 +524,8 @@
     - [x] Remettre sur une ligne la déclaration du record `ScpHeader` dans `Containers/Scp/ScpHeader.cs` si elle reste sous la limite de longueur retenue.
     - [x] Remettre sur une ligne la signature de `PolicyRejectedContent` dans `Recognition/DiskImageRecognitionExceptions.cs`.
     - [x] Remettre sur une ligne l'appel à `ConvertToBits` dans `Recognition/Apple/NibTrackImageReader.cs`.
-  - [ ] Décodage
-    - [ ] Remettre sur une ligne l'expression de `DecodeBits` dans `Decoding/Decoders/AppleMacGcrDecoder.cs`.
+  - [x] Décodage
+    - [x] Remettre sur une ligne l'expression de `DecodeBits` dans `Decoding/Decoders/AppleMacGcrDecoder.cs`.
   - [ ] Reconstruction sectorielle Apple et Atari
     - [ ] Remettre sur une ligne la signature de `CreateProDosImage` dans `SectorImages/AppleIIScpSectorReconstructor.cs`.
     - [ ] Remettre sur une ligne l'appel à `AppleScpSectorDecoder.Select` dans `SectorImages/AppleRwts18ScpSectorReconstructor.cs`.
