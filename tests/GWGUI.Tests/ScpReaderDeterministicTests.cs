@@ -151,8 +151,10 @@ public sealed class ScpReaderDeterministicTests
     {
         var revolution = new ScpRevolution(4_000_000, 0, []);
 
-        Assert.Throws<ArgumentOutOfRangeException>(() => revolution.DurationMilliseconds(resolutionNanoseconds));
-        Assert.Throws<ArgumentOutOfRangeException>(() => revolution.Rpm(resolutionNanoseconds));
+        var durationException = Assert.Throws<ArgumentOutOfRangeException>(() => revolution.DurationMilliseconds(resolutionNanoseconds));
+        var rpmException = Assert.Throws<ArgumentOutOfRangeException>(() => revolution.Rpm(resolutionNanoseconds));
+        Assert.Equal(resolutionNanoseconds, durationException.ActualValue);
+        Assert.Equal(resolutionNanoseconds, rpmException.ActualValue);
     }
 
     [Fact]

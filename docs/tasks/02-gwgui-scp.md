@@ -161,6 +161,11 @@
     - [x] Adapter le namespace de `ScpRevolution` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Copier ou figer `FluxIntervals` à la construction afin que la collection source ne puisse plus modifier la révolution.
     - [x] Valider que `resolutionNanoseconds` est strictement positif avant les calculs de durée et de vitesse.
+    - [x] Erreur de résolution encore écrite dans le modèle
+      - [x] Ajouter à `ScpExceptions.cs` une méthode recevant la résolution observée et indiquant qu'elle doit être strictement positive.
+      - [x] Remplacer dans `ScpRevolution.ValidateResolution` le texte et la construction directe d'`ArgumentOutOfRangeException` par cette méthode.
+      - [x] Documenter en français la méthode d'erreur et la valeur injectée.
+      - [x] Adapter les tests de résolution nulle et négative pour vérifier la valeur observée dans le diagnostic.
     - [x] Documenter en français le record, chaque paramètre, chaque propriété et les unités des deux calculs.
     - [x] Tester la protection de la collection, la durée, la vitesse et le rejet d'une résolution nulle ou négative.
   - [x] `Containers/Scp/ScpTrack.cs`
@@ -185,6 +190,17 @@
     - [x] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
     - [x] Utiliser les calculs de piste et checksum communs du conteneur SCP.
     - [x] Tester l'absence de piste, plusieurs révolutions, les deux têtes et un checksum invalide.
+  - [x] `Containers/Scp/ScpSection.cs`
+    - [x] Création de l'identifiant de section
+      - [x] Créer `Containers/Scp/ScpSection.cs` pour identifier sans texte brut chaque section dont les limites sont validées.
+      - [x] Définir les valeurs `Header`, `TrackOffsetTable`, `TrackHeader` et `RevolutionFlux` utilisées par `ScpReader`, `ScpRevolutionReader` et `ScpExceptions`.
+    - [x] Raccordements
+      - [x] Remplacer les noms de sections transmis en texte brut par les valeurs de `ScpSection`.
+      - [x] Centraliser dans `ScpExceptions` la conversion d'une valeur de `ScpSection` en description d'erreur avec piste et révolution injectables.
+    - [x] Documentation XML française
+      - [x] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] Tests ciblés
+      - [x] Vérifier dans les tests des sections SCP tronquées que chaque valeur produit le diagnostic correspondant avec les numéros de piste et de révolution disponibles.
 
 ## 3. Conteneurs et reconnaissance des fichiers
 
@@ -205,7 +221,17 @@
     - [x] Vérifier que chaque constante commence par un point et est en minuscules.
     - [x] Vérifier qu’aucune valeur d’extension n’est déclarée deux fois dans `DiskImageFileExtensions`.
     - [x] Exécuter les tests de reconnaissance et de lecture existants après remplacement des textes bruts.
-- [x] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
+- [ ] `src/GWGUI.MediaEngine/Primitives/DataSizeConstants.cs`
+  - [ ] Définitions d'unités réellement partagées
+    - [ ] Créer `Primitives/DataSizeConstants.cs`.
+    - [ ] Ajouter la constante du nombre d'octets par kibioctet utilisée par plusieurs calculs de capacité.
+    - [ ] Rechercher les divisions et multiplications brutes par `1024` et ne remplacer que celles qui expriment réellement cette conversion d'unité.
+    - [ ] Laisser dans les définitions de formats les valeurs `1024` qui représentent une taille sectorielle, un bloc d'allocation ou une disposition propre au format.
+  - [ ] Documentation XML française
+    - [ ] Documenter en français `DataSizeConstants`, la constante ajoutée et son unité binaire.
+  - [ ] Tests ciblés
+    - [ ] Tester les calculs de capacité raccordés à cette constante avec des valeurs alignées et non alignées.
+- [ ] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
   - [x] Définition des identifiants de formats
     - [x] Compléter `DiskImageFormatIds.cs`, qui ne contient actuellement que `AppleLisaMacWorks` et `AppleLisaOffice`.
     - [x] Ajouter une constante pour chaque identifiant fixe encore écrit en brut dans les Readers, reconstructeurs, systèmes de fichiers, registres, interprétations et visualisations.
@@ -217,6 +243,10 @@
     - [x] Vérifier les valeurs des identifiants fixes utilisés comme contrat public.
     - [x] Vérifier chaque méthode de construction avec les capacités et géométries réellement produites par les Readers.
     - [x] Exécuter les tests ciblés des Readers et registres après raccordement de leurs identifiants.
+  - [ ] Conversion des capacités en kibioctets
+    - [ ] Remplacer dans `AtariStFromCapacity` et `IbmFromCapacity` la division brute par `1024` par cette définition commune.
+    - [ ] Documenter en français la constante, son unité et les deux méthodes modifiées.
+    - [ ] Tester les conversions d'une capacité exacte et d'une capacité non alignée sur un kibioctet.
 - [x] Données brutes des politiques de reconnaissance
   - [x] Politiques Amstrad, Apple, Coherent, DEC et MSX
     - [x] Remplacer les extensions par `DiskImageFileExtensions`.
@@ -722,11 +752,28 @@
     - [ ] Distinguer l'absence de politique candidate du rejet de contenu par toutes les politiques candidates.
     - [ ] Conserver l'identité et l'exception de chaque politique dont le Reader rejette le contenu.
     - [ ] Propager l'erreur d'une signature certaine corrompue sans la masquer par un candidat fondé uniquement sur une extension.
+    - [ ] Représentation de la force de chaque candidat
+      - [ ] Créer un résultat de présélection nommé distinguant l'absence de correspondance, l'indice faible et la signature certaine.
+      - [ ] Adapter `IDiskImageRecognitionPolicy.CanReadAsync` et chaque politique pour retourner ce résultat au lieu d'un booléen qui perd la nature de la preuve.
+      - [ ] Faire retourner une signature certaine aux politiques SCP, CPCEMU, 2IMG, DiskCopy, WOZ, IMD, TeleDisk, MSA, ATR, 86F et CP2 lorsqu'elles ont réellement vérifié leur marqueur de format.
+      - [ ] Faire retourner un indice faible aux politiques qui ne disposent que d'une extension, d'une taille ou d'une géométrie encore ambiguë.
+      - [ ] Continuer après le rejet complet d'un indice faible et arrêter sur le diagnostic de corruption d'une signature certaine.
+      - [ ] Ajouter aux erreurs de reconnaissance l'identité de la politique, la force du candidat et l'erreur interne injectables.
+      - [ ] Documenter en français le résultat, chacune de ses valeurs, le contrat et le comportement du registre.
+      - [ ] Tester séparément un non-candidat, un indice faible rejeté, deux indices faibles successifs, une réussite suivante et une signature certaine corrompue.
     - [ ] Documenter en français le type, le constructeur et chaque méthode.
     - [ ] Tester une politique incompatible, deux rejets successifs, une réussite suivante, une signature corrompue et l'absence de candidat.
   - [ ] `Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
     - [ ] Faire utiliser au Reader les octets déjà détenus par le contexte lorsqu'il possède une API de lecture en mémoire.
     - [ ] Conserver la lecture par chemin uniquement pour les Readers dont le contrat exige réellement un chemin.
+    - [ ] Points d'entrée en mémoire manquants pour les politiques qui examinent déjà le contenu
+      - [ ] Ajouter à `CpcDskReader` un point d'entrée recevant les octets CPCEMU et faire déléguer `ReadAsync(string, ...)` vers ce parsing commun.
+      - [ ] Ajouter à `AppleDiskImageReader` un point d'entrée recevant les octets et l'extension indice, puis supprimer la réouverture par chemin de `LooksLikeAppleImage`.
+      - [ ] Ajouter à `CoherentImageReader`, `DecRx02ImageReader` et `MsxImageReader` un point d'entrée en mémoire réutilisant exactement la validation déjà appliquée par leurs méthodes `LooksLike...`.
+      - [ ] Adapter les politiques Amstrad, Apple, Coherent, DEC RX02 et MSX pour transmettre au Reader les octets du contexte déjà examinés.
+      - [ ] Conserver les points d'entrée par chemin comme façades publiques lorsqu'ils sont consommés directement hors de la reconnaissance.
+      - [ ] Documenter en français chaque surcharge ou méthode de parsing ajoutée et préciser qui reste propriétaire de la validation complète.
+      - [ ] Tester pour chacune de ces politiques qu'une reconnaissance suivie d'une lecture n'ouvre le fichier qu'une seule fois et produit la même image que la façade par chemin.
     - [ ] Documenter en français le type, son constructeur et chaque méthode.
   - [ ] `Recognition/Policies/AmstradImageRecognitionPolicy.cs`
     - [ ] Encoder une seule fois les signatures CPCEMU Standard et Extended au lieu de convertir les chaînes à chaque détection.
@@ -882,6 +929,15 @@
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `BitPrimitives`.
     - [ ] Ajouter la documentation XML des méthodes `Reverse`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [ ] Mise en forme de `src/GWGUI.MediaEngine/Flux/FluxBitstream.cs`
+  - [ ] Instructions actuellement regroupées sur une même ligne
+    - [ ] Séparer les initialisations de cellule, accumulateur, échantillons et bits dans `FromIntervals`.
+    - [ ] Séparer la lecture d'un intervalle de son calcul de nombre de cellules.
+    - [ ] Séparer dans l'estimation de cellule le tri des échantillons, les deux replis et le calcul du groupe bas.
+    - [ ] Développer `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32` afin qu'une ligne ne contienne plus plusieurs instructions ou boucles imbriquées.
+    - [ ] Conserver sur une seule ligne les signatures et expressions courtes complètes qui restent lisibles.
+  - [ ] Vérification ciblée
+    - [ ] Exécuter uniquement les tests de `FluxBitstream` et vérifier que bits, cellules estimées et octets décodés restent identiques.
 - [ ] `src/GWGUI.MediaEngine/Primitives/Crc16Calculator.cs`
   - [ ] Paramètres CRC bruts
     - [ ] Ajouter des constantes nommées pour le polynôme CCITT `0x1021`, la valeur initiale `0xFFFF` et le masque de bit fort `0x8000`.
@@ -962,6 +1018,25 @@
     - [ ] Vérifier qu’un même identifiant n’est pas déclaré pour deux codecs différents.
     - [ ] Vérifier que chaque décodeur et son encodeur correspondant utilisent la même constante lorsqu’ils représentent le même codec.
     - [ ] Exécuter les tests ciblés des registres de codecs.
+- [ ] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecDisplayNames.cs`
+  - [ ] Création des noms affichés de codecs
+    - [ ] Créer `Decoding/Definitions/FluxCodecDisplayNames.cs` séparément de `FluxCodecIds.cs`.
+    - [ ] Ajouter une constante pour chaque nom actuellement retourné en texte brut par la propriété `DisplayName` des décodeurs et encodeurs.
+    - [ ] Utiliser exactement un nom affiché par identifiant de codec et signaler dans les tests tout identifiant portant plusieurs noms contradictoires.
+  - [ ] Raccordement des décodeurs
+    - [ ] Remplacer les noms affichés bruts dans les décodeurs AED, Amiga, Apple II, Lisa, Macintosh, RWTS18, Arburg et Centurion.
+    - [ ] Remplacer les noms affichés bruts dans les décodeurs Commodore, Commodore 900, Data General, DEC RX02, E-mu, Heathkit et HP.
+    - [ ] Remplacer les noms affichés bruts dans les décodeurs ISO FM, ISO MFM, Membrain, Micral N, Micropolis, North Star, QD MO5, Raw Flux, TYCOM et Victor 9000.
+  - [ ] Raccordement des encodeurs
+    - [ ] Remplacer les noms affichés bruts dans chaque encodeur possédant le même identifiant qu'un décodeur par la même constante de `FluxCodecDisplayNames`.
+    - [ ] Remplacer les noms affichés propres aux encodeurs sans décodeur correspondant par une constante associée à leur identifiant de codec.
+    - [ ] Supprimer les copies de noms actuellement identiques entre décodeur et encodeur Apple II, Lisa, Macintosh, RWTS18, Arburg, Commodore, HP, Membrain, Micropolis et QD MO5.
+  - [ ] Documentation XML française
+    - [ ] Documenter en français `FluxCodecDisplayNames` et chaque constante avec l'identifiant de codec correspondant.
+  - [ ] Tests ciblés
+    - [ ] Vérifier que chaque décodeur enregistré expose le nom commun associé à son identifiant.
+    - [ ] Vérifier que chaque encodeur enregistré expose le nom commun associé à son identifiant.
+    - [ ] Vérifier qu'aucun identifiant enregistré ne reste sans nom affiché et qu'aucun nom n'est vide.
 - [ ] Définitions utilisées par les décodeurs et encodeurs correspondants
   - [ ] ISO FM
     - [ ] Créer `Encoding/Definitions/IsoFmFormat.cs`.
@@ -1016,6 +1091,26 @@
     - [ ] Pour chaque paire, encoder des secteurs connus puis les redécoder et comparer les adresses, données et états d’intégrité.
     - [ ] Utiliser une image de `image_test` lorsqu’elle existe ; appliquer la règle d’obtention d’image du document lorsqu’elle manque.
     - [ ] Exécuter uniquement les tests de la paire traitée avant de terminer son groupe.
+
+- [ ] Descriptions techniques encore construites en texte brut par les décodeurs
+  - [ ] `Decoding/FluxStructureDescriptions.cs`
+    - [ ] Création des descriptions communes
+      - [ ] Créer `Decoding/FluxStructureDescriptions.cs` comme propriétaire unique des descriptions attachées aux `FluxStructure`.
+      - [ ] Ajouter une représentation nommée des trois états d'intégrité actuellement exprimés par les textes `valid`, `invalid` et `unavailable`.
+      - [ ] Ajouter des méthodes recevant les données variables nécessaires : codec, type de structure, cylindre, tête, secteur, taille, marque, variante, intégrité d'en-tête et intégrité des données.
+      - [ ] Ajouter des méthodes distinctes pour une structure complète, une structure tronquée, une donnée non appariée et une marque non classée.
+    - [ ] Remplacement des textes répétés
+      - [ ] Remplacer les descriptions brutes construites dans les décodeurs AED, Amiga, Apple II, Macintosh, RWTS18, Arburg et Centurion par les méthodes correspondantes.
+      - [ ] Remplacer les descriptions brutes construites dans les décodeurs Commodore 1541, Commodore 900, Data General, DEC RX02, E-mu et Heathkit.
+      - [ ] Remplacer les descriptions brutes construites dans les décodeurs HP, ISO FM, ISO MFM, Membrain, Micral N, Micropolis et North Star.
+      - [ ] Remplacer les descriptions brutes construites dans les décodeurs QD MO5, TYCOM, Victor 9000 et Raw Flux.
+      - [ ] Supprimer de chaque décodeur les ternaires répétés qui convertissent un booléen nullable d'intégrité en texte.
+    - [ ] Documentation XML française
+      - [ ] Documenter en français le type, la représentation d'état et chaque méthode avec ses paramètres et son résultat.
+      - [ ] Mettre à jour la documentation de `FluxStructure.Description` pour indiquer qu'elle est produite par le propriétaire commun.
+    - [ ] Tests ciblés
+      - [ ] Tester les trois états d'intégrité et chaque forme de description avec toutes ses données injectées.
+      - [ ] Vérifier dans les tests ciblés de chaque décodeur que les descriptions produites restent cohérentes avec les structures et secteurs décodés.
 
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/AppleBitLatch.cs`
   - [ ] Paramètres du verrou de bits
@@ -1334,6 +1429,65 @@
     - [ ] Documenter en français le type, chaque champ et chaque méthode.
     - [ ] Tester une piste valide, un nibble inconnu, une marque absente et un checksum faux.
 
+- [ ] Instructions compactées dans les fichiers de décodage
+  - [ ] Base et registres
+    - [ ] `Decoding/FluxDecoderRegistry.cs`
+      - [ ] Séparer les constructions, recherches et calculs actuellement juxtaposés ; normaliser les espaces sans casser les expressions courtes complètes.
+    - [ ] `Decoding/Base/SignatureMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes actuellement juxtaposées ; normaliser les espaces sans modifier l'ordre du balayage.
+  - [ ] Décodeurs Apple, Amiga et Commodore
+    - [ ] `Decoding/Decoders/AmigaMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le décodage odd/even.
+    - [ ] `Decoding/Decoders/AppleIIGcrDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les parcours 5-and-3 et 6-and-2.
+    - [ ] `Decoding/Decoders/AppleMacGcrDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage circulaire.
+    - [ ] `Decoding/Decoders/AppleRwts18Decoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'ordre sectoriel.
+    - [ ] `Decoding/Decoders/CommodoreGcrDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement en-tête/données.
+    - [ ] `Decoding/Decoders/Commodore900GcrDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage GCR.
+  - [ ] Décodeurs FM, MFM et MMFM spécialisés
+    - [ ] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier la progression des offsets.
+    - [ ] `Decoding/Decoders/ArburgDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les deux formes de blocs.
+    - [ ] `Decoding/Decoders/CenturionMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement des données.
+    - [ ] `Decoding/Decoders/DataGeneralFmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier la recherche des marques.
+    - [ ] `Decoding/Decoders/DecRx02Decoder.cs`
+      - [ ] Séparer les affectations, validations, parcours M2FM et ajouts de structures actuellement juxtaposés.
+      - [ ] Normaliser les espaces sans modifier la transformation M2FM ni le calcul CRC.
+    - [ ] `Decoding/Decoders/EmuFmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les marques partagées.
+    - [ ] `Decoding/Decoders/HeathkitFmDecoder.cs`
+      - [ ] Séparer les affectations, calculs de checksum et ajouts de structures actuellement juxtaposés.
+    - [ ] `Decoding/Decoders/HpMmfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le décodage MMFM.
+    - [ ] `Decoding/Decoders/IsoFmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement IDAM/DAM.
+    - [ ] `Decoding/Decoders/IsoMfmDecoder.cs`
+      - [ ] Séparer les affectations, sélections de marques, calculs CRC, scores et ajouts de structures actuellement juxtaposés.
+    - [ ] `Decoding/Decoders/MembrainMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement des données.
+    - [ ] `Decoding/Decoders/MicralNFmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le checksum.
+    - [ ] `Decoding/Decoders/MicropolisMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les limites de bloc.
+    - [ ] `Decoding/Decoders/NorthstarMfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le checksum tournant.
+    - [ ] `Decoding/Decoders/QdMo5MfmDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les marques QD MO5.
+    - [ ] `Decoding/Decoders/TycomFmDecoder.cs`
+      - [ ] Séparer les affectations, validations, calculs CRC et ajouts de structures actuellement juxtaposés.
+    - [ ] `Decoding/Decoders/Victor9kGcrDecoder.cs`
+      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage GCR.
+  - [ ] Vérification ciblée
+    - [ ] Résultats de décodage
+      - [ ] Exécuter uniquement les tests des décodeurs dont la disposition des instructions a changé et comparer secteurs, structures, offsets, intégrité et confiance avant et après.
+
 ## 6. Encodage
 
 
@@ -1473,6 +1627,13 @@
     - [ ] Remplacer le polynôme `0x1021` et la valeur initiale `0xFFFF` par les constantes de `Crc16Calculator`.
     - [ ] Ajouter dans `TrackEncodingExceptions` une erreur recevant la taille sectorielle non prise en charge et une erreur recevant la cellule de bit nulle.
     - [ ] Remplacer les textes et constructions directes d’exception de `TrackEncoding.cs`.
+  - [ ] Marques FM doublées réellement communes
+    - [ ] Créer une définition commune des motifs FM doublés correspondant aux marques d'adresse `0xFE` et de données `0xF8`, `0xF9`, `0xFB` et `0xFD`.
+    - [ ] Remplacer les chaînes hexadécimales `55111554`, `55111444`, `55111445`, `55111455` et `55111545` dans `DecRx02TrackEncoder.cs` par ces définitions.
+    - [ ] Remplacer les copies des motifs `55111554`, `55111444` et `55111455` dans `TycomFmTrackEncoder.cs` par les mêmes définitions.
+    - [ ] Vérifier les autres encodeurs FM avant tout raccordement et ne pas remplacer un motif identique dont les cellules d'horloge ont une autre signification.
+    - [ ] Documenter en français chaque marque avec l'octet de données et la disposition de cellules qu'elle représente.
+    - [ ] Tester la séquence binaire exacte de chaque marque puis l'aller-retour DEC RX02 et TYCOM.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `TrackEncoding`, `SectorSizeCode` et `TrackEncodingExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `ToRevolution, Bits, Raw, RawHex, RawBits, DoubledCells, Mfm, Fm, DoubleFm, Gap, SizeCode, Crc16, WithCrc, RotatingChecksum, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -1620,6 +1781,37 @@
     - [ ] Remplacer les erreurs brutes par les méthodes Victor 9000 injectant piste, secteur et taille.
     - [ ] Documenter en français le type, chaque champ et chaque méthode.
     - [ ] Tester l'aller-retour d'une piste Victor 9000 dans chaque zone de cellules.
+
+- [ ] Instructions compactées dans les fichiers d'encodage
+  - [ ] Primitives d'encodage
+    - [ ] `Encoding/TrackEncoding.cs`
+      - [ ] Séparer les appels et affectations actuellement juxtaposés sur une même ligne dans `DoubleFm`, `WithCrc` et `RotatingChecksum`.
+      - [ ] Conserver sur une seule ligne les signatures et appels complets courts ; ne séparer que les instructions distinctes.
+      - [ ] Appliquer les espaces C# autour des opérateurs sans modifier les séquences binaires produites.
+  - [ ] Encodeurs Apple et Amiga
+    - [ ] `Encoding/Encoders/AmigaMfmTrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs.
+    - [ ] `Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs.
+    - [ ] `Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs.
+    - [ ] `Encoding/Encoders/AppleRwts18TrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs.
+  - [ ] Autres encodeurs spécialisés
+    - [ ] `Encoding/Encoders/ArburgTrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs et des ternaires.
+    - [ ] `Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs.
+    - [ ] `Encoding/Encoders/DecRx02TrackEncoder.cs`
+      - [ ] Séparer la sélection M2FM, ses validations, les calculs CRC, les écritures de marques et les gaps actuellement juxtaposés.
+      - [ ] Normaliser les espaces autour des opérateurs et dans le `switch` des marques sans modifier les motifs.
+    - [ ] `Encoding/Encoders/EmuFmTrackEncoder.cs`
+      - [ ] Séparer les instructions distinctes encore juxtaposées et normaliser les espaces autour des opérateurs.
+    - [ ] `Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
+      - [ ] Séparer les constructions et appels distincts encore juxtaposés et normaliser les espaces autour des opérateurs.
+  - [ ] Vérification ciblée
+    - [ ] Tests des encodeurs concernés
+      - [ ] Exécuter uniquement les tests d'aller-retour des dix fichiers modifiés et vérifier que leurs suites de bits et intervalles de flux restent identiques.
 
 ## 7. Reconstruction des images sectorielles
 
@@ -2401,6 +2593,13 @@
     - [ ] Adapter les consommateurs puis supprimer ce wrapper sans responsabilité supplémentaire.
     - [ ] Reporter son scénario de test sur la politique appelée par l'API publique.
 
+- [ ] Instructions compactées dans la reconstruction sectorielle
+  - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`
+    - [ ] Séparer la sélection des deux moitiés d'un bloc logique actuellement juxtaposée sur une même ligne.
+    - [ ] Conserver sur une seule ligne les expressions complètes courtes et ne séparer que les instructions distinctes.
+  - [ ] Vérification ciblée
+    - [ ] Exécuter uniquement les tests DEC RX02 et vérifier que l'association des deux secteurs physiques à chaque bloc logique reste identique.
+
 ## 8. Systèmes de fichiers
 
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs`
@@ -2415,6 +2614,32 @@
     - [ ] Vérifier que tous les Readers enregistrés possèdent un identifiant distinct.
     - [ ] Vérifier la sélection explicite de chaque Reader avec la constante correspondante.
     - [ ] Exécuter les tests ciblés de `FileSystemRegistry`.
+- [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs`
+  - [ ] Création des noms affichés de systèmes de fichiers
+    - [ ] Créer `FileSystems/Definitions/FileSystemDisplayNames.cs` séparément de `FileSystemIds.cs`.
+    - [ ] Ajouter une constante pour chaque nom de volume ou de système actuellement construit en texte brut par un Reader.
+    - [ ] Prévoir des méthodes recevant la variante uniquement lorsque le nom affiché contient une donnée réellement variable.
+  - [ ] Raccordement des Readers
+    - [ ] Remplacer les noms bruts dans les Readers Acorn ADFS/FileCore, BBC DFS, AmigaDOS, CP/M, Amstrad CP/M, Apple DOS, Inform/XZIP, ProDOS et Lisa.
+    - [ ] Remplacer les noms bruts dans les Readers Atari DOS, Coherent, Commodore DOS, FAT12, Macintosh HFS, Macintosh MFS, RT-11 et UCSD.
+    - [ ] Conserver séparés l'identifiant technique, le nom affiché et le nom de volume réellement lu dans l'image.
+  - [ ] Documentation XML française
+    - [ ] Documenter en français le type, chaque constante et chaque méthode de nom variable.
+  - [ ] Tests ciblés
+    - [ ] Vérifier que chaque Reader enregistré produit le nom commun associé à son identifiant.
+    - [ ] Vérifier les noms variant selon AmigaDOS, CP/M et FAT sans comparer un texte de diagnostic localisé.
+- [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs`
+  - [ ] Avertissements neutres répétés entre plusieurs systèmes
+    - [ ] Créer `FileSystems/Definitions/FileSystemWarningMessages.cs`.
+    - [ ] Ajouter une méthode recevant le nom d'une entrée et une exception de lecture pour produire l'avertissement actuellement dupliqué dans les Readers Acorn ADFS, AmigaDOS, Coherent, Commodore DOS et FAT12.
+    - [ ] Ajouter une méthode recevant le nom d'une entrée pour produire l'avertissement de blocs de données manquants actuellement dupliqué dans les Readers RT-11 et UCSD.
+    - [ ] Remplacer les sept constructions de texte correspondantes par ces deux méthodes communes.
+    - [ ] Laisser dans les erreurs propres à chaque format les diagnostics qui contiennent une structure ou une règle particulière à ce format.
+  - [ ] Documentation XML française
+    - [ ] Documenter en français le type, les deux méthodes, leurs paramètres et leur résultat.
+  - [ ] Tests ciblés
+    - [ ] Tester l'injection du nom et du message d'exception sans perdre le diagnostic d'origine.
+    - [ ] Tester l'avertissement commun de blocs manquants par les APIs publiques RT-11 et UCSD.
 - [ ] Définitions utilisées par les Readers de systèmes de fichiers
   - [ ] AmigaDOS
     - [ ] `FileSystems/Amiga/AmigaDosLayout.cs`
@@ -3143,6 +3368,38 @@
     - [ ] Remplacer les textes bruts par des erreurs injectant entrée, nom, plage et nombres déclarés.
     - [ ] Documenter en français chaque membre.
     - [ ] Tester les deux ordres, les deux tailles de répertoire, les dates, les plages et les blocs absents.
+
+- [ ] Instructions compactées dans les fichiers de systèmes de fichiers
+  - [ ] Registre
+    - [ ] `FileSystems/FileSystemRegistry.cs`
+      - [ ] Développer les branches de `TryRead` afin de séparer la sélection, la lecture, le résultat et le rejet actuellement regroupés sur une même ligne.
+  - [ ] Readers Amiga, Apple, Atari et CP/M
+    - [ ] `FileSystems/Readers/AmigaDosFileSystemReader.cs`
+      - [ ] Séparer le contrôle de profondeur, la lecture de date et la somme de checksum actuellement regroupés sur une même ligne.
+    - [ ] `FileSystems/Readers/AppleDosFileSystemReader.cs`
+      - [ ] Séparer les initialisations, lectures de catalogue, liens piste/secteur et contrôles actuellement juxtaposés.
+    - [ ] `FileSystems/Readers/AtariDosFileSystemReader.cs`
+      - [ ] Séparer les initialisations, contrôles d'entrées, liens de secteurs et corps complets de `TrySector` et `DecodeName`.
+    - [ ] `FileSystems/Readers/AmstradCpmFileSystemReader.cs` et `CpmFileSystemReader.cs`
+      - [ ] Séparer les compteurs et le décodage du nom et de l'extension actuellement juxtaposés.
+    - [ ] `FileSystems/Readers/ProDosFileSystemReader.cs`
+      - [ ] Séparer les initialisations, parcours de répertoire, lectures d'entrées, boucles d'index et corps complets de `ReadName` et `ReadDate`.
+  - [ ] Readers Commodore, FAT et Macintosh
+    - [ ] `FileSystems/Readers/CommodoreDosFileSystemReader.cs`
+      - [ ] Séparer les coordonnées, liens de secteurs, retours conditionnels et affectation du résultat actuellement juxtaposés.
+    - [ ] `FileSystems/Readers/Fat12FileSystemReader.cs`
+      - [ ] Séparer les initialisations, conditions d'entrées, calculs BPB/FAT, retours et corps complets des fonctions de nom, label et date.
+    - [ ] `FileSystems/Readers/MacHfsFileSystemReader.cs`
+      - [ ] Séparer les lectures MDB, catalogue, nœuds, clés, extents et corps complet de `Pascal` actuellement regroupés.
+    - [ ] `FileSystems/Readers/MacMfsFileSystemReader.cs`
+      - [ ] Séparer les lectures MDB, entrées, forks, dates, chaînes d'allocation et corps complet de `Pascal` actuellement regroupés.
+  - [ ] Reader Coherent
+    - [ ] `FileSystems/Readers/CoherentFileSystemReader.cs`
+      - [ ] Développer le contrôle de bloc indirect afin de séparer l'ajout de l'avertissement et le retour.
+  - [ ] Règle de mise en forme
+    - [ ] Conserver sur une seule ligne les signatures, appels et expressions complètes courtes ; ne casser que les lignes contenant plusieurs instructions distinctes.
+  - [ ] Vérification ciblée
+    - [ ] Exécuter uniquement les tests des Readers dont les instructions ont été séparées et comparer volumes, entrées, contenus, avertissements et espace libre.
 
 ## 9. Interprétation et exploration
 

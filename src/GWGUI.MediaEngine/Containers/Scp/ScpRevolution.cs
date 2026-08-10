@@ -68,7 +68,6 @@ public sealed record ScpRevolution
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="resolutionNanoseconds"/> est nul ou négatif.</exception>
     private static void ValidateResolution(int resolutionNanoseconds)
     {
-        if (resolutionNanoseconds <= 0)
-            throw new ArgumentOutOfRangeException(nameof(resolutionNanoseconds), resolutionNanoseconds, "La résolution doit être strictement positive.");
+        if (resolutionNanoseconds <= 0) throw ScpExceptions.InvalidResolution(resolutionNanoseconds);
     }
 }
