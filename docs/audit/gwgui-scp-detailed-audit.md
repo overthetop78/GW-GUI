@@ -95,10 +95,11 @@ SectorImage
 | Fichier | Responsabilité observée | Constat |
 |---|---|---|
 | `Containers/Scp/IScpReader.cs` | contrat asynchrone de lecture SCP | Une seule implémentation de production observée. |
-| `Containers/Scp/ScpReader.cs` | lecture de fichier, en-tête, table de pistes, révolutions et validation | Le parsing de l’en-tête reste dans `ScpReader`; `ScpHeaderReader` est actuellement un simple relais vers `ScpReader.ReadHeader`. |
+| `Containers/Scp/ScpReader.cs` | lecture de fichier, en-tête, table de pistes, révolutions et validation | Le parsing de l’en-tête et ses consommateurs utilisent directement `ScpReader.ReadHeader`; l’ancien relais `ScpHeaderReader` a été supprimé. |
 | `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs`, `ScpImage.cs` | modèles du conteneur SCP | Les cinq types sont maintenant séparés. `ScpHeader` et `ScpRevolution` contiennent les calculs dérivés de version, résolution, durée et RPM. |
 | `Exploration/ScpCaptureInfo.cs`, `ScpCaptureInfoReader.cs` | informations résumées de capture et lecture associée | Le record et son service de lecture sont maintenant séparés. |
-| `Containers/Scp/ScpFormatConstants.cs` | constantes du format SCP | Les signatures, offsets et tailles encore présents dans `ScpReader` n’y ont pas encore tous été déplacés. |
+| `Containers/Scp/ScpFormatConstants.cs` | constantes du format SCP | Détient les signatures, offsets, tailles, limites et unités fixes partagés par la lecture et ses tests. |
+| `Containers/Scp/ScpExceptions.cs` | construction des erreurs de validation SCP | Centralise les erreurs paramétrées par les valeurs observées, les pistes attendues et les limites des sections incomplètes. |
 
 `ScpFlags` utilise un enum à drapeaux. `DiskType`, `BitCellEncoding` et `Heads` restent des octets dans `ScpHeader`.
 
@@ -522,7 +523,7 @@ Cette vérification confirme que la projection technique appartient au moteur, t
 
 Tous les fichiers C# de production observés sont couverts par les groupes ci-dessus :
 
-- conteneur SCP : `IScpReader`, `ScpReader`, `ScpHeaderReader`, `ScpFlags`, `ScpHeader`, `ScpRevolution`, `ScpTrack`, `ScpImage` et `ScpFormatConstants` ;
+- conteneur SCP : `IScpReader`, `ScpReader`, `ScpExceptions`, `ScpFlags`, `ScpHeader`, `ScpRevolution`, `ScpTrack`, `ScpImage` et `ScpFormatConstants` ;
 - primitives : `FluxBitstream`, `BitPrimitives`, `Crc16Calculator` ;
 - décodage : contrat, modèles, registre, deux bases et les 25 décodeurs présents ;
 - encodage : modèles, registre, bases et les 24 encodeurs présents ;

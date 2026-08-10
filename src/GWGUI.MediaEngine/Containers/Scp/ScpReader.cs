@@ -74,7 +74,7 @@ public sealed class ScpReader : IScpReader
     public ScpImage Read(ReadOnlySpan<byte> data)
     {
         var header = ReadHeader(data);
-        if ((header.Flags & ScpFlags.Extended) != 0) throw new NotSupportedException("Extended SCP media are not floppy images.");
+        if ((header.Flags & ScpFlags.Extended) != 0) throw ScpExceptions.ExtendedMedia();
         var tableBytes = checked(ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize);
         Require(data, 0, tableBytes, "track-offset table");
         var tracks = new List<ScpTrack>();
@@ -100,11 +100,11 @@ public sealed class ScpReader : IScpReader
     public static ScpHeader ReadHeader(ReadOnlySpan<byte> data)
     {
         Require(data, 0, ScpFormatConstants.HeaderLength, "SCP header");
-        if (!data[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature)) throw new InvalidDataException("The file does not contain an SCP signature.");
-        if (data[ScpFormatConstants.RevolutionCountOffset] is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount) throw new InvalidDataException("The SCP revolution count is invalid.");
-        if (data[ScpFormatConstants.EndTrackOffset] < data[ScpFormatConstants.StartTrackOffset] || data[ScpFormatConstants.EndTrackOffset] >= ScpFormatConstants.FloppyTrackSlots) throw new InvalidDataException("The SCP track range is invalid.");
-        if (data[ScpFormatConstants.BitCellWidthOffset] is not (ScpFormatConstants.StandardBitCellWidth or ScpFormatConstants.AlternateBitCellWidth)) throw new NotSupportedException($"Unsupported SCP bit-cell width: {data[ScpFormatConstants.BitCellWidthOffset]}.");
-        if (data[ScpFormatConstants.HeadsOffset] > ScpFormatConstants.MaximumHeadSelector) throw new InvalidDataException("The SCP head selector is invalid.");
+        if (!data[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature)) throw ScpExceptions.MissingFileSignature();
+        if (data[ScpFormatConstants.RevolutionCountOffset] is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount) throw ScpExceptions.InvalidRevolutionCount(data[ScpFormatConstants.RevolutionCountOffset]);
+        if (data[ScpFormatConstants.EndTrackOffset] < data[ScpFormatConstants.StartTrackOffset] || data[ScpFormatConstants.EndTrackOffset] >= ScpFormatConstants.FloppyTrackSlots) throw ScpExceptions.InvalidTrackRange(data[ScpFormatConstants.StartTrackOffset], data[ScpFormatConstants.EndTrackOffset]);
+        if (data[ScpFormatConstants.BitCellWidthOffset] is not (ScpFormatConstants.StandardBitCellWidth or ScpFormatConstants.AlternateBitCellWidth)) throw ScpExceptions.UnsupportedBitCellWidth(data[ScpFormatConstants.BitCellWidthOffset]);
+        if (data[ScpFormatConstants.HeadsOffset] > ScpFormatConstants.MaximumHeadSelector) throw ScpExceptions.InvalidHeadSelector(data[ScpFormatConstants.HeadsOffset]);
         return new(
             data[ScpFormatConstants.VersionOffset],
             data[ScpFormatConstants.DiskTypeOffset],
@@ -133,8 +133,8 @@ public sealed class ScpReader : IScpReader
         var descriptorSize = checked(ScpFormatConstants.TrackDescriptorHeaderSize + header.Revolutions * ScpFormatConstants.RevolutionDescriptorSize);
         Require(data, offset, descriptorSize, $"track {expectedTrack} header");
         var trackData = data[offset..];
-        if (!trackData[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.TrackSignature)) throw new InvalidDataException($"Track {expectedTrack} has no TRK signature.");
-        if (trackData[ScpFormatConstants.TrackNumberOffset] != expectedTrack) throw new InvalidDataException($"Track table entry {expectedTrack} points to track {trackData[ScpFormatConstants.TrackNumberOffset]}.");
+        if (!trackData[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.TrackSignature)) throw ScpExceptions.MissingTrackSignature(expectedTrack, trackData[ScpFormatConstants.TrackNumberOffset]);
+        if (trackData[ScpFormatConstants.TrackNumberOffset] != expectedTrack) throw ScpExceptions.TrackNumberMismatch(expectedTrack, trackData[ScpFormatConstants.TrackNumberOffset]);
         var revolutions = new List<ScpRevolution>(header.Revolutions);
         for (var index = 0; index < header.Revolutions; index++)
         {
@@ -183,6 +183,6 @@ public sealed class ScpReader : IScpReader
     private static void Require(ReadOnlySpan<byte> data, int offset, int length, string section)
     {
         if (offset < 0 || length < 0 || offset > data.Length - length)
-            throw new InvalidDataException($"Incomplete or invalid {section}.");
+            throw ScpExceptions.IncompleteSection(section, offset, length);
     }
 }

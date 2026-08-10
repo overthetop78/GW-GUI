@@ -1331,10 +1331,10 @@ public sealed class CoreTests
     }
 
     [Fact]
-    public void ScpHeaderReaderReadsCoreMetadata()
+    public void ScpReaderReadsCoreHeaderMetadata()
     {
         byte[] header = [(byte)'S', (byte)'C', (byte)'P', 0x24, 0, 5, 0, 83, 0, 0, 0, 0, 0, 0, 0, 0];
-        var result = ScpHeaderReader.Read(header);
+        var result = ScpReader.ReadHeader(header);
         Assert.Equal(84, result.TrackCount);
         Assert.Equal(5, result.Revolutions);
         Assert.Equal(0, result.Heads);

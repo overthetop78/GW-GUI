@@ -35,7 +35,7 @@ public static class ScpCaptureInfoReader
         var tableLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize;
         var table = new byte[tableLength];
         await stream.ReadExactlyAsync(table, cancellationToken).ConfigureAwait(false);
-        var header = ScpHeaderReader.Read(table);
+        var header = ScpReader.ReadHeader(table);
         var slots = new List<int>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {

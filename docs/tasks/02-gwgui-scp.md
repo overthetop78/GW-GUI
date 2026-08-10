@@ -101,7 +101,7 @@
     - [x] Remplacer dans `ScpHeader.ResolutionNanoseconds`, `ScpHeader.VersionText`, `ScpRevolution.DurationMilliseconds` et `ScpRevolution.Rpm` les valeurs brutes correspondantes.
     - [x] Documenter en français les constantes et les calculs modifiés.
     - [x] Tester les conversions de résolution, version, durée et vitesse avec des valeurs SCP connues.
-- [ ] `src/GWGUI.MediaEngine/ScpReader.cs`
+- [x] `src/GWGUI.MediaEngine/ScpReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Containers/Scp/ScpReader.cs`.
     - [x] Créer `Containers/Scp/ScpHeaderReader.cs`.
@@ -111,21 +111,21 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpReader, ScpHeaderReader`.
     - [x] Ajouter la documentation XML des méthodes `ReadAsync, ReadFileAsync, FileIdentity, Read, ReadHeader, ReadTrack, ComputeChecksum, Require`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Erreurs de lecture SCP
-    - [ ] Créer `Containers/Scp/ScpExceptions.cs`.
-    - [ ] Ajouter les méthodes construisant les erreurs de média étendu, signature absente, nombre de révolutions invalide, plage de pistes invalide, largeur de cellule non prise en charge et sélection de tête invalide.
-    - [ ] Ajouter les méthodes recevant le numéro de piste attendu et observé pour les erreurs de signature et de correspondance de piste.
-    - [ ] Ajouter une méthode recevant la section, l’offset et la longueur requise pour les données SCP incomplètes.
-    - [ ] Remplacer dans `ScpReader.cs` tous les textes et constructions directes d’exception par les méthodes de `ScpExceptions`.
-    - [ ] Documenter en français `ScpExceptions` et chacune de ses méthodes.
-  - [ ] Responsabilité de `ScpHeaderReader.cs`
-    - [ ] Supprimer `ScpHeaderReader.cs` et raccorder ses consommateurs à `ScpReader.ReadHeader` si sa seule responsabilité reste l’appel actuel à cette méthode.
-    - [ ] Supprimer l’ancien fichier uniquement après adaptation de tous ses appels.
-  - [ ] Vérification des nouvelles définitions SCP
-    - [ ] Adapter les tests ciblés de `ScpReader` pour construire leurs données avec les constantes SCP au lieu de recopier les signatures et offsets.
-    - [ ] Vérifier que les erreurs de piste contiennent le numéro attendu et, lorsqu’il existe, le numéro observé.
-    - [ ] Vérifier que les erreurs de section incomplète contiennent la section, l’offset et la longueur requise.
-    - [ ] Exécuter les tests ciblés de lecture SCP après ces modifications.
+  - [x] Erreurs de lecture SCP
+    - [x] Créer `Containers/Scp/ScpExceptions.cs`.
+    - [x] Ajouter les méthodes construisant les erreurs de média étendu, signature absente, nombre de révolutions invalide, plage de pistes invalide, largeur de cellule non prise en charge et sélection de tête invalide.
+    - [x] Ajouter les méthodes recevant le numéro de piste attendu et observé pour les erreurs de signature et de correspondance de piste.
+    - [x] Ajouter une méthode recevant la section, l’offset et la longueur requise pour les données SCP incomplètes.
+    - [x] Remplacer dans `ScpReader.cs` tous les textes et constructions directes d’exception par les méthodes de `ScpExceptions`.
+    - [x] Documenter en français `ScpExceptions` et chacune de ses méthodes.
+  - [x] Responsabilité de `ScpHeaderReader.cs`
+    - [x] Supprimer `ScpHeaderReader.cs` et raccorder ses consommateurs à `ScpReader.ReadHeader` si sa seule responsabilité reste l’appel actuel à cette méthode.
+    - [x] Supprimer l’ancien fichier uniquement après adaptation de tous ses appels.
+  - [x] Vérification des nouvelles définitions SCP
+    - [x] Adapter les tests ciblés de `ScpReader` pour construire leurs données avec les constantes SCP au lieu de recopier les signatures et offsets.
+    - [x] Vérifier que les erreurs de piste contiennent le numéro attendu et, lorsqu’il existe, le numéro observé.
+    - [x] Vérifier que les erreurs de section incomplète contiennent la section, l’offset et la longueur requise.
+    - [x] Exécuter les tests ciblés de lecture SCP après ces modifications.
   - [x] Tests déterministes
     - [x] Ajouter sous `image_test/_generated/scp-reader/` une capture locale avec au moins deux pistes, deux révolutions et un mot de dépassement de flux dont les valeurs attendues sont documentées.
     - [x] Vérifier par `ReadAsync` la version, les drapeaux, la plage, la résolution, la table, les pistes, les révolutions, les intervalles, le checksum et la taille du fichier.
