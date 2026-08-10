@@ -34,15 +34,15 @@
     - [x] Remplacer les copies de `HeaderLength`, `FloppyTrackSlots` et `TrackTableOffset` dans `ScpReader.cs` par ces constantes.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ScpFormatConstants`.
-- [ ] `src/GWGUI.Scp/ScpModels.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs` et `ScpImage.cs`.
-    - [ ] Déplacer chaque type public dans le fichier portant son nom.
-    - [ ] Retirer les cinq déclarations de `ScpModels.cs`.
-    - [ ] Supprimer `ScpModels.cs` après le déplacement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ScpFlags, ScpHeader, ScpRevolution, ScpTrack, ScpImage`.
-    - [ ] Ajouter la documentation XML des méthodes `ScpHeader, ScpRevolution, DurationMilliseconds, Rpm, ScpTrack, ScpImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.Scp/ScpModels.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs` et `ScpImage.cs`.
+    - [x] Déplacer chaque type public dans le fichier portant son nom.
+    - [x] Retirer les cinq déclarations de `ScpModels.cs`.
+    - [x] Supprimer `ScpModels.cs` après le déplacement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `ScpFlags, ScpHeader, ScpRevolution, ScpTrack, ScpImage`.
+    - [x] Ajouter la documentation XML des méthodes `ScpHeader, ScpRevolution, DurationMilliseconds, Rpm, ScpTrack, ScpImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.Scp/ScpReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Containers/Scp/ScpReader.cs`.
