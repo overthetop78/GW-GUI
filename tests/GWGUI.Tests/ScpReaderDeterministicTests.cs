@@ -70,10 +70,63 @@ public sealed class ScpReaderDeterministicTests
         Assert.Equal(expectedFlags, header.Flags);
     }
 
+    [Theory]
+    [InlineData(ScpBitCellEncoding.Default16Bit)]
+    [InlineData(ScpBitCellEncoding.Explicit16Bit)]
+    public void ReadsEachSupportedScpBitCellEncoding(ScpBitCellEncoding expectedEncoding)
+    {
+        var data = CreateValidHeader();
+        data[ScpFormatConstants.BitCellWidthOffset] = (byte)expectedEncoding;
+
+        var header = ScpReader.ReadHeader(data);
+
+        Assert.Equal(expectedEncoding, header.BitCellEncoding);
+    }
+
+    [Theory]
+    [InlineData(ScpHeadSelection.Both)]
+    [InlineData(ScpHeadSelection.Side0)]
+    [InlineData(ScpHeadSelection.Side1)]
+    public void ReadsEachSupportedScpHeadSelection(ScpHeadSelection expectedHeads)
+    {
+        var data = CreateValidHeader();
+        data[ScpFormatConstants.HeadsOffset] = (byte)expectedHeads;
+
+        var header = ScpReader.ReadHeader(data);
+
+        Assert.Equal(expectedHeads, header.Heads);
+    }
+
+    [Fact]
+    public void RejectsEveryUnsupportedScpBitCellEncoding()
+    {
+        var supported = Enum.GetValues<ScpBitCellEncoding>().Select(value => (byte)value).ToHashSet();
+        foreach (var value in Enumerable.Range(byte.MinValue, byte.MaxValue + 1).Select(value => (byte)value).Where(value => !supported.Contains(value)))
+        {
+            var data = CreateValidHeader();
+            data[ScpFormatConstants.BitCellWidthOffset] = value;
+
+            Assert.Throws<NotSupportedException>(() => ScpReader.ReadHeader(data));
+        }
+    }
+
+    [Fact]
+    public void RejectsEveryUnsupportedScpHeadSelection()
+    {
+        var supported = Enum.GetValues<ScpHeadSelection>().Select(value => (byte)value).ToHashSet();
+        foreach (var value in Enumerable.Range(byte.MinValue, byte.MaxValue + 1).Select(value => (byte)value).Where(value => !supported.Contains(value)))
+        {
+            var data = CreateValidHeader();
+            data[ScpFormatConstants.HeadsOffset] = value;
+
+            Assert.Throws<InvalidDataException>(() => ScpReader.ReadHeader(data));
+        }
+    }
+
     [Fact]
     public void ConvertsScpVersionResolutionDurationAndRotationSpeed()
     {
-        var header = new ScpHeader(0x25, 0, 1, 0, 0, ScpFlags.None, 0, 0, 1, 0);
+        var header = new ScpHeader(0x25, 0, 1, 0, 0, ScpFlags.None, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Both, 1, 0);
         var revolution = new ScpRevolution(4_000_000, 0, []);
 
         Assert.Equal("2.5", header.VersionText);
@@ -264,6 +317,14 @@ public sealed class ScpReaderDeterministicTests
         firstTrack.CopyTo(data, firstTrackOffset);
         secondTrack.CopyTo(data, secondTrackOffset);
         WriteChecksum(data);
+        return data;
+    }
+
+    private static byte[] CreateValidHeader()
+    {
+        var data = new byte[ScpFormatConstants.HeaderLength];
+        ScpFormatConstants.FileSignature.CopyTo(data);
+        data[ScpFormatConstants.RevolutionCountOffset] = ScpFormatConstants.MinimumRevolutionCount;
         return data;
     }
 

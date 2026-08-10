@@ -104,8 +104,10 @@ public sealed class ScpReader : IScpReader
         if (!data[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature)) throw ScpExceptions.MissingFileSignature();
         if (data[ScpFormatConstants.RevolutionCountOffset] is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount) throw ScpExceptions.InvalidRevolutionCount(data[ScpFormatConstants.RevolutionCountOffset]);
         if (data[ScpFormatConstants.EndTrackOffset] < data[ScpFormatConstants.StartTrackOffset] || data[ScpFormatConstants.EndTrackOffset] >= ScpFormatConstants.FloppyTrackSlots) throw ScpExceptions.InvalidTrackRange(data[ScpFormatConstants.StartTrackOffset], data[ScpFormatConstants.EndTrackOffset]);
-        if (data[ScpFormatConstants.BitCellWidthOffset] is not (ScpFormatConstants.StandardBitCellWidth or ScpFormatConstants.AlternateBitCellWidth)) throw ScpExceptions.UnsupportedBitCellWidth(data[ScpFormatConstants.BitCellWidthOffset]);
-        if (data[ScpFormatConstants.HeadsOffset] > ScpFormatConstants.MaximumHeadSelector) throw ScpExceptions.InvalidHeadSelector(data[ScpFormatConstants.HeadsOffset]);
+        var bitCellEncoding = (ScpBitCellEncoding)data[ScpFormatConstants.BitCellWidthOffset];
+        if (bitCellEncoding is not (ScpBitCellEncoding.Default16Bit or ScpBitCellEncoding.Explicit16Bit)) throw ScpExceptions.UnsupportedBitCellWidth(data[ScpFormatConstants.BitCellWidthOffset]);
+        var heads = (ScpHeadSelection)data[ScpFormatConstants.HeadsOffset];
+        if (heads is not (ScpHeadSelection.Both or ScpHeadSelection.Side0 or ScpHeadSelection.Side1)) throw ScpExceptions.InvalidHeadSelector(data[ScpFormatConstants.HeadsOffset]);
         return new(
             data[ScpFormatConstants.VersionOffset],
             data[ScpFormatConstants.DiskTypeOffset],
@@ -113,8 +115,8 @@ public sealed class ScpReader : IScpReader
             data[ScpFormatConstants.StartTrackOffset],
             data[ScpFormatConstants.EndTrackOffset],
             (ScpFlags)data[ScpFormatConstants.FlagsOffset],
-            data[ScpFormatConstants.BitCellWidthOffset],
-            data[ScpFormatConstants.HeadsOffset],
+            bitCellEncoding,
+            heads,
             data[ScpFormatConstants.ResolutionOffset],
             BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength)));
     }

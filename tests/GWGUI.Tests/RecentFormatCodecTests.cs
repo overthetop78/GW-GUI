@@ -48,7 +48,8 @@ public sealed class RecentFormatCodecTests
     }
 
     private static IScpReader Fake(int cylinder, int head, ScpRevolution revolution) => new FakeReader(new ScpImage(
-        new ScpHeader(0, 0, 1, (byte)(cylinder * 2 + head), (byte)(cylinder * 2 + head), 0, 0, 0, 0, 0),
+        new ScpHeader(0, 0, 1, (byte)(cylinder * 2 + head), (byte)(cylinder * 2 + head), ScpFlags.None,
+            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Both, 0, 0),
         [new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, [revolution])], true, 0));
 
     private sealed class FakeReader(ScpImage image) : IScpReader

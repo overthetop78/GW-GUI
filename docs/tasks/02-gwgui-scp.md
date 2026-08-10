@@ -147,16 +147,16 @@
     - [x] Adapter les consommateurs de `ScpFlags` au namespace du conteneur SCP.
     - [x] Documenter en français le fait que les valeurs peuvent être combinées et la valeur binaire de chaque drapeau.
     - [x] Tester la lecture de chaque drapeau isolé et de plusieurs combinaisons de drapeaux.
-  - [ ] `Containers/Scp/ScpHeader.cs`
-    - [ ] Créer `Containers/Scp/ScpBitCellEncoding.cs` pour les valeurs de largeur de cellule acceptées par `ScpReader`.
-    - [ ] Créer `Containers/Scp/ScpHeadSelection.cs` pour les valeurs de sélection de face acceptées par `ScpReader`.
-    - [ ] Remplacer les paramètres primitifs `BitCellEncoding` et `Heads` par ces enums sans modifier leurs valeurs binaires.
-    - [ ] Conserver `DiskType` sous forme numérique tant que le Reader accepte des identifiants de disque non fermés.
-    - [ ] Adapter le namespace de `ScpHeader` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
-    - [ ] Adapter tous les consommateurs de `ScpHeader` et supprimer l'import de son propre namespace devenu inutile.
-    - [ ] Documenter en français les deux enums, chacune de leurs valeurs, les paramètres du record et les propriétés calculées.
-    - [ ] Tester la désérialisation de chaque largeur de cellule et sélection de face acceptée.
-    - [ ] Tester le rejet de chaque valeur de largeur de cellule ou de sélection de face hors contrat.
+  - [x] `Containers/Scp/ScpHeader.cs`
+    - [x] Créer `Containers/Scp/ScpBitCellEncoding.cs` pour les valeurs de largeur de cellule acceptées par `ScpReader`.
+    - [x] Créer `Containers/Scp/ScpHeadSelection.cs` pour les valeurs de sélection de face acceptées par `ScpReader`.
+    - [x] Remplacer les paramètres primitifs `BitCellEncoding` et `Heads` par ces enums sans modifier leurs valeurs binaires.
+    - [x] Conserver `DiskType` sous forme numérique tant que le Reader accepte des identifiants de disque non fermés.
+    - [x] Adapter le namespace de `ScpHeader` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
+    - [x] Adapter tous les consommateurs de `ScpHeader` et supprimer l'import de son propre namespace devenu inutile.
+    - [x] Documenter en français les deux enums, chacune de leurs valeurs, les paramètres du record et les propriétés calculées.
+    - [x] Tester la désérialisation de chaque largeur de cellule et sélection de face acceptée.
+    - [x] Tester le rejet de chaque valeur de largeur de cellule ou de sélection de face hors contrat.
   - [ ] `Containers/Scp/ScpRevolution.cs`
     - [ ] Adapter le namespace de `ScpRevolution` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [ ] Copier ou figer `FluxIntervals` à la construction afin que la collection source ne puisse plus modifier la révolution.

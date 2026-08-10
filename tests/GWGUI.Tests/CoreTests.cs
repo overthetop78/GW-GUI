@@ -58,7 +58,8 @@ public sealed class CoreTests
     {
         var revolution = new ScpRevolution(8_000_000, 2_000, Enumerable.Repeat<uint>(80, 2_000).ToArray());
         var track = new ScpTrack(0, 0, 0, [revolution]);
-        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 0, 0, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 0, 0, ScpFlags.IndexAligned,
+            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
         IScpRenderer renderer = new SkiaScpRenderer { DecoderId = "raw" };
         var preparations = new List<ScpTrackPreparation>();
         using var bitmap = new SKBitmap(256, 256);
@@ -80,7 +81,8 @@ public sealed class CoreTests
     public async Task ScpRendererReportsAnomalyForTrackWithoutFlux()
     {
         var track = new ScpTrack(8, 4, 0, []);
-        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 8, 8, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 8, 8, ScpFlags.IndexAligned,
+            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
         IScpRenderer renderer = new SkiaScpRenderer();
         var preparations = new List<ScpTrackPreparation>();
 
@@ -157,7 +159,8 @@ public sealed class CoreTests
         var presenter = new ScpInspectorPresenter(new FluxDecoderRegistry(), Localize);
         var revolution = new ScpRevolution(8_000_000, 4, [80, 80, 160, 80]);
         var track = new ScpTrack(11, 5, 1, [revolution]);
-        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 11, 11, ScpFlags.IndexAligned, 0, 2, 0, 0), [track], true, 1024);
+        var image = new ScpImage(new ScpHeader(0x24, 0, 1, 11, 11, ScpFlags.IndexAligned,
+            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 0, 0), [track], true, 1024);
 
         var text = presenter.Build(image, track, "raw");
 
@@ -171,7 +174,8 @@ public sealed class CoreTests
     public async Task ScpDocumentLoaderBuildsLocalizedModelThroughReaderContract()
     {
         static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
-        var header = new ScpHeader(0x24, 0, 1, 4, 5, ScpFlags.IndexAligned, 0, 2, 1, 0);
+        var header = new ScpHeader(0x24, 0, 1, 4, 5, ScpFlags.IndexAligned,
+            ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Side1, 1, 0);
         var image = new ScpImage(header, [new ScpTrack(4, 2, 0, []), new ScpTrack(5, 2, 1, [])], true, 1024);
         var reader = new StubScpReader(image); var loader = new ScpDocumentLoader(reader, Localize);
 
@@ -1337,7 +1341,7 @@ public sealed class CoreTests
         var result = ScpReader.ReadHeader(header);
         Assert.Equal(84, result.TrackCount);
         Assert.Equal(5, result.Revolutions);
-        Assert.Equal(0, result.Heads);
+        Assert.Equal(ScpHeadSelection.Both, result.Heads);
     }
 
     [Fact]

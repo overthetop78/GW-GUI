@@ -1,6 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
-
-namespace GWGUI.MediaEngine;
+namespace GWGUI.MediaEngine.Containers.Scp;
 
 /// <summary>
 /// Représente l'en-tête fixe d'un conteneur SCP.
@@ -11,8 +9,8 @@ namespace GWGUI.MediaEngine;
 /// <param name="StartTrack">Première entrée de piste déclarée dans la table SCP.</param>
 /// <param name="EndTrack">Dernière entrée de piste déclarée dans la table SCP, bornes incluses.</param>
 /// <param name="Flags">Caractéristiques de capture déclarées par le conteneur.</param>
-/// <param name="BitCellEncoding">Largeur d'encodage des cellules de bit déclarée par le format SCP.</param>
-/// <param name="Heads">Sélecteur de faces déclaré par le conteneur.</param>
+/// <param name="BitCellEncoding">Largeur des entrées de cellule de bit déclarée par le conteneur.</param>
+/// <param name="Heads">Faces dont les pistes sont présentes dans le conteneur.</param>
 /// <param name="Resolution">Indice de résolution temporelle SCP ; un pas vaut 25 nanosecondes multipliées par cet indice augmenté de un.</param>
 /// <param name="Checksum">Somme de contrôle non signée déclarée dans l'en-tête.</param>
 public sealed record ScpHeader(
@@ -22,8 +20,8 @@ public sealed record ScpHeader(
     byte StartTrack,
     byte EndTrack,
     ScpFlags Flags,
-    byte BitCellEncoding,
-    byte Heads,
+    ScpBitCellEncoding BitCellEncoding,
+    ScpHeadSelection Heads,
     byte Resolution,
     uint Checksum)
 {

@@ -95,15 +95,6 @@ public static class ScpFormatConstants
     /// <summary>Nombre maximal de révolutions accepté dans un en-tête SCP.</summary>
     public const byte MaximumRevolutionCount = 64;
 
-    /// <summary>Largeur standard de cellule de bit déclarée par SCP.</summary>
-    public const byte StandardBitCellWidth = 0;
-
-    /// <summary>Largeur alternative de cellule de bit prise en charge.</summary>
-    public const byte AlternateBitCellWidth = 16;
-
-    /// <summary>Valeur maximale du sélecteur de tête SCP.</summary>
-    public const byte MaximumHeadSelector = 2;
-
     /// <summary>Durée, en nanosecondes, d’une milliseconde.</summary>
     public const double NanosecondsPerMillisecond = 1_000_000d;
 

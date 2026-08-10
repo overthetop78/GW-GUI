@@ -37,11 +37,11 @@ public sealed class SectorImageFluxVisualizer(FluxEncoderRegistry? encoders = nu
             throw new InvalidDataException("The sector image contains no track that can be visualized.");
         var start = tracks.Min(track => track.TrackNumber);
         var end = tracks.Max(track => track.TrackNumber);
-        var heads = (byte)(tracks.Select(track => track.Head).Distinct().Count() == 1
-            ? tracks[0].Head + 1
-            : 0);
+        var heads = tracks.Select(track => track.Head).Distinct().Count() == 1
+            ? tracks[0].Head == 0 ? ScpHeadSelection.Side0 : ScpHeadSelection.Side1
+            : ScpHeadSelection.Both;
         var header = new ScpHeader(0, 0, 1, start, end,
-            ScpFlags.IndexAligned | ScpFlags.Writable, 0, heads, 0, 0);
+            ScpFlags.IndexAligned | ScpFlags.Writable, ScpBitCellEncoding.Default16Bit, heads, 0, 0);
         return new(header, tracks, true, image.Capacity);
     }
 
