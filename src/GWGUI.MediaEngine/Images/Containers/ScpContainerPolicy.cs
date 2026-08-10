@@ -16,7 +16,7 @@ internal sealed class ScpContainerPolicy(
     /// <param name="context">Contexte du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton d’annulation de la lecture.</param>
     /// <returns><see langword="true"/> lorsque la signature SCP est présente.</returns>
-    public async ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         return bytes.Length >= ScpFormatConstants.SignatureLength &&
@@ -28,10 +28,10 @@ internal sealed class ScpContainerPolicy(
     /// <param name="cancellationToken">Jeton d’annulation de l’opération.</param>
     /// <returns>Image sectorielle reconstruite depuis le flux SCP.</returns>
     /// <exception cref="NotSupportedException">Le format explicitement demandé n’est pas pris en charge.</exception>
-    public Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
-        if (context.FormatId is not null && !supportedFormatIds.Contains(context.FormatId))
-            throw DiskImageRecognitionExceptions.UnsupportedRequestedFormat(context.FormatId, nameof(ScpContainerPolicy));
-        return exploration.ReadAsync(context.Path, context.FormatId, cancellationToken);
+        if (context.RequestedFormatId is not null && !supportedFormatIds.Contains(context.RequestedFormatId))
+            throw DiskImageRecognitionExceptions.UnsupportedRequestedFormat(context.RequestedFormatId, nameof(ScpContainerPolicy));
+        return exploration.ReadAsync(context.Path, context.RequestedFormatId, cancellationToken);
     }
 }

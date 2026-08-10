@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.Containers;
@@ -16,17 +17,17 @@ internal sealed class AppleContainerPolicy(AppleDiskImageReader reader) : IDiskI
     /// <param name="context">Contexte du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton d’annulation de l’opération.</param>
     /// <returns><see langword="true"/> lorsque le fichier est un candidat Apple.</returns>
-    public ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         if (AppleExtensions.Contains(context.Extension)) return ValueTask.FromResult(true);
         if (context.Extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase))
-            return ValueTask.FromResult(context.FormatId?.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-                                        context.FormatId?.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-                                        context.FormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-                                        context.FormatId?.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+            return ValueTask.FromResult(context.RequestedFormatId?.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+                                        context.RequestedFormatId?.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+                                        context.RequestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+                                        context.RequestedFormatId?.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
                                         AppleDiskImageReader.LooksLikeAppleImage(context.Path));
         if (context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase))
-            return ValueTask.FromResult(context.FormatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+            return ValueTask.FromResult(context.RequestedFormatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
                                         AppleDiskImageReader.LooksLikeAppleImage(context.Path));
         return ValueTask.FromResult(false);
     }
@@ -35,6 +36,6 @@ internal sealed class AppleContainerPolicy(AppleDiskImageReader reader) : IDiskI
     /// <param name="context">Contexte du fichier à lire.</param>
     /// <param name="cancellationToken">Jeton d’annulation de l’opération.</param>
     /// <returns>Image sectorielle Apple reconstruite.</returns>
-    public Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
+    public Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) =>
         reader.ReadAsync(context.Path, cancellationToken);
 }

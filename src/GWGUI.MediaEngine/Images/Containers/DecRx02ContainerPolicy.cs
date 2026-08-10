@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.Containers;
@@ -11,10 +12,10 @@ internal sealed class DecRx02ContainerPolicy(DecRx02ImageReader reader) : IDiskI
     /// <param name="context">Contexte du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton d’annulation de la lecture.</param>
     /// <returns><see langword="true"/> lorsque le fichier est un candidat RX02.</returns>
-    public async ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         if (!context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase)) return false;
-        return context.FormatId?.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) == true ||
+        return context.RequestedFormatId?.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) == true ||
                DecRx02ImageReader.LooksLikeRt11(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false));
     }
 
@@ -22,6 +23,6 @@ internal sealed class DecRx02ContainerPolicy(DecRx02ImageReader reader) : IDiskI
     /// <param name="context">Contexte du fichier à lire.</param>
     /// <param name="cancellationToken">Jeton d’annulation de l’opération.</param>
     /// <returns>Image sectorielle logique DEC RX02.</returns>
-    public Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
+    public Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) =>
         reader.ReadAsync(context.Path, cancellationToken);
 }

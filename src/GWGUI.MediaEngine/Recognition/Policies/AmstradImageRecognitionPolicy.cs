@@ -14,7 +14,7 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     /// <param name="context">Contexte du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
     /// <returns><see langword="true"/> lorsque le contenu commence par une signature CPCEMU reconnue ; sinon <see langword="false"/>.</returns>
-    public async ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         return StartsWith(bytes, CpcDskFormat.StandardSignature) ||
@@ -26,7 +26,7 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
     /// <returns>Image sectorielle dont les secteurs restent inchangés et dont l'identifiant décrit l'interprétation Amstrad.</returns>
     /// <exception cref="InvalidDataException">Le parser CPCEMU rejette la structure ou les données sectorielles du conteneur.</exception>
-    public async Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var image = await reader.ReadAsync(context.Path, cancellationToken).ConfigureAwait(false);
         var formatId = image.Cylinders >= 80 && image.Heads == 2

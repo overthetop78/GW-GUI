@@ -1,16 +1,17 @@
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.Containers;
 
 internal sealed class RawImgContainerPolicy : IDiskImageContainerPolicy
 {
-    public ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
+    public ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) =>
         ValueTask.FromResult(context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase));
 
-    public async Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         var hasFatBpb = IbmPcImageReader.HasValidBpbGeometry(bytes);

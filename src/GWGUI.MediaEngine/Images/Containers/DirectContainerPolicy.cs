@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Recognition;
 
 namespace GWGUI.MediaEngine.Images.Containers;
 
@@ -14,13 +15,13 @@ internal sealed class DirectContainerPolicy(ISectorImageReader reader, params st
     /// <param name="context">Contexte du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton d’annulation de l’opération.</param>
     /// <returns><see langword="true"/> lorsque l’extension est configurée.</returns>
-    public ValueTask<bool> CanReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
+    public ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) =>
         ValueTask.FromResult(supportedExtensions.Contains(context.Extension));
 
     /// <summary>Transmet le fichier présélectionné au lecteur sectoriel configuré.</summary>
     /// <param name="context">Contexte du fichier à lire.</param>
     /// <param name="cancellationToken">Jeton d’annulation de l’opération.</param>
     /// <returns>Image sectorielle validée par le lecteur.</returns>
-    public Task<SectorImage> ReadAsync(DiskImageContainerContext context, CancellationToken cancellationToken) =>
+    public Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) =>
         reader.ReadAsync(context.Path, cancellationToken);
 }

@@ -15,7 +15,7 @@ public sealed class DiskImageContainerRegistry
         string? formatId,
         CancellationToken cancellationToken)
     {
-        var context = new DiskImageContainerContext(path, formatId);
+        var context = new DiskImageRecognitionContext(path, formatId);
         foreach (var policy in policies)
         {
             cancellationToken.ThrowIfCancellationRequested();

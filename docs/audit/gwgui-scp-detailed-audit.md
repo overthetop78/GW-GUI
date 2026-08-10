@@ -196,7 +196,7 @@ Il est central et utilisé par lecteurs, reconstructeurs, systèmes de fichiers,
 
 ### Registre de conteneurs
 
-`DiskImageContainerContext` met en cache les octets du fichier pendant la sélection d’une politique. `IDiskImageContainerPolicy` définit la frontière interne entre reconnaissance et lecture. `DiskImageContainerRegistry` essaie les politiques dans l’ordre et retourne le premier succès. `DiskImageRecognitionExceptions` centralise les erreurs paramétrées par l’extension, le format demandé ou la politique qui a rejeté le contenu. La composition complète se trouve dans `DiskImageExplorerFactory`.
+`DiskImageRecognitionContext` conserve le chemin, la longueur, l’extension normalisée et le format demandé, puis met en cache les mêmes octets pendant toute la sélection des politiques. `IDiskImageContainerPolicy` définit encore provisoirement la frontière interne entre reconnaissance et lecture. `DiskImageContainerRegistry` essaie les politiques dans l’ordre et retourne le premier succès. `DiskImageRecognitionExceptions` centralise les erreurs paramétrées par l’extension, le format demandé ou la politique qui a rejeté le contenu. La composition complète se trouve dans `DiskImageExplorerFactory`.
 
 Politiques observées :
 
