@@ -247,7 +247,7 @@ public sealed class DiskImageExplorerTests
             payload.CopyTo(container, 16);
             await File.WriteAllBytesAsync(source, container);
 
-            await AtrImageReader.WriteRawPayloadAsync(source, destination);
+            await GWGUI.MediaEngine.Conversion.Atari.AtrPayloadWriter.WriteRawPayloadAsync(source, destination);
 
             Assert.Equal(payload, await File.ReadAllBytesAsync(destination));
         }

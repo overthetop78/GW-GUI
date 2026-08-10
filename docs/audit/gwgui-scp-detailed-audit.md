@@ -219,7 +219,7 @@ Lecteurs inventoriés :
 - Amiga : `AdfImageReader` ;
 - Amstrad : `Containers/Amstrad/CpcDsk/CpcDskReader` ;
 - Apple : `AppleDiskImageReader`, `AppleRawImageReader`, `AppleNibbleImageWriter`, `AppleSectorImageFactory`, `AppleDiskGeometry`, `AppleDiskImageSignatures`, `Containers/Apple/TwoImg/TwoImgReader`, `Containers/Apple/DiskCopy/DiskCopyReader`, `Containers/Apple/Woz/WozReader`, `WozFormat`, `WozLayout`, `WozExceptions`, `Recognition/Apple/NibTrackImageReader`, `NibTrackFormat` et `NibTrackExceptions` ;
-- Atari : `AtariStImageReader`, `MsaImageReader`, `AtrImageReader` ;
+- Atari : `AtariStImageReader`, `MsaImageReader`, `AtrReader` ;
 - BBC : `BbcDfsImageReader` ;
 - Commodore : `CommodoreD64ImageReader`, `CommodoreD71ImageReader`, `CommodoreD81ImageReader`, `CommodoreGeometry` ;
 - IBM et conteneurs associés : `IbmPcImageReader`, `ImdImageReader`, `Td0ImageReader`, `I86fImageReader` ;
@@ -563,7 +563,7 @@ La lecture croisée des politiques et des lecteurs montre que « format d’imag
 | ADF | convention de fichier sectoriel brut | géométrie déduite principalement de la taille | Acorn ou Amiga | un même lecteur choisit la famille à partir de la taille ; ADF ne peut donc pas être rangé sous une marque unique |
 | ST | image sectorielle brute à géométrie Atari ST | secteurs bruts et BPB éventuel | Atari ST | géométrie, détection et création de l’image sont réunies |
 | MSA | conteneur compressé de pistes sectorielles | décompression puis secteurs Atari ST | Atari ST | le lien machine est intrinsèque au format, mais pas à l’encodage MFM générique |
-| ATR | conteneur avec en-tête et secteurs | secteurs Atari 8-bit | Atari 8-bit | le fichier contient aussi une responsabilité d’écriture de charge utile |
+| ATR | conteneur avec en-tête et secteurs | secteurs Atari 8-bit | Atari 8-bit | parsing et validation dans `Containers/Atari/Atr`; extraction de la charge utile dans `Conversion/Atari` |
 | SSD/DSD | convention d’ordre de pistes et secteurs | secteurs DFS | BBC/Acorn | lecture physique et identification DFS sont étroitement liées |
 | D64/D71/D81 | formats sectoriels à géométrie définie | secteurs et éventuelles cartes d’erreurs | Commodore | géométries communes utiles, sans justifier un classement global par marque |
 | IMD et TD0 | conteneurs structurés de pistes et secteurs | secteurs, marques et métadonnées | plusieurs machines et géométries | parsing du conteneur et classement final sont actuellement couplés |

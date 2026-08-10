@@ -227,7 +227,8 @@ Conclusion commune : la granularité par système est correcte. `AcornFileCoreNe
 | `AppleNibbleImageWriter.cs` | écriture nibble Apple | cohérent |
 | `AppleRwts18ConversionService.cs` | conversion/déprotection RWTS18 interne | service spécialisé, à brancher par capacité et non fausse extension |
 | `AtariStImageReader.cs` | ST/IMG Atari TOS | cohérent |
-| `AtrImageReader.cs` | ATR Atari 8 bits | cohérent |
+| `Containers/Atari/Atr/AtrReader.cs` | validation et lecture sectorielle ATR Atari 8 bits | cohérent ; définitions, disposition et erreurs ATR isolées dans le même module |
+| `Conversion/Atari/AtrPayloadWriter.cs` | extraction d'une charge utile ATR validée | séparé du parser du conteneur |
 | `BbcDfsImageReader.cs` | SSD/DSD BBC | cohérent |
 | `CoherentImageReader.cs` | image Coherent | cohérent |
 | `CommodoreD64ImageReader.cs`, `D71`, `D81` | conteneurs Commodore | séparés correctement ; géométrie partagée |

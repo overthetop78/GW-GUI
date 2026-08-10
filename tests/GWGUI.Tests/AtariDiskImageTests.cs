@@ -94,7 +94,7 @@ public sealed class AtariDiskImageTests
             var payload = 3 * 128 + 717 * 256; var data = new byte[16 + payload];
             BinaryPrimitives.WriteUInt16LittleEndian(data, 0x0296); BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(2), (ushort)(payload / 16));
             BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(4), 256); await File.WriteAllBytesAsync(path, data);
-            var image = await new AtrImageReader().ReadAsync(path);
+            var image = await new GWGUI.MediaEngine.Containers.Atari.Atr.AtrReader().ReadAsync(path);
             Assert.Equal("atari.180", image.FormatId); Assert.Equal(720, image.BlockCount); Assert.Equal(128, image.GetBlock(0).Length); Assert.Equal(256, image.GetBlock(3).Length);
         }
         finally { File.Delete(path); }
@@ -136,7 +136,7 @@ public sealed class AtariDiskImageTests
             catch (InvalidDataException exception) { Console.WriteLine($"CONTAINER ONLY {Path.GetFileName(path)}: {exception.Message}");
                 if (Path.GetExtension(path).Equals(".st", StringComparison.OrdinalIgnoreCase)) _ = await new AtariStImageReader().ReadAsync(path);
                 else if (Path.GetExtension(path).Equals(".msa", StringComparison.OrdinalIgnoreCase)) _ = await new MsaImageReader().ReadAsync(path);
-                else _ = await new AtrImageReader().ReadAsync(path);
+                else _ = await new GWGUI.MediaEngine.Containers.Atari.Atr.AtrReader().ReadAsync(path);
             }
         }
         Assert.True(opened > 0, "No Atari file system in the requested corpus could be explored.");
@@ -159,7 +159,7 @@ public sealed class AtariDiskImageTests
             var extension = Path.GetExtension(sourcePath).ToLowerInvariant();
             if (extension == ".st") source = await new AtariStImageReader().ReadAsync(sourcePath);
             else if (extension == ".msa") source = await new MsaImageReader().ReadAsync(sourcePath);
-            else if (extension == ".atr") source = await new AtrImageReader().ReadAsync(sourcePath);
+            else if (extension == ".atr") source = await new GWGUI.MediaEngine.Containers.Atari.Atr.AtrReader().ReadAsync(sourcePath);
             else continue;
             var actual = await scpReader.ReadAsync(scpPath, source.FormatId);
             var differences = source.AvailableBlocks.Count(block => !actual.TryGetBlock(block.LogicalBlock, out var decoded) || !block.Data.SequenceEqual(decoded.Data));

@@ -335,28 +335,28 @@
     - [x] Vérifier pour WOZ1 et WOZ2 la signature, le CRC, les chunks, la table des pistes, le nombre de bits et les données extraites.
     - [x] Vérifier pour NIB la longueur exacte des pistes, leur ordre et le raccordement au décodeur Apple attendu.
     - [x] Vérifier le rejet d’un CRC WOZ invalide, d’un chunk tronqué, d’une référence de piste hors limites et d’une longueur NIB invalide.
-- [ ] `src/GWGUI.MediaEngine/Images/AtrImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.
-    - [ ] Déplacer `WriteRawPayloadAsync` vers `Conversion/Atari/AtrPayloadWriter.cs`.
-  - [ ] Définitions ATR
-    - [ ] Créer `Containers/Atari/Atr/AtrFormat.cs` avec la signature `0x0296` et les identifiants Atari produits par le lecteur.
-    - [ ] Créer `Containers/Atari/Atr/AtrLayout.cs` avec la taille d’en-tête, les offsets des paragraphes bas et hauts, l’offset de taille sectorielle et l’unité de paragraphe.
-    - [ ] Ajouter les constantes décrivant les trois secteurs d’amorçage de 128 octets et les tailles sectorielles acceptées.
-    - [ ] Créer un enum ou des constantes pour les tailles sectorielles ATR prises en charge, selon l’utilisation nécessaire dans le calcul.
-    - [ ] Remplacer dans le Reader et le writer toutes les signatures, tailles, offsets, unités et identifiants bruts correspondants.
-  - [ ] Erreurs ATR
-    - [ ] Créer `Containers/Atari/Atr/AtrExceptions.cs`.
-    - [ ] Ajouter des méthodes recevant les valeurs observées et attendues pour l’en-tête, la taille sectorielle, la longueur déclarée et la charge utile tronquée.
-    - [ ] Remplacer tous les textes et constructions directes d’exception du Reader ATR.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AtrImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, WriteRawPayloadAsync, ReadValidatedContainerAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Utiliser dans `image_test` une image ATR à secteurs de 128 octets et une image ATR à secteurs de 256 octets avec les trois secteurs d’amorçage attendus ; appliquer la règle d’obtention d’image si elles manquent.
-    - [ ] Vérifier la signature, la longueur en paragraphes, la taille des secteurs, les adresses, la capacité et le contenu lus depuis chaque image.
-    - [ ] Vérifier l’extraction de la charge utile puis sa relecture secteur par secteur.
-    - [ ] Vérifier le rejet d’une signature, d’une taille de secteur, d’une longueur déclarée ou d’une charge utile tronquée invalide.
+- [x] `src/GWGUI.MediaEngine/Images/AtrImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.
+    - [x] Déplacer `WriteRawPayloadAsync` vers `Conversion/Atari/AtrPayloadWriter.cs`.
+  - [x] Définitions ATR
+    - [x] Créer `Containers/Atari/Atr/AtrFormat.cs` avec la signature `0x0296` et les identifiants Atari produits par le lecteur.
+    - [x] Créer `Containers/Atari/Atr/AtrLayout.cs` avec la taille d’en-tête, les offsets des paragraphes bas et hauts, l’offset de taille sectorielle et l’unité de paragraphe.
+    - [x] Ajouter les constantes décrivant les trois secteurs d’amorçage de 128 octets et les tailles sectorielles acceptées.
+    - [x] Créer un enum ou des constantes pour les tailles sectorielles ATR prises en charge, selon l’utilisation nécessaire dans le calcul.
+    - [x] Remplacer dans le Reader et le writer toutes les signatures, tailles, offsets, unités et identifiants bruts correspondants.
+  - [x] Erreurs ATR
+    - [x] Créer `Containers/Atari/Atr/AtrExceptions.cs`.
+    - [x] Ajouter des méthodes recevant les valeurs observées et attendues pour l’en-tête, la taille sectorielle, la longueur déclarée et la charge utile tronquée.
+    - [x] Remplacer tous les textes et constructions directes d’exception du Reader ATR.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AtrReader` et `AtrPayloadWriter`.
+    - [x] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, WriteRawPayloadAsync, ReadValidatedContainerAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Utiliser dans `image_test` une image ATR à secteurs de 128 octets et une image ATR à secteurs de 256 octets avec les trois secteurs d’amorçage attendus ; appliquer la règle d’obtention d’image si elles manquent.
+    - [x] Vérifier la signature, la longueur en paragraphes, la taille des secteurs, les adresses, la capacité et le contenu lus depuis chaque image.
+    - [x] Vérifier l’extraction de la charge utile puis sa relecture secteur par secteur.
+    - [x] Vérifier le rejet d’une signature, d’une taille de secteur, d’une longueur déclarée ou d’une charge utile tronquée invalide.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/AmstradContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AmstradImageRecognitionPolicy.cs`.

@@ -32,7 +32,7 @@ Ces couches ne sont pas interchangeables. Un décodeur de flux ne lit pas un ré
 | ADF | `AdfImageReader` | image sectorielle Amiga |
 | ST/IMG Atari | `AtariStImageReader` | image sectorielle FAT12 Atari |
 | MSA | `MsaImageReader` | image sectorielle Atari décompressée |
-| ATR | `AtrImageReader` | secteurs Atari 8 bits, y compris tailles mixtes |
+| ATR | `AtrReader` | secteurs Atari 8 bits, y compris tailles mixtes ; extraction brute séparée dans `AtrPayloadWriter` |
 | DSK/EDSK | `AmstradDskImageReader` | secteurs Amstrad/CPM |
 | SSD/DSD | `BbcDfsImageReader` | secteurs BBC DFS |
 | D64/D71/D81 | lecteurs Commodore dédiés | secteurs Commodore |
@@ -182,4 +182,3 @@ Si aucun système de fichiers n’est reconnu mais que des pistes/secteurs sont 
 Les données à mutualiser sont : octets du fichier, conteneur analysé, pistes/révolutions, résultats de codecs, candidats secteurs et classification. Les projections à recalculer séparément sont : rendu bitmap, arbre de fichiers, panneaux de détails et texte localisé.
 
 Clé de cache proposée pour la phase 2, sans décision de comportement : chemin normalisé + taille + date de modification + choix de classification. Toute ouverture d’un nouveau fichier annule le travail précédent avant de publier son résultat.
-

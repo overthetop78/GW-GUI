@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
+using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Containers;
@@ -35,7 +36,7 @@ internal static class DiskImageExplorerFactory
             new DecRx02ContainerPolicy(new DecRx02ImageReader()),
             new DirectContainerPolicy(new AtariStImageReader(), DiskImageFileExtensions.St),
             new DirectContainerPolicy(new MsaImageReader(), DiskImageFileExtensions.Msa),
-            new DirectContainerPolicy(new AtrImageReader(), DiskImageFileExtensions.Atr),
+            new DirectContainerPolicy(new AtrReader(), DiskImageFileExtensions.Atr),
             new DirectContainerPolicy(new CommodoreD64ImageReader(), DiskImageFileExtensions.D64),
             new DirectContainerPolicy(new CommodoreD71ImageReader(), DiskImageFileExtensions.D71),
             new DirectContainerPolicy(new CommodoreD81ImageReader(), DiskImageFileExtensions.D81),

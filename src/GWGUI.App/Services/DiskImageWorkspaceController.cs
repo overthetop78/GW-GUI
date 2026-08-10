@@ -181,7 +181,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             if (Path.GetExtension(path).Equals(".atr", StringComparison.OrdinalIgnoreCase))
             {
                 stagedSourcePath = Path.Combine(Path.GetTempPath(), $"gwgui-visual-{Guid.NewGuid():N}.img");
-                await AtrImageReader.WriteRawPayloadAsync(path, stagedSourcePath, cancellation.Token);
+                await GWGUI.MediaEngine.Conversion.Atari.AtrPayloadWriter.WriteRawPayloadAsync(path, stagedSourcePath, cancellation.Token);
                 conversionSourcePath = stagedSourcePath;
             }
             var command = _commandBuilder.BuildConversion(settings.GwExecutablePath, conversionSourcePath, new ConversionOutput(formatId, ".scp", temporaryPath, false));
