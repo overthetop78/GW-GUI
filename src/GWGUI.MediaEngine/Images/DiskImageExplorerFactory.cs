@@ -35,7 +35,7 @@ internal static class DiskImageExplorerFactory
             new DirectContainerPolicy(new AdfImageReader(), DiskImageFileExtensions.Adf),
             new DirectContainerPolicy(new BbcDfsImageReader(), DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
             new CoherentImageRecognitionPolicy(new CoherentImageReader()),
-            new DecRx02ContainerPolicy(new DecRx02ImageReader()),
+            new DecRx02ImageRecognitionPolicy(new DecRx02ImageReader()),
             new DirectContainerPolicy(new AtariStImageReader(), DiskImageFileExtensions.St),
             new DirectContainerPolicy(new MsaImageReader(), DiskImageFileExtensions.Msa),
             new DirectContainerPolicy(new AtrReader(), DiskImageFileExtensions.Atr),

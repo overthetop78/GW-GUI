@@ -202,7 +202,7 @@ Politiques observées :
 
 - directes par extensions : `DirectContainerPolicy` ;
 - déléguées par fonction : `DelegatingContainerPolicy` ;
-- spécialisées : `AmstradImageRecognitionPolicy`, `AppleImageRecognitionPolicy`, `CoherentImageRecognitionPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
+- spécialisées : `AmstradImageRecognitionPolicy`, `AppleImageRecognitionPolicy`, `CoherentImageRecognitionPolicy`, `DecRx02ImageRecognitionPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
 
 Constats :
 
@@ -569,7 +569,7 @@ La lecture croisée des politiques et des lecteurs montre que « format d’imag
 | IMD et TD0 | conteneurs structurés de pistes et secteurs | secteurs, marques et métadonnées | plusieurs machines et géométries | parsing du conteneur et classement final sont actuellement couplés |
 | 86F | conteneur de pistes encodées | bitstream puis FM ou MFM selon les drapeaux | plusieurs géométries de type PC | le lecteur parse, décode et reconstruit directement un `SectorImage` |
 | CP2 | conteneur structuré de descripteurs et blocs de secteurs | secteurs décrits par piste | géométrie détectée ensuite | parsing et interprétation sont encore regroupés |
-| RX02 brut | ordre physique particulier de secteurs | remise en ordre vers des blocs logiques | DEC, souvent RT-11 | la signature RT-11 participe à la détection du lecteur physique |
+| RX02 brut | ordre physique particulier de secteurs | remise en ordre vers des blocs logiques | DEC, souvent RT-11 | `DecRx02ImageRecognitionPolicy` vérifie séparément la capacité RX02 puis le format demandé ou le home block RT-11 |
 | Coherent brut | image sectorielle identifiée par son contenu | secteurs, avec géométrie zonée pour Commodore 900 | plateformes Coherent, dont C900 | `CoherentImageRecognitionPolicy` utilise le superbloc indépendamment de l’extension ; le Reader valide ensuite taille et géométrie |
 
 ### Conséquence architecturale établie par cette matrice

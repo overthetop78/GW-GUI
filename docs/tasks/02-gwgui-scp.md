@@ -427,17 +427,17 @@
     - [x] Utiliser dans `image_test` une image brute Coherent avec superbloc et géométrie connus ; appliquer la règle d’obtention d’image si elle manque.
     - [x] Vérifier que la signature interne reconnaît cette image indépendamment de son extension et que géométrie, secteurs et contenu sont conservés.
     - [x] Vérifier qu’une image brute de même taille sans signature Coherent est rejetée par le Reader Coherent et que le registre essaie ensuite la politique suivante.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/DecRx02ContainerPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.
-    - [ ] Séparer la géométrie RX02 de la reconnaissance RT-11.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DecRx02ContainerPolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `DecRx02ContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Utiliser dans `image_test` une image RX02 avec structure RT-11 connue ; appliquer la règle d’obtention d’image si elle manque.
-    - [ ] Vérifier la reconnaissance par contenu, la remise en ordre physique vers les blocs logiques et le contenu de plusieurs secteurs de pistes différentes.
-    - [ ] Vérifier qu’une image de même taille sans structure RX02/RT-11 crédible est rejetée sans bloquer les candidats suivants.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/DecRx02ContainerPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`.
+    - [x] Séparer la géométrie RX02 de la reconnaissance RT-11.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML du type `DecRx02ImageRecognitionPolicy`.
+    - [x] Ajouter la documentation XML des méthodes `DecRx02ImageRecognitionPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Utiliser dans `image_test` une image RX02 avec structure RT-11 connue ; appliquer la règle d’obtention d’image si elle manque.
+    - [x] Vérifier la reconnaissance par contenu, la remise en ordre physique vers les blocs logiques et le contenu de plusieurs secteurs de pistes différentes.
+    - [x] Vérifier qu’une image de même taille sans structure RX02/RT-11 crédible est rejetée sans bloquer les candidats suivants.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Migrer ses enregistrements vers `ExtensionHintRecognitionPolicy`.
