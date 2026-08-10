@@ -202,7 +202,7 @@ Politiques observées :
 
 - directes par extensions : `DirectContainerPolicy` ;
 - déléguées par fonction : `DelegatingContainerPolicy` ;
-- spécialisées : `AmstradContainerPolicy`, `AppleContainerPolicy`, `CoherentContainerPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
+- spécialisées : `AmstradImageRecognitionPolicy`, `AppleContainerPolicy`, `CoherentContainerPolicy`, `DecRx02ContainerPolicy`, `MsxContainerPolicy`, `RawImgContainerPolicy`, `ScpContainerPolicy`.
 
 Constats :
 
@@ -439,7 +439,7 @@ Le parcours observé est :
 ```text
 DSK
 → DiskImageContainerRegistry
-→ AmstradContainerPolicy
+→ AmstradImageRecognitionPolicy
 → AmstradDskImageReader
 → SectorImage amstrad.cpc
 → AmstradCpmFileSystemReader

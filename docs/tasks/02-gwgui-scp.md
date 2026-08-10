@@ -357,17 +357,17 @@
     - [x] Vérifier la signature, la longueur en paragraphes, la taille des secteurs, les adresses, la capacité et le contenu lus depuis chaque image.
     - [x] Vérifier l’extraction de la charge utile puis sa relecture secteur par secteur.
     - [x] Vérifier le rejet d’une signature, d’une taille de secteur, d’une longueur déclarée ou d’une charge utile tronquée invalide.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/AmstradContainerPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AmstradImageRecognitionPolicy.cs`.
-    - [ ] Remplacer l’acceptation de `.dsk` et `.edsk` par les signatures CPCEMU Standard et Extended.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AmstradContainerPolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `AmstradContainerPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Vérifier avec les images CPCEMU locales que les signatures Standard et Extended sont reconnues quelle que soit l’extension du fichier.
-    - [ ] Vérifier qu’un fichier brut portant `.dsk` ou `.edsk` sans signature CPCEMU est rejeté par cette politique et reste disponible pour les politiques suivantes.
-    - [ ] Vérifier que l’interprétation CPC ou PCW est appliquée après le parsing du conteneur, sans modifier la représentation neutre produite par `CpcDskReader`.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/AmstradContainerPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Recognition/Policies/AmstradImageRecognitionPolicy.cs`.
+    - [x] Remplacer l’acceptation de `.dsk` et `.edsk` par les signatures CPCEMU Standard et Extended.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML du type `AmstradImageRecognitionPolicy`.
+    - [x] Ajouter la documentation XML des méthodes `AmstradImageRecognitionPolicy, CanReadAsync, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests déterministes
+    - [x] Vérifier avec les images CPCEMU locales que les signatures Standard et Extended sont reconnues quelle que soit l’extension du fichier.
+    - [x] Vérifier qu’un fichier brut portant `.dsk` ou `.edsk` sans signature CPCEMU est rejeté par cette politique et reste disponible pour les politiques suivantes.
+    - [x] Vérifier que l’interprétation CPC ou PCW est appliquée après le parsing du conteneur, sans modifier la représentation neutre produite par `CpcDskReader`.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/AppleContainerPolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Recognition/Policies/AppleImageRecognitionPolicy.cs`.

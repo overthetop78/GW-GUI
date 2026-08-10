@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Containers;
 using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -42,7 +43,7 @@ internal static class DiskImageExplorerFactory
             new DirectContainerPolicy(new CommodoreD81ImageReader(), DiskImageFileExtensions.D81),
             new AppleContainerPolicy(apple),
             new MsxContainerPolicy(new MsxImageReader()),
-            new AmstradContainerPolicy(new CpcDskReader()),
+            new AmstradImageRecognitionPolicy(new CpcDskReader()),
             new RawImgContainerPolicy(),
             new DirectContainerPolicy(new IbmPcImageReader(), DiskImageFileExtensions.Ima),
             new DirectContainerPolicy(new Td0ImageReader(), DiskImageFileExtensions.Td0),
