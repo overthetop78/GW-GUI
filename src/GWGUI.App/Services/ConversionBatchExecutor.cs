@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Conversion;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Services;
 

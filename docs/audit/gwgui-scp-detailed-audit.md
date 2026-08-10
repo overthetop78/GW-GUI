@@ -1,24 +1,24 @@
-# Audit détaillé de `GWGUI.Scp`
+# Audit détaillé de `GWGUI.MediaEngine`
 
 Date de l’audit : 10 août 2026
 
 ## Objet
 
-Ce document décrit le code actuellement présent dans `src/GWGUI.Scp`. Il complète l’audit général de la phase 01 et sert de base factuelle à la discussion sur la structure cible de ce projet.
+Ce document décrit le code actuellement présent dans `src/GWGUI.MediaEngine`. Il complète l’audit général de la phase 01 et sert de base factuelle à la discussion sur la structure cible de ce projet.
 
 L’audit porte sur les fichiers C# de production, leurs types, leurs dépendances internes, leurs responsabilités visibles, leurs points d’enregistrement et les duplications structurelles constatées. Il ne valide pas à lui seul l’exactitude de chaque algorithme sur tous les formats : cette validation nécessite les tests et le corpus prévus ultérieurement.
 
 ## État général observé
 
-`GWGUI.Scp` est autonome : son projet cible `net10.0`, active nullable et les imports implicites, et ne référence aucun autre projet ni paquet externe. Cette frontière est saine et doit être conservée.
+`GWGUI.MediaEngine` est autonome : son projet cible `net10.0`, active nullable et les imports implicites, et ne référence aucun autre projet ni paquet externe. Cette frontière est saine et doit être conservée.
 
 Le projet ne traite pas seulement le format SCP. Il contient actuellement :
 
 - le parser du conteneur SCP ;
 - les modèles de capture et de révolutions ;
 - les primitives de bits, CRC et flux ;
-- 26 décodeurs de flux ;
-- 25 encodeurs de pistes ;
+- 25 décodeurs de flux ;
+- 24 encodeurs de pistes ;
 - des lecteurs de nombreux conteneurs sectoriels ;
 - la reconstruction de secteurs depuis des captures SCP ;
 - la détection automatique et les interprétations supplémentaires ;
@@ -94,13 +94,13 @@ SectorImage
 
 | Fichier | Responsabilité observée | Constat |
 |---|---|---|
-| `IScpReader.cs` | contrat asynchrone de lecture SCP | Frontière simple et utile à l’injection des reconstructeurs ; une seule implémentation de production observée. |
-| `ScpReader.cs` | lecture de fichier, en-tête, table de pistes, révolutions et validation | Contient aussi `ScpHeaderReader` ; parser et orchestration sont dans le même fichier. Le découpage éventuel doit suivre ces deux responsabilités, pas le nombre de lignes. |
-| `ScpModels.cs` | `ScpFlags`, en-tête, révolution, piste et image | Modèles cohérents avec le conteneur. Ils contiennent aussi des calculs dérivés de version, résolution, durée et RPM. |
-| `ScpCaptureInfo.cs` | informations résumées de capture et lecteur statique associé | Un record et son service de lecture sont réunis ; la projection d’information est distincte des modèles bruts du conteneur. |
-| `ScpFormatConstants.cs` | constantes du format SCP | Très petit fichier. Les valeurs doivent rester limitées au conteneur SCP. |
+| `Containers/Scp/IScpReader.cs` | contrat asynchrone de lecture SCP | Une seule implémentation de production observée. |
+| `Containers/Scp/ScpReader.cs` | lecture de fichier, en-tête, table de pistes, révolutions et validation | Le parsing de l’en-tête reste dans `ScpReader`; `ScpHeaderReader` est actuellement un simple relais vers `ScpReader.ReadHeader`. |
+| `Containers/Scp/ScpFlags.cs`, `ScpHeader.cs`, `ScpRevolution.cs`, `ScpTrack.cs`, `ScpImage.cs` | modèles du conteneur SCP | Les cinq types sont maintenant séparés. `ScpHeader` et `ScpRevolution` contiennent les calculs dérivés de version, résolution, durée et RPM. |
+| `Exploration/ScpCaptureInfo.cs`, `ScpCaptureInfoReader.cs` | informations résumées de capture et lecture associée | Le record et son service de lecture sont maintenant séparés. |
+| `Containers/Scp/ScpFormatConstants.cs` | constantes du format SCP | Les signatures, offsets et tailles encore présents dans `ScpReader` n’y ont pas encore tous été déplacés. |
 
-`ScpModels.cs` utilise correctement un enum à drapeaux pour les flags fermés du format. En revanche, `DiskType`, `BitCellEncoding` et `Heads` restent des octets bruts. Il faut vérifier la spécification SCP avant de décider s’ils doivent devenir enums : leur simple présence numérique ne suffit pas.
+`ScpFlags` utilise un enum à drapeaux. `DiskType`, `BitCellEncoding` et `Heads` restent des octets dans `ScpHeader`.
 
 ### Primitives
 
@@ -215,8 +215,8 @@ Constats :
 Lecteurs inventoriés :
 
 - Amiga : `AdfImageReader` ;
-- Amstrad : `AmstradDskImageReader` ;
-- Apple : `AppleDiskImageReader`, `AppleContainerImageReader`, `AppleRawImageReader`, `AppleNibbleImageDecoder`, `AppleNibbleImageWriter`, `AppleSectorImageFactory`, `AppleDiskGeometry`, `AppleDiskImageSignatures` ;
+- Amstrad : `Containers/Amstrad/CpcDsk/CpcDskReader` ;
+- Apple : `AppleDiskImageReader`, `AppleRawImageReader`, `AppleNibbleImageWriter`, `AppleSectorImageFactory`, `AppleDiskGeometry`, `AppleDiskImageSignatures`, `Containers/Apple/TwoImg/TwoImgReader`, `Containers/Apple/DiskCopy/DiskCopyReader`, `Containers/Apple/Woz/WozReader` et `Recognition/Apple/NibTrackImageReader` ;
 - Atari : `AtariStImageReader`, `MsaImageReader`, `AtrImageReader` ;
 - BBC : `BbcDfsImageReader` ;
 - Commodore : `CommodoreD64ImageReader`, `CommodoreD71ImageReader`, `CommodoreD81ImageReader`, `CommodoreGeometry` ;
@@ -365,7 +365,7 @@ Le `break` dans les interprétations supplémentaires peut perdre plusieurs inte
 
 Politiques de visualisation : `ISectorImageVisualizationPolicy`, `SectorImageVisualizationPolicy`, `SectorImageVisualizationPolicyRegistry`, `AppleVisualizationPolicy`, `AtariVisualizationPolicy`, `CommodoreVisualizationPolicy`, `DecRx02VisualizationPolicy`, `ExactVisualizationPolicy`, `PrefixVisualizationPolicy`.
 
-Les politiques exactes et par préfixe confirment que les identifiants de formats sont encore utilisés comme mécanisme de routage dispersé. Une définition de format partagée à l’intérieur du moteur doit fournir codec et géométrie sans faire dépendre `GWGUI.Scp` de `GWGUI.Domain`.
+Les politiques exactes et par préfixe confirment que les identifiants de formats sont encore utilisés comme mécanisme de routage dispersé. Une définition de format partagée à l’intérieur du moteur doit fournir codec et géométrie sans faire dépendre `GWGUI.MediaEngine` de `GWGUI.Domain`.
 
 ## Sources de vérité dispersées confirmées
 
@@ -476,9 +476,9 @@ Avec ces définitions, Greaseweazle convertit 40 pistes simple face et annonce 3
 - `GWGUI.Domain` choisit l’identifiant et construit la commande ;
 - `GWGUI.App`/le gestionnaire de définitions fournit le chemin des `diskdefs` embarquées ;
 - `GWGUI.Infrastructure` exécute `gw.exe` ;
-- `GWGUI.Scp` relit, détecte, reconstruit et explore le résultat.
+- `GWGUI.MediaEngine` relit, détecte, reconstruit et explore le résultat.
 
-`GWGUI.Scp` ne doit donc pas absorber la construction des commandes Greaseweazle ni le stockage des `diskdefs`, même si ses identifiants techniques doivent rester cohérents avec eux.
+`GWGUI.MediaEngine` ne doit donc pas absorber la construction des commandes Greaseweazle ni le stockage des `diskdefs`, même si ses identifiants techniques doivent rester cohérents avec eux.
 
 ### Visualisateur et rendu
 
@@ -490,7 +490,7 @@ Le parcours de visualisation traverse donc deux frontières :
 
 ```text
 image sectorielle
-→ SectorImageFluxVisualizer dans GWGUI.Scp
+→ SectorImageFluxVisualizer dans GWGUI.MediaEngine
 → ScpImage synthétique
 → SkiaScpRenderer et ScpDiskView dans GWGUI.App
 ```
@@ -499,7 +499,7 @@ ou directement :
 
 ```text
 capture SCP
-→ ScpReader / FluxDecoderRegistry dans GWGUI.Scp
+→ ScpReader / FluxDecoderRegistry dans GWGUI.MediaEngine
 → SkiaScpRenderer et ScpDiskView dans GWGUI.App
 ```
 
@@ -522,10 +522,10 @@ Cette vérification confirme que la projection technique appartient au moteur, t
 
 Tous les fichiers C# de production observés sont couverts par les groupes ci-dessus :
 
-- racine SCP : `IScpReader`, `ScpReader`, `ScpModels`, `ScpCaptureInfo`, `ScpFormatConstants` ;
+- conteneur SCP : `IScpReader`, `ScpReader`, `ScpHeaderReader`, `ScpFlags`, `ScpHeader`, `ScpRevolution`, `ScpTrack`, `ScpImage` et `ScpFormatConstants` ;
 - primitives : `FluxBitstream`, `BitPrimitives`, `Crc16Calculator` ;
-- décodage : contrat, modèles, registre, deux bases et les 26 décodeurs listés ;
-- encodage : modèles, registre, bases et les 25 encodeurs listés ;
+- décodage : contrat, modèles, registre, deux bases et les 25 décodeurs présents ;
+- encodage : modèles, registre, bases et les 24 encodeurs présents ;
 - images directes : contrat, modèles communs, politiques de conteneurs et tous les lecteurs listés ;
 - reconstruction : modèles ISO, registre, politiques, façades et reconstructeurs non ISO listés ;
 - détection/interprétation : tous les fichiers de `Images/ScpDetection` et `Images/Interpretations` ;
@@ -588,14 +588,14 @@ Cette conclusion implique aussi de revoir le contrat actuel `ISectorImageReader`
 
 ## Relecture exhaustive utilisée pour le document de tâches
 
-La relecture du 10 août 2026 a parcouru les 195 fichiers C# de production retournés par `rg --files src/GWGUI.Scp -g '*.cs'`, hors `bin` et `obj`. Pour chaque fichier, les types, membres, données statiques et responsabilités visibles ont été confrontés au pipeline ci-dessus. Cette passe confirme notamment les points suivants, désormais traduits en tâches précises dans `docs/tasks/02-gwgui-scp.md` :
+La relecture du 10 août 2026 a parcouru les 215 fichiers C# de production actuellement retournés sous `src/GWGUI.MediaEngine`, hors `bin` et `obj`. Pour chaque fichier, les types, membres, données statiques, textes d’exception et responsabilités visibles ont été contrôlés. Le renommage prioritaire décidé pour ce moteur est `GWGUI.MediaEngine`, afin de produire `GWGUI.MediaEngine.dll`. Cette passe confirme notamment les points suivants, désormais traduits en tâches précises dans `docs/tasks/02-gwgui-scp.md` :
 
-- `DiskImageContainerRegistry.ReadAsync` retourne dès le premier `CanReadAsync` positif ; il ne possède ni résultat gradué de reconnaissance ni continuation après rejet du parser choisi.
+- `DiskImageContainerRegistry.ReadAsync` retourne dès le premier `CanReadAsync` positif et n’essaie pas la politique suivante lorsque le Reader choisi rejette ensuite le contenu.
 - `DirectContainerPolicy` et `DelegatingContainerPolicy` dupliquent la même sélection par extension et ne diffèrent que par la forme de l'appel au Reader.
 - `DiskImageExplorerFactory` est la racine de composition actuelle : elle construit le Reader SCP, les registres, les reconstructeurs, les politiques de conteneurs et l'exploration.
 - `RawImgContainerPolicy` choisit IBM par défaut et appelle directement deux détecteurs logiques de `AmstradCpmFileSystemReader`, ce qui couple reconnaissance physique et système de fichiers.
 - `ScpContainerPolicy` appelle directement `ScpImageExplorationService`, ce qui couple parsing du conteneur et exploration.
-- `SectorImage.cs`, `ScpModels.cs`, `FluxDecodeModels.cs`, `TrackEncodeModels.cs`, `FileSystemModels.cs`, `ExploredDiskImage.cs` et `ScpCaptureInfo.cs` déclarent chacun plusieurs types ou services séparables.
+- `SectorImage.cs`, `FluxDecodeModels.cs`, `TrackEncodeModels.cs`, `FileSystemModels.cs` et `ExploredDiskImage.cs` déclarent encore plusieurs types séparables. Les anciens `ScpModels.cs` et `ScpCaptureInfo.cs` ont déjà été découpés.
 - `AppleIIGcrDecoder.cs` déclare le type `AppleGcrDecoder`; le fichier et le type doivent être réalignés.
 - `FluxEncoding.cs` recopie des primitives FM/MFM déjà présentes sous une autre forme dans `TrackEncoding.cs`.
 - `SectorImageInterpretation.cs` regroupe retagging générique, détection de programme Atari ST, lecture de BPB FAT et création d'une interprétation MSX.
@@ -605,4 +605,4 @@ La relecture du 10 août 2026 a parcouru les 195 fichiers C# de production retou
 - `MacMfsFileSystemReader.cs` et `MacHfsFileSystemReader.cs` partagent l'époque Macintosh, les lectures big-endian et les chaînes Pascal, mais pas leurs structures de catalogue et d'allocation.
 - `SectorImageFluxVisualizer.cs` construit son registre de politiques, choisit les encodeurs par chaînes et fabrique directement un en-tête SCP de visualisation.
 
-La liste exhaustive des 195 fichiers et de leurs types/membres figure dans l'annexe CSDoc du document de tâches afin qu'aucun fichier ne disparaisse du suivi pendant les déplacements et découpages.
+Les 215 noms de fichiers de production actuels apparaissent maintenant dans `docs/tasks/02-gwgui-scp.md`, y compris `TwoImgImageFormat.cs`, `WozReader.cs` et `NibTrackImageReader.cs` créés après la passe précédente.

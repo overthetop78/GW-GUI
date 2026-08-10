@@ -1,0 +1,75 @@
+namespace GWGUI.MediaEngine.Decoding;
+
+public sealed class HpMmfmDecoder : IFluxDecoder
+{
+    private static readonly byte[] SectorSync = [0x55, 0x55, 0x2a, 0x54];
+    private static readonly byte[] DataSync = [0x55, 0x55, 0x2a, 0x44];
+
+    public string Id => "hp.mmfm";
+    public string DisplayName => "HP MMFM";
+
+    public FluxDecodeResult Decode(ScpRevolution revolution)
+    {
+        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var structures = new List<FluxStructure>();
+        var sectors = new List<DecodedSector>();
+        var bytes = new List<byte>();
+        var usedDataOffsets = new HashSet<int>();
+
+        for (var offset = 0; offset + 32 + 64 <= stream.Bits.Length; offset++)
+        {
+            if (!stream.MatchBytes(offset, SectorSync)) continue;
+
+            var id = DecodeBytes(stream, offset + 32, 4);
+            var headerValid = Crc16(id) == 0;
+            var cylinder = ReverseBits(id[0]);
+            var encodedSector = ReverseBits(id[1]);
+            var head = (byte)(encodedSector >> 7);
+            var sectorNumber = encodedSector & 0x7f;
+            var dataOffset = Find(stream, offset + 32 + 8 * 16, Math.Min(stream.Bits.Length, offset + 32 + 58 * 16), DataSync);
+            bool? dataValid = null;
+
+            if (dataOffset >= 0 && usedDataOffsets.Add(dataOffset))
+            {
+                const int encodedBytes = 258;
+                var dataStart = dataOffset + 32;
+                if (dataStart + encodedBytes * 16 <= stream.Bits.Length)
+                {
+                    var encoded = DecodeBytes(stream, dataStart, encodedBytes);
+                    dataValid = Crc16(encoded) == 0;
+                    var payload = encoded.AsSpan(0, 256).ToArray();
+                    for (var index = 0; index < payload.Length; index++) payload[index] = ReverseBits(payload[index]);
+                    for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
+                    bytes.AddRange(payload);
+                    structures.Add(new(FluxStructureKind.FormatData, dataOffset, 32 + encodedBytes * 16,
+                        $"HP MMFM C{cylinder} H{head} R{sectorNumber}, 256 bytes, data CRC {(dataValid == true ? "valid" : "invalid")}"));
+                }
+            }
+
+            bool? integrity = !headerValid || dataValid == false
+                ? false
+                : dataValid is null ? null : true;
+            sectors.Add(new(cylinder, head, sectorNumber, 1, 256, integrity, offset));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, 96,
+                $"HP MMFM C{cylinder} H{head} R{sectorNumber}, header CRC {(headerValid ? "valid" : "invalid")}"));
+            offset += 31;
+        }
+
+        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static byte[] DecodeBytes(FluxBitstream stream, int offset, int count) =>
+        Enumerable.Range(0, count).Select(index => stream.DecodeMfmByte(offset + index * 16)).ToArray();
+
+    private static int Find(FluxBitstream stream, int start, int end, IReadOnlyList<byte> pattern)
+    {
+        for (var offset = start; offset + pattern.Count * 8 <= end; offset++) if (stream.MatchBytes(offset, pattern)) return offset;
+        return -1;
+    }
+
+    private static byte ReverseBits(byte value)
+        => Primitives.BitPrimitives.Reverse(value);
+
+    private static ushort Crc16(IEnumerable<byte> values)
+        => Primitives.Crc16Calculator.Compute(values);
+}

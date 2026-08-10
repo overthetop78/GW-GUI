@@ -10,7 +10,7 @@ Cette phase concerne tout le dépôt. `AtariScpSectorImageReader.cs` est un exem
 - [x] Repérer tous les fichiers qui mélangent plusieurs niveaux : conteneur, flux, secteur, système de fichiers, conversion, UI ou persistance.
 - [x] Repérer les fichiers courts qui regroupent malgré tout plusieurs responsabilités susceptibles de grossir.
 - [x] Repérer les fichiers volumineux qui doivent être découpés et ceux qui peuvent rester tels quels parce qu’ils ont une responsabilité unique.
-- [x] Produire une carte des dépendances entre `GWGUI.App`, `GWGUI.Domain`, `GWGUI.Infrastructure`, `GWGUI.Scp` et les tests.
+- [x] Produire une carte des dépendances entre `GWGUI.App`, `GWGUI.Domain`, `GWGUI.Infrastructure`, `GWGUI.MediaEngine` et les tests.
 
 ## 1.2 Flux et images de disquettes
 

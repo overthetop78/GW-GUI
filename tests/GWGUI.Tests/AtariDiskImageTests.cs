@@ -1,11 +1,11 @@
 using System.Buffers.Binary;
 using System.IO;
-using GWGUI.Scp;
-using GWGUI.Scp.Containers.Scp;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Encoding;
-using GWGUI.Scp.FileSystems.Readers;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.Images;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;
 
@@ -103,12 +103,12 @@ public sealed class AtariDiskImageTests
     [Fact]
     public void AtariDosReaderExtractsAFile()
     {
-        var blocks = Enumerable.Range(0, 720).Select(index => new GWGUI.Scp.SectorImages.SectorBlock(index, new(index, 0, index + 1), new byte[128])).ToArray();
+        var blocks = Enumerable.Range(0, 720).Select(index => new GWGUI.MediaEngine.SectorImages.SectorBlock(index, new(index, 0, index + 1), new byte[128])).ToArray();
         ((byte[])blocks[359].Data)[0] = 2;
         var directory = (byte[])blocks[360].Data; directory[0] = 0x42; BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(1), 1); BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(3), 4);
         System.Text.Encoding.ASCII.GetBytes("HELLO   TXT").CopyTo(directory, 5);
         var content = (byte[])blocks[3].Data; System.Text.Encoding.ASCII.GetBytes("ATARI").CopyTo(content, 0); content[125] = 0; content[126] = 0; content[127] = 5;
-        var image = new GWGUI.Scp.SectorImages.SectorImage("atari.90", 128, 720, 1, 1, blocks);
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("atari.90", 128, 720, 1, 1, blocks);
         var volume = new AtariDosFileSystemReader().Read(image); var file = Assert.Single(volume.Entries);
         Assert.Equal("HELLO.TXT", file.Name); Assert.Equal("ATARI", System.Text.Encoding.ASCII.GetString(file.Content!.ToArray()));
     }
@@ -116,11 +116,11 @@ public sealed class AtariDiskImageTests
     [Fact]
     public void AtariDosReaderRejectsRandomDataThatOnlyResemblesDirectoryFlags()
     {
-        var blocks = Enumerable.Range(0, 720).Select(index => new GWGUI.Scp.SectorImages.SectorBlock(index, new(index, 0, index + 1), new byte[128])).ToArray();
+        var blocks = Enumerable.Range(0, 720).Select(index => new GWGUI.MediaEngine.SectorImages.SectorBlock(index, new(index, 0, index + 1), new byte[128])).ToArray();
         ((byte[])blocks[359].Data)[0] = 0x19;
         ((byte[])blocks[360].Data)[0] = 0xa6;
         ((byte[])blocks[360].Data)[5] = 0x1a;
-        var image = new GWGUI.Scp.SectorImages.SectorImage("atari.90", 128, 720, 1, 1, blocks);
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("atari.90", 128, 720, 1, 1, blocks);
 
         Assert.False(new AtariDosFileSystemReader().CanRead(image));
     }
@@ -147,7 +147,7 @@ public sealed class AtariDiskImageTests
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_ATARI_CORPUS"); if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
         var generated = Path.Combine(root, "_generated"); if (!Directory.Exists(generated)) return;
-        var scpReader = new GWGUI.Scp.SectorImages.AtariScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()); var compared = 0;
+        var scpReader = new GWGUI.MediaEngine.SectorImages.AtariScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()); var compared = 0;
         foreach (var scpPath in Directory.EnumerateFiles(generated, "*.scp", SearchOption.AllDirectories).Where(path => path.Contains("Atari", StringComparison.OrdinalIgnoreCase)))
         {
             var machineFolder = new DirectoryInfo(Path.GetDirectoryName(scpPath)!).Name;
@@ -155,7 +155,7 @@ public sealed class AtariDiskImageTests
             var baseName = Path.GetFileNameWithoutExtension(scpPath).Replace(" [test]", string.Empty, StringComparison.OrdinalIgnoreCase);
             var sourcePath = Directory.EnumerateFiles(sourceDirectory).FirstOrDefault(path => Path.GetFileNameWithoutExtension(path).Equals(baseName, StringComparison.OrdinalIgnoreCase));
             if (sourcePath is null) continue;
-            GWGUI.Scp.SectorImages.SectorImage source;
+            GWGUI.MediaEngine.SectorImages.SectorImage source;
             var extension = Path.GetExtension(sourcePath).ToLowerInvariant();
             if (extension == ".st") source = await new AtariStImageReader().ReadAsync(sourcePath);
             else if (extension == ".msa") source = await new MsaImageReader().ReadAsync(sourcePath);

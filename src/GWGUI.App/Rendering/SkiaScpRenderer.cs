@@ -1,5 +1,5 @@
-using GWGUI.Scp;
-using GWGUI.Scp.Decoding;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Decoding;
 using SkiaSharp;
 using System.Collections.Concurrent;
 

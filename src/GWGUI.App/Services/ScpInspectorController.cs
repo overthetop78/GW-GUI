@@ -2,8 +2,8 @@ using System.Windows;
 using System.Windows.Controls;
 using GWGUI.App.Controls;
 using GWGUI.App.ViewModels;
-using GWGUI.Scp;
-using GWGUI.Scp.Decoding;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.App.Services;
 

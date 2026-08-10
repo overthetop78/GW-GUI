@@ -7,18 +7,18 @@ GWGUI.Domain
     ↑
 GWGUI.Infrastructure
 
-GWGUI.Scp
+GWGUI.MediaEngine
 
 GWGUI.App ──→ GWGUI.Domain
           ├─→ GWGUI.Infrastructure
-          └─→ GWGUI.Scp
+          └─→ GWGUI.MediaEngine
 
 GWGUI.Tests ─→ les quatre projets
 ```
 
 - `GWGUI.Domain` ne référence aucun autre projet : contrats, requêtes, règles de commande, formats, matériel, profils et réglages.
 - `GWGUI.Infrastructure` référence `GWGUI.Domain` : Windows, processus, JSON, journaux et installation des Host Tools.
-- `GWGUI.Scp` ne référence aucun autre projet : conteneurs/images, flux, codecs, secteurs et systèmes de fichiers.
+- `GWGUI.MediaEngine` ne référence aucun autre projet : conteneurs/images, flux, codecs, secteurs et systèmes de fichiers.
 - `GWGUI.App` référence les trois autres projets et SkiaSharp : composition, WPF, rendu et orchestration.
 - `GWGUI.Tests` référence tout : tests unitaires, corpus locaux et tests d’intégration.
 

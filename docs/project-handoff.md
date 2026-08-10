@@ -50,7 +50,7 @@ La solution contient principalement :
 - `GWGUI.App` : application WPF, vues, contrôles, services UI et rendu ;
 - `GWGUI.Domain` : requêtes, profils, catalogues, réglages et logique métier ;
 - `GWGUI.Infrastructure` : exécution de `gw`, matériel Windows, persistance, Host Tools et journaux ;
-- `GWGUI.Scp` : conteneurs/images, flux, décodage, encodage, reconstruction sectorielle et systèmes de fichiers ;
+- `GWGUI.MediaEngine` : conteneurs/images, flux, décodage, encodage, reconstruction sectorielle et systèmes de fichiers ;
 - `GWGUI.Tests` : tests automatisés ;
 - `scripts` : build, packaging et validations ;
 - `installer` : projet Inno Setup ;
@@ -231,7 +231,7 @@ Le dernier état Git observé avant la rédaction était propre. Les répertoire
 
 ## 7. Exemple confirmé du problème structurel général
 
-`src/GWGUI.Scp/SectorImages/AtariScpSectorImageReader.cs` est mal nommé et trop chargé. Il contient des branches pour Atari, Amstrad, IBM, BBC, Epson et UCSD, ainsi que la collecte de secteurs, la sélection FM/MFM, la détection IBM, les géométries Epson et l’assemblage final.
+`src/GWGUI.MediaEngine/SectorImages/AtariScpSectorImageReader.cs` est mal nommé et trop chargé. Il contient des branches pour Atari, Amstrad, IBM, BBC, Epson et UCSD, ainsi que la collecte de secteurs, la sélection FM/MFM, la détection IBM, les géométries Epson et l’assemblage final.
 
 Ce fichier est seulement un exemple visible. L’ensemble du code doit être audité puis découpé selon les responsabilités réelles. Il ne faut pas limiter le chantier au moteur SCP, à cette classe, à `FluxDecoding.cs` ou aux deux grandes fenêtres WPF.
 

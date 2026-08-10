@@ -1,6 +1,6 @@
 using System.IO;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;

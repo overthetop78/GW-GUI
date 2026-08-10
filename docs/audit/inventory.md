@@ -168,13 +168,13 @@ Les tableaux ci-dessous inventorient les fichiers par responsabilité réelle. L
 | `Processes/RotatingOperationLogWriter.cs` | limite, rotation et conservation des journaux | cohérent |
 | `Settings/JsonSettingsStore.cs` | sérialisation atomique JSON | cohérent |
 
-## `GWGUI.Scp`
+## `GWGUI.MediaEngine`
 
 ### Conteneur, flux et contrats
 
 | Fichier | Responsabilité réelle | Constat |
 |---|---|---|
-| `GWGUI.Scp.csproj` | moteur disque indépendant | cohérent, version commune absente |
+| `GWGUI.MediaEngine.csproj` | moteur disque indépendant | cohérent, version commune absente |
 | `ScpCaptureInfo.cs` | résumé d’une capture | cohérent |
 | `ScpImage.cs` | modèles SCP + parser/header/track data | modèles et lecture à séparer |
 | `Flux/FluxBitstream.cs` | conversion timing/cellules | cohérent |

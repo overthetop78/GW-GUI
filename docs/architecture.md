@@ -5,7 +5,7 @@
 - `GWGUI.App` : coque WPF, composition des onglets, contrôles visuels et présentation.
 - `GWGUI.Domain` : modèles et règles métier indépendants de WPF et de Windows.
 - `GWGUI.Infrastructure` : exécution de `gw`, matériel Windows, persistance et services externes.
-- `GWGUI.Scp` : conteneurs, flux, codecs, reconstruction sectorielle, systèmes de fichiers et exploration des images.
+- `GWGUI.MediaEngine` : conteneurs, flux, codecs, reconstruction sectorielle, systèmes de fichiers et exploration des images.
 - `GWGUI.Tests` : tests unitaires, tests d’intégration ciblés et contrôles des corpus locaux.
 
 La cartographie antérieure au refactoring reste conservée dans [`docs/audit`](audit/README.md). Le présent document décrit l’organisation obtenue après la phase 2.
@@ -40,7 +40,7 @@ Les registres `DiskImageContainerRegistry`, `FluxDecoderRegistry`, `FluxEncoderR
 
 ### Primitives partagées
 
-Les opérations communes de bits, CRC, MFM, FM, GCR, lecture circulaire, sélection de révolution et contrôle d’intégrité sont placées dans `GWGUI.Scp/Primitives`, `Flux` et les composants communs de décodage/encodage. Les différences simples de géométrie ou d’ordre des secteurs sont fournies par des politiques ou définitions de format, sans recopier l’algorithme complet.
+Les opérations communes de bits, CRC, MFM, FM, GCR, lecture circulaire, sélection de révolution et contrôle d’intégrité sont placées dans `GWGUI.MediaEngine/Primitives`, `Flux` et les composants communs de décodage/encodage. Les différences simples de géométrie ou d’ordre des secteurs sont fournies par des politiques ou définitions de format, sans recopier l’algorithme complet.
 
 La création cohérente des adresses, blocs, pistes, géométries et interprétations passe notamment par `IsoSectorImageBuilder`, `SectorImageInterpretation`, `AppleSectorImageFactory` et les modèles communs de `SectorImages`.
 

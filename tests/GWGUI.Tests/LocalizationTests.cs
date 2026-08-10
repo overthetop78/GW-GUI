@@ -4,7 +4,7 @@ using System.IO;
 using GWGUI.App.Localization;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
-using GWGUI.Scp.Decoding;
+using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.Tests;
 

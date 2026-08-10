@@ -1,9 +1,9 @@
 using System.IO;
-using GWGUI.Scp;
-using GWGUI.Scp.Containers.Scp;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Images;
-using GWGUI.Scp.SectorImages;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 

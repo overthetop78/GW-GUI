@@ -1,10 +1,10 @@
 using System.Buffers.Binary;
 using System.IO;
-using GWGUI.Scp.Containers.Apple.DiskCopy;
-using GWGUI.Scp.Containers.Apple.TwoImg;
-using GWGUI.Scp.Images;
-using GWGUI.Scp.Recognition.Definitions;
-using GWGUI.Scp.SectorImages;
+using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
+using GWGUI.MediaEngine.Containers.Apple.TwoImg;
+using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 

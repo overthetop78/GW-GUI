@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;

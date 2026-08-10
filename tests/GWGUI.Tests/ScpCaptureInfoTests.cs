@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 using System.IO;
-using GWGUI.Scp.Exploration;
+using GWGUI.MediaEngine.Exploration;
 
 namespace GWGUI.Tests;
 

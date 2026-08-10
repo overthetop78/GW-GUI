@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
@@ -90,6 +90,6 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         }
     }
 
-    private static int Count(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries)
+    private static int Count(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries)
         => entries.Sum(entry => 1 + Count(entry.Children));
 }

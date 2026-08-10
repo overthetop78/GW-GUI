@@ -1,5 +1,5 @@
 using GWGUI.App.Localization;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Controls;
 
@@ -41,7 +41,7 @@ public static class ExplorerDetailsPresenter
             new("Explorer.Modified", item.ModifiedText),
             new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
         };
-        if (item.Entry.Kind == GWGUI.Scp.FileSystems.FileSystemEntryKind.Directory)
+        if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory)
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
         return new(item.Name, item.IconKind, rows);
     }

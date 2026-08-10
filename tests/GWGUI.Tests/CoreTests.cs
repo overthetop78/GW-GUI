@@ -1,8 +1,8 @@
 using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Profiles;
-using GWGUI.Scp;
-using GWGUI.Scp.Containers.Scp;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Naming;
 using GWGUI.Domain.Hardware;
@@ -10,8 +10,8 @@ using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Exploration;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Hardware;
@@ -1135,16 +1135,16 @@ public sealed class CoreTests
     [Fact]
     public void ExplorerDetailsSwitchBetweenDiskAndCentralListItemInformation()
     {
-        var child = new GWGUI.Scp.FileSystems.FileSystemEntry(
-            "README.TXT", GWGUI.Scp.FileSystems.FileSystemEntryKind.File, 42,
+        var child = new GWGUI.MediaEngine.FileSystems.FileSystemEntry(
+            "README.TXT", GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.File, 42,
             new DateTimeOffset(1993, 8, 20, 14, 37, 0, TimeSpan.Zero), "Test comment", 0, 1, true, [], [65, 66]);
-        var folder = new GWGUI.Scp.FileSystems.FileSystemEntry(
-            "DOCS", GWGUI.Scp.FileSystems.FileSystemEntryKind.Directory, 0, null, "", 0, 2, true, [child]);
-        var volume = new GWGUI.Scp.FileSystems.FileSystemVolume(
+        var folder = new GWGUI.MediaEngine.FileSystems.FileSystemEntry(
+            "DOCS", GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory, 0, null, "", 0, 2, true, [child]);
+        var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume(
             "TEST", "Atari TOS FAT12", 737280, 249 * 1024, null, null, [folder], ["warning"]);
 
-        var image = new GWGUI.Scp.SectorImages.SectorImage("atarist.720", 512, 80, 2, 9, []);
-        var diskDetails = ExplorerDetailsPresenter.ForDisk(new GWGUI.Scp.Images.ExploredDiskImage("test.st", image, volume));
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("atarist.720", 512, 80, 2, 9, []);
+        var diskDetails = ExplorerDetailsPresenter.ForDisk(new GWGUI.MediaEngine.Images.ExploredDiskImage("test.st", image, volume));
         var fileDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(child));
         var folderDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(folder));
 

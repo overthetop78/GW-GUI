@@ -4,8 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GWGUI.App.Localization;
 using GWGUI.Domain.Formats;
-using GWGUI.Scp.FileSystems;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Controls;
 

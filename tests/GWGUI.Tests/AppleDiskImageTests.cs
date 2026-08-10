@@ -1,12 +1,12 @@
 using System.IO;
-using GWGUI.Scp;
-using GWGUI.Scp.Containers.Scp;
-using GWGUI.Scp.FileSystems;
-using GWGUI.Scp.FileSystems.Readers;
-using GWGUI.Scp.Images;
-using GWGUI.Scp.SectorImages;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Encoding;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Encoding;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;
 using GWGUI.App.Controls;
@@ -492,7 +492,7 @@ public sealed class AppleDiskImageTests
         Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
     }
 
-    private static string[] Flatten(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
+    private static string[] Flatten(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
         .SelectMany(entry => new[]
         {
             $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"

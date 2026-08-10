@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using GWGUI.Scp.Containers.Amstrad.CpcDsk;
+using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 
 namespace GWGUI.Tests;
 

@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
 
@@ -120,7 +120,7 @@ public sealed class AmstradDiskImageTests
         }
     }
 
-    private static string[] Flatten(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
+    private static string[] Flatten(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
         .SelectMany(entry => new[]
         {
             $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"

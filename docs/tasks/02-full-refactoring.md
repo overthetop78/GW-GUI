@@ -2,7 +2,7 @@
 
 Cette phase reprend entièrement la refactorisation. Les extractions déjà réalisées ne sont pas considérées comme validées tant que leur place, leur responsabilité et leurs dépendances n’ont pas été contrôlées dans cette nouvelle liste.
 
-`AtariScpSectorImageReader.cs`, `MainWindow.xaml.cs`, la racine de `GWGUI.App` et le dossier `GWGUI.Scp/Images` sont des exemples visibles du problème. Ils ne limitent pas le périmètre : **tous les projets et tous les fichiers de production doivent être examinés et rangés**.
+`AtariScpSectorImageReader.cs`, `MainWindow.xaml.cs`, la racine de `GWGUI.App` et le dossier `GWGUI.MediaEngine/Images` sont des exemples visibles du problème. Ils ne limitent pas le périmètre : **tous les projets et tous les fichiers de production doivent être examinés et rangés**.
 
 ## Règles de travail de cette phase
 
@@ -41,7 +41,7 @@ Ces points sont des règles, pas des tâches à cocher.
   - [ ] Couvrir `GWGUI.App`.
   - [ ] Couvrir `GWGUI.Domain`.
   - [ ] Couvrir `GWGUI.Infrastructure`.
-  - [ ] Couvrir `GWGUI.Scp`.
+  - [ ] Couvrir `GWGUI.MediaEngine`.
   - [ ] Couvrir les fichiers de production présents à la racine de chaque projet.
   - [ ] Distinguer les fichiers qui restent à leur place.
   - [ ] Distinguer les fichiers qui doivent seulement être déplacés.
@@ -160,7 +160,7 @@ Ces points sont des règles, pas des tâches à cocher.
 - [ ] Vérifier qu’un service spécifique à un onglet n’est pas présenté comme service global.
 - [ ] Vérifier que les services globaux ne dépendent pas d’un onglet concret.
 
-## 2.3 Réorganiser `GWGUI.Scp`
+## 2.3 Réorganiser `GWGUI.MediaEngine`
 
 ### 2.3.1 Reprendre entièrement le dossier `Images`
 
@@ -380,7 +380,7 @@ Ces points sont des règles, pas des tâches à cocher.
 - [ ] Définir un bloc de contrôle pour `GWGUI.App`.
 - [ ] Définir un bloc de contrôle pour `GWGUI.Domain`.
 - [ ] Définir un bloc de contrôle pour `GWGUI.Infrastructure`.
-- [ ] Définir un bloc de contrôle pour `GWGUI.Scp`.
+- [ ] Définir un bloc de contrôle pour `GWGUI.MediaEngine`.
 - [ ] Définir un bloc ciblé pour la détection multiformat.
 - [ ] Définir un bloc ciblé pour les registres de formats, décodeurs, encodeurs et systèmes de fichiers.
 - [ ] Utiliser le bloc concerné après une série cohérente de déplacements.
@@ -438,7 +438,7 @@ La phase 02 sera terminée uniquement lorsque :
 - la structure cible aura été écrite, contrôlée et validée avant les déplacements ;
 - chaque fichier de production aura une destination et une responsabilité claires ;
 - `MainWindow` et `OptionsWindow` ne concentreront plus les traitements propres aux fonctions ;
-- `GWGUI.App`, `GWGUI.Domain`, `GWGUI.Infrastructure` et `GWGUI.Scp` seront rangés selon leurs responsabilités réelles ;
+- `GWGUI.App`, `GWGUI.Domain`, `GWGUI.Infrastructure` et `GWGUI.MediaEngine` seront rangés selon leurs responsabilités réelles ;
 - les dossiers génériques visibles aujourd’hui ne seront plus des listes plates de fichiers sans organisation suffisante ;
 - la détection automatique, la sélection manuelle et les disquettes multiformats conserveront leur comportement ;
 - les contrôles auront été effectués par blocs rapides, puis une fois complètement à la clôture ;

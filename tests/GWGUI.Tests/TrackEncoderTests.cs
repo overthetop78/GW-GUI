@@ -1,5 +1,5 @@
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Encoding;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Encoding;
 
 namespace GWGUI.Tests;
 

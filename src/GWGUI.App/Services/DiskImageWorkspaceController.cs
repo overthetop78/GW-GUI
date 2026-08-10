@@ -10,8 +10,8 @@ using GWGUI.Domain.Formats;
 using GWGUI.Domain.Settings;
 using GWGUI.Domain.Write;
 using GWGUI.Infrastructure.Processes;
-using GWGUI.Scp;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Services;
 

@@ -1,9 +1,9 @@
-using GWGUI.Scp;
-using GWGUI.Scp.Containers.Scp;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Encoding;
-using GWGUI.Scp.FileSystems;
-using GWGUI.Scp.SectorImages;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 

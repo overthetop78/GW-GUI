@@ -5,11 +5,11 @@ using System.Windows.Media.Imaging;
 using System.Runtime.ExceptionServices;
 using GWGUI.App;
 using GWGUI.App.Rendering;
-using GWGUI.Scp;
-using GWGUI.Scp.Containers.Scp;
-using GWGUI.Scp.Decoding;
-using GWGUI.Scp.Images;
-using GWGUI.Scp.SectorImages;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.SectorImages;
 using SkiaSharp;
 
 namespace GWGUI.Tests;
@@ -88,17 +88,17 @@ public sealed class RealScpCorpusTests
         if (string.IsNullOrWhiteSpace(adfPath)) return;
 
         var expected = await new AdfImageReader().ReadAsync(adfPath);
-        var encoder = new GWGUI.Scp.Encoding.FluxEncoderRegistry();
+        var encoder = new GWGUI.MediaEngine.Encoding.FluxEncoderRegistry();
         var tracks = new List<ScpTrack>();
         for (var cylinder = 0; cylinder < expected.Cylinders; cylinder++)
         for (var head = 0; head < expected.Heads; head++)
         {
             var logicalStart = (cylinder * expected.Heads + head) * expected.SectorsPerTrack;
             var sectors = Enumerable.Range(0, expected.SectorsPerTrack)
-                .Select(number => new GWGUI.Scp.Encoding.TrackSector(number, expected.GetBlock(logicalStart + number).ToArray()))
+                .Select(number => new GWGUI.MediaEngine.Encoding.TrackSector(number, expected.GetBlock(logicalStart + number).ToArray()))
                 .ToArray();
             var cellTicks = expected.SectorsPerTrack == 22 ? 20u : 40u;
-            var encoded = encoder.Encode("amiga.mfm", new GWGUI.Scp.Encoding.TrackEncodeRequest(cylinder, head, sectors, BitCellTicks: cellTicks));
+            var encoded = encoder.Encode("amiga.mfm", new GWGUI.MediaEngine.Encoding.TrackEncodeRequest(cylinder, head, sectors, BitCellTicks: cellTicks));
             tracks.Add(new((byte)(cylinder * 2 + head), cylinder, head, [encoded.Revolution]));
         }
         var scp = new ScpImage(new(0, 0, 1, 0, 159, ScpFlags.IndexAligned, 16, 0, 0, 0), tracks, true, 0);
@@ -108,7 +108,7 @@ public sealed class RealScpCorpusTests
         Assert.Empty(actual.MissingBlocks);
         for (var logical = 0; logical < expected.BlockCount; logical++)
             Assert.Equal(expected.GetBlock(logical).ToArray(), actual.GetBlock(logical).ToArray());
-        var volume = new GWGUI.Scp.FileSystems.Readers.AmigaDosFileSystemReader().Read(actual);
+        var volume = new GWGUI.MediaEngine.FileSystems.Readers.AmigaDosFileSystemReader().Read(actual);
         Assert.False(string.IsNullOrWhiteSpace(volume.Name));
         Assert.Empty(volume.Warnings);
     }
@@ -122,7 +122,7 @@ public sealed class RealScpCorpusTests
         var image = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(path);
         Assert.True(image.TryGetBlock(image.BlockCount / 2, out _),
             $"AmigaDOS root block {image.BlockCount / 2} is missing; decoded {image.AvailableBlocks.Count}/{image.BlockCount} blocks.");
-        var volume = new GWGUI.Scp.FileSystems.Readers.AmigaDosFileSystemReader().Read(image);
+        var volume = new GWGUI.MediaEngine.FileSystems.Readers.AmigaDosFileSystemReader().Read(image);
         Assert.False(string.IsNullOrWhiteSpace(volume.Name));
     }
 
@@ -219,7 +219,7 @@ public sealed class RealScpCorpusTests
         return heads;
     }
 
-    private static string[] Flatten(IEnumerable<GWGUI.Scp.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
+    private static string[] Flatten(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
         .SelectMany(entry => new[]
         {
             $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"

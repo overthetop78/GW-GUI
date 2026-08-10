@@ -1,6 +1,6 @@
 using System.IO;
-using GWGUI.Scp.FileSystems.Readers;
-using GWGUI.Scp.Images;
+using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
 
