@@ -24,8 +24,7 @@ internal static class FluxTimingEstimator
         var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         if (mode == FluxTimingMode.Fm)
         {
-            var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
-            return Math.Max(1, sorted[percentile]);
+            return Math.Max(FluxDecodingParameters.MinimumBitCellTicks, SelectLowPercentile(sorted));
         }
         var sampleLength = Math.Max(1, sorted.Length / 5); var lowerCluster = sorted.Take(sampleLength).ToArray(); var robustLower = lowerCluster[lowerCluster.Length / 2];
         return Math.Max(1, robustLower / 2d);
@@ -42,5 +41,14 @@ internal static class FluxTimingEstimator
         if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
         return Math.Max(1, sorted[percentile]);
+    }
+
+    /// <summary>Sélectionne un intervalle du percentile bas afin que les transitions FM les plus courtes déterminent la cellule et évitent un verrouillage sur deux cellules.</summary>
+    /// <param name="sorted">Intervalles strictement positifs classés par ordre croissant.</param>
+    /// <returns>Intervalle représentatif du percentile bas.</returns>
+    private static uint SelectLowPercentile(IReadOnlyList<uint> sorted)
+    {
+        var percentile = Math.Min(sorted.Count / FluxDecodingParameters.LowPercentileDivisor, sorted.Count - 1);
+        return sorted[percentile];
     }
 }

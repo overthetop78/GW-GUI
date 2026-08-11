@@ -1670,10 +1670,10 @@
       - [x] Conserver l'exclusion du premier intervalle pour les estimations non-FM et NRZI, car il commence à l'impulsion d'index.
       - [x] Conserver le premier intervalle dans l'estimation FM comme le fait actuellement l'algorithme.
       - [x] Réutiliser les intervalles complets comme repli lorsque l'exclusion du premier ne laisse aucun échantillon positif.
-    - [ ] Estimation FM
-      - [ ] Extraire le calcul de percentile bas dans une fonction privée nommée.
-      - [ ] Utiliser les définitions du percentile et de la durée minimale sans conserver `50`, zéro ou un comme paramètres bruts de l'algorithme.
-      - [ ] Traduire les commentaires anglais sur les transitions FM et le risque de verrouillage sur deux cellules en CSDoc française de cette règle.
+    - [x] Estimation FM
+      - [x] Extraire le calcul de percentile bas dans une fonction privée nommée.
+      - [x] Utiliser les définitions du percentile et de la durée minimale sans conserver `50`, zéro ou un comme paramètres bruts de l'algorithme.
+      - [x] Traduire les commentaires anglais sur les transitions FM et le risque de verrouillage sur deux cellules en CSDoc française de cette règle.
     - [ ] Estimation non-FM
       - [ ] Extraire la sélection du cinquième inférieur et de sa médiane dans une fonction privée nommée.
       - [ ] Utiliser les définitions du cinquième, de la médiane et de la division par deux.
