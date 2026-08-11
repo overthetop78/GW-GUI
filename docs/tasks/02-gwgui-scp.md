@@ -2205,13 +2205,13 @@
       - [x] Exposer les copies sous forme de collections réellement non modifiables.
       - [x] Représenter l'absence de secteurs par une collection vide non modifiable plutôt que par une propriété `Sectors` nulle.
       - [x] Adapter les consommateurs qui utilisent encore `Sectors?`, `Sectors ?? []` ou le paramètre optionnel nul.
-    - [ ] Présentation et documentation
-      - [ ] Présenter chaque valeur de `FluxStructureKind` sur une ligne lisible avec sa CSDoc française.
-      - [ ] Présenter chaque valeur de `SectorIntegrityKind` sur une ligne lisible avec sa CSDoc française.
-      - [ ] Conserver sur une seule ligne les signatures de constructeurs qui tiennent correctement après remplacement des records positionnels.
-      - [ ] Ajouter la CSDoc française à chaque type, propriété et constructeur.
-      - [ ] Documenter les unités de `BitOffset`, `BitLength`, `SizeBytes`, `Confidence` et `EstimatedBitCellTicks`.
-      - [ ] Documenter la signification de l'intégrité indéterminée et la différence entre CRC et checksum.
+    - [x] Présentation et documentation
+      - [x] Présenter chaque valeur de `FluxStructureKind` sur une ligne lisible avec sa CSDoc française.
+      - [x] Présenter chaque valeur de `SectorIntegrityKind` sur une ligne lisible avec sa CSDoc française.
+      - [x] Conserver sur une seule ligne les signatures de constructeurs qui tiennent correctement après remplacement des records positionnels.
+      - [x] Ajouter la CSDoc française à chaque type, propriété et constructeur.
+      - [x] Documenter les unités de `BitOffset`, `BitLength`, `SizeBytes`, `Confidence` et `EstimatedBitCellTicks`.
+      - [x] Documenter la signification de l'intégrité indéterminée et la différence entre CRC et checksum.
     - [ ] Vérification des modèles
       - [ ] Tester chaque valeur des deux enums utilisée par les décodeurs.
       - [ ] Tester qu'une modification de la collection source ne modifie pas `DecodedSector.Data` ni `DecodedSector.Tag`.
