@@ -16,7 +16,7 @@ internal static class FluxDecoderScoring
     /// <param name="result">Résultat à évaluer.</param><returns>Score automatique.</returns>
     public static double Calculate(FluxDecodeResult result)
     {
-        var sectors = result.Sectors ?? [];
+        var sectors = result.Sectors;
         var valid = sectors.Count(sector => sector.IntegrityValid == true);
         var invalid = sectors.Count(sector => sector.IntegrityValid == false);
         if (valid > 0) return ValidSectorBaseScore + valid / (double)Math.Max(1, valid + invalid) * ValidSectorRatioWeight + result.Confidence * ValidSectorConfidenceWeight;
@@ -31,7 +31,7 @@ internal static class FluxDecoderScoring
     /// <param name="result">Résultat à évaluer.</param><returns>Composantes ordonnées du score.</returns>
     public static (int ValidSectors, int InvalidSectorPenalty, int SectorsWithData, double Confidence, int Structures) CalculateExplicit(FluxDecodeResult result)
     {
-        var sectors = result.Sectors ?? [];
+        var sectors = result.Sectors;
         return (sectors.Count(sector => sector.IntegrityValid == true), -sectors.Count(sector => sector.IntegrityValid == false), sectors.Count(sector => sector.Data is not null), result.Confidence, result.Structures.Count);
     }
 }

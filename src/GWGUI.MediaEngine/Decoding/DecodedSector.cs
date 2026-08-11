@@ -1,5 +1,33 @@
+using System.Collections.ObjectModel;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décrit un secteur reconstruit à partir d'un flux.</summary>
-/// <param name="Cylinder">Numéro de cylindre.</param><param name="Head">Numéro de face.</param><param name="Number">Numéro de secteur.</param><param name="SizeCode">Code de taille du format.</param><param name="SizeBytes">Taille en octets.</param><param name="IntegrityValid">Résultat du contrôle d'intégrité, ou valeur nulle s'il est indisponible.</param><param name="BitOffset">Offset de la structure en bits.</param><param name="IntegrityKind">Nature du contrôle d'intégrité.</param><param name="Data">Données du secteur lorsqu'elles sont disponibles.</param><param name="Tag">Étiquette du secteur lorsqu'elle existe.</param>
-public sealed record DecodedSector(byte Cylinder, byte Head, int Number, byte SizeCode, int SizeBytes, bool? IntegrityValid, int BitOffset, SectorIntegrityKind IntegrityKind = SectorIntegrityKind.Crc, IReadOnlyList<byte>? Data = null, IReadOnlyList<byte>? Tag = null);
+public sealed record DecodedSector
+{
+    /// <summary>Initialise un secteur décodé en copiant ses données et son étiquette lorsqu'elles sont fournies.</summary>
+    public DecodedSector(byte Cylinder, byte Head, int Number, byte SizeCode, int SizeBytes, bool? IntegrityValid, int BitOffset, SectorIntegrityKind IntegrityKind = SectorIntegrityKind.Crc, IReadOnlyList<byte>? Data = null, IReadOnlyList<byte>? Tag = null)
+    {
+        this.Cylinder = Cylinder;
+        this.Head = Head;
+        this.Number = Number;
+        this.SizeCode = SizeCode;
+        this.SizeBytes = SizeBytes;
+        this.IntegrityValid = IntegrityValid;
+        this.BitOffset = BitOffset;
+        this.IntegrityKind = IntegrityKind;
+        this.Data = Data is null ? null : new ReadOnlyCollection<byte>(Data.ToArray());
+        this.Tag = Tag is null ? null : new ReadOnlyCollection<byte>(Tag.ToArray());
+    }
+
+    public byte Cylinder { get; init; }
+    public byte Head { get; init; }
+    public int Number { get; init; }
+    public byte SizeCode { get; init; }
+    public int SizeBytes { get; init; }
+    public bool? IntegrityValid { get; init; }
+    public int BitOffset { get; init; }
+    public SectorIntegrityKind IntegrityKind { get; init; }
+    public IReadOnlyList<byte>? Data { get; }
+    public IReadOnlyList<byte>? Tag { get; }
+}

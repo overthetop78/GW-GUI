@@ -30,7 +30,7 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
             if (revolution is null) continue;
             var decoderId = DecoderIdFor(track.Flags);
             var decoded = decoders.Decode(decoderId, revolution);
-            foreach (var sector in decoded.Sectors ?? [])
+            foreach (var sector in decoded.Sectors)
             {
                 if (sector.Data is null || sector.Number < 0) continue;
                 var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);

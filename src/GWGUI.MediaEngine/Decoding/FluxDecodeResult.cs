@@ -1,5 +1,27 @@
+using System.Collections.ObjectModel;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Regroupe le résultat complet produit par un décodeur de flux.</summary>
-/// <param name="DecoderId">Identifiant technique du décodeur.</param><param name="DisplayName">Nom affiché du décodeur.</param><param name="Confidence">Confiance normalisée entre zéro et un.</param><param name="EstimatedBitCellTicks">Durée estimée d'une cellule en ticks.</param><param name="Structures">Structures reconnues.</param><param name="DecodedBytes">Octets décodés.</param><param name="Sectors">Secteurs reconstruits lorsqu'ils sont disponibles.</param>
-public sealed record FluxDecodeResult(string DecoderId, string DisplayName, double Confidence, double EstimatedBitCellTicks, IReadOnlyList<FluxStructure> Structures, IReadOnlyList<byte> DecodedBytes, IReadOnlyList<DecodedSector>? Sectors = null);
+public sealed record FluxDecodeResult
+{
+    /// <summary>Initialise un résultat de décodage en copiant toutes les collections fournies.</summary>
+    public FluxDecodeResult(string DecoderId, string DisplayName, double Confidence, double EstimatedBitCellTicks, IReadOnlyList<FluxStructure> Structures, IReadOnlyList<byte> DecodedBytes, IReadOnlyList<DecodedSector>? Sectors = null)
+    {
+        this.DecoderId = DecoderId;
+        this.DisplayName = DisplayName;
+        this.Confidence = Confidence;
+        this.EstimatedBitCellTicks = EstimatedBitCellTicks;
+        this.Structures = new ReadOnlyCollection<FluxStructure>(Structures.ToArray());
+        this.DecodedBytes = new ReadOnlyCollection<byte>(DecodedBytes.ToArray());
+        this.Sectors = new ReadOnlyCollection<DecodedSector>((Sectors ?? []).ToArray());
+    }
+
+    public string DecoderId { get; init; }
+    public string DisplayName { get; init; }
+    public double Confidence { get; init; }
+    public double EstimatedBitCellTicks { get; init; }
+    public IReadOnlyList<FluxStructure> Structures { get; }
+    public IReadOnlyList<byte> DecodedBytes { get; }
+    public IReadOnlyList<DecodedSector> Sectors { get; }
+}

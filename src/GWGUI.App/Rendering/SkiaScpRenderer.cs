@@ -326,7 +326,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
     {
         if (decoded is not null)
         {
-            var sectors = decoded.Sectors ?? [];
+            var sectors = decoded.Sectors;
             if (sectors.Any(sector => sector.IntegrityValid == false))
                 return ScpTrackVisualState.Anomaly;
             if (sectors.Count > 0 && sectors.All(sector => sector.IntegrityValid == true))

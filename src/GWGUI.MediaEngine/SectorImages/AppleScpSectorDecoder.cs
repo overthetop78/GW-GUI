@@ -19,7 +19,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
                 var decoded = decoderId == FluxCodecIds.AppleMacGcr
                     ? DecodeMacTrack(track, track.Revolutions[revolution])
                     : decoders.Decode(decoderId, track.Revolutions[revolution]);
-                foreach (var sector in decoded.Sectors ?? [])
+                foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is not { Count: var length } || length != size) continue;
                     var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);
@@ -62,7 +62,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         foreach (var factor in factors)
         {
             var candidate = _macDecoder.DecodeAtBitCell(revolution, initial * factor);
-            var plausible = candidate.Sectors?.Where(sector => sector.Data?.Count == 512 &&
+            var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == 512 &&
                 sector.Cylinder == track.Cylinder && sector.Head == track.Head &&
                 sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
             var score = plausible.Select(sector => sector.Number).Distinct().Count() * 100 +

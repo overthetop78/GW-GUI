@@ -14,8 +14,8 @@ internal sealed class AppleTrackDecodeSelector
     /// <returns>Candidats Apple II standard et RWTS18 accompagnés de leurs scores.</returns>
     public AppleTrackDecodeResult Decode(bool[] bits, int track)
     {
-        var standard = (standardDecoder.DecodeBits(bits).Sectors ?? []).Where(sector => sector.Cylinder == track && sector.Number is >= AppleTrackSelectionRules.StandardMinimumSectorNumber and <= AppleTrackSelectionRules.StandardMaximumSectorNumber && sector.Data is { Count: AppleTrackSelectionRules.StandardSectorSize }).ToArray();
-        var rwts18 = (rwts18Decoder.DecodeBits(bits).Sectors ?? []).Where(sector => sector.Cylinder == track && sector.Number is >= AppleTrackSelectionRules.Rwts18MinimumSectorNumber and <= AppleTrackSelectionRules.Rwts18MaximumSectorNumber && sector.Data is { Count: AppleTrackSelectionRules.Rwts18SectorSize }).ToArray();
+        var standard = standardDecoder.DecodeBits(bits).Sectors.Where(sector => sector.Cylinder == track && sector.Number is >= AppleTrackSelectionRules.StandardMinimumSectorNumber and <= AppleTrackSelectionRules.StandardMaximumSectorNumber && sector.Data is { Count: AppleTrackSelectionRules.StandardSectorSize }).ToArray();
+        var rwts18 = rwts18Decoder.DecodeBits(bits).Sectors.Where(sector => sector.Cylinder == track && sector.Number is >= AppleTrackSelectionRules.Rwts18MinimumSectorNumber and <= AppleTrackSelectionRules.Rwts18MaximumSectorNumber && sector.Data is { Count: AppleTrackSelectionRules.Rwts18SectorSize }).ToArray();
         return new(standard, Score(standard), rwts18, Score(rwts18));
     }
 

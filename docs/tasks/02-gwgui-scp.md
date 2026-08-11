@@ -2198,13 +2198,13 @@
       - [x] Créer `Decoding/FluxDecodeResult.cs` et y déplacer uniquement le record `FluxDecodeResult`.
       - [x] Conserver les types dans le namespace `GWGUI.MediaEngine.Decoding` afin de ne pas modifier leurs consommateurs pendant la séparation.
       - [x] Supprimer `FluxDecodeModels.cs` après le déplacement des cinq types.
-    - [ ] Immutabilité des résultats
-      - [ ] Remplacer les records positionnels contenant des collections par des constructions qui copient les collections reçues avant de les exposer.
-      - [ ] Copier `DecodedSector.Data` et `DecodedSector.Tag` lorsqu'elles sont fournies.
-      - [ ] Copier `FluxDecodeResult.Structures`, `DecodedBytes` et `Sectors` lorsqu'ils sont fournis.
-      - [ ] Exposer les copies sous forme de collections réellement non modifiables.
-      - [ ] Représenter l'absence de secteurs par une collection vide non modifiable plutôt que par une propriété `Sectors` nulle.
-      - [ ] Adapter les consommateurs qui utilisent encore `Sectors?`, `Sectors ?? []` ou le paramètre optionnel nul.
+    - [x] Immutabilité des résultats
+      - [x] Remplacer les records positionnels contenant des collections par des constructions qui copient les collections reçues avant de les exposer.
+      - [x] Copier `DecodedSector.Data` et `DecodedSector.Tag` lorsqu'elles sont fournies.
+      - [x] Copier `FluxDecodeResult.Structures`, `DecodedBytes` et `Sectors` lorsqu'ils sont fournis.
+      - [x] Exposer les copies sous forme de collections réellement non modifiables.
+      - [x] Représenter l'absence de secteurs par une collection vide non modifiable plutôt que par une propriété `Sectors` nulle.
+      - [x] Adapter les consommateurs qui utilisent encore `Sectors?`, `Sectors ?? []` ou le paramètre optionnel nul.
     - [ ] Présentation et documentation
       - [ ] Présenter chaque valeur de `FluxStructureKind` sur une ligne lisible avec sa CSDoc française.
       - [ ] Présenter chaque valeur de `SectorIntegrityKind` sur une ligne lisible avec sa CSDoc française.

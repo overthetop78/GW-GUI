@@ -24,7 +24,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             for (var revolution = 0; revolution < physicalTrack.Revolutions.Count; revolution++)
             {
                 var decoded = decoders.Decode(FluxCodecIds.CommodoreGcr, physicalTrack.Revolutions[revolution]);
-                foreach (var sector in decoded.Sectors ?? [])
+                foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is null || sector.Cylinder is < 1 or > DiskGeometryConstants.EightyTrackCylinderCount || sector.Number < 0) continue;
                     var key = ((int)sector.Cylinder, sector.Number);
@@ -66,7 +66,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
             {
                 var decoded = decoders.Decode(FluxCodecIds.IsoMfm, track.Revolutions[revolution]);
-                foreach (var sector in decoded.Sectors ?? [])
+                foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is null || sector.Data.Count != 512 || sector.Number is < 1 or > 10) continue;
                     var address = new SectorAddress(track.Cylinder, track.Head, sector.Number);

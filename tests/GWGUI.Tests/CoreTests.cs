@@ -3061,7 +3061,7 @@ public sealed class CoreTests
     {
         var invalid = new FluxDecodeResult("false.fm", "False FM", 1, 40, [new(FluxStructureKind.DeletedDataAddressMark, 0, 16, "false")], [], [new(0, 0, 1, 2, 512, false, 0)]);
         var raw = new FluxDecodeResult("raw", "Raw", .05, 40, [], []);
-        var valid = invalid with { DecoderId = "valid.mfm", Sectors = [new(0, 0, 1, 2, 512, true, 0)] };
+        var valid = new FluxDecodeResult("valid.mfm", invalid.DisplayName, invalid.Confidence, invalid.EstimatedBitCellTicks, invalid.Structures, invalid.DecodedBytes, [new(0, 0, 1, 2, 512, true, 0)]);
 
         Assert.True(AutomaticScore(raw) > AutomaticScore(invalid));
         Assert.True(AutomaticScore(valid) > AutomaticScore(raw));

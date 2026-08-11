@@ -17,7 +17,7 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
             for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
             {
                 var result = decoders.Decode(FluxCodecIds.AmigaMfm, track.Revolutions[revolution]);
-                foreach (var sector in result.Sectors ?? [])
+                foreach (var sector in result.Sectors)
                 {
                     if (sector.Data is not { Count: 512 } || sector.Cylinder != track.Cylinder || sector.Head != track.Head) continue;
                     var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);

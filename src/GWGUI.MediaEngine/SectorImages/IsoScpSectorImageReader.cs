@@ -18,7 +18,7 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
             {
                 var result = policy.DecoderIds.Select(decoder => decoders.Decode(decoder, track.Revolutions[revolution]))
                     .OrderByDescending(Score).First();
-                foreach (var sector in result.Sectors ?? [])
+                foreach (var sector in result.Sectors)
                 {
                     if (sector.Data is null || sector.Number < 0) continue;
                     AddCandidate(physicalCandidates, new(track.Cylinder, track.Head, sector.Number), sector, revolution + 1);
@@ -33,7 +33,7 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
         return policy.Build(formatId, new(candidates, physicalCandidates));
     }
 
-    private static double Score(FluxDecodeResult result) => (result.Sectors?.Count(sector => sector.Data is not null) ?? 0) * 10 + result.Confidence;
+    private static double Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.Data is not null) * 10 + result.Confidence;
 
     private static void AddCandidate(Dictionary<SectorAddress, List<IsoSectorCandidate>> candidates, SectorAddress address, DecodedSector sector, int revolution)
     {

@@ -17,7 +17,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     {
         var centre = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);
         var first = DecodeCore(FluxTransitionDecoder.DecodePll(revolution.FluxIntervals, centre));
-        if (first.Sectors?.All(sector => sector.Data is not null && sector.IntegrityValid == true) == true) return first;
+        if (first.Sectors.All(sector => sector.Data is not null && sector.IntegrityValid == true)) return first;
 
         var best = first;
         var bestScore = Score(first);
@@ -88,7 +88,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     /// <param name="result">Résultat à évaluer.</param><returns>Score de sélection calculé.</returns>
     private static int Score(FluxDecodeResult result)
     {
-        var sectors = result.Sectors ?? [];
+        var sectors = result.Sectors;
         return sectors.Count(sector => sector.IntegrityValid == true) * 1000
             + sectors.Count(sector => sector.Data is not null) * 10
             + sectors.Count;

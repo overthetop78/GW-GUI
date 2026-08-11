@@ -27,7 +27,7 @@ public sealed class SectorImageFluxVisualizerTests
         var decoded = new FluxDecoderRegistry().Decode(decoderId, visualization.Tracks.Single().Revolutions.Single());
 
         Assert.Single(visualization.Tracks);
-        Assert.NotEmpty(decoded.Sectors ?? []);
+        Assert.NotEmpty(decoded.Sectors);
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public sealed class SectorImageFluxVisualizerTests
         var visualization = new SectorImageFluxVisualizer().Create(image);
         var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", visualization.Tracks.Single().Revolutions.Single());
 
-        Assert.Equal(16, decoded.Sectors?.Count);
+        Assert.Equal(16, decoded.Sectors.Count);
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public sealed class SectorImageFluxVisualizerTests
         var visualization = new SectorImageFluxVisualizer().Create(image);
         var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", visualization.Tracks.Single().Revolutions.Single());
 
-        Assert.Equal(16, decoded.Sectors?.Count);
+        Assert.Equal(16, decoded.Sectors.Count);
     }
 
     [Fact]
@@ -66,8 +66,8 @@ public sealed class SectorImageFluxVisualizerTests
         var visualization = new SectorImageFluxVisualizer().Create(image);
         var decoded = new FluxDecoderRegistry().Decode("dec.rx02", visualization.Tracks.Single().Revolutions.Single());
 
-        Assert.Equal(26, decoded.Sectors?.Count);
-        Assert.All(decoded.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
+        Assert.Equal(26, decoded.Sectors.Count);
+        Assert.All(decoded.Sectors, sector => Assert.True(sector.IntegrityValid));
     }
 
     [Theory]
@@ -103,10 +103,10 @@ public sealed class SectorImageFluxVisualizerTests
         Assert.Equal(46, image.Cylinders);
         Assert.Equal(2, image.Heads);
         Assert.Equal(92, visualization.Tracks.Count);
-        Assert.Equal(22, first.Sectors?.Count);
-        Assert.Equal(15, last.Sectors?.Count);
-        Assert.All(first.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
-        Assert.All(last.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
+        Assert.Equal(22, first.Sectors.Count);
+        Assert.Equal(15, last.Sectors.Count);
+        Assert.All(first.Sectors, sector => Assert.True(sector.IntegrityValid));
+        Assert.All(last.Sectors, sector => Assert.True(sector.IntegrityValid));
     }
 
     [Fact]
@@ -124,10 +124,10 @@ public sealed class SectorImageFluxVisualizerTests
         var last = decoders.Decode("applemac.gcr", visualization.Tracks[^1].Revolutions[0]);
 
         Assert.Equal(80, visualization.Tracks.Count);
-        Assert.Equal(12, first.Sectors?.Count);
-        Assert.Equal(8, last.Sectors?.Count);
-        Assert.All(first.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
-        Assert.All(last.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
+        Assert.Equal(12, first.Sectors.Count);
+        Assert.Equal(8, last.Sectors.Count);
+        Assert.All(first.Sectors, sector => Assert.True(sector.IntegrityValid));
+        Assert.All(last.Sectors, sector => Assert.True(sector.IntegrityValid));
     }
 
     [Fact]
@@ -142,7 +142,7 @@ public sealed class SectorImageFluxVisualizerTests
         var decoded = new FluxDecoderRegistry().Decode("iso.mfm", visualization.Tracks[0].Revolutions[0]);
 
         Assert.Equal(160, visualization.Tracks.Count);
-        Assert.Equal(10, decoded.Sectors?.Count);
+        Assert.Equal(10, decoded.Sectors.Count);
         Assert.Contains(visualization.Tracks, track => track.Cylinder == 79 && track.Head == 1);
     }
 
@@ -182,7 +182,7 @@ public sealed class SectorImageFluxVisualizerTests
         var decoded = new FluxDecoderRegistry().Decode("iso.fm", visualization.Tracks[0].Revolutions[0]);
 
         Assert.Equal(40, visualization.Tracks.Count);
-        Assert.Equal(18, decoded.Sectors?.Count);
+        Assert.Equal(18, decoded.Sectors.Count);
     }
 
     [Fact]
@@ -201,10 +201,10 @@ public sealed class SectorImageFluxVisualizerTests
         Assert.Equal(80, image.Cylinders);
         Assert.Equal(2, image.Heads);
         Assert.Empty(image.MissingBlocks);
-        Assert.Equal(16, first.Sectors?.Count);
-        Assert.Equal(13, last.Sectors?.Count);
-        Assert.All(first.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
-        Assert.All(last.Sectors ?? [], sector => Assert.True(sector.IntegrityValid));
+        Assert.Equal(16, first.Sectors.Count);
+        Assert.Equal(13, last.Sectors.Count);
+        Assert.All(first.Sectors, sector => Assert.True(sector.IntegrityValid));
+        Assert.All(last.Sectors, sector => Assert.True(sector.IntegrityValid));
     }
 
     private sealed class FixedScpReader(ScpImage image) : IScpReader
