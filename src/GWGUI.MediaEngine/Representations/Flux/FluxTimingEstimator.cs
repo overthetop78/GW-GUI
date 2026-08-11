@@ -19,9 +19,9 @@ internal static class FluxTimingEstimator
     /// <returns>Durée estimée d'une cellule, en ticks.</returns>
     public static double EstimateBitCell(IReadOnlyList<uint> intervals, FluxTimingMode mode)
     {
-        if (intervals.Count == 0) return 1;
+        if (intervals.Count == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         var samples = mode == FluxTimingMode.Fm ? intervals : intervals.Skip(1);
-        var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return 1;
+        var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         if (mode == FluxTimingMode.Fm)
         {
             var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
@@ -36,10 +36,10 @@ internal static class FluxTimingEstimator
     /// <returns>Durée estimée d'une cellule NRZI, en ticks.</returns>
     public static double EstimateNrziBitCell(IReadOnlyList<uint> intervals)
     {
-        if (intervals.Count == 0) return 1;
+        if (intervals.Count == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         var sorted = intervals.Skip(1).Where(value => value > 0).Order().ToArray();
         if (sorted.Length == 0) sorted = intervals.Where(value => value > 0).Order().ToArray();
-        if (sorted.Length == 0) return 1;
+        if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
         return Math.Max(1, sorted[percentile]);
     }

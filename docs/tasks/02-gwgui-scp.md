@@ -1665,11 +1665,11 @@
     - [x] Conserver des fabriques clairement nommées pour que les décodeurs n'aient pas à fournir cet enum lorsque leur mode est déjà imposé par la méthode choisie.
     - [x] Documenter en français l'enum et chacune de ses valeurs.
   - [ ] `Representations/Flux/FluxTimingEstimator.cs`
-    - [ ] Validation et échantillons
-      - [ ] Retourner la durée minimale nommée pour une collection vide ou ne contenant aucun intervalle positif.
-      - [ ] Conserver l'exclusion du premier intervalle pour les estimations non-FM et NRZI, car il commence à l'impulsion d'index.
-      - [ ] Conserver le premier intervalle dans l'estimation FM comme le fait actuellement l'algorithme.
-      - [ ] Réutiliser les intervalles complets comme repli lorsque l'exclusion du premier ne laisse aucun échantillon positif.
+    - [x] Validation et échantillons
+      - [x] Retourner la durée minimale nommée pour une collection vide ou ne contenant aucun intervalle positif.
+      - [x] Conserver l'exclusion du premier intervalle pour les estimations non-FM et NRZI, car il commence à l'impulsion d'index.
+      - [x] Conserver le premier intervalle dans l'estimation FM comme le fait actuellement l'algorithme.
+      - [x] Réutiliser les intervalles complets comme repli lorsque l'exclusion du premier ne laisse aucun échantillon positif.
     - [ ] Estimation FM
       - [ ] Extraire le calcul de percentile bas dans une fonction privée nommée.
       - [ ] Utiliser les définitions du percentile et de la durée minimale sans conserver `50`, zéro ou un comme paramètres bruts de l'algorithme.
