@@ -2566,36 +2566,36 @@
       - [x] Tester un bloc de 256 octets avec checksum valide puis invalide.
       - [x] Tester une synchronisation trop courte, un bloc tronqué, un en-tête sans données et un bloc non apparié.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/DataGeneralFmDecoder.cs`
-    - [ ] Définitions Data General 2F
-      - [ ] Créer `Decoding/Definitions/DataGeneralFmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, les deux octets de synchronisation et leur longueur FM encodée.
-      - [ ] Y définir les deux octets d'identité, les positions et masques du cylindre, de la face et du secteur, ainsi que la limite de numéro de secteur.
-      - [ ] Y définir les distances minimale `32` et maximale `256` entre l'en-tête et la synchronisation des données.
-      - [ ] Y définir la taille sectorielle de 512 octets, les deux octets de checksum, la taille totale de 514 octets, la face et le code de taille produits.
-      - [ ] Remplacer les valeurs, identifiants, noms et descriptions bruts correspondants par ces définitions.
-    - [ ] Checksum commun
-      - [ ] Créer une opération de checksum Data General commune au décodeur et à `DataGeneralFmTrackEncoder.cs`.
-      - [ ] Déplacer dans cette opération l'itération finale avec l'octet nul actuellement dupliquée dans les deux fichiers.
-      - [ ] Raccorder le décodeur et l'encodeur à l'opération commune puis supprimer leurs méthodes `Checksum` locales.
-    - [ ] Décodage et résultat
-      - [ ] Extraire l'identification d'une paire de synchronisations en-tête/données dans une méthode nommée.
-      - [ ] Extraire le décodage des deux octets d'identité et de leurs champs dans un modèle nommé.
-      - [ ] Extraire la lecture des 512 octets de données et des deux octets de checksum dans une méthode nommée.
-      - [ ] Renseigner les 512 octets décodés dans le `DecodedSector` au lieu de les conserver uniquement dans la liste globale d'octets.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur et état du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Data General actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et à l'opération de checksum Data General.
-    - [ ] Vérification du groupe Data General
-      - [ ] Tester l'encodage puis la détection des deux synchronisations FM.
-      - [ ] Tester les limites de distance acceptées entre l'en-tête et les données.
-      - [ ] Tester le décodage du cylindre, de la face et des secteurs 0 à 7 puis le rejet d'un secteur supérieur.
-      - [ ] Tester un secteur complet, un bloc tronqué, un checksum valide et un checksum invalide.
-      - [ ] Vérifier la charge utile, la taille, le code de taille, l'intégrité, les structures et la confiance produits.
+  - [x] `Decoding/Decoders/DataGeneralFmDecoder.cs`
+    - [x] Définitions Data General 2F
+      - [x] Créer `Decoding/Definitions/DataGeneralFmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, les deux octets de synchronisation et leur longueur FM encodée.
+      - [x] Y définir les deux octets d'identité, les positions et masques du cylindre, de la face et du secteur, ainsi que la limite de numéro de secteur.
+      - [x] Y définir les distances minimale `32` et maximale `256` entre l'en-tête et la synchronisation des données.
+      - [x] Y définir la taille sectorielle de 512 octets, les deux octets de checksum, la taille totale de 514 octets, la face et le code de taille produits.
+      - [x] Remplacer les valeurs, identifiants, noms et descriptions bruts correspondants par ces définitions.
+    - [x] Checksum commun
+      - [x] Créer une opération de checksum Data General commune au décodeur et à `DataGeneralFmTrackEncoder.cs`.
+      - [x] Déplacer dans cette opération l'itération finale avec l'octet nul actuellement dupliquée dans les deux fichiers.
+      - [x] Raccorder le décodeur et l'encodeur à l'opération commune puis supprimer leurs méthodes `Checksum` locales.
+    - [x] Décodage et résultat
+      - [x] Extraire l'identification d'une paire de synchronisations en-tête/données dans une méthode nommée.
+      - [x] Extraire le décodage des deux octets d'identité et de leurs champs dans un modèle nommé.
+      - [x] Extraire la lecture des 512 octets de données et des deux octets de checksum dans une méthode nommée.
+      - [x] Renseigner les 512 octets décodés dans le `DecodedSector` au lieu de les conserver uniquement dans la liste globale d'octets.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur et état du checksum.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Data General actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et à l'opération de checksum Data General.
+    - [x] Vérification du groupe Data General
+      - [x] Tester l'encodage puis la détection des deux synchronisations FM.
+      - [x] Tester les limites de distance acceptées entre l'en-tête et les données.
+      - [x] Tester le décodage du cylindre, de la face et des secteurs 0 à 7 puis le rejet d'un secteur supérieur.
+      - [x] Tester un secteur complet, un bloc tronqué, un checksum valide et un checksum invalide.
+      - [x] Vérifier la charge utile, la taille, le code de taille, l'intégrité, les structures et la confiance produits.
   - [ ] `Decoding/Decoders/DecRx02Decoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
