@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Images;
@@ -33,6 +34,7 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
             bytes.Span.StartsWith(WozFormat.Version2Signature))
             return true;
 
+        if (context.Extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase)) return bytes.Length >= NibLayout.TrackLengthBytes;
         if (RawHints.Contains(context.Extension)) return true;
         if (context.Extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase))
             return IsRequestedAppleFormat(context.RequestedFormatId) || AppleRawImageProbe.LooksLikeAppleImage(context.Extension, bytes, context.RequestedFormatId);
