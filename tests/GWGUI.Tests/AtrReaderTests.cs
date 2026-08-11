@@ -9,6 +9,13 @@ namespace GWGUI.Tests;
 /// <summary>Vérifie la lecture publique et l'extraction des conteneurs ATR locaux.</summary>
 public sealed class AtrReaderTests
 {
+    /// <summary>Vérifie la longueur de zone d'amorçage associée à chaque taille sectorielle ATR.</summary>
+    [Theory]
+    [InlineData(AtrLayout.SingleDensitySectorSize, 0)]
+    [InlineData(AtrLayout.DoubleDensitySectorSize, AtrLayout.BootSectorCount * AtrLayout.BootSectorSize)]
+    [InlineData(AtrLayout.ExtendedSectorSize, AtrLayout.BootSectorCount * AtrLayout.BootSectorSize)]
+    public void ComputesBootAreaLength(int sectorSize, int expectedLength) => Assert.Equal(expectedLength, AtrLayout.GetBootAreaLength(sectorSize));
+
     /// <summary>Vérifie les identifiants des trois géométries ATR reconnues explicitement.</summary>
     [Theory]
     [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount, DiskImageFormatIds.Atari90)]
@@ -17,12 +24,13 @@ public sealed class AtrReaderTests
     public void PreservesKnownFormatIdentifiers(int sectorSize, int sectorCount, string expectedFormatId) => Assert.Equal(expectedFormatId, AtrFormat.GetFormatId(sectorSize, sectorCount));
 
     [Theory]
-    [InlineData("validated_images/Atari/Atari 130XE/5.25 pouces - Chargeur propriétaire - 90 Kio/seeds-of-evil-atari-130xe.atr", 128, 720)]
-    [InlineData("Atari 8-bit/os xl-xe.atr", 256, 720)]
+    [InlineData("validated_images/Atari/Atari 130XE/5.25 pouces - Chargeur propriétaire - 90 Kio/seeds-of-evil-atari-130xe.atr", 128, 720, DiskImageFormatIds.Atari90)]
+    [InlineData("Atari 8-bit/os xl-xe.atr", 256, 720, DiskImageFormatIds.Atari180)]
     public async Task ReadsHeaderGeometryAddressesCapacityAndSectorContents(
         string relativePath,
         int expectedSectorSize,
-        int expectedSectorCount)
+        int expectedSectorCount,
+        string expectedFormatId)
     {
         var path = ImagePath(relativePath);
         var bytes = await File.ReadAllBytesAsync(path);
@@ -37,6 +45,8 @@ public sealed class AtrReaderTests
 
         Assert.Equal(expectedSectorSize, image.BlockSize);
         Assert.Equal(expectedSectorCount, image.BlockCount);
+        Assert.Equal(expectedFormatId, image.FormatId);
+        Assert.Equal((expectedSectorCount, AtrLayout.LogicalHeadCount, AtrLayout.LogicalSectorsPerCylinder), (image.Cylinders, image.Heads, image.SectorsPerTrack));
         Assert.Equal(bytes.Length - 16, image.Capacity);
         Assert.Equal(Enumerable.Range(0, expectedSectorCount), image.AvailableBlocks.Select(block => block.LogicalBlock));
         Assert.Equal(Enumerable.Range(1, expectedSectorCount), image.AvailableBlocks.Select(block => block.Address.Number));

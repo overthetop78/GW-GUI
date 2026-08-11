@@ -1596,9 +1596,10 @@
       - [x] Compléter en français la documentation de `ReadValidatedContainerAsync` avec les mêmes erreurs applicables.
       - [x] Mettre à jour la documentation de chaque membre modifié sans ajouter de comportement qui n'existe pas.
     - [ ] Tests ciblés
-      - [ ] Tester le calcul de zone d'amorçage pour les tailles sectorielles `128`, `256` et `512`.
+      - [x] Tester le calcul de zone d'amorçage pour les tailles sectorielles `128`, `256` et `512`.
       - [ ] Lire les images ATR correspondantes et vérifier que les nombres, tailles, index logiques et adresses des secteurs restent identiques.
-      - [ ] Vérifier que les capacités, identifiants et géométries produits restent identiques après la mutualisation et la remise en forme.
+        - Dépendance restante : `image_test` contient des images ATR à secteurs de 128 et 256 octets, mais aucune image ATR réelle à secteurs de 512 octets. Les recherches publiques consultées décrivent ce format sans fournir d'image téléchargeable vérifiable.
+      - [x] Vérifier que les capacités, identifiants et géométries produits restent identiques après la mutualisation et la remise en forme.
 
 ## 4. Modèles sectoriels, représentations et primitives
 
