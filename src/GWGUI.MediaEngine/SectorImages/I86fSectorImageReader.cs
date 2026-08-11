@@ -15,7 +15,7 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
         {
             cancellationToken.ThrowIfCancellationRequested();
             var revolution = ConvertTrack(track);
-            var decoderId = (track.Flags & 0x18) == 0x08 ? "iso.mfm" : "iso.fm";
+            var decoderId = (track.Flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? "iso.mfm" : "iso.fm";
             var decoded = decoders.Decode(decoderId, revolution);
             foreach (var sector in decoded.Sectors ?? [])
             {

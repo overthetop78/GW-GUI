@@ -1205,13 +1205,13 @@
     - [x] Y définir les 256 entrées par face, les 512 entrées pour deux faces, les en-têtes de piste de six et dix octets et l’offset du nombre explicite de bits.
     - [x] Y définir l’alignement du stockage sur des mots de 16 bits, les deux octets par mot, les huit bits par octet et le masque du bit de poids fort utilisé pendant la lecture.
     - [x] Y définir l’unité actuelle de 40 ticks par cellule utilisée pour convertir les pistes 86F vers les intervalles acceptés par les décodeurs.
-  - [ ] Drapeaux 86F nommés selon leur portée
-    - [ ] Créer l’enum marqué `[Flags]` `I86fFileFlags` pour les drapeaux lus dans l’en-tête du fichier.
-    - [ ] Créer l’enum marqué `[Flags]` `I86fTrackFlags` pour les drapeaux relus au début de chaque piste.
-    - [ ] Vérifier la signification définie par le format 86F avant de nommer les valeurs afin de ne pas attribuer un sens incorrect aux masques.
-    - [ ] Représenter avec ces enums ou leurs masques nommés les valeurs actuellement écrites `0x0008`, `0x0018`, `0x0080`, `0x0060`, `0x0800` et `0x1000`.
-    - [ ] Distinguer le drapeau indiquant deux faces, le masque et la valeur de l’encodage MFM, l’en-tête étendu, l’ordre inversé des octets et la présence du nombre explicite de bits.
-    - [ ] Remplacer toutes les opérations binaires brutes du Reader et du convertisseur par ces valeurs nommées.
+  - [x] Drapeaux 86F nommés selon leur portée
+    - [x] Créer l’enum marqué `[Flags]` `I86fFileFlags` pour les drapeaux lus dans l’en-tête du fichier.
+    - [x] Créer l’enum marqué `[Flags]` `I86fTrackFlags` pour les drapeaux relus au début de chaque piste.
+    - [x] Vérifier la signification définie par le format 86F avant de nommer les valeurs afin de ne pas attribuer un sens incorrect aux masques.
+    - [x] Représenter avec ces enums ou leurs masques nommés les valeurs actuellement écrites `0x0008`, `0x0018`, `0x0080`, `0x0060`, `0x0800` et `0x1000`.
+    - [x] Distinguer le drapeau indiquant deux faces, le masque et la valeur de l’encodage MFM, l’en-tête étendu, l’ordre inversé des octets et la présence du nombre explicite de bits.
+    - [x] Remplacer toutes les opérations binaires brutes du Reader et du convertisseur par ces valeurs nommées.
   - [ ] Parsing de la table et des pistes
     - [ ] Remplacer `offsets` par un nom indiquant le nombre d’entrées de la table de pistes.
     - [ ] Conserver dans `I86fReader` le calcul contrôlé de la fin de table à partir de son offset, du nombre d’entrées et de la taille d’une entrée.
