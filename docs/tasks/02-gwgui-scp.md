@@ -1788,12 +1788,12 @@
   - [x] Responsabilité et emplacement
     - [x] Conserver le fichier dans `Primitives`, car son calcul CRC ne dépend d’aucun format ou codec particulier.
     - [x] Conserver `Compute` pour une séquence complète et `Update` pour l’ajout incrémental d’un octet dans le même composant.
-  - [ ] Paramètres CRC communs
-    - [ ] Ajouter des constantes nommées pour le polynôme CCITT `0x1021`, le polynôme IBM `0x8005`, la valeur initiale tous bits à un `0xFFFF`, la valeur initiale nulle et le masque du bit fort `0x8000`.
-    - [ ] Ajouter une constante nommée pour le décalage d’un octet dans le mot CRC et réutiliser `BitPrimitives.BitsPerByte` pour le nombre d’itérations.
-    - [ ] Remplacer dans `Compute` et `Update` chaque valeur brute correspondant exactement à ces paramètres.
-    - [ ] Conserver la possibilité de fournir explicitement un autre polynôme et une autre valeur initiale.
-    - [ ] Refuser une séquence `values` nulle avant de commencer le calcul.
+  - [x] Paramètres CRC communs
+    - [x] Ajouter des constantes nommées pour le polynôme CCITT `0x1021`, le polynôme IBM `0x8005`, la valeur initiale tous bits à un `0xFFFF`, la valeur initiale nulle et le masque du bit fort `0x8000`.
+    - [x] Ajouter une constante nommée pour le décalage d’un octet dans le mot CRC et réutiliser `BitPrimitives.BitsPerByte` pour le nombre d’itérations.
+    - [x] Remplacer dans `Compute` et `Update` chaque valeur brute correspondant exactement à ces paramètres.
+    - [x] Conserver la possibilité de fournir explicitement un autre polynôme et une autre valeur initiale.
+    - [x] Refuser une séquence `values` nulle avant de commencer le calcul.
   - [ ] Suppression des méthodes relais
     - [ ] Faire appeler directement `Crc16Calculator.Compute` par `TrackEncoding.WithCrc`, puis supprimer `TrackEncoding.Crc16`.
     - [ ] Supprimer les méthodes privées `Crc16` de `Aed6200pMfmDecoder`, `CenturionMfmDecoder`, `DecRx02Decoder`, `EmuFmDecoder`, `HpMmfmDecoder`, `IsoFmDecoder`, `IsoMfmDecoder`, `MembrainMfmDecoder` et `TycomFmDecoder` après remplacement par des appels directs.
