@@ -2275,11 +2275,11 @@
       - [x] Remplacer `Id` et `DisplayName` par les catalogues communs de codecs et de noms déjà prévus.
       - [x] Remplacer les descriptions techniques construites directement dans `Decode` par le propriétaire commun des descriptions de structures.
       - [x] Retirer la tâche d'erreurs AED, car ce décodeur ne construit aucune exception.
-    - [ ] Découpage de `Decode`
-      - [ ] Extraire la lecture et la validation de l'en-tête dans un traitement nommé.
-      - [ ] Extraire la recherche et la lecture du bloc de données dans un traitement nommé.
-      - [ ] Extraire le calcul de l'intégrité et l'ajout des marques de données non appariées.
-      - [ ] Conserver exactement la progression actuelle des offsets et l'ordre des structures et secteurs.
+    - [x] Découpage de `Decode`
+      - [x] Extraire la lecture et la validation de l'en-tête dans un traitement nommé.
+      - [x] Extraire la recherche et la lecture du bloc de données dans un traitement nommé.
+      - [x] Extraire le calcul de l'intégrité et l'ajout des marques de données non appariées.
+      - [x] Conserver exactement la progression actuelle des offsets et l'ordre des structures et secteurs.
     - [ ] Mise en forme complète
       - [ ] Séparer toutes les déclarations, affectations, conditions, ajouts et boucles actuellement collés sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, appels et expressions complètes qui doivent l'être.
