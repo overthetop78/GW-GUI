@@ -1421,10 +1421,10 @@
       - [x] Lancer plusieurs lectures concurrentes et vérifier qu’elles partagent le même contenu sans permettre sa modification.
       - [x] Tester l’annulation et l’erreur de lecture, puis vérifier le comportement documenté des appels suivants.
   - [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs`
-    - [ ] Collection ordonnée des politiques
-      - [ ] Refuser une collection de politiques nulle et une entrée nulle dans le constructeur.
-      - [ ] Copier la collection reçue dans une liste en lecture seule afin qu’une modification extérieure ne change pas l’ordre ou le contenu du registre.
-      - [ ] Conserver l’ordre d’injection comme unique ordre d’essai ; ne pas ajouter de tri ou de priorité qui n’existe pas dans le contrat.
+    - [x] Collection ordonnée des politiques
+      - [x] Refuser une collection de politiques nulle et une entrée nulle dans le constructeur.
+      - [x] Copier la collection reçue dans une liste en lecture seule afin qu’une modification extérieure ne change pas l’ordre ou le contenu du registre.
+      - [x] Conserver l’ordre d’injection comme unique ordre d’essai ; ne pas ajouter de tri ou de priorité qui n’existe pas dans le contrat.
     - [ ] Parcours des candidats
       - [ ] Conserver `CanReadAsync` comme présélection booléenne et ne pas inventer de niveau de force absent du contrat actuel.
       - [ ] Continuer immédiatement avec la politique suivante lorsque `CanReadAsync` retourne `false`.

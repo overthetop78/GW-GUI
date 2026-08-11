@@ -10,8 +10,12 @@ public sealed class DiskImageRecognitionRegistry
 
     /// <summary>Crée un registre utilisant l'ordre explicite des politiques fournies.</summary>
     /// <param name="policies">Politiques de reconnaissance ordonnées.</param>
-    public DiskImageRecognitionRegistry(IReadOnlyList<IDiskImageRecognitionPolicy> policies) =>
-        this.policies = policies;
+    public DiskImageRecognitionRegistry(IReadOnlyList<IDiskImageRecognitionPolicy> policies)
+    {
+        ArgumentNullException.ThrowIfNull(policies);
+        if (policies.Any(policy => policy is null)) throw new ArgumentException("A recognition policy cannot be null.", nameof(policies));
+        this.policies = policies.ToArray();
+    }
 
     /// <summary>Parcourt les politiques compatibles jusqu'à ce que l'une d'elles lise complètement le contenu.</summary>
     /// <param name="path">Chemin du fichier à reconnaître.</param>
