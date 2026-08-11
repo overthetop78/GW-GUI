@@ -813,19 +813,19 @@
     - [x] Vérifier pour WOZ1 et WOZ2 la signature, le CRC, les chunks, la table des pistes, le nombre de bits et les données extraites.
     - [x] Vérifier pour NIB la longueur exacte des pistes, leur ordre et le raccordement au décodeur Apple attendu.
     - [x] Vérifier le rejet d’un CRC WOZ invalide, d’un chunk tronqué, d’une référence de piste hors limites et d’une longueur NIB invalide.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackExceptions.cs`
-  - [ ] Responsabilité et API d’erreur
-    - [ ] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibExceptions.cs`, à côté du Reader qui produit cette erreur.
-    - [ ] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter son consommateur.
-    - [ ] Renommer le paramètre `expectedTrackLength` en `trackLengthBytes`, car la longueur totale attendue n’est pas égale à une piste : elle doit être un multiple positif de cette longueur.
-    - [ ] Conserver dans ce fichier le texte technique de l’erreur et ses valeurs injectées ; ne pas le recopier dans le Reader.
-  - [ ] Mise en forme
-    - [ ] Remettre la méthode `InvalidLength` et sa construction d’exception sur une seule ligne lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de `InvalidLength`.
-    - [ ] Documenter la longueur totale observée, la longueur d’une piste en octets et la condition de multiple positif.
-  - [ ] Test ciblé
-    - [ ] Vérifier par le Reader Apple qu’une longueur NIB invalide produit l’erreur avec la longueur totale et la longueur de piste injectées.
+- [x] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackExceptions.cs`
+  - [x] Responsabilité et API d’erreur
+    - [x] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibExceptions.cs`, à côté du Reader qui produit cette erreur.
+    - [x] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter son consommateur.
+    - [x] Renommer le paramètre `expectedTrackLength` en `trackLengthBytes`, car la longueur totale attendue n’est pas égale à une piste : elle doit être un multiple positif de cette longueur.
+    - [x] Conserver dans ce fichier le texte technique de l’erreur et ses valeurs injectées ; ne pas le recopier dans le Reader.
+  - [x] Mise en forme
+    - [x] Remettre la méthode `InvalidLength` et sa construction d’exception sur une seule ligne lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de `InvalidLength`.
+    - [x] Documenter la longueur totale observée, la longueur d’une piste en octets et la condition de multiple positif.
+  - [x] Test ciblé
+    - [x] Vérifier par le Reader Apple qu’une longueur NIB invalide produit l’erreur avec la longueur totale et la longueur de piste injectées.
 - [ ] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackFormat.cs`
   - [ ] Déplacement vers le format propriétaire
     - [ ] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibLayout.cs`, à côté du futur `NibReader` et du futur `NibWriter`.

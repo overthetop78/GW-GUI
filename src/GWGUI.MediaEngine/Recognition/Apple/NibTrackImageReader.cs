@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Apple;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Encoding.BitPacking;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
@@ -22,7 +23,7 @@ internal static class NibTrackImageReader
     public static SectorImage Read(ReadOnlySpan<byte> data)
     {
         if (data.Length == 0 || data.Length % NibTrackFormat.TrackLength != 0)
-            throw NibTrackExceptions.InvalidLength(data.Length, NibTrackFormat.TrackLength);
+            throw NibExceptions.InvalidLength(data.Length, NibTrackFormat.TrackLength);
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var selector = new AppleTrackDecodeSelector();
