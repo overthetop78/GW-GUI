@@ -225,14 +225,14 @@
     - [x] Tests ciblés complémentaires
       - [x] Vérifier que les durées et vitesses restent identiques après suppression de la validation dupliquée.
       - [x] Vérifier que les résolutions nulle et négative produisent toujours la même erreur.
-  - [ ] `Containers/Scp/ScpTrack.cs`
+  - [x] `Containers/Scp/ScpTrack.cs`
     - [x] Adapter le namespace de `ScpTrack` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.
     - [x] Documenter en français le record, chaque paramètre et chaque propriété.
     - [x] Tester la protection de la collection et la conservation du numéro de piste, du cylindre et de la face.
-    - [ ] Mise en forme de la documentation XML
-      - [ ] Remettre sur une seule ligne les documentations XML courtes du type et du constructeur.
-      - [ ] Remettre sur une seule ligne les documentations XML courtes de `TrackNumber`, `Cylinder`, `Head` et `Revolutions`.
+    - [x] Mise en forme de la documentation XML
+      - [x] Remettre sur une seule ligne les documentations XML courtes du type et du constructeur.
+      - [x] Remettre sur une seule ligne les documentations XML courtes de `TrackNumber`, `Cylinder`, `Head` et `Revolutions`.
   - [ ] `Containers/Scp/ScpImage.cs`
     - [x] Adapter le namespace de `ScpImage` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Copier ou figer `Tracks` à la construction afin que la collection source ne puisse plus modifier l'image.
