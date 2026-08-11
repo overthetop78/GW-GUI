@@ -1283,13 +1283,13 @@
     - [x] Conserver la boucle principale comme parcours des pistes et assemblage des `ImdSector` privés.
     - [x] Extraire la construction de la `SectorImage` dans une méthode privée distincte du parsing binaire.
     - [x] Conserver la position logique des enregistrements indisponibles dans `MissingBlocks`, leur taille dans la capacité déclarée et leur exclusion de `AvailableBlocks`.
-  - [ ] Sections et erreurs ImageDisk paramétrées
-    - [ ] Créer l’enum `ImdSection` pour l’en-tête de piste, les cartes de numéros, cylindres, faces et tailles, l’enregistrement sectoriel, la valeur compressée et les données sectorielles.
-    - [ ] Créer `Containers/ImageDisk/ImdExceptions.cs`.
-    - [ ] Remplacer le paramètre texte `description` de `EnsureAvailable` par `ImdSection`.
-    - [ ] Faire produire à `ImdExceptions` l’erreur de section tronquée en injectant section, offset, longueur requise et longueur disponible.
-    - [ ] Y déplacer les erreurs de signature, d’en-tête de piste, de code de taille, de type d’enregistrement et d’absence de secteurs avec les valeurs observées utiles.
-    - [ ] Remplacer toutes les constructions directes et tous les textes bruts de `InvalidDataException` par ces méthodes.
+  - [x] Sections et erreurs ImageDisk paramétrées
+    - [x] Créer l’enum `ImdSection` pour l’en-tête de piste, les cartes de numéros, cylindres, faces et tailles, l’enregistrement sectoriel, la valeur compressée et les données sectorielles.
+    - [x] Créer `Containers/ImageDisk/ImdExceptions.cs`.
+    - [x] Remplacer le paramètre texte `description` de `EnsureAvailable` par `ImdSection`.
+    - [x] Faire produire à `ImdExceptions` l’erreur de section tronquée en injectant section, offset, longueur requise et longueur disponible.
+    - [x] Y déplacer les erreurs de signature, d’en-tête de piste, de code de taille, de type d’enregistrement et d’absence de secteurs avec les valeurs observées utiles.
+    - [x] Remplacer toutes les constructions directes et tous les textes bruts de `InvalidDataException` par ces méthodes.
   - [ ] Détection Epson commune hors du parser IMD
     - [ ] Déplacer `SectorImages/EpsonQx10FormatDetector.cs` vers `Geometries/Epson/EpsonQx10FormatDetector.cs`.
     - [ ] Faire recevoir au détecteur une collection commune de descripteurs cylindre, face, numéro et taille, indépendante de `IsoSectorCandidate`.
