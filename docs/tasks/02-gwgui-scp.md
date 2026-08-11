@@ -2506,12 +2506,12 @@
       - [x] Tester une clé prise en charge, une clé inconnue, une taille nulle, une taille tronquée et une taille non standard.
       - [x] Vérifier la charge utile, la taille, le code de taille, le type d'intégrité, les structures et la confiance produits.
   - [ ] `Decoding/Decoders/Commodore900GcrDecoder.cs`
-    - [ ] Définitions Commodore 900
-      - [ ] Créer `Decoding/Definitions/Commodore900GcrFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, la longueur minimale de synchronisation et les marqueurs d'en-tête `0x08` et de données `0x07`.
-      - [ ] Y définir les quatre octets d'en-tête, les 514 octets du bloc de données, la taille sectorielle de 512 octets et leurs longueurs encodées.
-      - [ ] Y définir les positions du cylindre, du secteur, du checksum et de la charge utile, ainsi que la face logique et le code de taille.
-      - [ ] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
+    - [x] Définitions Commodore 900
+      - [x] Créer `Decoding/Definitions/Commodore900GcrFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, la longueur minimale de synchronisation et les marqueurs d'en-tête `0x08` et de données `0x07`.
+      - [x] Y définir les quatre octets d'en-tête, les 514 octets du bloc de données, la taille sectorielle de 512 octets et leurs longueurs encodées.
+      - [x] Y définir les positions du cylindre, du secteur, du checksum et de la charge utile, ainsi que la face logique et le code de taille.
+      - [x] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
     - [ ] Codec GCR Commodore commun
       - [ ] Créer un codec GCR Commodore commun à `Commodore900GcrDecoder.cs`, `CommodoreGcrDecoder.cs`, `Commodore900GcrTrackEncoder.cs`, `CommodoreGcrTrackEncoder.cs` et `Victor9kGcrTrackEncoder.cs`.
       - [ ] Y déplacer l'unique table des seize symboles GCR et le décodage d'un symbole de cinq bits.

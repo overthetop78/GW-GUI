@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
@@ -7,9 +7,9 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class Commodore900GcrDecoder : IFluxDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.Commodore900Gcr;
+    public string Id => Commodore900GcrFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.Commodore900Gcr;
+    public string DisplayName => Commodore900GcrFormat.CodecDisplayName;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP à décoder en GCR Commodore 900.</param><returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
@@ -27,14 +27,14 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
             var end = offset;
             while (end < stream.Bits.Length && stream.Bits[end]) end++;
             if (end - offset < Commodore900GcrFormat.MinimumSyncBitCount) { offset = end; continue; }
-            structures.Add(new(FluxStructureKind.CommodoreSync, offset, end - offset, FluxStructureDescriptions.UnclassifiedMark("Commodore 900", FluxStructureKind.CommodoreSync, null, "GCR sync")));
-            if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.HeaderByteCount) is { } header && header[0] == Commodore900GcrFormat.HeaderMark)
+            structures.Add(new(FluxStructureKind.CommodoreSync, offset, end - offset, FluxStructureDescriptions.UnclassifiedMark(Commodore900GcrFormat.StructureDescriptionName, FluxStructureKind.CommodoreSync, null, Commodore900GcrFormat.SyncDescription)));
+            if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.HeaderByteCount) is { } header && header[Commodore900GcrFormat.HeaderMarkOffset] == Commodore900GcrFormat.HeaderMark)
             {
-                headers.Add((offset, end + Commodore900GcrFormat.HeaderByteCount * Commodore900GcrFormat.EncodedByteBitCount, header)); decodedBytes.AddRange(header);
+                headers.Add((offset, end + Commodore900GcrFormat.EncodedHeaderBitCount, header)); decodedBytes.AddRange(header);
             }
-            else if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.DataRecordByteCount) is { } data && data[0] == Commodore900GcrFormat.DataMark)
+            else if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.DataRecordByteCount) is { } data && data[Commodore900GcrFormat.DataMarkOffset] == Commodore900GcrFormat.DataMark)
             {
-                dataBlocks.Add((offset, end + Commodore900GcrFormat.DataRecordByteCount * Commodore900GcrFormat.EncodedByteBitCount, data)); decodedBytes.AddRange(data);
+                dataBlocks.Add((offset, end + Commodore900GcrFormat.EncodedDataRecordBitCount, data)); decodedBytes.AddRange(data);
             }
             offset = end;
         }
@@ -43,19 +43,19 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         for (var index = 0; index < headers.Count; index++)
         {
             var header = headers[index];
-            var cylinder = header.Bytes[1]; var number = header.Bytes[2];
-            var headerValid = (byte)(header.Bytes[0] ^ cylinder ^ number ^ header.Bytes[3]) == 0;
+            var cylinder = header.Bytes[Commodore900GcrFormat.HeaderCylinderOffset]; var number = header.Bytes[Commodore900GcrFormat.HeaderSectorOffset];
+            var headerValid = (byte)(header.Bytes[Commodore900GcrFormat.HeaderMarkOffset] ^ cylinder ^ number ^ header.Bytes[Commodore900GcrFormat.HeaderChecksumOffset]) == 0;
             var next = index + 1 < headers.Count ? headers[index + 1].Offset : int.MaxValue;
             var data = dataBlocks.FirstOrDefault(candidate => candidate.Offset > header.End && candidate.Offset < next);
             var dataValid = data.Bytes is not null && data.Bytes.Aggregate((byte)0, (checksum, value) => (byte)(checksum ^ value)) == 0;
-            var payload = data.Bytes?.Skip(1).Take(Commodore900GcrFormat.SectorByteCount).ToArray();
+            var payload = data.Bytes?.Skip(Commodore900GcrFormat.DataPayloadOffset).Take(Commodore900GcrFormat.SectorByteCount).ToArray();
             var valid = !headerValid || data.Bytes is null || !dataValid ? false : true;
-            sectors.Add(new(cylinder, 0, number, Commodore900GcrFormat.SectorSizeCode, Commodore900GcrFormat.SectorByteCount, valid, header.Offset, SectorIntegrityKind.Checksum, payload));
+            sectors.Add(new(cylinder, Commodore900GcrFormat.LogicalHead, number, Commodore900GcrFormat.SectorSizeCode, Commodore900GcrFormat.SectorByteCount, valid, header.Offset, SectorIntegrityKind.Checksum, payload));
             structures.Add(new(FluxStructureKind.CommodoreHeader, header.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, header.End - header.Offset),
-                FluxStructureDescriptions.Identity("Commodore 900", FluxStructureKind.CommodoreHeader, cylinder, 0, number, Commodore900GcrFormat.SectorByteCount, null, null)));
+                FluxStructureDescriptions.Identity(Commodore900GcrFormat.StructureDescriptionName, FluxStructureKind.CommodoreHeader, cylinder, Commodore900GcrFormat.LogicalHead, number, Commodore900GcrFormat.SectorByteCount, null, null)));
             if (data.Bytes is not null)
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, data.End - data.Offset),
-                    $"{FluxStructureDescriptions.Identity("Commodore 900", FluxStructureKind.FormatData, cylinder, 0, number, Commodore900GcrFormat.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
+                    FluxStructureDescriptions.WithIntegrity(Commodore900GcrFormat.StructureDescriptionName, FluxStructureKind.FormatData, cylinder, Commodore900GcrFormat.LogicalHead, number, Commodore900GcrFormat.SectorByteCount, null, null, Commodore900GcrFormat.ChecksumDescription, dataValid)));
         }
         var validCount = sectors.Count(sector => sector.IntegrityValid == true);
         return new(Id, DisplayName, Math.Min(1, validCount / (double)Commodore900GcrFormat.ExpectedSectorCount), stream.BitCellTicks, structures, decodedBytes, sectors);

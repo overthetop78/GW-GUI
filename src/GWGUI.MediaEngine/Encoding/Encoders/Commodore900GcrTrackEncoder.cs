@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -6,9 +6,9 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class Commodore900GcrTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.Commodore900Gcr;
+    public override string Id => Commodore900GcrFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.Commodore900Gcr;
+    public override string DisplayName => Commodore900GcrFormat.CodecDisplayName;
 
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
