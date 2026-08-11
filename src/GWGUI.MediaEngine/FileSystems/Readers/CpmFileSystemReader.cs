@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.Text;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -100,7 +101,7 @@ public sealed class CpmFileSystemReader : IFileSystemReader
         if (!image.FormatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase)) return configured;
         var best = configured;
         var bestScore = ScoreDirectory(bytes, configured);
-        var limit = Math.Min(bytes.Length - configured.DirectoryEntries * 32, 64 * 1024);
+        var limit = Math.Min(bytes.Length - configured.DirectoryEntries * 32, 64 * DataSizeConstants.BytesPerKibibyte);
         // CP/M directory entries are 32-byte records. Epson TPM disks may place
         // the directory on a 128-byte logical boundary inside a physical sector,
         // so restricting the search to physical 256-byte boundaries skips valid

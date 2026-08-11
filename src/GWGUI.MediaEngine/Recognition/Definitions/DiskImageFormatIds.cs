@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Recognition.Definitions;
 
 /// <summary>
@@ -202,12 +204,12 @@ public static class DiskImageFormatIds
     /// <summary>Construit l’identifiant d’une image Atari ST à partir de sa capacité.</summary>
     /// <param name="capacityBytes">Capacité de l’image, en octets.</param>
     /// <returns>Identifiant Atari ST exprimant la capacité en kibioctets.</returns>
-    public static string AtariStFromCapacity(long capacityBytes) => $"{AtariStPrefix}{capacityBytes / 1024}";
+    public static string AtariStFromCapacity(long capacityBytes) => $"{AtariStPrefix}{capacityBytes / DataSizeConstants.BytesPerKibibyte}";
 
     /// <summary>Construit l’identifiant d’une image IBM PC à partir de sa capacité.</summary>
     /// <param name="capacityBytes">Capacité de l’image, en octets.</param>
     /// <returns>Identifiant IBM PC exprimant la capacité en kibioctets.</returns>
-    public static string IbmFromCapacity(long capacityBytes) => $"{IbmPrefix}{capacityBytes / 1024}";
+    public static string IbmFromCapacity(long capacityBytes) => $"{IbmPrefix}{capacityBytes / DataSizeConstants.BytesPerKibibyte}";
 
     /// <summary>Construit l’identifiant de repli d’un conteneur ATR à partir de sa géométrie sectorielle.</summary>
     /// <param name="sectorSize">Taille d’un secteur, en octets.</param>

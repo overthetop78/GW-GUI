@@ -9,16 +9,16 @@ public sealed class IbmPcImageReader : ISectorImageReader
 {
     private static readonly IReadOnlyDictionary<int, IbmPcGeometry> Geometries = new Dictionary<int, IbmPcGeometry>
     {
-        [160 * 1024] = new(DiskImageFormatIds.Ibm160, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 8),
-        [180 * 1024] = new(DiskImageFormatIds.Ibm180, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9),
-        [320 * 1024] = new(DiskImageFormatIds.Ibm320, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8),
-        [360 * 1024] = new(DiskImageFormatIds.Ibm360, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
-        [720 * 1024] = new(DiskImageFormatIds.Ibm720, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
-        [800 * 1024] = new(DiskImageFormatIds.Ibm800, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 10),
-        [1200 * 1024] = new(DiskImageFormatIds.Ibm1200, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 15),
-        [1440 * 1024] = new(DiskImageFormatIds.Ibm1440, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 18),
-        [1680 * 1024] = new(DiskImageFormatIds.Ibm1680, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 21),
-        [2880 * 1024] = new(DiskImageFormatIds.Ibm2880, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 36)
+        [160 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm160, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 8),
+        [180 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm180, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9),
+        [320 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm320, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8),
+        [360 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm360, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
+        [720 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm720, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
+        [800 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm800, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 10),
+        [1200 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm1200, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 15),
+        [1440 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm1440, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 18),
+        [1680 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm1680, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 21),
+        [2880 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm2880, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 36)
     };
 
     public bool CanRead(string path) => Path.GetExtension(path) is var extension
@@ -87,10 +87,10 @@ public sealed class IbmPcImageReader : ISectorImageReader
         }
         geometry = fatMedia switch
         {
-            0xfe => Geometries[160 * 1024],
-            0xfc => Geometries[180 * 1024],
-            0xff => Geometries[320 * 1024],
-            0xfd => Geometries[360 * 1024],
+            0xfe => Geometries[160 * DataSizeConstants.BytesPerKibibyte],
+            0xfc => Geometries[180 * DataSizeConstants.BytesPerKibibyte],
+            0xff => Geometries[320 * DataSizeConstants.BytesPerKibibyte],
+            0xfd => Geometries[360 * DataSizeConstants.BytesPerKibibyte],
             _ => default
         };
         return geometry.Cylinders > 0;

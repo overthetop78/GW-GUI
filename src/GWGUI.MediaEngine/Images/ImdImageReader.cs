@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -119,15 +120,15 @@ public sealed class ImdImageReader : ISectorImageReader
         if (sectors256 >= 64 && blockSize == 512) return DiskImageFormatIds.EpsonQx10_396;
         // Both the 399 KiB TPM layout and the LOGO layout contain sixteen
         // 256-byte sectors. Capacity distinguishes them reliably.
-        if (sectors256 == 16 && blockSize == 512 && capacity == 399 * 1024L) return DiskImageFormatIds.EpsonQx10_399;
+        if (sectors256 == 16 && blockSize == 512 && capacity == 399 * DataSizeConstants.BytesPerKibibyte) return DiskImageFormatIds.EpsonQx10_399;
         if (sectors256 == 16 && blockSize == 512) return DiskImageFormatIds.EpsonQx10Logo;
         return (blockSize, capacity) switch
         {
-            (256, 320 * 1024L) => DiskImageFormatIds.EpsonQx10_320,
-            (512, 396 * 1024L) => DiskImageFormatIds.EpsonQx10_396,
-            (512, 399 * 1024L) => DiskImageFormatIds.EpsonQx10_399,
-            (512, 400 * 1024L) => DiskImageFormatIds.EpsonQx10Logo,
-            (1024, 400 * 1024L) => DiskImageFormatIds.EpsonQx10_400,
+            (256, 320 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_320,
+            (512, 396 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_396,
+            (512, 399 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_399,
+            (512, 400 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10Logo,
+            (1024, 400 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_400,
             _ => DiskImageFormatIds.Imd
         };
     }
