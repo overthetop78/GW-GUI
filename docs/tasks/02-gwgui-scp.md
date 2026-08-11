@@ -1765,11 +1765,11 @@
       - [x] Exécuter les tests ciblés existants des décodeurs FM, MFM, GCR et NRZI raccordés.
       - [x] Vérifier sur les images correspondantes de `image_test` que structures, secteurs, octets et durées de cellule restent identiques hors correction explicite des lectures partielles.
 - [ ] `src/GWGUI.MediaEngine/Primitives/BitPrimitives.cs`
-  - [ ] Responsabilité et API commune
-    - [ ] Conserver le fichier dans `Primitives`, car l’inversion des bits d’un octet ne dépend d’aucun format, conteneur ou codec.
-    - [ ] Ajouter `BitsPerByte` avec la valeur `8` et `LeastSignificantBitMask` avec la valeur `1`, utilisées par l’algorithme d’inversion.
-    - [ ] Renommer `Reverse` en `ReverseBits` afin que l’opération effectuée soit explicite pour chaque consommateur.
-    - [ ] Remplacer dans la boucle les valeurs brutes `8` et `1` par les définitions précédentes.
+  - [x] Responsabilité et API commune
+    - [x] Conserver le fichier dans `Primitives`, car l’inversion des bits d’un octet ne dépend d’aucun format, conteneur ou codec.
+    - [x] Ajouter `BitsPerByte` avec la valeur `8` et `LeastSignificantBitMask` avec la valeur `1`, utilisées par l’algorithme d’inversion.
+    - [x] Renommer `Reverse` en `ReverseBits` afin que l’opération effectuée soit explicite pour chaque consommateur.
+    - [x] Remplacer dans la boucle les valeurs brutes `8` et `1` par les définitions précédentes.
   - [ ] Suppression des relais dupliqués
     - [ ] Remplacer `TrackEncoding.ReverseBits` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer cette méthode relais.
     - [ ] Remplacer les méthodes privées `ReverseBits` de `ArburgDecoder`, `EmuFmDecoder`, `HeathkitFmDecoder` et `HpMmfmDecoder` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer ces quatre copies.

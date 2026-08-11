@@ -111,5 +111,5 @@ internal static class TrackEncoding
         return checksum;
     }
 
-    public static byte ReverseBits(byte value) => Primitives.BitPrimitives.Reverse(value);
+    public static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 }

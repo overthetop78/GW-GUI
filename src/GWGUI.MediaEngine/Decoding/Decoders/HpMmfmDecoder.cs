@@ -75,7 +75,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
         return -1;
     }
 
-    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.Reverse(value);
+    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 }

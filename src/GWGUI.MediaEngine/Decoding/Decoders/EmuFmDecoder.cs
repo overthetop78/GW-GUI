@@ -56,7 +56,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
         return -1;
     }
 
-    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.Reverse(value);
+    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, polynomial: 0x8005, initial: 0);
 

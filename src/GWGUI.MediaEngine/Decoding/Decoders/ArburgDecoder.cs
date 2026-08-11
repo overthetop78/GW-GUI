@@ -80,7 +80,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         return (result, offset);
     }
 
-    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.Reverse(value);
+    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 
     private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
