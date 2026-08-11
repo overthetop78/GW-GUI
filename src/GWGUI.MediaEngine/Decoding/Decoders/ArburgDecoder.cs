@@ -15,6 +15,7 @@ public sealed class ArburgDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.Arburg;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat regroupant les blocs de données et système Arburg reconnus.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -25,6 +26,7 @@ public sealed class ArburgDecoder : IFluxDecoder
     }
 
     /// <summary>Analyse les blocs de données FM.</summary>
+    /// <param name="stream">Flux binaire FM source.</param><param name="structures">Structures auxquelles ajouter les blocs reconnus.</param><param name="sectors">Secteurs auxquels ajouter les blocs reconstruits.</param><param name="bytes">Octets auxquels ajouter les données décodées.</param>
     private static void ScanFmData(FluxBitstream stream, List<FluxStructure> structures, List<DecodedSector> sectors, List<byte> bytes)
     {
         var markBits = DataMark.Length * Primitives.BitPrimitives.BitsPerByte; const int blockSize = ArburgFormat.DataBlockSize, usefulSize = ArburgFormat.DataUsefulSize;
@@ -48,6 +50,7 @@ public sealed class ArburgDecoder : IFluxDecoder
     }
 
     /// <summary>Analyse les blocs de données système.</summary>
+    /// <param name="stream">Flux binaire source.</param><param name="structures">Structures auxquelles ajouter les blocs reconnus.</param><param name="sectors">Secteurs auxquels ajouter les blocs reconstruits.</param><param name="bytes">Octets auxquels ajouter les données décodées.</param>
     private static void ScanSystemData(FluxBitstream stream, List<FluxStructure> structures, List<DecodedSector> sectors, List<byte> bytes)
     {
         var markBits = SystemMark.Length * Primitives.BitPrimitives.BitsPerByte; const int blockSize = ArburgFormat.SystemBlockSize, usefulSize = ArburgFormat.SystemUsefulSize;

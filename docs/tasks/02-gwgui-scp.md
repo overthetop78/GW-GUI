@@ -2034,9 +2034,9 @@
     - [x] Ajouter la documentation XML des types `AppleRwts18Decoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/ArburgDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ArburgDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, ScanFmData, ScanSystemData, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `ArburgDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, ScanFmData, ScanSystemData, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/CenturionMfmDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `CenturionMfmDecoder`.
