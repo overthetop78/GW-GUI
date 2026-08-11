@@ -1381,9 +1381,9 @@
     - [x] Créer `Containers/TeleDisk/Td0Exceptions.cs`.
     - [x] Ajouter des méthodes permettant d’injecter cylindre, face, secteur, encodage, position, section `Td0Section` et longueurs observée et attendue.
     - [x] Remplacer tous les textes et constructions directes d’exception du lecteur TeleDisk.
-  - [ ] Mise en forme
-    - [ ] Remplacer les suites de deux ou trois instructions écrites sur une même ligne par une instruction par ligne.
-    - [ ] Remettre sur une seule ligne les constructions de `SectorBlock`, de `SectorImage` et les conditions courtes qui tiennent lisiblement.
+  - [x] Mise en forme
+    - [x] Remplacer les suites de deux ou trois instructions écrites sur une même ligne par une instruction par ligne.
+    - [x] Remettre sur une seule ligne les constructions de `SectorBlock`, de `SectorImage` et les conditions courtes qui tiennent lisiblement.
   - [ ] Documentation XML
     - [ ] Remplacer la CSDoc anglaise existante et documenter en français `Td0Reader`, `Td0SectorDecoder`, `Td0SectorImageClassifier`, les définitions, les enums, les valeurs d’enum, les erreurs et le record privé `Td0Sector`.
     - [ ] Ajouter la documentation XML française de chaque constructeur et méthode, avec paramètres, résultat, exceptions, unités et invariants applicables.

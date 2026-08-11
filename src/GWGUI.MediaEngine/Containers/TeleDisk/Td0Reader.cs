@@ -106,8 +106,7 @@ public sealed class Td0Reader : ISectorImageReader
         var sectorsPerTrack = logicalSectors.GroupBy(sector => (sector.Cylinder, sector.Head)).Max(group => group.Count());
         var blocks = logicalSectors
             .OrderBy(sector => sector.Cylinder).ThenBy(sector => sector.Head).ThenBy(sector => sector.Number)
-            .Select((sector, logical) => new SectorBlock(logical,
-                new SectorAddress(sector.Cylinder, sector.Head, sector.Number), sector.Data, sector.IntegrityValid))
+            .Select((sector, logical) => new SectorBlock(logical, new SectorAddress(sector.Cylinder, sector.Head, sector.Number), sector.Data, sector.IntegrityValid))
             .ToArray();
         var formatId = Td0SectorImageClassifier.Detect(blocks, blockSize, cylinders, heads, sectorsPerTrack);
         return new SectorImage(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: blocks.LongLength * blockSize, logicalBlockCount: blocks.Length);
