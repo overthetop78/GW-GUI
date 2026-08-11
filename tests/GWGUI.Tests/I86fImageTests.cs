@@ -1,6 +1,8 @@
 using System.IO;
+using GWGUI.MediaEngine.Containers.I86f;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.SectorImages;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
@@ -14,7 +16,7 @@ public sealed class I86fImageTests(ITestOutputHelper output)
     {
         var path = Path.Combine(RepositoryRoot(), "image_test", "IBM PC", "Framework Premier 1.1 Fr - Systeme 1 [5.25].86f");
         if (!File.Exists(path)) return;
-        var image = await new I86fImageReader(new FluxDecoderRegistry()).ReadAsync(path);
+        var image = await new I86fSectorImageReader(new I86fReader(), new FluxDecoderRegistry()).ReadAsync(path);
         Assert.NotEmpty(image.AvailableBlocks);
     }
 
@@ -36,7 +38,7 @@ public sealed class I86fImageTests(ITestOutputHelper output)
         var referencePath = Path.ChangeExtension(path, ".scp.img");
         if (!File.Exists(path) || !File.Exists(referencePath)) return;
 
-        var image = await new I86fImageReader(new FluxDecoderRegistry()).ReadAsync(path);
+        var image = await new I86fSectorImageReader(new I86fReader(), new FluxDecoderRegistry()).ReadAsync(path);
         var reference = await File.ReadAllBytesAsync(referencePath);
         var mismatches = new List<string>();
         foreach (var block in image.AvailableBlocks.OrderBy(block => block.LogicalBlock))

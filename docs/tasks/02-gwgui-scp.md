@@ -1191,14 +1191,14 @@
     - [x] Vérifier le rejet d’une signature absente, de métadonnées incohérentes, d’un descripteur tronqué, d’un nombre de secteurs supérieur à 23 et d’une charge utile tronquée.
     - [x] Vérifier que les calculs d’offset contrôlés et l’annulation interrompent la lecture avec le diagnostic attendu.
 - [ ] `src/GWGUI.MediaEngine/Images/I86fImageReader.cs`
-  - [ ] Séparation du conteneur 86F et de la reconstruction sectorielle
-    - [ ] Créer `Containers/I86f/I86fReader.cs` pour lire et valider uniquement le conteneur, sa table et ses pistes de cellules de bits.
-    - [ ] Créer `Containers/I86f/I86fImage.cs` pour représenter les drapeaux du fichier et sa collection de pistes présentes.
-    - [ ] Créer `Containers/I86f/I86fTrack.cs` pour représenter l’index logique, les drapeaux de piste, le nombre de bits et les bits lus dans leur ordre normalisé.
-    - [ ] Créer `SectorImages/I86fSectorImageReader.cs` pour recevoir `I86fReader`, convertir les pistes, appeler les décodeurs FM/MFM et construire la `SectorImage`.
-    - [ ] Déplacer la dépendance `FluxDecoderRegistry` du parser de conteneur vers `I86fSectorImageReader`.
-    - [ ] Adapter la politique de reconnaissance et `Composition/MediaEngineFactory.cs` pour appeler `I86fSectorImageReader.ReadAsync`.
-    - [ ] Supprimer `Images/I86fImageReader.cs` après raccordement des nouveaux composants.
+  - [x] Séparation du conteneur 86F et de la reconstruction sectorielle
+    - [x] Créer `Containers/I86f/I86fReader.cs` pour lire et valider uniquement le conteneur, sa table et ses pistes de cellules de bits.
+    - [x] Créer `Containers/I86f/I86fImage.cs` pour représenter les drapeaux du fichier et sa collection de pistes présentes.
+    - [x] Créer `Containers/I86f/I86fTrack.cs` pour représenter l’index logique, les drapeaux de piste, le nombre de bits et les bits lus dans leur ordre normalisé.
+    - [x] Créer `SectorImages/I86fSectorImageReader.cs` pour recevoir `I86fReader`, convertir les pistes, appeler les décodeurs FM/MFM et construire la `SectorImage`.
+    - [x] Déplacer la dépendance `FluxDecoderRegistry` du parser de conteneur vers `I86fSectorImageReader`.
+    - [x] Adapter la politique de reconnaissance et `Images/DiskImageExplorerFactory.cs` pour appeler `I86fSectorImageReader.ReadAsync`.
+    - [x] Supprimer `Images/I86fImageReader.cs` après raccordement des nouveaux composants.
   - [ ] Définitions du format 86F
     - [ ] Créer `Containers/I86f/I86fFormat.cs` avec la signature little-endian `0x46423638` et sa longueur de quatre octets.
     - [ ] Créer `Containers/I86f/I86fLayout.cs` avec la longueur minimale de huit octets, l’offset des drapeaux, leur longueur, l’offset de table et les entrées de table de quatre octets.
