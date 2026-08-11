@@ -12,6 +12,8 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     public string DisplayName => Commodore900GcrFormat.CodecDisplayName;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder en GCR Commodore 900.</param>
+    /// <returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals);
@@ -25,6 +27,8 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     }
 
     /// <summary>Apparie chaque en-tête au premier bloc de données précédant l'en-tête suivant.</summary>
+    /// <param name="collection">Blocs collectés pendant le balayage.</param>
+    /// <returns>Secteurs et structures produits par l'appariement.</returns>
     private static Commodore900PairingResult PairBlocks(Commodore900BlockCollection collection)
     {
         var structures = new List<FluxStructure>();
@@ -48,6 +52,8 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     }
 
     /// <summary>Balaye les synchronisations et collecte les en-têtes et blocs de données complets.</summary>
+    /// <param name="stream">Flux binaire GCR.</param>
+    /// <returns>Blocs, synchronisations et octets décodés.</returns>
     private static Commodore900BlockCollection CollectBlocks(FluxBitstream stream)
     {
         var structures = new List<FluxStructure>();
@@ -86,11 +92,15 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     }
 
     /// <summary>Représente un en-tête Commodore 900 décodé.</summary>
+    /// <param name="Offset">Position de la synchronisation.</param><param name="EndOffset">Position suivant l'en-tête.</param><param name="Bytes">Octets décodés.</param><param name="Cylinder">Cylindre.</param><param name="Sector">Secteur.</param><param name="ChecksumValid">Validité du checksum.</param>
     private sealed record Commodore900HeaderBlock(int Offset, int EndOffset, byte[] Bytes, byte Cylinder, byte Sector, bool ChecksumValid);
     /// <summary>Représente un bloc de données Commodore 900 décodé.</summary>
+    /// <param name="Offset">Position de la synchronisation.</param><param name="EndOffset">Position suivant le bloc.</param><param name="Bytes">Octets décodés.</param><param name="ChecksumValid">Validité du checksum.</param>
     private sealed record Commodore900DataBlock(int Offset, int EndOffset, byte[] Bytes, bool ChecksumValid);
     /// <summary>Regroupe les éléments collectés pendant le balayage des synchronisations.</summary>
+    /// <param name="Headers">En-têtes.</param><param name="DataBlocks">Blocs de données.</param><param name="Structures">Synchronisations reconnues.</param><param name="DecodedBytes">Octets décodés.</param>
     private sealed record Commodore900BlockCollection(IReadOnlyList<Commodore900HeaderBlock> Headers, IReadOnlyList<Commodore900DataBlock> DataBlocks, IReadOnlyList<FluxStructure> Structures, IReadOnlyList<byte> DecodedBytes);
     /// <summary>Regroupe les secteurs et structures produits par l'appariement.</summary>
+    /// <param name="Sectors">Secteurs reconstruits.</param><param name="Structures">Structures d'en-tête et de données.</param>
     private sealed record Commodore900PairingResult(IReadOnlyList<DecodedSector> Sectors, IReadOnlyList<FluxStructure> Structures);
 }

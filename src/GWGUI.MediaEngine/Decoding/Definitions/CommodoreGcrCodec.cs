@@ -19,6 +19,7 @@ internal static class CommodoreGcrCodec
     public static IReadOnlyDictionary<int, int> DecodingTable { get; } = EncodingTable.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => item.index);
 
     /// <summary>Décode un symbole GCR de cinq bits.</summary>
+    /// <param name="bits">Bits source.</param><param name="offset">Position du premier bit.</param><param name="stride">Écart entre deux cellules utiles.</param><param name="value">Demi-octet décodé.</param><returns><see langword="true"/> si le symbole est complet et valide.</returns>
     public static bool TryDecodeNibble(IReadOnlyList<bool> bits, int offset, int stride, out byte value)
     {
         var code = 0;
@@ -35,6 +36,7 @@ internal static class CommodoreGcrCodec
     }
 
     /// <summary>Décode un octet depuis deux symboles GCR consécutifs.</summary>
+    /// <param name="bits">Bits source.</param><param name="offset">Position du premier symbole.</param><param name="value">Octet décodé.</param><returns><see langword="true"/> si les deux symboles sont valides.</returns>
     public static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, out byte value)
     {
         value = 0;
@@ -44,6 +46,7 @@ internal static class CommodoreGcrCodec
     }
 
     /// <summary>Décode une suite d'octets GCR consécutifs.</summary>
+    /// <param name="bits">Bits source.</param><param name="offset">Position de départ.</param><param name="count">Nombre d'octets attendu.</param><returns>Octets décodés, ou <see langword="null"/> si un symbole est invalide ou tronqué.</returns>
     public static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         if (offset + count * EncodedByteBitCount > bits.Count) return null;
@@ -54,6 +57,7 @@ internal static class CommodoreGcrCodec
     }
 
     /// <summary>Encode une suite d'octets en cellules GCR consécutives.</summary>
+    /// <param name="values">Octets à encoder.</param><returns>Cellules GCR produites.</returns>
     public static IReadOnlyList<bool> Encode(IEnumerable<byte> values)
     {
         var bits = new List<bool>();

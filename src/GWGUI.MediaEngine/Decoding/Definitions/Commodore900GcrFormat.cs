@@ -63,5 +63,6 @@ internal static class Commodore900GcrFormat
     public const int NibbleMask = 0x0f;
 
     /// <summary>Crée l'exception signalant une taille sectorielle invalide.</summary>
+    /// <param name="actualSize">Taille observée.</param><returns>Exception contenant les tailles attendue et observée.</returns>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Commodore 900 sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
 }

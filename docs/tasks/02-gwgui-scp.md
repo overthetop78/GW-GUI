@@ -2525,11 +2525,11 @@
       - [x] Extraire le checksum XOR commun aux en-têtes et aux blocs de données.
       - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et état du checksum.
       - [x] Utiliser le calcul de confiance commun avec le diviseur `13` actuellement appliqué par le décodeur Commodore 900.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Présenter la table GCR commune sur plusieurs lignes structurées.
-      - [ ] Traduire en français la CSDoc existante et documenter le type, les propriétés et chaque méthode conservée ou créée.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Présenter la table GCR commune sur plusieurs lignes structurées.
+      - [x] Traduire en français la CSDoc existante et documenter le type, les propriétés et chaque méthode conservée ou créée.
     - [ ] Vérification du groupe Commodore 900
       - [ ] Tester les seize symboles GCR valides et un symbole invalide.
       - [ ] Tester une synchronisation trop courte puis une synchronisation valide.
