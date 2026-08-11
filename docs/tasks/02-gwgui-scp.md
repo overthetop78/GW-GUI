@@ -1377,10 +1377,10 @@
     - [ ] Faire résoudre les géométries IBM par `Geometries/Ibm/IbmPcGeometryCatalog` au lieu de recopier cylindres, faces, secteurs et identifiants dans le `switch`.
       - Dépendance restante : `IbmPcGeometryCatalog` est créé dans le groupe ultérieur de `IbmPcImageReader`.
     - [ ] Conserver `DiskImageFormatIds.UcsdIbmMfm` comme repli lorsque ni le BPB FAT ni le saut DOS ne justifient une classification IBM.
-  - [ ] Erreurs TeleDisk
-    - [ ] Créer `Containers/TeleDisk/Td0Exceptions.cs`.
-    - [ ] Ajouter des méthodes permettant d’injecter cylindre, face, secteur, encodage, position, section `Td0Section` et longueurs observée et attendue.
-    - [ ] Remplacer tous les textes et constructions directes d’exception du lecteur TeleDisk.
+  - [x] Erreurs TeleDisk
+    - [x] Créer `Containers/TeleDisk/Td0Exceptions.cs`.
+    - [x] Ajouter des méthodes permettant d’injecter cylindre, face, secteur, encodage, position, section `Td0Section` et longueurs observée et attendue.
+    - [x] Remplacer tous les textes et constructions directes d’exception du lecteur TeleDisk.
   - [ ] Mise en forme
     - [ ] Remplacer les suites de deux ou trois instructions écrites sur une même ligne par une instruction par ligne.
     - [ ] Remettre sur une seule ligne les constructions de `SectorBlock`, de `SectorImage` et les conditions courtes qui tiennent lisiblement.
