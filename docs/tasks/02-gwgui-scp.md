@@ -1777,9 +1777,9 @@
     - [x] Remplacer les autres nombres `8` uniquement lorsqu’ils représentent réellement le nombre de bits d’un octet, sans toucher aux tailles ou limites ayant un autre sens.
   - [x] Mise en forme
     - [x] Conserver la boucle et son unique instruction sur une ligne tant que l’expression complète reste lisible.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `BitPrimitives`, `BitsPerByte`, `LeastSignificantBitMask` et `ReverseBits`.
-    - [ ] Documenter le paramètre, le résultat et l’ordre exact des bits inversés.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `BitPrimitives`, `BitsPerByte`, `LeastSignificantBitMask` et `ReverseBits`.
+    - [x] Documenter le paramètre, le résultat et l’ordre exact des bits inversés.
   - [ ] Tests ciblés
     - [ ] Tester l’inversion de `0x00`, `0xFF`, `0x01`, `0x80` et d’une valeur non symétrique connue.
     - [ ] Vérifier pour chaque valeur d’octet que deux inversions successives restituent la valeur initiale.

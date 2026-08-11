@@ -7,7 +7,7 @@ internal static class BitPrimitives
     public const int BitsPerByte = 8;
     /// <summary>Masque sélectionnant le bit de poids faible d'une valeur.</summary>
     public const int LeastSignificantBitMask = 1;
-    /// <summary>Inverse l'ordre des bits d'un octet.</summary>
+    /// <summary>Inverse l'ordre des bits d'un octet : le bit d'indice <c>n</c> devient le bit d'indice <c>7 - n</c>.</summary>
     /// <param name="value">Octet dont les bits doivent être inversés.</param>
     /// <returns>Octet obtenu après inversion de l'ordre des bits.</returns>
     public static byte ReverseBits(byte value)
