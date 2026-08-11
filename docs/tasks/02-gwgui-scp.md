@@ -1177,19 +1177,19 @@
     - [x] Y déplacer l’erreur de charge utile sectorielle tronquée en injectant l’adresse du secteur, son offset, sa taille et les octets disponibles.
     - [x] Y déplacer les erreurs d’absence de secteurs, de géométrie invalide et de nombre de descripteurs sectoriels invalide avec les valeurs observées utiles.
     - [x] Remplacer toutes les constructions directes de `InvalidDataException` du Reader par les méthodes correspondantes de `Cp2Exceptions`.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Remplacer la documentation anglaise de `Cp2Reader` par une CSDoc française.
-    - [ ] Documenter en français `Cp2Format`, `Cp2Layout`, `Cp2Exceptions`, leurs membres et leurs unités.
-    - [ ] Documenter en français `ReadAsync`, chaque méthode privée conservée ou extraite et les deux records privés.
-    - [ ] Documenter les exceptions propagées par la lecture du fichier, la validation CP2, les calculs contrôlés et l’annulation.
-    - [ ] Conserver sur une seule ligne les records, signatures, appels, conditions et constructions complètes qui restent lisibles ainsi.
-  - [ ] Tests avec une image CP2 connue
-    - [ ] Utiliser depuis `image_test` une image CP2 contenant plusieurs descripteurs de pistes et des secteurs dont l’ordre physique et le contenu sont connus.
-    - [ ] Vérifier la signature, les groupes, les nombres de descripteurs, les positions angulaires et l’ordre de lecture des charges utiles.
-    - [ ] Vérifier les adresses sectorielles, la géométrie calculée, la position de chaque secteur dans l’image linéaire et le résultat sectoriel IBM.
-    - [ ] Vérifier qu’un secteur d’une taille autre que 512 octets conserve le comportement de rejet actuel.
-    - [ ] Vérifier le rejet d’une signature absente, de métadonnées incohérentes, d’un descripteur tronqué, d’un nombre de secteurs supérieur à 23 et d’une charge utile tronquée.
-    - [ ] Vérifier que les calculs d’offset contrôlés et l’annulation interrompent la lecture avec le diagnostic attendu.
+  - [x] Documentation XML française et mise en forme
+    - [x] Remplacer la documentation anglaise de `Cp2Reader` par une CSDoc française.
+    - [x] Documenter en français `Cp2Format`, `Cp2Layout`, `Cp2Exceptions`, leurs membres et leurs unités.
+    - [x] Documenter en français `ReadAsync`, chaque méthode privée conservée ou extraite et les deux records privés.
+    - [x] Documenter les exceptions propagées par la lecture du fichier, la validation CP2, les calculs contrôlés et l’annulation.
+    - [x] Conserver sur une seule ligne les records, signatures, appels, conditions et constructions complètes qui restent lisibles ainsi.
+  - [x] Tests avec une image CP2 connue
+    - [x] Utiliser depuis `image_test` une image CP2 contenant plusieurs descripteurs de pistes et des secteurs dont l’ordre physique et le contenu sont connus.
+    - [x] Vérifier la signature, les groupes, les nombres de descripteurs, les positions angulaires et l’ordre de lecture des charges utiles.
+    - [x] Vérifier les adresses sectorielles, la géométrie calculée, la position de chaque secteur dans l’image linéaire et le résultat sectoriel IBM.
+    - [x] Vérifier qu’un secteur d’une taille autre que 512 octets conserve le comportement de rejet actuel.
+    - [x] Vérifier le rejet d’une signature absente, de métadonnées incohérentes, d’un descripteur tronqué, d’un nombre de secteurs supérieur à 23 et d’une charge utile tronquée.
+    - [x] Vérifier que les calculs d’offset contrôlés et l’annulation interrompent la lecture avec le diagnostic attendu.
 - [ ] `src/GWGUI.MediaEngine/Images/I86fImageReader.cs`
   - [ ] Séparation du conteneur 86F et de la reconstruction sectorielle
     - [ ] Créer `Containers/I86f/I86fReader.cs` pour lire et valider uniquement le conteneur, sa table et ses pistes de cellules de bits.
