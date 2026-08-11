@@ -2311,11 +2311,11 @@
       - [x] Remplacer les textes bruts décrivant la validité des checksums d'en-tête et de données par le constructeur commun de descriptions recevant le cylindre, la face, le secteur et les deux états de validation.
       - [x] Utiliser le calcul de confiance commun avec les pondérations propres au décodeur Amiga au lieu de conserver la formule brute dans `Decode`.
       - [x] Extraire de `Decode` des méthodes nommées pour rechercher la synchronisation, décoder et valider l'en-tête, décoder et valider les données puis construire le secteur et sa structure.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
-      - [ ] Ajouter la CSDoc française aux types et méthodes créés dans `AmigaMfmFormat.cs` et `AmigaMfmCodec.cs`.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
+      - [x] Ajouter la CSDoc française aux types et méthodes créés dans `AmigaMfmFormat.cs` et `AmigaMfmCodec.cs`.
     - [ ] Vérification du groupe Amiga MFM
       - [ ] Tester la reconnaissance des deux mots de synchronisation Amiga.
       - [ ] Tester le décodage du cylindre, de la face et du numéro de secteur depuis l'en-tête odd/even.
