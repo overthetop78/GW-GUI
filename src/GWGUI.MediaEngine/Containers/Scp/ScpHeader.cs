@@ -11,19 +11,9 @@ namespace GWGUI.MediaEngine.Containers.Scp;
 /// <param name="Flags">Caractéristiques de capture déclarées par le conteneur.</param>
 /// <param name="BitCellEncoding">Largeur des entrées de cellule de bit déclarée par le conteneur.</param>
 /// <param name="Heads">Faces dont les pistes sont présentes dans le conteneur.</param>
-/// <param name="Resolution">Indice de résolution temporelle SCP ; un pas vaut 25 nanosecondes multipliées par cet indice augmenté de un.</param>
+/// <param name="Resolution">Indice de résolution temporelle SCP ; un pas vaut <see cref="ScpFormatConstants.ResolutionStepNanoseconds"/> nanosecondes multipliées par cet indice augmenté de <see cref="ScpFormatConstants.ResolutionIndexOffset"/>.</param>
 /// <param name="Checksum">Somme de contrôle non signée déclarée dans l'en-tête.</param>
-public sealed record ScpHeader(
-    byte Version,
-    byte DiskType,
-    byte Revolutions,
-    byte StartTrack,
-    byte EndTrack,
-    ScpFlags Flags,
-    ScpBitCellEncoding BitCellEncoding,
-    ScpHeadSelection Heads,
-    byte Resolution,
-    uint Checksum)
+public sealed record ScpHeader(byte Version, byte DiskType, byte Revolutions, byte StartTrack, byte EndTrack, ScpFlags Flags, ScpBitCellEncoding BitCellEncoding, ScpHeadSelection Heads, byte Resolution, uint Checksum)
 {
     /// <summary>
     /// Obtient le nombre d'entrées comprises entre <see cref="StartTrack"/> et <see cref="EndTrack"/>, bornes incluses.
