@@ -1400,10 +1400,10 @@
     - [x] Responsabilité et emplacement
       - [x] Conserver le fichier à la racine de `Recognition`, car il transporte les mêmes indices et octets entre toutes les politiques d’une tentative de reconnaissance.
       - [x] Conserver le type public puisqu’il fait partie du contrat public des politiques de reconnaissance.
-    - [ ] Validation de la construction
-      - [ ] Refuser un chemin nul, vide ou composé uniquement d’espaces avant de créer `FileInfo`.
-      - [ ] Conserver séparément le chemin reçu, la longueur observée à la création, l’extension normalisée et l’identifiant explicitement demandé.
-      - [ ] Documenter que `Length` est la longueur observée à la création du contexte et que le Reader valide ensuite le contenu réellement lu.
+    - [x] Validation de la construction
+      - [x] Refuser un chemin nul, vide ou composé uniquement d’espaces avant de créer `FileInfo`.
+      - [x] Conserver séparément le chemin reçu, la longueur observée à la création, l’extension normalisée et l’identifiant explicitement demandé.
+      - [x] Documenter que `Length` est la longueur observée à la création du contexte et que le Reader valide ensuite le contenu réellement lu.
     - [ ] Lecture asynchrone partagée
       - [ ] Remplacer le champ `byte[]? bytes` par une tâche de lecture créée une seule fois de manière sûre lorsque plusieurs politiques demandent simultanément le contenu.
       - [ ] Faire retourner à `ReadBytesAsync` une `ReadOnlyMemory<byte>` afin qu’une politique ne puisse pas modifier les octets examinés par les suivantes.

@@ -11,6 +11,7 @@ public sealed class DiskImageRecognitionContext
     /// <param name="requestedFormatId">Identifiant de format explicitement demandé, ou <see langword="null"/>.</param>
     public DiskImageRecognitionContext(string path, string? requestedFormatId)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
         Path = path;
         Length = new FileInfo(path).Length;
         Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
@@ -20,7 +21,7 @@ public sealed class DiskImageRecognitionContext
     /// <summary>Obtient le chemin reçu lors de la création du contexte.</summary>
     public string Path { get; }
 
-    /// <summary>Obtient la longueur du fichier en octets.</summary>
+    /// <summary>Obtient la longueur du fichier observée lors de la création du contexte ; le Reader valide ensuite le contenu effectivement lu.</summary>
     public long Length { get; }
 
     /// <summary>Obtient l'extension normalisée en minuscules, point initial inclus.</summary>
