@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -7,85 +7,121 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode les pistes utilisant le format Centurion MFM.</summary>
 public sealed class CenturionMfmDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
-    private static readonly byte[] SectorMark = CenturionMfmFormat.SectorMark.ToArray();
-    /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
-    private static readonly byte[] DataMark = CenturionMfmFormat.DataMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => CenturionMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => CenturionMfmFormat.CodecDisplayName;
+
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP à décoder en MFM Centurion.</param><returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
+    /// <param name="revolution">Révolution SCP à décoder en MFM Centurion.</param>
+    /// <returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
-        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
-        var markBits = CenturionMfmFormat.SectorMarkBitCount;
-        var headerBits = CenturionMfmFormat.HeaderBitCount;
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
+        var structures = new List<FluxStructure>();
+        var sectors = new List<DecodedSector>();
+        var bytes = new List<byte>();
+        var pairedData = new HashSet<int>();
+        for (var offset = 0; offset + CenturionMfmFormat.SectorMarkBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
-            var complete = offset + headerBits <= stream.Bits.Length;
-            if (complete)
+            if (!FluxBitReader.MatchBytes(stream, offset, CenturionMfmFormat.SectorMark)) continue;
+            if (offset + CenturionMfmFormat.HeaderBitCount > stream.Bits.Length)
             {
-                var header = TryDecodeMfmBytes(stream, offset + markBits, CenturionMfmFormat.HeaderByteCount);
-                if (header is null) continue;
-                var headerValid = Primitives.Crc16Calculator.Compute(header, CenturionMfmFormat.CrcPolynomial, CenturionMfmFormat.CrcInitialValue) == 0; bytes.AddRange(header);
-                var dataOffset = FindDataMark(stream, offset + headerBits + CenturionMfmFormat.DataSearchDistanceBitCount); bool? dataValid = null; var size = 0; var structureEnd = offset + headerBits;
-                if (dataOffset >= 0)
-                {
-                    pairedData.Add(dataOffset); var prefixEnd = dataOffset + CenturionMfmFormat.DataPrefixBitCount;
-                    if (prefixEnd <= stream.Bits.Length)
-                    {
-                        var prefix = TryDecodeMfmBytes(stream, dataOffset + markBits, CenturionMfmFormat.DataPrefixByteCount);
-                        if (prefix is null) continue;
-                        var key = prefix[CenturionMfmFormat.DataKeyOffset]; size = (prefix[CenturionMfmFormat.DataSizeOffset] << BitPrimitives.BitsPerByte) | prefix[CenturionMfmFormat.DataSizeOffset + 1];
-                        var dataEnd = (long)prefixEnd + (size + CenturionMfmFormat.CrcByteCount) * CenturionMfmFormat.EncodedByteBitCount;
-                        if (key == CenturionMfmFormat.SupportedDataKey && size > 0 && dataEnd <= stream.Bits.Length)
-                        {
-                            var block = TryDecodeMfmBytes(stream, dataOffset + markBits + CenturionMfmFormat.EncodedByteBitCount, size + CenturionMfmFormat.DataCrcPrefixByteCount + CenturionMfmFormat.CrcByteCount);
-                            if (block is null) continue;
-                            dataValid = Primitives.Crc16Calculator.Compute(block, CenturionMfmFormat.CrcPolynomial, CenturionMfmFormat.CrcInitialValue) == 0; bytes.AddRange(block.Skip(CenturionMfmFormat.CrcByteCount).Take(size)); structureEnd = (int)dataEnd;
-                            structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, FluxStructureDescriptions.WithIntegrity(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header[CenturionMfmFormat.HeaderCylinderOffset], CenturionMfmFormat.LogicalHead, header[CenturionMfmFormat.HeaderSectorOffset], size, null, null, CenturionMfmFormat.CrcDescription, dataValid)));
-                        }
-                        else structures.Add(new(FluxStructureKind.FormatData, dataOffset, CenturionMfmFormat.DataPrefixBitCount, FluxStructureDescriptions.Truncated(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, null, key == CenturionMfmFormat.SupportedDataKey ? CenturionMfmFormat.UnavailableCrcDescription : CenturionMfmFormat.UnsupportedKeyDescription(key))));
-                    }
-                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits, FluxStructureDescriptions.Truncated(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, null, CenturionMfmFormat.UnavailableCrcDescription)));
-                }
-                bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-                sectors.Add(new(header[CenturionMfmFormat.HeaderCylinderOffset], CenturionMfmFormat.LogicalHead, header[CenturionMfmFormat.HeaderSectorOffset], SizeCode(size), size, integrity, offset));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header[CenturionMfmFormat.HeaderCylinderOffset], CenturionMfmFormat.LogicalHead, header[CenturionMfmFormat.HeaderSectorOffset], size, null, null, headerValid, dataValid)));
-                offset = Math.Max(offset + CenturionMfmFormat.SectorMarkAdvanceBitCount, structureEnd - 1);
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, CenturionMfmFormat.SectorMarkBitCount, FluxStructureDescriptions.Truncated(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, CenturionMfmFormat.SectorMarkDescription)));
+                offset += CenturionMfmFormat.SectorMarkAdvanceBitCount;
+                continue;
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.Truncated(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, CenturionMfmFormat.SectorMarkDescription)));
-            if (!complete) offset += CenturionMfmFormat.SectorMarkAdvanceBitCount;
+            var header = TryDecodeHeader(stream, offset + CenturionMfmFormat.SectorMarkBitCount);
+            if (header is null) continue;
+            bytes.AddRange(header.Value.Bytes);
+            var cylinder = header.Value.Bytes[CenturionMfmFormat.HeaderCylinderOffset];
+            var sector = header.Value.Bytes[CenturionMfmFormat.HeaderSectorOffset];
+            var dataOffset = FindDataMark(stream, offset + CenturionMfmFormat.HeaderBitCount + CenturionMfmFormat.DataSearchDistanceBitCount);
+            CenturionDataResult? data = null;
+            var structureEnd = offset + CenturionMfmFormat.HeaderBitCount;
+            if (dataOffset >= 0)
+            {
+                pairedData.Add(dataOffset);
+                data = TryDecodeData(stream, dataOffset, cylinder, sector, structures);
+                if (data?.Fatal == true) continue;
+                if (data?.Data is not null) bytes.AddRange(data.Data);
+                if (data is not null) structureEnd = data.EndOffset;
+            }
+            var size = data?.Size ?? 0;
+            var integrity = header.Value.Valid == false || data?.Valid == false ? false : data?.Valid is null ? null : true;
+            sectors.Add(new(cylinder, CenturionMfmFormat.LogicalHead, sector, SectorSizeCode.FromByteCount(size), size, integrity, offset, SectorIntegrityKind.Crc, data?.Data));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, CenturionMfmFormat.HeaderBitCount, CenturionMfmDescriptions.Header(cylinder, sector, size, header.Value.Valid, data?.Valid)));
+            offset = Math.Max(offset + CenturionMfmFormat.SectorMarkAdvanceBitCount, structureEnd - 1);
         }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, FluxStructureDescriptions.UnpairedData(CenturionMfmFormat.StructureDescriptionName, null, CenturionMfmFormat.DataBlockDescription))); offset += CenturionMfmFormat.DataMarkAdvanceBitCount; }
+        AddUnpairedData(stream, structures, pairedData);
         return new(Id, DisplayName, FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, CenturionMfmFormat.ConfidenceSectorWeight, CenturionMfmFormat.ConfidenceDivisor), stream.BitCellTicks, structures, bytes, sectors);
     }
 
-    /// <summary>Recherche la prochaine marque de données.</summary>
-    /// <param name="stream">Flux binaire MFM à parcourir.</param><param name="start">Offset de départ inclus, exprimé en bits.</param><returns>Offset de la marque de données en bits, ou <c>-1</c> si elle est absente ou précédée d'une nouvelle marque de secteur.</returns>
+    /// <summary>Décode les quatre octets d'en-tête et contrôle leur CRC.</summary>
+    private static (byte[] Bytes, bool Valid)? TryDecodeHeader(FluxBitstream stream, int offset)
+    {
+        var header = TryDecodeMfmBytes(stream, offset, CenturionMfmFormat.HeaderByteCount);
+        return header is null ? null : (header, Crc16Calculator.Compute(header, CenturionMfmFormat.CrcPolynomial, CenturionMfmFormat.CrcInitialValue) == 0);
+    }
+
+    /// <summary>Lit, valide et décrit un bloc de données associé à un en-tête.</summary>
+    private static CenturionDataResult? TryDecodeData(FluxBitstream stream, int dataOffset, byte cylinder, byte sector, List<FluxStructure> structures)
+    {
+        var prefixEnd = dataOffset + CenturionMfmFormat.DataPrefixBitCount;
+        if (prefixEnd > stream.Bits.Length)
+        {
+            structures.Add(new(FluxStructureKind.FormatData, dataOffset, CenturionMfmFormat.DataMarkBitCount, CenturionMfmDescriptions.TruncatedData()));
+            return new(0, null, null, dataOffset + CenturionMfmFormat.DataMarkBitCount, false);
+        }
+        var prefix = TryDecodeMfmBytes(stream, dataOffset + CenturionMfmFormat.DataMarkBitCount, CenturionMfmFormat.DataPrefixByteCount);
+        if (prefix is null) return new(0, null, null, prefixEnd, true);
+        var key = prefix[CenturionMfmFormat.DataKeyOffset];
+        var size = (prefix[CenturionMfmFormat.DataSizeOffset] << BitPrimitives.BitsPerByte) | prefix[CenturionMfmFormat.DataSizeOffset + 1];
+        var dataEnd = (long)prefixEnd + (size + CenturionMfmFormat.CrcByteCount) * CenturionMfmFormat.EncodedByteBitCount;
+        if (key != CenturionMfmFormat.SupportedDataKey || size <= 0 || dataEnd > stream.Bits.Length)
+        {
+            structures.Add(new(FluxStructureKind.FormatData, dataOffset, CenturionMfmFormat.DataPrefixBitCount, CenturionMfmDescriptions.TruncatedData(key)));
+            return new(size, null, null, prefixEnd, false);
+        }
+        var block = TryDecodeMfmBytes(stream, dataOffset + CenturionMfmFormat.DataMarkBitCount + CenturionMfmFormat.EncodedByteBitCount, size + CenturionMfmFormat.DataCrcPrefixByteCount + CenturionMfmFormat.CrcByteCount);
+        if (block is null) return new(size, null, null, (int)dataEnd, true);
+        var valid = Crc16Calculator.Compute(block, CenturionMfmFormat.CrcPolynomial, CenturionMfmFormat.CrcInitialValue) == 0;
+        var data = block.Skip(CenturionMfmFormat.DataCrcPrefixByteCount).Take(size).ToArray();
+        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, CenturionMfmDescriptions.Data(cylinder, sector, size, key, valid)));
+        return new(size, valid, data, (int)dataEnd, false);
+    }
+
+    /// <summary>Recherche la prochaine marque de données sans franchir un nouvel en-tête.</summary>
     private static int FindDataMark(FluxBitstream stream, int start)
     {
-        for (var offset = Math.Max(0, start); offset + CenturionMfmFormat.DataMarkBitCount <= stream.Bits.Length; offset++) { if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return -1; if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset; }
+        for (var offset = Math.Max(0, start); offset + CenturionMfmFormat.DataMarkBitCount <= stream.Bits.Length; offset++)
+        {
+            if (FluxBitReader.MatchBytes(stream, offset, CenturionMfmFormat.SectorMark)) return -1;
+            if (FluxBitReader.MatchBytes(stream, offset, CenturionMfmFormat.DataMark)) return offset;
+        }
         return -1;
     }
 
-    /// <summary>Détermine le code représentant la taille du secteur.</summary>
-    /// <param name="size">Taille du secteur en octets.</param><returns>Code correspondant à une puissance de deux à partir de 128 octets, ou zéro sans correspondance.</returns>
-    private static byte SizeCode(int size)
+    /// <summary>Ajoute les marques de données qui ne sont associées à aucun en-tête.</summary>
+    private static void AddUnpairedData(FluxBitstream stream, List<FluxStructure> structures, IReadOnlySet<int> pairedData)
     {
-        for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
-        return 0;
+        for (var offset = 0; offset + CenturionMfmFormat.DataMarkBitCount <= stream.Bits.Length; offset++)
+        {
+            if (!FluxBitReader.MatchBytes(stream, offset, CenturionMfmFormat.DataMark) || pairedData.Contains(offset)) continue;
+            structures.Add(new(FluxStructureKind.FormatData, offset, CenturionMfmFormat.DataMarkBitCount, CenturionMfmDescriptions.UnpairedData()));
+            offset += CenturionMfmFormat.DataMarkAdvanceBitCount;
+        }
     }
 
-    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
+    /// <summary>Décode une suite d'octets MFM avec la primitive commune.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * CenturionMfmFormat.EncodedByteBitCount, out result[index])) return null;
+        for (var index = 0; index < count; index++)
+            if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * CenturionMfmFormat.EncodedByteBitCount, out result[index])) return null;
         return result;
     }
+
+    /// <summary>Regroupe le résultat de lecture d'un bloc de données Centurion.</summary>
+    private sealed record CenturionDataResult(int Size, bool? Valid, byte[]? Data, int EndOffset, bool Fatal);
 }

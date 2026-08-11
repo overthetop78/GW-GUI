@@ -2486,15 +2486,15 @@
       - [x] Y définir les quatre octets d'en-tête, les positions du cylindre et du secteur, la clé attendue, la longueur du champ de taille et les deux octets de CRC.
       - [x] Y définir la distance de recherche `400`, les tailles minimales des préfixes et les valeurs d'avancement du balayage.
       - [x] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
-    - [ ] Primitives et décodage
-      - [ ] Remplacer les décodages MFM espacés de 16 bits par la primitive MFM commune.
-      - [ ] Remplacer `SizeCode` par la définition commune calculant le code depuis la taille sectorielle puis supprimer la méthode locale.
-      - [ ] Remplacer `Crc16` par le calculateur CRC commun configuré avec la valeur initiale Centurion puis supprimer la méthode locale.
-      - [ ] Extraire le décodage de l'en-tête, la lecture du préfixe, la validation de la clé et de la taille et la lecture de la charge utile dans des méthodes nommées.
-      - [ ] Renseigner la charge utile dans le `DecodedSector` au lieu de la conserver uniquement dans la liste globale d'octets.
-      - [ ] Extraire le traitement des blocs de données non appariés dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur, taille, clé et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les paramètres Centurion.
+    - [x] Primitives et décodage
+      - [x] Remplacer les décodages MFM espacés de 16 bits par la primitive MFM commune.
+      - [x] Remplacer `SizeCode` par la définition commune calculant le code depuis la taille sectorielle puis supprimer la méthode locale.
+      - [x] Remplacer `Crc16` par le calculateur CRC commun configuré avec la valeur initiale Centurion puis supprimer la méthode locale.
+      - [x] Extraire le décodage de l'en-tête, la lecture du préfixe, la validation de la clé et de la taille et la lecture de la charge utile dans des méthodes nommées.
+      - [x] Renseigner la charge utile dans le `DecodedSector` au lieu de la conserver uniquement dans la liste globale d'octets.
+      - [x] Extraire le traitement des blocs de données non appariés dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur, taille, clé et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les paramètres Centurion.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
