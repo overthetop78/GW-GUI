@@ -1298,12 +1298,12 @@
     - [x] Conserver `DiskImageFormatIds.Imd` lorsque la disposition sectorielle ne correspond à aucune géométrie Epson QX-10 validée.
     - [x] Supprimer du Reader IMD les nombres bruts de secteurs de 256 octets et de capacités Epson après raccordement au détecteur commun.
     - [x] Faire utiliser au détecteur les définitions de `Geometries/Epson/EpsonQx10GeometryCatalog.cs` plutôt que de maintenir une seconde table de dispositions.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Remplacer la documentation anglaise de `ImdReader` par une CSDoc française.
-    - [ ] Documenter en français `ImdFormat`, `ImdLayout`, `ImdMode`, `ImdHeadFlags`, `ImdSectorRecordType`, `ImdSection`, `ImdExceptions` et chacun de leurs membres.
-    - [ ] Documenter en français `ReadAsync`, `Read`, toutes les méthodes privées extraites et le record privé `ImdSector`.
-    - [ ] Documenter les erreurs de fichier, de données, de calcul contrôlé et d’annulation réellement propagées.
-    - [ ] Conserver sur une seule ligne les signatures, conditions, appels, records et constructions complètes qui restent lisibles ainsi.
+  - [x] Documentation XML française et mise en forme
+    - [x] Remplacer la documentation anglaise de `ImdReader` par une CSDoc française.
+    - [x] Documenter en français `ImdFormat`, `ImdLayout`, `ImdMode`, `ImdHeadFlags`, `ImdSectorRecordType`, `ImdSection`, `ImdExceptions` et chacun de leurs membres.
+    - [x] Documenter en français `ReadAsync`, `Read`, toutes les méthodes privées extraites et le record privé `ImdSector`.
+    - [x] Documenter les erreurs de fichier, de données, de calcul contrôlé et d’annulation réellement propagées.
+    - [x] Conserver sur une seule ligne les signatures, conditions, appels, records et constructions complètes qui restent lisibles ainsi.
   - [ ] Tests du parsing ImageDisk et de la détection Epson
     - [ ] Utiliser depuis `image_test` une image IMD combinant plusieurs modes, cartes optionnelles et types d’enregistrements dont les résultats sont connus.
     - [ ] Tester les six modes, les cartes de cylindres et de faces présentes ou absentes et les tailles exponentielles ou explicites.
