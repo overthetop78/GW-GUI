@@ -1810,7 +1810,7 @@
     - [x] Tester un polynôme et une valeur initiale fournis explicitement.
     - [x] Tester le rejet d’une séquence nulle.
     - [x] Exécuter les tests ciblés des encodeurs et décodeurs dont les méthodes relais ou paramètres bruts ont été remplacés.
-- [ ] `src/GWGUI.MediaEngine/Primitives/DiskGeometryConstants.cs`
+- [x] `src/GWGUI.MediaEngine/Primitives/DiskGeometryConstants.cs`
   - [x] Responsabilité et visibilité
     - [x] Conserver le fichier dans `Primitives`, car les nombres conventionnels de cylindres et de têtes sont utilisés par plusieurs familles sans appartenir à l’une d’elles.
     - [x] Rendre `DiskGeometryConstants` interne, car aucun projet extérieur à `GWGUI.MediaEngine` ne consomme directement ses constantes.
