@@ -2045,7 +2045,7 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `Commodore900GcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, TryDecodeBytes, TryNibble`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/CommodoreGcrDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/CommodoreGcrDecoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `CommodoreGcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, TryDecodeBytes, TryDecodeByte`, avec paramètres, résultat, exceptions, unités et invariants applicables.
