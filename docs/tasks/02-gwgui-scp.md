@@ -1891,10 +1891,10 @@
     - [x] Supprimer les copies de noms actuellement identiques entre décodeur et encodeur Apple II, Lisa, Macintosh, RWTS18, Arburg, Commodore, HP, Membrain, Micropolis et QD MO5.
   - [x] Documentation XML française
     - [x] Documenter en français `FluxCodecDisplayNames` et chaque constante avec l'identifiant de codec correspondant.
-  - [ ] Tests ciblés
-    - [ ] Vérifier que chaque décodeur enregistré expose le nom commun associé à son identifiant.
-    - [ ] Vérifier que chaque encodeur enregistré expose le nom commun associé à son identifiant.
-    - [ ] Vérifier qu'aucun identifiant enregistré ne reste sans nom affiché et qu'aucun nom n'est vide.
+  - [x] Tests ciblés
+    - [x] Vérifier que chaque décodeur enregistré expose le nom commun associé à son identifiant.
+    - [x] Vérifier que chaque encodeur enregistré expose le nom commun associé à son identifiant.
+    - [x] Vérifier qu'aucun identifiant enregistré ne reste sans nom affiché et qu'aucun nom n'est vide.
 - [ ] Définitions utilisées par les décodeurs et encodeurs correspondants
   - [ ] ISO FM
     - [ ] Créer `Encoding/Definitions/IsoFmFormat.cs`.

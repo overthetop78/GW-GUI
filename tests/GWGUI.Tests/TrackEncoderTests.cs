@@ -35,11 +35,43 @@ public sealed class TrackEncoderTests
     }
 
     [Fact]
+    public void RegisteredDecodersExposeTheirCommonDisplayName()
+    {
+        var displayNames = CodecDisplayNamesById();
+
+        foreach (var decoder in new FluxDecoderRegistry().Decoders) Assert.Equal(displayNames[decoder.Id], decoder.DisplayName);
+    }
+
+    [Fact]
+    public void RegisteredEncodersExposeTheirCommonDisplayName()
+    {
+        var displayNames = CodecDisplayNamesById();
+
+        foreach (var encoder in new FluxEncoderRegistry().Encoders) Assert.Equal(displayNames[encoder.Id], encoder.DisplayName);
+    }
+
+    [Fact]
+    public void RegisteredCodecsHaveANonEmptyDisplayName()
+    {
+        var displayNames = CodecDisplayNamesById();
+        var codecs = new FluxDecoderRegistry().Decoders.Select(codec => (codec.Id, codec.DisplayName)).Concat(new FluxEncoderRegistry().Encoders.Select(codec => (codec.Id, codec.DisplayName)));
+
+        foreach (var codec in codecs) { Assert.True(displayNames.ContainsKey(codec.Id)); Assert.False(string.IsNullOrWhiteSpace(codec.DisplayName)); }
+    }
+
+    [Fact]
     public void RegistryContainsEncoderForEverySemanticDecoder()
     {
         var decoderIds = new FluxDecoderRegistry().Decoders.Where(item => item.Id != "raw").Select(item => item.Id).Order().ToArray();
         var encoderIds = new FluxEncoderRegistry().Encoders.Select(item => item.Id).Order().ToArray();
         Assert.Equal(decoderIds, encoderIds);
+    }
+
+    private static IReadOnlyDictionary<string, string> CodecDisplayNamesById()
+    {
+        var identifierFields = typeof(FluxCodecIds).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+        var displayNameFields = typeof(FluxCodecDisplayNames).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).ToDictionary(field => field.Name, StringComparer.Ordinal);
+        return identifierFields.ToDictionary(field => Assert.IsType<string>(field.GetRawConstantValue()), field => Assert.IsType<string>(displayNameFields[field.Name].GetRawConstantValue()), StringComparer.Ordinal);
     }
 
     [Theory]
