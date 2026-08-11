@@ -8,6 +8,10 @@ public static class DiskCopyFormat
 
     /// <summary>Valeur indiquant qu’aucun checksum exploitable n’est stocké dans l’en-tête.</summary>
     public const uint MissingChecksum = 0;
+    /// <summary>Taille d'un mot traité par le checksum DiskCopy, en octets.</summary>
+    public const int ChecksumWordSize = sizeof(ushort);
+    /// <summary>Nombre de bits de la rotation appliquée après chaque addition.</summary>
+    public const int ChecksumRotation = 1;
 
     /// <summary>Octets ASCII mémorisés du marqueur MacWorks PREBOOT.</summary>
     private static readonly byte[] PrebootMarkerBytes = [0x50, 0x52, 0x45, 0x42, 0x4F, 0x4F, 0x54];

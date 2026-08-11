@@ -27,32 +27,24 @@ internal static class TwoImgReader
     /// </exception>
     public static SectorImage Read(byte[] container)
     {
-        if (container.Length < TwoImgLayout.MinimumHeaderSize)
-            throw TwoImgExceptions.TruncatedHeader();
-        if (!container.AsSpan(TwoImgLayout.SignatureOffset, TwoImgLayout.SignatureLength)
-                .SequenceEqual(TwoImgFormat.SignatureBytes))
-            throw TwoImgExceptions.InvalidSignature();
+        if (container.Length < TwoImgLayout.MinimumHeaderSize) throw TwoImgExceptions.TruncatedHeader();
+        if (!container.AsSpan(TwoImgLayout.SignatureOffset, TwoImgLayout.SignatureLength).SequenceEqual(TwoImgFormat.SignatureBytes)) throw TwoImgExceptions.InvalidSignature();
 
         var version = BinaryPrimitives.ReadUInt16LittleEndian(container.AsSpan(TwoImgLayout.VersionOffset));
-        if (version != TwoImgFormat.SupportedVersion)
-            throw TwoImgExceptions.UnsupportedVersion(version);
+        if (version != TwoImgFormat.SupportedVersion) throw TwoImgExceptions.UnsupportedVersion(version);
 
         var headerLength = checked((int)BinaryPrimitives.ReadUInt16LittleEndian(container.AsSpan(TwoImgLayout.HeaderSizeOffset)));
         var imageFormat = (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.ImageFormatOffset));
         var dataOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataOffsetOffset)));
         var dataLength = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataLengthOffset)));
-        if (headerLength < TwoImgLayout.MinimumHeaderSize || dataOffset < headerLength || dataLength <= 0 ||
-            dataOffset > container.Length - dataLength)
-            throw TwoImgExceptions.InvalidDataRange();
-
-        if (imageFormat == TwoImgImageFormat.NIB)
-            return NibTrackImageReader.Read(container.AsSpan(dataOffset, dataLength));
-        if (imageFormat is not TwoImgImageFormat.DOS and not TwoImgImageFormat.ProDOS)
-            throw TwoImgExceptions.UnsupportedImageFormat(imageFormat);
-
-        return AppleRawImageReader.Read(container.AsSpan(dataOffset, dataLength).ToArray(),
-            imageFormat == TwoImgImageFormat.DOS
-                ? DiskImageFileExtensions.Do
-                : DiskImageFileExtensions.Po);
+        if (headerLength < TwoImgLayout.MinimumHeaderSize || dataOffset < headerLength || dataLength <= 0 || dataOffset > container.Length - dataLength) throw TwoImgExceptions.InvalidDataRange();
+        var payload = container.AsSpan(dataOffset, dataLength);
+        return imageFormat switch
+        {
+            TwoImgImageFormat.DOS => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Do),
+            TwoImgImageFormat.ProDOS => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Po),
+            TwoImgImageFormat.NIB => NibTrackImageReader.Read(payload),
+            _ => throw TwoImgExceptions.UnsupportedImageFormat(imageFormat)
+        };
     }
 }

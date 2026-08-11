@@ -619,12 +619,12 @@
     - [x] Tester pour les cylindres et les faces la limite minimale, la limite maximale, zéro et la valeur immédiatement supérieure au maximum.
     - [x] Tester le calcul de validité d’un secteur avec les octets d’état utilisés par le lecteur après leur traitement.
     - [x] Vérifier que le nettoyage des variables et de la mise en forme ne modifie ni les secteurs produits ni leur validité.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleContainerImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/AppleContainerImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.
     - [x] Créer `Containers/Apple/DiskCopy/DiskCopyReader.cs` et y déplacer le parsing DiskCopy.
     - [x] Supprimer `AppleContainerImageReader.cs` après raccordement.
-  - [ ] Définitions du format 2IMG
+  - [x] Définitions du format 2IMG
     - [x] Créer `Containers/Apple/TwoImg/TwoImgFormat.cs`.
     - [x] Déplacer la signature `2IMG` dans une constante nommée de `TwoImgFormat`.
     - [x] Créer `Containers/Apple/TwoImg/TwoImgImageFormat.cs` avec l’enum `TwoImgImageFormat` et les valeurs DOS, ProDOS et NIB définies par 2IMG.
@@ -633,29 +633,29 @@
     - [x] Remplacer dans `TwoImgReader` chaque offset, taille et valeur de format brute par `TwoImgLayout` ou `TwoImgImageFormat`.
     - [x] Remplacer les extensions DOS et ProDOS écrites en brut par les constantes communes de `DiskImageFileExtensions`.
     - [x] Faire valider par `TwoImgReader` la signature et la version du conteneur avant d’utiliser ses champs.
-    - [ ] Représentation binaire de la signature 2IMG
-      - [ ] Remplacer la chaîne `Signature`, le tableau `EncodedSignature` et son encodage au chargement par `SignatureBytes` retournant directement le littéral UTF-8 `"2IMG"u8`.
-      - [ ] Adapter la documentation française de `SignatureBytes` après la suppression de la propriété textuelle.
-      - [ ] Exécuter le test existant qui vérifie les quatre octets exacts de la signature 2IMG.
-  - [ ] Organisation de `TwoImgReader.cs`
-    - [ ] Charge utile validée
-      - [ ] Créer une seule variable `payload` à partir de `dataOffset` et `dataLength` après leur validation.
-      - [ ] Réutiliser cette variable pour les lectures NIB, DOS et ProDOS sans reconstruire la même plage.
-    - [ ] Routage du format de charge utile
-      - [ ] Remplacer les conditions successives par un routage unique couvrant explicitement `TwoImgImageFormat.DOS`, `TwoImgImageFormat.ProDOS` et `TwoImgImageFormat.NIB`.
-      - [ ] Conserver le rejet par `TwoImgExceptions.UnsupportedImageFormat` de toute autre valeur.
-    - [ ] Mise en forme
-      - [ ] Remettre sur une seule ligne les conditions, appels et expressions courtes de `TwoImgReader.cs` qui tiennent sur une ligne.
-    - [ ] Tests ciblés
-      - [ ] Exécuter les tests ciblés existants des charges utiles DOS, ProDOS et NIB après le nouveau routage.
-      - [ ] Exécuter le test ciblé existant vérifiant qu’une valeur de format inconnue reste rejetée.
-  - [ ] Erreurs de validation 2IMG
+    - [x] Représentation binaire de la signature 2IMG
+      - [x] Remplacer la chaîne `Signature`, le tableau `EncodedSignature` et son encodage au chargement par `SignatureBytes` retournant directement le littéral UTF-8 `"2IMG"u8`.
+      - [x] Adapter la documentation française de `SignatureBytes` après la suppression de la propriété textuelle.
+      - [x] Exécuter le test existant qui vérifie les quatre octets exacts de la signature 2IMG.
+  - [x] Organisation de `TwoImgReader.cs`
+    - [x] Charge utile validée
+      - [x] Créer une seule variable `payload` à partir de `dataOffset` et `dataLength` après leur validation.
+      - [x] Réutiliser cette variable pour les lectures NIB, DOS et ProDOS sans reconstruire la même plage.
+    - [x] Routage du format de charge utile
+      - [x] Remplacer les conditions successives par un routage unique couvrant explicitement `TwoImgImageFormat.DOS`, `TwoImgImageFormat.ProDOS` et `TwoImgImageFormat.NIB`.
+      - [x] Conserver le rejet par `TwoImgExceptions.UnsupportedImageFormat` de toute autre valeur.
+    - [x] Mise en forme
+      - [x] Remettre sur une seule ligne les conditions, appels et expressions courtes de `TwoImgReader.cs` qui tiennent sur une ligne.
+    - [x] Tests ciblés
+      - [x] Exécuter les tests ciblés existants des charges utiles DOS, ProDOS et NIB après le nouveau routage.
+      - [x] Exécuter le test ciblé existant vérifiant qu’une valeur de format inconnue reste rejetée.
+  - [x] Erreurs de validation 2IMG
     - [x] Créer `Containers/Apple/TwoImg/TwoImgExceptions.cs`.
     - [x] Ajouter les méthodes construisant les erreurs de signature, de version, d’en-tête tronqué et de plage de données invalide.
     - [x] Ajouter une méthode recevant `TwoImgImageFormat` pour construire l’erreur de format d’image non pris en charge.
     - [x] Remplacer dans `TwoImgReader` les textes et constructions directes d’exceptions par ces méthodes.
-    - [ ] Mise en forme de `TwoImgExceptions.cs`
-      - [ ] Remettre sur une seule ligne les cinq méthodes courtes dont le corps se limite à `=> new(...)`.
+    - [x] Mise en forme de `TwoImgExceptions.cs`
+      - [x] Remettre sur une seule ligne les cinq méthodes courtes dont le corps se limite à `=> new(...)`.
   - [x] Définitions du format DiskCopy
     - [x] Créer `Containers/Apple/DiskCopy/DiskCopyFormat.cs` pour les marqueurs et propriétés propres au conteneur.
     - [x] Déplacer le marqueur `PREBOOT` dans une constante binaire nommée de `DiskCopyFormat`.
@@ -672,7 +672,7 @@
     - [x] Nommer dans `AppleDiskGeometry` les nombres de cylindres, faces et secteurs maximaux associés à ces géométries.
     - [x] Remplacer dans `DiskCopyReader` les valeurs `1702`, `800`, `46`, `80`, `22`, `12` et `10` par les définitions géométriques correspondantes.
     - [x] Conserver dans `DiskCopyReader` uniquement les calculs de position qui dépendent de la charge utile courante.
-  - [ ] Erreurs et validations DiskCopy
+  - [x] Erreurs et validations DiskCopy
     - [x] Créer `Containers/Apple/DiskCopy/DiskCopyExceptions.cs`.
     - [x] Ajouter les méthodes construisant les erreurs d’en-tête tronqué, de charge utile invalide et de combinaison données/tags non reconnue.
     - [x] Remplacer dans `DiskCopyReader` les textes et constructions directes d’`InvalidDataException` par ces méthodes.
@@ -680,29 +680,29 @@
     - [x] Valider le checksum des données lorsqu’il est présent dans l’en-tête.
     - [x] Valider le checksum des tags lorsqu’ils sont présents dans l’en-tête.
     - [x] Ajouter des méthodes d’erreur distinctes pour les checksums de données et de tags invalides.
-    - [ ] Mise en forme de `DiskCopyExceptions.cs`
-      - [ ] Remettre sur une seule ligne les sept méthodes courtes dont le corps se limite à `=> new(...)`.
-  - [ ] Organisation de `DiskCopyReader.cs`
-    - [ ] Définitions du checksum DiskCopy
-      - [ ] Déplacer la taille du mot traité par le checksum hors de `CalculateChecksum` dans la définition DiskCopy appropriée.
-      - [ ] Déplacer la rotation d’un bit appliquée par le checksum hors de `CalculateChecksum` dans la définition DiskCopy appropriée.
-      - [ ] Remplacer les constantes locales `wordSize` et `rotation` par ces définitions.
-    - [ ] Sélection de la géométrie
-      - [ ] Déterminer une seule fois si l’image taguée utilise la géométrie Lisa FileWare, Macintosh 400 K ou générique.
-      - [ ] Réutiliser ce résultat pour calculer les adresses des blocs, les cylindres, les faces et le nombre maximal de secteurs.
-      - [ ] Supprimer les comparaisons de nombres de blocs devenues dupliquées dans la boucle et dans la construction de `SectorImage`.
-    - [ ] Découpage de `Read`
-      - [ ] Extraire la construction des blocs tagués dans une fonction privée nommée.
-      - [ ] Extraire la construction de la géométrie taguée dans une fonction privée nommée.
-      - [ ] Raccorder `Read` à ces deux fonctions sans modifier les blocs, adresses, tags, capacités ni identifiants produits.
-    - [ ] Mise en forme et documentation
-      - [ ] Remettre sur une seule ligne les conditions, appels et expressions courtes de `DiskCopyReader.cs` qui tiennent sur une ligne.
-      - [ ] Documenter en français les fonctions privées créées, leurs paramètres et leurs résultats.
-    - [ ] Tests ciblés
-      - [ ] Tester la construction des blocs et de la géométrie Lisa FileWare.
-      - [ ] Tester la construction des blocs et de la géométrie Macintosh 400 K.
-      - [ ] Tester la construction des blocs et de la géométrie taguée générique.
-      - [ ] Vérifier que le découpage conserve pour ces trois cas les adresses, tags, capacités et identifiants actuels.
+    - [x] Mise en forme de `DiskCopyExceptions.cs`
+      - [x] Remettre sur une seule ligne les sept méthodes courtes dont le corps se limite à `=> new(...)`.
+  - [x] Organisation de `DiskCopyReader.cs`
+    - [x] Définitions du checksum DiskCopy
+      - [x] Déplacer la taille du mot traité par le checksum hors de `CalculateChecksum` dans la définition DiskCopy appropriée.
+      - [x] Déplacer la rotation d’un bit appliquée par le checksum hors de `CalculateChecksum` dans la définition DiskCopy appropriée.
+      - [x] Remplacer les constantes locales `wordSize` et `rotation` par ces définitions.
+    - [x] Sélection de la géométrie
+      - [x] Déterminer une seule fois si l’image taguée utilise la géométrie Lisa FileWare, Macintosh 400 K ou générique.
+      - [x] Réutiliser ce résultat pour calculer les adresses des blocs, les cylindres, les faces et le nombre maximal de secteurs.
+      - [x] Supprimer les comparaisons de nombres de blocs devenues dupliquées dans la boucle et dans la construction de `SectorImage`.
+    - [x] Découpage de `Read`
+      - [x] Extraire la construction des blocs tagués dans une fonction privée nommée.
+      - [x] Extraire la construction de la géométrie taguée dans une fonction privée nommée.
+      - [x] Raccorder `Read` à ces deux fonctions sans modifier les blocs, adresses, tags, capacités ni identifiants produits.
+    - [x] Mise en forme et documentation
+      - [x] Remettre sur une seule ligne les conditions, appels et expressions courtes de `DiskCopyReader.cs` qui tiennent sur une ligne.
+      - [x] Documenter en français les fonctions privées créées, leurs paramètres et leurs résultats.
+    - [x] Tests ciblés
+      - [x] Tester la construction des blocs et de la géométrie Lisa FileWare.
+      - [x] Tester la construction des blocs et de la géométrie Macintosh 400 K.
+      - [x] Tester la construction des blocs et de la géométrie taguée générique.
+      - [x] Vérifier que le découpage conserve pour ces trois cas les adresses, tags, capacités et identifiants actuels.
   - [x] Documentation XML
     - [x] Ajouter en français la documentation XML de `TwoImgReader`, de ses méthodes et des validations 2IMG.
     - [x] Documenter en français `TwoImgFormat`, `TwoImgImageFormat`, `TwoImgLayout`, `TwoImgExceptions` et chacun de leurs membres.

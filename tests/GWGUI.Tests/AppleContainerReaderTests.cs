@@ -87,6 +87,25 @@ public sealed class AppleContainerReaderTests
     }
 
     [Theory]
+    [InlineData(800, 80, 1, 12)]
+    [InlineData(20, 2, 1, 10)]
+    public async Task PreservesMacintoshAndGenericTaggedDiskCopyGeometries(int blockCount, int cylinders, int heads, int sectorsPerTrack)
+    {
+        var output = Path.Combine(FindImageTestRoot(), "_generated", "apple-containers");
+        Directory.CreateDirectory(output);
+        var path = Write(output, $"tagged-{blockCount}.image", BuildTaggedDiskCopy(blockCount));
+
+        var image = await new AppleDiskImageReader().ReadAsync(path);
+
+        Assert.Equal(blockCount, image.BlockCount);
+        Assert.Equal((long)blockCount * DiskCopyLayout.DataBlockSize, image.Capacity);
+        Assert.Equal(cylinders, image.Cylinders);
+        Assert.Equal(heads, image.Heads);
+        Assert.Equal(sectorsPerTrack, image.SectorsPerTrack);
+        Assert.All(image.AvailableBlocks, block => Assert.Equal(DiskCopyLayout.TagSizePerBlock, block.Tag?.Count));
+    }
+
+    [Theory]
     [InlineData("invalid-signature")]
     [InlineData("invalid-offset")]
     [InlineData("invalid-length")]
@@ -200,6 +219,17 @@ public sealed class AppleContainerReaderTests
         BinaryPrimitives.WriteUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataLengthOffset),
             checked((uint)payload.Length));
         payload.CopyTo(container, TwoImgLayout.MinimumHeaderSize);
+        return container;
+    }
+
+    private static byte[] BuildTaggedDiskCopy(int blockCount)
+    {
+        var dataLength = checked(blockCount * DiskCopyLayout.DataBlockSize);
+        var tagLength = checked(blockCount * DiskCopyLayout.TagSizePerBlock);
+        var container = new byte[DiskCopyLayout.HeaderSize + dataLength + tagLength];
+        BinaryPrimitives.WriteUInt32BigEndian(container.AsSpan(DiskCopyLayout.DataLengthOffset), checked((uint)dataLength));
+        BinaryPrimitives.WriteUInt32BigEndian(container.AsSpan(DiskCopyLayout.TagLengthOffset), checked((uint)tagLength));
+        BinaryPrimitives.WriteUInt16BigEndian(container.AsSpan(DiskCopyLayout.PrivateWordOffset), DiskCopyFormat.PrivateWord);
         return container;
     }
 
