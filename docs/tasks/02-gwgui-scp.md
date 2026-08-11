@@ -500,27 +500,27 @@
   - [x] Tests du contrat public
     - [x] Tester une politique synchrone incompatible et une politique asynchrone qui examine les octets partagés.
     - [x] Tester une politique qui valide puis lit le candidat et une politique dont la lecture le rejette avec chacune des deux exceptions prévues.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Policies/CoherentImageRecognitionPolicy.cs`
-  - [ ] Responsabilité et raccordements
-    - [ ] Conserver la politique sous `Recognition/Policies`, car elle présélectionne une image brute depuis la structure interne de son superbloc, indépendamment de l’extension.
-    - [ ] Adapter sa dépendance au déplacement du Reader vers `Containers/Coherent/CoherentRawImageReader.cs`.
-    - [ ] Remplacer l’import général de `Images` par les namespaces précis du Reader et du probe.
-  - [ ] Probe commun du superbloc
-    - [ ] Remplacer `CoherentImageReader.LooksLikeCoherent` par `FileSystems/Coherent/CoherentSuperblockProbe` prévu dans le groupe du Reader.
-    - [ ] Transmettre au probe la mémoire en lecture seule déjà chargée par le contexte.
-    - [ ] Conserver dans le probe, et non dans la politique, les offsets, marqueurs et règles de validité du superbloc Coherent.
-  - [ ] Lecture sans seconde ouverture
-    - [ ] Faire recevoir à `ReaderBackedRecognitionPolicy` le point d’entrée en mémoire de `CoherentRawImageReader`.
-    - [ ] Supprimer la délégation par chemin qui rouvre actuellement le fichier après le probe.
-  - [ ] Mise en forme
-    - [ ] Conserver l’expression courte de `CanReadAsync` sur une seule ligne lorsqu’elle tient lisiblement.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre et de `CanReadAsync`.
-    - [ ] Documenter que le probe présélectionne le candidat et que le Reader valide entièrement le dump et sa géométrie.
-  - [ ] Tests ciblés
-    - [ ] Tester un superbloc Coherent valide avec une extension inhabituelle et un contenu de même taille sans superbloc valide.
-    - [ ] Vérifier qu’un rejet permet au registre d’essayer la politique suivante.
-    - [ ] Vérifier que probe et lecture complète partagent une seule lecture du fichier.
+- [x] `src/GWGUI.MediaEngine/Recognition/Policies/CoherentImageRecognitionPolicy.cs`
+  - [x] Responsabilité et raccordements
+    - [x] Conserver la politique sous `Recognition/Policies`, car elle présélectionne une image brute depuis la structure interne de son superbloc, indépendamment de l’extension.
+    - [x] Adapter sa dépendance au déplacement du Reader vers `Containers/Coherent/CoherentRawImageReader.cs`.
+    - [x] Remplacer l’import général de `Images` par les namespaces précis du Reader et du probe.
+  - [x] Probe commun du superbloc
+    - [x] Remplacer `CoherentImageReader.LooksLikeCoherent` par `FileSystems/Coherent/CoherentSuperblockProbe` prévu dans le groupe du Reader.
+    - [x] Transmettre au probe la mémoire en lecture seule déjà chargée par le contexte.
+    - [x] Conserver dans le probe, et non dans la politique, les offsets, marqueurs et règles de validité du superbloc Coherent.
+  - [x] Lecture sans seconde ouverture
+    - [x] Faire recevoir à `ReaderBackedRecognitionPolicy` le point d’entrée en mémoire de `CoherentRawImageReader`.
+    - [x] Supprimer la délégation par chemin qui rouvre actuellement le fichier après le probe.
+  - [x] Mise en forme
+    - [x] Conserver l’expression courte de `CanReadAsync` sur une seule ligne lorsqu’elle tient lisiblement.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre et de `CanReadAsync`.
+    - [x] Documenter que le probe présélectionne le candidat et que le Reader valide entièrement le dump et sa géométrie.
+  - [x] Tests ciblés
+    - [x] Tester un superbloc Coherent valide avec une extension inhabituelle et un contenu de même taille sans superbloc valide.
+    - [x] Vérifier qu’un rejet permet au registre d’essayer la politique suivante.
+    - [x] Vérifier que probe et lecture complète partagent une seule lecture du fichier.
 - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`
   - [ ] Responsabilité et dépendances
     - [ ] Conserver la politique sous `Recognition/Policies` pour réunir la capacité physique RX02, la sélection explicite et la présence d’un home block RT-11 crédible.

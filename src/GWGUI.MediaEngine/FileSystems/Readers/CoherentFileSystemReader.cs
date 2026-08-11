@@ -1,7 +1,7 @@
 using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
 using System.Text;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.FileSystems.Coherent;
 using GWGUI.MediaEngine.SectorImages;
 
 
@@ -24,10 +24,10 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
     public FileSystemVolume Read(SectorImage image)
     {
         var bytes = Flatten(image);
-        if (!CoherentImageReader.LooksLikeCoherent(bytes))
+        if (!CoherentSuperblockProbe.LooksLikeCoherent(bytes))
             throw new InvalidDataException("The COHERENT superblock is missing.");
         var inodeZoneEnd = BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(512, 2));
-        var fileSystemBlocks = checked((int)CoherentImageReader.ReadCanonicalUInt32(bytes.AsSpan(514, 4)));
+        var fileSystemBlocks = checked((int)CoherentSuperblockProbe.ReadCanonicalUInt32(bytes.AsSpan(514, 4)));
         if (inodeZoneEnd < 3 || inodeZoneEnd > fileSystemBlocks) throw new InvalidDataException("The COHERENT inode zone is invalid.");
 
         var warnings = new List<string>();
@@ -35,8 +35,8 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
         var entries = ReadDirectory(bytes, 2, visited, warnings);
         var volumeName = DecodeFixed(bytes.AsSpan(996, 6));
         if (volumeName is "xxxxx" or "noname") volumeName = string.Empty;
-        var freeBytes = (long)CoherentImageReader.ReadCanonicalUInt32(bytes.AsSpan(980, 4)) * BlockSize;
-        var modified = DecodeTime(CoherentImageReader.ReadCanonicalUInt32(bytes.AsSpan(976, 4)));
+        var freeBytes = (long)CoherentSuperblockProbe.ReadCanonicalUInt32(bytes.AsSpan(980, 4)) * BlockSize;
+        var modified = DecodeTime(CoherentSuperblockProbe.ReadCanonicalUInt32(bytes.AsSpan(976, 4)));
         return new(volumeName, "COHERENT (Commodore 900)", (long)fileSystemBlocks * BlockSize,
             Math.Clamp(freeBytes, 0, (long)fileSystemBlocks * BlockSize), null, modified, entries, warnings);
     }
@@ -84,8 +84,8 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
             var item = value.Slice(12 + index * 3, 3);
             pointers[index] = item[1] | item[2] << 8 | item[0] << 16;
         }
-        return new(BinaryPrimitives.ReadUInt16LittleEndian(value), CoherentImageReader.ReadCanonicalUInt32(value.Slice(8, 4)),
-            pointers, CoherentImageReader.ReadCanonicalUInt32(value.Slice(56, 4)));
+        return new(BinaryPrimitives.ReadUInt16LittleEndian(value), CoherentSuperblockProbe.ReadCanonicalUInt32(value.Slice(8, 4)),
+            pointers, CoherentSuperblockProbe.ReadCanonicalUInt32(value.Slice(56, 4)));
     }
 
     private static byte[] ReadFileData(byte[] image, Inode inode, List<string> warnings, string name)
@@ -132,7 +132,7 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
         var offset = (int)longOffset;
         for (var index = 0; index < BlockSize && result.Count < requiredBlocks; index += 4)
         {
-            var rawChild = CoherentImageReader.ReadCanonicalUInt32(image.AsSpan(offset + index, 4));
+            var rawChild = CoherentSuperblockProbe.ReadCanonicalUInt32(image.AsSpan(offset + index, 4));
             if (rawChild > image.Length / BlockSize) { warnings.Add($"{name}: indirect COHERENT block {rawChild} is outside the image."); continue; }
             var child = (int)rawChild;
             if (depth == 1) result.Add(child); else AddIndirect(image, child, depth - 1, result, requiredBlocks, warnings, name);

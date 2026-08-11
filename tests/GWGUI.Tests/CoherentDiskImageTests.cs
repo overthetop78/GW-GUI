@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
+using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
@@ -13,7 +14,7 @@ public sealed class CoherentDiskImageTests
     [Fact]
     public async Task Commodore900CoherentVolumeExposesRealDirectoryAndFiles()
     {
-        var image = await new CoherentImageReader().ReadAsync(CoherentImagePath());
+        var image = await new CoherentRawImageReader().ReadAsync(CoherentImagePath());
         var volume = new FileSystemRegistry().Read(image);
 
         Assert.Equal(DiskImageFormatIds.Commodore900Coherent, image.FormatId);
@@ -31,7 +32,7 @@ public sealed class CoherentDiskImageTests
         try
         {
             File.Copy(sourcePath, unusualPath);
-            var expected = await new CoherentImageReader().ReadAsync(sourcePath);
+            var expected = await new CoherentRawImageReader().ReadAsync(sourcePath);
 
             var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(unusualPath);
 
@@ -118,7 +119,7 @@ public sealed class CoherentDiskImageTests
             CancellationToken cancellationToken)
         {
             ReadCalls++;
-            return new CoherentImageReader().ReadAsync(context.Path, cancellationToken);
+            return new CoherentRawImageReader().ReadAsync(context.Path, cancellationToken);
         }
     }
 
