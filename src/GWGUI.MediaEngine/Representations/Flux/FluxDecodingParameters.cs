@@ -17,4 +17,16 @@ internal static class FluxDecodingParameters
     public const double MaximumAcceptedSampleRatio = 1.3d;
     /// <summary>Part de l'écart observé appliquée à l'horloge lors de chaque adaptation.</summary>
     public const double ClockAdaptationCoefficient = 0.08d;
+    /// <summary>Rapport minimal entre l'horloge PLL et son centre.</summary>
+    public const double MinimumPllClockRatio = 0.9d;
+    /// <summary>Rapport maximal entre l'horloge PLL et son centre.</summary>
+    public const double MaximumPllClockRatio = 1.1d;
+    /// <summary>Fraction d'un cycle utilisée pour détecter le prochain bit.</summary>
+    public const double HalfCycle = 0.5d;
+    /// <summary>Fraction de la phase résiduelle conservée après une transition.</summary>
+    public const double PllPhaseRetention = 0.4d;
+    /// <summary>Coefficient appliqué à chaque correction de l'horloge PLL.</summary>
+    public const double PllCorrectionCoefficient = 0.05d;
+    /// <summary>Nombre maximal de zéros autorisant une correction directe de l'horloge PLL.</summary>
+    public const int MaximumZerosForDirectPllCorrection = 3;
 }

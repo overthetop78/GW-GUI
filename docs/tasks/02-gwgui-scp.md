@@ -1648,10 +1648,10 @@
       - [x] Y définir les bornes relatives `0,7` et `1,3` d'un échantillon accepté.
       - [x] Y définir le coefficient d'adaptation `0,08`.
       - [x] Remplacer ces valeurs dans la reconstruction adaptative.
-    - [ ] Boucle PLL
-      - [ ] Y définir les bornes d'horloge `0,9` et `1,1` autour du centre.
-      - [ ] Y définir le demi-cycle `0,5`, la conservation de phase `0,4`, la correction `0,05` et la limite de trois zéros pour la correction directe.
-      - [ ] Remplacer ces valeurs dans la reconstruction PLL.
+    - [x] Boucle PLL
+      - [x] Y définir les bornes d'horloge `0,9` et `1,1` autour du centre.
+      - [x] Y définir le demi-cycle `0,5`, la conservation de phase `0,4`, la correction `0,05` et la limite de trois zéros pour la correction directe.
+      - [x] Remplacer ces valeurs dans la reconstruction PLL.
     - [ ] Estimation robuste
       - [ ] Y définir le diviseur 50 du percentile bas utilisé pour FM et NRZI.
       - [ ] Y définir le cinquième inférieur utilisé par l'estimation non-FM et la division par deux de l'intervalle robuste.

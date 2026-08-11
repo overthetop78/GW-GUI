@@ -73,8 +73,8 @@ internal static class FluxTransitionDecoder
     public static FluxBitstream ReconstructPll(IReadOnlyList<uint> intervals, double centre, int maximumCells)
     {
         var clock = centre;
-        var minimum = centre * .9;
-        var maximum = centre * 1.1;
+        var minimum = centre * FluxDecodingParameters.MinimumPllClockRatio;
+        var maximum = centre * FluxDecodingParameters.MaximumPllClockRatio;
         var ticks = 0d;
         var accumulatedClock = 0d;
         var samples = 0;
@@ -83,21 +83,21 @@ internal static class FluxTransitionDecoder
         foreach (var interval in intervals)
         {
             ticks += interval;
-            if (ticks < clock / 2) continue;
+            if (ticks < clock * FluxDecodingParameters.HalfCycle) continue;
 
             var zeros = 0;
             while (zeros < maximumCells - 1)
             {
                 ticks -= clock;
-                if (ticks < clock / 2) break;
+                if (ticks < clock * FluxDecodingParameters.HalfCycle) break;
                 zeros++;
                 bits.Add(false);
             }
             bits.Add(true);
 
-            var correctedTicks = ticks * .4;
-            if (zeros <= 3) clock += ticks * .05;
-            else clock += (centre - clock) * .05;
+            var correctedTicks = ticks * FluxDecodingParameters.PllPhaseRetention;
+            if (zeros <= FluxDecodingParameters.MaximumZerosForDirectPllCorrection) clock += ticks * FluxDecodingParameters.PllCorrectionCoefficient;
+            else clock += (centre - clock) * FluxDecodingParameters.PllCorrectionCoefficient;
             clock = Math.Clamp(clock, minimum, maximum);
             ticks = correctedTicks;
             accumulatedClock += clock;
