@@ -1780,10 +1780,10 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML française de `BitPrimitives`, `BitsPerByte`, `LeastSignificantBitMask` et `ReverseBits`.
     - [x] Documenter le paramètre, le résultat et l’ordre exact des bits inversés.
-  - [ ] Tests ciblés
-    - [ ] Tester l’inversion de `0x00`, `0xFF`, `0x01`, `0x80` et d’une valeur non symétrique connue.
-    - [ ] Vérifier pour chaque valeur d’octet que deux inversions successives restituent la valeur initiale.
-    - [ ] Exécuter les tests ciblés des cinq consommateurs dont la méthode relais a été supprimée.
+  - [x] Tests ciblés
+    - [x] Tester l’inversion de `0x00`, `0xFF`, `0x01`, `0x80` et d’une valeur non symétrique connue.
+    - [x] Vérifier pour chaque valeur d’octet que deux inversions successives restituent la valeur initiale.
+    - [x] Exécuter les tests ciblés des cinq consommateurs dont la méthode relais a été supprimée.
 - [ ] `src/GWGUI.MediaEngine/Primitives/Crc16Calculator.cs`
   - [ ] Responsabilité et emplacement
     - [ ] Conserver le fichier dans `Primitives`, car son calcul CRC ne dépend d’aucun format ou codec particulier.

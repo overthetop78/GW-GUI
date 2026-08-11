@@ -1,9 +1,31 @@
 using GWGUI.MediaEngine.Representations.Flux;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.Tests;
 
 public sealed class FluxPrimitivesTests
 {
+    [Theory]
+    [InlineData(0x00, 0x00)]
+    [InlineData(0xFF, 0xFF)]
+    [InlineData(0x01, 0x80)]
+    [InlineData(0x80, 0x01)]
+    [InlineData(0x96, 0x69)]
+    public void BitPrimitivesReversesKnownBytes(byte value, byte expected)
+    {
+        Assert.Equal(expected, BitPrimitives.ReverseBits(value));
+    }
+
+    [Fact]
+    public void BitPrimitivesDoubleReversalRestoresEveryByte()
+    {
+        for (var value = (int)byte.MinValue; value <= byte.MaxValue; value++)
+        {
+            var source = (byte)value;
+            Assert.Equal(source, BitPrimitives.ReverseBits(BitPrimitives.ReverseBits(source)));
+        }
+    }
+
     [Fact]
     public void FluxBitstreamCopiesSourceBits()
     {
