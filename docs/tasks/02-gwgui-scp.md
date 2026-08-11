@@ -2292,14 +2292,14 @@
       - [x] Tester un CRC d'en-tête valide ou invalide et un CRC de données valide ou invalide.
       - [x] Tester une marque de données non appariée et vérifier la confiance finale.
   - [ ] `Decoding/Decoders/AmigaMfmDecoder.cs`
-    - [ ] Définitions du format Amiga MFM
-      - [ ] Créer `Decoding/Definitions/AmigaMfmFormat.cs`.
-      - [ ] Y définir l'identifiant `amiga.mfm`, son nom affiché et les valeurs communes au décodeur et à `Encoding/Encoders/AmigaMfmTrackEncoder.cs`.
-      - [ ] Y définir les deux mots de synchronisation `0x4489`, leur longueur totale, le marqueur d'en-tête `0xff`, les tailles de l'en-tête, du label, des checksums, des données encodées et du secteur décodé.
-      - [ ] Y définir les positions de l'octet de format, de la piste et de la face, du numéro de secteur, du nombre de secteurs restants, des checksums d'en-tête et de données et du début des données.
-      - [ ] Y définir le décalage du cylindre, le masque de la face et les longueurs utilisées par les calculs de parité.
-      - [ ] Y définir les longueurs des gaps utilisées par `AmigaMfmTrackEncoder.cs` afin que l'encodeur et le décodeur emploient les mêmes définitions du format.
-      - [ ] Remplacer dans `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs` les identifiants, textes et valeurs brutes correspondants par `AmigaMfmFormat`.
+    - [x] Définitions du format Amiga MFM
+      - [x] Créer `Decoding/Definitions/AmigaMfmFormat.cs`.
+      - [x] Y définir l'identifiant `amiga.mfm`, son nom affiché et les valeurs communes au décodeur et à `Encoding/Encoders/AmigaMfmTrackEncoder.cs`.
+      - [x] Y définir les deux mots de synchronisation `0x4489`, leur longueur totale, le marqueur d'en-tête `0xff`, les tailles de l'en-tête, du label, des checksums, des données encodées et du secteur décodé.
+      - [x] Y définir les positions de l'octet de format, de la piste et de la face, du numéro de secteur, du nombre de secteurs restants, des checksums d'en-tête et de données et du début des données.
+      - [x] Y définir le décalage du cylindre, le masque de la face et les longueurs utilisées par les calculs de parité.
+      - [x] Y définir les longueurs des gaps utilisées par `AmigaMfmTrackEncoder.cs` afin que l'encodeur et le décodeur emploient les mêmes définitions du format.
+      - [x] Remplacer dans `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs` les identifiants, textes et valeurs brutes correspondants par `AmigaMfmFormat`.
     - [ ] Codec odd/even et parités Amiga
       - [ ] Créer `Decoding/Definitions/AmigaMfmCodec.cs` pour détenir les opérations Amiga communes d'encodage et de décodage odd/even et de calcul des parités.
       - [ ] Déplacer dans ce composant `DecodeOddEven`, `Interleave`, `EncodeOddEven`, `Nibble` et les calculs de parité actuellement répartis entre le décodeur et l'encodeur.

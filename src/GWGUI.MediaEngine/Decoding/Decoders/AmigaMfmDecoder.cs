@@ -1,5 +1,4 @@
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
@@ -7,16 +6,16 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class AmigaMfmDecoder : IFluxDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.AmigaMfm;
+    public string Id => AmigaMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.AmigaMfm;
+    public string DisplayName => AmigaMfmFormat.CodecDisplayName;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP dont les intervalles sont décodés selon le format MFM Amiga.</param>
     /// <returns>Résultat contenant les structures, secteurs, octets décodés et la durée estimée d'une cellule.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
-        const int encodedBytes = AmigaMfmFormat.EncodedSectorByteCount; const int headerBytes = AmigaMfmFormat.EncodedHeaderByteCount; const int dataOffset = AmigaMfmFormat.EncodedDataOffset; const int dataBytes = AmigaMfmFormat.SectorByteCount;
+        const int encodedBytes = AmigaMfmFormat.EncodedSectorByteCount; const int headerBytes = AmigaMfmFormat.EncodedHeaderByteCount; const int dataOffset = AmigaMfmFormat.EncodedDataOffset; const int dataBytes = AmigaMfmFormat.EncodedDataByteCount;
         for (var offset = 0; offset + AmigaMfmFormat.SyncBitCount <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.Match(stream, offset, AmigaMfmFormat.SyncWord) || !FluxBitReader.Match(stream, offset + AmigaMfmFormat.EncodedByteBitCount, AmigaMfmFormat.SyncWord)) continue;
@@ -24,8 +23,8 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
             bool? headerValid = null; bool? dataValid = null; byte cylinder = 0; byte head = 0; byte number = 0; var length = AmigaMfmFormat.SyncBitCount; byte[]? payload = null;
             if (available is not null)
             {
-                var header = DecodeOddEven(available.Take(AmigaMfmFormat.InfoByteCount).ToArray()); cylinder = (byte)(header[1] >> 1); head = (byte)(header[1] & 1); number = header[2];
-                var headerParity = CalculateParity(available, 0, AmigaMfmFormat.HeaderParitySourceByteCount); headerValid = header[0] == AmigaMfmFormat.FormatByte && available[AmigaMfmFormat.HeaderParityHighOffset] == headerParity.High && available[AmigaMfmFormat.HeaderParityLowOffset] == headerParity.Low;
+                var header = DecodeOddEven(available.Take(AmigaMfmFormat.InfoByteCount).ToArray()); cylinder = (byte)(header[AmigaMfmFormat.TrackAndHeadOffset] >> AmigaMfmFormat.TrackCylinderShift); head = (byte)(header[AmigaMfmFormat.TrackAndHeadOffset] & AmigaMfmFormat.TrackHeadMask); number = header[AmigaMfmFormat.SectorNumberOffset];
+                var headerParity = CalculateParity(available, 0, AmigaMfmFormat.HeaderParitySourceByteCount); headerValid = header[AmigaMfmFormat.FormatByteOffset] == AmigaMfmFormat.FormatByte && available[AmigaMfmFormat.HeaderParityHighOffset] == headerParity.High && available[AmigaMfmFormat.HeaderParityLowOffset] == headerParity.Low;
                 bytes.AddRange(header); length = AmigaMfmFormat.SyncBitCount + available.Length * AmigaMfmFormat.EncodedByteBitCount;
                 if (encoded is not null)
                 {
@@ -35,7 +34,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
             sectors.Add(new(cylinder, head, number, AmigaMfmFormat.SectorSizeCode, AmigaMfmFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, payload));
-            structures.Add(new(FluxStructureKind.AmigaSync, offset, length, FluxStructureDescriptions.Complete("Amiga", FluxStructureKind.AmigaSync, cylinder, head, number, AmigaMfmFormat.SectorByteCount, null, null, headerValid, dataValid, "header checksum", "data checksum")));
+            structures.Add(new(FluxStructureKind.AmigaSync, offset, length, FluxStructureDescriptions.Complete(AmigaMfmFormat.StructureDescriptionName, FluxStructureKind.AmigaSync, cylinder, head, number, AmigaMfmFormat.SectorByteCount, null, null, headerValid, dataValid, "header checksum", "data checksum")));
             offset += Math.Max(AmigaMfmFormat.SyncBitCount - 1, length - 1);
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 3 + structures.Count) / 44d), stream.BitCellTicks, structures, bytes, sectors);

@@ -1,14 +1,12 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
-
 namespace GWGUI.MediaEngine.Encoding;
 
 /// <summary>Encode les pistes utilisant le format Amiga MFM.</summary>
 public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.AmigaMfm;
+    public override string Id => AmigaMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.AmigaMfm;
+    public override string DisplayName => AmigaMfmFormat.CodecDisplayName;
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
@@ -16,7 +14,7 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != AmigaMfmFormat.SectorByteCount) throw AmigaMfmFormat.InvalidSectorSize(sector.Data.Count);
-            byte[] info = [AmigaMfmFormat.FormatByte,(byte)(request.Cylinder << 1 | request.Head),(byte)sector.Number,(byte)request.Sectors.Count];
+            byte[] info = [AmigaMfmFormat.FormatByte, (byte)(request.Cylinder << AmigaMfmFormat.TrackCylinderShift | request.Head & AmigaMfmFormat.TrackHeadMask), (byte)sector.Number, (byte)request.Sectors.Count];
             var headerAndLabel = EncodeOddEven(info).Concat(new byte[AmigaMfmFormat.LabelByteCount]).ToArray();
             var headerParity = Parity(headerAndLabel, false);
             var data = EncodeOddEven(sector.Data);
