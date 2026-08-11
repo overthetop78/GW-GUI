@@ -1,6 +1,5 @@
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding.Apple;
-using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -55,17 +54,17 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
                 if (data is not null)
                 {
                     dataValid = data.Value.Valid; structureEnd = data.Value.EndOffset; sectorData = data.Value.Data; bytes.AddRange(sectorData);
-                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, data.Value.EndOffset - dataOffset, $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleData, cylinder, 0, number, AppleIIGcrFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
+                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, data.Value.EndOffset - dataOffset, $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleData, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
                 }
                 else structures.Add(new(FluxStructureKind.AppleData, dataOffset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.Truncated("Apple II", FluxStructureKind.AppleData, null, "checksum unavailable")));
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, 0, number, AppleIIGcrFormat.SectorSizeCode, AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
-            structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(AppleIIGcrFormat.PrologueBitCount, headerEnd - offset), FluxStructureDescriptions.Complete("Apple II", FluxStructureKind.AppleAddress, cylinder, 0, number, AppleIIGcrFormat.SectorSize, null, $"V{volume}", headerValid, dataValid, "address checksum", "data checksum")));
-            offset = headerValid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueBitCount - 1, structureEnd - 1) : offset + AppleIIGcrFormat.PrologueBitCount - 1;
+            sectors.Add(new(cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSizeCode, AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
+            structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(AppleIIGcrFormat.PrologueBitCount, headerEnd - offset), FluxStructureDescriptions.Complete("Apple II", FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, $"V{volume}", headerValid, dataValid, "address checksum", "data checksum")));
+            offset = headerValid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueAdvanceBitCount, structureEnd - 1) : offset + AppleIIGcrFormat.PrologueAdvanceBitCount;
         }
         DecodeFiveAndThree(stream, trackBitLength, structures, bytes, sectors, pairedData);
-        for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++) if (FluxBitReader.Match(stream, offset, AppleIIGcrFormat.DataPrologue, AppleIIGcrFormat.PrologueBitCount) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.UnpairedData("Apple II", null, "data prologue D5 AA AD"))); offset += AppleIIGcrFormat.PrologueBitCount - 1; }
+        for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++) if (FluxBitReader.Match(stream, offset, AppleIIGcrFormat.DataPrologue, AppleIIGcrFormat.PrologueBitCount) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.UnpairedData("Apple II", null, "data prologue D5 AA AD"))); offset += AppleIIGcrFormat.PrologueAdvanceBitCount; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 32d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
@@ -97,14 +96,14 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
                     sectorData = decoded.Value.Data; dataValid = decoded.Value.Valid; structureEnd = decoded.Value.EndOffset;
                     bytes.AddRange(sectorData);
                     structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset,
-                        $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleData, cylinder, 0, number, AppleIIGcrFormat.SectorSize, null, "13-sector")}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
+                        $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleData, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, "13-sector")}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
                 }
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, 0, number, AppleIIGcrFormat.SectorSizeCode, AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
+            sectors.Add(new(cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSizeCode, AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
             structures.Add(new(FluxStructureKind.AppleAddress, offset, AppleIIGcrFormat.AddressBlockBitCount,
-                $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleAddress, cylinder, 0, number, AppleIIGcrFormat.SectorSize, null, $"13-sector V{volume}")}, {FluxStructureDescriptions.Integrity("address checksum", headerValid)}"));
-            offset = headerValid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueBitCount - 1, structureEnd - 1) : offset + AppleIIGcrFormat.PrologueBitCount - 1;
+                $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, $"13-sector V{volume}")}, {FluxStructureDescriptions.Integrity("address checksum", headerValid)}"));
+            offset = headerValid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueAdvanceBitCount, structureEnd - 1) : offset + AppleIIGcrFormat.PrologueAdvanceBitCount;
         }
     }
 

@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Encoding.Definitions;
+namespace GWGUI.MediaEngine.Decoding.Definitions;
 
 /// <summary>Regroupe les définitions techniques du format Apple IIGcr.</summary>
 internal static class AppleIIGcrFormat
@@ -39,6 +39,8 @@ internal static class AppleIIGcrFormat
     public const int PrologueByteCount = 3;
     /// <summary>Définit prologue bit nombre utilisé par ce format.</summary>
     public const int PrologueBitCount = PrologueByteCount * Primitives.BitPrimitives.BitsPerByte;
+    /// <summary>Nombre de bits à avancer après une marque tout en laissant la boucle atteindre le bit suivant.</summary>
+    public const int PrologueAdvanceBitCount = PrologueBitCount - 1;
     /// <summary>Définit adresse valeur nombre utilisé par ce format.</summary>
     public const int AddressValueCount = 4;
     /// <summary>Définit encodé octets per adresse valeur utilisé par ce format.</summary>
@@ -57,6 +59,8 @@ internal static class AppleIIGcrFormat
     public const int SectorSize = 256;
     /// <summary>Définit secteur taille code utilisé par ce format.</summary>
     public const byte SectorSizeCode = 1;
+    /// <summary>Face logique portée par les secteurs Apple II décodés.</summary>
+    public const byte LogicalHead = 0;
     /// <summary>Définit six and two encodé octet nombre utilisé par ce format.</summary>
     public const int SixAndTwoEncodedByteCount = 343;
     /// <summary>Définit six and two décodé octet nombre utilisé par ce format.</summary>

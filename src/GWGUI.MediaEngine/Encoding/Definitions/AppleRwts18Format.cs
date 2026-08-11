@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Decoding.Definitions;
+
 namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 /// <summary>Regroupe les définitions techniques du format Apple Rwts18.</summary>

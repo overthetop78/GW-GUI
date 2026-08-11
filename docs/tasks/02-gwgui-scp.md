@@ -2329,13 +2329,13 @@
       - [x] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder` afin que le type corresponde au nom `AppleIIGcrDecoder.cs`.
       - [x] Remplacer la construction de `AppleGcrDecoder` dans le registre par `AppleIIGcrDecoder`.
       - [x] Adapter les autres consommateurs qui référencent encore `AppleGcrDecoder`.
-    - [ ] Définitions Apple II GCR
-      - [ ] Créer `Decoding/Definitions/AppleIIGcrFormat.cs`.
-      - [ ] Y définir l'identifiant `apple2.gcr`, le nom affiché, les prologues d'adresse 13 et 16 secteurs, le prologue de données et l'épilogue.
-      - [ ] Y définir la longueur en bits des marques, la taille de l'adresse 4-and-4, les longueurs d'en-tête, la fenêtre de recherche des données et la taille du prolongement circulaire.
-      - [ ] Y définir les tailles sectorielles, les tailles encodées et décodées 5-and-3 et 6-and-2, les tailles auxiliaires et les tailles des groupes utilisées par les deux algorithmes.
-      - [ ] Y définir les valeurs d'avancement après une marque, la face logique et les codes de taille actuellement écrits directement dans les secteurs produits.
-      - [ ] Remplacer dans le décodeur les valeurs brutes `4096`, `1024`, `24`, `23`, `64`, `88`, `343`, `342`, `411`, `256`, `154` et `51` par les définitions correspondantes.
+    - [x] Définitions Apple II GCR
+      - [x] Créer `Decoding/Definitions/AppleIIGcrFormat.cs`.
+      - [x] Y définir l'identifiant `apple2.gcr`, le nom affiché, les prologues d'adresse 13 et 16 secteurs, le prologue de données et l'épilogue.
+      - [x] Y définir la longueur en bits des marques, la taille de l'adresse 4-and-4, les longueurs d'en-tête, la fenêtre de recherche des données et la taille du prolongement circulaire.
+      - [x] Y définir les tailles sectorielles, les tailles encodées et décodées 5-and-3 et 6-and-2, les tailles auxiliaires et les tailles des groupes utilisées par les deux algorithmes.
+      - [x] Y définir les valeurs d'avancement après une marque, la face logique et les codes de taille actuellement écrits directement dans les secteurs produits.
+      - [x] Remplacer dans le décodeur les valeurs brutes `4096`, `1024`, `24`, `23`, `64`, `88`, `343`, `342`, `411`, `256`, `154` et `51` par les définitions correspondantes.
     - [ ] Tables et codec GCR communs
       - [ ] Sortir la table 6-and-2 de `AppleIIGcrDecoder.cs`, `AppleIIGcrTrackEncoder.cs` et `AppleMacGcrDecoder.cs` dans une définition Apple GCR commune.
       - [ ] Sortir la table 5-and-3 de `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs` dans la définition commune Apple II.
