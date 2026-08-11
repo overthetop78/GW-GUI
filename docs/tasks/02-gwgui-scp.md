@@ -2190,14 +2190,14 @@
       - [x] Tester les départages par confiance, nombre de structures et ordre du catalogue.
       - [x] Tester `DecodeBest` avec aucune révolution, un décodeur explicite et la sélection automatique sur plusieurs révolutions.
   - [ ] `Decoding/FluxDecodeModels.cs`
-    - [ ] Séparation des types
-      - [ ] Créer `Decoding/FluxStructureKind.cs` et y déplacer uniquement l'enum `FluxStructureKind`.
-      - [ ] Créer `Decoding/SectorIntegrityKind.cs` et y déplacer uniquement l'enum `SectorIntegrityKind`.
-      - [ ] Créer `Decoding/FluxStructure.cs` et y déplacer uniquement le record `FluxStructure`.
-      - [ ] Créer `Decoding/DecodedSector.cs` et y déplacer uniquement le record `DecodedSector`.
-      - [ ] Créer `Decoding/FluxDecodeResult.cs` et y déplacer uniquement le record `FluxDecodeResult`.
-      - [ ] Conserver les types dans le namespace `GWGUI.MediaEngine.Decoding` afin de ne pas modifier leurs consommateurs pendant la séparation.
-      - [ ] Supprimer `FluxDecodeModels.cs` après le déplacement des cinq types.
+    - [x] Séparation des types
+      - [x] Créer `Decoding/FluxStructureKind.cs` et y déplacer uniquement l'enum `FluxStructureKind`.
+      - [x] Créer `Decoding/SectorIntegrityKind.cs` et y déplacer uniquement l'enum `SectorIntegrityKind`.
+      - [x] Créer `Decoding/FluxStructure.cs` et y déplacer uniquement le record `FluxStructure`.
+      - [x] Créer `Decoding/DecodedSector.cs` et y déplacer uniquement le record `DecodedSector`.
+      - [x] Créer `Decoding/FluxDecodeResult.cs` et y déplacer uniquement le record `FluxDecodeResult`.
+      - [x] Conserver les types dans le namespace `GWGUI.MediaEngine.Decoding` afin de ne pas modifier leurs consommateurs pendant la séparation.
+      - [x] Supprimer `FluxDecodeModels.cs` après le déplacement des cinq types.
     - [ ] Immutabilité des résultats
       - [ ] Remplacer les records positionnels contenant des collections par des constructions qui copient les collections reçues avant de les exposer.
       - [ ] Copier `DecodedSector.Data` et `DecodedSector.Tag` lorsqu'elles sont fournies.
