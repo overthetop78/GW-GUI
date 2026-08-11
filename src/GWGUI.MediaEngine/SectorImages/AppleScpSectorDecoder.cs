@@ -36,8 +36,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     {
         var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true)
             .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
-        return new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution,
-            best.Sector.Tag?.ToArray());
+        return new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution, best.Sector.Tag?.ToArray(), best.Sector.FormatCode);
     }
 
     public static bool TryFlattenPayload(SectorImage image, out byte[] payload)

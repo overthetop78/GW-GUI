@@ -16,7 +16,8 @@ public sealed record DecodedSector
     /// <param name="IntegrityKind">Nature du contrôle d'intégrité.</param>
     /// <param name="Data">Données du secteur lorsqu'elles ont été reconstruites.</param>
     /// <param name="Tag">Étiquette associée au secteur lorsqu'elle existe.</param>
-    public DecodedSector(byte Cylinder, byte Head, int Number, byte SizeCode, int SizeBytes, bool? IntegrityValid, int BitOffset, SectorIntegrityKind IntegrityKind = SectorIntegrityKind.Crc, IReadOnlyList<byte>? Data = null, IReadOnlyList<byte>? Tag = null)
+    /// <param name="FormatCode">Octet de format sectoriel lorsqu'il existe.</param>
+    public DecodedSector(byte Cylinder, byte Head, int Number, byte SizeCode, int SizeBytes, bool? IntegrityValid, int BitOffset, SectorIntegrityKind IntegrityKind = SectorIntegrityKind.Crc, IReadOnlyList<byte>? Data = null, IReadOnlyList<byte>? Tag = null, byte? FormatCode = null)
     {
         this.Cylinder = Cylinder;
         this.Head = Head;
@@ -28,6 +29,7 @@ public sealed record DecodedSector
         this.IntegrityKind = IntegrityKind;
         this.Data = Data is null ? null : new ReadOnlyCollection<byte>(Data.ToArray());
         this.Tag = Tag is null ? null : new ReadOnlyCollection<byte>(Tag.ToArray());
+        this.FormatCode = FormatCode;
     }
 
     /// <summary>Obtient le numéro du cylindre contenant le secteur.</summary>
@@ -50,4 +52,6 @@ public sealed record DecodedSector
     public IReadOnlyList<byte>? Data { get; }
     /// <summary>Obtient la copie non modifiable de l'étiquette du secteur, ou une valeur nulle lorsqu'elle est absente.</summary>
     public IReadOnlyList<byte>? Tag { get; }
+    /// <summary>Obtient l'octet de format sectoriel, ou une valeur nulle lorsqu'il n'existe pas.</summary>
+    public byte? FormatCode { get; init; }
 }

@@ -2375,13 +2375,13 @@
       - [x] Tester que la spécialisation expose l'identifiant et le nom Lisa FileWare.
       - [x] Tester qu'un résultat produit par le décodage hérité conserve l'identifiant et le nom Lisa FileWare.
   - [ ] `Decoding/Decoders/AppleMacGcrDecoder.cs`
-    - [ ] Responsabilité commune Macintosh et Lisa
-      - [ ] Créer un composant Apple IWM GCR commun chargé du décodage sectoriel partagé par Macintosh et Lisa FileWare.
-      - [ ] Raccorder `AppleMacGcrDecoder.cs` et `AppleLisaFileWareGcrDecoder.cs` à ce composant commun.
-      - [ ] Retirer du registre la duplication automatique de deux décodeurs qui exécutent le même algorithme et ne diffèrent que par `Id` et `DisplayName`.
-      - [ ] Conserver la sélection Lisa explicite lorsqu'un format Lisa est demandé.
-      - [ ] Lorsque le format n'est pas imposé, laisser la reconstruction de l'image déterminer Macintosh ou Lisa à partir des informations globales au lieu de l'affirmer au niveau d'une seule révolution.
-      - [ ] Conserver l'octet de format lu dans `values[3]` et le transmettre au traitement qui décide finalement de l'identité de l'image.
+    - [x] Responsabilité commune Macintosh et Lisa
+      - [x] Créer un composant Apple IWM GCR commun chargé du décodage sectoriel partagé par Macintosh et Lisa FileWare.
+      - [x] Raccorder `AppleMacGcrDecoder.cs` et `AppleLisaFileWareGcrDecoder.cs` à ce composant commun.
+      - [x] Retirer du registre la duplication automatique de deux décodeurs qui exécutent le même algorithme et ne diffèrent que par `Id` et `DisplayName`.
+      - [x] Conserver la sélection Lisa explicite lorsqu'un format Lisa est demandé.
+      - [x] Lorsque le format n'est pas imposé, laisser la reconstruction de l'image déterminer Macintosh ou Lisa à partir des informations globales au lieu de l'affirmer au niveau d'une seule révolution.
+      - [x] Conserver l'octet de format lu dans `values[3]` et le transmettre au traitement qui décide finalement de l'identité de l'image.
     - [ ] Définitions Apple IWM GCR
       - [ ] Créer les définitions communes contenant les identifiants, noms affichés, marques d'adresse et de données, longueurs des marques, tailles d'en-tête, de tags, de données, de blocs décodés et de symboles encodés.
       - [ ] Y définir la taille du prolongement circulaire, la fenêtre de recherche des données, les positions des symboles de checksum et les limites des groupes 6-and-2.
