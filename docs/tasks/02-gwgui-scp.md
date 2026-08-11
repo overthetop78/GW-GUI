@@ -1388,11 +1388,12 @@
     - [x] Remplacer la CSDoc anglaise existante et documenter en français `Td0Reader`, `Td0SectorDecoder`, `Td0SectorImageClassifier`, les définitions, les enums, les valeurs d’enum, les erreurs et le record privé `Td0Sector`.
     - [x] Ajouter la documentation XML française de chaque constructeur et méthode, avec paramètres, résultat, exceptions, unités et invariants applicables.
   - [ ] Tests déterministes
-    - [ ] Ajouter une image TD0 locale non compressée contenant secteurs bruts, répétés et encodés par motif avec états connus.
-    - [ ] Vérifier l’en-tête, le commentaire, les pistes, les tailles, les trois encodages de données, l’ordre logique, l’intégrité et les CRC.
-    - [ ] Vérifier explicitement le comportement attendu pour une signature TD0 compressée en minuscules.
-    - [ ] Vérifier le rejet d’un commentaire, d’une piste, d’un secteur ou d’une séquence encodée tronquée ou invalide.
+    - [x] Ajouter une image TD0 locale non compressée contenant secteurs bruts, répétés et encodés par motif avec états connus.
+    - [x] Vérifier l’en-tête, le commentaire, les pistes, les tailles, les trois encodages de données, l’ordre logique, l’intégrité et les CRC.
+    - [x] Vérifier explicitement le comportement attendu pour une signature TD0 compressée en minuscules.
+    - [x] Vérifier le rejet d’un commentaire, d’une piste, d’un secteur ou d’une séquence encodée tronquée ou invalide.
     - [ ] Vérifier séparément la classification par BPB FAT, par saut DOS, par chaque géométrie IBM prise en charge et le repli UCSD.
+      - Dépendance restante : ce test sera finalisé avec `FatBpbLayout`, le détecteur BPB commun, la sonde DOS et `IbmPcGeometryCatalog` dans le groupe ultérieur de `IbmPcImageReader`.
 
 - [ ] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
   - [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs`
