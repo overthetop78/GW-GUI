@@ -2117,7 +2117,7 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `FluxStructureKind, SectorIntegrityKind, FluxStructure, DecodedSector, FluxDecodeResult`.
     - [x] Ajouter la documentation XML des méthodes `FluxStructure, DecodedSector, FluxDecodeResult`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/FluxDecoderRegistry.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/FluxDecoderRegistry.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Construire un dictionnaire par identifiant.
     - [x] Refuser les doublons.
