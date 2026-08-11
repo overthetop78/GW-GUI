@@ -2500,11 +2500,11 @@
       - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
       - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
       - [x] Ajouter la CSDoc française aux définitions Centurion créées.
-    - [ ] Vérification du groupe Centurion
-      - [ ] Tester un en-tête complet avec CRC valide puis invalide.
-      - [ ] Tester une marque de données appariée, une marque non appariée et une nouvelle marque de secteur rencontrée avant les données.
-      - [ ] Tester une clé prise en charge, une clé inconnue, une taille nulle, une taille tronquée et une taille non standard.
-      - [ ] Vérifier la charge utile, la taille, le code de taille, le type d'intégrité, les structures et la confiance produits.
+    - [x] Vérification du groupe Centurion
+      - [x] Tester un en-tête complet avec CRC valide puis invalide.
+      - [x] Tester une marque de données appariée, une marque non appariée et une nouvelle marque de secteur rencontrée avant les données.
+      - [x] Tester une clé prise en charge, une clé inconnue, une taille nulle, une taille tronquée et une taille non standard.
+      - [x] Vérifier la charge utile, la taille, le code de taille, le type d'intégrité, les structures et la confiance produits.
   - [ ] `Decoding/Decoders/Commodore900GcrDecoder.cs`
     - [ ] Définitions Commodore 900
       - [ ] Créer `Decoding/Definitions/Commodore900GcrFormat.cs`.
