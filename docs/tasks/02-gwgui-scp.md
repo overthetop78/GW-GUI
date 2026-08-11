@@ -2374,7 +2374,7 @@
       - [x] Raccorder la spécialisation Lisa au composant IWM GCR commun défini avec `AppleMacGcrDecoder.cs` sans enregistrer un second décodeur automatique incapable de distinguer seul les mêmes données.
       - [x] Tester que la spécialisation expose l'identifiant et le nom Lisa FileWare.
       - [x] Tester qu'un résultat produit par le décodage hérité conserve l'identifiant et le nom Lisa FileWare.
-  - [ ] `Decoding/Decoders/AppleMacGcrDecoder.cs`
+  - [x] `Decoding/Decoders/AppleMacGcrDecoder.cs`
     - [x] Responsabilité commune Macintosh et Lisa
       - [x] Créer un composant Apple IWM GCR commun chargé du décodage sectoriel partagé par Macintosh et Lisa FileWare.
       - [x] Raccorder `AppleMacGcrDecoder.cs` et `AppleLisaFileWareGcrDecoder.cs` à ce composant commun.
