@@ -1974,10 +1974,10 @@
   - [x] Structure et raccordements
     - [x] Déplacer le fichier vers un emplacement Apple précis hors de `Decoding/Base`.
     - [x] Adapter son namespace et les consommateurs Apple II GCR et RWTS18.
-  - [ ] Définition commune du nombre de bits
-    - [ ] Créer dans `Primitives` une constante générale `BitsPerByte` valant `8`.
-    - [ ] Raccorder `AppleBitLatch` et `NibTrackFormat` à cette constante commune.
-    - [ ] Supprimer la déclaration de `BitsPerByte` propre à `NibTrackFormat` après raccordement de tous ses consommateurs.
+  - [x] Définition commune du nombre de bits
+    - [x] Créer dans `Primitives` une constante générale `BitsPerByte` valant `8`.
+    - [x] Raccorder `AppleBitLatch` et `NibTrackFormat` à cette constante commune.
+    - [x] Supprimer la déclaration de `BitsPerByte` propre à `NibTrackFormat` après raccordement de tous ses consommateurs.
   - [ ] Paramètres du verrou de bits
     - [ ] Remplacer les deux usages du nombre brut `8` par la définition commune du nombre de bits d'un octet.
     - [ ] Ajouter une constante nommée pour le masque `0x80` indiquant qu'un octet Apple synchronisé a été trouvé.
