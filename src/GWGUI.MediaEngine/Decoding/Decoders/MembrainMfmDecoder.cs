@@ -16,6 +16,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.MembrainMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Membrain MFM.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -63,6 +64,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
+    /// <param name="stream">Flux source.</param><param name="start">Début inclus en bits.</param><param name="end">Fin exclue en bits.</param><param name="mark">Marque recherchée.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
         for (var offset = Math.Max(0, start); offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;

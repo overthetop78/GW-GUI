@@ -17,6 +17,7 @@ public sealed class DecRx02Decoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.DecRx02;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage DEC RX02.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -74,6 +75,7 @@ public sealed class DecRx02Decoder : IFluxDecoder
     }
 
     /// <summary>Recherche la prochaine marque de données dans la distance autorisée.</summary>
+    /// <param name="stream">Flux source.</param><param name="start">Offset initial en bits.</param><param name="maximumDistance">Distance maximale en bits.</param><returns>Offset et marque trouvés, ou un offset négatif.</returns>
     private static (int Offset, byte Mark) FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - HeaderMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);
@@ -82,6 +84,7 @@ public sealed class DecRx02Decoder : IFluxDecoder
     }
 
     /// <summary>Décode une suite d'octets utilisant la transformation M²FM.</summary>
+    /// <param name="stream">Flux source.</param><param name="start">Offset initial en bits.</param><param name="count">Nombre d'octets.</param><returns>Octets décodés.</returns>
     private static byte[] DecodeM2Fm(FluxBitstream stream, int start, int count)
     {
         var bits = new bool[count * DecRx02EncodingFormat.EncodedMfmByteBitCount + DecRx02EncodingFormat.M2FmPhaseBitCount];

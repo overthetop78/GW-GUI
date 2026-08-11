@@ -16,6 +16,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.QdMo5Mfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage QD MO5 MFM.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -67,6 +68,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la prochaine marque de données avant un nouvel en-tête.</summary>
+    /// <param name="stream">Flux source.</param><param name="start">Offset initial en bits.</param><param name="maximumDistance">Distance maximale en bits.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
     private static int FindNextData(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - DataMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);

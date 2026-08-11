@@ -13,6 +13,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.Victor9kGcr;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Victor 9000 GCR.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveDoubledNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
@@ -49,6 +50,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
+    /// <param name="stream">Flux source.</param><param name="start">Début inclus en bits.</param><param name="end">Fin exclue en bits.</param><param name="mark">Marque recherchée.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
         for (var offset = Math.Max(0, start); offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
@@ -68,6 +70,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Try Decode Nibble » propre à ce format.</summary>
+    /// <param name="bits">Bits source.</param><param name="offset">Offset avancé après lecture.</param><param name="value">Demi-octet décodé.</param><returns><see langword="true"/> si le symbole est valide.</returns>
     private static bool TryDecodeNibble(IReadOnlyList<bool> bits, ref int offset, out byte value)
     {
         var code = 0; value = 0;

@@ -2049,66 +2049,66 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `CommodoreGcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, TryDecodeBytes, TryDecodeByte`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/DataGeneralFmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DataGeneralFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindAll, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/DecRx02Decoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DecRx02Decoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode`, `FindNextDataMark`, `DecodeM2Fm`, `Crc16` et `UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/EmuFmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `EmuFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindNextMark, ReverseBits, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/HeathkitFmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `HeathkitFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindNextMark, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/HpMmfmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `HpMmfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBytes, Find, ReverseBits, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/IsoFmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/IsoMfmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoMfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeCore, Score, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/MembrainMfmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `MembrainMfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindMark, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/MicralNFmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `MicralNFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, UpdateChecksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/MicropolisMfmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `MicropolisMfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/NorthstarMfmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `NorthstarMfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/QdMo5MfmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `QdMo5MfmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindNextData`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/RawFluxDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `RawFluxDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/TycomFmDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `TycomFmDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode`, `FindNextDataMark`, `Crc16` et `UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/Victor9kGcrDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `Victor9kGcrDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, FindMark, TryDecodeNibble`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/DataGeneralFmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `DataGeneralFmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, FindAll, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/DecRx02Decoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `DecRx02Decoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode`, `FindNextDataMark`, `DecodeM2Fm`, `Crc16` et `UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/EmuFmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `EmuFmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, FindNextMark, ReverseBits, Crc16, UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/HeathkitFmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `HeathkitFmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, FindNextMark, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/HpMmfmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `HpMmfmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBytes, Find, ReverseBits, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/IsoFmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoFmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/IsoMfmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoMfmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, DecodeCore, Score, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/MembrainMfmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `MembrainMfmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, FindMark, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/MicralNFmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `MicralNFmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, UpdateChecksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/MicropolisMfmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `MicropolisMfmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/NorthstarMfmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `NorthstarMfmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/QdMo5MfmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `QdMo5MfmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, FindNextData`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/RawFluxDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `RawFluxDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/TycomFmDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `TycomFmDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode`, `FindNextDataMark`, `Crc16` et `UpdateCrc`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/Victor9kGcrDecoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `Victor9kGcrDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, FindMark, TryDecodeNibble`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/FluxDecodeModels.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Decoding/FluxStructureKind.cs`, `SectorIntegrityKind.cs`, `FluxStructure.cs`, `DecodedSector.cs` et `FluxDecodeResult.cs`.

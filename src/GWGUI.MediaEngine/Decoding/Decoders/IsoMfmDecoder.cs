@@ -12,6 +12,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.IsoMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Meilleur résultat ISO MFM obtenu.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var centre = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);
@@ -30,6 +31,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
+    /// <param name="source">Flux binaire source.</param><returns>Résultat du décodage.</returns>
     private FluxDecodeResult DecodeCore(FluxBitstream source)
     {
         var originalLength = source.Bits.Length;
@@ -83,6 +85,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Score » propre à ce format.</summary>
+    /// <param name="result">Résultat à évaluer.</param><returns>Score de sélection calculé.</returns>
     private static int Score(FluxDecodeResult result)
     {
         var sectors = result.Sectors ?? [];

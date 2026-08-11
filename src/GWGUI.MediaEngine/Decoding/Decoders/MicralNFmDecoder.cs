@@ -14,6 +14,7 @@ public sealed class MicralNFmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.MicralNFm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Micral N FM.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
@@ -47,6 +48,7 @@ public sealed class MicralNFmDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Update Checksum » propre à ce format.</summary>
+    /// <param name="checksum">Somme courante.</param><param name="data">Octet ajouté.</param><returns>Somme mise à jour.</returns>
     private static byte UpdateChecksum(byte checksum, byte data)
     {
             var carrySource = ((data ^ checksum) ^ MicralNFmFormat.ComplementMask) & ((data + checksum) ^ data);

@@ -17,6 +17,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.HpMmfm;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage HP MMFM.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -70,6 +71,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets du format.</summary>
+    /// <param name="stream">Flux source.</param><param name="offset">Offset initial en bits.</param><param name="count">Nombre d'octets.</param><returns>Octets décodés, ou <see langword="null"/>.</returns>
     private static byte[]? TryDecodeBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
@@ -78,6 +80,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche le prochain motif dans la plage indiquée.</summary>
+    /// <param name="stream">Flux source.</param><param name="start">Début inclus en bits.</param><param name="end">Fin exclue en bits.</param><param name="pattern">Motif recherché.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
     private static int Find(FluxBitstream stream, int start, int end, IReadOnlyList<byte> pattern)
     {
         for (var offset = start; offset + pattern.Count * Primitives.BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) return offset;

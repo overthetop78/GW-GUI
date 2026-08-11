@@ -18,6 +18,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.MicropolisMfm;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Micropolis MFM.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -54,6 +55,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Calcule la somme de contrôle du bloc fourni.</summary>
+    /// <param name="data">Octets du bloc.</param><returns>Somme de contrôle calculée.</returns>
     private static byte Checksum(ReadOnlySpan<byte> data)
     {
         var value = 0;

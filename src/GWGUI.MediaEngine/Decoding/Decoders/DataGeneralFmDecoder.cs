@@ -18,6 +18,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.DataGeneralFm;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Data General FM.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
@@ -63,6 +64,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche toutes les occurrences du motif dans le flux.</summary>
+    /// <param name="stream">Flux source.</param><param name="pattern">Motif recherché.</param><returns>Offsets trouvés, en bits.</returns>
     private static List<int> FindAll(FluxBitstream stream, IReadOnlyList<byte> pattern)
     {
         var offsets = new List<int>();
@@ -71,6 +73,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
     }
 
     /// <summary>Calcule la somme de contrôle du bloc fourni.</summary>
+    /// <param name="data">Octets du bloc.</param><returns>Somme de contrôle calculée.</returns>
     private static ushort Checksum(ReadOnlySpan<byte> data)
     {
         ushort value = 0;
