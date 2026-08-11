@@ -1396,7 +1396,7 @@
       - Dépendance restante : ce test sera finalisé avec `FatBpbLayout`, le détecteur BPB commun, la sonde DOS et `IbmPcGeometryCatalog` dans le groupe ultérieur de `IbmPcImageReader`.
 
 - [ ] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
-  - [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs`
     - [x] Responsabilité et emplacement
       - [x] Conserver le fichier à la racine de `Recognition`, car il transporte les mêmes indices et octets entre toutes les politiques d’une tentative de reconnaissance.
       - [x] Conserver le type public puisqu’il fait partie du contrat public des politiques de reconnaissance.
@@ -1415,11 +1415,11 @@
     - [x] Documentation XML et encodage
       - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, du champ de cache, du constructeur, de chaque propriété et de `ReadBytesAsync`.
       - [x] Documenter les paramètres, le résultat en lecture seule, la normalisation de l’extension et toutes les exceptions propagées par l’accès au fichier.
-    - [ ] Tests ciblés
-      - [ ] Tester le rejet d’un chemin nul, vide ou composé d’espaces.
-      - [ ] Tester le chemin, la longueur, l’extension normalisée et l’identifiant demandé exposés par le contexte.
-      - [ ] Lancer plusieurs lectures concurrentes et vérifier qu’elles partagent le même contenu sans permettre sa modification.
-      - [ ] Tester l’annulation et l’erreur de lecture, puis vérifier le comportement documenté des appels suivants.
+    - [x] Tests ciblés
+      - [x] Tester le rejet d’un chemin nul, vide ou composé d’espaces.
+      - [x] Tester le chemin, la longueur, l’extension normalisée et l’identifiant demandé exposés par le contexte.
+      - [x] Lancer plusieurs lectures concurrentes et vérifier qu’elles partagent le même contenu sans permettre sa modification.
+      - [x] Tester l’annulation et l’erreur de lecture, puis vérifier le comportement documenté des appels suivants.
   - [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs`
     - [ ] Collection ordonnée des politiques
       - [ ] Refuser une collection de politiques nulle et une entrée nulle dans le constructeur.

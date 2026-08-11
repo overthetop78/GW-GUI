@@ -46,7 +46,12 @@ public sealed class DiskImageRecognitionContext
     public async Task<ReadOnlyMemory<byte>> ReadBytesAsync(CancellationToken cancellationToken = default)
     {
         Task<byte[]> task;
-        lock (readLock) task = readTask ??= File.ReadAllBytesAsync(Path, cancellationToken);
+        lock (readLock) task = readTask ??= ReadFileAsync(cancellationToken);
         return await task.ConfigureAwait(false);
     }
+
+    /// <summary>Transforme également une erreur synchrone d'ouverture en tâche fautive réutilisable.</summary>
+    /// <param name="cancellationToken">Jeton de la première lecture.</param>
+    /// <returns>Octets lus dans le fichier.</returns>
+    private async Task<byte[]> ReadFileAsync(CancellationToken cancellationToken) => await File.ReadAllBytesAsync(Path, cancellationToken).ConfigureAwait(false);
 }
