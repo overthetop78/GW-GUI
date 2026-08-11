@@ -2250,7 +2250,7 @@
       - [x] Tester qu'un décodeur reçoit et traite une `FluxRevolution` sans référence au namespace `Containers.Scp`.
       - [x] Tester une révolution vide et un aller-retour encodeur/décodeur avec le modèle générique.
       - [x] Vérifier qu'aucun fichier de `Decoding` ne dépend encore de `Containers.Scp` après migration du contrat.
-  - [ ] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
+  - [x] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
     - [x] Responsabilité et héritage
       - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
       - [x] Supprimer la propriété `Signatures` devenue inutile.
