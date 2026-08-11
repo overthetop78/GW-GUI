@@ -1256,11 +1256,12 @@
     - [x] Vérifier la propagation de l’annulation pendant le parcours des pistes.
 - [ ] `src/GWGUI.MediaEngine/Images/ImdImageReader.cs`
   - [ ] Déplacement du Reader ImageDisk
-    - [ ] Renommer le type en `ImdReader` et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.ImageDisk`.
-    - [ ] Conserver le record `ImdSector` privé dans le Reader tant qu’il sert uniquement au parsing et à la construction internes de cette image.
+    - [x] Renommer le type en `ImdReader` et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.ImageDisk`.
+    - [x] Conserver le record `ImdSector` privé dans le Reader tant qu’il sert uniquement au parsing et à la construction internes de cette image.
     - [ ] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée et laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Imd`.
-    - [ ] Adapter `Composition/MediaEngineFactory.cs`, la politique de reconnaissance et les tests au nouveau type.
+      - Dépendance restante : `ISectorImageReader` existe encore et impose `CanRead`. Sa suppression est prévue dans le groupe ultérieur consacré à cette interface ; cette action reste non cochée jusque-là.
+    - [x] Adapter `Images/DiskImageExplorerFactory.cs`, la politique de reconnaissance et les tests au nouveau type.
   - [ ] En-tête et disposition ImageDisk
     - [ ] Créer `Containers/ImageDisk/ImdFormat.cs` avec la signature binaire `IMD`, sa longueur de trois octets et le terminateur de commentaire `0x1A`.
     - [ ] Créer `Containers/ImageDisk/ImdLayout.cs` avec la taille de cinq octets de l’en-tête de piste et les positions successives du mode, du cylindre, des drapeaux de face, du nombre de secteurs et du code de taille.

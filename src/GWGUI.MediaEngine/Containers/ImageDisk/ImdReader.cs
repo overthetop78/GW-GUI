@@ -1,12 +1,13 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.Images;
+namespace GWGUI.MediaEngine.Containers.ImageDisk;
 
 /// <summary>Reads Dave Dunfield ImageDisk (IMD) sector images.</summary>
-public sealed class ImdImageReader : ISectorImageReader
+public sealed class ImdReader : ISectorImageReader
 {
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Imd, StringComparison.OrdinalIgnoreCase);
 
@@ -141,3 +142,5 @@ public sealed class ImdImageReader : ISectorImageReader
 
     private sealed record ImdSector(int Cylinder, int Head, int Number, byte[] Data, bool Available, bool IntegrityValid);
 }
+
+

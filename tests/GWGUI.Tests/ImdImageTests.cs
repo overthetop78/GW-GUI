@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
@@ -21,7 +22,7 @@ public sealed class ImdImageTests
                 0
             ]);
 
-            var image = await new ImdImageReader().ReadAsync(path);
+            var image = await new ImdReader().ReadAsync(path);
 
             Assert.Equal(1, image.BlockCount);
             Assert.Equal(128, image.Capacity);
