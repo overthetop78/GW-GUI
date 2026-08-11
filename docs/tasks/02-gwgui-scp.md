@@ -1827,13 +1827,13 @@
     - [x] Compiler après le passage du type en `internal` afin de confirmer qu’aucun consommateur extérieur au moteur ne dépend de son API publique.
     - [x] Exécuter uniquement les tests ciblés des Readers, géométries et politiques dans lesquels une valeur brute a effectivement été remplacée.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/SectorImage.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `SectorImages/SectorAddress.cs` avec le namespace actuel.
-    - [ ] Déplacer le record `SectorAddress` sans modifier sa signature.
-    - [ ] Retirer `SectorAddress` de `SectorImage.cs`.
-    - [ ] Créer `SectorImages/SectorBlock.cs` avec le namespace actuel.
-    - [ ] Déplacer le record `SectorBlock` sans modifier sa signature.
-    - [ ] Retirer `SectorBlock` de `SectorImage.cs`.
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `SectorImages/SectorAddress.cs` avec le namespace actuel.
+    - [x] Déplacer le record `SectorAddress` sans modifier sa signature.
+    - [x] Retirer `SectorAddress` de `SectorImage.cs`.
+    - [x] Créer `SectorImages/SectorBlock.cs` avec le namespace actuel.
+    - [x] Déplacer le record `SectorBlock` sans modifier sa signature.
+    - [x] Retirer `SectorBlock` de `SectorImage.cs`.
   - [ ] Erreurs du modèle sectoriel
     - [ ] Créer `SectorImages/SectorImageExceptions.cs`.
     - [ ] Ajouter une méthode recevant le nom et la valeur de chaque dimension invalide.
