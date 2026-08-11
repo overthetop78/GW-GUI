@@ -2536,7 +2536,7 @@
       - [x] Tester un en-tête et un secteur de 512 octets avec checksums valides puis invalides.
       - [x] Tester un bloc tronqué, un en-tête sans données et un bloc de données non apparié.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/CommodoreGcrDecoder.cs`
+  - [x] `Decoding/Decoders/CommodoreGcrDecoder.cs`
     - [x] Définitions Commodore GCR
       - [x] Créer `Decoding/Definitions/CommodoreGcrFormat.cs`.
       - [x] Y définir l'identifiant, le nom, la longueur minimale de synchronisation et les marqueurs d'en-tête `0x08` et de données `0x07`.
@@ -2547,25 +2547,25 @@
       - [x] Raccorder le fichier au codec GCR Commodore créé dans le groupe `Commodore900GcrDecoder.cs`.
       - [x] Supprimer la table `Gcr`, `TryDecodeByte` et `TryDecodeBytes` après leur remplacement par le codec commun.
       - [x] Extraire le checksum XOR dans une opération commune et l'utiliser pour l'en-tête et les données sans recalcul dupliqué.
-    - [ ] Décodage et appariement
-      - [ ] Créer des modèles internes nommés pour les en-têtes et blocs de données au lieu des tuples anonymes.
-      - [ ] Supprimer du modèle d'en-tête le champ `DataOffset` actuellement enregistré mais jamais lu.
-      - [ ] Extraire le balayage des synchronisations, la collecte des blocs, la validation des données et l'appariement dans des méthodes nommées.
-      - [ ] Lire les champs d'en-tête par leurs définitions nommées et conserver les deux octets d'identification du disque dans le modèle d'en-tête.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant piste, secteur et états des checksums.
-      - [ ] Remplacer la taille sectorielle et le code de taille bruts par les définitions communes correspondantes.
-      - [ ] Utiliser le calcul de confiance commun avec les paramètres Commodore GCR.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et au codec GCR Commodore commun.
-    - [ ] Vérification du groupe Commodore GCR
-      - [ ] Tester les seize symboles GCR valides et un symbole invalide.
-      - [ ] Tester un en-tête complet avec checksum valide puis invalide et vérifier piste, secteur et identifiants de disque.
-      - [ ] Tester un bloc de 256 octets avec checksum valide puis invalide.
-      - [ ] Tester une synchronisation trop courte, un bloc tronqué, un en-tête sans données et un bloc non apparié.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+    - [x] Décodage et appariement
+      - [x] Créer des modèles internes nommés pour les en-têtes et blocs de données au lieu des tuples anonymes.
+      - [x] Supprimer du modèle d'en-tête le champ `DataOffset` actuellement enregistré mais jamais lu.
+      - [x] Extraire le balayage des synchronisations, la collecte des blocs, la validation des données et l'appariement dans des méthodes nommées.
+      - [x] Lire les champs d'en-tête par leurs définitions nommées et conserver les deux octets d'identification du disque dans le modèle d'en-tête.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant piste, secteur et états des checksums.
+      - [x] Remplacer la taille sectorielle et le code de taille bruts par les définitions communes correspondantes.
+      - [x] Utiliser le calcul de confiance commun avec les paramètres Commodore GCR.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et au codec GCR Commodore commun.
+    - [x] Vérification du groupe Commodore GCR
+      - [x] Tester les seize symboles GCR valides et un symbole invalide.
+      - [x] Tester un en-tête complet avec checksum valide puis invalide et vérifier piste, secteur et identifiants de disque.
+      - [x] Tester un bloc de 256 octets avec checksum valide puis invalide.
+      - [x] Tester une synchronisation trop courte, un bloc tronqué, un en-tête sans données et un bloc non apparié.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/DataGeneralFmDecoder.cs`
     - [ ] Définitions Data General 2F
       - [ ] Créer `Decoding/Definitions/DataGeneralFmFormat.cs`.

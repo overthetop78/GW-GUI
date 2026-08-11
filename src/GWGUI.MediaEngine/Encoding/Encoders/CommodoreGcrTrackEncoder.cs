@@ -6,21 +6,32 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.CommodoreGcr;
+    public override string Id => CommodoreGcrFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.CommodoreGcr;
+    public override string DisplayName => CommodoreGcrFormat.CodecDisplayName;
+
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <param name="request">Piste et secteurs à encoder.</param>
+    /// <returns>Cellules binaires produites.</returns>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits=TrackEncoding.Bits(); var id2=(byte)Attribute(request,CommodoreGcrFormat.Id2AttributeName,CommodoreGcrFormat.DefaultId2); var id1=(byte)Attribute(request,CommodoreGcrFormat.Id1AttributeName,CommodoreGcrFormat.DefaultId1);
-        var diskTrack=Attribute(request,CommodoreGcrFormat.TrackAttributeName,request.Cylinder+1+request.Head*CommodoreGcrFormat.TracksPerSide);
-        foreach(var sector in request.Sectors)
+        var bits = TrackEncoding.Bits();
+        var id2 = (byte)Attribute(request, CommodoreGcrFormat.Id2AttributeName, CommodoreGcrFormat.DefaultId2);
+        var id1 = (byte)Attribute(request, CommodoreGcrFormat.Id1AttributeName, CommodoreGcrFormat.DefaultId1);
+        var diskTrack = Attribute(request, CommodoreGcrFormat.TrackAttributeName, request.Cylinder + 1 + request.Head * CommodoreGcrFormat.TracksPerSide);
+        foreach (var sector in request.Sectors)
         {
-            if(sector.Data.Count!=CommodoreGcrFormat.SectorByteCount) throw CommodoreGcrFormat.InvalidSectorSize(sector.Data.Count);
-            byte[] header=[CommodoreGcrFormat.HeaderMark,(byte)(sector.Number^diskTrack^id2^id1),(byte)sector.Number,(byte)diskTrack,id2,id1];
-            var checksum=CommodoreGcrChecksum.Calculate(sector.Data);
-            bits.Gap(CommodoreGcrFormat.LeadingGapBitCount,true); bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount)); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true); bits.AddRange(CommodoreGcrCodec.Encode(header)); bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true);
-            bits.AddRange(CommodoreGcrCodec.Encode(new byte[]{CommodoreGcrFormat.DataMark}.Concat(sector.Data).Append(checksum))); bits.Gap(CommodoreGcrFormat.TrailingGapBitCount);
+            if (sector.Data.Count != CommodoreGcrFormat.SectorByteCount) throw CommodoreGcrFormat.InvalidSectorSize(sector.Data.Count);
+            byte[] header = [CommodoreGcrFormat.HeaderMark, (byte)(sector.Number ^ diskTrack ^ id2 ^ id1), (byte)sector.Number, (byte)diskTrack, id2, id1];
+            var checksum = CommodoreGcrChecksum.Calculate(sector.Data);
+            bits.Gap(CommodoreGcrFormat.LeadingGapBitCount, true);
+            bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount));
+            bits.Gap(CommodoreGcrFormat.SyncGapBitCount, true);
+            bits.AddRange(CommodoreGcrCodec.Encode(header));
+            bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount);
+            bits.Gap(CommodoreGcrFormat.SyncGapBitCount, true);
+            bits.AddRange(CommodoreGcrCodec.Encode(new byte[] { CommodoreGcrFormat.DataMark }.Concat(sector.Data).Append(checksum)));
+            bits.Gap(CommodoreGcrFormat.TrailingGapBitCount);
         }
         return bits;
     }
