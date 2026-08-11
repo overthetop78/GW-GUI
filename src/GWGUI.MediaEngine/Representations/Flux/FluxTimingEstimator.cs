@@ -19,13 +19,10 @@ internal static class FluxTimingEstimator
     /// <returns>Durée estimée d'une cellule, en ticks.</returns>
     public static double EstimateBitCell(IReadOnlyList<uint> intervals, FluxTimingMode mode)
     {
+        if (mode == FluxTimingMode.Fm) return EstimateLowPercentileBitCell(intervals, false);
         if (intervals.Count == 0) return FluxDecodingParameters.FallbackBitCellTicks;
-        var samples = mode == FluxTimingMode.Fm ? intervals : intervals.Skip(1);
+        var samples = intervals.Skip(1);
         var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
-        if (mode == FluxTimingMode.Fm)
-        {
-            return Math.Max(FluxDecodingParameters.MinimumBitCellTicks, SelectLowPercentile(sorted));
-        }
         var robustLower = SelectLowerClusterMedian(sorted);
         return Math.Max(1, robustLower / FluxDecodingParameters.RobustIntervalToBitCellDivisor);
     }
@@ -33,14 +30,20 @@ internal static class FluxTimingEstimator
     /// <summary>Estime la durée d'une cellule NRZI depuis les intervalles observés.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <returns>Durée estimée d'une cellule NRZI, en ticks.</returns>
-    public static double EstimateNrziBitCell(IReadOnlyList<uint> intervals)
+    public static double EstimateNrziBitCell(IReadOnlyList<uint> intervals) => EstimateLowPercentileBitCell(intervals, true);
+
+    /// <summary>Estime la cellule depuis le cluster temporel le plus court, qui représente les transitions élémentaires du codage GCR en mode NRZI.</summary>
+    /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
+    /// <param name="excludeIndexInterval">Indique si le premier intervalle, commencé à l'impulsion d'index, doit être exclu.</param>
+    /// <returns>Durée estimée d'une cellule, en ticks.</returns>
+    private static double EstimateLowPercentileBitCell(IReadOnlyList<uint> intervals, bool excludeIndexInterval)
     {
         if (intervals.Count == 0) return FluxDecodingParameters.FallbackBitCellTicks;
-        var sorted = intervals.Skip(1).Where(value => value > 0).Order().ToArray();
+        var samples = excludeIndexInterval ? intervals.Skip(1) : intervals;
+        var sorted = samples.Where(value => value > 0).Order().ToArray();
         if (sorted.Length == 0) sorted = intervals.Where(value => value > 0).Order().ToArray();
         if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
-        var percentile = Math.Clamp(sorted.Length / 50, 0, sorted.Length - 1);
-        return Math.Max(1, sorted[percentile]);
+        return Math.Max(FluxDecodingParameters.MinimumBitCellTicks, SelectLowPercentile(sorted));
     }
 
     /// <summary>Sélectionne un intervalle du percentile bas afin que les transitions FM les plus courtes déterminent la cellule et évitent un verrouillage sur deux cellules.</summary>

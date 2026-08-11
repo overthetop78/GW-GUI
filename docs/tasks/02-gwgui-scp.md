@@ -1678,9 +1678,9 @@
       - [x] Extraire la sélection du cinquième inférieur et de sa médiane dans une fonction privée nommée.
       - [x] Utiliser les définitions du cinquième, de la médiane et de la division par deux.
       - [x] Conserver l'ordre croissant et uniquement les intervalles strictement positifs.
-    - [ ] Estimation NRZI
-      - [ ] Réutiliser la fonction commune de percentile bas sans dupliquer le tri et les trois replis.
-      - [ ] Traduire les commentaires anglais sur le cluster temporel GCR en CSDoc française.
+    - [x] Estimation NRZI
+      - [x] Réutiliser la fonction commune de percentile bas sans dupliquer le tri et les trois replis.
+      - [x] Traduire les commentaires anglais sur le cluster temporel GCR en CSDoc française.
     - [ ] Présentation et CSDoc
       - [ ] Séparer le tri, les replis, la taille du groupe bas et sa médiane actuellement regroupés sur les mêmes lignes.
       - [ ] Remettre sur une seule ligne les signatures et expressions complètes qui tiennent lisiblement.
