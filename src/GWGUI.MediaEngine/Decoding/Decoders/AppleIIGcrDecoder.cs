@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
@@ -19,7 +19,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP dont les intervalles sont décodés en NRZI Apple II.</param>
     /// <returns>Résultat du décodage de la piste.</returns>
-    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(FluxRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     /// <summary>Décode directement les bits d'une piste Apple II.</summary>
     /// <param name="bits">Bits de la piste dans leur ordre logique.</param>

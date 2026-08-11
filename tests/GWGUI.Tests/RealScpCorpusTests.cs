@@ -142,7 +142,7 @@ public sealed class RealScpCorpusTests
             var sampleStep = Math.Max(1, image.Tracks.Count / 4);
             foreach (var track in image.Tracks.Where((_, index) => index % sampleStep == 0).Take(4))
             {
-                var decoded = decoders.DecodeBest(track.Revolutions);
+                var decoded = decoders.DecodeBest(track.Revolutions.Select(revolution => revolution.Flux).ToArray());
                 Assert.NotNull(decoded);
                 Assert.StartsWith(entry.DecoderPrefix, decoded.Result.DecoderId);
                 Assert.True(decoded.Result.EstimatedBitCellTicks > 0);

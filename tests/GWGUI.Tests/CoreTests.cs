@@ -11,6 +11,7 @@ using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
@@ -2047,7 +2048,7 @@ public sealed class CoreTests
         var bits = Convert.ToString(0x4489, 2).PadLeft(16, '0') + Convert.ToString(0x4489, 2).PadLeft(16, '0');
         var intervals = new List<uint>(); var sinceTransition = 0;
         foreach (var bit in bits) { sinceTransition++; if (bit == '1') { intervals.Add((uint)(sinceTransition * 40)); sinceTransition = 0; } }
-        var result = new AmigaMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AmigaMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Contains(result.Structures, x => x.Kind == FluxStructureKind.AmigaSync);
         Assert.True(result.Confidence > 0);
     }
@@ -2061,7 +2062,7 @@ public sealed class CoreTests
                   EncodeMfmBytes(0xfe, 0, 1, 2, 2, (byte)(crc >> 8), (byte)crc) + string.Concat(Enumerable.Repeat("10", 20)) +
                   Convert.ToString(0x44894489, 2).PadLeft(32, '0') + Convert.ToString(0x4489, 2).PadLeft(16, '0') + EncodeMfmBytes(new byte[] { 0xfb }.Concat(data).Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
-        var result = new IsoMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new IsoMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(2, sector.Number); Assert.Equal(512, sector.SizeBytes); Assert.True(sector.IntegrityValid);
     }
@@ -2072,7 +2073,7 @@ public sealed class CoreTests
         byte[] header = [0xfe, 3, 0, 7, 1]; var crc = TestCrc16(header);
         var data = Enumerable.Range(0, 256).Select(index => (byte)(index * 17)).ToArray(); var dataCrc = TestCrc16(new byte[] { 0xfb }.Concat(data));
         var raw = Convert.ToString(0xf57e, 2).PadLeft(16, '0') + EncodeFmBytes(3, 0, 7, 1, (byte)(crc >> 8), (byte)crc) + string.Concat(Enumerable.Repeat("10", 20)) + Convert.ToString(0xf56f, 2).PadLeft(16, '0') + EncodeFmBytes(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
-        var intervals = BitsToIntervals(raw, 40); var result = new IsoFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(raw, 40); var result = new IsoFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         var sector = Assert.Single(result.Sectors!); Assert.Equal(7, sector.Number); Assert.Equal(256, sector.SizeBytes); Assert.True(sector.IntegrityValid);
     }
 
@@ -2083,7 +2084,7 @@ public sealed class CoreTests
     {
         byte[] header = [0xa1,0xa1,0xa1,0xfe,4,1,9,0]; var headerCrc = TestCrc16(header); var data = Enumerable.Range(0, 128).Select(index => (byte)(index * 19 + 1)).ToArray(); var dataCrc = TestCrc16(new byte[] { 0xa1,0xa1,0xa1,mark }.Concat(data)); if (corrupt) dataCrc++;
         var sync = string.Concat(Enumerable.Repeat(Convert.ToString(0x4489, 2).PadLeft(16, '0'), 3)); var raw = sync + EncodeMfmBytes(0xfe,4,1,9,0,(byte)(headerCrc >> 8),(byte)headerCrc) + string.Concat(Enumerable.Repeat("10", 20)) + sync + EncodeMfmBytes(new[] { mark }.Concat(data).Concat([(byte)(dataCrc >> 8),(byte)dataCrc]).ToArray()) + "001";
-        var intervals = BitsToIntervals(raw, 40); var result = new IsoMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(raw, 40); var result = new IsoMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Equal(!corrupt, Assert.Single(result.Sectors!).IntegrityValid); Assert.Contains(result.Structures, structure => structure.Kind == (mark == 0xf8 ? FluxStructureKind.DeletedDataAddressMark : FluxStructureKind.DataAddressMark));
     }
 
@@ -2094,7 +2095,7 @@ public sealed class CoreTests
     {
         byte[] header = [0xfe,2,0,5,0]; var headerCrc = TestCrc16(header); var data = Enumerable.Range(0, 128).Select(index => (byte)(index * 23 + 2)).ToArray(); var dataCrc = TestCrc16(new[] { mark }.Concat(data)); if (corrupt) dataCrc++;
         var rawMark = mark == 0xfb ? 0xf56f : 0xf56a; var raw = Convert.ToString(0xf57e, 2).PadLeft(16, '0') + EncodeFmBytes(2,0,5,0,(byte)(headerCrc >> 8),(byte)headerCrc) + string.Concat(Enumerable.Repeat("10", 20)) + Convert.ToString(rawMark, 2).PadLeft(16, '0') + EncodeFmBytes(data.Concat([(byte)(dataCrc >> 8),(byte)dataCrc]).ToArray()) + "001";
-        var intervals = BitsToIntervals(raw, 40); var result = new IsoFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(raw, 40); var result = new IsoFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Equal(!corrupt, Assert.Single(result.Sectors!).IntegrityValid); Assert.Contains(result.Structures, structure => structure.Kind == (mark == 0xf8 ? FluxStructureKind.DeletedDataAddressMark : FluxStructureKind.DataAddressMark));
     }
 
@@ -2104,8 +2105,8 @@ public sealed class CoreTests
         byte[] mfmHeader = [0xa1,0xa1,0xa1,0xfe,0,0,1,0]; var mfmCrc = TestCrc16(mfmHeader); var mfmRaw = string.Concat(Enumerable.Repeat(Convert.ToString(0x4489, 2).PadLeft(16, '0'), 3)) + EncodeMfmBytes(0xfe,0,0,1,0,(byte)(mfmCrc >> 8),(byte)mfmCrc) + "001";
         byte[] fmHeader = [0xfe,0,0,1,0]; var fmCrc = TestCrc16(fmHeader); var fmRaw = Convert.ToString(0xf57e, 2).PadLeft(16, '0') + EncodeFmBytes(0,0,1,0,(byte)(fmCrc >> 8),(byte)fmCrc) + "001";
         var mfmIntervals = BitsToIntervals(mfmRaw, 40); var fmIntervals = BitsToIntervals(fmRaw, 40);
-        Assert.Null(Assert.Single(new IsoMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)mfmIntervals.Count, mfmIntervals)).Sectors!).IntegrityValid);
-        Assert.Null(Assert.Single(new IsoFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)fmIntervals.Count, fmIntervals)).Sectors!).IntegrityValid);
+        Assert.Null(Assert.Single(new IsoMfmDecoder().Decode(new FluxRevolution(8_000_000, mfmIntervals)).Sectors!).IntegrityValid);
+        Assert.Null(Assert.Single(new IsoFmDecoder().Decode(new FluxRevolution(8_000_000, fmIntervals)).Sectors!).IntegrityValid);
     }
 
     [Fact]
@@ -2113,7 +2114,7 @@ public sealed class CoreTests
     {
         var bits = Convert.ToString(0xD5AA96, 2).PadLeft(24, '0') + "0001000" + Convert.ToString(0xD5AAAD, 2).PadLeft(24, '0') + "1";
         var intervals = BitsToIntervals(bits, 40); intervals.Insert(0, 2);
-        var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleIIGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData);
         Assert.Equal(40, result.EstimatedBitCellTicks);
@@ -2132,7 +2133,7 @@ public sealed class CoreTests
             var cellTicks = 36d + Math.Min(8, transition * .25);
             intervals.Add((uint)Math.Round(cells * cellTicks)); cells = 0; transition++;
         }
-        var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleIIGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.True(result.Structures.Count(structure => structure.Kind == FluxStructureKind.AppleAddress) >= 8);
         Assert.InRange(result.EstimatedBitCellTicks, 36, 44);
     }
@@ -2141,7 +2142,7 @@ public sealed class CoreTests
     public void RawFluxDecoderReportsShortNoiseAndLongDropout()
     {
         var intervals = Enumerable.Repeat(80u, 30).ToList(); intervals[8] = 5; intervals[20] = 900;
-        var result = new RawFluxDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new RawFluxDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Equal(2, result.Structures.Count(structure => structure.Kind == FluxStructureKind.TimingAnomaly));
     }
 
@@ -2150,7 +2151,7 @@ public sealed class CoreTests
     {
         const string headerByte08 = "01010" + "01001";
         var intervals = BitsToIntervals("111111111111" + headerByte08 + "1", 40);
-        var result = new CommodoreGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new CommodoreGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.CommodoreSync);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.CommodoreHeader);
         Assert.Contains((byte)0x08, result.DecodedBytes);
@@ -2168,7 +2169,7 @@ public sealed class CoreTests
     {
         var raw = string.Concat(Enumerable.Repeat("10", 60)) + EncodeMfmBytesFromZero(0, 0, 0, 0, 0, 0, 0, 0xfb) + "001";
         var intervals = BitsToIntervals(raw, 40);
-        var result = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new NorthstarMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader);
     }
 
@@ -2182,7 +2183,7 @@ public sealed class CoreTests
         var raw = string.Concat(Enumerable.Repeat("10", 60)) + EncodeMfmBytesFromZero(block) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new NorthstarMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(3, sector.Cylinder);
@@ -2200,7 +2201,7 @@ public sealed class CoreTests
         var block = Enumerable.Repeat((byte)0, 7).Concat([(byte)0xfb, (byte)0x37]).Concat(partialData).ToArray();
         var raw = string.Concat(Enumerable.Repeat("10", 60)) + EncodeMfmBytesFromZero(block) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new NorthstarMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!); Assert.Equal(3, sector.Cylinder); Assert.Equal(7, sector.Number); Assert.Null(sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Description.Contains("unavailable"));
@@ -2210,7 +2211,7 @@ public sealed class CoreTests
     public void HeathkitDecoderRecognizesBitReversedFdHeaderMark()
     {
         var raw = EncodeFmBytes(0, 0, 0, 0xbf) + "001"; var intervals = BitsToIntervals(raw, 40);
-        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new HeathkitFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader);
     }
 
@@ -2227,7 +2228,7 @@ public sealed class CoreTests
                   EncodeFmBytes(new byte[] { 0, 0, 0, 0xbf }.Concat(data.Select(Reverse)).Append(Reverse(dataChecksum)).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new HeathkitFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(cylinder, sector.Cylinder);
@@ -2250,7 +2251,7 @@ public sealed class CoreTests
         var raw = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(volume), Reverse(cylinder), Reverse(sectorNumber), Reverse(headerChecksum)) + string.Concat(Enumerable.Repeat("10", 20)) +
                   EncodeFmBytes(new byte[] { 0, 0, 0, 0xbf }.Concat(data.Select(Reverse)).Append(Reverse(dataChecksum)).ToArray()) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new HeathkitFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
     }
@@ -2263,7 +2264,7 @@ public sealed class CoreTests
         byte checksum = 0; foreach (var value in new[] { volume, cylinder, sectorNumber }) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
         var raw = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(volume), Reverse(cylinder), Reverse(sectorNumber), Reverse(checksum)) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new HeathkitFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
@@ -2285,7 +2286,7 @@ public sealed class CoreTests
         var raw = EncodeFmBytes(new byte[] { 0, 0, 0, 0xff, sectorNumber, cylinder }.Concat(data).Append(checksum).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new MicralNFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new MicralNFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(cylinder, sector.Cylinder);
@@ -2304,7 +2305,7 @@ public sealed class CoreTests
         var raw = EncodeFmBytes(0, 0, 0, 0xff, 4, 2, 1, 2, 3) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new MicralNFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new MicralNFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Empty(result.Sectors!);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
@@ -2324,7 +2325,7 @@ public sealed class CoreTests
                   Convert.ToString(0x4489554a, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new MembrainMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(37, sector.Cylinder);
@@ -2348,7 +2349,7 @@ public sealed class CoreTests
                   Convert.ToString(0x4489554a, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new MembrainMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptData ? "invalid" : "valid"));
@@ -2360,7 +2361,7 @@ public sealed class CoreTests
         byte[] header = [0xa1, 0xfe, 0x04, 0xb9]; var crc = TestCrc16(header, 0x8005, 0x0000);
         var raw = Convert.ToString(0x44895554, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(0x04, 0xb9, (byte)(crc >> 8), (byte)crc) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new MembrainMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new MembrainMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
@@ -2378,7 +2379,7 @@ public sealed class CoreTests
                   Convert.ToString(0x508a, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(12, sector.Cylinder);
@@ -2399,7 +2400,7 @@ public sealed class CoreTests
         var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, 0, 3, 2, (byte)(headerCrc >> 8), (byte)headerCrc) + "00000000" +
                   Convert.ToString(0x5085, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains("C3"));
@@ -2411,7 +2412,7 @@ public sealed class CoreTests
         byte[] header = [0xc6, 12, 0, 3, 2]; var crc = TestCrc16(header);
         var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(12, 0, 3, 2, (byte)(crc >> 8), (byte)crc) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new Aed6200pMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
@@ -2429,7 +2430,7 @@ public sealed class CoreTests
                   Convert.ToString(0xaaaaaaa9, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(new byte[] { 0, 1, 0 }.Concat(data).Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new CenturionMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(17, sector.Cylinder);
@@ -2450,7 +2451,7 @@ public sealed class CoreTests
         var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(headerCrc >> 8), (byte)headerCrc) + string.Concat(Enumerable.Repeat("10", 200)) +
                   Convert.ToString(0xaaaaaaa9, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(new byte[] { 0, 2, 0 }.Concat(data).Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new CenturionMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Equal(!corruptData, Assert.Single(result.Sectors!).IntegrityValid);
     }
@@ -2462,7 +2463,7 @@ public sealed class CoreTests
         var raw = Convert.ToString(0x91224489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(17, 6, (byte)(crc >> 8), (byte)crc) + string.Concat(Enumerable.Repeat("10", 200)) +
                   Convert.ToString(0xaaaaaaa9, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(7, 1, 0) + "001"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new CenturionMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new CenturionMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Description.Contains("unsupported key 7"));
@@ -2483,7 +2484,7 @@ public sealed class CoreTests
         var raw = headerMark + EncodeMfmBytesFromZero(headerTail) + string.Concat(Enumerable.Repeat("10", 20)) + dataMark + EncodeMfmBytesFromZero(data.Append(checksum).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new QdMo5MfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new QdMo5MfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(0x1234, sector.Number);
@@ -2503,7 +2504,7 @@ public sealed class CoreTests
         var raw = headerMark + EncodeMfmBytesFromZero(headerTail) + string.Concat(Enumerable.Repeat("10", 20)) + dataMark + EncodeMfmBytesFromZero(Enumerable.Range(0, 12).Select(index => (byte)index).ToArray()) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new QdMo5MfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new QdMo5MfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
     }
@@ -2516,7 +2517,7 @@ public sealed class CoreTests
         var raw = RawMark("A914A914A914A914A9144491") + EncodeMfmBytesFromZero(headerTail) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new QdMo5MfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new QdMo5MfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(0x0102, sector.Number);
@@ -2541,7 +2542,7 @@ public sealed class CoreTests
             + marker + EncodeEmuFm(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc])) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new EmuFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new EmuFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(12, sector.Cylinder);
@@ -2563,7 +2564,7 @@ public sealed class CoreTests
         var raw = marker + EncodeEmuFm([rawTrack, (byte)(headerCrc >> 8), (byte)headerCrc]) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new EmuFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new EmuFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(4, sector.Cylinder);
@@ -2591,7 +2592,7 @@ public sealed class CoreTests
             + RawMark(dataPattern) + EncodeTycomFm(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc])) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new TycomFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new TycomFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(cylinder, sector.Cylinder);
@@ -2611,7 +2612,7 @@ public sealed class CoreTests
         var raw = RawMark("55111554") + EncodeTycomFm([4, 2, (byte)(headerCrc >> 8), (byte)headerCrc]) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new TycomFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new TycomFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(4, sector.Cylinder);
@@ -2629,7 +2630,7 @@ public sealed class CoreTests
         var raw = RawMark("55111554") + EncodeTycomFm([9, 3, (byte)(headerCrc >> 8), (byte)headerCrc]) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new TycomFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new TycomFmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Empty(result.Sectors!);
         Assert.Contains(result.Structures, structure => structure.Description.Contains("header CRC invalid", StringComparison.Ordinal));
@@ -2668,7 +2669,7 @@ public sealed class CoreTests
             + RawMark(markPattern) + encodedPayload + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new DecRx02Decoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new DecRx02Decoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!);
         Assert.Equal(cylinder, sector.Cylinder); Assert.Equal(head, sector.Head); Assert.Equal(sectorNumber, sector.Number);
@@ -2688,8 +2689,8 @@ public sealed class CoreTests
         var invalidBits = RawMark("55111554") + EncodeRxFm([5, 0, 2, 0, (byte)(invalidCrc >> 8), (byte)invalidCrc]) + "1";
 
         var validIntervals = BitsToIntervals(validBits, 40); var invalidIntervals = BitsToIntervals(invalidBits, 40);
-        var missing = new DecRx02Decoder().Decode(new ScpRevolution(8_000_000, (uint)validIntervals.Count, validIntervals));
-        var corrupt = new DecRx02Decoder().Decode(new ScpRevolution(8_000_000, (uint)invalidIntervals.Count, invalidIntervals));
+        var missing = new DecRx02Decoder().Decode(new FluxRevolution(8_000_000, validIntervals));
+        var corrupt = new DecRx02Decoder().Decode(new FluxRevolution(8_000_000, invalidIntervals));
 
         Assert.Null(Assert.Single(missing.Sectors!).IntegrityValid);
         Assert.Contains(missing.Structures, structure => structure.Description.Contains("unavailable", StringComparison.Ordinal));
@@ -2710,7 +2711,7 @@ public sealed class CoreTests
         var block = data.Concat([(byte)checksum, (byte)(checksum >> 8)]).ToArray();
         var raw = RawMark("4444444455555555") + EncodeArburgFm(block) + "1"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new ArburgDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new ArburgDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!); Assert.Equal(0xa00, sector.SizeBytes); Assert.Equal(!corruptChecksum, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
@@ -2729,7 +2730,7 @@ public sealed class CoreTests
         var block = data.Concat([(byte)checksum, (byte)(checksum >> 8)]).ToArray();
         var raw = RawMark("5555555555249249") + EncodeSystem(block) + "1"; var intervals = BitsToIntervals(raw, 40);
 
-        var result = new ArburgDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new ArburgDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var sector = Assert.Single(result.Sectors!); Assert.Equal(0xf00, sector.SizeBytes); Assert.Equal(!corruptChecksum, sector.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains(corruptChecksum ? "invalid" : "valid", StringComparison.Ordinal));
@@ -2742,7 +2743,7 @@ public sealed class CoreTests
         static string RawMark(string hexadecimal) => string.Concat(Convert.FromHexString(hexadecimal).Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
         static FluxDecodeResult Decode(string marker)
         {
-            var intervals = BitsToIntervals(RawMark(marker) + "1", 40); return new ArburgDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+            var intervals = BitsToIntervals(RawMark(marker) + "1", 40); return new ArburgDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         }
         var data = Decode("4444444455555555"); var system = Decode("5555555555249249");
         Assert.Null(Assert.Single(data.Sectors!).IntegrityValid); Assert.Null(Assert.Single(system.Sectors!).IntegrityValid);
@@ -2781,7 +2782,7 @@ public sealed class CoreTests
         var raw = Block("5555555555551111", header) + new string('0', 20) + Block("5555555555551104", dataBlock) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new Victor9kGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new Victor9kGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
         Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
@@ -2793,7 +2794,7 @@ public sealed class CoreTests
     public void Victor9kDecoderReportsUnavailableIntegrityForTruncatedSector()
     {
         var marker = string.Concat(Convert.FromHexString("5555555555551111").Select(value => Convert.ToString(value, 2).PadLeft(8, '0'))); var intervals = BitsToIntervals(marker + "1", 40);
-        var result = new Victor9kGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new Victor9kGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
@@ -2826,7 +2827,7 @@ public sealed class CoreTests
         var raw = calibration + Bits([0xd5,0xaa,0x96]) + Bits(address) + Bits([0xde,0xaa,0xeb,0xff,0xff,0xff]) + Bits([0xd5,0xaa,0xad]) + Bits(EncodeData(data, table, corruptData)) + Bits([0xde,0xaa,0xeb]) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleIIGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(track, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(256, decoded.SizeBytes);
         Assert.Equal(!corruptAddress && !corruptData, decoded.IntegrityValid);
@@ -2873,7 +2874,7 @@ public sealed class CoreTests
             + Bits([0xd5, 0xaa, 0xad]) + Bits(EncodeData(tagged, table, corruptData)) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new AppleMacGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleMacGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var decoded = Assert.Single(result.Sectors!);
         Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(head, decoded.Head); Assert.Equal(sectorNumber, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
@@ -2890,7 +2891,7 @@ public sealed class CoreTests
         var raw = new string('1', 100) + Bits([0xd5, 0xaa, 0x96]) + Bits(header.Append(checksum).Select(value => table[value])) + new string('0', 32)
             + Bits([0xd5, 0xaa, 0xad]) + Bits(Enumerable.Repeat((byte)0xff, 650)) + "1";
         var intervals = BitsToIntervals(raw, 40);
-        var result = new AppleMacGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleMacGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
@@ -2900,7 +2901,7 @@ public sealed class CoreTests
     {
         var calibration = new string('1', 100); var mark = string.Concat(Convert.FromHexString("D5AA96").Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
         var address = string.Concat(Enumerable.Repeat("10101010", 8)); var epilogue = string.Concat(Convert.FromHexString("DEAAEB").Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var intervals = BitsToIntervals(calibration + mark + address + epilogue + "0001", 40); var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(calibration + mark + address + epilogue + "0001", 40); var result = new AppleIIGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
@@ -2922,7 +2923,7 @@ public sealed class CoreTests
         var raw = new string('1', 100) + "000" + new string('1', 20) + Encode(header) + "000000" + new string('1', 20) + Encode(dataBlock) + "0001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new CommodoreGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new CommodoreGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(track, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(256, decoded.SizeBytes);
         Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
@@ -2936,7 +2937,7 @@ public sealed class CoreTests
         int[] table = [0x0a,0x0b,0x12,0x13,0x0e,0x0f,0x16,0x17,0x09,0x19,0x1a,0x1b,0x0d,0x1d,0x1e,0x15];
         string Encode(IEnumerable<byte> values) => string.Concat(values.SelectMany(value => new[] { value >> 4, value & 15 }).Select(nibble => Convert.ToString(table[nibble], 2).PadLeft(5, '0')));
         byte[] header = [0x08, 0x03, 0x02, 0x01, 0xa1, 0xa1]; var raw = new string('1', 100) + "000" + new string('1', 20) + Encode(header) + "0001";
-        var intervals = BitsToIntervals(raw, 40); var result = new CommodoreGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(raw, 40); var result = new CommodoreGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.CommodoreHeader && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
@@ -2972,7 +2973,7 @@ public sealed class CoreTests
         var raw = string.Concat(Enumerable.Repeat("10", 50)) + Convert.ToString(0x44894489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(encoded) + "001";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new AmigaMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AmigaMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(head, decoded.Head); Assert.Equal(sector, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
         Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
@@ -2984,7 +2985,7 @@ public sealed class CoreTests
     {
         var encodedHeader = new byte[28]; encodedHeader[0] = 0xf0; encodedHeader[2] = 0xf0;
         var raw = string.Concat(Enumerable.Repeat("10", 50)) + Convert.ToString(0x44894489, 2).PadLeft(32, '0') + EncodeMfmBytesFromZero(encodedHeader) + "001";
-        var intervals = BitsToIntervals(raw, 40); var result = new AmigaMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(raw, 40); var result = new AmigaMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AmigaSync && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }
@@ -2999,12 +3000,12 @@ public sealed class CoreTests
             .Append((byte)0x01)
             .ToArray();
         var northstarIntervals = BitsToIntervals(EncodeMfmBytesFromZero(northstarBlock) + "001", 40);
-        var northstar = new NorthstarMfmDecoder().Decode(new ScpRevolution(8_000_000, (uint)northstarIntervals.Count, northstarIntervals));
+        var northstar = new NorthstarMfmDecoder().Decode(new FluxRevolution(8_000_000, northstarIntervals));
 
         static byte Reverse(byte value) { byte result = 0; for (var bit = 0; bit < 8; bit++) result = (byte)((result << 1) | ((value >> bit) & 1)); return result; }
         var heathkitBits = EncodeFmBytes(0, 0, 0, 0xbf, Reverse(1), Reverse(2), Reverse(3), Reverse(0xff)) + "001";
         var heathkitIntervals = BitsToIntervals(heathkitBits, 40);
-        var heathkit = new HeathkitFmDecoder().Decode(new ScpRevolution(8_000_000, (uint)heathkitIntervals.Count, heathkitIntervals));
+        var heathkit = new HeathkitFmDecoder().Decode(new FluxRevolution(8_000_000, heathkitIntervals));
 
         Assert.False(Assert.Single(northstar.Sectors!).IntegrityValid);
         Assert.False(Assert.Single(heathkit.Sectors!).IntegrityValid);
@@ -3028,7 +3029,7 @@ public sealed class CoreTests
         var intervals = BitsToIntervals(bits, 40);
         var image = new ScpReader().Read(BuildSingleTrackScp(intervals));
         var track = Assert.Single(image.Tracks);
-        var result = new FluxDecoderRegistry().Decode(decoderId, Assert.Single(track.Revolutions));
+        var result = new FluxDecoderRegistry().Decode(decoderId, Assert.Single(track.Revolutions).Flux);
         Assert.Contains(result.Structures, structure => structure.Kind == expectedKind);
 
         static string Localize(string key, object[] arguments) => arguments.Length == 0 ? key : $"{key}({string.Join(',', arguments)})";
@@ -3048,10 +3049,10 @@ public sealed class CoreTests
     [Fact]
     public void DecoderRegistrySelectsMostConvincingRevolution()
     {
-        var weak = new ScpRevolution(8_000_000, 2, [40u, 40u]);
+        var weak = new FluxRevolution(8_000_000, [40u, 40u]);
         var prologues = string.Concat(Enumerable.Repeat(Convert.ToString(0xD5AA96, 2).PadLeft(24, '0') + "1", 8));
         var strongIntervals = BitsToIntervals(prologues, 40);
-        var strong = new ScpRevolution(8_000_000, (uint)strongIntervals.Count, strongIntervals);
+        var strong = new FluxRevolution(8_000_000, strongIntervals);
         var best = new FluxDecoderRegistry().DecodeBest([weak, strong], "apple2.gcr");
         Assert.NotNull(best); Assert.Equal(1, best.RevolutionIndex); Assert.Equal("apple2.gcr", best.Result.DecoderId);
     }

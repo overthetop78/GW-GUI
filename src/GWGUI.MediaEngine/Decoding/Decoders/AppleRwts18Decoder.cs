@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
@@ -18,7 +18,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.AppleRwts18;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP à décoder en NRZI RWTS18.</param><returns>Résultat du décodage.</returns>
-    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(FluxRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
     /// <summary>Décode directement les bits d'une piste RWTS18.</summary>
     /// <param name="bits">Bits de la piste.</param><returns>Résultat du décodage.</returns>
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));

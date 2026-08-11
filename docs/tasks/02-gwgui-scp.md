@@ -2220,16 +2220,16 @@
       - [x] Tester qu'un résultat sans secteur expose une collection vide et non une valeur nulle.
       - [x] Vérifier que la séparation des fichiers ne modifie ni les valeurs des enums ni les données retournées par un décodeur existant.
   - [ ] `Decoding/IFluxDecoder.cs`
-    - [ ] Découplage du conteneur SCP
-      - [ ] Créer `Flux/FluxRevolution.cs` comme modèle technique d'une révolution de flux indépendante de son conteneur d'origine.
-      - [ ] Y conserver une copie non modifiable des intervalles de flux et la durée d'index avec leurs unités explicites.
-      - [ ] Conserver `DeclaredFluxCount` et les conversions propres à la résolution SCP dans `Containers/Scp/ScpRevolution.cs`.
-      - [ ] Ajouter à `ScpRevolution` le raccordement vers son modèle `FluxRevolution` sans dupliquer la collection d'intervalles.
-      - [ ] Remplacer le paramètre `ScpRevolution` de `IFluxDecoder.Decode` par `FluxRevolution`.
-      - [ ] Adapter chaque implémentation de `IFluxDecoder` pour recevoir le modèle de flux générique.
-      - [ ] Adapter `FluxDecoderRegistry`, les reconstructeurs sectoriels, les visualisations et les tests qui transmettent actuellement directement un `ScpRevolution`.
-      - [ ] Faire utiliser `FluxRevolution` par les résultats d'encodage de pistes afin que l'aller-retour encodeur/décodeur ne dépende plus du conteneur SCP.
-      - [ ] Conserver un contrat distinct pour de futurs flux non rotationnels plutôt que d'utiliser artificiellement `FluxRevolution` pour une cassette.
+    - [x] Découplage du conteneur SCP
+      - [x] Créer `Flux/FluxRevolution.cs` comme modèle technique d'une révolution de flux indépendante de son conteneur d'origine.
+      - [x] Y conserver une copie non modifiable des intervalles de flux et la durée d'index avec leurs unités explicites.
+      - [x] Conserver `DeclaredFluxCount` et les conversions propres à la résolution SCP dans `Containers/Scp/ScpRevolution.cs`.
+      - [x] Ajouter à `ScpRevolution` le raccordement vers son modèle `FluxRevolution` sans dupliquer la collection d'intervalles.
+      - [x] Remplacer le paramètre `ScpRevolution` de `IFluxDecoder.Decode` par `FluxRevolution`.
+      - [x] Adapter chaque implémentation de `IFluxDecoder` pour recevoir le modèle de flux générique.
+      - [x] Adapter `FluxDecoderRegistry`, les reconstructeurs sectoriels, les visualisations et les tests qui transmettent actuellement directement un `ScpRevolution`.
+      - [x] Faire utiliser `FluxRevolution` par les résultats d'encodage de pistes afin que l'aller-retour encodeur/décodeur ne dépende plus du conteneur SCP.
+      - [x] Conserver un contrat distinct pour de futurs flux non rotationnels plutôt que d'utiliser artificiellement `FluxRevolution` pour une cassette.
     - [ ] Identité des codecs
       - [ ] Remplacer dans toutes les implémentations les identifiants écrits directement par les définitions de `FluxCodecIds` ou des définitions de format créées dans leurs groupes.
       - [ ] Conserver l'identifiant comme chaîne technique extensible plutôt que le transformer en enum fermé.

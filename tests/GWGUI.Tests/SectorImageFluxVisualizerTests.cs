@@ -24,7 +24,7 @@ public sealed class SectorImageFluxVisualizerTests
         var image = new SectorImage(formatId, blockSize, 1, 1, sectorCount, blocks);
 
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var decoded = new FluxDecoderRegistry().Decode(decoderId, visualization.Tracks.Single().Revolutions.Single());
+        var decoded = new FluxDecoderRegistry().Decode(decoderId, visualization.Tracks.Single().Revolutions.Single().Flux);
 
         Assert.Single(visualization.Tracks);
         Assert.NotEmpty(decoded.Sectors);
@@ -38,7 +38,7 @@ public sealed class SectorImageFluxVisualizerTests
         var image = new SectorImage("apple2.prodos", 512, 1, 1, 8, blocks);
 
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", visualization.Tracks.Single().Revolutions.Single());
+        var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", visualization.Tracks.Single().Revolutions.Single().Flux);
 
         Assert.Equal(16, decoded.Sectors.Count);
     }
@@ -51,7 +51,7 @@ public sealed class SectorImageFluxVisualizerTests
         var image = new SectorImage("apple3.sos", 512, 1, 1, 8, blocks);
 
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", visualization.Tracks.Single().Revolutions.Single());
+        var decoded = new FluxDecoderRegistry().Decode("apple2.gcr", visualization.Tracks.Single().Revolutions.Single().Flux);
 
         Assert.Equal(16, decoded.Sectors.Count);
     }
@@ -64,7 +64,7 @@ public sealed class SectorImageFluxVisualizerTests
         var image = new SectorImage("dec.rx02", 512, 1, 1, 13, blocks);
 
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var decoded = new FluxDecoderRegistry().Decode("dec.rx02", visualization.Tracks.Single().Revolutions.Single());
+        var decoded = new FluxDecoderRegistry().Decode("dec.rx02", visualization.Tracks.Single().Revolutions.Single().Flux);
 
         Assert.Equal(26, decoded.Sectors.Count);
         Assert.All(decoded.Sectors, sector => Assert.True(sector.IntegrityValid));
@@ -97,8 +97,8 @@ public sealed class SectorImageFluxVisualizerTests
 
         var image = (await DiskImageExplorer.CreateDefault().ExploreAsync(path)).Image;
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var first = new FluxDecoderRegistry().Decode("applelisa.fileware.gcr", visualization.Tracks[0].Revolutions[0]);
-        var last = new FluxDecoderRegistry().Decode("applelisa.fileware.gcr", visualization.Tracks[^1].Revolutions[0]);
+        var first = new FluxDecoderRegistry().Decode("applelisa.fileware.gcr", visualization.Tracks[0].Revolutions[0].Flux);
+        var last = new FluxDecoderRegistry().Decode("applelisa.fileware.gcr", visualization.Tracks[^1].Revolutions[0].Flux);
 
         Assert.Equal(46, image.Cylinders);
         Assert.Equal(2, image.Heads);
@@ -120,8 +120,8 @@ public sealed class SectorImageFluxVisualizerTests
         var image = (await DiskImageExplorer.CreateDefault().ExploreAsync(path)).Image;
         var visualization = new SectorImageFluxVisualizer().Create(image);
         var decoders = new FluxDecoderRegistry();
-        var first = decoders.Decode("applemac.gcr", visualization.Tracks[0].Revolutions[0]);
-        var last = decoders.Decode("applemac.gcr", visualization.Tracks[^1].Revolutions[0]);
+        var first = decoders.Decode("applemac.gcr", visualization.Tracks[0].Revolutions[0].Flux);
+        var last = decoders.Decode("applemac.gcr", visualization.Tracks[^1].Revolutions[0].Flux);
 
         Assert.Equal(80, visualization.Tracks.Count);
         Assert.Equal(12, first.Sectors.Count);
@@ -139,7 +139,7 @@ public sealed class SectorImageFluxVisualizerTests
 
         var image = (await DiskImageExplorer.CreateDefault().ExploreAsync(path)).Image;
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var decoded = new FluxDecoderRegistry().Decode("iso.mfm", visualization.Tracks[0].Revolutions[0]);
+        var decoded = new FluxDecoderRegistry().Decode("iso.mfm", visualization.Tracks[0].Revolutions[0].Flux);
 
         Assert.Equal(160, visualization.Tracks.Count);
         Assert.Equal(10, decoded.Sectors.Count);
@@ -179,7 +179,7 @@ public sealed class SectorImageFluxVisualizerTests
         if (image is null) return;
 
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var decoded = new FluxDecoderRegistry().Decode("iso.fm", visualization.Tracks[0].Revolutions[0]);
+        var decoded = new FluxDecoderRegistry().Decode("iso.fm", visualization.Tracks[0].Revolutions[0].Flux);
 
         Assert.Equal(40, visualization.Tracks.Count);
         Assert.Equal(18, decoded.Sectors.Count);
@@ -195,8 +195,8 @@ public sealed class SectorImageFluxVisualizerTests
 
         var image = (await DiskImageExplorer.CreateDefault().ExploreAsync(path)).Image;
         var visualization = new SectorImageFluxVisualizer().Create(image);
-        var first = new FluxDecoderRegistry().Decode("commodore900.gcr", visualization.Tracks[0].Revolutions[0]);
-        var last = new FluxDecoderRegistry().Decode("commodore900.gcr", visualization.Tracks[^1].Revolutions[0]);
+        var first = new FluxDecoderRegistry().Decode("commodore900.gcr", visualization.Tracks[0].Revolutions[0].Flux);
+        var last = new FluxDecoderRegistry().Decode("commodore900.gcr", visualization.Tracks[^1].Revolutions[0].Flux);
 
         Assert.Equal(80, image.Cylinders);
         Assert.Equal(2, image.Heads);

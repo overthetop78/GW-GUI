@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 
 namespace GWGUI.MediaEngine.Decoding;
 
@@ -8,7 +8,7 @@ public sealed class RawFluxDecoder : IFluxDecoder
     public string Id => FluxCodecIds.Raw; public string DisplayName => FluxCodecDisplayNames.Raw;
     /// <summary>Analyse les intervalles d'une révolution sans supposer de format sectoriel.</summary>
     /// <param name="revolution">Révolution SCP à analyser.</param><returns>Résultat contenant les anomalies temporelles détectées.</returns>
-    public FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var median = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);
         var anomalies = new List<FluxStructure>();

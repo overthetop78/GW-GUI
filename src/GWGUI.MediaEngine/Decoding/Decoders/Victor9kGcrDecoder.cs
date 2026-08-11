@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
@@ -14,7 +14,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Victor 9000 GCR.</returns>
-    public FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveDoubledNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
         const int markBits = Victor9kGcrFormat.MarkBitCount; const int headerBytes = Victor9kGcrFormat.HeaderByteCount; const int sectorBytes = Victor9kGcrFormat.SectorByteCount; const int decodedDataBytes = Victor9kGcrFormat.DecodedDataByteCount;

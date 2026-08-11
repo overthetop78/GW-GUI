@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 
 namespace GWGUI.Tests;
 
@@ -74,7 +74,7 @@ public sealed class FluxDecodeModelTests
         intervals[8] = 5;
         intervals[20] = 900;
 
-        var result = new RawFluxDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Length, intervals));
+        var result = new RawFluxDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         Assert.Equal("raw", result.DecoderId);
         Assert.Equal(0.05, result.Confidence);

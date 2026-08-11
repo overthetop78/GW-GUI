@@ -29,7 +29,7 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
             var revolution = I86fBitCellFluxConverter.Convert(track.Bits);
             if (revolution is null) continue;
             var decoderId = DecoderIdFor(track.Flags);
-            var decoded = decoders.Decode(decoderId, revolution);
+            var decoded = decoders.Decode(decoderId, revolution.Flux);
             foreach (var sector in decoded.Sectors)
             {
                 if (sector.Data is null || sector.Number < 0) continue;

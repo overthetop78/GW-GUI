@@ -36,7 +36,7 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
             foreach (var (family, decoderId) in Probes)
             {
                 if (found.ContainsKey(family)) continue;
-                var result = decoders.Decode(decoderId, revolution);
+                var result = decoders.Decode(decoderId, revolution.Flux);
                 if (result.Sectors.Any(sector => sector.Data is not null && sector.IntegrityValid == true))
                     found.TryAdd(family, 0);
             }

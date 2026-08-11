@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
@@ -16,20 +16,20 @@ public class AppleMacGcrDecoder : IFluxDecoder
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP à décoder en NRZI Macintosh.</param><returns>Résultat du décodage.</returns>
-    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(FluxRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     /// <summary>Décode directement les bits d'une piste Macintosh.</summary>
     /// <param name="bits">Bits de la piste.</param><returns>Résultat du décodage.</returns>
-    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
+    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxRevolution((uint)bits.Length, []), new FluxBitstream(bits, 1));
 
     /// <summary>Exécute le traitement « Decode At Bit Cell » propre à ce format.</summary>
     /// <param name="revolution">Révolution SCP à décoder.</param><param name="bitCellTicks">Durée imposée d'une cellule en ticks.</param><returns>Résultat du décodage.</returns>
-    public FluxDecodeResult DecodeAtBitCell(ScpRevolution revolution, double bitCellTicks) =>
+    public FluxDecodeResult DecodeAtBitCell(FluxRevolution revolution, double bitCellTicks) =>
         DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals, bitCellTicks));
 
     /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
     /// <param name="revolution">Révolution source.</param><param name="stream">Flux binaire décodé.</param><returns>Structures, secteurs et octets reconnus.</returns>
-    private FluxDecodeResult DecodeCore(ScpRevolution revolution, FluxBitstream stream)
+    private FluxDecodeResult DecodeCore(FluxRevolution revolution, FluxBitstream stream)
     {
         var trackBitLength = stream.Bits.Length;
         stream = stream.WithCircularTail(AppleMacGcrFormat.CircularTailBitCount);

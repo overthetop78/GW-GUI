@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Flux;
 
 namespace GWGUI.Tests;
 
@@ -83,7 +83,7 @@ public sealed class AdditionalFluxDecoderTests
         Assert.Contains("micropolis.mfm", ids);
     }
 
-    private static ScpRevolution Revolution(string bits)
+    private static FluxRevolution Revolution(string bits)
     {
         var intervals = new List<uint>();
         var cells = 0;
@@ -95,7 +95,7 @@ public sealed class AdditionalFluxDecoderTests
             cells = 0;
         }
         if (cells > 0) intervals.Add((uint)(cells * 40));
-        return new(8_000_000, (uint)intervals.Count, intervals);
+        return new(8_000_000, intervals);
     }
 
     private static string EncodeMfm(IReadOnlyList<byte> values)

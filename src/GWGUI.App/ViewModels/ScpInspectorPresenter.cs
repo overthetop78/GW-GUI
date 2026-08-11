@@ -8,7 +8,7 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
 {
     public ScpInspectorModel BuildModel(ScpImage image, ScpTrack track, string? decoderId)
     {
-        var best = decoders.DecodeBest(track.Revolutions, decoderId);
+        var best = decoders.DecodeBest(track.Revolutions.Select(revolution => revolution.Flux).ToArray(), decoderId);
         var decoded = best?.Result;
         var revolutions = track.Revolutions.Select((revolution, index) => new ScpRevolutionInfo(
             index + 1, revolution.FluxIntervals.Count,
@@ -26,7 +26,7 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
 
     public string Build(ScpImage image, ScpTrack track, string? decoderId)
     {
-        var best = decoders.DecodeBest(track.Revolutions, decoderId);
+        var best = decoders.DecodeBest(track.Revolutions.Select(revolution => revolution.Flux).ToArray(), decoderId);
         var decoded = best?.Result;
         var revolutions = string.Join(Environment.NewLine, track.Revolutions.Select((revolution, index) =>
             Localize("Visual.Revolution", index + 1, revolution.FluxIntervals.Count, revolution.DurationMilliseconds(image.Header.ResolutionNanoseconds), revolution.Rpm(image.Header.ResolutionNanoseconds))));

@@ -16,7 +16,7 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
             cancellationToken.ThrowIfCancellationRequested();
             for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
             {
-                var result = policy.DecoderIds.Select(decoder => decoders.Decode(decoder, track.Revolutions[revolution]))
+                var result = policy.DecoderIds.Select(decoder => decoders.Decode(decoder, track.Revolutions[revolution].Flux))
                     .OrderByDescending(Score).First();
                 foreach (var sector in result.Sectors)
                 {

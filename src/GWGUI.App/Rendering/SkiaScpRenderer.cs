@@ -295,7 +295,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
         }
 
         var structureArcs = new List<PreparedArc>();
-        var best = _decoders.DecodeBest(track.Revolutions, decoderId);
+        var best = _decoders.DecodeBest(track.Revolutions.Select(item => item.Flux).ToArray(), decoderId);
         FluxDecodeResult? decodedResult = null;
         if (best is not null)
         {

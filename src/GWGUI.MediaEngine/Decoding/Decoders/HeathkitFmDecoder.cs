@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Encoding.Definitions;
 
@@ -15,7 +15,7 @@ public sealed class HeathkitFmDecoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.HeathkitFm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Heathkit FM.</returns>
-    public FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();

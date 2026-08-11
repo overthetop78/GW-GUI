@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 
@@ -20,7 +20,7 @@ public sealed class FluxDecoderRegistryTests
     public void DecodeResolvesEveryCatalogIdentifierAndReportsAnAbsentIdentifier()
     {
         var registry = new FluxDecoderRegistry();
-        var revolution = new ScpRevolution(8_000_000, 0, []);
+        var revolution = new FluxRevolution(8_000_000, []);
 
         foreach (var decoder in registry.Decoders) Assert.Equal(decoder.Id, registry.Decode(decoder.Id, revolution).DecoderId);
 
@@ -44,7 +44,7 @@ public sealed class FluxDecoderRegistryTests
     {
         var decoder = new CountingDecoder("counted");
         var registry = new FluxDecoderRegistry([decoder]);
-        var revolution = new ScpRevolution(8_000_000, 0, []);
+        var revolution = new FluxRevolution(8_000_000, []);
 
         var first = registry.Decode(decoder.Id, revolution);
         var second = registry.Decode(decoder.Id, revolution);
@@ -59,8 +59,8 @@ public sealed class FluxDecoderRegistryTests
         var firstDecoder = new CountingDecoder("first");
         var secondDecoder = new CountingDecoder("second");
         var registry = new FluxDecoderRegistry([firstDecoder, secondDecoder]);
-        var firstRevolution = new ScpRevolution(8_000_000, 0, []);
-        var secondRevolution = new ScpRevolution(8_000_000, 0, []);
+        var firstRevolution = new FluxRevolution(8_000_000, []);
+        var secondRevolution = new FluxRevolution(8_000_000, []);
 
         var first = registry.Decode(firstDecoder.Id, firstRevolution);
         var anotherRevolution = registry.Decode(firstDecoder.Id, secondRevolution);
@@ -77,7 +77,7 @@ public sealed class FluxDecoderRegistryTests
     {
         using var decoder = new BlockingDecoder("blocking");
         var registry = new FluxDecoderRegistry([decoder]);
-        var revolution = new ScpRevolution(8_000_000, 0, []);
+        var revolution = new FluxRevolution(8_000_000, []);
 
         var first = Task.Run(() => registry.Decode(decoder.Id, revolution));
         Assert.True(decoder.WaitUntilEntered(TimeSpan.FromSeconds(5)));
@@ -108,7 +108,7 @@ public sealed class FluxDecoderRegistryTests
     [Fact]
     public void AutomaticSelectionBreaksTiesByConfidenceStructuresAndCatalogOrder()
     {
-        var revolution = new ScpRevolution(8_000_000, 0, []);
+        var revolution = new FluxRevolution(8_000_000, []);
         var structure = new FluxStructure(FluxStructureKind.Sync, 0, 1, "sync");
         var secondStructure = new FluxStructure(FluxStructureKind.FormatData, 1, 1, "data");
 
@@ -129,7 +129,7 @@ public sealed class FluxDecoderRegistryTests
         var valid = invalid with { IntegrityValid = true };
         var decoder = new ConditionalDecoder("conditional", revolution => revolution.IndexTimeTicks == 1 ? Result("conditional", 0.9, sectors: [invalid]) : Result("conditional", 0.1, sectors: [valid]));
         var registry = new FluxDecoderRegistry([decoder]);
-        ScpRevolution[] revolutions = [new(1, 0, []), new(2, 0, [])];
+        FluxRevolution[] revolutions = [new(1, []), new(2, [])];
 
         Assert.Null(registry.DecodeBest([]));
         Assert.Equal(1, registry.DecodeBest(revolutions, decoder.Id)!.RevolutionIndex);
@@ -142,21 +142,21 @@ public sealed class FluxDecoderRegistryTests
     {
         public string Id { get; } = id;
         public string DisplayName => Id;
-        public FluxDecodeResult Decode(ScpRevolution revolution) => new(Id, DisplayName, 0, 0, [], []);
+        public FluxDecodeResult Decode(FluxRevolution revolution) => new(Id, DisplayName, 0, 0, [], []);
     }
 
     private sealed class FixedDecoder(string id, FluxDecodeResult result) : IFluxDecoder
     {
         public string Id { get; } = id;
         public string DisplayName => Id;
-        public FluxDecodeResult Decode(ScpRevolution revolution) => result;
+        public FluxDecodeResult Decode(FluxRevolution revolution) => result;
     }
 
-    private sealed class ConditionalDecoder(string id, Func<ScpRevolution, FluxDecodeResult> decode) : IFluxDecoder
+    private sealed class ConditionalDecoder(string id, Func<FluxRevolution, FluxDecodeResult> decode) : IFluxDecoder
     {
         public string Id { get; } = id;
         public string DisplayName => Id;
-        public FluxDecodeResult Decode(ScpRevolution revolution) => decode(revolution);
+        public FluxDecodeResult Decode(FluxRevolution revolution) => decode(revolution);
     }
 
     private sealed class CountingDecoder(string id) : IFluxDecoder
@@ -164,7 +164,7 @@ public sealed class FluxDecoderRegistryTests
         public string Id { get; } = id;
         public string DisplayName => Id;
         public int ExecutionCount { get; private set; }
-        public FluxDecodeResult Decode(ScpRevolution revolution)
+        public FluxDecodeResult Decode(FluxRevolution revolution)
         {
             ExecutionCount++;
             return new(Id, DisplayName, 0, 0, [], []);
@@ -179,7 +179,7 @@ public sealed class FluxDecoderRegistryTests
         public string Id { get; } = id;
         public string DisplayName => Id;
         public int ExecutionCount => executionCount;
-        public FluxDecodeResult Decode(ScpRevolution revolution)
+        public FluxDecodeResult Decode(FluxRevolution revolution)
         {
             Interlocked.Increment(ref executionCount);
             entered.Set();

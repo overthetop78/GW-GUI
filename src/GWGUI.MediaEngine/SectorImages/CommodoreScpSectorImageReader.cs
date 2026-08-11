@@ -23,7 +23,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             cancellationToken.ThrowIfCancellationRequested();
             for (var revolution = 0; revolution < physicalTrack.Revolutions.Count; revolution++)
             {
-                var decoded = decoders.Decode(FluxCodecIds.CommodoreGcr, physicalTrack.Revolutions[revolution]);
+                var decoded = decoders.Decode(FluxCodecIds.CommodoreGcr, physicalTrack.Revolutions[revolution].Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is null || sector.Cylinder is < 1 or > DiskGeometryConstants.EightyTrackCylinderCount || sector.Number < 0) continue;
@@ -65,7 +65,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             cancellationToken.ThrowIfCancellationRequested();
             for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
             {
-                var decoded = decoders.Decode(FluxCodecIds.IsoMfm, track.Revolutions[revolution]);
+                var decoded = decoders.Decode(FluxCodecIds.IsoMfm, track.Revolutions[revolution].Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is null || sector.Data.Count != 512 || sector.Number is < 1 or > 10) continue;

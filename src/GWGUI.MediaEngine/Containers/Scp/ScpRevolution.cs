@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Containers.Scp;
@@ -14,19 +14,21 @@ public sealed record ScpRevolution
     public ScpRevolution(uint indexTimeTicks, uint declaredFluxCount, IReadOnlyList<uint> fluxIntervals)
     {
         ArgumentNullException.ThrowIfNull(fluxIntervals);
-        IndexTimeTicks = indexTimeTicks;
         DeclaredFluxCount = declaredFluxCount;
-        FluxIntervals = new ReadOnlyCollection<uint>(fluxIntervals.ToArray());
+        Flux = new FluxRevolution(indexTimeTicks, fluxIntervals);
     }
 
     /// <summary>Obtient la durée déclarée de la révolution, exprimée en pas temporels SCP.</summary>
-    public uint IndexTimeTicks { get; }
+    public uint IndexTimeTicks => Flux.IndexTimeTicks;
 
     /// <summary>Obtient le nombre de mots de flux déclaré dans le descripteur SCP.</summary>
     public uint DeclaredFluxCount { get; }
 
     /// <summary>Obtient les intervalles entre transitions magnétiques, exprimés en pas temporels SCP.</summary>
-    public IReadOnlyList<uint> FluxIntervals { get; }
+    public IReadOnlyList<uint> FluxIntervals => Flux.FluxIntervals;
+
+    /// <summary>Obtient la représentation générique de la révolution de flux.</summary>
+    public FluxRevolution Flux { get; }
 
     /// <summary>Convertit la durée déclarée de la révolution en millisecondes.</summary>
     /// <param name="resolutionNanoseconds">Durée strictement positive d'un pas temporel, en nanosecondes.</param>

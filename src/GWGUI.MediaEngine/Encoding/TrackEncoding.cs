@@ -1,11 +1,11 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 using System.Text;
 
 namespace GWGUI.MediaEngine.Encoding;
 
 internal static class TrackEncoding
 {
-    public static ScpRevolution ToRevolution(IReadOnlyList<bool> bits, uint cellTicks, uint indexTimeTicks)
+    public static FluxRevolution ToRevolution(IReadOnlyList<bool> bits, uint cellTicks, uint indexTimeTicks)
     {
         if (cellTicks == 0) throw new ArgumentOutOfRangeException(nameof(cellTicks));
         var intervals = new List<uint>();
@@ -18,7 +18,7 @@ internal static class TrackEncoding
             cells = 0;
         }
         if (cells > 0) intervals.Add(checked(cells * cellTicks));
-        return new(indexTimeTicks, (uint)intervals.Count, intervals);
+        return new(indexTimeTicks, intervals);
     }
 
     public static List<bool> Bits() => [];

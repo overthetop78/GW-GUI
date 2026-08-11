@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Flux;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -12,7 +12,7 @@ public sealed record TrackEncodeRequest(
     uint BitCellTicks = 40,
     uint IndexTimeTicks = 8_000_000);
 
-public sealed record EncodedTrack(string EncoderId, IReadOnlyList<bool> Bits, ScpRevolution Revolution);
+public sealed record EncodedTrack(string EncoderId, IReadOnlyList<bool> Bits, FluxRevolution Revolution);
 
 public interface ITrackEncoder
 {

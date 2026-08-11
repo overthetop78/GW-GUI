@@ -18,7 +18,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
             {
                 var decoded = decoderId == FluxCodecIds.AppleMacGcr
                     ? DecodeMacTrack(track, track.Revolutions[revolution])
-                    : decoders.Decode(decoderId, track.Revolutions[revolution]);
+                    : decoders.Decode(decoderId, track.Revolutions[revolution].Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is not { Count: var length } || length != size) continue;
@@ -61,7 +61,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         var bestScore = int.MinValue;
         foreach (var factor in factors)
         {
-            var candidate = _macDecoder.DecodeAtBitCell(revolution, initial * factor);
+            var candidate = _macDecoder.DecodeAtBitCell(revolution.Flux, initial * factor);
             var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == 512 &&
                 sector.Cylinder == track.Cylinder && sector.Head == track.Head &&
                 sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
@@ -75,6 +75,6 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
             if (plausible.Where(sector => sector.IntegrityValid == true).Select(sector => sector.Number)
                     .Distinct().Count() == expected) break;
         }
-        return best ?? _macDecoder.Decode(revolution);
+        return best ?? _macDecoder.Decode(revolution.Flux);
     }
 }

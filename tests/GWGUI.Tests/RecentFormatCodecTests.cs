@@ -20,7 +20,7 @@ public sealed class RecentFormatCodecTests
         data[2][0] = 1; data[2][1] = 2; data[2][2] = 3;
         var sectors = data.Select((bytes, number) => new TrackSector(number, bytes)).ToArray();
         var revolution = new FluxEncoderRegistry().Encode("iso.fm", new TrackEncodeRequest(0, 0, sectors)).Revolution;
-        var decoded = new FluxDecoderRegistry().Decode("iso.fm", revolution);
+        var decoded = new FluxDecoderRegistry().Decode("iso.fm", revolution.Flux);
         Assert.NotNull(decoded.Sectors);
         Assert.NotEmpty(decoded.Sectors);
         var image = await new BbcScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry())
