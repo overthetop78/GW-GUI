@@ -2632,42 +2632,42 @@
       - [x] Tester une incohérence entre le code de taille d'en-tête et la marque de données.
       - [x] Tester une marque absente, une donnée tronquée, une règle M²FM invalide et une marque non appariée.
       - [x] Vérifier la charge utile, l'intégrité, les structures, l'ordre des offsets et la confiance produits.
-  - [ ] `Decoding/Decoders/EmuFmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
-      - [ ] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
-    - [ ] Définitions E-mu FM
-      - [ ] Créer `Decoding/Definitions/EmuFmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, la marque commune d'en-tête et de données et sa longueur.
-      - [ ] Y définir la disposition de l'en-tête : piste brute, deux octets de CRC, longueur totale et positions de chaque champ.
-      - [ ] Y définir la taille sectorielle `0xe00`, ses 3584 octets utiles, les deux octets de CRC, le numéro de secteur, le code de taille et les règles cylindre/face.
-      - [ ] Y définir le polynôme `0x8005`, la valeur initiale, la distance maximale `(88 + 16) * 8 * 2` et les valeurs d'avancement du balayage.
-      - [ ] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants par ces définitions.
-    - [ ] Décodage et validation
-      - [ ] Faire commencer `FindNextMark` à `offset + headerBits`, après l'en-tête complet, au lieu de commencer 32 bits avant sa fin.
-      - [ ] Extraire le décodage de la piste brute, l'inversion des bits et la séparation cylindre/face dans une méthode nommée.
-      - [ ] Appeler directement le calculateur CRC commun avec les paramètres E-mu au lieu de conserver `Crc16` et `UpdateCrc` comme délégations locales.
-      - [ ] Extraire la lecture des 3584 octets et des deux octets de CRC dans une méthode nommée.
-      - [ ] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
-      - [ ] Extraire la collecte des marques non classées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations E-mu actuelles.
-    - [ ] Raccordement avec l'encodeur
-      - [ ] Raccorder `EmuFmTrackEncoder.cs` aux mêmes définitions de taille, de marque et de paramètres CRC.
-      - [ ] Remplacer dans l'encodeur l'identifiant, le nom, `0xe00`, `3584` et `0x8005` par les définitions communes.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions E-mu créées.
-    - [ ] Vérification du groupe E-mu
-      - [ ] Tester un en-tête complet avec CRC valide puis invalide.
-      - [ ] Tester la séparation de la piste en cylindre et face après inversion des bits.
-      - [ ] Tester que la recherche des données commence après la fin complète de l'en-tête.
-      - [ ] Tester un secteur de 3584 octets, une charge tronquée et un CRC de données valide puis invalide.
-      - [ ] Tester une marque absente et une marque non classée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/EmuFmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
+      - [x] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
+    - [x] Définitions E-mu FM
+      - [x] Créer `Decoding/Definitions/EmuFmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, la marque commune d'en-tête et de données et sa longueur.
+      - [x] Y définir la disposition de l'en-tête : piste brute, deux octets de CRC, longueur totale et positions de chaque champ.
+      - [x] Y définir la taille sectorielle `0xe00`, ses 3584 octets utiles, les deux octets de CRC, le numéro de secteur, le code de taille et les règles cylindre/face.
+      - [x] Y définir le polynôme `0x8005`, la valeur initiale, la distance maximale `(88 + 16) * 8 * 2` et les valeurs d'avancement du balayage.
+      - [x] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants par ces définitions.
+    - [x] Décodage et validation
+      - [x] Faire commencer `FindNextMark` à `offset + headerBits`, après l'en-tête complet, au lieu de commencer 32 bits avant sa fin.
+      - [x] Extraire le décodage de la piste brute, l'inversion des bits et la séparation cylindre/face dans une méthode nommée.
+      - [x] Appeler directement le calculateur CRC commun avec les paramètres E-mu au lieu de conserver `Crc16` et `UpdateCrc` comme délégations locales.
+      - [x] Extraire la lecture des 3584 octets et des deux octets de CRC dans une méthode nommée.
+      - [x] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
+      - [x] Extraire la collecte des marques non classées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations E-mu actuelles.
+    - [x] Raccordement avec l'encodeur
+      - [x] Raccorder `EmuFmTrackEncoder.cs` aux mêmes définitions de taille, de marque et de paramètres CRC.
+      - [x] Remplacer dans l'encodeur l'identifiant, le nom, `0xe00`, `3584` et `0x8005` par les définitions communes.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions E-mu créées.
+    - [x] Vérification du groupe E-mu
+      - [x] Tester un en-tête complet avec CRC valide puis invalide.
+      - [x] Tester la séparation de la piste en cylindre et face après inversion des bits.
+      - [x] Tester que la recherche des données commence après la fin complète de l'en-tête.
+      - [x] Tester un secteur de 3584 octets, une charge tronquée et un CRC de données valide puis invalide.
+      - [x] Tester une marque absente et une marque non classée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/HeathkitFmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.

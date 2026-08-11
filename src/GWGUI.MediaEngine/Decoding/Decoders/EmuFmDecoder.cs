@@ -1,73 +1,96 @@
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
-/// <summary>Décode les pistes utilisant le format Emu FM.</summary>
+/// <summary>Décode les pistes utilisant le format E-mu FM.</summary>
 public sealed class EmuFmDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = EmuFmFormat.SectorMark.ToArray();
+
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.EmuFm;
+    public string Id => EmuFmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.EmuFm;
+    public string DisplayName => EmuFmFormat.CodecDisplayName;
+
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage E-mu FM.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
-        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedMarks = new HashSet<int>();
-        var markBits = SectorMark.Length * Primitives.BitPrimitives.BitsPerByte;
-        const int headerBits = EmuFmFormat.HeaderDecodedByteCount * 32 + 2 * Primitives.BitPrimitives.BitsPerByte;
-        const int sectorSize = EmuFmFormat.SectorSize;
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
+        var structures = new List<FluxStructure>();
+        var sectors = new List<DecodedSector>();
+        var bytes = new List<byte>();
+        var classifiedMarks = new HashSet<int>();
+        for (var offset = 0; offset + EmuFmFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark) || offset + headerBits > stream.Bits.Length) continue;
-            var header = TryDecodeFmBytes(stream, offset + markBits, EmuFmFormat.HeaderDecodedByteCount);
-            if (header is null) continue;
-            var rawTrack = header[0];
-            var crcHigh = header[1]; var crcLow = header[2];
-            if (Primitives.Crc16Calculator.Compute([rawTrack, crcHigh, crcLow], EmuFmFormat.CrcPolynomial, EmuFmFormat.CrcInitialValue) != 0) continue;
-
-            var track = Primitives.BitPrimitives.ReverseBits(rawTrack); var cylinder = (byte)(track >> EmuFmFormat.TrackShift); var head = (byte)(track & EmuFmFormat.HeadMask); bytes.Add(track); classifiedMarks.Add(offset);
-            var dataOffset = FindNextMark(stream, offset + 4 * Primitives.BitPrimitives.BitsPerByte * 4, (88 + 16) * Primitives.BitPrimitives.BitsPerByte * 2);
-            var completeData = dataOffset >= 0 && dataOffset + markBits + (sectorSize + 2) * 32 <= stream.Bits.Length;
-            bool? dataCrcValid = null;
-            if (completeData)
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark) || offset + EmuFmFormat.HeaderBitCount > stream.Bits.Length) continue;
+            var identity = TryDecodeHeader(stream, offset);
+            if (identity is null) continue;
+            classifiedMarks.Add(offset);
+            bytes.Add((byte)((identity.Cylinder << EmuFmFormat.TrackShift) | identity.Head));
+            var dataOffset = FindNextMark(stream, offset + EmuFmFormat.HeaderBitCount, EmuFmFormat.MaximumDataSearchDistanceBits);
+            var data = dataOffset < 0 ? null : TryDecodeData(stream, dataOffset);
+            if (data is not null)
             {
-                var block = TryDecodeFmBytes(stream, dataOffset + markBits, sectorSize + 2);
-                if (block is null) continue;
-                ushort crc = EmuFmFormat.CrcInitialValue; var data = new byte[sectorSize];
-                for (var index = 0; index < block.Length; index++) { var value = block[index]; crc = Primitives.Crc16Calculator.Update(crc, value, EmuFmFormat.CrcPolynomial); if (index < sectorSize) data[index] = value; }
-                dataCrcValid = crc == 0; classifiedMarks.Add(dataOffset); bytes.AddRange(data);
-                structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + (sectorSize + 2) * 32, $"{FluxStructureDescriptions.Identity("E-mu", FluxStructureKind.FormatData, cylinder, head, 1, sectorSize, null, null)}, {FluxStructureDescriptions.Integrity("CRC", dataCrcValid)}"));
+                classifiedMarks.Add(dataOffset);
+                bytes.AddRange(data.Payload);
+                structures.Add(new(FluxStructureKind.FormatData, dataOffset, EmuFmFormat.MarkBitCount + EmuFmFormat.DataBlockByteCount * EmuFmFormat.EncodedFmByteBitCount, EmuFmDescriptions.Data(identity, data.CrcValid)));
             }
-            sectors.Add(new(cylinder, head, 1, 0, sectorSize, dataCrcValid, offset));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("E-mu", FluxStructureKind.FormatHeader, cylinder, head, 1, sectorSize, null, null, true, dataCrcValid)));
-            offset += markBits - 1;
+            sectors.Add(new(identity.Cylinder, identity.Head, EmuFmFormat.SectorNumber, EmuFmFormat.SectorSizeCode, EmuFmFormat.SectorSize, data?.CrcValid, offset, Data: data?.Payload));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, EmuFmFormat.HeaderBitCount, EmuFmDescriptions.Header(identity, data?.CrcValid)));
+            offset += EmuFmFormat.MarkBitCount - 1;
         }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
-        {
-            if (!classifiedMarks.Contains(offset) && FluxBitReader.MatchBytes(stream, offset, SectorMark)) structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.UnclassifiedMark("E-mu Emulator", FluxStructureKind.FormatHeader, null, "header/data mark")));
-        }
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
+        CollectUnclassifiedMarks(stream, classifiedMarks, structures);
+        var ordered = structures.OrderBy(item => item.BitOffset).ToArray();
+        var confidence = FluxDecoderConfidence.Calculate(sectors.Count, ordered.Length, EmuFmFormat.ConfidenceSectorWeight, EmuFmFormat.ConfidenceDivisor);
+        return new(Id, DisplayName, confidence, stream.BitCellTicks, ordered, bytes, sectors);
     }
 
-    /// <summary>Recherche la prochaine marque du format.</summary>
-    /// <param name="stream">Flux source.</param><param name="start">Offset initial en bits.</param><param name="maximumDistance">Distance maximale en bits.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
+    /// <summary>Décode la piste brute, valide son CRC et sépare le cylindre de la face.</summary>
+    private static EmuTrackIdentity? TryDecodeHeader(FluxBitstream stream, int offset)
+    {
+        var header = TryDecodeFmBytes(stream, offset + EmuFmFormat.MarkBitCount, EmuFmFormat.HeaderDecodedByteCount);
+        if (header is null || Crc16Calculator.Compute(header, EmuFmFormat.CrcPolynomial, EmuFmFormat.CrcInitialValue) != 0) return null;
+        var track = BitPrimitives.ReverseBits(header[EmuFmFormat.HeaderRawTrackOffset]);
+        return new((byte)(track >> EmuFmFormat.TrackShift), (byte)(track & EmuFmFormat.HeadMask));
+    }
+
+    /// <summary>Lit la charge utile et les deux octets de CRC.</summary>
+    internal static EmuDecodedData? TryDecodeData(FluxBitstream stream, int offset)
+    {
+        var block = TryDecodeFmBytes(stream, offset + EmuFmFormat.MarkBitCount, EmuFmFormat.DataBlockByteCount);
+        if (block is null) return null;
+        var payload = block.Take(EmuFmFormat.PayloadByteCount).ToArray();
+        var valid = Crc16Calculator.Compute(block, EmuFmFormat.CrcPolynomial, EmuFmFormat.CrcInitialValue) == 0;
+        return new(payload, valid);
+    }
+
+    /// <summary>Recherche la prochaine marque après l'en-tête complet.</summary>
     private static int FindNextMark(FluxBitstream stream, int start, int maximumDistance)
     {
-        var end = Math.Min(stream.Bits.Length - SectorMark.Length * Primitives.BitPrimitives.BitsPerByte, start + maximumDistance);
+        var end = Math.Min(stream.Bits.Length - EmuFmFormat.MarkBitCount, start + maximumDistance);
         for (var offset = start; offset <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return offset;
         return -1;
+    }
+
+    /// <summary>Collecte les marques qui ne sont associées à aucun en-tête ni bloc de données.</summary>
+    private static void CollectUnclassifiedMarks(FluxBitstream stream, ISet<int> classifiedMarks, ICollection<FluxStructure> structures)
+    {
+        for (var offset = 0; offset + EmuFmFormat.MarkBitCount <= stream.Bits.Length; offset++)
+        {
+            if (!classifiedMarks.Contains(offset) && FluxBitReader.MatchBytes(stream, offset, SectorMark)) structures.Add(new(FluxStructureKind.FormatHeader, offset, EmuFmFormat.MarkBitCount, EmuFmDescriptions.UnclassifiedMark()));
+        }
     }
 
     /// <summary>Tente de décoder une suite d'octets FM.</summary>
     private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * 32, out result[index])) return null;
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * EmuFmFormat.EncodedFmByteBitCount, out result[index])) return null;
         return result;
     }
+
+    /// <summary>Regroupe la charge utile et l'état de son CRC.</summary>
+    internal sealed record EmuDecodedData(byte[] Payload, bool CrcValid);
 }
