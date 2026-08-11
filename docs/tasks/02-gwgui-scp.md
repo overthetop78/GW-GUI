@@ -1761,9 +1761,9 @@
       - [x] Tester offsets négatifs, plage exacte en fin de flux, dépassement d'un bit et longueurs de motif zéro, 16, 32 et 33.
       - [x] Tester un motif d'octets vide, un motif complet et une multiplication de longueur invalide.
       - [x] Tester les trois dispositions d'octet et vérifier qu'une lecture tronquée échoue sans produire d'octet partiel.
-    - [ ] Intégration des consommateurs
-      - [ ] Exécuter les tests ciblés existants des décodeurs FM, MFM, GCR et NRZI raccordés.
-      - [ ] Vérifier sur les images correspondantes de `image_test` que structures, secteurs, octets et durées de cellule restent identiques hors correction explicite des lectures partielles.
+    - [x] Intégration des consommateurs
+      - [x] Exécuter les tests ciblés existants des décodeurs FM, MFM, GCR et NRZI raccordés.
+      - [x] Vérifier sur les images correspondantes de `image_test` que structures, secteurs, octets et durées de cellule restent identiques hors correction explicite des lectures partielles.
 - [ ] `src/GWGUI.MediaEngine/Primitives/BitPrimitives.cs`
   - [ ] Responsabilité et API commune
     - [ ] Conserver le fichier dans `Primitives`, car l’inversion des bits d’un octet ne dépend d’aucun format, conteneur ou codec.
