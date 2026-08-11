@@ -1870,8 +1870,8 @@
     - [x] Ajouter une constante pour chacun des identifiants fixes actuellement retournés par les 25 décodeurs et les 24 encodeurs.
     - [x] Remplacer les identifiants bruts dans chaque décodeur, chaque encodeur, `FluxDecoderRegistry`, `FluxEncoderRegistry`, les reconstructeurs SCP, `ScpFamilyProbe`, `ScpCandidateRegistry` et les politiques de visualisation.
     - [x] Conserver le nom affiché de chaque codec distinct de son identifiant technique.
-  - [ ] Documentation XML
-    - [ ] Documenter en français `FluxCodecIds` et chacune de ses constantes.
+  - [x] Documentation XML
+    - [x] Documenter en français `FluxCodecIds` et chacune de ses constantes.
   - [ ] Tests ciblés
     - [ ] Vérifier qu’un même identifiant n’est pas déclaré pour deux codecs différents.
     - [ ] Vérifier que chaque décodeur et son encodeur correspondant utilisent la même constante lorsqu’ils représentent le même codec.
