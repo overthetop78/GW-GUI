@@ -12,7 +12,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.Aed6200pMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP dont les intervalles de flux sont décodés en MFM.</param>
+    /// <param name="revolution">Révolution générique dont les intervalles de flux sont décodés en MFM.</param>
     /// <returns>Résultat contenant les structures, les secteurs, les octets décodés et la durée estimée d'une cellule.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
@@ -47,6 +47,8 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
         return new(Id, DisplayName, FluxDecoderConfidence.CalculateStandard(sectors.Count, structures.Count), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Tente de lire et de valider un en-tête AED 6200P.</summary>
+    /// <param name="stream">Flux binaire MFM source.</param><param name="offset">Position de l'en-tête, en bits.</param><param name="header">En-tête décodé.</param><param name="size">Taille sectorielle déclarée, en octets.</param><param name="valid">Validité de la marque et du CRC d'en-tête.</param><returns><see langword="true"/> lorsque l'en-tête peut être décodé.</returns>
     private static bool TryReadHeader(FluxBitstream stream, int offset, out byte[] header, out int size, out bool valid)
     {
         header = TryDecodeMfmBytes(stream, offset, Aed6200pMfmFormat.HeaderByteCount)!;
@@ -61,6 +63,8 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
         return true;
     }
 
+    /// <summary>Recherche, décode et valide le bloc de données associé à un en-tête.</summary>
+    /// <param name="stream">Flux binaire MFM source.</param><param name="headerOffset">Position de l'en-tête, en bits.</param><param name="headerBits">Longueur de l'en-tête, en bits.</param><param name="size">Taille des données, en octets.</param><param name="pairedData">Positions des marques de données déjà appariées.</param><param name="structures">Structures auxquelles ajouter le bloc détecté.</param><param name="bytes">Octets auxquels ajouter la charge utile décodée.</param><returns>Résultat de la lecture du bloc de données.</returns>
     private static AedDataReadResult ReadDataBlock(FluxBitstream stream, int headerOffset, int headerBits, int size, HashSet<int> pairedData, List<FluxStructure> structures, List<byte> bytes)
     {
         var dataOffset = FindDataMark(stream, headerOffset + 1, Math.Min(stream.Bits.Length, headerOffset + Aed6200pMfmFormat.DataSearchWindowByteCount * BitPrimitives.BitsPerByte));
@@ -81,8 +85,12 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
         return new(true, valid, (int)dataEnd);
     }
 
+    /// <summary>Combine la validité de l'en-tête et celle des données.</summary>
+    /// <param name="headerValid">Validité de l'en-tête.</param><param name="dataValid">Validité des données, ou valeur nulle en leur absence.</param><returns>Intégrité globale du secteur.</returns>
     private static bool? CombineIntegrity(bool headerValid, bool? dataValid) => headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
 
+    /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
+    /// <param name="stream">Flux binaire MFM source.</param><param name="pairedData">Positions déjà appariées.</param><param name="structures">Structures auxquelles ajouter les marques restantes.</param>
     private static void AddUnpairedDataMarks(FluxBitstream stream, HashSet<int> pairedData, List<FluxStructure> structures)
     {
         for (var offset = 0; offset + MfmEncoding.EncodedByteBitCount <= stream.Bits.Length; offset++)
@@ -93,6 +101,8 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
         }
     }
 
+    /// <summary>Décrit le résultat de la lecture d'un bloc de données AED.</summary>
+    /// <param name="HeaderCanBeAdded">Indique si le traitement de l'en-tête peut se poursuivre.</param><param name="Valid">Validité du bloc, ou valeur nulle lorsqu'elle est indisponible.</param><param name="StructureEnd">Position de fin de la structure, en bits.</param>
     private readonly record struct AedDataReadResult(bool HeaderCanBeAdded, bool? Valid, int StructureEnd);
 
     /// <summary>Recherche la prochaine marque de données.</summary>

@@ -2284,8 +2284,8 @@
       - [x] Séparer toutes les déclarations, affectations, conditions, ajouts et boucles actuellement collés sur une même ligne.
       - [x] Conserver sur une seule ligne les signatures, appels et expressions complètes qui doivent l'être.
       - [x] Ne modifier aucune condition ni valeur pendant la remise en forme.
-    - [ ] Documentation XML
-      - [ ] Documenter en français le décodeur, chaque membre et chaque méthode conservée ou créée.
+    - [x] Documentation XML
+      - [x] Documenter en français le décodeur, chaque membre et chaque méthode conservée ou créée.
     - [ ] Tests ciblés
       - [ ] Tester une piste AED valide, les quatre marques de données et une marque absente.
       - [ ] Tester les tailles codées sur deux octets, une taille invalide et un bloc tronqué.
