@@ -1970,7 +1970,7 @@
       - [x] Tester les trois états d'intégrité et chaque forme de description avec toutes ses données injectées.
       - [x] Vérifier dans les tests ciblés de chaque décodeur que les descriptions produites restent cohérentes avec les structures et secteurs décodés.
 
-- [ ] `src/GWGUI.MediaEngine/Decoding/Base/AppleBitLatch.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Base/AppleBitLatch.cs`
   - [x] Structure et raccordements
     - [x] Déplacer le fichier vers un emplacement Apple précis hors de `Decoding/Base`.
     - [x] Adapter son namespace et les consommateurs Apple II GCR et RWTS18.
