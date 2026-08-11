@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class IsoMfmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "iso.mfm";
+    public override string Id => FluxCodecIds.IsoMfm;
     public override string DisplayName => "ISO MFM";
 
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)

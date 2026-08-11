@@ -2,7 +2,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class MicralNFmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "micraln.fm";
+    public override string Id => FluxCodecIds.MicralNFm;
     public override string DisplayName => "Micral N hard-sectored FM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

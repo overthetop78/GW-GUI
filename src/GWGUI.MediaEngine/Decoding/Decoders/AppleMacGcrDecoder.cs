@@ -10,7 +10,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
     private static readonly Dictionary<byte, byte> Inverse = SixAndTwo.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => (byte)item.index);
     private static readonly byte[] AddressMark = [0xd5, 0xaa, 0x96];
     private static readonly byte[] DataMark = [0xd5, 0xaa, 0xad];
-    public virtual string Id => "applemac.gcr"; public virtual string DisplayName => "Apple Macintosh GCR";
+    public virtual string Id => FluxCodecIds.AppleMacGcr; public virtual string DisplayName => "Apple Macintosh GCR";
 
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 

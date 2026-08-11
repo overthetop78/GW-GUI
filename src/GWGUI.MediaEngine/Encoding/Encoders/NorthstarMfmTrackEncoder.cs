@@ -2,7 +2,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "northstar.mfm";
+    public override string Id => FluxCodecIds.NorthstarMfm;
     public override string DisplayName => "NorthStar hard-sectored MFM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

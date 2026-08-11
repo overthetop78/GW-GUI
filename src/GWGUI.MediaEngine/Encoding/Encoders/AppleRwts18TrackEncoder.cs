@@ -11,7 +11,7 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
         0xed,0xee,0xef,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff
     ];
 
-    public override string Id => "apple2.rwts18";
+    public override string Id => FluxCodecIds.AppleRwts18;
     public override string DisplayName => "Apple II Brøderbund RWTS18";
 
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)

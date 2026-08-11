@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class QdMo5MfmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "qdmo5.mfm";
+    public override string Id => FluxCodecIds.QdMo5Mfm;
     public override string DisplayName => "QD MO5 MFM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

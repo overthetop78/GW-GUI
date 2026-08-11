@@ -47,5 +47,5 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
     /// <summary>Sélectionne le décodeur ISO correspondant aux drapeaux d'une piste 86F.</summary>
     /// <param name="flags">Drapeaux de la piste.</param>
     /// <returns>L'identifiant du décodeur ISO MFM ou ISO FM.</returns>
-    internal static string DecoderIdFor(I86fTrackFlags flags) => (flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? FluxDecoderIds.IsoMfm : FluxDecoderIds.IsoFm;
+    internal static string DecoderIdFor(I86fTrackFlags flags) => (flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? FluxCodecIds.IsoMfm : FluxCodecIds.IsoFm;
 }

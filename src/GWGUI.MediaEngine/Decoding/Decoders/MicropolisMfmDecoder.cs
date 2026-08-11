@@ -9,7 +9,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
 {
     private static readonly byte[] Sync = FluxEncoding.EncodeMfm(0x00, 0x00, 0x00, 0xff);
 
-    public string Id => "micropolis.mfm";
+    public string Id => FluxCodecIds.MicropolisMfm;
     public string DisplayName => "Micropolis MFM";
 
     public FluxDecodeResult Decode(ScpRevolution revolution)

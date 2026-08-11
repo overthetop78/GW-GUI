@@ -5,7 +5,7 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class CommodoreGcrDecoder : IFluxDecoder
 {
     private static readonly Dictionary<int, int> Gcr = new() { [0b01010]=0,[0b01011]=1,[0b10010]=2,[0b10011]=3,[0b01110]=4,[0b01111]=5,[0b10110]=6,[0b10111]=7,[0b01001]=8,[0b11001]=9,[0b11010]=10,[0b11011]=11,[0b01101]=12,[0b11101]=13,[0b11110]=14,[0b10101]=15 };
-    public string Id => "commodore.gcr"; public string DisplayName => "Commodore GCR";
+    public string Id => FluxCodecIds.CommodoreGcr; public string DisplayName => "Commodore GCR";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();

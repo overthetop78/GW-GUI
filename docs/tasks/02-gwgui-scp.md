@@ -1865,11 +1865,11 @@
 ## 5. Décodage
 
 - [ ] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecIds.cs`
-  - [ ] Création des identifiants de codecs
-    - [ ] Créer `Decoding/Definitions/FluxCodecIds.cs`.
-    - [ ] Ajouter une constante pour chacun des identifiants fixes actuellement retournés par les 25 décodeurs et les 24 encodeurs.
-    - [ ] Remplacer les identifiants bruts dans chaque décodeur, chaque encodeur, `FluxDecoderRegistry`, `FluxEncoderRegistry`, les reconstructeurs SCP, `ScpFamilyProbe`, `ScpCandidateRegistry` et les politiques de visualisation.
-    - [ ] Conserver le nom affiché de chaque codec distinct de son identifiant technique.
+  - [x] Création des identifiants de codecs
+    - [x] Créer `Decoding/Definitions/FluxCodecIds.cs`.
+    - [x] Ajouter une constante pour chacun des identifiants fixes actuellement retournés par les 25 décodeurs et les 24 encodeurs.
+    - [x] Remplacer les identifiants bruts dans chaque décodeur, chaque encodeur, `FluxDecoderRegistry`, `FluxEncoderRegistry`, les reconstructeurs SCP, `ScpFamilyProbe`, `ScpCandidateRegistry` et les politiques de visualisation.
+    - [x] Conserver le nom affiché de chaque codec distinct de son identifiant technique.
   - [ ] Documentation XML
     - [ ] Documenter en français `FluxCodecIds` et chacune de ses constantes.
   - [ ] Tests ciblés

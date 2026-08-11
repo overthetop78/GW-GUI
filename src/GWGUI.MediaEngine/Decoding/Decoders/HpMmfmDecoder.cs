@@ -7,7 +7,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
     private static readonly byte[] SectorSync = [0x55, 0x55, 0x2a, 0x54];
     private static readonly byte[] DataSync = [0x55, 0x55, 0x2a, 0x44];
 
-    public string Id => "hp.mmfm";
+    public string Id => FluxCodecIds.HpMmfm;
     public string DisplayName => "HP MMFM";
 
     public FluxDecodeResult Decode(ScpRevolution revolution)

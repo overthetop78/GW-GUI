@@ -8,14 +8,14 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
 {
     private static readonly IReadOnlyList<(ScpFormatFamily Family, string DecoderId)> Probes =
     [
-        (ScpFormatFamily.Iso, "iso.mfm"),
-        (ScpFormatFamily.Iso, "iso.fm"),
-        (ScpFormatFamily.Amiga, "amiga.mfm"),
-        (ScpFormatFamily.Commodore, "commodore.gcr"),
-        (ScpFormatFamily.Apple, "apple2.gcr"),
-        (ScpFormatFamily.Apple, "apple2.rwts18"),
-        (ScpFormatFamily.Apple, "applemac.gcr"),
-        (ScpFormatFamily.Dec, "dec.rx02")
+        (ScpFormatFamily.Iso, FluxCodecIds.IsoMfm),
+        (ScpFormatFamily.Iso, FluxCodecIds.IsoFm),
+        (ScpFormatFamily.Amiga, FluxCodecIds.AmigaMfm),
+        (ScpFormatFamily.Commodore, FluxCodecIds.CommodoreGcr),
+        (ScpFormatFamily.Apple, FluxCodecIds.AppleIIGcr),
+        (ScpFormatFamily.Apple, FluxCodecIds.AppleRwts18),
+        (ScpFormatFamily.Apple, FluxCodecIds.AppleMacGcr),
+        (ScpFormatFamily.Dec, FluxCodecIds.DecRx02)
     ];
 
     public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken)

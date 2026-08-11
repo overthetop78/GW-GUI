@@ -2,7 +2,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class ArburgTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "arburg";
+    public override string Id => FluxCodecIds.Arburg;
     public override string DisplayName => "Arburg system/data";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

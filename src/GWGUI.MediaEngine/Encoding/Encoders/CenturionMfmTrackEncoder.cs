@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class CenturionMfmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "centurion.mfm";
+    public override string Id => FluxCodecIds.CenturionMfm;
     public override string DisplayName => "Centurion MFM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

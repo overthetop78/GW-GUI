@@ -9,7 +9,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     private static readonly byte[] HeaderMark = [0x55,0x55,0x55,0x55,0x55,0x55,0x11,0x11];
     private static readonly byte[] DataMark = [0x55,0x55,0x55,0x55,0x55,0x55,0x11,0x04];
     private static readonly byte[] Gcr = [0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,8,0,1,0xff,12,4,5,0xff,0xff,2,3,0xff,15,6,7,0xff,9,10,11,0xff,13,14,0xff];
-    public string Id => "victor9k.gcr"; public string DisplayName => "Victor 9000 GCR";
+    public string Id => FluxCodecIds.Victor9kGcr; public string DisplayName => "Victor 9000 GCR";
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {

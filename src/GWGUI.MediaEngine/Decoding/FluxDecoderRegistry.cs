@@ -39,7 +39,7 @@ public sealed class FluxDecoderRegistry
             return 3 + result.Confidence;
         if (invalid > 0)
             return result.Confidence * .01;
-        if (result.DecoderId == "raw")
+        if (result.DecoderId == FluxCodecIds.Raw)
             return 1 + result.Confidence;
         if (result.Structures.Count > 0)
             return 2 + result.Confidence;

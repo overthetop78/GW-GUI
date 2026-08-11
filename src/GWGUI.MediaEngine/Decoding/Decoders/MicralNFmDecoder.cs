@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class MicralNFmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorMark = FluxEncoding.EncodeFm(0, 0, 0, 0xff);
-    public override string Id => "micraln.fm"; public override string DisplayName => "Micral N hard-sectored FM";
+    public override string Id => FluxCodecIds.MicralNFm; public override string DisplayName => "Micral N hard-sectored FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Micral N hard-sector block")];
 

@@ -2,7 +2,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class EmuFmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "emu.fm";
+    public override string Id => FluxCodecIds.EmuFm;
     public override string DisplayName => "E-mu Emulator FM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

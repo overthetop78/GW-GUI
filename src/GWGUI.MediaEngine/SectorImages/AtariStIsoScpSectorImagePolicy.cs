@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class AtariStIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
 {
-    public IReadOnlyList<string> DecoderIds { get; } = ["iso.mfm"];
+    public IReadOnlyList<string> DecoderIds { get; } = [FluxCodecIds.IsoMfm];
 
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {

@@ -8,7 +8,7 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorHeader = [0x50, 0x94];
     private static readonly byte[][] SectorData = [[0x50, 0x8a], [0x50, 0x89], [0x50, 0x84], [0x50, 0x85]];
-    public override string Id => "aed6200p.mfm"; public override string DisplayName => "AED 6200P MFM";
+    public override string Id => FluxCodecIds.Aed6200pMfm; public override string DisplayName => "AED 6200P MFM";
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "AED 6200P C6 header mark"), .. SectorData.Select(mark => (mark, FluxStructureKind.FormatData, "AED 6200P data mark"))];
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)

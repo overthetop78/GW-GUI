@@ -13,9 +13,9 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
 
     public override string EncoderId(SectorImage image)
     {
-        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
-        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return "commodore900.gcr";
-        return "commodore.gcr";
+        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.IsoMfm;
+        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.Commodore900Gcr;
+        return FluxCodecIds.CommodoreGcr;
     }
 
     public override IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image,

@@ -5,7 +5,7 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class EmuFmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorMark = [0x45,0x45,0x55,0x55,0x45,0x54,0x54,0x45];
-    public override string Id => "emu.fm"; public override string DisplayName => "E-mu Emulator FM";
+    public override string Id => FluxCodecIds.EmuFm; public override string DisplayName => "E-mu Emulator FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "E-mu Emulator header/data mark")];
 

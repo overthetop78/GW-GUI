@@ -10,7 +10,7 @@ internal sealed class DecRx02VisualizationPolicy : SectorImageVisualizationPolic
     public override bool CanHandle(SectorImage image) =>
         image.FormatId.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase);
 
-    public override string EncoderId(SectorImage image) => "dec.rx02";
+    public override string EncoderId(SectorImage image) => FluxCodecIds.DecRx02;
 
     public override IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image,
         IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items)

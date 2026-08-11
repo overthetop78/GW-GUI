@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class Aed6200pMfmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "aed6200p.mfm";
+    public override string Id => FluxCodecIds.Aed6200pMfm;
     public override string DisplayName => "AED 6200P MFM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

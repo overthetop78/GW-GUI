@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class BbcIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
 {
-    public IReadOnlyList<string> DecoderIds { get; } = ["iso.fm"];
+    public IReadOnlyList<string> DecoderIds { get; } = [FluxCodecIds.IsoFm];
 
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {

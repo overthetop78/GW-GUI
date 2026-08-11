@@ -9,7 +9,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
 {
     private static readonly byte[] Sync = FluxEncoding.EncodeFm(0x00, 0x01);
 
-    public string Id => "datageneral.fm";
+    public string Id => FluxCodecIds.DataGeneralFm;
     public string DisplayName => "Data General 2F";
 
     public FluxDecodeResult Decode(ScpRevolution revolution)

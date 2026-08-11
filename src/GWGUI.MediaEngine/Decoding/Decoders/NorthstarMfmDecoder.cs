@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorMark = FluxEncoding.EncodeMfm(0, 0, 0, 0, 0, 0, 0, 0xfb);
-    public override string Id => "northstar.mfm"; public override string DisplayName => "NorthStar hard-sectored MFM";
+    public override string Id => FluxCodecIds.NorthstarMfm; public override string DisplayName => "NorthStar hard-sectored MFM";
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "NorthStar hard-sector block")];
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)

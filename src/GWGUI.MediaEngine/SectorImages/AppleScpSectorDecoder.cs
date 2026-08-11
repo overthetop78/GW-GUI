@@ -16,7 +16,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
             cancellationToken.ThrowIfCancellationRequested();
             for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
             {
-                var decoded = decoderId == "applemac.gcr"
+                var decoded = decoderId == FluxCodecIds.AppleMacGcr
                     ? DecodeMacTrack(track, track.Revolutions[revolution])
                     : decoders.Decode(decoderId, track.Revolutions[revolution]);
                 foreach (var sector in decoded.Sectors ?? [])

@@ -8,7 +8,7 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] HeaderMark = [0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0x44,0x91];
     private static readonly byte[] DataMark = [0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0x91,0x44];
-    public override string Id => "qdmo5.mfm"; public override string DisplayName => "QD MO5 MFM";
+    public override string Id => FluxCodecIds.QdMo5Mfm; public override string DisplayName => "QD MO5 MFM";
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "QD MO5 sector header"), (DataMark, FluxStructureKind.FormatData, "QD MO5 sector data")];
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)

@@ -20,7 +20,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     private static readonly Dictionary<byte, byte> Inverse = Nibbles.Select((value, index) => (value, index))
         .ToDictionary(pair => pair.value, pair => (byte)pair.index);
 
-    public string Id => "apple2.rwts18";
+    public string Id => FluxCodecIds.AppleRwts18;
     public string DisplayName => "Apple II Brøderbund RWTS18";
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));

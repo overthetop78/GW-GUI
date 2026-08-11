@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class DataGeneralFmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "datageneral.fm";
+    public override string Id => FluxCodecIds.DataGeneralFm;
     public override string DisplayName => "Data General 2F";
 
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)

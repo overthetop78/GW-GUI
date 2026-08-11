@@ -20,7 +20,7 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
         {
             cancellationToken.ThrowIfCancellationRequested();
             for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
-            foreach (var sector in decoders.Decode("dec.rx02", track.Revolutions[revolution]).Sectors ?? [])
+            foreach (var sector in decoders.Decode(FluxCodecIds.DecRx02, track.Revolutions[revolution]).Sectors ?? [])
             {
                 if (sector.Data is not { Count: 256 } || sector.Head != 0 ||
                     !PhysicalToLogical.TryGetValue((sector.Cylinder, sector.Number), out var logical)) continue;

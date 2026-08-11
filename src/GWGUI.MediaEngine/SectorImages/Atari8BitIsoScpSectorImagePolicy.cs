@@ -5,7 +5,7 @@ namespace GWGUI.MediaEngine.SectorImages;
 internal sealed class Atari8BitIsoScpSectorImagePolicy(string? requestedFormatId) : IIsoScpSectorImagePolicy
 {
     public IReadOnlyList<string> DecoderIds { get; } = requestedFormatId == DiskImageFormatIds.Atari90
-        ? ["iso.fm"] : ["iso.mfm"];
+        ? [FluxCodecIds.IsoFm] : [FluxCodecIds.IsoMfm];
 
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {

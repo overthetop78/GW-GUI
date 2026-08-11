@@ -10,7 +10,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
 {
     public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken)
     {
-        var candidates = decoder.DecodeCandidates(scp, "applemac.gcr", 512, cancellationToken);
+        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, 512, cancellationToken);
         if (candidates.Count == 0)
             throw new InvalidDataException("No Apple Macintosh GCR sectors could be decoded from the SCP image.");
         var heads = candidates.Keys.Any(address => address.Head == 1) ? DiskGeometryConstants.DoubleSidedHeadCount : DiskGeometryConstants.SingleSidedHeadCount;

@@ -12,7 +12,7 @@ internal sealed class AtariVisualizationPolicy : SectorImageVisualizationPolicy
         image.FormatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase);
 
     public override string EncoderId(SectorImage image) =>
-        image.FormatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase) ? "iso.fm" : "iso.mfm";
+        image.FormatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase) ? FluxCodecIds.IsoFm : FluxCodecIds.IsoMfm;
 
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address)
     {

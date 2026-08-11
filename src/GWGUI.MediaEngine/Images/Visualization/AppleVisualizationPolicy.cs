@@ -18,15 +18,15 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     public override string EncoderId(SectorImage image)
     {
         if (image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase))
-            return "apple2.rwts18";
+            return FluxCodecIds.AppleRwts18;
         if (image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) &&
-            image.BlockSize == 512 && image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount) return "applemac.gcr";
+            image.BlockSize == 512 && image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount) return FluxCodecIds.AppleMacGcr;
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) ||
-            image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return "apple2.gcr";
+            image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.AppleIIGcr;
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) &&
-            image.Cylinders == AppleDiskGeometry.LisaFileWareCylinderCount && image.Heads == AppleDiskGeometry.LisaFileWareHeadCount) return "applelisa.fileware.gcr";
-        if (image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return "iso.mfm";
-        return "applemac.gcr";
+            image.Cylinders == AppleDiskGeometry.LisaFileWareCylinderCount && image.Heads == AppleDiskGeometry.LisaFileWareHeadCount) return FluxCodecIds.AppleLisaFileWareGcr;
+        if (image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.IsoMfm;
+        return FluxCodecIds.AppleMacGcr;
     }
 
     public override IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image,

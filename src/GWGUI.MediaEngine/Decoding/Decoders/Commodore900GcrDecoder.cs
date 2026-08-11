@@ -11,7 +11,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         [0x09]=8,[0x19]=9,[0x1a]=10,[0x1b]=11,[0x0d]=12,[0x1d]=13,[0x1e]=14,[0x15]=15
     };
 
-    public string Id => "commodore900.gcr";
+    public string Id => FluxCodecIds.Commodore900Gcr;
     public string DisplayName => "Commodore 900 GCR";
 
     public FluxDecodeResult Decode(ScpRevolution revolution)

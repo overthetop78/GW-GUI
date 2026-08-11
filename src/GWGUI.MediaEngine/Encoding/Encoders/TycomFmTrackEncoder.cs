@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class TycomFmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "tycom.fm";
+    public override string Id => FluxCodecIds.TycomFm;
     public override string DisplayName => "TYCOM FM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

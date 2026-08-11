@@ -8,7 +8,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] HeaderMark = [0x55,0x11,0x15,0x54];
     private static readonly (byte[] Pattern, byte Mark)[] DataMarks = [([0x55,0x11,0x14,0x44], 0xf8), ([0x55,0x11,0x14,0x45], 0xf9), ([0x55,0x11,0x14,0x54], 0xfa), ([0x55,0x11,0x14,0x55], 0xfb)];
-    public override string Id => "tycom.fm"; public override string DisplayName => "TYCOM FM";
+    public override string Id => FluxCodecIds.TycomFm; public override string DisplayName => "TYCOM FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "TYCOM sector header"), .. DataMarks.Select(item => (item.Pattern, FluxStructureKind.FormatData, $"TYCOM {item.Mark:X2} data"))];
 

@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class HeathkitFmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorMark = FluxEncoding.EncodeFm(0, 0, 0, 0xbf);
-    public override string Id => "heathkit.fm"; public override string DisplayName => "Heathkit hard-sectored FM";
+    public override string Id => FluxCodecIds.HeathkitFm; public override string DisplayName => "Heathkit hard-sectored FM";
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Heathkit hard-sector header")];
 

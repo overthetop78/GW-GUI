@@ -2,7 +2,7 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
 {
-    public override string Id => "amiga.mfm";
+    public override string Id => FluxCodecIds.AmigaMfm;
     public override string DisplayName => "Amiga MFM";
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
