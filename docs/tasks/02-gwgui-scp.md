@@ -1495,10 +1495,10 @@
     - [x] Documentation XML et encodage
       - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
       - [x] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
-    - [ ] Tests ciblés
-      - [ ] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
-      - [ ] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
-      - [ ] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
+    - [x] Tests ciblés
+      - [x] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
+      - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
+      - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
   - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
