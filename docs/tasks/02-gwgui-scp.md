@@ -2768,48 +2768,48 @@
       - [x] Tester des données complètes, tronquées, normales et supprimées avec CRC valide puis invalide.
       - [x] Tester l'appariement avant l'en-tête suivant et l'absence de données.
       - [x] Vérifier la charge utile, la séquence d'octets, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/IsoMfmDecoder.cs`
-    - [ ] Définitions ISO MFM
-      - [ ] Créer `Decoding/Definitions/IsoMfmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, les trois mots de synchronisation `0x4489`, les trois octets `0xa1` couverts par le CRC et leur longueur totale.
-      - [ ] Créer une définition fermée des marques `0xfe`, `0xfb` et `0xf8` avec leur type de structure et leur état normal ou supprimé.
-      - [ ] Y définir les quatre octets CHRN, les deux octets de CRC, les positions de chaque champ et la longueur totale de 160 bits de l'en-tête.
-      - [ ] Y définir la longueur de 64 bits précédant les données, la limite de code de taille `7`, la taille de base `128` et les valeurs d'avancement `47` et `159`.
-      - [ ] Y définir la longueur circulaire `20_000`, les gaps d'encodage `160` et `256`, les facteurs PLL `.98`, `1.02`, `.96`, `1.04`, `.94` et `1.06`.
-      - [ ] Y définir les pondérations du score `1000`, `10` et `1` et les paramètres du calcul de confiance.
-      - [ ] Remplacer toutes les synchronisations, marques, tailles, positions, gaps, facteurs, scores, identifiants, noms et descriptions bruts dans le décodeur et `IsoMfmTrackEncoder.cs`.
-    - [ ] Tentatives PLL
-      - [ ] Ne considérer la première tentative entièrement valide que si elle contient au moins un secteur ; une liste vide ne doit pas empêcher les autres facteurs PLL d'être essayés.
-      - [ ] Extraire la liste des tentatives PLL et la sélection du meilleur résultat dans un composant nommé.
-      - [ ] Remplacer `Score` par ce composant et comparer explicitement secteurs valides, secteurs contenant des données et nombre total de secteurs avec les pondérations définies.
-      - [ ] Conserver l'ordre actuel des facteurs et le premier résultat en cas d'égalité.
-    - [ ] Modèles et appariement
-      - [ ] Créer des modèles nommés pour les en-têtes et marques de données au lieu des tuples anonymes.
-      - [ ] Extraire la reconnaissance des trois synchronisations et de la marque suivante.
-      - [ ] Extraire la lecture CHRN, le calcul de taille et la validation du CRC d'en-tête.
-      - [ ] Extraire la duplication circulaire des marques comprises dans la portion réellement recopiée en fin de piste.
-      - [ ] Extraire la sélection de la première marque de données située après l'en-tête et avant l'en-tête suivant.
-      - [ ] Extraire la lecture de la charge utile, du CRC stocké et la validation du CRC de données.
-      - [ ] Créer directement les structures définitives au lieu de les ajouter, les supprimer avec `RemoveAll`, puis les recréer.
-      - [ ] Conserver dans la séquence d'octets décodés les marques, les champs CHRN, les CRC stockés et la charge utile dans leur ordre de décodage.
-      - [ ] Remplacer le calcul local `128 << sizeCode` par la définition commune de taille sectorielle.
-      - [ ] Appeler directement le calculateur CRC commun puis supprimer la délégation locale `Crc16`.
-      - [ ] Remplacer les descriptions textuelles brutes et actuellement mélangées par le constructeur commun recevant marque, cylindre, face, secteur, taille et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations ISO MFM définies.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les affectations, sélections de marques, calculs CRC, scores et créations de structures actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Corriger les textes actuellement mal encodés dans le fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et au composant de sélection PLL.
-    - [ ] Vérification du groupe ISO MFM
-      - [ ] Tester les trois synchronisations suivies d'une marque d'adresse, de données normale, de données supprimée et d'une marque inconnue.
-      - [ ] Tester les codes de taille 0 à 7 puis une valeur supérieure à 7.
-      - [ ] Tester un en-tête complet, tronqué, avec CRC valide puis invalide.
-      - [ ] Tester des données complètes, tronquées, normales et supprimées avec CRC valide puis invalide.
-      - [ ] Tester un secteur franchissant la fin circulaire de la piste.
-      - [ ] Tester une première tentative sans secteur, une tentative entièrement valide et le choix du meilleur score entre plusieurs facteurs PLL.
-      - [ ] Vérifier la charge utile, la séquence d'octets, l'intégrité, les structures, le bit-cell retenu et la confiance produite.
+  - [x] `Decoding/Decoders/IsoMfmDecoder.cs`
+    - [x] Définitions ISO MFM
+      - [x] Créer `Decoding/Definitions/IsoMfmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, les trois mots de synchronisation `0x4489`, les trois octets `0xa1` couverts par le CRC et leur longueur totale.
+      - [x] Créer une définition fermée des marques `0xfe`, `0xfb` et `0xf8` avec leur type de structure et leur état normal ou supprimé.
+      - [x] Y définir les quatre octets CHRN, les deux octets de CRC, les positions de chaque champ et la longueur totale de 160 bits de l'en-tête.
+      - [x] Y définir la longueur de 64 bits précédant les données, la limite de code de taille `7`, la taille de base `128` et les valeurs d'avancement `47` et `159`.
+      - [x] Y définir la longueur circulaire `20_000`, les gaps d'encodage `160` et `256`, les facteurs PLL `.98`, `1.02`, `.96`, `1.04`, `.94` et `1.06`.
+      - [x] Y définir les pondérations du score `1000`, `10` et `1` et les paramètres du calcul de confiance.
+      - [x] Remplacer toutes les synchronisations, marques, tailles, positions, gaps, facteurs, scores, identifiants, noms et descriptions bruts dans le décodeur et `IsoMfmTrackEncoder.cs`.
+    - [x] Tentatives PLL
+      - [x] Ne considérer la première tentative entièrement valide que si elle contient au moins un secteur ; une liste vide ne doit pas empêcher les autres facteurs PLL d'être essayés.
+      - [x] Extraire la liste des tentatives PLL et la sélection du meilleur résultat dans un composant nommé.
+      - [x] Remplacer `Score` par ce composant et comparer explicitement secteurs valides, secteurs contenant des données et nombre total de secteurs avec les pondérations définies.
+      - [x] Conserver l'ordre actuel des facteurs et le premier résultat en cas d'égalité.
+    - [x] Modèles et appariement
+      - [x] Créer des modèles nommés pour les en-têtes et marques de données au lieu des tuples anonymes.
+      - [x] Extraire la reconnaissance des trois synchronisations et de la marque suivante.
+      - [x] Extraire la lecture CHRN, le calcul de taille et la validation du CRC d'en-tête.
+      - [x] Extraire la duplication circulaire des marques comprises dans la portion réellement recopiée en fin de piste.
+      - [x] Extraire la sélection de la première marque de données située après l'en-tête et avant l'en-tête suivant.
+      - [x] Extraire la lecture de la charge utile, du CRC stocké et la validation du CRC de données.
+      - [x] Créer directement les structures définitives au lieu de les ajouter, les supprimer avec `RemoveAll`, puis les recréer.
+      - [x] Conserver dans la séquence d'octets décodés les marques, les champs CHRN, les CRC stockés et la charge utile dans leur ordre de décodage.
+      - [x] Remplacer le calcul local `128 << sizeCode` par la définition commune de taille sectorielle.
+      - [x] Appeler directement le calculateur CRC commun puis supprimer la délégation locale `Crc16`.
+      - [x] Remplacer les descriptions textuelles brutes et actuellement mélangées par le constructeur commun recevant marque, cylindre, face, secteur, taille et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations ISO MFM définies.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les affectations, sélections de marques, calculs CRC, scores et créations de structures actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Corriger les textes actuellement mal encodés dans le fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et au composant de sélection PLL.
+    - [x] Vérification du groupe ISO MFM
+      - [x] Tester les trois synchronisations suivies d'une marque d'adresse, de données normale, de données supprimée et d'une marque inconnue.
+      - [x] Tester les codes de taille 0 à 7 puis une valeur supérieure à 7.
+      - [x] Tester un en-tête complet, tronqué, avec CRC valide puis invalide.
+      - [x] Tester des données complètes, tronquées, normales et supprimées avec CRC valide puis invalide.
+      - [x] Tester un secteur franchissant la fin circulaire de la piste.
+      - [x] Tester une première tentative sans secteur, une tentative entièrement valide et le choix du meilleur score entre plusieurs facteurs PLL.
+      - [x] Vérifier la charge utile, la séquence d'octets, l'intégrité, les structures, le bit-cell retenu et la confiance produite.
   - [ ] `Decoding/Decoders/MembrainMfmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
