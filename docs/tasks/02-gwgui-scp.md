@@ -2286,11 +2286,11 @@
       - [x] Ne modifier aucune condition ni valeur pendant la remise en forme.
     - [x] Documentation XML
       - [x] Documenter en français le décodeur, chaque membre et chaque méthode conservée ou créée.
-    - [ ] Tests ciblés
-      - [ ] Tester une piste AED valide, les quatre marques de données et une marque absente.
-      - [ ] Tester les tailles codées sur deux octets, une taille invalide et un bloc tronqué.
-      - [ ] Tester un CRC d'en-tête valide ou invalide et un CRC de données valide ou invalide.
-      - [ ] Tester une marque de données non appariée et vérifier la confiance finale.
+    - [x] Tests ciblés
+      - [x] Tester une piste AED valide, les quatre marques de données et une marque absente.
+      - [x] Tester les tailles codées sur deux octets, une taille invalide et un bloc tronqué.
+      - [x] Tester un CRC d'en-tête valide ou invalide et un CRC de données valide ou invalide.
+      - [x] Tester une marque de données non appariée et vérifier la confiance finale.
   - [ ] `Decoding/Decoders/AmigaMfmDecoder.cs`
     - [ ] Définitions du format Amiga MFM
       - [ ] Créer `Decoding/Definitions/AmigaMfmFormat.cs`.

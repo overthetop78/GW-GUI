@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using Aed6200pMfmFormat = GWGUI.MediaEngine.Encoding.Definitions.Aed6200pMfmFormat;
 
 namespace GWGUI.MediaEngine.Encoding;
 

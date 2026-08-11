@@ -2418,6 +2418,59 @@ public sealed class CoreTests
     }
 
     [Theory]
+    [InlineData(0xc0, "508A")]
+    [InlineData(0xc1, "5089")]
+    [InlineData(0xc2, "5084")]
+    [InlineData(0xc3, "5085")]
+    public void Aed6200pDecoderAcceptsEveryDataMark(byte dataMark, string encodedMark)
+    {
+        const int sectorSize = 128;
+        byte[] header = [0xc6, 1, sectorSize, 2, 0];
+        var headerCrc = TestCrc16(header);
+        var data = Enumerable.Range(0, sectorSize).Select(index => (byte)index).ToArray();
+        var dataCrc = TestCrc16(new[] { dataMark }.Concat(data));
+        var raw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(1, sectorSize, 2, 0, (byte)(headerCrc >> 8), (byte)headerCrc) + "00000000" + Convert.ToString(Convert.ToUInt16(encodedMark, 16), 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]).ToArray()) + "001";
+
+        var result = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, BitsToIntervals(raw, 40)));
+
+        Assert.True(Assert.Single(result.Sectors).IntegrityValid);
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains(dataMark.ToString("X2")));
+    }
+
+    [Fact]
+    public void Aed6200pDecoderReportsInvalidSizeAndTruncatedDataBlock()
+    {
+        byte[] invalidHeader = [0xc6, 1, 3, 2, 0];
+        var invalidCrc = TestCrc16(invalidHeader);
+        var invalidRaw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(1, 3, 2, 0, (byte)(invalidCrc >> 8), (byte)invalidCrc) + "001";
+        var invalid = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, BitsToIntervals(invalidRaw, 40)));
+
+        Assert.Equal(3, Assert.Single(invalid.Sectors).SizeBytes);
+        Assert.Equal(0, Assert.Single(invalid.Sectors).SizeCode);
+
+        byte[] truncatedHeader = [0xc6, 1, 128, 2, 0];
+        var truncatedCrc = TestCrc16(truncatedHeader);
+        var truncatedRaw = Convert.ToString(0x5094, 2).PadLeft(16, '0') + EncodeMfmBytesFromZero(1, 128, 2, 0, (byte)(truncatedCrc >> 8), (byte)truncatedCrc) + "00000000" + Convert.ToString(0x508a, 2).PadLeft(16, '0') + "001";
+        var truncated = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, BitsToIntervals(truncatedRaw, 40)));
+
+        Assert.Null(Assert.Single(truncated.Sectors).IntegrityValid);
+        Assert.Contains(truncated.Structures, structure => structure.Kind == FluxStructureKind.FormatData && structure.Description.Contains("truncated"));
+    }
+
+    [Fact]
+    public void Aed6200pDecoderReportsUnpairedDataMarkAndStandardConfidence()
+    {
+        var raw = Convert.ToString(0x5085, 2).PadLeft(16, '0') + "001";
+
+        var result = new Aed6200pMfmDecoder().Decode(new FluxRevolution(8_000_000, BitsToIntervals(raw, 40)));
+
+        Assert.Empty(result.Sectors);
+        Assert.Single(result.Structures);
+        Assert.Contains("Unpaired", result.Structures[0].Description);
+        Assert.Equal(0.05, result.Confidence);
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void CenturionDecoderExtractsSectorIdentityAndXmodemHeaderCrc(bool corruptCrc)
