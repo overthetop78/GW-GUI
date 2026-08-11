@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Images;
 

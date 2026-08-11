@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.ImageDisk;
 

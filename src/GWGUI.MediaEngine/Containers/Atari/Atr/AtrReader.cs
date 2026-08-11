@@ -2,6 +2,7 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.Atari.Atr;
 

@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Images;
 

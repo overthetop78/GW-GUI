@@ -1315,16 +1315,16 @@
     - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une carte, d’un code de taille, d’un type d’enregistrement et d’une charge utile tronqués ou invalides.
     - [ ] Vérifier la propagation de l’annulation entre deux pistes.
       - Vérification restante : la propagation d’un jeton déjà annulé à l’entrée du parcours est testée, mais aucun point de synchronisation ne permet de déclencher déterministement l’annulation exactement entre deux pistes sans modifier le contrat de production. Cette action reste non cochée.
-- [ ] `src/GWGUI.MediaEngine/Images/ISectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `SectorImages/Reading/ISectorImageReader.cs`, car son résultat commun est un `SectorImage` quel que soit le conteneur lu.
-    - [ ] Déplacer le type dans le namespace `GWGUI.MediaEngine.SectorImages.Reading`.
-    - [ ] Adapter les treize Readers qui implémentent le contrat ainsi que les politiques et compositions qui le consomment.
-    - [ ] Conserver dans ce contrat les opérations communes `CanRead` et `ReadAsync` ; ne pas créer de contrats supplémentaires sans consommateur distinct dans le code.
-  - [ ] Documentation XML
-    - [ ] Documenter en français la responsabilité de l’interface, la valeur indicative retournée par `CanRead`, le résultat de `ReadAsync`, son paramètre de chemin et son jeton d’annulation.
-  - [ ] Vérification du raccordement
-    - [ ] Compiler après le changement de namespace afin de vérifier que chaque implémentation et chaque consommateur utilise le contrat déplacé.
+- [x] `src/GWGUI.MediaEngine/Images/ISectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `SectorImages/Reading/ISectorImageReader.cs`, car son résultat commun est un `SectorImage` quel que soit le conteneur lu.
+    - [x] Déplacer le type dans le namespace `GWGUI.MediaEngine.SectorImages.Reading`.
+    - [x] Adapter les treize Readers qui implémentent le contrat ainsi que les politiques et compositions qui le consomment.
+    - [x] Conserver dans ce contrat les opérations communes `CanRead` et `ReadAsync` ; ne pas créer de contrats supplémentaires sans consommateur distinct dans le code.
+  - [x] Documentation XML
+    - [x] Documenter en français la responsabilité de l’interface, la valeur indicative retournée par `CanRead`, le résultat de `ReadAsync`, son paramètre de chemin et son jeton d’annulation.
+  - [x] Vérification du raccordement
+    - [x] Compiler après le changement de namespace afin de vérifier que chaque implémentation et chaque consommateur utilise le contrat déplacé.
 - [ ] `src/GWGUI.MediaEngine/Images/MsaImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/Atari/Msa/MsaReader.cs`.
