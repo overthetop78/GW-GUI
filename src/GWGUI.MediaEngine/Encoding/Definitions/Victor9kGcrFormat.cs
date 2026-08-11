@@ -20,7 +20,7 @@ internal static class Victor9kGcrFormat
     /// <summary>Définit encodé cellule stride utilisé par ce format.</summary>
     public const int EncodedCellStride = 2;
     /// <summary>Définit encodé nibble bit nombre utilisé par ce format.</summary>
-    public const int EncodedNibbleBitCount = 5;
+    public const int EncodedNibbleBitCount = Decoding.Definitions.CommodoreGcrCodec.EncodedNibbleBitCount;
     /// <summary>Définit en-tête octet nombre utilisé par ce format.</summary>
     public const int HeaderByteCount = 6;
     /// <summary>Définit secteur octet nombre utilisé par ce format.</summary>
@@ -42,11 +42,7 @@ internal static class Victor9kGcrFormat
     /// <summary>Définit en-tête id1 utilisé par ce format.</summary>
     public const byte HeaderId1 = 0x1a;
     /// <summary>Définit nibble masque utilisé par ce format.</summary>
-    public const int NibbleMask = 0x0f;
-    /// <summary>Expose la table d'encodage GCR partagée avec les formats Commodore.</summary>
-    public static IReadOnlyList<int> EncodingTable => CommodoreGcrFormat.EncodingTable;
-    /// <summary>Expose la table de décodage GCR partagée avec les formats Commodore.</summary>
-    public static IReadOnlyDictionary<int, int> DecodingTable => CommodoreGcrFormat.DecodingTable;
+    public const int NibbleMask = Decoding.Definitions.CommodoreGcrCodec.NibbleMask;
     /// <summary>Expose en-tête marque utilisé par ce format.</summary>
     public static IReadOnlyList<byte> HeaderMark { get; } = Array.AsReadOnly(Convert.FromHexString(HeaderMarkHex));
     /// <summary>Expose données marque utilisé par ce format.</summary>

@@ -28,11 +28,11 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
             while (end < stream.Bits.Length && stream.Bits[end]) end++;
             if (end - offset < Commodore900GcrFormat.MinimumSyncBitCount) { offset = end; continue; }
             structures.Add(new(FluxStructureKind.CommodoreSync, offset, end - offset, FluxStructureDescriptions.UnclassifiedMark(Commodore900GcrFormat.StructureDescriptionName, FluxStructureKind.CommodoreSync, null, Commodore900GcrFormat.SyncDescription)));
-            if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.HeaderByteCount) is { } header && header[Commodore900GcrFormat.HeaderMarkOffset] == Commodore900GcrFormat.HeaderMark)
+            if (CommodoreGcrCodec.TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.HeaderByteCount) is { } header && header[Commodore900GcrFormat.HeaderMarkOffset] == Commodore900GcrFormat.HeaderMark)
             {
                 headers.Add((offset, end + Commodore900GcrFormat.EncodedHeaderBitCount, header)); decodedBytes.AddRange(header);
             }
-            else if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.DataRecordByteCount) is { } data && data[Commodore900GcrFormat.DataMarkOffset] == Commodore900GcrFormat.DataMark)
+            else if (CommodoreGcrCodec.TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.DataRecordByteCount) is { } data && data[Commodore900GcrFormat.DataMarkOffset] == Commodore900GcrFormat.DataMark)
             {
                 dataBlocks.Add((offset, end + Commodore900GcrFormat.EncodedDataRecordBitCount, data)); decodedBytes.AddRange(data);
             }
@@ -61,27 +61,4 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, validCount / (double)Commodore900GcrFormat.ExpectedSectorCount), stream.BitCellTicks, structures, decodedBytes, sectors);
     }
 
-    /// <summary>Tente de décoder une suite d'octets du format.</summary>
-    /// <param name="bits">Bits GCR source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre d'octets à décoder.</param><returns>Octets décodés, ou <see langword="null"/> si un symbole est incomplet ou invalide.</returns>
-    private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
-    {
-        if (offset + count * Commodore900GcrFormat.EncodedByteBitCount > bits.Count) return null;
-        var result = new byte[count];
-        for (var index = 0; index < count; index++)
-        {
-            if (!TryNibble(bits, offset + index * Commodore900GcrFormat.EncodedByteBitCount, out var high) ||
-                !TryNibble(bits, offset + index * Commodore900GcrFormat.EncodedByteBitCount + Commodore900GcrFormat.EncodedNibbleBitCount, out var low)) return null;
-            result[index] = (byte)((high << 4) | low);
-        }
-        return result;
-    }
-
-    /// <summary>Exécute le traitement « Try Nibble » propre à ce format.</summary>
-    /// <param name="bits">Bits GCR source.</param><param name="offset">Offset du symbole en bits.</param><param name="value">Demi-octet décodé.</param><returns><see langword="true"/> si le symbole est complet et reconnu.</returns>
-    private static bool TryNibble(IReadOnlyList<bool> bits, int offset, out int value)
-    {
-        var code = 0; value = 0;
-        for (var bit = 0; bit < Commodore900GcrFormat.EncodedNibbleBitCount; bit++) code = (code << 1) | (bits[offset + bit] ? 1 : 0);
-        return Commodore900GcrFormat.DecodingTable.TryGetValue(code, out value);
-    }
 }

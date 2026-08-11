@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -19,14 +20,9 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
             if(sector.Data.Count!=CommodoreGcrFormat.SectorByteCount) throw CommodoreGcrFormat.InvalidSectorSize(sector.Data.Count);
             byte[] header=[CommodoreGcrFormat.HeaderMark,(byte)(sector.Number^diskTrack^id2^id1),(byte)sector.Number,(byte)diskTrack,id2,id1];
             byte checksum=0; foreach(var value in sector.Data) checksum^=value;
-            bits.Gap(CommodoreGcrFormat.LeadingGapBitCount,true); bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount)); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true); Gcr(bits,header); bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true);
-            Gcr(bits,new byte[]{CommodoreGcrFormat.DataMark}.Concat(sector.Data).Append(checksum)); bits.Gap(CommodoreGcrFormat.TrailingGapBitCount);
+            bits.Gap(CommodoreGcrFormat.LeadingGapBitCount,true); bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount)); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true); bits.AddRange(CommodoreGcrCodec.Encode(header)); bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true);
+            bits.AddRange(CommodoreGcrCodec.Encode(new byte[]{CommodoreGcrFormat.DataMark}.Concat(sector.Data).Append(checksum))); bits.Gap(CommodoreGcrFormat.TrailingGapBitCount);
         }
         return bits;
-    }
-    /// <summary>Exécute le traitement « GCR » propre à ce format.</summary>
-    private static void Gcr(List<bool> bits,IEnumerable<byte> values)
-    {
-        foreach(var value in values) foreach(var nibble in new[]{value>>4,value&CommodoreGcrFormat.NibbleMask}) for(var bit=CommodoreGcrFormat.EncodedNibbleBitCount-1;bit>=0;bit--) bits.Add((CommodoreGcrFormat.EncodingTable[nibble]&(1<<bit))!=0);
     }
 }

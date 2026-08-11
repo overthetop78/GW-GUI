@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -73,8 +74,8 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     /// <param name="bits">Bits source.</param><param name="offset">Offset avancé après lecture.</param><param name="value">Demi-octet décodé.</param><returns><see langword="true"/> si le symbole est valide.</returns>
     private static bool TryDecodeNibble(IReadOnlyList<bool> bits, ref int offset, out byte value)
     {
-        var code = 0; value = 0;
-        for (var bit = 0; bit < Victor9kGcrFormat.EncodedNibbleBitCount; bit++, offset += Victor9kGcrFormat.EncodedCellStride) { if (offset >= bits.Count) return false; code = (code << 1) | (bits[offset] ? 1 : 0); }
-        if (!Victor9kGcrFormat.DecodingTable.TryGetValue(code, out var decoded)) return false; value = (byte)decoded; return true;
+        if (!CommodoreGcrCodec.TryDecodeNibble(bits, offset, Victor9kGcrFormat.EncodedCellStride, out value)) return false;
+        offset += CommodoreGcrCodec.EncodedNibbleBitCount * Victor9kGcrFormat.EncodedCellStride;
+        return true;
     }
 }

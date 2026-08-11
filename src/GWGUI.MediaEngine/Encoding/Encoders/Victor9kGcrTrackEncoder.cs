@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -27,7 +28,7 @@ public sealed class Victor9kGcrTrackEncoder : TrackEncoderBase
     private static void AddBlock(List<bool> target,string markerHex,IEnumerable<byte> values)
     {
         var marker=new List<bool>(); marker.RawHex(markerHex); var encoded=new List<bool>();
-        foreach(var value in values) foreach(var nibble in new[]{value>>4,value&Victor9kGcrFormat.NibbleMask}) for(var bit=Victor9kGcrFormat.EncodedNibbleBitCount-1;bit>=0;bit--) encoded.Add((Victor9kGcrFormat.EncodingTable[nibble]&(1<<bit))!=0);
+        encoded.AddRange(CommodoreGcrCodec.Encode(values));
         while(marker.Count<Victor9kGcrFormat.EncodedDataStartBitOffset+encoded.Count*Victor9kGcrFormat.EncodedCellStride) marker.Add(false);
         for(var index=0;index<encoded.Count;index++) marker[Victor9kGcrFormat.EncodedDataStartBitOffset+index*Victor9kGcrFormat.EncodedCellStride]=encoded[index];
         target.AddRange(marker);

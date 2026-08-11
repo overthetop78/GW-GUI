@@ -2512,11 +2512,11 @@
       - [x] Y définir les quatre octets d'en-tête, les 514 octets du bloc de données, la taille sectorielle de 512 octets et leurs longueurs encodées.
       - [x] Y définir les positions du cylindre, du secteur, du checksum et de la charge utile, ainsi que la face logique et le code de taille.
       - [x] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
-    - [ ] Codec GCR Commodore commun
-      - [ ] Créer un codec GCR Commodore commun à `Commodore900GcrDecoder.cs`, `CommodoreGcrDecoder.cs`, `Commodore900GcrTrackEncoder.cs`, `CommodoreGcrTrackEncoder.cs` et `Victor9kGcrTrackEncoder.cs`.
-      - [ ] Y déplacer l'unique table des seize symboles GCR et le décodage d'un symbole de cinq bits.
-      - [ ] Y déplacer le décodage d'un octet depuis deux symboles et d'une suite d'octets depuis le flux.
-      - [ ] Raccorder les décodeurs et encodeurs concernés au codec commun puis supprimer leurs tables et méthodes dupliquées.
+    - [x] Codec GCR Commodore commun
+      - [x] Créer un codec GCR Commodore commun à `Commodore900GcrDecoder.cs`, `CommodoreGcrDecoder.cs`, `Commodore900GcrTrackEncoder.cs`, `CommodoreGcrTrackEncoder.cs` et `Victor9kGcrTrackEncoder.cs`.
+      - [x] Y déplacer l'unique table des seize symboles GCR et le décodage d'un symbole de cinq bits.
+      - [x] Y déplacer le décodage d'un octet depuis deux symboles et d'une suite d'octets depuis le flux.
+      - [x] Raccorder les décodeurs et encodeurs concernés au codec commun puis supprimer leurs tables et méthodes dupliquées.
     - [ ] Décodage et appariement
       - [ ] Créer des modèles internes nommés pour les en-têtes et blocs de données au lieu de tuples anonymes.
       - [ ] Extraire le balayage des synchronisations, la collecte des blocs et l'appariement dans des méthodes nommées.
