@@ -1900,10 +1900,10 @@
     - [x] Créer `Encoding/Definitions/IsoFmFormat.cs`.
     - [x] Sortir de `IsoFmDecoder.cs` et `IsoFmTrackEncoder.cs` les marques d’adresse et de données, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
     - [x] Remplacer dans les deux fichiers toutes les valeurs brutes correspondantes par `IsoFmFormat`.
-  - [ ] ISO MFM
-    - [ ] Créer `Encoding/Definitions/IsoMfmFormat.cs`.
-    - [ ] Sortir de `IsoMfmDecoder.cs` et `IsoMfmTrackEncoder.cs` les octets de synchronisation A1, les marques, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
-    - [ ] Remplacer dans les deux fichiers toutes les valeurs brutes correspondantes par `IsoMfmFormat`.
+  - [x] ISO MFM
+    - [x] Créer `Encoding/Definitions/IsoMfmFormat.cs`.
+    - [x] Sortir de `IsoMfmDecoder.cs` et `IsoMfmTrackEncoder.cs` les octets de synchronisation A1, les marques, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
+    - [x] Remplacer dans les deux fichiers toutes les valeurs brutes correspondantes par `IsoMfmFormat`.
   - [ ] Apple II GCR
     - [ ] Créer `Encoding/Definitions/AppleIIGcrFormat.cs`.
     - [ ] Déplacer les tables 5-and-3 et 6-and-2 actuellement dupliquées entre `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs`.
