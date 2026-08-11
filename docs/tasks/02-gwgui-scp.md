@@ -1577,10 +1577,10 @@
     - [x] Définir `AtrLayout.BootSectorSize` à partir de `AtrLayout.SingleDensitySectorSize` sans modifier sa valeur finale de `128` octets.
     - [x] Remettre la méthode courte `AtrLayout.IsSupportedSectorSize` sur une seule ligne.
   - [ ] `Containers/Atari/Atr/AtrReader.cs`
-    - [ ] Calculs ATR communs
-      - [ ] Créer un calcul ATR commun de longueur de zone d'amorçage à partir de la taille sectorielle.
-      - [ ] Faire retourner à ce calcul exactement `0` pour les secteurs de `128` octets et `BootSectorCount * BootSectorSize` pour les secteurs de `256` et `512` octets.
-      - [ ] Remplacer par ce calcul commun les deux expressions identiques de `ReadAsync` et `ReadValidatedContainerAsync`.
+    - [x] Calculs ATR communs
+      - [x] Créer un calcul ATR commun de longueur de zone d'amorçage à partir de la taille sectorielle.
+      - [x] Faire retourner à ce calcul exactement `0` pour les secteurs de `128` octets et `BootSectorCount * BootSectorSize` pour les secteurs de `256` et `512` octets.
+      - [x] Remplacer par ce calcul commun les deux expressions identiques de `ReadAsync` et `ReadValidatedContainerAsync`.
       - [ ] Utiliser le calcul ATR commun du nombre de secteurs dans `ReadAsync`.
     - [ ] Adressage et géométrie produits
       - [ ] Ajouter des définitions Atari nommées pour le premier numéro de secteur `1`, la tête logique `0`, le nombre de faces `1` et le secteur logique unique par cylindre `1`.
