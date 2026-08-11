@@ -2700,40 +2700,40 @@
       - [x] Tester un secteur de 256 octets avec checksum valide puis invalide.
       - [x] Tester une marque tronquée, des données tronquées, une marque absente et une marque non appariée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/HpMmfmDecoder.cs`
-    - [ ] Définitions HP MMFM
-      - [ ] Créer `Decoding/Definitions/HpMmfmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, la synchronisation de secteur `55 55 2A 54` et la synchronisation de données `55 55 2A 44`.
-      - [ ] Y définir leurs longueurs, les deux octets d'identité, les deux octets de CRC et la longueur totale de l'en-tête.
-      - [ ] Y définir le masque `0x7f`, le bit de face, les positions du cylindre et du secteur et les règles d'inversion des bits.
-      - [ ] Y définir la taille sectorielle de 256 octets, le bloc encodé de 258 octets, le code de taille et l'échange des octets par paires.
-      - [ ] Y définir les bornes de recherche actuellement exprimées par `8 * 16` et `58 * 16`, ainsi que les gaps d'encodage `128` et `256`.
-      - [ ] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants dans le décodeur et `HpMmfmTrackEncoder.cs`.
-    - [ ] Codec HP MMFM commun
-      - [ ] Créer un codec HP MMFM commun au décodeur et à l'encodeur pour l'inversion des bits et l'échange des octets par paires.
-      - [ ] Raccorder le décodeur et l'encodeur au codec commun puis supprimer leurs boucles de transformation dupliquées.
-      - [ ] Remplacer `DecodeBytes` par la primitive commune de décodage des octets MFM puis supprimer la méthode locale.
-      - [ ] Appeler directement le calculateur CRC commun puis supprimer la délégation locale `Crc16`.
-      - [ ] Supprimer la délégation locale `ReverseBits` après raccordement au codec ou à la primitive commune.
-    - [ ] Décodage et résultat
-      - [ ] Extraire la lecture et la validation des quatre octets d'en-tête dans un modèle nommé.
-      - [ ] Extraire la recherche bornée de la synchronisation de données dans une méthode nommée utilisant les limites du format.
-      - [ ] Extraire la lecture, la validation CRC et la remise en ordre des données dans une méthode nommée.
-      - [ ] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations HP MMFM actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et au codec HP MMFM commun.
-    - [ ] Vérification du groupe HP MMFM
-      - [ ] Tester les synchronisations de secteur et de données.
-      - [ ] Tester un en-tête avec CRC valide puis invalide et vérifier cylindre, face et secteur.
-      - [ ] Tester les bornes minimale et maximale de recherche de la synchronisation de données.
-      - [ ] Tester un secteur de 256 octets, l'inversion des bits, l'échange par paires et un CRC valide puis invalide.
-      - [ ] Tester une synchronisation absente, un bloc tronqué et une synchronisation de données déjà utilisée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/HpMmfmDecoder.cs`
+    - [x] Définitions HP MMFM
+      - [x] Créer `Decoding/Definitions/HpMmfmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, la synchronisation de secteur `55 55 2A 54` et la synchronisation de données `55 55 2A 44`.
+      - [x] Y définir leurs longueurs, les deux octets d'identité, les deux octets de CRC et la longueur totale de l'en-tête.
+      - [x] Y définir le masque `0x7f`, le bit de face, les positions du cylindre et du secteur et les règles d'inversion des bits.
+      - [x] Y définir la taille sectorielle de 256 octets, le bloc encodé de 258 octets, le code de taille et l'échange des octets par paires.
+      - [x] Y définir les bornes de recherche actuellement exprimées par `8 * 16` et `58 * 16`, ainsi que les gaps d'encodage `128` et `256`.
+      - [x] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants dans le décodeur et `HpMmfmTrackEncoder.cs`.
+    - [x] Codec HP MMFM commun
+      - [x] Créer un codec HP MMFM commun au décodeur et à l'encodeur pour l'inversion des bits et l'échange des octets par paires.
+      - [x] Raccorder le décodeur et l'encodeur au codec commun puis supprimer leurs boucles de transformation dupliquées.
+      - [x] Remplacer `DecodeBytes` par la primitive commune de décodage des octets MFM puis supprimer la méthode locale.
+      - [x] Appeler directement le calculateur CRC commun puis supprimer la délégation locale `Crc16`.
+      - [x] Supprimer la délégation locale `ReverseBits` après raccordement au codec ou à la primitive commune.
+    - [x] Décodage et résultat
+      - [x] Extraire la lecture et la validation des quatre octets d'en-tête dans un modèle nommé.
+      - [x] Extraire la recherche bornée de la synchronisation de données dans une méthode nommée utilisant les limites du format.
+      - [x] Extraire la lecture, la validation CRC et la remise en ordre des données dans une méthode nommée.
+      - [x] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations HP MMFM actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et au codec HP MMFM commun.
+    - [x] Vérification du groupe HP MMFM
+      - [x] Tester les synchronisations de secteur et de données.
+      - [x] Tester un en-tête avec CRC valide puis invalide et vérifier cylindre, face et secteur.
+      - [x] Tester les bornes minimale et maximale de recherche de la synchronisation de données.
+      - [x] Tester un secteur de 256 octets, l'inversion des bits, l'échange par paires et un CRC valide puis invalide.
+      - [x] Tester une synchronisation absente, un bloc tronqué et une synchronisation de données déjà utilisée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/IsoFmDecoder.cs`
     - [ ] Définitions ISO FM
       - [ ] Créer `Decoding/Definitions/IsoFmFormat.cs`.

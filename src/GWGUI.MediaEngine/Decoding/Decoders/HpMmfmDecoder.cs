@@ -1,23 +1,21 @@
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
-/// <summary>Décode les pistes utilisant le format Hp MMFM.</summary>
+/// <summary>Décode les pistes utilisant le format HP MMFM.</summary>
 public sealed class HpMmfmDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Sector Sync » utilisée par ce codec.</summary>
     private static readonly byte[] SectorSync = HpMmfmFormat.SectorSync.ToArray();
-    /// <summary>Conserve la définition « Data Sync » utilisée par ce codec.</summary>
     private static readonly byte[] DataSync = HpMmfmFormat.DataSync.ToArray();
 
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.HpMmfm;
+    public string Id => HpMmfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.HpMmfm;
+    public string DisplayName => HpMmfmFormat.CodecDisplayName;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage HP MMFM.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -25,66 +23,54 @@ public sealed class HpMmfmDecoder : IFluxDecoder
         var sectors = new List<DecodedSector>();
         var bytes = new List<byte>();
         var usedDataOffsets = new HashSet<int>();
-
-        for (var offset = 0; offset + 32 + 64 <= stream.Bits.Length; offset++)
+        for (var offset = 0; offset + HpMmfmFormat.HeaderBitCount <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SectorSync)) continue;
-
-            var id = TryDecodeBytes(stream, offset + 32, 4);
-            if (id is null) continue;
-            var headerValid = Primitives.Crc16Calculator.Compute(id) == 0;
-            var cylinder = Primitives.BitPrimitives.ReverseBits(id[0]);
-            var encodedSector = Primitives.BitPrimitives.ReverseBits(id[1]);
-            var head = (byte)(encodedSector >> HpMmfmFormat.HeadShift);
-            var sectorNumber = encodedSector & HpMmfmFormat.SectorMask;
-            var dataOffset = Find(stream, offset + 32 + 8 * 16, Math.Min(stream.Bits.Length, offset + 32 + 58 * 16), DataSync);
-            bool? dataValid = null;
-
-            if (dataOffset >= 0 && usedDataOffsets.Add(dataOffset))
+            var header = TryDecodeHeader(stream, offset);
+            if (header is null) continue;
+            var dataOffset = FindDataSync(stream, offset);
+            var data = dataOffset >= 0 && usedDataOffsets.Add(dataOffset) ? TryDecodeData(stream, dataOffset) : null;
+            if (data is not null)
             {
-                const int encodedBytes = HpMmfmFormat.EncodedDataByteCount;
-                var dataStart = dataOffset + 32;
-                if (dataStart + encodedBytes * 16 <= stream.Bits.Length)
-                {
-                    var encoded = TryDecodeBytes(stream, dataStart, encodedBytes);
-                    if (encoded is null) continue;
-                    dataValid = Primitives.Crc16Calculator.Compute(encoded) == 0;
-                    var payload = encoded.AsSpan(0, HpMmfmFormat.SectorSize).ToArray();
-                    for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
-                    for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
-                    bytes.AddRange(payload);
-                    structures.Add(new(FluxStructureKind.FormatData, dataOffset, 32 + encodedBytes * 16,
-                        $"{FluxStructureDescriptions.Identity("HP MMFM", FluxStructureKind.FormatData, cylinder, head, sectorNumber, HpMmfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("data CRC", dataValid)}"));
-                }
+                bytes.AddRange(data.Payload);
+                structures.Add(new(FluxStructureKind.FormatData, dataOffset, HpMmfmFormat.SyncBitCount + HpMmfmFormat.EncodedDataByteCount * HpMmfmFormat.EncodedByteBitCount, HpMmfmDescriptions.Data(header, data.CrcValid)));
             }
-
-            bool? integrity = !headerValid || dataValid == false
-                ? false
-                : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, head, sectorNumber, 1, HpMmfmFormat.SectorSize, integrity, offset));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, 96,
-                $"{FluxStructureDescriptions.Identity("HP MMFM", FluxStructureKind.FormatHeader, cylinder, head, sectorNumber, HpMmfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("header CRC", headerValid)}"));
-            offset += 31;
+            bool? integrity = !header.CrcValid || data?.CrcValid == false ? false : data is null ? null : true;
+            sectors.Add(new(header.Cylinder, header.Head, header.Sector, HpMmfmFormat.SectorSizeCode, HpMmfmFormat.SectorSize, integrity, offset, Data: data?.Payload));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, HpMmfmFormat.HeaderBitCount, HpMmfmDescriptions.Header(header)));
+            offset += HpMmfmFormat.SyncBitCount - 1;
         }
-
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+        var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, HpMmfmFormat.ConfidenceSectorWeight, HpMmfmFormat.ConfidenceDivisor);
+        return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, bytes, sectors);
     }
 
-    /// <summary>Tente de décoder une suite d'octets du format.</summary>
-    /// <param name="stream">Flux source.</param><param name="offset">Offset initial en bits.</param><param name="count">Nombre d'octets.</param><returns>Octets décodés, ou <see langword="null"/>.</returns>
-    private static byte[]? TryDecodeBytes(FluxBitstream stream, int offset, int count)
+    /// <summary>Lit et valide les quatre octets de l'en-tête.</summary>
+    internal static HpMmfmHeader? TryDecodeHeader(FluxBitstream stream, int offset)
     {
-        var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
-        return result;
+        var id = HpMmfmCodec.DecodeBytes(stream, offset + HpMmfmFormat.SyncBitCount, HpMmfmFormat.HeaderByteCount);
+        if (id is null) return null;
+        var cylinder = BitPrimitives.ReverseBits(id[HpMmfmFormat.HeaderCylinderOffset]);
+        var encodedSector = BitPrimitives.ReverseBits(id[HpMmfmFormat.HeaderSectorOffset]);
+        return new(cylinder, (byte)(encodedSector >> HpMmfmFormat.HeadShift), (byte)(encodedSector & HpMmfmFormat.SectorMask), Crc16Calculator.Compute(id) == 0);
     }
 
-    /// <summary>Recherche le prochain motif dans la plage indiquée.</summary>
-    /// <param name="stream">Flux source.</param><param name="start">Début inclus en bits.</param><param name="end">Fin exclue en bits.</param><param name="pattern">Motif recherché.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
-    private static int Find(FluxBitstream stream, int start, int end, IReadOnlyList<byte> pattern)
+    /// <summary>Recherche la synchronisation de données dans les bornes du format.</summary>
+    internal static int FindDataSync(FluxBitstream stream, int headerOffset)
     {
-        for (var offset = start; offset + pattern.Count * Primitives.BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) return offset;
+        var start = headerOffset + HpMmfmFormat.SyncBitCount + HpMmfmFormat.MinimumDataSearchOffsetBits;
+        var end = Math.Min(stream.Bits.Length, headerOffset + HpMmfmFormat.SyncBitCount + HpMmfmFormat.MaximumDataSearchOffsetBits);
+        for (var offset = start; offset + HpMmfmFormat.SyncBitCount <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataSync)) return offset;
         return -1;
     }
 
+    /// <summary>Lit, valide et remet dans l'ordre logique un bloc de données.</summary>
+    internal static HpMmfmData? TryDecodeData(FluxBitstream stream, int dataOffset)
+    {
+        var encoded = HpMmfmCodec.DecodeBytes(stream, dataOffset + HpMmfmFormat.SyncBitCount, HpMmfmFormat.EncodedDataByteCount);
+        if (encoded is null) return null;
+        return new(HpMmfmCodec.DecodePayload(encoded.Take(HpMmfmFormat.SectorSize).ToArray()), Crc16Calculator.Compute(encoded) == 0);
+    }
+
+    /// <summary>Regroupe la charge utile et l'état de son CRC.</summary>
+    internal sealed record HpMmfmData(byte[] Payload, bool CrcValid);
 }

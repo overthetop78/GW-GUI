@@ -1,14 +1,15 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
-/// <summary>Encode les pistes utilisant le format Hp MMFM.</summary>
+/// <summary>Encode les pistes utilisant le format HP MMFM.</summary>
 public sealed class HpMmfmTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.HpMmfm;
+    public override string Id => HpMmfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.HpMmfm;
+    public override string DisplayName => HpMmfmFormat.CodecDisplayName;
 
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
@@ -18,15 +19,12 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
         {
             if (sector.Data.Count != HpMmfmFormat.SectorSize) throw HpMmfmFormat.InvalidSectorSize(sector.Data.Count);
             var encodedSector = (byte)(sector.Number | request.Head << HpMmfmFormat.HeadShift);
-            byte[] identity = [Primitives.BitPrimitives.ReverseBits((byte)request.Cylinder), Primitives.BitPrimitives.ReverseBits(encodedSector)];
+            byte[] identity = [BitPrimitives.ReverseBits((byte)request.Cylinder), BitPrimitives.ReverseBits(encodedSector)];
             bits.Raw(HpMmfmFormat.SectorSync.ToArray());
             bits.Mfm(TrackEncoding.WithCrc(identity));
             bits.Gap(HpMmfmFormat.HeaderGapBitCount);
-            var payload = sector.Data.ToArray();
-            for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
-            for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
             bits.Raw(HpMmfmFormat.DataSync.ToArray());
-            bits.Mfm(TrackEncoding.WithCrc(payload));
+            bits.Mfm(TrackEncoding.WithCrc(HpMmfmCodec.EncodePayload(sector.Data)));
             bits.Gap(HpMmfmFormat.DataGapBitCount);
         }
         return bits;
