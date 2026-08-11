@@ -1088,35 +1088,36 @@
     - [x] Vérifier qu’un faux `.dsk` demandé explicitement comme `msx.*` est ensuite refusé par la validation du Reader.
     - [x] Vérifier que l’annulation de la lecture du contexte est propagée.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/RawImgContainerPolicy.cs`
-  - [ ] Séparation de la présélection IMG et de son interprétation
-    - [ ] Renommer et déplacer la politique vers `Recognition/Policies/RawImgRecognitionPolicy.cs`.
-    - [ ] Conserver dans la politique uniquement la présélection par `DiskImageFileExtensions.Img` et la délégation vers le lecteur brut.
-    - [ ] Créer `Containers/Raw/RawImgReader.cs` pour porter la lecture et l’interprétation actuellement placées dans `ReadAsync` de la politique.
-    - [ ] Faire hériter `RawImgRecognitionPolicy` de `ReaderBackedRecognitionPolicy` en lui transmettant `RawImgReader.ReadAsync`.
-    - [ ] Adapter l’enregistrement de la politique dans `Images/DiskImageExplorerFactory.cs`.
+  - [x] Séparation de la présélection IMG et de son interprétation
+    - [x] Renommer et déplacer la politique vers `Recognition/Policies/RawImgRecognitionPolicy.cs`.
+    - [x] Conserver dans la politique uniquement la présélection par `DiskImageFileExtensions.Img` et la délégation vers le lecteur brut.
+    - [x] Créer `Containers/Raw/RawImgReader.cs` pour porter la lecture et l’interprétation actuellement placées dans `ReadAsync` de la politique.
+    - [x] Faire hériter `RawImgRecognitionPolicy` de `ReaderBackedRecognitionPolicy` en lui transmettant `RawImgReader.ReadAsync`.
+    - [x] Adapter l’enregistrement de la politique dans `Images/DiskImageExplorerFactory.cs`.
   - [ ] Retrait des dépendances de reconnaissance vers les Readers de systèmes de fichiers
-    - [ ] Déplacer `AmstradCpmFileSystemReader.LooksLikePcwDiskSpecification` vers `Recognition/Amstrad/PcwDiskSpecificationProbe.cs` et faire utiliser cette sonde par le Reader CP/M et par `RawImgReader`.
-    - [ ] Déplacer la reconnaissance du répertoire employée par `AmstradCpmFileSystemReader.LooksLikeCpcRawImage` vers un composant commun sous `FileSystems/Cpm` afin que `RawImgReader` n’appelle plus directement un Reader de système de fichiers.
-    - [ ] Faire utiliser ce composant commun par `AmstradCpmFileSystemReader` et par `RawImgReader`, sans recopier l’algorithme de recherche de répertoire.
+    - [x] Déplacer `AmstradCpmFileSystemReader.LooksLikePcwDiskSpecification` vers `Recognition/Amstrad/PcwDiskSpecificationProbe.cs` et faire utiliser cette sonde par le Reader CP/M et par `RawImgReader`.
+    - [x] Déplacer la reconnaissance du répertoire employée par `AmstradCpmFileSystemReader.LooksLikeCpcRawImage` vers un composant commun sous `FileSystems/Cpm` afin que `RawImgReader` n’appelle plus directement un Reader de système de fichiers.
+    - [x] Faire utiliser ce composant commun par `AmstradCpmFileSystemReader` et par `RawImgReader`, sans recopier l’algorithme de recherche de répertoire.
     - [ ] Faire consommer à `RawImgReader` la sonde de BPB IBM extraite de `IbmPcImageReader` dans le groupe de ce fichier, au lieu d’appeler une méthode de reconnaissance conservée dans le Reader IBM.
-  - [ ] Conservation de l’interprétation existante
-    - [ ] Faire construire l’image sectorielle par le Reader IBM lorsque la taille ou le BPB permet réellement à `IbmPcImageReader.Create` d’en déterminer la géométrie.
-    - [ ] Lorsque le BPB IBM n’est pas valide et que la sonde CP/M CPC réussit, réidentifier cette image avec `DiskImageFormatIds.AmstradCpc`.
-    - [ ] Lorsque le BPB IBM n’est pas valide et que la spécification disque PCW réussit, réidentifier cette image avec `DiskImageFormatIds.AmstradPcw`.
-    - [ ] Conserver l’image IBM lorsque son BPB est valide ou qu’aucune des deux validations Amstrad ne réussit.
-    - [ ] Propager l’erreur de géométrie de `IbmPcImageReader.Create` lorsque le contenu IMG ne peut pas être construit, sans fabriquer une interprétation par défaut.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `RawImgRecognitionPolicy`, `RawImgReader` et chacun de leurs membres.
-    - [ ] Expliquer que `.img` est un indice ambigu et que le contenu départage ici les interprétations IBM, Amstrad CPC et Amstrad PCW prises en charge.
-    - [ ] Documenter les sondes Amstrad déplacées et les données qu’elles valident.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests avec les Readers publics
-    - [ ] Lire depuis `image_test` une image IMG IBM avec BPB valide et vérifier qu’elle conserve son identifiant IBM.
-    - [ ] Lire une image IMG IBM sans BPB mais de géométrie connue et vérifier sa construction par la table IBM.
-    - [ ] Lire une image IMG CPC reconnue par son répertoire CP/M et vérifier sa réidentification en `DiskImageFormatIds.AmstradCpc`.
-    - [ ] Lire une image IMG PCW reconnue par sa spécification disque et vérifier sa réidentification en `DiskImageFormatIds.AmstradPcw`.
-    - [ ] Vérifier qu’un contenu IMG de taille ou de géométrie non prise en charge conserve l’erreur du Reader IBM.
-    - [ ] Vérifier qu’une extension autre que `.img` n’est pas présélectionnée par cette politique.
+      - Dépendance restante : la sonde BPB IBM est créée dans le groupe ultérieur de `IbmPcImageReader`. `RawImgReader` conserve temporairement l'appel existant à `IbmPcImageReader.HasValidBpbGeometry` ; cette action reste non cochée jusqu'à l'exécution de ce groupe dans l'ordre du document.
+  - [x] Conservation de l’interprétation existante
+    - [x] Faire construire l’image sectorielle par le Reader IBM lorsque la taille ou le BPB permet réellement à `IbmPcImageReader.Create` d’en déterminer la géométrie.
+    - [x] Lorsque le BPB IBM n’est pas valide et que la sonde CP/M CPC réussit, réidentifier cette image avec `DiskImageFormatIds.AmstradCpc`.
+    - [x] Lorsque le BPB IBM n’est pas valide et que la spécification disque PCW réussit, réidentifier cette image avec `DiskImageFormatIds.AmstradPcw`.
+    - [x] Conserver l’image IBM lorsque son BPB est valide ou qu’aucune des deux validations Amstrad ne réussit.
+    - [x] Propager l’erreur de géométrie de `IbmPcImageReader.Create` lorsque le contenu IMG ne peut pas être construit, sans fabriquer une interprétation par défaut.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `RawImgRecognitionPolicy`, `RawImgReader` et chacun de leurs membres.
+    - [x] Expliquer que `.img` est un indice ambigu et que le contenu départage ici les interprétations IBM, Amstrad CPC et Amstrad PCW prises en charge.
+    - [x] Documenter les sondes Amstrad déplacées et les données qu’elles valident.
+    - [x] Conserver sur une seule ligne les signatures, conditions et expressions complètes qui restent lisibles ainsi.
+  - [x] Tests avec les Readers publics
+    - [x] Lire depuis `image_test` une image IMG IBM avec BPB valide et vérifier qu’elle conserve son identifiant IBM.
+    - [x] Lire une image IMG IBM sans BPB mais de géométrie connue et vérifier sa construction par la table IBM.
+    - [x] Lire une image IMG CPC reconnue par son répertoire CP/M et vérifier sa réidentification en `DiskImageFormatIds.AmstradCpc`.
+    - [x] Lire une image IMG PCW reconnue par sa spécification disque et vérifier sa réidentification en `DiskImageFormatIds.AmstradPcw`.
+    - [x] Vérifier qu’un contenu IMG de taille ou de géométrie non prise en charge conserve l’erreur du Reader IBM.
+    - [x] Vérifier qu’une extension autre que `.img` n’est pas présélectionnée par cette politique.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/ScpContainerPolicy.cs`
   - [ ] Déplacement dans les politiques de reconnaissance
     - [ ] Renommer le type en `ScpRecognitionPolicy` et déplacer le fichier vers `Recognition/Policies/ScpRecognitionPolicy.cs`.

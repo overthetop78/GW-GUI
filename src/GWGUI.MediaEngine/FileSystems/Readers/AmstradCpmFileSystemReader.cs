@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
 using System.Text;
+using GWGUI.MediaEngine.FileSystems.Cpm;
+using GWGUI.MediaEngine.Recognition.Amstrad;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -17,31 +19,15 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         if (!CatalogFormatIds.Contains(image.FormatId)) return false;
         var bytes = Flatten(image);
         var layout = GetLayout(image, bytes);
-        return layout is not null && LooksLikeDirectory(bytes, layout.Value,
+        return layout is not null && CpmDirectoryProbe.LooksLikeDirectory(bytes, layout.Value,
             allowEmpty: image.FormatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase));
     }
-
-    public static bool LooksLikePcwDiskSpecification(ReadOnlySpan<byte> bytes)
-    {
-        if (bytes.Length < 512) return false;
-        var sectorsPerTrack = bytes[3];
-        var sectorSize = 128 << (bytes[4] & 7);
-        var reservedTracks = bytes[5];
-        var allocationSize = 128 << (bytes[6] & 7);
-        var directoryBlocks = bytes[7];
-        return bytes[2] is > 0 and <= 96 && sectorsPerTrack is > 0 and <= 64 &&
-            sectorSize is >= 128 and <= 4096 && reservedTracks <= 8 &&
-            allocationSize is >= 512 and <= 16384 && directoryBlocks is > 0 and <= 16;
-    }
-
-    public static bool LooksLikeCpcRawImage(byte[] bytes)
-        => FindDirectory(bytes, 64, 1024, 2, false) is not null;
 
     public FileSystemVolume Read(SectorImage image)
     {
         var bytes = Flatten(image);
         var layout = GetLayout(image, bytes) ?? throw new InvalidDataException("The Amstrad CP/M disk layout is not supported.");
-        if (!LooksLikeDirectory(bytes, layout,
+        if (!CpmDirectoryProbe.LooksLikeDirectory(bytes, layout,
                 allowEmpty: image.FormatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidDataException("The image does not contain a supported Amstrad CP/M directory.");
         var extents = new List<Extent>();
@@ -96,7 +82,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
             files.OrderBy(file => file.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
-    private static Layout? GetLayout(SectorImage image, byte[] bytes)
+    private static CpmDirectoryLayout? GetLayout(SectorImage image, byte[] bytes)
     {
         if (image.FormatId.Equals(DiskImageFormatIds.AmstradCpc, StringComparison.OrdinalIgnoreCase))
         {
@@ -107,10 +93,10 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
             {
                 >= 0xc1 and <= 0xc9 => new(0, 0, 64, 1024, 2, false),
                 >= 0x41 and <= 0x49 => new(2 * 9 * 512, 2 * 9 * 512, 64, 1024, 2, false),
-                _ => FindDirectory(bytes, 64, 1024, 2, false)
+                _ => CpmDirectoryProbe.FindCpcRawDirectory(bytes)
             };
         }
-        if (!LooksLikePcwDiskSpecification(bytes)) return null;
+        if (!PcwDiskSpecificationProbe.LooksLikePcwDiskSpecification(bytes)) return null;
         var sectorsPerTrack = bytes[3];
         var sectorSize = 128 << (bytes[4] & 7);
         var reservedTracks = bytes[5];
@@ -123,31 +109,6 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
             (bytes.Length - origin) / allocationSize > 255);
     }
 
-    private static Layout? FindDirectory(byte[] bytes, int entries, int allocationSize, int directoryBlocks, bool wide)
-    {
-        for (var offset = 0; offset + entries * 32 <= bytes.Length; offset += 512)
-        {
-            var layout = new Layout(offset, offset, entries, allocationSize, directoryBlocks, wide);
-            if (LooksLikeDirectory(bytes, layout)) return layout;
-        }
-        return null;
-    }
-
-    private static bool LooksLikeDirectory(byte[] bytes, Layout layout, bool allowEmpty = false)
-    {
-        if (layout.DirectoryOffset < 0 || layout.DirectoryOffset + layout.DirectoryEntries * 32 > bytes.Length) return false;
-        var active = 0; var unused = 0;
-        for (var index = 0; index < layout.DirectoryEntries; index++)
-        {
-            var entry = bytes.AsSpan(layout.DirectoryOffset + index * 32, 32);
-            if (entry[0] == 0xe5) { unused++; continue; }
-            if (entry[0] <= 31 && TryDecodeName(entry, out _)) active++;
-            else if (entry[0] is not (0x20 or 0x21)) return false;
-        }
-        // A completely erased-looking window is not enough to identify Amstrad
-        // CP/M: the same byte pattern occurs in reserved areas of other formats.
-        return active > 0 || allowEmpty && unused == layout.DirectoryEntries;
-    }
 
     private static bool TryDecodeName(ReadOnlySpan<byte> entry, out string name)
     {
@@ -185,7 +146,6 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         return output.ToArray();
     }
 
-    private readonly record struct Layout(int DirectoryOffset, int AllocationOrigin, int DirectoryEntries, int AllocationBlockSize, int DirectoryBlocks, bool WideAllocations);
     private readonly record struct Extent(int User, string Name, int Number, int RecordCount, IReadOnlyList<int> Allocations);
     private sealed class ExtentKeyComparer : IEqualityComparer<(int User, string Name)>
     {

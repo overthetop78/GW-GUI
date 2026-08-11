@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
+using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
@@ -46,7 +47,7 @@ internal static class DiskImageExplorerFactory
             new AppleImageRecognitionPolicy(apple),
             new MsxImageRecognitionPolicy(new MsxImageReader()),
             new AmstradImageRecognitionPolicy(new CpcDskReader()),
-            new RawImgContainerPolicy(),
+            new RawImgRecognitionPolicy(new RawImgReader()),
             new ExtensionHintRecognitionPolicy(new IbmPcImageReader().ReadAsync, DiskImageFileExtensions.Ima),
             new ExtensionHintRecognitionPolicy(new Td0ImageReader().ReadAsync, DiskImageFileExtensions.Td0),
             new ExtensionHintRecognitionPolicy(new I86fImageReader(decoders).ReadAsync, DiskImageFileExtensions.I86f),

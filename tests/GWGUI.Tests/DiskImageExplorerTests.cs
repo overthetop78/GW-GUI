@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.App.Controls;
@@ -221,7 +222,7 @@ public sealed class DiskImageExplorerTests
             bytes[falseDirectory] = 0;
             "FAKE    TXT"u8.CopyTo(bytes.AsSpan(falseDirectory + 1));
             bytes[falseDirectory + 15] = 1;
-            Assert.True(AmstradCpmFileSystemReader.LooksLikeCpcRawImage(bytes));
+            Assert.NotNull(CpmDirectoryProbe.FindCpcRawDirectory(bytes));
 
             await File.WriteAllBytesAsync(path, bytes);
             var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
