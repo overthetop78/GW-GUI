@@ -2517,14 +2517,14 @@
       - [x] Y déplacer l'unique table des seize symboles GCR et le décodage d'un symbole de cinq bits.
       - [x] Y déplacer le décodage d'un octet depuis deux symboles et d'une suite d'octets depuis le flux.
       - [x] Raccorder les décodeurs et encodeurs concernés au codec commun puis supprimer leurs tables et méthodes dupliquées.
-    - [ ] Décodage et appariement
-      - [ ] Créer des modèles internes nommés pour les en-têtes et blocs de données au lieu de tuples anonymes.
-      - [ ] Extraire le balayage des synchronisations, la collecte des blocs et l'appariement dans des méthodes nommées.
-      - [ ] Distinguer une absence de données d'un checksum faux en conservant une intégrité indéterminée lorsque le bloc est absent.
-      - [ ] Ajouter une structure pour chaque bloc de données décodé, y compris lorsqu'il n'est apparié à aucun en-tête.
-      - [ ] Extraire le checksum XOR commun aux en-têtes et aux blocs de données.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et état du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec le diviseur `13` actuellement appliqué par le décodeur Commodore 900.
+    - [x] Décodage et appariement
+      - [x] Créer des modèles internes nommés pour les en-têtes et blocs de données au lieu de tuples anonymes.
+      - [x] Extraire le balayage des synchronisations, la collecte des blocs et l'appariement dans des méthodes nommées.
+      - [x] Distinguer une absence de données d'un checksum faux en conservant une intégrité indéterminée lorsque le bloc est absent.
+      - [x] Ajouter une structure pour chaque bloc de données décodé, y compris lorsqu'il n'est apparié à aucun en-tête.
+      - [x] Extraire le checksum XOR commun aux en-têtes et aux blocs de données.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et état du checksum.
+      - [x] Utiliser le calcul de confiance commun avec le diviseur `13` actuellement appliqué par le décodeur Commodore 900.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
