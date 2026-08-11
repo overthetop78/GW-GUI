@@ -1529,14 +1529,14 @@
       - [x] Tester les indices DO, PO, D13 et NIB avec un contenu valide puis invalide afin de vérifier le passage au candidat suivant.
       - [x] Tester `.dsk` et `.img` avec chaque famille Apple réellement prise en charge, un identifiant explicitement demandé et un contenu d’une autre famille.
       - [x] Vérifier que la présélection et la lecture complète partagent une seule lecture du fichier.
-  - [ ] `Containers/Amstrad/CpcDsk/CpcDskReader.cs`
-    - [ ] Extraire la validation de l'en-tête disque dans une méthode utilisant uniquement `CpcDskFormat` et `CpcDskLayout`.
-    - [ ] Extraire la validation de la table de tailles Extended dans une méthode injectant l'index rejeté aux erreurs CPCEMU.
-    - [ ] Extraire la lecture d'une piste et de ses descripteurs de secteurs dans des méthodes distinctes.
-    - [ ] Supprimer l'initialisation inutile de `dominantSize` à zéro si elle est toujours remplacée avant lecture.
-    - [ ] Ajouter une constante nommée pour le minimum d'un secteur actuellement imposé par `Math.Max(1, maximumSectors)`.
+  - [x] `Containers/Amstrad/CpcDsk/CpcDskReader.cs`
+    - [x] Extraire la validation de l'en-tête disque dans une méthode utilisant uniquement `CpcDskFormat` et `CpcDskLayout`.
+    - [x] Extraire la validation de la table de tailles Extended dans une méthode injectant l'index rejeté aux erreurs CPCEMU.
+    - [x] Extraire la lecture d'une piste et de ses descripteurs de secteurs dans des méthodes distinctes.
+    - [x] Supprimer l'initialisation inutile de `dominantSize` à zéro si elle est toujours remplacée avant lecture.
+    - [x] Ajouter une constante nommée pour le minimum d'un secteur actuellement imposé par `Math.Max(1, maximumSectors)`.
     - [ ] Documenter en français chaque méthode privée extraite.
-    - [ ] Tester séparément en-tête, table Extended, piste, descripteur, secteur et absence de secteur.
+    - [x] Tester séparément en-tête, table Extended, piste, descripteur, secteur et absence de secteur.
   - [ ] `Containers/Apple/TwoImg/TwoImgImageFormat.cs`
     - [ ] Renommer les membres `DOS`, `ProDOS` et `NIB` selon la casse C# retenue sans modifier leurs valeurs binaires.
     - [ ] Adapter chaque consommateur et chaque test aux noms retenus.
@@ -7446,7 +7446,7 @@
   - [ ] Documentation XML française et mise en forme
     - [ ] Ajouter une CSDoc française à `DiskImageExplorer`, son constructeur, `SupportedFormatIds`, `CreateDefault` et `ExploreAsync`.
     - [ ] Documenter les paramètres, le résultat, la détection automatique, la sélection explicite, l’annulation et les erreurs réellement propagées.
-    - [ ] Documenter en français chaque méthode privée extraite.
+    - [x] Documenter en français chaque méthode privée extraite.
     - [ ] Conserver sur une seule ligne les signatures, conditions, appels, constructions et expressions complètes qui restent lisibles ainsi.
     - [ ] Supprimer la ligne vide inutile placée avant l’accolade finale du type.
   - [ ] Tests de bout en bout par la façade publique

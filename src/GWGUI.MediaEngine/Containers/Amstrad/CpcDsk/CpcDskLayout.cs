@@ -102,6 +102,9 @@ public static class CpcDskLayout
     /// <summary>Taille sectorielle minimale, en octets, avant application du code de taille.</summary>
     public const int MinimumSectorSize = 128;
 
+    /// <summary>Nombre minimal de secteurs exposé par piste dans la géométrie reconstruite.</summary>
+    public const int MinimumSectorsPerTrack = 1;
+
     /// <summary>Masque isolant les trois bits du code de taille sectorielle.</summary>
     public const int SectorSizeCodeMask = 0x07;
 

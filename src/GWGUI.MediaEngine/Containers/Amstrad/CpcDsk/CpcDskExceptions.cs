@@ -18,8 +18,9 @@ internal static class CpcDskExceptions
     public static InvalidDataException InvalidGeometry() => new("The Amstrad DSK geometry is invalid.");
 
     /// <summary>Crée l’erreur signalant une table de tailles de pistes Extended invalide.</summary>
+    /// <param name="trackIndex">Premier index de piste situé hors du bloc d’informations disque.</param>
     /// <returns>L’exception décrivant la table invalide.</returns>
-    public static InvalidDataException InvalidExtendedTrackTable() => new("The extended Amstrad DSK track table is invalid.");
+    public static InvalidDataException InvalidExtendedTrackTable(int trackIndex) => new($"The extended Amstrad DSK track table is invalid at track {trackIndex}.");
 
     /// <summary>Crée l’erreur signalant une piste dont les octets sont tronqués.</summary>
     /// <param name="trackIndex">Index linéaire de la piste dans le conteneur.</param>

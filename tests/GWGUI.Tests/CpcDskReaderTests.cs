@@ -127,6 +127,14 @@ public sealed class CpcDskReaderTests
     }
 
     [Fact]
+    public async Task ExtendedTrackTableErrorContainsFirstRejectedTrackIndex()
+    {
+        var exception = await Assert.ThrowsAsync<InvalidDataException>(() => new CpcDskReader().ReadAsync(Images.Value.Invalid["invalid-track-table"]));
+
+        Assert.Contains("track 204", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task SectorErrorContainsRejectedPhysicalAddress()
     {
         var exception = await Assert.ThrowsAsync<InvalidDataException>(() =>
