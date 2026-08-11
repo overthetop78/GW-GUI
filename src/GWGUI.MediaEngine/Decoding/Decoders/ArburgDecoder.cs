@@ -4,23 +4,18 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Arburg.</summary>
-public sealed class ArburgDecoder : SignatureMfmDecoder
+public sealed class ArburgDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
     private static readonly byte[] DataMark = ArburgFormat.DataMark.ToArray();
     /// <summary>Conserve la définition « System Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SystemMark = ArburgFormat.SystemMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.Arburg;
+    public string Id => FluxCodecIds.Arburg;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.Arburg;
-    /// <summary>Indique si le codec analyse un flux FM.</summary>
-    protected override bool IsFm => true;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(DataMark, FluxStructureKind.FormatData, "Arburg data block"), (SystemMark, FluxStructureKind.FormatHeader, "Arburg system block")];
-
+    public string DisplayName => FluxCodecDisplayNames.Arburg;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

@@ -5,21 +5,16 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Micral NFM.</summary>
-public sealed class MicralNFmDecoder : SignatureMfmDecoder
+public sealed class MicralNFmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = MicralNFmFormat.SectorMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.MicralNFm;
+    public string Id => FluxCodecIds.MicralNFm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.MicralNFm;
-    /// <summary>Indique si le codec analyse un flux FM.</summary>
-    protected override bool IsFm => true;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Micral N hard-sector block")];
-
+    public string DisplayName => FluxCodecDisplayNames.MicralNFm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

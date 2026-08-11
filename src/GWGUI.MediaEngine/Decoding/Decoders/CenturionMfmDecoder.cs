@@ -5,21 +5,18 @@ using GWGUI.MediaEngine.Primitives;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Centurion MFM.</summary>
-public sealed class CenturionMfmDecoder : SignatureMfmDecoder
+public sealed class CenturionMfmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = CenturionMfmFormat.SectorMark.ToArray();
     /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
     private static readonly byte[] DataMark = CenturionMfmFormat.DataMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.CenturionMfm;
+    public string Id => FluxCodecIds.CenturionMfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.CenturionMfm;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Centurion sector mark"), (DataMark, FluxStructureKind.FormatData, "Centurion data mark")];
-
+    public string DisplayName => FluxCodecDisplayNames.CenturionMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();

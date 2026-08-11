@@ -5,21 +5,18 @@ using GWGUI.MediaEngine.Primitives;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Qd Mo5 MFM.</summary>
-public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
+public sealed class QdMo5MfmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Header Mark » utilisée par ce codec.</summary>
     private static readonly byte[] HeaderMark = QdMo5MfmFormat.HeaderMark.ToArray();
     /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
     private static readonly byte[] DataMark = QdMo5MfmFormat.DataMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.QdMo5Mfm;
+    public string Id => FluxCodecIds.QdMo5Mfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.QdMo5Mfm;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "QD MO5 sector header"), (DataMark, FluxStructureKind.FormatData, "QD MO5 sector data")];
-
+    public string DisplayName => FluxCodecDisplayNames.QdMo5Mfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedDataMarks = new HashSet<int>();

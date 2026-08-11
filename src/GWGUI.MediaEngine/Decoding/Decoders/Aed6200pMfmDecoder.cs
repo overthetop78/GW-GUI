@@ -5,21 +5,18 @@ using GWGUI.MediaEngine.Primitives;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Aed6200p MFM.</summary>
-public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
+public sealed class Aed6200pMfmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Sector Header » utilisée par ce codec.</summary>
     private static readonly byte[] SectorHeader = Aed6200pMfmFormat.HeaderPattern.ToArray();
     /// <summary>Conserve la définition « Sector Data » utilisée par ce codec.</summary>
     private static readonly byte[][] SectorData = Aed6200pMfmFormat.DataPatterns.Select(pattern => pattern.ToArray()).ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.Aed6200pMfm;
+    public string Id => FluxCodecIds.Aed6200pMfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.Aed6200pMfm;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "AED 6200P C6 header mark"), .. SectorData.Select(mark => (mark, FluxStructureKind.FormatData, "AED 6200P data mark"))];
-
+    public string DisplayName => FluxCodecDisplayNames.Aed6200pMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

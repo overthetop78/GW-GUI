@@ -5,19 +5,16 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Northstar MFM.</summary>
-public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
+public sealed class NorthstarMfmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = NorthstarMfmFormat.SectorMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.NorthstarMfm;
+    public string Id => FluxCodecIds.NorthstarMfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.NorthstarMfm;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "NorthStar hard-sector block")];
-
+    public string DisplayName => FluxCodecDisplayNames.NorthstarMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

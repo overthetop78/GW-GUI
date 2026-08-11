@@ -4,21 +4,16 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Emu FM.</summary>
-public sealed class EmuFmDecoder : SignatureMfmDecoder
+public sealed class EmuFmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = EmuFmFormat.SectorMark.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.EmuFm;
+    public string Id => FluxCodecIds.EmuFm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.EmuFm;
-    /// <summary>Indique si le codec analyse un flux FM.</summary>
-    protected override bool IsFm => true;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "E-mu Emulator header/data mark")];
-
+    public string DisplayName => FluxCodecDisplayNames.EmuFm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedMarks = new HashSet<int>();

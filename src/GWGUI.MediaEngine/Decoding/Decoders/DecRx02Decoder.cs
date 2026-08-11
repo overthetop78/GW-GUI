@@ -6,23 +6,18 @@ using GWGUI.MediaEngine.Primitives;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Dec Rx02.</summary>
-public sealed class DecRx02Decoder : SignatureMfmDecoder
+public sealed class DecRx02Decoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Header Mark » utilisée par ce codec.</summary>
     private static readonly byte[] HeaderMark = DecRx02EncodingFormat.HeaderMark.ToArray();
     /// <summary>Conserve la définition « Data Marks » utilisée par ce codec.</summary>
     private static readonly (byte[] Pattern, byte Mark)[] DataMarks = DecRx02EncodingFormat.DataMarks.Select(item => (item.Pattern.ToArray(), item.Mark)).ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.DecRx02;
+    public string Id => FluxCodecIds.DecRx02;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.DecRx02;
-    /// <summary>Indique si le codec analyse un flux FM.</summary>
-    protected override bool IsFm => true;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "DEC RX02 sector header"), .. DataMarks.Select(item => (item.Pattern, FluxStructureKind.FormatData, $"DEC RX02 {item.Mark:X2} data"))];
-
+    public string DisplayName => FluxCodecDisplayNames.DecRx02;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedData = new HashSet<int>();

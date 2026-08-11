@@ -5,21 +5,18 @@ using GWGUI.MediaEngine.Primitives;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Membrain MFM.</summary>
-public sealed class MembrainMfmDecoder : SignatureMfmDecoder
+public sealed class MembrainMfmDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Sector Header » utilisée par ce codec.</summary>
     private static readonly byte[] SectorHeader = MembrainMfmFormat.SectorHeader.ToArray();
     /// <summary>Conserve la définition « Sector Data » utilisée par ce codec.</summary>
     private static readonly byte[] SectorData = MembrainMfmFormat.SectorData.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.MembrainMfm;
+    public string Id => FluxCodecIds.MembrainMfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.MembrainMfm;
-    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
-    protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "Membrain sector header"), (SectorData, FluxStructureKind.FormatData, "Membrain sector data")];
-
+    public string DisplayName => FluxCodecDisplayNames.MembrainMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    public override FluxDecodeResult Decode(ScpRevolution revolution)
+    public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

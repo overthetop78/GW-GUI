@@ -1994,14 +1994,14 @@
     - [x] Tester plusieurs octets successifs et vérifier la valeur finale de l'offset.
     - [x] Tester un flux tronqué, un nombre négatif et un offset hors limites.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/SignatureMfmDecoder.cs`
-  - [ ] Suppression de la classe de base inutilisée
-    - [ ] Confirmer que chaque classe actuellement dérivée remplace entièrement `Decode` et n'appelle jamais l'implémentation de `SignatureMfmDecoder`.
-    - [ ] Remplacer l'héritage de `Aed6200pMfmDecoder` par l'implémentation directe de `IFluxDecoder`.
-    - [ ] Appliquer les tâches de suppression d'héritage déjà placées dans les groupes Arburg, Centurion, RX02, E-mu, Heathkit, Membrain, Micral N, NorthStar, QD MO5 et TYCOM.
-    - [ ] Supprimer dans chaque ancien dérivé `Signatures`, `IsFm`, `IsNrzi` et `ExpectedStructures` lorsqu'ils ne servent qu'à satisfaire cette classe de base.
-    - [ ] Vérifier qu'aucune construction, référence de type ou contrainte générique n'utilise encore `SignatureMfmDecoder`.
-    - [ ] Supprimer `Decoding/Base/SignatureMfmDecoder.cs`.
-    - [ ] Ne pas créer `SignatureFluxDecoder`, `FluxSignature` ni un enum de mode devenus inutiles après cette suppression.
+  - [x] Suppression de la classe de base inutilisée
+    - [x] Confirmer que chaque classe actuellement dérivée remplace entièrement `Decode` et n'appelle jamais l'implémentation de `SignatureMfmDecoder`.
+    - [x] Remplacer l'héritage de `Aed6200pMfmDecoder` par l'implémentation directe de `IFluxDecoder`.
+    - [x] Appliquer les tâches de suppression d'héritage déjà placées dans les groupes Arburg, Centurion, RX02, E-mu, Heathkit, Membrain, Micral N, NorthStar, QD MO5 et TYCOM.
+    - [x] Supprimer dans chaque ancien dérivé `Signatures`, `IsFm`, `IsNrzi` et `ExpectedStructures` lorsqu'ils ne servent qu'à satisfaire cette classe de base.
+    - [x] Vérifier qu'aucune construction, référence de type ou contrainte générique n'utilise encore `SignatureMfmDecoder`.
+    - [x] Supprimer `Decoding/Base/SignatureMfmDecoder.cs`.
+    - [x] Ne pas créer `SignatureFluxDecoder`, `FluxSignature` ni un enum de mode devenus inutiles après cette suppression.
   - [ ] Vérification de la suppression
     - [ ] Exécuter les tests ciblés de chaque ancien dérivé et comparer secteurs, structures, offsets, intégrité, confiance et bit-cell avant et après la suppression.
     - [ ] Vérifier que la compilation ne contient plus aucune référence à `SignatureMfmDecoder`.
