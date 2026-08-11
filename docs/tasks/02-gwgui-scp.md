@@ -1699,12 +1699,12 @@
       - [x] Remplacer les limites et coefficients bruts par `FluxDecodingParameters`.
       - [x] Conserver l'absence d'adaptation sur le premier intervalle et lorsque le mode l'interdit.
       - [x] Calculer la durée finale depuis la moyenne des échantillons adaptés ou conserver la durée initiale en l'absence d'échantillon.
-    - [ ] Reconstruction PLL
-      - [ ] Remplacer bornes, demi-cycle, coefficients et limite de zéros par `FluxDecodingParameters`.
-      - [ ] Conserver l'accumulation des ticks entre intervalles trop courts.
-      - [ ] Conserver la correction directe pour trois zéros au maximum et le retour progressif vers le centre au-delà.
-      - [ ] Vérifier que la soustraction répétée ne dépasse jamais le maximum de cellules défini.
-      - [ ] Calculer la durée finale depuis la moyenne des horloges ou conserver le centre sans échantillon.
+    - [x] Reconstruction PLL
+      - [x] Remplacer bornes, demi-cycle, coefficients et limite de zéros par `FluxDecodingParameters`.
+      - [x] Conserver l'accumulation des ticks entre intervalles trop courts.
+      - [x] Conserver la correction directe pour trois zéros au maximum et le retour progressif vers le centre au-delà.
+      - [x] Vérifier que la soustraction répétée ne dépasse jamais le maximum de cellules défini.
+      - [x] Calculer la durée finale depuis la moyenne des horloges ou conserver le centre sans échantillon.
     - [ ] Résultat construit
       - [ ] Construire le `FluxBitstream` immuable uniquement après la reconstruction complète.
       - [ ] Vérifier la capacité initiale calculée avant de créer la liste de bits.
