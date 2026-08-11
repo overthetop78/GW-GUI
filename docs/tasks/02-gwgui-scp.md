@@ -1611,10 +1611,10 @@
       - [ ] Conserver dans `FluxBitstream` uniquement les bits reconstruits, la durée de cellule et la création d'une queue circulaire.
         - Dépendance restante : les méthodes d'estimation, de reconstruction et de lecture des bits ne peuvent être retirées qu'après leur déplacement dans les trois groupes suivants et l'adaptation de leurs consommateurs.
       - [x] Adapter les imports et constructions dans tous les décodeurs, `RawFluxDecoder` et `AppleScpSectorDecoder`.
-    - [ ] Estimation temporelle
-      - [ ] Créer `Representations/Flux/FluxTimingEstimator.cs`.
-      - [ ] Y déplacer `EstimateBitCell` et `EstimateNrziBitCell`.
-      - [ ] Adapter les appels directs de `RawFluxDecoder`, `IsoMfmDecoder` et `AppleScpSectorDecoder`.
+    - [x] Estimation temporelle
+      - [x] Créer `Representations/Flux/FluxTimingEstimator.cs`.
+      - [x] Y déplacer `EstimateBitCell` et `EstimateNrziBitCell`.
+      - [x] Adapter les appels directs de `RawFluxDecoder`, `IsoMfmDecoder` et `AppleScpSectorDecoder`.
     - [ ] Reconstruction des transitions
       - [ ] Créer `Representations/Flux/FluxTransitionDecoder.cs`.
       - [ ] Y déplacer les deux algorithmes privés `Reconstruct` et `ReconstructPll`.

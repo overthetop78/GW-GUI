@@ -7,7 +7,7 @@ public sealed class RawFluxDecoder : IFluxDecoder
     public string Id => "raw"; public string DisplayName => "Flux brut";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var median = FluxBitstream.EstimateBitCell(revolution.FluxIntervals);
+        var median = FluxTimingEstimator.EstimateBitCell(revolution.FluxIntervals);
         var anomalies = new List<FluxStructure>();
         var bitOffset = 0;
         for (var index = 0; index < revolution.FluxIntervals.Count; index++)
