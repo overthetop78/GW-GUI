@@ -63,7 +63,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
             structures.Add(new(FluxStructureKind.AppleData, data.Value.StartOffset, data.Value.EndOffset - data.Value.StartOffset, FluxStructureDescriptions.WithIntegrity(AppleRwts18Format.StructureDescriptionName, FluxStructureKind.AppleData, address.Track, AppleRwts18Format.LogicalHead, address.Sector, AppleRwts18Format.SectorByteCount, null, null, AppleRwts18Format.DataChecksumLabel, data.Value.Valid)));
             decodedBytes.AddRange(data.Value.Data);
         }
-        sectors.Add(new(address.Track, AppleRwts18Format.LogicalHead, address.Sector, SectorSizeCode.FromByteCount(AppleRwts18Format.SectorByteCount), AppleRwts18Format.SectorByteCount, data?.Valid, offset, SectorIntegrityKind.Checksum, data?.Data));
+        sectors.Add(new(address.Track, AppleRwts18Format.LogicalHead, address.Sector, AppleRwts18Format.SectorSizeCode, AppleRwts18Format.SectorByteCount, data?.Valid, offset, SectorIntegrityKind.Checksum, data?.Data));
     }
 
     /// <summary>Regroupe la piste, le secteur et la position suivant une adresse RWTS18.</summary>

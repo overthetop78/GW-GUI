@@ -2440,13 +2440,13 @@
       - [x] Présenter séparément les déclarations des trois pages et des accumulateurs.
       - [x] Traduire en français la CSDoc existante et documenter le type, les propriétés et chaque méthode conservée ou créée.
       - [x] Ajouter la CSDoc française aux définitions et opérations créées dans le codec RWTS18.
-    - [ ] Vérification du groupe RWTS18
-      - [ ] Tester une adresse valide puis les rejets dus à la piste, au secteur, au checksum ou au terminateur.
-      - [ ] Tester les six secteurs physiques et la reconstruction des trois pages de 256 octets en un secteur de 768 octets.
-      - [ ] Tester une synchronisation absente, un épilogue incorrect, un symbole inconnu et une charge tronquée.
-      - [ ] Tester un checksum de données valide puis invalide.
-      - [ ] Tester un bloc franchissant la fin circulaire de la piste.
-      - [ ] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
+    - [x] Vérification du groupe RWTS18
+      - [x] Tester une adresse valide puis les rejets dus à la piste, au secteur, au checksum ou au terminateur.
+      - [x] Tester les six secteurs physiques et la reconstruction des trois pages de 256 octets en un secteur de 768 octets.
+      - [x] Tester une synchronisation absente, un épilogue incorrect, un symbole inconnu et une charge tronquée.
+      - [x] Tester un checksum de données valide puis invalide.
+      - [x] Tester un bloc franchissant la fin circulaire de la piste.
+      - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/ArburgDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.

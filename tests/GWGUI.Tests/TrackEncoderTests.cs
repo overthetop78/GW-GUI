@@ -124,6 +124,9 @@ public sealed class TrackEncoderTests
         var encoded = new FluxEncoderRegistry().Encode("apple2.rwts18", new TrackEncodeRequest(18, 0, sectors));
         var decoded = new FluxDecoderRegistry().Decode("apple2.rwts18", encoded.Revolution);
 
+        Assert.Equal(FluxCodecIds.AppleRwts18, decoded.DecoderId);
+        Assert.Equal(FluxCodecDisplayNames.AppleRwts18, decoded.DisplayName);
+        Assert.True(decoded.Confidence > 0);
         Assert.Equal(6, decoded.Sectors!.Count);
         foreach (var expected in sectors)
         {
@@ -132,6 +135,9 @@ public sealed class TrackEncoderTests
             Assert.Equal(expected.Data, actual.Data);
             Assert.Equal(18, actual.Cylinder);
             Assert.Equal(0, actual.Head);
+            Assert.Equal(768, actual.SizeBytes);
+            Assert.Equal(3, actual.SizeCode);
+            Assert.Equal(SectorIntegrityKind.Checksum, actual.IntegrityKind);
         }
     }
 
