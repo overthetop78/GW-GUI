@@ -2010,7 +2010,7 @@
     - [x] Ajouter la documentation XML des types `Aed6200pMfmDecoder`.
     - [x] Ajouter la documentation XML de `Decode`, `FindDataMark` et des méthodes conservées ou créées après suppression des délégations locales, avec paramètres, résultat, unités et invariants applicables.
 
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AmigaMfmDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/AmigaMfmDecoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmigaMfmDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, TryDecodeMfmBytes, DecodeOddEven, Interleave`, avec paramètres, résultat, exceptions, unités et invariants applicables.
