@@ -2268,9 +2268,9 @@
       - [x] Supprimer `SizeCode` après raccordement et supprimer sa tâche de documentation locale.
       - [x] Remplacer la méthode locale `Crc16` par l'appel au calculateur CRC commun conservant exactement les paramètres AED actuels.
       - [x] Supprimer `Crc16` après raccordement et supprimer sa tâche de documentation locale.
-    - [ ] Confiance commune des décodeurs
-      - [ ] Créer un calcul commun de confiance utilisant le poids de secteurs `2`, le diviseur `20` et la confiance maximale `1` actuellement répétés dans plusieurs décodeurs.
-      - [ ] Raccorder `Aed6200pMfmDecoder` à ce calcul sans modifier son score final.
+    - [x] Confiance commune des décodeurs
+      - [x] Créer un calcul commun de confiance utilisant le poids de secteurs `2`, le diviseur `20` et la confiance maximale `1` actuellement répétés dans plusieurs décodeurs.
+      - [x] Raccorder `Aed6200pMfmDecoder` à ce calcul sans modifier son score final.
     - [ ] Identifiants, noms et descriptions
       - [ ] Remplacer `Id` et `DisplayName` par les catalogues communs de codecs et de noms déjà prévus.
       - [ ] Remplacer les descriptions techniques construites directement dans `Decode` par le propriétaire commun des descriptions de structures.

@@ -51,7 +51,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
             if (!complete) offset += Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1;
         }
         for (var offset = 0; offset + MfmEncoding.EncodedByteBitCount <= stream.Bits.Length; offset++) if (Aed6200pMfmFormat.DataPatterns.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, MfmEncoding.EncodedByteBitCount, FluxStructureDescriptions.UnpairedData("AED 6200P", null, null))); offset += MfmEncoding.EncodedByteBitCount - 1; }
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+        return new(Id, DisplayName, FluxDecoderConfidence.CalculateStandard(sectors.Count, structures.Count), stream.BitCellTicks, structures, bytes, sectors);
     }
 
     /// <summary>Recherche la prochaine marque de données.</summary>
