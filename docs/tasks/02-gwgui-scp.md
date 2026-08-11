@@ -2336,13 +2336,13 @@
       - [x] Y définir les tailles sectorielles, les tailles encodées et décodées 5-and-3 et 6-and-2, les tailles auxiliaires et les tailles des groupes utilisées par les deux algorithmes.
       - [x] Y définir les valeurs d'avancement après une marque, la face logique et les codes de taille actuellement écrits directement dans les secteurs produits.
       - [x] Remplacer dans le décodeur les valeurs brutes `4096`, `1024`, `24`, `23`, `64`, `88`, `343`, `342`, `411`, `256`, `154` et `51` par les définitions correspondantes.
-    - [ ] Tables et codec GCR communs
-      - [ ] Sortir la table 6-and-2 de `AppleIIGcrDecoder.cs`, `AppleIIGcrTrackEncoder.cs` et `AppleMacGcrDecoder.cs` dans une définition Apple GCR commune.
-      - [ ] Sortir la table 5-and-3 de `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs` dans la définition commune Apple II.
-      - [ ] Construire une seule fois les tables inverses 5-and-3 et 6-and-2 depuis les tables communes et les exposer en lecture seule.
-      - [ ] Créer un codec Apple II commun pour les opérations 4-and-4, 5-and-3 et 6-and-2 réellement partagées avec `AppleIIGcrTrackEncoder.cs`.
-      - [ ] Raccorder le décodeur et l'encodeur au codec commun puis supprimer leurs copies devenues inutiles.
-      - [ ] Conserver dans le décodeur les opérations propres au balayage du flux et à l'appariement des blocs.
+    - [x] Tables et codec GCR communs
+      - [x] Sortir la table 6-and-2 de `AppleIIGcrDecoder.cs`, `AppleIIGcrTrackEncoder.cs` et `AppleMacGcrDecoder.cs` dans une définition Apple GCR commune.
+      - [x] Sortir la table 5-and-3 de `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs` dans la définition commune Apple II.
+      - [x] Construire une seule fois les tables inverses 5-and-3 et 6-and-2 depuis les tables communes et les exposer en lecture seule.
+      - [x] Créer un codec Apple II commun pour les opérations 4-and-4, 5-and-3 et 6-and-2 réellement partagées avec `AppleIIGcrTrackEncoder.cs`.
+      - [x] Raccorder le décodeur et l'encodeur au codec commun puis supprimer leurs copies devenues inutiles.
+      - [x] Conserver dans le décodeur les opérations propres au balayage du flux et à l'appariement des blocs.
     - [ ] Décodage et résultat
       - [ ] Extraire de `DecodeCore` les traitements nommés de l'adresse 16 secteurs, de la recherche du bloc de données, de son appariement et de la création du secteur.
       - [ ] Extraire de `DecodeFiveAndThree` les traitements nommés de l'adresse 13 secteurs, du bloc de données et de la création du secteur.

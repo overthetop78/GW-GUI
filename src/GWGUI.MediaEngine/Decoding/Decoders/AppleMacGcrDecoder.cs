@@ -7,8 +7,6 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode les pistes GCR des disquettes Apple Macintosh.</summary>
 public class AppleMacGcrDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Inverse » utilisée par ce codec.</summary>
-    private static readonly Dictionary<byte, byte> Inverse = AppleMacGcrFormat.SixAndTwoTable.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => (byte)item.index);
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public virtual string Id => FluxCodecIds.AppleMacGcr;
     /// <summary>Obtient le nom affiché du codec.</summary>
@@ -39,9 +37,9 @@ public class AppleMacGcrDecoder : IFluxDecoder
         {
             if (!FluxBitReader.MatchBytes(stream, offset, AppleMacGcrFormat.AddressMark)) continue;
             var header = TryReadSymbols(stream, offset + markBits, headerSymbols); bool? headerValid = null; byte cylinder = 0, head = 0, number = 0;
-            if (header is not null && header.All(Inverse.ContainsKey))
+            if (header is not null && header.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
             {
-                var values = header.Select(value => Inverse[value]).ToArray();
+                var values = header.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray();
                 cylinder = (byte)(((values[2] & AppleMacGcrFormat.CylinderHighBitMask) << AppleMacGcrFormat.CylinderHighBitShift) | (values[0] & AppleMacGcrFormat.SixBitMask)); head = (byte)((values[2] >> AppleMacGcrFormat.HeadBitShift) & AppleMacGcrFormat.HeadBitMask); number = values[1];
                 headerValid = (byte)((values[0] ^ values[1] ^ values[2] ^ values[3]) & AppleMacGcrFormat.SixBitMask) == values[4];
             }
@@ -51,9 +49,9 @@ public class AppleMacGcrDecoder : IFluxDecoder
             if (dataOffset >= 0)
             {
                 pairedData.Add(dataOffset); var encoded = TryReadSymbols(stream, dataOffset + markBits, dataSymbols);
-                if (encoded is not null && encoded.All(Inverse.ContainsKey))
+                if (encoded is not null && encoded.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
                 {
-                    var values = encoded.Select(value => Inverse[value]).ToArray(); var decoded = DecodeSixAndTwo(values.AsSpan(1, AppleMacGcrFormat.EncodedPayloadSymbolCount), out var checksum);
+                    var values = encoded.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray(); var decoded = DecodeSixAndTwo(values.AsSpan(1, AppleMacGcrFormat.EncodedPayloadSymbolCount), out var checksum);
                     var checksumOffset = AppleMacGcrFormat.DataSymbolCount - AppleMacGcrFormat.ChecksumSymbolCount; dataValid = checksum[3] == values[checksumOffset] && checksum[2] == values[checksumOffset + 1] && checksum[1] == values[checksumOffset + 2] && checksum[0] == values[checksumOffset + 3];
                     sectorTag = decoded.Take(AppleMacGcrFormat.TagByteCount).ToArray(); sectorData = decoded.Skip(AppleMacGcrFormat.TagByteCount).Take(AppleMacGcrFormat.SectorByteCount).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * BitPrimitives.BitsPerByte;
                     structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Apple Macintosh", FluxStructureKind.AppleData, cylinder, head, number, AppleMacGcrFormat.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));

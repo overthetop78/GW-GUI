@@ -7,10 +7,6 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode les pistes utilisant le format Apple IIGCR.</summary>
 public sealed class AppleIIGcrDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Inverse Six And Two » utilisée par ce codec.</summary>
-    private static readonly Dictionary<byte, byte> InverseSixAndTwo = AppleIIGcrFormat.SixAndTwoTable.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);
-    /// <summary>Conserve la définition « Inverse Five And Three » utilisée par ce codec.</summary>
-    private static readonly Dictionary<byte, byte> InverseFiveAndThree = AppleIIGcrFormat.FiveAndThreeTable.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.AppleIIGcr;
     /// <summary>Obtient le nom affiché du codec.</summary>
@@ -39,8 +35,8 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
             var address = TryReadBytes(stream.Bits, offset + AppleIIGcrFormat.PrologueBitCount, AppleIIGcrFormat.EncodedAddressByteCount); bool? headerValid = null; byte volume = 0; byte cylinder = 0; byte number = 0;
             if (address is not null)
             {
-                volume = DecodeFourAndFour(address[0], address[1]); cylinder = DecodeFourAndFour(address[2], address[3]); number = DecodeFourAndFour(address[4], address[5]);
-                var checksum = DecodeFourAndFour(address[6], address[7]); headerValid = (byte)(volume ^ cylinder ^ number) == checksum; bytes.AddRange([volume, cylinder, number, checksum]);
+                volume = AppleIIGcrCodec.DecodeFourAndFour(address[0], address[1]); cylinder = AppleIIGcrCodec.DecodeFourAndFour(address[2], address[3]); number = AppleIIGcrCodec.DecodeFourAndFour(address[4], address[5]);
+                var checksum = AppleIIGcrCodec.DecodeFourAndFour(address[6], address[7]); headerValid = (byte)(volume ^ cylinder ^ number) == checksum; bytes.AddRange([volume, cylinder, number, checksum]);
             }
             var headerEnd = offset + AppleIIGcrFormat.PrologueBitCount + (address is null ? 0 : AppleIIGcrFormat.EncodedAddressBitCount);
             // The third address-epilogue byte is not reliable on every protected NIB
@@ -50,7 +46,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
             byte[]? sectorData = null;
             if (dataOffset >= 0)
             {
-                pairedData.Add(dataOffset); var data = TryDecodeSixAndTwo(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
+                pairedData.Add(dataOffset); var data = AppleIIGcrCodec.TryDecodeSixAndTwo(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
                 if (data is not null)
                 {
                     dataValid = data.Value.Valid; structureEnd = data.Value.EndOffset; sectorData = data.Value.Data; bytes.AddRange(sectorData);
@@ -80,8 +76,8 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
             byte volume = 0, cylinder = 0, number = 0;
             if (address is not null)
             {
-                volume = DecodeFourAndFour(address[0], address[1]); cylinder = DecodeFourAndFour(address[2], address[3]);
-                number = DecodeFourAndFour(address[4], address[5]); var checksum = DecodeFourAndFour(address[6], address[7]);
+                volume = AppleIIGcrCodec.DecodeFourAndFour(address[0], address[1]); cylinder = AppleIIGcrCodec.DecodeFourAndFour(address[2], address[3]);
+                number = AppleIIGcrCodec.DecodeFourAndFour(address[4], address[5]); var checksum = AppleIIGcrCodec.DecodeFourAndFour(address[6], address[7]);
                 headerValid = (byte)(volume ^ cylinder ^ number) == checksum;
             }
             var headerEnd = offset + AppleIIGcrFormat.AddressBlockBitCount;
@@ -90,7 +86,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
             if (dataOffset >= 0)
             {
                 pairedData.Add(dataOffset);
-                var decoded = TryDecodeFiveAndThree(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
+                var decoded = AppleIIGcrCodec.TryDecodeFiveAndThree(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
                 if (decoded is not null)
                 {
                     sectorData = decoded.Value.Data; dataValid = decoded.Value.Valid; structureEnd = decoded.Value.EndOffset;
@@ -107,9 +103,6 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
         }
     }
 
-    /// <summary>Exécute le traitement « Decode Four And Four » propre à ce format.</summary>
-    /// <param name="high">Premier octet encodé.</param><param name="low">Second octet encodé.</param><returns>Valeur Apple II décodée.</returns>
-    private static byte DecodeFourAndFour(byte high, byte low) => (byte)(((high << 1) | 1) & low);
     /// <summary>Exécute le traitement « Try Read Bytes » propre à ce format.</summary>
     /// <param name="bits">Bits source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre d'octets à lire.</param><returns>Octets lus, ou <see langword="null"/> si la plage est incomplète.</returns>
     private static byte[]? TryReadBytes(IReadOnlyList<bool> bits, int offset, int count)
@@ -125,53 +118,4 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
         for (var offset = Math.Max(0, start); offset + AppleIIGcrFormat.PrologueBitCount <= end; offset++) if (FluxBitReader.Match(stream, offset, mark, AppleIIGcrFormat.PrologueBitCount)) return offset;
         return -1;
     }
-    /// <summary>Exécute le traitement « Try Decode Six And Two » propre à ce format.</summary>
-    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(IReadOnlyList<bool> bits, int offset)
-    {
-        // A real Disk II controller shifts bits until bit 7 becomes set. WOZ stores
-        // the original bitstream, so sync fields can leave encoded bytes unaligned;
-        // fixed 8-bit reads reject otherwise valid protected tracks.
-        var cursor = offset;
-        var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleIIGcrFormat.SixAndTwoEncodedByteCount); if (encoded is null) return null; var values = new byte[AppleIIGcrFormat.SixAndTwoEncodedByteCount];
-        for (var index = 0; index < values.Length; index++) if (!InverseSixAndTwo.TryGetValue(encoded[index], out values[index])) return null;
-        var decoded = new byte[AppleIIGcrFormat.SixAndTwoDecodedByteCount]; byte previous = 0; var encodedIndex = 0;
-        for (var index = AppleIIGcrFormat.SixAndTwoDecodedByteCount - 1; index >= AppleIIGcrFormat.SectorSize; index--) { decoded[index] = (byte)(values[encodedIndex++] ^ previous); previous = decoded[index]; }
-        for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++) { decoded[index] = (byte)(values[encodedIndex++] ^ previous); previous = decoded[index]; }
-        var valid = (byte)(values[AppleIIGcrFormat.SixAndTwoEncodedByteCount - 1] ^ previous) == 0; var data = new byte[AppleIIGcrFormat.SectorSize]; byte auxiliaryOffset = 0;
-        for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++)
-        {
-            auxiliaryOffset = (byte)((auxiliaryOffset + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount - 1) % AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount); var auxiliary = decoded[AppleIIGcrFormat.SectorSize + auxiliaryOffset]; decoded[AppleIIGcrFormat.SectorSize + auxiliaryOffset] = (byte)(auxiliary >> 2);
-            data[index] = (byte)((decoded[index] << 2) | ((auxiliary & 2) >> 1) | ((auxiliary & 1) << 1));
-        }
-        return (data, valid, cursor);
-    }
-
-    /// <summary>Exécute le traitement « Try Decode Five And Three » propre à ce format.</summary>
-    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(IReadOnlyList<bool> bits, int offset)
-    {
-        var cursor = offset;
-        var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleIIGcrFormat.FiveAndThreeEncodedByteCount); if (encoded is null) return null;
-        var values = new byte[AppleIIGcrFormat.FiveAndThreeEncodedByteCount];
-        for (var index = 0; index < values.Length; index++)
-            if (!InverseFiveAndThree.TryGetValue(encoded[index], out values[index])) return null;
-        const int threeSize = AppleIIGcrFormat.FiveAndThreeAuxiliaryByteCount; const int chunkSize = AppleIIGcrFormat.FiveAndThreeChunkByteCount;
-        var threes = new byte[threeSize]; var bases = new byte[AppleIIGcrFormat.SectorSize]; byte checksum = 0; var source = 0;
-        for (var index = threeSize - 1; index >= 0; index--) { checksum ^= values[source++]; threes[index] = checksum; }
-        for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++) { checksum ^= values[source++]; bases[index] = (byte)(checksum << 3); }
-        var valid = values[source] == checksum; var data = new byte[AppleIIGcrFormat.SectorSize]; var destination = 0;
-        for (var index = chunkSize - 1; index >= 0; index--)
-        {
-            var one = threes[index]; var two = threes[chunkSize + index]; var three = threes[chunkSize * 2 + index];
-            var four = (byte)(((one & 2) << 1) | (two & 2) | ((three & 2) >> 1));
-            var five = (byte)(((one & 1) << 2) | ((two & 1) << 1) | (three & 1));
-            data[destination++] = (byte)(bases[index] | ((one >> 2) & 7));
-            data[destination++] = (byte)(bases[chunkSize + index] | ((two >> 2) & 7));
-            data[destination++] = (byte)(bases[chunkSize * 2 + index] | ((three >> 2) & 7));
-            data[destination++] = (byte)(bases[chunkSize * 3 + index] | (four & 7));
-            data[destination++] = (byte)(bases[chunkSize * 4 + index] | (five & 7));
-        }
-        data[destination] = (byte)(bases[AppleIIGcrFormat.SectorSize - 1] | (threes[threeSize - 1] & 7));
-        return (data, valid, cursor);
-    }
-
 }
