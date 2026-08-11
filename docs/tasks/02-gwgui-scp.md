@@ -2118,10 +2118,10 @@
     - [x] Ajouter la documentation XML des types `FluxStructureKind, SectorIntegrityKind, FluxStructure, DecodedSector, FluxDecodeResult`.
     - [x] Ajouter la documentation XML des méthodes `FluxStructure, DecodedSector, FluxDecodeResult`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/FluxDecoderRegistry.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Construire un dictionnaire par identifiant.
-    - [ ] Refuser les doublons.
-    - [ ] Remplacer les recherches `First` par une erreur explicite.
+  - [x] Structure, emplacement et raccordements
+    - [x] Construire un dictionnaire par identifiant.
+    - [x] Refuser les doublons.
+    - [x] Remplacer les recherches `First` par une erreur explicite.
   - [ ] Valeurs brutes et erreurs du registre
     - [ ] Créer `FluxDecoderScoring.cs` avec un nom pour chaque poids actuellement utilisé par `AutomaticScore`.
     - [ ] Remplacer l’identifiant `raw` par `FluxCodecIds.Raw`.
