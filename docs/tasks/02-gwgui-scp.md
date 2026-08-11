@@ -1847,8 +1847,8 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `SectorAddress, SectorBlock, SectorImage`.
     - [x] Ajouter la documentation XML des méthodes `SectorAddress, SectorBlock, TryGetBlock, GetBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Mise en forme
-    - [ ] Remettre la déclaration complète du record `SectorBlock` sur une seule ligne.
+  - [x] Mise en forme
+    - [x] Remettre la déclaration complète du record `SectorBlock` sur une seule ligne.
 
 - [ ] Compléments issus de la relecture complète des modèles et primitives
   - [ ] `SectorImages/SectorImage.cs`

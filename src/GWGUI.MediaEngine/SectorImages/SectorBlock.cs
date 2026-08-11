@@ -7,10 +7,4 @@ namespace GWGUI.MediaEngine.SectorImages;
 /// <param name="IntegrityValid"><see langword="true"/> si l'intégrité est valide, <see langword="false"/> si elle est invalide, ou <see langword="null"/> si elle n'a pas pu être déterminée.</param>
 /// <param name="Revolution">Indice de la révolution source, compté à partir de zéro.</param>
 /// <param name="Tag">Métadonnées sectorielles facultatives, exprimées en octets.</param>
-public sealed record SectorBlock(
-    int LogicalBlock,
-    SectorAddress Address,
-    IReadOnlyList<byte> Data,
-    bool? IntegrityValid = true,
-    int Revolution = 0,
-    IReadOnlyList<byte>? Tag = null);
+public sealed record SectorBlock(int LogicalBlock, SectorAddress Address, IReadOnlyList<byte> Data, bool? IntegrityValid = true, int Revolution = 0, IReadOnlyList<byte>? Tag = null);
