@@ -1355,14 +1355,14 @@
     - [x] Conserver `Td0Sector` comme record privé du Reader tant qu’aucun autre fichier ne consomme ce modèle intermédiaire.
     - [x] Créer `Containers/TeleDisk/Td0SectorDecoder.cs` et y déplacer `DecodeSector` et la lecture little-endian utilisée par ses encodages.
     - [x] Créer `Recognition/TeleDisk/Td0SectorImageClassifier.cs` et y déplacer `DetectFormat`, qui classe l’image sectorielle reconstruite mais ne parse pas le conteneur TeleDisk.
-  - [ ] Définitions TeleDisk
-    - [ ] Créer `Containers/TeleDisk/Td0Format.cs` avec les signatures majuscule non compressée et minuscule compressée et leur signification.
-    - [ ] Créer `Containers/TeleDisk/Td0Layout.cs` avec la taille d’en-tête, les tailles des en-têtes de commentaire, piste, secteur et données ainsi que chaque offset lu.
-    - [ ] Créer `Containers/TeleDisk/Td0SectorEncoding.cs` pour les trois encodages de secteurs pris en charge.
-    - [ ] Créer `Containers/TeleDisk/Td0SectorFlags.cs` pour les drapeaux d’intégrité et d’absence de données utilisés par le Reader.
-    - [ ] Créer `Containers/TeleDisk/Td0Section.cs` pour identifier l’en-tête de commentaire, le commentaire, l’en-tête de piste, l’en-tête de secteur, l’en-tête de données et les données dans les erreurs de troncature.
-    - [ ] Définir dans les fichiers précédents le drapeau de commentaire, le marqueur de fin de pistes, les masques de face, les codes de taille, les tailles de mot, les longueurs de motif et les décalages utilisés par le décodeur.
-    - [ ] Remplacer dans `Td0Reader`, `Td0Sector` et le décodeur de charge utile toutes les valeurs brutes correspondantes.
+  - [x] Définitions TeleDisk
+    - [x] Créer `Containers/TeleDisk/Td0Format.cs` avec les signatures majuscule non compressée et minuscule compressée et leur signification.
+    - [x] Créer `Containers/TeleDisk/Td0Layout.cs` avec la taille d’en-tête, les tailles des en-têtes de commentaire, piste, secteur et données ainsi que chaque offset lu.
+    - [x] Créer `Containers/TeleDisk/Td0SectorEncoding.cs` pour les trois encodages de secteurs pris en charge.
+    - [x] Créer `Containers/TeleDisk/Td0SectorFlags.cs` pour les drapeaux d’intégrité et d’absence de données utilisés par le Reader.
+    - [x] Créer `Containers/TeleDisk/Td0Section.cs` pour identifier l’en-tête de commentaire, le commentaire, l’en-tête de piste, l’en-tête de secteur, l’en-tête de données et les données dans les erreurs de troncature.
+    - [x] Définir dans les fichiers précédents le drapeau de commentaire, le marqueur de fin de pistes, les masques de face, les codes de taille, les tailles de mot, les longueurs de motif et les décalages utilisés par le décodeur.
+    - [x] Remplacer dans `Td0Reader`, `Td0Sector` et le décodeur de charge utile toutes les valeurs brutes correspondantes.
   - [ ] Contrôles du conteneur
     - [ ] Lire les champs de version, de mode de données, de stepping et de CRC par leurs offsets nommés au lieu d’accéder directement aux indices de l’en-tête.
     - [ ] Ajouter la validation des CRC d’en-tête, de piste et de secteur définis par TeleDisk avant d’accepter leurs données.

@@ -1,3 +1,4 @@
+using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Recognition.TeleDisk;
 using GWGUI.MediaEngine.SectorImages;
@@ -18,16 +19,16 @@ public sealed class Td0Reader : ISectorImageReader
 
     internal static SectorImage Read(ReadOnlySpan<byte> data)
     {
-        if (data.Length < 12 || data[0] != (byte)'T' || data[1] != (byte)'D')
+        if (data.Length < Td0Layout.HeaderSize || !data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.UncompressedSignature))
             throw new InvalidDataException("The image is not an uncompressed TeleDisk image.");
 
-        var offset = 12;
-        var stepping = data[7];
-        if ((stepping & 0x80) != 0)
+        var offset = Td0Layout.HeaderSize;
+        var stepping = data[Td0Layout.SteppingOffset];
+        if ((stepping & Td0Layout.CommentPresentMask) != 0)
         {
-            EnsureAvailable(data, offset, 10, "TeleDisk comment header");
-            var commentLength = ReadUInt16(data, offset + 2);
-            offset += 10;
+            EnsureAvailable(data, offset, Td0Layout.CommentHeaderSize, "TeleDisk comment header");
+            var commentLength = ReadUInt16(data, offset + Td0Layout.CommentLengthOffset);
+            offset += Td0Layout.CommentHeaderSize;
             EnsureAvailable(data, offset, commentLength, "TeleDisk comment");
             offset += commentLength;
         }
@@ -35,44 +36,45 @@ public sealed class Td0Reader : ISectorImageReader
         var sectors = new List<Td0Sector>();
         while (true)
         {
-            EnsureAvailable(data, offset, 1, "TeleDisk track header");
-            var sectorCount = data[offset];
-            if (sectorCount == 0xff) break;
-            EnsureAvailable(data, offset, 4, "TeleDisk track header");
-            var trackCylinder = data[offset + 1];
-            var trackHead = data[offset + 2] & 1;
-            offset += 4;
+            EnsureAvailable(data, offset, Td0Layout.ByteFieldSize, "TeleDisk track header");
+            var sectorCount = data[offset + Td0Layout.TrackSectorCountOffset];
+            if (sectorCount == Td0Layout.EndOfTracks) break;
+            EnsureAvailable(data, offset, Td0Layout.TrackHeaderSize, "TeleDisk track header");
+            var trackCylinder = data[offset + Td0Layout.TrackCylinderOffset];
+            var trackHead = data[offset + Td0Layout.TrackHeadOffset] & Td0Layout.HeadMask;
+            offset += Td0Layout.TrackHeaderSize;
 
             for (var index = 0; index < sectorCount; index++)
             {
-                EnsureAvailable(data, offset, 6, "TeleDisk sector header");
-                var cylinder = data[offset];
-                var head = data[offset + 1] & 1;
-                var number = data[offset + 2];
-                var sizeCode = data[offset + 3];
-                var flags = data[offset + 4];
-                offset += 6;
+                EnsureAvailable(data, offset, Td0Layout.SectorHeaderSize, "TeleDisk sector header");
+                var cylinder = data[offset + Td0Layout.SectorCylinderOffset];
+                var head = data[offset + Td0Layout.SectorHeadOffset] & Td0Layout.HeadMask;
+                var number = data[offset + Td0Layout.SectorNumberOffset];
+                var sizeCode = data[offset + Td0Layout.SectorSizeCodeOffset];
+                var flags = (Td0SectorFlags)data[offset + Td0Layout.SectorFlagsOffset];
+                offset += Td0Layout.SectorHeaderSize;
 
-                if (sizeCode > 6) throw new InvalidDataException($"TeleDisk sector {cylinder}/{head}/{number} has an invalid size code.");
-                var expectedLength = 128 << sizeCode;
+                if (sizeCode > Td0Layout.MaximumSectorSizeCode) throw new InvalidDataException($"TeleDisk sector {cylinder}/{head}/{number} has an invalid size code.");
+                var expectedLength = Td0Layout.BaseSectorSize << sizeCode;
                 byte[] sectorData;
-                if ((flags & 0x30) != 0)
+                if ((flags & Td0SectorFlags.UnavailableMask) != 0)
                 {
                     sectorData = new byte[expectedLength];
                 }
                 else
                 {
-                    EnsureAvailable(data, offset, 3, "TeleDisk sector data header");
-                    var encodedLength = ReadUInt16(data, offset);
-                    var encoding = data[offset + 2];
-                    offset += 3;
+                    EnsureAvailable(data, offset, Td0Layout.SectorDataHeaderSize, "TeleDisk sector data header");
+                    var encodedLength = ReadUInt16(data, offset + Td0Layout.EncodedLengthOffset);
+                    var encoding = (Td0SectorEncoding)data[offset + Td0Layout.EncodingOffset];
+                    offset += Td0Layout.SectorDataHeaderSize;
                     if (encodedLength == 0) throw new InvalidDataException($"TeleDisk sector {cylinder}/{head}/{number} has no encoded data.");
-                    EnsureAvailable(data, offset, encodedLength - 1, "TeleDisk sector data");
-                    sectorData = Td0SectorDecoder.Decode(data.Slice(offset, encodedLength - 1), encoding, expectedLength);
-                    offset += encodedLength - 1;
+                    var payloadLength = encodedLength - Td0Layout.EncodingFieldSize;
+                    EnsureAvailable(data, offset, payloadLength, "TeleDisk sector data");
+                    sectorData = Td0SectorDecoder.Decode(data.Slice(offset, payloadLength), encoding, expectedLength);
+                    offset += payloadLength;
                 }
 
-                sectors.Add(new(cylinder, head, number, sectorData, (flags & 0x02) == 0));
+                sectors.Add(new(cylinder, head, number, sectorData, (flags & Td0SectorFlags.DataCrcError) == 0));
             }
 
             if (sectorCount != 0 && sectors[^1].Cylinder != trackCylinder)
@@ -105,6 +107,6 @@ public sealed class Td0Reader : ISectorImageReader
         if (offset < 0 || count < 0 || offset > data.Length - count) throw new InvalidDataException($"The {description} is truncated.");
     }
 
-    private static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset) => (ushort)(data[offset] | data[offset + 1] << 8);
+    private static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(data[offset..]);
     private sealed record Td0Sector(int Cylinder, int Head, int Number, byte[] Data, bool IntegrityValid);
 }
