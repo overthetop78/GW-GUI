@@ -2349,12 +2349,12 @@
       - [x] Remplacer les descriptions textuelles brutes des adresses, blocs de données, checksums et prologues non appariés par le constructeur commun de descriptions recevant les valeurs variables.
       - [x] Remplacer les tailles sectorielles et codes de taille bruts des `DecodedSector` par les définitions communes correspondantes.
       - [x] Utiliser le calcul de confiance commun avec les pondérations Apple II au lieu de conserver la formule brute dans `DecodeCore`.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Présenter les tables de symboles sur plusieurs lignes structurées sans juxtaposer leur déclaration avec une autre instruction.
-      - [ ] Ajouter la CSDoc française au type renommé, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
-      - [ ] Ajouter la CSDoc française aux définitions et opérations créées dans les composants Apple II communs.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Présenter les tables de symboles sur plusieurs lignes structurées sans juxtaposer leur déclaration avec une autre instruction.
+      - [x] Ajouter la CSDoc française au type renommé, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
+      - [x] Ajouter la CSDoc française aux définitions et opérations créées dans les composants Apple II communs.
     - [ ] Vérification du groupe Apple II GCR
       - [ ] Tester la reconnaissance des prologues d'adresse des formats 13 et 16 secteurs.
       - [ ] Tester le décodage 4-and-4 du volume, de la piste, du secteur et du checksum d'adresse.
