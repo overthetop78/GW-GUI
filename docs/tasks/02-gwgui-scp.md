@@ -2127,9 +2127,9 @@
     - [x] Remplacer l’identifiant `raw` par `FluxCodecIds.Raw`.
     - [x] Créer `Decoding/FluxDecoderRegistryExceptions.cs` avec les erreurs recevant l’identifiant de codec absent ou dupliqué.
     - [x] Remplacer les textes et constructions directes d’exception du registre.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `FluxDecoderRegistry`, `FluxDecoderScoring` et `FluxDecoderRegistryExceptions`.
-    - [ ] Ajouter la documentation XML des méthodes `DecodeAutomatic, Decode, AutomaticScore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `FluxDecoderRegistry`, `FluxDecoderScoring` et `FluxDecoderRegistryExceptions`.
+    - [x] Ajouter la documentation XML des méthodes `DecodeAutomatic, Decode, AutomaticScore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/IFluxDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `IFluxDecoder`.

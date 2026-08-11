@@ -1,5 +1,6 @@
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Définit les poids utilisés pour comparer automatiquement les résultats des décodeurs de flux.</summary>
 internal static class FluxDecoderScoring
 {
     public const double ValidSectorBaseScore = 4;

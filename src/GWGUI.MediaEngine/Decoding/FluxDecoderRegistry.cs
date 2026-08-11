@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Containers.Scp;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Enregistre les décodeurs de flux disponibles et sélectionne leurs résultats.</summary>
 public sealed class FluxDecoderRegistry
 {
     private readonly System.Runtime.CompilerServices.ConditionalWeakTable<ScpRevolution,
@@ -17,11 +18,16 @@ public sealed class FluxDecoderRegistry
     }
 
     public IReadOnlyList<IFluxDecoder> Decoders { get; }
+    /// <summary>Décode une révolution avec tous les décodeurs et retient le meilleur résultat.</summary>
+    /// <param name="revolution">Révolution SCP à analyser.</param><returns>Résultat ayant obtenu le meilleur score automatique.</returns>
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => Decode(x.Id, revolution))
         .OrderByDescending(AutomaticScore)
         .ThenByDescending(result => result.Confidence)
         .ThenByDescending(result => result.Structures.Count)
         .First();
+    /// <summary>Décode une révolution avec le décodeur identifié et met le résultat en cache.</summary>
+    /// <param name="id">Identifiant du décodeur.</param><param name="revolution">Révolution SCP à analyser.</param><returns>Résultat du décodeur demandé.</returns>
+    /// <exception cref="KeyNotFoundException">Aucun décodeur ne possède l'identifiant demandé.</exception>
     public FluxDecodeResult Decode(string id, ScpRevolution revolution)
     {
         var results = _cache.GetValue(revolution, _ => new(StringComparer.Ordinal));
@@ -40,6 +46,8 @@ public sealed class FluxDecoderRegistry
             .First();
     }
 
+    /// <summary>Calcule le score utilisé pour la sélection automatique d'un résultat.</summary>
+    /// <param name="result">Résultat à évaluer.</param><returns>Score donnant priorité aux secteurs valides, puis aux structures reconnues et à la confiance.</returns>
     internal static double AutomaticScore(FluxDecodeResult result)
     {
         var sectors = result.Sectors ?? [];
