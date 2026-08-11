@@ -2271,10 +2271,10 @@
     - [x] Confiance commune des décodeurs
       - [x] Créer un calcul commun de confiance utilisant le poids de secteurs `2`, le diviseur `20` et la confiance maximale `1` actuellement répétés dans plusieurs décodeurs.
       - [x] Raccorder `Aed6200pMfmDecoder` à ce calcul sans modifier son score final.
-    - [ ] Identifiants, noms et descriptions
-      - [ ] Remplacer `Id` et `DisplayName` par les catalogues communs de codecs et de noms déjà prévus.
-      - [ ] Remplacer les descriptions techniques construites directement dans `Decode` par le propriétaire commun des descriptions de structures.
-      - [ ] Retirer la tâche d'erreurs AED, car ce décodeur ne construit aucune exception.
+    - [x] Identifiants, noms et descriptions
+      - [x] Remplacer `Id` et `DisplayName` par les catalogues communs de codecs et de noms déjà prévus.
+      - [x] Remplacer les descriptions techniques construites directement dans `Decode` par le propriétaire commun des descriptions de structures.
+      - [x] Retirer la tâche d'erreurs AED, car ce décodeur ne construit aucune exception.
     - [ ] Découpage de `Decode`
       - [ ] Extraire la lecture et la validation de l'en-tête dans un traitement nommé.
       - [ ] Extraire la recherche et la lecture du bloc de données dans un traitement nommé.

@@ -38,7 +38,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
                         dataValid = data[Aed6200pMfmFormat.HeaderMarkOffset] is >= Aed6200pMfmFormat.FirstDataAddressMark and <= Aed6200pMfmFormat.LastDataAddressMark && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size)); structureEnd = (int)dataEnd;
-                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("AED 6200P", FluxStructureKind.FormatData, 0, 0, 0, size, data[Aed6200pMfmFormat.HeaderMarkOffset], null)}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
+                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, FluxStructureDescriptions.WithIntegrity("AED 6200P", FluxStructureKind.FormatData, 0, 0, 0, size, data[Aed6200pMfmFormat.HeaderMarkOffset], null, "CRC", dataValid)));
                     }
                     else structures.Add(new(FluxStructureKind.FormatData, dataOffset, MfmEncoding.EncodedByteBitCount, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatData, null, "CRC unavailable")));
                 }
