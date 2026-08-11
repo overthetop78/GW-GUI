@@ -12,6 +12,10 @@ public sealed class DiskImageRecognitionContext
     /// <summary>Crée le contexte associé à un fichier et au format éventuellement demandé.</summary>
     /// <param name="path">Chemin du fichier à reconnaître.</param>
     /// <param name="requestedFormatId">Identifiant de format explicitement demandé, ou <see langword="null"/>.</param>
+    /// <exception cref="ArgumentException">Le chemin est vide ou composé uniquement d'espaces.</exception>
+    /// <exception cref="ArgumentNullException">Le chemin est nul.</exception>
+    /// <exception cref="FileNotFoundException">Le fichier n'existe pas.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès aux informations du fichier est refusé.</exception>
     public DiskImageRecognitionContext(string path, string? requestedFormatId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
@@ -35,7 +39,7 @@ public sealed class DiskImageRecognitionContext
 
     /// <summary>Crée une seule tâche de lecture puis réutilise son résultat, son annulation ou son erreur pour tous les appels.</summary>
     /// <param name="cancellationToken">Jeton appliqué uniquement lors de la création de l'unique tâche de lecture.</param>
-    /// <returns>Tableau partagé contenant exactement les octets du fichier.</returns>
+    /// <returns>Mémoire en lecture seule partageant exactement les octets lus par l'unique tâche.</returns>
     /// <exception cref="OperationCanceledException">Le jeton est annulé avant ou pendant la première lecture.</exception>
     /// <exception cref="IOException">Une erreur d'entrée-sortie empêche la lecture.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>

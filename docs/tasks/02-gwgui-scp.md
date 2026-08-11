@@ -1412,9 +1412,9 @@
       - [x] Adapter chaque politique à `ReadOnlyMemory<byte>` en utilisant `Span` ou une copie uniquement lorsque son API l’exige réellement.
     - [x] Mise en forme
       - [x] Conserver les propriétés, signatures et expressions courtes sur une seule ligne lorsqu’elles tiennent lisiblement.
-    - [ ] Documentation XML et encodage
-      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, du champ de cache, du constructeur, de chaque propriété et de `ReadBytesAsync`.
-      - [ ] Documenter les paramètres, le résultat en lecture seule, la normalisation de l’extension et toutes les exceptions propagées par l’accès au fichier.
+    - [x] Documentation XML et encodage
+      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, du champ de cache, du constructeur, de chaque propriété et de `ReadBytesAsync`.
+      - [x] Documenter les paramètres, le résultat en lecture seule, la normalisation de l’extension et toutes les exceptions propagées par l’accès au fichier.
     - [ ] Tests ciblés
       - [ ] Tester le rejet d’un chemin nul, vide ou composé d’espaces.
       - [ ] Tester le chemin, la longueur, l’extension normalisée et l’identifiant demandé exposés par le contexte.
