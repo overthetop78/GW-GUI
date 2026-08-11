@@ -2212,12 +2212,12 @@
       - [x] Ajouter la CSDoc française à chaque type, propriété et constructeur.
       - [x] Documenter les unités de `BitOffset`, `BitLength`, `SizeBytes`, `Confidence` et `EstimatedBitCellTicks`.
       - [x] Documenter la signification de l'intégrité indéterminée et la différence entre CRC et checksum.
-    - [ ] Vérification des modèles
-      - [ ] Tester chaque valeur des deux enums utilisée par les décodeurs.
-      - [ ] Tester qu'une modification de la collection source ne modifie pas `DecodedSector.Data` ni `DecodedSector.Tag`.
-      - [ ] Tester qu'une modification des collections sources ne modifie pas `FluxDecodeResult.Structures`, `DecodedBytes` ni `Sectors`.
-      - [ ] Tester qu'aucune collection exposée ne peut être modifiée par conversion vers son type concret.
-      - [ ] Tester qu'un résultat sans secteur expose une collection vide et non une valeur nulle.
+    - [x] Vérification des modèles
+      - [x] Tester chaque valeur des deux enums utilisée par les décodeurs.
+      - [x] Tester qu'une modification de la collection source ne modifie pas `DecodedSector.Data` ni `DecodedSector.Tag`.
+      - [x] Tester qu'une modification des collections sources ne modifie pas `FluxDecodeResult.Structures`, `DecodedBytes` ni `Sectors`.
+      - [x] Tester qu'aucune collection exposée ne peut être modifiée par conversion vers son type concret.
+      - [x] Tester qu'un résultat sans secteur expose une collection vide et non une valeur nulle.
       - [ ] Vérifier que la séparation des fichiers ne modifie ni les valeurs des enums ni les données retournées par un décodeur existant.
   - [ ] `Decoding/IFluxDecoder.cs`
     - [ ] Découplage du conteneur SCP
