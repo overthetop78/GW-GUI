@@ -1705,10 +1705,10 @@
       - [x] Conserver la correction directe pour trois zéros au maximum et le retour progressif vers le centre au-delà.
       - [x] Vérifier que la soustraction répétée ne dépasse jamais le maximum de cellules défini.
       - [x] Calculer la durée finale depuis la moyenne des horloges ou conserver le centre sans échantillon.
-    - [ ] Résultat construit
-      - [ ] Construire le `FluxBitstream` immuable uniquement après la reconstruction complète.
-      - [ ] Vérifier la capacité initiale calculée avant de créer la liste de bits.
-      - [ ] Ne pas introduire de tableau intermédiaire supplémentaire en dehors de la copie nécessaire au résultat immuable.
+    - [x] Résultat construit
+      - [x] Construire le `FluxBitstream` immuable uniquement après la reconstruction complète.
+      - [x] Vérifier la capacité initiale calculée avant de créer la liste de bits.
+      - [x] Ne pas introduire de tableau intermédiaire supplémentaire en dehors de la copie nécessaire au résultat immuable.
     - [ ] Présentation et CSDoc
       - [ ] Remettre sur une seule ligne les signatures et appels complets qui tiennent lisiblement.
       - [ ] Documenter en français le type, chaque fabrique et chaque fonction privée, avec les unités des intervalles et de la cellule.

@@ -101,7 +101,8 @@ internal static class FluxTransitionDecoder
         var currentCell = initialCell;
         var accumulatedCell = 0d;
         var samples = 0;
-        var bits = new List<bool>(intervals.Count * FluxDecodingParameters.EstimatedBitsPerInterval);
+        var initialCapacity = checked(intervals.Count * FluxDecodingParameters.EstimatedBitsPerInterval);
+        var bits = new List<bool>(initialCapacity);
         for (var index = 0; index < intervals.Count; index++)
         {
             var interval = intervals[index];
@@ -129,7 +130,8 @@ internal static class FluxTransitionDecoder
         var ticks = 0d;
         var accumulatedClock = 0d;
         var samples = 0;
-        var bits = new List<bool>(intervals.Count * FluxDecodingParameters.EstimatedBitsPerInterval);
+        var initialCapacity = checked(intervals.Count * FluxDecodingParameters.EstimatedBitsPerInterval);
+        var bits = new List<bool>(initialCapacity);
 
         foreach (var interval in intervals)
         {
