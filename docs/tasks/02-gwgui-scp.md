@@ -2505,7 +2505,7 @@
       - [x] Tester une marque de données appariée, une marque non appariée et une nouvelle marque de secteur rencontrée avant les données.
       - [x] Tester une clé prise en charge, une clé inconnue, une taille nulle, une taille tronquée et une taille non standard.
       - [x] Vérifier la charge utile, la taille, le code de taille, le type d'intégrité, les structures et la confiance produits.
-  - [ ] `Decoding/Decoders/Commodore900GcrDecoder.cs`
+  - [x] `Decoding/Decoders/Commodore900GcrDecoder.cs`
     - [x] Définitions Commodore 900
       - [x] Créer `Decoding/Definitions/Commodore900GcrFormat.cs`.
       - [x] Y définir l'identifiant, le nom, la longueur minimale de synchronisation et les marqueurs d'en-tête `0x08` et de données `0x07`.
