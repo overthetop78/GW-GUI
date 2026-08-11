@@ -2189,7 +2189,7 @@
       - [x] Tester chaque branche du score : secteurs valides, secteurs indéterminés, secteurs invalides, flux brut, structures seules et résultat vide.
       - [x] Tester les départages par confiance, nombre de structures et ordre du catalogue.
       - [x] Tester `DecodeBest` avec aucune révolution, un décodeur explicite et la sélection automatique sur plusieurs révolutions.
-  - [ ] `Decoding/FluxDecodeModels.cs`
+  - [x] `Decoding/FluxDecodeModels.cs`
     - [x] Séparation des types
       - [x] Créer `Decoding/FluxStructureKind.cs` et y déplacer uniquement l'enum `FluxStructureKind`.
       - [x] Créer `Decoding/SectorIntegrityKind.cs` et y déplacer uniquement l'enum `SectorIntegrityKind`.
