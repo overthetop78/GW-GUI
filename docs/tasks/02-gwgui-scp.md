@@ -1826,7 +1826,7 @@
   - [x] Vérification des raccordements
     - [x] Compiler après le passage du type en `internal` afin de confirmer qu’aucun consommateur extérieur au moteur ne dépend de son API publique.
     - [x] Exécuter uniquement les tests ciblés des Readers, géométries et politiques dans lesquels une valeur brute a effectivement été remplacée.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/SectorImage.cs`
+- [x] `src/GWGUI.MediaEngine/SectorImages/SectorImage.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `SectorImages/SectorAddress.cs` avec le namespace actuel.
     - [x] Déplacer le record `SectorAddress` sans modifier sa signature.
