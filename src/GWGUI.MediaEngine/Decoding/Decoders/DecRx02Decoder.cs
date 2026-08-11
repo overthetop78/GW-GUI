@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class DecRx02Decoder : SignatureMfmDecoder
@@ -14,7 +16,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedData = new HashSet<int>();
-        const int markBits = 4 * 8;
+        const int markBits = 4 * BitPrimitives.BitsPerByte;
         const int headerBits = 7 * 32;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
@@ -33,7 +35,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
             }
             bytes.AddRange([cylinder, head, number, sizeCode]);
 
-            var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * 8 * 2);
+            var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * BitPrimitives.BitsPerByte * 2);
             var m2fm = data.Mark is 0xf9 or 0xfd; var sectorSize = m2fm ? 256 : 128; var decodedCount = sectorSize + 2;
             var completeData = data.Offset >= 0 && (m2fm ? data.Offset + markBits + 1 + decodedCount * 16 : data.Offset + (1 + sectorSize + 2) * 32) <= stream.Bits.Length;
             bool? dataCrcValid = null; byte[]? payload = null;
@@ -68,7 +70,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
 
     private static (int Offset, byte Mark) FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
-        var end = Math.Min(stream.Bits.Length - HeaderMark.Length * 8, start + maximumDistance);
+        var end = Math.Min(stream.Bits.Length - HeaderMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);
         for (var offset = start; offset <= end; offset++) foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) return (offset, item.Mark);
         return (-1, 0);
     }
@@ -90,7 +92,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         for (var index = 0; index < count; index++)
         {
             byte value = 0;
-            for (var bit = 0; bit < 8; bit++) if (!bits[1 + index * 16 + bit * 2] && bits[1 + index * 16 + bit * 2 + 1]) value |= (byte)(1 << (7 - bit));
+            for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++) if (!bits[1 + index * 16 + bit * 2] && bits[1 + index * 16 + bit * 2 + 1]) value |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit));
             result[index] = value;
         }
         return result;

@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Coherent;
 
 /// <summary>Examine et valide les champs canoniques du superbloc COHERENT.</summary>
@@ -40,6 +42,6 @@ internal static class CoherentSuperblockProbe
     public static uint ReadCanonicalUInt32(ReadOnlySpan<byte> value)
     {
         if (value.Length < sizeof(uint)) throw new ArgumentException("Four bytes are required.", nameof(value));
-        return (uint)(value[2] | value[3] << 8 | value[0] << 16 | value[1] << 24);
+        return (uint)(value[2] | value[3] << BitPrimitives.BitsPerByte | value[0] << 16 | value[1] << 24);
     }
 }

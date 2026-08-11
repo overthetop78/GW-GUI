@@ -4,6 +4,8 @@ using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AtariDosFileSystemReader : IFileSystemReader
@@ -45,7 +47,7 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         while (current != 0 && count < Math.Max(expectedSectors, 1))
         {
             if (!visited.Add(current) || !TrySector(image, current, out var sector)) { warnings.Add($"{current}: invalid or missing Atari DOS data sector."); break; }
-            var link = sector.Length - 3; var storedFile = sector[link] >> 2; var next = (sector[link] & 3) << 8 | sector[link + 1];
+            var link = sector.Length - 3; var storedFile = sector[link] >> 2; var next = (sector[link] & 3) << BitPrimitives.BitsPerByte | sector[link + 1];
             var used = Math.Min(sector[link + 2], link); if (storedFile != fileNumber && storedFile != 0) warnings.Add($"Sector {current} belongs to file {storedFile}, expected {fileNumber}.");
             result.AddRange(sector.Take(used)); current = next; count++;
         }
@@ -80,8 +82,8 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
 
             if ((flag & 0x40) != 0 && (flag & 0x80) == 0)
             {
-                var sectorCount = data[offset + 1] | data[offset + 2] << 8;
-                var firstSector = data[offset + 3] | data[offset + 4] << 8;
+                var sectorCount = data[offset + 1] | data[offset + 2] << BitPrimitives.BitsPerByte;
+                var firstSector = data[offset + 3] | data[offset + 4] << BitPrimitives.BitsPerByte;
                 if (nameIsBlank || sectorCount == 0 || firstSector == 0) return false;
             }
         }

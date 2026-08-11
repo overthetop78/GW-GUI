@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class DataGeneralFmDecoder : IFluxDecoder
@@ -39,7 +41,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             {
                 var block = TryDecodeMfmBytes(stream, dataStart, dataBytes);
                 if (block is null) continue;
-                var stored = (ushort)((block[512] << 8) | block[513]);
+                var stored = (ushort)((block[512] << BitPrimitives.BitsPerByte) | block[513]);
                 valid = Checksum(block.AsSpan(0, 512)) == stored;
                 bytes.AddRange(block.AsSpan(0, 512).ToArray());
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, 32 + dataBytes * 16,
@@ -57,7 +59,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
     private static List<int> FindAll(FluxBitstream stream, IReadOnlyList<byte> pattern)
     {
         var offsets = new List<int>();
-        for (var offset = 0; offset + pattern.Count * 8 <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) offsets.Add(offset);
+        for (var offset = 0; offset + pattern.Count * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) offsets.Add(offset);
         return offsets;
     }
 
@@ -67,7 +69,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
         for (var index = 0; index <= data.Length; index++)
         {
             var input = index < data.Length ? data[index] : (byte)0;
-            value = (ushort)(((value & 0xff) ^ (value >> 8)) | (((value & 0xff) ^ input) << 8));
+            value = (ushort)(((value & 0xff) ^ (value >> BitPrimitives.BitsPerByte)) | (((value & 0xff) ^ input) << BitPrimitives.BitsPerByte));
         }
         return value;
     }

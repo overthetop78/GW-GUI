@@ -19,7 +19,7 @@ public sealed class ArburgTrackEncoder : TrackEncoderBase
                 bits.RawHex("5555555555249249");
                 foreach(var value in block) for(var bit=0;bit<8;bit++) bits.RawBits(((value>>bit)&1)!=0?"001":"01");
             }
-            else { bits.RawHex("4444444455555555"); bits.DoubleFm(block.Select(TrackEncoding.ReverseBits)); }
+            else { bits.RawHex("4444444455555555"); bits.DoubleFm(block.Select(Primitives.BitPrimitives.ReverseBits)); }
             bits.Gap(64,true);
         }
         return bits;

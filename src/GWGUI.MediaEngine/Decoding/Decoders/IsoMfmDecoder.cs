@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class IsoMfmDecoder : IFluxDecoder
@@ -39,7 +41,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
                 var headerBytes = TryDecodeMfmBytes(stream, offset + 64, 6);
                 if (headerBytes is null) continue;
                 var cylinder = headerBytes[0]; var head = headerBytes[1]; var number = headerBytes[2]; var sizeCode = headerBytes[3];
-                var storedCrc = (ushort)((headerBytes[4] << 8) | headerBytes[5]);
+                var storedCrc = (ushort)((headerBytes[4] << BitPrimitives.BitsPerByte) | headerBytes[5]);
                 var calculatedCrc = Crc16([0xa1, 0xa1, 0xa1, 0xfe, cylinder, head, number, sizeCode]); var valid = storedCrc == calculatedCrc;
                 headers.Add((offset, cylinder, head, number, sizeCode, sizeCode <= 7 ? 128 << sizeCode : 0, valid));
                 description = $"Secteur C{cylinder} H{head} R{number} N{sizeCode} ({(sizeCode <= 7 ? 128 << sizeCode : 0)} octets), CRC {(valid ? "valide" : "incorrect")}";
@@ -63,7 +65,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
                     var dataBytes = TryDecodeMfmBytes(stream, data.Value.Offset + 64, header.Size + 2);
                     if (dataBytes is null) continue;
                     payload = dataBytes.AsSpan(0, header.Size).ToArray();
-                    var stored = (ushort)((dataBytes[header.Size] << 8) | dataBytes[header.Size + 1]); dataValid = stored == Crc16(new byte[] { 0xa1,0xa1,0xa1,data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
+                    var stored = (ushort)((dataBytes[header.Size] << BitPrimitives.BitsPerByte) | dataBytes[header.Size + 1]); dataValid = stored == Crc16(new byte[] { 0xa1,0xa1,0xa1,data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
                     structures.RemoveAll(structure => structure.BitOffset == data.Value.Offset); structures.Add(new(data.Value.Mark == 0xfb ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, data.Value.Offset, end - data.Value.Offset, $"MFM {(data.Value.Mark == 0xf8 ? "deleted " : "")}data, {header.Size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                 }
             }

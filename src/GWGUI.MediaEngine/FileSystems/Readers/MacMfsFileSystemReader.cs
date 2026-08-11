@@ -4,6 +4,8 @@ using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class MacMfsFileSystemReader : IFileSystemReader
@@ -77,7 +79,7 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
         for (var index = 0; index + 1 < result.Length; index += 2)
         {
             var offset = index / 2 * 3; result[index] = (ushort)(packed[offset] << 4 | packed[offset + 1] >> 4);
-            result[index + 1] = (ushort)((packed[offset + 1] & 15) << 8 | packed[offset + 2]);
+            result[index + 1] = (ushort)((packed[offset + 1] & 15) << BitPrimitives.BitsPerByte | packed[offset + 2]);
         }
         return result;
     }

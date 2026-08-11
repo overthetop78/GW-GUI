@@ -2,6 +2,8 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class BbcDfsFileSystemReader : IFileSystemReader
@@ -16,7 +18,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != 256 || !image.TryGetBlock(0, out var names)
             || !image.TryGetBlock(1, out var metadata) || names.Data.Count != 256 || metadata.Data.Count != 256) return false;
         var count = metadata.Data[5];
-        return count % 8 == 0 && count <= 31 * 8 && ((metadata.Data[6] & 3) << 8 | metadata.Data[7]) <= image.BlockCount;
+        return count % 8 == 0 && count <= 31 * 8 && ((metadata.Data[6] & 3) << BitPrimitives.BitsPerByte | metadata.Data[7]) <= image.BlockCount;
     }
 
     public FileSystemVolume Read(SectorImage image)
@@ -25,7 +27,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
         var names = image.GetBlock(0).Span;
         var metadata = image.GetBlock(1).Span;
         var title = Decode(names[..8]) + Decode(metadata[..4]);
-        var totalSectors = (metadata[6] & 3) << 8 | metadata[7];
+        var totalSectors = (metadata[6] & 3) << BitPrimitives.BitsPerByte | metadata[7];
         var fileCount = metadata[5] / 8;
         var entries = new List<FileSystemEntry>(fileCount);
         var warnings = new List<string>();
@@ -39,10 +41,10 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
             var directory = (char)(directoryByte & 0x7f);
             var name = directory == '$' ? leaf : $"{directory}.{leaf}";
             var packed = metadata[metaOffset + 6];
-            var length = metadata[metaOffset + 4] | metadata[metaOffset + 5] << 8 | (packed & 0x30) << 12;
-            var start = metadata[metaOffset + 7] | (packed & 3) << 8;
-            var load = metadata[metaOffset] | metadata[metaOffset + 1] << 8 | (packed & 0x0c) << 14;
-            var execute = metadata[metaOffset + 2] | metadata[metaOffset + 3] << 8 | (packed & 0xc0) << 10;
+            var length = metadata[metaOffset + 4] | metadata[metaOffset + 5] << BitPrimitives.BitsPerByte | (packed & 0x30) << 12;
+            var start = metadata[metaOffset + 7] | (packed & 3) << BitPrimitives.BitsPerByte;
+            var load = metadata[metaOffset] | metadata[metaOffset + 1] << BitPrimitives.BitsPerByte | (packed & 0x0c) << 14;
+            var execute = metadata[metaOffset + 2] | metadata[metaOffset + 3] << BitPrimitives.BitsPerByte | (packed & 0xc0) << 10;
             var sectorCount = (length + 255) / 256;
             usedSectors += sectorCount;
             var content = new byte[length];

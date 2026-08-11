@@ -13,7 +13,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedMarks = new HashSet<int>();
-        const int markBits = 8 * 8;
+        const int markBits = 8 * Primitives.BitPrimitives.BitsPerByte;
         const int headerBits = 5 * 32;
         const int sectorSize = 0xe00;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
@@ -25,8 +25,8 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
             var crcHigh = header[1]; var crcLow = header[2];
             if (Crc16([rawTrack, crcHigh, crcLow]) != 0) continue;
 
-            var track = ReverseBits(rawTrack); var cylinder = (byte)(track >> 1); var head = (byte)(track & 1); bytes.Add(track); classifiedMarks.Add(offset);
-            var dataOffset = FindNextMark(stream, offset + 4 * 8 * 4, (88 + 16) * 8 * 2);
+            var track = Primitives.BitPrimitives.ReverseBits(rawTrack); var cylinder = (byte)(track >> 1); var head = (byte)(track & 1); bytes.Add(track); classifiedMarks.Add(offset);
+            var dataOffset = FindNextMark(stream, offset + 4 * Primitives.BitPrimitives.BitsPerByte * 4, (88 + 16) * Primitives.BitPrimitives.BitsPerByte * 2);
             var completeData = dataOffset >= 0 && dataOffset + markBits + (sectorSize + 2) * 32 <= stream.Bits.Length;
             bool? dataCrcValid = null;
             if (completeData)
@@ -51,12 +51,10 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
 
     private static int FindNextMark(FluxBitstream stream, int start, int maximumDistance)
     {
-        var end = Math.Min(stream.Bits.Length - SectorMark.Length * 8, start + maximumDistance);
+        var end = Math.Min(stream.Bits.Length - SectorMark.Length * Primitives.BitPrimitives.BitsPerByte, start + maximumDistance);
         for (var offset = start; offset <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return offset;
         return -1;
     }
-
-    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, polynomial: 0x8005, initial: 0);
 

@@ -2,6 +2,8 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decoder)
@@ -41,7 +43,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         {
             if (mdb.Data.Take(Math.Min(16, mdb.Data.Count)).ToArray().AsSpan().IndexOf("PREBOOT"u8) >= 0)
                 formatId = DiskImageFormatIds.AppleLisaMacWorks;
-            var signature = (mdb.Data[0] << 8) | mdb.Data[1];
+            var signature = (mdb.Data[0] << BitPrimitives.BitsPerByte) | mdb.Data[1];
             if (!formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase))
                 formatId = signature == 0xd2d7
                     ? DiskImageFormatIds.AppleMacMfs

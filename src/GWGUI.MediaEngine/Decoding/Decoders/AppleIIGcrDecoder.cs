@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
@@ -93,8 +94,8 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     private static byte DecodeFourAndFour(byte high, byte low) => (byte)(((high << 1) | 1) & low);
     private static byte[]? TryReadBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
-        if (offset + count * 8 > bits.Count) return null; var result = new byte[count];
-        for (var index = 0; index < count; index++) for (var bit = 0; bit < 8; bit++) if (bits[offset + index * 8 + bit]) result[index] |= (byte)(1 << (7 - bit));
+        if (offset + count * BitPrimitives.BitsPerByte > bits.Count) return null; var result = new byte[count];
+        for (var index = 0; index < count; index++) for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++) if (bits[offset + index * BitPrimitives.BitsPerByte + bit]) result[index] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit));
         return result;
     }
     private static int Find(FluxBitstream stream, int start, int end, uint mark)

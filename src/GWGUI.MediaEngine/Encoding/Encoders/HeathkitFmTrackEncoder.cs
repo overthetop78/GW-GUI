@@ -13,10 +13,10 @@ public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
             if (sector.Data.Count != 256) throw new ArgumentException("Heathkit sectors contain 256 bytes.");
             byte[] identity = [volume, (byte)request.Cylinder, (byte)sector.Number];
             bits.Fm([0,0,0,0xbf]);
-            bits.Fm(identity.Append(TrackEncoding.RotatingChecksum(identity)).Select(TrackEncoding.ReverseBits));
+            bits.Fm(identity.Append(TrackEncoding.RotatingChecksum(identity)).Select(Primitives.BitPrimitives.ReverseBits));
             bits.Gap(160);
             bits.Fm([0,0,0,0xbf]);
-            bits.Fm(sector.Data.Append(TrackEncoding.RotatingChecksum(sector.Data)).Select(TrackEncoding.ReverseBits));
+            bits.Fm(sector.Data.Append(TrackEncoding.RotatingChecksum(sector.Data)).Select(Primitives.BitPrimitives.ReverseBits));
             bits.Gap(128);
         }
         return bits;

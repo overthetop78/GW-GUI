@@ -4,6 +4,8 @@ using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 /// <summary>
@@ -118,13 +120,13 @@ public sealed class LisaFileSystemReader : IFileSystemReader
     private static ushort TagFileId(SectorBlock block)
     {
         if (block.Tag is null || block.Tag.Count < 6) return 0;
-        return (ushort)((block.Tag[4] << 8) | block.Tag[5]);
+        return (ushort)((block.Tag[4] << BitPrimitives.BitsPerByte) | block.Tag[5]);
     }
 
     private static int TagPageNumber(SectorBlock block)
     {
         if (block.Tag is null || block.Tag.Count < 8) return block.LogicalBlock;
-        return ((block.Tag[6] << 8) | block.Tag[7]) & 0x07ff;
+        return ((block.Tag[6] << BitPrimitives.BitsPerByte) | block.Tag[7]) & 0x07ff;
     }
 
     private static bool IsUserFile(ushort fileId) =>

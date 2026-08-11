@@ -3,6 +3,8 @@ using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class Fat12FileSystemReader : IFileSystemReader
@@ -150,7 +152,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     private static int ReadFat12(ReadOnlySpan<byte> fat, int cluster)
     {
         var offset = cluster + cluster / 2; if (offset + 1 >= fat.Length) return 0xfff;
-        var pair = fat[offset] | fat[offset + 1] << 8; return (cluster & 1) == 0 ? pair & 0xfff : pair >> 4;
+        var pair = fat[offset] | fat[offset + 1] << BitPrimitives.BitsPerByte; return (cluster & 1) == 0 ? pair & 0xfff : pair >> 4;
     }
     private static string? ReadVolumeLabel(ReadOnlySpan<byte> root) { for (var i = 0; i + 32 <= root.Length; i += 32) if (root[i] is not (0 or 0xe5) && (root[i + 11] & 0x08) != 0) return ReadAscii(root, i, 11).Trim(); return null; }
     private static string DecodeName(ReadOnlySpan<byte> value) { var name = ReadAscii(value, 0, 8).Trim(); var ext = ReadAscii(value, 8, 3).Trim(); return ext.Length == 0 ? name : name + "." + ext; }

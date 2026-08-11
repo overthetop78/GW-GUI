@@ -4,6 +4,8 @@ using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Images.Interpretations;
 
 internal static class SectorImageInterpretation
@@ -36,12 +38,12 @@ internal static class SectorImageInterpretation
         cylinders = heads = sectorsPerTrack = totalSectors = 0;
         if (image.BlockSize != 512 || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 36) return false;
         var bytes = boot.Data;
-        var bytesPerSector = bytes[11] | bytes[12] << 8;
-        totalSectors = bytes[19] | bytes[20] << 8;
+        var bytesPerSector = bytes[11] | bytes[12] << BitPrimitives.BitsPerByte;
+        totalSectors = bytes[19] | bytes[20] << BitPrimitives.BitsPerByte;
         if (totalSectors == 0)
-            totalSectors = bytes[32] | bytes[33] << 8 | bytes[34] << 16 | bytes[35] << 24;
-        sectorsPerTrack = bytes[24] | bytes[25] << 8;
-        heads = bytes[26] | bytes[27] << 8;
+            totalSectors = bytes[32] | bytes[33] << BitPrimitives.BitsPerByte | bytes[34] << 16 | bytes[35] << 24;
+        sectorsPerTrack = bytes[24] | bytes[25] << BitPrimitives.BitsPerByte;
+        heads = bytes[26] | bytes[27] << BitPrimitives.BitsPerByte;
         if (bytesPerSector != 512 || totalSectors <= 0 || sectorsPerTrack <= 0 || heads <= 0 ||
             totalSectors > image.BlockCount || totalSectors % (sectorsPerTrack * heads) != 0)
             return false;

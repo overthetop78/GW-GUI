@@ -12,13 +12,13 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
         {
             if (sector.Data.Count != 256) throw new ArgumentException("HP MMFM sectors contain 256 bytes.");
             var encodedSector = (byte)(sector.Number | request.Head << 7);
-            byte[] identity = [TrackEncoding.ReverseBits((byte)request.Cylinder), TrackEncoding.ReverseBits(encodedSector)];
+            byte[] identity = [Primitives.BitPrimitives.ReverseBits((byte)request.Cylinder), Primitives.BitPrimitives.ReverseBits(encodedSector)];
             bits.Raw(0x55, 0x55, 0x2a, 0x54);
             bits.Mfm(TrackEncoding.WithCrc(identity));
             bits.Gap(128);
             var payload = sector.Data.ToArray();
             for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
-            for (var index = 0; index < payload.Length; index++) payload[index] = TrackEncoding.ReverseBits(payload[index]);
+            for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
             bits.Raw(0x55, 0x55, 0x2a, 0x44);
             bits.Mfm(TrackEncoding.WithCrc(payload));
             bits.Gap(256);

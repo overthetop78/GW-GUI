@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class CenturionMfmDecoder : SignatureMfmDecoder
@@ -13,7 +15,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
-        const int markBits = 4 * 8;
+        const int markBits = 4 * BitPrimitives.BitsPerByte;
         const int headerBits = markBits + 4 * 16;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
@@ -32,7 +34,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
                     {
                         var prefix = TryDecodeMfmBytes(stream, dataOffset + markBits, 3);
                         if (prefix is null) continue;
-                        var key = prefix[0]; size = (prefix[1] << 8) | prefix[2];
+                        var key = prefix[0]; size = (prefix[1] << BitPrimitives.BitsPerByte) | prefix[2];
                         var dataEnd = (long)prefixEnd + (size + 2L) * 16;
                         if (key == 0 && size > 0 && dataEnd <= stream.Bits.Length)
                         {
@@ -59,7 +61,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
 
     private static int FindDataMark(FluxBitstream stream, int start)
     {
-        for (var offset = Math.Max(0, start); offset + DataMark.Length * 8 <= stream.Bits.Length; offset++) { if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return -1; if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset; }
+        for (var offset = Math.Max(0, start); offset + DataMark.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) { if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return -1; if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset; }
         return -1;
     }
 

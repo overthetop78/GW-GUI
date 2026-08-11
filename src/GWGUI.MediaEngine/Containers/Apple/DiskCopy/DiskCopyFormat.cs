@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 
 /// <summary>Regroupe les marqueurs et valeurs conventionnelles propres au format Apple DiskCopy 4.2.</summary>
@@ -15,7 +17,7 @@ public static class DiskCopyFormat
     /// <summary>Nombre de bits de la rotation appliquée après chaque addition.</summary>
     public const int ChecksumRotation = 1;
     /// <summary>Nombre de bits du registre de checksum DiskCopy.</summary>
-    public const int ChecksumBitCount = sizeof(uint) * 8;
+    public const int ChecksumBitCount = sizeof(uint) * BitPrimitives.BitsPerByte;
 
     /// <summary>Octets ASCII mémorisés du marqueur MacWorks PREBOOT.</summary>
     private static readonly byte[] PrebootMarkerBytes = [0x50, 0x52, 0x45, 0x42, 0x4F, 0x4F, 0x54];

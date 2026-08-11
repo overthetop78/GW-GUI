@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class Victor9kGcrDecoder : IFluxDecoder
@@ -29,7 +31,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
                 if (data is not null)
                 {
                     ushort checksum = 0; for (var index = 0; index < sectorBytes; index++) checksum += data.Value.Bytes[index + 1];
-                    var stored = (ushort)(data.Value.Bytes[sectorBytes + 1] | data.Value.Bytes[sectorBytes + 2] << 8); dataValid = checksum == stored; structureEnd = data.Value.EndOffset;
+                    var stored = (ushort)(data.Value.Bytes[sectorBytes + 1] | data.Value.Bytes[sectorBytes + 2] << BitPrimitives.BitsPerByte); dataValid = checksum == stored; structureEnd = data.Value.EndOffset;
                     bytes.AddRange(data.Value.Bytes.Skip(1).Take(sectorBytes));
                     structures.Add(new(FluxStructureKind.FormatData, dataOffset, data.Value.EndOffset - dataOffset, $"Victor 9000 data block, 512 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
                 }
@@ -46,7 +48,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
 
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
-        for (var offset = Math.Max(0, start); offset + mark.Count * 8 <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
+        for (var offset = Math.Max(0, start); offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
         return -1;
     }
 

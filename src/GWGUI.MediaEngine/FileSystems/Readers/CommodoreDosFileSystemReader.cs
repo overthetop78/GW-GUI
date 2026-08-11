@@ -3,6 +3,8 @@ using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class CommodoreDosFileSystemReader : IFileSystemReader
@@ -62,7 +64,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
                 if (name.Length == 0) continue;
                 var firstDataTrack = data[offset + 1];
                 var firstDataSector = data[offset + 2];
-                var declaredBlocks = data[offset + 28] | data[offset + 29] << 8;
+                var declaredBlocks = data[offset + 28] | data[offset + 29] << BitPrimitives.BitsPerByte;
                 IReadOnlyList<byte> content = [];
                 try { content = ReadFile(image, firstDataTrack, firstDataSector, warnings, name); }
                 catch (InvalidDataException exception) { warnings.Add($"{name}: {exception.Message}"); }

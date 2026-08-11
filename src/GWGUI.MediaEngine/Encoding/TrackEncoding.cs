@@ -74,7 +74,7 @@ internal static class TrackEncoding
     {
         foreach (var source in bytes)
         {
-            var value = reverse ? ReverseBits(source) : source;
+            var value = reverse ? Primitives.BitPrimitives.ReverseBits(source) : source;
             for (var bit = 7; bit >= 0; bit--)
             {
                 bits.Add(false); bits.Add(true);
@@ -100,7 +100,7 @@ internal static class TrackEncoding
     {
         var result = values.ToList();
         var crc = Crc16(result, polynomial, initial);
-        result.Add((byte)(crc >> 8)); result.Add((byte)crc);
+        result.Add((byte)(crc >> Primitives.BitPrimitives.BitsPerByte)); result.Add((byte)crc);
         return result.ToArray();
     }
 
@@ -110,6 +110,4 @@ internal static class TrackEncoding
         foreach (var value in values) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
         return checksum;
     }
-
-    public static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 }

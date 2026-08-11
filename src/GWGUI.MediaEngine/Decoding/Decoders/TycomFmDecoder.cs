@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class TycomFmDecoder : SignatureMfmDecoder
@@ -14,7 +16,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedData = new HashSet<int>();
-        const int markBits = 4 * 8;
+        const int markBits = 4 * BitPrimitives.BitsPerByte;
         const int headerBits = 5 * 32;
         const int sectorSize = 128;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
@@ -34,7 +36,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             }
             bytes.AddRange([cylinder, (byte)number]);
 
-            var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * 8 * 2);
+            var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * BitPrimitives.BitsPerByte * 2);
             var completeData = data.Offset >= 0 && data.Offset + (1 + sectorSize + 2) * 32 <= stream.Bits.Length;
             bool? dataCrcValid = null;
             if (completeData)
@@ -60,7 +62,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
 
     private static (int Offset, byte Mark) FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
-        var end = Math.Min(stream.Bits.Length - HeaderMark.Length * 8, start + maximumDistance);
+        var end = Math.Min(stream.Bits.Length - HeaderMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);
         for (var offset = start; offset <= end; offset++) foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) return (offset, item.Mark);
         return (-1, 0);
     }

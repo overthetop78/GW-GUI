@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class MembrainMfmTrackEncoder : TrackEncoderBase
@@ -15,12 +17,12 @@ public sealed class MembrainMfmTrackEncoder : TrackEncoderBase
             byte[] header = [0xa1, 0xfe, cylinderHigh, packed];
             var headerCrc = TrackEncoding.Crc16(header, 0x8005, 0);
             bits.RawHex("44895554");
-            bits.Mfm([header[2], header[3], (byte)(headerCrc >> 8), (byte)headerCrc]);
+            bits.Mfm([header[2], header[3], (byte)(headerCrc >> BitPrimitives.BitsPerByte), (byte)headerCrc]);
             bits.Gap(64);
             const byte mark = 0xf8;
             var dataCrc = TrackEncoding.Crc16(new[] { (byte)0xa1, mark }.Concat(sector.Data), 0x8005, 0);
             bits.RawHex("4489554A");
-            bits.Mfm(sector.Data.Concat([(byte)(dataCrc >> 8), (byte)dataCrc]));
+            bits.Mfm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte), (byte)dataCrc]));
             bits.Gap(128);
         }
         return bits;

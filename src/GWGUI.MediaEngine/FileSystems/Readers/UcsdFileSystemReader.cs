@@ -2,6 +2,8 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class UcsdFileSystemReader : IFileSystemReader
@@ -121,8 +123,8 @@ public sealed class UcsdFileSystemReader : IFileSystemReader
         return true;
     }
     private static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset, bool littleEndian) => littleEndian
-        ? (ushort)(data[offset] | data[offset + 1] << 8)
-        : (ushort)(data[offset] << 8 | data[offset + 1]);
+        ? (ushort)(data[offset] | data[offset + 1] << BitPrimitives.BitsPerByte)
+        : (ushort)(data[offset] << BitPrimitives.BitsPerByte | data[offset + 1]);
 
     private static DateTimeOffset? DecodeDate(ushort value)
     {

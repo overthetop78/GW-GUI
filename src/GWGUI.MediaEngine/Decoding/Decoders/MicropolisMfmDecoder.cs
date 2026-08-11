@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class MicropolisMfmDecoder : IFluxDecoder
@@ -18,14 +20,14 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
         var bytes = new List<byte>();
         const int recordBytes = 275;
 
-        for (var offset = 0; offset + Sync.Length * 8 <= stream.Bits.Length; offset++)
+        for (var offset = 0; offset + Sync.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, Sync)) continue;
             var recordStart = offset + 3 * 16;
             if (recordStart + recordBytes * 16 > stream.Bits.Length)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, Sync.Length * 8, "Incomplete Micropolis sector"));
-                offset += Sync.Length * 8 - 1;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, Sync.Length * BitPrimitives.BitsPerByte, "Incomplete Micropolis sector"));
+                offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
                 continue;
             }
 
@@ -39,7 +41,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
             sectors.Add(new(cylinder, 0, sectorNumber, 1, 256, valid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, (3 + recordBytes) * 16,
                 $"Micropolis C{cylinder} R{sectorNumber}, 256 bytes, checksum {(valid ? "valid" : "invalid")}"));
-            offset += Sync.Length * 8 - 1;
+            offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
         }
 
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);

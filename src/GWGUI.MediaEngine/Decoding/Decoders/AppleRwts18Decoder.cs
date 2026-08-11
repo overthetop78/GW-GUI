@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>
@@ -81,8 +83,8 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
             }
             if (!validSymbols || stream[start + 1_026] != 0xd4) continue;
             var decoded = DecodePayload(values);
-            var startOffset = offset + start * 8;
-            var endOffset = offset + (start + 1_027) * 8;
+            var startOffset = offset + start * BitPrimitives.BitsPerByte;
+            var endOffset = offset + (start + 1_027) * BitPrimitives.BitsPerByte;
             return (decoded.Data, decoded.Valid, startOffset, endOffset);
         }
         return null;

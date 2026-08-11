@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class QdMo5MfmTrackEncoder : TrackEncoderBase
@@ -11,7 +13,7 @@ public sealed class QdMo5MfmTrackEncoder : TrackEncoderBase
         {
             if (sector.Data.Count != 128) throw new ArgumentException("QD MO5 sectors contain 128 bytes.");
             bits.RawHex("A914A914A914A914A9144491");
-            bits.Mfm(new byte[] { (byte)(sector.Number >> 8),(byte)sector.Number }.Concat(new byte[13]));
+            bits.Mfm(new byte[] { (byte)(sector.Number >> BitPrimitives.BitsPerByte),(byte)sector.Number }.Concat(new byte[13]));
             bits.Gap(160);
             bits.RawHex("A914A914A914A914A9149144");
             var prefix = (byte)Attribute(sector, "prefix", 0x5a);

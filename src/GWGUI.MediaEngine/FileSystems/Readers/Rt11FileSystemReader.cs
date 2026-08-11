@@ -3,6 +3,8 @@ using GWGUI.MediaEngine.FileSystems.Rt11;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class Rt11FileSystemReader : IFileSystemReader
@@ -143,5 +145,5 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
     }
 
     private static string DecodeAscii(ReadOnlySpan<byte> bytes) => System.Text.Encoding.ASCII.GetString(bytes).TrimEnd('\0', ' ');
-    private static ushort ReadUInt16(ReadOnlySpan<byte> source, int offset) => (ushort)(source[offset] | source[offset + 1] << 8);
+    private static ushort ReadUInt16(ReadOnlySpan<byte> source, int offset) => (ushort)(source[offset] | source[offset + 1] << BitPrimitives.BitsPerByte);
 }

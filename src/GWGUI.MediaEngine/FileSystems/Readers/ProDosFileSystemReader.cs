@@ -4,6 +4,8 @@ using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class ProDosFileSystemReader : IFileSystemReader
@@ -43,7 +45,7 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
                 var storage = bytes[offset] >> 4; var nameLength = bytes[offset] & 0x0f;
                 if (storage == 0 || nameLength == 0 || nameLength > 15) continue;
                 var entryName = System.Text.Encoding.ASCII.GetString(bytes, offset + 1, nameLength); var key = ReadU16(bytes, offset + 17);
-                var eof = bytes[offset + 21] | bytes[offset + 22] << 8 | bytes[offset + 23] << 16; var fileType = bytes[offset + 16];
+                var eof = bytes[offset + 21] | bytes[offset + 22] << BitPrimitives.BitsPerByte | bytes[offset + 23] << 16; var fileType = bytes[offset + 16];
                 if (storage == 0x0d)
                 {
                     var children = ReadDirectory(image, key, warnings, globalVisited, depth + 1);
@@ -86,7 +88,7 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
         for (var entry = 0; entry < 256; entry++) { var pointer = Pointer(index.Data, entry); if (pointer != 0) output.Add(pointer); }
     }
 
-    private static int Pointer(IReadOnlyList<byte> block, int index) => block[index] | block[index + 256] << 8;
+    private static int Pointer(IReadOnlyList<byte> block, int index) => block[index] | block[index + 256] << BitPrimitives.BitsPerByte;
     private static int CountFreeBlocks(SectorImage image, int bitmapStart, int total, List<string> warnings)
     {
         var free = 0;
@@ -94,13 +96,13 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
         {
             var mapBlock = bitmapStart + block / 4096;
             if (!image.TryGetBlock(mapBlock, out var bitmap)) { if (block % 4096 == 0) warnings.Add($"Bitmap block {mapBlock} is missing."); continue; }
-            var bit = block % 4096; if ((bitmap.Data[bit / 8] & (0x80 >> (bit & 7))) != 0) free++;
+            var bit = block % 4096; if ((bitmap.Data[bit / BitPrimitives.BitsPerByte] & (0x80 >> (bit & 7))) != 0) free++;
         }
         return free;
     }
 
     private static int ReadU16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(data.Slice(offset, 2));
     private static string ReadName(ReadOnlySpan<byte> data, int offset) { var len = data[offset] & 0x0f; return System.Text.Encoding.ASCII.GetString(data.Slice(offset + 1, len)); }
-    private static DateTimeOffset? ReadDate(ReadOnlySpan<byte> data, int offset) { if (offset + 4 > data.Length) return null; var date = ReadU16(data, offset); var time = ReadU16(data, offset + 2); try { var year = 1900 + (date >> 9); if (year < 1940) year += 100; return new DateTimeOffset(year, (date >> 5) & 15, date & 31, time >> 8, time & 0x3f, 0, TimeSpan.Zero); } catch { return null; } }
+    private static DateTimeOffset? ReadDate(ReadOnlySpan<byte> data, int offset) { if (offset + 4 > data.Length) return null; var date = ReadU16(data, offset); var time = ReadU16(data, offset + 2); try { var year = 1900 + (date >> 9); if (year < 1940) year += 100; return new DateTimeOffset(year, (date >> 5) & 15, date & 31, time >> BitPrimitives.BitsPerByte, time & 0x3f, 0, TimeSpan.Zero); } catch { return null; } }
     private static string TypeName(byte type) => type switch { 0x04 => "Text", 0x06 => "Binary", 0x0f => "Directory", 0xfc => "BASIC", 0xfd => "Variables", 0xff => "System", _ => $"ProDOS ${type:X2}" };
 }

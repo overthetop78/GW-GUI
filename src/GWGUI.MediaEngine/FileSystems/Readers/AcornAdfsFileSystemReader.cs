@@ -4,6 +4,8 @@ using System.Text;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AcornAdfsFileSystemReader : IFileSystemReader
@@ -81,7 +83,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
             {
                 content = ReadFile(image, indirectAddress, length, resolve, name, warnings, ref metadataValid);
             }
-            var type = HasRiscOsTimestamp(load) ? (load >> 8) & 0xFFF : 0u;
+            var type = HasRiscOsTimestamp(load) ? (load >> BitPrimitives.BitsPerByte) & 0xFFF : 0u;
             var comment = HasRiscOsTimestamp(load)
                 ? $"RISC OS file type &{type:X3}, load &{load:X8}, execute &{execute:X8}"
                 : $"ADFS load &{load:X8}, execute &{execute:X8}";
@@ -196,7 +198,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     }
 
     private static int ReadUInt24(ReadOnlySpan<byte> data, int offset) =>
-        data[offset] | data[offset + 1] << 8 | data[offset + 2] << 16;
+        data[offset] | data[offset + 1] << BitPrimitives.BitsPerByte | data[offset + 2] << 16;
 
     private static bool HasRiscOsTimestamp(uint load) => (load & 0xFFF00000) == 0xFFF00000;
 

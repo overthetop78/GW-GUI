@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -11,7 +12,7 @@ internal sealed class AcornFileCoreNewMap
 {
     private const int DiscRecordOffset = 4;
     private const int DiscRecordLength = 60;
-    private const int DiscRecordBits = DiscRecordLength * 8;
+    private const int DiscRecordBits = DiscRecordLength * BitPrimitives.BitsPerByte;
     private const int RootFragment = 2;
 
     private readonly SectorImage _image;
@@ -60,7 +61,7 @@ internal sealed class AcornFileCoreNewMap
             var endBit = 32 + record.ZoneSizeBits;
             if (index == zones.Length - 1)
                 endBit = 32 + describedBits - ((record.ZoneCount - 1) * record.ZoneSizeBits - DiscRecordBits);
-            if (startBit >= endBit || endBit > block.Data.Count * 8) return false;
+            if (startBit >= endBit || endBit > block.Data.Count * BitPrimitives.BitsPerByte) return false;
             zones[index] = new(block.Data.ToArray(), startMapBit, startBit, endBit);
         }
 
@@ -110,7 +111,7 @@ internal sealed class AcornFileCoreNewMap
         var block = objectBlock;
         if ((indirectAddress & 0xFF) != 0)
             block += ((indirectAddress & 0xFF) - 1) << _log2ShareSize;
-        var fragmentId = (uint)indirectAddress >> 8;
+        var fragmentId = (uint)indirectAddress >> BitPrimitives.BitsPerByte;
         var zoneIndex = fragmentId == RootFragment ? _zones.Length >> 1 : checked((int)(fragmentId / _idsPerZone));
         if (zoneIndex < 0 || zoneIndex >= _zones.Length) return false;
 
@@ -194,7 +195,7 @@ internal sealed class AcornFileCoreNewMap
             var log2Sector = data[0];
             var idLength = data[4];
             var log2BytesPerMapBit = data[5];
-            var zones = data[9] | data[42] << 8;
+            var zones = data[9] | data[42] << BitPrimitives.BitsPerByte;
             var zoneSpare = BinaryPrimitives.ReadUInt16LittleEndian(data[10..12]);
             var root = BinaryPrimitives.ReadInt32LittleEndian(data[12..16]);
             var discSize = (long)BinaryPrimitives.ReadUInt32LittleEndian(data[16..20]) |

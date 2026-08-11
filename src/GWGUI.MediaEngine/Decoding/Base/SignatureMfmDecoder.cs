@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public abstract class SignatureMfmDecoder : IFluxDecoder
@@ -19,8 +21,8 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
             foreach (var signature in Signatures)
             {
                 if (!FluxBitReader.MatchBytes(stream, offset, signature.Pattern)) continue;
-                structures.Add(new(signature.Kind, offset, signature.Pattern.Length * 8, signature.Description));
-                offset += signature.Pattern.Length * 8 - 1; break;
+                structures.Add(new(signature.Kind, offset, signature.Pattern.Length * BitPrimitives.BitsPerByte, signature.Description));
+                offset += signature.Pattern.Length * BitPrimitives.BitsPerByte - 1; break;
             }
         }
         return new(Id, DisplayName, Math.Min(1, structures.Count / ExpectedStructures), stream.BitCellTicks, structures, []);

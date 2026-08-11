@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class DataGeneralFmTrackEncoder : TrackEncoderBase
@@ -16,7 +18,7 @@ public sealed class DataGeneralFmTrackEncoder : TrackEncoderBase
             bits.Gap(64);
             bits.Fm([0, 1]);
             var checksum = Checksum(sector.Data);
-            bits.Fm(sector.Data.Concat([(byte)(checksum >> 8), (byte)checksum]));
+            bits.Fm(sector.Data.Concat([(byte)(checksum >> BitPrimitives.BitsPerByte), (byte)checksum]));
             bits.Gap(128);
         }
         return bits;
@@ -28,7 +30,7 @@ public sealed class DataGeneralFmTrackEncoder : TrackEncoderBase
         for (var index = 0; index <= data.Count; index++)
         {
             var input = index < data.Count ? data[index] : (byte)0;
-            value = (ushort)(((value & 0xff) ^ (value >> 8)) | (((value & 0xff) ^ input) << 8));
+            value = (ushort)(((value & 0xff) ^ (value >> BitPrimitives.BitsPerByte)) | (((value & 0xff) ^ input) << BitPrimitives.BitsPerByte));
         }
         return value;
     }

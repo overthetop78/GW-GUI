@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 internal static class FluxEncoding
@@ -37,11 +39,11 @@ internal static class FluxEncoding
 
     private static byte[] Pack(IReadOnlyList<bool> bits)
     {
-        var bytes = new byte[(bits.Count + 7) / 8];
+        var bytes = new byte[(bits.Count + BitPrimitives.BitsPerByte - 1) / BitPrimitives.BitsPerByte];
         for (var index = 0; index < bits.Count; index++)
         {
             if (bits[index])
-                bytes[index / 8] |= (byte)(1 << (7 - index % 8));
+                bytes[index / BitPrimitives.BitsPerByte] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - index % BitPrimitives.BitsPerByte));
         }
 
         return bytes;

@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 internal static class AppleBitLatch
@@ -7,9 +9,9 @@ internal static class AppleBitLatch
         var result = new byte[count];
         for (var index = 0; index < count; index++)
         {
-            if (offset + 8 > bits.Count) return null;
+            if (offset + BitPrimitives.BitsPerByte > bits.Count) return null;
             byte value = 0;
-            for (var bit = 0; bit < 8; bit++)
+            for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++)
                 value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));
 
             while ((value & 0x80) == 0)

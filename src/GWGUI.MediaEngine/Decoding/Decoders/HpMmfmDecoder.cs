@@ -25,8 +25,8 @@ public sealed class HpMmfmDecoder : IFluxDecoder
             var id = TryDecodeBytes(stream, offset + 32, 4);
             if (id is null) continue;
             var headerValid = Crc16(id) == 0;
-            var cylinder = ReverseBits(id[0]);
-            var encodedSector = ReverseBits(id[1]);
+            var cylinder = Primitives.BitPrimitives.ReverseBits(id[0]);
+            var encodedSector = Primitives.BitPrimitives.ReverseBits(id[1]);
             var head = (byte)(encodedSector >> 7);
             var sectorNumber = encodedSector & 0x7f;
             var dataOffset = Find(stream, offset + 32 + 8 * 16, Math.Min(stream.Bits.Length, offset + 32 + 58 * 16), DataSync);
@@ -42,7 +42,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
                     if (encoded is null) continue;
                     dataValid = Crc16(encoded) == 0;
                     var payload = encoded.AsSpan(0, 256).ToArray();
-                    for (var index = 0; index < payload.Length; index++) payload[index] = ReverseBits(payload[index]);
+                    for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
                     for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
                     bytes.AddRange(payload);
                     structures.Add(new(FluxStructureKind.FormatData, dataOffset, 32 + encodedBytes * 16,
@@ -71,11 +71,9 @@ public sealed class HpMmfmDecoder : IFluxDecoder
 
     private static int Find(FluxBitstream stream, int start, int end, IReadOnlyList<byte> pattern)
     {
-        for (var offset = start; offset + pattern.Count * 8 <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) return offset;
+        for (var offset = start; offset + pattern.Count * Primitives.BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) return offset;
         return -1;
     }
-
-    private static byte ReverseBits(byte value) => Primitives.BitPrimitives.ReverseBits(value);
 
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 }

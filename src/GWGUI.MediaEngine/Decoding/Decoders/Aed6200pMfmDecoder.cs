@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
@@ -14,7 +16,7 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         const int headerBits = 7 * 16; var pairedData = new HashSet<int>();
-        for (var offset = 0; offset + SectorHeader.Length * 8 <= stream.Bits.Length; offset++)
+        for (var offset = 0; offset + SectorHeader.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SectorHeader)) continue;
             var complete = offset + headerBits <= stream.Bits.Length;
@@ -22,8 +24,8 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
             {
                 var header = TryDecodeMfmBytes(stream, offset, 7);
                 if (header is null) continue;
-                var size = (header[4] << 8) | header[2]; var headerValid = header[0] == 0xc6 && Crc16(header) == 0; bytes.AddRange(header);
-                var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * 8));
+                var size = (header[4] << BitPrimitives.BitsPerByte) | header[2]; var headerValid = header[0] == 0xc6 && Crc16(header) == 0; bytes.AddRange(header);
+                var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * BitPrimitives.BitsPerByte));
                 bool? dataValid = null; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
                 {
@@ -40,10 +42,10 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
                 sectors.Add(new(header[1], 0, header[3], SizeCode(size), size, integrity, offset));
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"AED 6200P C{header[1]} R{header[3]}, {size} bytes, header CRC {(headerValid ? "valid" : "invalid")}, data CRC {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
-                offset = Math.Max(offset + SectorHeader.Length * 8 - 1, structureEnd - 1);
+                offset = Math.Max(offset + SectorHeader.Length * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * 8, "AED 6200P C6 header mark"));
-            if (!complete) offset += SectorHeader.Length * 8 - 1;
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, "AED 6200P C6 header mark"));
+            if (!complete) offset += SectorHeader.Length * BitPrimitives.BitsPerByte - 1;
         }
         for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, "Unpaired AED 6200P data block")); offset += 15; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);

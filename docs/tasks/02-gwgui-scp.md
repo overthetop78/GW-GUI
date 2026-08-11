@@ -1770,11 +1770,11 @@
     - [x] Ajouter `BitsPerByte` avec la valeur `8` et `LeastSignificantBitMask` avec la valeur `1`, utilisées par l’algorithme d’inversion.
     - [x] Renommer `Reverse` en `ReverseBits` afin que l’opération effectuée soit explicite pour chaque consommateur.
     - [x] Remplacer dans la boucle les valeurs brutes `8` et `1` par les définitions précédentes.
-  - [ ] Suppression des relais dupliqués
-    - [ ] Remplacer `TrackEncoding.ReverseBits` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer cette méthode relais.
-    - [ ] Remplacer les méthodes privées `ReverseBits` de `ArburgDecoder`, `EmuFmDecoder`, `HeathkitFmDecoder` et `HpMmfmDecoder` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer ces quatre copies.
-    - [ ] Faire référencer `NibTrackFormat.BitsPerByte` à `BitPrimitives.BitsPerByte` ou supprimer la constante locale si tous ses consommateurs peuvent utiliser directement la primitive commune.
-    - [ ] Remplacer les autres nombres `8` uniquement lorsqu’ils représentent réellement le nombre de bits d’un octet, sans toucher aux tailles ou limites ayant un autre sens.
+  - [x] Suppression des relais dupliqués
+    - [x] Remplacer `TrackEncoding.ReverseBits` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer cette méthode relais.
+    - [x] Remplacer les méthodes privées `ReverseBits` de `ArburgDecoder`, `EmuFmDecoder`, `HeathkitFmDecoder` et `HpMmfmDecoder` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer ces quatre copies.
+    - [x] Faire référencer `NibTrackFormat.BitsPerByte` à `BitPrimitives.BitsPerByte` ou supprimer la constante locale si tous ses consommateurs peuvent utiliser directement la primitive commune.
+    - [x] Remplacer les autres nombres `8` uniquement lorsqu’ils représentent réellement le nombre de bits d’un octet, sans toucher aux tailles ou limites ayant un autre sens.
   - [ ] Mise en forme
     - [ ] Conserver la boucle et son unique instruction sur une ligne tant que l’expression complète reste lisible.
   - [ ] Documentation XML

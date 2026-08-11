@@ -5,6 +5,8 @@ using GWGUI.MediaEngine.FileSystems.Coherent;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 /// <summary>Read-only reader for the V7-style COHERENT file system used by the Commodore 900.</summary>
@@ -82,7 +84,7 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
         for (var index = 0; index < pointers.Length; index++)
         {
             var item = value.Slice(12 + index * 3, 3);
-            pointers[index] = item[1] | item[2] << 8 | item[0] << 16;
+            pointers[index] = item[1] | item[2] << BitPrimitives.BitsPerByte | item[0] << 16;
         }
         return new(BinaryPrimitives.ReadUInt16LittleEndian(value), CoherentSuperblockProbe.ReadCanonicalUInt32(value.Slice(8, 4)),
             pointers, CoherentSuperblockProbe.ReadCanonicalUInt32(value.Slice(56, 4)));

@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Decoding;
 
 public class AppleMacGcrDecoder : IFluxDecoder
@@ -33,7 +35,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
                 cylinder = (byte)(((values[2] & 3) << 6) | (values[0] & 0x3f)); head = (byte)((values[2] >> 5) & 1); number = values[1];
                 headerValid = (byte)((values[0] ^ values[1] ^ values[2] ^ values[3]) & 0x3f) == values[4];
             }
-            var headerEnd = offset + markBits + (header is null ? 0 : headerSymbols * 8);
+            var headerEnd = offset + markBits + (header is null ? 0 : headerSymbols * BitPrimitives.BitsPerByte);
             var dataOffset = headerValid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + 512), DataMark) : -1;
             bool? dataValid = null; byte[]? sectorData = null; byte[]? sectorTag = null; var structureEnd = headerEnd;
             if (dataOffset >= 0)
@@ -43,7 +45,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
                 {
                     var values = encoded.Select(value => Inverse[value]).ToArray(); var decoded = DecodeSixAndTwo(values.AsSpan(1, 699), out var checksum);
                     dataValid = checksum[3] == values[700] && checksum[2] == values[701] && checksum[1] == values[702] && checksum[0] == values[703];
-                    sectorTag = decoded.Take(12).ToArray(); sectorData = decoded.Skip(12).Take(512).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * 8;
+                    sectorTag = decoded.Take(12).ToArray(); sectorData = decoded.Skip(12).Take(512).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * BitPrimitives.BitsPerByte;
                     structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"Apple Macintosh data block, 512 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
                 }
                 else structures.Add(new(FluxStructureKind.AppleData, dataOffset, markBits, "Apple Macintosh data block, checksum unavailable"));
@@ -80,14 +82,14 @@ public class AppleMacGcrDecoder : IFluxDecoder
 
     private static byte[]? TryReadSymbols(FluxBitstream stream, int offset, int count)
     {
-        if (offset + count * 8 > stream.Bits.Length) return null;
+        if (offset + count * BitPrimitives.BitsPerByte > stream.Bits.Length) return null;
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeByte(stream, offset + index * 8, out result[index])) return null;
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeByte(stream, offset + index * BitPrimitives.BitsPerByte, out result[index])) return null;
         return result;
     }
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
-        for (var offset = start; offset + mark.Count * 8 <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
+        for (var offset = start; offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
         return -1;
     }
 }
