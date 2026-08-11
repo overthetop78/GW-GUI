@@ -11,7 +11,7 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != AmigaMfmFormat.SectorByteCount) throw new ArgumentException($"Amiga sectors contain {AmigaMfmFormat.SectorByteCount} bytes.");
+            if (sector.Data.Count != AmigaMfmFormat.SectorByteCount) throw AmigaMfmFormat.InvalidSectorSize(sector.Data.Count);
             byte[] info = [AmigaMfmFormat.FormatByte,(byte)(request.Cylinder << 1 | request.Head),(byte)sector.Number,(byte)request.Sectors.Count];
             var headerAndLabel = EncodeOddEven(info).Concat(new byte[AmigaMfmFormat.LabelByteCount]).ToArray();
             var headerParity = Parity(headerAndLabel, false);
@@ -33,7 +33,7 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
     }
     private static byte[] EncodeOddEven(IReadOnlyList<byte> values)
     {
-        if ((values.Count & 1) != 0) throw new ArgumentException("Amiga odd/even encoding requires an even byte count.");
+        if ((values.Count & 1) != 0) throw AmigaMfmFormat.OddEncodedByteCount(values.Count);
         var odd = new List<byte>(); var even = new List<byte>();
         for (var index = 0; index < values.Count; index += 2)
         {

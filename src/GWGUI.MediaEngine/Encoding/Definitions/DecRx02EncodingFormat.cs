@@ -40,4 +40,5 @@ internal static class DecRx02EncodingFormat
         (Array.AsReadOnly(Convert.FromHexString("55111455")), FmDataMark),
         (Array.AsReadOnly(Convert.FromHexString("55111544")), DataMarkFc),
         (Array.AsReadOnly(Convert.FromHexString("55111545")), M2FmDeletedDataMark)]);
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"DEC RX sectors contain {FmSectorByteCount} or {M2FmSectorByteCount} bytes; received {actualSize} bytes.");
 }

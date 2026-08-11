@@ -11,7 +11,7 @@ public sealed class Victor9kGcrTrackEncoder : TrackEncoderBase
         var bits=TrackEncoding.Bits();
         foreach(var sector in request.Sectors)
         {
-            if(sector.Data.Count!=Victor9kGcrFormat.SectorByteCount) throw new ArgumentException($"Victor 9000 sectors contain {Victor9kGcrFormat.SectorByteCount} bytes.");
+            if(sector.Data.Count!=Victor9kGcrFormat.SectorByteCount) throw Victor9kGcrFormat.InvalidSectorSize(sector.Data.Count);
             byte[] header=[Victor9kGcrFormat.HeaderType,(byte)request.Cylinder,(byte)sector.Number,(byte)(request.Cylinder+sector.Number),Victor9kGcrFormat.HeaderId2,Victor9kGcrFormat.HeaderId1];
             ushort checksum=0; foreach(var value in sector.Data) checksum+=value;
             AddBlock(bits,Victor9kGcrFormat.HeaderMarkHex,header); bits.Gap(Victor9kGcrFormat.HeaderGapBitCount);

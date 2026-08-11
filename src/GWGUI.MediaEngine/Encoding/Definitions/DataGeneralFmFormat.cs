@@ -11,4 +11,5 @@ internal static class DataGeneralFmFormat
     public const int HeadShift = 7;
     public const int SectorShift = 2;
     public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(FluxEncoding.EncodeFm(0x00,0x01));
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Data General sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

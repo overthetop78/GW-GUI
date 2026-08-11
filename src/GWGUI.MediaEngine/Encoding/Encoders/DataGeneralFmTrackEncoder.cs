@@ -13,7 +13,7 @@ public sealed class DataGeneralFmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != DataGeneralFmFormat.SectorSize) throw new ArgumentException("Data General sectors contain 512 bytes.");
+            if (sector.Data.Count != DataGeneralFmFormat.SectorSize) throw DataGeneralFmFormat.InvalidSectorSize(sector.Data.Count);
             bits.Raw(DataGeneralFmFormat.Sync.ToArray());
             bits.Fm([(byte)(request.Cylinder | request.Head << DataGeneralFmFormat.HeadShift), (byte)(sector.Number << DataGeneralFmFormat.SectorShift)]);
             bits.Gap(DataGeneralFmFormat.HeaderGapBitCount);

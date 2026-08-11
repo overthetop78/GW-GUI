@@ -12,7 +12,7 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != HpMmfmFormat.SectorSize) throw new ArgumentException("HP MMFM sectors contain 256 bytes.");
+            if (sector.Data.Count != HpMmfmFormat.SectorSize) throw HpMmfmFormat.InvalidSectorSize(sector.Data.Count);
             var encodedSector = (byte)(sector.Number | request.Head << HpMmfmFormat.HeadShift);
             byte[] identity = [Primitives.BitPrimitives.ReverseBits((byte)request.Cylinder), Primitives.BitPrimitives.ReverseBits(encodedSector)];
             bits.Raw(HpMmfmFormat.SectorSync.ToArray());

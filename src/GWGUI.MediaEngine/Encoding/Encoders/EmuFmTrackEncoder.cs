@@ -11,7 +11,7 @@ public sealed class EmuFmTrackEncoder : TrackEncoderBase
         var bits=TrackEncoding.Bits();
         foreach(var sector in request.Sectors)
         {
-            if(sector.Data.Count!=EmuFmFormat.SectorSize) throw new ArgumentException("E-mu sectors contain 3584 bytes.");
+            if(sector.Data.Count!=EmuFmFormat.SectorSize) throw EmuFmFormat.InvalidSectorSize(sector.Data.Count);
             var rawTrack=Primitives.BitPrimitives.ReverseBits((byte)(request.Cylinder<<EmuFmFormat.TrackShift|request.Head));
             var headerCrc=Primitives.Crc16Calculator.Compute([rawTrack],EmuFmFormat.CrcPolynomial,EmuFmFormat.CrcInitialValue);
             bits.Raw(EmuFmFormat.SectorMark.ToArray());

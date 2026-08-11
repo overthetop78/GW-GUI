@@ -11,4 +11,5 @@ internal static class HpMmfmFormat
     public const int DataGapBitCount = 256;
     public static IReadOnlyList<byte> SectorSync { get; } = Array.AsReadOnly<byte>([0x55,0x55,0x2a,0x54]);
     public static IReadOnlyList<byte> DataSync { get; } = Array.AsReadOnly<byte>([0x55,0x55,0x2a,0x44]);
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"HP MMFM sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

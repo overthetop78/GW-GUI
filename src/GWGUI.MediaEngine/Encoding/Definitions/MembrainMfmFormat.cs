@@ -22,4 +22,5 @@ internal static class MembrainMfmFormat
     public const ushort CrcInitialValue = Primitives.Crc16Calculator.ZeroInitialValue;
     public static IReadOnlyList<byte> SectorHeader { get; } = Array.AsReadOnly<byte>([0x44,0x89,0x55,0x54]);
     public static IReadOnlyList<byte> SectorData { get; } = Array.AsReadOnly<byte>([0x44,0x89,0x55,0x4a]);
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Membrain sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

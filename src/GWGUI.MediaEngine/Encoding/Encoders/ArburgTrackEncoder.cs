@@ -13,7 +13,7 @@ public sealed class ArburgTrackEncoder : TrackEncoderBase
         {
             var system=Attribute(sector,ArburgFormat.SystemAttribute,0)!=0;
             var useful=system?ArburgFormat.SystemUsefulSize:ArburgFormat.DataUsefulSize; var total=system?ArburgFormat.SystemBlockSize:ArburgFormat.DataBlockSize;
-            if(sector.Data.Count!=useful&&sector.Data.Count!=total) throw new ArgumentException($"Arburg {(system?"system":"data")} payload must contain {useful} useful bytes or {total} complete bytes.");
+            if(sector.Data.Count!=useful&&sector.Data.Count!=total) throw ArburgFormat.InvalidPayloadSize(system,sector.Data.Count);
             var data=sector.Data.Take(useful).ToArray(); ushort checksum=0; foreach(var value in data) checksum+=value;
             var block=data.Concat([(byte)checksum,(byte)(checksum>>8)]).Concat(Enumerable.Repeat((byte)0,total-useful-2));
             if(system)

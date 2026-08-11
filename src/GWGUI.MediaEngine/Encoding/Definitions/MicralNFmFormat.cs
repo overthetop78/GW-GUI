@@ -11,4 +11,5 @@ internal static class MicralNFmFormat
     public const byte ComplementMask = 0xff;
     public const int GapBitCount = 128;
     public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(FluxEncoding.EncodeFm(0,0,0,AddressMark));
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Micral N sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

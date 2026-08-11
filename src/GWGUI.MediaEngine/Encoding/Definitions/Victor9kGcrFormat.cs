@@ -2,6 +2,7 @@ namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 internal static class Victor9kGcrFormat
 {
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Victor 9000 sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
     public const string HeaderMarkHex = "5555555555551111";
     public const string DataMarkHex = "5555555555551104";
     public const int MarkByteCount = 8;

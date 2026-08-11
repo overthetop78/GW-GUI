@@ -12,7 +12,7 @@ public sealed class MembrainMfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != MembrainMfmFormat.SectorSize) throw new ArgumentException("Membrain sectors contain 512 bytes.");
+            if (sector.Data.Count != MembrainMfmFormat.SectorSize) throw MembrainMfmFormat.InvalidSectorSize(sector.Data.Count);
             var cylinderHigh = (byte)(request.Cylinder >> MembrainMfmFormat.CylinderLowBitCount);
             var packed = (byte)((request.Cylinder & MembrainMfmFormat.CylinderLowValueMask) << MembrainMfmFormat.CylinderLowShift | request.Head << MembrainMfmFormat.HeadShift | sector.Number & MembrainMfmFormat.SectorMask);
             byte[] header = [MembrainMfmFormat.SyncByte, MembrainMfmFormat.HeaderAddressMark, cylinderHigh, packed];

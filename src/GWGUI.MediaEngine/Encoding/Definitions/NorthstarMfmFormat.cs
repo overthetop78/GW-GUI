@@ -9,4 +9,5 @@ internal static class NorthstarMfmFormat
     public const byte SectorMask = 0x0f;
     public const int GapBitCount = 128;
     public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(FluxEncoding.EncodeMfm(0,0,0,0,0,0,0,AddressMark));
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"NorthStar sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

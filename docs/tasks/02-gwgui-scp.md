@@ -1939,9 +1939,9 @@
     - [x] Créer un fichier `Format.cs` nommé pour chacune de ces treize paires décodeur/encodeur.
     - [x] Déplacer dans chaque fichier les identifiants, marques, tailles, gaps, masques, tables et paramètres de checksum ou CRC actuellement écrits dans sa paire.
     - [x] Remplacer toutes les valeurs brutes correspondantes dans chaque décodeur et encodeur de la paire.
-  - [ ] Erreurs d’encodage et de décodage
-    - [ ] Créer dans chaque définition de format les méthodes d’erreur nécessaires pour injecter taille, piste, face, secteur, longueur ou encodage utilisés par ses messages actuels.
-    - [ ] Remplacer les textes et constructions directes d’exception dans chaque décodeur et encodeur par la méthode du format correspondant.
+  - [x] Erreurs d’encodage et de décodage
+    - [x] Créer dans chaque définition de format les méthodes d’erreur nécessaires pour injecter taille, piste, face, secteur, longueur ou encodage utilisés par ses messages actuels.
+    - [x] Remplacer les textes et constructions directes d’exception dans chaque décodeur et encodeur par la méthode du format correspondant.
   - [ ] Documentation XML
     - [ ] Documenter en français chaque fichier de définition créé et chacun de ses membres.
     - [ ] Mettre à jour la documentation française des décodeurs et encodeurs après remplacement des données brutes.

@@ -12,7 +12,7 @@ public class AppleMacGcrTrackEncoder : TrackEncoderBase
         var bits=TrackEncoding.Bits(); var format=(byte)Attribute(request,AppleMacGcrFormat.FormatAttributeName,DefaultFormat);
         foreach(var sector in request.Sectors)
         {
-            if(sector.Data.Count!=AppleMacGcrFormat.SectorByteCount) throw new ArgumentException($"Apple Macintosh sectors contain {AppleMacGcrFormat.SectorByteCount} bytes.");
+            if(sector.Data.Count!=AppleMacGcrFormat.SectorByteCount) throw AppleMacGcrFormat.InvalidSectorSize(sector.Data.Count);
             byte[] header=[(byte)(request.Cylinder&AppleMacGcrFormat.SixBitMask),(byte)sector.Number,(byte)((request.Cylinder>>AppleMacGcrFormat.CylinderHighBitShift&AppleMacGcrFormat.CylinderHighBitMask)|(request.Head<<AppleMacGcrFormat.HeadBitShift)),format];
             var checksum=(byte)(header.Aggregate(0,(value,item)=>value^item)&AppleMacGcrFormat.SixBitMask);
             bits.Gap(AppleMacGcrFormat.AddressLeadingGapBitCount,true); bits.Raw(AppleMacGcrFormat.AddressMark.ToArray()); bits.Raw(header.Append(checksum).Select(value=>AppleMacGcrFormat.SixAndTwoTable[value]).ToArray()); bits.Raw(AppleMacGcrFormat.EpilogueFirstByte,AppleMacGcrFormat.EpilogueSecondByte,AppleMacGcrFormat.SyncByte,AppleMacGcrFormat.SyncByte); bits.Gap(AppleMacGcrFormat.AddressTrailingGapBitCount,true);

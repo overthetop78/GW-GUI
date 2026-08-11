@@ -12,7 +12,7 @@ public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
         var useFiveAndThree = Attribute(request, AppleIIGcrFormat.SectorsPerTrackAttributeName, request.Sectors.Count) == AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != AppleIIGcrFormat.SectorSize) throw new ArgumentException($"Apple II sectors contain {AppleIIGcrFormat.SectorSize} bytes.");
+            if (sector.Data.Count != AppleIIGcrFormat.SectorSize) throw AppleIIGcrFormat.InvalidSectorSize(sector.Data.Count);
             bits.Gap(AppleIIGcrFormat.LeadingGapBitCount, true); bits.Raw(AppleIIGcrFormat.PrologueFirstByte, AppleIIGcrFormat.PrologueSecondByte, useFiveAndThree ? AppleIIGcrFormat.FiveAndThreeAddressPrologueLastByte : AppleIIGcrFormat.SixAndTwoAddressPrologueLastByte);
             foreach (var value in new[] { volume,(byte)request.Cylinder,(byte)sector.Number,(byte)(volume ^ request.Cylinder ^ sector.Number) }) bits.Raw((byte)((value >> 1) | AppleIIGcrFormat.FourAndFourMask),(byte)(value | AppleIIGcrFormat.FourAndFourMask));
             bits.Raw(AppleIIGcrFormat.EpilogueFirstByte, AppleIIGcrFormat.EpilogueSecondByte, AppleIIGcrFormat.EpilogueLastByte, AppleIIGcrFormat.SyncByte, AppleIIGcrFormat.SyncByte, AppleIIGcrFormat.SyncByte, AppleIIGcrFormat.PrologueFirstByte, AppleIIGcrFormat.PrologueSecondByte, AppleIIGcrFormat.DataPrologueLastByte);

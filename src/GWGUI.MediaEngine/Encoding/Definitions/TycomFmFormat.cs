@@ -16,4 +16,5 @@ internal static class TycomFmFormat
     public const ushort CrcInitialValue = Primitives.Crc16Calculator.AllBitsSetInitialValue;
     public static IReadOnlyList<byte> HeaderMark { get; } = Array.AsReadOnly<byte>([0x55,0x11,0x15,0x54]);
     public static IReadOnlyList<(IReadOnlyList<byte> Pattern, byte Mark)> DataMarks { get; } = Array.AsReadOnly<(IReadOnlyList<byte>,byte)>([(Array.AsReadOnly<byte>([0x55,0x11,0x14,0x44]),DeletedDataMark),(Array.AsReadOnly<byte>([0x55,0x11,0x14,0x45]),DataMarkF9),(Array.AsReadOnly<byte>([0x55,0x11,0x14,0x54]),DataMarkFa),(Array.AsReadOnly<byte>([0x55,0x11,0x14,0x55]),DataMark)]);
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"TYCOM sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

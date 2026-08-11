@@ -11,4 +11,5 @@ internal static class ArburgFormat
     public const int GapBitCount = 64;
     public static IReadOnlyList<byte> DataMark { get; } = Array.AsReadOnly<byte>([0x44,0x44,0x44,0x44,0x55,0x55,0x55,0x55]);
     public static IReadOnlyList<byte> SystemMark { get; } = Array.AsReadOnly<byte>([0x55,0x55,0x55,0x55,0x55,0x24,0x92,0x49]);
+    public static ArgumentException InvalidPayloadSize(bool system, int actualSize) => new($"Arburg {(system ? "system" : "data")} payload must contain {(system ? SystemUsefulSize : DataUsefulSize)} useful bytes or {(system ? SystemBlockSize : DataBlockSize)} complete bytes; received {actualSize} bytes.");
 }

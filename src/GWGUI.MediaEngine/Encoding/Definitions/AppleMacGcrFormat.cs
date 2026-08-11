@@ -2,6 +2,7 @@ namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 internal static class AppleMacGcrFormat
 {
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Apple Macintosh sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
     public const byte AddressMarkFirstByte = 0xd5;
     public const byte AddressMarkSecondByte = 0xaa;
     public const byte AddressMarkLastByte = 0x96;

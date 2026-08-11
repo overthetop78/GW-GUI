@@ -11,7 +11,7 @@ public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != NorthstarMfmFormat.SectorSize) throw new ArgumentException("NorthStar sectors contain 512 bytes.");
+            if (sector.Data.Count != NorthstarMfmFormat.SectorSize) throw NorthstarMfmFormat.InvalidSectorSize(sector.Data.Count);
             bits.Raw(NorthstarMfmFormat.SectorMark.ToArray());
             bits.Mfm([(byte)(request.Cylinder << NorthstarMfmFormat.CylinderShift | sector.Number & NorthstarMfmFormat.SectorMask)]);
             bits.Mfm(sector.Data);

@@ -2,6 +2,7 @@ namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 internal static class Commodore900GcrFormat
 {
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Commodore 900 sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
     public const byte HeaderMark = 0x08;
     public const byte DataMark = 0x07;
     public const int HeaderByteCount = 4;

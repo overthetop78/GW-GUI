@@ -13,7 +13,7 @@ public sealed class Commodore900GcrTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != Commodore900GcrFormat.SectorByteCount) throw new ArgumentException($"Commodore 900 sectors contain {Commodore900GcrFormat.SectorByteCount} bytes.");
+            if (sector.Data.Count != Commodore900GcrFormat.SectorByteCount) throw Commodore900GcrFormat.InvalidSectorSize(sector.Data.Count);
             var headerChecksum = (byte)(Commodore900GcrFormat.HeaderMark ^ request.Cylinder ^ sector.Number);
             var dataChecksum = Commodore900GcrFormat.DataMark;
             foreach (var value in sector.Data) dataChecksum ^= value;

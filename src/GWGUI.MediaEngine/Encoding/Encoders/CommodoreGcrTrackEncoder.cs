@@ -12,7 +12,7 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
         var diskTrack=Attribute(request,CommodoreGcrFormat.TrackAttributeName,request.Cylinder+1+request.Head*CommodoreGcrFormat.TracksPerSide);
         foreach(var sector in request.Sectors)
         {
-            if(sector.Data.Count!=CommodoreGcrFormat.SectorByteCount) throw new ArgumentException($"Commodore sectors contain {CommodoreGcrFormat.SectorByteCount} bytes.");
+            if(sector.Data.Count!=CommodoreGcrFormat.SectorByteCount) throw CommodoreGcrFormat.InvalidSectorSize(sector.Data.Count);
             byte[] header=[CommodoreGcrFormat.HeaderMark,(byte)(sector.Number^diskTrack^id2^id1),(byte)sector.Number,(byte)diskTrack,id2,id1];
             byte checksum=0; foreach(var value in sector.Data) checksum^=value;
             bits.Gap(CommodoreGcrFormat.LeadingGapBitCount,true); bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount)); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true); Gcr(bits,header); bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true);

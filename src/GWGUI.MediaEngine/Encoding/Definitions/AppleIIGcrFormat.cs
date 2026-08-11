@@ -2,6 +2,7 @@ namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 internal static class AppleIIGcrFormat
 {
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Apple II sectors contain {SectorSize} bytes; received {actualSize} bytes.");
     public const byte PrologueFirstByte = 0xd5;
     public const byte PrologueSecondByte = 0xaa;
     public const byte SixAndTwoAddressPrologueLastByte = 0x96;

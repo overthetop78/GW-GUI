@@ -12,7 +12,7 @@ public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
         var volume = (byte)Attribute(request, "volume", 0);
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != HeathkitFmFormat.SectorSize) throw new ArgumentException("Heathkit sectors contain 256 bytes.");
+            if (sector.Data.Count != HeathkitFmFormat.SectorSize) throw HeathkitFmFormat.InvalidSectorSize(sector.Data.Count);
             byte[] identity = [volume, (byte)request.Cylinder, (byte)sector.Number];
             bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
             bits.Fm(identity.Append(TrackEncoding.RotatingChecksum(identity)).Select(Primitives.BitPrimitives.ReverseBits));

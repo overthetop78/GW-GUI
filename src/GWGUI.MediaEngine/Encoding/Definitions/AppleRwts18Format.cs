@@ -2,6 +2,7 @@ namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 internal static class AppleRwts18Format
 {
+    public static ArgumentException InvalidTrackLayout(int actualSectorCount) => new($"RWTS18 tracks contain {SectorCount} sectors of {SectorByteCount} bytes; received {actualSectorCount} sectors.");
     public const ushort EncodedAddressMark = 0xd59d;
     public const int AddressMarkBitCount = 16;
     public const int AddressByteCount = 4;

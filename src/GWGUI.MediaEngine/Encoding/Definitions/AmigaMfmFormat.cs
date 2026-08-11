@@ -2,6 +2,8 @@ namespace GWGUI.MediaEngine.Encoding.Definitions;
 
 internal static class AmigaMfmFormat
 {
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Amiga sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
+    public static ArgumentException OddEncodedByteCount(int actualCount) => new($"Amiga odd/even encoding requires an even byte count; received {actualCount} bytes.");
     public const ushort SyncWord = 0x4489;
     public const int SyncWordCount = 2;
     public const int EncodedByteBitCount = 16;

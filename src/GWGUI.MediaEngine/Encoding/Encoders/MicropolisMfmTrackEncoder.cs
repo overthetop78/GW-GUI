@@ -12,7 +12,7 @@ public sealed class MicropolisMfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != MicropolisMfmFormat.SectorSize) throw new ArgumentException("Micropolis sectors contain 256 bytes.");
+            if (sector.Data.Count != MicropolisMfmFormat.SectorSize) throw MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count);
             var record = new List<byte> { MicropolisMfmFormat.AddressMark, (byte)request.Cylinder, (byte)sector.Number };
             record.AddRange(Enumerable.Repeat((byte)0, MicropolisMfmFormat.HeaderPaddingByteCount));
             record.AddRange(sector.Data);

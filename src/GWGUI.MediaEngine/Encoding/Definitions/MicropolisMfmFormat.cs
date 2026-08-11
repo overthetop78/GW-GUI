@@ -13,4 +13,5 @@ internal static class MicropolisMfmFormat
     public const int GapBitCount = 128;
     public const int ChecksumModulus = 255;
     public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(FluxEncoding.EncodeMfm(0,0,0,AddressMark));
+    public static ArgumentException InvalidSectorSize(int actualSize) => new($"Micropolis sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

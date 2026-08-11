@@ -13,7 +13,7 @@ public sealed class DecRx02TrackEncoder : TrackEncoderBase
         var bits=TrackEncoding.Bits();
         foreach(var sector in request.Sectors)
         {
-            var m2fm=sector.Data.Count==DecRx02Geometry.PhysicalSectorSize; if(!m2fm&&sector.Data.Count!=DecRx02EncodingFormat.FmSectorByteCount) throw new ArgumentException("DEC RX sectors contain 128 or 256 bytes.");
+            var m2fm=sector.Data.Count==DecRx02Geometry.PhysicalSectorSize; if(!m2fm&&sector.Data.Count!=DecRx02EncodingFormat.FmSectorByteCount) throw DecRx02EncodingFormat.InvalidSectorSize(sector.Data.Count);
             var sizeCode=sector.SizeCode??(m2fm?DecRx02EncodingFormat.M2FmSectorSizeCode:DecRx02EncodingFormat.FmSectorSizeCode);
             var headerCrc=Crc16Calculator.Compute([DecRx02EncodingFormat.HeaderAddressMark,(byte)request.Cylinder,(byte)request.Head,(byte)sector.Number,sizeCode],DecRx02EncodingFormat.CrcPolynomial,DecRx02EncodingFormat.CrcInitialValue);
             bits.Raw(DecRx02EncodingFormat.HeaderMark.ToArray()); bits.DoubleFm([(byte)request.Cylinder,(byte)request.Head,(byte)sector.Number,sizeCode,(byte)(headerCrc>>BitPrimitives.BitsPerByte),(byte)headerCrc]); bits.Gap(DecRx02EncodingFormat.GapBitCount,true);
