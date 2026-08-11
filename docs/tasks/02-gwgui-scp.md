@@ -2363,7 +2363,7 @@
       - [x] Tester l'appariement d'une adresse avec son bloc de données suivant.
       - [x] Tester un prologue de données non apparié et vérifier la structure produite.
       - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
-  - [ ] `Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
+  - [x] `Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
     - [x] Identité Lisa FileWare
       - [x] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
       - [x] Remplacer le nom brut `Apple Lisa FileWare GCR` par la définition centrale correspondante.
