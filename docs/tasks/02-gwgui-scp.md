@@ -2014,7 +2014,7 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmigaMfmDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, TryDecodeMfmBytes, DecodeOddEven, Interleave`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleIIGcrDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleIIGcrDecoder.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder`.
     - [x] Adapter le registre et les consommateurs.
