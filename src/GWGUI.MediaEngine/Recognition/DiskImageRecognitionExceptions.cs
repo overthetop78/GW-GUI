@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Recognition;
 internal static class DiskImageRecognitionExceptions
 {
     /// <summary>Crée l'erreur signalant qu'aucune politique n'a validé le fichier.</summary>
-    /// <param name="path">Chemin du fichier examiné.</param>
+    /// <param name="context">Contexte contenant le chemin, l'extension et le format demandé.</param>
     /// <returns>Exception contenant le chemin dont aucun candidat n'a été trouvé.</returns>
     public static NotSupportedException NoCandidateValidated(DiskImageRecognitionContext context) => new($"No recognition policy validated image '{context.Path}' with extension '{context.Extension}' and requested format '{context.RequestedFormatId ?? "<automatic>"}'.");
 
@@ -20,9 +20,8 @@ internal static class DiskImageRecognitionExceptions
     public static NotSupportedException PolicyDoesNotSupportRequestedFormat(string requestedFormat, string policyName) => new($"The selected format '{requestedFormat}' is not supported by recognition policy '{policyName}'.");
 
     /// <summary>Crée l'erreur finale conservant tous les rejets produits par les politiques candidates.</summary>
-    /// <param name="path">Chemin du fichier examiné.</param>
-    /// <param name="requestedFormat">Identifiant demandé, ou <see langword="null"/> en détection automatique.</param>
-    /// <param name="rejections">Rejets enveloppés avec l'identité de chaque politique.</param>
+    /// <param name="context">Contexte contenant le chemin, l'extension et le format demandé.</param>
+    /// <param name="failures">Rejets techniques associés à l'identité de chaque politique.</param>
     /// <returns>Exception agrégée contenant tous les rejets dans leur ordre d'exécution.</returns>
     public static DiskImageCandidatesRejectedException AllCandidatesRejected(DiskImageRecognitionContext context, IReadOnlyList<DiskImageRecognitionFailure> failures)
     {

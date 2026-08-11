@@ -1440,10 +1440,10 @@
     - [x] Mise en forme
       - [x] Supprimer le commentaire devenu inutile dans le `catch` après l’enregistrement explicite du rejet.
       - [x] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.
-    - [ ] Documentation XML et encodage
-      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du registre, de son champ, de son constructeur et de `ReadAsync`.
-      - [ ] Documenter en français `DiskImageRecognitionFailure` et ses deux données.
-      - [ ] Documenter l’ordre d’essai, les deux résultats d’échec, les exceptions poursuivies et celles immédiatement propagées.
+    - [x] Documentation XML et encodage
+      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du registre, de son champ, de son constructeur et de `ReadAsync`.
+      - [x] Documenter en français `DiskImageRecognitionFailure` et ses deux données.
+      - [x] Documenter l’ordre d’essai, les deux résultats d’échec, les exceptions poursuivies et celles immédiatement propagées.
     - [ ] Tests ciblés
       - [ ] Tester une politique incompatible, un candidat accepté, un rejet suivi d’une réussite et deux rejets successifs.
       - [ ] Vérifier l’identité et l’exception interne conservées pour chaque candidat rejeté.

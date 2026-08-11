@@ -10,6 +10,8 @@ public sealed class DiskImageRecognitionRegistry
 
     /// <summary>Crée un registre utilisant l'ordre explicite des politiques fournies.</summary>
     /// <param name="policies">Politiques de reconnaissance ordonnées.</param>
+    /// <exception cref="ArgumentNullException">La collection est nulle.</exception>
+    /// <exception cref="ArgumentException">La collection contient une politique nulle.</exception>
     public DiskImageRecognitionRegistry(IReadOnlyList<IDiskImageRecognitionPolicy> policies)
     {
         ArgumentNullException.ThrowIfNull(policies);
@@ -22,7 +24,8 @@ public sealed class DiskImageRecognitionRegistry
     /// <param name="requestedFormatId">Identifiant de format demandé, ou <see langword="null"/> pour la détection automatique.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la reconnaissance.</param>
     /// <returns>Première image sectorielle validée par une politique.</returns>
-    /// <exception cref="NotSupportedException">Aucune politique ne valide le contenu.</exception>
+    /// <exception cref="NotSupportedException">Aucune politique n'est présélectionnée.</exception>
+    /// <exception cref="DiskImageCandidatesRejectedException">Toutes les politiques présélectionnées rejettent le contenu.</exception>
     /// <exception cref="OperationCanceledException">Le jeton est annulé avant ou pendant le parcours.</exception>
     /// <exception cref="IOException">Le fichier ne peut pas être consulté ou lu.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>

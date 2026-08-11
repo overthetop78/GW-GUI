@@ -9,6 +9,11 @@ public sealed record DiskImageRecognitionFailure(string PolicyName, Exception Ex
 public sealed class DiskImageCandidatesRejectedException : AggregateException
 {
     /// <summary>Crée l'erreur finale et conserve les rejets dans leur ordre d'exécution.</summary>
+    /// <param name="message">Message technique final.</param>
+    /// <param name="path">Chemin examiné.</param>
+    /// <param name="extension">Extension normalisée.</param>
+    /// <param name="requestedFormatId">Identifiant demandé, ou <see langword="null"/>.</param>
+    /// <param name="failures">Rejets ordonnés des politiques présélectionnées.</param>
     public DiskImageCandidatesRejectedException(string message, string path, string extension, string? requestedFormatId, IReadOnlyList<DiskImageRecognitionFailure> failures)
         : base(message, failures.Select(failure => failure.Exception))
     {
