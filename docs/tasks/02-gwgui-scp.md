@@ -1989,10 +1989,10 @@
     - [x] Documenter en français `AppleBitLatch`, son masque de synchronisation et `TryReadBytes`.
     - [x] Documenter le déplacement de l'offset, le résultat nul lorsque les bits manquent et les exceptions de paramètres.
     - [x] Conserver sur une seule ligne la signature complète de `TryReadBytes`.
-  - [ ] Tests ciblés
-    - [ ] Tester un octet déjà synchronisé et un octet nécessitant un décalage jusqu'au premier bit haut.
-    - [ ] Tester plusieurs octets successifs et vérifier la valeur finale de l'offset.
-    - [ ] Tester un flux tronqué, un nombre négatif et un offset hors limites.
+  - [x] Tests ciblés
+    - [x] Tester un octet déjà synchronisé et un octet nécessitant un décalage jusqu'au premier bit haut.
+    - [x] Tester plusieurs octets successifs et vérifier la valeur finale de l'offset.
+    - [x] Tester un flux tronqué, un nombre négatif et un offset hors limites.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/SignatureMfmDecoder.cs`
   - [ ] Suppression de la classe de base inutilisée
     - [ ] Confirmer que chaque classe actuellement dérivée remplace entièrement `Decode` et n'appelle jamais l'implémentation de `SignatureMfmDecoder`.
