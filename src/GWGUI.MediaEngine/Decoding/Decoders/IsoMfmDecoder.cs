@@ -6,7 +6,7 @@ namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class IsoMfmDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.IsoMfm; public string DisplayName => "ISO MFM (Atari ST / IBM PC)";
+    public string Id => FluxCodecIds.IsoMfm; public string DisplayName => FluxCodecDisplayNames.IsoMfm;
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var centre = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);

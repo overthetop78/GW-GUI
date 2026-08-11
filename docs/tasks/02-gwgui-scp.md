@@ -1877,10 +1877,10 @@
     - [x] Vérifier que chaque décodeur et son encodeur correspondant utilisent la même constante lorsqu’ils représentent le même codec.
     - [x] Exécuter les tests ciblés des registres de codecs.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecDisplayNames.cs`
-  - [ ] Création des noms affichés de codecs
-    - [ ] Créer `Decoding/Definitions/FluxCodecDisplayNames.cs` séparément de `FluxCodecIds.cs`.
-    - [ ] Ajouter une constante pour chaque nom actuellement retourné en texte brut par la propriété `DisplayName` des décodeurs et encodeurs.
-    - [ ] Utiliser exactement un nom affiché par identifiant de codec et signaler dans les tests tout identifiant portant plusieurs noms contradictoires.
+  - [x] Création des noms affichés de codecs
+    - [x] Créer `Decoding/Definitions/FluxCodecDisplayNames.cs` séparément de `FluxCodecIds.cs`.
+    - [x] Ajouter une constante pour chaque nom actuellement retourné en texte brut par la propriété `DisplayName` des décodeurs et encodeurs.
+    - [x] Utiliser exactement un nom affiché par identifiant de codec et signaler dans les tests tout identifiant portant plusieurs noms contradictoires.
   - [ ] Raccordement des décodeurs
     - [ ] Remplacer les noms affichés bruts dans les décodeurs AED, Amiga, Apple II, Lisa, Macintosh, RWTS18, Arburg et Centurion.
     - [ ] Remplacer les noms affichés bruts dans les décodeurs Commodore, Commodore 900, Data General, DEC RX02, E-mu, Heathkit et HP.

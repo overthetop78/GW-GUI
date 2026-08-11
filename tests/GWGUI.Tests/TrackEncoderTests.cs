@@ -26,6 +26,15 @@ public sealed class TrackEncoderTests
     }
 
     [Fact]
+    public void RegisteredCodecIdentifiersHaveOneDisplayName()
+    {
+        var codecs = new FluxDecoderRegistry().Decoders.Select(codec => (codec.Id, codec.DisplayName)).Concat(new FluxEncoderRegistry().Encoders.Select(codec => (codec.Id, codec.DisplayName)));
+        var contradictions = codecs.GroupBy(codec => codec.Id, StringComparer.Ordinal).Where(group => group.Select(codec => codec.DisplayName).Distinct(StringComparer.Ordinal).Count() > 1).Select(group => group.Key).ToArray();
+
+        Assert.Empty(contradictions);
+    }
+
+    [Fact]
     public void RegistryContainsEncoderForEverySemanticDecoder()
     {
         var decoderIds = new FluxDecoderRegistry().Decoders.Where(item => item.Id != "raw").Select(item => item.Id).Order().ToArray();
