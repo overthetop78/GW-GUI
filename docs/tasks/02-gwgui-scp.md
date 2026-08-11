@@ -2388,12 +2388,12 @@
       - [x] Y définir les masques et décalages utilisés pour reconstruire cylindre, face, format et checksum.
       - [x] Remplacer les valeurs brutes `8192`, `512`, `24`, `5`, `704`, `699`, `700`, `701`, `702`, `703`, `12`, `524`, `175` et `174` par ces définitions.
       - [x] Remplacer les tailles sectorielles et le code de taille bruts des `DecodedSector` par les définitions communes correspondantes.
-    - [ ] Table et codec 6-and-2
-      - [ ] Réutiliser la table 6-and-2 Apple commune créée dans le groupe `AppleIIGcrDecoder.cs` et supprimer la copie locale.
-      - [ ] Utiliser une table inverse commune en lecture seule au lieu de reconstruire une copie propre au décodeur.
-      - [ ] Déplacer dans le codec commun le décodage 6-and-2 et le calcul du checksum correspondant à l'encodage de `AppleMacGcrTrackEncoder.cs`.
-      - [ ] Raccorder le décodeur et l'encodeur Macintosh/Lisa au codec commun puis supprimer les algorithmes dupliqués devenus inutiles.
-      - [ ] Conserver dans le décodeur les opérations propres au balayage du flux, à la lecture des symboles et à l'appariement des marques.
+    - [x] Table et codec 6-and-2
+      - [x] Réutiliser la table 6-and-2 Apple commune créée dans le groupe `AppleIIGcrDecoder.cs` et supprimer la copie locale.
+      - [x] Utiliser une table inverse commune en lecture seule au lieu de reconstruire une copie propre au décodeur.
+      - [x] Déplacer dans le codec commun le décodage 6-and-2 et le calcul du checksum correspondant à l'encodage de `AppleMacGcrTrackEncoder.cs`.
+      - [x] Raccorder le décodeur et l'encodeur Macintosh/Lisa au codec commun puis supprimer les algorithmes dupliqués devenus inutiles.
+      - [x] Conserver dans le décodeur les opérations propres au balayage du flux, à la lecture des symboles et à l'appariement des marques.
     - [ ] Décodage et résultat
       - [ ] Supprimer le paramètre `ScpRevolution` inutilisé de `DecodeCore`.
       - [ ] Modifier `DecodeBits` pour appeler directement `DecodeCore` sans construire une fausse `ScpRevolution`.

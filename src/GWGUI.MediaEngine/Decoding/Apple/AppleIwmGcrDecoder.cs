@@ -51,7 +51,7 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
                 pairedData.Add(dataOffset); var encoded = TryReadSymbols(stream, dataOffset + markBits, dataSymbols);
                 if (encoded is not null && encoded.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
                 {
-                    var values = encoded.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray(); var decoded = DecodeSixAndTwo(values.AsSpan(1, AppleIwmGcrFormat.EncodedPayloadSymbolCount), out var checksum);
+                    var values = encoded.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray(); var decoded = AppleIwmGcrCodec.Decode(values.AsSpan(1, AppleIwmGcrFormat.EncodedPayloadSymbolCount), out var checksum);
                     dataValid = checksum[3] == values[AppleIwmGcrFormat.PackedChecksumSymbolOffset] && checksum[2] == values[AppleIwmGcrFormat.ThirdChecksumSymbolOffset] && checksum[1] == values[AppleIwmGcrFormat.SecondChecksumSymbolOffset] && checksum[0] == values[AppleIwmGcrFormat.FirstChecksumSymbolOffset];
                     sectorTag = decoded.Take(AppleIwmGcrFormat.TagByteCount).ToArray(); sectorData = decoded.Skip(AppleIwmGcrFormat.TagByteCount).Take(AppleIwmGcrFormat.SectorByteCount).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * BitPrimitives.BitsPerByte;
                     structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Apple Macintosh", FluxStructureKind.AppleData, cylinder, head, number, AppleIwmGcrFormat.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
@@ -65,29 +65,6 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
         }
         for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, AppleIwmGcrFormat.DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, markBits, FluxStructureDescriptions.UnpairedData("Apple Macintosh", null, "data prologue"))); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
-    }
-
-    /// <summary>Exécute le traitement « Decode Six And Two » propre à ce format.</summary>
-    /// <param name="symbols">Symboles GCR six-et-deux.</param><param name="checksum">Somme de contrôle reconstruite.</param><returns>Bloc tagué décodé.</returns>
-    private static byte[] DecodeSixAndTwo(ReadOnlySpan<byte> symbols, out byte[] checksum)
-    {
-        var b1 = new byte[AppleIwmGcrFormat.GroupByteCount]; var b2 = new byte[AppleIwmGcrFormat.GroupByteCount]; var b3 = new byte[AppleIwmGcrFormat.GroupByteCount]; var source = 0;
-        for (var index = 0; index <= AppleIwmGcrFormat.LastGroupIndex; index++)
-        {
-            var w4 = symbols[source++]; var w1 = symbols[source++]; var w2 = symbols[source++]; var w3 = index == AppleIwmGcrFormat.LastGroupIndex ? (byte)0 : symbols[source++];
-            b1[index] = (byte)((w1 & AppleIwmGcrFormat.SixBitMask) | ((w4 << AppleIwmGcrFormat.ThirdChecksumShift) & AppleIwmGcrFormat.EncodedHighBitsMask)); b2[index] = (byte)((w2 & AppleIwmGcrFormat.SixBitMask) | ((w4 << AppleIwmGcrFormat.SecondChecksumShift) & AppleIwmGcrFormat.EncodedHighBitsMask)); b3[index] = (byte)((w3 & AppleIwmGcrFormat.SixBitMask) | ((w4 << AppleIwmGcrFormat.FirstChecksumShift) & AppleIwmGcrFormat.EncodedHighBitsMask));
-        }
-        var output = new byte[AppleIwmGcrFormat.TaggedSectorByteCount]; uint c1 = 0, c2 = 0, c3 = 0; var destination = 0;
-        for (var index = 0; ; index++)
-        {
-            c1 = (c1 & AppleIwmGcrFormat.ChecksumByteMask) << 1; if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0) c1++;
-            var value = (byte)(b1[index] ^ c1); c3 += value; if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0) { c3++; c1 &= AppleIwmGcrFormat.ChecksumByteMask; } output[destination++] = value;
-            value = (byte)(b2[index] ^ c3); c2 += value; if (c3 > AppleIwmGcrFormat.ChecksumByteMask) { c2++; c3 &= AppleIwmGcrFormat.ChecksumByteMask; } output[destination++] = value;
-            if (destination == AppleIwmGcrFormat.TaggedSectorByteCount) break;
-            value = (byte)(b3[index] ^ c2); c1 += value; if (c2 > AppleIwmGcrFormat.ChecksumByteMask) { c1++; c2 &= AppleIwmGcrFormat.ChecksumByteMask; } output[destination++] = value;
-        }
-        checksum = [(byte)(c1 & AppleIwmGcrFormat.SixBitMask), (byte)(c2 & AppleIwmGcrFormat.SixBitMask), (byte)(c3 & AppleIwmGcrFormat.SixBitMask), (byte)(((c1 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.FirstChecksumShift) | ((c2 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.SecondChecksumShift) | ((c3 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.ThirdChecksumShift))];
-        return output;
     }
 
     /// <summary>Exécute le traitement « Try Read Symbols » propre à ce format.</summary>
