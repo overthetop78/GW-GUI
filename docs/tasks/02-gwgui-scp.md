@@ -1784,7 +1784,7 @@
     - [x] Tester l’inversion de `0x00`, `0xFF`, `0x01`, `0x80` et d’une valeur non symétrique connue.
     - [x] Vérifier pour chaque valeur d’octet que deux inversions successives restituent la valeur initiale.
     - [x] Exécuter les tests ciblés des cinq consommateurs dont la méthode relais a été supprimée.
-- [ ] `src/GWGUI.MediaEngine/Primitives/Crc16Calculator.cs`
+- [x] `src/GWGUI.MediaEngine/Primitives/Crc16Calculator.cs`
   - [x] Responsabilité et emplacement
     - [x] Conserver le fichier dans `Primitives`, car son calcul CRC ne dépend d’aucun format ou codec particulier.
     - [x] Conserver `Compute` pour une séquence complète et `Update` pour l’ajout incrémental d’un octet dans le même composant.
