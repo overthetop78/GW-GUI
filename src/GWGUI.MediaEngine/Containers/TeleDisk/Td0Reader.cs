@@ -6,17 +6,31 @@ using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.TeleDisk;
 
-/// <summary>Reads ordinary (uppercase TD signature) TeleDisk images.</summary>
+/// <summary>Lit les conteneurs TeleDisk non compressés portant la signature majuscule.</summary>
 public sealed class Td0Reader : ISectorImageReader
 {
+    /// <summary>Indique si l'extension du chemin correspond à un conteneur TeleDisk.</summary>
+    /// <param name="path">Chemin à examiner.</param>
+    /// <returns><see langword="true"/> lorsque l'extension est <c>.td0</c>.</returns>
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase);
 
+    /// <summary>Lit un conteneur TeleDisk et reconstruit son image sectorielle.</summary>
+    /// <param name="path">Chemin du fichier TeleDisk.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du fichier.</param>
+    /// <returns>L'image sectorielle reconstruite.</returns>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="InvalidDataException">Le conteneur, un CRC, une piste, un secteur ou son encodage est invalide.</exception>
+    /// <exception cref="OperationCanceledException">La lecture est annulée.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         return Read(data);
     }
 
+    /// <summary>Analyse les octets d'un conteneur TeleDisk non compressé.</summary>
+    /// <param name="data">Contenu complet du conteneur.</param>
+    /// <returns>L'image sectorielle reconstruite.</returns>
+    /// <exception cref="InvalidDataException">Le conteneur, un CRC, une piste, un secteur ou son encodage est invalide.</exception>
     internal static SectorImage Read(ReadOnlySpan<byte> data)
     {
         if (data.Length < Td0Layout.HeaderSize) throw Td0Exceptions.Truncated(Td0Section.ImageHeader, 0, Td0Layout.HeaderSize, data.Length);
@@ -112,11 +126,23 @@ public sealed class Td0Reader : ISectorImageReader
         return new SectorImage(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: blocks.LongLength * blockSize, logicalBlockCount: blocks.Length);
     }
 
+    /// <summary>Vérifie qu'une section est entièrement disponible dans le conteneur.</summary>
+    /// <param name="data">Contenu complet du conteneur.</param>
+    /// <param name="offset">Position de la section, en octets.</param>
+    /// <param name="count">Longueur attendue, en octets.</param>
+    /// <param name="section">Section TeleDisk contrôlée.</param>
+    /// <exception cref="InvalidDataException">La section dépasse les données disponibles.</exception>
     private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, Td0Section section)
     {
         if (offset < 0 || count < 0 || offset > data.Length - count) throw Td0Exceptions.Truncated(section, offset, count, Math.Max(0, data.Length - offset));
     }
 
+    /// <summary>Lit un entier non signé 16 bits little-endian.</summary>
+    /// <param name="data">Données contenant l'entier.</param>
+    /// <param name="offset">Position de l'entier, en octets.</param>
+    /// <returns>Valeur entière lue.</returns>
     private static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(data[offset..]);
+    /// <summary>Conserve un secteur TeleDisk analysé avant la construction de l'image sectorielle.</summary>
+    /// <param name="Cylinder">Cylindre logique.</param><param name="Head">Face logique.</param><param name="Number">Numéro de secteur.</param><param name="Data">Données décodées.</param><param name="IntegrityValid">État du CRC de données lu sur le support.</param>
     private sealed record Td0Sector(int Cylinder, int Head, int Number, byte[] Data, bool IntegrityValid);
 }

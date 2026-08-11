@@ -1384,9 +1384,9 @@
   - [x] Mise en forme
     - [x] Remplacer les suites de deux ou trois instructions écrites sur une même ligne par une instruction par ligne.
     - [x] Remettre sur une seule ligne les constructions de `SectorBlock`, de `SectorImage` et les conditions courtes qui tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Remplacer la CSDoc anglaise existante et documenter en français `Td0Reader`, `Td0SectorDecoder`, `Td0SectorImageClassifier`, les définitions, les enums, les valeurs d’enum, les erreurs et le record privé `Td0Sector`.
-    - [ ] Ajouter la documentation XML française de chaque constructeur et méthode, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Remplacer la CSDoc anglaise existante et documenter en français `Td0Reader`, `Td0SectorDecoder`, `Td0SectorImageClassifier`, les définitions, les enums, les valeurs d’enum, les erreurs et le record privé `Td0Sector`.
+    - [x] Ajouter la documentation XML française de chaque constructeur et méthode, avec paramètres, résultat, exceptions, unités et invariants applicables.
   - [ ] Tests déterministes
     - [ ] Ajouter une image TD0 locale non compressée contenant secteurs bruts, répétés et encodés par motif avec états connus.
     - [ ] Vérifier l’en-tête, le commentaire, les pistes, les tailles, les trois encodages de données, l’ordre logique, l’intégrité et les CRC.

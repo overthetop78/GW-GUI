@@ -2,8 +2,18 @@ using System.Buffers.Binary;
 
 namespace GWGUI.MediaEngine.Containers.TeleDisk;
 
+/// <summary>Décode les trois représentations de charge utile sectorielle TeleDisk.</summary>
 internal static class Td0SectorDecoder
 {
+    /// <summary>Décode une charge utile sectorielle en contrôlant sa longueur finale.</summary>
+    /// <param name="encoded">Charge utile encodée.</param>
+    /// <param name="encoding">Encodage TeleDisk appliqué.</param>
+    /// <param name="expectedLength">Longueur décodée attendue, en octets.</param>
+    /// <param name="cylinder">Cylindre utilisé dans les diagnostics.</param>
+    /// <param name="head">Face utilisée dans les diagnostics.</param>
+    /// <param name="sector">Numéro de secteur utilisé dans les diagnostics.</param>
+    /// <returns>Données sectorielles décodées.</returns>
+    /// <exception cref="InvalidDataException">L'encodage est inconnu, tronqué ou produit une longueur incorrecte.</exception>
     public static byte[] Decode(ReadOnlySpan<byte> encoded, Td0SectorEncoding encoding, int expectedLength, int cylinder, int head, int sector)
     {
         var output = new List<byte>(expectedLength);
@@ -51,5 +61,9 @@ internal static class Td0SectorDecoder
         return output.ToArray();
     }
 
+    /// <summary>Lit un entier non signé 16 bits little-endian dans une charge utile.</summary>
+    /// <param name="data">Données contenant l'entier.</param>
+    /// <param name="offset">Position de l'entier, en octets.</param>
+    /// <returns>Valeur entière lue.</returns>
     private static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(data[offset..]);
 }

@@ -4,8 +4,16 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Recognition.TeleDisk;
 
+/// <summary>Classe une image sectorielle reconstruite depuis un conteneur TeleDisk.</summary>
 internal static class Td0SectorImageClassifier
 {
+    /// <summary>Détermine l'identifiant de format depuis le secteur de démarrage et la géométrie observée.</summary>
+    /// <param name="blocks">Blocs sectoriels reconstruits.</param>
+    /// <param name="blockSize">Taille sectorielle dominante, en octets.</param>
+    /// <param name="cylinders">Nombre de cylindres.</param>
+    /// <param name="heads">Nombre de faces.</param>
+    /// <param name="sectorsPerTrack">Nombre maximal de secteurs par piste.</param>
+    /// <returns>Identifiant IBM reconnu ou identifiant UCSD de repli.</returns>
     public static string Detect(IReadOnlyList<SectorBlock> blocks, int blockSize, int cylinders, int heads, int sectorsPerTrack)
     {
         var boot = blocks.FirstOrDefault(block => block.Address.Cylinder == 0 && block.Address.Head == 0 && block.Address.Number == 1)?.Data;
