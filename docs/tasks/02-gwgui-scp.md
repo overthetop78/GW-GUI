@@ -2480,12 +2480,12 @@
     - [x] Responsabilité et héritage
       - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
       - [x] Supprimer la propriété `Signatures` devenue inutile avec cet héritage.
-    - [ ] Définitions Centurion MFM
-      - [ ] Créer `Decoding/Definitions/CenturionMfmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, les marques de secteur et de données, leurs descriptions et leurs longueurs.
-      - [ ] Y définir les quatre octets d'en-tête, les positions du cylindre et du secteur, la clé attendue, la longueur du champ de taille et les deux octets de CRC.
-      - [ ] Y définir la distance de recherche `400`, les tailles minimales des préfixes et les valeurs d'avancement du balayage.
-      - [ ] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
+    - [x] Définitions Centurion MFM
+      - [x] Créer `Decoding/Definitions/CenturionMfmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, les marques de secteur et de données, leurs descriptions et leurs longueurs.
+      - [x] Y définir les quatre octets d'en-tête, les positions du cylindre et du secteur, la clé attendue, la longueur du champ de taille et les deux octets de CRC.
+      - [x] Y définir la distance de recherche `400`, les tailles minimales des préfixes et les valeurs d'avancement du balayage.
+      - [x] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
     - [ ] Primitives et décodage
       - [ ] Remplacer les décodages MFM espacés de 16 bits par la primitive MFM commune.
       - [ ] Remplacer `SizeCode` par la définition commune calculant le code depuis la taille sectorielle puis supprimer la méthode locale.
