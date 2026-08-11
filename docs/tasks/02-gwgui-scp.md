@@ -2254,12 +2254,12 @@
     - [x] Responsabilité et héritage
       - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
       - [x] Supprimer la propriété `Signatures` devenue inutile.
-    - [ ] Définitions AED 6200P
-      - [ ] Créer `Decoding/Definitions/Aed6200pMfmFormat.cs`.
-      - [ ] Y déplacer sous une forme binaire immuable la marque d'en-tête et les quatre marques de données.
-      - [ ] Y nommer le nombre de sept octets d'en-tête et les positions de la marque, du cylindre, de la taille basse, du secteur et de la taille haute.
-      - [ ] Y nommer la marque d'en-tête décodée `0xC6`, les marques de données décodées `0xC0` à `0xC3`, la fenêtre de recherche et les longueurs de marque et de CRC.
-      - [ ] Documenter en français le type et chaque définition avec son unité et son emplacement.
+    - [x] Définitions AED 6200P
+      - [x] Créer `Decoding/Definitions/Aed6200pMfmFormat.cs`.
+      - [x] Y déplacer sous une forme binaire immuable la marque d'en-tête et les quatre marques de données.
+      - [x] Y nommer le nombre de sept octets d'en-tête et les positions de la marque, du cylindre, de la taille basse, du secteur et de la taille haute.
+      - [x] Y nommer la marque d'en-tête décodée `0xC6`, les marques de données décodées `0xC0` à `0xC3`, la fenêtre de recherche et les longueurs de marque et de CRC.
+      - [x] Documenter en français le type et chaque définition avec son unité et son emplacement.
     - [ ] Définitions MFM communes
       - [ ] Créer une constante commune pour les seize bits encodés nécessaires à la lecture d'un octet MFM.
       - [ ] Remplacer dans le décodeur chaque multiplication brute par `16` correspondant à cette unité.

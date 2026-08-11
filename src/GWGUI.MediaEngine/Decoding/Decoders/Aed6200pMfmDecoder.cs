@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -7,10 +7,6 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode les pistes utilisant le format Aed6200p MFM.</summary>
 public sealed class Aed6200pMfmDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Sector Header » utilisée par ce codec.</summary>
-    private static readonly byte[] SectorHeader = Aed6200pMfmFormat.HeaderPattern.ToArray();
-    /// <summary>Conserve la définition « Sector Data » utilisée par ce codec.</summary>
-    private static readonly byte[][] SectorData = Aed6200pMfmFormat.DataPatterns.Select(pattern => pattern.ToArray()).ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.Aed6200pMfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
@@ -23,16 +19,16 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         const int headerBits = Aed6200pMfmFormat.HeaderByteCount * 16; var pairedData = new HashSet<int>();
-        for (var offset = 0; offset + SectorHeader.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
+        for (var offset = 0; offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, SectorHeader)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, Aed6200pMfmFormat.HeaderPattern)) continue;
             var complete = offset + headerBits <= stream.Bits.Length;
             if (complete)
             {
                 var header = TryDecodeMfmBytes(stream, offset, Aed6200pMfmFormat.HeaderByteCount);
                 if (header is null) continue;
-                var size = (header[4] << BitPrimitives.BitsPerByte) | header[2]; var headerValid = header[0] == Aed6200pMfmFormat.HeaderAddressMark && Primitives.Crc16Calculator.Compute(header) == 0; bytes.AddRange(header);
-                var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * BitPrimitives.BitsPerByte));
+                var size = (header[Aed6200pMfmFormat.SizeHighOffset] << BitPrimitives.BitsPerByte) | header[Aed6200pMfmFormat.SizeLowOffset]; var headerValid = header[Aed6200pMfmFormat.HeaderMarkOffset] == Aed6200pMfmFormat.HeaderAddressMark && Primitives.Crc16Calculator.Compute(header) == 0; bytes.AddRange(header);
+                var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + Aed6200pMfmFormat.DataSearchWindowByteCount * BitPrimitives.BitsPerByte));
                 bool? dataValid = null; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
                 {
@@ -41,20 +37,20 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
                     {
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
-                        dataValid = data[0] is >= Aed6200pMfmFormat.DeletedDataMark and <= Aed6200pMfmFormat.DataMark && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size)); structureEnd = (int)dataEnd;
-                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("AED 6200P", FluxStructureKind.FormatData, 0, 0, 0, size, data[0], null)}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
+                        dataValid = data[Aed6200pMfmFormat.HeaderMarkOffset] is >= Aed6200pMfmFormat.FirstDataAddressMark and <= Aed6200pMfmFormat.LastDataAddressMark && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size)); structureEnd = (int)dataEnd;
+                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("AED 6200P", FluxStructureKind.FormatData, 0, 0, 0, size, data[Aed6200pMfmFormat.HeaderMarkOffset], null)}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
                     }
                     else structures.Add(new(FluxStructureKind.FormatData, dataOffset, 16, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatData, null, "CRC unavailable")));
                 }
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-                sectors.Add(new(header[1], 0, header[3], SizeCode(size), size, integrity, offset));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[1], 0, header[3], size, null, null, headerValid, dataValid)));
-                offset = Math.Max(offset + SectorHeader.Length * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
+                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], SizeCode(size), size, integrity, offset));
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], size, null, null, headerValid, dataValid)));
+                offset = Math.Max(offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatHeader, Aed6200pMfmFormat.HeaderAddressMark, null)));
-            if (!complete) offset += SectorHeader.Length * BitPrimitives.BitsPerByte - 1;
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatHeader, Aed6200pMfmFormat.HeaderAddressMark, null)));
+            if (!complete) offset += Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1;
         }
-        for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, FluxStructureDescriptions.UnpairedData("AED 6200P", null, null))); offset += 15; }
+        for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (Aed6200pMfmFormat.DataPatterns.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, FluxStructureDescriptions.UnpairedData("AED 6200P", null, null))); offset += 15; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
@@ -65,7 +61,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     /// <returns>Offset en bits de la première marque trouvée, ou <c>-1</c> si aucune marque complète n'est présente dans l'intervalle.</returns>
     private static int FindDataMark(FluxBitstream stream, int start, int end)
     {
-        for (var offset = Math.Max(0, start); offset + 16 <= end; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
+        for (var offset = Math.Max(0, start); offset + 16 <= end; offset++) if (Aed6200pMfmFormat.DataPatterns.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
         return -1;
     }
 
