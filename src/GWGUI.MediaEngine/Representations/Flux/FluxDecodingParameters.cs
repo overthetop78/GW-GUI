@@ -45,6 +45,8 @@ internal static class FluxDecodingParameters
     public const int BitsPerByte = 8;
     /// <summary>Nombre de bits comparés par la recherche d'un motif <see cref="ushort"/>.</summary>
     public const int UshortPatternBitCount = 16;
+    /// <summary>Nombre minimal de bits accepté par la recherche d'un motif de longueur variable.</summary>
+    public const int MinimumPatternBitCount = 1;
     /// <summary>Nombre maximal de bits comparés par la recherche d'un motif <see cref="uint"/>.</summary>
     public const int MaximumUintPatternBitCount = 32;
     /// <summary>Nombre de cellules MFM parcourues pour décoder un bit de données.</summary>

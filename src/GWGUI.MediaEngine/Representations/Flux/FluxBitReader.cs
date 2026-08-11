@@ -8,7 +8,15 @@ internal static class FluxBitReader
     /// <param name="offset">Position du premier bit à comparer.</param>
     /// <param name="pattern">Motif de seize bits attendu.</param>
     /// <returns><see langword="true"/> lorsque le motif correspond ; sinon <see langword="false"/>.</returns>
-    public static bool Match(FluxBitstream stream, int offset, ushort pattern) { if (!IsValidRange(stream, offset, 16)) return false; for (var bit = 0; bit < 16; bit++) if (stream.Bits[offset + bit] != ((pattern & (1 << (15 - bit))) != 0)) return false; return true; }
+    public static bool Match(FluxBitstream stream, int offset, ushort pattern)
+    {
+        if (!IsValidRange(stream, offset, FluxDecodingParameters.UshortPatternBitCount)) return false;
+        for (var bit = 0; bit < FluxDecodingParameters.UshortPatternBitCount; bit++)
+        {
+            if (stream.Bits[offset + bit] != ((pattern & (1 << (FluxDecodingParameters.UshortPatternBitCount - 1 - bit))) != 0)) return false;
+        }
+        return true;
+    }
 
     /// <summary>Vérifie un motif de longueur variable à l'offset demandé.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
@@ -16,14 +24,37 @@ internal static class FluxBitReader
     /// <param name="pattern">Motif attendu.</param>
     /// <param name="length">Nombre de bits du motif à comparer.</param>
     /// <returns><see langword="true"/> lorsque le motif correspond ; sinon <see langword="false"/>.</returns>
-    public static bool Match(FluxBitstream stream, int offset, uint pattern, int length) { if (length is < 1 or > 32 || !IsValidRange(stream, offset, length)) return false; for (var bit = 0; bit < length; bit++) if (stream.Bits[offset + bit] != ((pattern & (1u << (length - 1 - bit))) != 0)) return false; return true; }
+    public static bool Match(FluxBitstream stream, int offset, uint pattern, int length)
+    {
+        if (length < FluxDecodingParameters.MinimumPatternBitCount || length > FluxDecodingParameters.MaximumUintPatternBitCount || !IsValidRange(stream, offset, length)) return false;
+        for (var bit = 0; bit < length; bit++)
+        {
+            if (stream.Bits[offset + bit] != ((pattern & (1u << (length - 1 - bit))) != 0)) return false;
+        }
+        return true;
+    }
 
     /// <summary>Vérifie une suite d'octets représentée bit par bit à l'offset demandé.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
     /// <param name="offset">Position du premier bit à comparer.</param>
     /// <param name="pattern">Octets attendus.</param>
     /// <returns><see langword="true"/> lorsque le motif correspond ; sinon <see langword="false"/>.</returns>
-    public static bool MatchBytes(FluxBitstream stream, int offset, IReadOnlyList<byte> pattern) { if (!IsValidRange(stream, offset, pattern.Count * 8)) return false; for (var index = 0; index < pattern.Count; index++) for (var bit = 0; bit < 8; bit++) if (stream.Bits[offset + index * 8 + bit] != ((pattern[index] & (1 << (7 - bit))) != 0)) return false; return true; }
+    public static bool MatchBytes(FluxBitstream stream, int offset, IReadOnlyList<byte> pattern)
+    {
+        if (pattern.Count > int.MaxValue / FluxDecodingParameters.BitsPerByte) return false;
+        var length = pattern.Count * FluxDecodingParameters.BitsPerByte;
+        if (!IsValidRange(stream, offset, length)) return false;
+        for (var index = 0; index < pattern.Count; index++)
+        {
+            for (var bit = 0; bit < FluxDecodingParameters.BitsPerByte; bit++)
+            {
+                var streamIndex = offset + index * FluxDecodingParameters.BitsPerByte + bit;
+                var patternMask = 1 << (FluxDecodingParameters.BitsPerByte - 1 - bit);
+                if (stream.Bits[streamIndex] != ((pattern[index] & patternMask) != 0)) return false;
+            }
+        }
+        return true;
+    }
 
     /// <summary>Décode les huit bits de données d'un octet MFM.</summary>
     /// <param name="stream">Flux de bits à lire.</param>

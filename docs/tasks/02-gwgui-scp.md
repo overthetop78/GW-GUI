@@ -1717,12 +1717,12 @@
       - [x] Créer une fonction commune qui valide un offset non négatif et une longueur sans addition susceptible de dépasser `int`.
       - [x] Faire rejeter proprement un offset négatif, une longueur négative ou une plage dépassant les bits.
       - [x] Utiliser cette validation dans toutes les correspondances et lectures d'octets.
-    - [ ] Correspondance de motifs
-      - [ ] Conserver une surcharge pour un motif 16 bits et utiliser la largeur nommée correspondante.
-      - [ ] Conserver une surcharge pour un motif jusqu'à 32 bits et valider la longueur entre un et 32.
-      - [ ] Valider la multiplication du nombre d'octets du motif par huit dans `MatchBytes`.
-      - [ ] Développer les boucles actuellement compactées afin qu'une ligne ne contienne pas plusieurs boucles, conditions et retours.
-      - [ ] Retourner faux lorsqu'une plage complète ne peut pas être lue sans accéder au tableau.
+    - [x] Correspondance de motifs
+      - [x] Conserver une surcharge pour un motif 16 bits et utiliser la largeur nommée correspondante.
+      - [x] Conserver une surcharge pour un motif jusqu'à 32 bits et valider la longueur entre un et 32.
+      - [x] Valider la multiplication du nombre d'octets du motif par huit dans `MatchBytes`.
+      - [x] Développer les boucles actuellement compactées afin qu'une ligne ne contienne pas plusieurs boucles, conditions et retours.
+      - [x] Retourner faux lorsqu'une plage complète ne peut pas être lue sans accéder au tableau.
     - [ ] Décodage d'octets
       - [ ] Remplacer les décodages partiels silencieux par des méthodes `TryDecode...` qui échouent si les huit bits de données ne sont pas tous disponibles.
       - [ ] Conserver les positions actuelles du bit de données pour brut, MFM sur deux cellules et FM32 sur quatre cellules.
