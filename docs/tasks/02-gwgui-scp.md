@@ -1674,10 +1674,10 @@
       - [x] Extraire le calcul de percentile bas dans une fonction privée nommée.
       - [x] Utiliser les définitions du percentile et de la durée minimale sans conserver `50`, zéro ou un comme paramètres bruts de l'algorithme.
       - [x] Traduire les commentaires anglais sur les transitions FM et le risque de verrouillage sur deux cellules en CSDoc française de cette règle.
-    - [ ] Estimation non-FM
-      - [ ] Extraire la sélection du cinquième inférieur et de sa médiane dans une fonction privée nommée.
-      - [ ] Utiliser les définitions du cinquième, de la médiane et de la division par deux.
-      - [ ] Conserver l'ordre croissant et uniquement les intervalles strictement positifs.
+    - [x] Estimation non-FM
+      - [x] Extraire la sélection du cinquième inférieur et de sa médiane dans une fonction privée nommée.
+      - [x] Utiliser les définitions du cinquième, de la médiane et de la division par deux.
+      - [x] Conserver l'ordre croissant et uniquement les intervalles strictement positifs.
     - [ ] Estimation NRZI
       - [ ] Réutiliser la fonction commune de percentile bas sans dupliquer le tri et les trois replis.
       - [ ] Traduire les commentaires anglais sur le cluster temporel GCR en CSDoc française.

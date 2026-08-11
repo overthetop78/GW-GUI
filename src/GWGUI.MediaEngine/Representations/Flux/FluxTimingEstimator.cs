@@ -26,8 +26,8 @@ internal static class FluxTimingEstimator
         {
             return Math.Max(FluxDecodingParameters.MinimumBitCellTicks, SelectLowPercentile(sorted));
         }
-        var sampleLength = Math.Max(1, sorted.Length / 5); var lowerCluster = sorted.Take(sampleLength).ToArray(); var robustLower = lowerCluster[lowerCluster.Length / 2];
-        return Math.Max(1, robustLower / 2d);
+        var robustLower = SelectLowerClusterMedian(sorted);
+        return Math.Max(1, robustLower / FluxDecodingParameters.RobustIntervalToBitCellDivisor);
     }
 
     /// <summary>Estime la durée d'une cellule NRZI depuis les intervalles observés.</summary>
@@ -50,5 +50,12 @@ internal static class FluxTimingEstimator
     {
         var percentile = Math.Min(sorted.Count / FluxDecodingParameters.LowPercentileDivisor, sorted.Count - 1);
         return sorted[percentile];
+    }
+
+    private static uint SelectLowerClusterMedian(IReadOnlyList<uint> sorted)
+    {
+        var sampleLength = Math.Max(1, sorted.Count / FluxDecodingParameters.LowerClusterDivisor);
+        var lowerCluster = sorted.Take(sampleLength).ToArray();
+        return lowerCluster[lowerCluster.Length / FluxDecodingParameters.MedianDivisor];
     }
 }

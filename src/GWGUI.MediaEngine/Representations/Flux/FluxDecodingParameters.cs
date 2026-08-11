@@ -33,6 +33,8 @@ internal static class FluxDecodingParameters
     public const int LowPercentileDivisor = 50;
     /// <summary>Diviseur sélectionnant le cinquième inférieur des intervalles pour l'estimation non-FM.</summary>
     public const int LowerClusterDivisor = 5;
+    /// <summary>Diviseur sélectionnant la médiane d'un groupe d'intervalles ordonnés.</summary>
+    public const int MedianDivisor = 2;
     /// <summary>Diviseur convertissant l'intervalle robuste en durée de cellule non-FM.</summary>
     public const double RobustIntervalToBitCellDivisor = 2d;
     /// <summary>Durée de cellule utilisée lorsque l'estimation ne trouve aucun intervalle positif, en ticks.</summary>
