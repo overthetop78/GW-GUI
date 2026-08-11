@@ -1,11 +1,12 @@
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class HpMmfmDecoder : IFluxDecoder
 {
-    private static readonly byte[] SectorSync = [0x55, 0x55, 0x2a, 0x54];
-    private static readonly byte[] DataSync = [0x55, 0x55, 0x2a, 0x44];
+    private static readonly byte[] SectorSync = HpMmfmFormat.SectorSync.ToArray();
+    private static readonly byte[] DataSync = HpMmfmFormat.DataSync.ToArray();
 
     public string Id => FluxCodecIds.HpMmfm;
     public string DisplayName => FluxCodecDisplayNames.HpMmfm;
@@ -27,21 +28,21 @@ public sealed class HpMmfmDecoder : IFluxDecoder
             var headerValid = Primitives.Crc16Calculator.Compute(id) == 0;
             var cylinder = Primitives.BitPrimitives.ReverseBits(id[0]);
             var encodedSector = Primitives.BitPrimitives.ReverseBits(id[1]);
-            var head = (byte)(encodedSector >> 7);
-            var sectorNumber = encodedSector & 0x7f;
+            var head = (byte)(encodedSector >> HpMmfmFormat.HeadShift);
+            var sectorNumber = encodedSector & HpMmfmFormat.SectorMask;
             var dataOffset = Find(stream, offset + 32 + 8 * 16, Math.Min(stream.Bits.Length, offset + 32 + 58 * 16), DataSync);
             bool? dataValid = null;
 
             if (dataOffset >= 0 && usedDataOffsets.Add(dataOffset))
             {
-                const int encodedBytes = 258;
+                const int encodedBytes = HpMmfmFormat.EncodedDataByteCount;
                 var dataStart = dataOffset + 32;
                 if (dataStart + encodedBytes * 16 <= stream.Bits.Length)
                 {
                     var encoded = TryDecodeBytes(stream, dataStart, encodedBytes);
                     if (encoded is null) continue;
                     dataValid = Primitives.Crc16Calculator.Compute(encoded) == 0;
-                    var payload = encoded.AsSpan(0, 256).ToArray();
+                    var payload = encoded.AsSpan(0, HpMmfmFormat.SectorSize).ToArray();
                     for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
                     for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
                     bytes.AddRange(payload);
@@ -53,7 +54,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
             bool? integrity = !headerValid || dataValid == false
                 ? false
                 : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, head, sectorNumber, 1, 256, integrity, offset));
+            sectors.Add(new(cylinder, head, sectorNumber, 1, HpMmfmFormat.SectorSize, integrity, offset));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, 96,
                 $"HP MMFM C{cylinder} H{head} R{sectorNumber}, header CRC {(headerValid ? "valid" : "invalid")}"));
             offset += 31;

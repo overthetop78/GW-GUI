@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Encoding.Definitions;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
@@ -9,12 +11,12 @@ public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != 512) throw new ArgumentException("NorthStar sectors contain 512 bytes.");
-            bits.Mfm([0,0,0,0,0,0,0,0xfb]);
-            bits.Mfm([(byte)(request.Cylinder << 4 | sector.Number & 15)]);
+            if (sector.Data.Count != NorthstarMfmFormat.SectorSize) throw new ArgumentException("NorthStar sectors contain 512 bytes.");
+            bits.Raw(NorthstarMfmFormat.SectorMark.ToArray());
+            bits.Mfm([(byte)(request.Cylinder << NorthstarMfmFormat.CylinderShift | sector.Number & NorthstarMfmFormat.SectorMask)]);
             bits.Mfm(sector.Data);
             bits.Mfm([TrackEncoding.RotatingChecksum(sector.Data)]);
-            bits.Gap(128);
+            bits.Gap(NorthstarMfmFormat.GapBitCount);
         }
         return bits;
     }

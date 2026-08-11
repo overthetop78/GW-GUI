@@ -1,13 +1,13 @@
 using GWGUI.MediaEngine.Containers.Scp;
-
+using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class TycomFmDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] HeaderMark = [0x55,0x11,0x15,0x54];
-    private static readonly (byte[] Pattern, byte Mark)[] DataMarks = [([0x55,0x11,0x14,0x44], 0xf8), ([0x55,0x11,0x14,0x45], 0xf9), ([0x55,0x11,0x14,0x54], 0xfa), ([0x55,0x11,0x14,0x55], 0xfb)];
+    private static readonly byte[] HeaderMark = TycomFmFormat.HeaderMark.ToArray();
+    private static readonly (byte[] Pattern, byte Mark)[] DataMarks = TycomFmFormat.DataMarks.Select(item => (item.Pattern.ToArray(),item.Mark)).ToArray();
     public override string Id => FluxCodecIds.TycomFm; public override string DisplayName => FluxCodecDisplayNames.TycomFm;
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "TYCOM sector header"), .. DataMarks.Select(item => (item.Pattern, FluxStructureKind.FormatData, $"TYCOM {item.Mark:X2} data"))];
@@ -16,9 +16,9 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedData = new HashSet<int>();
-        const int markBits = 4 * BitPrimitives.BitsPerByte;
-        const int headerBits = 5 * 32;
-        const int sectorSize = 128;
+        var markBits = HeaderMark.Length * BitPrimitives.BitsPerByte;
+        const int headerBits = (TycomFmFormat.HeaderDecodedByteCount + 1) * 32;
+        const int sectorSize = TycomFmFormat.SectorSize;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
@@ -26,25 +26,25 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "TYCOM sector header")); offset += markBits - 1; continue;
             }
-            var header = TryDecodeFmBytes(stream, offset + 32, 4);
+            var header = TryDecodeFmBytes(stream, offset + HeaderMark.Length * BitPrimitives.BitsPerByte, TycomFmFormat.HeaderDecodedByteCount);
             if (header is null) continue;
             var cylinder = header[0]; var number = header[1];
             var crcHigh = header[2]; var crcLow = header[3];
-            if (Primitives.Crc16Calculator.Compute([0xfe, cylinder, (byte)number, crcHigh, crcLow]) != 0)
+            if (Primitives.Crc16Calculator.Compute([TycomFmFormat.HeaderAddressMark, cylinder, (byte)number, crcHigh, crcLow], TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue) != 0)
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"TYCOM C{cylinder} R{number}, header CRC invalid")); offset += markBits - 1; continue;
             }
             bytes.AddRange([cylinder, (byte)number]);
 
-            var data = FindNextDataMark(stream, offset + headerBits, (88 + 16) * BitPrimitives.BitsPerByte * 2);
-            var completeData = data.Offset >= 0 && data.Offset + (1 + sectorSize + 2) * 32 <= stream.Bits.Length;
+            var data = FindNextDataMark(stream, offset + headerBits, TycomFmFormat.DataSearchByteCount * BitPrimitives.BitsPerByte * 2);
+            var completeData = data.Offset >= 0 && data.Offset + (1 + sectorSize + TycomFmFormat.CrcByteCount) * 32 <= stream.Bits.Length;
             bool? dataCrcValid = null;
             if (completeData)
             {
-                var block = TryDecodeFmBytes(stream, data.Offset, 1 + sectorSize + 2);
+                var block = TryDecodeFmBytes(stream, data.Offset, 1 + sectorSize + TycomFmFormat.CrcByteCount);
                 if (block is null) continue;
-                ushort crc = Primitives.Crc16Calculator.AllBitsSetInitialValue; var payload = new byte[sectorSize];
-                for (var index = 0; index < block.Length; index++) { var value = block[index]; crc = Primitives.Crc16Calculator.Update(crc, value); if (index is > 0 and <= sectorSize) payload[index - 1] = value; }
+                ushort crc = TycomFmFormat.CrcInitialValue; var payload = new byte[sectorSize];
+                for (var index = 0; index < block.Length; index++) { var value = block[index]; crc = Primitives.Crc16Calculator.Update(crc, value, TycomFmFormat.CrcPolynomial); if (index is > 0 and <= sectorSize) payload[index - 1] = value; }
                 dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, (1 + sectorSize + 2) * 32, $"TYCOM {data.Mark:X2} C{cylinder} R{number} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
             }

@@ -1935,10 +1935,10 @@
     - [x] Créer `Encoding/Definitions/DecRx02EncodingFormat.cs`.
     - [x] Déplacer les marques FM, tailles physiques, transformation M2FM, codes de taille, gaps et paramètres CRC communs.
     - [x] Remplacer les valeurs brutes dans `DecRx02Decoder.cs` et `DecRx02TrackEncoder.cs` et utiliser `DecRx02Geometry` pour leur géométrie.
-  - [ ] Formats AED, Arburg, Centurion, Data General, EMU, Heathkit, HP, Membrain, Micral N, Micropolis, North Star, QD MO5 et Tycom
-    - [ ] Créer un fichier `Format.cs` nommé pour chacune de ces treize paires décodeur/encodeur.
-    - [ ] Déplacer dans chaque fichier les identifiants, marques, tailles, gaps, masques, tables et paramètres de checksum ou CRC actuellement écrits dans sa paire.
-    - [ ] Remplacer toutes les valeurs brutes correspondantes dans chaque décodeur et encodeur de la paire.
+  - [x] Formats AED, Arburg, Centurion, Data General, EMU, Heathkit, HP, Membrain, Micral N, Micropolis, North Star, QD MO5 et Tycom
+    - [x] Créer un fichier `Format.cs` nommé pour chacune de ces treize paires décodeur/encodeur.
+    - [x] Déplacer dans chaque fichier les identifiants, marques, tailles, gaps, masques, tables et paramètres de checksum ou CRC actuellement écrits dans sa paire.
+    - [x] Remplacer toutes les valeurs brutes correspondantes dans chaque décodeur et encodeur de la paire.
   - [ ] Erreurs d’encodage et de décodage
     - [ ] Créer dans chaque définition de format les méthodes d’erreur nécessaires pour injecter taille, piste, face, secteur, longueur ou encodage utilisés par ses messages actuels.
     - [ ] Remplacer les textes et constructions directes d’exception dans chaque décodeur et encodeur par la méthode du format correspondant.

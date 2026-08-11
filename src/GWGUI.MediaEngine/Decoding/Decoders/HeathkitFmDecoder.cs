@@ -1,11 +1,12 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class HeathkitFmDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] SectorMark = FluxEncoding.EncodeFm(0, 0, 0, 0xbf);
+    private static readonly byte[] SectorMark = HeathkitFmFormat.SectorMark.ToArray();
     public override string Id => FluxCodecIds.HeathkitFm; public override string DisplayName => FluxCodecDisplayNames.HeathkitFm;
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Heathkit hard-sector header")];
@@ -14,8 +15,8 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
-        const int signatureBits = 4 * 16;
-        const int headerTailBits = 4 * 16;
+        const int signatureBits = HeathkitFmFormat.HeaderByteCount * 16;
+        const int headerTailBits = HeathkitFmFormat.HeaderByteCount * 16;
         for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;

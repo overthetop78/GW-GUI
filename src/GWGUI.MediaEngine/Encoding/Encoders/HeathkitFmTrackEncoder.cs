@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Encoding.Definitions;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
@@ -10,14 +12,14 @@ public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
         var volume = (byte)Attribute(request, "volume", 0);
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != 256) throw new ArgumentException("Heathkit sectors contain 256 bytes.");
+            if (sector.Data.Count != HeathkitFmFormat.SectorSize) throw new ArgumentException("Heathkit sectors contain 256 bytes.");
             byte[] identity = [volume, (byte)request.Cylinder, (byte)sector.Number];
-            bits.Fm([0,0,0,0xbf]);
+            bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
             bits.Fm(identity.Append(TrackEncoding.RotatingChecksum(identity)).Select(Primitives.BitPrimitives.ReverseBits));
-            bits.Gap(160);
-            bits.Fm([0,0,0,0xbf]);
+            bits.Gap(HeathkitFmFormat.HeaderGapBitCount);
+            bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
             bits.Fm(sector.Data.Append(TrackEncoding.RotatingChecksum(sector.Data)).Select(Primitives.BitPrimitives.ReverseBits));
-            bits.Gap(128);
+            bits.Gap(HeathkitFmFormat.DataGapBitCount);
         }
         return bits;
     }

@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Encoding.Definitions;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class HpMmfmTrackEncoder : TrackEncoderBase
@@ -10,18 +12,18 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != 256) throw new ArgumentException("HP MMFM sectors contain 256 bytes.");
-            var encodedSector = (byte)(sector.Number | request.Head << 7);
+            if (sector.Data.Count != HpMmfmFormat.SectorSize) throw new ArgumentException("HP MMFM sectors contain 256 bytes.");
+            var encodedSector = (byte)(sector.Number | request.Head << HpMmfmFormat.HeadShift);
             byte[] identity = [Primitives.BitPrimitives.ReverseBits((byte)request.Cylinder), Primitives.BitPrimitives.ReverseBits(encodedSector)];
-            bits.Raw(0x55, 0x55, 0x2a, 0x54);
+            bits.Raw(HpMmfmFormat.SectorSync.ToArray());
             bits.Mfm(TrackEncoding.WithCrc(identity));
-            bits.Gap(128);
+            bits.Gap(HpMmfmFormat.HeaderGapBitCount);
             var payload = sector.Data.ToArray();
             for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
             for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
-            bits.Raw(0x55, 0x55, 0x2a, 0x44);
+            bits.Raw(HpMmfmFormat.DataSync.ToArray());
             bits.Mfm(TrackEncoding.WithCrc(payload));
-            bits.Gap(256);
+            bits.Gap(HpMmfmFormat.DataGapBitCount);
         }
         return bits;
     }

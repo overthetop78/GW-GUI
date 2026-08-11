@@ -1,13 +1,13 @@
 using GWGUI.MediaEngine.Containers.Scp;
-
+using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] HeaderMark = [0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0x44,0x91];
-    private static readonly byte[] DataMark = [0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0xa9,0x14,0x91,0x44];
+    private static readonly byte[] HeaderMark = QdMo5MfmFormat.HeaderMark.ToArray();
+    private static readonly byte[] DataMark = QdMo5MfmFormat.DataMark.ToArray();
     public override string Id => FluxCodecIds.QdMo5Mfm; public override string DisplayName => FluxCodecDisplayNames.QdMo5Mfm;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "QD MO5 sector header"), (DataMark, FluxStructureKind.FormatData, "QD MO5 sector data")];
 
@@ -15,8 +15,8 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedDataMarks = new HashSet<int>();
-        const int markBits = 12 * BitPrimitives.BitsPerByte;
-        const int headerBits = 10 * BitPrimitives.BitsPerByte + 16 * 16;
+        var markBits = HeaderMark.Length * BitPrimitives.BitsPerByte;
+        const int headerBits = 10 * BitPrimitives.BitsPerByte + (QdMo5MfmFormat.SectorNumberByteCount + QdMo5MfmFormat.HeaderPaddingByteCount) * 16;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
@@ -29,20 +29,20 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
             if (!FluxBitReader.TryDecodeMfmByte(stream, offset + markBits, out var high)) continue;
             if (!FluxBitReader.TryDecodeMfmByte(stream, offset + markBits + 16, out var low)) continue;
             var number = (high << BitPrimitives.BitsPerByte) | low; bytes.Add(high); bytes.Add(low);
-            var dataOffset = FindNextData(stream, offset + headerBits, (88 + 16) * BitPrimitives.BitsPerByte);
-            var completeData = dataOffset >= 0 && dataOffset + 10 * BitPrimitives.BitsPerByte + 130 * 16 <= stream.Bits.Length;
+            var dataOffset = FindNextData(stream, offset + headerBits, QdMo5MfmFormat.DataSearchByteCount * BitPrimitives.BitsPerByte);
+            var completeData = dataOffset >= 0 && dataOffset + 10 * BitPrimitives.BitsPerByte + (QdMo5MfmFormat.DataPrefixByteCount + QdMo5MfmFormat.SectorSize + QdMo5MfmFormat.ChecksumByteCount) * 16 <= stream.Bits.Length;
             bool? checksumValid = null;
             if (completeData)
             {
-                var block = TryDecodeMfmBytes(stream, dataOffset + 10 * BitPrimitives.BitsPerByte, 130);
+                var block = TryDecodeMfmBytes(stream, dataOffset + 10 * BitPrimitives.BitsPerByte, QdMo5MfmFormat.DataPrefixByteCount + QdMo5MfmFormat.SectorSize + QdMo5MfmFormat.ChecksumByteCount);
                 if (block is null) continue;
-                byte checksum = 0; var data = new byte[128];
-                for (var index = 0; index < 129; index++) { var value = block[index]; checksum += value; if (index > 0) data[index - 1] = value; }
-                var stored = block[129]; checksumValid = checksum == stored;
+                byte checksum = 0; var data = new byte[QdMo5MfmFormat.SectorSize];
+                for (var index = 0; index < QdMo5MfmFormat.DataPrefixByteCount + QdMo5MfmFormat.SectorSize; index++) { var value = block[index]; checksum += value; if (index > 0) data[index - 1] = value; }
+                var stored = block[QdMo5MfmFormat.DataPrefixByteCount + QdMo5MfmFormat.SectorSize]; checksumValid = checksum == stored;
                 pairedDataMarks.Add(dataOffset); bytes.AddRange(data);
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, 10 * BitPrimitives.BitsPerByte + 130 * 16, $"QD MO5 R{number} data, checksum {(checksumValid == true ? "valid" : "invalid")}"));
             }
-            sectors.Add(new(0, 0, number, 0, 128, checksumValid, offset, SectorIntegrityKind.Checksum));
+            sectors.Add(new(0, 0, number, 0, QdMo5MfmFormat.SectorSize, checksumValid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"QD MO5 R{number}, 128 bytes{(completeData ? $", data checksum {(checksumValid == true ? "valid" : "invalid")}" : ", data checksum unavailable")}"));
             offset += markBits - 1;
         }

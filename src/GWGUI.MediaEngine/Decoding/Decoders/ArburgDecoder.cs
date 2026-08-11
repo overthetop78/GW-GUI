@@ -1,11 +1,12 @@
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class ArburgDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] DataMark = [0x44,0x44,0x44,0x44,0x55,0x55,0x55,0x55];
-    private static readonly byte[] SystemMark = [0x55,0x55,0x55,0x55,0x55,0x24,0x92,0x49];
+    private static readonly byte[] DataMark = ArburgFormat.DataMark.ToArray();
+    private static readonly byte[] SystemMark = ArburgFormat.SystemMark.ToArray();
     public override string Id => FluxCodecIds.Arburg; public override string DisplayName => FluxCodecDisplayNames.Arburg;
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(DataMark, FluxStructureKind.FormatData, "Arburg data block"), (SystemMark, FluxStructureKind.FormatHeader, "Arburg system block")];
@@ -21,7 +22,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
 
     private static void ScanFmData(FluxBitstream stream, List<FluxStructure> structures, List<DecodedSector> sectors, List<byte> bytes)
     {
-        const int markBits = 8 * Primitives.BitPrimitives.BitsPerByte, blockSize = 0xa00, usefulSize = 0x9fe;
+        var markBits = DataMark.Length * Primitives.BitPrimitives.BitsPerByte; const int blockSize = ArburgFormat.DataBlockSize, usefulSize = ArburgFormat.DataUsefulSize;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, DataMark)) continue;
@@ -43,7 +44,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
 
     private static void ScanSystemData(FluxBitstream stream, List<FluxStructure> structures, List<DecodedSector> sectors, List<byte> bytes)
     {
-        const int markBits = 8 * Primitives.BitPrimitives.BitsPerByte, blockSize = 0xf00, usefulSize = 0xefe;
+        var markBits = SystemMark.Length * Primitives.BitPrimitives.BitsPerByte; const int blockSize = ArburgFormat.SystemBlockSize, usefulSize = ArburgFormat.SystemUsefulSize;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SystemMark)) continue;

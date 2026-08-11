@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -11,15 +12,15 @@ public sealed class QdMo5MfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != 128) throw new ArgumentException("QD MO5 sectors contain 128 bytes.");
-            bits.RawHex("A914A914A914A914A9144491");
-            bits.Mfm(new byte[] { (byte)(sector.Number >> BitPrimitives.BitsPerByte),(byte)sector.Number }.Concat(new byte[13]));
-            bits.Gap(160);
-            bits.RawHex("A914A914A914A914A9149144");
-            var prefix = (byte)Attribute(sector, "prefix", 0x5a);
+            if (sector.Data.Count != QdMo5MfmFormat.SectorSize) throw new ArgumentException("QD MO5 sectors contain 128 bytes.");
+            bits.Raw(QdMo5MfmFormat.HeaderMark.ToArray());
+            bits.Mfm(new byte[] { (byte)(sector.Number >> BitPrimitives.BitsPerByte),(byte)sector.Number }.Concat(new byte[QdMo5MfmFormat.HeaderPaddingByteCount]));
+            bits.Gap(QdMo5MfmFormat.HeaderGapBitCount);
+            bits.Raw(QdMo5MfmFormat.DataMark.ToArray());
+            var prefix = (byte)Attribute(sector, QdMo5MfmFormat.PrefixAttribute, QdMo5MfmFormat.DefaultPrefix);
             var checksum = (byte)(prefix + sector.Data.Sum(value => value));
             bits.Mfm(sector.Data.Append(checksum));
-            bits.Gap(128);
+            bits.Gap(QdMo5MfmFormat.DataGapBitCount);
         }
         return bits;
     }

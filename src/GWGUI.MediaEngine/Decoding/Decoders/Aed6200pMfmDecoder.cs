@@ -1,13 +1,13 @@
 using GWGUI.MediaEngine.Containers.Scp;
-
+using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] SectorHeader = [0x50, 0x94];
-    private static readonly byte[][] SectorData = [[0x50, 0x8a], [0x50, 0x89], [0x50, 0x84], [0x50, 0x85]];
+    private static readonly byte[] SectorHeader = Aed6200pMfmFormat.HeaderPattern.ToArray();
+    private static readonly byte[][] SectorData = Aed6200pMfmFormat.DataPatterns.Select(pattern => pattern.ToArray()).ToArray();
     public override string Id => FluxCodecIds.Aed6200pMfm; public override string DisplayName => FluxCodecDisplayNames.Aed6200pMfm;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "AED 6200P C6 header mark"), .. SectorData.Select(mark => (mark, FluxStructureKind.FormatData, "AED 6200P data mark"))];
 
@@ -15,26 +15,26 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
-        const int headerBits = 7 * 16; var pairedData = new HashSet<int>();
+        const int headerBits = Aed6200pMfmFormat.HeaderByteCount * 16; var pairedData = new HashSet<int>();
         for (var offset = 0; offset + SectorHeader.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SectorHeader)) continue;
             var complete = offset + headerBits <= stream.Bits.Length;
             if (complete)
             {
-                var header = TryDecodeMfmBytes(stream, offset, 7);
+                var header = TryDecodeMfmBytes(stream, offset, Aed6200pMfmFormat.HeaderByteCount);
                 if (header is null) continue;
-                var size = (header[4] << BitPrimitives.BitsPerByte) | header[2]; var headerValid = header[0] == 0xc6 && Primitives.Crc16Calculator.Compute(header) == 0; bytes.AddRange(header);
+                var size = (header[4] << BitPrimitives.BitsPerByte) | header[2]; var headerValid = header[0] == Aed6200pMfmFormat.HeaderAddressMark && Primitives.Crc16Calculator.Compute(header) == 0; bytes.AddRange(header);
                 var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * BitPrimitives.BitsPerByte));
                 bool? dataValid = null; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
                 {
-                    pairedData.Add(dataOffset); var dataBlockBytes = 1 + size + 2; var dataEnd = (long)dataOffset + dataBlockBytes * 16L;
+                    pairedData.Add(dataOffset); var dataBlockBytes = Aed6200pMfmFormat.DataMarkByteCount + size + Aed6200pMfmFormat.CrcByteCount; var dataEnd = (long)dataOffset + dataBlockBytes * 16L;
                     if (size > 0 && dataEnd <= stream.Bits.Length)
                     {
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
-                        dataValid = data[0] is >= 0xc0 and <= 0xc3 && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(1).Take(size)); structureEnd = (int)dataEnd;
+                        dataValid = data[0] is >= Aed6200pMfmFormat.DeletedDataMark and <= Aed6200pMfmFormat.DataMark && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size)); structureEnd = (int)dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"AED 6200P data {data[0]:X2}, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                     }
                     else structures.Add(new(FluxStructureKind.FormatData, dataOffset, 16, "AED 6200P data block, CRC unavailable"));

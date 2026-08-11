@@ -1,13 +1,13 @@
 using GWGUI.MediaEngine.Containers.Scp;
-
+using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class MembrainMfmDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] SectorHeader = [0x44, 0x89, 0x55, 0x54];
-    private static readonly byte[] SectorData = [0x44, 0x89, 0x55, 0x4a];
+    private static readonly byte[] SectorHeader = MembrainMfmFormat.SectorHeader.ToArray();
+    private static readonly byte[] SectorData = MembrainMfmFormat.SectorData.ToArray();
     public override string Id => FluxCodecIds.MembrainMfm; public override string DisplayName => FluxCodecDisplayNames.MembrainMfm;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "Membrain sector header"), (SectorData, FluxStructureKind.FormatData, "Membrain sector data")];
 
@@ -15,7 +15,7 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
-        const int headerBits = 6 * 16; const int sectorBytes = 512; const int dataBlockBytes = 2 + sectorBytes + 2;
+        const int headerBits = 6 * 16; const int sectorBytes = MembrainMfmFormat.SectorSize; const int dataBlockBytes = 2 + sectorBytes + MembrainMfmFormat.CrcByteCount;
         var pairedData = new HashSet<int>();
         for (var offset = 0; offset + SectorHeader.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
@@ -25,9 +25,9 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
             {
                 var header = TryDecodeMfmBytes(stream, offset, 6);
                 if (header is null) continue;
-                var headerValid = header[1] == 0xfe && Primitives.Crc16Calculator.Compute(header, polynomial: Primitives.Crc16Calculator.IbmPolynomial, initial: Primitives.Crc16Calculator.ZeroInitialValue) == 0;
-                var cylinder = (byte)(((header[2] & 0x1f) << 3) | ((header[3] & 0xe0) >> 5));
-                var head = (byte)((header[3] >> 4) & 1); var number = (byte)(header[3] & 0x0f);
+                var headerValid = header[1] == MembrainMfmFormat.HeaderAddressMark && Primitives.Crc16Calculator.Compute(header, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
+                var cylinder = (byte)(((header[2] & MembrainMfmFormat.CylinderHighMask) << MembrainMfmFormat.CylinderLowBitCount) | ((header[3] & MembrainMfmFormat.CylinderLowMask) >> MembrainMfmFormat.CylinderLowShift));
+                var head = (byte)((header[3] >> MembrainMfmFormat.HeadShift) & MembrainMfmFormat.HeadMask); var number = (byte)(header[3] & MembrainMfmFormat.SectorMask);
                 bytes.AddRange(header);
                 var dataOffset = FindMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * BitPrimitives.BitsPerByte), SectorData);
                 bool? dataValid = null; var structureEnd = offset + headerBits;
@@ -39,7 +39,7 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
                     {
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
-                        dataValid = data[1] is >= 0xf8 and <= 0xfb && Primitives.Crc16Calculator.Compute(data, polynomial: Primitives.Crc16Calculator.IbmPolynomial, initial: Primitives.Crc16Calculator.ZeroInitialValue) == 0;
+                        dataValid = data[1] is >= MembrainMfmFormat.DataAddressMark and <= MembrainMfmFormat.LastDataAddressMark && Primitives.Crc16Calculator.Compute(data, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
                         bytes.AddRange(data.Skip(2).Take(sectorBytes)); structureEnd = dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Membrain data block, 512 bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                     }

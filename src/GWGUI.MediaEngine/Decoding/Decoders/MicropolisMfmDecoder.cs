@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 using GWGUI.MediaEngine.Primitives;
 
@@ -7,7 +8,7 @@ namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class MicropolisMfmDecoder : IFluxDecoder
 {
-    private static readonly byte[] Sync = FluxEncoding.EncodeMfm(0x00, 0x00, 0x00, 0xff);
+    private static readonly byte[] Sync = MicropolisMfmFormat.Sync.ToArray();
 
     public string Id => FluxCodecIds.MicropolisMfm;
     public string DisplayName => FluxCodecDisplayNames.MicropolisMfm;
@@ -18,7 +19,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
         var structures = new List<FluxStructure>();
         var sectors = new List<DecodedSector>();
         var bytes = new List<byte>();
-        const int recordBytes = 275;
+        const int recordBytes = MicropolisMfmFormat.RecordByteCount;
 
         for (var offset = 0; offset + Sync.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
@@ -36,9 +37,9 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
             var cylinder = record[1];
             var sectorNumber = record[2];
             var valid = Checksum(record.AsSpan(1, recordBytes - 7)) == record[recordBytes - 6];
-            var payload = record.AsSpan(13, 256).ToArray();
+            var payload = record.AsSpan(MicropolisMfmFormat.RecordIdentityByteCount + MicropolisMfmFormat.HeaderPaddingByteCount, MicropolisMfmFormat.SectorSize).ToArray();
             bytes.AddRange(payload);
-            sectors.Add(new(cylinder, 0, sectorNumber, 1, 256, valid, offset, SectorIntegrityKind.Checksum));
+            sectors.Add(new(cylinder, 0, sectorNumber, 1, MicropolisMfmFormat.SectorSize, valid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, (3 + recordBytes) * 16,
                 $"Micropolis C{cylinder} R{sectorNumber}, 256 bytes, checksum {(valid ? "valid" : "invalid")}"));
             offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
@@ -52,7 +53,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
         var value = 0;
         foreach (var item in data)
         {
-            if (value > 255) value -= 255;
+            if (value > MicropolisMfmFormat.ChecksumModulus) value -= MicropolisMfmFormat.ChecksumModulus;
             value += item;
         }
         return (byte)value;

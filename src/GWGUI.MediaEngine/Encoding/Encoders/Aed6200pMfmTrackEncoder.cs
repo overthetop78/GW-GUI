@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -12,16 +13,16 @@ public sealed class Aed6200pMfmTrackEncoder : TrackEncoderBase
         foreach (var sector in request.Sectors)
         {
             var size = sector.Data.Count;
-            byte[] header = [0xc6,(byte)request.Cylinder,(byte)size,(byte)sector.Number,(byte)(size >> BitPrimitives.BitsPerByte)];
+            byte[] header = [Aed6200pMfmFormat.HeaderAddressMark,(byte)request.Cylinder,(byte)size,(byte)sector.Number,(byte)(size >> BitPrimitives.BitsPerByte)];
             var headerCrc = Primitives.Crc16Calculator.Compute(header);
-            bits.RawHex("5094");
+            bits.Raw(Aed6200pMfmFormat.HeaderPattern.ToArray());
             bits.Mfm(header.Skip(1).Concat([(byte)(headerCrc >> BitPrimitives.BitsPerByte),(byte)headerCrc]));
-            bits.Gap(64);
-            var mark = sector.Deleted ? (byte)0xc0 : (byte)0xc3;
+            bits.Gap(Aed6200pMfmFormat.FirstGapBitCount);
+            var mark = sector.Deleted ? Aed6200pMfmFormat.DeletedDataMark : Aed6200pMfmFormat.DataMark;
             var dataCrc = Primitives.Crc16Calculator.Compute(new[] { mark }.Concat(sector.Data));
-            bits.RawHex(sector.Deleted ? "508A" : "5085");
+            bits.Raw(Aed6200pMfmFormat.DataPatterns[sector.Deleted ? 0 : 3].ToArray());
             bits.Mfm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte),(byte)dataCrc]));
-            bits.Gap(128);
+            bits.Gap(Aed6200pMfmFormat.SecondGapBitCount);
         }
         return bits;
     }

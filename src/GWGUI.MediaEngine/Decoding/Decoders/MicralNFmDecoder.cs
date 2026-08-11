@@ -1,11 +1,12 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class MicralNFmDecoder : SignatureMfmDecoder
 {
-    private static readonly byte[] SectorMark = FluxEncoding.EncodeFm(0, 0, 0, 0xff);
+    private static readonly byte[] SectorMark = MicralNFmFormat.SectorMark.ToArray();
     public override string Id => FluxCodecIds.MicralNFm; public override string DisplayName => FluxCodecDisplayNames.MicralNFm;
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Micral N hard-sector block")];
@@ -14,7 +15,7 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
-        const int markBits = 4 * 16; const int syncOffset = 3 * 16; const int blockBytes = 1 + 2 + 128 + 1;
+        var markBits = SectorMark.Length * 8; const int syncOffset = MicralNFmFormat.SyncZeroCount * 16; const int blockBytes = 1 + MicralNFmFormat.IdentityByteCount + MicralNFmFormat.SectorSize + MicralNFmFormat.ChecksumByteCount;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
@@ -44,8 +45,8 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
 
     private static byte UpdateChecksum(byte checksum, byte data)
     {
-        var carrySource = ((data ^ checksum) ^ 0xff) & ((data + checksum) ^ data);
-        var carry = (carrySource & 0x80) != 0 ? 1 : 0;
+            var carrySource = ((data ^ checksum) ^ MicralNFmFormat.ComplementMask) & ((data + checksum) ^ data);
+            var carry = (carrySource & MicralNFmFormat.CarryMask) != 0 ? 1 : 0;
         return (byte)(checksum + data + carry);
     }
 
