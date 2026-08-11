@@ -67,4 +67,55 @@ public sealed class FluxPrimitivesTests
         uint[] clusteredIntervals = [999, 10, 10, 20, 20, 30, 30, 40, 40, 50, 50];
         Assert.Equal(5d, FluxTimingEstimator.EstimateNonFmBitCell(clusteredIntervals));
     }
+
+    [Fact]
+    public void FluxTransitionDecoderReconstructsExpectedBitsAndCellDurations()
+    {
+        var adaptive = FluxTransitionDecoder.Reconstruct([10, 20], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var fixedClock = FluxTransitionDecoder.Reconstruct([10, 20], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval, adaptClock: false);
+        var pll = FluxTransitionDecoder.ReconstructPll([10, 20], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var nrzi = FluxTransitionDecoder.DecodeNrzi([10, 20]);
+        var doubledNrzi = FluxTransitionDecoder.DecodeAdaptiveDoubledNrzi([10, 20]);
+
+        Assert.Equal([true, false, true], adaptive.Bits.ToArray());
+        Assert.Equal(10d, adaptive.BitCellTicks);
+        Assert.Equal([true, false, true], fixedClock.Bits.ToArray());
+        Assert.Equal(10d, fixedClock.BitCellTicks);
+        Assert.Equal([true, false, true], pll.Bits.ToArray());
+        Assert.Equal(10d, pll.BitCellTicks);
+        Assert.Equal([true, true], nrzi.Bits.ToArray());
+        Assert.Equal(20d, nrzi.BitCellTicks);
+        Assert.Equal([true, false, true], doubledNrzi.Bits.ToArray());
+        Assert.Equal(10d, doubledNrzi.BitCellTicks);
+    }
+
+    [Fact]
+    public void FluxTransitionDecoderClampsIntervalsAndExplicitCellDuration()
+    {
+        var zeroInterval = FluxTransitionDecoder.Reconstruct([0], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var fmMfmLimit = FluxTransitionDecoder.Reconstruct([320], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var nrziLimit = FluxTransitionDecoder.Reconstruct([640], 10d, FluxDecodingParameters.MaximumNrziCellsPerInterval);
+        var minimumExplicitCell = FluxTransitionDecoder.DecodeNrzi([10], 0d);
+
+        Assert.Equal([true], zeroInterval.Bits.ToArray());
+        Assert.Equal(FluxDecodingParameters.MaximumFmMfmCellsPerInterval, fmMfmLimit.Bits.Length);
+        Assert.True(fmMfmLimit.Bits[^1]);
+        Assert.Equal(FluxDecodingParameters.MaximumNrziCellsPerInterval, nrziLimit.Bits.Length);
+        Assert.True(nrziLimit.Bits[^1]);
+        Assert.Equal(FluxDecodingParameters.MinimumBitCellTicks, minimumExplicitCell.BitCellTicks);
+    }
+
+    [Fact]
+    public void FluxTransitionDecoderAppliesPllCorrectionBranchesAndFrequencyLimits()
+    {
+        var directCorrection = FluxTransitionDecoder.ReconstructPll([33], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var progressiveCorrection = FluxTransitionDecoder.ReconstructPll([53], 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var upperCorrections = FluxTransitionDecoder.ReconstructPll(Enumerable.Repeat(21u, 200).ToArray(), 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+        var lowerCorrections = FluxTransitionDecoder.ReconstructPll(Enumerable.Repeat(19u, 200).ToArray(), 10d, FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
+
+        Assert.Equal(10.15d, directCorrection.BitCellTicks, 10);
+        Assert.Equal(10d, progressiveCorrection.BitCellTicks, 10);
+        Assert.InRange(upperCorrections.BitCellTicks, 9d, 11d);
+        Assert.InRange(lowerCorrections.BitCellTicks, 9d, 11d);
+    }
 }

@@ -1753,10 +1753,10 @@
       - [x] Tester une liste vide, uniquement des zéros, un premier intervalle d'index aberrant et le repli sur tous les intervalles.
       - [x] Tester séparément les estimations FM, non-FM et NRZI avec des intervalles dont la cellule attendue est connue.
       - [x] Tester le percentile bas avec un bruit court isolé et le cinquième inférieur avec plusieurs clusters temporels.
-    - [ ] Reconstruction
-      - [ ] Tester reconstruction adaptative, sans adaptation, PLL, NRZI et doubled-NRZI avec les bits et la durée finale attendus.
-      - [ ] Tester un intervalle nul, les bornes de 32 et 64 cellules et une durée explicite inférieure au minimum.
-      - [ ] Tester la correction PLL aux limites de fréquence et les deux branches selon le nombre de zéros.
+    - [x] Reconstruction
+      - [x] Tester reconstruction adaptative, sans adaptation, PLL, NRZI et doubled-NRZI avec les bits et la durée finale attendus.
+      - [x] Tester un intervalle nul, les bornes de 32 et 64 cellules et une durée explicite inférieure au minimum.
+      - [x] Tester la correction PLL aux limites de fréquence et les deux branches selon le nombre de zéros.
     - [ ] Lecture des bits
       - [ ] Tester offsets négatifs, plage exacte en fin de flux, dépassement d'un bit et longueurs de motif zéro, 16, 32 et 33.
       - [ ] Tester un motif d'octets vide, un motif complet et une multiplication de longueur invalide.
