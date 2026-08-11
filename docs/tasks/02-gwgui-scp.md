@@ -1834,12 +1834,12 @@
     - [x] Créer `SectorImages/SectorBlock.cs` avec le namespace actuel.
     - [x] Déplacer le record `SectorBlock` sans modifier sa signature.
     - [x] Retirer `SectorBlock` de `SectorImage.cs`.
-  - [ ] Erreurs du modèle sectoriel
-    - [ ] Créer `SectorImages/SectorImageExceptions.cs`.
-    - [ ] Ajouter une méthode recevant le nom et la valeur de chaque dimension invalide.
-    - [ ] Ajouter une méthode recevant le bloc logique, la taille observée et la taille attendue.
-    - [ ] Remplacer les textes et constructions directes d’exception de `SectorImage.cs`.
-    - [ ] Documenter en français `SectorImageExceptions` et chacune de ses méthodes.
+  - [x] Erreurs du modèle sectoriel
+    - [x] Créer `SectorImages/SectorImageExceptions.cs`.
+    - [x] Ajouter une méthode recevant le nom et la valeur de chaque dimension invalide.
+    - [x] Ajouter une méthode recevant le bloc logique, la taille observée et la taille attendue.
+    - [x] Remplacer les textes et constructions directes d’exception de `SectorImage.cs`.
+    - [x] Documenter en français `SectorImageExceptions` et chacune de ses méthodes.
   - [ ] Tests du modèle sectoriel
     - [ ] Tester les dimensions et le nombre logique invalides.
     - [ ] Tester un bloc manquant et une taille fixe invalide avec les valeurs injectées dans l’erreur.

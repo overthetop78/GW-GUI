@@ -10,8 +10,11 @@ public sealed class SectorImage
 
     public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks, bool allowVariableBlockSize = false, long? capacity = null, int? logicalBlockCount = null)
     {
-        if (blockSize <= 0 || cylinders <= 0 || heads <= 0 || sectorsPerTrack <= 0) throw new ArgumentOutOfRangeException(nameof(blockSize));
-        if (logicalBlockCount is <= 0) throw new ArgumentOutOfRangeException(nameof(logicalBlockCount));
+        if (blockSize <= 0) throw SectorImageExceptions.InvalidDimension(nameof(blockSize), blockSize);
+        if (cylinders <= 0) throw SectorImageExceptions.InvalidDimension(nameof(cylinders), cylinders);
+        if (heads <= 0) throw SectorImageExceptions.InvalidDimension(nameof(heads), heads);
+        if (sectorsPerTrack <= 0) throw SectorImageExceptions.InvalidDimension(nameof(sectorsPerTrack), sectorsPerTrack);
+        if (logicalBlockCount is <= 0) throw SectorImageExceptions.InvalidDimension(nameof(logicalBlockCount), logicalBlockCount);
         FormatId = formatId;
         BlockSize = blockSize;
         Cylinders = cylinders;
@@ -37,8 +40,8 @@ public sealed class SectorImage
 
     public ReadOnlyMemory<byte> GetBlock(int logicalBlock)
     {
-        if (!_blocks.TryGetValue(logicalBlock, out var block)) throw new InvalidDataException($"Logical block {logicalBlock} is missing.");
-        if (!_allowVariableBlockSize && block.Data.Count != BlockSize) throw new InvalidDataException($"Logical block {logicalBlock} has an invalid size.");
+        if (!_blocks.TryGetValue(logicalBlock, out var block)) throw SectorImageExceptions.MissingBlock(logicalBlock);
+        if (!_allowVariableBlockSize && block.Data.Count != BlockSize) throw SectorImageExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, BlockSize);
         return block.Data is byte[] bytes ? bytes : block.Data.ToArray();
     }
 
