@@ -47,14 +47,14 @@
 
 ## 2. Conteneur SCP
 
-- [ ] `src/GWGUI.MediaEngine/IScpReader.cs`
+- [x] `src/GWGUI.MediaEngine/IScpReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Containers/Scp/IScpReader.cs`.
     - [x] Adapter le namespace dans `ScpReader`, les reconstructeurs, `ScpDocumentLoader.cs` et les doubles de tests.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IScpReader`.
-    - [ ] Compléter la documentation de `IScpReader.ReadAsync` avec `ArgumentException`, `FileNotFoundException`, `UnauthorizedAccessException` et `IOException`.
-    - [ ] Préciser que `OperationCanceledException` est déclenchée lorsque `cancellationToken` demande l'annulation.
+    - [x] Compléter la documentation de `IScpReader.ReadAsync` avec `ArgumentException`, `FileNotFoundException`, `UnauthorizedAccessException` et `IOException`.
+    - [x] Préciser que `OperationCanceledException` est déclenchée lorsque `cancellationToken` demande l'annulation.
 - [x] `src/GWGUI.MediaEngine/ScpCaptureInfo.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Exploration/ScpCaptureInfo.cs`.
