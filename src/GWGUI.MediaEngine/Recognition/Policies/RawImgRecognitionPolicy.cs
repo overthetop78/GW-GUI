@@ -8,7 +8,7 @@ internal sealed class RawImgRecognitionPolicy : ReaderBackedRecognitionPolicy
 {
     /// <summary>Crée la politique déléguant la validation complète au Reader IMG brut.</summary>
     /// <param name="reader">Reader responsable d'interpréter le contenu IMG.</param>
-    public RawImgRecognitionPolicy(RawImgReader reader) : base(reader.ReadAsync) { }
+    public RawImgRecognitionPolicy(RawImgReader reader) : base((context, cancellationToken) => reader.ReadAsync(context.Path, cancellationToken)) { }
 
     /// <summary>Indique si l'extension IMG doit présélectionner ce Reader sans valider le contenu.</summary>
     /// <param name="context">Contexte dont l'extension doit être examinée.</param>

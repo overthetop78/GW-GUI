@@ -9,7 +9,7 @@ internal sealed class MsxImageRecognitionPolicy : ReaderBackedRecognitionPolicy
 {
     /// <summary>Crée la politique en conservant le Reader responsable de la validation complète du contenu.</summary>
     /// <param name="reader">Reader des images sectorielles MSX.</param>
-    public MsxImageRecognitionPolicy(MsxImageReader reader) : base(reader.ReadAsync) { }
+    public MsxImageRecognitionPolicy(MsxImageReader reader) : base((context, cancellationToken) => reader.ReadAsync(context.Path, cancellationToken)) { }
 
     /// <summary>Vérifie l'indice DSK puis accepte une demande <c>msx.*</c> explicite ou un BPB MSX valide.</summary>
     /// <param name="context">Contexte du fichier à présélectionner.</param>

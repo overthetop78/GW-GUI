@@ -5,7 +5,7 @@ namespace GWGUI.MediaEngine.Recognition.Policies;
 
 /// <summary>Présélectionne une image brute COHERENT par son superbloc, indépendamment de son extension.</summary>
 /// <param name="reader">Lecteur validant entièrement le dump et sa géométrie depuis la mémoire partagée.</param>
-internal sealed class CoherentImageRecognitionPolicy(CoherentRawImageReader reader) : ReaderBackedRecognitionPolicy((ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken) => reader.ReadAsync(bytes, cancellationToken))
+internal sealed class CoherentImageRecognitionPolicy(CoherentRawImageReader reader) : ReaderBackedRecognitionPolicy(async (context, cancellationToken) => await reader.ReadAsync(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), cancellationToken).ConfigureAwait(false))
 {
     /// <summary>Recherche les marqueurs du superbloc avant de confier le candidat au lecteur complet.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>

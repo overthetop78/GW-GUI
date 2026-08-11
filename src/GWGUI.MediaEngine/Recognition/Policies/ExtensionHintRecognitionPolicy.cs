@@ -11,7 +11,7 @@ internal sealed class ExtensionHintRecognitionPolicy : ReaderBackedRecognitionPo
     /// <summary>Crée une politique qui délègue la validation complète au Reader fourni.</summary>
     /// <param name="read">Fonction de lecture et de validation du Reader.</param>
     /// <param name="extensions">Extensions servant uniquement à présélectionner ce Reader.</param>
-    public ExtensionHintRecognitionPolicy(Func<string, CancellationToken, Task<SectorImage>> read, params string[] extensions) : base(read) => this.extensions = new(extensions, StringComparer.OrdinalIgnoreCase);
+    public ExtensionHintRecognitionPolicy(Func<string, CancellationToken, Task<SectorImage>> read, params string[] extensions) : base((context, cancellationToken) => read(context.Path, cancellationToken)) => this.extensions = new(extensions, StringComparer.OrdinalIgnoreCase);
 
     /// <summary>Indique si l'extension présélectionne le Reader, sans valider le contenu du fichier.</summary>
     /// <param name="context">Contexte dont l'extension normalisée doit être comparée.</param>

@@ -9,11 +9,11 @@ internal abstract class ReaderBackedRecognitionPolicy : IDiskImageRecognitionPol
 
     /// <summary>Crée une délégation vers un Reader qui ouvre lui-même le chemin du candidat.</summary>
     /// <param name="read">Point d'entrée recevant le chemin et le jeton d'annulation.</param>
-    protected ReaderBackedRecognitionPolicy(Func<string, CancellationToken, Task<SectorImage>> read) => this.read = (context, cancellationToken) => read(context.Path, cancellationToken);
-
-    /// <summary>Crée une délégation vers un Reader qui consomme le contenu partagé déjà chargé.</summary>
-    /// <param name="read">Point d'entrée recevant la mémoire en lecture seule et le jeton d'annulation.</param>
-    protected ReaderBackedRecognitionPolicy(Func<ReadOnlyMemory<byte>, CancellationToken, Task<SectorImage>> read) => this.read = async (context, cancellationToken) => await read(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
+    protected ReaderBackedRecognitionPolicy(Func<DiskImageRecognitionContext, CancellationToken, Task<SectorImage>> read)
+    {
+        ArgumentNullException.ThrowIfNull(read);
+        this.read = read;
+    }
 
     /// <summary>Détermine si la politique doit tenter de valider complètement le contexte.</summary>
     /// <param name="context">Contexte partagé pendant la reconnaissance.</param>

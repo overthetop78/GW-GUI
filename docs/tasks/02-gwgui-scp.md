@@ -1451,11 +1451,11 @@
       - [x] Vérifier qu’une collection injectée puis modifiée ne change pas le registre.
       - [x] Tester la propagation immédiate de l’annulation, d’une erreur d’accès et d’une exception non reconnue comme rejet de format.
   - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
-    - [ ] Responsabilité et contrat de délégation
-      - [ ] Conserver le type abstrait sous `Recognition/Policies`, car il centralise uniquement le `ReadAsync` identique des politiques adossées à un Reader.
-      - [ ] Remplacer la fonction `Func<string, CancellationToken, Task<SectorImage>>` par une fonction recevant `DiskImageRecognitionContext` et `CancellationToken`.
-      - [ ] Refuser une fonction de lecture nulle lors de la construction.
-      - [ ] Conserver `CanReadAsync` abstrait afin que chaque politique reste propriétaire de sa présélection.
+    - [x] Responsabilité et contrat de délégation
+      - [x] Conserver le type abstrait sous `Recognition/Policies`, car il centralise uniquement le `ReadAsync` identique des politiques adossées à un Reader.
+      - [x] Remplacer la fonction `Func<string, CancellationToken, Task<SectorImage>>` par une fonction recevant `DiskImageRecognitionContext` et `CancellationToken`.
+      - [x] Refuser une fonction de lecture nulle lors de la construction.
+      - [x] Conserver `CanReadAsync` abstrait afin que chaque politique reste propriétaire de sa présélection.
     - [ ] Raccordement des politiques existantes
       - [ ] Adapter `AppleImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets, l’extension et le format demandé déjà détenus par le contexte.
       - [ ] Adapter `CoherentImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
