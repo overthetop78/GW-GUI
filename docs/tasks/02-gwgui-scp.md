@@ -2416,7 +2416,7 @@
       - [x] Tester `DecodeAtBitCell` avec une durée de cellule imposée.
       - [x] Tester la sélection explicite Lisa et la décision finale Macintosh ou Lisa effectuée avec les informations globales de l'image.
       - [x] Vérifier l'identifiant final, le nom, les tags, la taille sectorielle, l'intégrité et la confiance du résultat produit.
-  - [ ] `Decoding/Decoders/AppleRwts18Decoder.cs`
+  - [x] `Decoding/Decoders/AppleRwts18Decoder.cs`
     - [x] Définitions RWTS18 communes
       - [x] Créer les définitions RWTS18 communes au décodeur et à `AppleRwts18TrackEncoder.cs`.
       - [x] Y définir l'identifiant, le nom affiché, la synchronisation `0xd59d`, sa longueur, le terminateur d'adresse `0xaa` et l'épilogue `0xd4`.
