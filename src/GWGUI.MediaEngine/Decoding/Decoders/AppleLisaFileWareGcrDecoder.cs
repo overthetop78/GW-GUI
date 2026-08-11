@@ -1,6 +1,6 @@
 namespace GWGUI.MediaEngine.Decoding;
 
-/// <summary>Decodes Lisa FileWare/Twiggy GCR sectors using their Lisa format identity.</summary>
+/// <summary>Décode les secteurs GCR Lisa FileWare/Twiggy en conservant l'identité du format Lisa.</summary>
 public sealed class AppleLisaFileWareGcrDecoder : AppleMacGcrDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
