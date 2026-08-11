@@ -11,18 +11,45 @@ namespace GWGUI.Tests;
 /// <summary>Vérifie les définitions et traitements communs utilisés par les lecteurs WOZ et NIB.</summary>
 public sealed class AppleWozInternalsTests
 {
-    /// <summary>Vérifie que les relations entre champs conservent les positions imposées par WOZ.</summary>
+    /// <summary>Vérifie les valeurs et les relations entre champs imposées par WOZ.</summary>
     [Fact]
     public void WozLayoutDerivedValuesMatchTheContainerSpecification()
     {
+        Assert.Equal("WOZ1"u8.ToArray(), WozFormat.Version1Signature.ToArray());
+        Assert.Equal("WOZ2"u8.ToArray(), WozFormat.Version2Signature.ToArray());
+        Assert.Equal(new byte[] { 0xff, 0x0a, 0x0d, 0x0a }, WozFormat.HeaderMarker.ToArray());
+        Assert.Equal("INFO", WozFormat.InfoChunkId);
+        Assert.Equal("TMAP", WozFormat.TrackMapChunkId);
+        Assert.Equal("TRKS", WozFormat.TracksChunkId);
+        Assert.Equal(1, WozFormat.AppleII525DiskType);
+        Assert.Equal(0xedb88320u, WozFormat.Crc32Polynomial);
+        Assert.Equal(256, WozLayout.MinimumFileLength);
+        Assert.Equal(4, WozLayout.SignatureLength);
         Assert.Equal(4, WozLayout.HeaderMarkerOffset);
+        Assert.Equal(4, WozLayout.HeaderMarkerLength);
         Assert.Equal(8, WozLayout.CrcOffset);
+        Assert.Equal(4, WozLayout.CrcLength);
         Assert.Equal(12, WozLayout.ChunksOffset);
+        Assert.Equal(0, WozLayout.ChunkIdOffset);
+        Assert.Equal(4, WozLayout.ChunkIdLength);
         Assert.Equal(4, WozLayout.ChunkLengthOffset);
+        Assert.Equal(4, WozLayout.ChunkLengthSize);
         Assert.Equal(8, WozLayout.ChunkHeaderLength);
+        Assert.Equal(2, WozLayout.MinimumInfoLength);
+        Assert.Equal(1, WozLayout.InfoDiskTypeOffset);
         Assert.Equal(160, WozLayout.TrackMapLength);
+        Assert.Equal(40, WozLayout.AppleIITrackCount);
+        Assert.Equal(4, WozLayout.TrackMapEntriesPerTrack);
+        Assert.Equal(0xff, WozLayout.MissingTrackDescriptor);
+        Assert.Equal(NibLayout.TrackLengthBytes, WozLayout.Woz1TrackEntryLength);
+        Assert.Equal(6648, WozLayout.Woz1BitCountOffset);
+        Assert.Equal(2, WozLayout.Woz1BitCountLength);
+        Assert.Equal(512, WozLayout.Woz2BlockLength);
+        Assert.Equal(0, WozLayout.Woz2StartBlockOffset);
         Assert.Equal(2, WozLayout.Woz2BlockCountOffset);
         Assert.Equal(4, WozLayout.Woz2BitCountOffset);
+        Assert.Equal(2, WozLayout.Woz2BlockFieldLength);
+        Assert.Equal(4, WozLayout.Woz2BitCountLength);
         Assert.Equal(8, WozLayout.Woz2TrackDescriptorLength);
     }
 

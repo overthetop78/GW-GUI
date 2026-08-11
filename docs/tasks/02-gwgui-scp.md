@@ -1557,11 +1557,11 @@
     - [x] Remplacer chaque valeur encore brute par `DiskCopyFormat`, `DiskCopyLayout` ou `AppleDiskGeometry`.
     - [x] Documenter en français chaque méthode privée extraite.
     - [x] Tester données seules, données et tags, checksums, PREBOOT, Lisa, Macintosh et combinaison inconnue.
-  - [ ] `Containers/Apple/Woz/WozFormat.cs` et `WozLayout.cs`
-    - [ ] Ajouter des constantes nommées pour WOZ1, WOZ2, les 40 cylindres, les limites de pistes et les marqueurs communs.
-    - [ ] Ajouter un propriétaire commun pour la conversion octets/bits utilisée par le Reader et le Writer.
+  - [x] `Containers/Apple/Woz/WozFormat.cs` et `WozLayout.cs`
+    - [x] Ajouter des constantes nommées pour WOZ1, WOZ2, les 40 cylindres, les limites de pistes et les marqueurs communs.
+    - [x] Ajouter un propriétaire commun pour la conversion octets/bits utilisée par le Reader et le Writer.
     - [ ] Documenter en français chaque définition.
-    - [ ] Tester la valeur exacte de chaque définition.
+    - [x] Tester la valeur exacte de chaque définition.
   - [ ] `Containers/Apple/Woz/WozReader.cs`
     - [ ] Extraire la validation de l'en-tête, le parcours des chunks et la lecture des descripteurs de pistes dans des méthodes distinctes.
     - [ ] Remplacer chaque valeur encore brute par `WozFormat` ou `WozLayout`.
@@ -1571,7 +1571,7 @@
     - [ ] Ajouter des constantes nommées pour les 720 et 1040 secteurs et le décalage de 16 bits des paragraphes hauts.
     - [ ] Remplacer dans `AtrFormat.GetFormatId` les nombres bruts `720` et `1040` par ces constantes.
     - [ ] Centraliser le calcul de la zone d'amorçage et du nombre de secteurs utilisé par Reader et Writer.
-    - [ ] Documenter en français chaque définition.
+    - [x] Documenter en français chaque définition.
     - [ ] Tester les deux tailles sectorielles et les paragraphes hauts.
     - [ ] Vérifier que les couples taille/nombre de secteurs `128/720`, `128/1040` et `256/720` conservent leurs identifiants actuels.
     - [ ] Définir `AtrLayout.BootSectorSize` à partir de `AtrLayout.SingleDensitySectorSize` sans modifier sa valeur finale de `128` octets.
