@@ -1764,7 +1764,7 @@
     - [x] Intégration des consommateurs
       - [x] Exécuter les tests ciblés existants des décodeurs FM, MFM, GCR et NRZI raccordés.
       - [x] Vérifier sur les images correspondantes de `image_test` que structures, secteurs, octets et durées de cellule restent identiques hors correction explicite des lectures partielles.
-- [ ] `src/GWGUI.MediaEngine/Primitives/BitPrimitives.cs`
+- [x] `src/GWGUI.MediaEngine/Primitives/BitPrimitives.cs`
   - [x] Responsabilité et API commune
     - [x] Conserver le fichier dans `Primitives`, car l’inversion des bits d’un octet ne dépend d’aucun format, conteneur ou codec.
     - [x] Ajouter `BitsPerByte` avec la valeur `8` et `LeastSignificantBitMask` avec la valeur `1`, utilisées par l’algorithme d’inversion.
