@@ -6,7 +6,7 @@ using GWGUI.MediaEngine.Primitives;
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Décode les pistes utilisant le format Apple IIGCR.</summary>
-public sealed class AppleGcrDecoder : IFluxDecoder
+public sealed class AppleIIGcrDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Inverse Six And Two » utilisée par ce codec.</summary>
     private static readonly Dictionary<byte, byte> InverseSixAndTwo = AppleIIGcrFormat.SixAndTwoTable.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);

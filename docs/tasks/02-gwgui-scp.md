@@ -2015,10 +2015,10 @@
     - [x] Ajouter la documentation XML des types `AmigaMfmDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, TryDecodeMfmBytes, DecodeOddEven, Interleave`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleIIGcrDecoder.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder`.
-    - [ ] Adapter le registre et les consommateurs.
-    - [ ] Extraire les tables Apple II partagées avec l’encodeur.
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder`.
+    - [x] Adapter le registre et les consommateurs.
+    - [x] Extraire les tables Apple II partagées avec l’encodeur.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AppleGcrDecoder`.
     - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore, DecodeFiveAndThree, DecodeFourAndFour, TryReadBytes, Find`, avec paramètres, résultat, exceptions, unités et invariants applicables.

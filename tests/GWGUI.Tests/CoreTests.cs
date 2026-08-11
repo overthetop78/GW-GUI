@@ -2109,11 +2109,11 @@ public sealed class CoreTests
     }
 
     [Fact]
-    public void AppleGcrDecoderFindsAddressAndDataProloguesDespiteShortNoise()
+    public void AppleIIGcrDecoderFindsAddressAndDataProloguesDespiteShortNoise()
     {
         var bits = Convert.ToString(0xD5AA96, 2).PadLeft(24, '0') + "0001000" + Convert.ToString(0xD5AAAD, 2).PadLeft(24, '0') + "1";
         var intervals = BitsToIntervals(bits, 40); intervals.Insert(0, 2);
-        var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData);
         Assert.Equal(40, result.EstimatedBitCellTicks);
@@ -2132,7 +2132,7 @@ public sealed class CoreTests
             var cellTicks = 36d + Math.Min(8, transition * .25);
             intervals.Add((uint)Math.Round(cells * cellTicks)); cells = 0; transition++;
         }
-        var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
         Assert.True(result.Structures.Count(structure => structure.Kind == FluxStructureKind.AppleAddress) >= 8);
         Assert.InRange(result.EstimatedBitCellTicks, 36, 44);
     }
@@ -2802,7 +2802,7 @@ public sealed class CoreTests
     [InlineData(false, false)]
     [InlineData(true, false)]
     [InlineData(false, true)]
-    public void AppleGcrDecoderExtractsAddressAndDecodesSixAndTwoData(bool corruptAddress, bool corruptData)
+    public void AppleIIGcrDecoderExtractsAddressAndDecodesSixAndTwoData(bool corruptAddress, bool corruptData)
     {
         byte[] table = [0x96,0x97,0x9a,0x9b,0x9d,0x9e,0x9f,0xa6,0xa7,0xab,0xac,0xad,0xae,0xaf,0xb2,0xb3,0xb4,0xb5,0xb6,0xb7,0xb9,0xba,0xbb,0xbc,0xbd,0xbe,0xbf,0xcb,0xcd,0xce,0xcf,0xd3,0xd6,0xd7,0xd9,0xda,0xdb,0xdc,0xdd,0xde,0xdf,0xe5,0xe6,0xe7,0xe9,0xea,0xeb,0xec,0xed,0xee,0xef,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff];
         static IEnumerable<byte> FourAndFour(byte value) => [(byte)((value >> 1) | 0xaa), (byte)(value | 0xaa)];
@@ -2826,7 +2826,7 @@ public sealed class CoreTests
         var raw = calibration + Bits([0xd5,0xaa,0x96]) + Bits(address) + Bits([0xde,0xaa,0xeb,0xff,0xff,0xff]) + Bits([0xd5,0xaa,0xad]) + Bits(EncodeData(data, table, corruptData)) + Bits([0xde,0xaa,0xeb]) + "1";
         var intervals = BitsToIntervals(raw, 40);
 
-        var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
 
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(track, decoded.Cylinder); Assert.Equal(sector, decoded.Number); Assert.Equal(256, decoded.SizeBytes);
         Assert.Equal(!corruptAddress && !corruptData, decoded.IntegrityValid);
@@ -2896,11 +2896,11 @@ public sealed class CoreTests
     }
 
     [Fact]
-    public void AppleGcrDecoderReportsUnavailableIntegrityWhenDataBlockIsMissing()
+    public void AppleIIGcrDecoderReportsUnavailableIntegrityWhenDataBlockIsMissing()
     {
         var calibration = new string('1', 100); var mark = string.Concat(Convert.FromHexString("D5AA96").Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
         var address = string.Concat(Enumerable.Repeat("10101010", 8)); var epilogue = string.Concat(Convert.FromHexString("DEAAEB").Select(value => Convert.ToString(value, 2).PadLeft(8, '0')));
-        var intervals = BitsToIntervals(calibration + mark + address + epilogue + "0001", 40); var result = new AppleGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
+        var intervals = BitsToIntervals(calibration + mark + address + epilogue + "0001", 40); var result = new AppleIIGcrDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Count, intervals));
         Assert.Null(Assert.Single(result.Sectors!).IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleAddress && structure.Description.Contains("unavailable", StringComparison.Ordinal));
     }

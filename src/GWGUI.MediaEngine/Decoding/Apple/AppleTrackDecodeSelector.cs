@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Decoding.Apple;
 internal sealed class AppleTrackDecodeSelector
 {
     /// <summary>Décodeur des pistes Apple II standards.</summary>
-    private readonly AppleGcrDecoder standardDecoder = new();
+    private readonly AppleIIGcrDecoder standardDecoder = new();
     /// <summary>Décodeur des pistes Apple II RWTS18.</summary>
     private readonly AppleRwts18Decoder rwts18Decoder = new();
 
