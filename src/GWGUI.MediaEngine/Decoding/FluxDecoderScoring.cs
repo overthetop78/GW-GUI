@@ -1,6 +1,7 @@
 namespace GWGUI.MediaEngine.Decoding;
 
 /// <summary>Définit les poids utilisés pour comparer automatiquement les résultats des décodeurs de flux.</summary>
+/// <remarks>Les scores sont sans unité. La confiance consommée par les calculs est normalisée entre zéro et un.</remarks>
 internal static class FluxDecoderScoring
 {
     public const double ValidSectorBaseScore = 4;
@@ -11,6 +12,8 @@ internal static class FluxDecoderScoring
     public const double RawFluxBaseScore = 1;
     public const double StructuredFluxBaseScore = 2;
 
+    /// <summary>Calcule le score de sélection automatique d'un résultat.</summary>
+    /// <param name="result">Résultat à évaluer.</param><returns>Score automatique.</returns>
     public static double Calculate(FluxDecodeResult result)
     {
         var sectors = result.Sectors ?? [];
@@ -24,6 +27,8 @@ internal static class FluxDecoderScoring
         return result.Confidence;
     }
 
+    /// <summary>Calcule le score lexicographique utilisé lorsqu'un décodeur est imposé.</summary>
+    /// <param name="result">Résultat à évaluer.</param><returns>Composantes ordonnées du score.</returns>
     public static (int ValidSectors, int InvalidSectorPenalty, int SectorsWithData, double Confidence, int Structures) CalculateExplicit(FluxDecodeResult result)
     {
         var sectors = result.Sectors ?? [];

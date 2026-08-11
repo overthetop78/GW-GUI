@@ -2172,13 +2172,13 @@
       - [x] Lorsque le décodeur est automatique, comparer les révolutions avec le score automatique avant la confiance et le nombre de structures.
       - [x] Lorsque le décodeur est imposé, définir dans `FluxDecoderScoring` le score fondé sur l'intégrité, la présence des données, la confiance et les structures.
       - [x] Conserver le premier index en cas d'égalité complète.
-    - [ ] Présentation et documentation
-      - [ ] Remettre sur une seule ligne la déclaration du cache si elle tient dans la largeur retenue.
-      - [ ] Séparer les constructions, recherches, créations de `Lazy` et tris afin qu'une instruction corresponde à une action lisible.
-      - [ ] Conserver sur une seule ligne les signatures et expressions cohérentes qui tiennent correctement.
-      - [ ] Ajouter la CSDoc française au registre, à ses constructeurs, à ses propriétés et à chaque méthode.
-      - [ ] Ajouter la CSDoc française au catalogue, au composant de score, au modèle de résultat par révolution et aux erreurs dédiées.
-      - [ ] Documenter la comparaison des identifiants, les règles de cache, les règles d'égalité et les unités des scores.
+    - [x] Présentation et documentation
+      - [x] Remettre sur une seule ligne la déclaration du cache si elle tient dans la largeur retenue.
+      - [x] Séparer les constructions, recherches, créations de `Lazy` et tris afin qu'une instruction corresponde à une action lisible.
+      - [x] Conserver sur une seule ligne les signatures et expressions cohérentes qui tiennent correctement.
+      - [x] Ajouter la CSDoc française au registre, à ses constructeurs, à ses propriétés et à chaque méthode.
+      - [x] Ajouter la CSDoc française au catalogue, au composant de score, au modèle de résultat par révolution et aux erreurs dédiées.
+      - [x] Documenter la comparaison des identifiants, les règles de cache, les règles d'égalité et les unités des scores.
     - [ ] Vérification du registre
       - [ ] Tester une collection nulle, vide, contenant un élément nul, un identifiant vide et un doublon.
       - [ ] Tester la résolution de chaque identifiant du catalogue et l'erreur dédiée d'un identifiant absent.
