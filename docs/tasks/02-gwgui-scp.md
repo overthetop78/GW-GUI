@@ -1629,11 +1629,11 @@
       - [x] Remplacer la propriété modifiable `bool[] Bits` par une vue en lecture seule permettant toujours l'indexation et la lecture de la longueur.
       - [x] Adapter les helpers de décodage qui reçoivent actuellement directement `bool[]` afin qu'ils acceptent la vue en lecture seule sans la recopier.
       - [x] Conserver `BitCellTicks` en lecture seule et refuser une valeur non finie ou inférieure à la durée minimale nommée.
-    - [ ] Queue circulaire
-      - [ ] Conserver le retour de l'instance courante lorsque le flux est vide ou que le nombre demandé n'est pas positif.
-      - [ ] Nommer et documenter la règle actuelle qui ajoute au maximum une longueur complète du flux source.
-      - [ ] Vérifier avant allocation l'addition de la longueur des bits et de la queue.
-      - [ ] Copier le préfixe dans la queue sans exposer de nouveau tableau modifiable.
+    - [x] Queue circulaire
+      - [x] Conserver le retour de l'instance courante lorsque le flux est vide ou que le nombre demandé n'est pas positif.
+      - [x] Nommer et documenter la règle actuelle qui ajoute au maximum une longueur complète du flux source.
+      - [x] Vérifier avant allocation l'addition de la longueur des bits et de la queue.
+      - [x] Copier le préfixe dans la queue sans exposer de nouveau tableau modifiable.
     - [ ] Présentation et CSDoc
       - [ ] Séparer les deux propriétés actuellement placées sur la même ligne.
       - [ ] Conserver sur une seule ligne le constructeur primaire et les expressions complètes qui tiennent lisiblement.

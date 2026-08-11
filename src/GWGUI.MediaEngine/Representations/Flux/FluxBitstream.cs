@@ -25,11 +25,16 @@ internal sealed class FluxBitstream
     /// <summary>Durée d'une cellule de bit, en ticks.</summary>
     public double BitCellTicks { get; }
 
+    /// <summary>Ajoute une queue circulaire limitée à une longueur complète du flux source.</summary>
+    /// <param name="bitCount">Nombre de bits demandé pour la queue.</param>
+    /// <returns>L'instance courante lorsqu'aucune queue n'est nécessaire ; sinon une nouvelle représentation prolongée.</returns>
     public FluxBitstream WithCircularTail(int bitCount)
     {
         if (Bits.Length == 0 || bitCount <= 0) return this;
-        var tailLength = Math.Min(bitCount, Bits.Length);
-        var extended = new bool[Bits.Length + tailLength];
+        var maximumTailLength = Bits.Length;
+        var tailLength = Math.Min(bitCount, maximumTailLength);
+        var extendedLength = checked(Bits.Length + tailLength);
+        var extended = new bool[extendedLength];
         Bits.CopyTo(extended);
         Bits.AsSpan(0, tailLength).CopyTo(extended.AsSpan(Bits.Length));
         return new(extended, BitCellTicks);
