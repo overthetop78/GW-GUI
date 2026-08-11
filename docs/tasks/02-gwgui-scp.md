@@ -1709,9 +1709,9 @@
       - [x] Construire le `FluxBitstream` immuable uniquement après la reconstruction complète.
       - [x] Vérifier la capacité initiale calculée avant de créer la liste de bits.
       - [x] Ne pas introduire de tableau intermédiaire supplémentaire en dehors de la copie nécessaire au résultat immuable.
-    - [ ] Présentation et CSDoc
-      - [ ] Remettre sur une seule ligne les signatures et appels complets qui tiennent lisiblement.
-      - [ ] Documenter en français le type, chaque fabrique et chaque fonction privée, avec les unités des intervalles et de la cellule.
+    - [x] Présentation et CSDoc
+      - [x] Remettre sur une seule ligne les signatures et appels complets qui tiennent lisiblement.
+      - [x] Documenter en français le type, chaque fabrique et chaque fonction privée, avec les unités des intervalles et de la cellule.
   - [ ] `Representations/Flux/FluxBitReader.cs`
     - [ ] Validation commune des plages
       - [ ] Créer une fonction commune qui valide un offset non négatif et une longueur sans addition susceptible de dépasser `int`.

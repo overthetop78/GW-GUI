@@ -3,7 +3,7 @@ namespace GWGUI.MediaEngine.Representations.Flux;
 /// <summary>Reconstruit les bits à partir des intervalles séparant les transitions de flux.</summary>
 internal static class FluxTransitionDecoder
 {
-    /// <summary>Reconstruit un flux FM ou MFM avec estimation et adaptation de l'horloge.</summary>
+    /// <summary>Reconstruit un flux FM avec estimation et adaptation de l'horloge.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="fm">Indique si l'estimation doit utiliser la distribution FM.</param>
     /// <returns>Flux de bits reconstruit.</returns>
@@ -22,7 +22,7 @@ internal static class FluxTransitionDecoder
         return Reconstruct(intervals, FluxTimingEstimator.EstimateNonFmBitCell(intervals), FluxDecodingParameters.MaximumFmMfmCellsPerInterval);
     }
 
-    /// <summary>Reconstruit un flux FM ou MFM avec la PLL et une durée de cellule estimée.</summary>
+    /// <summary>Reconstruit un flux FM avec la PLL et une durée de cellule estimée.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="fm">Indique si l'estimation doit utiliser la distribution FM.</param>
     /// <returns>Flux de bits reconstruit.</returns>
@@ -160,6 +160,9 @@ internal static class FluxTransitionDecoder
         return new(bits.ToArray(), samples == 0 ? centre : accumulatedClock / samples);
     }
 
+    /// <summary>Ajoute les cellules sans transition puis la cellule contenant la transition finale.</summary>
+    /// <param name="bits">Liste des cellules de bits en cours de reconstruction.</param>
+    /// <param name="cells">Nombre de cellules représentées par l'intervalle de flux.</param>
     private static void AppendTransition(List<bool> bits, int cells)
     {
         for (var zero = 1; zero < cells; zero++) bits.Add(false);
