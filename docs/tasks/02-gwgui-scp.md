@@ -1479,10 +1479,10 @@
       - [x] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
       - [x] Supprimer les imports de `Images.Containers` et `Images.Interpretations` après disparition des anciens types concernés.
       - [x] Adapter l’import de `DiskImageFormatIds` à son déplacement sous `GWGUI.MediaEngine.Definitions`.
-    - [ ] Présélection par signature
-      - [ ] Faire utiliser les représentations binaires immuables Standard et Extended de `CpcDskFormat` directement sur la mémoire en lecture seule du contexte.
-      - [ ] Supprimer la conversion ASCII effectuée à chaque appel et la méthode privée `StartsWith` devenue inutile.
-      - [ ] Conserver la reconnaissance indépendante de l’extension du fichier.
+    - [x] Présélection par signature
+      - [x] Faire utiliser les représentations binaires immuables Standard et Extended de `CpcDskFormat` directement sur la mémoire en lecture seule du contexte.
+      - [x] Supprimer la conversion ASCII effectuée à chaque appel et la méthode privée `StartsWith` devenue inutile.
+      - [x] Conserver la reconnaissance indépendante de l’extension du fichier.
     - [ ] Lecture sans réouverture du fichier
       - [ ] Ajouter au `CpcDskReader` le point d’entrée en mémoire prévu dans son groupe et lui transmettre les octets déjà chargés par le contexte.
       - [ ] Supprimer l’appel à `reader.ReadAsync(context.Path, ...)` qui rouvre actuellement le même fichier après sa présélection.
