@@ -5,8 +5,10 @@ using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
 
+/// <summary>Vérifie le décodage et le routage public des conteneurs 86F locaux.</summary>
 public sealed class I86fImageTests(ITestOutputHelper output)
 {
+    /// <summary>Vérifie que le Reader 86F décode des secteurs depuis l'image réelle disponible.</summary>
     [Fact]
     public async Task FrameworkPremierRealImageDecodesWhenPresent()
     {
@@ -14,6 +16,16 @@ public sealed class I86fImageTests(ITestOutputHelper output)
         if (!File.Exists(path)) return;
         var image = await new I86fImageReader(new FluxDecoderRegistry()).ReadAsync(path);
         Assert.NotEmpty(image.AvailableBlocks);
+    }
+
+    /// <summary>Vérifie que le registre public présélectionne le Reader 86F.</summary>
+    /// <summary>Compare l'image 86F de sauvegarde à sa référence sectorielle lorsqu'elles sont disponibles.</summary>
+    [Fact]
+    public async Task PublicRegistryRoutesFrameworkPremierToI86fReader()
+    {
+        var path = Path.Combine(RepositoryRoot(), "image_test", "IBM PC", "Framework Premier 1.1 Fr - Systeme 1 [5.25].86f");
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+        Assert.NotEmpty(document.Image.AvailableBlocks);
     }
 
     [Fact]
@@ -38,6 +50,7 @@ public sealed class I86fImageTests(ITestOutputHelper output)
         foreach (var mismatch in mismatches.Take(30)) output.WriteLine(mismatch);
     }
 
+    /// <summary>Retourne la racine du dépôt contenant la solution.</summary>
     private static string RepositoryRoot()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);

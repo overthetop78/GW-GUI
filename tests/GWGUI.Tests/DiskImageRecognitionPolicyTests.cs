@@ -57,6 +57,22 @@ public sealed class DiskImageRecognitionPolicyTests
         }
     }
 
+    /// <summary>Vérifie qu'une extension 86F ou CP2 ne transforme pas un contenu rejeté en image reconnue.</summary>
+    [Theory]
+    [InlineData(".86f")]
+    [InlineData(".cp2")]
+    public async Task ExtensionHintDoesNotBypassReaderValidation(string extension)
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-invalid-container-{Guid.NewGuid():N}{extension}");
+        await File.WriteAllBytesAsync(path, "invalid container"u8.ToArray());
+        try
+        {
+            var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+            Assert.Equal(DiskImageFormatIds.Unknown, result.Image.FormatId);
+        }
+        finally { File.Delete(path); }
+    }
+
     public static TheoryData<string, string> RecognizedImages => new()
     {
         {

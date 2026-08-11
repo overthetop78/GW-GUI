@@ -33,25 +33,25 @@ internal static class DiskImageExplorerFactory
         var apple = new AppleDiskImageReader();
         var containers = new DiskImageRecognitionRegistry(
         [
-            new DirectContainerPolicy(new AdfImageReader(), DiskImageFileExtensions.Adf),
-            new DirectContainerPolicy(new BbcDfsImageReader(), DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
+            new ExtensionHintRecognitionPolicy(new AdfImageReader().ReadAsync, DiskImageFileExtensions.Adf),
+            new ExtensionHintRecognitionPolicy(new BbcDfsImageReader().ReadAsync, DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
             new CoherentImageRecognitionPolicy(new CoherentRawImageReader()),
             new DecRx02ImageRecognitionPolicy(new DecRx02Reader()),
-            new DirectContainerPolicy(new AtariStImageReader(), DiskImageFileExtensions.St),
-            new DirectContainerPolicy(new MsaImageReader(), DiskImageFileExtensions.Msa),
-            new DirectContainerPolicy(new AtrReader(), DiskImageFileExtensions.Atr),
-            new DirectContainerPolicy(new CommodoreD64ImageReader(), DiskImageFileExtensions.D64),
-            new DirectContainerPolicy(new CommodoreD71ImageReader(), DiskImageFileExtensions.D71),
-            new DirectContainerPolicy(new CommodoreD81ImageReader(), DiskImageFileExtensions.D81),
+            new ExtensionHintRecognitionPolicy(new AtariStImageReader().ReadAsync, DiskImageFileExtensions.St),
+            new ExtensionHintRecognitionPolicy(new MsaImageReader().ReadAsync, DiskImageFileExtensions.Msa),
+            new ExtensionHintRecognitionPolicy(new AtrReader().ReadAsync, DiskImageFileExtensions.Atr),
+            new ExtensionHintRecognitionPolicy(new CommodoreD64ImageReader().ReadAsync, DiskImageFileExtensions.D64),
+            new ExtensionHintRecognitionPolicy(new CommodoreD71ImageReader().ReadAsync, DiskImageFileExtensions.D71),
+            new ExtensionHintRecognitionPolicy(new CommodoreD81ImageReader().ReadAsync, DiskImageFileExtensions.D81),
             new AppleImageRecognitionPolicy(apple),
             new MsxContainerPolicy(new MsxImageReader()),
             new AmstradImageRecognitionPolicy(new CpcDskReader()),
             new RawImgContainerPolicy(),
-            new DirectContainerPolicy(new IbmPcImageReader(), DiskImageFileExtensions.Ima),
-            new DirectContainerPolicy(new Td0ImageReader(), DiskImageFileExtensions.Td0),
-            new DelegatingContainerPolicy(new I86fImageReader(decoders).ReadAsync, DiskImageFileExtensions.I86f),
-            new DelegatingContainerPolicy(new Cp2ImageReader().ReadAsync, DiskImageFileExtensions.Cp2),
-            new DirectContainerPolicy(new ImdImageReader(), DiskImageFileExtensions.Imd),
+            new ExtensionHintRecognitionPolicy(new IbmPcImageReader().ReadAsync, DiskImageFileExtensions.Ima),
+            new ExtensionHintRecognitionPolicy(new Td0ImageReader().ReadAsync, DiskImageFileExtensions.Td0),
+            new ExtensionHintRecognitionPolicy(new I86fImageReader(decoders).ReadAsync, DiskImageFileExtensions.I86f),
+            new ExtensionHintRecognitionPolicy(new Cp2ImageReader().ReadAsync, DiskImageFileExtensions.Cp2),
+            new ExtensionHintRecognitionPolicy(new ImdImageReader().ReadAsync, DiskImageFileExtensions.Imd),
             new ScpContainerPolicy(scpExploration, fileSystems.SupportedFormatIds)
         ]);
         return new(containers, fileSystems, scpExploration);

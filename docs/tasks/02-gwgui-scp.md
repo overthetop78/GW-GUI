@@ -1031,39 +1031,38 @@
   - [x] Vérification du formatage
     - [x] Relancer le contrôle des constructions parenthésées complètes de `180` caractères ou moins sur tous les fichiers C# de production.
     - [x] Exécuter les tests ciblés des fichiers dont seule la mise en forme a changé.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
-  - [ ] Remplacement par la politique de reconnaissance commune
-    - [ ] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `I86fImageReader.ReadAsync` par la politique commune créée avec `DirectContainerPolicy.cs` sous `Recognition/Policies`.
-      - Dépendance restante : `ExtensionHintRecognitionPolicy` n'existe pas encore ; sa création appartient au groupe suivant, `DirectContainerPolicy.cs`. Cette action reste non cochée jusqu'à l'exécution de ce groupe dans l'ordre du document.
-    - [ ] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `Cp2ImageReader.ReadAsync` par cette même politique commune.
-    - [ ] Conserver `DiskImageFileExtensions.Format86F` et `DiskImageFileExtensions.Cp2` comme indices de présélection de leurs lecteurs respectifs.
-    - [ ] Supprimer `Images/Containers/DelegatingContainerPolicy.cs` après le remplacement de ses deux seuls consommateurs.
-  - [ ] Vérification des raccordements remplacés
-    - [ ] Tester par le registre public qu’un fichier `86F` présélectionne `I86fImageReader` et que son contenu reste validé par ce lecteur.
-    - [ ] Tester par le registre public qu’un fichier `CP2` présélectionne `Cp2ImageReader` et que son contenu reste validé par ce lecteur.
-    - [ ] Tester qu’un rejet de contenu par l’un de ces lecteurs est transmis au registre sans être converti en réussite par la politique commune.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/DirectContainerPolicy.cs`
-  - [ ] Création de la politique commune de présélection par extension
-    - [ ] Créer `Recognition/Policies/ExtensionHintRecognitionPolicy.cs`.
-    - [ ] Faire hériter `ExtensionHintRecognitionPolicy` de `ReaderBackedRecognitionPolicy` afin de réutiliser son unique délégation de `ReadAsync`.
-    - [ ] Faire recevoir au constructeur la fonction de lecture du Reader et les extensions utilisées uniquement comme indices.
-    - [ ] Copier les extensions reçues dans un ensemble privé insensible à la casse afin que leur collection ne puisse pas être modifiée depuis la fabrique après construction.
-    - [ ] Implémenter `CanReadAsync` en comparant `DiskImageRecognitionContext.Extension` à cet ensemble, sans valider le contenu dans cette méthode.
-  - [ ] Migration des enregistrements directs
-    - [ ] Remplacer dans `Images/DiskImageExplorerFactory.cs` les constructions de `DirectContainerPolicy` pour ADF, SSD/DSD, ST, MSA et ATR par `ExtensionHintRecognitionPolicy`.
-    - [ ] Remplacer dans la même fabrique les constructions de `DirectContainerPolicy` pour D64, D71, D81, IMA, TD0 et IMD par `ExtensionHintRecognitionPolicy`.
-    - [ ] Passer à chaque nouvelle politique la méthode `ReadAsync` du même Reader et les mêmes constantes de `DiskImageFileExtensions` que l’enregistrement remplacé.
-    - [ ] Supprimer `Images/Containers/DirectContainerPolicy.cs` après migration de ses onze enregistrements et des deux enregistrements provenant de `DelegatingContainerPolicy.cs`.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Documenter en français `ExtensionHintRecognitionPolicy`, son constructeur, son ensemble d’extensions et `CanReadAsync`.
-    - [ ] Expliquer dans la CSDoc que l’extension présélectionne un candidat mais que le Reader reste responsable de valider son contenu.
-    - [ ] Conserver sur une seule ligne les déclarations, signatures et expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests par le registre de reconnaissance
-    - [ ] Vérifier qu’une extension enregistrée fait essayer une seule fois le Reader associé.
-    - [ ] Vérifier qu’une extension non enregistrée ne fait pas essayer ce Reader.
-    - [ ] Vérifier que deux extensions configurées sur la même politique, comme SSD et DSD, sélectionnent le même Reader.
-    - [ ] Vérifier que les différences de casse de l’extension ne changent pas la présélection.
-    - [ ] Vérifier qu’un Reader rejetant le contenu laisse le registre poursuivre avec le candidat suivant selon le comportement prévu du registre.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
+  - [x] Remplacement par la politique de reconnaissance commune
+    - [x] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `I86fImageReader.ReadAsync` par la politique commune créée avec `DirectContainerPolicy.cs` sous `Recognition/Policies`.
+    - [x] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `Cp2ImageReader.ReadAsync` par cette même politique commune.
+    - [x] Conserver `DiskImageFileExtensions.Format86F` et `DiskImageFileExtensions.Cp2` comme indices de présélection de leurs lecteurs respectifs.
+    - [x] Supprimer `Images/Containers/DelegatingContainerPolicy.cs` après le remplacement de ses deux seuls consommateurs.
+  - [x] Vérification des raccordements remplacés
+    - [x] Tester par le registre public qu’un fichier `86F` présélectionne `I86fImageReader` et que son contenu reste validé par ce lecteur.
+    - [x] Tester par le registre public qu’un fichier `CP2` présélectionne `Cp2ImageReader` et que son contenu reste validé par ce lecteur.
+    - [x] Tester qu’un rejet de contenu par l’un de ces lecteurs est transmis au registre sans être converti en réussite par la politique commune.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/DirectContainerPolicy.cs`
+  - [x] Création de la politique commune de présélection par extension
+    - [x] Créer `Recognition/Policies/ExtensionHintRecognitionPolicy.cs`.
+    - [x] Faire hériter `ExtensionHintRecognitionPolicy` de `ReaderBackedRecognitionPolicy` afin de réutiliser son unique délégation de `ReadAsync`.
+    - [x] Faire recevoir au constructeur la fonction de lecture du Reader et les extensions utilisées uniquement comme indices.
+    - [x] Copier les extensions reçues dans un ensemble privé insensible à la casse afin que leur collection ne puisse pas être modifiée depuis la fabrique après construction.
+    - [x] Implémenter `CanReadAsync` en comparant `DiskImageRecognitionContext.Extension` à cet ensemble, sans valider le contenu dans cette méthode.
+  - [x] Migration des enregistrements directs
+    - [x] Remplacer dans `Images/DiskImageExplorerFactory.cs` les constructions de `DirectContainerPolicy` pour ADF, SSD/DSD, ST, MSA et ATR par `ExtensionHintRecognitionPolicy`.
+    - [x] Remplacer dans la même fabrique les constructions de `DirectContainerPolicy` pour D64, D71, D81, IMA, TD0 et IMD par `ExtensionHintRecognitionPolicy`.
+    - [x] Passer à chaque nouvelle politique la méthode `ReadAsync` du même Reader et les mêmes constantes de `DiskImageFileExtensions` que l’enregistrement remplacé.
+    - [x] Supprimer `Images/Containers/DirectContainerPolicy.cs` après migration de ses onze enregistrements et des deux enregistrements provenant de `DelegatingContainerPolicy.cs`.
+  - [x] Documentation XML française et mise en forme
+    - [x] Documenter en français `ExtensionHintRecognitionPolicy`, son constructeur, son ensemble d’extensions et `CanReadAsync`.
+    - [x] Expliquer dans la CSDoc que l’extension présélectionne un candidat mais que le Reader reste responsable de valider son contenu.
+    - [x] Conserver sur une seule ligne les déclarations, signatures et expressions complètes qui restent lisibles ainsi.
+  - [x] Tests par le registre de reconnaissance
+    - [x] Vérifier qu’une extension enregistrée fait essayer une seule fois le Reader associé.
+    - [x] Vérifier qu’une extension non enregistrée ne fait pas essayer ce Reader.
+    - [x] Vérifier que deux extensions configurées sur la même politique, comme SSD et DSD, sélectionnent le même Reader.
+    - [x] Vérifier que les différences de casse de l’extension ne changent pas la présélection.
+    - [x] Vérifier qu’un Reader rejetant le contenu laisse le registre poursuivre avec le candidat suivant selon le comportement prévu du registre.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/MsxContainerPolicy.cs`
   - [ ] Déplacement dans la reconnaissance MSX
     - [ ] Renommer le type en `MsxImageRecognitionPolicy` et déplacer le fichier vers `Recognition/Policies/MsxImageRecognitionPolicy.cs`.
