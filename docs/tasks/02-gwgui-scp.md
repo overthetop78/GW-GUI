@@ -1966,9 +1966,9 @@
     - [x] Documentation XML française
       - [x] Documenter en français le type, la représentation d'état et chaque méthode avec ses paramètres et son résultat.
       - [x] Mettre à jour la documentation de `FluxStructure.Description` pour indiquer qu'elle est produite par le propriétaire commun.
-    - [ ] Tests ciblés
-      - [ ] Tester les trois états d'intégrité et chaque forme de description avec toutes ses données injectées.
-      - [ ] Vérifier dans les tests ciblés de chaque décodeur que les descriptions produites restent cohérentes avec les structures et secteurs décodés.
+    - [x] Tests ciblés
+      - [x] Tester les trois états d'intégrité et chaque forme de description avec toutes ses données injectées.
+      - [x] Vérifier dans les tests ciblés de chaque décodeur que les descriptions produites restent cohérentes avec les structures et secteurs décodés.
 
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/AppleBitLatch.cs`
   - [ ] Structure et raccordements
