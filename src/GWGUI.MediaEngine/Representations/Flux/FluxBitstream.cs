@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Decoding;
+namespace GWGUI.MediaEngine.Representations.Flux;
 
 internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
 {
