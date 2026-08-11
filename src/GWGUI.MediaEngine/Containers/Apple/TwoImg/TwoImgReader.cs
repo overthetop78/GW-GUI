@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition.Apple;
 using GWGUI.MediaEngine.Recognition.Definitions;

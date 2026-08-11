@@ -1,5 +1,5 @@
 using System.Reflection;
-using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Definitions;
 
 namespace GWGUI.Tests;
 

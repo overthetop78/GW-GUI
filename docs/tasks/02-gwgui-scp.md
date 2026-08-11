@@ -341,7 +341,7 @@
 
 ## 3. Conteneurs et reconnaissance des fichiers
 
-- [ ] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFileExtensions.cs`
+- [x] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFileExtensions.cs`
   - [x] Création des définitions communes
     - [x] Créer le fichier `Recognition/Definitions/DiskImageFileExtensions.cs`.
     - [x] Déclarer une constante nommée pour chaque extension d’image disque effectivement utilisée par `GWGUI.MediaEngine`.
@@ -358,20 +358,20 @@
     - [x] Vérifier que chaque constante commence par un point et est en minuscules.
     - [x] Vérifier qu’aucune valeur d’extension n’est déclarée deux fois dans `DiskImageFileExtensions`.
     - [x] Exécuter les tests de reconnaissance et de lecture existants après remplacement des textes bruts.
-  - [ ] Emplacement commun à tout le moteur
-    - [ ] Déplacer le fichier vers `Definitions/DiskImageFileExtensions.cs`, car ses constantes sont utilisées par la reconnaissance, les Readers, les convertisseurs et les Writers.
-    - [ ] Déplacer le type dans le namespace `GWGUI.MediaEngine.Definitions` et adapter tous ses consommateurs.
-    - [ ] Conserver le type public afin que les consommateurs de la DLL puissent utiliser les mêmes extensions que ses API de lecture et de conversion.
-  - [ ] Noms des constantes
-    - [ ] Renommer `Format86F` en `I86f` pour l’aligner sur `I86fImageReader` et supprimer le préfixe vague `Format`.
-    - [ ] Adapter la composition, les politiques et les tests qui utilisent cette constante sans modifier sa valeur `.86f`.
-    - [ ] Conserver une seule constante pour les extensions ambiguës `.dsk`, `.img` et `.bin`, sans créer une copie par machine.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de chaque constante.
-    - [ ] Conserver dans chaque commentaire la distinction entre extension propre à un conteneur et extension générique partagée.
-  - [ ] Vérification du déplacement
-    - [ ] Compiler tous les projets consommateurs après le changement de namespace public.
-    - [ ] Exécuter les tests ciblés de reconnaissance, lecture et conversion qui sélectionnent un traitement depuis une extension.
+  - [x] Emplacement commun à tout le moteur
+    - [x] Déplacer le fichier vers `Definitions/DiskImageFileExtensions.cs`, car ses constantes sont utilisées par la reconnaissance, les Readers, les convertisseurs et les Writers.
+    - [x] Déplacer le type dans le namespace `GWGUI.MediaEngine.Definitions` et adapter tous ses consommateurs.
+    - [x] Conserver le type public afin que les consommateurs de la DLL puissent utiliser les mêmes extensions que ses API de lecture et de conversion.
+  - [x] Noms des constantes
+    - [x] Renommer `Format86F` en `I86f` pour l’aligner sur `I86fImageReader` et supprimer le préfixe vague `Format`.
+    - [x] Adapter la composition, les politiques et les tests qui utilisent cette constante sans modifier sa valeur `.86f`.
+    - [x] Conserver une seule constante pour les extensions ambiguës `.dsk`, `.img` et `.bin`, sans créer une copie par machine.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de chaque constante.
+    - [x] Conserver dans chaque commentaire la distinction entre extension propre à un conteneur et extension générique partagée.
+  - [x] Vérification du déplacement
+    - [x] Compiler tous les projets consommateurs après le changement de namespace public.
+    - [x] Exécuter les tests ciblés de reconnaissance, lecture et conversion qui sélectionnent un traitement depuis une extension.
 - [ ] `src/GWGUI.MediaEngine/Primitives/DataSizeConstants.cs`
   - [x] Définitions d'unités réellement partagées
     - [x] Créer `Primitives/DataSizeConstants.cs`.

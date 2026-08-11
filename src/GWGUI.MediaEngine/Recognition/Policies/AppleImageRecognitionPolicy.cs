@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;

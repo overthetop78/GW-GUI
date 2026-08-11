@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Recognition.Definitions;
+namespace GWGUI.MediaEngine.Definitions;
 
 /// <summary>
 /// Fournit les extensions de fichiers d’images disque reconnues, lues ou produites par <c>GWGUI.MediaEngine</c>.
@@ -9,7 +9,7 @@ public static class DiskImageFileExtensions
     public const string TwoMg = ".2mg";
 
     /// <summary>Extension des conteneurs de pistes 86F.</summary>
-    public const string Format86F = ".86f";
+    public const string I86f = ".86f";
 
     /// <summary>Extension des images ADF Acorn ou Amiga.</summary>
     public const string Adf = ".adf";
