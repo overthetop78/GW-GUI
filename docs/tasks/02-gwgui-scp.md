@@ -1775,8 +1775,8 @@
     - [x] Remplacer les méthodes privées `ReverseBits` de `ArburgDecoder`, `EmuFmDecoder`, `HeathkitFmDecoder` et `HpMmfmDecoder` par des appels directs à `BitPrimitives.ReverseBits`, puis supprimer ces quatre copies.
     - [x] Faire référencer `NibTrackFormat.BitsPerByte` à `BitPrimitives.BitsPerByte` ou supprimer la constante locale si tous ses consommateurs peuvent utiliser directement la primitive commune.
     - [x] Remplacer les autres nombres `8` uniquement lorsqu’ils représentent réellement le nombre de bits d’un octet, sans toucher aux tailles ou limites ayant un autre sens.
-  - [ ] Mise en forme
-    - [ ] Conserver la boucle et son unique instruction sur une ligne tant que l’expression complète reste lisible.
+  - [x] Mise en forme
+    - [x] Conserver la boucle et son unique instruction sur une ligne tant que l’expression complète reste lisible.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `BitPrimitives`, `BitsPerByte`, `LeastSignificantBitMask` et `ReverseBits`.
     - [ ] Documenter le paramètre, le résultat et l’ordre exact des bits inversés.
