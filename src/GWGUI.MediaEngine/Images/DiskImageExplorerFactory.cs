@@ -44,7 +44,7 @@ internal static class DiskImageExplorerFactory
             new ExtensionHintRecognitionPolicy(new CommodoreD71ImageReader().ReadAsync, DiskImageFileExtensions.D71),
             new ExtensionHintRecognitionPolicy(new CommodoreD81ImageReader().ReadAsync, DiskImageFileExtensions.D81),
             new AppleImageRecognitionPolicy(apple),
-            new MsxContainerPolicy(new MsxImageReader()),
+            new MsxImageRecognitionPolicy(new MsxImageReader()),
             new AmstradImageRecognitionPolicy(new CpcDskReader()),
             new RawImgContainerPolicy(),
             new ExtensionHintRecognitionPolicy(new IbmPcImageReader().ReadAsync, DiskImageFileExtensions.Ima),

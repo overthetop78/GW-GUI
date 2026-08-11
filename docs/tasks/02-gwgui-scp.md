@@ -1063,30 +1063,30 @@
     - [x] Vérifier que deux extensions configurées sur la même politique, comme SSD et DSD, sélectionnent le même Reader.
     - [x] Vérifier que les différences de casse de l’extension ne changent pas la présélection.
     - [x] Vérifier qu’un Reader rejetant le contenu laisse le registre poursuivre avec le candidat suivant selon le comportement prévu du registre.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/MsxContainerPolicy.cs`
-  - [ ] Déplacement dans la reconnaissance MSX
-    - [ ] Renommer le type en `MsxImageRecognitionPolicy` et déplacer le fichier vers `Recognition/Policies/MsxImageRecognitionPolicy.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Containers` par `GWGUI.MediaEngine.Recognition.Policies`.
-    - [ ] Faire hériter la politique de `ReaderBackedRecognitionPolicy` et supprimer sa copie de la délégation `ReadAsync`.
-    - [ ] Adapter son enregistrement dans `Images/DiskImageExplorerFactory.cs` au nouveau type et au nouveau namespace.
-  - [ ] Présélection et validation du candidat MSX
-    - [ ] Conserver `DiskImageFileExtensions.Dsk` comme indice obligatoire pour cette image brute dépourvue de signature de conteneur.
-    - [ ] Conserver `DiskImageFormatIds.MsxPrefix` pour accepter une demande explicite de l’une des variantes MSX sur un fichier DSK.
-    - [ ] Déplacer `MsxImageReader.LooksLikeMsx` vers `Recognition/Msx/MsxBootSectorProbe.cs`, car cette vérification du BPB sert à reconnaître le candidat avant sa lecture.
-    - [ ] Faire utiliser `MsxBootSectorProbe` à la politique et à `MsxImageReader` afin de ne pas recopier la validation du BPB.
-    - [ ] Laisser `MsxImageReader` valider de nouveau le contenu lors de la lecture afin qu’une demande explicite ne transforme pas un faux DSK en image MSX valide.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Remplacer la CSDoc corrompue de la classe, de `CanReadAsync` et de leurs paramètres par une CSDoc française lisible.
-    - [ ] Documenter la différence entre l’indice `.dsk`, la demande explicite d’un format `msx.*` et la validation du BPB.
-    - [ ] Documenter en français `MsxBootSectorProbe` et sa méthode de validation lors de sa création.
-    - [ ] Conserver sur une seule ligne les déclarations et expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests par le registre et le lecteur public
-    - [ ] Utiliser une image MSX-DOS DSK dont le BPB et les secteurs attendus sont connus depuis `image_test`.
-    - [ ] Vérifier qu’un fichier `.dsk` avec un BPB MSX valide est présélectionné puis lu comme image MSX.
-    - [ ] Vérifier qu’une extension autre que `.dsk` n’est pas présélectionnée par cette politique de format brut.
-    - [ ] Vérifier qu’un faux `.dsk` sans demande explicite et sans BPB MSX valide est refusé par la politique.
-    - [ ] Vérifier qu’un faux `.dsk` demandé explicitement comme `msx.*` est ensuite refusé par la validation du Reader.
-    - [ ] Vérifier que l’annulation de la lecture du contexte est propagée.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/MsxContainerPolicy.cs`
+  - [x] Déplacement dans la reconnaissance MSX
+    - [x] Renommer le type en `MsxImageRecognitionPolicy` et déplacer le fichier vers `Recognition/Policies/MsxImageRecognitionPolicy.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Containers` par `GWGUI.MediaEngine.Recognition.Policies`.
+    - [x] Faire hériter la politique de `ReaderBackedRecognitionPolicy` et supprimer sa copie de la délégation `ReadAsync`.
+    - [x] Adapter son enregistrement dans `Images/DiskImageExplorerFactory.cs` au nouveau type et au nouveau namespace.
+  - [x] Présélection et validation du candidat MSX
+    - [x] Conserver `DiskImageFileExtensions.Dsk` comme indice obligatoire pour cette image brute dépourvue de signature de conteneur.
+    - [x] Conserver `DiskImageFormatIds.MsxPrefix` pour accepter une demande explicite de l’une des variantes MSX sur un fichier DSK.
+    - [x] Déplacer `MsxImageReader.LooksLikeMsx` vers `Recognition/Msx/MsxBootSectorProbe.cs`, car cette vérification du BPB sert à reconnaître le candidat avant sa lecture.
+    - [x] Faire utiliser `MsxBootSectorProbe` à la politique et à `MsxImageReader` afin de ne pas recopier la validation du BPB.
+    - [x] Laisser `MsxImageReader` valider de nouveau le contenu lors de la lecture afin qu’une demande explicite ne transforme pas un faux DSK en image MSX valide.
+  - [x] Documentation XML française et mise en forme
+    - [x] Remplacer la CSDoc corrompue de la classe, de `CanReadAsync` et de leurs paramètres par une CSDoc française lisible.
+    - [x] Documenter la différence entre l’indice `.dsk`, la demande explicite d’un format `msx.*` et la validation du BPB.
+    - [x] Documenter en français `MsxBootSectorProbe` et sa méthode de validation lors de sa création.
+    - [x] Conserver sur une seule ligne les déclarations et expressions complètes qui restent lisibles ainsi.
+  - [x] Tests par le registre et le lecteur public
+    - [x] Utiliser une image MSX-DOS DSK dont le BPB et les secteurs attendus sont connus depuis `image_test`.
+    - [x] Vérifier qu’un fichier `.dsk` avec un BPB MSX valide est présélectionné puis lu comme image MSX.
+    - [x] Vérifier qu’une extension autre que `.dsk` n’est pas présélectionnée par cette politique de format brut.
+    - [x] Vérifier qu’un faux `.dsk` sans demande explicite et sans BPB MSX valide est refusé par la politique.
+    - [x] Vérifier qu’un faux `.dsk` demandé explicitement comme `msx.*` est ensuite refusé par la validation du Reader.
+    - [x] Vérifier que l’annulation de la lecture du contexte est propagée.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/RawImgContainerPolicy.cs`
   - [ ] Séparation de la présélection IMG et de son interprétation
     - [ ] Renommer et déplacer la politique vers `Recognition/Policies/RawImgRecognitionPolicy.cs`.

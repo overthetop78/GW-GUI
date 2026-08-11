@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
 
 
@@ -53,7 +54,7 @@ internal static class SectorImageInterpretation
         interpretation = null!;
         if (image.FormatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ||
             !image.TryGetBlock(0, out var boot) || boot.Data.Count != 512 ||
-            !MsxImageReader.LooksLikeMsx(boot.Data.ToArray()))
+            !MsxBootSectorProbe.LooksLikeMsx(boot.Data.ToArray()))
             return false;
         var formatId = image.BlockCount switch
         {
