@@ -1274,15 +1274,15 @@
     - [x] Créer l’enum byte `ImdSectorRecordType` avec les neuf valeurs de `0` à `8` : indisponible, normal ou compressé, supprimé ou non et avec ou sans erreur.
     - [x] Définir sur cet enum des fonctions indiquant si une charge utile est disponible, compressée et considérée intègre.
     - [x] Remplacer les comparaisons brutes à `0`, `1`, `5`, `6`, `7` et `8`, le test de parité et les masques de face par ces enums et fonctions.
-  - [ ] Découpage du parsing
-    - [ ] Extraire de `Read` une méthode privée qui valide la signature et localise la fin du commentaire.
-    - [ ] Extraire une méthode privée qui lit et valide l’en-tête d’une piste.
-    - [ ] Extraire une méthode privée commune qui lit une carte d’octets de la longueur déclarée.
-    - [ ] Extraire une méthode privée qui lit la carte optionnelle de tailles 16 bits ou calcule les tailles depuis le code exponentiel.
-    - [ ] Extraire une méthode privée qui lit un enregistrement sectoriel normal, compressé ou indisponible selon `ImdSectorRecordType`.
-    - [ ] Conserver la boucle principale comme parcours des pistes et assemblage des `ImdSector` privés.
-    - [ ] Extraire la construction de la `SectorImage` dans une méthode privée distincte du parsing binaire.
-    - [ ] Conserver la position logique des enregistrements indisponibles dans `MissingBlocks`, leur taille dans la capacité déclarée et leur exclusion de `AvailableBlocks`.
+  - [x] Découpage du parsing
+    - [x] Extraire de `Read` une méthode privée qui valide la signature et localise la fin du commentaire.
+    - [x] Extraire une méthode privée qui lit et valide l’en-tête d’une piste.
+    - [x] Extraire une méthode privée commune qui lit une carte d’octets de la longueur déclarée.
+    - [x] Extraire une méthode privée qui lit la carte optionnelle de tailles 16 bits ou calcule les tailles depuis le code exponentiel.
+    - [x] Extraire une méthode privée qui lit un enregistrement sectoriel normal, compressé ou indisponible selon `ImdSectorRecordType`.
+    - [x] Conserver la boucle principale comme parcours des pistes et assemblage des `ImdSector` privés.
+    - [x] Extraire la construction de la `SectorImage` dans une méthode privée distincte du parsing binaire.
+    - [x] Conserver la position logique des enregistrements indisponibles dans `MissingBlocks`, leur taille dans la capacité déclarée et leur exclusion de `AvailableBlocks`.
   - [ ] Sections et erreurs ImageDisk paramétrées
     - [ ] Créer l’enum `ImdSection` pour l’en-tête de piste, les cartes de numéros, cylindres, faces et tailles, l’enregistrement sectoriel, la valeur compressée et les données sectorielles.
     - [ ] Créer `Containers/ImageDisk/ImdExceptions.cs`.
