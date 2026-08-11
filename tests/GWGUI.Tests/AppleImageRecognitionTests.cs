@@ -41,13 +41,11 @@ public sealed class AppleImageRecognitionTests
         {
             await File.WriteAllBytesAsync(path, [0x00]);
 
-            var failure = await Record.ExceptionAsync(() => DiskImageExplorer.CreateDefault().ExploreAsync(path));
-            if (failure is null)
-            {
-                var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
-                Assert.Equal("unknown", explored.Image.FormatId);
-            }
-            else Assert.IsType<DiskImageCandidatesRejectedException>(failure);
+            var registry = new DiskImageRecognitionRegistry([new AppleImageRecognitionPolicy(new AppleDiskImageReader()), new AcceptedPolicy()]);
+
+            var image = await registry.ReadAsync(path, null, CancellationToken.None);
+
+            Assert.Equal("fallback", image.FormatId);
         }
         finally
         {
