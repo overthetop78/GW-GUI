@@ -58,6 +58,9 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Décode les quatre octets d'en-tête et contrôle leur CRC.</summary>
+    /// <param name="stream">Flux binaire MFM.</param>
+    /// <param name="offset">Position du premier octet encodé suivant la marque.</param>
+    /// <returns>En-tête et validité de son CRC, ou <see langword="null"/> si le codage est invalide.</returns>
     private static (byte[] Bytes, bool Valid)? TryDecodeHeader(FluxBitstream stream, int offset)
     {
         var header = TryDecodeMfmBytes(stream, offset, CenturionMfmFormat.HeaderByteCount);
@@ -65,6 +68,12 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit, valide et décrit un bloc de données associé à un en-tête.</summary>
+    /// <param name="stream">Flux binaire MFM.</param>
+    /// <param name="dataOffset">Position de la marque de données.</param>
+    /// <param name="cylinder">Cylindre lu dans l'en-tête.</param>
+    /// <param name="sector">Secteur lu dans l'en-tête.</param>
+    /// <param name="structures">Collection recevant la description du bloc.</param>
+    /// <returns>Résultat de la lecture, ou <see langword="null"/> lorsqu'aucun résultat n'est disponible.</returns>
     private static CenturionDataResult? TryDecodeData(FluxBitstream stream, int dataOffset, byte cylinder, byte sector, List<FluxStructure> structures)
     {
         var prefixEnd = dataOffset + CenturionMfmFormat.DataPrefixBitCount;
@@ -92,6 +101,9 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la prochaine marque de données sans franchir un nouvel en-tête.</summary>
+    /// <param name="stream">Flux binaire MFM.</param>
+    /// <param name="start">Position de départ incluse.</param>
+    /// <returns>Position de la marque de données, ou -1 si elle est absente ou précédée d'un nouvel en-tête.</returns>
     private static int FindDataMark(FluxBitstream stream, int start)
     {
         for (var offset = Math.Max(0, start); offset + CenturionMfmFormat.DataMarkBitCount <= stream.Bits.Length; offset++)
@@ -103,6 +115,9 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute les marques de données qui ne sont associées à aucun en-tête.</summary>
+    /// <param name="stream">Flux binaire MFM.</param>
+    /// <param name="structures">Collection recevant les structures.</param>
+    /// <param name="pairedData">Positions des marques déjà associées.</param>
     private static void AddUnpairedData(FluxBitstream stream, List<FluxStructure> structures, IReadOnlySet<int> pairedData)
     {
         for (var offset = 0; offset + CenturionMfmFormat.DataMarkBitCount <= stream.Bits.Length; offset++)
@@ -114,6 +129,10 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Décode une suite d'octets MFM avec la primitive commune.</summary>
+    /// <param name="stream">Flux binaire MFM.</param>
+    /// <param name="offset">Position du premier octet encodé.</param>
+    /// <param name="count">Nombre d'octets attendus.</param>
+    /// <returns>Octets décodés, ou <see langword="null"/> si une cellule est invalide ou tronquée.</returns>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
@@ -123,5 +142,10 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Regroupe le résultat de lecture d'un bloc de données Centurion.</summary>
+    /// <param name="Size">Taille déclarée de la charge utile.</param>
+    /// <param name="Valid">Validité du CRC, ou valeur nulle lorsqu'elle est indisponible.</param>
+    /// <param name="Data">Charge utile, ou valeur nulle lorsqu'elle n'a pas été décodée.</param>
+    /// <param name="EndOffset">Position suivant le bloc lu.</param>
+    /// <param name="Fatal">Indique que l'en-tête courant doit être abandonné pour conserver le comportement de décodage.</param>
     private sealed record CenturionDataResult(int Size, bool? Valid, byte[]? Data, int EndOffset, bool Fatal);
 }

@@ -2495,11 +2495,11 @@
       - [x] Extraire le traitement des blocs de données non appariés dans une méthode nommée.
       - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur, taille, clé et états des CRC.
       - [x] Utiliser le calcul de confiance commun avec les paramètres Centurion.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions Centurion créées.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions Centurion créées.
     - [ ] Vérification du groupe Centurion
       - [ ] Tester un en-tête complet avec CRC valide puis invalide.
       - [ ] Tester une marque de données appariée, une marque non appariée et une nouvelle marque de secteur rencontrée avant les données.
