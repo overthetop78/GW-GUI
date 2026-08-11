@@ -1639,11 +1639,11 @@
       - [x] Conserver sur une seule ligne le constructeur primaire et les expressions complètes qui tiennent lisiblement.
       - [x] Documenter en français le type, son constructeur, `Bits`, `BitCellTicks` et `WithCircularTail`.
   - [ ] `Representations/Flux/FluxDecodingParameters.cs`
-    - [ ] Limites de reconstruction
-      - [ ] Créer le fichier et y définir la durée minimale d'une cellule à un tick.
-      - [ ] Y définir le maximum de 32 cellules utilisé par la reconstruction FM/MFM avec PLL ou adaptation simple.
-      - [ ] Y définir le maximum de 64 cellules utilisé par les reconstructions NRZI et doubled-NRZI.
-      - [ ] Y définir le facteur initial de capacité de quatre bits estimés par intervalle.
+    - [x] Limites de reconstruction
+      - [x] Créer le fichier et y définir la durée minimale d'une cellule à un tick.
+      - [x] Y définir le maximum de 32 cellules utilisé par la reconstruction FM/MFM avec PLL ou adaptation simple.
+      - [x] Y définir le maximum de 64 cellules utilisé par les reconstructions NRZI et doubled-NRZI.
+      - [x] Y définir le facteur initial de capacité de quatre bits estimés par intervalle.
     - [ ] Adaptation simple de l'horloge
       - [ ] Y définir les bornes relatives `0,7` et `1,3` d'un échantillon accepté.
       - [ ] Y définir le coefficient d'adaptation `0,08`.

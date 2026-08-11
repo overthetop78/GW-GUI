@@ -8,9 +8,6 @@ namespace GWGUI.MediaEngine.Representations.Flux;
 /// <exception cref="ArgumentOutOfRangeException">La durée de cellule n'est pas finie ou est inférieure à la durée minimale.</exception>
 internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
 {
-    /// <summary>Durée minimale acceptée pour une cellule de bit, en ticks.</summary>
-    public const double MinimumBitCellTicks = 1d;
-
     /// <summary>Bits reconstruits exposés sans mutation possible.</summary>
     public ImmutableArray<bool> Bits { get; } = [.. bits];
 
@@ -38,7 +35,7 @@ internal sealed class FluxBitstream(bool[] bits, double bitCellTicks)
     /// <exception cref="ArgumentOutOfRangeException">La durée de cellule n'est pas finie ou est inférieure à la durée minimale.</exception>
     private static double ValidateBitCellTicks(double value)
     {
-        if (!double.IsFinite(value) || value < MinimumBitCellTicks) throw new ArgumentOutOfRangeException(nameof(bitCellTicks), value, $"La durée d'une cellule doit être finie et supérieure ou égale à {MinimumBitCellTicks} tick.");
+        if (!double.IsFinite(value) || value < FluxDecodingParameters.MinimumBitCellTicks) throw new ArgumentOutOfRangeException(nameof(bitCellTicks), value, $"La durée d'une cellule doit être finie et supérieure ou égale à {FluxDecodingParameters.MinimumBitCellTicks} tick.");
         return value;
     }
 }
