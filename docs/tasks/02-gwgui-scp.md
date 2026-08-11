@@ -1804,12 +1804,12 @@
   - [x] Documentation XML
     - [x] Documenter en français `Crc16Calculator` et chacune de ses constantes, avec la variante de CRC à laquelle chaque paramètre commun correspond.
     - [x] Documenter en français `Compute` et `Update`, leurs paramètres, leur résultat, leurs exceptions et les valeurs par défaut utilisées.
-  - [ ] Tests ciblés
-    - [ ] Tester `Compute` avec un vecteur CCITT connu et un vecteur utilisant le polynôme IBM et l’initialisation nulle.
-    - [ ] Tester que les appels successifs à `Update` produisent le même CRC que `Compute`.
-    - [ ] Tester un polynôme et une valeur initiale fournis explicitement.
-    - [ ] Tester le rejet d’une séquence nulle.
-    - [ ] Exécuter les tests ciblés des encodeurs et décodeurs dont les méthodes relais ou paramètres bruts ont été remplacés.
+  - [x] Tests ciblés
+    - [x] Tester `Compute` avec un vecteur CCITT connu et un vecteur utilisant le polynôme IBM et l’initialisation nulle.
+    - [x] Tester que les appels successifs à `Update` produisent le même CRC que `Compute`.
+    - [x] Tester un polynôme et une valeur initiale fournis explicitement.
+    - [x] Tester le rejet d’une séquence nulle.
+    - [x] Exécuter les tests ciblés des encodeurs et décodeurs dont les méthodes relais ou paramètres bruts ont été remplacés.
 - [ ] `src/GWGUI.MediaEngine/Primitives/DiskGeometryConstants.cs`
   - [ ] Responsabilité et visibilité
     - [ ] Conserver le fichier dans `Primitives`, car les nombres conventionnels de cylindres et de têtes sont utilisés par plusieurs familles sans appartenir à l’une d’elles.
