@@ -6,9 +6,12 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Decodes the zoned 512-byte GCR sectors used by the Commodore 900.</summary>
 public sealed class Commodore900GcrDecoder : IFluxDecoder
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.Commodore900Gcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.Commodore900Gcr;
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals);
@@ -57,6 +60,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, validCount / (double)Commodore900GcrFormat.ExpectedSectorCount), stream.BitCellTicks, structures, decodedBytes, sectors);
     }
 
+    /// <summary>Tente de décoder une suite d'octets du format.</summary>
     private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         if (offset + count * Commodore900GcrFormat.EncodedByteBitCount > bits.Count) return null;
@@ -70,6 +74,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         return result;
     }
 
+    /// <summary>Exécute le traitement « Try Nibble » propre à ce format.</summary>
     private static bool TryNibble(IReadOnlyList<bool> bits, int offset, out int value)
     {
         var code = 0; value = 0;

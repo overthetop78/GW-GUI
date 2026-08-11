@@ -6,13 +6,18 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Micropolis MFM.</summary>
 public sealed class MicropolisMfmDecoder : IFluxDecoder
 {
+    /// <summary>Conserve la définition « Sync » utilisée par ce codec.</summary>
     private static readonly byte[] Sync = MicropolisMfmFormat.Sync.ToArray();
 
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.MicropolisMfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.MicropolisMfm;
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -48,6 +53,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Calcule la somme de contrôle du bloc fourni.</summary>
     private static byte Checksum(ReadOnlySpan<byte> data)
     {
         var value = 0;
@@ -59,6 +65,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
         return (byte)value;
     }
 
+    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

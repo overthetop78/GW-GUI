@@ -5,14 +5,23 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Dec Rx02.</summary>
 public sealed class DecRx02Decoder : SignatureMfmDecoder
 {
+    /// <summary>Conserve la définition « Header Mark » utilisée par ce codec.</summary>
     private static readonly byte[] HeaderMark = DecRx02EncodingFormat.HeaderMark.ToArray();
+    /// <summary>Conserve la définition « Data Marks » utilisée par ce codec.</summary>
     private static readonly (byte[] Pattern, byte Mark)[] DataMarks = DecRx02EncodingFormat.DataMarks.Select(item => (item.Pattern.ToArray(), item.Mark)).ToArray();
-    public override string Id => FluxCodecIds.DecRx02; public override string DisplayName => FluxCodecDisplayNames.DecRx02;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public override string Id => FluxCodecIds.DecRx02;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public override string DisplayName => FluxCodecDisplayNames.DecRx02;
+    /// <summary>Indique si le codec analyse un flux FM.</summary>
     protected override bool IsFm => true;
+    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "DEC RX02 sector header"), .. DataMarks.Select(item => (item.Pattern, FluxStructureKind.FormatData, $"DEC RX02 {item.Mark:X2} data"))];
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -69,6 +78,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
+    /// <summary>Recherche la prochaine marque de données dans la distance autorisée.</summary>
     private static (int Offset, byte Mark) FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - HeaderMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);
@@ -76,6 +86,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         return (-1, 0);
     }
 
+    /// <summary>Décode une suite d'octets utilisant la transformation M²FM.</summary>
     private static byte[] DecodeM2Fm(FluxBitstream stream, int start, int count)
     {
         var bits = new bool[count * DecRx02EncodingFormat.EncodedMfmByteBitCount + DecRx02EncodingFormat.M2FmPhaseBitCount];
@@ -99,6 +110,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         return result;
     }
 
+    /// <summary>Tente de décoder une suite d'octets FM.</summary>
     private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

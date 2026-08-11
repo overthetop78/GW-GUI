@@ -3,11 +3,15 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Iso MFM.</summary>
 public sealed class IsoMfmTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.IsoMfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.IsoMfm;
 
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

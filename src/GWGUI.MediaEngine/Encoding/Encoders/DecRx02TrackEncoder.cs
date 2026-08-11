@@ -4,10 +4,14 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Dec Rx02.</summary>
 public sealed class DecRx02TrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.DecRx02;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.DecRx02;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits();
@@ -26,6 +30,7 @@ public sealed class DecRx02TrackEncoder : TrackEncoderBase
         }
         return bits;
     }
+    /// <summary>Remplace les motifs MFM par leurs motifs M²FM.</summary>
     private static void ReplaceM2Fm(List<bool> bits)
     {
         var normal=DecRx02EncodingFormat.NormalM2FmRule;

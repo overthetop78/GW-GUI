@@ -6,16 +6,23 @@ namespace GWGUI.MediaEngine.Decoding;
 
 public class AppleMacGcrDecoder : IFluxDecoder
 {
+    /// <summary>Conserve la définition « Inverse » utilisée par ce codec.</summary>
     private static readonly Dictionary<byte, byte> Inverse = AppleMacGcrFormat.SixAndTwoTable.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => (byte)item.index);
-    public virtual string Id => FluxCodecIds.AppleMacGcr; public virtual string DisplayName => FluxCodecDisplayNames.AppleMacGcr;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public virtual string Id => FluxCodecIds.AppleMacGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public virtual string DisplayName => FluxCodecDisplayNames.AppleMacGcr;
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
 
+    /// <summary>Exécute le traitement « Decode At Bit Cell » propre à ce format.</summary>
     public FluxDecodeResult DecodeAtBitCell(ScpRevolution revolution, double bitCellTicks) =>
         DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals, bitCellTicks));
 
+    /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
     private FluxDecodeResult DecodeCore(ScpRevolution revolution, FluxBitstream stream)
     {
         var trackBitLength = stream.Bits.Length;
@@ -56,6 +63,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
+    /// <summary>Exécute le traitement « Decode Six And Two » propre à ce format.</summary>
     private static byte[] DecodeSixAndTwo(ReadOnlySpan<byte> symbols, out byte[] checksum)
     {
         var b1 = new byte[AppleMacGcrFormat.GroupByteCount]; var b2 = new byte[AppleMacGcrFormat.GroupByteCount]; var b3 = new byte[AppleMacGcrFormat.GroupByteCount]; var source = 0;
@@ -77,6 +85,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
         return output;
     }
 
+    /// <summary>Exécute le traitement « Try Read Symbols » propre à ce format.</summary>
     private static byte[]? TryReadSymbols(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * BitPrimitives.BitsPerByte > stream.Bits.Length) return null;
@@ -84,6 +93,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
         for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeByte(stream, offset + index * BitPrimitives.BitsPerByte, out result[index])) return null;
         return result;
     }
+    /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
         for (var offset = start; offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;

@@ -2,10 +2,14 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Victor9k GCR.</summary>
 public sealed class Victor9kGcrTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id=>FluxCodecIds.Victor9kGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName=>FluxCodecDisplayNames.Victor9kGcr;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits();
@@ -19,6 +23,7 @@ public sealed class Victor9kGcrTrackEncoder : TrackEncoderBase
         }
         return bits;
     }
+    /// <summary>Exécute le traitement « Add Block » propre à ce format.</summary>
     private static void AddBlock(List<bool> target,string markerHex,IEnumerable<byte> values)
     {
         var marker=new List<bool>(); marker.RawHex(markerHex); var encoded=new List<bool>();

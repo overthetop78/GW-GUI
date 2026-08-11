@@ -2,10 +2,14 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Amiga MFM.</summary>
 public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.AmigaMfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.AmigaMfm;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
@@ -25,12 +29,14 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
         }
         return bits;
     }
+    /// <summary>Exécute le traitement « Nibble » propre à ce format.</summary>
     private static byte Nibble(byte value, bool odd)
     {
         byte result = 0; var first = odd ? 7 : 6;
         for (var index = 0; index < AmigaMfmFormat.NibbleBitCount; index++) result |= (byte)(((value >> (first - index * 2)) & 1) << (3 - index));
         return result;
     }
+    /// <summary>Exécute le traitement « Encode Odd Even » propre à ce format.</summary>
     private static byte[] EncodeOddEven(IReadOnlyList<byte> values)
     {
         if ((values.Count & 1) != 0) throw AmigaMfmFormat.OddEncodedByteCount(values.Count);
@@ -42,6 +48,7 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
         }
         return odd.Concat(even).ToArray();
     }
+    /// <summary>Exécute le traitement « Parity » propre à ce format.</summary>
     private static (byte High, byte Low) Parity(IReadOnlyList<byte> encoded, bool split)
     {
         byte high = 0, low = 0;

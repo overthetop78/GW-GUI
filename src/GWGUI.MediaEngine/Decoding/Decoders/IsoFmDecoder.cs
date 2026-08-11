@@ -4,9 +4,14 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Iso FM.</summary>
 public sealed class IsoFmDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.IsoFm; public string DisplayName => FluxCodecDisplayNames.IsoFm;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public string Id => FluxCodecIds.IsoFm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public string DisplayName => FluxCodecDisplayNames.IsoFm;
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
@@ -51,6 +56,7 @@ public sealed class IsoFmDecoder : IFluxDecoder
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 18d), stream.BitCellTicks, structures, bytes, sectors);
     }
+    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

@@ -2,10 +2,14 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Northstar MFM.</summary>
 public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.NorthstarMfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.NorthstarMfm;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

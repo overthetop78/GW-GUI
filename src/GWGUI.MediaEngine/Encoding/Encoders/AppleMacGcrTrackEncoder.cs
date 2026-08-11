@@ -4,9 +4,13 @@ namespace GWGUI.MediaEngine.Encoding;
 
 public class AppleMacGcrTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id=>FluxCodecIds.AppleMacGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName=>FluxCodecDisplayNames.AppleMacGcr;
+    /// <summary>Conserve la définition « Default Format » utilisée par ce codec.</summary>
     protected virtual byte DefaultFormat => AppleMacGcrFormat.DefaultFormat;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits(); var format=(byte)Attribute(request,AppleMacGcrFormat.FormatAttributeName,DefaultFormat);
@@ -22,6 +26,7 @@ public class AppleMacGcrTrackEncoder : TrackEncoderBase
         }
         return bits;
     }
+    /// <summary>Exécute le traitement « Encode Data » propre à ce format.</summary>
     private static byte[] EncodeData(byte[] source)
     {
         var b1=new byte[AppleMacGcrFormat.GroupByteCount]; var b2=new byte[AppleMacGcrFormat.GroupByteCount]; var b3=new byte[AppleMacGcrFormat.GroupByteCount]; uint c1=0,c2=0,c3=0; var position=0;

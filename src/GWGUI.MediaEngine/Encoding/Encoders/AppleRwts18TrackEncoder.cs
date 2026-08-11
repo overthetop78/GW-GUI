@@ -6,9 +6,12 @@ namespace GWGUI.MediaEngine.Encoding;
 /// <summary>Encodes the standard Brøderbund RWTS18 six-sector track layout.</summary>
 public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.AppleRwts18;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.AppleRwts18;
 
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
@@ -26,6 +29,7 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
         return bits;
     }
 
+    /// <summary>Exécute le traitement « Encode Payload » propre à ce format.</summary>
     private static byte[] EncodePayload(IReadOnlyList<byte> data)
     {
         var encoded = new byte[AppleRwts18Format.PayloadWithChecksumSymbolCount]; byte checksum = 0;

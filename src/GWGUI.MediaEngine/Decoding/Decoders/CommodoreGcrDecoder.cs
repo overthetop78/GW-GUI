@@ -3,9 +3,14 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Commodore GCR.</summary>
 public sealed class CommodoreGcrDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.CommodoreGcr; public string DisplayName => FluxCodecDisplayNames.CommodoreGcr;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public string Id => FluxCodecIds.CommodoreGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public string DisplayName => FluxCodecDisplayNames.CommodoreGcr;
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();
@@ -51,6 +56,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 42d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Tente de décoder une suite d'octets du format.</summary>
     private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         var result = new byte[count];
@@ -58,6 +64,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
         return result;
     }
 
+    /// <summary>Exécute le traitement « Try Decode Byte » propre à ce format.</summary>
     private static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, out byte value)
     {
         value = 0; if (offset + CommodoreGcrFormat.EncodedByteBitCount > bits.Count) return false;

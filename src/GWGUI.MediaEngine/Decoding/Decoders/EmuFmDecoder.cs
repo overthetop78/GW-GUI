@@ -3,13 +3,21 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Emu FM.</summary>
 public sealed class EmuFmDecoder : SignatureMfmDecoder
 {
+    /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = EmuFmFormat.SectorMark.ToArray();
-    public override string Id => FluxCodecIds.EmuFm; public override string DisplayName => FluxCodecDisplayNames.EmuFm;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public override string Id => FluxCodecIds.EmuFm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public override string DisplayName => FluxCodecDisplayNames.EmuFm;
+    /// <summary>Indique si le codec analyse un flux FM.</summary>
     protected override bool IsFm => true;
+    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "E-mu Emulator header/data mark")];
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -50,6 +58,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
+    /// <summary>Recherche la prochaine marque du format.</summary>
     private static int FindNextMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - SectorMark.Length * Primitives.BitPrimitives.BitsPerByte, start + maximumDistance);
@@ -57,6 +66,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
         return -1;
     }
 
+    /// <summary>Tente de décoder une suite d'octets FM.</summary>
     private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

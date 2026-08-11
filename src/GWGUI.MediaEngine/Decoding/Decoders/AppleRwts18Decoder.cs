@@ -10,14 +10,19 @@ namespace GWGUI.MediaEngine.Decoding;
 /// </summary>
 public sealed class AppleRwts18Decoder : IFluxDecoder
 {
+    /// <summary>Conserve la définition « Inverse » utilisée par ce codec.</summary>
     private static readonly Dictionary<byte, byte> Inverse = AppleRwts18Format.NibbleTable.Select((value, index) => (value, index))
         .ToDictionary(pair => pair.value, pair => (byte)pair.index);
 
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.AppleRwts18;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.AppleRwts18;
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 
+    /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
     private FluxDecodeResult DecodeCore(FluxBitstream source)
     {
         var trackBitLength = source.Bits.Length;
@@ -57,6 +62,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
         return new(Id, DisplayName, confidence, source.BitCellTicks, structures, decodedBytes, sectors);
     }
 
+    /// <summary>Exécute le traitement « Try Read Data » propre à ce format.</summary>
     private static (byte[] Data, bool Valid, int StartOffset, int EndOffset)? TryReadData(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
@@ -83,6 +89,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
         return null;
     }
 
+    /// <summary>Exécute le traitement « Decode Payload » propre à ce format.</summary>
     private static (byte[] Data, bool Valid) DecodePayload(IReadOnlyList<byte> values)
     {
         var page1 = new byte[AppleRwts18Format.PageByteCount]; var page2 = new byte[AppleRwts18Format.PageByteCount]; var page3 = new byte[AppleRwts18Format.PageByteCount];

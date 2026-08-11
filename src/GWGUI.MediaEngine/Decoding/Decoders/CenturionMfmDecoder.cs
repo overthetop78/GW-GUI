@@ -4,13 +4,21 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Centurion MFM.</summary>
 public sealed class CenturionMfmDecoder : SignatureMfmDecoder
 {
+    /// <summary>Conserve la définition « Sector Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SectorMark = CenturionMfmFormat.SectorMark.ToArray();
+    /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
     private static readonly byte[] DataMark = CenturionMfmFormat.DataMark.ToArray();
-    public override string Id => FluxCodecIds.CenturionMfm; public override string DisplayName => FluxCodecDisplayNames.CenturionMfm;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public override string Id => FluxCodecIds.CenturionMfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public override string DisplayName => FluxCodecDisplayNames.CenturionMfm;
+    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Centurion sector mark"), (DataMark, FluxStructureKind.FormatData, "Centurion data mark")];
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -59,18 +67,21 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Recherche la prochaine marque de données.</summary>
     private static int FindDataMark(FluxBitstream stream, int start)
     {
         for (var offset = Math.Max(0, start); offset + DataMark.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) { if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return -1; if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset; }
         return -1;
     }
 
+    /// <summary>Détermine le code représentant la taille du secteur.</summary>
     private static byte SizeCode(int size)
     {
         for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
         return 0;
     }
 
+    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

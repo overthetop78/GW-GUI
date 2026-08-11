@@ -4,10 +4,15 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Victor9k GCR.</summary>
 public sealed class Victor9kGcrDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.Victor9kGcr; public string DisplayName => FluxCodecDisplayNames.Victor9kGcr;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public string Id => FluxCodecIds.Victor9kGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public string DisplayName => FluxCodecDisplayNames.Victor9kGcr;
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveDoubledNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
@@ -43,12 +48,14 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
         for (var offset = Math.Max(0, start); offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
         return -1;
     }
 
+    /// <summary>Tente de décoder une suite d'octets du format.</summary>
     private static (byte[] Bytes, int EndOffset)? TryDecodeBytes(IReadOnlyList<bool> bits, int start, int count)
     {
         var result = new byte[count]; var offset = start;
@@ -60,6 +67,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
         return (result, offset);
     }
 
+    /// <summary>Exécute le traitement « Try Decode Nibble » propre à ce format.</summary>
     private static bool TryDecodeNibble(IReadOnlyList<bool> bits, ref int offset, out byte value)
     {
         var code = 0; value = 0;

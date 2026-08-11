@@ -2,10 +2,14 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Commodore GCR.</summary>
 public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.CommodoreGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.CommodoreGcr;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits(); var id2=(byte)Attribute(request,CommodoreGcrFormat.Id2AttributeName,CommodoreGcrFormat.DefaultId2); var id1=(byte)Attribute(request,CommodoreGcrFormat.Id1AttributeName,CommodoreGcrFormat.DefaultId1);
@@ -20,6 +24,7 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
         }
         return bits;
     }
+    /// <summary>Exécute le traitement « GCR » propre à ce format.</summary>
     private static void Gcr(List<bool> bits,IEnumerable<byte> values)
     {
         foreach(var value in values) foreach(var nibble in new[]{value>>4,value&CommodoreGcrFormat.NibbleMask}) for(var bit=CommodoreGcrFormat.EncodedNibbleBitCount-1;bit>=0;bit--) bits.Add((CommodoreGcrFormat.EncodingTable[nibble]&(1<<bit))!=0);

@@ -1943,8 +1943,8 @@
     - [x] Créer dans chaque définition de format les méthodes d’erreur nécessaires pour injecter taille, piste, face, secteur, longueur ou encodage utilisés par ses messages actuels.
     - [x] Remplacer les textes et constructions directes d’exception dans chaque décodeur et encodeur par la méthode du format correspondant.
   - [ ] Documentation XML
-    - [ ] Documenter en français chaque fichier de définition créé et chacun de ses membres.
-    - [ ] Mettre à jour la documentation française des décodeurs et encodeurs après remplacement des données brutes.
+    - [x] Documenter en français chaque fichier de définition créé et chacun de ses membres.
+    - [x] Mettre à jour la documentation française des décodeurs et encodeurs après remplacement des données brutes.
   - [ ] Tests ciblés
     - [ ] Pour chaque paire, encoder des secteurs connus puis les redécoder et comparer les adresses, données et états d’intégrité.
     - [ ] Utiliser une image de `image_test` lorsqu’elle existe ; appliquer la règle d’obtention d’image du document lorsqu’elle manque.
@@ -1985,7 +1985,7 @@
   - [ ] Validation des paramètres
     - [ ] Rejeter un nombre d'octets négatif avant l'allocation du résultat.
     - [ ] Rejeter un offset négatif ou supérieur à la longueur du tableau de bits.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [ ] Documenter en français `AppleBitLatch`, son masque de synchronisation et `TryReadBytes`.
     - [ ] Documenter le déplacement de l'offset, le résultat nul lorsque les bits manquent et les exceptions de paramètres.
     - [ ] Conserver sur une seule ligne la signature complète de `TryReadBytes`.

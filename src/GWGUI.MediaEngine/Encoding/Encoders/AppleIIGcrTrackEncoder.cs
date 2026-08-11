@@ -2,10 +2,14 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
+/// <summary>Encode les pistes utilisant le format Apple IIGCR.</summary>
 public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.AppleIIGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.AppleIIGcr;
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits(); var volume = (byte)Attribute(request, AppleIIGcrFormat.VolumeAttributeName, AppleIIGcrFormat.DefaultVolume);
@@ -20,6 +24,7 @@ public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
         }
         return bits;
     }
+    /// <summary>Exécute le traitement « Encode Six And Two » propre à ce format.</summary>
     private static byte[] EncodeSixAndTwo(IReadOnlyList<byte> source)
     {
         var buffer = new byte[AppleIIGcrFormat.SixAndTwoWorkBufferByteCount]; for (var i=0;i<source.Count;i++) buffer[i]=source[i];
@@ -33,6 +38,7 @@ public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
         encoded.Add(AppleIIGcrFormat.SixAndTwoTable[checksum]); return encoded.ToArray();
     }
 
+    /// <summary>Exécute le traitement « Encode Five And Three » propre à ce format.</summary>
     private static byte[] EncodeFiveAndThree(IReadOnlyList<byte> source)
     {
         const int chunkSize = AppleIIGcrFormat.FiveAndThreeChunkByteCount; const int threeSize = AppleIIGcrFormat.FiveAndThreeAuxiliaryByteCount;

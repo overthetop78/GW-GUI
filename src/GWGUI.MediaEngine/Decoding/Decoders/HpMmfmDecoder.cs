@@ -3,14 +3,20 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Hp MMFM.</summary>
 public sealed class HpMmfmDecoder : IFluxDecoder
 {
+    /// <summary>Conserve la définition « Sector Sync » utilisée par ce codec.</summary>
     private static readonly byte[] SectorSync = HpMmfmFormat.SectorSync.ToArray();
+    /// <summary>Conserve la définition « Data Sync » utilisée par ce codec.</summary>
     private static readonly byte[] DataSync = HpMmfmFormat.DataSync.ToArray();
 
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.HpMmfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.HpMmfm;
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -63,6 +69,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Tente de décoder une suite d'octets du format.</summary>
     private static byte[]? TryDecodeBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
@@ -70,6 +77,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
         return result;
     }
 
+    /// <summary>Recherche le prochain motif dans la plage indiquée.</summary>
     private static int Find(FluxBitstream stream, int start, int end, IReadOnlyList<byte> pattern)
     {
         for (var offset = start; offset + pattern.Count * Primitives.BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) return offset;

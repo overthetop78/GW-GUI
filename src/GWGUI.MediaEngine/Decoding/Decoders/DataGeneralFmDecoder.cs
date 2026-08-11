@@ -6,13 +6,18 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Data General FM.</summary>
 public sealed class DataGeneralFmDecoder : IFluxDecoder
 {
+    /// <summary>Conserve la définition « Sync » utilisée par ce codec.</summary>
     private static readonly byte[] Sync = DataGeneralFmFormat.Sync.ToArray();
 
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.DataGeneralFm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.DataGeneralFm;
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
@@ -57,6 +62,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Recherche toutes les occurrences du motif dans le flux.</summary>
     private static List<int> FindAll(FluxBitstream stream, IReadOnlyList<byte> pattern)
     {
         var offsets = new List<int>();
@@ -64,6 +70,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
         return offsets;
     }
 
+    /// <summary>Calcule la somme de contrôle du bloc fourni.</summary>
     private static ushort Checksum(ReadOnlySpan<byte> data)
     {
         ushort value = 0;
@@ -75,6 +82,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
         return value;
     }
 
+    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

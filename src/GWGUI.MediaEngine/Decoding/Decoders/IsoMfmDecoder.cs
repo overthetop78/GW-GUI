@@ -4,9 +4,14 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Iso MFM.</summary>
 public sealed class IsoMfmDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.IsoMfm; public string DisplayName => FluxCodecDisplayNames.IsoMfm;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public string Id => FluxCodecIds.IsoMfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public string DisplayName => FluxCodecDisplayNames.IsoMfm;
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var centre = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);
@@ -24,6 +29,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
         return best;
     }
 
+    /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
     private FluxDecodeResult DecodeCore(FluxBitstream source)
     {
         var originalLength = source.Bits.Length;
@@ -76,6 +82,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Exécute le traitement « Score » propre à ce format.</summary>
     private static int Score(FluxDecodeResult result)
     {
         var sectors = result.Sectors ?? [];
@@ -84,6 +91,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
             + sectors.Count;
     }
 
+    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

@@ -3,14 +3,23 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Arburg.</summary>
 public sealed class ArburgDecoder : SignatureMfmDecoder
 {
+    /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
     private static readonly byte[] DataMark = ArburgFormat.DataMark.ToArray();
+    /// <summary>Conserve la définition « System Mark » utilisée par ce codec.</summary>
     private static readonly byte[] SystemMark = ArburgFormat.SystemMark.ToArray();
-    public override string Id => FluxCodecIds.Arburg; public override string DisplayName => FluxCodecDisplayNames.Arburg;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public override string Id => FluxCodecIds.Arburg;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public override string DisplayName => FluxCodecDisplayNames.Arburg;
+    /// <summary>Indique si le codec analyse un flux FM.</summary>
     protected override bool IsFm => true;
+    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(DataMark, FluxStructureKind.FormatData, "Arburg data block"), (SystemMark, FluxStructureKind.FormatHeader, "Arburg system block")];
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -20,6 +29,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 8d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
+    /// <summary>Analyse les blocs de données FM.</summary>
     private static void ScanFmData(FluxBitstream stream, List<FluxStructure> structures, List<DecodedSector> sectors, List<byte> bytes)
     {
         var markBits = DataMark.Length * Primitives.BitPrimitives.BitsPerByte; const int blockSize = ArburgFormat.DataBlockSize, usefulSize = ArburgFormat.DataUsefulSize;
@@ -42,6 +52,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         }
     }
 
+    /// <summary>Analyse les blocs de données système.</summary>
     private static void ScanSystemData(FluxBitstream stream, List<FluxStructure> structures, List<DecodedSector> sectors, List<byte> bytes)
     {
         var markBits = SystemMark.Length * Primitives.BitPrimitives.BitsPerByte; const int blockSize = ArburgFormat.SystemBlockSize, usefulSize = ArburgFormat.SystemUsefulSize;
@@ -60,6 +71,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         }
     }
 
+    /// <summary>Tente de décoder les octets d'un bloc système.</summary>
     private static (byte[] Bytes, int EndOffset)? TryDecodeSystemBytes(FluxBitstream stream, int start, int count)
     {
         var result = new byte[count]; var offset = start;
@@ -81,6 +93,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         return (result, offset);
     }
 
+    /// <summary>Tente de décoder une suite d'octets FM.</summary>
     private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];

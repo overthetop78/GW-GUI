@@ -4,15 +4,23 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Apple IIGCR.</summary>
 public sealed class AppleGcrDecoder : IFluxDecoder
 {
+    /// <summary>Conserve la définition « Inverse Six And Two » utilisée par ce codec.</summary>
     private static readonly Dictionary<byte, byte> InverseSixAndTwo = AppleIIGcrFormat.SixAndTwoTable.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);
+    /// <summary>Conserve la définition « Inverse Five And Three » utilisée par ce codec.</summary>
     private static readonly Dictionary<byte, byte> InverseFiveAndThree = AppleIIGcrFormat.FiveAndThreeTable.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);
-    public string Id => FluxCodecIds.AppleIIGcr; public string DisplayName => FluxCodecDisplayNames.AppleIIGcr;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public string Id => FluxCodecIds.AppleIIGcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public string DisplayName => FluxCodecDisplayNames.AppleIIGcr;
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 
+    /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
     private FluxDecodeResult DecodeCore(FluxBitstream stream)
     {
         var trackBitLength = stream.Bits.Length;
@@ -53,6 +61,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 32d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
+    /// <summary>Exécute le traitement « Decode Five And Three » propre à ce format.</summary>
     private static void DecodeFiveAndThree(FluxBitstream stream, int trackBitLength, List<FluxStructure> structures,
         List<byte> bytes, List<DecodedSector> sectors, HashSet<int> pairedData)
     {
@@ -90,18 +99,22 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         }
     }
 
+    /// <summary>Exécute le traitement « Decode Four And Four » propre à ce format.</summary>
     private static byte DecodeFourAndFour(byte high, byte low) => (byte)(((high << 1) | 1) & low);
+    /// <summary>Exécute le traitement « Try Read Bytes » propre à ce format.</summary>
     private static byte[]? TryReadBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         if (offset + count * BitPrimitives.BitsPerByte > bits.Count) return null; var result = new byte[count];
         for (var index = 0; index < count; index++) for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++) if (bits[offset + index * BitPrimitives.BitsPerByte + bit]) result[index] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit));
         return result;
     }
+    /// <summary>Recherche le prochain motif dans la plage indiquée.</summary>
     private static int Find(FluxBitstream stream, int start, int end, uint mark)
     {
         for (var offset = Math.Max(0, start); offset + AppleIIGcrFormat.PrologueBitCount <= end; offset++) if (FluxBitReader.Match(stream, offset, mark, AppleIIGcrFormat.PrologueBitCount)) return offset;
         return -1;
     }
+    /// <summary>Exécute le traitement « Try Decode Six And Two » propre à ce format.</summary>
     private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(IReadOnlyList<bool> bits, int offset)
     {
         // A real Disk II controller shifts bits until bit 7 becomes set. WOZ stores
@@ -122,6 +135,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         return (data, valid, cursor);
     }
 
+    /// <summary>Exécute le traitement « Try Decode Five And Three » propre à ce format.</summary>
     private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;

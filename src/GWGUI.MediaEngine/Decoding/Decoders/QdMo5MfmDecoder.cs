@@ -4,13 +4,21 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes utilisant le format Qd Mo5 MFM.</summary>
 public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
 {
+    /// <summary>Conserve la définition « Header Mark » utilisée par ce codec.</summary>
     private static readonly byte[] HeaderMark = QdMo5MfmFormat.HeaderMark.ToArray();
+    /// <summary>Conserve la définition « Data Mark » utilisée par ce codec.</summary>
     private static readonly byte[] DataMark = QdMo5MfmFormat.DataMark.ToArray();
-    public override string Id => FluxCodecIds.QdMo5Mfm; public override string DisplayName => FluxCodecDisplayNames.QdMo5Mfm;
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
+    public override string Id => FluxCodecIds.QdMo5Mfm;
+    /// <summary>Obtient le nom affiché du codec.</summary>
+    public override string DisplayName => FluxCodecDisplayNames.QdMo5Mfm;
+    /// <summary>Expose les motifs binaires reconnus dans le flux.</summary>
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "QD MO5 sector header"), (DataMark, FluxStructureKind.FormatData, "QD MO5 sector data")];
 
+    /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -53,6 +61,7 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
+    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
@@ -60,6 +69,7 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
         return result;
     }
 
+    /// <summary>Recherche la prochaine marque de données avant un nouvel en-tête.</summary>
     private static int FindNextData(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - DataMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);

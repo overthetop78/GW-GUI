@@ -5,9 +5,12 @@ namespace GWGUI.MediaEngine.Encoding;
 /// <summary>Encodes the zoned 512-byte GCR sectors used by the Commodore 900.</summary>
 public sealed class Commodore900GcrTrackEncoder : TrackEncoderBase
 {
+    /// <summary>Obtient l'identifiant technique du codec.</summary>
     public override string Id => FluxCodecIds.Commodore900Gcr;
+    /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.Commodore900Gcr;
 
+    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
@@ -28,6 +31,7 @@ public sealed class Commodore900GcrTrackEncoder : TrackEncoderBase
         return bits;
     }
 
+    /// <summary>Exécute le traitement « GCR » propre à ce format.</summary>
     private static void Gcr(List<bool> bits, IEnumerable<byte> values)
     {
         foreach (var value in values)
