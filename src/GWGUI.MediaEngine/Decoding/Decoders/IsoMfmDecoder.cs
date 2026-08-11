@@ -7,7 +7,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     public string Id => FluxDecoderIds.IsoMfm; public string DisplayName => "ISO MFM (Atari ST / IBM PC)";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var centre = FluxTimingEstimator.EstimateBitCell(revolution.FluxIntervals);
+        var centre = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);
         var first = DecodeCore(FluxTransitionDecoder.DecodePll(revolution.FluxIntervals, centre));
         if (first.Sectors?.All(sector => sector.Data is not null && sector.IntegrityValid == true) == true) return first;
 

@@ -55,7 +55,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     private FluxDecodeResult DecodeMacTrack(ScpTrack track, ScpRevolution revolution)
     {
         var expected = AppleDiskGeometry.AppleMacSectors(track.Cylinder);
-        var initial = FluxTimingEstimator.EstimateBitCell(revolution.FluxIntervals) * 2;
+        var initial = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals) * 2;
         var factors = new[] { 1.0, .95, 1.05, .9, 1.1, .85, 1.15 }.Distinct();
         FluxDecodeResult? best = null;
         var bestScore = int.MinValue;

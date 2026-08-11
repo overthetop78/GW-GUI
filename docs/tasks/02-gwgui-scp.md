@@ -1659,10 +1659,10 @@
     - [x] Lecture binaire
       - [x] Y définir les huit bits d'un octet, les 16 bits du motif `ushort`, les 32 bits maximaux du motif `uint`, les deux cellules par bit de `DecodeMfmByte` et les quatre cellules par bit de `DecodeFmByte32`.
       - [x] Documenter en français chaque constante avec son unité et l'algorithme auquel elle appartient.
-  - [ ] `Representations/Flux/FluxTimingMode.cs`
-    - [ ] Créer un enum distinguant l'estimation FM de l'estimation non-FM actuellement sélectionnées par le booléen `fm`.
-    - [ ] Remplacer le booléen de `EstimateBitCell` par cet enum afin que chaque appel indique explicitement le mode demandé.
-    - [ ] Conserver des fabriques clairement nommées pour que les décodeurs n'aient pas à fournir cet enum lorsque leur mode est déjà imposé par la méthode choisie.
+  - [x] `Representations/Flux/FluxTimingMode.cs`
+    - [x] Créer un enum distinguant l'estimation FM de l'estimation non-FM actuellement sélectionnées par le booléen `fm`.
+    - [x] Remplacer le booléen de `EstimateBitCell` par cet enum afin que chaque appel indique explicitement le mode demandé.
+    - [x] Conserver des fabriques clairement nommées pour que les décodeurs n'aient pas à fournir cet enum lorsque leur mode est déjà imposé par la méthode choisie.
     - [x] Documenter en français l'enum et chacune de ses valeurs.
   - [ ] `Representations/Flux/FluxTimingEstimator.cs`
     - [ ] Validation et échantillons
