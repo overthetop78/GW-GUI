@@ -1951,7 +1951,7 @@
     - [x] Exécuter uniquement les tests de la paire traitée avant de terminer son groupe.
 
 - [ ] Descriptions techniques encore construites en texte brut par les décodeurs
-  - [ ] `Decoding/FluxStructureDescriptions.cs`
+  - [x] `Decoding/FluxStructureDescriptions.cs`
     - [x] Création des descriptions communes
       - [x] Créer `Decoding/FluxStructureDescriptions.cs` comme propriétaire unique des descriptions attachées aux `FluxStructure`.
       - [x] Ajouter une représentation nommée des trois états d'intégrité actuellement exprimés par les textes `valid`, `invalid` et `unavailable`.
