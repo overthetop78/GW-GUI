@@ -713,13 +713,13 @@
     - [x] Créer des tests locaux de `TwoImgReader` vérifiant signature, version, format d’image, offset, longueur, ordre DOS/ProDOS et extraction de la charge utile.
     - [x] Créer des tests locaux de `DiskCopyReader` vérifiant en-tête, tailles, données, tags et sommes de contrôle.
     - [x] Vérifier le rejet des signatures, versions, offsets, longueurs, sommes de contrôle et fichiers tronqués invalides à partir de copies modifiées des images locales.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleNibbleImageDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Images/AppleNibbleImageDecoder.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Apple/Woz/WozReader.cs` et y déplacer le parsing WOZ1/WOZ2.
     - [x] Créer `Recognition/Apple/NibTrackImageReader.cs` et y déplacer la lecture NIB.
     - [x] Raccorder les pistes produites aux décodeurs Apple.
     - [x] Supprimer `AppleNibbleImageDecoder.cs`.
-  - [ ] Définitions du conteneur WOZ
+  - [x] Définitions du conteneur WOZ
     - [x] Créer `Containers/Apple/Woz/WozFormat.cs`.
     - [x] Sortir de `WozReader.cs` les signatures `WOZ1`, `WOZ2` et la marque binaire `FF 0A 0D 0A`.
     - [x] Sortir de `WozReader.cs` les identifiants de chunks `INFO`, `TMAP` et `TRKS`.
@@ -729,25 +729,25 @@
     - [x] Sortir de `WozReader.cs` la taille d’une entrée WOZ1, l’offset de son nombre de bits et la taille d’un bloc WOZ2.
     - [x] Sortir de `WozReader.cs` les offsets et tailles des descripteurs WOZ2 utilisés pour le bloc de départ, le nombre de blocs et le nombre de bits.
     - [x] Remplacer chaque valeur brute correspondante dans `WozReader.cs` par `WozFormat` ou `WozLayout`.
-    - [ ] Calcul commun du CRC32 WOZ
-      - [ ] Créer `Containers/Apple/Woz/WozCrc32.cs`.
-      - [ ] Y déplacer l’algorithme de CRC32 actuellement dupliqué dans `WozReader.cs` et `AppleNibbleImageWriter.cs`.
-      - [ ] Faire utiliser `WozFormat.Crc32Polynomial` par ce calcul commun.
-      - [ ] Raccorder `WozReader` et `AppleNibbleImageWriter` à la fonction commune, puis supprimer leurs deux implémentations locales.
-      - [ ] Documenter en français `WozCrc32` et sa fonction de calcul, avec son paramètre et son résultat.
-      - [ ] Tester la fonction commune avec un contenu dont le CRC32 WOZ attendu est connu.
-    - [ ] Relations entre les champs de `WozLayout.cs`
-      - [ ] Définir `HeaderMarkerOffset` à partir de `SignatureLength` sans modifier sa valeur finale `4`.
-      - [ ] Définir `CrcOffset` à partir de `HeaderMarkerOffset` et `HeaderMarkerLength` sans modifier sa valeur finale `8`.
-      - [ ] Définir `ChunksOffset` à partir de `CrcOffset` et `CrcLength` sans modifier sa valeur finale `12`.
-      - [ ] Définir `ChunkLengthOffset` à partir de `ChunkIdOffset` et `ChunkIdLength` sans modifier sa valeur finale `4`.
-      - [ ] Définir `ChunkHeaderLength` à partir de `ChunkLengthOffset` et `ChunkLengthSize` sans modifier sa valeur finale `8`.
-      - [ ] Définir `TrackMapLength` par `AppleIITrackCount * TrackMapEntriesPerTrack` sans modifier sa valeur finale `160`.
-      - [ ] Définir `Woz2BlockCountOffset` à partir de `Woz2StartBlockOffset` et `Woz2BlockFieldLength` sans modifier sa valeur finale `2`.
-      - [ ] Définir `Woz2BitCountOffset` à partir de `Woz2BlockCountOffset` et `Woz2BlockFieldLength` sans modifier sa valeur finale `4`.
-      - [ ] Définir `Woz2TrackDescriptorLength` à partir de `Woz2BitCountOffset` et `Woz2BitCountLength` sans modifier sa valeur finale `8`.
-      - [ ] Tester les valeurs finales `4`, `8`, `12`, `160`, `2`, `4` et `8` après remplacement des littéraux par ces expressions constantes.
-  - [ ] Validation et erreurs WOZ
+    - [x] Calcul commun du CRC32 WOZ
+      - [x] Créer `Containers/Apple/Woz/WozCrc32.cs`.
+      - [x] Y déplacer l’algorithme de CRC32 actuellement dupliqué dans `WozReader.cs` et `AppleNibbleImageWriter.cs`.
+      - [x] Faire utiliser `WozFormat.Crc32Polynomial` par ce calcul commun.
+      - [x] Raccorder `WozReader` et `AppleNibbleImageWriter` à la fonction commune, puis supprimer leurs deux implémentations locales.
+      - [x] Documenter en français `WozCrc32` et sa fonction de calcul, avec son paramètre et son résultat.
+      - [x] Tester la fonction commune avec un contenu dont le CRC32 WOZ attendu est connu.
+    - [x] Relations entre les champs de `WozLayout.cs`
+      - [x] Définir `HeaderMarkerOffset` à partir de `SignatureLength` sans modifier sa valeur finale `4`.
+      - [x] Définir `CrcOffset` à partir de `HeaderMarkerOffset` et `HeaderMarkerLength` sans modifier sa valeur finale `8`.
+      - [x] Définir `ChunksOffset` à partir de `CrcOffset` et `CrcLength` sans modifier sa valeur finale `12`.
+      - [x] Définir `ChunkLengthOffset` à partir de `ChunkIdOffset` et `ChunkIdLength` sans modifier sa valeur finale `4`.
+      - [x] Définir `ChunkHeaderLength` à partir de `ChunkLengthOffset` et `ChunkLengthSize` sans modifier sa valeur finale `8`.
+      - [x] Définir `TrackMapLength` par `AppleIITrackCount * TrackMapEntriesPerTrack` sans modifier sa valeur finale `160`.
+      - [x] Définir `Woz2BlockCountOffset` à partir de `Woz2StartBlockOffset` et `Woz2BlockFieldLength` sans modifier sa valeur finale `2`.
+      - [x] Définir `Woz2BitCountOffset` à partir de `Woz2BlockCountOffset` et `Woz2BlockFieldLength` sans modifier sa valeur finale `4`.
+      - [x] Définir `Woz2TrackDescriptorLength` à partir de `Woz2BitCountOffset` et `Woz2BitCountLength` sans modifier sa valeur finale `8`.
+      - [x] Tester les valeurs finales `4`, `8`, `12`, `160`, `2`, `4` et `8` après remplacement des littéraux par ces expressions constantes.
+  - [x] Validation et erreurs WOZ
     - [x] Créer `Containers/Apple/Woz/WozExceptions.cs`.
     - [x] Ajouter les méthodes construisant les erreurs d’en-tête invalide, type de disque non pris en charge et chunks obligatoires absents.
     - [x] Ajouter une méthode recevant l’identifiant du chunk pour l’erreur de chunk tronqué.
@@ -755,45 +755,45 @@
     - [x] Ajouter dans `WozReader.Read` la validation du CRC32 stocké dans l’en-tête WOZ.
     - [x] Ajouter une méthode d’erreur recevant le CRC stocké et le CRC calculé.
     - [x] Remplacer les textes et constructions directes d’exception de `WozReader.cs` par `WozExceptions`.
-    - [ ] Mise en forme de `WozExceptions.cs`
-      - [ ] Remettre sur une seule ligne les cinq méthodes courtes encore découpées dont le corps se limite à `=> new(...)`.
-  - [ ] Organisation de `WozReader.cs`
-    - [ ] Version du conteneur
-      - [ ] Créer un type nommé distinguant WOZ1 et WOZ2 sans conserver l’entier brut `1` ou `2` dans `Read`.
-      - [ ] Faire retourner cette version nommée par la validation de l’en-tête.
-      - [ ] Utiliser cette version pour choisir `ReadWoz1Track` ou `ReadWoz2Track`.
-    - [ ] Définitions de sélection des secteurs
-      - [ ] Sortir les bornes de numéros de secteurs Apple II `0` à `15` et leur taille attendue de `256` octets.
-      - [ ] Sortir les bornes de numéros de secteurs RWTS18 `0` à `5` et leur taille attendue de `768` octets.
-      - [ ] Sortir les poids `100` et `10` utilisés pour classer le nombre de secteurs distincts et leur intégrité.
-      - [ ] Sortir le score initial `-1` et le seuil minimal imposant plus d’une piste RWTS18 valide.
-      - [ ] Remplacer dans `WozReader` chaque valeur brute correspondante par sa définition nommée.
-    - [ ] Sélection commune des pistes Apple II
-      - [ ] Comparer la création des décodeurs et la sélection Apple II ou RWTS18 de `WozReader` avec celles de `NibTrackImageReader`.
-      - [ ] Créer un composant commun recevant les bits d’une piste et produisant les candidats Apple II et RWTS18 retenus.
-      - [ ] Y déplacer le filtrage par piste, numéro de secteur, taille et intégrité.
-      - [ ] Y déplacer le calcul des scores et la conservation du meilleur candidat.
-      - [ ] Raccorder `WozReader` et `NibTrackImageReader` au composant commun, puis supprimer leurs traitements dupliqués.
-    - [ ] Conversion commune entre octets et bits
-      - [ ] Déplacer `ConvertToBits` hors de `NibTrackImageReader` dans une primitive Apple commune au lecteur NIB et au lecteur WOZ.
-      - [ ] Déplacer dans cette primitive le calcul arrondi du nombre d’octets requis pour un nombre de bits.
-      - [ ] Raccorder `ReadWoz1Track`, `ReadWoz2Track` et `NibTrackImageReader` à cette primitive.
-      - [ ] Supprimer la dépendance de `WozReader` envers une fonction appartenant à `NibTrackImageReader`.
-    - [ ] Découpage de `Read`
-      - [ ] Extraire la validation de l’en-tête et la détermination de la version dans une fonction nommée.
-      - [ ] Extraire l’obtention et la validation des chunks obligatoires dans une fonction nommée.
-      - [ ] Extraire le décodage et la sélection des pistes dans une fonction nommée.
-      - [ ] Raccorder `Read` à ces fonctions sans modifier l’image sectorielle produite.
-    - [ ] Mise en forme et documentation
-      - [ ] Remettre sur une seule ligne les conditions, appels et expressions courtes de `WozReader.cs` qui tiennent sur une ligne.
-      - [ ] Documenter en français les types et fonctions créés, leurs paramètres et leurs résultats.
-    - [ ] Tests ciblés
-      - [ ] Tester séparément la détermination de WOZ1 et de WOZ2.
-      - [ ] Tester la sélection du meilleur candidat Apple II selon les secteurs distincts et leur intégrité.
-      - [ ] Tester la sélection du meilleur candidat RWTS18 selon les secteurs distincts et leur intégrité.
-      - [ ] Tester le seuil distinguant une image RWTS18 d’une image Apple II normale.
-      - [ ] Tester la conversion octets/bits et le calcul arrondi du nombre d’octets.
-      - [ ] Vérifier avec les images WOZ1 et WOZ2 existantes que le découpage conserve les pistes, secteurs, données et identifiants produits.
+    - [x] Mise en forme de `WozExceptions.cs`
+      - [x] Remettre sur une seule ligne les cinq méthodes courtes encore découpées dont le corps se limite à `=> new(...)`.
+  - [x] Organisation de `WozReader.cs`
+    - [x] Version du conteneur
+      - [x] Créer un type nommé distinguant WOZ1 et WOZ2 sans conserver l’entier brut `1` ou `2` dans `Read`.
+      - [x] Faire retourner cette version nommée par la validation de l’en-tête.
+      - [x] Utiliser cette version pour choisir `ReadWoz1Track` ou `ReadWoz2Track`.
+    - [x] Définitions de sélection des secteurs
+      - [x] Sortir les bornes de numéros de secteurs Apple II `0` à `15` et leur taille attendue de `256` octets.
+      - [x] Sortir les bornes de numéros de secteurs RWTS18 `0` à `5` et leur taille attendue de `768` octets.
+      - [x] Sortir les poids `100` et `10` utilisés pour classer le nombre de secteurs distincts et leur intégrité.
+      - [x] Sortir le score initial `-1` et le seuil minimal imposant plus d’une piste RWTS18 valide.
+      - [x] Remplacer dans `WozReader` chaque valeur brute correspondante par sa définition nommée.
+    - [x] Sélection commune des pistes Apple II
+      - [x] Comparer la création des décodeurs et la sélection Apple II ou RWTS18 de `WozReader` avec celles de `NibTrackImageReader`.
+      - [x] Créer un composant commun recevant les bits d’une piste et produisant les candidats Apple II et RWTS18 retenus.
+      - [x] Y déplacer le filtrage par piste, numéro de secteur, taille et intégrité.
+      - [x] Y déplacer le calcul des scores et la conservation du meilleur candidat.
+      - [x] Raccorder `WozReader` et `NibTrackImageReader` au composant commun, puis supprimer leurs traitements dupliqués.
+    - [x] Conversion commune entre octets et bits
+      - [x] Déplacer `ConvertToBits` hors de `NibTrackImageReader` dans une primitive Apple commune au lecteur NIB et au lecteur WOZ.
+      - [x] Déplacer dans cette primitive le calcul arrondi du nombre d’octets requis pour un nombre de bits.
+      - [x] Raccorder `ReadWoz1Track`, `ReadWoz2Track` et `NibTrackImageReader` à cette primitive.
+      - [x] Supprimer la dépendance de `WozReader` envers une fonction appartenant à `NibTrackImageReader`.
+    - [x] Découpage de `Read`
+      - [x] Extraire la validation de l’en-tête et la détermination de la version dans une fonction nommée.
+      - [x] Extraire l’obtention et la validation des chunks obligatoires dans une fonction nommée.
+      - [x] Extraire le décodage et la sélection des pistes dans une fonction nommée.
+      - [x] Raccorder `Read` à ces fonctions sans modifier l’image sectorielle produite.
+    - [x] Mise en forme et documentation
+      - [x] Remettre sur une seule ligne les conditions, appels et expressions courtes de `WozReader.cs` qui tiennent sur une ligne.
+      - [x] Documenter en français les types et fonctions créés, leurs paramètres et leurs résultats.
+    - [x] Tests ciblés
+      - [x] Tester séparément la détermination de WOZ1 et de WOZ2.
+      - [x] Tester la sélection du meilleur candidat Apple II selon les secteurs distincts et leur intégrité.
+      - [x] Tester la sélection du meilleur candidat RWTS18 selon les secteurs distincts et leur intégrité.
+      - [x] Tester le seuil distinguant une image RWTS18 d’une image Apple II normale.
+      - [x] Tester la conversion octets/bits et le calcul arrondi du nombre d’octets.
+      - [x] Vérifier avec les images WOZ1 et WOZ2 existantes que le découpage conserve les pistes, secteurs, données et identifiants produits.
   - [x] Définitions et erreurs NIB
     - [x] Créer `Recognition/Apple/NibTrackFormat.cs`.
     - [x] Déplacer la longueur de piste NIB `6656` de `NibTrackImageReader.cs` et `AppleNibbleImageWriter.cs` vers une constante commune.

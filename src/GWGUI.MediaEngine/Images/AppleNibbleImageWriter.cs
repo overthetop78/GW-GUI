@@ -64,7 +64,7 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         WriteChunk(stream, WozFormat.TracksChunkId, trks);
 
         var output = stream.ToArray();
-        BinaryPrimitives.WriteUInt32LittleEndian(output.AsSpan(WozLayout.CrcOffset, WozLayout.CrcLength), Crc32(output.AsSpan(WozLayout.ChunksOffset)));
+        BinaryPrimitives.WriteUInt32LittleEndian(output.AsSpan(WozLayout.CrcOffset, WozLayout.CrcLength), WozCrc32.Compute(output.AsSpan(WozLayout.ChunksOffset)));
         await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
     }
 
@@ -112,15 +112,4 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         stream.Write(data);
     }
 
-    private static uint Crc32(ReadOnlySpan<byte> data)
-    {
-        var crc = uint.MaxValue;
-        foreach (var value in data)
-        {
-            crc ^= value;
-            for (var bit = 0; bit < NibTrackFormat.BitsPerByte; bit++)
-                crc = (crc >> 1) ^ (WozFormat.Crc32Polynomial & (uint)-(int)(crc & 1));
-        }
-        return ~crc;
-    }
 }

@@ -1,5 +1,8 @@
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Apple;
+using GWGUI.MediaEngine.Encoding.BitPacking;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Recognition.Apple;
@@ -22,30 +25,17 @@ internal static class NibTrackImageReader
             throw NibTrackExceptions.InvalidLength(data.Length, NibTrackFormat.TrackLength);
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
-        var decoder = new AppleGcrDecoder();
-        var rwtsDecoder = new AppleRwts18Decoder();
+        var selector = new AppleTrackDecodeSelector();
         for (var track = 0; track < data.Length / NibTrackFormat.TrackLength; track++)
         {
-            var bits = ConvertToBits(data.Slice(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength), NibTrackFormat.TrackLength * NibTrackFormat.BitsPerByte);
-            tracks.Add((track, decoder.DecodeBits(bits).Sectors ?? []));
-            rwtsTracks.Add((track, rwtsDecoder.DecodeBits(bits).Sectors ?? []));
+            var bits = MsbFirstBitPacker.Unpack(data.Slice(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength), NibTrackFormat.TrackLength * BitPrimitives.BitsPerByte);
+            var result = selector.Decode(bits, track);
+            tracks.Add((track, result.StandardSectors));
+            rwtsTracks.Add((track, result.Rwts18Sectors));
         }
-        if (rwtsTracks.Count(item => item.Sectors.Any(sector => sector.Data is { Count: 768 })) > 1)
+        if (rwtsTracks.Count(item => item.Sectors.Count > 0) >= AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount)
             return AppleDiskImageReader.CreateRwts18FromDecodedTracks(rwtsTracks);
         return AppleDiskImageReader.CreateAppleIIFromDecodedTracks(tracks);
     }
 
-    /// <summary>Convertit des octets en bits ordonnés du bit de poids fort vers le bit de poids faible.</summary>
-    /// <param name="bytes">Octets contenant le flux de bits.</param>
-    /// <param name="bitCount">Nombre de bits à produire depuis le début de la séquence.</param>
-    /// <returns>Tableau contenant exactement le nombre de bits demandé.</returns>
-    /// <exception cref="IndexOutOfRangeException">La séquence ne contient pas le nombre de bits demandé.</exception>
-    internal static bool[] ConvertToBits(ReadOnlySpan<byte> bytes, int bitCount)
-    {
-        var bits = new bool[bitCount];
-        for (var bit = 0; bit < bitCount; bit++)
-            bits[bit] = (bytes[bit / NibTrackFormat.BitsPerByte] &
-                         (1 << (NibTrackFormat.BitsPerByte - 1 - bit % NibTrackFormat.BitsPerByte))) != 0;
-        return bits;
-    }
 }
