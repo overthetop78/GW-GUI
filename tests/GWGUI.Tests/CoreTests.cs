@@ -3068,9 +3068,7 @@ public sealed class CoreTests
 
         static double AutomaticScore(FluxDecodeResult result)
         {
-            var method = typeof(FluxDecoderRegistry).GetMethod("AutomaticScore", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                ?? throw new MissingMethodException(typeof(FluxDecoderRegistry).FullName, "AutomaticScore");
-            return (double)(method.Invoke(null, [result]) ?? throw new InvalidOperationException("Automatic decoder score returned no result."));
+            return FluxDecoderScoring.Calculate(result);
         }
     }
 

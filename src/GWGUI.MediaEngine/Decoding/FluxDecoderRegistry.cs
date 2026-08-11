@@ -31,7 +31,7 @@ public sealed class FluxDecoderRegistry
     /// <summary>Décode une révolution avec tous les décodeurs et retient le meilleur résultat.</summary>
     /// <param name="revolution">Révolution SCP à analyser.</param><returns>Résultat ayant obtenu le meilleur score automatique.</returns>
     public FluxDecodeResult DecodeAutomatic(ScpRevolution revolution) => Decoders.Select(x => Decode(x.Id, revolution))
-        .OrderByDescending(AutomaticScore)
+        .OrderByDescending(FluxDecoderScoring.Calculate)
         .ThenByDescending(result => result.Confidence)
         .ThenByDescending(result => result.Structures.Count)
         .First();
@@ -51,26 +51,6 @@ public sealed class FluxDecoderRegistry
             .OrderByDescending(candidate => candidate.Result.Confidence)
             .ThenByDescending(candidate => candidate.Result.Structures.Count)
             .First();
-    }
-
-    /// <summary>Calcule le score utilisé pour la sélection automatique d'un résultat.</summary>
-    /// <param name="result">Résultat à évaluer.</param><returns>Score donnant priorité aux secteurs valides, puis aux structures reconnues et à la confiance.</returns>
-    internal static double AutomaticScore(FluxDecodeResult result)
-    {
-        var sectors = result.Sectors ?? [];
-        var valid = sectors.Count(sector => sector.IntegrityValid == true);
-        var invalid = sectors.Count(sector => sector.IntegrityValid == false);
-        if (valid > 0)
-            return FluxDecoderScoring.ValidSectorBaseScore + valid / (double)Math.Max(1, valid + invalid) + result.Confidence * FluxDecoderScoring.ValidSectorConfidenceWeight;
-        if (sectors.Count > 0 && invalid == 0)
-            return FluxDecoderScoring.UnverifiedSectorBaseScore + result.Confidence;
-        if (invalid > 0)
-            return result.Confidence * FluxDecoderScoring.InvalidSectorConfidenceWeight;
-        if (result.DecoderId == FluxCodecIds.Raw)
-            return FluxDecoderScoring.RawFluxBaseScore + result.Confidence;
-        if (result.Structures.Count > 0)
-            return FluxDecoderScoring.StructuredFluxBaseScore + result.Confidence;
-        return result.Confidence;
     }
 
     private System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<FluxDecodeResult>> GetOrCreateRevolutionCache(ScpRevolution revolution) => _cache.GetValue(revolution, _ => new(StringComparer.Ordinal));

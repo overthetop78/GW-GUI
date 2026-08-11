@@ -2159,13 +2159,13 @@
       - [x] Utiliser l'identifiant canonique du décodeur comme clé du cache après sa résolution dans le dictionnaire.
       - [x] Conserver `LazyThreadSafetyMode.ExecutionAndPublication` afin qu'un même décodeur ne soit exécuté qu'une fois par révolution en accès concurrent.
       - [x] Extraire la création du cache d'une révolution et celle d'un résultat différé dans des méthodes nommées.
-    - [ ] Score automatique
-      - [ ] Créer `Decoding/FluxDecoderScoring.cs`.
-      - [ ] Y nommer la base `4` d'un résultat avec secteurs valides, la base `3` des secteurs sans invalidité, la base `2` des structures seules et la base `1` du flux brut.
-      - [ ] Y nommer les facteurs de confiance `.1` et `.01` et le poids du rapport de secteurs valides.
-      - [ ] Remplacer l'identifiant brut `raw` par `FluxCodecIds.Raw`.
-      - [ ] Déplacer `AutomaticScore` dans ce composant sans modifier l'ordre de priorité actuel.
-      - [ ] Conserver comme départage la confiance, le nombre de structures puis l'ordre stable du catalogue.
+    - [x] Score automatique
+      - [x] Créer `Decoding/FluxDecoderScoring.cs`.
+      - [x] Y nommer la base `4` d'un résultat avec secteurs valides, la base `3` des secteurs sans invalidité, la base `2` des structures seules et la base `1` du flux brut.
+      - [x] Y nommer les facteurs de confiance `.1` et `.01` et le poids du rapport de secteurs valides.
+      - [x] Remplacer l'identifiant brut `raw` par `FluxCodecIds.Raw`.
+      - [x] Déplacer `AutomaticScore` dans ce composant sans modifier l'ordre de priorité actuel.
+      - [x] Conserver comme départage la confiance, le nombre de structures puis l'ordre stable du catalogue.
     - [ ] Sélection entre révolutions
       - [ ] Extraire dans un modèle nommé le couple `RevolutionIndex` et `Result` retourné par `DecodeBest`.
       - [ ] Conserver un résultat absent lorsque la collection de révolutions est vide.
