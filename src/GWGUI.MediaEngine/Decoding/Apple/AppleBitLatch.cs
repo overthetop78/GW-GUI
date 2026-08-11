@@ -4,6 +4,8 @@ namespace GWGUI.MediaEngine.Decoding.Apple;
 
 internal static class AppleBitLatch
 {
+    private const byte SynchronizedByteMask = 0x80;
+
     public static byte[]? TryReadBytes(IReadOnlyList<bool> bits, ref int offset, int count)
     {
         var result = new byte[count];
@@ -14,7 +16,7 @@ internal static class AppleBitLatch
             for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++)
                 value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));
 
-            while ((value & 0x80) == 0)
+            while ((value & SynchronizedByteMask) == 0)
             {
                 if (offset >= bits.Count) return null;
                 value = (byte)((value << 1) | (bits[offset++] ? 1 : 0));

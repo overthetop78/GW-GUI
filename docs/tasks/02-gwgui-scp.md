@@ -1978,10 +1978,10 @@
     - [x] Créer dans `Primitives` une constante générale `BitsPerByte` valant `8`.
     - [x] Raccorder `AppleBitLatch` et `NibTrackFormat` à cette constante commune.
     - [x] Supprimer la déclaration de `BitsPerByte` propre à `NibTrackFormat` après raccordement de tous ses consommateurs.
-  - [ ] Paramètres du verrou de bits
-    - [ ] Remplacer les deux usages du nombre brut `8` par la définition commune du nombre de bits d'un octet.
-    - [ ] Ajouter une constante nommée pour le masque `0x80` indiquant qu'un octet Apple synchronisé a été trouvé.
-    - [ ] Remplacer le masque brut utilisé dans la boucle de synchronisation par cette constante.
+  - [x] Paramètres du verrou de bits
+    - [x] Remplacer les deux usages du nombre brut `8` par la définition commune du nombre de bits d'un octet.
+    - [x] Ajouter une constante nommée pour le masque `0x80` indiquant qu'un octet Apple synchronisé a été trouvé.
+    - [x] Remplacer le masque brut utilisé dans la boucle de synchronisation par cette constante.
   - [ ] Validation des paramètres
     - [ ] Rejeter un nombre d'octets négatif avant l'allocation du résultat.
     - [ ] Rejeter un offset négatif ou supérieur à la longueur du tableau de bits.
