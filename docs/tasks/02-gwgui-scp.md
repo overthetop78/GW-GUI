@@ -1656,9 +1656,9 @@
       - [x] Y définir le diviseur 50 du percentile bas utilisé pour FM et NRZI.
       - [x] Y définir le cinquième inférieur utilisé par l'estimation non-FM et la division par deux de l'intervalle robuste.
       - [x] Y définir la valeur de repli d'un tick lorsque aucun intervalle positif n'est disponible.
-    - [ ] Lecture binaire
-      - [ ] Y définir les huit bits d'un octet, les 16 bits du motif `ushort`, les 32 bits maximaux du motif `uint`, les deux cellules par bit de `DecodeMfmByte` et les quatre cellules par bit de `DecodeFmByte32`.
-      - [ ] Documenter en français chaque constante avec son unité et l'algorithme auquel elle appartient.
+    - [x] Lecture binaire
+      - [x] Y définir les huit bits d'un octet, les 16 bits du motif `ushort`, les 32 bits maximaux du motif `uint`, les deux cellules par bit de `DecodeMfmByte` et les quatre cellules par bit de `DecodeFmByte32`.
+      - [x] Documenter en français chaque constante avec son unité et l'algorithme auquel elle appartient.
   - [ ] `Representations/Flux/FluxTimingMode.cs`
     - [ ] Créer un enum distinguant l'estimation FM de l'estimation non-FM actuellement sélectionnées par le booléen `fm`.
     - [ ] Remplacer le booléen de `EstimateBitCell` par cet enum afin que chaque appel indique explicitement le mode demandé.

@@ -37,4 +37,14 @@ internal static class FluxDecodingParameters
     public const double RobustIntervalToBitCellDivisor = 2d;
     /// <summary>Durée de cellule utilisée lorsque l'estimation ne trouve aucun intervalle positif, en ticks.</summary>
     public const double FallbackBitCellTicks = MinimumBitCellTicks;
+    /// <summary>Nombre de bits de données lus pour produire un octet.</summary>
+    public const int BitsPerByte = 8;
+    /// <summary>Nombre de bits comparés par la recherche d'un motif <see cref="ushort"/>.</summary>
+    public const int UshortPatternBitCount = 16;
+    /// <summary>Nombre maximal de bits comparés par la recherche d'un motif <see cref="uint"/>.</summary>
+    public const int MaximumUintPatternBitCount = 32;
+    /// <summary>Nombre de cellules MFM parcourues pour décoder un bit de données.</summary>
+    public const int MfmCellsPerDataBit = 2;
+    /// <summary>Nombre de cellules FM parcourues pour décoder un bit de données avec <c>DecodeFmByte32</c>.</summary>
+    public const int FmCellsPerDataBit = 4;
 }
