@@ -2110,10 +2110,10 @@
     - [x] Ajouter la documentation XML des types `Victor9kGcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, FindMark, TryDecodeNibble`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/FluxDecodeModels.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `Decoding/FluxStructureKind.cs`, `SectorIntegrityKind.cs`, `FluxStructure.cs`, `DecodedSector.cs` et `FluxDecodeResult.cs`.
-    - [ ] Déplacer les cinq types.
-    - [ ] Supprimer `FluxDecodeModels.cs`.
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `Decoding/FluxStructureKind.cs`, `SectorIntegrityKind.cs`, `FluxStructure.cs`, `DecodedSector.cs` et `FluxDecodeResult.cs`.
+    - [x] Déplacer les cinq types.
+    - [x] Supprimer `FluxDecodeModels.cs`.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `FluxStructureKind, SectorIntegrityKind, FluxStructure, DecodedSector, FluxDecodeResult`.
     - [ ] Ajouter la documentation XML des méthodes `FluxStructure, DecodedSector, FluxDecodeResult`, avec paramètres, résultat, exceptions, unités et invariants applicables.
