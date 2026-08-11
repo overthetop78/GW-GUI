@@ -8,7 +8,7 @@ public static class ScpExceptions
     /// <summary>Crée l'erreur signalant une résolution temporelle nulle ou négative.</summary>
     /// <param name="resolutionNanoseconds">Résolution observée, en nanosecondes.</param>
     /// <returns>Exception contenant la résolution observée et la contrainte de valeur strictement positive.</returns>
-    public static ArgumentOutOfRangeException InvalidResolution(int resolutionNanoseconds) => new(nameof(resolutionNanoseconds), resolutionNanoseconds, "La résolution doit être strictement positive.");
+    public static ArgumentOutOfRangeException InvalidResolution(int resolutionNanoseconds) => new(nameof(resolutionNanoseconds), resolutionNanoseconds, "The resolution must be strictly positive.");
 
     /// <summary>Crée l’erreur signalant qu’un média SCP étendu ne représente pas une disquette.</summary>
     /// <returns>Exception décrivant le média étendu non pris en charge.</returns>
