@@ -1,6 +1,7 @@
 using System.IO;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -11,6 +12,7 @@ public sealed class AppleImageRecognitionTests
     [Theory]
     [InlineData("Apple II/AMR Hard Drive Utility Disk 3.5.2mg")]
     [InlineData("Apple II/3DChart! (1984)(Spectral Graphics Software)(US)(Disk 1 of 2).woz")]
+    [InlineData("Apple II/816-Paint v3.1 (1987)(Baudville)(IIE)[128K][5.25''].woz")]
     public async Task RecognizesTwoImgAndWozByContentWithAnUnusualExtension(string relativePath)
     {
         await AssertRecognizedAfterRenamingAsync(ImagePath(relativePath));
@@ -39,10 +41,76 @@ public sealed class AppleImageRecognitionTests
         {
             await File.WriteAllBytesAsync(path, [0x00]);
 
+            var failure = await Record.ExceptionAsync(() => DiskImageExplorer.CreateDefault().ExploreAsync(path));
+            if (failure is null)
+            {
+                var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+                Assert.Equal("unknown", explored.Image.FormatId);
+            }
+            else Assert.IsType<DiskImageCandidatesRejectedException>(failure);
+        }
+        finally
+        {
+            if (File.Exists(path)) File.Delete(path);
+        }
+    }
+
+    /// <summary>Vérifie la lecture des représentations brutes Apple II possédant une capacité valide.</summary>
+    [Theory]
+    [InlineData(".do", 143_360)]
+    [InlineData(".po", 143_360)]
+    [InlineData(".d13", 116_480)]
+    public async Task RecognizesValidRawAppleImages(string extension, int length)
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-valid-apple-{Guid.NewGuid():N}{extension}");
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[length]);
+
             var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
 
-            Assert.Equal("unknown", explored.Image.FormatId);
-            Assert.False(explored.FileSystemRecognized);
+            Assert.NotEqual("unknown", explored.Image.FormatId);
+            Assert.Equal(length, explored.Image.Capacity);
+        }
+        finally
+        {
+            if (File.Exists(path)) File.Delete(path);
+        }
+    }
+
+    /// <summary>Vérifie qu'une image NIB complète est présélectionnée puis validée.</summary>
+    [Fact]
+    public async Task RecognizesACompleteNibImage()
+    {
+        var path = ImagePath("Apple II/Merlin (1983)(Southwestern Data Systems)(US)(Side A).nib");
+
+        var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+        Assert.NotEqual("unknown", explored.Image.FormatId);
+    }
+
+    /// <summary>Vérifie que les familles Apple explicitement demandées sont traitées de la même manière pour DSK et IMG.</summary>
+    [Theory]
+    [InlineData("apple2.", ".dsk")]
+    [InlineData("apple2.", ".img")]
+    [InlineData("apple3.", ".dsk")]
+    [InlineData("apple3.", ".img")]
+    [InlineData("applelisa.", ".dsk")]
+    [InlineData("applelisa.", ".img")]
+    [InlineData("applemac.", ".dsk")]
+    [InlineData("applemac.", ".img")]
+    [InlineData("mac.", ".dsk")]
+    [InlineData("mac.", ".img")]
+    public async Task ExplicitAppleFamiliesPreselectDskAndImg(string formatId, string extension)
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-explicit-apple-{Guid.NewGuid():N}{extension}");
+        try
+        {
+            await File.WriteAllBytesAsync(path, [0x00]);
+            var policy = new AppleImageRecognitionPolicy(new AppleDiskImageReader());
+
+            Assert.True(await policy.CanReadAsync(new(path, formatId), CancellationToken.None));
+            await Assert.ThrowsAsync<DiskImageCandidatesRejectedException>(() => DiskImageExplorer.CreateDefault().ExploreAsync(path, formatId));
         }
         finally
         {

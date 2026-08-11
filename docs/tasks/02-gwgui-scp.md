@@ -1499,7 +1499,7 @@
       - [x] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
       - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
       - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
-  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
       - [x] Adapter les imports de `DiskImageFileExtensions` et `DiskImageFormatIds` à leur déplacement sous `GWGUI.MediaEngine.Definitions`.
@@ -1524,11 +1524,11 @@
     - [x] Documentation XML et encodage
       - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de la politique, de `RawHints`, du probe et de chaque méthode.
       - [x] Documenter la différence entre une signature, un indice d’extension, une demande explicite et la validation complète laissée au Reader.
-    - [ ] Tests ciblés
-      - [ ] Tester 2IMG, DiskCopy, WOZ1 et WOZ2 avec une extension inhabituelle.
-      - [ ] Tester les indices DO, PO, D13 et NIB avec un contenu valide puis invalide afin de vérifier le passage au candidat suivant.
-      - [ ] Tester `.dsk` et `.img` avec chaque famille Apple réellement prise en charge, un identifiant explicitement demandé et un contenu d’une autre famille.
-      - [ ] Vérifier que la présélection et la lecture complète partagent une seule lecture du fichier.
+    - [x] Tests ciblés
+      - [x] Tester 2IMG, DiskCopy, WOZ1 et WOZ2 avec une extension inhabituelle.
+      - [x] Tester les indices DO, PO, D13 et NIB avec un contenu valide puis invalide afin de vérifier le passage au candidat suivant.
+      - [x] Tester `.dsk` et `.img` avec chaque famille Apple réellement prise en charge, un identifiant explicitement demandé et un contenu d’une autre famille.
+      - [x] Vérifier que la présélection et la lecture complète partagent une seule lecture du fichier.
   - [ ] `Containers/Amstrad/CpcDsk/CpcDskReader.cs`
     - [ ] Extraire la validation de l'en-tête disque dans une méthode utilisant uniquement `CpcDskFormat` et `CpcDskLayout`.
     - [ ] Extraire la validation de la table de tailles Extended dans une méthode injectant l'index rejeté aux erreurs CPCEMU.
