@@ -8,7 +8,7 @@ namespace GWGUI.MediaEngine.Images;
 public sealed class AdfImageReader : ISectorImageReader
 {
     public const int AcornDoubleDensityBytes = 819_200;
-    public const int AcornDoubleDensityPaddedBytes = AcornDoubleDensityBytes + 1_024;
+    public const int AcornDoubleDensityPaddedBytes = AcornDoubleDensityBytes + DataSizeConstants.BytesPerKibibyte;
     public const int DoubleDensityBytes = 901_120;
     public const int HighDensityBytes = 1_802_240;
 

@@ -31,6 +31,18 @@ public sealed class IbmPcDiskImageTests
     }
 
     [Fact]
+    public async Task RawReaderRejectsANonAlignedStandardCapacity()
+    {
+        var path = Path.ChangeExtension(Path.GetTempFileName(), ".ima");
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[720 * 1024 + 1]);
+            await Assert.ThrowsAsync<InvalidDataException>(() => new IbmPcImageReader().ReadAsync(path));
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
     public async Task RealIbmPcRawCorpusCanBeOpened()
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_IBM_CORPUS");

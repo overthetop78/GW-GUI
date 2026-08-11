@@ -105,6 +105,25 @@ public sealed class DiskImageExplorerTests
         finally { File.Delete(path); }
     }
 
+    [Theory]
+    [InlineData(AdfImageReader.AcornDoubleDensityBytes)]
+    [InlineData(AdfImageReader.AcornDoubleDensityPaddedBytes)]
+    public async Task AdfReaderPreservesAcornCapacityWithOrWithoutPadding(int byteLength)
+    {
+        var path = Path.GetTempFileName();
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[byteLength]);
+            var image = await new AdfImageReader().ReadAsync(path);
+            Assert.Equal("acorn.adfs.800", image.FormatId);
+            Assert.Equal(AdfImageReader.AcornDoubleDensityBytes, image.Capacity);
+            Assert.Equal(1024, image.BlockSize);
+            Assert.Equal(80, image.Cylinders); Assert.Equal(2, image.Heads); Assert.Equal(5, image.SectorsPerTrack);
+            Assert.Empty(image.MissingBlocks);
+        }
+        finally { File.Delete(path); }
+    }
+
     [Fact]
     public void AmigaDosReaderReturnsVolumeDirectoriesFilesAndContents()
     {

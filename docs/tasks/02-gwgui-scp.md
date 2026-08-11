@@ -372,24 +372,24 @@
   - [x] Vérification du déplacement
     - [x] Compiler tous les projets consommateurs après le changement de namespace public.
     - [x] Exécuter les tests ciblés de reconnaissance, lecture et conversion qui sélectionnent un traitement depuis une extension.
-- [ ] `src/GWGUI.MediaEngine/Primitives/DataSizeConstants.cs`
+- [x] `src/GWGUI.MediaEngine/Primitives/DataSizeConstants.cs`
   - [x] Définitions d'unités réellement partagées
     - [x] Créer `Primitives/DataSizeConstants.cs`.
     - [x] Ajouter la constante du nombre d'octets par kibioctet utilisée par plusieurs calculs de capacité.
     - [x] Rechercher les divisions et multiplications brutes par `1024` et ne remplacer que celles qui expriment réellement cette conversion d'unité.
     - [x] Laisser dans les définitions de formats les valeurs `1024` qui représentent une taille sectorielle, un bloc d'allocation ou une disposition propre au format.
-  - [ ] Portée et raccordements restants
-    - [ ] Rendre `DataSizeConstants` interne, car aucun consommateur extérieur à `GWGUI.MediaEngine` ne l’utilise ni ne doit dépendre de cette définition d’implémentation.
-    - [ ] Remplacer dans la capacité ADF Acorn rembourrée l’ajout brut de `1_024` par `BytesPerKibibyte`, car cette valeur représente réellement un kibioctet de padding.
-    - [ ] Conserver les tailles sectorielles, offsets, longueurs de tables, blocs CP/M et valeurs propres aux formats dans leurs définitions propriétaires même lorsqu’ils valent aussi `1_024`.
-    - [ ] Ne pas ajouter de constante de mébioctet tant qu’aucun calcul de capacité du moteur ne la réutilise.
-  - [ ] Mise en forme
-    - [ ] Conserver la déclaration courte de `BytesPerKibibyte` sur une seule ligne.
-  - [ ] Documentation XML française
-    - [ ] Documenter en français `DataSizeConstants`, la constante ajoutée et son unité binaire.
-  - [ ] Tests ciblés
-    - [ ] Tester indirectement les calculs de capacité IBM, Epson et des identifiants Atari ST/IBM avec des valeurs alignées et non alignées.
-    - [ ] Vérifier que la capacité ADF Acorn rembourrée conserve exactement sa valeur actuelle après remplacement de l’unité brute.
+  - [x] Portée et raccordements restants
+    - [x] Rendre `DataSizeConstants` interne, car aucun consommateur extérieur à `GWGUI.MediaEngine` ne l’utilise ni ne doit dépendre de cette définition d’implémentation.
+    - [x] Remplacer dans la capacité ADF Acorn rembourrée l’ajout brut de `1_024` par `BytesPerKibibyte`, car cette valeur représente réellement un kibioctet de padding.
+    - [x] Conserver les tailles sectorielles, offsets, longueurs de tables, blocs CP/M et valeurs propres aux formats dans leurs définitions propriétaires même lorsqu’ils valent aussi `1_024`.
+    - [x] Ne pas ajouter de constante de mébioctet tant qu’aucun calcul de capacité du moteur ne la réutilise.
+  - [x] Mise en forme
+    - [x] Conserver la déclaration courte de `BytesPerKibibyte` sur une seule ligne.
+  - [x] Documentation XML française
+    - [x] Documenter en français `DataSizeConstants`, la constante ajoutée et son unité binaire.
+  - [x] Tests ciblés
+    - [x] Tester indirectement les calculs de capacité IBM, Epson et des identifiants Atari ST/IBM avec des valeurs alignées et non alignées.
+    - [x] Vérifier que la capacité ADF Acorn rembourrée conserve exactement sa valeur actuelle après remplacement de l’unité brute.
 - [ ] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
   - [x] Définition des identifiants de formats
     - [x] Compléter `DiskImageFormatIds.cs`, qui ne contient actuellement que `AppleLisaMacWorks` et `AppleLisaOffice`.

@@ -47,10 +47,12 @@ public sealed class DiskImageFormatIdsTests
     [Fact]
     public void BuildsIdentifiersProducedFromReaderCapacitiesAndGeometries()
     {
-        Assert.Equal(DiskImageFormatIds.AtariSt720,
-            DiskImageFormatIds.AtariStFromCapacity(80L * 2 * 9 * 512));
-        Assert.Equal(DiskImageFormatIds.Ibm1440,
-            DiskImageFormatIds.IbmFromCapacity(80L * 2 * 18 * 512));
+        const long atariStCapacity = 80L * 2 * 9 * 512;
+        const long ibmCapacity = 80L * 2 * 18 * 512;
+        Assert.Equal(DiskImageFormatIds.AtariSt720, DiskImageFormatIds.AtariStFromCapacity(atariStCapacity));
+        Assert.Equal(DiskImageFormatIds.AtariSt720, DiskImageFormatIds.AtariStFromCapacity(atariStCapacity + 1_023));
+        Assert.Equal(DiskImageFormatIds.Ibm1440, DiskImageFormatIds.IbmFromCapacity(ibmCapacity));
+        Assert.Equal(DiskImageFormatIds.Ibm1440, DiskImageFormatIds.IbmFromCapacity(ibmCapacity + 1_023));
         Assert.Equal("atari.atr.512.1440", DiskImageFormatIds.AtariAtr(512, 1440));
         Assert.Equal("atari.scp.256.18", DiskImageFormatIds.AtariScp(256, 18));
     }
