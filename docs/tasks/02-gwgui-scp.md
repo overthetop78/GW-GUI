@@ -1876,7 +1876,7 @@
     - [x] Vérifier qu’un même identifiant n’est pas déclaré pour deux codecs différents.
     - [x] Vérifier que chaque décodeur et son encodeur correspondant utilisent la même constante lorsqu’ils représentent le même codec.
     - [x] Exécuter les tests ciblés des registres de codecs.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecDisplayNames.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecDisplayNames.cs`
   - [x] Création des noms affichés de codecs
     - [x] Créer `Decoding/Definitions/FluxCodecDisplayNames.cs` séparément de `FluxCodecIds.cs`.
     - [x] Ajouter une constante pour chaque nom actuellement retourné en texte brut par la propriété `DisplayName` des décodeurs et encodeurs.
