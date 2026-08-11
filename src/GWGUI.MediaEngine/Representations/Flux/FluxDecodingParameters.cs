@@ -5,6 +5,8 @@ internal static class FluxDecodingParameters
 {
     /// <summary>Durée minimale acceptée pour une cellule de bit, en ticks.</summary>
     public const double MinimumBitCellTicks = 1d;
+    /// <summary>Nombre minimal de cellules représentées par un intervalle reconstruit.</summary>
+    public const int MinimumCellsPerInterval = 1;
     /// <summary>Nombre maximal de cellules représentées par un intervalle FM ou MFM.</summary>
     public const int MaximumFmMfmCellsPerInterval = 32;
     /// <summary>Nombre maximal de cellules représentées par un intervalle NRZI ou NRZI doublé.</summary>

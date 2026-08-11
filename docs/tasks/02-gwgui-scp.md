@@ -1692,13 +1692,13 @@
       - [x] Distinguer par les noms des méthodes reconstruction adaptative FM/MFM, reconstruction PLL, NRZI et doubled-NRZI.
       - [x] Conserver l'absence d'adaptation d'horloge pour les surcharges recevant une durée explicite.
       - [x] Remplacer le booléen `adaptClock` exposé par deux chemins nommés ou une option technique explicite interne.
-    - [ ] Reconstruction adaptative
-      - [ ] Séparer `currentCell`, `accumulatedCell`, `samples` et la liste des bits actuellement initialisés sur une même ligne.
-      - [ ] Séparer la lecture de l'intervalle et le calcul borné du nombre de cellules.
-      - [ ] Extraire l'émission des zéros suivis de la transition vraie dans une fonction privée recevant le nombre de cellules.
-      - [ ] Remplacer les limites et coefficients bruts par `FluxDecodingParameters`.
-      - [ ] Conserver l'absence d'adaptation sur le premier intervalle et lorsque le mode l'interdit.
-      - [ ] Calculer la durée finale depuis la moyenne des échantillons adaptés ou conserver la durée initiale en l'absence d'échantillon.
+    - [x] Reconstruction adaptative
+      - [x] Séparer `currentCell`, `accumulatedCell`, `samples` et la liste des bits actuellement initialisés sur une même ligne.
+      - [x] Séparer la lecture de l'intervalle et le calcul borné du nombre de cellules.
+      - [x] Extraire l'émission des zéros suivis de la transition vraie dans une fonction privée recevant le nombre de cellules.
+      - [x] Remplacer les limites et coefficients bruts par `FluxDecodingParameters`.
+      - [x] Conserver l'absence d'adaptation sur le premier intervalle et lorsque le mode l'interdit.
+      - [x] Calculer la durée finale depuis la moyenne des échantillons adaptés ou conserver la durée initiale en l'absence d'échantillon.
     - [ ] Reconstruction PLL
       - [ ] Remplacer bornes, demi-cycle, coefficients et limite de zéros par `FluxDecodingParameters`.
       - [ ] Conserver l'accumulation des ticks entre intervalles trop courts.
