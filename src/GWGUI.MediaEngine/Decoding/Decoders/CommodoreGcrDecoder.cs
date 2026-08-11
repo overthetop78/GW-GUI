@@ -11,6 +11,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.CommodoreGcr;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder en GCR Commodore.</param><returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();
@@ -57,6 +58,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets du format.</summary>
+    /// <param name="bits">Bits GCR source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre d'octets à décoder.</param><returns>Octets décodés, ou <see langword="null"/> si un symbole est incomplet ou invalide.</returns>
     private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         var result = new byte[count];
@@ -65,6 +67,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Try Decode Byte » propre à ce format.</summary>
+    /// <param name="bits">Bits GCR source.</param><param name="offset">Offset de l'octet encodé, en bits.</param><param name="value">Octet décodé.</param><returns><see langword="true"/> si les deux symboles GCR sont complets et reconnus.</returns>
     private static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, out byte value)
     {
         value = 0; if (offset + CommodoreGcrFormat.EncodedByteBitCount > bits.Count) return false;
