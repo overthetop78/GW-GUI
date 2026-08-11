@@ -2471,11 +2471,11 @@
       - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
       - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
       - [x] Ajouter la CSDoc française aux définitions et opérations Arburg créées.
-    - [ ] Vérification du groupe Arburg
-      - [ ] Tester un bloc FM complet avec checksum valide puis invalide.
-      - [ ] Tester un bloc système complet avec checksum valide puis invalide.
-      - [ ] Tester une marque absente, un bloc tronqué et une séquence système invalide.
-      - [ ] Vérifier les données utiles, leur taille, l'intégrité, l'ordre des bits, les structures et la confiance produits.
+    - [x] Vérification du groupe Arburg
+      - [x] Tester un bloc FM complet avec checksum valide puis invalide.
+      - [x] Tester un bloc système complet avec checksum valide puis invalide.
+      - [x] Tester une marque absente, un bloc tronqué et une séquence système invalide.
+      - [x] Vérifier les données utiles, leur taille, l'intégrité, l'ordre des bits, les structures et la confiance produits.
   - [ ] `Decoding/Decoders/CenturionMfmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.

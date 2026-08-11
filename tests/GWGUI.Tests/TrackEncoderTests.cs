@@ -170,11 +170,15 @@ public sealed class TrackEncoderTests
         var data = Enumerable.Range(0, 0x9fe).Select(index => (byte)(index * 7)).ToArray();
         var encoded = new FluxEncoderRegistry().Encode("arburg", new TrackEncodeRequest(0, 0, [new TrackSector(1, data)]));
         var decoded = new FluxDecoderRegistry().Decode("arburg", encoded.Revolution);
-        Assert.True(Assert.Single(decoded.Sectors!).IntegrityValid);
-        Assert.Equal(0, Assert.Single(decoded.Sectors!).Cylinder);
-        Assert.Equal(0, Assert.Single(decoded.Sectors!).Head);
-        Assert.Equal(1, Assert.Single(decoded.Sectors!).Number);
+        var sector = Assert.Single(decoded.Sectors!);
+        Assert.True(sector.IntegrityValid);
+        Assert.Equal(0, sector.Cylinder);
+        Assert.Equal(0, sector.Head);
+        Assert.Equal(1, sector.Number);
+        Assert.Equal(data, sector.Data);
         Assert.Equal(data, decoded.DecodedBytes.TakeLast(data.Length));
+        Assert.Equal(FluxStructureKind.FormatData, Assert.Single(decoded.Structures).Kind);
+        Assert.True(decoded.Confidence > 0);
     }
 
     [Fact]
@@ -184,11 +188,15 @@ public sealed class TrackEncoderTests
         var attributes = new Dictionary<string, int> { ["system"] = 1 };
         var encoded = new FluxEncoderRegistry().Encode("arburg", new TrackEncodeRequest(0, 0, [new TrackSector(1, data, Attributes: attributes)]));
         var decoded = new FluxDecoderRegistry().Decode("arburg", encoded.Revolution);
-        Assert.True(Assert.Single(decoded.Sectors!).IntegrityValid);
-        Assert.Equal(0, Assert.Single(decoded.Sectors!).Cylinder);
-        Assert.Equal(0, Assert.Single(decoded.Sectors!).Head);
-        Assert.Equal(1, Assert.Single(decoded.Sectors!).Number);
+        var sector = Assert.Single(decoded.Sectors!);
+        Assert.True(sector.IntegrityValid);
+        Assert.Equal(0, sector.Cylinder);
+        Assert.Equal(0, sector.Head);
+        Assert.Equal(1, sector.Number);
+        Assert.Equal(data, sector.Data);
         Assert.Equal(data, decoded.DecodedBytes.TakeLast(data.Length));
+        Assert.Equal(FluxStructureKind.FormatHeader, Assert.Single(decoded.Structures).Kind);
+        Assert.True(decoded.Confidence > 0);
     }
 
     [Fact]
