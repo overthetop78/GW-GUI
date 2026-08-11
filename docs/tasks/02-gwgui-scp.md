@@ -1560,7 +1560,7 @@
   - [x] `Containers/Apple/Woz/WozFormat.cs` et `WozLayout.cs`
     - [x] Ajouter des constantes nommées pour WOZ1, WOZ2, les 40 cylindres, les limites de pistes et les marqueurs communs.
     - [x] Ajouter un propriétaire commun pour la conversion octets/bits utilisée par le Reader et le Writer.
-    - [ ] Documenter en français chaque définition.
+    - [x] Documenter en français chaque définition.
     - [x] Tester la valeur exacte de chaque définition.
   - [ ] `Containers/Apple/Woz/WozReader.cs`
     - [ ] Extraire la validation de l'en-tête, le parcours des chunks et la lecture des descripteurs de pistes dans des méthodes distinctes.
