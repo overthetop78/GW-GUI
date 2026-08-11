@@ -1745,10 +1745,10 @@
       - [x] Adapter `RawFluxDecoder` et `AppleScpSectorDecoder` vers `FluxTimingEstimator`.
       - [x] Vérifier qu'aucun consommateur ne référence encore le namespace `GWGUI.MediaEngine.Decoding` pour le type déplacé.
   - [ ] Tests ciblés du flux
-    - [ ] Représentation
-      - [ ] Tester qu'une modification du tableau source après construction ne modifie pas les bits du flux.
-      - [ ] Tester une queue nulle, négative, inférieure, égale et supérieure à la longueur du flux selon la règle documentée.
-      - [ ] Tester une durée de cellule valide, inférieure au minimum, non finie et le risque de dépassement de longueur lors de la queue.
+    - [x] Représentation
+      - [x] Tester qu'une modification du tableau source après construction ne modifie pas les bits du flux.
+      - [x] Tester une queue nulle, négative, inférieure, égale et supérieure à la longueur du flux selon la règle documentée.
+      - [x] Tester une durée de cellule valide, inférieure au minimum, non finie et le risque de dépassement de longueur lors de la queue.
     - [ ] Estimation temporelle
       - [ ] Tester une liste vide, uniquement des zéros, un premier intervalle d'index aberrant et le repli sur tous les intervalles.
       - [ ] Tester séparément les estimations FM, non-FM et NRZI avec des intervalles dont la cellule attendue est connue.
