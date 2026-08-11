@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décode les pistes GCR des disquettes Apple Macintosh.</summary>
 public class AppleMacGcrDecoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Inverse » utilisée par ce codec.</summary>
@@ -14,15 +15,20 @@ public class AppleMacGcrDecoder : IFluxDecoder
     public virtual string DisplayName => FluxCodecDisplayNames.AppleMacGcr;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder en NRZI Macintosh.</param><returns>Résultat du décodage.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
+    /// <summary>Décode directement les bits d'une piste Macintosh.</summary>
+    /// <param name="bits">Bits de la piste.</param><returns>Résultat du décodage.</returns>
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
 
     /// <summary>Exécute le traitement « Decode At Bit Cell » propre à ce format.</summary>
+    /// <param name="revolution">Révolution SCP à décoder.</param><param name="bitCellTicks">Durée imposée d'une cellule en ticks.</param><returns>Résultat du décodage.</returns>
     public FluxDecodeResult DecodeAtBitCell(ScpRevolution revolution, double bitCellTicks) =>
         DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals, bitCellTicks));
 
     /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
+    /// <param name="revolution">Révolution source.</param><param name="stream">Flux binaire décodé.</param><returns>Structures, secteurs et octets reconnus.</returns>
     private FluxDecodeResult DecodeCore(ScpRevolution revolution, FluxBitstream stream)
     {
         var trackBitLength = stream.Bits.Length;
@@ -64,6 +70,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Decode Six And Two » propre à ce format.</summary>
+    /// <param name="symbols">Symboles GCR six-et-deux.</param><param name="checksum">Somme de contrôle reconstruite.</param><returns>Bloc tagué décodé.</returns>
     private static byte[] DecodeSixAndTwo(ReadOnlySpan<byte> symbols, out byte[] checksum)
     {
         var b1 = new byte[AppleMacGcrFormat.GroupByteCount]; var b2 = new byte[AppleMacGcrFormat.GroupByteCount]; var b3 = new byte[AppleMacGcrFormat.GroupByteCount]; var source = 0;
@@ -86,6 +93,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Try Read Symbols » propre à ce format.</summary>
+    /// <param name="stream">Flux binaire source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre de symboles à lire.</param><returns>Symboles lus, ou <see langword="null"/> si la plage est incomplète.</returns>
     private static byte[]? TryReadSymbols(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * BitPrimitives.BitsPerByte > stream.Bits.Length) return null;
@@ -94,6 +102,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
         return result;
     }
     /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
+    /// <param name="stream">Flux à parcourir.</param><param name="start">Offset de départ inclus, en bits.</param><param name="end">Offset de fin exclu, en bits.</param><param name="mark">Marque recherchée.</param><returns>Offset de la marque en bits, ou <c>-1</c>.</returns>
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
         for (var offset = start; offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;

@@ -2026,9 +2026,9 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleLisaFileWareGcrDecoder`.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleMacGcrDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleMacGcrDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeAtBitCell, DecodeCore, DecodeSixAndTwo, TryReadSymbols, FindMark`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleMacGcrDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeAtBitCell, DecodeCore, DecodeSixAndTwo, TryReadSymbols, FindMark`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleRwts18Decoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AppleRwts18Decoder`.
