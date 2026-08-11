@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class IsoFmDecoder : IFluxDecoder
 {
-    public string Id => "iso.fm"; public string DisplayName => "ISO FM (simple densité)";
+    public string Id => FluxDecoderIds.IsoFm; public string DisplayName => "ISO FM (simple densité)";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals, fm: true); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

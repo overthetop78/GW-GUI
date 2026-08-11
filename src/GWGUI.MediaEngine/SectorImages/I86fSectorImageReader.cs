@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Containers.I86f;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Flux.Conversion;
 using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.MediaEngine.SectorImages;
@@ -14,8 +14,9 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
         foreach (var track in container.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var revolution = ConvertTrack(track);
-            var decoderId = (track.Flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? "iso.mfm" : "iso.fm";
+            var revolution = I86fBitCellFluxConverter.Convert(track.Bits);
+            if (revolution is null) continue;
+            var decoderId = (track.Flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? FluxDecoderIds.IsoMfm : FluxDecoderIds.IsoFm;
             var decoded = decoders.Decode(decoderId, revolution);
             foreach (var sector in decoded.Sectors ?? [])
             {
@@ -27,20 +28,6 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
         }
         if (candidates.Count == 0) throw new InvalidDataException("No FM or MFM sector could be decoded from the 86F image.");
         return BuildSectorImage(candidates);
-    }
-
-    private static ScpRevolution ConvertTrack(I86fTrack track)
-    {
-        var intervals = new List<uint>(track.BitCount / 2);
-        var cells = 0u;
-        foreach (var set in track.Bits)
-        {
-            cells++;
-            if (!set) continue;
-            intervals.Add(cells * I86fLayout.TicksPerBitCell);
-            cells = 0;
-        }
-        return new((uint)(track.BitCount * I86fLayout.TicksPerBitCell), (uint)intervals.Count, intervals);
     }
 
     private static SectorImage BuildSectorImage(Dictionary<SectorAddress, List<DecodedSector>> candidates)

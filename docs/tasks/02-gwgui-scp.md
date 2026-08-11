@@ -1220,12 +1220,12 @@
     - [x] Faire normaliser dans le parser l’ordre des octets de chaque mot selon le drapeau 86F avant d’exposer les bits.
     - [x] Conserver le calcul du nombre explicite de bits ou, à défaut, du nombre de bits déduit de la plage de piste et de son en-tête.
     - [x] Conserver l’ignorance des entrées de table nulles et des pistes ne contenant aucune transition utile.
-  - [ ] Conversion des cellules de bits vers les décodeurs
-    - [ ] Créer `Flux/Conversion/I86fBitCellFluxConverter.cs` et y déplacer l’accumulation des cellules jusqu’à chaque bit positionné.
-    - [ ] Faire recevoir au convertisseur les bits normalisés et l’unité de ticks définie par `I86fLayout`.
-    - [ ] Faire produire par le convertisseur la représentation de révolution actuellement requise par les décodeurs sans placer cette conversion dans le parser de conteneur.
-    - [ ] Utiliser des constantes d’identifiants de décodeurs pour ISO FM et ISO MFM au lieu des textes bruts `iso.fm` et `iso.mfm`.
-    - [ ] Choisir le décodeur à partir de `I86fTrackFlags` dans `I86fSectorImageReader`.
+  - [x] Conversion des cellules de bits vers les décodeurs
+    - [x] Créer `Flux/Conversion/I86fBitCellFluxConverter.cs` et y déplacer l’accumulation des cellules jusqu’à chaque bit positionné.
+    - [x] Faire recevoir au convertisseur les bits normalisés et l’unité de ticks définie par `I86fLayout`.
+    - [x] Faire produire par le convertisseur la représentation de révolution actuellement requise par les décodeurs sans placer cette conversion dans le parser de conteneur.
+    - [x] Utiliser des constantes d’identifiants de décodeurs pour ISO FM et ISO MFM au lieu des textes bruts `iso.fm` et `iso.mfm`.
+    - [x] Choisir le décodeur à partir de `I86fTrackFlags` dans `I86fSectorImageReader`.
   - [ ] Construction sectorielle commune
     - [ ] Convertir chaque `DecodedSector` retenu en `IsoSectorCandidate` avec son adresse et sa piste source.
     - [ ] Réutiliser `IsoSectorImageBuilder.Measure` pour déterminer taille dominante, cylindres, faces, secteurs par piste, ordre et base des numéros.
