@@ -2452,12 +2452,12 @@
       - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
       - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
       - [x] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
-    - [ ] Définitions Arburg
-      - [ ] Créer `Decoding/Definitions/ArburgFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, les marques des blocs de données et système, leurs descriptions et leurs longueurs en bits.
-      - [ ] Y définir les tailles physiques et utiles `0xa00`, `0x9fe`, `0xf00` et `0xefe`, les deux octets de checksum et les paramètres des codages FM et système.
-      - [ ] Y définir l'adresse logique produite pour les deux blocs et les valeurs d'avancement du balayage.
-      - [ ] Remplacer toutes les valeurs et descriptions brutes correspondantes par ces définitions.
+    - [x] Définitions Arburg
+      - [x] Créer `Decoding/Definitions/ArburgFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, les marques des blocs de données et système, leurs descriptions et leurs longueurs en bits.
+      - [x] Y définir les tailles physiques et utiles `0xa00`, `0x9fe`, `0xf00` et `0xefe`, les deux octets de checksum et les paramètres des codages FM et système.
+      - [x] Y définir l'adresse logique produite pour les deux blocs et les valeurs d'avancement du balayage.
+      - [x] Remplacer toutes les valeurs et descriptions brutes correspondantes par ces définitions.
     - [ ] Décodage des blocs
       - [ ] Extraire le checksum additif 16 bits dans une opération Arburg commune aux deux formes de blocs.
       - [ ] Faire retourner par chaque balayage les octets utiles décodés avec leur état de validation.

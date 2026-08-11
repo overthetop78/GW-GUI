@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -6,9 +6,9 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class ArburgTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.Arburg;
+    public override string Id => ArburgFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.Arburg;
+    public override string DisplayName => ArburgFormat.CodecDisplayName;
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
