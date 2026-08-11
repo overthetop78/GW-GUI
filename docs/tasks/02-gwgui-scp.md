@@ -2447,7 +2447,7 @@
       - [x] Tester un checksum de données valide puis invalide.
       - [x] Tester un bloc franchissant la fin circulaire de la piste.
       - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
-  - [ ] `Decoding/Decoders/ArburgDecoder.cs`
+  - [x] `Decoding/Decoders/ArburgDecoder.cs`
     - [x] Responsabilité et héritage
       - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
       - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
