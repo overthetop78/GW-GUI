@@ -1952,11 +1952,11 @@
 
 - [ ] Descriptions techniques encore construites en texte brut par les décodeurs
   - [ ] `Decoding/FluxStructureDescriptions.cs`
-    - [ ] Création des descriptions communes
-      - [ ] Créer `Decoding/FluxStructureDescriptions.cs` comme propriétaire unique des descriptions attachées aux `FluxStructure`.
-      - [ ] Ajouter une représentation nommée des trois états d'intégrité actuellement exprimés par les textes `valid`, `invalid` et `unavailable`.
-      - [ ] Ajouter des méthodes recevant les données variables nécessaires : codec, type de structure, cylindre, tête, secteur, taille, marque, variante, intégrité d'en-tête et intégrité des données.
-      - [ ] Ajouter des méthodes distinctes pour une structure complète, une structure tronquée, une donnée non appariée et une marque non classée.
+    - [x] Création des descriptions communes
+      - [x] Créer `Decoding/FluxStructureDescriptions.cs` comme propriétaire unique des descriptions attachées aux `FluxStructure`.
+      - [x] Ajouter une représentation nommée des trois états d'intégrité actuellement exprimés par les textes `valid`, `invalid` et `unavailable`.
+      - [x] Ajouter des méthodes recevant les données variables nécessaires : codec, type de structure, cylindre, tête, secteur, taille, marque, variante, intégrité d'en-tête et intégrité des données.
+      - [x] Ajouter des méthodes distinctes pour une structure complète, une structure tronquée, une donnée non appariée et une marque non classée.
     - [ ] Remplacement des textes répétés
       - [ ] Remplacer les descriptions brutes construites dans les décodeurs AED, Amiga, Apple II, Macintosh, RWTS18, Arburg et Centurion par les méthodes correspondantes.
       - [ ] Remplacer les descriptions brutes construites dans les décodeurs Commodore 1541, Commodore 900, Data General, DEC RX02, E-mu et Heathkit.
