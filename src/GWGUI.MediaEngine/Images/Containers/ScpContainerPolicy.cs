@@ -28,7 +28,7 @@ internal sealed class ScpContainerPolicy(ScpImageExplorationService exploration,
     public Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !supportedFormatIds.Contains(context.RequestedFormatId))
-            throw DiskImageRecognitionExceptions.UnsupportedRequestedFormat(context.RequestedFormatId, nameof(ScpContainerPolicy));
+            throw DiskImageRecognitionExceptions.PolicyDoesNotSupportRequestedFormat(context.RequestedFormatId, nameof(ScpContainerPolicy));
         return exploration.ReadAsync(context.Path, context.RequestedFormatId, cancellationToken);
     }
 }

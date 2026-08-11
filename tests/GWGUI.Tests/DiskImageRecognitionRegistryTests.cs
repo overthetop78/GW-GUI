@@ -14,7 +14,7 @@ public sealed class DiskImageRecognitionRegistryTests
         try
         {
             var incompatible = new FakePolicy(canRead: false);
-            var rejected = new FakePolicy(canRead: true, reject: true);
+            var rejected = new FakePolicy(canRead: true, new InvalidDataException("Rejet factice du candidat."));
             var accepted = new FakePolicy(canRead: true);
             var registry = new DiskImageRecognitionRegistry([incompatible, rejected, accepted]);
 
@@ -36,22 +36,67 @@ public sealed class DiskImageRecognitionRegistryTests
     }
 
     [Fact]
-    public async Task ReportsUnsupportedFormatWhenNoPolicyProducesAnImage()
+    public async Task ReportsTheCandidateIdentityAndOriginalErrorWhenOneCandidateRejectsTheImage()
     {
         var path = await CreateTemporaryImageAsync();
         try
         {
             var incompatible = new FakePolicy(canRead: false);
-            var rejected = new FakePolicy(canRead: true, reject: true);
+            var original = new InvalidDataException("Rejet factice du candidat.");
+            var rejected = new FakePolicy(canRead: true, original);
             var registry = new DiskImageRecognitionRegistry([incompatible, rejected]);
 
-            await Assert.ThrowsAsync<NotSupportedException>(() =>
-                registry.ReadAsync(path, null, CancellationToken.None));
+            var exception = await Assert.ThrowsAsync<InvalidDataException>(() => registry.ReadAsync(path, null, CancellationToken.None));
 
+            Assert.Contains(nameof(FakePolicy), exception.Message, StringComparison.Ordinal);
+            Assert.Same(original, exception.InnerException);
             Assert.Equal(1, incompatible.CanReadCalls);
             Assert.Equal(0, incompatible.ReadCalls);
             Assert.Equal(1, rejected.CanReadCalls);
             Assert.Equal(1, rejected.ReadCalls);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("missing.format")]
+    public async Task ReportsTheMissingCandidateWithOrWithoutAnExplicitFormat(string? requestedFormat)
+    {
+        var path = await CreateTemporaryImageAsync();
+        try
+        {
+            var registry = new DiskImageRecognitionRegistry([new FakePolicy(canRead: false)]);
+
+            var exception = await Assert.ThrowsAsync<NotSupportedException>(() => registry.ReadAsync(path, requestedFormat, CancellationToken.None));
+
+            Assert.Contains(requestedFormat ?? path, exception.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
+    [Fact]
+    public async Task ReportsEveryCandidateAndOriginalErrorWhenSeveralCandidatesRejectTheImage()
+    {
+        var path = await CreateTemporaryImageAsync();
+        try
+        {
+            var first = new InvalidDataException("premier rejet");
+            var second = new NotSupportedException("second rejet");
+            var registry = new DiskImageRecognitionRegistry([new FakePolicy(true, first), new FakePolicy(true, second)]);
+
+            var exception = await Assert.ThrowsAsync<AggregateException>(() => registry.ReadAsync(path, "requested.format", CancellationToken.None));
+
+            Assert.Equal(2, exception.InnerExceptions.Count);
+            Assert.All(exception.InnerExceptions, rejection => Assert.Contains(nameof(FakePolicy), rejection.Message, StringComparison.Ordinal));
+            Assert.Same(first, exception.InnerExceptions[0].InnerException);
+            Assert.Same(second, exception.InnerExceptions[1].InnerException);
         }
         finally
         {
@@ -100,7 +145,7 @@ public sealed class DiskImageRecognitionRegistryTests
     }
 
     /// <summary>Politique instrumentée permettant de compter chaque étape et de choisir son résultat.</summary>
-    private sealed class FakePolicy(bool canRead, bool reject = false) : IDiskImageRecognitionPolicy
+    private sealed class FakePolicy(bool canRead, Exception? rejection = null) : IDiskImageRecognitionPolicy
     {
         /// <summary>Nombre d'appels de présélection reçus.</summary>
         public int CanReadCalls { get; private set; }
@@ -125,7 +170,7 @@ public sealed class DiskImageRecognitionRegistryTests
         {
             ReadCalls++;
             ReceivedBytes = await context.ReadBytesAsync(cancellationToken);
-            if (reject) throw new InvalidDataException("Rejet factice du candidat.");
+            if (rejection is not null) throw rejection;
             return new(
                 context.RequestedFormatId ?? "accepted.format",
                 ReceivedBytes.Length,

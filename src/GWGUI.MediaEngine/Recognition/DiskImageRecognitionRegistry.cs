@@ -25,6 +25,7 @@ public sealed class DiskImageRecognitionRegistry
     public async Task<SectorImage> ReadAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
     {
         var context = new DiskImageRecognitionContext(path, requestedFormatId);
+        var rejections = new List<Exception>();
         foreach (var policy in policies)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -35,9 +36,12 @@ public sealed class DiskImageRecognitionRegistry
             }
             catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
             {
-                // Le contenu ne valide pas ce candidat faible ; la politique suivante reçoit le même contexte.
+                rejections.Add(DiskImageRecognitionExceptions.PolicyRejectedContent(path, policy.GetType().Name, exception));
             }
         }
-        throw DiskImageRecognitionExceptions.UnsupportedExtension(context.Extension);
+        if (rejections.Count == 1) throw rejections[0];
+        if (rejections.Count > 1) throw DiskImageRecognitionExceptions.AllCandidatesRejected(path, requestedFormatId, rejections);
+        if (requestedFormatId is not null) throw DiskImageRecognitionExceptions.UnsupportedRequestedFormat(requestedFormatId);
+        throw DiskImageRecognitionExceptions.NoCandidateValidated(path);
     }
 }

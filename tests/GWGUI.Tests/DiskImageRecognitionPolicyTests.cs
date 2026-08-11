@@ -57,24 +57,6 @@ public sealed class DiskImageRecognitionPolicyTests
         }
     }
 
-    [Fact]
-    public void RecognitionErrorsContainTheRejectedExtensionFormatAndPolicy()
-    {
-        var extension = DiskImageRecognitionExceptions.UnsupportedExtension(".xyz");
-        var format = DiskImageRecognitionExceptions.UnsupportedRequestedFormat("machine.format", "TestPolicy");
-        var content = DiskImageRecognitionExceptions.PolicyRejectedContent(
-            ".img",
-            "RejectingPolicy",
-            new InvalidDataException("invalid content"));
-
-        Assert.Contains(".xyz", extension.Message, StringComparison.Ordinal);
-        Assert.Contains("machine.format", format.Message, StringComparison.Ordinal);
-        Assert.Contains("TestPolicy", format.Message, StringComparison.Ordinal);
-        Assert.Contains(".img", content.Message, StringComparison.Ordinal);
-        Assert.Contains("RejectingPolicy", content.Message, StringComparison.Ordinal);
-        Assert.IsType<InvalidDataException>(content.InnerException);
-    }
-
     public static TheoryData<string, string> RecognizedImages => new()
     {
         {

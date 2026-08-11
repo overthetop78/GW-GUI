@@ -461,27 +461,27 @@
     - [x] Tester chaque politique par l’API publique de reconnaissance avec une image appropriée de `image_test`.
     - [x] Appliquer la règle d’obtention d’image du document lorsqu’une image manque.
     - [x] Exécuter uniquement les tests de la politique ou du registre traité.
-- [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionExceptions.cs`
-  - [ ] Portée de la fabrique d’erreurs
-    - [ ] Conserver le fichier à la racine de `Recognition`, à côté du registre qui utilise ses erreurs.
-    - [ ] Rendre `DiskImageRecognitionExceptions` interne et remplacer ses tests directs par des tests passant par l’API publique du registre.
-  - [ ] Erreurs correspondant aux résultats réels
-    - [ ] Remplacer `UnsupportedExtension` par une méthode décrivant l’absence de politique candidate validée, sans affirmer que l’extension détermine à elle seule la prise en charge.
-    - [ ] Faire recevoir à cette erreur le chemin ou l’extension observée et l’identifiant explicitement demandé lorsqu’il existe.
-    - [ ] Conserver une erreur distincte lorsqu’une sélection explicite désigne un format qu’aucune politique ne prend en charge.
-    - [ ] Conserver `PolicyRejectedContent` pour envelopper l’erreur technique d’une politique candidate avec son identité.
-    - [ ] Ajouter l’erreur finale prévue par le registre pour plusieurs candidats rejetés sans perdre l’identité ni l’exception interne de chacun.
-    - [ ] Refuser une exception interne nulle dans les méthodes qui enveloppent un rejet.
-  - [ ] Textes techniques et mise en forme
-    - [ ] Conserver tous les textes techniques de reconnaissance dans cette fabrique et supprimer leurs copies du registre et des politiques.
-    - [ ] Remettre chaque méthode courte et sa construction d’exception sur une seule ligne lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de chaque méthode.
-    - [ ] Documenter chaque valeur injectée, l’exception retournée et la différence entre absence de candidat, sélection explicite inconnue, rejet d’un candidat et rejet de tous les candidats.
-  - [ ] Tests par l’API publique
-    - [ ] Tester l’absence de candidat sans format demandé et avec un format explicitement demandé.
-    - [ ] Tester un candidat rejeté et vérifier son identité et son exception interne.
-    - [ ] Tester plusieurs rejets et vérifier que chacun reste présent dans l’erreur finale.
+- [x] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionExceptions.cs`
+  - [x] Portée de la fabrique d’erreurs
+    - [x] Conserver le fichier à la racine de `Recognition`, à côté du registre qui utilise ses erreurs.
+    - [x] Rendre `DiskImageRecognitionExceptions` interne et remplacer ses tests directs par des tests passant par l’API publique du registre.
+  - [x] Erreurs correspondant aux résultats réels
+    - [x] Remplacer `UnsupportedExtension` par une méthode décrivant l’absence de politique candidate validée, sans affirmer que l’extension détermine à elle seule la prise en charge.
+    - [x] Faire recevoir à cette erreur le chemin ou l’extension observée et l’identifiant explicitement demandé lorsqu’il existe.
+    - [x] Conserver une erreur distincte lorsqu’une sélection explicite désigne un format qu’aucune politique ne prend en charge.
+    - [x] Conserver `PolicyRejectedContent` pour envelopper l’erreur technique d’une politique candidate avec son identité.
+    - [x] Ajouter l’erreur finale prévue par le registre pour plusieurs candidats rejetés sans perdre l’identité ni l’exception interne de chacun.
+    - [x] Refuser une exception interne nulle dans les méthodes qui enveloppent un rejet.
+  - [x] Textes techniques et mise en forme
+    - [x] Conserver tous les textes techniques de reconnaissance dans cette fabrique et supprimer leurs copies du registre et des politiques.
+    - [x] Remettre chaque méthode courte et sa construction d’exception sur une seule ligne lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de chaque méthode.
+    - [x] Documenter chaque valeur injectée, l’exception retournée et la différence entre absence de candidat, sélection explicite inconnue, rejet d’un candidat et rejet de tous les candidats.
+  - [x] Tests par l’API publique
+    - [x] Tester l’absence de candidat sans format demandé et avec un format explicitement demandé.
+    - [x] Tester un candidat rejeté et vérifier son identité et son exception interne.
+    - [x] Tester plusieurs rejets et vérifier que chacun reste présent dans l’erreur finale.
 - [ ] `src/GWGUI.MediaEngine/Recognition/IDiskImageRecognitionPolicy.cs`
   - [ ] Responsabilité et stabilité du contrat
     - [ ] Conserver l’interface à la racine de `Recognition` et la conserver publique pour les politiques ajoutées par les consommateurs du moteur.
