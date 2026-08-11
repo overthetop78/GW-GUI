@@ -19,8 +19,14 @@ public sealed class Td0Reader : ISectorImageReader
 
     internal static SectorImage Read(ReadOnlySpan<byte> data)
     {
-        if (data.Length < Td0Layout.HeaderSize || !data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.UncompressedSignature))
-            throw new InvalidDataException("The image is not an uncompressed TeleDisk image.");
+        if (data.Length < Td0Layout.HeaderSize) throw new InvalidDataException("The TeleDisk header is truncated.");
+        if (data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.AdvancedCompressionSignature)) throw new InvalidDataException("Advanced TeleDisk compression is not supported.");
+        if (!data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.UncompressedSignature)) throw new InvalidDataException("The image is not a TeleDisk image.");
+        _ = data[Td0Layout.VersionOffset];
+        _ = data[Td0Layout.DataRateOffset];
+        var storedHeaderCrc = ReadUInt16(data, Td0Layout.HeaderCrcOffset);
+        var calculatedHeaderCrc = Td0Crc16.Compute(data[..Td0Layout.HeaderCrcOffset]);
+        if (storedHeaderCrc != calculatedHeaderCrc) throw new InvalidDataException($"The TeleDisk header CRC is invalid: expected 0x{storedHeaderCrc:X4}, calculated 0x{calculatedHeaderCrc:X4}.");
 
         var offset = Td0Layout.HeaderSize;
         var stepping = data[Td0Layout.SteppingOffset];
@@ -40,6 +46,9 @@ public sealed class Td0Reader : ISectorImageReader
             var sectorCount = data[offset + Td0Layout.TrackSectorCountOffset];
             if (sectorCount == Td0Layout.EndOfTracks) break;
             EnsureAvailable(data, offset, Td0Layout.TrackHeaderSize, "TeleDisk track header");
+            var storedTrackCrc = data[offset + Td0Layout.TrackCrcOffset];
+            var calculatedTrackCrc = (byte)Td0Crc16.Compute(data.Slice(offset, Td0Layout.TrackCrcOffset));
+            if (storedTrackCrc != calculatedTrackCrc) throw new InvalidDataException($"The TeleDisk track CRC is invalid: expected 0x{storedTrackCrc:X2}, calculated 0x{calculatedTrackCrc:X2}.");
             var trackCylinder = data[offset + Td0Layout.TrackCylinderOffset];
             var trackHead = data[offset + Td0Layout.TrackHeadOffset] & Td0Layout.HeadMask;
             offset += Td0Layout.TrackHeaderSize;
@@ -47,6 +56,7 @@ public sealed class Td0Reader : ISectorImageReader
             for (var index = 0; index < sectorCount; index++)
             {
                 EnsureAvailable(data, offset, Td0Layout.SectorHeaderSize, "TeleDisk sector header");
+                var sectorOffset = offset;
                 var cylinder = data[offset + Td0Layout.SectorCylinderOffset];
                 var head = data[offset + Td0Layout.SectorHeadOffset] & Td0Layout.HeadMask;
                 var number = data[offset + Td0Layout.SectorNumberOffset];
@@ -74,20 +84,21 @@ public sealed class Td0Reader : ISectorImageReader
                     offset += payloadLength;
                 }
 
+                var storedSectorCrc = data[sectorOffset + Td0Layout.SectorCrcOffset];
+                var calculatedSectorCrc = (byte)Td0Crc16.Compute(sectorData);
+                if (storedSectorCrc != calculatedSectorCrc) throw new InvalidDataException($"The TeleDisk sector {cylinder}/{head}/{number} CRC is invalid: expected 0x{storedSectorCrc:X2}, calculated 0x{calculatedSectorCrc:X2}.");
+
                 sectors.Add(new(cylinder, head, number, sectorData, (flags & Td0SectorFlags.DataCrcError) == 0));
             }
 
-            if (sectorCount != 0 && sectors[^1].Cylinder != trackCylinder)
-                throw new InvalidDataException("A TeleDisk track contains an inconsistent cylinder number.");
-            if (sectorCount != 0 && sectors[^1].Head != trackHead)
-                throw new InvalidDataException("A TeleDisk track contains an inconsistent head number.");
+            if (sectorCount != 0 && sectors[^1].Cylinder != trackCylinder) throw new InvalidDataException($"The TeleDisk track declares cylinder {trackCylinder}, but its last sector declares cylinder {sectors[^1].Cylinder}.");
+            if (sectorCount != 0 && sectors[^1].Head != trackHead) throw new InvalidDataException($"The TeleDisk track declares head {trackHead}, but its last sector declares head {sectors[^1].Head}.");
         }
 
         if (sectors.Count == 0) throw new InvalidDataException("The TeleDisk image contains no sectors.");
         var blockSize = sectors.GroupBy(sector => sector.Data.Length).OrderByDescending(group => group.Count()).First().Key;
-        // Copy-protected TeleDisk images may add a few deliberately unusual sectors.
-        // Reconstruct the normal logical image from the dominant sector size rather
-        // than rejecting the complete disk.
+        // Les images TeleDisk protégées peuvent contenir quelques secteurs volontairement inhabituels.
+        // L'image logique normale est reconstruite à partir de la taille sectorielle dominante.
         var logicalSectors = sectors.Where(sector => sector.Data.Length == blockSize).ToArray();
 
         var cylinders = logicalSectors.Max(sector => sector.Cylinder) + 1;

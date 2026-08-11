@@ -1363,12 +1363,12 @@
     - [x] Créer `Containers/TeleDisk/Td0Section.cs` pour identifier l’en-tête de commentaire, le commentaire, l’en-tête de piste, l’en-tête de secteur, l’en-tête de données et les données dans les erreurs de troncature.
     - [x] Définir dans les fichiers précédents le drapeau de commentaire, le marqueur de fin de pistes, les masques de face, les codes de taille, les tailles de mot, les longueurs de motif et les décalages utilisés par le décodeur.
     - [x] Remplacer dans `Td0Reader`, `Td0Sector` et le décodeur de charge utile toutes les valeurs brutes correspondantes.
-  - [ ] Contrôles du conteneur
-    - [ ] Lire les champs de version, de mode de données, de stepping et de CRC par leurs offsets nommés au lieu d’accéder directement aux indices de l’en-tête.
-    - [ ] Ajouter la validation des CRC d’en-tête, de piste et de secteur définis par TeleDisk avant d’accepter leurs données.
-    - [ ] Conserver le rejet explicite de la signature minuscule tant que la compression avancée TeleDisk n’est pas décodée, avec une erreur distincte du rejet d’un fichier non-TeleDisk.
-    - [ ] Conserver la vérification de cohérence entre l’adresse annoncée par la piste et celle des secteurs, mais injecter les adresses attendue et observée dans l’erreur.
-    - [ ] Conserver la sélection de la taille sectorielle dominante et remplacer son commentaire anglais par une explication française du traitement des secteurs inhabituels de protection.
+  - [x] Contrôles du conteneur
+    - [x] Lire les champs de version, de mode de données, de stepping et de CRC par leurs offsets nommés au lieu d’accéder directement aux indices de l’en-tête.
+    - [x] Ajouter la validation des CRC d’en-tête, de piste et de secteur définis par TeleDisk avant d’accepter leurs données.
+    - [x] Conserver le rejet explicite de la signature minuscule tant que la compression avancée TeleDisk n’est pas décodée, avec une erreur distincte du rejet d’un fichier non-TeleDisk.
+    - [x] Conserver la vérification de cohérence entre l’adresse annoncée par la piste et celle des secteurs, mais injecter les adresses attendue et observée dans l’erreur.
+    - [x] Conserver la sélection de la taille sectorielle dominante et remplacer son commentaire anglais par une explication française du traitement des secteurs inhabituels de protection.
   - [ ] Classification de l’image reconstruite
     - [ ] Faire utiliser à `Td0SectorImageClassifier` `FileSystems/Fat/FatBpbLayout` et le détecteur BPB commun au lieu de relire les offsets `3`, `11`, `12`, `13`, `24`, `25`, `26` et `27`.
     - [ ] Définir les deux opcodes de saut DOS examinés dans la définition qui possède cette reconnaissance et remplacer `0xEB` et `0xE9`.
