@@ -2668,38 +2668,38 @@
       - [x] Tester un secteur de 3584 octets, une charge tronquée et un CRC de données valide puis invalide.
       - [x] Tester une marque absente et une marque non classée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/HeathkitFmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
-      - [ ] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
-    - [ ] Définitions Heathkit FM
-      - [ ] Créer `Decoding/Definitions/HeathkitFmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom et la marque FM composée de `0x00`, `0x00`, `0x00` et `0xbf` utilisée pour les en-têtes et les données.
-      - [ ] Y définir les quatre octets suivant la marque d'en-tête : volume, cylindre, secteur et checksum, avec leurs positions et longueurs encodées.
-      - [ ] Y définir la taille sectorielle de 256 octets, l'octet de checksum, la face logique, le code de taille et la longueur totale des données encodées.
-      - [ ] Y définir la distance maximale `(88 + 16) * 8` et les valeurs d'avancement du balayage.
-      - [ ] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants par ces définitions.
-    - [ ] Checksum et décodage
-      - [ ] Déplacer le checksum tournant utilisé par l'en-tête et les données dans une primitive commune au décodeur et à `HeathkitFmTrackEncoder.cs`.
-      - [ ] Raccorder l'encodeur et le décodeur à cette primitive puis supprimer les deux boucles de checksum locales du décodeur.
-      - [ ] Extraire la lecture et la validation de l'en-tête dans un modèle nommé conservant volume, cylindre et secteur.
-      - [ ] Extraire la lecture, l'inversion des bits et la validation des 256 octets de données dans une méthode nommée.
-      - [ ] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
-      - [ ] Extraire l'appariement de la marque suivante et la collecte des marques non appariées dans des méthodes nommées.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant volume, cylindre, secteur et états des checksums.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Heathkit actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les affectations, boucles de checksum et créations de structures actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et à la primitive de checksum Heathkit.
-    - [ ] Vérification du groupe Heathkit
-      - [ ] Tester la marque FM commune d'en-tête et de données.
-      - [ ] Tester un en-tête complet avec checksum valide puis invalide et vérifier volume, cylindre et secteur.
-      - [ ] Tester un secteur de 256 octets avec checksum valide puis invalide.
-      - [ ] Tester une marque tronquée, des données tronquées, une marque absente et une marque non appariée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/HeathkitFmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
+      - [x] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
+    - [x] Définitions Heathkit FM
+      - [x] Créer `Decoding/Definitions/HeathkitFmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom et la marque FM composée de `0x00`, `0x00`, `0x00` et `0xbf` utilisée pour les en-têtes et les données.
+      - [x] Y définir les quatre octets suivant la marque d'en-tête : volume, cylindre, secteur et checksum, avec leurs positions et longueurs encodées.
+      - [x] Y définir la taille sectorielle de 256 octets, l'octet de checksum, la face logique, le code de taille et la longueur totale des données encodées.
+      - [x] Y définir la distance maximale `(88 + 16) * 8` et les valeurs d'avancement du balayage.
+      - [x] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants par ces définitions.
+    - [x] Checksum et décodage
+      - [x] Déplacer le checksum tournant utilisé par l'en-tête et les données dans une primitive commune au décodeur et à `HeathkitFmTrackEncoder.cs`.
+      - [x] Raccorder l'encodeur et le décodeur à cette primitive puis supprimer les deux boucles de checksum locales du décodeur.
+      - [x] Extraire la lecture et la validation de l'en-tête dans un modèle nommé conservant volume, cylindre et secteur.
+      - [x] Extraire la lecture, l'inversion des bits et la validation des 256 octets de données dans une méthode nommée.
+      - [x] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
+      - [x] Extraire l'appariement de la marque suivante et la collecte des marques non appariées dans des méthodes nommées.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant volume, cylindre, secteur et états des checksums.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Heathkit actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les affectations, boucles de checksum et créations de structures actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et à la primitive de checksum Heathkit.
+    - [x] Vérification du groupe Heathkit
+      - [x] Tester la marque FM commune d'en-tête et de données.
+      - [x] Tester un en-tête complet avec checksum valide puis invalide et vérifier volume, cylindre et secteur.
+      - [x] Tester un secteur de 256 octets avec checksum valide puis invalide.
+      - [x] Tester une marque tronquée, des données tronquées, une marque absente et une marque non appariée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/HpMmfmDecoder.cs`
     - [ ] Définitions HP MMFM
       - [ ] Créer `Decoding/Definitions/HpMmfmFormat.cs`.

@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -6,14 +6,14 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.HeathkitFm;
+    public override string Id => HeathkitFmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.HeathkitFm;
+    public override string DisplayName => HeathkitFmFormat.CodecDisplayName;
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
-        var volume = (byte)Attribute(request, "volume", 0);
+        var volume = (byte)Attribute(request, HeathkitFmFormat.VolumeAttributeName, HeathkitFmFormat.DefaultVolume);
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != HeathkitFmFormat.SectorSize) throw HeathkitFmFormat.InvalidSectorSize(sector.Data.Count);
