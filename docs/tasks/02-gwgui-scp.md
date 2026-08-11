@@ -1475,10 +1475,10 @@
       - [x] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
       - [x] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
   - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
-    - [ ] Responsabilité et dépendances
-      - [ ] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
-      - [ ] Supprimer les imports de `Images.Containers` et `Images.Interpretations` après disparition des anciens types concernés.
-      - [ ] Adapter l’import de `DiskImageFormatIds` à son déplacement sous `GWGUI.MediaEngine.Definitions`.
+    - [x] Responsabilité et dépendances
+      - [x] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
+      - [x] Supprimer les imports de `Images.Containers` et `Images.Interpretations` après disparition des anciens types concernés.
+      - [x] Adapter l’import de `DiskImageFormatIds` à son déplacement sous `GWGUI.MediaEngine.Definitions`.
     - [ ] Présélection par signature
       - [ ] Faire utiliser les représentations binaires immuables Standard et Extended de `CpcDskFormat` directement sur la mémoire en lecture seule du contexte.
       - [ ] Supprimer la conversion ASCII effectuée à chaque appel et la méthode privée `StartsWith` devenue inutile.

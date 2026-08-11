@@ -1,6 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -27,11 +26,9 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     /// <exception cref="InvalidDataException">Le parser CPCEMU rejette la structure ou les données sectorielles du conteneur.</exception>
     public async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
-        var image = await reader.ReadAsync(context.Path, cancellationToken).ConfigureAwait(false);
-        var formatId = image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount && image.Heads == DiskGeometryConstants.DoubleSidedHeadCount
-            ? DiskImageFormatIds.AmstradPcw
-            : DiskImageFormatIds.AmstradCpc;
-        return SectorImageInterpretation.Retag(image, formatId);
+        var image = await reader.ReadAsync(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
+        var formatId = image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount && image.Heads == DiskGeometryConstants.DoubleSidedHeadCount ? DiskImageFormatIds.AmstradPcw : DiskImageFormatIds.AmstradCpc;
+        return image.WithFormatId(formatId);
     }
 
 }

@@ -51,4 +51,9 @@ public sealed class SectorImage
         if (!_allowVariableBlockSize && block.Data.Count != BlockSize) throw new InvalidDataException($"Logical block {logicalBlock} has an invalid size.");
         return block.Data is byte[] bytes ? bytes : block.Data.ToArray();
     }
+
+    /// <summary>Crée une nouvelle image avec l'identifiant indiqué en conservant exactement la géométrie, les blocs et les règles de capacité de l'image courante.</summary>
+    /// <param name="formatId">Nouvel identifiant de format.</param>
+    /// <returns>Nouvelle image dont seul l'identifiant change.</returns>
+    public SectorImage WithFormatId(string formatId) => new(formatId, BlockSize, Cylinders, Heads, SectorsPerTrack, AvailableBlocks, _allowVariableBlockSize, _capacity, _logicalBlockCount);
 }

@@ -31,6 +31,18 @@ public sealed class CpcDskReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(bytes, cancellationToken);
+    }
+
+    /// <summary>Lit et valide un conteneur CPCEMU déjà chargé en mémoire.</summary>
+    /// <param name="bytes">Contenu complet du conteneur.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le parcours des pistes.</param>
+    /// <returns>Image sectorielle neutre reconstruite depuis le conteneur.</returns>
+    public Task<SectorImage> ReadAsync(ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken = default) => Task.FromResult(Read(bytes.ToArray(), cancellationToken));
+
+    /// <summary>Valide et reconstruit le contenu CPCEMU fourni.</summary>
+    private static SectorImage Read(byte[] bytes, CancellationToken cancellationToken)
+    {
         if (bytes.Length < CpcDskLayout.DiskInformationBlockSize) throw CpcDskExceptions.TruncatedHeader();
         var signature = bytes.AsSpan(0, CpcDskLayout.DiskSignatureLength);
         var extended = signature.StartsWith(CpcDskFormat.ExtendedSignatureBytes);
