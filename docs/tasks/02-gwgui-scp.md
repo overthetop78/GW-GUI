@@ -1927,10 +1927,10 @@
     - [x] Déplacer la table GCR dupliquée entre décodeurs et encodeurs Commodore.
     - [x] Sortir séparément les marques, tailles, gaps et checksums des formats Commodore 1541 et Commodore 900.
     - [x] Remplacer toutes les valeurs brutes correspondantes dans les quatre fichiers.
-  - [ ] Victor 9000 GCR
-    - [ ] Créer `Encoding/Definitions/Victor9kGcrFormat.cs`.
-    - [ ] Déplacer la table GCR, les marques de huit octets, les tailles de secteurs et de champs, les offsets de bits et les gaps dupliqués.
-    - [ ] Remplacer les valeurs brutes dans `Victor9kGcrDecoder.cs` et `Victor9kGcrTrackEncoder.cs`.
+  - [x] Victor 9000 GCR
+    - [x] Créer `Encoding/Definitions/Victor9kGcrFormat.cs`.
+    - [x] Déplacer la table GCR, les marques de huit octets, les tailles de secteurs et de champs, les offsets de bits et les gaps dupliqués.
+    - [x] Remplacer les valeurs brutes dans `Victor9kGcrDecoder.cs` et `Victor9kGcrTrackEncoder.cs`.
   - [ ] DEC RX02
     - [ ] Créer `Encoding/Definitions/DecRx02EncodingFormat.cs`.
     - [ ] Déplacer les marques FM, tailles physiques, transformation M2FM, codes de taille, gaps et paramètres CRC communs.
