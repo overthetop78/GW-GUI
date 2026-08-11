@@ -1634,10 +1634,10 @@
       - [x] Nommer et documenter la règle actuelle qui ajoute au maximum une longueur complète du flux source.
       - [x] Vérifier avant allocation l'addition de la longueur des bits et de la queue.
       - [x] Copier le préfixe dans la queue sans exposer de nouveau tableau modifiable.
-    - [ ] Présentation et CSDoc
-      - [ ] Séparer les deux propriétés actuellement placées sur la même ligne.
-      - [ ] Conserver sur une seule ligne le constructeur primaire et les expressions complètes qui tiennent lisiblement.
-      - [ ] Documenter en français le type, son constructeur, `Bits`, `BitCellTicks` et `WithCircularTail`.
+    - [x] Présentation et CSDoc
+      - [x] Séparer les deux propriétés actuellement placées sur la même ligne.
+      - [x] Conserver sur une seule ligne le constructeur primaire et les expressions complètes qui tiennent lisiblement.
+      - [x] Documenter en français le type, son constructeur, `Bits`, `BitCellTicks` et `WithCircularTail`.
   - [ ] `Representations/Flux/FluxDecodingParameters.cs`
     - [ ] Limites de reconstruction
       - [ ] Créer le fichier et y définir la durée minimale d'une cellule à un tick.
