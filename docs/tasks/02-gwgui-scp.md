@@ -1431,12 +1431,12 @@
       - [x] Appeler `ReadAsync` une seule fois pour chaque politique présélectionnée et retourner dès qu’une lecture réussit.
       - [x] Continuer avec la politique suivante uniquement après un `InvalidDataException` ou un `NotSupportedException` produit par le Reader candidat.
       - [x] Propager sans les envelopper `OperationCanceledException`, les erreurs d’accès au fichier, les dépassements et les erreurs de programmation.
-    - [ ] Conservation des rejets
-      - [ ] Créer `Recognition/DiskImageRecognitionFailure.cs` avec l’identité de la politique et l’exception technique rejetée.
-      - [ ] Ajouter chaque `InvalidDataException` ou `NotSupportedException` à la collection des rejets au lieu de laisser le `catch` vide.
-      - [ ] Produire une erreur d’absence de candidat lorsqu’aucune politique n’a retourné `true`.
-      - [ ] Produire une erreur distincte contenant tous les `DiskImageRecognitionFailure` lorsque chaque politique présélectionnée a rejeté le contenu.
-      - [ ] Conserver dans ces erreurs le chemin, l’extension et le format explicitement demandé disponibles dans le contexte.
+    - [x] Conservation des rejets
+      - [x] Créer `Recognition/DiskImageRecognitionFailure.cs` avec l’identité de la politique et l’exception technique rejetée.
+      - [x] Ajouter chaque `InvalidDataException` ou `NotSupportedException` à la collection des rejets au lieu de laisser le `catch` vide.
+      - [x] Produire une erreur d’absence de candidat lorsqu’aucune politique n’a retourné `true`.
+      - [x] Produire une erreur distincte contenant tous les `DiskImageRecognitionFailure` lorsque chaque politique présélectionnée a rejeté le contenu.
+      - [x] Conserver dans ces erreurs le chemin, l’extension et le format explicitement demandé disponibles dans le contexte.
     - [ ] Mise en forme
       - [ ] Supprimer le commentaire devenu inutile dans le `catch` après l’enregistrement explicite du rejet.
       - [ ] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.

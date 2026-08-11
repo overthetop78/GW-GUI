@@ -6,7 +6,7 @@ internal static class DiskImageRecognitionExceptions
     /// <summary>Crée l'erreur signalant qu'aucune politique n'a validé le fichier.</summary>
     /// <param name="path">Chemin du fichier examiné.</param>
     /// <returns>Exception contenant le chemin dont aucun candidat n'a été trouvé.</returns>
-    public static NotSupportedException NoCandidateValidated(string path) => new($"No recognition policy validated image '{path}'.");
+    public static NotSupportedException NoCandidateValidated(DiskImageRecognitionContext context) => new($"No recognition policy validated image '{context.Path}' with extension '{context.Extension}' and requested format '{context.RequestedFormatId ?? "<automatic>"}'.");
 
     /// <summary>Crée l'erreur signalant qu'aucune politique ne prend en charge le format explicitement demandé.</summary>
     /// <param name="requestedFormat">Identifiant du format explicitement demandé.</param>
@@ -19,27 +19,17 @@ internal static class DiskImageRecognitionExceptions
     /// <returns>Exception contenant le format demandé et la politique concernée.</returns>
     public static NotSupportedException PolicyDoesNotSupportRequestedFormat(string requestedFormat, string policyName) => new($"The selected format '{requestedFormat}' is not supported by recognition policy '{policyName}'.");
 
-    /// <summary>Crée l'erreur signalant qu'une politique candidate a rejeté le contenu du fichier.</summary>
-    /// <param name="path">Chemin du fichier examiné.</param>
-    /// <param name="policyName">Nom de la politique ayant rejeté le contenu.</param>
-    /// <param name="innerException">Erreur technique produite par le lecteur de la politique.</param>
-    /// <returns>Exception contenant le chemin, la politique et l'erreur d'origine.</returns>
-    public static InvalidDataException PolicyRejectedContent(string path, string policyName, Exception innerException)
-    {
-        ArgumentNullException.ThrowIfNull(innerException);
-        return new($"Recognition policy '{policyName}' rejected image '{path}'.", innerException);
-    }
-
     /// <summary>Crée l'erreur finale conservant tous les rejets produits par les politiques candidates.</summary>
     /// <param name="path">Chemin du fichier examiné.</param>
     /// <param name="requestedFormat">Identifiant demandé, ou <see langword="null"/> en détection automatique.</param>
     /// <param name="rejections">Rejets enveloppés avec l'identité de chaque politique.</param>
     /// <returns>Exception agrégée contenant tous les rejets dans leur ordre d'exécution.</returns>
-    public static AggregateException AllCandidatesRejected(string path, string? requestedFormat, IReadOnlyList<Exception> rejections)
+    public static DiskImageCandidatesRejectedException AllCandidatesRejected(DiskImageRecognitionContext context, IReadOnlyList<DiskImageRecognitionFailure> failures)
     {
-        ArgumentNullException.ThrowIfNull(rejections);
-        if (rejections.Any(exception => exception is null)) throw new ArgumentException("A rejection cannot be null.", nameof(rejections));
-        var requestedFormatText = requestedFormat is null ? string.Empty : $" for requested format '{requestedFormat}'";
-        return new($"All recognition candidates rejected image '{path}'{requestedFormatText}.", rejections);
+        ArgumentNullException.ThrowIfNull(context);
+        ArgumentNullException.ThrowIfNull(failures);
+        if (failures.Any(failure => failure is null)) throw new ArgumentException("A recognition failure cannot be null.", nameof(failures));
+        var requestedFormatText = context.RequestedFormatId is null ? "<automatic>" : context.RequestedFormatId;
+        return new($"All recognition candidates rejected image '{context.Path}' with extension '{context.Extension}' and requested format '{requestedFormatText}'.", context.Path, context.Extension, context.RequestedFormatId, failures);
     }
 }
