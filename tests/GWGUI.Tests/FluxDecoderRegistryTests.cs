@@ -7,6 +7,20 @@ namespace GWGUI.Tests;
 public sealed class FluxDecoderRegistryTests
 {
     [Fact]
+    public void LisaFileWareDecoderKeepsItsExplicitIdentityWithoutAutomaticDuplication()
+    {
+        var revolution = new FluxRevolution(8_000_000, []);
+        var decoder = new AppleLisaFileWareGcrDecoder();
+        var result = decoder.Decode(revolution);
+
+        Assert.Equal(FluxCodecIds.AppleLisaFileWareGcr, decoder.Id);
+        Assert.Equal(FluxCodecDisplayNames.AppleLisaFileWareGcr, decoder.DisplayName);
+        Assert.Equal(decoder.Id, result.DecoderId);
+        Assert.Equal(decoder.DisplayName, result.DisplayName);
+        Assert.NotEqual(FluxCodecIds.AppleLisaFileWareGcr, new FluxDecoderRegistry().DecodeAutomatic(revolution).DecoderId);
+    }
+
+    [Fact]
     public void ConstructorRejectsInvalidDecoderCollections()
     {
         Assert.Throws<ArgumentNullException>(() => new FluxDecoderRegistry(null!));

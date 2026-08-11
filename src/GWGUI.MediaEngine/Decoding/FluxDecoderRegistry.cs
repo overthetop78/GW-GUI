@@ -9,6 +9,7 @@ public sealed class FluxDecoderRegistry
 {
     private readonly System.Runtime.CompilerServices.ConditionalWeakTable<FluxRevolution, System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<FluxDecodeResult>>> _cache = new();
     private readonly IReadOnlyDictionary<string, IFluxDecoder> decodersById;
+    private readonly IReadOnlyList<IFluxDecoder> automaticDecoders;
 
     /// <summary>Initialise le registre avec le catalogue de décodeurs par défaut.</summary>
     public FluxDecoderRegistry() : this(FluxDecoderCatalog.CreateDefault()) { }
@@ -29,6 +30,7 @@ public sealed class FluxDecoderRegistry
             if (string.IsNullOrWhiteSpace(decoder.Id)) throw FluxDecoderRegistryExceptions.InvalidIdentifier(index, nameof(decoders));
         }
         Decoders = Array.AsReadOnly(decoders.ToArray());
+        automaticDecoders = Array.AsReadOnly(Decoders.Where(decoder => decoder is not AppleLisaFileWareGcrDecoder).ToArray());
         var byId = new Dictionary<string, IFluxDecoder>(StringComparer.Ordinal);
         foreach (var decoder in Decoders)
         {
@@ -43,7 +45,7 @@ public sealed class FluxDecoderRegistry
     /// <param name="revolution">Révolution SCP à analyser.</param><returns>Résultat ayant obtenu le meilleur score automatique.</returns>
     public FluxDecodeResult DecodeAutomatic(FluxRevolution revolution)
     {
-        var results = Decoders.Select(decoder => Decode(decoder.Id, revolution));
+        var results = automaticDecoders.Select(decoder => Decode(decoder.Id, revolution));
         var ordered = results.OrderByDescending(FluxDecoderScoring.Calculate).ThenByDescending(result => result.Confidence).ThenByDescending(result => result.Structures.Count);
         return ordered.First();
     }
