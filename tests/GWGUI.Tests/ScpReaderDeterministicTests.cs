@@ -308,6 +308,71 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
+    public async Task SharesOneCachedImageBetweenConcurrentReads()
+    {
+        var path = Path.Combine(Path.GetDirectoryName(Images.Value.Cache)!, "concurrent-cache.scp");
+        File.WriteAllBytes(path, File.ReadAllBytes(Images.Value.Valid));
+        var reader = new ScpReader();
+
+        var images = await Task.WhenAll(Enumerable.Range(0, 8).Select(_ => reader.ReadAsync(path)));
+
+        Assert.All(images, image => Assert.Same(images[0], image));
+    }
+
+    [Fact]
+    public async Task UsesOneCacheEntryForDifferentPathCasing()
+    {
+        var path = Path.Combine(Path.GetDirectoryName(Images.Value.Cache)!, "case-cache.scp");
+        File.WriteAllBytes(path, File.ReadAllBytes(Images.Value.Valid));
+        var reader = new ScpReader();
+
+        var first = await reader.ReadAsync(path.ToLowerInvariant());
+        var second = await reader.ReadAsync(path.ToUpperInvariant());
+
+        Assert.Same(first, second);
+    }
+
+    [Fact]
+    public async Task CallerCancellationDoesNotRemoveTheSharedLoadingEntry()
+    {
+        var path = Path.Combine(Path.GetDirectoryName(Images.Value.Cache)!, "cancelled-wait-cache.scp");
+        var data = File.ReadAllBytes(Images.Value.Valid);
+        Array.Resize(ref data, data.Length + 64 * 1024 * 1024);
+        data[ScpFormatConstants.FlagsOffset] |= (byte)ScpFlags.Writable;
+        data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength).Clear();
+        File.WriteAllBytes(path, data);
+        var reader = new ScpReader();
+
+        var sharedLoad = reader.ReadAsync(path);
+        using var cancellation = new CancellationTokenSource();
+        cancellation.Cancel();
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => reader.ReadAsync(path, cancellation.Token));
+        var loaded = await sharedLoad;
+        var cached = await reader.ReadAsync(path);
+
+        Assert.Same(loaded, cached);
+    }
+
+    [Fact]
+    public async Task RemovesFailedLoadBeforeRetryingTheSameFileIdentity()
+    {
+        var path = Path.Combine(Path.GetDirectoryName(Images.Value.Cache)!, "failed-cache.scp");
+        var valid = File.ReadAllBytes(Images.Value.Valid);
+        var invalid = (byte[])valid.Clone();
+        invalid[ScpFormatConstants.FileStartOffset] = (byte)'X';
+        File.WriteAllBytes(path, invalid);
+        var writeTime = File.GetLastWriteTimeUtc(path);
+        var reader = new ScpReader();
+
+        await Assert.ThrowsAsync<InvalidDataException>(() => reader.ReadAsync(path));
+        File.WriteAllBytes(path, valid);
+        File.SetLastWriteTimeUtc(path, writeTime);
+        var loaded = await reader.ReadAsync(path);
+
+        Assert.Equal(new byte[] { 0, 3 }, loaded.Tracks.Select(track => track.TrackNumber));
+    }
+
+    [Fact]
     public async Task InvalidatesCacheWhenFileChanges()
     {
         var images = Images.Value;
@@ -328,6 +393,25 @@ public sealed class ScpReaderDeterministicTests
 
         Assert.NotSame(first, modified);
         Assert.Equal(101u, modified.Tracks[0].Revolutions[0].FluxIntervals[0]);
+    }
+
+    [Fact]
+    public async Task InvalidatesCacheWhenFileSizeChanges()
+    {
+        var path = Path.Combine(Path.GetDirectoryName(Images.Value.Cache)!, "size-cache.scp");
+        var data = File.ReadAllBytes(Images.Value.Valid);
+        File.WriteAllBytes(path, data);
+        var reader = new ScpReader();
+        var first = await reader.ReadAsync(path);
+
+        Array.Resize(ref data, data.Length + 1);
+        data[ScpFormatConstants.FlagsOffset] |= (byte)ScpFlags.Writable;
+        data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength).Clear();
+        File.WriteAllBytes(path, data);
+        var resized = await reader.ReadAsync(path);
+
+        Assert.NotSame(first, resized);
+        Assert.Equal(data.Length, resized.FileSize);
     }
 
     [Theory]

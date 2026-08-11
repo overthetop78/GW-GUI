@@ -277,28 +277,28 @@
       - [x] Vérifier que la lecture unique des champs produit exactement le même `ScpHeader`.
       - [x] Vérifier qu'un offset de piste nul continue d'ignorer uniquement la piste absente.
       - [x] Vérifier que les pistes, adresses, checksum et taille de fichier produits restent identiques après ces modifications.
-  - [ ] `Containers/Scp/ScpFileCache.cs`
-    - [ ] Annulation d'un appelant
-      - [ ] Distinguer l'annulation de l'attente d'un appelant de l'échec du chargement partagé.
-      - [ ] Ne pas supprimer l'entrée lorsque seul `cancellationToken` annule l'attente et que le chargement partagé continue.
-      - [ ] Supprimer l'entrée lorsque le chargement partagé échoue réellement afin que l'appel suivant puisse réessayer.
-    - [ ] Identité des chemins
-      - [ ] Rendre l'égalité et le hachage de `FileIdentity` cohérents avec la comparaison de chemins `OrdinalIgnoreCase` déjà utilisée par le cache.
-      - [ ] Conserver la taille et la date de dernière modification dans l'identité physique du fichier.
-      - [ ] Conserver `_entries` et `FileIdentity` privés dans `ScpFileCache.cs`.
-    - [ ] Mise en forme complète
-      - [ ] Développer le `foreach` afin de séparer la recherche d'une entrée obsolète et sa suppression.
-      - [ ] Développer le bloc `try/catch` afin que l'attente, le retour, la suppression conditionnelle et la propagation de l'erreur soient lisibles séparément.
-      - [ ] Reprendre la mise en forme du reste du fichier sans modifier l'ordre des opérations du cache.
-    - [ ] Documentation XML
-      - [ ] Compléter la documentation française de `GetOrAddAsync` avec l'annulation et les erreurs d'identification du fichier.
-      - [ ] Indiquer que les erreurs produites par `loader` sont propagées à l'appelant.
-    - [ ] Tests ciblés
-      - [ ] Tester que deux appels concurrents au même fichier partagent un seul chargement.
-      - [ ] Tester que deux casses différentes du même chemin partagent la même entrée.
-      - [ ] Tester que l'annulation d'un seul appelant ne supprime pas un chargement partagé encore actif.
-      - [ ] Tester qu'un chargement en échec est retiré puis relancé lors de l'appel suivant.
-      - [ ] Tester l'invalidation après modification de la taille ou de la date du fichier.
+  - [x] `Containers/Scp/ScpFileCache.cs`
+    - [x] Annulation d'un appelant
+      - [x] Distinguer l'annulation de l'attente d'un appelant de l'échec du chargement partagé.
+      - [x] Ne pas supprimer l'entrée lorsque seul `cancellationToken` annule l'attente et que le chargement partagé continue.
+      - [x] Supprimer l'entrée lorsque le chargement partagé échoue réellement afin que l'appel suivant puisse réessayer.
+    - [x] Identité des chemins
+      - [x] Rendre l'égalité et le hachage de `FileIdentity` cohérents avec la comparaison de chemins `OrdinalIgnoreCase` déjà utilisée par le cache.
+      - [x] Conserver la taille et la date de dernière modification dans l'identité physique du fichier.
+      - [x] Conserver `_entries` et `FileIdentity` privés dans `ScpFileCache.cs`.
+    - [x] Mise en forme complète
+      - [x] Développer le `foreach` afin de séparer la recherche d'une entrée obsolète et sa suppression.
+      - [x] Développer le bloc `try/catch` afin que l'attente, le retour, la suppression conditionnelle et la propagation de l'erreur soient lisibles séparément.
+      - [x] Reprendre la mise en forme du reste du fichier sans modifier l'ordre des opérations du cache.
+    - [x] Documentation XML
+      - [x] Compléter la documentation française de `GetOrAddAsync` avec l'annulation et les erreurs d'identification du fichier.
+      - [x] Indiquer que les erreurs produites par `loader` sont propagées à l'appelant.
+    - [x] Tests ciblés
+      - [x] Tester que deux appels concurrents au même fichier partagent un seul chargement.
+      - [x] Tester que deux casses différentes du même chemin partagent la même entrée.
+      - [x] Tester que l'annulation d'un seul appelant ne supprime pas un chargement partagé encore actif.
+      - [x] Tester qu'un chargement en échec est retiré puis relancé lors de l'appel suivant.
+      - [x] Tester l'invalidation après modification de la taille ou de la date du fichier.
   - [ ] `Containers/Scp/ScpRevolutionReader.cs`
     - [ ] Définitions des révolutions et des flux
       - [ ] Ajouter une constante SCP nommée pour convertir un index de révolution basé sur zéro en numéro basé sur un.
