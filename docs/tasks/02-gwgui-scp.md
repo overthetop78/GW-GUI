@@ -1604,7 +1604,7 @@
 ## 4. Modèles sectoriels, représentations et primitives
 
 - [ ] `src/GWGUI.MediaEngine/Flux/FluxBitstream.cs`
-  - [ ] Organisation des responsabilités du flux
+  - [x] Organisation des responsabilités du flux
     - [x] Représentation immuable des bits
       - [x] Déplacer le fichier vers `Representations/Flux/FluxBitstream.cs`.
       - [x] Remplacer son namespace `GWGUI.MediaEngine.Decoding` par celui de la représentation de flux.
