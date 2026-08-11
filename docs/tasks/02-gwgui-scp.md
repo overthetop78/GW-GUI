@@ -1462,9 +1462,9 @@
       - [x] Adapter `DecRx02ImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
       - [x] Conserver dans chaque Reader sa façade par chemin pour ses consommateurs extérieurs à la reconnaissance.
       - [x] Faire déléguer chaque façade par chemin au même traitement en mémoire afin de ne maintenir qu’une validation complète du format.
-    - [ ] Lecture commune
-      - [ ] Faire transmettre par `ReadAsync` le contexte complet à la fonction reçue sans relire ni transformer lui-même le fichier.
-      - [ ] Conserver sur une seule ligne l’expression de délégation lorsqu’elle tient lisiblement.
+    - [x] Lecture commune
+      - [x] Faire transmettre par `ReadAsync` le contexte complet à la fonction reçue sans relire ni transformer lui-même le fichier.
+      - [x] Conserver sur une seule ligne l’expression de délégation lorsqu’elle tient lisiblement.
     - [ ] Documentation XML et encodage
       - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
       - [ ] Documenter que la politique concrète choisit les données du contexte à transmettre et que le Reader reste propriétaire de la validation complète.
