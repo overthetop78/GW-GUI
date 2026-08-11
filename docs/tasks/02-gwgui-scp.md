@@ -246,37 +246,37 @@
     - [x] Mise en forme de la documentation XML
       - [x] Remettre sur une seule ligne la documentation XML courte du type et du constructeur.
       - [x] Remettre sur une seule ligne la documentation XML courte de `Header`, `Tracks`, `ChecksumValid` et `FileSize`.
-  - [ ] `Containers/Scp/ScpReader.cs`
+  - [x] `Containers/Scp/ScpReader.cs`
     - [x] Créer `Containers/Scp/ScpFileCache.cs` pour isoler l'identité de fichier, le cache et son invalidation du parsing SCP.
     - [x] Conserver dans `ScpReader` l'orchestration de lecture et le parsing de l'en-tête et des pistes.
     - [x] Créer `Containers/Scp/ScpRevolutionReader.cs` pour isoler la validation d'un descripteur de révolution et le décodage de ses intervalles de flux.
     - [x] Remplacer les noms de sections construits en texte brut par des identifiants de section nommés passés aux erreurs SCP.
     - [x] Documenter en français chaque type et membre créé ou modifié.
     - [x] Tester séparément le cache, son invalidation, le parsing de piste, les débordements de flux et les révolutions tronquées.
-    - [ ] Valeurs SCP encore brutes
-      - [ ] Ajouter une constante SCP nommée pour le début du fichier utilisé par les appels à `Require`.
-      - [ ] Ajouter une constante SCP nommée pour l'offset de piste nul signifiant qu'une entrée de piste est absente.
-      - [ ] Remplacer les valeurs brutes correspondantes dans `Read` et `ReadHeader`.
-      - [ ] Remplacer la comparaison brute du drapeau `Extended` avec zéro par une comparaison avec `ScpFlags.None`.
-    - [ ] Lecture unique des champs de l'en-tête
-      - [ ] Lire une seule fois le nombre de révolutions, la première piste, la dernière piste, la largeur de cellule et la sélection de face.
-      - [ ] Réutiliser ces variables pour les validations et les erreurs de `ReadHeader`.
-      - [ ] Réutiliser les mêmes variables pour construire `ScpHeader` sans relire les offsets correspondants.
-    - [ ] Mise en forme complète de `ScpReader.cs`
-      - [ ] Remettre sur une seule ligne les déclarations, signatures, appels, conditions et constructions qui doivent l'être.
-      - [ ] Remettre sur une seule ligne la construction complète de `ScpHeader`.
-      - [ ] Développer les boucles dont le corps est actuellement comprimé sur la même ligne.
-      - [ ] Conserver ensemble et lisibles les blocs de validation, les lectures binaires et la construction des pistes.
-      - [ ] Ne modifier aucune condition, valeur ni ordre d'exécution pendant la remise en forme.
-    - [ ] Mise en forme de la documentation XML
-      - [ ] Remettre sur une seule ligne les documentations XML courtes du type, du champ et des méthodes.
-      - [ ] Conserver sur plusieurs lignes uniquement les descriptions qui contiennent réellement plusieurs informations distinctes.
-    - [ ] Raccordement des algorithmes SCP
-      - [ ] Remplacer les appels à `ScpFormatConstants.ComputeChecksum`, `IsChecksumValid` et `ToTrackAddress` par `ScpFormatAlgorithms` après sa création.
-    - [ ] Tests ciblés complémentaires
-      - [ ] Vérifier que la lecture unique des champs produit exactement le même `ScpHeader`.
-      - [ ] Vérifier qu'un offset de piste nul continue d'ignorer uniquement la piste absente.
-      - [ ] Vérifier que les pistes, adresses, checksum et taille de fichier produits restent identiques après ces modifications.
+    - [x] Valeurs SCP encore brutes
+      - [x] Ajouter une constante SCP nommée pour le début du fichier utilisé par les appels à `Require`.
+      - [x] Ajouter une constante SCP nommée pour l'offset de piste nul signifiant qu'une entrée de piste est absente.
+      - [x] Remplacer les valeurs brutes correspondantes dans `Read` et `ReadHeader`.
+      - [x] Remplacer la comparaison brute du drapeau `Extended` avec zéro par une comparaison avec `ScpFlags.None`.
+    - [x] Lecture unique des champs de l'en-tête
+      - [x] Lire une seule fois le nombre de révolutions, la première piste, la dernière piste, la largeur de cellule et la sélection de face.
+      - [x] Réutiliser ces variables pour les validations et les erreurs de `ReadHeader`.
+      - [x] Réutiliser les mêmes variables pour construire `ScpHeader` sans relire les offsets correspondants.
+    - [x] Mise en forme complète de `ScpReader.cs`
+      - [x] Remettre sur une seule ligne les déclarations, signatures, appels, conditions et constructions qui doivent l'être.
+      - [x] Remettre sur une seule ligne la construction complète de `ScpHeader`.
+      - [x] Développer les boucles dont le corps est actuellement comprimé sur la même ligne.
+      - [x] Conserver ensemble et lisibles les blocs de validation, les lectures binaires et la construction des pistes.
+      - [x] Ne modifier aucune condition, valeur ni ordre d'exécution pendant la remise en forme.
+    - [x] Mise en forme de la documentation XML
+      - [x] Remettre sur une seule ligne les documentations XML courtes du type, du champ et des méthodes.
+      - [x] Conserver sur plusieurs lignes uniquement les descriptions qui contiennent réellement plusieurs informations distinctes.
+    - [x] Raccordement des algorithmes SCP
+      - [x] Remplacer les appels à `ScpFormatConstants.ComputeChecksum`, `IsChecksumValid` et `ToTrackAddress` par `ScpFormatAlgorithms` après sa création.
+    - [x] Tests ciblés complémentaires
+      - [x] Vérifier que la lecture unique des champs produit exactement le même `ScpHeader`.
+      - [x] Vérifier qu'un offset de piste nul continue d'ignorer uniquement la piste absente.
+      - [x] Vérifier que les pistes, adresses, checksum et taille de fichier produits restent identiques après ces modifications.
   - [ ] `Containers/Scp/ScpFileCache.cs`
     - [ ] Annulation d'un appelant
       - [ ] Distinguer l'annulation de l'attente d'un appelant de l'échec du chargement partagé.

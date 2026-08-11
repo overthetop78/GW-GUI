@@ -5,6 +5,9 @@ namespace GWGUI.MediaEngine.Containers.Scp;
 /// </summary>
 public static class ScpFormatConstants
 {
+    /// <summary>Position du premier octet d’un conteneur SCP.</summary>
+    public const int FileStartOffset = 0;
+
     /// <summary>Signature ASCII placée au début d’un fichier SCP.</summary>
     public static ReadOnlySpan<byte> FileSignature => "SCP"u8;
 
@@ -26,6 +29,9 @@ public static class ScpFormatConstants
     /// Position, en octets depuis le début du fichier, de la table des pistes SCP.
     /// </summary>
     public const int TrackTableOffset = HeaderLength;
+
+    /// <summary>Valeur d’une entrée de table indiquant l’absence de la piste correspondante.</summary>
+    public const uint MissingTrackOffset = 0u;
 
     /// <summary>Position de la version dans l’en-tête SCP.</summary>
     public const int VersionOffset = SignatureLength;

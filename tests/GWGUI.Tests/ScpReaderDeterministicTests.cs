@@ -150,6 +150,26 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
+    public void ReadsEveryScpHeaderFieldWithoutChangingItsValue()
+    {
+        var data = CreateValidHeader();
+        data[ScpFormatConstants.VersionOffset] = 0x31;
+        data[ScpFormatConstants.DiskTypeOffset] = 7;
+        data[ScpFormatConstants.RevolutionCountOffset] = 3;
+        data[ScpFormatConstants.StartTrackOffset] = 4;
+        data[ScpFormatConstants.EndTrackOffset] = 9;
+        data[ScpFormatConstants.FlagsOffset] = (byte)(ScpFlags.IndexAligned | ScpFlags.Writable);
+        data[ScpFormatConstants.BitCellWidthOffset] = (byte)ScpBitCellEncoding.Explicit16Bit;
+        data[ScpFormatConstants.HeadsOffset] = (byte)ScpHeadSelection.Side1;
+        data[ScpFormatConstants.ResolutionOffset] = 2;
+        BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), 123_456u);
+
+        var header = ScpReader.ReadHeader(data);
+
+        Assert.Equal(new ScpHeader(0x31, 7, 3, 4, 9, ScpFlags.IndexAligned | ScpFlags.Writable, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Side1, 2, 123_456u), header);
+    }
+
+    [Fact]
     public void ProtectsScpRevolutionFluxIntervalsFromSourceChanges()
     {
         var source = new List<uint> { 100, 200 };
@@ -247,6 +267,23 @@ public sealed class ScpReaderDeterministicTests
         Assert.Equal(new uint[] { 300, 400 }, second.Revolutions[0].FluxIntervals);
         Assert.Equal(new uint[] { 500, 600, 700 }, second.Revolutions[1].FluxIntervals);
         Assert.Equal(new FileInfo(Images.Value.Valid).Length, image.FileSize);
+    }
+
+    [Fact]
+    public void IgnoresOnlyTheTrackWhoseTableOffsetIsMissing()
+    {
+        var data = File.ReadAllBytes(Images.Value.Valid);
+        data.AsSpan(ScpFormatConstants.TrackTableOffset, ScpFormatConstants.TrackTableEntrySize).Clear();
+        WriteChecksum(data);
+
+        var image = new ScpReader().Read(data);
+
+        var track = Assert.Single(image.Tracks);
+        Assert.Equal((byte)3, track.TrackNumber);
+        Assert.Equal(1, track.Cylinder);
+        Assert.Equal(1, track.Head);
+        Assert.True(image.ChecksumValid);
+        Assert.Equal(data.Length, image.FileSize);
     }
 
     [Fact]
