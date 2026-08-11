@@ -1685,7 +1685,7 @@
       - [x] Séparer le tri, les replis, la taille du groupe bas et sa médiane actuellement regroupés sur les mêmes lignes.
       - [x] Remettre sur une seule ligne les signatures et expressions complètes qui tiennent lisiblement.
       - [x] Documenter en français le type et chaque méthode publique ou privée.
-  - [ ] `Representations/Flux/FluxTransitionDecoder.cs`
+  - [x] `Representations/Flux/FluxTransitionDecoder.cs`
     - [x] Contrats des fabriques
       - [x] Refuser une collection d'intervalles nulle avant toute estimation ou reconstruction.
       - [x] Utiliser la durée minimale nommée pour une durée explicite inférieure à un tick.
