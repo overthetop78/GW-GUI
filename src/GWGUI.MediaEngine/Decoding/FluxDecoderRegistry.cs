@@ -9,9 +9,11 @@ public sealed class FluxDecoderRegistry
         System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<FluxDecodeResult>>> _cache = new();
     private readonly IReadOnlyDictionary<string, IFluxDecoder> decodersById;
 
-    public FluxDecoderRegistry()
+    public FluxDecoderRegistry() : this(FluxDecoderCatalog.CreateDefault()) { }
+
+    public FluxDecoderRegistry(IReadOnlyList<IFluxDecoder> decoders)
     {
-        Decoders = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleIIGcrDecoder(), new AppleRwts18Decoder(), new AppleMacGcrDecoder(), new AppleLisaFileWareGcrDecoder(), new CommodoreGcrDecoder(), new HpMmfmDecoder(), new DataGeneralFmDecoder(), new MicropolisMfmDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new MicralNFmDecoder(), new EmuFmDecoder(), new TycomFmDecoder(), new DecRx02Decoder(), new ArburgDecoder(), new Victor9kGcrDecoder(), new Commodore900GcrDecoder(), new RawFluxDecoder()];
+        Decoders = Array.AsReadOnly(decoders.ToArray());
         var byId = new Dictionary<string, IFluxDecoder>(StringComparer.Ordinal);
         foreach (var decoder in Decoders) if (!byId.TryAdd(decoder.Id, decoder)) throw FluxDecoderRegistryExceptions.DuplicateIdentifier(decoder.Id);
         decodersById = byId;

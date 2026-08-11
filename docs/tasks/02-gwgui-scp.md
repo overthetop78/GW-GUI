@@ -2137,13 +2137,14 @@
 - [ ] Compléments issus de la relecture complète du décodage
   - [ ] `Decoding/FluxDecoderRegistry.cs`
     - [ ] Composition des décodeurs
-      - [ ] Créer `Decoding/FluxDecoderCatalog.cs` chargé de construire la collection par défaut des décodeurs.
-      - [ ] Déplacer dans ce catalogue les constructions actuellement écrites directement dans la propriété `Decoders`.
-      - [ ] Mettre à jour le catalogue avec le renommage `AppleGcrDecoder` vers `AppleIIGcrDecoder`.
+      - [x] Créer `Decoding/FluxDecoderCatalog.cs` chargé de construire la collection par défaut des décodeurs.
+      - [x] Déplacer dans ce catalogue les constructions actuellement écrites directement dans la propriété `Decoders`.
+      - [x] Mettre à jour le catalogue avec le renommage `AppleGcrDecoder` vers `AppleIIGcrDecoder`.
       - [ ] Ne plus enregistrer automatiquement `AppleMacGcrDecoder` et `AppleLisaFileWareGcrDecoder` comme deux candidats identiques ; raccorder le composant IWM GCR commun prévu dans leurs groupes.
-      - [ ] Ajouter à `FluxDecoderRegistry` un constructeur recevant la collection de décodeurs.
-      - [ ] Conserver un constructeur sans paramètre utilisant le catalogue par défaut pour les consommateurs actuels.
-      - [ ] Copier la collection reçue et exposer `Decoders` sous forme réellement non modifiable.
+        - Dépendance restante : le composant Apple IWM GCR commun n'existe pas encore ; sa création et le raccordement des deux spécialisations sont prévus dans leur groupe aux lignes 2378–2379.
+      - [x] Ajouter à `FluxDecoderRegistry` un constructeur recevant la collection de décodeurs.
+      - [x] Conserver un constructeur sans paramètre utilisant le catalogue par défaut pour les consommateurs actuels.
+      - [x] Copier la collection reçue et exposer `Decoders` sous forme réellement non modifiable.
     - [ ] Validation et indexation
       - [ ] Refuser une collection nulle ou vide.
       - [ ] Refuser un élément de décodeur nul.
