@@ -1509,10 +1509,10 @@
       - [x] Faire recevoir au probe l’extension, les octets déjà chargés et l’identifiant éventuellement demandé, sans lire le chemin ni intercepter toutes les exceptions.
       - [x] Remplacer dans le probe les capacités Apple II, Macintosh et Lisa brutes par les layouts et géométries Apple propriétaires déjà prévus.
       - [x] Supprimer `LooksLikeAppleImage` du Reader après raccordement de la politique au probe.
-    - [ ] Présélection des conteneurs signés
-      - [ ] Examiner `TwoImgFormat.SignatureBytes`, le mot privé DiskCopy et les signatures WOZ1/WOZ2 directement dans la mémoire en lecture seule du contexte.
-      - [ ] Conserver l’indépendance de l’extension pour ces quatre signatures de conteneurs.
-      - [ ] Utiliser `NibLayout.TrackLengthBytes` pour vérifier qu’un candidat `.nib` possède au moins une piste entière avant de le présélectionner.
+    - [x] Présélection des conteneurs signés
+      - [x] Examiner `TwoImgFormat.SignatureBytes`, le mot privé DiskCopy et les signatures WOZ1/WOZ2 directement dans la mémoire en lecture seule du contexte.
+      - [x] Conserver l’indépendance de l’extension pour ces quatre signatures de conteneurs.
+      - [x] Utiliser `NibLayout.TrackLengthBytes` pour vérifier qu’un candidat `.nib` possède au moins une piste entière avant de le présélectionner.
     - [ ] Lecture sans seconde ouverture
       - [ ] Adapter `ReaderBackedRecognitionPolicy` et `AppleDiskImageReader` pour transmettre à la lecture les octets et l’extension déjà détenus par le contexte.
       - [ ] Supprimer la délégation actuelle à `reader.ReadAsync(path, ...)` qui relit le fichier.
