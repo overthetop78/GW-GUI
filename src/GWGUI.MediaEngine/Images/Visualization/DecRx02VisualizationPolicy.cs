@@ -1,7 +1,7 @@
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.SectorImages;
 
-using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.MediaEngine.Images.Visualization;
 

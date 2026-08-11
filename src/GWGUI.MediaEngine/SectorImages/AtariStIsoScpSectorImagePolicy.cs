@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Recognition.Definitions;
+using GWGUI.MediaEngine.Definitions;
 
 namespace GWGUI.MediaEngine.SectorImages;
 

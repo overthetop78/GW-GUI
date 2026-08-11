@@ -1,7 +1,7 @@
+using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.Tests;
 

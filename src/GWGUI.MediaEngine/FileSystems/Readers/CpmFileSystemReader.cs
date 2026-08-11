@@ -1,7 +1,7 @@
+using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;

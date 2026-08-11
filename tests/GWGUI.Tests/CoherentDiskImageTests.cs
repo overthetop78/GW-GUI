@@ -1,8 +1,8 @@
+using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
-using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;

@@ -1,9 +1,9 @@
+using GWGUI.MediaEngine.Definitions;
 using System.Reflection;
-using GWGUI.MediaEngine.Recognition.Definitions;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie le contrat public des identifiants de formats d’images disque.</summary>
+/// <summary>VÃ©rifie le contrat public des identifiants de formats dâ€™images disque.</summary>
 public sealed class DiskImageFormatIdsTests
 {
     [Fact]
@@ -38,8 +38,9 @@ public sealed class DiskImageFormatIdsTests
             .GetFields(BindingFlags.Public | BindingFlags.Static)
             .Where(field => field.IsLiteral && field.FieldType == typeof(string))
             .Select(field => (string)field.GetRawConstantValue()!)
-            .ToHashSet(StringComparer.Ordinal);
+            .ToArray();
 
+        Assert.Equal(actual.Length, actual.Distinct(StringComparer.Ordinal).Count());
         Assert.True(expected.SetEquals(actual),
             $"Attendu seulement: {string.Join(", ", expected.Except(actual))}; obtenu seulement: {string.Join(", ", actual.Except(expected))}");
     }
@@ -55,5 +56,20 @@ public sealed class DiskImageFormatIdsTests
         Assert.Equal(DiskImageFormatIds.Ibm1440, DiskImageFormatIds.IbmFromCapacity(ibmCapacity + 1_023));
         Assert.Equal("atari.atr.512.1440", DiskImageFormatIds.AtariAtr(512, 1440));
         Assert.Equal("atari.scp.256.18", DiskImageFormatIds.AtariScp(256, 18));
+    }
+
+    [Fact]
+    public void CalculatedIdentifiersValidateTheirArguments()
+    {
+        Assert.Equal("atarist.0", DiskImageFormatIds.AtariStFromCapacity(0));
+        Assert.Equal("ibm.0", DiskImageFormatIds.IbmFromCapacity(0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariStFromCapacity(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.IbmFromCapacity(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariAtr(0, 1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariAtr(1, 0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariAtr(-1, 1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariScp(0, 1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariScp(1, 0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => DiskImageFormatIds.AtariScp(-1, 1));
     }
 }

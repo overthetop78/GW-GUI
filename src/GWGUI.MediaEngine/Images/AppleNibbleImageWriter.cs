@@ -3,7 +3,6 @@ using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Recognition.Apple;
-using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;

@@ -1,4 +1,4 @@
-﻿# 02 — Refactor complet et renommage en `GWGUI.MediaEngine`
+# 02 — Refactor complet et renommage en `GWGUI.MediaEngine`
 
 ## Règles de découpage
 
@@ -390,7 +390,7 @@
   - [x] Tests ciblés
     - [x] Tester indirectement les calculs de capacité IBM, Epson et des identifiants Atari ST/IBM avec des valeurs alignées et non alignées.
     - [x] Vérifier que la capacité ADF Acorn rembourrée conserve exactement sa valeur actuelle après remplacement de l’unité brute.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
+- [x] `src/GWGUI.MediaEngine/Recognition/Definitions/DiskImageFormatIds.cs`
   - [x] Définition des identifiants de formats
     - [x] Compléter `DiskImageFormatIds.cs`, qui ne contient actuellement que `AppleLisaMacWorks` et `AppleLisaOffice`.
     - [x] Ajouter une constante pour chaque identifiant fixe encore écrit en brut dans les Readers, reconstructeurs, systèmes de fichiers, registres, interprétations et visualisations.
@@ -402,47 +402,47 @@
     - [x] Vérifier les valeurs des identifiants fixes utilisés comme contrat public.
     - [x] Vérifier chaque méthode de construction avec les capacités et géométries réellement produites par les Readers.
     - [x] Exécuter les tests ciblés des Readers et registres après raccordement de leurs identifiants.
-  - [ ] Conversion des capacités en kibioctets
+  - [x] Conversion des capacités en kibioctets
     - [x] Remplacer dans `AtariStFromCapacity` et `IbmFromCapacity` la division brute par `1024` par cette définition commune.
-    - [ ] Documenter en français l’unité et le comportement des deux méthodes pour une capacité non alignée.
-    - [ ] Tester les conversions d'une capacité exacte et d'une capacité non alignée sur un kibioctet.
-  - [ ] Emplacement commun et conservation de l’API
-    - [ ] Déplacer le fichier principal vers `Definitions/Formats/DiskImageFormatIds.cs` et le type dans le namespace `GWGUI.MediaEngine.Definitions`.
-    - [ ] Adapter les Readers, Writers, reconnaissances, explorateurs, systèmes de fichiers, reconstructions, visualisations, tests et projets consommateurs au nouveau namespace.
-    - [ ] Conserver `DiskImageFormatIds` public, car `SectorImage.FormatId` expose ces valeurs aux consommateurs de la DLL.
-    - [ ] Conserver exactement les valeurs textuelles publiques existantes pendant le déplacement et le découpage.
-  - [ ] Découpage du catalogue par famille
-    - [ ] Déclarer `DiskImageFormatIds` comme classe statique partielle afin de conserver un seul propriétaire public sans maintenir un fichier monolithique.
-    - [ ] Conserver dans `DiskImageFormatIds.cs` uniquement `Unknown` et les identifiants génériques de conteneurs qui ne sont pas propres à une famille de machine.
-    - [ ] Créer `Definitions/Formats/AcornDiskImageFormatIds.cs` pour les préfixes et identifiants ADFS et DFS.
-    - [ ] Créer `Definitions/Formats/AmigaDiskImageFormatIds.cs` pour le préfixe et les identifiants AmigaDOS.
-    - [ ] Créer `Definitions/Formats/AmstradDiskImageFormatIds.cs` pour le préfixe et les identifiants CPC et PCW.
-    - [ ] Créer `Definitions/Formats/AppleDiskImageFormatIds.cs` pour Apple II, Apple III, Lisa et Macintosh, y compris les préfixes correspondants.
-    - [ ] Créer `Definitions/Formats/AtariDiskImageFormatIds.cs` pour Atari 8 bits et Atari ST et y déplacer `AtariStFromCapacity`, `AtariAtr` et `AtariScp`.
-    - [ ] Créer `Definitions/Formats/CommodoreDiskImageFormatIds.cs` pour Commodore 1541, 1571, 1581 et Commodore 900.
-    - [ ] Créer `Definitions/Formats/DecDiskImageFormatIds.cs` pour DEC RX02.
-    - [ ] Créer `Definitions/Formats/EpsonDiskImageFormatIds.cs` pour le préfixe et les variantes QX-10.
-    - [ ] Créer `Definitions/Formats/IbmDiskImageFormatIds.cs` pour les géométries IBM, `IbmScan` et `IbmFromCapacity`.
-    - [ ] Créer `Definitions/Formats/MsxDiskImageFormatIds.cs` pour les quatre variantes MSX.
-    - [ ] Créer `Definitions/Formats/UcsdDiskImageFormatIds.cs` pour le préfixe et la variante UCSD IBM MFM.
-    - [ ] Vérifier qu’aucune constante ni méthode n’est recopiée entre les fichiers partiels.
-  - [ ] Validation des identifiants calculés
-    - [ ] Refuser une capacité négative dans `AtariStFromCapacity` et `IbmFromCapacity` avant de construire l’identifiant.
-    - [ ] Refuser une taille sectorielle ou un nombre de secteurs non positif dans `AtariAtr`.
-    - [ ] Refuser une taille sectorielle ou un nombre de secteurs par piste non positif dans `AtariScp`.
-    - [ ] Conserver explicitement et tester la conversion entière actuelle des capacités non alignées au lieu de la modifier implicitement pendant le refactor.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide toute la CSDoc actuellement corrompue lors de la répartition dans les fichiers partiels.
-    - [ ] Documenter dans chaque fichier partiel la famille possédée, puis chaque préfixe, identifiant et méthode publique.
-    - [ ] Documenter les unités, validations et règles de construction de chaque identifiant calculé.
-  - [ ] Mise en forme
-    - [ ] Conserver chaque constante et chaque méthode d’expression courte sur une seule ligne.
-    - [ ] Ordonner les membres de chaque famille par préfixe, formats fixes puis méthodes calculées.
-  - [ ] Tests du contrat public après découpage
-    - [ ] Vérifier que chaque constante conserve exactement sa valeur publique avant le déplacement.
-    - [ ] Vérifier qu’aucun identifiant fixe n’est déclaré dans deux fichiers partiels.
-    - [ ] Tester les validations des quatre méthodes de construction avec zéro et des valeurs négatives.
-    - [ ] Exécuter les tests ciblés de chaque consommateur dont le namespace a été adapté.
+    - [x] Documenter en français l’unité et le comportement des deux méthodes pour une capacité non alignée.
+    - [x] Tester les conversions d'une capacité exacte et d'une capacité non alignée sur un kibioctet.
+  - [x] Emplacement commun et conservation de l’API
+    - [x] Déplacer le fichier principal vers `Definitions/Formats/DiskImageFormatIds.cs` et le type dans le namespace `GWGUI.MediaEngine.Definitions`.
+    - [x] Adapter les Readers, Writers, reconnaissances, explorateurs, systèmes de fichiers, reconstructions, visualisations, tests et projets consommateurs au nouveau namespace.
+    - [x] Conserver `DiskImageFormatIds` public, car `SectorImage.FormatId` expose ces valeurs aux consommateurs de la DLL.
+    - [x] Conserver exactement les valeurs textuelles publiques existantes pendant le déplacement et le découpage.
+  - [x] Découpage du catalogue par famille
+    - [x] Déclarer `DiskImageFormatIds` comme classe statique partielle afin de conserver un seul propriétaire public sans maintenir un fichier monolithique.
+    - [x] Conserver dans `DiskImageFormatIds.cs` uniquement `Unknown` et les identifiants génériques de conteneurs qui ne sont pas propres à une famille de machine.
+    - [x] Créer `Definitions/Formats/AcornDiskImageFormatIds.cs` pour les préfixes et identifiants ADFS et DFS.
+    - [x] Créer `Definitions/Formats/AmigaDiskImageFormatIds.cs` pour le préfixe et les identifiants AmigaDOS.
+    - [x] Créer `Definitions/Formats/AmstradDiskImageFormatIds.cs` pour le préfixe et les identifiants CPC et PCW.
+    - [x] Créer `Definitions/Formats/AppleDiskImageFormatIds.cs` pour Apple II, Apple III, Lisa et Macintosh, y compris les préfixes correspondants.
+    - [x] Créer `Definitions/Formats/AtariDiskImageFormatIds.cs` pour Atari 8 bits et Atari ST et y déplacer `AtariStFromCapacity`, `AtariAtr` et `AtariScp`.
+    - [x] Créer `Definitions/Formats/CommodoreDiskImageFormatIds.cs` pour Commodore 1541, 1571, 1581 et Commodore 900.
+    - [x] Créer `Definitions/Formats/DecDiskImageFormatIds.cs` pour DEC RX02.
+    - [x] Créer `Definitions/Formats/EpsonDiskImageFormatIds.cs` pour le préfixe et les variantes QX-10.
+    - [x] Créer `Definitions/Formats/IbmDiskImageFormatIds.cs` pour les géométries IBM, `IbmScan` et `IbmFromCapacity`.
+    - [x] Créer `Definitions/Formats/MsxDiskImageFormatIds.cs` pour les quatre variantes MSX.
+    - [x] Créer `Definitions/Formats/UcsdDiskImageFormatIds.cs` pour le préfixe et la variante UCSD IBM MFM.
+    - [x] Vérifier qu’aucune constante ni méthode n’est recopiée entre les fichiers partiels.
+  - [x] Validation des identifiants calculés
+    - [x] Refuser une capacité négative dans `AtariStFromCapacity` et `IbmFromCapacity` avant de construire l’identifiant.
+    - [x] Refuser une taille sectorielle ou un nombre de secteurs non positif dans `AtariAtr`.
+    - [x] Refuser une taille sectorielle ou un nombre de secteurs par piste non positif dans `AtariScp`.
+    - [x] Conserver explicitement et tester la conversion entière actuelle des capacités non alignées au lieu de la modifier implicitement pendant le refactor.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide toute la CSDoc actuellement corrompue lors de la répartition dans les fichiers partiels.
+    - [x] Documenter dans chaque fichier partiel la famille possédée, puis chaque préfixe, identifiant et méthode publique.
+    - [x] Documenter les unités, validations et règles de construction de chaque identifiant calculé.
+  - [x] Mise en forme
+    - [x] Conserver chaque constante et chaque méthode d’expression courte sur une seule ligne.
+    - [x] Ordonner les membres de chaque famille par préfixe, formats fixes puis méthodes calculées.
+  - [x] Tests du contrat public après découpage
+    - [x] Vérifier que chaque constante conserve exactement sa valeur publique avant le déplacement.
+    - [x] Vérifier qu’aucun identifiant fixe n’est déclaré dans deux fichiers partiels.
+    - [x] Tester les validations des quatre méthodes de construction avec zéro et des valeurs négatives.
+    - [x] Exécuter les tests ciblés de chaque consommateur dont le namespace a été adapté.
 - [x] Données brutes des politiques de reconnaissance
   - [x] Politiques Amstrad, Apple, Coherent, DEC et MSX
     - [x] Remplacer les extensions par `DiskImageFileExtensions`.

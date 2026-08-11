@@ -1,5 +1,4 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Recognition.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
