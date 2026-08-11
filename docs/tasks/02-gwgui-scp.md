@@ -1521,9 +1521,9 @@
       - [x] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
     - [x] Mise en forme
       - [x] Remettre sur une seule ligne les conditions de signatures, de familles et les expressions courtes lorsqu’elles tiennent lisiblement.
-    - [ ] Documentation XML et encodage
-      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de la politique, de `RawHints`, du probe et de chaque méthode.
-      - [ ] Documenter la différence entre une signature, un indice d’extension, une demande explicite et la validation complète laissée au Reader.
+    - [x] Documentation XML et encodage
+      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de la politique, de `RawHints`, du probe et de chaque méthode.
+      - [x] Documenter la différence entre une signature, un indice d’extension, une demande explicite et la validation complète laissée au Reader.
     - [ ] Tests ciblés
       - [ ] Tester 2IMG, DiskCopy, WOZ1 et WOZ2 avec une extension inhabituelle.
       - [ ] Tester les indices DO, PO, D13 et NIB avec un contenu valide puis invalide afin de vérifier le passage au candidat suivant.

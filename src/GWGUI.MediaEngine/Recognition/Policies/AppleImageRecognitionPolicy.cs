@@ -8,7 +8,7 @@ using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 
-/// <summary>Reconnaît les conteneurs Apple signés et présélectionne les représentations Apple brutes.</summary>
+/// <summary>Présélectionne une signature certaine, un indice d'extension ou une famille Apple explicitement demandée, puis laisse le Reader valider entièrement le contenu.</summary>
 /// <param name="reader">Lecteur public chargé de valider et reconstruire le candidat Apple.</param>
 internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) : ReaderBackedRecognitionPolicy(async (context, cancellationToken) => await reader.ReadAsync(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), context.Extension, context.RequestedFormatId, cancellationToken).ConfigureAwait(false))
 {
@@ -21,10 +21,10 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
         DiskImageFileExtensions.Nib
     };
 
-    /// <summary>Recherche d'abord les marqueurs 2IMG, DiskCopy et WOZ, puis examine les indices des formats bruts.</summary>
+    /// <summary>Recherche d'abord les signatures 2IMG, DiskCopy et WOZ, puis examine séparément les indices d'extension et la famille explicitement demandée.</summary>
     /// <param name="context">Contexte partagé du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du contenu.</param>
-    /// <returns><see langword="true"/> pour un conteneur signé ou un candidat brut Apple ; sinon <see langword="false"/>.</returns>
+    /// <returns><see langword="true"/> lorsqu'une signature, un indice ou une demande explicite présélectionne le Reader ; sinon <see langword="false"/>.</returns>
     public override async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
