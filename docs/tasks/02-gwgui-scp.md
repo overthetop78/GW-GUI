@@ -2537,12 +2537,12 @@
       - [x] Tester un bloc tronqué, un en-tête sans données et un bloc de données non apparié.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/CommodoreGcrDecoder.cs`
-    - [ ] Définitions Commodore GCR
-      - [ ] Créer `Decoding/Definitions/CommodoreGcrFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, la longueur minimale de synchronisation et les marqueurs d'en-tête `0x08` et de données `0x07`.
-      - [ ] Y définir les six octets d'en-tête, les 258 octets du bloc de données, la taille sectorielle de 256 octets et leurs longueurs encodées.
-      - [ ] Y définir les positions du checksum, du secteur, de la piste, des deux identifiants de disque et de la charge utile, ainsi que la face logique et le code de taille.
-      - [ ] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
+    - [x] Définitions Commodore GCR
+      - [x] Créer `Decoding/Definitions/CommodoreGcrFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, la longueur minimale de synchronisation et les marqueurs d'en-tête `0x08` et de données `0x07`.
+      - [x] Y définir les six octets d'en-tête, les 258 octets du bloc de données, la taille sectorielle de 256 octets et leurs longueurs encodées.
+      - [x] Y définir les positions du checksum, du secteur, de la piste, des deux identifiants de disque et de la charge utile, ainsi que la face logique et le code de taille.
+      - [x] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
     - [ ] Utilisation du codec GCR commun
       - [ ] Raccorder le fichier au codec GCR Commodore créé dans le groupe `Commodore900GcrDecoder.cs`.
       - [ ] Supprimer la table `Gcr`, `TryDecodeByte` et `TryDecodeBytes` après leur remplacement par le codec commun.

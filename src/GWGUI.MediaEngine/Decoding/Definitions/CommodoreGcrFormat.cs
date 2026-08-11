@@ -1,8 +1,15 @@
-namespace GWGUI.MediaEngine.Encoding.Definitions;
+namespace GWGUI.MediaEngine.Decoding.Definitions;
 
 /// <summary>Regroupe les définitions techniques du format Commodore Gcr.</summary>
 internal static class CommodoreGcrFormat
 {
+    public const string CodecId = FluxCodecIds.CommodoreGcr;
+    public const string CodecDisplayName = FluxCodecDisplayNames.CommodoreGcr;
+    public const string StructureDescriptionName = "Commodore";
+    public const string SyncDescription = "GCR sync";
+    public const string DataBlockDescription = "data block";
+    public const string HeaderChecksumDescription = "header checksum";
+    public const string DataChecksumDescription = "data checksum";
     /// <summary>Crée l'exception signalant invalide secteur taille.</summary>
     /// <param name="actualSize">Valeur observée utilisée pour décrire précisément l'erreur.</param>
     /// <returns>Exception contenant les valeurs attendues et observées.</returns>
@@ -13,16 +20,28 @@ internal static class CommodoreGcrFormat
     public const byte DataMark = 0x07;
     /// <summary>Définit en-tête octet nombre utilisé par ce format.</summary>
     public const int HeaderByteCount = 6;
+    public const int HeaderMarkOffset = 0;
+    public const int HeaderChecksumOffset = 1;
+    public const int HeaderSectorOffset = 2;
+    public const int HeaderTrackOffset = 3;
+    public const int HeaderDiskId2Offset = 4;
+    public const int HeaderDiskId1Offset = 5;
     /// <summary>Définit secteur octet nombre utilisé par ce format.</summary>
     public const int SectorByteCount = 256;
     /// <summary>Définit données enregistrement octet nombre utilisé par ce format.</summary>
     public const int DataRecordByteCount = SectorByteCount + 2;
+    public const int DataMarkOffset = 0;
+    public const int DataPayloadOffset = 1;
+    public const int DataChecksumOffset = DataPayloadOffset + SectorByteCount;
+    public const byte LogicalHead = 0;
+    public const int EncodedHeaderBitCount = HeaderByteCount * EncodedByteBitCount;
+    public const int EncodedDataRecordBitCount = DataRecordByteCount * EncodedByteBitCount;
     /// <summary>Définit secteur taille code utilisé par ce format.</summary>
     public const byte SectorSizeCode = 1;
     /// <summary>Définit encodé nibble bit nombre utilisé par ce format.</summary>
-    public const int EncodedNibbleBitCount = Decoding.Definitions.CommodoreGcrCodec.EncodedNibbleBitCount;
+    public const int EncodedNibbleBitCount = CommodoreGcrCodec.EncodedNibbleBitCount;
     /// <summary>Définit encodé octet bit nombre utilisé par ce format.</summary>
-    public const int EncodedByteBitCount = Decoding.Definitions.CommodoreGcrCodec.EncodedByteBitCount;
+    public const int EncodedByteBitCount = CommodoreGcrCodec.EncodedByteBitCount;
     /// <summary>Définit minimal synchronisation bit nombre utilisé par ce format.</summary>
     public const int MinimumSyncBitCount = 10;
     /// <summary>Définit leading intervalle bit nombre utilisé par ce format.</summary>
@@ -48,5 +67,7 @@ internal static class CommodoreGcrFormat
     /// <summary>Définit tracks per side utilisé par ce format.</summary>
     public const int TracksPerSide = 35;
     /// <summary>Définit nibble masque utilisé par ce format.</summary>
-    public const int NibbleMask = Decoding.Definitions.CommodoreGcrCodec.NibbleMask;
+    public const int NibbleMask = CommodoreGcrCodec.NibbleMask;
+    public const int ConfidenceSectorWeight = 2;
+    public const double ConfidenceDivisor = 42;
 }
