@@ -1226,13 +1226,13 @@
     - [x] Faire produire par le convertisseur la représentation de révolution actuellement requise par les décodeurs sans placer cette conversion dans le parser de conteneur.
     - [x] Utiliser des constantes d’identifiants de décodeurs pour ISO FM et ISO MFM au lieu des textes bruts `iso.fm` et `iso.mfm`.
     - [x] Choisir le décodeur à partir de `I86fTrackFlags` dans `I86fSectorImageReader`.
-  - [ ] Construction sectorielle commune
-    - [ ] Convertir chaque `DecodedSector` retenu en `IsoSectorCandidate` avec son adresse et sa piste source.
-    - [ ] Réutiliser `IsoSectorImageBuilder.Measure` pour déterminer taille dominante, cylindres, faces, secteurs par piste, ordre et base des numéros.
-    - [ ] Réutiliser `IsoSectorImageBuilder.CreateUniform` pour choisir le meilleur secteur par intégrité et construire les blocs, au lieu de conserver la copie de cet algorithme dans `BuildSectorImage`.
-    - [ ] Utiliser le catalogue de géométries IBM commun lorsque les secteurs font 512 octets.
-    - [ ] Ajouter à `DiskImageFormatIds` une fonction recevant taille sectorielle, cylindres, faces et secteurs par piste pour construire l’identifiant de repli 86F actuellement interpolé en texte brut.
-    - [ ] Supprimer `BuildSectorImage` après raccordement au constructeur ISO commun.
+  - [x] Construction sectorielle commune
+    - [x] Convertir chaque `DecodedSector` retenu en `IsoSectorCandidate` avec son adresse et sa piste source.
+    - [x] Réutiliser `IsoSectorImageBuilder.Measure` pour déterminer taille dominante, cylindres, faces, secteurs par piste, ordre et base des numéros.
+    - [x] Réutiliser `IsoSectorImageBuilder.CreateUniform` pour choisir le meilleur secteur par intégrité et construire les blocs, au lieu de conserver la copie de cet algorithme dans `BuildSectorImage`.
+    - [x] Utiliser le catalogue de géométries IBM commun lorsque les secteurs font 512 octets.
+    - [x] Ajouter à `DiskImageFormatIds` une fonction recevant taille sectorielle, cylindres, faces et secteurs par piste pour construire l’identifiant de repli 86F actuellement interpolé en texte brut.
+    - [x] Supprimer `BuildSectorImage` après raccordement au constructeur ISO commun.
   - [ ] Erreurs 86F paramétrées
     - [ ] Créer `Containers/I86f/I86fExceptions.cs` pour les erreurs de signature, table, offset, nombre de bits et piste tronquée.
     - [ ] Faire recevoir aux méthodes concernées l’index de piste, l’offset, l’offset suivant, le nombre de bits et les longueurs observée ou attendue disponibles.
