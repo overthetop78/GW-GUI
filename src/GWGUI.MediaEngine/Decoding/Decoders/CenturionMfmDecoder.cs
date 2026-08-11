@@ -16,6 +16,7 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.CenturionMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder en MFM Centurion.</param><returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -65,6 +66,7 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la prochaine marque de données.</summary>
+    /// <param name="stream">Flux binaire MFM à parcourir.</param><param name="start">Offset de départ inclus, exprimé en bits.</param><returns>Offset de la marque de données en bits, ou <c>-1</c> si elle est absente ou précédée d'une nouvelle marque de secteur.</returns>
     private static int FindDataMark(FluxBitstream stream, int start)
     {
         for (var offset = Math.Max(0, start); offset + DataMark.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) { if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return -1; if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset; }
@@ -72,6 +74,7 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Détermine le code représentant la taille du secteur.</summary>
+    /// <param name="size">Taille du secteur en octets.</param><returns>Code correspondant à une puissance de deux à partir de 128 octets, ou zéro sans correspondance.</returns>
     private static byte SizeCode(int size)
     {
         for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
