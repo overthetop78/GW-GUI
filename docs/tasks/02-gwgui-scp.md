@@ -1712,7 +1712,7 @@
     - [x] Présentation et CSDoc
       - [x] Remettre sur une seule ligne les signatures et appels complets qui tiennent lisiblement.
       - [x] Documenter en français le type, chaque fabrique et chaque fonction privée, avec les unités des intervalles et de la cellule.
-  - [ ] `Representations/Flux/FluxBitReader.cs`
+  - [x] `Representations/Flux/FluxBitReader.cs`
     - [x] Validation commune des plages
       - [x] Créer une fonction commune qui valide un offset non négatif et une longueur sans addition susceptible de dépasser `int`.
       - [x] Faire rejeter proprement un offset négatif, une longueur négative ou une plage dépassant les bits.
