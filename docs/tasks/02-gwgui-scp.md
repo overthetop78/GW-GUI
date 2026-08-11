@@ -2291,7 +2291,7 @@
       - [x] Tester les tailles codées sur deux octets, une taille invalide et un bloc tronqué.
       - [x] Tester un CRC d'en-tête valide ou invalide et un CRC de données valide ou invalide.
       - [x] Tester une marque de données non appariée et vérifier la confiance finale.
-  - [ ] `Decoding/Decoders/AmigaMfmDecoder.cs`
+  - [x] `Decoding/Decoders/AmigaMfmDecoder.cs`
     - [x] Définitions du format Amiga MFM
       - [x] Créer `Decoding/Definitions/AmigaMfmFormat.cs`.
       - [x] Y définir l'identifiant `amiga.mfm`, son nom affiché et les valeurs communes au décodeur et à `Encoding/Encoders/AmigaMfmTrackEncoder.cs`.
