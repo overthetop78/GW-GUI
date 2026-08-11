@@ -1757,10 +1757,10 @@
       - [x] Tester reconstruction adaptative, sans adaptation, PLL, NRZI et doubled-NRZI avec les bits et la durée finale attendus.
       - [x] Tester un intervalle nul, les bornes de 32 et 64 cellules et une durée explicite inférieure au minimum.
       - [x] Tester la correction PLL aux limites de fréquence et les deux branches selon le nombre de zéros.
-    - [ ] Lecture des bits
-      - [ ] Tester offsets négatifs, plage exacte en fin de flux, dépassement d'un bit et longueurs de motif zéro, 16, 32 et 33.
-      - [ ] Tester un motif d'octets vide, un motif complet et une multiplication de longueur invalide.
-      - [ ] Tester les trois dispositions d'octet et vérifier qu'une lecture tronquée échoue sans produire d'octet partiel.
+    - [x] Lecture des bits
+      - [x] Tester offsets négatifs, plage exacte en fin de flux, dépassement d'un bit et longueurs de motif zéro, 16, 32 et 33.
+      - [x] Tester un motif d'octets vide, un motif complet et une multiplication de longueur invalide.
+      - [x] Tester les trois dispositions d'octet et vérifier qu'une lecture tronquée échoue sans produire d'octet partiel.
     - [ ] Intégration des consommateurs
       - [ ] Exécuter les tests ciblés existants des décodeurs FM, MFM, GCR et NRZI raccordés.
       - [ ] Vérifier sur les images correspondantes de `image_test` que structures, secteurs, octets et durées de cellule restent identiques hors correction explicite des lectures partielles.

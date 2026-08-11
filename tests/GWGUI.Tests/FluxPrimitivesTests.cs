@@ -118,4 +118,63 @@ public sealed class FluxPrimitivesTests
         Assert.InRange(upperCorrections.BitCellTicks, 9d, 11d);
         Assert.InRange(lowerCorrections.BitCellTicks, 9d, 11d);
     }
+
+    [Fact]
+    public void FluxBitReaderValidatesPatternOffsetsAndLengths()
+    {
+        var stream = new FluxBitstream(Enumerable.Repeat(true, 32).ToArray(), 1d);
+
+        Assert.False(FluxBitReader.Match(stream, -1, ushort.MaxValue));
+        Assert.True(FluxBitReader.Match(stream, 16, ushort.MaxValue));
+        Assert.False(FluxBitReader.Match(stream, 17, ushort.MaxValue));
+        Assert.False(FluxBitReader.Match(stream, 0, uint.MaxValue, 0));
+        Assert.True(FluxBitReader.Match(stream, 16, ushort.MaxValue, 16));
+        Assert.True(FluxBitReader.Match(stream, 0, uint.MaxValue, 32));
+        Assert.False(FluxBitReader.Match(stream, 0, uint.MaxValue, 33));
+    }
+
+    [Fact]
+    public void FluxBitReaderValidatesBytePatternsAndLengthMultiplication()
+    {
+        var stream = new FluxBitstream([true, false, true, false, false, true, false, true], 1d);
+
+        Assert.True(FluxBitReader.MatchBytes(stream, stream.Bits.Length, []));
+        Assert.True(FluxBitReader.MatchBytes(stream, 0, [0xA5]));
+        Assert.False(FluxBitReader.MatchBytes(stream, 0, new OversizedBytePattern()));
+    }
+
+    [Fact]
+    public void FluxBitReaderDecodesCompleteLayoutsAndRejectsTruncatedBytes()
+    {
+        bool[] rawBits = [true, false, true, false, false, true, false, true];
+        var mfmBits = new bool[16];
+        var fmBits = new bool[32];
+        for (var bit = 0; bit < rawBits.Length; bit++)
+        {
+            mfmBits[bit * 2 + 1] = rawBits[bit];
+            fmBits[bit * 4 + 3] = rawBits[bit];
+        }
+
+        Assert.True(FluxBitReader.TryDecodeByte(new FluxBitstream(rawBits, 1d), 0, out var rawValue));
+        Assert.Equal(0xA5, rawValue);
+        Assert.True(FluxBitReader.TryDecodeMfmByte(new FluxBitstream(mfmBits, 1d), 0, out var mfmValue));
+        Assert.Equal(0xA5, mfmValue);
+        Assert.True(FluxBitReader.TryDecodeFmByte32(new FluxBitstream(fmBits, 1d), 0, out var fmValue));
+        Assert.Equal(0xA5, fmValue);
+
+        Assert.False(FluxBitReader.TryDecodeByte(new FluxBitstream(rawBits[..^1], 1d), 0, out var truncatedRaw));
+        Assert.Equal(0, truncatedRaw);
+        Assert.False(FluxBitReader.TryDecodeMfmByte(new FluxBitstream(mfmBits[..^1], 1d), 0, out var truncatedMfm));
+        Assert.Equal(0, truncatedMfm);
+        Assert.False(FluxBitReader.TryDecodeFmByte32(new FluxBitstream(fmBits[..^1], 1d), 0, out var truncatedFm));
+        Assert.Equal(0, truncatedFm);
+    }
+
+    private sealed class OversizedBytePattern : IReadOnlyList<byte>
+    {
+        public int Count => int.MaxValue;
+        public byte this[int index] => throw new InvalidOperationException();
+        public IEnumerator<byte> GetEnumerator() => throw new InvalidOperationException();
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+    }
 }
