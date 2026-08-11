@@ -1744,7 +1744,7 @@
     - [x] Autres consommateurs
       - [x] Adapter `RawFluxDecoder` et `AppleScpSectorDecoder` vers `FluxTimingEstimator`.
       - [x] Vérifier qu'aucun consommateur ne référence encore le namespace `GWGUI.MediaEngine.Decoding` pour le type déplacé.
-  - [ ] Tests ciblés du flux
+  - [x] Tests ciblés du flux
     - [x] Représentation
       - [x] Tester qu'une modification du tableau source après construction ne modifie pas les bits du flux.
       - [x] Tester une queue nulle, négative, inférieure, égale et supérieure à la longueur du flux selon la règle documentée.
