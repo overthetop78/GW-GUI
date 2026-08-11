@@ -1749,10 +1749,10 @@
       - [x] Tester qu'une modification du tableau source après construction ne modifie pas les bits du flux.
       - [x] Tester une queue nulle, négative, inférieure, égale et supérieure à la longueur du flux selon la règle documentée.
       - [x] Tester une durée de cellule valide, inférieure au minimum, non finie et le risque de dépassement de longueur lors de la queue.
-    - [ ] Estimation temporelle
-      - [ ] Tester une liste vide, uniquement des zéros, un premier intervalle d'index aberrant et le repli sur tous les intervalles.
-      - [ ] Tester séparément les estimations FM, non-FM et NRZI avec des intervalles dont la cellule attendue est connue.
-      - [ ] Tester le percentile bas avec un bruit court isolé et le cinquième inférieur avec plusieurs clusters temporels.
+    - [x] Estimation temporelle
+      - [x] Tester une liste vide, uniquement des zéros, un premier intervalle d'index aberrant et le repli sur tous les intervalles.
+      - [x] Tester séparément les estimations FM, non-FM et NRZI avec des intervalles dont la cellule attendue est connue.
+      - [x] Tester le percentile bas avec un bruit court isolé et le cinquième inférieur avec plusieurs clusters temporels.
     - [ ] Reconstruction
       - [ ] Tester reconstruction adaptative, sans adaptation, PLL, NRZI et doubled-NRZI avec les bits et la durée finale attendus.
       - [ ] Tester un intervalle nul, les bornes de 32 et 64 cellules et une durée explicite inférieure au minimum.
