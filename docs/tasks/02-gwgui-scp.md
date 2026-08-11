@@ -2530,12 +2530,12 @@
       - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
       - [x] Présenter la table GCR commune sur plusieurs lignes structurées.
       - [x] Traduire en français la CSDoc existante et documenter le type, les propriétés et chaque méthode conservée ou créée.
-    - [ ] Vérification du groupe Commodore 900
-      - [ ] Tester les seize symboles GCR valides et un symbole invalide.
-      - [ ] Tester une synchronisation trop courte puis une synchronisation valide.
-      - [ ] Tester un en-tête et un secteur de 512 octets avec checksums valides puis invalides.
-      - [ ] Tester un bloc tronqué, un en-tête sans données et un bloc de données non apparié.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+    - [x] Vérification du groupe Commodore 900
+      - [x] Tester les seize symboles GCR valides et un symbole invalide.
+      - [x] Tester une synchronisation trop courte puis une synchronisation valide.
+      - [x] Tester un en-tête et un secteur de 512 octets avec checksums valides puis invalides.
+      - [x] Tester un bloc tronqué, un en-tête sans données et un bloc de données non apparié.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/CommodoreGcrDecoder.cs`
     - [ ] Définitions Commodore GCR
       - [ ] Créer `Decoding/Definitions/CommodoreGcrFormat.cs`.
