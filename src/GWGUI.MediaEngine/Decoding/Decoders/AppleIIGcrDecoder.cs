@@ -91,9 +91,9 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     }
 
     private static byte DecodeFourAndFour(byte high, byte low) => (byte)(((high << 1) | 1) & low);
-    private static byte[]? TryReadBytes(bool[] bits, int offset, int count)
+    private static byte[]? TryReadBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
-        if (offset + count * 8 > bits.Length) return null; var result = new byte[count];
+        if (offset + count * 8 > bits.Count) return null; var result = new byte[count];
         for (var index = 0; index < count; index++) for (var bit = 0; bit < 8; bit++) if (bits[offset + index * 8 + bit]) result[index] |= (byte)(1 << (7 - bit));
         return result;
     }
@@ -102,7 +102,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         for (var offset = Math.Max(0, start); offset + 24 <= end; offset++) if (FluxBitReader.Match(stream, offset, mark, 24)) return offset;
         return -1;
     }
-    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(bool[] bits, int offset)
+    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(IReadOnlyList<bool> bits, int offset)
     {
         // A real Disk II controller shifts bits until bit 7 becomes set. WOZ stores
         // the original bitstream, so sync fields can leave encoded bytes unaligned;
@@ -122,7 +122,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         return (data, valid, cursor);
     }
 
-    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(bool[] bits, int offset)
+    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, 411); if (encoded is null) return null;

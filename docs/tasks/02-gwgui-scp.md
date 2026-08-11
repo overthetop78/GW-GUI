@@ -1624,11 +1624,11 @@
       - [x] Y déplacer les deux surcharges de `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32`.
       - [x] Adapter tous les décodeurs qui recherchent un motif ou décodent un octet afin qu'ils utilisent ce lecteur sur le même `FluxBitstream`.
   - [ ] `Representations/Flux/FluxBitstream.cs`
-    - [ ] Protection de la représentation
-      - [ ] Copier le tableau reçu par le constructeur avant de le conserver.
-      - [ ] Remplacer la propriété modifiable `bool[] Bits` par une vue en lecture seule permettant toujours l'indexation et la lecture de la longueur.
-      - [ ] Adapter les helpers de décodage qui reçoivent actuellement directement `bool[]` afin qu'ils acceptent la vue en lecture seule sans la recopier.
-      - [ ] Conserver `BitCellTicks` en lecture seule et refuser une valeur non finie ou inférieure à la durée minimale nommée.
+    - [x] Protection de la représentation
+      - [x] Copier le tableau reçu par le constructeur avant de le conserver.
+      - [x] Remplacer la propriété modifiable `bool[] Bits` par une vue en lecture seule permettant toujours l'indexation et la lecture de la longueur.
+      - [x] Adapter les helpers de décodage qui reçoivent actuellement directement `bool[]` afin qu'ils acceptent la vue en lecture seule sans la recopier.
+      - [x] Conserver `BitCellTicks` en lecture seule et refuser une valeur non finie ou inférieure à la durée minimale nommée.
     - [ ] Queue circulaire
       - [ ] Conserver le retour de l'instance courante lorsque le flux est vide ou que le nombre demandé n'est pas positif.
       - [ ] Nommer et documenter la règle actuelle qui ajoute au maximum une longueur complète du flux source.

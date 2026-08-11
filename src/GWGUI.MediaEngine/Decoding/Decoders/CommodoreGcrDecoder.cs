@@ -51,16 +51,16 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 42d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
-    private static byte[]? TryDecodeBytes(bool[] bits, int offset, int count)
+    private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         var result = new byte[count];
         for (var index = 0; index < count; index++) if (!TryDecodeByte(bits, offset + index * 10, out result[index])) return null;
         return result;
     }
 
-    private static bool TryDecodeByte(bool[] bits, int offset, out byte value)
+    private static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, out byte value)
     {
-        value = 0; if (offset + 10 > bits.Length) return false;
+        value = 0; if (offset + 10 > bits.Count) return false;
         var high = 0; var low = 0;
         for (var bit = 0; bit < 5; bit++) { high = (high << 1) | (bits[offset + bit] ? 1 : 0); low = (low << 1) | (bits[offset + 5 + bit] ? 1 : 0); }
         if (!Gcr.TryGetValue(high, out var highNibble) || !Gcr.TryGetValue(low, out var lowNibble)) return false;

@@ -62,7 +62,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
         return new(Id, DisplayName, confidence, source.BitCellTicks, structures, decodedBytes, sectors);
     }
 
-    private static (byte[] Data, bool Valid, int StartOffset, int EndOffset)? TryReadData(bool[] bits, int offset)
+    private static (byte[] Data, bool Valid, int StartOffset, int EndOffset)? TryReadData(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var stream = AppleBitLatch.TryReadBytes(bits, ref cursor, 1_100);

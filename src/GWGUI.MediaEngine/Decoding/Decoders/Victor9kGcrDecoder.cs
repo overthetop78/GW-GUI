@@ -50,7 +50,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
         return -1;
     }
 
-    private static (byte[] Bytes, int EndOffset)? TryDecodeBytes(bool[] bits, int start, int count)
+    private static (byte[] Bytes, int EndOffset)? TryDecodeBytes(IReadOnlyList<bool> bits, int start, int count)
     {
         var result = new byte[count]; var offset = start;
         for (var index = 0; index < count; index++)
@@ -61,10 +61,10 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
         return (result, offset);
     }
 
-    private static bool TryDecodeNibble(bool[] bits, ref int offset, out byte value)
+    private static bool TryDecodeNibble(IReadOnlyList<bool> bits, ref int offset, out byte value)
     {
         var code = 0; value = 0;
-        for (var bit = 0; bit < 5; bit++, offset += 2) { if (offset >= bits.Length) return false; code = (code << 1) | (bits[offset] ? 1 : 0); }
+        for (var bit = 0; bit < 5; bit++, offset += 2) { if (offset >= bits.Count) return false; code = (code << 1) | (bits[offset] ? 1 : 0); }
         value = Gcr[code]; return value != 0xff;
     }
 }

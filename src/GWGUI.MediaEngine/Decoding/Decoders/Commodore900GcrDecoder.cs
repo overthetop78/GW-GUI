@@ -62,9 +62,9 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, validCount / 13d), stream.BitCellTicks, structures, decodedBytes, sectors);
     }
 
-    private static byte[]? TryDecodeBytes(bool[] bits, int offset, int count)
+    private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
-        if (offset + count * 10 > bits.Length) return null;
+        if (offset + count * 10 > bits.Count) return null;
         var result = new byte[count];
         for (var index = 0; index < count; index++)
         {
@@ -75,7 +75,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
         return result;
     }
 
-    private static bool TryNibble(bool[] bits, int offset, out int value)
+    private static bool TryNibble(IReadOnlyList<bool> bits, int offset, out int value)
     {
         var code = 0; value = 0;
         for (var bit = 0; bit < 5; bit++) code = (code << 1) | (bits[offset + bit] ? 1 : 0);
