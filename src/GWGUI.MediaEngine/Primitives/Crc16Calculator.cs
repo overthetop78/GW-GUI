@@ -20,8 +20,7 @@ internal static class Crc16Calculator
     public static ushort Update(ushort crc, byte value, ushort polynomial = CcittPolynomial)
     {
         crc ^= (ushort)(value << ByteShift);
-        for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++)
-            crc = (ushort)((crc & HighBitMask) != 0 ? (crc << 1) ^ polynomial : crc << 1);
+        for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++) crc = (ushort)((crc & HighBitMask) != 0 ? (crc << 1) ^ polynomial : crc << 1);
         return crc;
     }
 }

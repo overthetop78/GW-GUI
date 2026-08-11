@@ -1799,8 +1799,8 @@
     - [x] Supprimer les méthodes privées `Crc16` de `Aed6200pMfmDecoder`, `CenturionMfmDecoder`, `DecRx02Decoder`, `EmuFmDecoder`, `HpMmfmDecoder`, `IsoFmDecoder`, `IsoMfmDecoder`, `MembrainMfmDecoder` et `TycomFmDecoder` après remplacement par des appels directs.
     - [x] Supprimer les méthodes privées `UpdateCrc` de `DecRx02Decoder`, `EmuFmDecoder` et `TycomFmDecoder` après remplacement par des appels directs à `Update`.
     - [x] Remplacer dans les encodeurs et décodeurs les polynômes et valeurs initiales bruts par les constantes de `Crc16Calculator` correspondant à la variante réellement utilisée.
-  - [ ] Mise en forme
-    - [ ] Conserver les boucles et leurs instructions uniques sur une ligne lorsqu’elles tiennent lisiblement.
+  - [x] Mise en forme
+    - [x] Conserver les boucles et leurs instructions uniques sur une ligne lorsqu’elles tiennent lisiblement.
   - [ ] Documentation XML
     - [ ] Documenter en français `Crc16Calculator` et chacune de ses constantes, avec la variante de CRC à laquelle chaque paramètre commun correspond.
     - [ ] Documenter en français `Compute` et `Update`, leurs paramètres, leur résultat, leurs exceptions et les valeurs par défaut utilisées.
