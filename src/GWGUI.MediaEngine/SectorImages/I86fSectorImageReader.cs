@@ -6,8 +6,19 @@ using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Décode les pistes d'un conteneur 86F et construit leur image sectorielle ISO FM ou MFM.</summary>
+/// <param name="reader">Lecteur du conteneur et de ses cellules de bits.</param>
+/// <param name="decoders">Registre des décodeurs de flux ISO.</param>
 public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry decoders)
 {
+    /// <summary>Lit un conteneur 86F, choisit le décodeur de chaque piste et construit l'image sectorielle.</summary>
+    /// <param name="path">Chemin du fichier 86F.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture ou le parcours des pistes.</param>
+    /// <returns>L'image sectorielle reconstruite.</returns>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="InvalidDataException">Le conteneur est invalide ou aucun secteur n'est décodable.</exception>
+    /// <exception cref="OverflowException">Un calcul de taille ou de position dépasse la capacité d'un entier.</exception>
+    /// <exception cref="OperationCanceledException">L'opération est annulée.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var container = await reader.ReadAsync(path, cancellationToken).ConfigureAwait(false);

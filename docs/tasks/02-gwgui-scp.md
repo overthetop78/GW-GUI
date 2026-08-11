@@ -1238,12 +1238,12 @@
     - [x] Faire recevoir aux méthodes concernées l’index de piste, l’offset, l’offset suivant, le nombre de bits et les longueurs observée ou attendue disponibles.
     - [x] Créer `SectorImages/I86fSectorImageExceptions.cs` pour l’absence de secteurs FM/MFM décodables.
     - [x] Remplacer chaque construction directe et chaque texte brut de `InvalidDataException` par la méthode adaptée.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Remplacer la documentation anglaise du Reader par une CSDoc française sur tous les nouveaux types et membres.
-    - [ ] Documenter les modèles, drapeaux, dispositions, unités, ordre des bits, conversion de flux, choix du décodeur et construction sectorielle.
-    - [ ] Documenter les erreurs de fichier, de calcul contrôlé, de données et d’annulation réellement propagées.
-    - [ ] Conserver sur une seule ligne les déclarations de records, signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
-    - [ ] Ordonner les directives `using` après séparation du parser, du convertisseur et du reconstructeur.
+  - [x] Documentation XML française et mise en forme
+    - [x] Remplacer la documentation anglaise du Reader par une CSDoc française sur tous les nouveaux types et membres.
+    - [x] Documenter les modèles, drapeaux, dispositions, unités, ordre des bits, conversion de flux, choix du décodeur et construction sectorielle.
+    - [x] Documenter les erreurs de fichier, de calcul contrôlé, de données et d’annulation réellement propagées.
+    - [x] Conserver sur une seule ligne les déclarations de records, signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
+    - [x] Ordonner les directives `using` après séparation du parser, du convertisseur et du reconstructeur.
   - [ ] Tests du conteneur jusqu’à l’image sectorielle
     - [ ] Utiliser depuis `image_test` une image 86F FM et une image 86F MFM avec table, drapeaux, bits et secteurs attendus connus.
     - [ ] Tester séparément la signature, une face et deux faces, les entrées de table absentes, les deux tailles d’en-tête et le nombre explicite ou déduit de bits.
