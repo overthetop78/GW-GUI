@@ -1513,9 +1513,9 @@
       - [x] Examiner `TwoImgFormat.SignatureBytes`, le mot privé DiskCopy et les signatures WOZ1/WOZ2 directement dans la mémoire en lecture seule du contexte.
       - [x] Conserver l’indépendance de l’extension pour ces quatre signatures de conteneurs.
       - [x] Utiliser `NibLayout.TrackLengthBytes` pour vérifier qu’un candidat `.nib` possède au moins une piste entière avant de le présélectionner.
-    - [ ] Lecture sans seconde ouverture
-      - [ ] Adapter `ReaderBackedRecognitionPolicy` et `AppleDiskImageReader` pour transmettre à la lecture les octets et l’extension déjà détenus par le contexte.
-      - [ ] Supprimer la délégation actuelle à `reader.ReadAsync(path, ...)` qui relit le fichier.
+    - [x] Lecture sans seconde ouverture
+      - [x] Adapter `ReaderBackedRecognitionPolicy` et `AppleDiskImageReader` pour transmettre à la lecture les octets et l’extension déjà détenus par le contexte.
+      - [x] Supprimer la délégation actuelle à `reader.ReadAsync(path, ...)` qui relit le fichier.
     - [ ] Familles explicitement demandées
       - [ ] Conserver dans une méthode nommée la vérification des préfixes Apple II, Apple III, Lisa, Apple Macintosh et Macintosh brut réellement acceptés.
       - [ ] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
