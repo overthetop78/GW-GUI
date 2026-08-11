@@ -2892,6 +2892,50 @@ public sealed class CoreTests
         Assert.Equal(!corruptAddress && !corruptData, decoded.IntegrityValid);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData && structure.Description.Contains(corruptData ? "invalid" : "valid", StringComparison.Ordinal));
         if (!corruptData) Assert.Equal(data, result.DecodedBytes.Skip(4).Take(256));
+        Assert.Equal("apple2.gcr", result.DecoderId);
+        Assert.Equal("Apple II GCR", result.DisplayName);
+        Assert.Equal(1, decoded.SizeCode);
+        Assert.Equal((result.Sectors.Count * 2d + result.Structures.Count) / 32d, result.Confidence, 10);
+    }
+
+    [Fact]
+    public void AppleIIGcrCodecHandlesValidInvalidUnknownAndTruncatedBlocks()
+    {
+        static bool[] Bits(IEnumerable<byte> values) => values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => (value & (1 << (7 - bit))) != 0)).ToArray();
+        var source = Enumerable.Range(0, 256).Select(index => (byte)(index * 29 + 7)).ToArray();
+
+        var sixAndTwo = AppleIIGcrCodec.EncodeSixAndTwo(source);
+        var validSixAndTwo = AppleIIGcrCodec.TryDecodeSixAndTwo(Bits(sixAndTwo), 0);
+        Assert.True(validSixAndTwo?.Valid);
+        Assert.Equal(source, validSixAndTwo?.Data);
+        var invalidSixAndTwo = sixAndTwo.ToArray();
+        invalidSixAndTwo[^1] = AppleIIGcrFormat.SixAndTwoTable[(AppleIIGcrFormat.InverseSixAndTwoTable[invalidSixAndTwo[^1]] + 1) % AppleIIGcrFormat.SixAndTwoTable.Count];
+        Assert.False(AppleIIGcrCodec.TryDecodeSixAndTwo(Bits(invalidSixAndTwo), 0)?.Valid);
+        var unknownSixAndTwo = sixAndTwo.ToArray();
+        unknownSixAndTwo[0] = 0x80;
+        Assert.Null(AppleIIGcrCodec.TryDecodeSixAndTwo(Bits(unknownSixAndTwo), 0));
+        Assert.Null(AppleIIGcrCodec.TryDecodeSixAndTwo(Bits(sixAndTwo.SkipLast(1)), 0));
+
+        var fiveAndThree = AppleIIGcrCodec.EncodeFiveAndThree(source);
+        var validFiveAndThree = AppleIIGcrCodec.TryDecodeFiveAndThree(Bits(fiveAndThree), 0);
+        Assert.True(validFiveAndThree?.Valid);
+        Assert.Equal(source, validFiveAndThree?.Data);
+        var invalidFiveAndThree = fiveAndThree.ToArray();
+        invalidFiveAndThree[^1] = AppleIIGcrFormat.FiveAndThreeTable[(AppleIIGcrFormat.InverseFiveAndThreeTable[invalidFiveAndThree[^1]] + 1) % AppleIIGcrFormat.FiveAndThreeTable.Count];
+        Assert.False(AppleIIGcrCodec.TryDecodeFiveAndThree(Bits(invalidFiveAndThree), 0)?.Valid);
+        var unknownFiveAndThree = fiveAndThree.ToArray();
+        unknownFiveAndThree[0] = 0x80;
+        Assert.Null(AppleIIGcrCodec.TryDecodeFiveAndThree(Bits(unknownFiveAndThree), 0));
+        Assert.Null(AppleIIGcrCodec.TryDecodeFiveAndThree(Bits(fiveAndThree.SkipLast(1)), 0));
+    }
+
+    [Fact]
+    public void AppleIIGcrDecoderReportsAnUnpairedDataPrologue()
+    {
+        var bits = Convert.FromHexString("D5AAAD").SelectMany(value => Enumerable.Range(0, 8).Select(bit => (value & (1 << (7 - bit))) != 0)).ToArray();
+        var result = new AppleIIGcrDecoder().DecodeBits(bits);
+
+        Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.AppleData && structure.Description.Contains("Unpaired", StringComparison.Ordinal));
     }
 
     [Theory]

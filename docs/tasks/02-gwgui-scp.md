@@ -2355,14 +2355,14 @@
       - [x] Présenter les tables de symboles sur plusieurs lignes structurées sans juxtaposer leur déclaration avec une autre instruction.
       - [x] Ajouter la CSDoc française au type renommé, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
       - [x] Ajouter la CSDoc française aux définitions et opérations créées dans les composants Apple II communs.
-    - [ ] Vérification du groupe Apple II GCR
-      - [ ] Tester la reconnaissance des prologues d'adresse des formats 13 et 16 secteurs.
-      - [ ] Tester le décodage 4-and-4 du volume, de la piste, du secteur et du checksum d'adresse.
-      - [ ] Tester le décodage 5-and-3 d'un secteur valide, d'un checksum faux, d'un symbole inconnu et d'un bloc tronqué.
-      - [ ] Tester le décodage 6-and-2 d'un secteur valide, d'un checksum faux, d'un symbole inconnu et d'un bloc tronqué.
-      - [ ] Tester l'appariement d'une adresse avec son bloc de données suivant.
-      - [ ] Tester un prologue de données non apparié et vérifier la structure produite.
-      - [ ] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
+    - [x] Vérification du groupe Apple II GCR
+      - [x] Tester la reconnaissance des prologues d'adresse des formats 13 et 16 secteurs.
+      - [x] Tester le décodage 4-and-4 du volume, de la piste, du secteur et du checksum d'adresse.
+      - [x] Tester le décodage 5-and-3 d'un secteur valide, d'un checksum faux, d'un symbole inconnu et d'un bloc tronqué.
+      - [x] Tester le décodage 6-and-2 d'un secteur valide, d'un checksum faux, d'un symbole inconnu et d'un bloc tronqué.
+      - [x] Tester l'appariement d'une adresse avec son bloc de données suivant.
+      - [x] Tester un prologue de données non apparié et vérifier la structure produite.
+      - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
     - [ ] Identité Lisa FileWare
       - [ ] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
