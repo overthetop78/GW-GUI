@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Encoding.Definitions;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
@@ -9,24 +11,24 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
         var bits = TrackEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            if (sector.Data.Count != 512) throw new ArgumentException("Amiga sectors contain 512 bytes.");
-            byte[] info = [0xff,(byte)(request.Cylinder << 1 | request.Head),(byte)sector.Number,(byte)request.Sectors.Count];
-            var headerAndLabel = EncodeOddEven(info).Concat(new byte[16]).ToArray();
+            if (sector.Data.Count != AmigaMfmFormat.SectorByteCount) throw new ArgumentException($"Amiga sectors contain {AmigaMfmFormat.SectorByteCount} bytes.");
+            byte[] info = [AmigaMfmFormat.FormatByte,(byte)(request.Cylinder << 1 | request.Head),(byte)sector.Number,(byte)request.Sectors.Count];
+            var headerAndLabel = EncodeOddEven(info).Concat(new byte[AmigaMfmFormat.LabelByteCount]).ToArray();
             var headerParity = Parity(headerAndLabel, false);
             var data = EncodeOddEven(sector.Data);
             var dataParity = Parity(data, true);
             var encoded = headerAndLabel.Concat(new byte[] { 0,0,headerParity.High,headerParity.Low,0,0,dataParity.High,dataParity.Low }).Concat(data);
-            bits.Gap(100);
-            bits.RawHex("44894489");
+            bits.Gap(AmigaMfmFormat.LeadingGapBitCount);
+            bits.Raw((byte)(AmigaMfmFormat.SyncWord >> 8), (byte)(AmigaMfmFormat.SyncWord & byte.MaxValue), (byte)(AmigaMfmFormat.SyncWord >> 8), (byte)(AmigaMfmFormat.SyncWord & byte.MaxValue));
             bits.Mfm(encoded);
-            bits.Gap(128);
+            bits.Gap(AmigaMfmFormat.TrailingGapBitCount);
         }
         return bits;
     }
     private static byte Nibble(byte value, bool odd)
     {
         byte result = 0; var first = odd ? 7 : 6;
-        for (var index = 0; index < 4; index++) result |= (byte)(((value >> (first - index * 2)) & 1) << (3 - index));
+        for (var index = 0; index < AmigaMfmFormat.NibbleBitCount; index++) result |= (byte)(((value >> (first - index * 2)) & 1) << (3 - index));
         return result;
     }
     private static byte[] EncodeOddEven(IReadOnlyList<byte> values)

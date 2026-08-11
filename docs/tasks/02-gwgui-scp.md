@@ -1918,10 +1918,10 @@
     - [x] Créer `Encoding/Definitions/AppleRwts18Format.cs`.
     - [x] Déplacer la table de nibbles, les marques, les six secteurs, les tailles `768` et `1024`, les gaps et l’identifiant par défaut actuellement dupliqués.
     - [x] Remplacer les valeurs brutes dans `AppleRwts18Decoder.cs`, `AppleRwts18TrackEncoder.cs`, `AppleDiskImageReader.cs`, `AppleSectorImageFactory.cs`, `AppleNibbleImageWriter.cs` et `AppleRwts18ConversionService.cs`.
-  - [ ] Amiga MFM
-    - [ ] Créer `Encoding/Definitions/AmigaMfmFormat.cs`.
-    - [ ] Sortir les mots de synchronisation, tailles d’en-tête et de données, disposition odd/even, gaps, parités et tailles sectorielles de `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs`.
-    - [ ] Remplacer toutes les valeurs brutes correspondantes dans le décodeur et l’encodeur.
+  - [x] Amiga MFM
+    - [x] Créer `Encoding/Definitions/AmigaMfmFormat.cs`.
+    - [x] Sortir les mots de synchronisation, tailles d’en-tête et de données, disposition odd/even, gaps, parités et tailles sectorielles de `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs`.
+    - [x] Remplacer toutes les valeurs brutes correspondantes dans le décodeur et l’encodeur.
   - [ ] Commodore GCR
     - [ ] Créer `Encoding/Definitions/CommodoreGcrFormat.cs` et `Commodore900GcrFormat.cs`.
     - [ ] Déplacer la table GCR dupliquée entre décodeurs et encodeurs Commodore.
