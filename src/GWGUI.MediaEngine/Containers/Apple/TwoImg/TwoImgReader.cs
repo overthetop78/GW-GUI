@@ -41,9 +41,9 @@ internal static class TwoImgReader
         var payload = container.AsSpan(dataOffset, dataLength);
         return imageFormat switch
         {
-            TwoImgImageFormat.DOS => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Do),
-            TwoImgImageFormat.ProDOS => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Po),
-            TwoImgImageFormat.NIB => NibReader.Read(payload),
+            TwoImgImageFormat.Dos => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Do),
+            TwoImgImageFormat.ProDos => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Po),
+            TwoImgImageFormat.Nib => NibReader.Read(payload),
             _ => throw TwoImgExceptions.UnsupportedImageFormat(imageFormat)
         };
     }

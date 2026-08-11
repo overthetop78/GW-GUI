@@ -4,11 +4,11 @@ namespace GWGUI.MediaEngine.Containers.Apple.TwoImg;
 public enum TwoImgImageFormat : uint
 {
     /// <summary>Secteurs Apple II enregistrés dans l’ordre logique Apple DOS.</summary>
-    DOS = 0,
+    Dos = 0,
 
     /// <summary>Blocs Apple II enregistrés dans l’ordre logique ProDOS.</summary>
-    ProDOS = 1,
+    ProDos = 1,
 
     /// <summary>Pistes Apple II enregistrées sous forme nibblisée.</summary>
-    NIB = 2
+    Nib = 2
 }

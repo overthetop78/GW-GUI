@@ -21,7 +21,7 @@ public sealed class AppleContainerReaderTests
             .SequenceEqual(TwoImgFormat.SignatureBytes));
         Assert.Equal(TwoImgFormat.SupportedVersion,
             BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(TwoImgLayout.VersionOffset)));
-        Assert.Equal(TwoImgImageFormat.ProDOS, (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(
+        Assert.Equal(TwoImgImageFormat.ProDos, (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(
             bytes.AsSpan(TwoImgLayout.ImageFormatOffset)));
         var dataOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(
             bytes.AsSpan(TwoImgLayout.DataOffsetOffset)));
@@ -156,8 +156,8 @@ public sealed class AppleContainerReaderTests
         Directory.CreateDirectory(output);
 
         var rawDosBytes = File.ReadAllBytes(rawDos);
-        var dosTwoImg = Write(output, "dos-order.2mg", BuildTwoImg(TwoImgImageFormat.DOS, rawDosBytes));
-        var proDosTwoImg = Write(output, "prodos-order.2mg", BuildTwoImg(TwoImgImageFormat.ProDOS, rawDosBytes));
+        var dosTwoImg = Write(output, "dos-order.2mg", BuildTwoImg(TwoImgImageFormat.Dos, rawDosBytes));
+        var proDosTwoImg = Write(output, "prodos-order.2mg", BuildTwoImg(TwoImgImageFormat.ProDos, rawDosBytes));
 
         var validTwoImg = File.ReadAllBytes(dosTwoImg);
         var invalidTwoImg = new Dictionary<string, string>(StringComparer.Ordinal)

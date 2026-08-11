@@ -1537,9 +1537,9 @@
     - [x] Ajouter une constante nommée pour le minimum d'un secteur actuellement imposé par `Math.Max(1, maximumSectors)`.
     - [ ] Documenter en français chaque méthode privée extraite.
     - [x] Tester séparément en-tête, table Extended, piste, descripteur, secteur et absence de secteur.
-  - [ ] `Containers/Apple/TwoImg/TwoImgImageFormat.cs`
-    - [ ] Renommer les membres `DOS`, `ProDOS` et `NIB` selon la casse C# retenue sans modifier leurs valeurs binaires.
-    - [ ] Adapter chaque consommateur et chaque test aux noms retenus.
+  - [x] `Containers/Apple/TwoImg/TwoImgImageFormat.cs`
+    - [x] Renommer les membres `DOS`, `ProDOS` et `NIB` selon la casse C# retenue sans modifier leurs valeurs binaires.
+    - [x] Adapter chaque consommateur et chaque test aux noms retenus.
     - [ ] Documenter en français l'enum et chacune de ses valeurs.
   - [ ] `Containers/Apple/TwoImg/TwoImgReader.cs`
     - [ ] Extraire la validation de l'en-tête, la validation de la plage de données et le routage DOS/ProDOS/NIB dans trois méthodes distinctes.
@@ -1662,7 +1662,7 @@
     - [ ] Créer un enum distinguant l'estimation FM de l'estimation non-FM actuellement sélectionnées par le booléen `fm`.
     - [ ] Remplacer le booléen de `EstimateBitCell` par cet enum afin que chaque appel indique explicitement le mode demandé.
     - [ ] Conserver des fabriques clairement nommées pour que les décodeurs n'aient pas à fournir cet enum lorsque leur mode est déjà imposé par la méthode choisie.
-    - [ ] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] Documenter en français l'enum et chacune de ses valeurs.
   - [ ] `Representations/Flux/FluxTimingEstimator.cs`
     - [ ] Validation et échantillons
       - [ ] Retourner la durée minimale nommée pour une collection vide ou ne contenant aucun intervalle positif.
