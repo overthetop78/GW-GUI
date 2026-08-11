@@ -1519,8 +1519,8 @@
     - [x] Familles explicitement demandées
       - [x] Conserver dans une méthode nommée la vérification des préfixes Apple II, Apple III, Lisa, Apple Macintosh et Macintosh brut réellement acceptés.
       - [x] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
-    - [ ] Mise en forme
-      - [ ] Remettre sur une seule ligne les conditions de signatures, de familles et les expressions courtes lorsqu’elles tiennent lisiblement.
+    - [x] Mise en forme
+      - [x] Remettre sur une seule ligne les conditions de signatures, de familles et les expressions courtes lorsqu’elles tiennent lisiblement.
     - [ ] Documentation XML et encodage
       - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de la politique, de `RawHints`, du probe et de chaque méthode.
       - [ ] Documenter la différence entre une signature, un indice d’extension, une demande explicite et la validation complète laissée au Reader.
