@@ -1499,36 +1499,36 @@
       - [x] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
       - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
       - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
-  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
+  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
       - [x] Adapter les imports de `DiskImageFileExtensions` et `DiskImageFormatIds` à leur déplacement sous `GWGUI.MediaEngine.Definitions`.
       - [x] Conserver `RawHints` privé et construit uniquement avec les constantes communes `.do`, `.po`, `.d13` et `.nib`.
-    - [x] Probe des images Apple brutes
-      - [x] Créer `Recognition/Apple/AppleRawImageProbe.cs` et y déplacer la logique de `AppleDiskImageReader.LooksLikeAppleImage` qui examine extension, taille et signatures internes.
-      - [x] Faire recevoir au probe l’extension, les octets déjà chargés et l’identifiant éventuellement demandé, sans lire le chemin ni intercepter toutes les exceptions.
-      - [x] Remplacer dans le probe les capacités Apple II, Macintosh et Lisa brutes par les layouts et géométries Apple propriétaires déjà prévus.
-      - [x] Supprimer `LooksLikeAppleImage` du Reader après raccordement de la politique au probe.
-    - [x] Présélection des conteneurs signés
-      - [x] Examiner `TwoImgFormat.SignatureBytes`, le mot privé DiskCopy et les signatures WOZ1/WOZ2 directement dans la mémoire en lecture seule du contexte.
-      - [x] Conserver l’indépendance de l’extension pour ces quatre signatures de conteneurs.
-      - [x] Utiliser `NibLayout.TrackLengthBytes` pour vérifier qu’un candidat `.nib` possède au moins une piste entière avant de le présélectionner.
-    - [x] Lecture sans seconde ouverture
-      - [x] Adapter `ReaderBackedRecognitionPolicy` et `AppleDiskImageReader` pour transmettre à la lecture les octets et l’extension déjà détenus par le contexte.
-      - [x] Supprimer la délégation actuelle à `reader.ReadAsync(path, ...)` qui relit le fichier.
-    - [x] Familles explicitement demandées
-      - [x] Conserver dans une méthode nommée la vérification des préfixes Apple II, Apple III, Lisa, Apple Macintosh et Macintosh brut réellement acceptés.
-      - [x] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
-    - [x] Mise en forme
-      - [x] Remettre sur une seule ligne les conditions de signatures, de familles et les expressions courtes lorsqu’elles tiennent lisiblement.
-    - [x] Documentation XML et encodage
-      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de la politique, de `RawHints`, du probe et de chaque méthode.
-      - [x] Documenter la différence entre une signature, un indice d’extension, une demande explicite et la validation complète laissée au Reader.
-    - [x] Tests ciblés
-      - [x] Tester 2IMG, DiskCopy, WOZ1 et WOZ2 avec une extension inhabituelle.
-      - [x] Tester les indices DO, PO, D13 et NIB avec un contenu valide puis invalide afin de vérifier le passage au candidat suivant.
-      - [x] Tester `.dsk` et `.img` avec chaque famille Apple réellement prise en charge, un identifiant explicitement demandé et un contenu d’une autre famille.
-      - [x] Vérifier que la présélection et la lecture complète partagent une seule lecture du fichier.
+    - [ ] Probe des images Apple brutes
+      - [ ] Créer `Recognition/Apple/AppleRawImageProbe.cs` et y déplacer la logique de `AppleDiskImageReader.LooksLikeAppleImage` qui examine extension, taille et signatures internes.
+      - [ ] Faire recevoir au probe l’extension, les octets déjà chargés et l’identifiant éventuellement demandé, sans lire le chemin ni intercepter toutes les exceptions.
+      - [ ] Remplacer dans le probe les capacités Apple II, Macintosh et Lisa brutes par les layouts et géométries Apple propriétaires déjà prévus.
+      - [ ] Supprimer `LooksLikeAppleImage` du Reader après raccordement de la politique au probe.
+    - [ ] Présélection des conteneurs signés
+      - [ ] Examiner `TwoImgFormat.SignatureBytes`, le mot privé DiskCopy et les signatures WOZ1/WOZ2 directement dans la mémoire en lecture seule du contexte.
+      - [ ] Conserver l’indépendance de l’extension pour ces quatre signatures de conteneurs.
+      - [ ] Utiliser `NibLayout.TrackLengthBytes` pour vérifier qu’un candidat `.nib` possède au moins une piste entière avant de le présélectionner.
+    - [ ] Lecture sans seconde ouverture
+      - [ ] Adapter `ReaderBackedRecognitionPolicy` et `AppleDiskImageReader` pour transmettre à la lecture les octets et l’extension déjà détenus par le contexte.
+      - [ ] Supprimer la délégation actuelle à `reader.ReadAsync(path, ...)` qui relit le fichier.
+    - [ ] Familles explicitement demandées
+      - [ ] Conserver dans une méthode nommée la vérification des préfixes Apple II, Apple III, Lisa, Apple Macintosh et Macintosh brut réellement acceptés.
+      - [ ] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
+    - [ ] Mise en forme
+      - [ ] Remettre sur une seule ligne les conditions de signatures, de familles et les expressions courtes lorsqu’elles tiennent lisiblement.
+    - [ ] Documentation XML et encodage
+      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de la politique, de `RawHints`, du probe et de chaque méthode.
+      - [ ] Documenter la différence entre une signature, un indice d’extension, une demande explicite et la validation complète laissée au Reader.
+    - [ ] Tests ciblés
+      - [ ] Tester 2IMG, DiskCopy, WOZ1 et WOZ2 avec une extension inhabituelle.
+      - [ ] Tester les indices DO, PO, D13 et NIB avec un contenu valide puis invalide afin de vérifier le passage au candidat suivant.
+      - [ ] Tester `.dsk` et `.img` avec chaque famille Apple réellement prise en charge, un identifiant explicitement demandé et un contenu d’une autre famille.
+      - [ ] Vérifier que la présélection et la lecture complète partagent une seule lecture du fichier.
   - [ ] `Containers/Amstrad/CpcDsk/CpcDskReader.cs`
     - [ ] Extraire la validation de l'en-tête disque dans une méthode utilisant uniquement `CpcDskFormat` et `CpcDskLayout`.
     - [ ] Extraire la validation de la table de tailles Extended dans une méthode injectant l'index rejeté aux erreurs CPCEMU.
