@@ -145,7 +145,7 @@ internal static class DiskCopyReader
         {
             var word = BinaryPrimitives.ReadUInt16BigEndian(data[offset..]);
             checksum = unchecked(checksum + word);
-            checksum = checksum >> DiskCopyFormat.ChecksumRotation | checksum << (sizeof(uint) * 8 - DiskCopyFormat.ChecksumRotation);
+            checksum = checksum >> DiskCopyFormat.ChecksumRotation | checksum << (DiskCopyFormat.ChecksumBitCount - DiskCopyFormat.ChecksumRotation);
         }
 
         return checksum;

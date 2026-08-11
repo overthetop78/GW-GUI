@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.IO;
+using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Images;
@@ -10,6 +11,18 @@ namespace GWGUI.Tests;
 public sealed class AppleContainerReaderTests
 {
     private static readonly Lazy<TestImages> Images = new(CreateTestImages);
+
+    /// <summary>Vérifie les valeurs binaires exposées par les définitions DiskCopy.</summary>
+    [Fact]
+    public void ExposesExactDiskCopyFormatDefinitions()
+    {
+        Assert.Equal(0x0100, DiskCopyFormat.PrivateWord);
+        Assert.Equal(0u, DiskCopyFormat.MissingChecksum);
+        Assert.Equal(2, DiskCopyFormat.ChecksumWordSize);
+        Assert.Equal(1, DiskCopyFormat.ChecksumRotation);
+        Assert.Equal(32, DiskCopyFormat.ChecksumBitCount);
+        Assert.Equal("PREBOOT", Encoding.ASCII.GetString(DiskCopyFormat.PrebootMarker));
+    }
 
     [Fact]
     public async Task ReadsSectorTwoImgHeaderAndExtractsItsPayload()
