@@ -1499,7 +1499,7 @@
       - [x] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
       - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
       - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
-  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
       - [x] Adapter les imports de `DiskImageFileExtensions` et `DiskImageFormatIds` à leur déplacement sous `GWGUI.MediaEngine.Definitions`.
