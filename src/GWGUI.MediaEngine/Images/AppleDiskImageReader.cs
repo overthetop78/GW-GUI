@@ -33,7 +33,23 @@ public sealed class AppleDiskImageReader : ISectorImageReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        var extension = Path.GetExtension(path);
+        return await ReadAsync(bytes, Path.GetExtension(path), null, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>Détecte et lit une image Apple depuis un contenu déjà chargé.</summary>
+    /// <param name="bytes">Contenu complet de l'image.</param>
+    /// <param name="extension">Extension servant d'indice aux formats bruts sans signature.</param>
+    /// <param name="requestedFormatId">Identifiant de format demandé, ou <see langword="null"/>.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
+    /// <returns>Image sectorielle reconstruite par le lecteur approprié.</returns>
+    public Task<SectorImage> ReadAsync(ReadOnlyMemory<byte> bytes, string extension, string? requestedFormatId, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(Read(bytes.ToArray(), extension, requestedFormatId));
+    }
+
+    private static SectorImage Read(byte[] bytes, string extension, string? requestedFormatId)
+    {
         if (bytes.AsSpan().StartsWith(TwoImgFormat.SignatureBytes)) return TwoImgReader.Read(bytes);
         if (DiskCopyReader.HasPrivateWord(bytes)) return DiskCopyReader.Read(bytes);
         if (bytes.AsSpan().StartsWith(WozFormat.Version1Signature) ||

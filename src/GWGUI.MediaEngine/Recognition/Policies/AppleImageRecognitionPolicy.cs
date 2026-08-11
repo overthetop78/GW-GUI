@@ -8,7 +8,7 @@ namespace GWGUI.MediaEngine.Recognition.Policies;
 
 /// <summary>Reconnaît les conteneurs Apple signés et présélectionne les représentations Apple brutes.</summary>
 /// <param name="reader">Lecteur public chargé de valider et reconstruire le candidat Apple.</param>
-internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) : ReaderBackedRecognitionPolicy((context, cancellationToken) => reader.ReadAsync(context.Path, cancellationToken))
+internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) : ReaderBackedRecognitionPolicy(async (context, cancellationToken) => await reader.ReadAsync(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), context.Extension, context.RequestedFormatId, cancellationToken).ConfigureAwait(false))
 {
     /// <summary>Extensions servant uniquement d'indices pour les représentations Apple sans signature.</summary>
     private static readonly HashSet<string> RawHints = new(StringComparer.OrdinalIgnoreCase)
