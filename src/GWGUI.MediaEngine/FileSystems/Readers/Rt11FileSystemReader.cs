@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Rt11;
 using GWGUI.MediaEngine.SectorImages;
 
 
@@ -21,10 +22,7 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
     {
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != 512 || !image.TryGetBlock(1, out var home)) return false;
         var span = home.Data is byte[] data ? data.AsSpan() : home.Data.ToArray().AsSpan();
-        if (span.Length != 512) return false;
-        var directoryBlock = ReadUInt16(span, 468);
-        var systemId = DecodeAscii(span.Slice(496, 12));
-        return directoryBlock is >= 2 and < 1001 && systemId.StartsWith("DECRT11", StringComparison.Ordinal);
+        return Rt11HomeBlockProbe.LooksLikeRt11(span);
     }
 
     public FileSystemVolume Read(SectorImage image)

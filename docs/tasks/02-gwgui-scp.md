@@ -521,28 +521,28 @@
     - [x] Tester un superbloc Coherent valide avec une extension inhabituelle et un contenu de même taille sans superbloc valide.
     - [x] Vérifier qu’un rejet permet au registre d’essayer la politique suivante.
     - [x] Vérifier que probe et lecture complète partagent une seule lecture du fichier.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`
-  - [ ] Responsabilité et dépendances
-    - [ ] Conserver la politique sous `Recognition/Policies` pour réunir la capacité physique RX02, la sélection explicite et la présence d’un home block RT-11 crédible.
-    - [ ] Adapter sa dépendance au déplacement du Reader vers `Containers/Dec/Rx02/DecRx02Reader.cs`.
-    - [ ] Adapter `DiskImageFormatIds.DecRx02` à son nouveau namespace commun et supprimer l’import général de `Images`.
-  - [ ] Géométrie et probe RX02
-    - [ ] Remplacer `DecRx02ImageReader.ImageSize` par la capacité calculée de `Geometries/Dec/DecRx02Geometry`.
-    - [ ] Remplacer `DecRx02ImageReader.LooksLikeRt11` par `Recognition/Dec/DecRx02ImageProbe` prévu dans le groupe du Reader.
-    - [ ] Faire examiner au probe la mémoire en lecture seule du contexte et réutiliser `Rt11HomeBlockProbe` sans recopier ses offsets ni ses marqueurs.
-    - [ ] Conserver le comportement actuel : une sélection explicite RX02 et une capacité exacte suffisent à présélectionner le Reader, même sans RT-11.
-  - [ ] Lecture sans seconde ouverture
-    - [ ] Faire recevoir à `ReaderBackedRecognitionPolicy` le point d’entrée en mémoire de `DecRx02Reader`.
-    - [ ] Supprimer la délégation par chemin qui rouvre actuellement le fichier après le probe.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne la comparaison du format demandé et les expressions courtes qui tiennent lisiblement.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre et de `CanReadAsync`.
-    - [ ] Documenter séparément la capacité physique, la sélection explicite, le probe RT-11 et la validation complète du Reader.
-  - [ ] Tests ciblés
-    - [ ] Tester une capacité différente de RX02, une sélection explicite RX02, un home block RT-11 valide et une image RX02 sans structure RT-11 crédible.
-    - [ ] Vérifier qu’un candidat rejeté laisse le registre continuer.
-    - [ ] Vérifier que probe et lecture complète partagent une seule lecture du fichier.
+- [x] `src/GWGUI.MediaEngine/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`
+  - [x] Responsabilité et dépendances
+    - [x] Conserver la politique sous `Recognition/Policies` pour réunir la capacité physique RX02, la sélection explicite et la présence d’un home block RT-11 crédible.
+    - [x] Adapter sa dépendance au déplacement du Reader vers `Containers/Dec/Rx02/DecRx02Reader.cs`.
+    - [x] Adapter `DiskImageFormatIds.DecRx02` à son nouveau namespace commun et supprimer l’import général de `Images`.
+  - [x] Géométrie et probe RX02
+    - [x] Remplacer `DecRx02ImageReader.ImageSize` par la capacité calculée de `Geometries/Dec/DecRx02Geometry`.
+    - [x] Remplacer `DecRx02ImageReader.LooksLikeRt11` par `Recognition/Dec/DecRx02ImageProbe` prévu dans le groupe du Reader.
+    - [x] Faire examiner au probe la mémoire en lecture seule du contexte et réutiliser `Rt11HomeBlockProbe` sans recopier ses offsets ni ses marqueurs.
+    - [x] Conserver le comportement actuel : une sélection explicite RX02 et une capacité exacte suffisent à présélectionner le Reader, même sans RT-11.
+  - [x] Lecture sans seconde ouverture
+    - [x] Faire recevoir à `ReaderBackedRecognitionPolicy` le point d’entrée en mémoire de `DecRx02Reader`.
+    - [x] Supprimer la délégation par chemin qui rouvre actuellement le fichier après le probe.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne la comparaison du format demandé et les expressions courtes qui tiennent lisiblement.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre et de `CanReadAsync`.
+    - [x] Documenter séparément la capacité physique, la sélection explicite, le probe RT-11 et la validation complète du Reader.
+  - [x] Tests ciblés
+    - [x] Tester une capacité différente de RX02, une sélection explicite RX02, un home block RT-11 valide et une image RX02 sans structure RT-11 crédible.
+    - [x] Vérifier qu’un candidat rejeté laisse le registre continuer.
+    - [x] Vérifier que probe et lecture complète partagent une seule lecture du fichier.
 - [ ] `src/GWGUI.MediaEngine/Images/AmstradDskImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.

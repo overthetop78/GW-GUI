@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
+using GWGUI.MediaEngine.Containers.Dec.Rx02;
+using GWGUI.MediaEngine.Geometries.Dec;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
@@ -27,7 +29,7 @@ public sealed class DecRx02RecognitionTests
             Assert.Equal(1, explored.Image.Heads);
             Assert.Equal(13, explored.Image.SectorsPerTrack);
             Assert.Equal(1001, explored.Image.BlockCount);
-            Assert.Equal(DecRx02ImageReader.ImageSize, explored.Image.Capacity);
+            Assert.Equal(DecRx02Geometry.Capacity, explored.Image.Capacity);
             foreach (var logicalBlock in new[] { 0, 13, 500, 1000 })
             {
                 Assert.True(explored.Image.TryGetBlock(logicalBlock, out var block));
@@ -42,23 +44,35 @@ public sealed class DecRx02RecognitionTests
     }
 
     [Fact]
-    public async Task SameSizedImageWithoutRt11StructureDoesNotBlockTheNextCandidate()
+    public async Task SameSizedImageWithoutRt11StructureIsNotSelectedAutomatically()
     {
-        var path = Path.Combine(Path.GetTempPath(), $"gwgui-not-rx02-{Guid.NewGuid():N}.img");
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-not-rx02-{Guid.NewGuid():N}.unexpected");
         try
         {
             await using (var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-                stream.SetLength(DecRx02ImageReader.ImageSize);
-            var rx02 = new Rt11RecognitionPolicy();
-            var fallback = new AcceptedPolicy();
-            var registry = new DiskImageRecognitionRegistry([rx02, fallback]);
+                stream.SetLength(DecRx02Geometry.Capacity);
+            var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
 
-            var image = await registry.ReadAsync(path, null, CancellationToken.None);
+            Assert.Equal(DiskImageFormatIds.Unknown, explored.Image.FormatId);
+        }
+        finally
+        {
+            if (File.Exists(path)) File.Delete(path);
+        }
+    }
 
-            Assert.Equal("fallback", image.FormatId);
-            Assert.Equal(1, rx02.CanReadCalls);
-            Assert.Equal(0, rx02.ReadCalls);
-            Assert.Equal(1, fallback.ReadCalls);
+    [Fact]
+    public async Task ExplicitRx02SelectionAcceptsTheExactCapacityWithoutAnRt11HomeBlock()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-explicit-rx02-{Guid.NewGuid():N}.unexpected");
+        try
+        {
+            await using (var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None)) stream.SetLength(DecRx02Geometry.Capacity);
+
+            var explored = await DiskImageExplorer.CreateDefault().ExploreAsync(path, DiskImageFormatIds.DecRx02);
+
+            Assert.Equal(DiskImageFormatIds.DecRx02, explored.Image.FormatId);
+            Assert.Equal(DecRx02Geometry.Capacity, explored.Image.Capacity);
         }
         finally
         {
@@ -108,59 +122,4 @@ public sealed class DecRx02RecognitionTests
         throw new DirectoryNotFoundException("Le dossier local image_test est introuvable.");
     }
 
-    /// <summary>Reproduit la séparation entre capacité RX02 et structure RT-11 pour observer les appels.</summary>
-    private sealed class Rt11RecognitionPolicy : IDiskImageRecognitionPolicy
-    {
-        /// <summary>Nombre de présélections reçues.</summary>
-        public int CanReadCalls { get; private set; }
-        /// <summary>Nombre de lectures RX02 lancées.</summary>
-        public int ReadCalls { get; private set; }
-
-        /// <summary>Accepte uniquement une capacité RX02 contenant un home block RT-11 crédible.</summary>
-        public async ValueTask<bool> CanReadAsync(
-            DiskImageRecognitionContext context,
-            CancellationToken cancellationToken)
-        {
-            CanReadCalls++;
-            return context.Length == DecRx02ImageReader.ImageSize &&
-                   DecRx02ImageReader.LooksLikeRt11(
-                       (await context.ReadBytesAsync(cancellationToken)).Span);
-        }
-
-        /// <summary>Délègue la remise en ordre au lecteur RX02 public.</summary>
-        public Task<SectorImage> ReadAsync(
-            DiskImageRecognitionContext context,
-            CancellationToken cancellationToken)
-        {
-            ReadCalls++;
-            return new DecRx02ImageReader().ReadAsync(context.Path, cancellationToken);
-        }
-    }
-
-    /// <summary>Politique suivante prouvant que le rejet RT-11 ne bloque pas le registre.</summary>
-    private sealed class AcceptedPolicy : IDiskImageRecognitionPolicy
-    {
-        /// <summary>Nombre de lectures de secours effectuées.</summary>
-        public int ReadCalls { get; private set; }
-
-        /// <summary>Accepte le candidat transmis par le registre.</summary>
-        public ValueTask<bool> CanReadAsync(
-            DiskImageRecognitionContext context,
-            CancellationToken cancellationToken) => ValueTask.FromResult(true);
-
-        /// <summary>Produit une image minimale attendue par le test.</summary>
-        public Task<SectorImage> ReadAsync(
-            DiskImageRecognitionContext context,
-            CancellationToken cancellationToken)
-        {
-            ReadCalls++;
-            return Task.FromResult(new SectorImage(
-                "fallback",
-                1,
-                1,
-                1,
-                1,
-                [new SectorBlock(0, new SectorAddress(0, 0, 1), new byte[] { 0x01 })]));
-        }
-    }
 }

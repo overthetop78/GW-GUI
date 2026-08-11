@@ -1,21 +1,22 @@
+using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Dec;
+using GWGUI.MediaEngine.Recognition.Dec;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 
-/// <summary>Présélectionne la géométrie physique RX02 puis vérifie séparément la structure RT-11 attendue.</summary>
-/// <param name="reader">Lecteur chargé de remettre les secteurs physiques RX02 en ordre logique.</param>
-internal sealed class DecRx02ImageRecognitionPolicy(DecRx02ImageReader reader) : ReaderBackedRecognitionPolicy(reader.ReadAsync)
+/// <summary>Présélectionne un dump RX02 par sa capacité, le format demandé et son home block RT-11.</summary>
+/// <param name="reader">Lecteur validant entièrement la capacité et l'ordre physique du dump depuis la mémoire partagée.</param>
+internal sealed class DecRx02ImageRecognitionPolicy(DecRx02Reader reader) : ReaderBackedRecognitionPolicy((ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken) => reader.ReadAsync(bytes, cancellationToken))
 {
-    /// <summary>Vérifie d'abord la capacité RX02, puis le format demandé ou le home block RT-11.</summary>
+    /// <summary>Vérifie la capacité RX02 puis accepte une sélection explicite ou un home block RT-11 crédible.</summary>
     /// <param name="context">Contexte du fichier à examiner.</param>
-    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du contenu.</param>
-    /// <returns><see langword="true"/> pour une géométrie RX02 explicitement demandée ou contenant une structure RT-11 crédible.</returns>
+    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du contenu partagé.</param>
+    /// <returns><see langword="true"/> pour un dump de capacité RX02 explicitement demandé ou contenant RT-11.</returns>
     public override async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
-        if (context.Length != DecRx02ImageReader.ImageSize) return false;
-        if (context.RequestedFormatId?.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) == true)
-            return true;
-        return DecRx02ImageReader.LooksLikeRt11((await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false)).Span);
+        if (context.Length != DecRx02Geometry.Capacity) return false;
+        if (context.RequestedFormatId?.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) == true) return true;
+        return DecRx02ImageProbe.LooksLikeRt11(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false));
     }
 }
