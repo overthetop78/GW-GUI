@@ -2476,7 +2476,7 @@
       - [x] Tester un bloc système complet avec checksum valide puis invalide.
       - [x] Tester une marque absente, un bloc tronqué et une séquence système invalide.
       - [x] Vérifier les données utiles, leur taille, l'intégrité, l'ordre des bits, les structures et la confiance produits.
-  - [ ] `Decoding/Decoders/CenturionMfmDecoder.cs`
+  - [x] `Decoding/Decoders/CenturionMfmDecoder.cs`
     - [x] Responsabilité et héritage
       - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
       - [x] Supprimer la propriété `Signatures` devenue inutile avec cet héritage.
