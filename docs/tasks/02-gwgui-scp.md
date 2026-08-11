@@ -1820,9 +1820,9 @@
     - [x] Faire utiliser `SingleSidedHeadCount` et `DoubleSidedHeadCount` uniquement aux consommateurs dont `1` ou `2` représente réellement le nombre de têtes.
     - [x] Conserver les alias propres à une géométrie, comme ceux d’Apple, lorsqu’ils ajoutent le nom de la machine ou du format à la valeur commune.
     - [x] Ne pas remplacer les mêmes nombres lorsqu’ils représentent une taille, un offset, un numéro de secteur, une limite de format ou une autre donnée sans rapport avec cette géométrie.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de `DiskGeometryConstants` et de ses quatre constantes.
-    - [ ] Préciser dans chaque commentaire qu’il s’agit d’un nombre de cylindres ou de têtes, sans attribuer la valeur à une famille de machine particulière.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de `DiskGeometryConstants` et de ses quatre constantes.
+    - [x] Préciser dans chaque commentaire qu’il s’agit d’un nombre de cylindres ou de têtes, sans attribuer la valeur à une famille de machine particulière.
   - [ ] Vérification des raccordements
     - [ ] Compiler après le passage du type en `internal` afin de confirmer qu’aucun consommateur extérieur au moteur ne dépend de son API publique.
     - [ ] Exécuter uniquement les tests ciblés des Readers, géométries et politiques dans lesquels une valeur brute a effectivement été remplacée.
