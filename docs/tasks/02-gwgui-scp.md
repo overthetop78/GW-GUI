@@ -1993,7 +1993,7 @@
     - [x] Tester un octet déjà synchronisé et un octet nécessitant un décalage jusqu'au premier bit haut.
     - [x] Tester plusieurs octets successifs et vérifier la valeur finale de l'offset.
     - [x] Tester un flux tronqué, un nombre négatif et un offset hors limites.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Base/SignatureMfmDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Base/SignatureMfmDecoder.cs`
   - [x] Suppression de la classe de base inutilisée
     - [x] Confirmer que chaque classe actuellement dérivée remplace entièrement `Decode` et n'appelle jamais l'implémentation de `SignatureMfmDecoder`.
     - [x] Remplacer l'héritage de `Aed6200pMfmDecoder` par l'implémentation directe de `IFluxDecoder`.
