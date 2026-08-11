@@ -2324,7 +2324,7 @@
       - [x] Tester un en-tête présent sans bloc de données complet et vérifier le résultat tronqué produit.
       - [x] Tester l'encodage puis le décodage odd/even et les deux calculs de parité du composant commun.
       - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
-  - [ ] `Decoding/Decoders/AppleIIGcrDecoder.cs`
+  - [x] `Decoding/Decoders/AppleIIGcrDecoder.cs`
     - [x] Nom du type et raccordements
       - [x] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder` afin que le type corresponde au nom `AppleIIGcrDecoder.cs`.
       - [x] Remplacer la construction de `AppleGcrDecoder` dans le registre par `AppleIIGcrDecoder`.
