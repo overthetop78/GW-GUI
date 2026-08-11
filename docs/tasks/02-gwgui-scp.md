@@ -1450,30 +1450,30 @@
       - [x] Tester séparément l’absence de candidat et l’échec de tous les candidats présélectionnés.
       - [x] Vérifier qu’une collection injectée puis modifiée ne change pas le registre.
       - [x] Tester la propagation immédiate de l’annulation, d’une erreur d’accès et d’une exception non reconnue comme rejet de format.
-  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
+  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
     - [x] Responsabilité et contrat de délégation
       - [x] Conserver le type abstrait sous `Recognition/Policies`, car il centralise uniquement le `ReadAsync` identique des politiques adossées à un Reader.
       - [x] Remplacer la fonction `Func<string, CancellationToken, Task<SectorImage>>` par une fonction recevant `DiskImageRecognitionContext` et `CancellationToken`.
       - [x] Refuser une fonction de lecture nulle lors de la construction.
       - [x] Conserver `CanReadAsync` abstrait afin que chaque politique reste propriétaire de sa présélection.
-    - [x] Raccordement des politiques existantes
-      - [x] Adapter `AppleImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets, l’extension et le format demandé déjà détenus par le contexte.
-      - [x] Adapter `CoherentImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
-      - [x] Adapter `DecRx02ImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
-      - [x] Conserver dans chaque Reader sa façade par chemin pour ses consommateurs extérieurs à la reconnaissance.
-      - [x] Faire déléguer chaque façade par chemin au même traitement en mémoire afin de ne maintenir qu’une validation complète du format.
-    - [x] Lecture commune
-      - [x] Faire transmettre par `ReadAsync` le contexte complet à la fonction reçue sans relire ni transformer lui-même le fichier.
-      - [x] Conserver sur une seule ligne l’expression de délégation lorsqu’elle tient lisiblement.
-    - [x] Documentation XML et encodage
-      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
-      - [x] Documenter que la politique concrète choisit les données du contexte à transmettre et que le Reader reste propriétaire de la validation complète.
-      - [x] Documenter les exceptions de rejet propagées par la fonction de lecture.
-    - [x] Tests ciblés
-      - [x] Tester le rejet d’une fonction de lecture nulle.
-      - [x] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
-      - [x] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
-      - [x] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
+    - [ ] Raccordement des politiques existantes
+      - [ ] Adapter `AppleImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets, l’extension et le format demandé déjà détenus par le contexte.
+      - [ ] Adapter `CoherentImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
+      - [ ] Adapter `DecRx02ImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
+      - [ ] Conserver dans chaque Reader sa façade par chemin pour ses consommateurs extérieurs à la reconnaissance.
+      - [ ] Faire déléguer chaque façade par chemin au même traitement en mémoire afin de ne maintenir qu’une validation complète du format.
+    - [ ] Lecture commune
+      - [ ] Faire transmettre par `ReadAsync` le contexte complet à la fonction reçue sans relire ni transformer lui-même le fichier.
+      - [ ] Conserver sur une seule ligne l’expression de délégation lorsqu’elle tient lisiblement.
+    - [ ] Documentation XML et encodage
+      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
+      - [ ] Documenter que la politique concrète choisit les données du contexte à transmettre et que le Reader reste propriétaire de la validation complète.
+      - [ ] Documenter les exceptions de rejet propagées par la fonction de lecture.
+    - [ ] Tests ciblés
+      - [ ] Tester le rejet d’une fonction de lecture nulle.
+      - [ ] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
+      - [ ] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
+      - [ ] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
   - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
