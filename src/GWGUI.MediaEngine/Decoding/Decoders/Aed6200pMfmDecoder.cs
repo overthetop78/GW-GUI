@@ -43,7 +43,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
                     else structures.Add(new(FluxStructureKind.FormatData, dataOffset, MfmEncoding.EncodedByteBitCount, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatData, null, "CRC unavailable")));
                 }
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], SizeCode(size), size, integrity, offset));
+                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], SectorSizeCode.FromByteCount(size), size, integrity, offset));
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], size, null, null, headerValid, dataValid)));
                 offset = Math.Max(offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
             }
@@ -63,15 +63,6 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     {
         for (var offset = Math.Max(0, start); offset + MfmEncoding.EncodedByteBitCount <= end; offset++) if (Aed6200pMfmFormat.DataPatterns.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
         return -1;
-    }
-
-    /// <summary>Détermine le code représentant la taille du secteur.</summary>
-    /// <param name="size">Taille du secteur en octets.</param>
-    /// <returns>Code de taille correspondant à une puissance de deux à partir de 128 octets, ou zéro en l'absence de correspondance.</returns>
-    private static byte SizeCode(int size)
-    {
-        for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
-        return 0;
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>

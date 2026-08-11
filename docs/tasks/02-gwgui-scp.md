@@ -2263,11 +2263,11 @@
     - [x] Définitions MFM communes
       - [x] Créer une constante commune pour les seize bits encodés nécessaires à la lecture d'un octet MFM.
       - [x] Remplacer dans le décodeur chaque multiplication brute par `16` correspondant à cette unité.
-    - [ ] Tailles sectorielles et CRC communs
-      - [ ] Remplacer la méthode locale `SizeCode` par le composant commun `SectorSizeCode`.
-      - [ ] Supprimer `SizeCode` après raccordement et supprimer sa tâche de documentation locale.
-      - [ ] Remplacer la méthode locale `Crc16` par l'appel au calculateur CRC commun conservant exactement les paramètres AED actuels.
-      - [ ] Supprimer `Crc16` après raccordement et supprimer sa tâche de documentation locale.
+    - [x] Tailles sectorielles et CRC communs
+      - [x] Remplacer la méthode locale `SizeCode` par le composant commun `SectorSizeCode`.
+      - [x] Supprimer `SizeCode` après raccordement et supprimer sa tâche de documentation locale.
+      - [x] Remplacer la méthode locale `Crc16` par l'appel au calculateur CRC commun conservant exactement les paramètres AED actuels.
+      - [x] Supprimer `Crc16` après raccordement et supprimer sa tâche de documentation locale.
     - [ ] Confiance commune des décodeurs
       - [ ] Créer un calcul commun de confiance utilisant le poids de secteurs `2`, le diviseur `20` et la confiance maximale `1` actuellement répétés dans plusieurs décodeurs.
       - [ ] Raccorder `Aed6200pMfmDecoder` à ce calcul sans modifier son score final.
