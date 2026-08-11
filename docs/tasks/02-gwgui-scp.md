@@ -2219,7 +2219,7 @@
       - [x] Tester qu'aucune collection exposée ne peut être modifiée par conversion vers son type concret.
       - [x] Tester qu'un résultat sans secteur expose une collection vide et non une valeur nulle.
       - [x] Vérifier que la séparation des fichiers ne modifie ni les valeurs des enums ni les données retournées par un décodeur existant.
-  - [ ] `Decoding/IFluxDecoder.cs`
+  - [x] `Decoding/IFluxDecoder.cs`
     - [x] Découplage du conteneur SCP
       - [x] Créer `Flux/FluxRevolution.cs` comme modèle technique d'une révolution de flux indépendante de son conteneur d'origine.
       - [x] Y conserver une copie non modifiable des intervalles de flux et la durée d'index avec leurs unités explicites.
