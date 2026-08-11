@@ -2189,7 +2189,7 @@
       - [x] Tester chaque branche du score : secteurs valides, secteurs indéterminés, secteurs invalides, flux brut, structures seules et résultat vide.
       - [x] Tester les départages par confiance, nombre de structures et ordre du catalogue.
       - [x] Tester `DecodeBest` avec aucune révolution, un décodeur explicite et la sélection automatique sur plusieurs révolutions.
-  - [x] `Decoding/FluxDecodeModels.cs`
+  - [ ] `Decoding/FluxDecodeModels.cs`
     - [x] Séparation des types
       - [x] Créer `Decoding/FluxStructureKind.cs` et y déplacer uniquement l'enum `FluxStructureKind`.
       - [x] Créer `Decoding/SectorIntegrityKind.cs` et y déplacer uniquement l'enum `SectorIntegrityKind`.
@@ -2218,7 +2218,7 @@
       - [x] Tester qu'une modification des collections sources ne modifie pas `FluxDecodeResult.Structures`, `DecodedBytes` ni `Sectors`.
       - [x] Tester qu'aucune collection exposée ne peut être modifiée par conversion vers son type concret.
       - [x] Tester qu'un résultat sans secteur expose une collection vide et non une valeur nulle.
-      - [ ] Vérifier que la séparation des fichiers ne modifie ni les valeurs des enums ni les données retournées par un décodeur existant.
+      - [x] Vérifier que la séparation des fichiers ne modifie ni les valeurs des enums ni les données retournées par un décodeur existant.
   - [ ] `Decoding/IFluxDecoder.cs`
     - [ ] Découplage du conteneur SCP
       - [ ] Créer `Flux/FluxRevolution.cs` comme modèle technique d'une révolution de flux indépendante de son conteneur d'origine.

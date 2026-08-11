@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Containers.Scp;
 
 namespace GWGUI.Tests;
 
@@ -64,6 +65,23 @@ public sealed class FluxDecodeModelTests
         Assert.NotNull(result.Sectors);
         Assert.Empty(result.Sectors);
         AssertReadOnly(result.Sectors, new DecodedSector(0, 0, 1, 0, 0, null, 0));
+    }
+
+    [Fact]
+    public void FileSeparationPreservesRawDecoderResultData()
+    {
+        var intervals = Enumerable.Repeat(80u, 30).ToArray();
+        intervals[8] = 5;
+        intervals[20] = 900;
+
+        var result = new RawFluxDecoder().Decode(new ScpRevolution(8_000_000, (uint)intervals.Length, intervals));
+
+        Assert.Equal("raw", result.DecoderId);
+        Assert.Equal(0.05, result.Confidence);
+        Assert.Equal(40, result.EstimatedBitCellTicks);
+        Assert.Equal([(FluxStructureKind.TimingAnomaly, 16, 1), (FluxStructureKind.TimingAnomaly, 39, 22)], result.Structures.Select(structure => (structure.Kind, structure.BitOffset, structure.BitLength)));
+        Assert.Empty(result.DecodedBytes);
+        Assert.Empty(result.Sectors);
     }
 
     private static void AssertReadOnly<T>(IReadOnlyList<T> values, T value)
