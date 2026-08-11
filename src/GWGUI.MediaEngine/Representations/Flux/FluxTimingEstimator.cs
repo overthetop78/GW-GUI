@@ -15,14 +15,16 @@ internal static class FluxTimingEstimator
 
     /// <summary>Estime la durée d'une cellule FM ou MFM depuis les intervalles observés.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
-    /// <param name="fm">Indique si l'estimation doit appliquer la distribution FM.</param>
+    /// <param name="mode">Mode d'estimation temporelle à appliquer.</param>
     /// <returns>Durée estimée d'une cellule, en ticks.</returns>
     public static double EstimateBitCell(IReadOnlyList<uint> intervals, FluxTimingMode mode)
     {
         if (mode == FluxTimingMode.Fm) return EstimateLowPercentileBitCell(intervals, false);
         if (intervals.Count == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         var samples = intervals.Skip(1);
-        var sorted = samples.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray(); if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
+        var sorted = samples.Where(x => x > 0).Order().ToArray();
+        if (sorted.Length == 0) sorted = intervals.Where(x => x > 0).Order().ToArray();
+        if (sorted.Length == 0) return FluxDecodingParameters.FallbackBitCellTicks;
         var robustLower = SelectLowerClusterMedian(sorted);
         return Math.Max(1, robustLower / FluxDecodingParameters.RobustIntervalToBitCellDivisor);
     }
@@ -55,6 +57,9 @@ internal static class FluxTimingEstimator
         return sorted[percentile];
     }
 
+    /// <summary>Sélectionne la médiane du cinquième inférieur des intervalles pour obtenir une mesure robuste en mode non-FM.</summary>
+    /// <param name="sorted">Intervalles strictement positifs classés par ordre croissant.</param>
+    /// <returns>Médiane du groupe inférieur.</returns>
     private static uint SelectLowerClusterMedian(IReadOnlyList<uint> sorted)
     {
         var sampleLength = Math.Max(1, sorted.Count / FluxDecodingParameters.LowerClusterDivisor);

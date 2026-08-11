@@ -1681,10 +1681,10 @@
     - [x] Estimation NRZI
       - [x] Réutiliser la fonction commune de percentile bas sans dupliquer le tri et les trois replis.
       - [x] Traduire les commentaires anglais sur le cluster temporel GCR en CSDoc française.
-    - [ ] Présentation et CSDoc
-      - [ ] Séparer le tri, les replis, la taille du groupe bas et sa médiane actuellement regroupés sur les mêmes lignes.
-      - [ ] Remettre sur une seule ligne les signatures et expressions complètes qui tiennent lisiblement.
-      - [ ] Documenter en français le type et chaque méthode publique ou privée.
+    - [x] Présentation et CSDoc
+      - [x] Séparer le tri, les replis, la taille du groupe bas et sa médiane actuellement regroupés sur les mêmes lignes.
+      - [x] Remettre sur une seule ligne les signatures et expressions complètes qui tiennent lisiblement.
+      - [x] Documenter en français le type et chaque méthode publique ou privée.
   - [ ] `Representations/Flux/FluxTransitionDecoder.cs`
     - [ ] Contrats des fabriques
       - [ ] Refuser une collection d'intervalles nulle avant toute estimation ou reconstruction.
