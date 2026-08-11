@@ -19,7 +19,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         for (var offset = 0; offset + AmigaMfmFormat.SyncBitCount <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.Match(stream, offset, AmigaMfmFormat.SyncWord) || !FluxBitReader.Match(stream, offset + AmigaMfmFormat.EncodedByteBitCount, AmigaMfmFormat.SyncWord)) continue;
-            var encoded = TryDecodeMfmBytes(stream, offset + AmigaMfmFormat.SyncBitCount, encodedBytes); var available = encoded ?? TryDecodeMfmBytes(stream, offset + AmigaMfmFormat.SyncBitCount, headerBytes);
+            var encoded = FluxBitReader.TryDecodeMfmBytes(stream, offset + AmigaMfmFormat.SyncBitCount, encodedBytes); var available = encoded ?? FluxBitReader.TryDecodeMfmBytes(stream, offset + AmigaMfmFormat.SyncBitCount, headerBytes);
             bool? headerValid = null; bool? dataValid = null; byte cylinder = 0; byte head = 0; byte number = 0; var length = AmigaMfmFormat.SyncBitCount; byte[]? payload = null;
             if (available is not null)
             {
@@ -40,15 +40,4 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 3 + structures.Count) / 44d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
-    /// <summary>Tente de décoder une suite d'octets MFM.</summary>
-    /// <param name="stream">Flux binaire MFM source.</param>
-    /// <param name="offset">Offset du premier octet encodé, exprimé en bits.</param>
-    /// <param name="count">Nombre d'octets à décoder.</param>
-    /// <returns>Octets décodés, ou <see langword="null"/> si la plage est incomplète ou invalide.</returns>
-    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
-    {
-        if (offset + count * AmigaMfmFormat.EncodedByteBitCount > stream.Bits.Length) return null; var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * AmigaMfmFormat.EncodedByteBitCount, out result[index])) return null;
-        return result;
-    }
 }

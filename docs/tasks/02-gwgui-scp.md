@@ -2304,7 +2304,7 @@
       - [x] Créer `Decoding/Definitions/AmigaMfmCodec.cs` pour détenir les opérations Amiga communes d'encodage et de décodage odd/even et de calcul des parités.
       - [x] Déplacer dans ce composant `DecodeOddEven`, `Interleave`, `EncodeOddEven`, `Nibble` et les calculs de parité actuellement répartis entre le décodeur et l'encodeur.
       - [x] Raccorder `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs` au composant commun puis supprimer leurs copies locales.
-      - [ ] Remplacer `TryDecodeMfmBytes` par la primitive commune de décodage des octets MFM et supprimer la méthode locale.
+      - [x] Remplacer `TryDecodeMfmBytes` par la primitive commune de décodage des octets MFM et supprimer la méthode locale.
     - [ ] Décodage et résultat
       - [ ] Remplacer le code de taille sectorielle brut `2` par la définition commune calculée pour un secteur de 512 octets.
       - [ ] Remplacer la taille sectorielle brute `512` par la définition commune du secteur Amiga.

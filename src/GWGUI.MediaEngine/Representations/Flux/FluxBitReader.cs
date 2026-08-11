@@ -72,6 +72,16 @@ internal static class FluxBitReader
         return true;
     }
 
+    /// <summary>Décode une suite complète d'octets MFM.</summary>
+    /// <param name="stream">Flux de bits à lire.</param><param name="offset">Position du premier mot MFM, en bits.</param><param name="count">Nombre d'octets à décoder.</param><returns>Octets décodés, ou une valeur nulle si la plage est incomplète.</returns>
+    public static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        var stride = FluxDecodingParameters.BitsPerByte * FluxDecodingParameters.MfmCellsPerDataBit;
+        for (var index = 0; index < count; index++) if (!TryDecodeMfmByte(stream, offset + index * stride, out result[index])) return null;
+        return result;
+    }
+
     /// <summary>Décode huit bits consécutifs en un octet.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
     /// <param name="offset">Position du premier bit.</param>
