@@ -1963,9 +1963,9 @@
       - [x] Remplacer les descriptions brutes construites dans les décodeurs HP, ISO FM, ISO MFM, Membrain, Micral N, Micropolis et North Star.
       - [x] Remplacer les descriptions brutes construites dans les décodeurs QD MO5, TYCOM, Victor 9000 et Raw Flux.
       - [x] Supprimer de chaque décodeur les ternaires répétés qui convertissent un booléen nullable d'intégrité en texte.
-    - [ ] Documentation XML française
-      - [ ] Documenter en français le type, la représentation d'état et chaque méthode avec ses paramètres et son résultat.
-      - [ ] Mettre à jour la documentation de `FluxStructure.Description` pour indiquer qu'elle est produite par le propriétaire commun.
+    - [x] Documentation XML française
+      - [x] Documenter en français le type, la représentation d'état et chaque méthode avec ses paramètres et son résultat.
+      - [x] Mettre à jour la documentation de `FluxStructure.Description` pour indiquer qu'elle est produite par le propriétaire commun.
     - [ ] Tests ciblés
       - [ ] Tester les trois états d'intégrité et chaque forme de description avec toutes ses données injectées.
       - [ ] Vérifier dans les tests ciblés de chaque décodeur que les descriptions produites restent cohérentes avec les structures et secteurs décodés.
