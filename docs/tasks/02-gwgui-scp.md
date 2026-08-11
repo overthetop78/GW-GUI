@@ -2230,11 +2230,11 @@
       - [x] Adapter `FluxDecoderRegistry`, les reconstructeurs sectoriels, les visualisations et les tests qui transmettent actuellement directement un `ScpRevolution`.
       - [x] Faire utiliser `FluxRevolution` par les résultats d'encodage de pistes afin que l'aller-retour encodeur/décodeur ne dépende plus du conteneur SCP.
       - [x] Conserver un contrat distinct pour de futurs flux non rotationnels plutôt que d'utiliser artificiellement `FluxRevolution` pour une cassette.
-    - [ ] Identité des codecs
-      - [ ] Remplacer dans toutes les implémentations les identifiants écrits directement par les définitions de `FluxCodecIds` ou des définitions de format créées dans leurs groupes.
-      - [ ] Conserver l'identifiant comme chaîne technique extensible plutôt que le transformer en enum fermé.
-      - [ ] Remplacer les noms affichés écrits directement par le catalogue commun de noms de codecs.
-      - [ ] Documenter l'unicité exigée des identifiants et le rôle purement descriptif du nom affiché.
+    - [x] Identité des codecs
+      - [x] Remplacer dans toutes les implémentations les identifiants écrits directement par les définitions de `FluxCodecIds` ou des définitions de format créées dans leurs groupes.
+      - [x] Conserver l'identifiant comme chaîne technique extensible plutôt que le transformer en enum fermé.
+      - [x] Remplacer les noms affichés écrits directement par le catalogue commun de noms de codecs.
+      - [x] Documenter l'unicité exigée des identifiants et le rôle purement descriptif du nom affiché.
     - [ ] Contrat de décodage
       - [ ] Documenter que `Decode` analyse une révolution complète et retourne un résultat immuable sans modifier les intervalles reçus.
       - [ ] Documenter le comportement attendu pour une révolution vide, un flux non reconnu, un flux tronqué et un flux reconnu mais corrompu.
