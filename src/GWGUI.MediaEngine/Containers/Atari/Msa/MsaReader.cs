@@ -13,12 +13,12 @@ public sealed class MsaReader : ISectorImageReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var source = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        if (source.Length < MsaLayout.HeaderSize || ReadWord(source, MsaLayout.SignatureOffset) != MsaFormat.Signature) throw new InvalidDataException("The MSA header is invalid.");
+        if (source.Length < MsaLayout.HeaderSize || ReadWord(source, MsaLayout.SignatureOffset) != MsaFormat.Signature) throw MsaExceptions.InvalidHeader(source.Length);
         var sectors = ReadWord(source, MsaLayout.SectorsPerTrackOffset);
         var heads = ReadWord(source, MsaLayout.HeadsOffset) + 1;
         var startCylinder = ReadWord(source, MsaLayout.StartCylinderOffset);
         var endCylinder = ReadWord(source, MsaLayout.EndCylinderOffset);
-        if (sectors is < MsaLayout.MinimumSectorsPerTrack or > MsaLayout.MaximumSectorsPerTrack || heads is < MsaLayout.MinimumHeadCount or > MsaLayout.MaximumHeadCount || endCylinder < startCylinder || endCylinder > MsaLayout.MaximumCylinder) throw new InvalidDataException("The MSA geometry is invalid.");
+        if (sectors is < MsaLayout.MinimumSectorsPerTrack or > MsaLayout.MaximumSectorsPerTrack || heads is < MsaLayout.MinimumHeadCount or > MsaLayout.MaximumHeadCount || endCylinder < startCylinder || endCylinder > MsaLayout.MaximumCylinder) throw MsaExceptions.InvalidGeometry(sectors, heads, startCylinder, endCylinder);
         var trackBytes = checked(sectors * MsaLayout.SectorSize);
         var position = MsaLayout.HeaderSize;
         var blocks = new List<SectorBlock>();
@@ -27,11 +27,11 @@ public sealed class MsaReader : ISectorImageReader
             for (var head = 0; head < heads; head++)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                if (position + MsaLayout.TrackLengthFieldSize > source.Length) throw new InvalidDataException("The MSA track table is truncated.");
+                if (position + MsaLayout.TrackLengthFieldSize > source.Length) throw MsaExceptions.TruncatedTrackTable(cylinder, head, position, Math.Max(0, source.Length - position));
                 var packedLength = ReadWord(source, position);
                 position += MsaLayout.TrackLengthFieldSize;
-                if (position + packedLength > source.Length) throw new InvalidDataException("An MSA track is truncated.");
-                var track = packedLength == trackBytes ? source.AsSpan(position, packedLength).ToArray() : MsaRleDecoder.Unpack(source.AsSpan(position, packedLength), trackBytes);
+                if (position + packedLength > source.Length) throw MsaExceptions.TruncatedTrack(cylinder, head, position, packedLength, Math.Max(0, source.Length - position));
+                var track = packedLength == trackBytes ? source.AsSpan(position, packedLength).ToArray() : MsaRleDecoder.Unpack(source.AsSpan(position, packedLength), trackBytes, cylinder, head);
                 position += packedLength;
                 for (var sector = 0; sector < sectors; sector++)
                 {

@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 
 internal static class MsaRleDecoder
 {
-    public static byte[] Unpack(ReadOnlySpan<byte> packed, int expected)
+    public static byte[] Unpack(ReadOnlySpan<byte> packed, int expected, int cylinder, int head)
     {
         var output = new byte[expected];
         var input = 0;
@@ -16,15 +16,15 @@ internal static class MsaRleDecoder
                 output[written++] = packed[input++];
                 continue;
             }
-            if (input + MsaLayout.RleSequenceSize > packed.Length) throw new InvalidDataException("An MSA compressed run is truncated.");
+            if (input + MsaLayout.RleSequenceSize > packed.Length) throw MsaExceptions.TruncatedRun(cylinder, head, input, packed.Length);
             var value = packed[input + MsaLayout.RleValueOffset];
             var count = BinaryPrimitives.ReadUInt16BigEndian(packed[(input + MsaLayout.RleCountOffset)..]);
             input += MsaLayout.RleSequenceSize;
-            if (count == 0 || written + count > output.Length) throw new InvalidDataException("An MSA compressed run exceeds its track.");
+            if (count == 0 || written + count > output.Length) throw MsaExceptions.InvalidRun(cylinder, head, input - MsaLayout.RleSequenceSize, count, written, expected);
             output.AsSpan(written, count).Fill(value);
             written += count;
         }
-        if (input != packed.Length || written != expected) throw new InvalidDataException("The decompressed MSA track has an invalid length.");
+        if (input != packed.Length || written != expected) throw MsaExceptions.InvalidUnpackedLength(cylinder, head, input, packed.Length, written, expected);
         return output;
     }
 }

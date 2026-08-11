@@ -1336,10 +1336,10 @@
     - [x] Créer `Containers/Atari/Msa/MsaLayout.cs` avec la taille d’en-tête, les offsets des secteurs, faces et cylindres, la taille des longueurs de pistes et la taille sectorielle.
     - [x] Ajouter les limites actuelles de secteurs, faces et cylindres comme constantes nommées.
     - [x] Remplacer dans `MsaReader` et le décompresseur toutes les valeurs brutes correspondantes.
-  - [ ] Erreurs MSA
-    - [ ] Créer `Containers/Atari/Msa/MsaExceptions.cs`.
-    - [ ] Ajouter des méthodes permettant d’injecter piste, longueur compressée, longueur attendue et position.
-    - [ ] Remplacer tous les textes et constructions directes d’exception du lecteur et du décompresseur MSA.
+  - [x] Erreurs MSA
+    - [x] Créer `Containers/Atari/Msa/MsaExceptions.cs`.
+    - [x] Ajouter des méthodes permettant d’injecter piste, longueur compressée, longueur attendue et position.
+    - [x] Remplacer tous les textes et constructions directes d’exception du lecteur et du décompresseur MSA.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française des types `MsaReader` et `MsaRleDecoder`.
     - [ ] Ajouter la documentation XML française des méthodes `CanRead`, `ReadAsync`, `Unpack` et `ReadWord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
