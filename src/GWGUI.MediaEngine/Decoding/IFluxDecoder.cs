@@ -6,7 +6,9 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <remarks>L'identifiant est une chaîne technique extensible qui doit être unique dans un registre. Le nom affiché est purement descriptif et ne doit jamais servir à identifier un codec.</remarks>
 public interface IFluxDecoder
 {
+    /// <summary>Obtient l'identifiant technique extensible et unique du codec.</summary>
     string Id { get; }
+    /// <summary>Obtient le nom descriptif destiné à l'affichage.</summary>
     string DisplayName { get; }
     /// <summary>Analyse une révolution complète sans modifier ses intervalles et retourne un résultat immuable.</summary>
     /// <param name="revolution">Révolution dont la durée d'index et les intervalles sont exprimés en ticks de la source.</param>

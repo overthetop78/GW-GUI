@@ -2240,10 +2240,10 @@
       - [x] Documenter le comportement attendu pour une révolution vide, un flux non reconnu, un flux tronqué et un flux reconnu mais corrompu.
       - [x] Documenter que l'absence de secteurs est représentée par une collection vide et que l'intégrité peut rester indéterminée.
       - [x] Documenter les unités temporelles transmises au décodeur et retournées dans `FluxDecodeResult`.
-    - [ ] Présentation et CSDoc
-      - [ ] Conserver chaque propriété et la signature de `Decode` sur sa propre ligne.
-      - [ ] Ajouter la CSDoc française au type `IFluxDecoder`, à `Id`, à `DisplayName` et à `Decode`.
-      - [ ] Ajouter la CSDoc française à `FluxRevolution`, à son constructeur et à chacune de ses propriétés.
+    - [x] Présentation et CSDoc
+      - [x] Conserver chaque propriété et la signature de `Decode` sur sa propre ligne.
+      - [x] Ajouter la CSDoc française au type `IFluxDecoder`, à `Id`, à `DisplayName` et à `Decode`.
+      - [x] Ajouter la CSDoc française à `FluxRevolution`, à son constructeur et à chacune de ses propriétés.
     - [ ] Vérification du contrat
       - [ ] Tester que la création d'une `FluxRevolution` copie les intervalles reçus et expose une collection non modifiable.
       - [ ] Tester le raccordement d'une révolution SCP vers la même durée d'index et les mêmes intervalles génériques.
