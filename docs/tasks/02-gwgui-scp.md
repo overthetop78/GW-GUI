@@ -1425,12 +1425,12 @@
       - [x] Refuser une collection de politiques nulle et une entrée nulle dans le constructeur.
       - [x] Copier la collection reçue dans une liste en lecture seule afin qu’une modification extérieure ne change pas l’ordre ou le contenu du registre.
       - [x] Conserver l’ordre d’injection comme unique ordre d’essai ; ne pas ajouter de tri ou de priorité qui n’existe pas dans le contrat.
-    - [ ] Parcours des candidats
-      - [ ] Conserver `CanReadAsync` comme présélection booléenne et ne pas inventer de niveau de force absent du contrat actuel.
-      - [ ] Continuer immédiatement avec la politique suivante lorsque `CanReadAsync` retourne `false`.
-      - [ ] Appeler `ReadAsync` une seule fois pour chaque politique présélectionnée et retourner dès qu’une lecture réussit.
-      - [ ] Continuer avec la politique suivante uniquement après un `InvalidDataException` ou un `NotSupportedException` produit par le Reader candidat.
-      - [ ] Propager sans les envelopper `OperationCanceledException`, les erreurs d’accès au fichier, les dépassements et les erreurs de programmation.
+    - [x] Parcours des candidats
+      - [x] Conserver `CanReadAsync` comme présélection booléenne et ne pas inventer de niveau de force absent du contrat actuel.
+      - [x] Continuer immédiatement avec la politique suivante lorsque `CanReadAsync` retourne `false`.
+      - [x] Appeler `ReadAsync` une seule fois pour chaque politique présélectionnée et retourner dès qu’une lecture réussit.
+      - [x] Continuer avec la politique suivante uniquement après un `InvalidDataException` ou un `NotSupportedException` produit par le Reader candidat.
+      - [x] Propager sans les envelopper `OperationCanceledException`, les erreurs d’accès au fichier, les dépassements et les erreurs de programmation.
     - [ ] Conservation des rejets
       - [ ] Créer `Recognition/DiskImageRecognitionFailure.cs` avec l’identité de la politique et l’exception technique rejetée.
       - [ ] Ajouter chaque `InvalidDataException` ou `NotSupportedException` à la collection des rejets au lieu de laisser le `catch` vide.
