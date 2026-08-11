@@ -2022,7 +2022,7 @@
   - [ ] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleGcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore, DecodeFiveAndThree, DecodeFourAndFour, TryReadBytes, Find`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleLisaFileWareGcrDecoder`.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleMacGcrDecoder.cs`
