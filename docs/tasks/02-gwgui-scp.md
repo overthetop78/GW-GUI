@@ -1741,9 +1741,9 @@
       - [x] Adapter `Commodore900GcrDecoder`, `Victor9kGcrDecoder`, `AppleRwts18Decoder`, `AppleMacGcrDecoder`, `AppleIIGcrDecoder` et `CommodoreGcrDecoder`.
       - [x] Adapter leurs helpers recevant `bool[]` à la vue en lecture seule du flux.
       - [x] Conserver les longueurs actuelles de queue circulaire définies par chaque format dans le groupe de ce décodeur, sans les déplacer dans les paramètres généraux du flux.
-    - [ ] Autres consommateurs
-      - [ ] Adapter `RawFluxDecoder` et `AppleScpSectorDecoder` vers `FluxTimingEstimator`.
-      - [ ] Vérifier qu'aucun consommateur ne référence encore le namespace `GWGUI.MediaEngine.Decoding` pour le type déplacé.
+    - [x] Autres consommateurs
+      - [x] Adapter `RawFluxDecoder` et `AppleScpSectorDecoder` vers `FluxTimingEstimator`.
+      - [x] Vérifier qu'aucun consommateur ne référence encore le namespace `GWGUI.MediaEngine.Decoding` pour le type déplacé.
   - [ ] Tests ciblés du flux
     - [ ] Représentation
       - [ ] Tester qu'une modification du tableau source après construction ne modifie pas les bits du flux.
