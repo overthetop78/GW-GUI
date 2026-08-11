@@ -2367,9 +2367,9 @@
     - [x] Identité Lisa FileWare
       - [x] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
       - [x] Remplacer le nom brut `Apple Lisa FileWare GCR` par la définition centrale correspondante.
-    - [ ] Documentation
-      - [ ] Traduire en français la CSDoc du type `AppleLisaFileWareGcrDecoder`.
-      - [ ] Ajouter la CSDoc française aux propriétés `Id` et `DisplayName`.
+    - [x] Documentation
+      - [x] Traduire en français la CSDoc du type `AppleLisaFileWareGcrDecoder`.
+      - [x] Ajouter la CSDoc française aux propriétés `Id` et `DisplayName`.
     - [ ] Vérification de la spécialisation
       - [ ] Raccorder la spécialisation Lisa au composant IWM GCR commun défini avec `AppleMacGcrDecoder.cs` sans enregistrer un second décodeur automatique incapable de distinguer seul les mêmes données.
       - [ ] Tester que la spécialisation expose l'identifiant et le nom Lisa FileWare.
