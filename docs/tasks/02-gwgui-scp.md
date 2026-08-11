@@ -1404,12 +1404,12 @@
       - [x] Refuser un chemin nul, vide ou composé uniquement d’espaces avant de créer `FileInfo`.
       - [x] Conserver séparément le chemin reçu, la longueur observée à la création, l’extension normalisée et l’identifiant explicitement demandé.
       - [x] Documenter que `Length` est la longueur observée à la création du contexte et que le Reader valide ensuite le contenu réellement lu.
-    - [ ] Lecture asynchrone partagée
-      - [ ] Remplacer le champ `byte[]? bytes` par une tâche de lecture créée une seule fois de manière sûre lorsque plusieurs politiques demandent simultanément le contenu.
-      - [ ] Faire retourner à `ReadBytesAsync` une `ReadOnlyMemory<byte>` afin qu’une politique ne puisse pas modifier les octets examinés par les suivantes.
-      - [ ] Faire réutiliser exactement la même lecture réussie par tous les appels ultérieurs.
-      - [ ] Définir et documenter le comportement d’une première lecture annulée ou en erreur afin de ne pas relancer silencieusement une seconde lecture différente dans le même contexte.
-      - [ ] Adapter chaque politique à `ReadOnlyMemory<byte>` en utilisant `Span` ou une copie uniquement lorsque son API l’exige réellement.
+    - [x] Lecture asynchrone partagée
+      - [x] Remplacer le champ `byte[]? bytes` par une tâche de lecture créée une seule fois de manière sûre lorsque plusieurs politiques demandent simultanément le contenu.
+      - [x] Faire retourner à `ReadBytesAsync` une `ReadOnlyMemory<byte>` afin qu’une politique ne puisse pas modifier les octets examinés par les suivantes.
+      - [x] Faire réutiliser exactement la même lecture réussie par tous les appels ultérieurs.
+      - [x] Définir et documenter le comportement d’une première lecture annulée ou en erreur afin de ne pas relancer silencieusement une seconde lecture différente dans le même contexte.
+      - [x] Adapter chaque politique à `ReadOnlyMemory<byte>` en utilisant `Span` ou une copie uniquement lorsque son API l’exige réellement.
     - [ ] Mise en forme
       - [ ] Conserver les propriétés, signatures et expressions courtes sur une seule ligne lorsqu’elles tiennent lisiblement.
     - [ ] Documentation XML et encodage
