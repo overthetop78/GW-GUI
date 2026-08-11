@@ -2401,12 +2401,12 @@
       - [x] Extraire le traitement des marques de données non appariées dans une méthode nommée.
       - [x] Remplacer les descriptions textuelles brutes des adresses, données, checksums et prologues non appariés par le constructeur commun recevant les valeurs variables.
       - [x] Utiliser le calcul de confiance commun avec les pondérations de ce décodeur.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Présenter la table de symboles sur plusieurs lignes structurées jusqu'à sa suppression au profit de la table commune.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
-      - [ ] Ajouter la CSDoc française aux composants IWM GCR communs créés.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Présenter la table de symboles sur plusieurs lignes structurées jusqu'à sa suppression au profit de la table commune.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
+      - [x] Ajouter la CSDoc française aux composants IWM GCR communs créés.
     - [ ] Vérification du groupe Apple IWM GCR
       - [ ] Tester la lecture d'une adresse avec son cylindre, sa face, son secteur et son octet de format.
       - [ ] Tester le décodage 6-and-2 d'un bloc contenant les douze octets de tags et les 512 octets de données.

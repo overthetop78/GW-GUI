@@ -3,13 +3,21 @@ namespace GWGUI.MediaEngine.Decoding.Definitions;
 /// <summary>Regroupe les définitions techniques du format Apple IWM GCR commun à Macintosh et Lisa FileWare.</summary>
 internal static class AppleIwmGcrFormat
 {
+    /// <summary>Nom utilisé dans les descriptions de structures IWM.</summary>
     public const string StructureDescriptionName = "Apple Macintosh";
+    /// <summary>Nom du contrôle de checksum des données.</summary>
     public const string ChecksumLabel = "checksum";
+    /// <summary>Nom du contrôle de checksum des adresses.</summary>
     public const string AddressChecksumLabel = "address checksum";
+    /// <summary>Nom du contrôle de checksum associé aux données.</summary>
     public const string DataChecksumLabel = "data checksum";
+    /// <summary>Description utilisée lorsque le checksum est indisponible.</summary>
     public const string UnavailableChecksumVariant = "checksum unavailable";
+    /// <summary>Description d'une marque de données non appariée.</summary>
     public const string UnpairedDataVariant = "data prologue";
+    /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>
     public const int ConfidenceSectorWeight = 2;
+    /// <summary>Diviseur du calcul de confiance IWM.</summary>
     public const double ConfidenceDivisor = 24;
     /// <summary>Identifiant technique de la spécialisation Macintosh.</summary>
     public const string MacintoshCodecId = FluxCodecIds.AppleMacGcr;
@@ -41,6 +49,7 @@ internal static class AppleIwmGcrFormat
     public const int MarkByteCount = 3;
     /// <summary>Définit marque bit nombre utilisé par ce format.</summary>
     public const int MarkBitCount = MarkByteCount * Primitives.BitPrimitives.BitsPerByte;
+    /// <summary>Nombre de bits à avancer après une marque tout en laissant la boucle atteindre le bit suivant.</summary>
     public const int MarkAdvanceBitCount = MarkBitCount - 1;
     /// <summary>Définit en-tête symbol nombre utilisé par ce format.</summary>
     public const int HeaderSymbolCount = 5;
