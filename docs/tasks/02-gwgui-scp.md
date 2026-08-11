@@ -1896,10 +1896,10 @@
     - [x] Vérifier que chaque encodeur enregistré expose le nom commun associé à son identifiant.
     - [x] Vérifier qu'aucun identifiant enregistré ne reste sans nom affiché et qu'aucun nom n'est vide.
 - [ ] Définitions utilisées par les décodeurs et encodeurs correspondants
-  - [ ] ISO FM
-    - [ ] Créer `Encoding/Definitions/IsoFmFormat.cs`.
-    - [ ] Sortir de `IsoFmDecoder.cs` et `IsoFmTrackEncoder.cs` les marques d’adresse et de données, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
-    - [ ] Remplacer dans les deux fichiers toutes les valeurs brutes correspondantes par `IsoFmFormat`.
+  - [x] ISO FM
+    - [x] Créer `Encoding/Definitions/IsoFmFormat.cs`.
+    - [x] Sortir de `IsoFmDecoder.cs` et `IsoFmTrackEncoder.cs` les marques d’adresse et de données, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
+    - [x] Remplacer dans les deux fichiers toutes les valeurs brutes correspondantes par `IsoFmFormat`.
   - [ ] ISO MFM
     - [ ] Créer `Encoding/Definitions/IsoMfmFormat.cs`.
     - [ ] Sortir de `IsoMfmDecoder.cs` et `IsoMfmTrackEncoder.cs` les octets de synchronisation A1, les marques, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
