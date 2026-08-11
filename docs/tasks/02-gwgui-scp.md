@@ -2131,8 +2131,8 @@
     - [x] Ajouter la documentation XML française de `FluxDecoderRegistry`, `FluxDecoderScoring` et `FluxDecoderRegistryExceptions`.
     - [x] Ajouter la documentation XML des méthodes `DecodeAutomatic, Decode, AutomaticScore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/IFluxDecoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IFluxDecoder`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IFluxDecoder`.
 
 - [ ] Compléments issus de la relecture complète du décodage
   - [ ] `Decoding/FluxDecoderRegistry.cs`
