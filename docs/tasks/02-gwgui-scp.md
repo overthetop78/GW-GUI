@@ -141,7 +141,7 @@
     - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une plage, d’un offset, d’une signature de piste et de données de flux tronqués ou incohérents.
     - [x] Vérifier que ces tests locaux atteignent leurs assertions sans corpus SCP externe.
 
-- [ ] Compléments issus de la relecture complète du conteneur SCP
+- [x] Compléments issus de la relecture complète du conteneur SCP
   - [x] `Containers/Scp/ScpFormatConstants.cs`
     - [x] Ajouter une définition commune pour le calcul et la validation du checksum SCP utilisée par le Reader et les tests.
     - [x] Ajouter une fonction nommée convertissant un numéro de piste SCP en cylindre et tête.
@@ -326,16 +326,16 @@
     - [x] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
     - [x] Utiliser les calculs de piste et checksum communs du conteneur SCP.
     - [x] Tester l'absence de piste, plusieurs révolutions, les deux têtes et un checksum invalide.
-  - [ ] `Containers/Scp/ScpSection.cs`
+  - [x] `Containers/Scp/ScpSection.cs`
     - [x] Création de l'identifiant de section
       - [x] Créer `Containers/Scp/ScpSection.cs` pour identifier sans texte brut chaque section dont les limites sont validées.
       - [x] Définir les valeurs `Header`, `TrackOffsetTable`, `TrackHeader` et `RevolutionFlux` utilisées par `ScpReader`, `ScpRevolutionReader` et `ScpExceptions`.
     - [x] Raccordements
       - [x] Remplacer les noms de sections transmis en texte brut par les valeurs de `ScpSection`.
       - [x] Centraliser dans `ScpExceptions` la conversion d'une valeur de `ScpSection` en description d'erreur avec piste et révolution injectables.
-    - [ ] Documentation XML française
+    - [x] Documentation XML française
       - [x] Documenter en français l'enum et chacune de ses valeurs.
-      - [ ] Remettre sur une seule ligne la documentation XML courte du type `ScpSection`.
+      - [x] Remettre sur une seule ligne la documentation XML courte du type `ScpSection`.
     - [x] Tests ciblés
       - [x] Vérifier dans les tests des sections SCP tronquées que chaque valeur produit le diagnostic correspondant avec les numéros de piste et de révolution disponibles.
 

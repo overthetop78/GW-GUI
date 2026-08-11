@@ -1,8 +1,6 @@
 namespace GWGUI.MediaEngine.Containers.Scp;
 
-/// <summary>
-/// Identifie les sections SCP dont les limites sont validées pendant la lecture.
-/// </summary>
+/// <summary>Identifie les sections SCP dont les limites sont validées pendant la lecture.</summary>
 public enum ScpSection
 {
     /// <summary>En-tête fixe du conteneur SCP.</summary>
