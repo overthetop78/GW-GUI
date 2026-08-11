@@ -16,6 +16,8 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.Aed6200pMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP dont les intervalles de flux sont décodés en MFM.</param>
+    /// <returns>Résultat contenant les structures, les secteurs, les octets décodés et la durée estimée d'une cellule.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
@@ -57,6 +59,10 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la prochaine marque de données.</summary>
+    /// <param name="stream">Flux binaire MFM à parcourir.</param>
+    /// <param name="start">Offset de départ inclus, exprimé en bits.</param>
+    /// <param name="end">Offset de fin exclu, exprimé en bits.</param>
+    /// <returns>Offset en bits de la première marque trouvée, ou <c>-1</c> si aucune marque complète n'est présente dans l'intervalle.</returns>
     private static int FindDataMark(FluxBitstream stream, int start, int end)
     {
         for (var offset = Math.Max(0, start); offset + 16 <= end; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
@@ -64,6 +70,8 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Détermine le code représentant la taille du secteur.</summary>
+    /// <param name="size">Taille du secteur en octets.</param>
+    /// <returns>Code de taille correspondant à une puissance de deux à partir de 128 octets, ou zéro en l'absence de correspondance.</returns>
     private static byte SizeCode(int size)
     {
         for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
@@ -71,6 +79,10 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
+    /// <param name="stream">Flux binaire MFM source.</param>
+    /// <param name="offset">Offset du premier octet, exprimé en bits.</param>
+    /// <param name="count">Nombre d'octets MFM à décoder.</param>
+    /// <returns>Octets décodés, ou <see langword="null"/> dès qu'un octet MFM est incomplet ou invalide.</returns>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
