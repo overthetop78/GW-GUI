@@ -1306,13 +1306,15 @@
     - [x] Conserver sur une seule ligne les signatures, conditions, appels, records et constructions complètes qui restent lisibles ainsi.
   - [ ] Tests du parsing ImageDisk et de la détection Epson
     - [ ] Utiliser depuis `image_test` une image IMD combinant plusieurs modes, cartes optionnelles et types d’enregistrements dont les résultats sont connus.
-    - [ ] Tester les six modes, les cartes de cylindres et de faces présentes ou absentes et les tailles exponentielles ou explicites.
-    - [ ] Tester chacun des neuf types d’enregistrement et vérifier disponibilité, décompression, contenu et intégrité.
-    - [ ] Vérifier la géométrie, l’ordre, les blocs disponibles, les blocs absents, la capacité et le nombre logique de blocs produits.
-    - [ ] Tester chaque disposition Epson QX-10 prise en charge avec le même détecteur pour IMD et SCP.
-    - [ ] Vérifier le repli vers `DiskImageFormatIds.Imd` pour une disposition non Epson.
-    - [ ] Vérifier le rejet d’une signature, d’un en-tête, d’une carte, d’un code de taille, d’un type d’enregistrement et d’une charge utile tronqués ou invalides.
+      - Dépendance restante : le corpus IMD local couvre les modes 0, 3, 4 et 5 et les types 0, 1, 2 et 5, mais aucune image unique ne combine les six modes, les cartes optionnelles et les neuf types. Les valeurs absentes sont couvertes par des variantes unitaires minimales ; cette action reste non cochée jusqu’à l’ajout d’une image réelle combinée.
+    - [x] Tester les six modes, les cartes de cylindres et de faces présentes ou absentes et les tailles exponentielles ou explicites.
+    - [x] Tester chacun des neuf types d’enregistrement et vérifier disponibilité, décompression, contenu et intégrité.
+    - [x] Vérifier la géométrie, l’ordre, les blocs disponibles, les blocs absents, la capacité et le nombre logique de blocs produits.
+    - [x] Tester chaque disposition Epson QX-10 prise en charge avec le même détecteur pour IMD et SCP.
+    - [x] Vérifier le repli vers `DiskImageFormatIds.Imd` pour une disposition non Epson.
+    - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une carte, d’un code de taille, d’un type d’enregistrement et d’une charge utile tronqués ou invalides.
     - [ ] Vérifier la propagation de l’annulation entre deux pistes.
+      - Vérification restante : la propagation d’un jeton déjà annulé à l’entrée du parcours est testée, mais aucun point de synchronisation ne permet de déclencher déterministement l’annulation exactement entre deux pistes sans modifier le contrat de production. Cette action reste non cochée.
 - [ ] `src/GWGUI.MediaEngine/Images/ISectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `SectorImages/Reading/ISectorImageReader.cs`, car son résultat commun est un `SectorImage` quel que soit le conteneur lu.
