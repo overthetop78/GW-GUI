@@ -2,6 +2,8 @@ using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Recognition.Policies;
 
 namespace GWGUI.Tests;
 
@@ -61,6 +63,31 @@ public sealed class AmstradImageRecognitionTests
         Assert.Equal(CpcDskFormat.FormatId, parsed.FormatId);
         Assert.Equal(DiskImageFormatIds.AmstradPcw, explored.Image.FormatId);
         AssertSameSectorImage(parsed, explored.Image);
+    }
+
+    /// <summary>Vérifie que la lecture complète réutilise le contenu chargé pendant la présélection.</summary>
+    [Fact]
+    public async Task ReadsFromTheRecognitionContextAfterTheFileIsRemoved()
+    {
+        var sourcePath = ImagePath("validated_images/Amstrad/CPC/3 pouces simple face - 180 Kio/007 - A View to a Kill (1985)(Domark).dsk");
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-cpcemu-context-{Guid.NewGuid():N}.dsk");
+        try
+        {
+            File.Copy(sourcePath, path);
+            var context = new DiskImageRecognitionContext(path, null);
+            var policy = new AmstradImageRecognitionPolicy(new CpcDskReader());
+            Assert.True(await policy.CanReadAsync(context, CancellationToken.None));
+            File.Delete(path);
+
+            var image = await policy.ReadAsync(context, CancellationToken.None);
+
+            Assert.Equal(DiskImageFormatIds.AmstradCpc, image.FormatId);
+            Assert.NotEmpty(image.AvailableBlocks);
+        }
+        finally
+        {
+            if (File.Exists(path)) File.Delete(path);
+        }
     }
 
     private static void AssertSameSectorImage(

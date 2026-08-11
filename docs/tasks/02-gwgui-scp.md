@@ -1474,7 +1474,7 @@
       - [x] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
       - [x] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
       - [x] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
-  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
       - [x] Supprimer les imports de `Images.Containers` et `Images.Interpretations` après disparition des anciens types concernés.
@@ -1495,10 +1495,10 @@
     - [x] Documentation XML et encodage
       - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
       - [x] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
-    - [ ] Tests ciblés
-      - [ ] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
-      - [ ] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
-      - [ ] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
+    - [x] Tests ciblés
+      - [x] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
+      - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
+      - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
   - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
     - [ ] Responsabilité et dépendances
       - [ ] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
