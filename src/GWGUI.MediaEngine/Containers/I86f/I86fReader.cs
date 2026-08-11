@@ -55,8 +55,10 @@ public sealed class I86fReader
         var hasExplicitBitCount = hasExtraBitCells && (fileFlags & I86fFileFlags.SpeedShiftMask) == I86fFileFlags.None && fileFlags.HasFlag(I86fFileFlags.SpeedupOrExplicitBitCount);
         var bitCount = hasExplicitBitCount ? BinaryPrimitives.ReadInt32LittleEndian(data.AsSpan(offset + I86fLayout.ExplicitBitCountOffset)) : checked((nextOffset - offset - headerSize) * I86fLayout.BitsPerByte);
         if (bitCount <= 0) throw I86fExceptions.InvalidBitCount(logicalTrack, bitCount);
-        var byteCount = checked(((bitCount + I86fLayout.WordBitAlignment - 1) / I86fLayout.WordBitAlignment) * I86fLayout.BytesPerWord);
-        if (offset + headerSize > data.Length - byteCount) throw I86fExceptions.TruncatedTrack(logicalTrack, offset, nextOffset, byteCount, Math.Max(0, data.Length - offset - headerSize));
+        var byteCountLong = ((long)bitCount + I86fLayout.WordBitAlignment - 1) / I86fLayout.WordBitAlignment * I86fLayout.BytesPerWord;
+        var availableLength = Math.Max(0, data.Length - offset - headerSize);
+        if (byteCountLong > availableLength) throw I86fExceptions.TruncatedTrack(logicalTrack, offset, nextOffset, byteCountLong, availableLength);
+        var byteCount = checked((int)byteCountLong);
 
         var source = data.AsSpan(offset + headerSize, byteCount);
         var reverseBytes = fileFlags.HasFlag(I86fFileFlags.ReverseByteOrder);

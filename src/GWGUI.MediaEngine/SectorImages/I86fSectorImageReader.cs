@@ -28,7 +28,7 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
             cancellationToken.ThrowIfCancellationRequested();
             var revolution = I86fBitCellFluxConverter.Convert(track.Bits);
             if (revolution is null) continue;
-            var decoderId = (track.Flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? FluxDecoderIds.IsoMfm : FluxDecoderIds.IsoFm;
+            var decoderId = DecoderIdFor(track.Flags);
             var decoded = decoders.Decode(decoderId, revolution);
             foreach (var sector in decoded.Sectors ?? [])
             {
@@ -43,4 +43,9 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
         var formatId = measured.SectorSize == 512 ? IbmPcImageReader.FormatIdForGeometry(measured.Cylinders, measured.Heads, measured.SectorsPerTrack, measured.SectorSize) : DiskImageFormatIds.I86fFromGeometry(measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack);
         return IsoSectorImageBuilder.CreateUniform(formatId, candidates, measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1, capacity: (long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
     }
+
+    /// <summary>Sélectionne le décodeur ISO correspondant aux drapeaux d'une piste 86F.</summary>
+    /// <param name="flags">Drapeaux de la piste.</param>
+    /// <returns>L'identifiant du décodeur ISO MFM ou ISO FM.</returns>
+    internal static string DecoderIdFor(I86fTrackFlags flags) => (flags & I86fTrackFlags.EncodingMask) == I86fTrackFlags.MfmEncoding ? FluxDecoderIds.IsoMfm : FluxDecoderIds.IsoFm;
 }

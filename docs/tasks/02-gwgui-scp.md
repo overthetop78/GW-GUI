@@ -1246,13 +1246,14 @@
     - [x] Ordonner les directives `using` après séparation du parser, du convertisseur et du reconstructeur.
   - [ ] Tests du conteneur jusqu’à l’image sectorielle
     - [ ] Utiliser depuis `image_test` une image 86F FM et une image 86F MFM avec table, drapeaux, bits et secteurs attendus connus.
-    - [ ] Tester séparément la signature, une face et deux faces, les entrées de table absentes, les deux tailles d’en-tête et le nombre explicite ou déduit de bits.
-    - [ ] Tester l’ordre normal et inversé des octets dans les mots de piste.
-    - [ ] Vérifier la conversion exacte des bits en intervalles de 40 ticks et l’absence de révolution lorsque aucune transition n’est présente.
-    - [ ] Vérifier le choix des décodeurs FM et MFM, les secteurs candidats, leur sélection par intégrité et la géométrie finale.
-    - [ ] Vérifier l’identifiant IBM pour 512 octets et l’identifiant de repli 86F pour une autre taille sectorielle.
-    - [ ] Vérifier le rejet d’une signature, d’une table, d’un offset, d’un nombre de bits ou d’une piste tronqués ou invalides.
-    - [ ] Vérifier la propagation de l’annulation pendant le parcours des pistes.
+      - Dépendance restante : les quatre images 86F disponibles dans `image_test` sont MFM. Aucune image 86F FM exploitable n’a été trouvée localement ou dans les résultats publics consultés, et l’export direct par l’installation 86Box locale nécessite une machine configurée avec une image FM source. L’image MFM réelle est testée ; cette action reste non cochée jusqu’à l’ajout d’une image FM réelle.
+    - [x] Tester séparément la signature, une face et deux faces, les entrées de table absentes, les deux tailles d’en-tête et le nombre explicite ou déduit de bits.
+    - [x] Tester l’ordre normal et inversé des octets dans les mots de piste.
+    - [x] Vérifier la conversion exacte des bits en intervalles de 40 ticks et l’absence de révolution lorsque aucune transition n’est présente.
+    - [x] Vérifier le choix des décodeurs FM et MFM, les secteurs candidats, leur sélection par intégrité et la géométrie finale.
+    - [x] Vérifier l’identifiant IBM pour 512 octets et l’identifiant de repli 86F pour une autre taille sectorielle.
+    - [x] Vérifier le rejet d’une signature, d’une table, d’un offset, d’un nombre de bits ou d’une piste tronqués ou invalides.
+    - [x] Vérifier la propagation de l’annulation pendant le parcours des pistes.
 - [ ] `src/GWGUI.MediaEngine/Images/ImdImageReader.cs`
   - [ ] Déplacement du Reader ImageDisk
     - [ ] Renommer le type en `ImdReader` et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
