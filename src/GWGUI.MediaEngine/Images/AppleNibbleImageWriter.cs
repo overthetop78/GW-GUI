@@ -2,6 +2,7 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding.BitPacking;
 using GWGUI.MediaEngine.Primitives;
@@ -78,11 +79,11 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         for (var cylinder = 0; cylinder < image.Cylinders; cylinder++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var sectors = new List<TrackSector>(6);
-            for (var sector = 0; sector < 6; sector++)
+            var sectors = new List<TrackSector>(AppleRwts18Format.SectorCount);
+            for (var sector = 0; sector < AppleRwts18Format.SectorCount; sector++)
             {
-                var logical = cylinder * 6 + sector;
-                if (!image.TryGetBlock(logical, out var block) || block.Data.Count != 768)
+                var logical = cylinder * AppleRwts18Format.SectorCount + sector;
+                if (!image.TryGetBlock(logical, out var block) || block.Data.Count != AppleRwts18Format.SectorByteCount)
                     throw new InvalidDataException($"RWTS18 track {cylinder} sector {sector} is missing or invalid.");
                 sectors.Add(new(sector, block.Data));
             }

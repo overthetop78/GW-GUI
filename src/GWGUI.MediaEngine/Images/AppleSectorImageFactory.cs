@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -77,17 +78,17 @@ internal static class AppleSectorImageFactory
     public static SectorImage CreateRwts18FromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
     {
         var blocks = decodedTracks.SelectMany(item => item.Sectors
-                .Where(sector => sector.Data is { Count: 768 } && sector.Number is >= 0 and < 6)
+                .Where(sector => sector.Data is { Count: AppleRwts18Format.SectorByteCount } && sector.Number is >= 0 and < AppleRwts18Format.SectorCount)
                 .Select(sector => (item.Track, Sector: sector)))
             .GroupBy(item => (item.Track, item.Sector.Number))
             .Select(group => group.OrderByDescending(item => item.Sector.IntegrityValid == true).First())
-            .Select(item => new SectorBlock(item.Track * 6 + item.Sector.Number,
+            .Select(item => new SectorBlock(item.Track * AppleRwts18Format.SectorCount + item.Sector.Number,
                 new(item.Track, 0, item.Sector.Number), item.Sector.Data!.ToArray(), item.Sector.IntegrityValid))
             .ToArray();
         if (blocks.Length == 0)
             throw new InvalidDataException("No Apple II RWTS18 sectors could be decoded.");
         var trackCount = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
-        return new(DiskImageFormatIds.AppleIIRwts18, 768, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 6, blocks);
+        return new(DiskImageFormatIds.AppleIIRwts18, AppleRwts18Format.SectorByteCount, trackCount, DiskGeometryConstants.SingleSidedHeadCount, AppleRwts18Format.SectorCount, blocks);
     }
 
     private static byte[] ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)

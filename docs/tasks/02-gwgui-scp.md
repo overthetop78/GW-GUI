@@ -1914,10 +1914,10 @@
     - [x] Déplacer la table 6-and-2, les marques d’adresse et de données, les tailles de tags, secteurs, champs et checksums communes à `AppleMacGcrDecoder.cs` et `AppleMacGcrTrackEncoder.cs`.
     - [x] Placer les valeurs propres à Lisa FileWare, dont le format `0x12`, dans `AppleLisaFileWareGcrFormat.cs`.
     - [x] Remplacer toutes les valeurs brutes correspondantes dans les deux décodeurs et les deux encodeurs.
-  - [ ] Apple RWTS18
-    - [ ] Créer `Encoding/Definitions/AppleRwts18Format.cs`.
-    - [ ] Déplacer la table de nibbles, les marques, les six secteurs, les tailles `768` et `1024`, les gaps et l’identifiant par défaut actuellement dupliqués.
-    - [ ] Remplacer les valeurs brutes dans `AppleRwts18Decoder.cs`, `AppleRwts18TrackEncoder.cs`, `NibTrackImageReader.cs`, `AppleNibbleImageWriter.cs` et `AppleRwts18ConversionService.cs`.
+  - [x] Apple RWTS18
+    - [x] Créer `Encoding/Definitions/AppleRwts18Format.cs`.
+    - [x] Déplacer la table de nibbles, les marques, les six secteurs, les tailles `768` et `1024`, les gaps et l’identifiant par défaut actuellement dupliqués.
+    - [x] Remplacer les valeurs brutes dans `AppleRwts18Decoder.cs`, `AppleRwts18TrackEncoder.cs`, `AppleDiskImageReader.cs`, `AppleSectorImageFactory.cs`, `AppleNibbleImageWriter.cs` et `AppleRwts18ConversionService.cs`.
   - [ ] Amiga MFM
     - [ ] Créer `Encoding/Definitions/AmigaMfmFormat.cs`.
     - [ ] Sortir les mots de synchronisation, tailles d’en-tête et de données, disposition odd/even, gaps, parités et tailles sectorielles de `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs`.
