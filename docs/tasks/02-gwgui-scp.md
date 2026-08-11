@@ -1437,9 +1437,9 @@
       - [x] Produire une erreur d’absence de candidat lorsqu’aucune politique n’a retourné `true`.
       - [x] Produire une erreur distincte contenant tous les `DiskImageRecognitionFailure` lorsque chaque politique présélectionnée a rejeté le contenu.
       - [x] Conserver dans ces erreurs le chemin, l’extension et le format explicitement demandé disponibles dans le contexte.
-    - [ ] Mise en forme
-      - [ ] Supprimer le commentaire devenu inutile dans le `catch` après l’enregistrement explicite du rejet.
-      - [ ] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.
+    - [x] Mise en forme
+      - [x] Supprimer le commentaire devenu inutile dans le `catch` après l’enregistrement explicite du rejet.
+      - [x] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.
     - [ ] Documentation XML et encodage
       - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du registre, de son champ, de son constructeur et de `ReadAsync`.
       - [ ] Documenter en français `DiskImageRecognitionFailure` et ses deux données.
