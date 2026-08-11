@@ -1638,7 +1638,7 @@
       - [x] Séparer les deux propriétés actuellement placées sur la même ligne.
       - [x] Conserver sur une seule ligne le constructeur primaire et les expressions complètes qui tiennent lisiblement.
       - [x] Documenter en français le type, son constructeur, `Bits`, `BitCellTicks` et `WithCircularTail`.
-  - [ ] `Representations/Flux/FluxDecodingParameters.cs`
+  - [x] `Representations/Flux/FluxDecodingParameters.cs`
     - [x] Limites de reconstruction
       - [x] Créer le fichier et y définir la durée minimale d'une cellule à un tick.
       - [x] Y définir le maximum de 32 cellules utilisé par la reconstruction FM/MFM avec PLL ou adaptation simple.
