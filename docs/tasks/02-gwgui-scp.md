@@ -1850,7 +1850,7 @@
   - [x] Mise en forme
     - [x] Remettre la déclaration complète du record `SectorBlock` sur une seule ligne.
 
-- [ ] Compléments issus de la relecture complète des modèles et primitives
+- [x] Compléments issus de la relecture complète des modèles et primitives
   - [x] `SectorImages/SectorImage.cs`
     - [x] Valider le format, la taille de bloc, les cylindres, les têtes, les secteurs par piste, la capacité et le nombre logique de blocs reçus.
     - [x] Refuser deux blocs portant le même numéro logique.
