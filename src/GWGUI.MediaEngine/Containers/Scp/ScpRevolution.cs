@@ -11,11 +11,17 @@ public sealed record ScpRevolution
     /// <param name="declaredFluxCount">Nombre de mots de flux déclaré dans le descripteur SCP ; il peut différer du nombre d'intervalles après fusion des marqueurs de dépassement.</param>
     /// <param name="fluxIntervals">Intervalles entre transitions magnétiques, exprimés en pas temporels SCP.</param>
     /// <exception cref="ArgumentNullException"><paramref name="fluxIntervals"/> est nul.</exception>
-    public ScpRevolution(uint indexTimeTicks, uint declaredFluxCount, IReadOnlyList<uint> fluxIntervals)
+    public ScpRevolution(uint indexTimeTicks, uint declaredFluxCount, IReadOnlyList<uint> fluxIntervals) : this(new FluxRevolution(indexTimeTicks, fluxIntervals), declaredFluxCount) { }
+
+    /// <summary>Initialise une révolution SCP depuis une révolution générique sans recopier ses intervalles.</summary>
+    /// <param name="flux">Révolution générique à raccorder.</param>
+    /// <param name="declaredFluxCount">Nombre de mots de flux déclaré dans le descripteur SCP.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="flux"/> est nul.</exception>
+    public ScpRevolution(FluxRevolution flux, uint declaredFluxCount)
     {
-        ArgumentNullException.ThrowIfNull(fluxIntervals);
+        ArgumentNullException.ThrowIfNull(flux);
         DeclaredFluxCount = declaredFluxCount;
-        Flux = new FluxRevolution(indexTimeTicks, fluxIntervals);
+        Flux = flux;
     }
 
     /// <summary>Obtient la durée déclarée de la révolution, exprimée en pas temporels SCP.</summary>

@@ -2244,12 +2244,12 @@
       - [x] Conserver chaque propriété et la signature de `Decode` sur sa propre ligne.
       - [x] Ajouter la CSDoc française au type `IFluxDecoder`, à `Id`, à `DisplayName` et à `Decode`.
       - [x] Ajouter la CSDoc française à `FluxRevolution`, à son constructeur et à chacune de ses propriétés.
-    - [ ] Vérification du contrat
-      - [ ] Tester que la création d'une `FluxRevolution` copie les intervalles reçus et expose une collection non modifiable.
-      - [ ] Tester le raccordement d'une révolution SCP vers la même durée d'index et les mêmes intervalles génériques.
-      - [ ] Tester qu'un décodeur reçoit et traite une `FluxRevolution` sans référence au namespace `Containers.Scp`.
-      - [ ] Tester une révolution vide et un aller-retour encodeur/décodeur avec le modèle générique.
-      - [ ] Vérifier qu'aucun fichier de `Decoding` ne dépend encore de `Containers.Scp` après migration du contrat.
+    - [x] Vérification du contrat
+      - [x] Tester que la création d'une `FluxRevolution` copie les intervalles reçus et expose une collection non modifiable.
+      - [x] Tester le raccordement d'une révolution SCP vers la même durée d'index et les mêmes intervalles génériques.
+      - [x] Tester qu'un décodeur reçoit et traite une `FluxRevolution` sans référence au namespace `Containers.Scp`.
+      - [x] Tester une révolution vide et un aller-retour encodeur/décodeur avec le modèle générique.
+      - [x] Vérifier qu'aucun fichier de `Decoding` ne dépend encore de `Containers.Scp` après migration du contrat.
   - [ ] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.

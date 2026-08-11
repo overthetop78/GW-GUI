@@ -89,7 +89,7 @@ public sealed class AppleDiskImageTests
         var encoded = new FluxEncoderRegistry().Encode("apple2.gcr",
             new TrackEncodeRequest(0, 0, sectors, Attributes: new Dictionary<string, int> { ["sectorsPerTrack"] = 13 }));
         var scp = new ScpImage(new(0, 0, 1, 0, 0, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0),
-            [new ScpTrack(0, 0, 0, [encoded.Revolution])], true, 0);
+            [new ScpTrack(0, 0, 0, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)])], true, 0);
 
         var image = await new AppleScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry()).ReadAsync("memory.scp");
 
@@ -107,7 +107,7 @@ public sealed class AppleDiskImageTests
             .ToArray();
         var encoded = new FluxEncoderRegistry().Encode("apple2.rwts18", new TrackEncodeRequest(4, 0, sectors));
         var scp = new ScpImage(new(0, 0, 1, 0, 0, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0),
-            [new ScpTrack(8, 4, 0, [encoded.Revolution])], true, 0);
+            [new ScpTrack(8, 4, 0, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)])], true, 0);
 
         var image = await new AppleScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry())
             .ReadAsync("memory.scp", "apple2.rwts18");

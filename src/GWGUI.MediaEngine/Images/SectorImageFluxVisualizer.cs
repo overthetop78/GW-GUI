@@ -31,7 +31,7 @@ public sealed class SectorImageFluxVisualizer(FluxEncoderRegistry? encoders = nu
                     policy.TrackAttributes(image, sectors.Count),
                     policy.BitCellTicks(image, group.Key.Cylinder)));
             var trackNumber = checked((byte)(group.Key.Cylinder * 2 + group.Key.Head));
-            tracks.Add(new(trackNumber, group.Key.Cylinder, group.Key.Head, [encoded.Revolution]));
+            tracks.Add(new(trackNumber, group.Key.Cylinder, group.Key.Head, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)]));
         }
         if (tracks.Count == 0)
             throw new InvalidDataException("The sector image contains no track that can be visualized.");

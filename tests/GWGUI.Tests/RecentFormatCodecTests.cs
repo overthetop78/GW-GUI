@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -20,7 +21,7 @@ public sealed class RecentFormatCodecTests
         data[2][0] = 1; data[2][1] = 2; data[2][2] = 3;
         var sectors = data.Select((bytes, number) => new TrackSector(number, bytes)).ToArray();
         var revolution = new FluxEncoderRegistry().Encode("iso.fm", new TrackEncodeRequest(0, 0, sectors)).Revolution;
-        var decoded = new FluxDecoderRegistry().Decode("iso.fm", revolution.Flux);
+        var decoded = new FluxDecoderRegistry().Decode("iso.fm", revolution);
         Assert.NotNull(decoded.Sectors);
         Assert.NotEmpty(decoded.Sectors);
         var image = await new BbcScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry())
@@ -47,9 +48,9 @@ public sealed class RecentFormatCodecTests
         Assert.True(block.IntegrityValid);
     }
 
-    private static IScpReader Fake(int cylinder, int head, ScpRevolution revolution) => new FakeReader(new ScpImage(
+    private static IScpReader Fake(int cylinder, int head, FluxRevolution revolution) => new FakeReader(new ScpImage(
         new ScpHeader(0, 0, 1, (byte)(cylinder * 2 + head), (byte)(cylinder * 2 + head), ScpFlags.None, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Both, 0, 0),
-        [new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, [revolution])], true, 0));
+        [new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, [new ScpRevolution(revolution, (uint)revolution.FluxIntervals.Count)])], true, 0));
 
     private sealed class FakeReader(ScpImage image) : IScpReader
     {

@@ -283,7 +283,7 @@ public sealed class DiskImageExplorerTests
         var sectors = Enumerable.Range(0, 11).Select(number => new TrackSector(number, Enumerable.Repeat((byte)(number + 1), 512).ToArray())).ToArray();
         var encoded = new FluxEncoderRegistry().Encode("amiga.mfm", new TrackEncodeRequest(0, 0, sectors));
         var scp = new ScpImage(new(0, 0, 1, 0, 0, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0),
-            [new ScpTrack(0, 0, 0, [encoded.Revolution])], true, 0);
+            [new ScpTrack(0, 0, 0, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)])], true, 0);
         var reader = new AmigaScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry());
         var image = await reader.ReadAsync("memory.scp");
 
