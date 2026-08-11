@@ -3053,7 +3053,7 @@ public sealed class CoreTests
         var strongIntervals = BitsToIntervals(prologues, 40);
         var strong = new ScpRevolution(8_000_000, (uint)strongIntervals.Count, strongIntervals);
         var best = new FluxDecoderRegistry().DecodeBest([weak, strong], "apple2.gcr");
-        Assert.NotNull(best); Assert.Equal(1, best.Value.RevolutionIndex); Assert.Equal("apple2.gcr", best.Value.Result.DecoderId);
+        Assert.NotNull(best); Assert.Equal(1, best.RevolutionIndex); Assert.Equal("apple2.gcr", best.Result.DecoderId);
     }
 
     [Fact]

@@ -2179,16 +2179,16 @@
       - [x] Ajouter la CSDoc française au registre, à ses constructeurs, à ses propriétés et à chaque méthode.
       - [x] Ajouter la CSDoc française au catalogue, au composant de score, au modèle de résultat par révolution et aux erreurs dédiées.
       - [x] Documenter la comparaison des identifiants, les règles de cache, les règles d'égalité et les unités des scores.
-    - [ ] Vérification du registre
-      - [ ] Tester une collection nulle, vide, contenant un élément nul, un identifiant vide et un doublon.
-      - [ ] Tester la résolution de chaque identifiant du catalogue et l'erreur dédiée d'un identifiant absent.
-      - [ ] Tester que la collection `Decoders` exposée ne peut pas être modifiée.
-      - [ ] Tester qu'un décodeur n'est exécuté qu'une fois pour le même identifiant et la même instance de révolution.
-      - [ ] Tester qu'une autre révolution ou un autre identifiant produit une entrée de cache distincte.
-      - [ ] Tester deux accès concurrents au même résultat différé.
-      - [ ] Tester chaque branche du score : secteurs valides, secteurs indéterminés, secteurs invalides, flux brut, structures seules et résultat vide.
-      - [ ] Tester les départages par confiance, nombre de structures et ordre du catalogue.
-      - [ ] Tester `DecodeBest` avec aucune révolution, un décodeur explicite et la sélection automatique sur plusieurs révolutions.
+    - [x] Vérification du registre
+      - [x] Tester une collection nulle, vide, contenant un élément nul, un identifiant vide et un doublon.
+      - [x] Tester la résolution de chaque identifiant du catalogue et l'erreur dédiée d'un identifiant absent.
+      - [x] Tester que la collection `Decoders` exposée ne peut pas être modifiée.
+      - [x] Tester qu'un décodeur n'est exécuté qu'une fois pour le même identifiant et la même instance de révolution.
+      - [x] Tester qu'une autre révolution ou un autre identifiant produit une entrée de cache distincte.
+      - [x] Tester deux accès concurrents au même résultat différé.
+      - [x] Tester chaque branche du score : secteurs valides, secteurs indéterminés, secteurs invalides, flux brut, structures seules et résultat vide.
+      - [x] Tester les départages par confiance, nombre de structures et ordre du catalogue.
+      - [x] Tester `DecodeBest` avec aucune révolution, un décodeur explicite et la sélection automatique sur plusieurs révolutions.
   - [ ] `Decoding/FluxDecodeModels.cs`
     - [ ] Séparation des types
       - [ ] Créer `Decoding/FluxStructureKind.cs` et y déplacer uniquement l'enum `FluxStructureKind`.

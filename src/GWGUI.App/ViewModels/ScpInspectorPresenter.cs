@@ -20,7 +20,7 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
             Localize("Visual.SectorDetail", sector.Cylinder, sector.Head, sector.Number, sector.SizeBytes, Localize("Visual.Integrity." + sector.IntegrityKind),
                 Localize(sector.IntegrityValid is null ? "Visual.IntegrityUnavailable" : sector.IntegrityValid.Value ? "Visual.CrcValid" : "Visual.CrcInvalid"))).ToArray() : [];
         return new(track.Head, track.Cylinder, track.TrackNumber, revolutions,
-            decoded is null ? null : new ScpDecodeInfo(Localize("Visual.DecoderName." + decoded.DecoderId), decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count, best!.Value.RevolutionIndex + 1),
+            decoded is null ? null : new ScpDecodeInfo(Localize("Visual.DecoderName." + decoded.DecoderId), decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count, best!.RevolutionIndex + 1),
             structures, sectors);
     }
 
@@ -36,7 +36,7 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
             Localize("Visual.SectorDetail", sector.Cylinder, sector.Head, sector.Number, sector.SizeBytes, Localize("Visual.Integrity." + sector.IntegrityKind),
                 Localize(sector.IntegrityValid is null ? "Visual.IntegrityUnavailable" : sector.IntegrityValid.Value ? "Visual.CrcValid" : "Visual.CrcInvalid"))));
         var analysis = decoded is null ? "" : "\n\n" + Localize("Visual.Analysis", Localize("Visual.DecoderName." + decoded.DecoderId), decoded.Confidence, decoded.EstimatedBitCellTicks, decoded.Structures.Count)
-            + $"\n{Localize("Visual.AnalysedRevolution", best!.Value.RevolutionIndex + 1)}"
+            + $"\n{Localize("Visual.AnalysedRevolution", best!.RevolutionIndex + 1)}"
             + (details.Length > 0 ? $"\n\n{details}" : "") + (sectors.Length > 0 ? $"\n\n{sectors}" : "");
         return Localize("Visual.Track", track.Head, track.Cylinder, track.TrackNumber) + $"\n\n{revolutions}{analysis}";
     }

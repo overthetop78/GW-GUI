@@ -299,8 +299,8 @@ public sealed class SkiaScpRenderer : IScpRenderer
         FluxDecodeResult? decodedResult = null;
         if (best is not null)
         {
-            var decodedRevolution = track.Revolutions[best.Value.RevolutionIndex];
-            var decoded = best.Value.Result;
+            var decodedRevolution = track.Revolutions[best.RevolutionIndex];
+            var decoded = best.Result;
             decodedResult = decoded;
             if (decoded.EstimatedBitCellTicks > 0)
             {

@@ -144,9 +144,9 @@ public sealed class RealScpCorpusTests
             {
                 var decoded = decoders.DecodeBest(track.Revolutions);
                 Assert.NotNull(decoded);
-                Assert.StartsWith(entry.DecoderPrefix, decoded.Value.Result.DecoderId);
-                Assert.True(decoded.Value.Result.EstimatedBitCellTicks > 0);
-                Assert.NotEmpty(decoded.Value.Result.Structures);
+                Assert.StartsWith(entry.DecoderPrefix, decoded.Result.DecoderId);
+                Assert.True(decoded.Result.EstimatedBitCellTicks > 0);
+                Assert.NotEmpty(decoded.Result.Structures);
             }
         }
     }
