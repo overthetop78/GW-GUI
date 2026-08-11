@@ -826,23 +826,23 @@
     - [x] Documenter la longueur totale observée, la longueur d’une piste en octets et la condition de multiple positif.
   - [x] Test ciblé
     - [x] Vérifier par le Reader Apple qu’une longueur NIB invalide produit l’erreur avec la longueur totale et la longueur de piste injectées.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackFormat.cs`
-  - [ ] Déplacement vers le format propriétaire
-    - [ ] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibLayout.cs`, à côté du futur `NibReader` et du futur `NibWriter`.
-    - [ ] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter `NibTrackImageReader`, `NibWriter`, `WozLayout`, `WozReader` et leurs tests.
-    - [ ] Renommer `TrackLength` en `TrackLengthBytes` afin d’inscrire son unité dans son nom.
-  - [ ] Suppression de la définition commune recopiée
-    - [ ] Remplacer chaque utilisation de `NibTrackFormat.BitsPerByte` par `BitPrimitives.BitsPerByte`.
-    - [ ] Supprimer `BitsPerByte` du layout NIB après raccordement de tous ses consommateurs.
-    - [ ] Conserver uniquement la longueur fixe d’une piste NIB dans `NibLayout` ; ne pas y déplacer les longueurs ou limites propres aux chunks WOZ.
-  - [ ] Mise en forme
-    - [ ] Conserver chaque constante et déclaration courte sur une seule ligne.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de la longueur de piste.
-    - [ ] Documenter explicitement que `TrackLengthBytes` vaut `6 656` octets par piste NIB.
-  - [ ] Tests ciblés
-    - [ ] Vérifier que le Reader NIB découpe toujours une image en pistes exactes de `6 656` octets après le déplacement.
-    - [ ] Vérifier que le Writer NIB et les pistes WOZ1 utilisent la même longueur sans recopier sa valeur.
+- [x] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackFormat.cs`
+  - [x] Déplacement vers le format propriétaire
+    - [x] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibLayout.cs`, à côté du futur `NibReader` et du futur `NibWriter`.
+    - [x] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter `NibTrackImageReader`, `NibWriter`, `WozLayout`, `WozReader` et leurs tests.
+    - [x] Renommer `TrackLength` en `TrackLengthBytes` afin d’inscrire son unité dans son nom.
+  - [x] Suppression de la définition commune recopiée
+    - [x] Remplacer chaque utilisation de `NibTrackFormat.BitsPerByte` par `BitPrimitives.BitsPerByte`.
+    - [x] Supprimer `BitsPerByte` du layout NIB après raccordement de tous ses consommateurs.
+    - [x] Conserver uniquement la longueur fixe d’une piste NIB dans `NibLayout` ; ne pas y déplacer les longueurs ou limites propres aux chunks WOZ.
+  - [x] Mise en forme
+    - [x] Conserver chaque constante et déclaration courte sur une seule ligne.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type et de la longueur de piste.
+    - [x] Documenter explicitement que `TrackLengthBytes` vaut `6 656` octets par piste NIB.
+  - [x] Tests ciblés
+    - [x] Vérifier que le Reader NIB découpe toujours une image en pistes exactes de `6 656` octets après le déplacement.
+    - [x] Vérifier que le Writer NIB et les pistes WOZ1 utilisent la même longueur sans recopier sa valeur.
 - [ ] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackImageReader.cs`
   - [ ] Déplacement du Reader NIB
     - [ ] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibReader.cs`.

@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Recognition.Apple;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 
 namespace GWGUI.MediaEngine.Containers.Apple.Woz;
 
@@ -42,7 +42,7 @@ internal static class WozLayout
     /// <summary>Valeur TMAP indiquant qu’aucun descripteur n’est associé.</summary>
     public const byte MissingTrackDescriptor = 0xff;
     /// <summary>Taille fixe, en octets, d’une entrée de piste WOZ1.</summary>
-    public const int Woz1TrackEntryLength = NibTrackFormat.TrackLength;
+    public const int Woz1TrackEntryLength = NibLayout.TrackLengthBytes;
     /// <summary>Position du nombre de bits dans une entrée de piste WOZ1.</summary>
     public const int Woz1BitCountOffset = 6648;
     /// <summary>Longueur du champ de nombre de bits WOZ1.</summary>

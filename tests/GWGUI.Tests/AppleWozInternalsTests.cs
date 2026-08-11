@@ -1,4 +1,5 @@
 using System.Text;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding;
@@ -76,12 +77,12 @@ public sealed class AppleWozInternalsTests
     /// <summary>Crée en mémoire le nombre demandé de pistes NIB RWTS18 à partir de l'encodeur du moteur.</summary>
     private static byte[] CreateRwts18Nib(int trackCount)
     {
-        var result = new byte[trackCount * NibTrackFormat.TrackLength];
+        var result = new byte[trackCount * NibLayout.TrackLengthBytes];
         for (var track = 0; track < trackCount; track++)
         {
             var sectors = Enumerable.Range(0, 6).Select(number => new TrackSector(number, Enumerable.Repeat((byte)(track + number), AppleTrackSelectionRules.Rwts18SectorSize).ToArray())).ToArray();
             var bits = new AppleRwts18TrackEncoder().Encode(new(track, 0, sectors)).Bits;
-            var destination = result.AsSpan(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength);
+            var destination = result.AsSpan(track * NibLayout.TrackLengthBytes, NibLayout.TrackLengthBytes);
             for (var bit = 0; bit < bits.Count; bit++) if (bits[bit]) destination[bit / 8] |= (byte)(1 << (7 - bit % 8));
         }
         return result;

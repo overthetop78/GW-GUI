@@ -1,8 +1,9 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Recognition.Apple;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -22,17 +23,17 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
 
     public async Task WriteNibAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
-        var tracks = EncodeTracks(image, WozLayout.Woz1BitCountOffset * NibTrackFormat.BitsPerByte, cancellationToken);
-        var output = new byte[tracks.Count * NibTrackFormat.TrackLength];
+        var tracks = EncodeTracks(image, WozLayout.Woz1BitCountOffset * BitPrimitives.BitsPerByte, cancellationToken);
+        var output = new byte[tracks.Count * NibLayout.TrackLengthBytes];
         Array.Fill(output, (byte)0xff);
         for (var track = 0; track < tracks.Count; track++)
-            PackBits(tracks[track], output.AsSpan(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength));
+            PackBits(tracks[track], output.AsSpan(track * NibLayout.TrackLengthBytes, NibLayout.TrackLengthBytes));
         await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
     }
 
     public async Task WriteWozAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
-        var tracks = EncodeTracks(image, WozLayout.Woz1BitCountOffset * NibTrackFormat.BitsPerByte, cancellationToken);
+        var tracks = EncodeTracks(image, WozLayout.Woz1BitCountOffset * BitPrimitives.BitsPerByte, cancellationToken);
         using var stream = new MemoryStream();
         stream.Write(WozFormat.Version1Signature);
         stream.Write(WozFormat.HeaderMarker);
@@ -97,9 +98,9 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         destination.Fill(0xff);
         for (var bit = 0; bit < bits.Count; bit++)
         {
-            var mask = (byte)(1 << (NibTrackFormat.BitsPerByte - 1 - bit % NibTrackFormat.BitsPerByte));
-            if (bits[bit]) destination[bit / NibTrackFormat.BitsPerByte] |= mask;
-            else destination[bit / NibTrackFormat.BitsPerByte] &= (byte)~mask;
+            var mask = (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit % BitPrimitives.BitsPerByte));
+            if (bits[bit]) destination[bit / BitPrimitives.BitsPerByte] |= mask;
+            else destination[bit / BitPrimitives.BitsPerByte] &= (byte)~mask;
         }
     }
 

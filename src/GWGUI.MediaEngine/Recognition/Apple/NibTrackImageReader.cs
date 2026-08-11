@@ -22,14 +22,14 @@ internal static class NibTrackImageReader
     /// <exception cref="InvalidDataException">La charge utile est vide ou sa longueur n’est pas un multiple d’une piste NIB.</exception>
     public static SectorImage Read(ReadOnlySpan<byte> data)
     {
-        if (data.Length == 0 || data.Length % NibTrackFormat.TrackLength != 0)
-            throw NibExceptions.InvalidLength(data.Length, NibTrackFormat.TrackLength);
+        if (data.Length == 0 || data.Length % NibLayout.TrackLengthBytes != 0)
+            throw NibExceptions.InvalidLength(data.Length, NibLayout.TrackLengthBytes);
         var tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var rwtsTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var selector = new AppleTrackDecodeSelector();
-        for (var track = 0; track < data.Length / NibTrackFormat.TrackLength; track++)
+        for (var track = 0; track < data.Length / NibLayout.TrackLengthBytes; track++)
         {
-            var bits = MsbFirstBitPacker.Unpack(data.Slice(track * NibTrackFormat.TrackLength, NibTrackFormat.TrackLength), NibTrackFormat.TrackLength * BitPrimitives.BitsPerByte);
+            var bits = MsbFirstBitPacker.Unpack(data.Slice(track * NibLayout.TrackLengthBytes, NibLayout.TrackLengthBytes), NibLayout.TrackLengthBytes * BitPrimitives.BitsPerByte);
             var result = selector.Decode(bits, track);
             tracks.Add((track, result.StandardSectors));
             rwtsTracks.Add((track, result.Rwts18Sectors));
