@@ -32,76 +32,87 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
         for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.Match(stream, offset, AppleIIGcrFormat.SixAndTwoAddressPrologue, AppleIIGcrFormat.PrologueBitCount)) continue;
-            var address = TryReadBytes(stream.Bits, offset + AppleIIGcrFormat.PrologueBitCount, AppleIIGcrFormat.EncodedAddressByteCount); bool? headerValid = null; byte volume = 0; byte cylinder = 0; byte number = 0;
-            if (address is not null)
-            {
-                volume = AppleIIGcrCodec.DecodeFourAndFour(address[0], address[1]); cylinder = AppleIIGcrCodec.DecodeFourAndFour(address[2], address[3]); number = AppleIIGcrCodec.DecodeFourAndFour(address[4], address[5]);
-                var checksum = AppleIIGcrCodec.DecodeFourAndFour(address[6], address[7]); headerValid = (byte)(volume ^ cylinder ^ number) == checksum; bytes.AddRange([volume, cylinder, number, checksum]);
-            }
+            var address = DecodeAddress(stream.Bits, offset, bytes, true);
             var headerEnd = offset + AppleIIGcrFormat.PrologueBitCount + (address is null ? 0 : AppleIIGcrFormat.EncodedAddressBitCount);
-            // The third address-epilogue byte is not reliable on every protected NIB
-            // image. Pair the address with the following data prologue instead: the
-            // address and data checksums still provide the required integrity checks.
-            var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue); bool? dataValid = null; var structureEnd = headerEnd;
-            byte[]? sectorData = null;
-            if (dataOffset >= 0)
-            {
-                pairedData.Add(dataOffset); var data = AppleIIGcrCodec.TryDecodeSixAndTwo(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
-                if (data is not null)
-                {
-                    dataValid = data.Value.Valid; structureEnd = data.Value.EndOffset; sectorData = data.Value.Data; bytes.AddRange(sectorData);
-                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, data.Value.EndOffset - dataOffset, $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleData, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
-                }
-                else structures.Add(new(FluxStructureKind.AppleData, dataOffset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.Truncated("Apple II", FluxStructureKind.AppleData, null, "checksum unavailable")));
-            }
-            bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSizeCode, AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
-            structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(AppleIIGcrFormat.PrologueBitCount, headerEnd - offset), FluxStructureDescriptions.Complete("Apple II", FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, $"V{volume}", headerValid, dataValid, "address checksum", "data checksum")));
-            offset = headerValid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueAdvanceBitCount, structureEnd - 1) : offset + AppleIIGcrFormat.PrologueAdvanceBitCount;
+            var data = FindAndDecodeSixAndTwoData(stream, headerEnd, address, structures, bytes, pairedData);
+            AddSectorAndAddress(offset, headerEnd, address, data, null, sectors, structures);
+            offset = address?.Valid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueAdvanceBitCount, data.StructureEnd - 1) : offset + AppleIIGcrFormat.PrologueAdvanceBitCount;
         }
         DecodeFiveAndThree(stream, trackBitLength, structures, bytes, sectors, pairedData);
-        for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++) if (FluxBitReader.Match(stream, offset, AppleIIGcrFormat.DataPrologue, AppleIIGcrFormat.PrologueBitCount) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.UnpairedData("Apple II", null, "data prologue D5 AA AD"))); offset += AppleIIGcrFormat.PrologueAdvanceBitCount; }
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 32d), stream.BitCellTicks, structures, bytes, sectors);
+        for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++) if (FluxBitReader.Match(stream, offset, AppleIIGcrFormat.DataPrologue, AppleIIGcrFormat.PrologueBitCount) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.UnpairedData(AppleIIGcrFormat.StructureDescriptionName, null, AppleIIGcrFormat.UnpairedDataVariant))); offset += AppleIIGcrFormat.PrologueAdvanceBitCount; }
+        return new(Id, DisplayName, FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, AppleIIGcrFormat.ConfidenceSectorWeight, AppleIIGcrFormat.ConfidenceDivisor), stream.BitCellTicks, structures, bytes, sectors);
     }
 
     /// <summary>Exécute le traitement « Decode Five And Three » propre à ce format.</summary>
     /// <param name="stream">Flux binaire à analyser.</param><param name="trackBitLength">Longueur logique de la piste en bits.</param><param name="structures">Structures auxquelles ajouter les blocs reconnus.</param><param name="bytes">Octets auxquels ajouter les données décodées.</param><param name="sectors">Secteurs auxquels ajouter les secteurs reconnus.</param><param name="pairedData">Offsets en bits des données déjà associées à une adresse.</param>
-    private static void DecodeFiveAndThree(FluxBitstream stream, int trackBitLength, List<FluxStructure> structures,
-        List<byte> bytes, List<DecodedSector> sectors, HashSet<int> pairedData)
+    private static void DecodeFiveAndThree(FluxBitstream stream, int trackBitLength, List<FluxStructure> structures, List<byte> bytes, List<DecodedSector> sectors, HashSet<int> pairedData)
     {
         for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.Match(stream, offset, AppleIIGcrFormat.FiveAndThreeAddressPrologue, AppleIIGcrFormat.PrologueBitCount)) continue;
-            var address = TryReadBytes(stream.Bits, offset + AppleIIGcrFormat.PrologueBitCount, AppleIIGcrFormat.EncodedAddressByteCount); bool? headerValid = null;
-            byte volume = 0, cylinder = 0, number = 0;
-            if (address is not null)
-            {
-                volume = AppleIIGcrCodec.DecodeFourAndFour(address[0], address[1]); cylinder = AppleIIGcrCodec.DecodeFourAndFour(address[2], address[3]);
-                number = AppleIIGcrCodec.DecodeFourAndFour(address[4], address[5]); var checksum = AppleIIGcrCodec.DecodeFourAndFour(address[6], address[7]);
-                headerValid = (byte)(volume ^ cylinder ^ number) == checksum;
-            }
+            var address = DecodeAddress(stream.Bits, offset, bytes, false);
             var headerEnd = offset + AppleIIGcrFormat.AddressBlockBitCount;
-            var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
-            bool? dataValid = null; byte[]? sectorData = null; var structureEnd = headerEnd;
-            if (dataOffset >= 0)
-            {
-                pairedData.Add(dataOffset);
-                var decoded = AppleIIGcrCodec.TryDecodeFiveAndThree(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
-                if (decoded is not null)
-                {
-                    sectorData = decoded.Value.Data; dataValid = decoded.Value.Valid; structureEnd = decoded.Value.EndOffset;
-                    bytes.AddRange(sectorData);
-                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset,
-                        $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleData, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, "13-sector")}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
-                }
-            }
-            bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSizeCode, AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, sectorData));
-            structures.Add(new(FluxStructureKind.AppleAddress, offset, AppleIIGcrFormat.AddressBlockBitCount,
-                $"{FluxStructureDescriptions.Identity("Apple II", FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, number, AppleIIGcrFormat.SectorSize, null, $"13-sector V{volume}")}, {FluxStructureDescriptions.Integrity("address checksum", headerValid)}"));
-            offset = headerValid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueAdvanceBitCount, structureEnd - 1) : offset + AppleIIGcrFormat.PrologueAdvanceBitCount;
+            var data = FindAndDecodeFiveAndThreeData(stream, headerEnd, address, structures, bytes, pairedData);
+            AddSectorAndAddress(offset, headerEnd, address, data, AppleIIGcrFormat.ThirteenSectorVariant, sectors, structures);
+            offset = address?.Valid == true ? Math.Max(offset + AppleIIGcrFormat.PrologueAdvanceBitCount, data.StructureEnd - 1) : offset + AppleIIGcrFormat.PrologueAdvanceBitCount;
         }
     }
+
+    private static AppleAddressDecodeResult? DecodeAddress(IReadOnlyList<bool> bits, int offset, List<byte> bytes, bool appendDecodedBytes)
+    {
+        var encoded = TryReadBytes(bits, offset + AppleIIGcrFormat.PrologueBitCount, AppleIIGcrFormat.EncodedAddressByteCount);
+        if (encoded is null) return null;
+        var volume = AppleIIGcrCodec.DecodeFourAndFour(encoded[0], encoded[1]);
+        var cylinder = AppleIIGcrCodec.DecodeFourAndFour(encoded[2], encoded[3]);
+        var sector = AppleIIGcrCodec.DecodeFourAndFour(encoded[4], encoded[5]);
+        var checksum = AppleIIGcrCodec.DecodeFourAndFour(encoded[6], encoded[7]);
+        if (appendDecodedBytes) bytes.AddRange([volume, cylinder, sector, checksum]);
+        return new(volume, cylinder, sector, (byte)(volume ^ cylinder ^ sector) == checksum);
+    }
+
+    private static AppleDataDecodeResult FindAndDecodeSixAndTwoData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
+    {
+        var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
+        if (dataOffset < 0) return new(null, null, headerEnd);
+        pairedData.Add(dataOffset);
+        var decoded = AppleIIGcrCodec.TryDecodeSixAndTwo(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
+        if (decoded is null)
+        {
+            structures.Add(new(FluxStructureKind.AppleData, dataOffset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.Truncated(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, null, AppleIIGcrFormat.UnavailableChecksumVariant)));
+            return new(null, null, headerEnd);
+        }
+        bytes.AddRange(decoded.Value.Data);
+        structures.Add(new(FluxStructureKind.AppleData, dataOffset, decoded.Value.EndOffset - dataOffset, FluxStructureDescriptions.WithIntegrity(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, address?.Cylinder ?? 0, AppleIIGcrFormat.LogicalHead, address?.Sector ?? 0, AppleIIGcrFormat.SectorSize, null, null, AppleIIGcrFormat.ChecksumLabel, decoded.Value.Valid)));
+        return new(decoded.Value.Data, decoded.Value.Valid, decoded.Value.EndOffset);
+    }
+
+    private static AppleDataDecodeResult FindAndDecodeFiveAndThreeData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
+    {
+        var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
+        if (dataOffset < 0) return new(null, null, headerEnd);
+        pairedData.Add(dataOffset);
+        var decoded = AppleIIGcrCodec.TryDecodeFiveAndThree(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
+        if (decoded is null) return new(null, null, headerEnd);
+        bytes.AddRange(decoded.Value.Data);
+        structures.Add(new(FluxStructureKind.AppleData, dataOffset, decoded.Value.EndOffset - dataOffset, FluxStructureDescriptions.WithIntegrity(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, address?.Cylinder ?? 0, AppleIIGcrFormat.LogicalHead, address?.Sector ?? 0, AppleIIGcrFormat.SectorSize, null, AppleIIGcrFormat.ThirteenSectorVariant, AppleIIGcrFormat.ChecksumLabel, decoded.Value.Valid)));
+        return new(decoded.Value.Data, decoded.Value.Valid, decoded.Value.EndOffset);
+    }
+
+    private static void AddSectorAndAddress(int offset, int headerEnd, AppleAddressDecodeResult? address, AppleDataDecodeResult data, string? variant, List<DecodedSector> sectors, List<FluxStructure> structures)
+    {
+        var volume = address?.Volume ?? 0;
+        var cylinder = address?.Cylinder ?? 0;
+        var sector = address?.Sector ?? 0;
+        bool? integrity = address?.Valid == false || data.Valid == false ? false : data.Valid is null ? null : true;
+        sectors.Add(new(cylinder, AppleIIGcrFormat.LogicalHead, sector, SectorSizeCode.FromByteCount(AppleIIGcrFormat.SectorSize), AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, data.Data));
+        var description = variant is null
+            ? FluxStructureDescriptions.Complete(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, sector, AppleIIGcrFormat.SectorSize, null, $"V{volume}", address?.Valid, data.Valid, AppleIIGcrFormat.AddressChecksumLabel, AppleIIGcrFormat.DataChecksumLabel)
+            : FluxStructureDescriptions.WithIntegrity(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, sector, AppleIIGcrFormat.SectorSize, null, $"{variant} V{volume}", AppleIIGcrFormat.AddressChecksumLabel, address?.Valid);
+        structures.Add(new(FluxStructureKind.AppleAddress, offset, variant is null ? Math.Max(AppleIIGcrFormat.PrologueBitCount, headerEnd - offset) : AppleIIGcrFormat.AddressBlockBitCount, description));
+    }
+
+    private sealed record AppleAddressDecodeResult(byte Volume, byte Cylinder, byte Sector, bool Valid);
+    private sealed record AppleDataDecodeResult(byte[]? Data, bool? Valid, int StructureEnd);
 
     /// <summary>Exécute le traitement « Try Read Bytes » propre à ce format.</summary>
     /// <param name="bits">Bits source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre d'octets à lire.</param><returns>Octets lus, ou <see langword="null"/> si la plage est incomplète.</returns>

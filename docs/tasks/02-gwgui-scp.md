@@ -2343,12 +2343,12 @@
       - [x] Créer un codec Apple II commun pour les opérations 4-and-4, 5-and-3 et 6-and-2 réellement partagées avec `AppleIIGcrTrackEncoder.cs`.
       - [x] Raccorder le décodeur et l'encodeur au codec commun puis supprimer leurs copies devenues inutiles.
       - [x] Conserver dans le décodeur les opérations propres au balayage du flux et à l'appariement des blocs.
-    - [ ] Décodage et résultat
-      - [ ] Extraire de `DecodeCore` les traitements nommés de l'adresse 16 secteurs, de la recherche du bloc de données, de son appariement et de la création du secteur.
-      - [ ] Extraire de `DecodeFiveAndThree` les traitements nommés de l'adresse 13 secteurs, du bloc de données et de la création du secteur.
-      - [ ] Remplacer les descriptions textuelles brutes des adresses, blocs de données, checksums et prologues non appariés par le constructeur commun de descriptions recevant les valeurs variables.
-      - [ ] Remplacer les tailles sectorielles et codes de taille bruts des `DecodedSector` par les définitions communes correspondantes.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Apple II au lieu de conserver la formule brute dans `DecodeCore`.
+    - [x] Décodage et résultat
+      - [x] Extraire de `DecodeCore` les traitements nommés de l'adresse 16 secteurs, de la recherche du bloc de données, de son appariement et de la création du secteur.
+      - [x] Extraire de `DecodeFiveAndThree` les traitements nommés de l'adresse 13 secteurs, du bloc de données et de la création du secteur.
+      - [x] Remplacer les descriptions textuelles brutes des adresses, blocs de données, checksums et prologues non appariés par le constructeur commun de descriptions recevant les valeurs variables.
+      - [x] Remplacer les tailles sectorielles et codes de taille bruts des `DecodedSector` par les définitions communes correspondantes.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Apple II au lieu de conserver la formule brute dans `DecodeCore`.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.

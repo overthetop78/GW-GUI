@@ -5,6 +5,13 @@ namespace GWGUI.MediaEngine.Decoding.Definitions;
 /// <summary>Regroupe les définitions techniques du format Apple IIGcr.</summary>
 internal static class AppleIIGcrFormat
 {
+    public const string StructureDescriptionName = "Apple II";
+    public const string ThirteenSectorVariant = "13-sector";
+    public const string ChecksumLabel = "checksum";
+    public const string AddressChecksumLabel = "address checksum";
+    public const string DataChecksumLabel = "data checksum";
+    public const string UnavailableChecksumVariant = "checksum unavailable";
+    public const string UnpairedDataVariant = "data prologue D5 AA AD";
     /// <summary>Crée l'exception signalant invalide secteur taille.</summary>
     /// <param name="actualSize">Valeur observée utilisée pour décrire précisément l'erreur.</param>
     /// <returns>Exception contenant les valeurs attendues et observées.</returns>
@@ -63,6 +70,8 @@ internal static class AppleIIGcrFormat
     public const byte SectorSizeCode = 1;
     /// <summary>Face logique portée par les secteurs Apple II décodés.</summary>
     public const byte LogicalHead = 0;
+    public const int ConfidenceSectorWeight = 2;
+    public const double ConfidenceDivisor = 32;
     /// <summary>Définit six and two encodé octet nombre utilisé par ce format.</summary>
     public const int SixAndTwoEncodedByteCount = 343;
     /// <summary>Définit six and two décodé octet nombre utilisé par ce format.</summary>
