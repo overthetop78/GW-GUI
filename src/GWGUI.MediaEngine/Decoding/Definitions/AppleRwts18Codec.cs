@@ -1,11 +1,17 @@
 namespace GWGUI.MediaEngine.Decoding.Definitions;
 
+/// <summary>Encode et décode les trois pages et le checksum d'un secteur RWTS18.</summary>
 internal static class AppleRwts18Codec
 {
+    /// <summary>Reconstitue les trois pages d'un secteur à partir des symboles 6-and-2.</summary>
+    /// <param name="values">Valeurs 6-and-2 décodées, checksum inclus.</param><returns>Données sectorielles et validité du checksum.</returns>
     public static (byte[] Data, bool Valid) DecodePayload(IReadOnlyList<byte> values)
     {
-        var page1 = new byte[AppleRwts18Format.PageByteCount]; var page2 = new byte[AppleRwts18Format.PageByteCount]; var page3 = new byte[AppleRwts18Format.PageByteCount];
-        byte accumulator = 0; byte previousPage1 = 0;
+        var page1 = new byte[AppleRwts18Format.PageByteCount];
+        var page2 = new byte[AppleRwts18Format.PageByteCount];
+        var page3 = new byte[AppleRwts18Format.PageByteCount];
+        byte accumulator = 0;
+        byte previousPage1 = 0;
         for (var index = 0; index < AppleRwts18Format.PageByteCount; index++)
         {
             var high = values[index * AppleRwts18Format.SymbolsPerPageGroup];
@@ -20,12 +26,17 @@ internal static class AppleRwts18Codec
         return ([.. page1, .. page2, .. page3], valid);
     }
 
+    /// <summary>Encode les trois pages d'un secteur RWTS18 en symboles GCR 6-and-2.</summary>
+    /// <param name="data">Données des trois pages consécutives.</param><returns>Symboles encodés, checksum inclus.</returns>
     public static byte[] EncodePayload(IReadOnlyList<byte> data)
     {
-        var encoded = new byte[AppleRwts18Format.PayloadWithChecksumSymbolCount]; byte checksum = 0;
+        var encoded = new byte[AppleRwts18Format.PayloadWithChecksumSymbolCount];
+        byte checksum = 0;
         for (var index = 0; index < AppleRwts18Format.PageByteCount; index++)
         {
-            var one = data[index]; var two = data[AppleRwts18Format.PageByteCount * AppleRwts18Format.SecondPageIndex + index]; var three = data[AppleRwts18Format.PageByteCount * AppleRwts18Format.ThirdPageIndex + index];
+            var one = data[index];
+            var two = data[AppleRwts18Format.PageByteCount * AppleRwts18Format.SecondPageIndex + index];
+            var three = data[AppleRwts18Format.PageByteCount * AppleRwts18Format.ThirdPageIndex + index];
             var high = (byte)(((one >> AppleRwts18Format.SourceHighBitShift) << AppleRwts18Format.FirstPagePackedShift) | ((two >> AppleRwts18Format.SourceHighBitShift) << AppleRwts18Format.SecondPagePackedShift) | (three >> AppleRwts18Format.SourceHighBitShift));
             var values = new[] { high, (byte)(one & AppleRwts18Format.SixBitMask), (byte)(two & AppleRwts18Format.SixBitMask), (byte)(three & AppleRwts18Format.SixBitMask) };
             for (var valueIndex = 0; valueIndex < values.Length; valueIndex++)

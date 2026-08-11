@@ -2434,12 +2434,12 @@
       - [x] Remplacer l'identifiant, le nom et les descriptions textuelles brutes par les définitions communes recevant piste, secteur, taille et état du checksum.
       - [x] Remplacer les tailles sectorielles et le code de taille bruts par les définitions communes correspondantes.
       - [x] Utiliser le calcul de confiance commun avec les paramètres RWTS18.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Présenter séparément les déclarations des trois pages et des accumulateurs.
-      - [ ] Traduire en français la CSDoc existante et documenter le type, les propriétés et chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et opérations créées dans le codec RWTS18.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Présenter séparément les déclarations des trois pages et des accumulateurs.
+      - [x] Traduire en français la CSDoc existante et documenter le type, les propriétés et chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et opérations créées dans le codec RWTS18.
     - [ ] Vérification du groupe RWTS18
       - [ ] Tester une adresse valide puis les rejets dus à la piste, au secteur, au checksum ou au terminateur.
       - [ ] Tester les six secteurs physiques et la reconstruction des trois pages de 256 octets en un secteur de 768 octets.
