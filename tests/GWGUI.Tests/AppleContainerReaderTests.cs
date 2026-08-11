@@ -109,6 +109,7 @@ public sealed class AppleContainerReaderTests
     [InlineData("invalid-signature")]
     [InlineData("invalid-offset")]
     [InlineData("invalid-length")]
+    [InlineData("invalid-header-size")]
     [InlineData("truncated-header")]
     public async Task RejectsInvalidTwoImgStructures(string variant)
     {
@@ -176,6 +177,8 @@ public sealed class AppleContainerReaderTests
             ["invalid-length"] = WriteVariant(output, "invalid-length.2mg", validTwoImg,
                 bytes => BinaryPrimitives.WriteUInt32LittleEndian(
                     bytes.AsSpan(TwoImgLayout.DataLengthOffset), checked((uint)rawDosBytes.Length + 1))),
+            ["invalid-header-size"] = WriteVariant(output, "invalid-header-size.2mg", validTwoImg,
+                bytes => BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(TwoImgLayout.HeaderSizeOffset), TwoImgLayout.MinimumHeaderSize - 1)),
             ["truncated-header"] = Write(output, "truncated-header.2mg",
                 validTwoImg[..(TwoImgLayout.MinimumHeaderSize - 1)])
         };

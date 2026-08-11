@@ -27,18 +27,45 @@ internal static class TwoImgReader
     /// </exception>
     public static SectorImage Read(byte[] container)
     {
-        if (container.Length < TwoImgLayout.MinimumHeaderSize) throw TwoImgExceptions.TruncatedHeader();
-        if (!container.AsSpan(TwoImgLayout.SignatureOffset, TwoImgLayout.SignatureLength).SequenceEqual(TwoImgFormat.SignatureBytes)) throw TwoImgExceptions.InvalidSignature();
+        var (headerLength, imageFormat, dataOffset, dataLength) = ReadHeader(container);
+        ValidateDataRange(container.Length, headerLength, dataOffset, dataLength);
+        return ReadPayload(container.AsSpan(dataOffset, dataLength), imageFormat);
+    }
 
-        var version = BinaryPrimitives.ReadUInt16LittleEndian(container.AsSpan(TwoImgLayout.VersionOffset));
+    /// <summary>Valide la signature et la version de l'en-tête, puis lit ses champs de routage.</summary>
+    /// <param name="container">Contenu complet du conteneur.</param>
+    /// <returns>Taille d'en-tête, format interne, offset et longueur de la charge utile.</returns>
+    private static (int HeaderLength, TwoImgImageFormat ImageFormat, int DataOffset, int DataLength) ReadHeader(ReadOnlySpan<byte> container)
+    {
+        if (container.Length < TwoImgLayout.MinimumHeaderSize) throw TwoImgExceptions.TruncatedHeader();
+        if (!container.Slice(TwoImgLayout.SignatureOffset, TwoImgLayout.SignatureLength).SequenceEqual(TwoImgFormat.SignatureBytes)) throw TwoImgExceptions.InvalidSignature();
+
+        var version = BinaryPrimitives.ReadUInt16LittleEndian(container[TwoImgLayout.VersionOffset..]);
         if (version != TwoImgFormat.SupportedVersion) throw TwoImgExceptions.UnsupportedVersion(version);
 
-        var headerLength = checked((int)BinaryPrimitives.ReadUInt16LittleEndian(container.AsSpan(TwoImgLayout.HeaderSizeOffset)));
-        var imageFormat = (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.ImageFormatOffset));
-        var dataOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataOffsetOffset)));
-        var dataLength = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataLengthOffset)));
-        if (headerLength < TwoImgLayout.MinimumHeaderSize || dataOffset < headerLength || dataLength <= 0 || dataOffset > container.Length - dataLength) throw TwoImgExceptions.InvalidDataRange();
-        var payload = container.AsSpan(dataOffset, dataLength);
+        var headerLength = checked((int)BinaryPrimitives.ReadUInt16LittleEndian(container[TwoImgLayout.HeaderSizeOffset..]));
+        var imageFormat = (TwoImgImageFormat)BinaryPrimitives.ReadUInt32LittleEndian(container[TwoImgLayout.ImageFormatOffset..]);
+        var dataOffset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container[TwoImgLayout.DataOffsetOffset..]));
+        var dataLength = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(container[TwoImgLayout.DataLengthOffset..]));
+        return (headerLength, imageFormat, dataOffset, dataLength);
+    }
+
+    /// <summary>Vérifie que la charge utile commence après l'en-tête et reste entièrement dans le conteneur.</summary>
+    /// <param name="containerLength">Longueur totale du conteneur.</param>
+    /// <param name="headerLength">Longueur d'en-tête déclarée.</param>
+    /// <param name="dataOffset">Offset déclaré de la charge utile.</param>
+    /// <param name="dataLength">Longueur déclarée de la charge utile.</param>
+    private static void ValidateDataRange(int containerLength, int headerLength, int dataOffset, int dataLength)
+    {
+        if (headerLength < TwoImgLayout.MinimumHeaderSize || dataOffset < headerLength || dataLength < TwoImgLayout.MinimumDataLength || dataOffset > containerLength - dataLength) throw TwoImgExceptions.InvalidDataRange();
+    }
+
+    /// <summary>Route la charge utile vers le lecteur correspondant à son organisation DOS, ProDOS ou NIB.</summary>
+    /// <param name="payload">Charge utile validée du conteneur.</param>
+    /// <param name="imageFormat">Organisation déclarée par l'en-tête.</param>
+    /// <returns>Image sectorielle reconstruite.</returns>
+    private static SectorImage ReadPayload(ReadOnlySpan<byte> payload, TwoImgImageFormat imageFormat)
+    {
         return imageFormat switch
         {
             TwoImgImageFormat.Dos => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Do),

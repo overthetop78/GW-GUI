@@ -28,4 +28,7 @@ public static class TwoImgLayout
 
     /// <summary>Offset du champ 32 bits little-endian contenant la longueur de la charge utile.</summary>
     public const int DataLengthOffset = 28;
+
+    /// <summary>Longueur minimale, en octets, d'une charge utile 2IMG.</summary>
+    public const int MinimumDataLength = 1;
 }

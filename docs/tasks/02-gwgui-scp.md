@@ -1535,17 +1535,17 @@
     - [x] Extraire la lecture d'une piste et de ses descripteurs de secteurs dans des méthodes distinctes.
     - [x] Supprimer l'initialisation inutile de `dominantSize` à zéro si elle est toujours remplacée avant lecture.
     - [x] Ajouter une constante nommée pour le minimum d'un secteur actuellement imposé par `Math.Max(1, maximumSectors)`.
-    - [ ] Documenter en français chaque méthode privée extraite.
+    - [x] Documenter en français chaque méthode privée extraite.
     - [x] Tester séparément en-tête, table Extended, piste, descripteur, secteur et absence de secteur.
   - [x] `Containers/Apple/TwoImg/TwoImgImageFormat.cs`
     - [x] Renommer les membres `DOS`, `ProDOS` et `NIB` selon la casse C# retenue sans modifier leurs valeurs binaires.
     - [x] Adapter chaque consommateur et chaque test aux noms retenus.
     - [ ] Documenter en français l'enum et chacune de ses valeurs.
-  - [ ] `Containers/Apple/TwoImg/TwoImgReader.cs`
-    - [ ] Extraire la validation de l'en-tête, la validation de la plage de données et le routage DOS/ProDOS/NIB dans trois méthodes distinctes.
-    - [ ] Remplacer chaque valeur encore brute par `TwoImgFormat`, `TwoImgLayout` ou `TwoImgImageFormat`.
+  - [x] `Containers/Apple/TwoImg/TwoImgReader.cs`
+    - [x] Extraire la validation de l'en-tête, la validation de la plage de données et le routage DOS/ProDOS/NIB dans trois méthodes distinctes.
+    - [x] Remplacer chaque valeur encore brute par `TwoImgFormat`, `TwoImgLayout` ou `TwoImgImageFormat`.
     - [ ] Documenter en français chaque méthode privée extraite.
-    - [ ] Tester chaque format interne, version, taille d'en-tête et plage de données.
+    - [x] Tester chaque format interne, version, taille d'en-tête et plage de données.
   - [ ] `Containers/Apple/DiskCopy/DiskCopyFormat.cs`
     - [ ] Stocker le marqueur PREBOOT sous forme d'octets immuables sans l'encoder depuis une chaîne à chaque détection.
     - [ ] Ajouter les constantes du mot de checksum, de sa rotation et du nombre de bits utilisés par l'algorithme DiskCopy.
