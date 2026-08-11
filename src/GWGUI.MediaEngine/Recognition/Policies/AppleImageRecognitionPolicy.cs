@@ -39,9 +39,7 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
         if (context.Extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase))
             return IsRequestedAppleFormat(context.RequestedFormatId) || AppleRawImageProbe.LooksLikeAppleImage(context.Extension, bytes, context.RequestedFormatId);
         if (context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase))
-            return context.RequestedFormatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-                   context.RequestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-                   AppleRawImageProbe.LooksLikeAppleImage(context.Extension, bytes, context.RequestedFormatId);
+            return IsRequestedAppleFormat(context.RequestedFormatId) || AppleRawImageProbe.LooksLikeAppleImage(context.Extension, bytes, context.RequestedFormatId);
         return false;
     }
 
@@ -52,5 +50,6 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
         formatId?.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) == true ||
         formatId?.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) == true ||
         formatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-        formatId?.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) == true;
+        formatId?.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
+        formatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true;
 }
