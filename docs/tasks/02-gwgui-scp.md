@@ -1376,7 +1376,7 @@
       - Dépendance restante : la définition propriétaire de la reconnaissance DOS est créée avec la sonde DOS commune dans le groupe ultérieur de `IbmPcImageReader`.
     - [ ] Faire résoudre les géométries IBM par `Geometries/Ibm/IbmPcGeometryCatalog` au lieu de recopier cylindres, faces, secteurs et identifiants dans le `switch`.
       - Dépendance restante : `IbmPcGeometryCatalog` est créé dans le groupe ultérieur de `IbmPcImageReader`.
-    - [ ] Conserver `DiskImageFormatIds.UcsdIbmMfm` comme repli lorsque ni le BPB FAT ni le saut DOS ne justifient une classification IBM.
+    - [x] Conserver `DiskImageFormatIds.UcsdIbmMfm` comme repli lorsque ni le BPB FAT ni le saut DOS ne justifient une classification IBM.
   - [x] Erreurs TeleDisk
     - [x] Créer `Containers/TeleDisk/Td0Exceptions.cs`.
     - [x] Ajouter des méthodes permettant d’injecter cylindre, face, secteur, encodage, position, section `Td0Section` et longueurs observée et attendue.
