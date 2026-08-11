@@ -1465,10 +1465,10 @@
     - [x] Lecture commune
       - [x] Faire transmettre par `ReadAsync` le contexte complet à la fonction reçue sans relire ni transformer lui-même le fichier.
       - [x] Conserver sur une seule ligne l’expression de délégation lorsqu’elle tient lisiblement.
-    - [ ] Documentation XML et encodage
-      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
-      - [ ] Documenter que la politique concrète choisit les données du contexte à transmettre et que le Reader reste propriétaire de la validation complète.
-      - [ ] Documenter les exceptions de rejet propagées par la fonction de lecture.
+    - [x] Documentation XML et encodage
+      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
+      - [x] Documenter que la politique concrète choisit les données du contexte à transmettre et que le Reader reste propriétaire de la validation complète.
+      - [x] Documenter les exceptions de rejet propagées par la fonction de lecture.
     - [ ] Tests ciblés
       - [ ] Tester le rejet d’une fonction de lecture nulle.
       - [ ] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
