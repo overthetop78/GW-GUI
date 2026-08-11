@@ -19,8 +19,7 @@ public sealed class RealScpCorpusTests
     [Fact]
     public async Task RealAmigaScpPreparesAndRendersBothFacesWhenRequested()
     {
-        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
-        if (string.IsNullOrWhiteSpace(scpPath)) return;
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga [test].scp");
 
         var image = await new ScpReader().ReadAsync(scpPath);
         Assert.True(image.ChecksumValid);
@@ -44,9 +43,8 @@ public sealed class RealScpCorpusTests
     [Fact]
     public async Task RealAmigaAdfAndScpDecodeToIdenticalSectorImagesWhenRequested()
     {
-        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF");
-        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
-        if (string.IsNullOrWhiteSpace(adfPath) || string.IsNullOrWhiteSpace(scpPath)) return;
+        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga.adf");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga [test].scp");
 
         var expected = await new AdfImageReader().ReadAsync(adfPath);
         var actual = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(scpPath);
@@ -63,9 +61,8 @@ public sealed class RealScpCorpusTests
     [Fact]
     public async Task RealAmigaAdfAndScpExposeTheSameFileSystemWhenRequested()
     {
-        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF");
-        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
-        if (string.IsNullOrWhiteSpace(adfPath) || string.IsNullOrWhiteSpace(scpPath)) return;
+        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga.adf");
+        var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga [test].scp");
 
         var format = new FileInfo(adfPath).Length == AdfImageReader.HighDensityBytes ? "amiga.amigados_hd" : "amiga.amigados";
         var explorer = DiskImageExplorer.CreateDefault();
@@ -84,8 +81,7 @@ public sealed class RealScpCorpusTests
     [Fact]
     public async Task RealAmigaAdfRoundTripsThroughTheInternalEncoderWhenRequested()
     {
-        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF");
-        if (string.IsNullOrWhiteSpace(adfPath)) return;
+        var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga.adf");
 
         var expected = await new AdfImageReader().ReadAsync(adfPath);
         var encoder = new GWGUI.MediaEngine.Encoding.FluxEncoderRegistry();
@@ -116,8 +112,7 @@ public sealed class RealScpCorpusTests
     [Fact]
     public async Task RealAmigaDosCaptureReconstructsRootBlockWhenRequested()
     {
-        var path = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP");
-        if (string.IsNullOrWhiteSpace(path)) return;
+        var path = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga [test].scp");
 
         var image = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(path);
         Assert.True(image.TryGetBlock(image.BlockCount / 2, out _),
@@ -191,6 +186,19 @@ public sealed class RealScpCorpusTests
         thread.Start();
         thread.Join();
         if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
+    }
+
+    private static string TestImagePath(params string[] parts)
+    {
+        for (var directory = new DirectoryInfo(AppContext.BaseDirectory); directory is not null; directory = directory.Parent)
+        {
+            var root = Path.Combine(directory.FullName, "image_test");
+            if (!Directory.Exists(root)) continue;
+            var path = Path.Combine([root, .. parts]);
+            if (!File.Exists(path)) throw new FileNotFoundException("L'image de test obligatoire est introuvable.", path);
+            return path;
+        }
+        throw new DirectoryNotFoundException("Le dossier local image_test est introuvable.");
     }
 
     private static CorpusEntry[] CorpusPaths()

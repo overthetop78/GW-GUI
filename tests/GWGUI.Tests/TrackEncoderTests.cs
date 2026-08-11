@@ -9,12 +9,12 @@ public sealed class TrackEncoderTests
     public static TheoryData<string, int> RoundTrips => new()
     {
         { "iso.mfm", 512 }, { "iso.fm", 256 }, { "amiga.mfm", 512 },
-        { "apple2.gcr", 256 }, { "applemac.gcr", 512 }, { "commodore.gcr", 256 },
+        { "apple2.gcr", 256 }, { "applemac.gcr", 512 }, { "applelisa.fileware.gcr", 512 }, { "commodore.gcr", 256 },
         { "hp.mmfm", 256 }, { "datageneral.fm", 512 }, { "micropolis.mfm", 256 },
         { "membrain.mfm", 512 }, { "aed6200p.mfm", 512 }, { "qdmo5.mfm", 128 },
         { "centurion.mfm", 256 }, { "northstar.mfm", 512 }, { "heathkit.fm", 256 },
         { "micraln.fm", 128 }, { "emu.fm", 0xe00 }, { "tycom.fm", 128 },
-        { "dec.rx02", 128 }, { "victor9k.gcr", 512 }
+        { "dec.rx02", 128 }, { "commodore900.gcr", 512 }, { "victor9k.gcr", 512 }
     };
 
     [Fact]
@@ -88,7 +88,9 @@ public sealed class TrackEncoderTests
         var sector = Assert.Single(decoded.Sectors!);
         Assert.True(sector.IntegrityValid, string.Join(" | ", decoded.Structures.Select(item => item.Description)));
         Assert.Equal(id == "emu.fm" ? 1 : sectorNumber, sector.Number);
-        var payload = id == "commodore.gcr" ? decoded.DecodedBytes.Skip(7).Take(size) : decoded.DecodedBytes.TakeLast(size);
+        Assert.Equal(id == "qdmo5.mfm" ? 0 : id == "commodore.gcr" ? 3 : 2, sector.Cylinder);
+        Assert.Equal(0, sector.Head);
+        var payload = sector.Data ?? (id == "commodore.gcr" ? decoded.DecodedBytes.Skip(7).Take(size).ToArray() : decoded.DecodedBytes.TakeLast(size).ToArray());
         Assert.Equal(data, payload);
     }
 
@@ -128,6 +130,8 @@ public sealed class TrackEncoderTests
             var actual = Assert.Single(decoded.Sectors, sector => sector.Number == expected.Number);
             Assert.True(actual.IntegrityValid, string.Join(" | ", decoded.Structures.Select(item => item.Description)));
             Assert.Equal(expected.Data, actual.Data);
+            Assert.Equal(18, actual.Cylinder);
+            Assert.Equal(0, actual.Head);
         }
     }
 
@@ -161,6 +165,9 @@ public sealed class TrackEncoderTests
         var encoded = new FluxEncoderRegistry().Encode("arburg", new TrackEncodeRequest(0, 0, [new TrackSector(1, data)]));
         var decoded = new FluxDecoderRegistry().Decode("arburg", encoded.Revolution);
         Assert.True(Assert.Single(decoded.Sectors!).IntegrityValid);
+        Assert.Equal(0, Assert.Single(decoded.Sectors!).Cylinder);
+        Assert.Equal(0, Assert.Single(decoded.Sectors!).Head);
+        Assert.Equal(1, Assert.Single(decoded.Sectors!).Number);
         Assert.Equal(data, decoded.DecodedBytes.TakeLast(data.Length));
     }
 
@@ -172,6 +179,9 @@ public sealed class TrackEncoderTests
         var encoded = new FluxEncoderRegistry().Encode("arburg", new TrackEncodeRequest(0, 0, [new TrackSector(1, data, Attributes: attributes)]));
         var decoded = new FluxDecoderRegistry().Decode("arburg", encoded.Revolution);
         Assert.True(Assert.Single(decoded.Sectors!).IntegrityValid);
+        Assert.Equal(0, Assert.Single(decoded.Sectors!).Cylinder);
+        Assert.Equal(0, Assert.Single(decoded.Sectors!).Head);
+        Assert.Equal(1, Assert.Single(decoded.Sectors!).Number);
         Assert.Equal(data, decoded.DecodedBytes.TakeLast(data.Length));
     }
 

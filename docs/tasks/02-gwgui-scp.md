@@ -1942,13 +1942,13 @@
   - [x] Erreurs d’encodage et de décodage
     - [x] Créer dans chaque définition de format les méthodes d’erreur nécessaires pour injecter taille, piste, face, secteur, longueur ou encodage utilisés par ses messages actuels.
     - [x] Remplacer les textes et constructions directes d’exception dans chaque décodeur et encodeur par la méthode du format correspondant.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [x] Documenter en français chaque fichier de définition créé et chacun de ses membres.
     - [x] Mettre à jour la documentation française des décodeurs et encodeurs après remplacement des données brutes.
-  - [ ] Tests ciblés
-    - [ ] Pour chaque paire, encoder des secteurs connus puis les redécoder et comparer les adresses, données et états d’intégrité.
-    - [ ] Utiliser une image de `image_test` lorsqu’elle existe ; appliquer la règle d’obtention d’image du document lorsqu’elle manque.
-    - [ ] Exécuter uniquement les tests de la paire traitée avant de terminer son groupe.
+  - [x] Tests ciblés
+    - [x] Pour chaque paire, encoder des secteurs connus puis les redécoder et comparer les adresses, données et états d’intégrité.
+    - [x] Utiliser une image de `image_test` lorsqu’elle existe ; appliquer la règle d’obtention d’image du document lorsqu’elle manque.
+    - [x] Exécuter uniquement les tests de la paire traitée avant de terminer son groupe.
 
 - [ ] Descriptions techniques encore construites en texte brut par les décodeurs
   - [ ] `Decoding/FluxStructureDescriptions.cs`
