@@ -1474,7 +1474,7 @@
       - [x] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
       - [x] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
       - [x] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
-  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
       - [x] Supprimer les imports de `Images.Containers` et `Images.Interpretations` après disparition des anciens types concernés.
