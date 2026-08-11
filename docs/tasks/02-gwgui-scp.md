@@ -1148,34 +1148,35 @@
     - [x] Vérifier qu’un identifiant non pris en charge produit le diagnostic prévu avant le lancement de l’exploration.
     - [x] Vérifier que l’annulation de la lecture du contexte ou de l’exploration est propagée.
 - [ ] `src/GWGUI.MediaEngine/Images/Cp2ImageReader.cs`
-  - [ ] Déplacement du lecteur de conteneur CP2
-    - [ ] Renommer le type en `Cp2Reader` et déplacer le fichier vers `Containers/Cp2/Cp2Reader.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Cp2`.
-    - [ ] Adapter son utilisation dans `Images/DiskImageExplorerFactory.cs` et dans la politique commune de présélection par extension.
-    - [ ] Conserver `TrackDescriptor` et `Cp2SectorDescriptor` privés dans le Reader tant qu’ils n’ont aucun autre consommateur que le parsing CP2.
-  - [ ] Définitions binaires CP2
-    - [ ] Créer `Containers/Cp2/Cp2Format.cs` et y définir la signature binaire `SOFTWARE PIRATES` ainsi que sa longueur.
-    - [ ] Créer `Containers/Cp2/Cp2Layout.cs` et y définir la longueur minimale du fichier, l’offset du premier groupe, la taille de l’en-tête de groupe et l’offset du champ de longueur des métadonnées.
-    - [ ] Y définir la taille du champ de longueur, les deux octets d’encadrement, l’ajustement d’une unité appliqué à la longueur des métadonnées et les tailles des descripteurs de piste et de secteur.
-    - [ ] Y définir la taille de l’en-tête de piste, les offsets du cylindre, de la face et du nombre de secteurs et le maximum de 23 descripteurs sectoriels.
-    - [ ] Y définir dans un groupe propre au descripteur sectoriel les offsets du cylindre, de la face, du numéro, du code de taille et de la position angulaire.
-    - [ ] Y définir la longueur du champ de position, la taille sectorielle de base de 128 octets, le code de taille maximal accepté et la taille de 512 octets actuellement reconstruite.
-    - [ ] Remplacer dans `Cp2Reader` chaque signature, offset, longueur, taille, limite et position de champ écrits en brut par ces définitions CP2.
+  - [x] Déplacement du lecteur de conteneur CP2
+    - [x] Renommer le type en `Cp2Reader` et déplacer le fichier vers `Containers/Cp2/Cp2Reader.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Cp2`.
+    - [x] Adapter son utilisation dans `Images/DiskImageExplorerFactory.cs` et dans la politique commune de présélection par extension.
+    - [x] Conserver `TrackDescriptor` et `Cp2SectorDescriptor` privés dans le Reader tant qu’ils n’ont aucun autre consommateur que le parsing CP2.
+  - [x] Définitions binaires CP2
+    - [x] Créer `Containers/Cp2/Cp2Format.cs` et y définir la signature binaire `SOFTWARE PIRATES` ainsi que sa longueur.
+    - [x] Créer `Containers/Cp2/Cp2Layout.cs` et y définir la longueur minimale du fichier, l’offset du premier groupe, la taille de l’en-tête de groupe et l’offset du champ de longueur des métadonnées.
+    - [x] Y définir la taille du champ de longueur, les deux octets d’encadrement, l’ajustement d’une unité appliqué à la longueur des métadonnées et les tailles des descripteurs de piste et de secteur.
+    - [x] Y définir la taille de l’en-tête de piste, les offsets du cylindre, de la face et du nombre de secteurs et le maximum de 23 descripteurs sectoriels.
+    - [x] Y définir dans un groupe propre au descripteur sectoriel les offsets du cylindre, de la face, du numéro, du code de taille et de la position angulaire.
+    - [x] Y définir la longueur du champ de position, la taille sectorielle de base de 128 octets, le code de taille maximal accepté et la taille de 512 octets actuellement reconstruite.
+    - [x] Remplacer dans `Cp2Reader` chaque signature, offset, longueur, taille, limite et position de champ écrits en brut par ces définitions CP2.
   - [ ] Découpage interne du traitement CP2
-    - [ ] Extraire de `ReadAsync` une méthode privée qui valide la longueur minimale et la signature du conteneur.
-    - [ ] Conserver `ReadSectorBlocks` comme propriétaire du parcours des groupes, des métadonnées et des charges utiles.
-    - [ ] Conserver `ParseTrackDescriptor` comme propriétaire du décodage d’un descripteur de piste et de ses descripteurs sectoriels.
-    - [ ] Extraire de `ReadAsync` une méthode privée qui calcule la géométrie observée et reconstruit l’image linéaire de secteurs de 512 octets.
+    - [x] Extraire de `ReadAsync` une méthode privée qui valide la longueur minimale et la signature du conteneur.
+    - [x] Conserver `ReadSectorBlocks` comme propriétaire du parcours des groupes, des métadonnées et des charges utiles.
+    - [x] Conserver `ParseTrackDescriptor` comme propriétaire du décodage d’un descripteur de piste et de ses descripteurs sectoriels.
+    - [x] Extraire de `ReadAsync` une méthode privée qui calcule la géométrie observée et reconstruit l’image linéaire de secteurs de 512 octets.
     - [ ] Faire consommer à cette méthode le constructeur sectoriel IBM commun extrait de `IbmPcImageReader.Create`, au lieu de conserver une dépendance du parser CP2 vers le Reader IBM.
-    - [ ] Conserver le tri des secteurs par position angulaire avant la lecture séquentielle de leurs charges utiles.
-    - [ ] Conserver le rejet des secteurs dont la taille n’est pas de 512 octets et des adresses hors de la géométrie calculée, sans modifier silencieusement leur traitement.
-  - [ ] Erreurs CP2 paramétrées
-    - [ ] Créer `Containers/Cp2/Cp2Exceptions.cs`.
-    - [ ] Y déplacer le texte brut signalant une signature CP2 absente.
-    - [ ] Y déplacer les erreurs de bloc de description invalide ou tronqué en injectant l’offset du groupe, la longueur déclarée et la longueur disponible.
-    - [ ] Y déplacer l’erreur de charge utile sectorielle tronquée en injectant l’adresse du secteur, son offset, sa taille et les octets disponibles.
-    - [ ] Y déplacer les erreurs d’absence de secteurs, de géométrie invalide et de nombre de descripteurs sectoriels invalide avec les valeurs observées utiles.
-    - [ ] Remplacer toutes les constructions directes de `InvalidDataException` du Reader par les méthodes correspondantes de `Cp2Exceptions`.
+      - Dépendance restante : le constructeur sectoriel IBM commun est créé dans le groupe ultérieur de `IbmPcImageReader`. `Cp2Reader` conserve temporairement l'appel existant à `IbmPcImageReader.Create` ; cette action reste non cochée jusqu'à l'exécution de ce groupe dans l'ordre du document.
+    - [x] Conserver le tri des secteurs par position angulaire avant la lecture séquentielle de leurs charges utiles.
+    - [x] Conserver le rejet des secteurs dont la taille n’est pas de 512 octets et des adresses hors de la géométrie calculée, sans modifier silencieusement leur traitement.
+  - [x] Erreurs CP2 paramétrées
+    - [x] Créer `Containers/Cp2/Cp2Exceptions.cs`.
+    - [x] Y déplacer le texte brut signalant une signature CP2 absente.
+    - [x] Y déplacer les erreurs de bloc de description invalide ou tronqué en injectant l’offset du groupe, la longueur déclarée et la longueur disponible.
+    - [x] Y déplacer l’erreur de charge utile sectorielle tronquée en injectant l’adresse du secteur, son offset, sa taille et les octets disponibles.
+    - [x] Y déplacer les erreurs d’absence de secteurs, de géométrie invalide et de nombre de descripteurs sectoriels invalide avec les valeurs observées utiles.
+    - [x] Remplacer toutes les constructions directes de `InvalidDataException` du Reader par les méthodes correspondantes de `Cp2Exceptions`.
   - [ ] Documentation XML française et mise en forme
     - [ ] Remplacer la documentation anglaise de `Cp2Reader` par une CSDoc française.
     - [ ] Documenter en français `Cp2Format`, `Cp2Layout`, `Cp2Exceptions`, leurs membres et leurs unités.
