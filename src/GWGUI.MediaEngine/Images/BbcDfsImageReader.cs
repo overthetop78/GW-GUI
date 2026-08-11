@@ -22,7 +22,7 @@ public sealed class BbcDfsImageReader : ISectorImageReader
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         var extension = Path.GetExtension(path);
-        var heads = extension.Equals(DiskImageFileExtensions.Dsd, StringComparison.OrdinalIgnoreCase) ? 2 : 1;
+        var heads = extension.Equals(DiskImageFileExtensions.Dsd, StringComparison.OrdinalIgnoreCase) ? DiskGeometryConstants.DoubleSidedHeadCount : DiskGeometryConstants.SingleSidedHeadCount;
         if (data.Length == 0 || data.Length % (TrackBytes * heads) != 0)
             throw new InvalidDataException("The BBC DFS image does not contain a whole number of tracks.");
         var cylinders = data.Length / (TrackBytes * heads);
@@ -40,8 +40,8 @@ public sealed class BbcDfsImageReader : ISectorImageReader
             var logical = (cylinder * heads + head) * SectorsPerTrack + sector;
             blocks.Add(new(logical, new(cylinder, head, sector), data.AsSpan(source, SectorSize).ToArray()));
         }
-        var format = heads == 1
-            ? cylinders == 40 ? DiskImageFormatIds.AcornDfsSingleSided : DiskImageFormatIds.AcornDfsSingleSided80
+        var format = heads == DiskGeometryConstants.SingleSidedHeadCount
+            ? cylinders == DiskGeometryConstants.FortyTrackCylinderCount ? DiskImageFormatIds.AcornDfsSingleSided : DiskImageFormatIds.AcornDfsSingleSided80
             : cylinders == DiskGeometryConstants.FortyTrackCylinderCount ? DiskImageFormatIds.AcornDfsDoubleSided : DiskImageFormatIds.AcornDfsDoubleSided80;
         return new(format, SectorSize, cylinders, heads, SectorsPerTrack, blocks);
     }

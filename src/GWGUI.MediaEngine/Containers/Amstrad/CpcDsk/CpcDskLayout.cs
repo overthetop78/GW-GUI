@@ -46,7 +46,7 @@ public static class CpcDskLayout
     /// <summary>Nombre maximal de faces accepté dans la géométrie déclarée.</summary>
     public const int MaximumHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
     /// <summary>Nombre minimal de faces accepté dans la géométrie déclarée.</summary>
-    public const int MinimumHeadCount = 1;
+    public const int MinimumHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
 
     /// <summary>Nombre d’octets lus au début d’une piste pour reconnaître sa signature.</summary>
     public const int TrackSignatureLength = 12;

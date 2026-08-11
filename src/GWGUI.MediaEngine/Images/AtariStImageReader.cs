@@ -31,12 +31,12 @@ internal readonly record struct AtariStGeometry(int Cylinders, int Heads, int Se
             if (totalSectors == 0) totalSectors = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(data[32..])));
             var sectors = BinaryPrimitives.ReadUInt16LittleEndian(data[24..]);
             var heads = BinaryPrimitives.ReadUInt16LittleEndian(data[26..]);
-            if (bytesPerSector == 512 && totalSectors == data.Length / 512 && sectors is > 0 and <= 36 && heads is > 0 and <= 2 && totalSectors % (sectors * heads) == 0)
+            if (bytesPerSector == 512 && totalSectors == data.Length / 512 && sectors is > 0 and <= 36 && heads is > 0 and <= DiskGeometryConstants.DoubleSidedHeadCount && totalSectors % (sectors * heads) == 0)
                 return new(totalSectors / (sectors * heads), heads, sectors);
         }
         var sectorCount = data.Length / 512;
         foreach (var sectors in new[] { 9, 10, 11, 18 })
-            foreach (var heads in new[] { 2, 1 })
+            foreach (var heads in new[] { DiskGeometryConstants.DoubleSidedHeadCount, DiskGeometryConstants.SingleSidedHeadCount })
                 if (sectorCount % (sectors * heads) == 0 && sectorCount / (sectors * heads) is >= 35 and <= 90)
                     return new(sectorCount / (sectors * heads), heads, sectors);
         throw new InvalidDataException("The ST image geometry could not be determined from its boot sector or size.");

@@ -36,7 +36,7 @@ internal static class AtrLayout
     /// <summary>Index de la tête logique unique exposée par une image ATR.</summary>
     public const int LogicalHeadIndex = 0;
     /// <summary>Nombre de faces logiques exposées par une image ATR.</summary>
-    public const int LogicalHeadCount = 1;
+    public const int LogicalHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
     /// <summary>Nombre de secteurs logiques associé à chaque cylindre logique ATR.</summary>
     public const int LogicalSectorsPerCylinder = 1;
 

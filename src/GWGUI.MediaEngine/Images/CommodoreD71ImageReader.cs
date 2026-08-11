@@ -10,7 +10,7 @@ public sealed class CommodoreD71ImageReader : ISectorImageReader
     private static readonly IReadOnlyDictionary<int, (int Tracks, bool ErrorMap)> Sizes = new Dictionary<int, (int, bool)>
     {
         [349_696] = (35, false), [351_062] = (35, true),
-        [393_216] = (40, false), [394_752] = (40, true)
+        [393_216] = (DiskGeometryConstants.FortyTrackCylinderCount, false), [394_752] = (DiskGeometryConstants.FortyTrackCylinderCount, true)
     };
 
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase);

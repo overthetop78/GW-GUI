@@ -37,7 +37,7 @@ internal static class WozLayout
     /// <summary>Longueur attendue du chunk TMAP.</summary>
     public const int TrackMapLength = AppleIITrackCount * TrackMapEntriesPerTrack;
     /// <summary>Nombre de pistes Apple II examinées.</summary>
-    public const int AppleIITrackCount = 40;
+    public const int AppleIITrackCount = DiskGeometryConstants.FortyTrackCylinderCount;
     /// <summary>Index de la première piste Apple II examinée.</summary>
     public const int FirstAppleIITrackIndex = 0;
     /// <summary>Nombre d’entrées TMAP examinées pour chaque piste Apple II.</summary>

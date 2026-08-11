@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Reading;
 
@@ -9,7 +10,7 @@ public sealed class CommodoreD64ImageReader : ISectorImageReader
     private static readonly IReadOnlyDictionary<int, (int Tracks, bool ErrorMap)> Sizes = new Dictionary<int, (int, bool)>
     {
         [174_848] = (35, false), [175_531] = (35, true),
-        [196_608] = (40, false), [197_376] = (40, true)
+        [196_608] = (DiskGeometryConstants.FortyTrackCylinderCount, false), [197_376] = (DiskGeometryConstants.FortyTrackCylinderCount, true)
     };
 
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.D64, StringComparison.OrdinalIgnoreCase);
@@ -27,6 +28,6 @@ public sealed class CommodoreD64ImageReader : ISectorImageReader
             var integrity = !geometry.ErrorMap || data[count * 256 + logical] == 1;
             blocks[logical] = new(logical, new(address.Track - 1, 0, address.Sector), data.AsSpan(logical * 256, 256).ToArray(), integrity);
         }
-        return new(DiskImageFormatIds.Commodore1541, 256, geometry.Tracks, 1, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
+        return new(DiskImageFormatIds.Commodore1541, 256, geometry.Tracks, DiskGeometryConstants.SingleSidedHeadCount, 21, blocks, capacity: count * 256L, logicalBlockCount: count);
     }
 }

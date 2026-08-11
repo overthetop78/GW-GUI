@@ -3,6 +3,8 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.SectorImages;
 
 
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 /// <summary>
@@ -24,7 +26,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
 
     public bool CanRead(SectorImage image)
     {
-        if (image.BlockSize != SectorSize || image.SectorsPerTrack != 16 || image.Heads != 1 || image.BlockCount < 35 * 16)
+        if (image.BlockSize != SectorSize || image.SectorsPerTrack != 16 || image.Heads != DiskGeometryConstants.SingleSidedHeadCount || image.BlockCount < 35 * 16)
             return false;
 
         var story = ReadStory(image, headerOnly: false);

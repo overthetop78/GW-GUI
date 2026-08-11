@@ -1815,11 +1815,11 @@
     - [x] Conserver le fichier dans `Primitives`, car les nombres conventionnels de cylindres et de têtes sont utilisés par plusieurs familles sans appartenir à l’une d’elles.
     - [x] Rendre `DiskGeometryConstants` interne, car aucun projet extérieur à `GWGUI.MediaEngine` ne consomme directement ses constantes.
     - [x] Conserver les quatre valeurs sous forme de constantes et ne pas créer d’enum : un nombre de cylindres ou de têtes n’est pas limité à ces quatre possibilités.
-  - [ ] Raccordement des valeurs communes
-    - [ ] Faire utiliser `FortyTrackCylinderCount` et `EightyTrackCylinderCount` uniquement aux consommateurs dont `40` ou `80` représente réellement le nombre de cylindres d’un média.
-    - [ ] Faire utiliser `SingleSidedHeadCount` et `DoubleSidedHeadCount` uniquement aux consommateurs dont `1` ou `2` représente réellement le nombre de têtes.
-    - [ ] Conserver les alias propres à une géométrie, comme ceux d’Apple, lorsqu’ils ajoutent le nom de la machine ou du format à la valeur commune.
-    - [ ] Ne pas remplacer les mêmes nombres lorsqu’ils représentent une taille, un offset, un numéro de secteur, une limite de format ou une autre donnée sans rapport avec cette géométrie.
+  - [x] Raccordement des valeurs communes
+    - [x] Faire utiliser `FortyTrackCylinderCount` et `EightyTrackCylinderCount` uniquement aux consommateurs dont `40` ou `80` représente réellement le nombre de cylindres d’un média.
+    - [x] Faire utiliser `SingleSidedHeadCount` et `DoubleSidedHeadCount` uniquement aux consommateurs dont `1` ou `2` représente réellement le nombre de têtes.
+    - [x] Conserver les alias propres à une géométrie, comme ceux d’Apple, lorsqu’ils ajoutent le nom de la machine ou du format à la valeur commune.
+    - [x] Ne pas remplacer les mêmes nombres lorsqu’ils représentent une taille, un offset, un numéro de secteur, une limite de format ou une autre donnée sans rapport avec cette géométrie.
   - [ ] Documentation XML et encodage
     - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de `DiskGeometryConstants` et de ses quatre constantes.
     - [ ] Préciser dans chaque commentaire qu’il s’agit d’un nombre de cylindres ou de têtes, sans attribuer la valeur à une famille de machine particulière.

@@ -50,7 +50,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
 
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address) =>
         image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) &&
-        image.Heads == 1 && image.Cylinders > 84
+        image.Heads == DiskGeometryConstants.SingleSidedHeadCount && image.Cylinders > 84
             ? new(address.Cylinder / 2, address.Cylinder % 2, address.Number)
             : address;
 
@@ -63,7 +63,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
                 ["format"] = image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount ? 0x24 : 0
             };
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase))
-            return new Dictionary<string, int> { ["format"] = image.Heads == 1 ? 0x02 : 0x22 };
+            return new Dictionary<string, int> { ["format"] = image.Heads == DiskGeometryConstants.SingleSidedHeadCount ? 0x02 : 0x22 };
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int> { ["format"] = 0x12 };
         return null;

@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -15,6 +16,6 @@ internal sealed class AppleRwts18ScpSectorReconstructor(AppleScpSectorDecoder de
         if (blocks.Length == 0)
             throw new InvalidDataException("No usable Apple II RWTS18 sectors could be reconstructed.");
         var tracks = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
-        return new(DiskImageFormatIds.AppleIIRwts18, 768, tracks, 1, 6, blocks);
+        return new(DiskImageFormatIds.AppleIIRwts18, 768, tracks, DiskGeometryConstants.SingleSidedHeadCount, 6, blocks);
     }
 }

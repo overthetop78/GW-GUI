@@ -105,7 +105,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
             var total = 0;
             if (TryGetSector(image, 18, 0, out var bam))
                 for (var track = 1; track <= Math.Min(35, tracksPerSide); track++) total += bam[4 + (track - 1) * 4];
-            if (image.Heads > 1 && TryGetSector(image, 18 + tracksPerSide, 0, out var secondBam))
+            if (image.Heads > DiskGeometryConstants.SingleSidedHeadCount && TryGetSector(image, 18 + tracksPerSide, 0, out var secondBam))
                 for (var track = 1; track <= Math.Min(35, tracksPerSide); track++) total += secondBam[4 + (track - 1) * 4];
             return total;
         }

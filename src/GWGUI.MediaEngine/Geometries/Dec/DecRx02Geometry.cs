@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Geometries.Dec;
 
 /// <summary>Définit la géométrie physique et logique d'une disquette DEC RX02.</summary>
@@ -6,7 +8,7 @@ public static class DecRx02Geometry
     /// <summary>Nombre de pistes physiques.</summary>
     public const int TrackCount = 77;
     /// <summary>Nombre de faces.</summary>
-    public const int HeadCount = 1;
+    public const int HeadCount = DiskGeometryConstants.SingleSidedHeadCount;
     /// <summary>Nombre de secteurs physiques par piste.</summary>
     public const int PhysicalSectorsPerTrack = 26;
     /// <summary>Taille d'un secteur physique en octets.</summary>

@@ -45,7 +45,7 @@ public sealed class Cp2Reader
         var cylinders = sectors.Keys.Max(address => address.Cylinder) + 1;
         var heads = sectors.Keys.Max(address => address.Head) + 1;
         var sectorsPerTrack = sectors.Keys.Max(address => address.Number);
-        if (heads is <= 0 or > 2 || sectorsPerTrack <= 0)
+        if (heads is <= 0 or > Primitives.DiskGeometryConstants.DoubleSidedHeadCount || sectorsPerTrack <= 0)
             throw Cp2Exceptions.InvalidGeometry(heads, sectorsPerTrack);
 
         var linear = new byte[checked(cylinders * heads * sectorsPerTrack * Cp2Layout.ReconstructedSectorSize)];

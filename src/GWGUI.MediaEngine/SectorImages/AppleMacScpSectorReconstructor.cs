@@ -13,7 +13,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         var candidates = decoder.DecodeCandidates(scp, "applemac.gcr", 512, cancellationToken);
         if (candidates.Count == 0)
             throw new InvalidDataException("No Apple Macintosh GCR sectors could be decoded from the SCP image.");
-        var heads = candidates.Keys.Any(address => address.Head == 1) ? 2 : 1;
+        var heads = candidates.Keys.Any(address => address.Head == 1) ? DiskGeometryConstants.DoubleSidedHeadCount : DiskGeometryConstants.SingleSidedHeadCount;
         var blocks = new List<SectorBlock>();
         foreach (var pair in candidates)
         {

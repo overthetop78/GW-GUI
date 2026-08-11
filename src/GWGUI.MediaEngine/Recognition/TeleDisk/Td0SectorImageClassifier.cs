@@ -24,8 +24,8 @@ internal static class Td0SectorImageClassifier
         {
             return (cylinders, heads, sectorsPerTrack) switch
             {
-                (40, 1, 8) => DiskImageFormatIds.Ibm160,
-                (40, 1, 9) => DiskImageFormatIds.Ibm180,
+                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 8) => DiskImageFormatIds.Ibm160,
+                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9) => DiskImageFormatIds.Ibm180,
                 (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8) => DiskImageFormatIds.Ibm320,
                 (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm360,
                 (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm720,

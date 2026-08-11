@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -54,6 +55,6 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         }
         if (blocks.Count == 0)
             throw new InvalidDataException("No usable Apple II ProDOS blocks could be reconstructed.");
-        return new(DiskImageFormatIds.AppleIIProDos, 512, tracks, 1, 8, blocks);
+        return new(DiskImageFormatIds.AppleIIProDos, 512, tracks, DiskGeometryConstants.SingleSidedHeadCount, 8, blocks);
     }
 }

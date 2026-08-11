@@ -24,9 +24,9 @@ internal static class MsaLayout
     /// <summary>Nombre maximal de secteurs accepté par piste.</summary>
     public const int MaximumSectorsPerTrack = 36;
     /// <summary>Nombre minimal de faces accepté.</summary>
-    public const int MinimumHeadCount = 1;
+    public const int MinimumHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
     /// <summary>Nombre maximal de faces accepté.</summary>
-    public const int MaximumHeadCount = 2;
+    public const int MaximumHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
     /// <summary>Indice maximal de cylindre accepté.</summary>
     public const int MaximumCylinder = 255;
     /// <summary>Longueur d'une séquence RLE, en octets.</summary>

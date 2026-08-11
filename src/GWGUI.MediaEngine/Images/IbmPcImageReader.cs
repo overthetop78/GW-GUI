@@ -78,7 +78,7 @@ public sealed class IbmPcImageReader : ISectorImageReader
             }
             var sectorsPerTrack = BinaryPrimitives.ReadUInt16LittleEndian(boot[24..]);
             var heads = BinaryPrimitives.ReadUInt16LittleEndian(boot[26..]);
-            if (bytesPerSector == 512 && totalSectors > 0 && sectorsPerTrack is > 0 and <= 63 && heads is > 0 and <= 2
+            if (bytesPerSector == 512 && totalSectors > 0 && sectorsPerTrack is > 0 and <= 63 && heads is > 0 and <= DiskGeometryConstants.DoubleSidedHeadCount
                 && totalSectors % (sectorsPerTrack * heads) == 0)
             {
                 var cylinders = totalSectors / (sectorsPerTrack * heads);
@@ -128,7 +128,7 @@ public sealed class IbmPcImageReader : ISectorImageReader
         var sectorsPerTrack = BinaryPrimitives.ReadUInt16LittleEndian(data[24..]);
         var heads = BinaryPrimitives.ReadUInt16LittleEndian(data[26..]);
         if (bytesPerSector != 512 || totalSectors <= 0 || totalSectors != data.Length / 512
-            || sectorsPerTrack is <= 0 or > 63 || heads is <= 0 or > 2
+            || sectorsPerTrack is <= 0 or > 63 || heads is <= 0 or > DiskGeometryConstants.DoubleSidedHeadCount
             || totalSectors % (sectorsPerTrack * heads) != 0) return false;
         var cylinders = totalSectors / (sectorsPerTrack * heads);
         if (cylinders is <= 0 or > 255) return false;
