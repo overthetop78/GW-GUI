@@ -1931,10 +1931,10 @@
     - [x] Créer `Encoding/Definitions/Victor9kGcrFormat.cs`.
     - [x] Déplacer la table GCR, les marques de huit octets, les tailles de secteurs et de champs, les offsets de bits et les gaps dupliqués.
     - [x] Remplacer les valeurs brutes dans `Victor9kGcrDecoder.cs` et `Victor9kGcrTrackEncoder.cs`.
-  - [ ] DEC RX02
-    - [ ] Créer `Encoding/Definitions/DecRx02EncodingFormat.cs`.
-    - [ ] Déplacer les marques FM, tailles physiques, transformation M2FM, codes de taille, gaps et paramètres CRC communs.
-    - [ ] Remplacer les valeurs brutes dans `DecRx02Decoder.cs` et `DecRx02TrackEncoder.cs` et utiliser `DecRx02Geometry` pour leur géométrie.
+  - [x] DEC RX02
+    - [x] Créer `Encoding/Definitions/DecRx02EncodingFormat.cs`.
+    - [x] Déplacer les marques FM, tailles physiques, transformation M2FM, codes de taille, gaps et paramètres CRC communs.
+    - [x] Remplacer les valeurs brutes dans `DecRx02Decoder.cs` et `DecRx02TrackEncoder.cs` et utiliser `DecRx02Geometry` pour leur géométrie.
   - [ ] Formats AED, Arburg, Centurion, Data General, EMU, Heathkit, HP, Membrain, Micral N, Micropolis, North Star, QD MO5 et Tycom
     - [ ] Créer un fichier `Format.cs` nommé pour chacune de ces treize paires décodeur/encodeur.
     - [ ] Déplacer dans chaque fichier les identifiants, marques, tailles, gaps, masques, tables et paramètres de checksum ou CRC actuellement écrits dans sa paire.
