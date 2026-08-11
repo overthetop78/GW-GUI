@@ -1410,8 +1410,8 @@
       - [x] Faire réutiliser exactement la même lecture réussie par tous les appels ultérieurs.
       - [x] Définir et documenter le comportement d’une première lecture annulée ou en erreur afin de ne pas relancer silencieusement une seconde lecture différente dans le même contexte.
       - [x] Adapter chaque politique à `ReadOnlyMemory<byte>` en utilisant `Span` ou une copie uniquement lorsque son API l’exige réellement.
-    - [ ] Mise en forme
-      - [ ] Conserver les propriétés, signatures et expressions courtes sur une seule ligne lorsqu’elles tiennent lisiblement.
+    - [x] Mise en forme
+      - [x] Conserver les propriétés, signatures et expressions courtes sur une seule ligne lorsqu’elles tiennent lisiblement.
     - [ ] Documentation XML et encodage
       - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, du champ de cache, du constructeur, de chaque propriété et de `ReadBytesAsync`.
       - [ ] Documenter les paramètres, le résultat en lecture seule, la normalisation de l’extension et toutes les exceptions propagées par l’accès au fichier.
