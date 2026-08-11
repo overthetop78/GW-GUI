@@ -1904,11 +1904,11 @@
     - [x] Créer `Encoding/Definitions/IsoMfmFormat.cs`.
     - [x] Sortir de `IsoMfmDecoder.cs` et `IsoMfmTrackEncoder.cs` les octets de synchronisation A1, les marques, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
     - [x] Remplacer dans les deux fichiers toutes les valeurs brutes correspondantes par `IsoMfmFormat`.
-  - [ ] Apple II GCR
-    - [ ] Créer `Encoding/Definitions/AppleIIGcrFormat.cs`.
-    - [ ] Déplacer les tables 5-and-3 et 6-and-2 actuellement dupliquées entre `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs`.
-    - [ ] Sortir les prologues, épilogues, tailles de champs, longueurs encodées, gaps et valeurs de volume par défaut.
-    - [ ] Remplacer toutes les valeurs brutes correspondantes dans le décodeur et l’encodeur.
+  - [x] Apple II GCR
+    - [x] Créer `Encoding/Definitions/AppleIIGcrFormat.cs`.
+    - [x] Déplacer les tables 5-and-3 et 6-and-2 actuellement dupliquées entre `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs`.
+    - [x] Sortir les prologues, épilogues, tailles de champs, longueurs encodées, gaps et valeurs de volume par défaut.
+    - [x] Remplacer toutes les valeurs brutes correspondantes dans le décodeur et l’encodeur.
   - [ ] Macintosh et Lisa GCR
     - [ ] Créer `Encoding/Definitions/AppleMacGcrFormat.cs` et `AppleLisaFileWareGcrFormat.cs`.
     - [ ] Déplacer la table 6-and-2, les marques d’adresse et de données, les tailles de tags, secteurs, champs et checksums communes à `AppleMacGcrDecoder.cs` et `AppleMacGcrTrackEncoder.cs`.
