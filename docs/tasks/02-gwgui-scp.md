@@ -1652,10 +1652,10 @@
       - [x] Y définir les bornes d'horloge `0,9` et `1,1` autour du centre.
       - [x] Y définir le demi-cycle `0,5`, la conservation de phase `0,4`, la correction `0,05` et la limite de trois zéros pour la correction directe.
       - [x] Remplacer ces valeurs dans la reconstruction PLL.
-    - [ ] Estimation robuste
-      - [ ] Y définir le diviseur 50 du percentile bas utilisé pour FM et NRZI.
-      - [ ] Y définir le cinquième inférieur utilisé par l'estimation non-FM et la division par deux de l'intervalle robuste.
-      - [ ] Y définir la valeur de repli d'un tick lorsque aucun intervalle positif n'est disponible.
+    - [x] Estimation robuste
+      - [x] Y définir le diviseur 50 du percentile bas utilisé pour FM et NRZI.
+      - [x] Y définir le cinquième inférieur utilisé par l'estimation non-FM et la division par deux de l'intervalle robuste.
+      - [x] Y définir la valeur de repli d'un tick lorsque aucun intervalle positif n'est disponible.
     - [ ] Lecture binaire
       - [ ] Y définir les huit bits d'un octet, les 16 bits du motif `ushort`, les 32 bits maximaux du motif `uint`, les deux cellules par bit de `DecodeMfmByte` et les quatre cellules par bit de `DecodeFmByte32`.
       - [ ] Documenter en français chaque constante avec son unité et l'algorithme auquel elle appartient.

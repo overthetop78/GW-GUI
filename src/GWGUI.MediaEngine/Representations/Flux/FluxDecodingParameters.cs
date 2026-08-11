@@ -29,4 +29,12 @@ internal static class FluxDecodingParameters
     public const double PllCorrectionCoefficient = 0.05d;
     /// <summary>Nombre maximal de zéros autorisant une correction directe de l'horloge PLL.</summary>
     public const int MaximumZerosForDirectPllCorrection = 3;
+    /// <summary>Diviseur du percentile bas utilisé par les estimations FM et NRZI.</summary>
+    public const int LowPercentileDivisor = 50;
+    /// <summary>Diviseur sélectionnant le cinquième inférieur des intervalles pour l'estimation non-FM.</summary>
+    public const int LowerClusterDivisor = 5;
+    /// <summary>Diviseur convertissant l'intervalle robuste en durée de cellule non-FM.</summary>
+    public const double RobustIntervalToBitCellDivisor = 2d;
+    /// <summary>Durée de cellule utilisée lorsque l'estimation ne trouve aucun intervalle positif, en ticks.</summary>
+    public const double FallbackBitCellTicks = MinimumBitCellTicks;
 }
