@@ -2466,11 +2466,11 @@
       - [x] Extraire le décodage du codage système variable dans un composant nommé et documenté.
       - [x] Remplacer les descriptions textuelles brutes par un constructeur commun recevant le type, la taille et l'état du checksum.
       - [x] Utiliser le calcul de confiance commun avec les paramètres Arburg.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et opérations Arburg créées.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et opérations Arburg créées.
     - [ ] Vérification du groupe Arburg
       - [ ] Tester un bloc FM complet avec checksum valide puis invalide.
       - [ ] Tester un bloc système complet avec checksum valide puis invalide.
