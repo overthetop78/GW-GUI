@@ -2316,14 +2316,14 @@
       - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
       - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
       - [x] Ajouter la CSDoc française aux types et méthodes créés dans `AmigaMfmFormat.cs` et `AmigaMfmCodec.cs`.
-    - [ ] Vérification du groupe Amiga MFM
-      - [ ] Tester la reconnaissance des deux mots de synchronisation Amiga.
-      - [ ] Tester le décodage du cylindre, de la face et du numéro de secteur depuis l'en-tête odd/even.
-      - [ ] Tester un checksum d'en-tête valide puis invalide.
-      - [ ] Tester un checksum de données valide puis invalide.
-      - [ ] Tester un en-tête présent sans bloc de données complet et vérifier le résultat tronqué produit.
-      - [ ] Tester l'encodage puis le décodage odd/even et les deux calculs de parité du composant commun.
-      - [ ] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
+    - [x] Vérification du groupe Amiga MFM
+      - [x] Tester la reconnaissance des deux mots de synchronisation Amiga.
+      - [x] Tester le décodage du cylindre, de la face et du numéro de secteur depuis l'en-tête odd/even.
+      - [x] Tester un checksum d'en-tête valide puis invalide.
+      - [x] Tester un checksum de données valide puis invalide.
+      - [x] Tester un en-tête présent sans bloc de données complet et vérifier le résultat tronqué produit.
+      - [x] Tester l'encodage puis le décodage odd/even et les deux calculs de parité du composant commun.
+      - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/AppleIIGcrDecoder.cs`
     - [ ] Nom du type et raccordements
       - [ ] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder` afin que le type corresponde au nom `AppleIIGcrDecoder.cs`.

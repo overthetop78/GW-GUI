@@ -85,7 +85,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         var cylinder = header?.Cylinder ?? 0;
         var head = header?.Head ?? 0;
         var number = header?.Sector ?? 0;
-        var integrity = header?.Valid == false || data?.Valid == false ? false : data is null ? null : true;
+        bool? integrity = header?.Valid == false || data?.Valid == false ? false : data is null ? null : true;
         sectors.Add(new(cylinder, head, number, SectorSizeCode.FromByteCount(AmigaMfmFormat.SectorByteCount), AmigaMfmFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, data?.Payload));
         structures.Add(new(FluxStructureKind.AmigaSync, offset, length, FluxStructureDescriptions.CompleteWithChecksums(AmigaMfmFormat.StructureDescriptionName, FluxStructureKind.AmigaSync, cylinder, head, number, AmigaMfmFormat.SectorByteCount, header?.Valid, data?.Valid)));
     }

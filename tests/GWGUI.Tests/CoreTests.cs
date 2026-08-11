@@ -11,6 +11,7 @@ using GWGUI.Domain.Read;
 using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
@@ -2051,6 +2052,11 @@ public sealed class CoreTests
         var result = new AmigaMfmDecoder().Decode(new FluxRevolution(8_000_000, intervals));
         Assert.Contains(result.Structures, x => x.Kind == FluxStructureKind.AmigaSync);
         Assert.True(result.Confidence > 0);
+
+        var singleWordBits = Convert.ToString(0x4489, 2).PadLeft(16, '0');
+        var singleWordIntervals = BitsToIntervals(singleWordBits, 40);
+        var singleWordResult = new AmigaMfmDecoder().Decode(new FluxRevolution(8_000_000, singleWordIntervals));
+        Assert.DoesNotContain(singleWordResult.Structures, structure => structure.Kind == FluxStructureKind.AmigaSync);
     }
 
     [Fact]
@@ -3031,6 +3037,21 @@ public sealed class CoreTests
         var decoded = Assert.Single(result.Sectors!); Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(head, decoded.Head); Assert.Equal(sector, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
         Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
         Assert.Equal(data, result.DecodedBytes.Skip(4).Take(512));
+        Assert.Equal("amiga.mfm", result.DecoderId);
+        Assert.Equal("Amiga MFM", result.DisplayName);
+        Assert.Equal(2, decoded.SizeCode);
+        Assert.Equal(4d / 44d, result.Confidence, 10);
+    }
+
+    [Fact]
+    public void AmigaMfmCodecRoundTripsOddEvenDataAndCalculatesBothParities()
+    {
+        byte[] values = [0x00, 0xff, 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc];
+        var encoded = AmigaMfmCodec.EncodeOddEven(values);
+
+        Assert.Equal(values, AmigaMfmCodec.DecodeOddEven(encoded));
+        Assert.Equal(((byte)0, (byte)8), AmigaMfmCodec.CalculateParity(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 0, 8));
+        Assert.Equal(((byte)0, (byte)8), AmigaMfmCodec.CalculateSplitParity(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 0, 8));
     }
 
     [Fact]
