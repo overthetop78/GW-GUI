@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Primitives;
 
-namespace GWGUI.MediaEngine.Decoding;
+namespace GWGUI.MediaEngine.Decoding.Apple;
 
 internal static class AppleBitLatch
 {

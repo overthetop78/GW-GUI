@@ -1971,9 +1971,9 @@
       - [x] Vérifier dans les tests ciblés de chaque décodeur que les descriptions produites restent cohérentes avec les structures et secteurs décodés.
 
 - [ ] `src/GWGUI.MediaEngine/Decoding/Base/AppleBitLatch.cs`
-  - [ ] Structure et raccordements
-    - [ ] Déplacer le fichier vers un emplacement Apple précis hors de `Decoding/Base`.
-    - [ ] Adapter son namespace et les consommateurs Apple II GCR et RWTS18.
+  - [x] Structure et raccordements
+    - [x] Déplacer le fichier vers un emplacement Apple précis hors de `Decoding/Base`.
+    - [x] Adapter son namespace et les consommateurs Apple II GCR et RWTS18.
   - [ ] Définition commune du nombre de bits
     - [ ] Créer dans `Primitives` une constante générale `BitsPerByte` valant `8`.
     - [ ] Raccorder `AppleBitLatch` et `NibTrackFormat` à cette constante commune.
