@@ -9,6 +9,22 @@ public sealed class ScpReaderDeterministicTests
 {
     private static readonly Lazy<TestImages> Images = new(CreateTestImages);
 
+    [Fact]
+    public void PreservesScpBinaryLayoutValuesDerivedFromFieldSizes()
+    {
+        Assert.Equal(3, ScpFormatConstants.VersionOffset);
+        Assert.Equal(16, ScpFormatConstants.HeaderLength);
+        Assert.Equal(16, ScpFormatConstants.TrackTableOffset);
+        Assert.Equal(3, ScpFormatConstants.TrackNumberOffset);
+        Assert.Equal(0, ScpFormatConstants.RevolutionIndexTimeOffset);
+        Assert.Equal(4, ScpFormatConstants.RevolutionFluxCountOffset);
+        Assert.Equal(8, ScpFormatConstants.RevolutionDataOffset);
+        Assert.Equal(12, ScpFormatConstants.RevolutionDescriptorSize);
+        Assert.Equal(4, ScpFormatConstants.TrackTableEntrySize);
+        Assert.Equal(2, ScpFormatConstants.FluxIntervalSize);
+        Assert.Equal(65_536u, ScpFormatConstants.ZeroFluxIntervalOverflow);
+    }
+
     [Theory]
     [InlineData(0, 0, 0)]
     [InlineData(1, 0, 1)]
@@ -16,7 +32,7 @@ public sealed class ScpReaderDeterministicTests
     [InlineData(167, 83, 1)]
     public void ConvertsScpTrackNumbersToCylinderAndHead(int trackNumber, int expectedCylinder, int expectedHead)
     {
-        var address = ScpFormatConstants.ToTrackAddress(trackNumber);
+        var address = ScpFormatAlgorithms.ToTrackAddress(trackNumber);
 
         Assert.Equal(expectedCylinder, address.Cylinder);
         Assert.Equal(expectedHead, address.Head);
@@ -25,20 +41,21 @@ public sealed class ScpReaderDeterministicTests
     [Theory]
     [InlineData(-1)]
     [InlineData(ScpFormatConstants.FloppyTrackSlots)]
-    public void RejectsScpTrackNumbersOutsideTheTrackTable(int trackNumber) => Assert.Throws<ArgumentOutOfRangeException>(() => ScpFormatConstants.ToTrackAddress(trackNumber));
+    public void RejectsScpTrackNumbersOutsideTheTrackTable(int trackNumber) => Assert.Throws<ArgumentOutOfRangeException>(() => ScpFormatAlgorithms.ToTrackAddress(trackNumber));
 
     [Fact]
     public void ComputesUpdatesAndValidatesScpChecksums()
     {
         byte[] first = [byte.MaxValue, 1];
         byte[] second = [2, 3];
-        var checksum = ScpFormatConstants.UpdateChecksum(ScpFormatConstants.ComputeChecksum(first), second);
+        var checksum = ScpFormatAlgorithms.UpdateChecksum(ScpFormatAlgorithms.ComputeChecksum(first), second);
 
         Assert.Equal(261u, checksum);
-        Assert.True(ScpFormatConstants.IsChecksumValid(checksum, ScpFlags.None, checksum));
-        Assert.False(ScpFormatConstants.IsChecksumValid(checksum + 1, ScpFlags.None, checksum));
-        Assert.True(ScpFormatConstants.IsChecksumValid(0, ScpFlags.Writable, checksum));
-        Assert.False(ScpFormatConstants.IsChecksumValid(0, ScpFlags.IndexAligned, checksum));
+        Assert.True(ScpFormatAlgorithms.IsChecksumValid(checksum, ScpFlags.None, checksum));
+        Assert.False(ScpFormatAlgorithms.IsChecksumValid(checksum + 1, ScpFlags.None, checksum));
+        Assert.True(ScpFormatAlgorithms.IsChecksumValid(ScpFormatConstants.MissingChecksum, ScpFlags.Writable, checksum));
+        Assert.False(ScpFormatAlgorithms.IsChecksumValid(ScpFormatConstants.MissingChecksum, ScpFlags.IndexAligned, checksum));
+        Assert.Equal(0u, ScpFormatAlgorithms.UpdateChecksum(uint.MaxValue, [1]));
     }
 
     [Theory]
@@ -470,7 +487,7 @@ public sealed class ScpReaderDeterministicTests
 
     private static void WriteChecksum(byte[] data)
     {
-        var checksum = ScpFormatConstants.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
+        var checksum = ScpFormatAlgorithms.ComputeChecksum(data.AsSpan(ScpFormatConstants.TrackTableOffset));
         BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), checksum);
     }
 

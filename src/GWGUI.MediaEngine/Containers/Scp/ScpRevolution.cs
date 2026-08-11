@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Containers.Scp;
 
@@ -46,7 +47,7 @@ public sealed record ScpRevolution
     public double DurationMilliseconds(int resolutionNanoseconds)
     {
         ValidateResolution(resolutionNanoseconds);
-        return IndexTimeTicks * resolutionNanoseconds / ScpFormatConstants.NanosecondsPerMillisecond;
+        return IndexTimeTicks * resolutionNanoseconds / TimeUnitConstants.NanosecondsPerMillisecond;
     }
 
     /// <summary>
@@ -58,7 +59,7 @@ public sealed record ScpRevolution
     public double Rpm(int resolutionNanoseconds)
     {
         ValidateResolution(resolutionNanoseconds);
-        return ScpFormatConstants.MillisecondsPerMinute / DurationMilliseconds(resolutionNanoseconds);
+        return TimeUnitConstants.MillisecondsPerMinute / DurationMilliseconds(resolutionNanoseconds);
     }
 
     /// <summary>

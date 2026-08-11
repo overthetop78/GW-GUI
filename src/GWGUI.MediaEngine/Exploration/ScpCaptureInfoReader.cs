@@ -49,10 +49,10 @@ public static class ScpCaptureInfoReader
         {
             var read = await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false);
             if (read == 0) break;
-            checksum = ScpFormatConstants.UpdateChecksum(checksum, buffer.AsSpan(0, read));
+            checksum = ScpFormatAlgorithms.UpdateChecksum(checksum, buffer.AsSpan(0, read));
         }
-        var checksumValid = ScpFormatConstants.IsChecksumValid(header.Checksum, header.Flags, checksum);
-        var addresses = slots.Select(ScpFormatConstants.ToTrackAddress).ToArray();
+        var checksumValid = ScpFormatAlgorithms.IsChecksumValid(header.Checksum, header.Flags, checksum);
+        var addresses = slots.Select(ScpFormatAlgorithms.ToTrackAddress).ToArray();
         return new(
             header,
             slots.Count,

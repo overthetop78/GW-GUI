@@ -14,10 +14,8 @@ public static class ScpFormatConstants
     /// <summary>Longueur, en octets, des signatures SCP et TRK.</summary>
     public const int SignatureLength = 3;
 
-    /// <summary>
-    /// Taille de l'en-tête SCP, en octets.
-    /// </summary>
-    public const int HeaderLength = 16;
+    /// <summary>Taille de l'en-tête SCP, en octets.</summary>
+    public const int HeaderLength = ChecksumOffset + ChecksumLength;
 
     /// <summary>
     /// Nombre maximal d'entrées de piste ou de face adressables dans la table SCP.
@@ -27,10 +25,10 @@ public static class ScpFormatConstants
     /// <summary>
     /// Position, en octets depuis le début du fichier, de la table des pistes SCP.
     /// </summary>
-    public const int TrackTableOffset = 0x10;
+    public const int TrackTableOffset = HeaderLength;
 
     /// <summary>Position de la version dans l’en-tête SCP.</summary>
-    public const int VersionOffset = 3;
+    public const int VersionOffset = SignatureLength;
 
     /// <summary>Position du type de disque dans l’en-tête SCP.</summary>
     public const int DiskTypeOffset = 4;
@@ -63,43 +61,37 @@ public static class ScpFormatConstants
     public const int ChecksumLength = 4;
 
     /// <summary>Longueur, en octets, d’une entrée de la table des pistes.</summary>
-    public const int TrackTableEntrySize = 4;
+    public const int TrackTableEntrySize = sizeof(uint);
 
     /// <summary>Longueur fixe, en octets, de l’en-tête d’un descripteur de piste.</summary>
     public const int TrackDescriptorHeaderSize = 4;
 
     /// <summary>Longueur, en octets, d’un descripteur de révolution.</summary>
-    public const int RevolutionDescriptorSize = 12;
+    public const int RevolutionDescriptorSize = RevolutionDataOffset + sizeof(uint);
 
     /// <summary>Position du numéro de piste dans le descripteur de piste.</summary>
-    public const int TrackNumberOffset = 3;
+    public const int TrackNumberOffset = SignatureLength;
 
     /// <summary>Position du temps d’index dans un descripteur de révolution.</summary>
     public const int RevolutionIndexTimeOffset = 0;
 
     /// <summary>Position du nombre de flux dans un descripteur de révolution.</summary>
-    public const int RevolutionFluxCountOffset = 4;
+    public const int RevolutionFluxCountOffset = RevolutionIndexTimeOffset + sizeof(uint);
 
     /// <summary>Position de l’offset relatif des flux dans un descripteur de révolution.</summary>
-    public const int RevolutionDataOffset = 8;
+    public const int RevolutionDataOffset = RevolutionFluxCountOffset + sizeof(uint);
 
     /// <summary>Longueur, en octets, d’un intervalle de flux encodé dans un fichier SCP.</summary>
-    public const int FluxIntervalSize = 2;
+    public const int FluxIntervalSize = sizeof(ushort);
 
     /// <summary>Valeur ajoutée lorsqu’un intervalle de flux encodé vaut zéro.</summary>
-    public const uint ZeroFluxIntervalOverflow = 65536;
+    public const uint ZeroFluxIntervalOverflow = (uint)ushort.MaxValue + 1u;
 
     /// <summary>Nombre minimal de révolutions accepté dans un en-tête SCP.</summary>
     public const byte MinimumRevolutionCount = 1;
 
     /// <summary>Nombre maximal de révolutions accepté dans un en-tête SCP.</summary>
     public const byte MaximumRevolutionCount = 64;
-
-    /// <summary>Durée, en nanosecondes, d’une milliseconde.</summary>
-    public const double NanosecondsPerMillisecond = 1_000_000d;
-
-    /// <summary>Durée, en millisecondes, d’une minute.</summary>
-    public const double MillisecondsPerMinute = 60_000d;
 
     /// <summary>Durée élémentaire, en nanosecondes, d’un pas de résolution SCP.</summary>
     public const int ResolutionStepNanoseconds = 25;
@@ -113,47 +105,9 @@ public static class ScpFormatConstants
     /// <summary>Masque permettant d’extraire la composante mineure de la version SCP.</summary>
     public const byte VersionMinorMask = 0x0f;
 
-    /// <summary>
-    /// Ajoute les octets fournis à une somme de contrôle SCP existante avec un cumul non signé sur 32 bits.
-    /// </summary>
-    /// <param name="checksum">Somme de contrôle calculée avant les octets fournis.</param>
-    /// <param name="data">Octets SCP à ajouter au cumul.</param>
-    /// <returns>Somme des octets modulo 2<sup>32</sup>.</returns>
-    public static uint UpdateChecksum(uint checksum, ReadOnlySpan<byte> data)
-    {
-        foreach (var value in data) checksum = unchecked(checksum + value);
-        return checksum;
-    }
+    /// <summary>Valeur initiale d’un calcul de somme de contrôle SCP.</summary>
+    public const uint InitialChecksum = 0u;
 
-    /// <summary>
-    /// Calcule la somme de contrôle SCP des octets fournis avec un cumul non signé sur 32 bits.
-    /// </summary>
-    /// <param name="data">Octets couverts par la somme de contrôle SCP.</param>
-    /// <returns>Somme des octets modulo 2<sup>32</sup>.</returns>
-    public static uint ComputeChecksum(ReadOnlySpan<byte> data) => UpdateChecksum(0, data);
-
-    /// <summary>
-    /// Indique si une somme de contrôle calculée respecte la valeur déclarée dans l'en-tête SCP.
-    /// </summary>
-    /// <param name="declaredChecksum">Somme de contrôle enregistrée dans l'en-tête SCP.</param>
-    /// <param name="flags">Drapeaux de l'en-tête SCP.</param>
-    /// <param name="computedChecksum">Somme de contrôle calculée sur les octets couverts.</param>
-    /// <returns>
-    /// <see langword="true"/> lorsque les deux sommes sont identiques, ou lorsque la somme déclarée est nulle
-    /// pour une capture marquée réinscriptible ; sinon <see langword="false"/>.
-    /// </returns>
-    public static bool IsChecksumValid(uint declaredChecksum, ScpFlags flags, uint computedChecksum) => declaredChecksum == 0 && (flags & ScpFlags.Writable) != 0 || declaredChecksum == computedChecksum;
-
-    /// <summary>
-    /// Convertit un numéro d'entrée de piste SCP en cylindre et face physiques.
-    /// </summary>
-    /// <param name="trackNumber">Numéro compris entre zéro et <see cref="FloppyTrackSlots"/> moins un.</param>
-    /// <returns>Couple formé du cylindre et de la face correspondant au numéro SCP.</returns>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="trackNumber"/> est hors de la table des pistes SCP.</exception>
-    public static (int Cylinder, int Head) ToTrackAddress(int trackNumber)
-    {
-        ArgumentOutOfRangeException.ThrowIfNegative(trackNumber);
-        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(trackNumber, FloppyTrackSlots);
-        return (trackNumber / 2, trackNumber % 2);
-    }
+    /// <summary>Valeur déclarée indiquant l’absence de somme de contrôle exploitable pour une capture réinscriptible.</summary>
+    public const uint MissingChecksum = 0u;
 }

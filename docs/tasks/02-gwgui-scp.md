@@ -142,45 +142,45 @@
     - [x] Vérifier que ces tests locaux atteignent leurs assertions sans corpus SCP externe.
 
 - [ ] Compléments issus de la relecture complète du conteneur SCP
-  - [ ] `Containers/Scp/ScpFormatConstants.cs`
+  - [x] `Containers/Scp/ScpFormatConstants.cs`
     - [x] Ajouter une définition commune pour le calcul et la validation du checksum SCP utilisée par le Reader et les tests.
     - [x] Ajouter une fonction nommée convertissant un numéro de piste SCP en cylindre et tête.
     - [x] Remplacer les copies de ce calcul dans l'exploration, la reconstruction et les tests.
     - [x] Documenter en français chaque membre ajouté.
     - [x] Tester les pistes paires, impaires et les deux limites de la table SCP.
-    - [ ] Séparation des constantes et des calculs
-      - [ ] Conserver le fichier et le type `ScpFormatConstants` pour les constantes du format SCP.
-      - [ ] Créer `Containers/Scp/ScpFormatAlgorithms.cs`.
-      - [ ] Déplacer dans `ScpFormatAlgorithms` les méthodes `UpdateChecksum`, `ComputeChecksum`, `IsChecksumValid` et `ToTrackAddress`.
-      - [ ] Adapter tous les consommateurs et tests de ces quatre méthodes au nouveau type.
-      - [ ] Supprimer les quatre méthodes de `ScpFormatConstants` après raccordement.
-    - [ ] Relations entre les constantes de disposition
-      - [ ] Définir `VersionOffset` à partir de `SignatureLength` sans modifier sa valeur finale `3`.
-      - [ ] Définir `HeaderLength` à partir de `ChecksumOffset + ChecksumLength` sans modifier sa valeur finale `16`.
-      - [ ] Définir `TrackTableOffset` à partir de `HeaderLength` sans modifier sa valeur finale `16`.
-      - [ ] Définir `TrackNumberOffset` à partir de `SignatureLength` sans modifier sa valeur finale `3`.
-      - [ ] Définir les offsets et la taille du descripteur de révolution à partir des tailles successives de ses trois champs de 32 bits, sans modifier les valeurs finales `0`, `4`, `8` et `12`.
-      - [ ] Définir `TrackTableEntrySize` avec `sizeof(uint)` et `FluxIntervalSize` avec `sizeof(ushort)`.
-      - [ ] Définir `ZeroFluxIntervalOverflow` à partir de la limite d'un `ushort` sans modifier sa valeur finale `65536`.
-    - [ ] Unités temporelles communes
-      - [ ] Créer `Primitives/TimeUnitConstants.cs`.
-      - [ ] Y déplacer `NanosecondsPerMillisecond` et `MillisecondsPerMinute`, qui ne sont pas propres au format SCP.
-      - [ ] Adapter `ScpRevolution` à ces deux constantes communes.
-      - [ ] Supprimer leurs anciennes déclarations de `ScpFormatConstants` après raccordement.
-    - [ ] Valeurs du checksum et adressage des pistes
-      - [ ] Ajouter des constantes SCP nommées pour la valeur initiale du checksum et la valeur déclarée signifiant qu'aucun checksum exploitable n'est fourni.
-      - [ ] Utiliser ces constantes dans les calculs déplacés vers `ScpFormatAlgorithms`.
-      - [ ] Remplacer dans `ToTrackAddress` la division et le modulo par `2` par la définition commune du nombre de têtes d'une disquette double face.
-    - [ ] Mise en forme et documentation
-      - [ ] Reprendre la mise en forme de `UpdateChecksum` et `IsChecksumValid` pendant leur déplacement afin de séparer clairement la boucle et les deux conditions de validation.
-      - [ ] Documenter en français `ScpFormatAlgorithms`, ses quatre méthodes, leurs paramètres, résultats et exceptions.
-      - [ ] Documenter en français `TimeUnitConstants` et les unités de ses deux constantes.
-      - [ ] Mettre à jour la documentation de `ScpFormatConstants` après le retrait des calculs et unités générales.
-    - [ ] Tests ciblés
-      - [ ] Vérifier les valeurs finales des offsets, tailles et débordements après remplacement des littéraux par les expressions constantes.
-      - [ ] Exécuter les tests de calcul, mise à jour et validation du checksum avec `ScpFormatAlgorithms`.
-      - [ ] Exécuter les tests des pistes paires, impaires et hors limites avec `ScpFormatAlgorithms.ToTrackAddress`.
-      - [ ] Vérifier que les durées et vitesses calculées par `ScpRevolution` restent identiques après déplacement des unités temporelles.
+    - [x] Séparation des constantes et des calculs
+      - [x] Conserver le fichier et le type `ScpFormatConstants` pour les constantes du format SCP.
+      - [x] Créer `Containers/Scp/ScpFormatAlgorithms.cs`.
+      - [x] Déplacer dans `ScpFormatAlgorithms` les méthodes `UpdateChecksum`, `ComputeChecksum`, `IsChecksumValid` et `ToTrackAddress`.
+      - [x] Adapter tous les consommateurs et tests de ces quatre méthodes au nouveau type.
+      - [x] Supprimer les quatre méthodes de `ScpFormatConstants` après raccordement.
+    - [x] Relations entre les constantes de disposition
+      - [x] Définir `VersionOffset` à partir de `SignatureLength` sans modifier sa valeur finale `3`.
+      - [x] Définir `HeaderLength` à partir de `ChecksumOffset + ChecksumLength` sans modifier sa valeur finale `16`.
+      - [x] Définir `TrackTableOffset` à partir de `HeaderLength` sans modifier sa valeur finale `16`.
+      - [x] Définir `TrackNumberOffset` à partir de `SignatureLength` sans modifier sa valeur finale `3`.
+      - [x] Définir les offsets et la taille du descripteur de révolution à partir des tailles successives de ses trois champs de 32 bits, sans modifier les valeurs finales `0`, `4`, `8` et `12`.
+      - [x] Définir `TrackTableEntrySize` avec `sizeof(uint)` et `FluxIntervalSize` avec `sizeof(ushort)`.
+      - [x] Définir `ZeroFluxIntervalOverflow` à partir de la limite d'un `ushort` sans modifier sa valeur finale `65536`.
+    - [x] Unités temporelles communes
+      - [x] Créer `Primitives/TimeUnitConstants.cs`.
+      - [x] Y déplacer `NanosecondsPerMillisecond` et `MillisecondsPerMinute`, qui ne sont pas propres au format SCP.
+      - [x] Adapter `ScpRevolution` à ces deux constantes communes.
+      - [x] Supprimer leurs anciennes déclarations de `ScpFormatConstants` après raccordement.
+    - [x] Valeurs du checksum et adressage des pistes
+      - [x] Ajouter des constantes SCP nommées pour la valeur initiale du checksum et la valeur déclarée signifiant qu'aucun checksum exploitable n'est fourni.
+      - [x] Utiliser ces constantes dans les calculs déplacés vers `ScpFormatAlgorithms`.
+      - [x] Remplacer dans `ToTrackAddress` la division et le modulo par `2` par la définition commune du nombre de têtes d'une disquette double face.
+    - [x] Mise en forme et documentation
+      - [x] Reprendre la mise en forme de `UpdateChecksum` et `IsChecksumValid` pendant leur déplacement afin de séparer clairement la boucle et les deux conditions de validation.
+      - [x] Documenter en français `ScpFormatAlgorithms`, ses quatre méthodes, leurs paramètres, résultats et exceptions.
+      - [x] Documenter en français `TimeUnitConstants` et les unités de ses deux constantes.
+      - [x] Mettre à jour la documentation de `ScpFormatConstants` après le retrait des calculs et unités générales.
+    - [x] Tests ciblés
+      - [x] Vérifier les valeurs finales des offsets, tailles et débordements après remplacement des littéraux par les expressions constantes.
+      - [x] Exécuter les tests de calcul, mise à jour et validation du checksum avec `ScpFormatAlgorithms`.
+      - [x] Exécuter les tests des pistes paires, impaires et hors limites avec `ScpFormatAlgorithms.ToTrackAddress`.
+      - [x] Vérifier que les durées et vitesses calculées par `ScpRevolution` restent identiques après déplacement des unités temporelles.
   - [x] `Containers/Scp/ScpFlags.cs`
     - [x] Adapter le namespace de `ScpFlags` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Adapter les consommateurs de `ScpFlags` au namespace du conteneur SCP.

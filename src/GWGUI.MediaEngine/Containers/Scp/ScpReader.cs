@@ -67,8 +67,8 @@ public sealed class ScpReader : IScpReader
             if (offset == 0) continue;
             tracks.Add(ReadTrack(data, checked((int)offset), slot, header));
         }
-        var checksum = ScpFormatConstants.ComputeChecksum(data[ScpFormatConstants.TrackTableOffset..]);
-        var checksumValid = ScpFormatConstants.IsChecksumValid(header.Checksum, header.Flags, checksum);
+        var checksum = ScpFormatAlgorithms.ComputeChecksum(data[ScpFormatConstants.TrackTableOffset..]);
+        var checksumValid = ScpFormatAlgorithms.IsChecksumValid(header.Checksum, header.Flags, checksum);
         return new ScpImage(header, tracks, checksumValid, data.Length);
     }
 
@@ -121,7 +121,7 @@ public sealed class ScpReader : IScpReader
         if (trackData[ScpFormatConstants.TrackNumberOffset] != expectedTrack) throw ScpExceptions.TrackNumberMismatch(expectedTrack, trackData[ScpFormatConstants.TrackNumberOffset]);
         var revolutions = new List<ScpRevolution>(header.Revolutions);
         for (var index = 0; index < header.Revolutions; index++) revolutions.Add(ScpRevolutionReader.Read(data, offset, ScpFormatConstants.TrackDescriptorHeaderSize + index * ScpFormatConstants.RevolutionDescriptorSize, expectedTrack, index));
-        var address = ScpFormatConstants.ToTrackAddress(expectedTrack);
+        var address = ScpFormatAlgorithms.ToTrackAddress(expectedTrack);
         return new((byte)expectedTrack, address.Cylinder, address.Head, revolutions);
     }
 
