@@ -1986,9 +1986,9 @@
     - [x] Rejeter un nombre d'octets négatif avant l'allocation du résultat.
     - [x] Rejeter un offset négatif ou supérieur à la longueur du tableau de bits.
   - [x] Documentation XML
-    - [ ] Documenter en français `AppleBitLatch`, son masque de synchronisation et `TryReadBytes`.
-    - [ ] Documenter le déplacement de l'offset, le résultat nul lorsque les bits manquent et les exceptions de paramètres.
-    - [ ] Conserver sur une seule ligne la signature complète de `TryReadBytes`.
+    - [x] Documenter en français `AppleBitLatch`, son masque de synchronisation et `TryReadBytes`.
+    - [x] Documenter le déplacement de l'offset, le résultat nul lorsque les bits manquent et les exceptions de paramètres.
+    - [x] Conserver sur une seule ligne la signature complète de `TryReadBytes`.
   - [ ] Tests ciblés
     - [ ] Tester un octet déjà synchronisé et un octet nécessitant un décalage jusqu'au premier bit haut.
     - [ ] Tester plusieurs octets successifs et vérifier la valeur finale de l'offset.
