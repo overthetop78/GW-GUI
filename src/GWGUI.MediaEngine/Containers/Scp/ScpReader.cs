@@ -47,7 +47,7 @@ public sealed class ScpReader : IScpReader
         var header = ReadHeader(data);
         if ((header.Flags & ScpFlags.Extended) != ScpFlags.None) throw ScpExceptions.ExtendedMedia();
         var tableBytes = checked(ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize);
-        Require(data, ScpFormatConstants.FileStartOffset, tableBytes, ScpSection.TrackOffsetTable);
+        ScpDataValidator.Require(data, ScpFormatConstants.FileStartOffset, tableBytes, ScpSection.TrackOffsetTable);
         var tracks = new List<ScpTrack>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
@@ -68,7 +68,7 @@ public sealed class ScpReader : IScpReader
     /// <exception cref="NotSupportedException">La largeur de cellule de bit déclarée n'est pas prise en charge.</exception>
     public static ScpHeader ReadHeader(ReadOnlySpan<byte> data)
     {
-        Require(data, ScpFormatConstants.FileStartOffset, ScpFormatConstants.HeaderLength, ScpSection.Header);
+        ScpDataValidator.Require(data, ScpFormatConstants.FileStartOffset, ScpFormatConstants.HeaderLength, ScpSection.Header);
         if (!data[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature)) throw ScpExceptions.MissingFileSignature();
         var revolutions = data[ScpFormatConstants.RevolutionCountOffset];
         var startTrack = data[ScpFormatConstants.StartTrackOffset];
@@ -93,7 +93,7 @@ public sealed class ScpReader : IScpReader
     private static ScpTrack ReadTrack(ReadOnlySpan<byte> data, int offset, int expectedTrack, ScpHeader header)
     {
         var descriptorSize = checked(ScpFormatConstants.TrackDescriptorHeaderSize + header.Revolutions * ScpFormatConstants.RevolutionDescriptorSize);
-        Require(data, offset, descriptorSize, ScpSection.TrackHeader, expectedTrack);
+        ScpDataValidator.Require(data, offset, descriptorSize, ScpSection.TrackHeader, expectedTrack);
         var trackData = data[offset..];
         if (!trackData[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.TrackSignature)) throw ScpExceptions.MissingTrackSignature(expectedTrack, trackData[ScpFormatConstants.TrackNumberOffset]);
         if (trackData[ScpFormatConstants.TrackNumberOffset] != expectedTrack) throw ScpExceptions.TrackNumberMismatch(expectedTrack, trackData[ScpFormatConstants.TrackNumberOffset]);
@@ -105,17 +105,5 @@ public sealed class ScpReader : IScpReader
 
         var address = ScpFormatAlgorithms.ToTrackAddress(expectedTrack);
         return new((byte)expectedTrack, address.Cylinder, address.Head, revolutions);
-    }
-
-    /// <summary>Vérifie qu'une section annoncée appartient entièrement aux données disponibles.</summary>
-    /// <param name="data">Données complètes dans lesquelles la section doit se trouver.</param>
-    /// <param name="offset">Position de début de la section, en octets.</param>
-    /// <param name="length">Longueur requise de la section, en octets.</param>
-    /// <param name="section">Identifiant de la section utilisé dans le message d'erreur.</param>
-    /// <param name="trackNumber">Numéro de piste lorsque la section appartient à une piste.</param>
-    /// <exception cref="InvalidDataException">La position ou la longueur est négative, ou la section dépasse les données disponibles.</exception>
-    private static void Require(ReadOnlySpan<byte> data, int offset, int length, ScpSection section, int? trackNumber = null)
-    {
-        if (offset < 0 || length < 0 || offset > data.Length - length) throw ScpExceptions.IncompleteSection(section, offset, length, trackNumber);
     }
 }

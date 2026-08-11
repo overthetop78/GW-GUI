@@ -87,8 +87,14 @@ public static class ScpFormatConstants
     /// <summary>Position de l’offset relatif des flux dans un descripteur de révolution.</summary>
     public const int RevolutionDataOffset = RevolutionFluxCountOffset + sizeof(uint);
 
+    /// <summary>Décalage convertissant un index de révolution basé sur zéro en numéro basé sur un.</summary>
+    public const int RevolutionNumberOffset = 1;
+
     /// <summary>Longueur, en octets, d’un intervalle de flux encodé dans un fichier SCP.</summary>
     public const int FluxIntervalSize = sizeof(ushort);
+
+    /// <summary>Mot de flux indiquant qu’un dépassement doit être accumulé avant l’intervalle suivant.</summary>
+    public const ushort FluxOverflowMarker = 0;
 
     /// <summary>Valeur ajoutée lorsqu’un intervalle de flux encodé vaut zéro.</summary>
     public const uint ZeroFluxIntervalOverflow = (uint)ushort.MaxValue + 1u;

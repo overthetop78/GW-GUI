@@ -25,6 +25,21 @@ public sealed class ScpReaderDeterministicTests
         Assert.Equal(65_536u, ScpFormatConstants.ZeroFluxIntervalOverflow);
     }
 
+    [Fact]
+    public void ValidatesScpDataRangesAndReportsTheirContext()
+    {
+        var data = new byte[16];
+
+        ScpDataValidator.Require(data, 4, 8, ScpSection.Header);
+        var negativeOffset = Assert.Throws<InvalidDataException>(() => ScpDataValidator.Require(data, -1, 1, ScpSection.Header));
+        var negativeLength = Assert.Throws<InvalidDataException>(() => ScpDataValidator.Require(data, 0, -1, ScpSection.TrackOffsetTable));
+        var outside = Assert.Throws<InvalidDataException>(() => ScpDataValidator.Require(data, 12, 8, ScpSection.RevolutionFlux, 3, 2));
+
+        Assert.Contains("SCP header", negativeOffset.Message, StringComparison.Ordinal);
+        Assert.Contains("track-offset table", negativeLength.Message, StringComparison.Ordinal);
+        Assert.Contains("track 3, revolution 2 flux", outside.Message, StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData(0, 0, 0)]
     [InlineData(1, 0, 1)]
@@ -292,6 +307,19 @@ public sealed class ScpReaderDeterministicTests
         var image = await new ScpReader().ReadAsync(Images.Value.Valid);
 
         Assert.Equal(new uint[] { 100, 65_556, 200 }, image.Tracks[0].Revolutions[0].FluxIntervals);
+    }
+
+    [Fact]
+    public void PreservesAFluxOverflowMarkerAtTheEndOfARevolution()
+    {
+        var data = File.ReadAllBytes(Images.Value.Valid);
+        var firstFluxOffset = FirstTrackOffset + ScpFormatConstants.TrackDescriptorHeaderSize + 2 * ScpFormatConstants.RevolutionDescriptorSize;
+        BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(firstFluxOffset + 3 * ScpFormatConstants.FluxIntervalSize, ScpFormatConstants.FluxIntervalSize), ScpFormatConstants.FluxOverflowMarker);
+        WriteChecksum(data);
+
+        var image = new ScpReader().Read(data);
+
+        Assert.Equal(new uint[] { 100, 65_556, 65_536 }, image.Tracks[0].Revolutions[0].FluxIntervals);
     }
 
     [Fact]

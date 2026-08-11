@@ -299,29 +299,29 @@
       - [x] Tester que l'annulation d'un seul appelant ne supprime pas un chargement partagé encore actif.
       - [x] Tester qu'un chargement en échec est retiré puis relancé lors de l'appel suivant.
       - [x] Tester l'invalidation après modification de la taille ou de la date du fichier.
-  - [ ] `Containers/Scp/ScpRevolutionReader.cs`
-    - [ ] Définitions des révolutions et des flux
-      - [ ] Ajouter une constante SCP nommée pour convertir un index de révolution basé sur zéro en numéro basé sur un.
-      - [ ] Ajouter une constante SCP nommée pour le mot de flux nul servant de marqueur de dépassement.
-      - [ ] Remplacer dans `Read` les valeurs brutes `revolutionIndex + 1` et `value == 0` par ces définitions.
-    - [ ] Validation commune des plages SCP
-      - [ ] Créer `Containers/Scp/ScpDataValidator.cs`.
-      - [ ] Y déplacer le contrôle commun vérifiant qu'un offset et une longueur appartiennent entièrement aux données disponibles.
-      - [ ] Faire recevoir à ce contrôle la section SCP, la piste éventuelle et la révolution éventuelle.
-      - [ ] Raccorder `ScpReader` et `ScpRevolutionReader` à `ScpDataValidator`.
-      - [ ] Supprimer `ScpReader.Require` et `ScpRevolutionReader.RequireFlux` après raccordement.
-    - [ ] Mise en forme complète
-      - [ ] Remettre sur une seule ligne les déclarations, signatures, appels et expressions de `ScpRevolutionReader.cs` qui doivent l'être.
-      - [ ] Développer sur plusieurs instructions lisibles le traitement du mot de flux nul actuellement comprimé entre accolades sur une ligne.
-      - [ ] Développer l'ajout final de l'accumulation de dépassement.
-      - [ ] Ne modifier aucune valeur ni ordre de décodage pendant la remise en forme.
-    - [ ] Documentation XML
-      - [ ] Remettre sur une seule ligne les documentations XML courtes du type et de `Read`.
-      - [ ] Documenter en français `ScpDataValidator`, sa méthode, ses paramètres et son erreur.
-    - [ ] Tests ciblés
-      - [ ] Tester une plage valide, un offset négatif, une longueur négative et une plage hors limites.
-      - [ ] Tester les diagnostics avec et sans numéro de piste et de révolution.
-      - [ ] Vérifier que les intervalles normaux, les marqueurs de dépassement et un marqueur final produisent exactement les mêmes valeurs.
+  - [x] `Containers/Scp/ScpRevolutionReader.cs`
+    - [x] Définitions des révolutions et des flux
+      - [x] Ajouter une constante SCP nommée pour convertir un index de révolution basé sur zéro en numéro basé sur un.
+      - [x] Ajouter une constante SCP nommée pour le mot de flux nul servant de marqueur de dépassement.
+      - [x] Remplacer dans `Read` les valeurs brutes `revolutionIndex + 1` et `value == 0` par ces définitions.
+    - [x] Validation commune des plages SCP
+      - [x] Créer `Containers/Scp/ScpDataValidator.cs`.
+      - [x] Y déplacer le contrôle commun vérifiant qu'un offset et une longueur appartiennent entièrement aux données disponibles.
+      - [x] Faire recevoir à ce contrôle la section SCP, la piste éventuelle et la révolution éventuelle.
+      - [x] Raccorder `ScpReader` et `ScpRevolutionReader` à `ScpDataValidator`.
+      - [x] Supprimer `ScpReader.Require` et `ScpRevolutionReader.RequireFlux` après raccordement.
+    - [x] Mise en forme complète
+      - [x] Remettre sur une seule ligne les déclarations, signatures, appels et expressions de `ScpRevolutionReader.cs` qui doivent l'être.
+      - [x] Développer sur plusieurs instructions lisibles le traitement du mot de flux nul actuellement comprimé entre accolades sur une ligne.
+      - [x] Développer l'ajout final de l'accumulation de dépassement.
+      - [x] Ne modifier aucune valeur ni ordre de décodage pendant la remise en forme.
+    - [x] Documentation XML
+      - [x] Remettre sur une seule ligne les documentations XML courtes du type et de `Read`.
+      - [x] Documenter en français `ScpDataValidator`, sa méthode, ses paramètres et son erreur.
+    - [x] Tests ciblés
+      - [x] Tester une plage valide, un offset négatif, une longueur négative et une plage hors limites.
+      - [x] Tester les diagnostics avec et sans numéro de piste et de révolution.
+      - [x] Vérifier que les intervalles normaux, les marqueurs de dépassement et un marqueur final produisent exactement les mêmes valeurs.
   - [x] `Exploration/ScpCaptureInfo.cs` et `ScpCaptureInfoReader.cs`
     - [x] Documenter en français chaque propriété et chaque paramètre du record, y compris les unités.
     - [x] Utiliser les calculs de piste et checksum communs du conteneur SCP.
