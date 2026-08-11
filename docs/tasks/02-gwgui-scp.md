@@ -1456,12 +1456,12 @@
       - [x] Remplacer la fonction `Func<string, CancellationToken, Task<SectorImage>>` par une fonction recevant `DiskImageRecognitionContext` et `CancellationToken`.
       - [x] Refuser une fonction de lecture nulle lors de la construction.
       - [x] Conserver `CanReadAsync` abstrait afin que chaque politique reste propriétaire de sa présélection.
-    - [ ] Raccordement des politiques existantes
-      - [ ] Adapter `AppleImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets, l’extension et le format demandé déjà détenus par le contexte.
-      - [ ] Adapter `CoherentImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
-      - [ ] Adapter `DecRx02ImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
-      - [ ] Conserver dans chaque Reader sa façade par chemin pour ses consommateurs extérieurs à la reconnaissance.
-      - [ ] Faire déléguer chaque façade par chemin au même traitement en mémoire afin de ne maintenir qu’une validation complète du format.
+    - [x] Raccordement des politiques existantes
+      - [x] Adapter `AppleImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets, l’extension et le format demandé déjà détenus par le contexte.
+      - [x] Adapter `CoherentImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
+      - [x] Adapter `DecRx02ImageRecognitionPolicy` pour fournir une fonction qui transmet au Reader les octets déjà détenus par le contexte.
+      - [x] Conserver dans chaque Reader sa façade par chemin pour ses consommateurs extérieurs à la reconnaissance.
+      - [x] Faire déléguer chaque façade par chemin au même traitement en mémoire afin de ne maintenir qu’une validation complète du format.
     - [ ] Lecture commune
       - [ ] Faire transmettre par `ReadAsync` le contexte complet à la fonction reçue sans relire ni transformer lui-même le fichier.
       - [ ] Conserver sur une seule ligne l’expression de délégation lorsqu’elle tient lisiblement.
