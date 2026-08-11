@@ -25,7 +25,7 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
             {
                 var header = TryDecodeMfmBytes(stream, offset, 6);
                 if (header is null) continue;
-                var headerValid = header[1] == 0xfe && Crc16(header) == 0;
+                var headerValid = header[1] == 0xfe && Primitives.Crc16Calculator.Compute(header, polynomial: Primitives.Crc16Calculator.IbmPolynomial, initial: Primitives.Crc16Calculator.ZeroInitialValue) == 0;
                 var cylinder = (byte)(((header[2] & 0x1f) << 3) | ((header[3] & 0xe0) >> 5));
                 var head = (byte)((header[3] >> 4) & 1); var number = (byte)(header[3] & 0x0f);
                 bytes.AddRange(header);
@@ -39,7 +39,7 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
                     {
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
-                        dataValid = data[1] is >= 0xf8 and <= 0xfb && Crc16(data) == 0;
+                        dataValid = data[1] is >= 0xf8 and <= 0xfb && Primitives.Crc16Calculator.Compute(data, polynomial: Primitives.Crc16Calculator.IbmPolynomial, initial: Primitives.Crc16Calculator.ZeroInitialValue) == 0;
                         bytes.AddRange(data.Skip(2).Take(sectorBytes)); structureEnd = dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Membrain data block, 512 bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                     }
@@ -62,8 +62,6 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
         for (var offset = Math.Max(0, start); offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
         return -1;
     }
-
-    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, polynomial: 0x8005, initial: 0);
 
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {

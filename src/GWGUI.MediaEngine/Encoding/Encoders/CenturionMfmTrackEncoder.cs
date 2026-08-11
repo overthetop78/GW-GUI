@@ -12,13 +12,13 @@ public sealed class CenturionMfmTrackEncoder : TrackEncoderBase
         foreach (var sector in request.Sectors)
         {
             byte[] identity = [(byte)request.Cylinder,(byte)sector.Number];
-            var headerCrc = TrackEncoding.Crc16(identity, 0x1021, 0);
+            var headerCrc = Primitives.Crc16Calculator.Compute(identity, Primitives.Crc16Calculator.CcittPolynomial, Primitives.Crc16Calculator.ZeroInitialValue);
             bits.RawHex("91224489");
             bits.Mfm(identity.Concat([(byte)(headerCrc >> BitPrimitives.BitsPerByte),(byte)headerCrc]));
             bits.Gap(400);
             var blocks = Math.Max(1, (sector.Data.Count + 255) / 256);
             var payload = sector.Data.Concat(Enumerable.Repeat((byte)0, blocks * 256 - sector.Data.Count)).ToArray();
-            var dataCrc = TrackEncoding.Crc16(new byte[] { (byte)blocks, 0 }.Concat(payload), 0x1021, 0);
+            var dataCrc = Primitives.Crc16Calculator.Compute(new byte[] { (byte)blocks, 0 }.Concat(payload), Primitives.Crc16Calculator.CcittPolynomial, Primitives.Crc16Calculator.ZeroInitialValue);
             bits.RawHex("AAAAAAA9");
             bits.Mfm(new byte[] { 0,(byte)blocks,0 }.Concat(payload).Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte),(byte)dataCrc]));
             bits.Gap(128);

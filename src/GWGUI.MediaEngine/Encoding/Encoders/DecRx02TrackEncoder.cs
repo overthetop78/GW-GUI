@@ -11,11 +11,11 @@ public sealed class DecRx02TrackEncoder : TrackEncoderBase
         {
             var m2fm=sector.Data.Count==256; if(!m2fm&&sector.Data.Count!=128) throw new ArgumentException("DEC RX sectors contain 128 or 256 bytes.");
             var sizeCode=sector.SizeCode??TrackEncoding.SizeCode(sector.Data.Count);
-            var headerCrc=TrackEncoding.Crc16([0xfe,(byte)request.Cylinder,(byte)request.Head,(byte)sector.Number,sizeCode]);
+            var headerCrc=Primitives.Crc16Calculator.Compute([0xfe,(byte)request.Cylinder,(byte)request.Head,(byte)sector.Number,sizeCode]);
             bits.RawHex("55111554"); bits.DoubleFm([(byte)request.Cylinder,(byte)request.Head,(byte)sector.Number,sizeCode,(byte)(headerCrc>>8),(byte)headerCrc]); bits.Gap(64,true);
             var mark=m2fm?(sector.Deleted?(byte)0xfd:(byte)0xf9):(sector.Deleted?(byte)0xf8:(byte)0xfb);
             bits.RawHex(mark switch {0xf8=>"55111444",0xf9=>"55111445",0xfb=>"55111455",0xfd=>"55111545",_=>"55111455"});
-            var crc=TrackEncoding.Crc16(new[]{mark}.Concat(sector.Data)); var payload=sector.Data.Concat([(byte)(crc>>8),(byte)crc]).ToArray();
+            var crc=Primitives.Crc16Calculator.Compute(new[]{mark}.Concat(sector.Data)); var payload=sector.Data.Concat([(byte)(crc>>8),(byte)crc]).ToArray();
             if(m2fm) { bits.Add(false); var encoded=TrackEncoding.Bits(); encoded.Mfm(payload); ReplaceM2Fm(encoded); bits.AddRange(encoded); }
             else bits.DoubleFm(payload);
             bits.Gap(64,true);

@@ -24,7 +24,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
 
             var id = TryDecodeBytes(stream, offset + 32, 4);
             if (id is null) continue;
-            var headerValid = Crc16(id) == 0;
+            var headerValid = Primitives.Crc16Calculator.Compute(id) == 0;
             var cylinder = Primitives.BitPrimitives.ReverseBits(id[0]);
             var encodedSector = Primitives.BitPrimitives.ReverseBits(id[1]);
             var head = (byte)(encodedSector >> 7);
@@ -40,7 +40,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
                 {
                     var encoded = TryDecodeBytes(stream, dataStart, encodedBytes);
                     if (encoded is null) continue;
-                    dataValid = Crc16(encoded) == 0;
+                    dataValid = Primitives.Crc16Calculator.Compute(encoded) == 0;
                     var payload = encoded.AsSpan(0, 256).ToArray();
                     for (var index = 0; index < payload.Length; index++) payload[index] = Primitives.BitPrimitives.ReverseBits(payload[index]);
                     for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
@@ -75,5 +75,4 @@ public sealed class HpMmfmDecoder : IFluxDecoder
         return -1;
     }
 
-    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 }

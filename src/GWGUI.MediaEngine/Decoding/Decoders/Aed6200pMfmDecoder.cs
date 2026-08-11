@@ -24,7 +24,7 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
             {
                 var header = TryDecodeMfmBytes(stream, offset, 7);
                 if (header is null) continue;
-                var size = (header[4] << BitPrimitives.BitsPerByte) | header[2]; var headerValid = header[0] == 0xc6 && Crc16(header) == 0; bytes.AddRange(header);
+                var size = (header[4] << BitPrimitives.BitsPerByte) | header[2]; var headerValid = header[0] == 0xc6 && Primitives.Crc16Calculator.Compute(header) == 0; bytes.AddRange(header);
                 var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * BitPrimitives.BitsPerByte));
                 bool? dataValid = null; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
@@ -34,7 +34,7 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
                     {
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
-                        dataValid = data[0] is >= 0xc0 and <= 0xc3 && Crc16(data) == 0; bytes.AddRange(data.Skip(1).Take(size)); structureEnd = (int)dataEnd;
+                        dataValid = data[0] is >= 0xc0 and <= 0xc3 && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(1).Take(size)); structureEnd = (int)dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"AED 6200P data {data[0]:X2}, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                     }
                     else structures.Add(new(FluxStructureKind.FormatData, dataOffset, 16, "AED 6200P data block, CRC unavailable"));
@@ -62,8 +62,6 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
         for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
         return 0;
     }
-
-    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {

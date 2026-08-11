@@ -25,7 +25,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
             {
                 var header = TryDecodeMfmBytes(stream, offset + markBits, 4);
                 if (header is null) continue;
-                var headerValid = Crc16(header) == 0; bytes.AddRange(header);
+                var headerValid = Primitives.Crc16Calculator.Compute(header, initial: Primitives.Crc16Calculator.ZeroInitialValue) == 0; bytes.AddRange(header);
                 var dataOffset = FindDataMark(stream, offset + headerBits + 400); bool? dataValid = null; var size = 0; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
                 {
@@ -40,7 +40,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
                         {
                             var block = TryDecodeMfmBytes(stream, dataOffset + markBits + 16, size + 4);
                             if (block is null) continue;
-                            dataValid = Crc16(block) == 0; bytes.AddRange(block.Skip(2).Take(size)); structureEnd = (int)dataEnd;
+                            dataValid = Primitives.Crc16Calculator.Compute(block, initial: Primitives.Crc16Calculator.ZeroInitialValue) == 0; bytes.AddRange(block.Skip(2).Take(size)); structureEnd = (int)dataEnd;
                             structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"Centurion data, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                         }
                         else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + 3 * 16, key == 0 ? "Centurion data, CRC unavailable" : $"Centurion data with unsupported key {key}"));
@@ -70,8 +70,6 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
         for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
         return 0;
     }
-
-    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, initial: 0);
 
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {

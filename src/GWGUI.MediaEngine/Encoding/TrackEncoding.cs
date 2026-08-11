@@ -94,12 +94,10 @@ internal static class TrackEncoding
         throw new ArgumentException($"Unsupported sector size: {size} bytes.", nameof(size));
     }
 
-    public static ushort Crc16(IEnumerable<byte> values, ushort polynomial = 0x1021, ushort initial = 0xffff) => Primitives.Crc16Calculator.Compute(values, polynomial, initial);
-
-    public static byte[] WithCrc(IEnumerable<byte> values, ushort polynomial = 0x1021, ushort initial = 0xffff)
+    public static byte[] WithCrc(IEnumerable<byte> values, ushort polynomial = Primitives.Crc16Calculator.CcittPolynomial, ushort initial = Primitives.Crc16Calculator.AllBitsSetInitialValue)
     {
         var result = values.ToList();
-        var crc = Crc16(result, polynomial, initial);
+        var crc = Primitives.Crc16Calculator.Compute(result, polynomial, initial);
         result.Add((byte)(crc >> Primitives.BitPrimitives.BitsPerByte)); result.Add((byte)crc);
         return result.ToArray();
     }

@@ -14,12 +14,12 @@ public sealed class IsoFmTrackEncoder : TrackEncoderBase
         {
             var sizeCode = sector.SizeCode ?? TrackEncoding.SizeCode(sector.Data.Count);
             byte[] header = [0xfe, (byte)request.Cylinder, (byte)request.Head, (byte)sector.Number, sizeCode];
-            var headerCrc = TrackEncoding.Crc16(header);
+            var headerCrc = Primitives.Crc16Calculator.Compute(header);
             bits.RawHex("F57E");
             bits.Fm(header.Skip(1).Concat([(byte)(headerCrc >> BitPrimitives.BitsPerByte), (byte)headerCrc]));
             bits.Gap(160);
             var mark = sector.Deleted ? (byte)0xf8 : (byte)0xfb;
-            var dataCrc = TrackEncoding.Crc16(new[] { mark }.Concat(sector.Data));
+            var dataCrc = Primitives.Crc16Calculator.Compute(new[] { mark }.Concat(sector.Data));
             bits.RawHex(sector.Deleted ? "F56A" : "F56F");
             bits.Fm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte), (byte)dataCrc]));
             bits.Gap(256);

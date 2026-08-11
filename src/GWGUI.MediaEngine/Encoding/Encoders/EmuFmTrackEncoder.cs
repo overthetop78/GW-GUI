@@ -11,10 +11,10 @@ public sealed class EmuFmTrackEncoder : TrackEncoderBase
         {
             if(sector.Data.Count!=0xe00) throw new ArgumentException("E-mu sectors contain 3584 bytes.");
             var rawTrack=Primitives.BitPrimitives.ReverseBits((byte)(request.Cylinder<<1|request.Head));
-            var headerCrc=TrackEncoding.Crc16([rawTrack],0x8005,0);
+            var headerCrc=Primitives.Crc16Calculator.Compute([rawTrack],Primitives.Crc16Calculator.IbmPolynomial,Primitives.Crc16Calculator.ZeroInitialValue);
             bits.Raw(0x45,0x45,0x55,0x55,0x45,0x54,0x54,0x45);
             bits.DoubleFm([rawTrack,(byte)(headerCrc>>8),(byte)headerCrc]); bits.Gap(64,true);
-            var dataCrc=TrackEncoding.Crc16(sector.Data,0x8005,0);
+            var dataCrc=Primitives.Crc16Calculator.Compute(sector.Data,Primitives.Crc16Calculator.IbmPolynomial,Primitives.Crc16Calculator.ZeroInitialValue);
             bits.Raw(0x45,0x45,0x55,0x55,0x45,0x54,0x54,0x45);
             bits.DoubleFm(sector.Data.Concat([(byte)(dataCrc>>8),(byte)dataCrc])); bits.Gap(64,true);
         }

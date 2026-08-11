@@ -42,7 +42,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
                 if (headerBytes is null) continue;
                 var cylinder = headerBytes[0]; var head = headerBytes[1]; var number = headerBytes[2]; var sizeCode = headerBytes[3];
                 var storedCrc = (ushort)((headerBytes[4] << BitPrimitives.BitsPerByte) | headerBytes[5]);
-                var calculatedCrc = Crc16([0xa1, 0xa1, 0xa1, 0xfe, cylinder, head, number, sizeCode]); var valid = storedCrc == calculatedCrc;
+                var calculatedCrc = Primitives.Crc16Calculator.Compute([0xa1, 0xa1, 0xa1, 0xfe, cylinder, head, number, sizeCode]); var valid = storedCrc == calculatedCrc;
                 headers.Add((offset, cylinder, head, number, sizeCode, sizeCode <= 7 ? 128 << sizeCode : 0, valid));
                 description = $"Secteur C{cylinder} H{head} R{number} N{sizeCode} ({(sizeCode <= 7 ? 128 << sizeCode : 0)} octets), CRC {(valid ? "valide" : "incorrect")}";
             }
@@ -65,7 +65,7 @@ public sealed class IsoMfmDecoder : IFluxDecoder
                     var dataBytes = TryDecodeMfmBytes(stream, data.Value.Offset + 64, header.Size + 2);
                     if (dataBytes is null) continue;
                     payload = dataBytes.AsSpan(0, header.Size).ToArray();
-                    var stored = (ushort)((dataBytes[header.Size] << BitPrimitives.BitsPerByte) | dataBytes[header.Size + 1]); dataValid = stored == Crc16(new byte[] { 0xa1,0xa1,0xa1,data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
+                    var stored = (ushort)((dataBytes[header.Size] << BitPrimitives.BitsPerByte) | dataBytes[header.Size + 1]); dataValid = stored == Primitives.Crc16Calculator.Compute(new byte[] { 0xa1,0xa1,0xa1,data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
                     structures.RemoveAll(structure => structure.BitOffset == data.Value.Offset); structures.Add(new(data.Value.Mark == 0xfb ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, data.Value.Offset, end - data.Value.Offset, $"MFM {(data.Value.Mark == 0xf8 ? "deleted " : "")}data, {header.Size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                 }
             }
@@ -83,8 +83,6 @@ public sealed class IsoMfmDecoder : IFluxDecoder
             + sectors.Count(sector => sector.Data is not null) * 10
             + sectors.Count;
     }
-
-    private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {

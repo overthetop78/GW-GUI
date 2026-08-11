@@ -1794,11 +1794,11 @@
     - [x] Remplacer dans `Compute` et `Update` chaque valeur brute correspondant exactement à ces paramètres.
     - [x] Conserver la possibilité de fournir explicitement un autre polynôme et une autre valeur initiale.
     - [x] Refuser une séquence `values` nulle avant de commencer le calcul.
-  - [ ] Suppression des méthodes relais
-    - [ ] Faire appeler directement `Crc16Calculator.Compute` par `TrackEncoding.WithCrc`, puis supprimer `TrackEncoding.Crc16`.
-    - [ ] Supprimer les méthodes privées `Crc16` de `Aed6200pMfmDecoder`, `CenturionMfmDecoder`, `DecRx02Decoder`, `EmuFmDecoder`, `HpMmfmDecoder`, `IsoFmDecoder`, `IsoMfmDecoder`, `MembrainMfmDecoder` et `TycomFmDecoder` après remplacement par des appels directs.
-    - [ ] Supprimer les méthodes privées `UpdateCrc` de `DecRx02Decoder`, `EmuFmDecoder` et `TycomFmDecoder` après remplacement par des appels directs à `Update`.
-    - [ ] Remplacer dans les encodeurs et décodeurs les polynômes et valeurs initiales bruts par les constantes de `Crc16Calculator` correspondant à la variante réellement utilisée.
+  - [x] Suppression des méthodes relais
+    - [x] Faire appeler directement `Crc16Calculator.Compute` par `TrackEncoding.WithCrc`, puis supprimer `TrackEncoding.Crc16`.
+    - [x] Supprimer les méthodes privées `Crc16` de `Aed6200pMfmDecoder`, `CenturionMfmDecoder`, `DecRx02Decoder`, `EmuFmDecoder`, `HpMmfmDecoder`, `IsoFmDecoder`, `IsoMfmDecoder`, `MembrainMfmDecoder` et `TycomFmDecoder` après remplacement par des appels directs.
+    - [x] Supprimer les méthodes privées `UpdateCrc` de `DecRx02Decoder`, `EmuFmDecoder` et `TycomFmDecoder` après remplacement par des appels directs à `Update`.
+    - [x] Remplacer dans les encodeurs et décodeurs les polynômes et valeurs initiales bruts par les constantes de `Crc16Calculator` correspondant à la variante réellement utilisée.
   - [ ] Mise en forme
     - [ ] Conserver les boucles et leurs instructions uniques sur une ligne lorsqu’elles tiennent lisiblement.
   - [ ] Documentation XML
