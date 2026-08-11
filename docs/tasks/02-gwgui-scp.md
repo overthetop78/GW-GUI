@@ -1118,35 +1118,35 @@
     - [x] Lire une image IMG PCW reconnue par sa spécification disque et vérifier sa réidentification en `DiskImageFormatIds.AmstradPcw`.
     - [x] Vérifier qu’un contenu IMG de taille ou de géométrie non prise en charge conserve l’erreur du Reader IBM.
     - [x] Vérifier qu’une extension autre que `.img` n’est pas présélectionnée par cette politique.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/ScpContainerPolicy.cs`
-  - [ ] Déplacement dans les politiques de reconnaissance
-    - [ ] Renommer le type en `ScpRecognitionPolicy` et déplacer le fichier vers `Recognition/Policies/ScpRecognitionPolicy.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Containers` par `GWGUI.MediaEngine.Recognition.Policies`.
-    - [ ] Adapter la construction de la politique dans `Images/DiskImageExplorerFactory.cs`.
-    - [ ] Conserver l’appel à `ScpImageExplorationService`, car le contrat actuel de la politique doit produire une `SectorImage` et ce service réalise cette reconstruction.
-  - [ ] Mutualisation de la validation de signature SCP
-    - [ ] Créer `Containers/Scp/ScpSignature.cs` avec une méthode qui vérifie la longueur minimale puis compare le début du contenu à `ScpFormatConstants.FileSignature`.
-    - [ ] Remplacer dans `ScpRecognitionPolicy.CanReadAsync` la comparaison recopiée par l’appel à `ScpSignature`.
-    - [ ] Remplacer dans `Containers/Scp/ScpReader.cs` la seconde comparaison de la même signature par `ScpSignature`, tout en conservant l’exception `ScpExceptions.MissingFileSignature` du Reader.
-    - [ ] Continuer à reconnaître un contenu SCP par sa signature, indépendamment de son extension.
-  - [ ] Validation du format sectoriel explicitement demandé
-    - [ ] Copier les identifiants reçus par le constructeur dans un ensemble privé insensible à la casse afin que la politique ne dépende pas des mutations ultérieures de la collection fournie.
-    - [ ] Conserver l’absence d’identifiant demandé comme demande de détection automatique par `ScpImageExplorationService`.
-    - [ ] Conserver l’appel à `DiskImageRecognitionExceptions.UnsupportedRequestedFormat` lorsqu’un identifiant demandé n’appartient pas aux formats pris en charge.
-    - [ ] Mettre à jour le nom de politique transmis au diagnostic après le renommage du type.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Remplacer la CSDoc corrompue de la classe, de `CanReadAsync`, de `ReadAsync` et de leurs paramètres par une CSDoc française lisible.
-    - [ ] Documenter en français `Containers/Scp/ScpSignature.cs` et sa méthode.
-    - [ ] Expliquer que la politique reconnaît le conteneur, vérifie la demande explicite puis confie la reconstruction sectorielle au service SCP.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests par le registre public et le service SCP
-    - [ ] Utiliser depuis `image_test` une capture SCP valide avec pistes, révolutions et intervalles de flux dont le résultat attendu est connu.
-    - [ ] Vérifier qu’une signature SCP valide est reconnue avec une extension inhabituelle.
-    - [ ] Vérifier qu’un fichier portant l’extension `.scp` mais dépourvu de signature SCP n’est pas accepté par cette politique.
-    - [ ] Vérifier qu’une capture tronquée avant la signature complète n’est pas acceptée par la politique et reste rejetée par `ScpReader`.
-    - [ ] Vérifier qu’un identifiant pris en charge est transmis à `ScpImageExplorationService`.
-    - [ ] Vérifier qu’un identifiant non pris en charge produit le diagnostic prévu avant le lancement de l’exploration.
-    - [ ] Vérifier que l’annulation de la lecture du contexte ou de l’exploration est propagée.
+- [x] `src/GWGUI.MediaEngine/Images/Containers/ScpContainerPolicy.cs`
+  - [x] Déplacement dans les politiques de reconnaissance
+    - [x] Renommer le type en `ScpRecognitionPolicy` et déplacer le fichier vers `Recognition/Policies/ScpRecognitionPolicy.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Containers` par `GWGUI.MediaEngine.Recognition.Policies`.
+    - [x] Adapter la construction de la politique dans `Images/DiskImageExplorerFactory.cs`.
+    - [x] Conserver l’appel à `ScpImageExplorationService`, car le contrat actuel de la politique doit produire une `SectorImage` et ce service réalise cette reconstruction.
+  - [x] Mutualisation de la validation de signature SCP
+    - [x] Créer `Containers/Scp/ScpSignature.cs` avec une méthode qui vérifie la longueur minimale puis compare le début du contenu à `ScpFormatConstants.FileSignature`.
+    - [x] Remplacer dans `ScpRecognitionPolicy.CanReadAsync` la comparaison recopiée par l’appel à `ScpSignature`.
+    - [x] Remplacer dans `Containers/Scp/ScpReader.cs` la seconde comparaison de la même signature par `ScpSignature`, tout en conservant l’exception `ScpExceptions.MissingFileSignature` du Reader.
+    - [x] Continuer à reconnaître un contenu SCP par sa signature, indépendamment de son extension.
+  - [x] Validation du format sectoriel explicitement demandé
+    - [x] Copier les identifiants reçus par le constructeur dans un ensemble privé insensible à la casse afin que la politique ne dépende pas des mutations ultérieures de la collection fournie.
+    - [x] Conserver l’absence d’identifiant demandé comme demande de détection automatique par `ScpImageExplorationService`.
+    - [x] Conserver l’appel à `DiskImageRecognitionExceptions.UnsupportedRequestedFormat` lorsqu’un identifiant demandé n’appartient pas aux formats pris en charge.
+    - [x] Mettre à jour le nom de politique transmis au diagnostic après le renommage du type.
+  - [x] Documentation XML française et mise en forme
+    - [x] Remplacer la CSDoc corrompue de la classe, de `CanReadAsync`, de `ReadAsync` et de leurs paramètres par une CSDoc française lisible.
+    - [x] Documenter en français `Containers/Scp/ScpSignature.cs` et sa méthode.
+    - [x] Expliquer que la politique reconnaît le conteneur, vérifie la demande explicite puis confie la reconstruction sectorielle au service SCP.
+    - [x] Conserver sur une seule ligne les signatures, conditions et expressions complètes qui restent lisibles ainsi.
+  - [x] Tests par le registre public et le service SCP
+    - [x] Utiliser depuis `image_test` une capture SCP valide avec pistes, révolutions et intervalles de flux dont le résultat attendu est connu.
+    - [x] Vérifier qu’une signature SCP valide est reconnue avec une extension inhabituelle.
+    - [x] Vérifier qu’un fichier portant l’extension `.scp` mais dépourvu de signature SCP n’est pas accepté par cette politique.
+    - [x] Vérifier qu’une capture tronquée avant la signature complète n’est pas acceptée par la politique et reste rejetée par `ScpReader`.
+    - [x] Vérifier qu’un identifiant pris en charge est transmis à `ScpImageExplorationService`.
+    - [x] Vérifier qu’un identifiant non pris en charge produit le diagnostic prévu avant le lancement de l’exploration.
+    - [x] Vérifier que l’annulation de la lecture du contexte ou de l’exploration est propagée.
 - [ ] `src/GWGUI.MediaEngine/Images/Cp2ImageReader.cs`
   - [ ] Déplacement du lecteur de conteneur CP2
     - [ ] Renommer le type en `Cp2Reader` et déplacer le fichier vers `Containers/Cp2/Cp2Reader.cs`.

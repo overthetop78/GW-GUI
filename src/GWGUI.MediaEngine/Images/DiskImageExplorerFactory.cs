@@ -7,7 +7,6 @@ using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Images.Containers;
 using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
@@ -53,7 +52,7 @@ internal static class DiskImageExplorerFactory
             new ExtensionHintRecognitionPolicy(new I86fImageReader(decoders).ReadAsync, DiskImageFileExtensions.I86f),
             new ExtensionHintRecognitionPolicy(new Cp2ImageReader().ReadAsync, DiskImageFileExtensions.Cp2),
             new ExtensionHintRecognitionPolicy(new ImdImageReader().ReadAsync, DiskImageFileExtensions.Imd),
-            new ScpContainerPolicy(scpExploration, fileSystems.SupportedFormatIds)
+            new ScpRecognitionPolicy(scpExploration, fileSystems.SupportedFormatIds)
         ]);
         return new(containers, fileSystems, scpExploration);
     }

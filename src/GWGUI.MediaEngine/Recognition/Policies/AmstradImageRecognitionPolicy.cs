@@ -1,6 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Images.Containers;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;

@@ -69,7 +69,7 @@ public sealed class ScpReader : IScpReader
     public static ScpHeader ReadHeader(ReadOnlySpan<byte> data)
     {
         ScpDataValidator.Require(data, ScpFormatConstants.FileStartOffset, ScpFormatConstants.HeaderLength, ScpSection.Header);
-        if (!data[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature)) throw ScpExceptions.MissingFileSignature();
+        if (!ScpSignature.IsPresent(data)) throw ScpExceptions.MissingFileSignature();
         var revolutions = data[ScpFormatConstants.RevolutionCountOffset];
         var startTrack = data[ScpFormatConstants.StartTrackOffset];
         var endTrack = data[ScpFormatConstants.EndTrackOffset];
