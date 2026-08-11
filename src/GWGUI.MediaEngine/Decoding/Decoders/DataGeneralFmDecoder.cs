@@ -51,11 +51,11 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
                 valid = Checksum(block.AsSpan(0, DataGeneralFmFormat.SectorSize)) == stored;
                 bytes.AddRange(block.AsSpan(0, DataGeneralFmFormat.SectorSize).ToArray());
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, 32 + dataBytes * 16,
-                    $"Data General C{cylinder} H{head} R{sectorNumber}, 512 bytes, checksum {(valid == true ? "valid" : "invalid")}"));
+                    $"{FluxStructureDescriptions.Identity("Data General", FluxStructureKind.FormatData, cylinder, head, sectorNumber, DataGeneralFmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", valid)}"));
             }
 
             sectors.Add(new(cylinder, head, sectorNumber, 2, DataGeneralFmFormat.SectorSize, valid, headerOffset, SectorIntegrityKind.Checksum));
-            structures.Add(new(FluxStructureKind.FormatHeader, headerOffset, 64, $"Data General C{cylinder} H{head} R{sectorNumber}"));
+            structures.Add(new(FluxStructureKind.FormatHeader, headerOffset, 64, FluxStructureDescriptions.Identity("Data General", FluxStructureKind.FormatHeader, cylinder, head, sectorNumber, DataGeneralFmFormat.SectorSize, null, null)));
             index++;
         }
 

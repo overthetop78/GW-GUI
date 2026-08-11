@@ -33,7 +33,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
             if (offset + headerBits > stream.Bits.Length)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "TYCOM sector header")); offset += markBits - 1; continue;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.Truncated("TYCOM", FluxStructureKind.FormatHeader, null, "sector header"))); offset += markBits - 1; continue;
             }
             var header = TryDecodeFmBytes(stream, offset + HeaderMark.Length * BitPrimitives.BitsPerByte, TycomFmFormat.HeaderDecodedByteCount);
             if (header is null) continue;
@@ -41,7 +41,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             var crcHigh = header[2]; var crcLow = header[3];
             if (Primitives.Crc16Calculator.Compute([TycomFmFormat.HeaderAddressMark, cylinder, (byte)number, crcHigh, crcLow], TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue) != 0)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"TYCOM C{cylinder} R{number}, header CRC invalid")); offset += markBits - 1; continue;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"{FluxStructureDescriptions.Identity("TYCOM", FluxStructureKind.FormatHeader, cylinder, 0, number, 0, null, null)}, {FluxStructureDescriptions.Integrity("header CRC", false)}")); offset += markBits - 1; continue;
             }
             bytes.AddRange([cylinder, (byte)number]);
 
@@ -55,16 +55,16 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
                 ushort crc = TycomFmFormat.CrcInitialValue; var payload = new byte[sectorSize];
                 for (var index = 0; index < block.Length; index++) { var value = block[index]; crc = Primitives.Crc16Calculator.Update(crc, value, TycomFmFormat.CrcPolynomial); if (index is > 0 and <= sectorSize) payload[index - 1] = value; }
                 dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
-                structures.Add(new(FluxStructureKind.FormatData, data.Offset, (1 + sectorSize + 2) * 32, $"TYCOM {data.Mark:X2} C{cylinder} R{number} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
+                structures.Add(new(FluxStructureKind.FormatData, data.Offset, (1 + sectorSize + 2) * 32, $"{FluxStructureDescriptions.Identity("TYCOM", FluxStructureKind.FormatData, cylinder, 0, number, sectorSize, data.Mark, null)}, {FluxStructureDescriptions.Integrity("CRC", dataCrcValid)}"));
             }
             sectors.Add(new(cylinder, 0, number, 0, sectorSize, dataCrcValid, offset));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"TYCOM C{cylinder} R{number}, 128 bytes, header CRC valid{(completeData ? $", {data.Mark:X2} data CRC {(dataCrcValid == true ? "valid" : "invalid")}" : ", data CRC unavailable")}"));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("TYCOM", FluxStructureKind.FormatHeader, cylinder, 0, number, sectorSize, completeData ? data.Mark : null, null, true, dataCrcValid)));
             offset += markBits - 1;
         }
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (classifiedData.Contains(offset)) continue;
-            foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, $"TYCOM {item.Mark:X2} data")); offset += markBits - 1; break; }
+            foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, FluxStructureDescriptions.UnclassifiedMark("TYCOM", FluxStructureKind.FormatData, item.Mark, "data"))); offset += markBits - 1; break; }
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }

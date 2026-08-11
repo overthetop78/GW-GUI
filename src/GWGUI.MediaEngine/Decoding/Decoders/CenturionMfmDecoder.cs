@@ -49,21 +49,21 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
                             var block = TryDecodeMfmBytes(stream, dataOffset + markBits + 16, size + 4);
                             if (block is null) continue;
                             dataValid = Primitives.Crc16Calculator.Compute(block, CenturionMfmFormat.CrcPolynomial, CenturionMfmFormat.CrcInitialValue) == 0; bytes.AddRange(block.Skip(CenturionMfmFormat.CrcByteCount).Take(size)); structureEnd = (int)dataEnd;
-                            structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"Centurion data, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
+                            structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Centurion", FluxStructureKind.FormatData, header[0], 0, header[1], size, null, null)}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
                         }
-                        else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + CenturionMfmFormat.DataPrefixByteCount * 16, key == CenturionMfmFormat.SupportedDataKey ? "Centurion data, CRC unavailable" : $"Centurion data with unsupported key {key}"));
+                        else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + CenturionMfmFormat.DataPrefixByteCount * 16, FluxStructureDescriptions.Truncated("Centurion", FluxStructureKind.FormatData, null, key == CenturionMfmFormat.SupportedDataKey ? "CRC unavailable" : $"unsupported key {key}")));
                     }
-                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits, "Centurion data, CRC unavailable"));
+                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits, FluxStructureDescriptions.Truncated("Centurion", FluxStructureKind.FormatData, null, "CRC unavailable")));
                 }
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
                 sectors.Add(new(header[0], 0, header[1], SizeCode(size), size, integrity, offset));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"Centurion C{header[0]} R{header[1]}, {size} bytes, header CRC {(headerValid ? "valid" : "invalid")}, data CRC {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("Centurion", FluxStructureKind.FormatHeader, header[0], 0, header[1], size, null, null, headerValid, dataValid)));
                 offset = Math.Max(offset + markBits - 1, structureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "Centurion sector mark"));
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.Truncated("Centurion", FluxStructureKind.FormatHeader, null, "sector mark")));
             if (!complete) offset += markBits - 1;
         }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Unpaired Centurion data block")); offset += markBits - 1; }
+        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, FluxStructureDescriptions.UnpairedData("Centurion", null, "data block"))); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 

@@ -21,7 +21,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
             var length = end - offset;
             if (length >= CommodoreGcrFormat.MinimumSyncBitCount)
             {
-                structures.Add(new(FluxStructureKind.CommodoreSync, offset, length, "Commodore GCR sync"));
+            structures.Add(new(FluxStructureKind.CommodoreSync, offset, length, FluxStructureDescriptions.UnclassifiedMark("Commodore", FluxStructureKind.CommodoreSync, null, "GCR sync")));
                 if (TryDecodeByte(stream.Bits, end, out var value))
                 {
                     if (value == CommodoreGcrFormat.HeaderMark) { var decoded = TryDecodeBytes(stream.Bits, end, CommodoreGcrFormat.HeaderByteCount); headers.Add((offset, end, decoded is null ? end + CommodoreGcrFormat.EncodedByteBitCount : end + CommodoreGcrFormat.HeaderByteCount * CommodoreGcrFormat.EncodedByteBitCount, decoded)); if (decoded is not null) bytes.AddRange(decoded); else bytes.Add(value); }
@@ -35,7 +35,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
         {
             bool? valid = null;
             if (block.Bytes is not null) { byte checksum = 0; for (var index = 1; index < CommodoreGcrFormat.DataRecordByteCount; index++) checksum ^= block.Bytes[index]; valid = checksum == 0; }
-            structures.Add(new(FluxStructureKind.FormatData, block.SyncOffset, Math.Max(CommodoreGcrFormat.MinimumSyncBitCount, block.EndOffset - block.SyncOffset), $"Commodore data block, {CommodoreGcrFormat.SectorByteCount} bytes, checksum {(valid is null ? "unavailable" : valid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.FormatData, block.SyncOffset, Math.Max(CommodoreGcrFormat.MinimumSyncBitCount, block.EndOffset - block.SyncOffset), $"{FluxStructureDescriptions.Identity("Commodore", FluxStructureKind.FormatData, 0, 0, 0, CommodoreGcrFormat.SectorByteCount, null, "data block")}, {FluxStructureDescriptions.Integrity("checksum", valid)}"));
         }
         for (var headerIndex = 0; headerIndex < headers.Count; headerIndex++)
         {
@@ -51,7 +51,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
             var payload = data.Bytes is null ? null : data.Bytes.Skip(1).Take(CommodoreGcrFormat.SectorByteCount).ToArray();
             sectors.Add(new(cylinder, 0, number, CommodoreGcrFormat.SectorSizeCode, CommodoreGcrFormat.SectorByteCount, integrity, block.SyncOffset, SectorIntegrityKind.Checksum, payload));
-            structures.Add(new(FluxStructureKind.CommodoreHeader, block.SyncOffset, Math.Max(CommodoreGcrFormat.MinimumSyncBitCount, block.EndOffset - block.SyncOffset), $"Commodore T{cylinder} S{number}, header checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.CommodoreHeader, block.SyncOffset, Math.Max(CommodoreGcrFormat.MinimumSyncBitCount, block.EndOffset - block.SyncOffset), FluxStructureDescriptions.Complete("Commodore", FluxStructureKind.CommodoreHeader, cylinder, 0, number, CommodoreGcrFormat.SectorByteCount, null, null, headerValid, dataValid, "header checksum", "data checksum")));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 42d), stream.BitCellTicks, structures, bytes, sectors);
     }

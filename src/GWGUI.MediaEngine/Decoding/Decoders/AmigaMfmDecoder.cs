@@ -33,7 +33,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
             sectors.Add(new(cylinder, head, number, AmigaMfmFormat.SectorSizeCode, AmigaMfmFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, payload));
-            structures.Add(new(FluxStructureKind.AmigaSync, offset, length, $"Amiga C{cylinder} H{head} S{number}, header checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.AmigaSync, offset, length, FluxStructureDescriptions.Complete("Amiga", FluxStructureKind.AmigaSync, cylinder, head, number, AmigaMfmFormat.SectorByteCount, null, null, headerValid, dataValid, "header checksum", "data checksum")));
             offset += Math.Max(AmigaMfmFormat.SyncBitCount - 1, length - 1);
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 3 + structures.Count) / 44d), stream.BitCellTicks, structures, bytes, sectors);

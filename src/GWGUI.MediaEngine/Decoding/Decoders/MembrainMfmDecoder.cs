@@ -49,19 +49,19 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
                         if (data is null) continue;
                         dataValid = data[1] is >= MembrainMfmFormat.DataAddressMark and <= MembrainMfmFormat.LastDataAddressMark && Primitives.Crc16Calculator.Compute(data, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
                         bytes.AddRange(data.Skip(2).Take(sectorBytes)); structureEnd = dataEnd;
-                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Membrain data block, 512 bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
+                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Membrain", FluxStructureKind.FormatData, cylinder, head, number, MembrainMfmFormat.SectorSize, null, "data block")}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
                     }
-                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, SectorData.Length * BitPrimitives.BitsPerByte, "Membrain data block, CRC unavailable"));
+                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, SectorData.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("Membrain", FluxStructureKind.FormatData, null, "CRC unavailable")));
                 }
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
                 sectors.Add(new(cylinder, head, number, 2, sectorBytes, integrity, offset));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"Membrain C{cylinder} H{head} R{number}, header CRC {(headerValid ? "valid" : "invalid")}, data CRC {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("Membrain", FluxStructureKind.FormatHeader, cylinder, head, number, MembrainMfmFormat.SectorSize, null, null, headerValid, dataValid)));
                 offset = Math.Max(offset + SectorHeader.Length * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, "Membrain sector header"));
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("Membrain", FluxStructureKind.FormatHeader, null, "sector header")));
             if (!complete) offset += SectorHeader.Length * BitPrimitives.BitsPerByte - 1;
         }
-        for (var offset = 0; offset + SectorData.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorData) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, SectorData.Length * BitPrimitives.BitsPerByte, "Unpaired Membrain data block")); offset += SectorData.Length * BitPrimitives.BitsPerByte - 1; }
+        for (var offset = 0; offset + SectorData.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorData) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, SectorData.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.UnpairedData("Membrain", null, "data block"))); offset += SectorData.Length * BitPrimitives.BitsPerByte - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 

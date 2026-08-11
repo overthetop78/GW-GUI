@@ -45,15 +45,15 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
                 ushort crc = EmuFmFormat.CrcInitialValue; var data = new byte[sectorSize];
                 for (var index = 0; index < block.Length; index++) { var value = block[index]; crc = Primitives.Crc16Calculator.Update(crc, value, EmuFmFormat.CrcPolynomial); if (index < sectorSize) data[index] = value; }
                 dataCrcValid = crc == 0; classifiedMarks.Add(dataOffset); bytes.AddRange(data);
-                structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + (sectorSize + 2) * 32, $"E-mu C{cylinder} H{head} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
+                structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + (sectorSize + 2) * 32, $"{FluxStructureDescriptions.Identity("E-mu", FluxStructureKind.FormatData, cylinder, head, 1, sectorSize, null, null)}, {FluxStructureDescriptions.Integrity("CRC", dataCrcValid)}"));
             }
             sectors.Add(new(cylinder, head, 1, 0, sectorSize, dataCrcValid, offset));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"E-mu C{cylinder} H{head} R1, 3584 bytes, header CRC valid{(completeData ? $", data CRC {(dataCrcValid == true ? "valid" : "invalid")}" : ", data CRC unavailable")}"));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("E-mu", FluxStructureKind.FormatHeader, cylinder, head, 1, sectorSize, null, null, true, dataCrcValid)));
             offset += markBits - 1;
         }
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!classifiedMarks.Contains(offset) && FluxBitReader.MatchBytes(stream, offset, SectorMark)) structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "E-mu Emulator unclassified header/data mark"));
+            if (!classifiedMarks.Contains(offset) && FluxBitReader.MatchBytes(stream, offset, SectorMark)) structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.UnclassifiedMark("E-mu Emulator", FluxStructureKind.FormatHeader, null, "header/data mark")));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }

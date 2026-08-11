@@ -45,12 +45,12 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
             var data = TryReadData(stream.Bits, cursor);
             var integrity = data?.Valid;
             var payload = data?.Data;
-            structures.Add(new(FluxStructureKind.AppleAddress, offset, cursor - offset, $"Apple II RWTS18 T{track} S{sector}, address checksum valid"));
+            structures.Add(new(FluxStructureKind.AppleAddress, offset, cursor - offset, $"{FluxStructureDescriptions.Identity("Apple II RWTS18", FluxStructureKind.AppleAddress, track, 0, sector, AppleRwts18Format.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("address checksum", true)}"));
             if (data is not null)
             {
                 structures.Add(new(FluxStructureKind.AppleData, data.Value.StartOffset,
                     data.Value.EndOffset - data.Value.StartOffset,
-                    $"Apple II RWTS18 data block, {AppleRwts18Format.SectorByteCount} bytes, checksum {(data.Value.Valid ? "valid" : "invalid")}"));
+                    $"{FluxStructureDescriptions.Identity("Apple II RWTS18", FluxStructureKind.AppleData, track, 0, sector, AppleRwts18Format.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", data.Value.Valid)}"));
                 decodedBytes.AddRange(data.Value.Data);
             }
             sectors.Add(new(track, 0, sector, AppleRwts18Format.SectorSizeCode, AppleRwts18Format.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, payload));

@@ -35,16 +35,16 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
                     ushort checksum = 0; for (var index = 0; index < sectorBytes; index++) checksum += data.Value.Bytes[index + 1];
                     var stored = (ushort)(data.Value.Bytes[sectorBytes + 1] | data.Value.Bytes[sectorBytes + 2] << BitPrimitives.BitsPerByte); dataValid = checksum == stored; structureEnd = data.Value.EndOffset;
                     bytes.AddRange(data.Value.Bytes.Skip(1).Take(sectorBytes));
-                    structures.Add(new(FluxStructureKind.FormatData, dataOffset, data.Value.EndOffset - dataOffset, $"Victor 9000 data block, {Victor9kGcrFormat.SectorByteCount} bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
+                    structures.Add(new(FluxStructureKind.FormatData, dataOffset, data.Value.EndOffset - dataOffset, $"{FluxStructureDescriptions.Identity("Victor 9000", FluxStructureKind.FormatData, cylinder, 0, number, Victor9kGcrFormat.SectorByteCount, null, "data block")}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
                 }
-                else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits, "Victor 9000 data block, checksum unavailable"));
+                else structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits, FluxStructureDescriptions.Truncated("Victor 9000", FluxStructureKind.FormatData, null, "checksum unavailable")));
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
             sectors.Add(new(cylinder, 0, number, Victor9kGcrFormat.SectorSizeCode, sectorBytes, integrity, offset, SectorIntegrityKind.Checksum));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, Math.Max(markBits, (header?.EndOffset ?? offset + markBits) - offset), $"Victor 9000 C{cylinder} H0 R{number}, header {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, Math.Max(markBits, (header?.EndOffset ?? offset + markBits) - offset), FluxStructureDescriptions.Complete("Victor 9000", FluxStructureKind.FormatHeader, cylinder, 0, number, Victor9kGcrFormat.SectorByteCount, null, null, headerValid, dataValid, "header", "data checksum")));
             offset = Math.Max(offset + markBits - 1, structureEnd - 1);
         }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Unpaired Victor 9000 data block")); offset += markBits - 1; }
+        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, FluxStructureDescriptions.UnpairedData("Victor 9000", null, "data block"))); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);
     }
 

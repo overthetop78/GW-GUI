@@ -50,16 +50,16 @@ public class AppleMacGcrDecoder : IFluxDecoder
                     var values = encoded.Select(value => Inverse[value]).ToArray(); var decoded = DecodeSixAndTwo(values.AsSpan(1, AppleMacGcrFormat.EncodedPayloadSymbolCount), out var checksum);
                     var checksumOffset = AppleMacGcrFormat.DataSymbolCount - AppleMacGcrFormat.ChecksumSymbolCount; dataValid = checksum[3] == values[checksumOffset] && checksum[2] == values[checksumOffset + 1] && checksum[1] == values[checksumOffset + 2] && checksum[0] == values[checksumOffset + 3];
                     sectorTag = decoded.Take(AppleMacGcrFormat.TagByteCount).ToArray(); sectorData = decoded.Skip(AppleMacGcrFormat.TagByteCount).Take(AppleMacGcrFormat.SectorByteCount).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * BitPrimitives.BitsPerByte;
-                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"Apple Macintosh data block, {AppleMacGcrFormat.SectorByteCount} bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
+                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Apple Macintosh", FluxStructureKind.AppleData, cylinder, head, number, AppleMacGcrFormat.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
                 }
-                else structures.Add(new(FluxStructureKind.AppleData, dataOffset, markBits, "Apple Macintosh data block, checksum unavailable"));
+                else structures.Add(new(FluxStructureKind.AppleData, dataOffset, markBits, FluxStructureDescriptions.Truncated("Apple Macintosh", FluxStructureKind.AppleData, null, "checksum unavailable")));
             }
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
             sectors.Add(new(cylinder, head, number, AppleMacGcrFormat.SectorSizeCode, AppleMacGcrFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, sectorData, sectorTag));
-            structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(markBits, headerEnd - offset), $"Apple Macintosh C{cylinder} H{head} S{number}, address checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(markBits, headerEnd - offset), FluxStructureDescriptions.Complete("Apple Macintosh", FluxStructureKind.AppleAddress, cylinder, head, number, AppleMacGcrFormat.SectorByteCount, null, null, headerValid, dataValid, "address checksum", "data checksum")));
             offset = headerValid == true ? Math.Max(offset + markBits - 1, structureEnd - 1) : offset + markBits - 1;
         }
-        for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, AppleMacGcrFormat.DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, markBits, "Unpaired Apple Macintosh data prologue")); offset += markBits - 1; }
+        for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, AppleMacGcrFormat.DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, markBits, FluxStructureDescriptions.UnpairedData("Apple Macintosh", null, "data prologue"))); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 

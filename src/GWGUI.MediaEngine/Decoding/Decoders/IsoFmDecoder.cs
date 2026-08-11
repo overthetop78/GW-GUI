@@ -21,14 +21,14 @@ public sealed class IsoFmDecoder : IFluxDecoder
             var mark = FluxBitReader.Match(stream, offset, IsoFmFormat.EncodedIdAddressMark) ? IsoFmFormat.IdAddressMark : FluxBitReader.Match(stream, offset, IsoFmFormat.EncodedDataAddressMark) ? IsoFmFormat.DataAddressMark : FluxBitReader.Match(stream, offset, IsoFmFormat.EncodedDeletedDataAddressMark) ? IsoFmFormat.DeletedDataAddressMark : (byte)0;
             if (mark == 0) continue; bytes.Add(mark);
             var kind = mark == IsoFmFormat.IdAddressMark ? FluxStructureKind.IdAddressMark : mark == IsoFmFormat.DataAddressMark ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark;
-            var description = mark == IsoFmFormat.IdAddressMark ? "En-tête de secteur FM" : mark == IsoFmFormat.DataAddressMark ? "Données de secteur FM" : "Données supprimées FM";
+            var description = FluxStructureDescriptions.UnclassifiedMark("ISO FM", kind, mark, null);
             if (mark == IsoFmFormat.IdAddressMark && offset + IsoFmFormat.HeaderBitCount <= stream.Bits.Length)
             {
                 var headerBytes = TryDecodeMfmBytes(stream, offset + IsoFmFormat.EncodedMarkBitCount, IsoFmFormat.HeaderBytesAfterMark);
                 if (headerBytes is null) continue;
                 var cylinder = headerBytes[0]; var head = headerBytes[1]; var number = headerBytes[2]; var sizeCode = headerBytes[3];
                 var storedCrc = (ushort)((headerBytes[IsoFmFormat.HeaderFieldByteCount] << BitPrimitives.BitsPerByte) | headerBytes[IsoFmFormat.HeaderFieldByteCount + 1]); var calculatedCrc = Primitives.Crc16Calculator.Compute([IsoFmFormat.IdAddressMark, cylinder, head, number, sizeCode], IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue); var valid = storedCrc == calculatedCrc;
-                headers.Add((offset, cylinder, head, number, sizeCode, sizeCode <= IsoFmFormat.MaximumSectorSizeCode ? IsoFmFormat.BaseSectorSize << sizeCode : 0, valid)); description = $"Secteur FM C{cylinder} H{head} R{number} N{sizeCode}, CRC {(valid ? "valide" : "incorrect")}";
+                headers.Add((offset, cylinder, head, number, sizeCode, sizeCode <= IsoFmFormat.MaximumSectorSizeCode ? IsoFmFormat.BaseSectorSize << sizeCode : 0, valid)); description = $"{FluxStructureDescriptions.Identity("ISO FM", kind, cylinder, head, number, sizeCode <= IsoFmFormat.MaximumSectorSizeCode ? IsoFmFormat.BaseSectorSize << sizeCode : 0, mark, $"N{sizeCode}")}, {FluxStructureDescriptions.Integrity("CRC", valid)}";
             }
             else if (mark == IsoFmFormat.IdAddressMark) headers.Add((offset, 0, 0, 0, 0, 0, null));
             else dataMarks.Add((offset, mark));
@@ -48,11 +48,11 @@ public sealed class IsoFmDecoder : IFluxDecoder
                     if (dataBytes is null) continue;
                     payload = dataBytes.AsSpan(0, header.Size).ToArray();
                     var stored = (ushort)((dataBytes[header.Size] << BitPrimitives.BitsPerByte) | dataBytes[header.Size + 1]); dataValid = stored == Primitives.Crc16Calculator.Compute(new[] { data.Value.Mark }.Concat(payload), IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue); bytes.AddRange(payload);
-                    structures.RemoveAll(structure => structure.BitOffset == data.Value.Offset); structures.Add(new(data.Value.Mark == IsoFmFormat.DataAddressMark ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, data.Value.Offset, end - data.Value.Offset, $"FM {(data.Value.Mark == IsoFmFormat.DeletedDataAddressMark ? "deleted " : "")}data, {header.Size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
+                    structures.RemoveAll(structure => structure.BitOffset == data.Value.Offset); structures.Add(new(data.Value.Mark == IsoFmFormat.DataAddressMark ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, data.Value.Offset, end - data.Value.Offset, $"{FluxStructureDescriptions.Identity("ISO FM", data.Value.Mark == IsoFmFormat.DataAddressMark ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, header.Cylinder, header.Head, header.Number, header.Size, data.Value.Mark, null)}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
                 }
             }
             bool? integrity = header.Valid == false || dataValid == false ? false : dataValid is null ? null : true; sectors.Add(new(header.Cylinder, header.Head, header.Number, header.SizeCode, header.Size, integrity, header.Offset, Data: payload));
-            structures.Add(new(FluxStructureKind.IdAddressMark, header.Offset, header.Valid is null ? IsoFmFormat.EncodedMarkBitCount : IsoFmFormat.HeaderBitCount, $"FM C{header.Cylinder} H{header.Head} R{header.Number} N{header.SizeCode}, header CRC {(header.Valid is null ? "unavailable" : header.Valid == true ? "valid" : "invalid")}, data CRC {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.IdAddressMark, header.Offset, header.Valid is null ? IsoFmFormat.EncodedMarkBitCount : IsoFmFormat.HeaderBitCount, FluxStructureDescriptions.Complete("ISO FM", FluxStructureKind.IdAddressMark, header.Cylinder, header.Head, header.Number, header.Size, IsoFmFormat.IdAddressMark, $"N{header.SizeCode}", header.Valid, dataValid)));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 18d), stream.BitCellTicks, structures, bytes, sectors);
     }

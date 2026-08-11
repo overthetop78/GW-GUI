@@ -22,7 +22,7 @@ internal static class FluxStructureDescriptions
 
     public static string Integrity(bool? headerValid, bool? dataValid) => $"{Integrity("header CRC", headerValid)}, {Integrity("data CRC", dataValid)}";
 
-    public static string Complete(string codec, FluxStructureKind kind, int cylinder, int head, int sector, int size, byte? mark, string? variant, bool? headerValid, bool? dataValid) => $"{Identity(codec, kind, cylinder, head, sector, size, mark, variant)}, {Integrity(headerValid, dataValid)}";
+    public static string Complete(string codec, FluxStructureKind kind, int cylinder, int head, int sector, int size, byte? mark, string? variant, bool? headerValid, bool? dataValid, string headerIntegrityLabel = "header CRC", string dataIntegrityLabel = "data CRC") => $"{Identity(codec, kind, cylinder, head, sector, size, mark, variant)}, {Integrity(headerIntegrityLabel, headerValid)}, {Integrity(dataIntegrityLabel, dataValid)}";
 
     public static string Truncated(string codec, FluxStructureKind kind, byte? mark, string? variant) => $"{codec} {kind}{(mark is null ? string.Empty : $", mark {mark.Value:X2}")}{(string.IsNullOrWhiteSpace(variant) ? string.Empty : $", {variant}")}, truncated";
 

@@ -33,7 +33,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
             if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
             if (offset + headerBits > stream.Bits.Length)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "DEC RX02 sector header")); offset += markBits - 1; continue;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.Truncated("DEC RX02", FluxStructureKind.FormatHeader, null, "sector header"))); offset += markBits - 1; continue;
             }
             var header = TryDecodeFmBytes(stream, offset + DecRx02EncodingFormat.MarkBitCount, DecRx02EncodingFormat.HeaderDecodedByteCount);
             if (header is null) continue;
@@ -41,7 +41,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
             var crcHigh = header[4]; var crcLow = header[5];
             if (Crc16Calculator.Compute([DecRx02EncodingFormat.HeaderAddressMark, cylinder, head, number, sizeCode, crcHigh, crcLow], DecRx02EncodingFormat.CrcPolynomial, DecRx02EncodingFormat.CrcInitialValue) != 0)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"DEC RX02 C{cylinder} H{head} R{number}, header CRC invalid")); offset += markBits - 1; continue;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"{FluxStructureDescriptions.Identity("DEC RX02", FluxStructureKind.FormatHeader, cylinder, head, number, 0, null, null)}, {FluxStructureDescriptions.Integrity("header CRC", false)}")); offset += markBits - 1; continue;
             }
             bytes.AddRange([cylinder, head, number, sizeCode]);
 
@@ -64,16 +64,16 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
                     foreach (var value in decoded) crc = Crc16Calculator.Update(crc, value, DecRx02EncodingFormat.CrcPolynomial);
                 }
                 dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
-                structures.Add(new(FluxStructureKind.FormatData, data.Offset, m2fm ? markBits + DecRx02EncodingFormat.M2FmPhaseBitCount + decodedCount * DecRx02EncodingFormat.EncodedMfmByteBitCount : (DecRx02EncodingFormat.DataMarkByteCount + sectorSize + DecRx02EncodingFormat.CrcByteCount) * DecRx02EncodingFormat.EncodedFmByteBitCount, $"DEC RX02 {data.Mark:X2} C{cylinder} H{head} R{number} {(m2fm ? "M²FM" : "FM")} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
+                structures.Add(new(FluxStructureKind.FormatData, data.Offset, m2fm ? markBits + DecRx02EncodingFormat.M2FmPhaseBitCount + decodedCount * DecRx02EncodingFormat.EncodedMfmByteBitCount : (DecRx02EncodingFormat.DataMarkByteCount + sectorSize + DecRx02EncodingFormat.CrcByteCount) * DecRx02EncodingFormat.EncodedFmByteBitCount, $"{FluxStructureDescriptions.Identity("DEC RX02", FluxStructureKind.FormatData, cylinder, head, number, sectorSize, data.Mark, m2fm ? "M²FM" : "FM")}, {FluxStructureDescriptions.Integrity("CRC", dataCrcValid)}"));
             }
             sectors.Add(new(cylinder, head, number, sizeCode, sectorSize, dataCrcValid, offset, Data: payload));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"DEC RX02 C{cylinder} H{head} R{number}, {sectorSize} bytes, header CRC valid{(completeData ? $", {data.Mark:X2} data CRC {(dataCrcValid == true ? "valid" : "invalid")}" : ", data CRC unavailable")}"));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("DEC RX02", FluxStructureKind.FormatHeader, cylinder, head, number, sectorSize, completeData ? data.Mark : null, null, true, dataCrcValid)));
             offset += markBits - 1;
         }
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (classifiedData.Contains(offset)) continue;
-            foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, $"DEC RX02 {item.Mark:X2} data")); offset += markBits - 1; break; }
+            foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, FluxStructureDescriptions.UnclassifiedMark("DEC RX02", FluxStructureKind.FormatData, item.Mark, "data"))); offset += markBits - 1; break; }
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }

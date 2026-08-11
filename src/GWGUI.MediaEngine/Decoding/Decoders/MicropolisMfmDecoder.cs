@@ -32,7 +32,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
             var recordStart = offset + 3 * 16;
             if (recordStart + recordBytes * 16 > stream.Bits.Length)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, Sync.Length * BitPrimitives.BitsPerByte, "Incomplete Micropolis sector"));
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, Sync.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("Micropolis", FluxStructureKind.FormatHeader, null, "sector")));
                 offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
                 continue;
             }
@@ -46,7 +46,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
             bytes.AddRange(payload);
             sectors.Add(new(cylinder, 0, sectorNumber, 1, MicropolisMfmFormat.SectorSize, valid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, (3 + recordBytes) * 16,
-                $"Micropolis C{cylinder} R{sectorNumber}, 256 bytes, checksum {(valid ? "valid" : "invalid")}"));
+                $"{FluxStructureDescriptions.Identity("Micropolis", FluxStructureKind.FormatHeader, cylinder, 0, sectorNumber, MicropolisMfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", valid)}"));
             offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
         }
 

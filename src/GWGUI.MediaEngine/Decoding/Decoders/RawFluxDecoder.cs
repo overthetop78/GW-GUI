@@ -14,8 +14,8 @@ public sealed class RawFluxDecoder : IFluxDecoder
         {
             var interval = revolution.FluxIntervals[index];
             var bitLength = Math.Clamp((int)Math.Round(interval / median), 1, 64);
-            if (interval > median * 10) anomalies.Add(new(FluxStructureKind.TimingAnomaly, bitOffset, bitLength, "Intervalle de flux exceptionnellement long."));
-            else if (index > 0 && interval < median * .55) anomalies.Add(new(FluxStructureKind.TimingAnomaly, bitOffset, bitLength, "Impulsion de flux exceptionnellement courte."));
+            if (interval > median * 10) anomalies.Add(new(FluxStructureKind.TimingAnomaly, bitOffset, bitLength, FluxStructureDescriptions.UnclassifiedMark("Raw Flux", FluxStructureKind.TimingAnomaly, null, "exceptionally long flux interval")));
+            else if (index > 0 && interval < median * .55) anomalies.Add(new(FluxStructureKind.TimingAnomaly, bitOffset, bitLength, FluxStructureDescriptions.UnclassifiedMark("Raw Flux", FluxStructureKind.TimingAnomaly, null, "exceptionally short flux pulse")));
             bitOffset += bitLength;
         }
         return new(Id, DisplayName, .05, median, anomalies, []);

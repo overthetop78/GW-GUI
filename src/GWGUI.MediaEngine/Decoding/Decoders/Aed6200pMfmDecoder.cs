@@ -43,19 +43,19 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
                         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
                         if (data is null) continue;
                         dataValid = data[0] is >= Aed6200pMfmFormat.DeletedDataMark and <= Aed6200pMfmFormat.DataMark && Primitives.Crc16Calculator.Compute(data) == 0; bytes.AddRange(data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size)); structureEnd = (int)dataEnd;
-                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"AED 6200P data {data[0]:X2}, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
+                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("AED 6200P", FluxStructureKind.FormatData, 0, 0, 0, size, data[0], null)}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
                     }
-                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, 16, "AED 6200P data block, CRC unavailable"));
+                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, 16, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatData, null, "CRC unavailable")));
                 }
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
                 sectors.Add(new(header[1], 0, header[3], SizeCode(size), size, integrity, offset));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"AED 6200P C{header[1]} R{header[3]}, {size} bytes, header CRC {(headerValid ? "valid" : "invalid")}, data CRC {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[1], 0, header[3], size, null, null, headerValid, dataValid)));
                 offset = Math.Max(offset + SectorHeader.Length * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, "AED 6200P C6 header mark"));
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatHeader, Aed6200pMfmFormat.HeaderAddressMark, null)));
             if (!complete) offset += SectorHeader.Length * BitPrimitives.BitsPerByte - 1;
         }
-        for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, "Unpaired AED 6200P data block")); offset += 15; }
+        for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, FluxStructureDescriptions.UnpairedData("AED 6200P", null, null))); offset += 15; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 

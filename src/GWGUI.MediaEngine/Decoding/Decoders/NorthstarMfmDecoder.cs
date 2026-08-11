@@ -44,7 +44,7 @@ public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
             }
             if (hasIdentity) sectors.Add(new(cylinder, 0, sectorNumber, 2, NorthstarMfmFormat.SectorSize, checksumValid, offset, SectorIntegrityKind.Checksum));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, fullBlock ? signatureBits + 16 + payloadBits + 16 : signatureBits,
-                fullBlock ? $"NorthStar C{cylinder} R{sectorNumber}, 512 bytes, checksum {(checksumValid == true ? "valid" : "invalid")}" : hasIdentity ? $"NorthStar C{cylinder} R{sectorNumber}, checksum unavailable" : "NorthStar hard-sector block"));
+                fullBlock ? $"{FluxStructureDescriptions.Identity("NorthStar", FluxStructureKind.FormatHeader, cylinder, 0, sectorNumber, NorthstarMfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", checksumValid)}" : hasIdentity ? $"{FluxStructureDescriptions.Identity("NorthStar", FluxStructureKind.FormatHeader, cylinder, 0, sectorNumber, NorthstarMfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", null)}" : FluxStructureDescriptions.Truncated("NorthStar", FluxStructureKind.FormatHeader, null, "hard-sector block")));
             offset += signatureBits - 1;
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);

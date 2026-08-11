@@ -53,7 +53,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
                     for (var index = 0; index < payload.Length; index += 2) (payload[index], payload[index + 1]) = (payload[index + 1], payload[index]);
                     bytes.AddRange(payload);
                     structures.Add(new(FluxStructureKind.FormatData, dataOffset, 32 + encodedBytes * 16,
-                        $"HP MMFM C{cylinder} H{head} R{sectorNumber}, 256 bytes, data CRC {(dataValid == true ? "valid" : "invalid")}"));
+                        $"{FluxStructureDescriptions.Identity("HP MMFM", FluxStructureKind.FormatData, cylinder, head, sectorNumber, HpMmfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("data CRC", dataValid)}"));
                 }
             }
 
@@ -62,7 +62,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
                 : dataValid is null ? null : true;
             sectors.Add(new(cylinder, head, sectorNumber, 1, HpMmfmFormat.SectorSize, integrity, offset));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, 96,
-                $"HP MMFM C{cylinder} H{head} R{sectorNumber}, header CRC {(headerValid ? "valid" : "invalid")}"));
+                $"{FluxStructureDescriptions.Identity("HP MMFM", FluxStructureKind.FormatHeader, cylinder, head, sectorNumber, HpMmfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("header CRC", headerValid)}"));
             offset += 31;
         }
 

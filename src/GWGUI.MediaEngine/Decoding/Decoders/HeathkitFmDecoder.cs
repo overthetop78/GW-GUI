@@ -53,19 +53,19 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
                         var dataStored = Primitives.BitPrimitives.ReverseBits(decoded[256]); byte dataChecksum = 0;
                         foreach (var value in data) { dataChecksum ^= value; dataChecksum = (byte)((dataChecksum >> 7) | (dataChecksum << 1)); }
                         dataValid = dataStored == dataChecksum; bytes.AddRange(data); structureEnd = dataEnd;
-                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Heathkit data, 256 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
+                    structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Heathkit", FluxStructureKind.FormatData, cylinder, 0, sectorNumber, HeathkitFmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
                     }
-                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, signatureBits, "Heathkit data, checksum unavailable"));
+                else structures.Add(new(FluxStructureKind.FormatData, dataOffset, signatureBits, FluxStructureDescriptions.Truncated("Heathkit", FluxStructureKind.FormatData, null, "checksum unavailable")));
                 }
                 bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
                 sectors.Add(new(cylinder, 0, sectorNumber, 1, 256, integrity, offset, SectorIntegrityKind.Checksum));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits + headerTailBits, $"Heathkit volume {volume}, C{cylinder} R{sectorNumber}, header checksum {(headerValid ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits + headerTailBits, FluxStructureDescriptions.Complete("Heathkit", FluxStructureKind.FormatHeader, cylinder, 0, sectorNumber, HeathkitFmFormat.SectorSize, null, $"volume {volume}", headerValid, dataValid, "header checksum", "data checksum")));
                 offset = Math.Max(offset + signatureBits - 1, structureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits, "Heathkit hard-sector header"));
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits, FluxStructureDescriptions.Truncated("Heathkit", FluxStructureKind.FormatHeader, null, "hard-sector header")));
             if (!complete) offset += signatureBits - 1;
         }
-        for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark) && !pairedData.Contains(offset) && structures.All(item => item.BitOffset != offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, signatureBits, "Unpaired Heathkit data block")); offset += signatureBits - 1; }
+        for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark) && !pairedData.Contains(offset) && structures.All(item => item.BitOffset != offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, signatureBits, FluxStructureDescriptions.UnpairedData("Heathkit", null, "data block"))); offset += signatureBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 

@@ -1957,12 +1957,12 @@
       - [x] Ajouter une représentation nommée des trois états d'intégrité actuellement exprimés par les textes `valid`, `invalid` et `unavailable`.
       - [x] Ajouter des méthodes recevant les données variables nécessaires : codec, type de structure, cylindre, tête, secteur, taille, marque, variante, intégrité d'en-tête et intégrité des données.
       - [x] Ajouter des méthodes distinctes pour une structure complète, une structure tronquée, une donnée non appariée et une marque non classée.
-    - [ ] Remplacement des textes répétés
-      - [ ] Remplacer les descriptions brutes construites dans les décodeurs AED, Amiga, Apple II, Macintosh, RWTS18, Arburg et Centurion par les méthodes correspondantes.
-      - [ ] Remplacer les descriptions brutes construites dans les décodeurs Commodore 1541, Commodore 900, Data General, DEC RX02, E-mu et Heathkit.
-      - [ ] Remplacer les descriptions brutes construites dans les décodeurs HP, ISO FM, ISO MFM, Membrain, Micral N, Micropolis et North Star.
-      - [ ] Remplacer les descriptions brutes construites dans les décodeurs QD MO5, TYCOM, Victor 9000 et Raw Flux.
-      - [ ] Supprimer de chaque décodeur les ternaires répétés qui convertissent un booléen nullable d'intégrité en texte.
+    - [x] Remplacement des textes répétés
+      - [x] Remplacer les descriptions brutes construites dans les décodeurs AED, Amiga, Apple II, Macintosh, RWTS18, Arburg et Centurion par les méthodes correspondantes.
+      - [x] Remplacer les descriptions brutes construites dans les décodeurs Commodore 1541, Commodore 900, Data General, DEC RX02, E-mu et Heathkit.
+      - [x] Remplacer les descriptions brutes construites dans les décodeurs HP, ISO FM, ISO MFM, Membrain, Micral N, Micropolis et North Star.
+      - [x] Remplacer les descriptions brutes construites dans les décodeurs QD MO5, TYCOM, Victor 9000 et Raw Flux.
+      - [x] Supprimer de chaque décodeur les ternaires répétés qui convertissent un booléen nullable d'intégrité en texte.
     - [ ] Documentation XML française
       - [ ] Documenter en français le type, la représentation d'état et chaque méthode avec ses paramètres et son résultat.
       - [ ] Mettre à jour la documentation de `FluxStructure.Description` pour indiquer qu'elle est produite par le propriétaire commun.

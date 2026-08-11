@@ -43,9 +43,9 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
                 bytes.AddRange(data);
                 sectors.Add(new(cylinder, 0, number, 0, 128, valid, offset, SectorIntegrityKind.Checksum));
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, syncOffset + blockBytes * 16,
-                    $"Micral N C{cylinder} R{number}, 128 bytes, checksum {(valid ? "valid" : "invalid")}"));
+                    $"{FluxStructureDescriptions.Identity("Micral N", FluxStructureKind.FormatHeader, cylinder, 0, number, MicralNFmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", valid)}"));
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "Micral N hard-sector block, checksum unavailable"));
+            else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.Truncated("Micral N", FluxStructureKind.FormatHeader, null, "hard-sector block, checksum unavailable")));
             offset += markBits - 1;
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);

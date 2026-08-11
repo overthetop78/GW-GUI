@@ -26,7 +26,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
             var end = offset;
             while (end < stream.Bits.Length && stream.Bits[end]) end++;
             if (end - offset < Commodore900GcrFormat.MinimumSyncBitCount) { offset = end; continue; }
-            structures.Add(new(FluxStructureKind.CommodoreSync, offset, end - offset, "Commodore 900 GCR sync"));
+            structures.Add(new(FluxStructureKind.CommodoreSync, offset, end - offset, FluxStructureDescriptions.UnclassifiedMark("Commodore 900", FluxStructureKind.CommodoreSync, null, "GCR sync")));
             if (TryDecodeBytes(stream.Bits, end, Commodore900GcrFormat.HeaderByteCount) is { } header && header[0] == Commodore900GcrFormat.HeaderMark)
             {
                 headers.Add((offset, end + Commodore900GcrFormat.HeaderByteCount * Commodore900GcrFormat.EncodedByteBitCount, header)); decodedBytes.AddRange(header);
@@ -51,10 +51,10 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
             var valid = !headerValid || data.Bytes is null || !dataValid ? false : true;
             sectors.Add(new(cylinder, 0, number, Commodore900GcrFormat.SectorSizeCode, Commodore900GcrFormat.SectorByteCount, valid, header.Offset, SectorIntegrityKind.Checksum, payload));
             structures.Add(new(FluxStructureKind.CommodoreHeader, header.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, header.End - header.Offset),
-                $"Commodore 900 C{cylinder} S{number}"));
+                FluxStructureDescriptions.Identity("Commodore 900", FluxStructureKind.CommodoreHeader, cylinder, 0, number, Commodore900GcrFormat.SectorByteCount, null, null)));
             if (data.Bytes is not null)
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, data.End - data.Offset),
-                    $"Commodore 900 data, checksum {(dataValid ? "valid" : "invalid")}"));
+                    $"{FluxStructureDescriptions.Identity("Commodore 900", FluxStructureKind.FormatData, cylinder, 0, number, Commodore900GcrFormat.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
         }
         var validCount = sectors.Count(sector => sector.IntegrityValid == true);
         return new(Id, DisplayName, Math.Min(1, validCount / (double)Commodore900GcrFormat.ExpectedSectorCount), stream.BitCellTicks, structures, decodedBytes, sectors);
