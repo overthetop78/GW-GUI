@@ -2596,42 +2596,42 @@
       - [x] Tester le décodage du cylindre, de la face et des secteurs 0 à 7 puis le rejet d'un secteur supérieur.
       - [x] Tester un secteur complet, un bloc tronqué, un checksum valide et un checksum invalide.
       - [x] Vérifier la charge utile, la taille, le code de taille, l'intégrité, les structures et la confiance produits.
-  - [ ] `Decoding/Decoders/DecRx02Decoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
-    - [ ] Définitions RX02
-      - [ ] Créer `Decoding/Definitions/DecRx02Format.cs`.
-      - [ ] Y définir l'identifiant, le nom correctement encodé `DEC RX02 M²FM`, la marque d'en-tête et sa valeur décodée `0xfe`.
-      - [ ] Créer une définition fermée des marques `0xf8` à `0xfd` associant chaque valeur à son motif binaire, son encodage FM ou M²FM, son état supprimé et sa taille sectorielle.
-      - [ ] Y définir les sept octets physiques de l'en-tête, les positions du cylindre, de la face, du secteur, du code de taille et du CRC.
-      - [ ] Y définir les tailles sectorielles 128 et 256, les deux octets de CRC, le bit de décalage M²FM et la distance maximale `(88 + 16) * 8 * 2`.
-      - [ ] Remplacer toutes les marques, tailles, positions, distances, identifiants, noms et descriptions bruts par ces définitions.
-    - [ ] Codec M²FM et CRC
-      - [ ] Créer un codec M²FM commun à `DecRx02Decoder.cs` et `DecRx02TrackEncoder.cs`.
-      - [ ] Y déplacer les règles binaires `encodedRule` et `normalRule` et leurs transformations inverses actuellement réparties entre `DecodeM2Fm` et `ReplaceM2Fm`.
-      - [ ] Raccorder le décodeur et l'encodeur au codec commun puis supprimer les implémentations locales.
-      - [ ] Appeler directement le calculateur CRC commun avec l'initialisation RX02 au lieu de conserver `Crc16` et `UpdateCrc` comme délégations locales.
-    - [ ] Décodage et validation
-      - [ ] Créer un modèle nommé pour le résultat de `FindNextDataMark` au lieu du tuple et du couple sentinelle `(-1, 0)`.
-      - [ ] Extraire le décodage et la validation CRC de l'en-tête dans une méthode nommée.
-      - [ ] Extraire les lectures FM et M²FM des données dans deux méthodes utilisant la même définition de marque.
-      - [ ] Vérifier la cohérence entre le code de taille déclaré dans l'en-tête et la taille imposée par la marque de données avant de produire le secteur.
-      - [ ] Extraire la collecte des marques de données non appariées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur, marque, encodage, taille et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations RX02 actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les affectations, validations, boucles M²FM et créations de structures actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions de marques et au codec M²FM commun.
-    - [ ] Vérification du groupe RX02
-      - [ ] Tester chacune des marques `0xf8` à `0xfd` avec son motif, son encodage, son état supprimé et sa taille attendue.
-      - [ ] Tester un en-tête complet avec CRC valide puis invalide.
-      - [ ] Tester un secteur FM de 128 octets et un secteur M²FM de 256 octets avec CRC valide puis invalide.
-      - [ ] Tester une incohérence entre le code de taille d'en-tête et la marque de données.
-      - [ ] Tester une marque absente, une donnée tronquée, une règle M²FM invalide et une marque non appariée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures, l'ordre des offsets et la confiance produits.
+  - [x] `Decoding/Decoders/DecRx02Decoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
+    - [x] Définitions RX02
+      - [x] Créer `Decoding/Definitions/DecRx02Format.cs`.
+      - [x] Y définir l'identifiant, le nom correctement encodé `DEC RX02 M²FM`, la marque d'en-tête et sa valeur décodée `0xfe`.
+      - [x] Créer une définition fermée des marques `0xf8` à `0xfd` associant chaque valeur à son motif binaire, son encodage FM ou M²FM, son état supprimé et sa taille sectorielle.
+      - [x] Y définir les sept octets physiques de l'en-tête, les positions du cylindre, de la face, du secteur, du code de taille et du CRC.
+      - [x] Y définir les tailles sectorielles 128 et 256, les deux octets de CRC, le bit de décalage M²FM et la distance maximale `(88 + 16) * 8 * 2`.
+      - [x] Remplacer toutes les marques, tailles, positions, distances, identifiants, noms et descriptions bruts par ces définitions.
+    - [x] Codec M²FM et CRC
+      - [x] Créer un codec M²FM commun à `DecRx02Decoder.cs` et `DecRx02TrackEncoder.cs`.
+      - [x] Y déplacer les règles binaires `encodedRule` et `normalRule` et leurs transformations inverses actuellement réparties entre `DecodeM2Fm` et `ReplaceM2Fm`.
+      - [x] Raccorder le décodeur et l'encodeur au codec commun puis supprimer les implémentations locales.
+      - [x] Appeler directement le calculateur CRC commun avec l'initialisation RX02 au lieu de conserver `Crc16` et `UpdateCrc` comme délégations locales.
+    - [x] Décodage et validation
+      - [x] Créer un modèle nommé pour le résultat de `FindNextDataMark` au lieu du tuple et du couple sentinelle `(-1, 0)`.
+      - [x] Extraire le décodage et la validation CRC de l'en-tête dans une méthode nommée.
+      - [x] Extraire les lectures FM et M²FM des données dans deux méthodes utilisant la même définition de marque.
+      - [x] Vérifier la cohérence entre le code de taille déclaré dans l'en-tête et la taille imposée par la marque de données avant de produire le secteur.
+      - [x] Extraire la collecte des marques de données non appariées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur, marque, encodage, taille et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations RX02 actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les affectations, validations, boucles M²FM et créations de structures actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions de marques et au codec M²FM commun.
+    - [x] Vérification du groupe RX02
+      - [x] Tester chacune des marques `0xf8` à `0xfd` avec son motif, son encodage, son état supprimé et sa taille attendue.
+      - [x] Tester un en-tête complet avec CRC valide puis invalide.
+      - [x] Tester un secteur FM de 128 octets et un secteur M²FM de 256 octets avec CRC valide puis invalide.
+      - [x] Tester une incohérence entre le code de taille d'en-tête et la marque de données.
+      - [x] Tester une marque absente, une donnée tronquée, une règle M²FM invalide et une marque non appariée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures, l'ordre des offsets et la confiance produits.
   - [ ] `Decoding/Decoders/EmuFmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.

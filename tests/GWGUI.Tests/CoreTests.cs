@@ -2717,7 +2717,8 @@ public sealed class CoreTests
             }
             Assert.True(replacements > 0, "The M²FM vector must exercise the DEC 11-bit substitution rule."); return new string(bits);
         }
-        const byte cylinder = 22, head = 1, sectorNumber = 9, sizeCode = 0;
+        const byte cylinder = 22, head = 1, sectorNumber = 9;
+        var sizeCode = dataMark is 0xf9 or 0xfd ? (byte)1 : (byte)0;
         var headerCrc = TestCrc16([0xfe, cylinder, head, sectorNumber, sizeCode], 0x1021, 0xffff);
         var m2fm = dataMark is 0xf9 or 0xfd; var size = m2fm ? 256 : 128;
         var data = Enumerable.Range(0, size).Select(index => (byte)(index * 23)).ToArray();

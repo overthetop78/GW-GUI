@@ -1,118 +1,139 @@
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
-using GWGUI.MediaEngine.Geometries.Dec;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
-/// <summary>Décode les pistes utilisant le format Dec Rx02.</summary>
+/// <summary>Décode les pistes utilisant le format DEC RX02.</summary>
 public sealed class DecRx02Decoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Header Mark » utilisée par ce codec.</summary>
-    private static readonly byte[] HeaderMark = DecRx02EncodingFormat.HeaderMark.ToArray();
-    /// <summary>Conserve la définition « Data Marks » utilisée par ce codec.</summary>
-    private static readonly (byte[] Pattern, byte Mark)[] DataMarks = DecRx02EncodingFormat.DataMarks.Select(item => (item.Pattern.ToArray(), item.Mark)).ToArray();
+    private static readonly byte[] HeaderMark = DecRx02Format.HeaderMark.ToArray();
+
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.DecRx02;
+    public string Id => DecRx02Format.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.DecRx02;
+    public string DisplayName => DecRx02Format.CodecDisplayName;
+
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage DEC RX02.</returns>
+    /// <param name="revolution">Révolution de flux à décoder.</param>
+    /// <returns>Résultat du décodage RX02.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
-        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedData = new HashSet<int>();
-        const int markBits = DecRx02EncodingFormat.MarkBitCount;
-        const int headerBits = DecRx02EncodingFormat.HeaderBitCount;
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
+        var structures = new List<FluxStructure>();
+        var sectors = new List<DecodedSector>();
+        var bytes = new List<byte>();
+        var classifiedData = new HashSet<int>();
+        for (var offset = 0; offset + DecRx02Format.MarkBitCount <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
-            if (offset + headerBits > stream.Bits.Length)
+            if (offset + DecRx02Format.HeaderBitCount > stream.Bits.Length)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, FluxStructureDescriptions.Truncated("DEC RX02", FluxStructureKind.FormatHeader, null, "sector header"))); offset += markBits - 1; continue;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, DecRx02Format.MarkBitCount, DecRx02Descriptions.TruncatedHeader()));
+                offset += DecRx02Format.MarkBitCount - 1;
+                continue;
             }
-            var header = TryDecodeFmBytes(stream, offset + DecRx02EncodingFormat.MarkBitCount, DecRx02EncodingFormat.HeaderDecodedByteCount);
+            var header = TryDecodeHeader(stream, offset);
             if (header is null) continue;
-            var cylinder = header[0]; var head = header[1]; var number = header[2]; var sizeCode = header[3];
-            var crcHigh = header[4]; var crcLow = header[5];
-            if (Crc16Calculator.Compute([DecRx02EncodingFormat.HeaderAddressMark, cylinder, head, number, sizeCode, crcHigh, crcLow], DecRx02EncodingFormat.CrcPolynomial, DecRx02EncodingFormat.CrcInitialValue) != 0)
+            if (!header.CrcValid)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"{FluxStructureDescriptions.Identity("DEC RX02", FluxStructureKind.FormatHeader, cylinder, head, number, 0, null, null)}, {FluxStructureDescriptions.Integrity("header CRC", false)}")); offset += markBits - 1; continue;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, DecRx02Format.HeaderBitCount, DecRx02Descriptions.Header(header, null, null)));
+                offset += DecRx02Format.MarkBitCount - 1;
+                continue;
             }
-            bytes.AddRange([cylinder, head, number, sizeCode]);
+            bytes.AddRange([header.Cylinder, header.Head, header.Sector, header.SizeCode]);
+            var match = FindNextDataMark(stream, offset + DecRx02Format.HeaderBitCount, DecRx02Format.MaximumDataSearchDistanceBits);
+            if (match is not null && match.Definition.SizeCode != header.SizeCode)
+            {
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, DecRx02Format.HeaderBitCount, DecRx02Descriptions.Header(header, match.Definition, false)));
+                offset += DecRx02Format.MarkBitCount - 1;
+                continue;
+            }
+            var data = match is null ? null : TryDecodeData(stream, match);
+            if (match is not null && data is not null)
+            {
+                classifiedData.Add(match.Offset);
+                bytes.AddRange(data.Payload);
+                structures.Add(new(FluxStructureKind.FormatData, match.Offset, data.BitLength, DecRx02Descriptions.Data(header, match.Definition, data.CrcValid)));
+            }
+            sectors.Add(new(header.Cylinder, header.Head, header.Sector, header.SizeCode, match?.Definition.SectorSize ?? DecRx02Format.FmSectorByteCount, data?.CrcValid, offset, Data: data?.Payload));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, DecRx02Format.HeaderBitCount, DecRx02Descriptions.Header(header, match?.Definition, data?.CrcValid)));
+            offset += DecRx02Format.MarkBitCount - 1;
+        }
+        CollectUnpairedDataMarks(stream, classifiedData, structures);
+        var ordered = structures.OrderBy(structure => structure.BitOffset).ToArray();
+        var confidence = FluxDecoderConfidence.Calculate(sectors.Count, ordered.Length, DecRx02Format.ConfidenceSectorWeight, DecRx02Format.ConfidenceDivisor);
+        return new(Id, DisplayName, confidence, stream.BitCellTicks, ordered, bytes, sectors);
+    }
 
-            var data = FindNextDataMark(stream, offset + headerBits, DecRx02EncodingFormat.DataSearchByteCount * BitPrimitives.BitsPerByte * 2);
-            var m2fm = data.Mark is DecRx02EncodingFormat.M2FmDataMark or DecRx02EncodingFormat.M2FmDeletedDataMark; var sectorSize = m2fm ? DecRx02Geometry.PhysicalSectorSize : DecRx02EncodingFormat.FmSectorByteCount; var decodedCount = sectorSize + DecRx02EncodingFormat.CrcByteCount;
-            var completeData = data.Offset >= 0 && (m2fm ? data.Offset + markBits + DecRx02EncodingFormat.M2FmPhaseBitCount + decodedCount * DecRx02EncodingFormat.EncodedMfmByteBitCount : data.Offset + (DecRx02EncodingFormat.DataMarkByteCount + sectorSize + DecRx02EncodingFormat.CrcByteCount) * DecRx02EncodingFormat.EncodedFmByteBitCount) <= stream.Bits.Length;
-            bool? dataCrcValid = null; byte[]? payload = null;
-            if (completeData)
-            {
-                ushort crc = Crc16Calculator.Update(DecRx02EncodingFormat.CrcInitialValue, data.Mark, DecRx02EncodingFormat.CrcPolynomial);
-                if (m2fm)
-                {
-                    var decoded = DecodeM2Fm(stream, data.Offset + markBits + DecRx02EncodingFormat.M2FmPhaseBitCount, decodedCount); foreach (var value in decoded) crc = Crc16Calculator.Update(crc, value, DecRx02EncodingFormat.CrcPolynomial); payload = decoded.Take(sectorSize).ToArray();
-                }
-                else
-                {
-                    var decoded = TryDecodeFmBytes(stream, data.Offset + DecRx02EncodingFormat.MarkBitCount, sectorSize + DecRx02EncodingFormat.CrcByteCount);
-                    if (decoded is null) continue;
-                    payload = decoded.AsSpan(0, sectorSize).ToArray();
-                    foreach (var value in decoded) crc = Crc16Calculator.Update(crc, value, DecRx02EncodingFormat.CrcPolynomial);
-                }
-                dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
-                structures.Add(new(FluxStructureKind.FormatData, data.Offset, m2fm ? markBits + DecRx02EncodingFormat.M2FmPhaseBitCount + decodedCount * DecRx02EncodingFormat.EncodedMfmByteBitCount : (DecRx02EncodingFormat.DataMarkByteCount + sectorSize + DecRx02EncodingFormat.CrcByteCount) * DecRx02EncodingFormat.EncodedFmByteBitCount, $"{FluxStructureDescriptions.Identity("DEC RX02", FluxStructureKind.FormatData, cylinder, head, number, sectorSize, data.Mark, m2fm ? "M²FM" : "FM")}, {FluxStructureDescriptions.Integrity("CRC", dataCrcValid)}"));
-            }
-            sectors.Add(new(cylinder, head, number, sizeCode, sectorSize, dataCrcValid, offset, Data: payload));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("DEC RX02", FluxStructureKind.FormatHeader, cylinder, head, number, sectorSize, completeData ? data.Mark : null, null, true, dataCrcValid)));
-            offset += markBits - 1;
-        }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
-        {
-            if (classifiedData.Contains(offset)) continue;
-            foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, FluxStructureDescriptions.UnclassifiedMark("DEC RX02", FluxStructureKind.FormatData, item.Mark, "data"))); offset += markBits - 1; break; }
-        }
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
+    /// <summary>Décode et valide l'en-tête situé à la position indiquée.</summary>
+    private static DecRx02Header? TryDecodeHeader(FluxBitstream stream, int offset)
+    {
+        var bytes = TryDecodeFmBytes(stream, offset + DecRx02Format.MarkBitCount, DecRx02Format.HeaderDecodedByteCount);
+        if (bytes is null) return null;
+        var crcBytes = new[] { DecRx02Format.HeaderAddressMark }.Concat(bytes).ToArray();
+        var valid = Crc16Calculator.Compute(crcBytes, DecRx02Format.CrcPolynomial, DecRx02Format.CrcInitialValue) == 0;
+        return new(bytes[DecRx02Format.HeaderCylinderOffset], bytes[DecRx02Format.HeaderHeadOffset], bytes[DecRx02Format.HeaderSectorOffset], bytes[DecRx02Format.HeaderSizeCodeOffset], valid);
     }
 
     /// <summary>Recherche la prochaine marque de données dans la distance autorisée.</summary>
-    /// <param name="stream">Flux source.</param><param name="start">Offset initial en bits.</param><param name="maximumDistance">Distance maximale en bits.</param><returns>Offset et marque trouvés, ou un offset négatif.</returns>
-    private static (int Offset, byte Mark) FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
+    private static DecRx02DataMarkMatch? FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
-        var end = Math.Min(stream.Bits.Length - HeaderMark.Length * BitPrimitives.BitsPerByte, start + maximumDistance);
-        for (var offset = start; offset <= end; offset++) foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) return (offset, item.Mark);
-        return (-1, 0);
+        var end = Math.Min(stream.Bits.Length - DecRx02Format.MarkBitCount, start + maximumDistance);
+        for (var offset = start; offset <= end; offset++)
+        {
+            foreach (var definition in DecRx02Format.DataMarks)
+            {
+                if (FluxBitReader.MatchBytes(stream, offset, definition.Pattern)) return new(offset, definition);
+            }
+        }
+        return null;
     }
 
-    /// <summary>Décode une suite d'octets utilisant la transformation M²FM.</summary>
-    /// <param name="stream">Flux source.</param><param name="start">Offset initial en bits.</param><param name="count">Nombre d'octets.</param><returns>Octets décodés.</returns>
-    private static byte[] DecodeM2Fm(FluxBitstream stream, int start, int count)
+    /// <summary>Décode les données suivant une marque reconnue.</summary>
+    private static DecRx02DecodedData? TryDecodeData(FluxBitstream stream, DecRx02DataMarkMatch match)
     {
-        var bits = new bool[count * DecRx02EncodingFormat.EncodedMfmByteBitCount + DecRx02EncodingFormat.M2FmPhaseBitCount];
-        for (var index = 0; index < count * DecRx02EncodingFormat.EncodedMfmByteBitCount && start + index < stream.Bits.Length; index++) bits[index + DecRx02EncodingFormat.M2FmPhaseBitCount] = stream.Bits[start + index];
-        var encodedRule = DecRx02EncodingFormat.EncodedM2FmRule;
-        var normalRule = DecRx02EncodingFormat.NormalM2FmRule;
-        for (var offset = 0; offset + encodedRule.Count <= bits.Length; offset++)
+        var count = match.Definition.SectorSize + DecRx02Format.CrcByteCount;
+        var start = match.Offset + DecRx02Format.MarkBitCount;
+        var decoded = match.Definition.Encoding == DecRx02DataEncoding.M2Fm ? TryDecodeM2FmData(stream, start, count) : TryDecodeFmData(stream, start, count);
+        var bitLength = match.Definition.Encoding == DecRx02DataEncoding.M2Fm ? DecRx02Format.MarkBitCount + DecRx02Format.M2FmPhaseBitCount + count * DecRx02Format.EncodedMfmByteBitCount : DecRx02Format.MarkBitCount + count * DecRx02Format.EncodedFmByteBitCount;
+        if (decoded is null) return null;
+        var crc = Crc16Calculator.Compute(new[] { match.Definition.Mark }.Concat(decoded), DecRx02Format.CrcPolynomial, DecRx02Format.CrcInitialValue);
+        return new(decoded.Take(match.Definition.SectorSize).ToArray(), crc == 0, bitLength);
+    }
+
+    /// <summary>Lit un bloc de données encodé en FM.</summary>
+    private static byte[]? TryDecodeFmData(FluxBitstream stream, int start, int count) => TryDecodeFmBytes(stream, start, count);
+
+    /// <summary>Lit un bloc de données encodé en M²FM.</summary>
+    private static byte[]? TryDecodeM2FmData(FluxBitstream stream, int start, int count) => DecRx02M2FmCodec.Decode(stream, start + DecRx02Format.M2FmPhaseBitCount, count);
+
+    /// <summary>Ajoute les marques de données qui n'ont pas été appariées à un en-tête.</summary>
+    private static void CollectUnpairedDataMarks(FluxBitstream stream, ISet<int> classifiedData, ICollection<FluxStructure> structures)
+    {
+        for (var offset = 0; offset + DecRx02Format.MarkBitCount <= stream.Bits.Length; offset++)
         {
-            var matches = true; for (var index = 0; index < encodedRule.Count; index++) if (bits[offset + index] != encodedRule[index]) { matches = false; break; }
-            if (offset % 2 != 0 || !matches) continue;
-            for (var index = 0; index < normalRule.Count; index++) bits[offset + index] = normalRule[index];
-            offset += encodedRule.Count - 2;
+            if (classifiedData.Contains(offset)) continue;
+            var definition = DecRx02Format.DataMarks.FirstOrDefault(candidate => FluxBitReader.MatchBytes(stream, offset, candidate.Pattern));
+            if (definition is null) continue;
+            structures.Add(new(FluxStructureKind.FormatData, offset, DecRx02Format.MarkBitCount, DecRx02Descriptions.UnpairedData(definition)));
+            offset += DecRx02Format.MarkBitCount - 1;
         }
-        var result = new byte[count];
-        for (var index = 0; index < count; index++)
-        {
-            byte value = 0;
-            for (var bit = 0; bit < BitPrimitives.BitsPerByte; bit++) if (!bits[DecRx02EncodingFormat.M2FmPhaseBitCount + index * DecRx02EncodingFormat.EncodedMfmByteBitCount + bit * 2] && bits[DecRx02EncodingFormat.M2FmPhaseBitCount + index * DecRx02EncodingFormat.EncodedMfmByteBitCount + bit * 2 + 1]) value |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit));
-            result[index] = value;
-        }
-        return result;
     }
 
     /// <summary>Tente de décoder une suite d'octets FM.</summary>
     private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * DecRx02EncodingFormat.EncodedFmByteBitCount, out result[index])) return null;
+        for (var index = 0; index < count; index++)
+        {
+            if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * DecRx02Format.EncodedFmByteBitCount, out result[index])) return null;
+        }
         return result;
     }
+
+    /// <summary>Associe une position à sa définition de marque.</summary>
+    private sealed record DecRx02DataMarkMatch(int Offset, DecRx02DataMarkDefinition Definition);
+    /// <summary>Regroupe la charge utile, le CRC et la longueur d'un bloc décodé.</summary>
+    private sealed record DecRx02DecodedData(byte[] Payload, bool CrcValid, int BitLength);
 }
