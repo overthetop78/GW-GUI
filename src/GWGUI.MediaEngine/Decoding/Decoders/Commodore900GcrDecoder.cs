@@ -3,7 +3,7 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Decoding;
 
-/// <summary>Decodes the zoned 512-byte GCR sectors used by the Commodore 900.</summary>
+/// <summary>Décode les secteurs GCR zonés de 512 octets utilisés par le Commodore 900.</summary>
 public sealed class Commodore900GcrDecoder : IFluxDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
@@ -12,6 +12,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     public string DisplayName => FluxCodecDisplayNames.Commodore900Gcr;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder en GCR Commodore 900.</param><returns>Résultat contenant les structures, secteurs et octets reconnus.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals);
@@ -61,6 +62,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets du format.</summary>
+    /// <param name="bits">Bits GCR source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre d'octets à décoder.</param><returns>Octets décodés, ou <see langword="null"/> si un symbole est incomplet ou invalide.</returns>
     private static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         if (offset + count * Commodore900GcrFormat.EncodedByteBitCount > bits.Count) return null;
@@ -75,6 +77,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Try Nibble » propre à ce format.</summary>
+    /// <param name="bits">Bits GCR source.</param><param name="offset">Offset du symbole en bits.</param><param name="value">Demi-octet décodé.</param><returns><see langword="true"/> si le symbole est complet et reconnu.</returns>
     private static bool TryNibble(IReadOnlyList<bool> bits, int offset, out int value)
     {
         var code = 0; value = 0;
