@@ -1474,31 +1474,31 @@
       - [x] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
       - [x] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
       - [x] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
-  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
+  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
       - [x] Supprimer les imports de `Images.Containers` et `Images.Interpretations` après disparition des anciens types concernés.
       - [x] Adapter l’import de `DiskImageFormatIds` à son déplacement sous `GWGUI.MediaEngine.Definitions`.
-    - [x] Présélection par signature
-      - [x] Faire utiliser les représentations binaires immuables Standard et Extended de `CpcDskFormat` directement sur la mémoire en lecture seule du contexte.
-      - [x] Supprimer la conversion ASCII effectuée à chaque appel et la méthode privée `StartsWith` devenue inutile.
-      - [x] Conserver la reconnaissance indépendante de l’extension du fichier.
-    - [x] Lecture sans réouverture du fichier
-      - [x] Ajouter au `CpcDskReader` le point d’entrée en mémoire prévu dans son groupe et lui transmettre les octets déjà chargés par le contexte.
-      - [x] Supprimer l’appel à `reader.ReadAsync(context.Path, ...)` qui rouvre actuellement le même fichier après sa présélection.
-      - [x] Utiliser la méthode de retagging immuable de `SectorImage` prévue par son groupe au lieu de `SectorImageInterpretation.Retag`.
-    - [x] Classification CPC ou PCW
-      - [x] Conserver la règle actuelle : au moins 80 cylindres et exactement deux têtes produisent `AmstradPcw`, les autres géométries CPCEMU valides produisent `AmstradCpc`.
-      - [x] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
-    - [x] Mise en forme
-      - [x] Remettre sur une seule ligne la sélection de l’identifiant CPC/PCW et les expressions courtes qui tiennent lisiblement.
-    - [x] Documentation XML et encodage
-      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
-      - [x] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
-    - [x] Tests ciblés
-      - [x] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
-      - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
-      - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
+    - [ ] Présélection par signature
+      - [ ] Faire utiliser les représentations binaires immuables Standard et Extended de `CpcDskFormat` directement sur la mémoire en lecture seule du contexte.
+      - [ ] Supprimer la conversion ASCII effectuée à chaque appel et la méthode privée `StartsWith` devenue inutile.
+      - [ ] Conserver la reconnaissance indépendante de l’extension du fichier.
+    - [ ] Lecture sans réouverture du fichier
+      - [ ] Ajouter au `CpcDskReader` le point d’entrée en mémoire prévu dans son groupe et lui transmettre les octets déjà chargés par le contexte.
+      - [ ] Supprimer l’appel à `reader.ReadAsync(context.Path, ...)` qui rouvre actuellement le même fichier après sa présélection.
+      - [ ] Utiliser la méthode de retagging immuable de `SectorImage` prévue par son groupe au lieu de `SectorImageInterpretation.Retag`.
+    - [ ] Classification CPC ou PCW
+      - [ ] Conserver la règle actuelle : au moins 80 cylindres et exactement deux têtes produisent `AmstradPcw`, les autres géométries CPCEMU valides produisent `AmstradCpc`.
+      - [ ] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
+    - [ ] Mise en forme
+      - [ ] Remettre sur une seule ligne la sélection de l’identifiant CPC/PCW et les expressions courtes qui tiennent lisiblement.
+    - [ ] Documentation XML et encodage
+      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
+      - [ ] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
+    - [ ] Tests ciblés
+      - [ ] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
+      - [ ] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
+      - [ ] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
   - [x] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
     - [x] Responsabilité et dépendances
       - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
