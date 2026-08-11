@@ -2477,9 +2477,9 @@
       - [x] Tester une marque absente, un bloc tronqué et une séquence système invalide.
       - [x] Vérifier les données utiles, leur taille, l'intégrité, l'ordre des bits, les structures et la confiance produits.
   - [ ] `Decoding/Decoders/CenturionMfmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer la propriété `Signatures` devenue inutile avec cet héritage.
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer la propriété `Signatures` devenue inutile avec cet héritage.
     - [ ] Définitions Centurion MFM
       - [ ] Créer `Decoding/Definitions/CenturionMfmFormat.cs`.
       - [ ] Y définir l'identifiant, le nom, les marques de secteur et de données, leurs descriptions et leurs longueurs.
