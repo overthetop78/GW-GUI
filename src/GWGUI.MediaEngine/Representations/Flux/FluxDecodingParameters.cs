@@ -11,4 +11,10 @@ internal static class FluxDecodingParameters
     public const int MaximumNrziCellsPerInterval = 64;
     /// <summary>Nombre de bits réservés initialement par intervalle pendant la reconstruction.</summary>
     public const int EstimatedBitsPerInterval = 4;
+    /// <summary>Rapport minimal entre la cellule observée et l'horloge courante pour accepter un échantillon.</summary>
+    public const double MinimumAcceptedSampleRatio = 0.7d;
+    /// <summary>Rapport maximal entre la cellule observée et l'horloge courante pour accepter un échantillon.</summary>
+    public const double MaximumAcceptedSampleRatio = 1.3d;
+    /// <summary>Part de l'écart observé appliquée à l'horloge lors de chaque adaptation.</summary>
+    public const double ClockAdaptationCoefficient = 0.08d;
 }

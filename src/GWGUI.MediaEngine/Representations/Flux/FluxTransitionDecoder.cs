@@ -59,7 +59,7 @@ internal static class FluxTransitionDecoder
             for (var zero = 1; zero < cells; zero++) bits.Add(false); bits.Add(true);
             if (index == 0 || !adaptClock) continue;
             var observedCell = interval / (double)cells;
-            if (observedCell >= currentCell * .7 && observedCell <= currentCell * 1.3) currentCell += (observedCell - currentCell) * .08;
+            if (observedCell >= currentCell * FluxDecodingParameters.MinimumAcceptedSampleRatio && observedCell <= currentCell * FluxDecodingParameters.MaximumAcceptedSampleRatio) currentCell += (observedCell - currentCell) * FluxDecodingParameters.ClockAdaptationCoefficient;
             accumulatedCell += currentCell; samples++;
         }
         return new(bits.ToArray(), samples == 0 ? initialCell : accumulatedCell / samples);

@@ -1644,10 +1644,10 @@
       - [x] Y définir le maximum de 32 cellules utilisé par la reconstruction FM/MFM avec PLL ou adaptation simple.
       - [x] Y définir le maximum de 64 cellules utilisé par les reconstructions NRZI et doubled-NRZI.
       - [x] Y définir le facteur initial de capacité de quatre bits estimés par intervalle.
-    - [ ] Adaptation simple de l'horloge
-      - [ ] Y définir les bornes relatives `0,7` et `1,3` d'un échantillon accepté.
-      - [ ] Y définir le coefficient d'adaptation `0,08`.
-      - [ ] Remplacer ces valeurs dans la reconstruction adaptative.
+    - [x] Adaptation simple de l'horloge
+      - [x] Y définir les bornes relatives `0,7` et `1,3` d'un échantillon accepté.
+      - [x] Y définir le coefficient d'adaptation `0,08`.
+      - [x] Remplacer ces valeurs dans la reconstruction adaptative.
     - [ ] Boucle PLL
       - [ ] Y définir les bornes d'horloge `0,9` et `1,1` autour du centre.
       - [ ] Y définir le demi-cycle `0,5`, la conservation de phase `0,4`, la correction `0,05` et la limite de trois zéros pour la correction directe.
