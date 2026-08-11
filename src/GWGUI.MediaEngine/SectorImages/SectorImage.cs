@@ -1,5 +1,6 @@
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Représente une image sectorielle, sa géométrie et les blocs logiques effectivement disponibles.</summary>
 public sealed class SectorImage
 {
     private readonly IReadOnlyDictionary<int, SectorBlock> _blocks;
@@ -36,8 +37,16 @@ public sealed class SectorImage
     public IReadOnlyCollection<SectorBlock> AvailableBlocks => _blocks.Values.ToArray();
     public IReadOnlyList<int> MissingBlocks => Enumerable.Range(0, BlockCount).Where(block => !_blocks.ContainsKey(block)).ToArray();
 
+    /// <summary>Recherche un bloc à partir de son indice logique.</summary>
+    /// <param name="logicalBlock">Indice logique recherché, compté à partir de zéro.</param>
+    /// <param name="block">Bloc trouvé lorsque la méthode retourne <see langword="true"/>.</param>
+    /// <returns><see langword="true"/> si le bloc est disponible ; sinon <see langword="false"/>.</returns>
     public bool TryGetBlock(int logicalBlock, out SectorBlock block) => _blocks.TryGetValue(logicalBlock, out block!);
 
+    /// <summary>Retourne les données d'un bloc logique disponible.</summary>
+    /// <param name="logicalBlock">Indice logique du bloc, compté à partir de zéro.</param>
+    /// <returns>Données du bloc exprimées en octets.</returns>
+    /// <exception cref="InvalidDataException">Le bloc est absent, ou sa taille diffère de <see cref="BlockSize"/> lorsque les tailles variables ne sont pas autorisées.</exception>
     public ReadOnlyMemory<byte> GetBlock(int logicalBlock)
     {
         if (!_blocks.TryGetValue(logicalBlock, out var block)) throw SectorImageExceptions.MissingBlock(logicalBlock);

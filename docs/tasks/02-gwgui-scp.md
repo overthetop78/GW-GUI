@@ -1844,9 +1844,9 @@
     - [x] Tester les dimensions et le nombre logique invalides.
     - [x] Tester un bloc manquant et une taille fixe invalide avec les valeurs injectées dans l’erreur.
     - [x] Tester les blocs de taille variable, la capacité, les blocs disponibles et la liste des blocs manquants.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `SectorAddress, SectorBlock, SectorImage`.
-    - [ ] Ajouter la documentation XML des méthodes `SectorAddress, SectorBlock, TryGetBlock, GetBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `SectorAddress, SectorBlock, SectorImage`.
+    - [x] Ajouter la documentation XML des méthodes `SectorAddress, SectorBlock, TryGetBlock, GetBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
   - [ ] Mise en forme
     - [ ] Remettre la déclaration complète du record `SectorBlock` sur une seule ligne.
 
