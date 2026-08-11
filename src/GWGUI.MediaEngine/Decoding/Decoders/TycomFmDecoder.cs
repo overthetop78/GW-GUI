@@ -24,8 +24,10 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "TYCOM sector header")); offset += markBits - 1; continue;
             }
-            var cylinder = FluxBitReader.DecodeFmByte32(stream, offset + 32); var number = FluxBitReader.DecodeFmByte32(stream, offset + 64);
-            var crcHigh = FluxBitReader.DecodeFmByte32(stream, offset + 96); var crcLow = FluxBitReader.DecodeFmByte32(stream, offset + 128);
+            var header = TryDecodeFmBytes(stream, offset + 32, 4);
+            if (header is null) continue;
+            var cylinder = header[0]; var number = header[1];
+            var crcHigh = header[2]; var crcLow = header[3];
             if (Crc16([0xfe, cylinder, (byte)number, crcHigh, crcLow]) != 0)
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"TYCOM C{cylinder} R{number}, header CRC invalid")); offset += markBits - 1; continue;
@@ -37,8 +39,10 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
             bool? dataCrcValid = null;
             if (completeData)
             {
+                var block = TryDecodeFmBytes(stream, data.Offset, 1 + sectorSize + 2);
+                if (block is null) continue;
                 ushort crc = 0xffff; var payload = new byte[sectorSize];
-                for (var index = 0; index < 1 + sectorSize + 2; index++) { var value = FluxBitReader.DecodeFmByte32(stream, data.Offset + index * 32); crc = UpdateCrc(crc, value); if (index is > 0 and <= sectorSize) payload[index - 1] = value; }
+                for (var index = 0; index < block.Length; index++) { var value = block[index]; crc = UpdateCrc(crc, value); if (index is > 0 and <= sectorSize) payload[index - 1] = value; }
                 dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, (1 + sectorSize + 2) * 32, $"TYCOM {data.Mark:X2} C{cylinder} R{number} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
             }
@@ -64,4 +68,11 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 
     private static ushort UpdateCrc(ushort crc, byte value) => Primitives.Crc16Calculator.Update(crc, value);
+
+    private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * 32, out result[index])) return null;
+        return result;
+    }
 }

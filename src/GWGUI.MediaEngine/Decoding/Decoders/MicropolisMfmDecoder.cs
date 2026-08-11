@@ -29,7 +29,8 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
                 continue;
             }
 
-            var record = Enumerable.Range(0, recordBytes).Select(index => FluxBitReader.DecodeMfmByte(stream, recordStart + index * 16)).ToArray();
+            var record = TryDecodeMfmBytes(stream, recordStart, recordBytes);
+            if (record is null) continue;
             var cylinder = record[1];
             var sectorNumber = record[2];
             var valid = Checksum(record.AsSpan(1, recordBytes - 7)) == record[recordBytes - 6];
@@ -53,5 +54,12 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
             value += item;
         }
         return (byte)value;
+    }
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
     }
 }

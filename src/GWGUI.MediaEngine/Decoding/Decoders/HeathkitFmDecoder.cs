@@ -22,10 +22,12 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
             var complete = offset + signatureBits + headerTailBits <= stream.Bits.Length;
             if (complete)
             {
-                var volume = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits));
-                var cylinder = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 16));
-                var sectorNumber = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 32));
-                var stored = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 48));
+                var header = TryDecodeMfmBytes(stream, offset + signatureBits, 4);
+                if (header is null) continue;
+                var volume = ReverseBits(header[0]);
+                var cylinder = ReverseBits(header[1]);
+                var sectorNumber = ReverseBits(header[2]);
+                var stored = ReverseBits(header[3]);
                 byte checksum = 0;
                 foreach (var value in new[] { volume, cylinder, sectorNumber }) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
                 var headerValid = stored == checksum; var dataOffset = FindNextMark(stream, offset + signatureBits + headerTailBits, (88 + 16) * 8); bool? dataValid = null; var structureEnd = offset + signatureBits + headerTailBits;
@@ -35,8 +37,11 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
                     pairedData.Add(dataOffset); var dataEnd = dataOffset + signatureBits + 257 * 16;
                     if (dataEnd <= stream.Bits.Length)
                     {
-                        var data = Enumerable.Range(0, 256).Select(index => ReverseBits(FluxBitReader.DecodeMfmByte(stream, dataOffset + signatureBits + index * 16))).ToArray();
-                        var dataStored = ReverseBits(FluxBitReader.DecodeMfmByte(stream, dataOffset + signatureBits + 256 * 16)); byte dataChecksum = 0;
+                        var decoded = TryDecodeMfmBytes(stream, dataOffset + signatureBits, 257);
+                        if (decoded is null) continue;
+                        var data = decoded.AsSpan(0, 256).ToArray();
+                        for (var index = 0; index < data.Length; index++) data[index] = ReverseBits(data[index]);
+                        var dataStored = ReverseBits(decoded[256]); byte dataChecksum = 0;
                         foreach (var value in data) { dataChecksum ^= value; dataChecksum = (byte)((dataChecksum >> 7) | (dataChecksum << 1)); }
                         dataValid = dataStored == dataChecksum; bytes.AddRange(data); structureEnd = dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Heathkit data, 256 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
@@ -63,4 +68,11 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
     }
 
     private static byte ReverseBits(byte value) => Primitives.BitPrimitives.Reverse(value);
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
+    }
 }

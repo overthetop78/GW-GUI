@@ -36,7 +36,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * 16 > stream.Bits.Length) return null; var result = new byte[count];
-        for (var index = 0; index < count; index++) result[index] = FluxBitReader.DecodeMfmByte(stream, offset + index * 16);
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
         return result;
     }
     private static byte[] DecodeOddEven(IReadOnlyList<byte> encoded)

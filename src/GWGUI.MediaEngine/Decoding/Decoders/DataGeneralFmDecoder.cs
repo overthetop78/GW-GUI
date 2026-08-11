@@ -23,8 +23,8 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             var headerOffset = syncOffsets[index];
             var headerStart = headerOffset + 32;
             if (headerStart + 32 > stream.Bits.Length) continue;
-            var cylinderByte = FluxBitReader.DecodeMfmByte(stream, headerStart);
-            var sectorByte = FluxBitReader.DecodeMfmByte(stream, headerStart + 16);
+            if (!FluxBitReader.TryDecodeMfmByte(stream, headerStart, out var cylinderByte)) continue;
+            if (!FluxBitReader.TryDecodeMfmByte(stream, headerStart + 16, out var sectorByte)) continue;
             var cylinder = (byte)(cylinderByte & 0x7f);
             var head = (byte)(cylinderByte >> 7);
             var sectorNumber = sectorByte >> 2;
@@ -37,7 +37,8 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             bool? valid = null;
             if (dataStart + dataBytes * 16 <= stream.Bits.Length)
             {
-                var block = Enumerable.Range(0, dataBytes).Select(byteIndex => FluxBitReader.DecodeMfmByte(stream, dataStart + byteIndex * 16)).ToArray();
+                var block = TryDecodeMfmBytes(stream, dataStart, dataBytes);
+                if (block is null) continue;
                 var stored = (ushort)((block[512] << 8) | block[513]);
                 valid = Checksum(block.AsSpan(0, 512)) == stored;
                 bytes.AddRange(block.AsSpan(0, 512).ToArray());
@@ -69,5 +70,12 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             value = (ushort)(((value & 0xff) ^ (value >> 8)) | (((value & 0xff) ^ input) << 8));
         }
         return value;
+    }
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
     }
 }

@@ -21,7 +21,8 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
             var complete = offset + headerBits <= stream.Bits.Length;
             if (complete)
             {
-                var header = Enumerable.Range(0, 6).Select(index => FluxBitReader.DecodeMfmByte(stream, offset + index * 16)).ToArray();
+                var header = TryDecodeMfmBytes(stream, offset, 6);
+                if (header is null) continue;
                 var headerValid = header[1] == 0xfe && Crc16(header) == 0;
                 var cylinder = (byte)(((header[2] & 0x1f) << 3) | ((header[3] & 0xe0) >> 5));
                 var head = (byte)((header[3] >> 4) & 1); var number = (byte)(header[3] & 0x0f);
@@ -34,7 +35,8 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
                     var dataEnd = dataOffset + dataBlockBytes * 16;
                     if (dataEnd <= stream.Bits.Length)
                     {
-                        var data = Enumerable.Range(0, dataBlockBytes).Select(index => FluxBitReader.DecodeMfmByte(stream, dataOffset + index * 16)).ToArray();
+                        var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
+                        if (data is null) continue;
                         dataValid = data[1] is >= 0xf8 and <= 0xfb && Crc16(data) == 0;
                         bytes.AddRange(data.Skip(2).Take(sectorBytes)); structureEnd = dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Membrain data block, 512 bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
@@ -60,4 +62,11 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
     }
 
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, polynomial: 0x8005, initial: 0);
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
+    }
 }

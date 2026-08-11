@@ -28,9 +28,11 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
             var complete = offset + markBits + blockSize * 32 <= stream.Bits.Length; bool? valid = null;
             if (complete)
             {
+                var decoded = TryDecodeFmBytes(stream, offset + markBits, blockSize);
+                if (decoded is null) continue;
                 ushort checksum = 0; var data = new byte[usefulSize];
-                for (var index = 0; index < usefulSize; index++) { var value = ReverseBits(FluxBitReader.DecodeFmByte32(stream, offset + markBits + index * 32)); data[index] = value; checksum += value; }
-                var low = ReverseBits(FluxBitReader.DecodeFmByte32(stream, offset + markBits + usefulSize * 32)); var high = ReverseBits(FluxBitReader.DecodeFmByte32(stream, offset + markBits + (usefulSize + 1) * 32));
+                for (var index = 0; index < usefulSize; index++) { var value = ReverseBits(decoded[index]); data[index] = value; checksum += value; }
+                var low = ReverseBits(decoded[usefulSize]); var high = ReverseBits(decoded[usefulSize + 1]);
                 valid = low == (byte)checksum && high == (byte)(checksum >> 8); bytes.AddRange(data);
             }
             sectors.Add(new(0, 0, 1, 0, blockSize, valid, offset, SectorIntegrityKind.Checksum));
@@ -79,4 +81,11 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
     }
 
     private static byte ReverseBits(byte value) => Primitives.BitPrimitives.Reverse(value);
+
+    private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * 32, out result[index])) return null;
+        return result;
+    }
 }

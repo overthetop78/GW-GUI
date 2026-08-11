@@ -22,10 +22,12 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
             var complete = blockStart + blockBytes * 16 <= stream.Bits.Length;
             if (complete)
             {
-                var number = FluxBitReader.DecodeMfmByte(stream, blockStart + 16);
-                var cylinder = FluxBitReader.DecodeMfmByte(stream, blockStart + 32);
-                var data = Enumerable.Range(0, 128).Select(index => FluxBitReader.DecodeMfmByte(stream, blockStart + (3 + index) * 16)).ToArray();
-                var storedChecksum = FluxBitReader.DecodeMfmByte(stream, blockStart + 131 * 16);
+                var block = TryDecodeMfmBytes(stream, blockStart + 16, 131);
+                if (block is null) continue;
+                var number = block[0];
+                var cylinder = block[1];
+                var data = block.AsSpan(2, 128).ToArray();
+                var storedChecksum = block[130];
                 byte checksum = 0;
                 foreach (var value in data) checksum = UpdateChecksum(checksum, value);
                 var valid = checksum == storedChecksum;
@@ -45,5 +47,12 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
         var carrySource = ((data ^ checksum) ^ 0xff) & ((data + checksum) ^ data);
         var carry = (carrySource & 0x80) != 0 ? 1 : 0;
         return (byte)(checksum + data + carry);
+    }
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
     }
 }

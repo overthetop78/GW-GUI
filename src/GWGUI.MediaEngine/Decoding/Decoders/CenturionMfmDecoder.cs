@@ -21,7 +21,8 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
             var complete = offset + headerBits <= stream.Bits.Length;
             if (complete)
             {
-                var header = Enumerable.Range(0, 4).Select(index => FluxBitReader.DecodeMfmByte(stream, offset + markBits + index * 16)).ToArray();
+                var header = TryDecodeMfmBytes(stream, offset + markBits, 4);
+                if (header is null) continue;
                 var headerValid = Crc16(header) == 0; bytes.AddRange(header);
                 var dataOffset = FindDataMark(stream, offset + headerBits + 400); bool? dataValid = null; var size = 0; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
@@ -29,11 +30,14 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
                     pairedData.Add(dataOffset); var prefixEnd = dataOffset + markBits + 3 * 16;
                     if (prefixEnd <= stream.Bits.Length)
                     {
-                        var key = FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits); size = (FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits + 16) << 8) | FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits + 32);
+                        var prefix = TryDecodeMfmBytes(stream, dataOffset + markBits, 3);
+                        if (prefix is null) continue;
+                        var key = prefix[0]; size = (prefix[1] << 8) | prefix[2];
                         var dataEnd = (long)prefixEnd + (size + 2L) * 16;
                         if (key == 0 && size > 0 && dataEnd <= stream.Bits.Length)
                         {
-                            var block = Enumerable.Range(0, size + 4).Select(index => FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits + 16 + index * 16)).ToArray();
+                            var block = TryDecodeMfmBytes(stream, dataOffset + markBits + 16, size + 4);
+                            if (block is null) continue;
                             dataValid = Crc16(block) == 0; bytes.AddRange(block.Skip(2).Take(size)); structureEnd = (int)dataEnd;
                             structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"Centurion data, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                         }
@@ -66,4 +70,11 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
     }
 
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values, initial: 0);
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
+    }
 }

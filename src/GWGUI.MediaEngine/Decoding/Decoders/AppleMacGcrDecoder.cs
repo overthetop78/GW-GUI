@@ -81,7 +81,9 @@ public class AppleMacGcrDecoder : IFluxDecoder
     private static byte[]? TryReadSymbols(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * 8 > stream.Bits.Length) return null;
-        return Enumerable.Range(0, count).Select(index => FluxBitReader.DecodeByte(stream, offset + index * 8)).ToArray();
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeByte(stream, offset + index * 8, out result[index])) return null;
+        return result;
     }
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {

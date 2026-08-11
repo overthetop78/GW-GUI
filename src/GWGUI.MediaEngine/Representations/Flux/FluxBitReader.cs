@@ -60,19 +60,46 @@ internal static class FluxBitReader
     /// <param name="stream">Flux de bits à lire.</param>
     /// <param name="offset">Position du premier bit d'horloge MFM.</param>
     /// <returns>Octet de données décodé.</returns>
-    public static byte DecodeMfmByte(FluxBitstream stream, int offset) { if (!IsValidRange(stream, offset, 16)) return 0; byte value = 0; for (var bit = 0; bit < 8; bit++) if (stream.Bits[offset + bit * 2 + 1]) value |= (byte)(1 << (7 - bit)); return value; }
+    public static bool TryDecodeMfmByte(FluxBitstream stream, int offset, out byte value)
+    {
+        value = 0;
+        if (!IsValidRange(stream, offset, FluxDecodingParameters.BitsPerByte * FluxDecodingParameters.MfmCellsPerDataBit)) return false;
+        for (var bit = 0; bit < FluxDecodingParameters.BitsPerByte; bit++)
+        {
+            if (stream.Bits[offset + bit * FluxDecodingParameters.MfmCellsPerDataBit + 1]) value |= (byte)(1 << (FluxDecodingParameters.BitsPerByte - 1 - bit));
+        }
+        return true;
+    }
 
     /// <summary>Décode huit bits consécutifs en un octet.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
     /// <param name="offset">Position du premier bit.</param>
     /// <returns>Octet décodé.</returns>
-    public static byte DecodeByte(FluxBitstream stream, int offset) { if (!IsValidRange(stream, offset, 8)) return 0; byte value = 0; for (var bit = 0; bit < 8; bit++) if (stream.Bits[offset + bit]) value |= (byte)(1 << (7 - bit)); return value; }
+    public static bool TryDecodeByte(FluxBitstream stream, int offset, out byte value)
+    {
+        value = 0;
+        if (!IsValidRange(stream, offset, FluxDecodingParameters.BitsPerByte)) return false;
+        for (var bit = 0; bit < FluxDecodingParameters.BitsPerByte; bit++)
+        {
+            if (stream.Bits[offset + bit]) value |= (byte)(1 << (FluxDecodingParameters.BitsPerByte - 1 - bit));
+        }
+        return true;
+    }
 
     /// <summary>Décode les huit bits de données d'un mot FM de trente-deux bits.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
     /// <param name="offset">Position du premier groupe FM.</param>
     /// <returns>Octet de données décodé.</returns>
-    public static byte DecodeFmByte32(FluxBitstream stream, int offset) { if (!IsValidRange(stream, offset, 32)) return 0; byte value = 0; for (var bit = 0; bit < 8; bit++) if (stream.Bits[offset + bit * 4 + 3]) value |= (byte)(1 << (7 - bit)); return value; }
+    public static bool TryDecodeFmByte32(FluxBitstream stream, int offset, out byte value)
+    {
+        value = 0;
+        if (!IsValidRange(stream, offset, FluxDecodingParameters.BitsPerByte * FluxDecodingParameters.FmCellsPerDataBit)) return false;
+        for (var bit = 0; bit < FluxDecodingParameters.BitsPerByte; bit++)
+        {
+            if (stream.Bits[offset + bit * FluxDecodingParameters.FmCellsPerDataBit + FluxDecodingParameters.FmCellsPerDataBit - 1]) value |= (byte)(1 << (FluxDecodingParameters.BitsPerByte - 1 - bit));
+        }
+        return true;
+    }
 
     private static bool IsValidRange(FluxBitstream stream, int offset, int length) => offset >= 0 && length >= 0 && offset <= stream.Bits.Length - length;
 }

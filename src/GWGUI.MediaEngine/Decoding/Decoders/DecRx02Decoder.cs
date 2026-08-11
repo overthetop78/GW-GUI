@@ -23,8 +23,10 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "DEC RX02 sector header")); offset += markBits - 1; continue;
             }
-            var cylinder = FluxBitReader.DecodeFmByte32(stream, offset + 32); var head = FluxBitReader.DecodeFmByte32(stream, offset + 64); var number = FluxBitReader.DecodeFmByte32(stream, offset + 96); var sizeCode = FluxBitReader.DecodeFmByte32(stream, offset + 128);
-            var crcHigh = FluxBitReader.DecodeFmByte32(stream, offset + 160); var crcLow = FluxBitReader.DecodeFmByte32(stream, offset + 192);
+            var header = TryDecodeFmBytes(stream, offset + 32, 6);
+            if (header is null) continue;
+            var cylinder = header[0]; var head = header[1]; var number = header[2]; var sizeCode = header[3];
+            var crcHigh = header[4]; var crcLow = header[5];
             if (Crc16([0xfe, cylinder, head, number, sizeCode, crcHigh, crcLow]) != 0)
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"DEC RX02 C{cylinder} H{head} R{number}, header CRC invalid")); offset += markBits - 1; continue;
@@ -44,8 +46,10 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
                 }
                 else
                 {
-                    payload = new byte[sectorSize];
-                    for (var index = 1; index < 1 + sectorSize + 2; index++) { var value = FluxBitReader.DecodeFmByte32(stream, data.Offset + index * 32); crc = UpdateCrc(crc, value); if (index <= sectorSize) payload[index - 1] = value; }
+                    var decoded = TryDecodeFmBytes(stream, data.Offset + 32, sectorSize + 2);
+                    if (decoded is null) continue;
+                    payload = decoded.AsSpan(0, sectorSize).ToArray();
+                    foreach (var value in decoded) crc = UpdateCrc(crc, value);
                 }
                 dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, m2fm ? markBits + 1 + decodedCount * 16 : (1 + sectorSize + 2) * 32, $"DEC RX02 {data.Mark:X2} C{cylinder} H{head} R{number} {(m2fm ? "M²FM" : "FM")} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
@@ -95,4 +99,11 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
     private static ushort Crc16(IEnumerable<byte> values) => Primitives.Crc16Calculator.Compute(values);
 
     private static ushort UpdateCrc(ushort crc, byte value) => Primitives.Crc16Calculator.Update(crc, value);
+
+    private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * 32, out result[index])) return null;
+        return result;
+    }
 }

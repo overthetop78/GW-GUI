@@ -1723,11 +1723,11 @@
       - [x] Valider la multiplication du nombre d'octets du motif par huit dans `MatchBytes`.
       - [x] Développer les boucles actuellement compactées afin qu'une ligne ne contienne pas plusieurs boucles, conditions et retours.
       - [x] Retourner faux lorsqu'une plage complète ne peut pas être lue sans accéder au tableau.
-    - [ ] Décodage d'octets
-      - [ ] Remplacer les décodages partiels silencieux par des méthodes `TryDecode...` qui échouent si les huit bits de données ne sont pas tous disponibles.
-      - [ ] Conserver les positions actuelles du bit de données pour brut, MFM sur deux cellules et FM32 sur quatre cellules.
-      - [ ] Adapter chaque consommateur afin qu'il traite explicitement l'échec au bord du flux au lieu d'utiliser un octet partiel complété par zéro.
-      - [ ] Utiliser les constantes communes des bits par octet et des cellules par bit.
+    - [x] Décodage d'octets
+      - [x] Remplacer les décodages partiels silencieux par des méthodes `TryDecode...` qui échouent si les huit bits de données ne sont pas tous disponibles.
+      - [x] Conserver les positions actuelles du bit de données pour brut, MFM sur deux cellules et FM32 sur quatre cellules.
+      - [x] Adapter chaque consommateur afin qu'il traite explicitement l'échec au bord du flux au lieu d'utiliser un octet partiel complété par zéro.
+      - [x] Utiliser les constantes communes des bits par octet et des cellules par bit.
     - [ ] Présentation et CSDoc
       - [ ] Développer entièrement `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32` actuellement écrits sur une seule ligne.
       - [ ] Conserver sur une seule ligne les signatures et expressions complètes qui restent lisibles.

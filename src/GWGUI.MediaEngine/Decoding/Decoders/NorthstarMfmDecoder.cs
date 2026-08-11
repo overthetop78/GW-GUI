@@ -19,17 +19,19 @@ public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
             var hasIdentity = offset + signatureBits + 16 <= stream.Bits.Length; var fullBlock = offset + signatureBits + 16 + payloadBits + 16 <= stream.Bits.Length;
-            var info = hasIdentity ? FluxBitReader.DecodeMfmByte(stream, offset + signatureBits) : (byte)0;
+            byte info = 0;
+            if (hasIdentity && !FluxBitReader.TryDecodeMfmByte(stream, offset + signatureBits, out info)) continue;
             var cylinder = (byte)(info >> 4); var sectorNumber = (byte)(info & 0x0f); bool? checksumValid = null;
             if (fullBlock)
             {
-                byte checksum = 0; var data = new byte[512];
-                for (var index = 0; index < 512; index++)
+                byte checksum = 0; var data = TryDecodeMfmBytes(stream, offset + signatureBits + 16, 512);
+                if (data is null) continue;
+                for (var index = 0; index < data.Length; index++)
                 {
-                    var value = FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 16 + index * 16); data[index] = value;
+                    var value = data[index];
                     checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1));
                 }
-                var stored = FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 16 + payloadBits);
+                if (!FluxBitReader.TryDecodeMfmByte(stream, offset + signatureBits + 16 + payloadBits, out var stored)) continue;
                 checksumValid = stored == checksum; bytes.Add(info); bytes.AddRange(data);
             }
             if (hasIdentity) sectors.Add(new(cylinder, 0, sectorNumber, 2, 512, checksumValid, offset, SectorIntegrityKind.Checksum));
@@ -38,5 +40,12 @@ public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
             offset += signatureBits - 1;
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+    }
+
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
+    {
+        var result = new byte[count];
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        return result;
     }
 }
