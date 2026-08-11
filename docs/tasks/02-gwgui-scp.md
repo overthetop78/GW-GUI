@@ -1811,10 +1811,10 @@
     - [x] Tester le rejet d’une séquence nulle.
     - [x] Exécuter les tests ciblés des encodeurs et décodeurs dont les méthodes relais ou paramètres bruts ont été remplacés.
 - [ ] `src/GWGUI.MediaEngine/Primitives/DiskGeometryConstants.cs`
-  - [ ] Responsabilité et visibilité
-    - [ ] Conserver le fichier dans `Primitives`, car les nombres conventionnels de cylindres et de têtes sont utilisés par plusieurs familles sans appartenir à l’une d’elles.
-    - [ ] Rendre `DiskGeometryConstants` interne, car aucun projet extérieur à `GWGUI.MediaEngine` ne consomme directement ses constantes.
-    - [ ] Conserver les quatre valeurs sous forme de constantes et ne pas créer d’enum : un nombre de cylindres ou de têtes n’est pas limité à ces quatre possibilités.
+  - [x] Responsabilité et visibilité
+    - [x] Conserver le fichier dans `Primitives`, car les nombres conventionnels de cylindres et de têtes sont utilisés par plusieurs familles sans appartenir à l’une d’elles.
+    - [x] Rendre `DiskGeometryConstants` interne, car aucun projet extérieur à `GWGUI.MediaEngine` ne consomme directement ses constantes.
+    - [x] Conserver les quatre valeurs sous forme de constantes et ne pas créer d’enum : un nombre de cylindres ou de têtes n’est pas limité à ces quatre possibilités.
   - [ ] Raccordement des valeurs communes
     - [ ] Faire utiliser `FortyTrackCylinderCount` et `EightyTrackCylinderCount` uniquement aux consommateurs dont `40` ou `80` représente réellement le nombre de cylindres d’un média.
     - [ ] Faire utiliser `SingleSidedHeadCount` et `DoubleSidedHeadCount` uniquement aux consommateurs dont `1` ou `2` représente réellement le nombre de têtes.
