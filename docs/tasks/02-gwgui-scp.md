@@ -1582,11 +1582,11 @@
       - [x] Faire retourner à ce calcul exactement `0` pour les secteurs de `128` octets et `BootSectorCount * BootSectorSize` pour les secteurs de `256` et `512` octets.
       - [x] Remplacer par ce calcul commun les deux expressions identiques de `ReadAsync` et `ReadValidatedContainerAsync`.
       - [x] Utiliser le calcul ATR commun du nombre de secteurs dans `ReadAsync`.
-    - [ ] Adressage et géométrie produits
-      - [ ] Ajouter des définitions Atari nommées pour le premier numéro de secteur `1`, la tête logique `0`, le nombre de faces `1` et le secteur logique unique par cylindre `1`.
-      - [ ] Remplacer dans la boucle de `ReadAsync` les valeurs brutes correspondantes par ces définitions.
-      - [ ] Calculer une seule fois l'index logique correspondant à `sector - 1` et le réutiliser comme index de bloc et cylindre logique.
-      - [ ] Remplacer dans la construction de `SectorImage` les nombres bruts de faces et de secteurs par cylindre par les mêmes définitions.
+    - [x] Adressage et géométrie produits
+      - [x] Ajouter des définitions Atari nommées pour le premier numéro de secteur `1`, la tête logique `0`, le nombre de faces `1` et le secteur logique unique par cylindre `1`.
+      - [x] Remplacer dans la boucle de `ReadAsync` les valeurs brutes correspondantes par ces définitions.
+      - [x] Calculer une seule fois l'index logique correspondant à `sector - 1` et le réutiliser comme index de bloc et cylindre logique.
+      - [x] Remplacer dans la construction de `SectorImage` les nombres bruts de faces et de secteurs par cylindre par les mêmes définitions.
     - [ ] Mise en forme complète de `AtrReader.cs`
       - [ ] Reprendre la mise en forme de tout le fichier afin de ne plus éclater inutilement les ternaires, conditions, calculs, appels et la construction de `SectorImage`.
       - [ ] Conserver ensemble sur une ligne les expressions qui restent lisibles et ne contiennent qu'une seule instruction.

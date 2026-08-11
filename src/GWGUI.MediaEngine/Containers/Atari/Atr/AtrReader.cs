@@ -27,11 +27,12 @@ public sealed class AtrReader : ISectorImageReader
         var sectorCount = AtrLayout.GetSectorCount(payloadLength, sectorSize);
         var blocks = new List<SectorBlock>(sectorCount);
         var offset = AtrLayout.HeaderSize;
-        for (var sector = 1; sector <= sectorCount; sector++)
+        for (var sector = AtrLayout.FirstSectorNumber; sector <= sectorCount; sector++)
         {
             cancellationToken.ThrowIfCancellationRequested();
             var length = sector <= AtrLayout.BootSectorCount ? AtrLayout.BootSectorSize : sectorSize;
-            blocks.Add(new(sector - 1, new(sector - 1, 0, sector), data.AsSpan(offset, length).ToArray()));
+            var logicalIndex = sector - AtrLayout.FirstSectorNumber;
+            blocks.Add(new(logicalIndex, new(logicalIndex, AtrLayout.LogicalHeadIndex, sector), data.AsSpan(offset, length).ToArray()));
             offset += length;
         }
 
@@ -39,8 +40,8 @@ public sealed class AtrReader : ISectorImageReader
             AtrFormat.GetFormatId(sectorSize, sectorCount),
             sectorSize,
             sectorCount,
-            1,
-            1,
+            AtrLayout.LogicalHeadCount,
+            AtrLayout.LogicalSectorsPerCylinder,
             blocks,
             allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize,
             capacity: payloadLength);

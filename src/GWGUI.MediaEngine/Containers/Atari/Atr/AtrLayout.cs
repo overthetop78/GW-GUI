@@ -31,6 +31,14 @@ internal static class AtrLayout
     public const int EnhancedDensitySectorCount = 1040;
     /// <summary>Décalage binaire appliqué au mot haut du nombre de paragraphes.</summary>
     public const int ParagraphCountHighWordShift = 16;
+    /// <summary>Premier numéro de secteur exposé par une image ATR.</summary>
+    public const int FirstSectorNumber = 1;
+    /// <summary>Index de la tête logique unique exposée par une image ATR.</summary>
+    public const int LogicalHeadIndex = 0;
+    /// <summary>Nombre de faces logiques exposées par une image ATR.</summary>
+    public const int LogicalHeadCount = 1;
+    /// <summary>Nombre de secteurs logiques associé à chaque cylindre logique ATR.</summary>
+    public const int LogicalSectorsPerCylinder = 1;
 
     /// <summary>Indique si une taille sectorielle est prise en charge.</summary>
     /// <param name="sectorSize">Taille sectorielle observée, en octets.</param>
