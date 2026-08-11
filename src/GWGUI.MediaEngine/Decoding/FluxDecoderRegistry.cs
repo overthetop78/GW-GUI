@@ -40,12 +40,9 @@ public sealed class FluxDecoderRegistry
     /// <exception cref="KeyNotFoundException">Aucun décodeur ne possède l'identifiant demandé.</exception>
     public FluxDecodeResult Decode(string id, ScpRevolution revolution)
     {
-        var results = _cache.GetValue(revolution, _ => new(StringComparer.Ordinal));
-        return results.GetOrAdd(id, decoderId => new(() =>
-        {
-            if (!decodersById.TryGetValue(decoderId, out var decoder)) throw FluxDecoderRegistryExceptions.IdentifierNotFound(decoderId);
-            return decoder.Decode(revolution);
-        }, LazyThreadSafetyMode.ExecutionAndPublication)).Value;
+        if (!decodersById.TryGetValue(id, out var decoder)) throw FluxDecoderRegistryExceptions.IdentifierNotFound(id);
+        var results = GetOrCreateRevolutionCache(revolution);
+        return results.GetOrAdd(decoder.Id, _ => CreateDeferredResult(decoder, revolution)).Value;
     }
     public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
     {
@@ -75,4 +72,7 @@ public sealed class FluxDecoderRegistry
             return FluxDecoderScoring.StructuredFluxBaseScore + result.Confidence;
         return result.Confidence;
     }
+
+    private System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<FluxDecodeResult>> GetOrCreateRevolutionCache(ScpRevolution revolution) => _cache.GetValue(revolution, _ => new(StringComparer.Ordinal));
+    private static Lazy<FluxDecodeResult> CreateDeferredResult(IFluxDecoder decoder, ScpRevolution revolution) => new(() => decoder.Decode(revolution), LazyThreadSafetyMode.ExecutionAndPublication);
 }

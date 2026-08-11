@@ -2154,11 +2154,11 @@
       - [x] Remplacer la recherche `Decoders.First` de `Decode` par le dictionnaire.
       - [x] Créer `Decoding/FluxDecoderRegistryExceptions.cs` avec des erreurs recevant l'identifiant absent ou dupliqué et la position d'un décodeur nul ou invalide.
       - [x] Remplacer l'exception indirecte de `First` par l'erreur dédiée d'identifiant absent.
-    - [ ] Cache des résultats
-      - [ ] Conserver le cache faible par instance de `ScpRevolution` sans empêcher la libération des révolutions.
-      - [ ] Utiliser l'identifiant canonique du décodeur comme clé du cache après sa résolution dans le dictionnaire.
-      - [ ] Conserver `LazyThreadSafetyMode.ExecutionAndPublication` afin qu'un même décodeur ne soit exécuté qu'une fois par révolution en accès concurrent.
-      - [ ] Extraire la création du cache d'une révolution et celle d'un résultat différé dans des méthodes nommées.
+    - [x] Cache des résultats
+      - [x] Conserver le cache faible par instance de `ScpRevolution` sans empêcher la libération des révolutions.
+      - [x] Utiliser l'identifiant canonique du décodeur comme clé du cache après sa résolution dans le dictionnaire.
+      - [x] Conserver `LazyThreadSafetyMode.ExecutionAndPublication` afin qu'un même décodeur ne soit exécuté qu'une fois par révolution en accès concurrent.
+      - [x] Extraire la création du cache d'une révolution et celle d'un résultat différé dans des méthodes nommées.
     - [ ] Score automatique
       - [ ] Créer `Decoding/FluxDecoderScoring.cs`.
       - [ ] Y nommer la base `4` d'un résultat avec secteurs valides, la base `3` des secteurs sans invalidité, la base `2` des structures seules et la base `1` du flux brut.
