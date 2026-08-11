@@ -1326,11 +1326,11 @@
   - [x] Vérification du raccordement
     - [x] Compiler après le changement de namespace afin de vérifier que chaque implémentation et chaque consommateur utilise le contrat déplacé.
 - [ ] `src/GWGUI.MediaEngine/Images/MsaImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Containers/Atari/Msa/MsaReader.cs`.
-    - [ ] Créer `Containers/Atari/Msa/MsaRleDecoder.cs` et y déplacer `Unpack` sans changer l’ordre de lecture ni les conditions de rejet.
-    - [ ] Remplacer les suites d’instructions actuellement écrites sur une même ligne dans le Reader et le décodeur par une instruction par ligne.
-    - [ ] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Containers/Atari/Msa/MsaReader.cs`.
+    - [x] Créer `Containers/Atari/Msa/MsaRleDecoder.cs` et y déplacer `Unpack` sans changer l’ordre de lecture ni les conditions de rejet.
+    - [x] Remplacer les suites d’instructions actuellement écrites sur une même ligne dans le Reader et le décodeur par une instruction par ligne.
+    - [x] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.
   - [ ] Définitions MSA
     - [ ] Créer `Containers/Atari/Msa/MsaFormat.cs` avec la signature `0x0E0F`, le marqueur RLE `0xE5` et l’identifiant Atari ST produit.
     - [ ] Créer `Containers/Atari/Msa/MsaLayout.cs` avec la taille d’en-tête, les offsets des secteurs, faces et cylindres, la taille des longueurs de pistes et la taille sectorielle.

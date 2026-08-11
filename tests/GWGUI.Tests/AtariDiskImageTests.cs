@@ -1,6 +1,7 @@
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Containers.Atari.Msa;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
@@ -135,7 +136,7 @@ public sealed class AtariDiskImageTests
             try { var document = await explorer.ExploreAsync(path); Console.WriteLine($"OPEN {Path.GetFileName(path)}: {document.Volume.FileSystem}, {document.Volume.Entries.Count} root entries"); opened++; }
             catch (InvalidDataException exception) { Console.WriteLine($"CONTAINER ONLY {Path.GetFileName(path)}: {exception.Message}");
                 if (Path.GetExtension(path).Equals(".st", StringComparison.OrdinalIgnoreCase)) _ = await new AtariStImageReader().ReadAsync(path);
-                else if (Path.GetExtension(path).Equals(".msa", StringComparison.OrdinalIgnoreCase)) _ = await new MsaImageReader().ReadAsync(path);
+                else if (Path.GetExtension(path).Equals(".msa", StringComparison.OrdinalIgnoreCase)) _ = await new MsaReader().ReadAsync(path);
                 else _ = await new GWGUI.MediaEngine.Containers.Atari.Atr.AtrReader().ReadAsync(path);
             }
         }
@@ -158,7 +159,7 @@ public sealed class AtariDiskImageTests
             GWGUI.MediaEngine.SectorImages.SectorImage source;
             var extension = Path.GetExtension(sourcePath).ToLowerInvariant();
             if (extension == ".st") source = await new AtariStImageReader().ReadAsync(sourcePath);
-            else if (extension == ".msa") source = await new MsaImageReader().ReadAsync(sourcePath);
+            else if (extension == ".msa") source = await new MsaReader().ReadAsync(sourcePath);
             else if (extension == ".atr") source = await new GWGUI.MediaEngine.Containers.Atari.Atr.AtrReader().ReadAsync(sourcePath);
             else continue;
             var actual = await scpReader.ReadAsync(scpPath, source.FormatId);
