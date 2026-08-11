@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 
 /// <summary>Décrit les positions, tailles et limites du conteneur MSA.</summary>

@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Primitives;
+
 namespace GWGUI.MediaEngine.Containers.Atari.Atr;
 
 /// <summary>Décrit la disposition binaire et les tailles prises en charge d'un conteneur ATR.</summary>

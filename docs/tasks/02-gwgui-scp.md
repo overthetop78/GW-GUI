@@ -1823,9 +1823,9 @@
   - [x] Documentation XML et encodage
     - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de `DiskGeometryConstants` et de ses quatre constantes.
     - [x] Préciser dans chaque commentaire qu’il s’agit d’un nombre de cylindres ou de têtes, sans attribuer la valeur à une famille de machine particulière.
-  - [ ] Vérification des raccordements
-    - [ ] Compiler après le passage du type en `internal` afin de confirmer qu’aucun consommateur extérieur au moteur ne dépend de son API publique.
-    - [ ] Exécuter uniquement les tests ciblés des Readers, géométries et politiques dans lesquels une valeur brute a effectivement été remplacée.
+  - [x] Vérification des raccordements
+    - [x] Compiler après le passage du type en `internal` afin de confirmer qu’aucun consommateur extérieur au moteur ne dépend de son API publique.
+    - [x] Exécuter uniquement les tests ciblés des Readers, géométries et politiques dans lesquels une valeur brute a effectivement été remplacée.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/SectorImage.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `SectorImages/SectorAddress.cs` avec le namespace actuel.
