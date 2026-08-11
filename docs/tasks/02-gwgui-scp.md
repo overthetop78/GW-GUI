@@ -1713,10 +1713,10 @@
       - [x] Remettre sur une seule ligne les signatures et appels complets qui tiennent lisiblement.
       - [x] Documenter en français le type, chaque fabrique et chaque fonction privée, avec les unités des intervalles et de la cellule.
   - [ ] `Representations/Flux/FluxBitReader.cs`
-    - [ ] Validation commune des plages
-      - [ ] Créer une fonction commune qui valide un offset non négatif et une longueur sans addition susceptible de dépasser `int`.
-      - [ ] Faire rejeter proprement un offset négatif, une longueur négative ou une plage dépassant les bits.
-      - [ ] Utiliser cette validation dans toutes les correspondances et lectures d'octets.
+    - [x] Validation commune des plages
+      - [x] Créer une fonction commune qui valide un offset non négatif et une longueur sans addition susceptible de dépasser `int`.
+      - [x] Faire rejeter proprement un offset négatif, une longueur négative ou une plage dépassant les bits.
+      - [x] Utiliser cette validation dans toutes les correspondances et lectures d'octets.
     - [ ] Correspondance de motifs
       - [ ] Conserver une surcharge pour un motif 16 bits et utiliser la largeur nommée correspondante.
       - [ ] Conserver une surcharge pour un motif jusqu'à 32 bits et valider la longueur entre un et 32.
