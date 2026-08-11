@@ -202,7 +202,7 @@
     - [x] Mise en forme de `ScpHeadSelection.cs`
       - [x] Remettre sur une seule ligne la documentation XML courte du type `ScpHeadSelection`.
       - [x] Remettre sur une seule ligne la documentation XML courte de `Both`, `Side0` et `Side1`.
-  - [ ] `Containers/Scp/ScpRevolution.cs`
+  - [x] `Containers/Scp/ScpRevolution.cs`
     - [x] Adapter le namespace de `ScpRevolution` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Copier ou figer `FluxIntervals` à la construction afin que la collection source ne puisse plus modifier la révolution.
     - [x] Valider que `resolutionNanoseconds` est strictement positif avant les calculs de durée et de vitesse.
@@ -213,18 +213,18 @@
       - [x] Adapter les tests de résolution nulle et négative pour vérifier la valeur observée dans le diagnostic.
     - [x] Documenter en français le record, chaque paramètre, chaque propriété et les unités des deux calculs.
     - [x] Tester la protection de la collection, la durée, la vitesse et le rejet d'une résolution nulle ou négative.
-    - [ ] Validation unique de la résolution
-      - [ ] Supprimer l'appel direct à `ValidateResolution` dans `Rpm`.
-      - [ ] Laisser `DurationMilliseconds`, appelée par `Rpm`, effectuer l'unique validation de la résolution.
-      - [ ] Conserver exactement la même `ArgumentOutOfRangeException` pour une résolution nulle ou négative.
-    - [ ] Raccordement des unités temporelles
-      - [ ] Remplacer les deux constantes temporelles de `ScpFormatConstants` par celles de `TimeUnitConstants` après leur création.
-    - [ ] Mise en forme de la documentation XML
-      - [ ] Remettre sur une seule ligne les documentations XML courtes du type, du constructeur et des trois propriétés.
-      - [ ] Remettre sur une seule ligne les documentations XML courtes de `DurationMilliseconds`, `Rpm` et `ValidateResolution`.
-    - [ ] Tests ciblés complémentaires
-      - [ ] Vérifier que les durées et vitesses restent identiques après suppression de la validation dupliquée.
-      - [ ] Vérifier que les résolutions nulle et négative produisent toujours la même erreur.
+    - [x] Validation unique de la résolution
+      - [x] Supprimer l'appel direct à `ValidateResolution` dans `Rpm`.
+      - [x] Laisser `DurationMilliseconds`, appelée par `Rpm`, effectuer l'unique validation de la résolution.
+      - [x] Conserver exactement la même `ArgumentOutOfRangeException` pour une résolution nulle ou négative.
+    - [x] Raccordement des unités temporelles
+      - [x] Remplacer les deux constantes temporelles de `ScpFormatConstants` par celles de `TimeUnitConstants` après leur création.
+    - [x] Mise en forme de la documentation XML
+      - [x] Remettre sur une seule ligne les documentations XML courtes du type, du constructeur et des trois propriétés.
+      - [x] Remettre sur une seule ligne les documentations XML courtes de `DurationMilliseconds`, `Rpm` et `ValidateResolution`.
+    - [x] Tests ciblés complémentaires
+      - [x] Vérifier que les durées et vitesses restent identiques après suppression de la validation dupliquée.
+      - [x] Vérifier que les résolutions nulle et négative produisent toujours la même erreur.
   - [ ] `Containers/Scp/ScpTrack.cs`
     - [x] Adapter le namespace de `ScpTrack` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Copier ou figer `Revolutions` à la construction afin que la collection source ne puisse plus modifier la piste.
