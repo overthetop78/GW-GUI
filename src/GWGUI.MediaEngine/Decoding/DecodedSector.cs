@@ -1,3 +1,5 @@
 namespace GWGUI.MediaEngine.Decoding;
 
+/// <summary>Décrit un secteur reconstruit à partir d'un flux.</summary>
+/// <param name="Cylinder">Numéro de cylindre.</param><param name="Head">Numéro de face.</param><param name="Number">Numéro de secteur.</param><param name="SizeCode">Code de taille du format.</param><param name="SizeBytes">Taille en octets.</param><param name="IntegrityValid">Résultat du contrôle d'intégrité, ou valeur nulle s'il est indisponible.</param><param name="BitOffset">Offset de la structure en bits.</param><param name="IntegrityKind">Nature du contrôle d'intégrité.</param><param name="Data">Données du secteur lorsqu'elles sont disponibles.</param><param name="Tag">Étiquette du secteur lorsqu'elle existe.</param>
 public sealed record DecodedSector(byte Cylinder, byte Head, int Number, byte SizeCode, int SizeBytes, bool? IntegrityValid, int BitOffset, SectorIntegrityKind IntegrityKind = SectorIntegrityKind.Crc, IReadOnlyList<byte>? Data = null, IReadOnlyList<byte>? Tag = null);

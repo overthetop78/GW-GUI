@@ -2114,9 +2114,9 @@
     - [x] Créer `Decoding/FluxStructureKind.cs`, `SectorIntegrityKind.cs`, `FluxStructure.cs`, `DecodedSector.cs` et `FluxDecodeResult.cs`.
     - [x] Déplacer les cinq types.
     - [x] Supprimer `FluxDecodeModels.cs`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `FluxStructureKind, SectorIntegrityKind, FluxStructure, DecodedSector, FluxDecodeResult`.
-    - [ ] Ajouter la documentation XML des méthodes `FluxStructure, DecodedSector, FluxDecodeResult`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `FluxStructureKind, SectorIntegrityKind, FluxStructure, DecodedSector, FluxDecodeResult`.
+    - [x] Ajouter la documentation XML des méthodes `FluxStructure, DecodedSector, FluxDecodeResult`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/FluxDecoderRegistry.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Construire un dictionnaire par identifiant.
