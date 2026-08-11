@@ -2,12 +2,20 @@ using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Conversion.Atari;
+using GWGUI.MediaEngine.Definitions;
 
 namespace GWGUI.Tests;
 
 /// <summary>Vérifie la lecture publique et l'extraction des conteneurs ATR locaux.</summary>
 public sealed class AtrReaderTests
 {
+    /// <summary>Vérifie les identifiants des trois géométries ATR reconnues explicitement.</summary>
+    [Theory]
+    [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount, DiskImageFormatIds.Atari90)]
+    [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.EnhancedDensitySectorCount, DiskImageFormatIds.Atari130)]
+    [InlineData(AtrLayout.DoubleDensitySectorSize, AtrLayout.StandardSectorCount, DiskImageFormatIds.Atari180)]
+    public void PreservesKnownFormatIdentifiers(int sectorSize, int sectorCount, string expectedFormatId) => Assert.Equal(expectedFormatId, AtrFormat.GetFormatId(sectorSize, sectorCount));
+
     [Theory]
     [InlineData("validated_images/Atari/Atari 130XE/5.25 pouces - Chargeur propriétaire - 90 Kio/seeds-of-evil-atari-130xe.atr", 128, 720)]
     [InlineData("Atari 8-bit/os xl-xe.atr", 256, 720)]
@@ -71,6 +79,31 @@ public sealed class AtrReaderTests
         finally
         {
             if (File.Exists(destinationPath)) File.Delete(destinationPath);
+        }
+    }
+
+    /// <summary>Vérifie que le mot haut du nombre de paragraphes participe à la longueur déclarée.</summary>
+    [Fact]
+    public async Task ReadsParagraphCountHighWord()
+    {
+        const int paragraphCount = ushort.MaxValue + 1;
+        var payloadLength = paragraphCount * AtrLayout.ParagraphSize;
+        var data = new byte[AtrLayout.HeaderSize + payloadLength];
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.SignatureOffset), AtrFormat.Signature);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset), unchecked((ushort)paragraphCount));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset), checked((ushort)(paragraphCount >> AtrLayout.ParagraphCountHighWordShift)));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset), AtrLayout.SingleDensitySectorSize);
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-atr-high-paragraph-{Guid.NewGuid():N}.atr");
+        try
+        {
+            await File.WriteAllBytesAsync(path, data);
+            var image = await new AtrReader().ReadAsync(path);
+            Assert.Equal(payloadLength / AtrLayout.SingleDensitySectorSize, image.BlockCount);
+            Assert.Equal(payloadLength, image.Capacity);
+        }
+        finally
+        {
+            if (File.Exists(path)) File.Delete(path);
         }
     }
 

@@ -24,11 +24,7 @@ public sealed class AtrReader : ISectorImageReader
         var data = await ReadValidatedContainerAsync(path, cancellationToken).ConfigureAwait(false);
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
         var payloadLength = data.Length - AtrLayout.HeaderSize;
-        var bootAreaLength = sectorSize == AtrLayout.SingleDensitySectorSize
-            ? 0
-            : AtrLayout.BootSectorCount * AtrLayout.BootSectorSize;
-        var sectorCount = (sectorSize == AtrLayout.SingleDensitySectorSize ? 0 : AtrLayout.BootSectorCount)
-            + (payloadLength - bootAreaLength) / sectorSize;
+        var sectorCount = AtrLayout.GetSectorCount(payloadLength, sectorSize);
         var blocks = new List<SectorBlock>(sectorCount);
         var offset = AtrLayout.HeaderSize;
         for (var sector = 1; sector <= sectorCount; sector++)
@@ -75,9 +71,7 @@ public sealed class AtrReader : ISectorImageReader
         if (declaredPayloadLength != observedPayloadLength)
             throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
 
-        var bootAreaLength = sectorSize == AtrLayout.SingleDensitySectorSize
-            ? 0
-            : AtrLayout.BootSectorCount * AtrLayout.BootSectorSize;
+        var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
         if (observedPayloadLength < bootAreaLength || (observedPayloadLength - bootAreaLength) % sectorSize != 0)
             throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
         return data;

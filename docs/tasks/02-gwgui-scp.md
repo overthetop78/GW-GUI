@@ -1567,15 +1567,15 @@
     - [x] Remplacer chaque valeur encore brute par `WozFormat` ou `WozLayout`.
     - [x] Documenter en français chaque méthode privée extraite.
     - [x] Tester WOZ1, WOZ2, CRC, chunks inconnus, références et longueurs de bits invalides.
-  - [ ] `Containers/Atari/Atr/AtrFormat.cs` et `AtrLayout.cs`
-    - [ ] Ajouter des constantes nommées pour les 720 et 1040 secteurs et le décalage de 16 bits des paragraphes hauts.
-    - [ ] Remplacer dans `AtrFormat.GetFormatId` les nombres bruts `720` et `1040` par ces constantes.
-    - [ ] Centraliser le calcul de la zone d'amorçage et du nombre de secteurs utilisé par Reader et Writer.
+  - [x] `Containers/Atari/Atr/AtrFormat.cs` et `AtrLayout.cs`
+    - [x] Ajouter des constantes nommées pour les 720 et 1040 secteurs et le décalage de 16 bits des paragraphes hauts.
+    - [x] Remplacer dans `AtrFormat.GetFormatId` les nombres bruts `720` et `1040` par ces constantes.
+    - [x] Centraliser le calcul de la zone d'amorçage et du nombre de secteurs utilisé par Reader et Writer.
     - [x] Documenter en français chaque définition.
-    - [ ] Tester les deux tailles sectorielles et les paragraphes hauts.
-    - [ ] Vérifier que les couples taille/nombre de secteurs `128/720`, `128/1040` et `256/720` conservent leurs identifiants actuels.
-    - [ ] Définir `AtrLayout.BootSectorSize` à partir de `AtrLayout.SingleDensitySectorSize` sans modifier sa valeur finale de `128` octets.
-    - [ ] Remettre la méthode courte `AtrLayout.IsSupportedSectorSize` sur une seule ligne.
+    - [x] Tester les deux tailles sectorielles et les paragraphes hauts.
+    - [x] Vérifier que les couples taille/nombre de secteurs `128/720`, `128/1040` et `256/720` conservent leurs identifiants actuels.
+    - [x] Définir `AtrLayout.BootSectorSize` à partir de `AtrLayout.SingleDensitySectorSize` sans modifier sa valeur finale de `128` octets.
+    - [x] Remettre la méthode courte `AtrLayout.IsSupportedSectorSize` sur une seule ligne.
   - [ ] `Containers/Atari/Atr/AtrReader.cs`
     - [ ] Calculs ATR communs
       - [ ] Créer un calcul ATR commun de longueur de zone d'amorçage à partir de la taille sectorielle.

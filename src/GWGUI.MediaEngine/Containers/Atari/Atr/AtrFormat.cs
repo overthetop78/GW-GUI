@@ -23,9 +23,9 @@ internal static class AtrFormat
     /// <returns>L'identifiant Atari connu ou un identifiant ATR décrivant la géométrie observée.</returns>
     public static string GetFormatId(int sectorSize, int sectorCount) => (sectorSize, sectorCount) switch
     {
-        (AtrLayout.SingleDensitySectorSize, 720) => SingleDensityFormatId,
-        (AtrLayout.SingleDensitySectorSize, 1040) => EnhancedDensityFormatId,
-        (AtrLayout.DoubleDensitySectorSize, 720) => DoubleDensityFormatId,
+        (AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount) => SingleDensityFormatId,
+        (AtrLayout.SingleDensitySectorSize, AtrLayout.EnhancedDensitySectorCount) => EnhancedDensityFormatId,
+        (AtrLayout.DoubleDensitySectorSize, AtrLayout.StandardSectorCount) => DoubleDensityFormatId,
         _ => DiskImageFormatIds.AtariAtr(sectorSize, sectorCount)
     };
 }
