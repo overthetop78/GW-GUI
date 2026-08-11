@@ -1371,8 +1371,11 @@
     - [x] Conserver la sélection de la taille sectorielle dominante et remplacer son commentaire anglais par une explication française du traitement des secteurs inhabituels de protection.
   - [ ] Classification de l’image reconstruite
     - [ ] Faire utiliser à `Td0SectorImageClassifier` `FileSystems/Fat/FatBpbLayout` et le détecteur BPB commun au lieu de relire les offsets `3`, `11`, `12`, `13`, `24`, `25`, `26` et `27`.
+      - Dépendance restante : `FatBpbLayout` et le détecteur BPB commun sont créés dans le groupe ultérieur de `IbmPcImageReader`.
     - [ ] Définir les deux opcodes de saut DOS examinés dans la définition qui possède cette reconnaissance et remplacer `0xEB` et `0xE9`.
+      - Dépendance restante : la définition propriétaire de la reconnaissance DOS est créée avec la sonde DOS commune dans le groupe ultérieur de `IbmPcImageReader`.
     - [ ] Faire résoudre les géométries IBM par `Geometries/Ibm/IbmPcGeometryCatalog` au lieu de recopier cylindres, faces, secteurs et identifiants dans le `switch`.
+      - Dépendance restante : `IbmPcGeometryCatalog` est créé dans le groupe ultérieur de `IbmPcImageReader`.
     - [ ] Conserver `DiskImageFormatIds.UcsdIbmMfm` comme repli lorsque ni le BPB FAT ni le saut DOS ne justifient une classification IBM.
   - [ ] Erreurs TeleDisk
     - [ ] Créer `Containers/TeleDisk/Td0Exceptions.cs`.
