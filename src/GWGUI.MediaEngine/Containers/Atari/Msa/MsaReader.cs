@@ -6,10 +6,20 @@ using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 
+/// <summary>Lit les conteneurs Atari ST Magic Shadow Archiver.</summary>
 public sealed class MsaReader : ISectorImageReader
 {
+    /// <summary>Indique si l'extension du chemin correspond au format MSA.</summary>
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase);
 
+    /// <summary>Lit les pistes MSA brutes ou compressées et construit leur image sectorielle Atari ST.</summary>
+    /// <param name="path">Chemin du fichier MSA.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le parcours des pistes.</param>
+    /// <returns>L'image sectorielle reconstruite.</returns>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="InvalidDataException">L'en-tête, la géométrie, une piste ou une séquence RLE est invalide.</exception>
+    /// <exception cref="OverflowException">Un calcul de taille dépasse la capacité d'un entier.</exception>
+    /// <exception cref="OperationCanceledException">L'opération est annulée.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var source = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
@@ -43,5 +53,9 @@ public sealed class MsaReader : ISectorImageReader
         return new(MsaFormat.FormatId((endCylinder + 1) * heads * sectors * (long)MsaLayout.SectorSize), MsaLayout.SectorSize, endCylinder + 1, heads, sectors, blocks);
     }
 
+    /// <summary>Lit un entier non signé 16 bits big-endian à la position demandée.</summary>
+    /// <param name="data">Données contenant l'entier.</param>
+    /// <param name="offset">Position de l'entier, en octets.</param>
+    /// <returns>La valeur convertie en entier signé positif.</returns>
     private static int ReadWord(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16BigEndian(data[offset..]);
 }

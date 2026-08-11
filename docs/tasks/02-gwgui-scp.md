@@ -1340,9 +1340,9 @@
     - [x] Créer `Containers/Atari/Msa/MsaExceptions.cs`.
     - [x] Ajouter des méthodes permettant d’injecter piste, longueur compressée, longueur attendue et position.
     - [x] Remplacer tous les textes et constructions directes d’exception du lecteur et du décompresseur MSA.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française des types `MsaReader` et `MsaRleDecoder`.
-    - [ ] Ajouter la documentation XML française des méthodes `CanRead`, `ReadAsync`, `Unpack` et `ReadWord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française des types `MsaReader` et `MsaRleDecoder`.
+    - [x] Ajouter la documentation XML française des méthodes `CanRead`, `ReadAsync`, `Unpack` et `ReadWord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
   - [ ] Tests déterministes
     - [ ] Ajouter une image MSA locale contenant une piste brute et une piste compressée avec données connues.
     - [ ] Vérifier la signature, la géométrie, la décompression RLE, l’ordre des pistes et le contenu des secteurs.

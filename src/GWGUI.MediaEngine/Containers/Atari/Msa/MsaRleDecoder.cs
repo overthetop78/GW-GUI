@@ -2,8 +2,16 @@ using System.Buffers.Binary;
 
 namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 
+/// <summary>Décompresse les pistes MSA encodées par répétitions RLE.</summary>
 internal static class MsaRleDecoder
 {
+    /// <summary>Décompresse une piste en exigeant exactement la longueur attendue.</summary>
+    /// <param name="packed">Données compressées de la piste.</param>
+    /// <param name="expected">Longueur décompressée attendue, en octets.</param>
+    /// <param name="cylinder">Cylindre utilisé dans les diagnostics.</param>
+    /// <param name="head">Face utilisée dans les diagnostics.</param>
+    /// <returns>La piste décompressée.</returns>
+    /// <exception cref="InvalidDataException">Une séquence est tronquée, dépasse la piste ou produit une longueur incorrecte.</exception>
     public static byte[] Unpack(ReadOnlySpan<byte> packed, int expected, int cylinder, int head)
     {
         var output = new byte[expected];
