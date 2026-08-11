@@ -2364,9 +2364,9 @@
       - [x] Tester un prologue de données non apparié et vérifier la structure produite.
       - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
-    - [ ] Identité Lisa FileWare
-      - [ ] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Apple Lisa FileWare GCR` par la définition centrale correspondante.
+    - [x] Identité Lisa FileWare
+      - [x] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Apple Lisa FileWare GCR` par la définition centrale correspondante.
     - [ ] Documentation
       - [ ] Traduire en français la CSDoc du type `AppleLisaFileWareGcrDecoder`.
       - [ ] Ajouter la CSDoc française aux propriétés `Id` et `DisplayName`.
