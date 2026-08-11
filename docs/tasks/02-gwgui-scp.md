@@ -1895,7 +1895,7 @@
     - [x] Vérifier que chaque décodeur enregistré expose le nom commun associé à son identifiant.
     - [x] Vérifier que chaque encodeur enregistré expose le nom commun associé à son identifiant.
     - [x] Vérifier qu'aucun identifiant enregistré ne reste sans nom affiché et qu'aucun nom n'est vide.
-- [ ] Définitions utilisées par les décodeurs et encodeurs correspondants
+- [x] Définitions utilisées par les décodeurs et encodeurs correspondants
   - [x] ISO FM
     - [x] Créer `Encoding/Definitions/IsoFmFormat.cs`.
     - [x] Sortir de `IsoFmDecoder.cs` et `IsoFmTrackEncoder.cs` les marques d’adresse et de données, les tailles de champs, les gaps, les codes de taille et les paramètres CRC.
