@@ -1,5 +1,5 @@
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -7,75 +7,103 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode les pistes utilisant le format Membrain MFM.</summary>
 public sealed class MembrainMfmDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Sector Header » utilisée par ce codec.</summary>
-    private static readonly byte[] SectorHeader = MembrainMfmFormat.SectorHeader.ToArray();
-    /// <summary>Conserve la définition « Sector Data » utilisée par ce codec.</summary>
-    private static readonly byte[] SectorData = MembrainMfmFormat.SectorData.ToArray();
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.MembrainMfm;
+    public string Id => MembrainMfmFormat.CodecId;
+
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.MembrainMfm;
+    public string DisplayName => MembrainMfmFormat.CodecDisplayName;
+
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Membrain MFM.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
-        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
-        const int headerBits = 6 * 16; const int sectorBytes = MembrainMfmFormat.SectorSize; const int dataBlockBytes = 2 + sectorBytes + MembrainMfmFormat.CrcByteCount;
-        var pairedData = new HashSet<int>();
-        for (var offset = 0; offset + SectorHeader.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
+        var structures = new List<FluxStructure>();
+        var sectors = new List<DecodedSector>();
+        var decodedBytes = new List<byte>();
+        var pairedDataOffsets = new HashSet<int>();
+        for (var offset = 0; offset + MembrainMfmFormat.HeaderPatternBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, SectorHeader)) continue;
-            var complete = offset + headerBits <= stream.Bits.Length;
-            if (complete)
+            if (!FluxBitReader.MatchBytes(stream, offset, MembrainMfmFormat.HeaderPattern)) continue;
+            var header = TryDecodeHeader(stream, offset);
+            if (header is null)
             {
-                var header = TryDecodeMfmBytes(stream, offset, 6);
-                if (header is null) continue;
-                var headerValid = header[1] == MembrainMfmFormat.HeaderAddressMark && Primitives.Crc16Calculator.Compute(header, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
-                var cylinder = (byte)(((header[2] & MembrainMfmFormat.CylinderHighMask) << MembrainMfmFormat.CylinderLowBitCount) | ((header[3] & MembrainMfmFormat.CylinderLowMask) >> MembrainMfmFormat.CylinderLowShift));
-                var head = (byte)((header[3] >> MembrainMfmFormat.HeadShift) & MembrainMfmFormat.HeadMask); var number = (byte)(header[3] & MembrainMfmFormat.SectorMask);
-                bytes.AddRange(header);
-                var dataOffset = FindMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * BitPrimitives.BitsPerByte), SectorData);
-                bool? dataValid = null; var structureEnd = offset + headerBits;
-                if (dataOffset >= 0)
-                {
-                    pairedData.Add(dataOffset);
-                    var dataEnd = dataOffset + dataBlockBytes * 16;
-                    if (dataEnd <= stream.Bits.Length)
-                    {
-                        var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
-                        if (data is null) continue;
-                        dataValid = data[1] is >= MembrainMfmFormat.DataAddressMark and <= MembrainMfmFormat.LastDataAddressMark && Primitives.Crc16Calculator.Compute(data, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
-                        bytes.AddRange(data.Skip(2).Take(sectorBytes)); structureEnd = dataEnd;
-                        structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Membrain", FluxStructureKind.FormatData, cylinder, head, number, MembrainMfmFormat.SectorSize, null, "data block")}, {FluxStructureDescriptions.Integrity("CRC", dataValid)}"));
-                    }
-                    else structures.Add(new(FluxStructureKind.FormatData, dataOffset, SectorData.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("Membrain", FluxStructureKind.FormatData, null, "CRC unavailable")));
-                }
-                bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-                sectors.Add(new(cylinder, head, number, 2, sectorBytes, integrity, offset));
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("Membrain", FluxStructureKind.FormatHeader, cylinder, head, number, MembrainMfmFormat.SectorSize, null, null, headerValid, dataValid)));
-                offset = Math.Max(offset + SectorHeader.Length * BitPrimitives.BitsPerByte - 1, structureEnd - 1);
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, MembrainMfmFormat.HeaderPatternBitCount, FluxStructureDescriptions.Truncated(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "sector header")));
+                offset += MembrainMfmFormat.HeaderPatternBitCount - 1;
+                continue;
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("Membrain", FluxStructureKind.FormatHeader, null, "sector header")));
-            if (!complete) offset += SectorHeader.Length * BitPrimitives.BitsPerByte - 1;
+            decodedBytes.AddRange(header.Bytes);
+            var dataOffset = FindDataMark(stream, offset + MembrainMfmFormat.DataSearchInitialBitOffset, Math.Min(stream.Bits.Length, offset + MembrainMfmFormat.DataSearchBitCount));
+            var data = dataOffset < 0 ? null : TryDecodeData(stream, dataOffset);
+            if (dataOffset >= 0)
+            {
+                pairedDataOffsets.Add(dataOffset);
+                if (data is null) structures.Add(new(FluxStructureKind.FormatData, dataOffset, MembrainMfmFormat.DataPatternBitCount, FluxStructureDescriptions.Truncated(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, null, "CRC unavailable")));
+                else
+                {
+                    decodedBytes.AddRange(data.Payload);
+                    structures.Add(new(FluxStructureKind.FormatData, data.Offset, MembrainMfmFormat.DataBlockByteCount * MembrainMfmFormat.EncodedByteBitCount, $"{FluxStructureDescriptions.Identity(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSize, data.Mark, "data block")}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"));
+                }
+            }
+            bool? integrity = !header.CrcValid || data?.CrcValid == false ? false : data is null ? null : true;
+            sectors.Add(new(header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSizeCode, MembrainMfmFormat.SectorSize, integrity, offset, Data: data?.Payload));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, MembrainMfmFormat.HeaderBitCount, FluxStructureDescriptions.Complete(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSize, MembrainMfmFormat.HeaderAddressMark, null, header.CrcValid, data?.CrcValid)));
+            var structureEnd = data is null ? offset + MembrainMfmFormat.HeaderBitCount : data.Offset + MembrainMfmFormat.DataBlockByteCount * MembrainMfmFormat.EncodedByteBitCount;
+            offset = Math.Max(offset + MembrainMfmFormat.HeaderPatternBitCount - 1, structureEnd - 1);
         }
-        for (var offset = 0; offset + SectorData.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorData) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, SectorData.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.UnpairedData("Membrain", null, "data block"))); offset += SectorData.Length * BitPrimitives.BitsPerByte - 1; }
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
+        CollectUnpairedDataMarks(stream, pairedDataOffsets, structures);
+        var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, MembrainMfmFormat.ConfidenceSectorWeight, MembrainMfmFormat.ConfidenceDivisor);
+        return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);
     }
 
-    /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
-    /// <param name="stream">Flux source.</param><param name="start">Début inclus en bits.</param><param name="end">Fin exclue en bits.</param><param name="mark">Marque recherchée.</param><returns>Offset trouvé, ou <c>-1</c>.</returns>
-    private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
+    /// <summary>Lit et valide les six octets d'un en-tête Membrain.</summary>
+    internal static MembrainMfmHeader? TryDecodeHeader(FluxBitstream stream, int offset)
     {
-        for (var offset = Math.Max(0, start); offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
+        var bytes = TryDecodeMfmBytes(stream, offset, MembrainMfmFormat.HeaderByteCount);
+        if (bytes is null || bytes[MembrainMfmFormat.HeaderMarkOffset] != MembrainMfmFormat.HeaderAddressMark) return null;
+        var address = MembrainMfmAddress.Unpack(bytes[MembrainMfmFormat.HeaderCylinderHighOffset], bytes[MembrainMfmFormat.HeaderPackedAddressOffset]);
+        var valid = Crc16Calculator.Compute(bytes, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
+        return new(offset, address.Cylinder, address.Head, address.Sector, valid, bytes);
+    }
+
+    /// <summary>Recherche une marque de données Membrain dans la plage indiquée.</summary>
+    internal static int FindDataMark(FluxBitstream stream, int start, int end)
+    {
+        for (var offset = Math.Max(0, start); offset + MembrainMfmFormat.DataPatternBitCount <= end; offset++)
+        {
+            if (!FluxBitReader.Match(stream, offset, MembrainMfmFormat.EncodedSyncByte)) continue;
+            if (FluxBitReader.TryDecodeMfmByte(stream, offset + MembrainMfmFormat.EncodedByteBitCount, out var mark) && MembrainMfmFormat.IsDataAddressMark(mark)) return offset;
+        }
         return -1;
+    }
+
+    /// <summary>Lit la charge utile et valide le CRC d'un bloc de données Membrain.</summary>
+    internal static MembrainMfmData? TryDecodeData(FluxBitstream stream, int offset)
+    {
+        var bytes = TryDecodeMfmBytes(stream, offset, MembrainMfmFormat.DataBlockByteCount);
+        if (bytes is null || !MembrainMfmFormat.IsDataAddressMark(bytes[1])) return null;
+        var payload = bytes.Skip(MembrainMfmFormat.DataPrefixByteCount).Take(MembrainMfmFormat.SectorSize).ToArray();
+        var valid = Crc16Calculator.Compute(bytes, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue) == 0;
+        return new(offset, bytes[1], payload, bytes, valid);
+    }
+
+    /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
+    internal static void CollectUnpairedDataMarks(FluxBitstream stream, IReadOnlySet<int> pairedOffsets, ICollection<FluxStructure> structures)
+    {
+        for (var offset = 0; offset + MembrainMfmFormat.DataPatternBitCount <= stream.Bits.Length; offset++)
+        {
+            var found = FindDataMark(stream, offset, stream.Bits.Length);
+            if (found < 0) return;
+            if (!pairedOffsets.Contains(found)) structures.Add(new(FluxStructureKind.FormatData, found, MembrainMfmFormat.DataPatternBitCount, FluxStructureDescriptions.UnpairedData(MembrainMfmFormat.StructureDescriptionName, null, "data block")));
+            offset = found + MembrainMfmFormat.DataPatternBitCount - 1;
+        }
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
+        if (offset + count * MembrainMfmFormat.EncodedByteBitCount > stream.Bits.Length) return null;
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * MembrainMfmFormat.EncodedByteBitCount, out result[index])) return null;
         return result;
     }
 }

@@ -2810,42 +2810,42 @@
       - [x] Tester un secteur franchissant la fin circulaire de la piste.
       - [x] Tester une première tentative sans secteur, une tentative entièrement valide et le choix du meilleur score entre plusieurs facteurs PLL.
       - [x] Vérifier la charge utile, la séquence d'octets, l'intégrité, les structures, le bit-cell retenu et la confiance produite.
-  - [ ] `Decoding/Decoders/MembrainMfmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer la propriété `Signatures` devenue inutile.
-    - [ ] Définitions Membrain MFM
-      - [ ] Créer `Decoding/Definitions/MembrainMfmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom, les motifs d'en-tête `44 89 55 54` et de données `44 89 55 4A` et leurs longueurs.
-      - [ ] Y définir les octets décodés `0xa1` et `0xfe`, les six octets d'en-tête avec CRC et les positions de leurs champs.
-      - [ ] Y définir les masques `0x1f`, `0xe0`, `0x0f`, le bit de face et les décalages utilisés pour cylindre, face et secteur.
-      - [ ] Y définir les marques de données acceptées de `0xf8` à `0xfb`, la taille sectorielle de 512 octets, les deux octets de préfixe, les deux octets de CRC et le code de taille.
-      - [ ] Y définir la borne de recherche `104 * 8`, le décalage initial `1`, les gaps d'encodage `64` et `128`, le polynôme `0x8005` et sa valeur initiale.
-      - [ ] Remplacer toutes les marques, tailles, positions, masques, gaps, paramètres CRC, identifiants, noms et descriptions bruts dans le décodeur et `MembrainMfmTrackEncoder.cs`.
-    - [ ] Adresse et CRC communs
-      - [ ] Créer des opérations Membrain communes pour empaqueter et dépaqueter cylindre, face et secteur.
-      - [ ] Raccorder le décodeur et l'encodeur à ces opérations afin qu'ils utilisent les mêmes masques et décalages.
-      - [ ] Appeler directement le calculateur CRC commun avec les paramètres Membrain puis supprimer la délégation locale `Crc16`.
-    - [ ] Décodage et résultat
-      - [ ] Extraire la lecture et la validation des six octets d'en-tête dans un modèle nommé.
-      - [ ] Extraire la recherche bornée de la marque de données en conservant le décalage initial actuel.
-      - [ ] Extraire la lecture des 512 octets, de la marque et des deux octets de CRC dans une méthode nommée.
-      - [ ] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
-      - [ ] Extraire la collecte des marques de données non appariées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur, marque et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Membrain actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et opérations Membrain communes.
-    - [ ] Vérification du groupe Membrain
-      - [ ] Tester le décodage et le réencodage des limites de cylindre, de la face et du numéro de secteur sur quatre bits.
-      - [ ] Tester un en-tête complet avec CRC valide puis invalide.
-      - [ ] Tester chacune des marques de données acceptées de `0xf8` à `0xfb`.
-      - [ ] Tester un secteur de 512 octets, un bloc tronqué et un CRC de données valide puis invalide.
-      - [ ] Tester une marque absente et une marque non appariée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/MembrainMfmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer la propriété `Signatures` devenue inutile.
+    - [x] Définitions Membrain MFM
+      - [x] Créer `Decoding/Definitions/MembrainMfmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom, les motifs d'en-tête `44 89 55 54` et de données `44 89 55 4A` et leurs longueurs.
+      - [x] Y définir les octets décodés `0xa1` et `0xfe`, les six octets d'en-tête avec CRC et les positions de leurs champs.
+      - [x] Y définir les masques `0x1f`, `0xe0`, `0x0f`, le bit de face et les décalages utilisés pour cylindre, face et secteur.
+      - [x] Y définir les marques de données acceptées de `0xf8` à `0xfb`, la taille sectorielle de 512 octets, les deux octets de préfixe, les deux octets de CRC et le code de taille.
+      - [x] Y définir la borne de recherche `104 * 8`, le décalage initial `1`, les gaps d'encodage `64` et `128`, le polynôme `0x8005` et sa valeur initiale.
+      - [x] Remplacer toutes les marques, tailles, positions, masques, gaps, paramètres CRC, identifiants, noms et descriptions bruts dans le décodeur et `MembrainMfmTrackEncoder.cs`.
+    - [x] Adresse et CRC communs
+      - [x] Créer des opérations Membrain communes pour empaqueter et dépaqueter cylindre, face et secteur.
+      - [x] Raccorder le décodeur et l'encodeur à ces opérations afin qu'ils utilisent les mêmes masques et décalages.
+      - [x] Appeler directement le calculateur CRC commun avec les paramètres Membrain puis supprimer la délégation locale `Crc16`.
+    - [x] Décodage et résultat
+      - [x] Extraire la lecture et la validation des six octets d'en-tête dans un modèle nommé.
+      - [x] Extraire la recherche bornée de la marque de données en conservant le décalage initial actuel.
+      - [x] Extraire la lecture des 512 octets, de la marque et des deux octets de CRC dans une méthode nommée.
+      - [x] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
+      - [x] Extraire la collecte des marques de données non appariées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, face, secteur, marque et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Membrain actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et opérations Membrain communes.
+    - [x] Vérification du groupe Membrain
+      - [x] Tester le décodage et le réencodage des limites de cylindre, de la face et du numéro de secteur sur quatre bits.
+      - [x] Tester un en-tête complet avec CRC valide puis invalide.
+      - [x] Tester chacune des marques de données acceptées de `0xf8` à `0xfb`.
+      - [x] Tester un secteur de 512 octets, un bloc tronqué et un CRC de données valide puis invalide.
+      - [x] Tester une marque absente et une marque non appariée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/MicralNFmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
