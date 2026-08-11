@@ -8,6 +8,8 @@ public static class DiskCopyFormat
 
     /// <summary>Valeur indiquant qu’aucun checksum exploitable n’est stocké dans l’en-tête.</summary>
     public const uint MissingChecksum = 0;
+    /// <summary>Valeur initiale du registre de checksum avant le premier mot.</summary>
+    public const uint InitialChecksum = 0;
     /// <summary>Taille d'un mot traité par le checksum DiskCopy, en octets.</summary>
     public const int ChecksumWordSize = sizeof(ushort);
     /// <summary>Nombre de bits de la rotation appliquée après chaque addition.</summary>

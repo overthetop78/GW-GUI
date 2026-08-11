@@ -21,6 +21,8 @@ internal static class AppleDiskGeometry
     public const int MacintoshDoubleSidedHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
     public const int MacintoshMaximumSectorsPerTrack = 12;
     public const int GenericTaggedImageHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
+    /// <summary>Index de l'unique face d'une image taguée générique.</summary>
+    public const int GenericTaggedImageFirstHead = 0;
     public const int GenericTaggedImageSectorsPerTrack = 10;
     public const int MinimumCylinderCount = 1;
 

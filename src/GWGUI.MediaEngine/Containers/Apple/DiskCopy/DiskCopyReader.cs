@@ -31,29 +31,20 @@ internal static class DiskCopyReader
             throw DiskCopyExceptions.InvalidPrivateWord(privateWord, DiskCopyFormat.PrivateWord);
         var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(container.AsSpan(DiskCopyLayout.DataLengthOffset)));
         var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(container.AsSpan(DiskCopyLayout.TagLengthOffset)));
-        if (dataLength <= 0 || DiskCopyLayout.HeaderSize + (long)dataLength + tagLength > container.Length)
+        if (dataLength < DiskCopyLayout.MinimumDataLength || DiskCopyLayout.HeaderSize + (long)dataLength + tagLength > container.Length)
             throw DiskCopyExceptions.InvalidPayload();
 
         var payload = container.AsSpan(DiskCopyLayout.HeaderSize, dataLength).ToArray();
         var tags = container.AsSpan(DiskCopyLayout.HeaderSize + dataLength, tagLength);
         ValidateChecksums(container, payload, tags);
 
-        if (AppleDiskImageSignatures.LooksLikeMac(payload) ||
-            AppleDiskImageSignatures.LooksLikeProDos(payload))
-            return AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image);
-
-        if (tagLength != dataLength / DiskCopyLayout.DataBlockSize * DiskCopyLayout.TagSizePerBlock)
-            throw DiskCopyExceptions.UnrecognizedDataAndTags();
+        if (TryReadUntaggedImage(payload, out var untaggedImage)) return untaggedImage;
+        ValidateTags(dataLength, tagLength);
 
         var blockCount = dataLength / DiskCopyLayout.DataBlockSize;
         var geometryKind = DetermineTaggedGeometry(blockCount);
         var blocks = CreateTaggedBlocks(payload, tags, geometryKind);
-        var prebootSearchOffset = DiskCopyLayout.PrebootSearchBlockIndex * DiskCopyLayout.DataBlockSize;
-        var formatId = payload.Length >= prebootSearchOffset + DiskCopyLayout.PrebootSearchLength &&
-                       payload.AsSpan(prebootSearchOffset, DiskCopyLayout.PrebootSearchLength)
-                           .IndexOf(DiskCopyFormat.PrebootMarker) >= 0
-            ? DiskImageFormatIds.AppleLisaMacWorks
-            : DiskImageFormatIds.AppleLisaOffice;
+        var formatId = SelectTaggedFormat(payload);
         var geometry = CreateTaggedGeometry(geometryKind, blocks.Length);
         return new(formatId, DiskCopyLayout.DataBlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, capacity: dataLength, logicalBlockCount: blocks.Length);
     }
@@ -68,12 +59,7 @@ internal static class DiskCopyReader
         var blocks = new SectorBlock[payload.Length / DiskCopyLayout.DataBlockSize];
         for (var logical = 0; logical < blocks.Length; logical++)
         {
-            var address = geometryKind switch
-            {
-                TaggedGeometryKind.LisaFileWare => AppleDiskGeometry.LisaFileWareAddress(logical),
-                TaggedGeometryKind.Macintosh400K => AppleDiskGeometry.AppleMacZonedAddress(logical, AppleDiskGeometry.Macintosh400KHeadCount),
-                _ => new SectorAddress(logical / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack, 0, logical % AppleDiskGeometry.GenericTaggedImageSectorsPerTrack)
-            };
+            var address = SelectTaggedAddress(geometryKind, logical);
             blocks[logical] = new(logical, address, payload.Slice(logical * DiskCopyLayout.DataBlockSize, DiskCopyLayout.DataBlockSize).ToArray(), Tag: tags.Slice(logical * DiskCopyLayout.TagSizePerBlock, DiskCopyLayout.TagSizePerBlock).ToArray());
         }
         return blocks;
@@ -91,7 +77,53 @@ internal static class DiskCopyReader
     };
 
     /// <summary>Classe le nombre de blocs dans l'une des trois géométries taguées prises en charge.</summary>
+    /// <param name="blockCount">Nombre de blocs sectoriels de la charge utile.</param>
+    /// <returns>Type de géométrie taguée correspondant au nombre de blocs.</returns>
     private static TaggedGeometryKind DetermineTaggedGeometry(int blockCount) => blockCount switch { AppleDiskGeometry.LisaFileWareBlockCount => TaggedGeometryKind.LisaFileWare, AppleDiskGeometry.Macintosh400KBlockCount => TaggedGeometryKind.Macintosh400K, _ => TaggedGeometryKind.Generic };
+
+    /// <summary>Tente de lire une charge utile dépourvue de tags comme une image Apple brute reconnue.</summary>
+    /// <param name="payload">Données sectorielles extraites du conteneur.</param>
+    /// <param name="image">Image reconstruite lorsque la signature interne est reconnue.</param>
+    /// <returns><see langword="true"/> lorsque la charge utile a été lue sans ses tags ; sinon <see langword="false"/>.</returns>
+    private static bool TryReadUntaggedImage(byte[] payload, out SectorImage image)
+    {
+        if (AppleDiskImageSignatures.LooksLikeMac(payload) || AppleDiskImageSignatures.LooksLikeProDos(payload))
+        {
+            image = AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image);
+            return true;
+        }
+        image = null!;
+        return false;
+    }
+
+    /// <summary>Vérifie que la longueur des tags correspond exactement au nombre de blocs de données.</summary>
+    /// <param name="dataLength">Longueur des données sectorielles.</param>
+    /// <param name="tagLength">Longueur des tags déclarés.</param>
+    private static void ValidateTags(int dataLength, int tagLength)
+    {
+        if (tagLength != dataLength / DiskCopyLayout.DataBlockSize * DiskCopyLayout.TagSizePerBlock) throw DiskCopyExceptions.UnrecognizedDataAndTags();
+    }
+
+    /// <summary>Sélectionne l'adresse physique d'un bloc selon la géométrie taguée reconnue.</summary>
+    /// <param name="geometryKind">Type de géométrie taguée.</param>
+    /// <param name="logicalBlock">Index logique du bloc.</param>
+    /// <returns>Adresse physique du bloc.</returns>
+    private static SectorAddress SelectTaggedAddress(TaggedGeometryKind geometryKind, int logicalBlock) => geometryKind switch
+    {
+        TaggedGeometryKind.LisaFileWare => AppleDiskGeometry.LisaFileWareAddress(logicalBlock),
+        TaggedGeometryKind.Macintosh400K => AppleDiskGeometry.AppleMacZonedAddress(logicalBlock, AppleDiskGeometry.Macintosh400KHeadCount),
+        _ => new SectorAddress(logicalBlock / AppleDiskGeometry.GenericTaggedImageSectorsPerTrack, AppleDiskGeometry.GenericTaggedImageFirstHead, logicalBlock % AppleDiskGeometry.GenericTaggedImageSectorsPerTrack)
+    };
+
+    /// <summary>Sélectionne l'identifiant Lisa Office ou MacWorks d'après le marqueur PREBOOT.</summary>
+    /// <param name="payload">Données sectorielles de l'image Lisa.</param>
+    /// <returns>Identifiant du format Lisa reconnu.</returns>
+    private static string SelectTaggedFormat(byte[] payload)
+    {
+        var prebootSearchOffset = DiskCopyLayout.PrebootSearchBlockIndex * DiskCopyLayout.DataBlockSize;
+        if (payload.Length >= prebootSearchOffset + DiskCopyLayout.PrebootSearchLength && payload.AsSpan(prebootSearchOffset, DiskCopyLayout.PrebootSearchLength).IndexOf(DiskCopyFormat.PrebootMarker) >= 0) return DiskImageFormatIds.AppleLisaMacWorks;
+        return DiskImageFormatIds.AppleLisaOffice;
+    }
 
     /// <summary>Indique si un contenu possède l'en-tête minimal et le mot magique DiskCopy 4.2.</summary>
     /// <param name="container">Contenu complet ou partiel à examiner.</param>
@@ -140,7 +172,7 @@ internal static class DiskCopyReader
     {
         if (data.Length % DiskCopyFormat.ChecksumWordSize != 0) throw DiskCopyExceptions.InvalidChecksumByteCount(data.Length, nameof(data));
 
-        uint checksum = 0;
+        var checksum = DiskCopyFormat.InitialChecksum;
         for (var offset = 0; offset < data.Length; offset += DiskCopyFormat.ChecksumWordSize)
         {
             var word = BinaryPrimitives.ReadUInt16BigEndian(data[offset..]);

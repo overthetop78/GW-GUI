@@ -5,6 +5,8 @@ namespace GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 /// </summary>
 public static class DiskCopyLayout
 {
+    /// <summary>Longueur minimale, en octets, des données sectorielles déclarées.</summary>
+    public const int MinimumDataLength = 1;
     /// <summary>Taille, en octets, de l’en-tête DiskCopy 4.2.</summary>
     public const int HeaderSize = 84;
 

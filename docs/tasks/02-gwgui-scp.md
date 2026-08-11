@@ -1551,12 +1551,12 @@
     - [x] Ajouter les constantes du mot de checksum, de sa rotation et du nombre de bits utilisés par l'algorithme DiskCopy.
     - [x] Documenter en français chaque définition ajoutée.
     - [x] Tester les valeurs binaires de chaque définition ajoutée.
-  - [ ] `Containers/Apple/DiskCopy/DiskCopyReader.cs`
-    - [ ] Extraire la détection d'une image sans tags, la validation des tags, la sélection d'adresses, la sélection de format et la géométrie dans des méthodes distinctes.
-    - [ ] Remplacer les ternaires imbriqués par des sélections nommées testables.
-    - [ ] Remplacer chaque valeur encore brute par `DiskCopyFormat`, `DiskCopyLayout` ou `AppleDiskGeometry`.
-    - [ ] Documenter en français chaque méthode privée extraite.
-    - [ ] Tester données seules, données et tags, checksums, PREBOOT, Lisa, Macintosh et combinaison inconnue.
+  - [x] `Containers/Apple/DiskCopy/DiskCopyReader.cs`
+    - [x] Extraire la détection d'une image sans tags, la validation des tags, la sélection d'adresses, la sélection de format et la géométrie dans des méthodes distinctes.
+    - [x] Remplacer les ternaires imbriqués par des sélections nommées testables.
+    - [x] Remplacer chaque valeur encore brute par `DiskCopyFormat`, `DiskCopyLayout` ou `AppleDiskGeometry`.
+    - [x] Documenter en français chaque méthode privée extraite.
+    - [x] Tester données seules, données et tags, checksums, PREBOOT, Lisa, Macintosh et combinaison inconnue.
   - [ ] `Containers/Apple/Woz/WozFormat.cs` et `WozLayout.cs`
     - [ ] Ajouter des constantes nommées pour WOZ1, WOZ2, les 40 cylindres, les limites de pistes et les marqueurs communs.
     - [ ] Ajouter un propriétaire commun pour la conversion octets/bits utilisée par le Reader et le Writer.

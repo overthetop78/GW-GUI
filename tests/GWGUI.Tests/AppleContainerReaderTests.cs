@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -97,9 +98,42 @@ public sealed class AppleContainerReaderTests
         Assert.Equal(storedDataChecksum, CalculateDiskCopyChecksum(data));
         Assert.Equal(storedTagChecksum,
             CalculateDiskCopyChecksum(tags.AsSpan(DiskCopyLayout.TagChecksumExcludedPrefixSize)));
+        Assert.Equal(DiskImageFormatIds.AppleLisaOffice, image.FormatId);
+    }
+
+    /// <summary>Vérifie qu'un conteneur DiskCopy sans tags délègue sa charge utile Macintosh au lecteur brut.</summary>
+    [Fact]
+    public async Task ReadsUntaggedMacintoshDiskCopyPayload()
+    {
+        var source = Path.Combine(FindImageTestRoot(), "validated_images", "Apple", "Macintosh", "3.5 pouces - HFS - 1.44 Mio", "System_6.0.6_System_Startup.dsk");
+        var output = Path.Combine(FindImageTestRoot(), "_generated", "apple-containers");
+        Directory.CreateDirectory(output);
+        var path = Write(output, "untagged-macintosh.image", BuildUntaggedDiskCopy(File.ReadAllBytes(source)));
+
+        var image = await new AppleDiskImageReader().ReadAsync(path);
+
+        Assert.Equal(DiskImageFormatIds.Mac1440, image.FormatId);
+        Assert.All(image.AvailableBlocks, block => Assert.Null(block.Tag));
+    }
+
+    /// <summary>Vérifie que le marqueur PREBOOT sélectionne l'interprétation Lisa MacWorks.</summary>
+    [Fact]
+    public async Task RecognizesPrebootAsLisaMacWorks()
+    {
+        var bytes = BuildTaggedDiskCopy(AppleDiskGeometry.LisaFileWareBlockCount);
+        var markerOffset = DiskCopyLayout.HeaderSize + DiskCopyLayout.PrebootSearchBlockIndex * DiskCopyLayout.DataBlockSize;
+        DiskCopyFormat.PrebootMarker.CopyTo(bytes.AsSpan(markerOffset));
+        var output = Path.Combine(FindImageTestRoot(), "_generated", "apple-containers");
+        Directory.CreateDirectory(output);
+        var path = Write(output, "lisa-macworks.image", bytes);
+
+        var image = await new AppleDiskImageReader().ReadAsync(path);
+
+        Assert.Equal(DiskImageFormatIds.AppleLisaMacWorks, image.FormatId);
     }
 
     [Theory]
+    [InlineData(1702, 46, 2, 22)]
     [InlineData(800, 80, 1, 12)]
     [InlineData(20, 2, 1, 10)]
     public async Task PreservesMacintoshAndGenericTaggedDiskCopyGeometries(int blockCount, int cylinders, int heads, int sectorsPerTrack)
@@ -115,6 +149,7 @@ public sealed class AppleContainerReaderTests
         Assert.Equal(cylinders, image.Cylinders);
         Assert.Equal(heads, image.Heads);
         Assert.Equal(sectorsPerTrack, image.SectorsPerTrack);
+        Assert.Equal(DiskImageFormatIds.AppleLisaOffice, image.FormatId);
         Assert.All(image.AvailableBlocks, block => Assert.Equal(DiskCopyLayout.TagSizePerBlock, block.Tag?.Count));
     }
 
@@ -144,6 +179,7 @@ public sealed class AppleContainerReaderTests
     [InlineData("invalid-data-checksum")]
     [InlineData("invalid-tag-checksum")]
     [InlineData("invalid-private-word")]
+    [InlineData("unrecognized-tags")]
     [InlineData("truncated-header")]
     public async Task RejectsInvalidDiskCopyStructures(string variant)
     {
@@ -212,6 +248,11 @@ public sealed class AppleContainerReaderTests
             ["invalid-private-word"] = WriteVariant(output, "invalid-private-word.image", validDiskCopy,
                 bytes => BinaryPrimitives.WriteUInt16BigEndian(
                     bytes.AsSpan(DiskCopyLayout.PrivateWordOffset), ushort.MaxValue)),
+            ["unrecognized-tags"] = WriteVariant(output, "unrecognized-tags.image", validDiskCopy, bytes =>
+            {
+                BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.TagLengthOffset), checked((uint)(diskCopyDataLength / DiskCopyLayout.DataBlockSize * DiskCopyLayout.TagSizePerBlock - 1)));
+                BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.TagChecksumOffset), DiskCopyFormat.MissingChecksum);
+            }),
             ["truncated-header"] = Write(output, "truncated-header.image",
                 validDiskCopy[..(DiskCopyLayout.HeaderSize - 1)])
         };
@@ -246,6 +287,15 @@ public sealed class AppleContainerReaderTests
         BinaryPrimitives.WriteUInt32BigEndian(container.AsSpan(DiskCopyLayout.DataLengthOffset), checked((uint)dataLength));
         BinaryPrimitives.WriteUInt32BigEndian(container.AsSpan(DiskCopyLayout.TagLengthOffset), checked((uint)tagLength));
         BinaryPrimitives.WriteUInt16BigEndian(container.AsSpan(DiskCopyLayout.PrivateWordOffset), DiskCopyFormat.PrivateWord);
+        return container;
+    }
+
+    private static byte[] BuildUntaggedDiskCopy(byte[] payload)
+    {
+        var container = new byte[DiskCopyLayout.HeaderSize + payload.Length];
+        BinaryPrimitives.WriteUInt32BigEndian(container.AsSpan(DiskCopyLayout.DataLengthOffset), checked((uint)payload.Length));
+        BinaryPrimitives.WriteUInt16BigEndian(container.AsSpan(DiskCopyLayout.PrivateWordOffset), DiskCopyFormat.PrivateWord);
+        payload.CopyTo(container, DiskCopyLayout.HeaderSize);
         return container;
     }
 
