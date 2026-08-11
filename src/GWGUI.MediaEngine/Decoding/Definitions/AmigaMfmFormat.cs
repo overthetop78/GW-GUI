@@ -30,7 +30,8 @@ internal static class AmigaMfmFormat
     public const int EncodedDataByteCount = 512;
     public const int EncodedSectorByteCount = EncodedHeaderByteCount + EncodedDataByteCount;
     public const int SectorByteCount = 512;
-    public const byte SectorSizeCode = 2;
+    public const int ConfidenceSectorWeight = 3;
+    public const double ConfidenceDivisor = 44;
     public const int NibbleBitCount = 4;
     public const int LeadingGapBitCount = 100;
     public const int TrailingGapBitCount = 128;

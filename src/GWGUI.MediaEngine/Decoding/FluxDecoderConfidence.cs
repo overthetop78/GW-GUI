@@ -8,5 +8,8 @@ internal static class FluxDecoderConfidence
     private const double MaximumConfidence = 1;
 
     /// <summary>Calcule la confiance standard à partir des nombres de secteurs et de structures reconnus.</summary>
-    public static double CalculateStandard(int sectorCount, int structureCount) => Math.Min(MaximumConfidence, (sectorCount * SectorWeight + structureCount) / StandardDivisor);
+    public static double CalculateStandard(int sectorCount, int structureCount) => Calculate(sectorCount, structureCount, SectorWeight, StandardDivisor);
+
+    /// <summary>Calcule la confiance à partir des nombres de secteurs et de structures reconnus et des pondérations du décodeur.</summary>
+    public static double Calculate(int sectorCount, int structureCount, int sectorWeight, double divisor) => Math.Min(MaximumConfidence, (sectorCount * sectorWeight + structureCount) / divisor);
 }

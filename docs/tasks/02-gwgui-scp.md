@@ -2305,12 +2305,12 @@
       - [x] Déplacer dans ce composant `DecodeOddEven`, `Interleave`, `EncodeOddEven`, `Nibble` et les calculs de parité actuellement répartis entre le décodeur et l'encodeur.
       - [x] Raccorder `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs` au composant commun puis supprimer leurs copies locales.
       - [x] Remplacer `TryDecodeMfmBytes` par la primitive commune de décodage des octets MFM et supprimer la méthode locale.
-    - [ ] Décodage et résultat
-      - [ ] Remplacer le code de taille sectorielle brut `2` par la définition commune calculée pour un secteur de 512 octets.
-      - [ ] Remplacer la taille sectorielle brute `512` par la définition commune du secteur Amiga.
-      - [ ] Remplacer les textes bruts décrivant la validité des checksums d'en-tête et de données par le constructeur commun de descriptions recevant le cylindre, la face, le secteur et les deux états de validation.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations propres au décodeur Amiga au lieu de conserver la formule brute dans `Decode`.
-      - [ ] Extraire de `Decode` des méthodes nommées pour rechercher la synchronisation, décoder et valider l'en-tête, décoder et valider les données puis construire le secteur et sa structure.
+    - [x] Décodage et résultat
+      - [x] Remplacer le code de taille sectorielle brut `2` par la définition commune calculée pour un secteur de 512 octets.
+      - [x] Remplacer la taille sectorielle brute `512` par la définition commune du secteur Amiga.
+      - [x] Remplacer les textes bruts décrivant la validité des checksums d'en-tête et de données par le constructeur commun de descriptions recevant le cylindre, la face, le secteur et les deux états de validation.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations propres au décodeur Amiga au lieu de conserver la formule brute dans `Decode`.
+      - [x] Extraire de `Decode` des méthodes nommées pour rechercher la synchronisation, décoder et valider l'en-tête, décoder et valider les données puis construire le secteur et sa structure.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
