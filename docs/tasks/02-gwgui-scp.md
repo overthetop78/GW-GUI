@@ -1483,10 +1483,10 @@
       - [x] Faire utiliser les représentations binaires immuables Standard et Extended de `CpcDskFormat` directement sur la mémoire en lecture seule du contexte.
       - [x] Supprimer la conversion ASCII effectuée à chaque appel et la méthode privée `StartsWith` devenue inutile.
       - [x] Conserver la reconnaissance indépendante de l’extension du fichier.
-    - [ ] Lecture sans réouverture du fichier
-      - [ ] Ajouter au `CpcDskReader` le point d’entrée en mémoire prévu dans son groupe et lui transmettre les octets déjà chargés par le contexte.
-      - [ ] Supprimer l’appel à `reader.ReadAsync(context.Path, ...)` qui rouvre actuellement le même fichier après sa présélection.
-      - [ ] Utiliser la méthode de retagging immuable de `SectorImage` prévue par son groupe au lieu de `SectorImageInterpretation.Retag`.
+    - [x] Lecture sans réouverture du fichier
+      - [x] Ajouter au `CpcDskReader` le point d’entrée en mémoire prévu dans son groupe et lui transmettre les octets déjà chargés par le contexte.
+      - [x] Supprimer l’appel à `reader.ReadAsync(context.Path, ...)` qui rouvre actuellement le même fichier après sa présélection.
+      - [x] Utiliser la méthode de retagging immuable de `SectorImage` prévue par son groupe au lieu de `SectorImageInterpretation.Retag`.
     - [ ] Classification CPC ou PCW
       - [ ] Conserver la règle actuelle : au moins 80 cylindres et exactement deux têtes produisent `AmstradPcw`, les autres géométries CPCEMU valides produisent `AmstradCpc`.
       - [ ] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
