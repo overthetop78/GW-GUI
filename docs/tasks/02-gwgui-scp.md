@@ -1889,8 +1889,8 @@
     - [x] Remplacer les noms affichés bruts dans chaque encodeur possédant le même identifiant qu'un décodeur par la même constante de `FluxCodecDisplayNames`.
     - [x] Remplacer les noms affichés propres aux encodeurs sans décodeur correspondant par une constante associée à leur identifiant de codec.
     - [x] Supprimer les copies de noms actuellement identiques entre décodeur et encodeur Apple II, Lisa, Macintosh, RWTS18, Arburg, Commodore, HP, Membrain, Micropolis et QD MO5.
-  - [ ] Documentation XML française
-    - [ ] Documenter en français `FluxCodecDisplayNames` et chaque constante avec l'identifiant de codec correspondant.
+  - [x] Documentation XML française
+    - [x] Documenter en français `FluxCodecDisplayNames` et chaque constante avec l'identifiant de codec correspondant.
   - [ ] Tests ciblés
     - [ ] Vérifier que chaque décodeur enregistré expose le nom commun associé à son identifiant.
     - [ ] Vérifier que chaque encodeur enregistré expose le nom commun associé à son identifiant.
