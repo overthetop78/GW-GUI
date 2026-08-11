@@ -2734,40 +2734,40 @@
       - [x] Tester un secteur de 256 octets, l'inversion des bits, l'échange par paires et un CRC valide puis invalide.
       - [x] Tester une synchronisation absente, un bloc tronqué et une synchronisation de données déjà utilisée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/IsoFmDecoder.cs`
-    - [ ] Définitions ISO FM
-      - [ ] Créer `Decoding/Definitions/IsoFmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom correctement encodé et les trois motifs binaires `0xf57e`, `0xf56f` et `0xf56a`.
-      - [ ] Créer une définition fermée associant chaque motif à sa marque décodée `0xfe`, `0xfb` ou `0xf8`, son type de structure et son état normal ou supprimé.
-      - [ ] Y définir les quatre octets CHRN, les deux octets de CRC, les positions de chaque champ et la longueur totale de 112 bits de l'en-tête.
-      - [ ] Y définir la longueur de marque de 16 bits, la limite de code de taille `7`, la taille de base `128`, les deux octets de CRC et les valeurs d'avancement `15` et `111`.
-      - [ ] Y définir les gaps d'encodage `160` et `256` utilisés par `IsoFmTrackEncoder.cs`.
-      - [ ] Remplacer toutes les marques, tailles, positions, gaps, identifiants, noms et descriptions bruts dans le décodeur et l'encodeur.
-    - [ ] Modèles et appariement
-      - [ ] Créer des modèles nommés pour les en-têtes et marques de données au lieu des tuples anonymes.
-      - [ ] Extraire la reconnaissance d'une marque ISO FM dans une méthode utilisant la définition fermée des marques.
-      - [ ] Extraire la lecture CHRN, le calcul de la taille et la validation du CRC d'en-tête dans une méthode nommée.
-      - [ ] Extraire la sélection de la première marque de données située après l'en-tête et avant l'en-tête suivant.
-      - [ ] Extraire la lecture de la charge utile, du CRC stocké et la validation du CRC des données dans une méthode nommée.
-      - [ ] Créer directement la structure définitive de l'en-tête ou des données au lieu de les ajouter, les supprimer avec `RemoveAll`, puis les recréer.
-      - [ ] Conserver dans la séquence d'octets décodés les marques, les champs CHRN, les CRC stockés et la charge utile dans leur ordre de décodage.
-      - [ ] Remplacer le calcul local `128 << sizeCode` par la définition commune de taille sectorielle.
-      - [ ] Appeler directement le calculateur CRC commun puis supprimer la délégation locale `Crc16`.
-      - [ ] Remplacer les descriptions textuelles brutes et actuellement mélangées par le constructeur commun recevant marque, cylindre, face, secteur, taille et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations ISO FM actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les affectations, sélections de marques, recherches, validations et créations de structures actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Corriger les textes actuellement mal encodés dans le fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions ISO FM créées.
-    - [ ] Vérification du groupe ISO FM
-      - [ ] Tester la marque d'adresse, la marque de données normale et la marque de données supprimée.
-      - [ ] Tester les codes de taille 0 à 7 puis une valeur supérieure à 7.
-      - [ ] Tester un en-tête complet, tronqué, avec CRC valide puis invalide.
-      - [ ] Tester des données complètes, tronquées, normales et supprimées avec CRC valide puis invalide.
-      - [ ] Tester l'appariement avant l'en-tête suivant et l'absence de données.
-      - [ ] Vérifier la charge utile, la séquence d'octets, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/IsoFmDecoder.cs`
+    - [x] Définitions ISO FM
+      - [x] Créer `Decoding/Definitions/IsoFmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom correctement encodé et les trois motifs binaires `0xf57e`, `0xf56f` et `0xf56a`.
+      - [x] Créer une définition fermée associant chaque motif à sa marque décodée `0xfe`, `0xfb` ou `0xf8`, son type de structure et son état normal ou supprimé.
+      - [x] Y définir les quatre octets CHRN, les deux octets de CRC, les positions de chaque champ et la longueur totale de 112 bits de l'en-tête.
+      - [x] Y définir la longueur de marque de 16 bits, la limite de code de taille `7`, la taille de base `128`, les deux octets de CRC et les valeurs d'avancement `15` et `111`.
+      - [x] Y définir les gaps d'encodage `160` et `256` utilisés par `IsoFmTrackEncoder.cs`.
+      - [x] Remplacer toutes les marques, tailles, positions, gaps, identifiants, noms et descriptions bruts dans le décodeur et l'encodeur.
+    - [x] Modèles et appariement
+      - [x] Créer des modèles nommés pour les en-têtes et marques de données au lieu des tuples anonymes.
+      - [x] Extraire la reconnaissance d'une marque ISO FM dans une méthode utilisant la définition fermée des marques.
+      - [x] Extraire la lecture CHRN, le calcul de la taille et la validation du CRC d'en-tête dans une méthode nommée.
+      - [x] Extraire la sélection de la première marque de données située après l'en-tête et avant l'en-tête suivant.
+      - [x] Extraire la lecture de la charge utile, du CRC stocké et la validation du CRC des données dans une méthode nommée.
+      - [x] Créer directement la structure définitive de l'en-tête ou des données au lieu de les ajouter, les supprimer avec `RemoveAll`, puis les recréer.
+      - [x] Conserver dans la séquence d'octets décodés les marques, les champs CHRN, les CRC stockés et la charge utile dans leur ordre de décodage.
+      - [x] Remplacer le calcul local `128 << sizeCode` par la définition commune de taille sectorielle.
+      - [x] Appeler directement le calculateur CRC commun puis supprimer la délégation locale `Crc16`.
+      - [x] Remplacer les descriptions textuelles brutes et actuellement mélangées par le constructeur commun recevant marque, cylindre, face, secteur, taille et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations ISO FM actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les affectations, sélections de marques, recherches, validations et créations de structures actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Corriger les textes actuellement mal encodés dans le fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions ISO FM créées.
+    - [x] Vérification du groupe ISO FM
+      - [x] Tester la marque d'adresse, la marque de données normale et la marque de données supprimée.
+      - [x] Tester les codes de taille 0 à 7 puis une valeur supérieure à 7.
+      - [x] Tester un en-tête complet, tronqué, avec CRC valide puis invalide.
+      - [x] Tester des données complètes, tronquées, normales et supprimées avec CRC valide puis invalide.
+      - [x] Tester l'appariement avant l'en-tête suivant et l'absence de données.
+      - [x] Vérifier la charge utile, la séquence d'octets, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/IsoMfmDecoder.cs`
     - [ ] Définitions ISO MFM
       - [ ] Créer `Decoding/Definitions/IsoMfmFormat.cs`.

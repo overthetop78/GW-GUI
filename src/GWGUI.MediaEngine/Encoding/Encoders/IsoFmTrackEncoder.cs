@@ -1,15 +1,15 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
-/// <summary>Encode les pistes utilisant le format Iso FM.</summary>
+/// <summary>Encode les pistes utilisant le format ISO FM.</summary>
 public sealed class IsoFmTrackEncoder : TrackEncoderBase
 {
-    /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.IsoFm;
-    /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.IsoFm;
+    /// <summary>Obtient l'identifiant technique.</summary>
+    public override string Id => IsoFmFormat.CodecId;
+    /// <summary>Obtient le nom affiché.</summary>
+    public override string DisplayName => IsoFmFormat.CodecDisplayName;
 
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
@@ -19,17 +19,19 @@ public sealed class IsoFmTrackEncoder : TrackEncoderBase
         {
             var sizeCode = sector.SizeCode ?? TrackEncoding.SizeCode(sector.Data.Count);
             byte[] header = [IsoFmFormat.IdAddressMark, (byte)request.Cylinder, (byte)request.Head, (byte)sector.Number, sizeCode];
-            var headerCrc = Primitives.Crc16Calculator.Compute(header, IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue);
-            bits.Raw((byte)(IsoFmFormat.EncodedIdAddressMark >> BitPrimitives.BitsPerByte), (byte)(IsoFmFormat.EncodedIdAddressMark & byte.MaxValue));
+            var headerCrc = Crc16Calculator.Compute(header, IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue);
+            AddMark(bits, IsoFmFormat.EncodedIdAddressMark);
             bits.Fm(header.Skip(1).Concat([(byte)(headerCrc >> BitPrimitives.BitsPerByte), (byte)headerCrc]));
             bits.Gap(IsoFmFormat.HeaderGapBitCount);
-            var mark = sector.Deleted ? IsoFmFormat.DeletedDataAddressMark : IsoFmFormat.DataAddressMark;
-            var dataCrc = Primitives.Crc16Calculator.Compute(new[] { mark }.Concat(sector.Data), IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue);
-            var encodedMark = sector.Deleted ? IsoFmFormat.EncodedDeletedDataAddressMark : IsoFmFormat.EncodedDataAddressMark;
-            bits.Raw((byte)(encodedMark >> BitPrimitives.BitsPerByte), (byte)encodedMark);
+            var definition = IsoFmFormat.Marks.Single(mark => mark.Deleted == sector.Deleted && mark.Mark != IsoFmFormat.IdAddressMark);
+            var dataCrc = Crc16Calculator.Compute(new[] { definition.Mark }.Concat(sector.Data), IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue);
+            AddMark(bits, definition.Pattern);
             bits.Fm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte), (byte)dataCrc]));
             bits.Gap(IsoFmFormat.DataGapBitCount);
         }
         return bits;
     }
+
+    /// <summary>Ajoute une marque binaire au flux.</summary>
+    private static void AddMark(List<bool> bits, ushort mark) => bits.Raw((byte)(mark >> BitPrimitives.BitsPerByte), (byte)mark);
 }
