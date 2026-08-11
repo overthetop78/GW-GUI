@@ -1851,16 +1851,16 @@
     - [x] Remettre la déclaration complète du record `SectorBlock` sur une seule ligne.
 
 - [ ] Compléments issus de la relecture complète des modèles et primitives
-  - [ ] `SectorImages/SectorImage.cs`
-    - [ ] Valider le format, la taille de bloc, les cylindres, les têtes, les secteurs par piste, la capacité et le nombre logique de blocs reçus.
-    - [ ] Refuser deux blocs portant le même numéro logique.
-    - [ ] Refuser un bloc logique négatif ou supérieur au nombre logique annoncé.
-    - [ ] Refuser une capacité inférieure aux blocs décrits.
-    - [ ] Copier les collections de blocs et les données exposées qui restent modifiables.
-    - [ ] Créer des erreurs sectorielles permettant d'injecter propriété, valeur observée, valeur attendue et bloc concerné.
-    - [ ] Documenter en français le type, chaque constructeur, champ, propriété et méthode.
-    - [ ] Remettre la déclaration complète de `SectorBlock` sur une seule ligne lors de son déplacement dans son propre fichier.
-    - [ ] Tester chaque invariant, les doublons, les limites, la capacité et la protection des collections.
+  - [x] `SectorImages/SectorImage.cs`
+    - [x] Valider le format, la taille de bloc, les cylindres, les têtes, les secteurs par piste, la capacité et le nombre logique de blocs reçus.
+    - [x] Refuser deux blocs portant le même numéro logique.
+    - [x] Refuser un bloc logique négatif ou supérieur au nombre logique annoncé.
+    - [x] Refuser une capacité inférieure aux blocs décrits.
+    - [x] Copier les collections de blocs et les données exposées qui restent modifiables.
+    - [x] Créer des erreurs sectorielles permettant d'injecter propriété, valeur observée, valeur attendue et bloc concerné.
+    - [x] Documenter en français le type, chaque constructeur, champ, propriété et méthode.
+    - [x] Remettre la déclaration complète de `SectorBlock` sur une seule ligne lors de son déplacement dans son propre fichier.
+    - [x] Tester chaque invariant, les doublons, les limites, la capacité et la protection des collections.
 
 ## 5. Décodage
 
