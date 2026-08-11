@@ -70,6 +70,4 @@ internal static class AppleRwts18Format
     public const int SecondPagePackedShift = 2;
     public const int ConfidenceCompleteSectorDivisor = SectorCount;
     public const double ConfidenceDetectedSectorDivisor = 24;
-    /// <summary>Expose la table de conversion des nibbles partagée avec le format Apple II.</summary>
-    public static IReadOnlyList<byte> NibbleTable => AppleIIGcrFormat.SixAndTwoTable;
 }

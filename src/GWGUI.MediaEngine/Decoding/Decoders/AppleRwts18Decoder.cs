@@ -7,10 +7,6 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode le format de piste Brøderbund RWTS18 de Roland Gustafsson : six secteurs physiques de 768 octets, formés chacun de trois pages indépendantes de 256 octets.</summary>
 public sealed class AppleRwts18Decoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Inverse » utilisée par ce codec.</summary>
-    private static readonly Dictionary<byte, byte> Inverse = AppleRwts18Format.NibbleTable.Select((value, index) => (value, index))
-        .ToDictionary(pair => pair.value, pair => (byte)pair.index);
-
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => FluxCodecIds.AppleRwts18;
     /// <summary>Obtient le nom affiché du codec.</summary>
@@ -37,9 +33,9 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
             if (!FluxBitReader.Match(stream, offset, AppleRwts18Format.EncodedAddressMark, AppleRwts18Format.AddressMarkBitCount)) continue;
             var cursor = offset + AppleRwts18Format.AddressMarkBitCount;
             var address = AppleBitLatch.TryReadBytes(stream.Bits, ref cursor, AppleRwts18Format.AddressByteCount);
-            if (address is null || !Inverse.TryGetValue(address[0], out var track) ||
-                !Inverse.TryGetValue(address[1], out var sector) ||
-                !Inverse.TryGetValue(address[2], out var checksum) || address[3] != AppleRwts18Format.AddressTrailer ||
+            if (address is null || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[0], out var track) ||
+                !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[1], out var sector) ||
+                !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[2], out var checksum) || address[3] != AppleRwts18Format.AddressTrailer ||
                 sector >= AppleRwts18Format.SectorCount || (byte)(track ^ sector) != checksum)
                 continue;
 
@@ -77,36 +73,17 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
             var validSymbols = true;
             for (var index = 0; index < values.Length; index++)
             {
-                if (Inverse.TryGetValue(stream[start + AppleRwts18Format.PayloadOffset + index], out values[index])) continue;
+                if (AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(stream[start + AppleRwts18Format.PayloadOffset + index], out values[index])) continue;
                 validSymbols = false;
                 break;
             }
             if (!validSymbols || stream[start + AppleRwts18Format.DataEpilogueOffset] != AppleRwts18Format.DataEpilogue) continue;
-            var decoded = DecodePayload(values);
+            var decoded = AppleRwts18Codec.DecodePayload(values);
             var startOffset = offset + start * BitPrimitives.BitsPerByte;
             var endOffset = offset + (start + AppleRwts18Format.DataRecordByteCount) * BitPrimitives.BitsPerByte;
             return (decoded.Data, decoded.Valid, startOffset, endOffset);
         }
         return null;
-    }
-
-    /// <summary>Exécute le traitement « Decode Payload » propre à ce format.</summary>
-    private static (byte[] Data, bool Valid) DecodePayload(IReadOnlyList<byte> values)
-    {
-        var page1 = new byte[AppleRwts18Format.PageByteCount]; var page2 = new byte[AppleRwts18Format.PageByteCount]; var page3 = new byte[AppleRwts18Format.PageByteCount];
-        byte accumulator = 0; byte previousPage1 = 0;
-        for (var index = 0; index < AppleRwts18Format.PageByteCount; index++)
-        {
-            var high = values[index * AppleRwts18Format.SymbolsPerPageGroup];
-            var checksum = (byte)(accumulator ^ previousPage1 ^ high);
-            page1[index] = (byte)(((high << AppleRwts18Format.FirstPageHighBitShift) & AppleRwts18Format.HighBitMask) | values[index * AppleRwts18Format.SymbolsPerPageGroup + 1]);
-            previousPage1 = page1[index];
-            page2[index] = (byte)(((high << AppleRwts18Format.SecondPageHighBitShift) & AppleRwts18Format.HighBitMask) | values[index * AppleRwts18Format.SymbolsPerPageGroup + 2]);
-            page3[index] = (byte)(((high << AppleRwts18Format.ThirdPageHighBitShift) & AppleRwts18Format.HighBitMask) | values[index * AppleRwts18Format.SymbolsPerPageGroup + 3]);
-            accumulator = (byte)(page3[index] ^ page2[index] ^ checksum);
-        }
-        var valid = ((accumulator ^ values[AppleRwts18Format.PayloadChecksumOffset] ^ previousPage1) & AppleRwts18Format.SixBitMask) == 0;
-        return ([.. page1, .. page2, .. page3], valid);
     }
 
 }

@@ -2424,10 +2424,10 @@
       - [x] Y définir les tailles de l'adresse, du flux lu, des symboles de données, du bloc complet et les positions du checksum et de l'épilogue.
       - [x] Y définir la taille du prolongement circulaire, les masques, les décalages et les valeurs d'avancement du balayage.
       - [x] Remplacer les valeurs brutes `16_384`, `16`, `4`, `6`, `15`, `1_100`, `1_027`, `1_026`, `1_025`, `1_024`, `768`, `256`, `0x3f` et `0xc0` par ces définitions.
-    - [ ] Table et codec RWTS18
-      - [ ] Réutiliser la table Apple GCR 6-and-2 commune et supprimer `Nibbles` ainsi que la table `Inverse` locales.
-      - [ ] Créer un codec RWTS18 commun pour l'encodage et le décodage des trois pages et du checksum.
-      - [ ] Raccorder `AppleRwts18Decoder.cs` et `AppleRwts18TrackEncoder.cs` au codec commun puis supprimer les algorithmes dupliqués devenus inutiles.
+    - [x] Table et codec RWTS18
+      - [x] Réutiliser la table Apple GCR 6-and-2 commune et supprimer `Nibbles` ainsi que la table `Inverse` locales.
+      - [x] Créer un codec RWTS18 commun pour l'encodage et le décodage des trois pages et du checksum.
+      - [x] Raccorder `AppleRwts18Decoder.cs` et `AppleRwts18TrackEncoder.cs` au codec commun puis supprimer les algorithmes dupliqués devenus inutiles.
     - [ ] Décodage et résultat
       - [ ] Extraire de `DecodeCore` la recherche et la validation de l'adresse, la lecture des données, la création des structures et la création du secteur.
       - [ ] Extraire de `TryReadData` la recherche du bloc RWTS18, la conversion des symboles et la validation de l'épilogue.
