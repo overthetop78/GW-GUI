@@ -2407,15 +2407,15 @@
       - [x] Présenter la table de symboles sur plusieurs lignes structurées jusqu'à sa suppression au profit de la table commune.
       - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec paramètres, résultat, unités et règles de validation.
       - [x] Ajouter la CSDoc française aux composants IWM GCR communs créés.
-    - [ ] Vérification du groupe Apple IWM GCR
-      - [ ] Tester la lecture d'une adresse avec son cylindre, sa face, son secteur et son octet de format.
-      - [ ] Tester le décodage 6-and-2 d'un bloc contenant les douze octets de tags et les 512 octets de données.
-      - [ ] Tester un checksum d'adresse valide puis invalide.
-      - [ ] Tester un checksum de données valide puis invalide.
-      - [ ] Tester une marque absente, un symbole invalide, un bloc tronqué et une marque de données non appariée.
-      - [ ] Tester `DecodeAtBitCell` avec une durée de cellule imposée.
-      - [ ] Tester la sélection explicite Lisa et la décision finale Macintosh ou Lisa effectuée avec les informations globales de l'image.
-      - [ ] Vérifier l'identifiant final, le nom, les tags, la taille sectorielle, l'intégrité et la confiance du résultat produit.
+    - [x] Vérification du groupe Apple IWM GCR
+      - [x] Tester la lecture d'une adresse avec son cylindre, sa face, son secteur et son octet de format.
+      - [x] Tester le décodage 6-and-2 d'un bloc contenant les douze octets de tags et les 512 octets de données.
+      - [x] Tester un checksum d'adresse valide puis invalide.
+      - [x] Tester un checksum de données valide puis invalide.
+      - [x] Tester une marque absente, un symbole invalide, un bloc tronqué et une marque de données non appariée.
+      - [x] Tester `DecodeAtBitCell` avec une durée de cellule imposée.
+      - [x] Tester la sélection explicite Lisa et la décision finale Macintosh ou Lisa effectuée avec les informations globales de l'image.
+      - [x] Vérifier l'identifiant final, le nom, les tags, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/AppleRwts18Decoder.cs`
     - [ ] Définitions RWTS18 communes
       - [ ] Créer les définitions RWTS18 communes au décodeur et à `AppleRwts18TrackEncoder.cs`.

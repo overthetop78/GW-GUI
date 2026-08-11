@@ -12,6 +12,7 @@ using GWGUI.Domain.Write;
 using GWGUI.Domain.Maintenance;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
@@ -2980,9 +2981,40 @@ public sealed class CoreTests
         var result = new AppleMacGcrDecoder().Decode(new FluxRevolution(8_000_000, intervals));
 
         var decoded = Assert.Single(result.Sectors!);
-        Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(head, decoded.Head); Assert.Equal(sectorNumber, decoded.Number); Assert.Equal(512, decoded.SizeBytes);
+        Assert.Equal(cylinder, decoded.Cylinder); Assert.Equal(head, decoded.Head); Assert.Equal(sectorNumber, decoded.Number); Assert.Equal(format, decoded.FormatCode); Assert.Equal(512, decoded.SizeBytes);
         Assert.Equal(!corruptHeader && !corruptData, decoded.IntegrityValid);
+        if (!corruptHeader) Assert.Equal(Enumerable.Range(0, 12).Select(index => (byte)(0xa0 + index)), decoded.Tag);
+        Assert.Equal("applemac.gcr", result.DecoderId);
+        Assert.Equal("Apple Macintosh GCR", result.DisplayName);
+        Assert.Equal((result.Sectors.Count * 2d + result.Structures.Count) / 24d, result.Confidence, 10);
         if (!corruptHeader) Assert.Equal(payload, result.DecodedBytes.TakeLast(512));
+    }
+
+    [Fact]
+    public void AppleIwmDecoderHandlesMissingInvalidAndUnpairedDataAndExplicitBitCell()
+    {
+        static bool[] Bits(IEnumerable<byte> values) => values.SelectMany(value => Enumerable.Range(0, 8).Select(bit => (value & (1 << (7 - bit))) != 0)).ToArray();
+        var table = AppleIIGcrFormat.SixAndTwoTable;
+        byte[] header = [3, 4, 0, AppleIwmGcrFormat.DefaultFormat];
+        var checksum = (byte)(header.Aggregate(0, (value, item) => value ^ item) & AppleIwmGcrFormat.SixBitMask);
+        var addressBits = Bits(AppleIwmGcrFormat.AddressMark.Concat(header.Append(checksum).Select(value => table[value])));
+
+        var missing = new AppleMacGcrDecoder().DecodeBits(addressBits);
+        Assert.Null(Assert.Single(missing.Sectors).IntegrityValid);
+
+        var invalidSymbols = Enumerable.Repeat((byte)0xff, AppleIwmGcrFormat.DataSymbolCount).ToArray();
+        invalidSymbols[0] = 0x80;
+        var invalid = new AppleMacGcrDecoder().DecodeBits(addressBits.Concat(Bits(AppleIwmGcrFormat.DataMark.Concat(invalidSymbols))).ToArray());
+        Assert.Contains(invalid.Structures, structure => structure.Kind == FluxStructureKind.AppleData && structure.Description.Contains("unavailable", StringComparison.Ordinal));
+
+        var unpaired = new AppleMacGcrDecoder().DecodeBits(Bits(AppleIwmGcrFormat.DataMark));
+        Assert.Contains(unpaired.Structures, structure => structure.Kind == FluxStructureKind.AppleData && structure.Description.Contains("Unpaired", StringComparison.Ordinal));
+
+        var sector = new TrackSector(0, Enumerable.Range(0, AppleIwmGcrFormat.SectorByteCount).Select(index => (byte)index).ToArray());
+        var encoded = new AppleMacGcrTrackEncoder().Encode(new(0, 0, [sector], BitCellTicks: 40));
+        var fixedCell = new AppleMacGcrDecoder().DecodeAtBitCell(encoded.Revolution, 40);
+        Assert.Equal(40, fixedCell.EstimatedBitCellTicks);
+        Assert.Equal(sector.Data, Assert.Single(fixedCell.Sectors).Data);
     }
 
     [Fact]
