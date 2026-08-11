@@ -1864,7 +1864,7 @@
 
 ## 5. Décodage
 
-- [ ] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecIds.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecIds.cs`
   - [x] Création des identifiants de codecs
     - [x] Créer `Decoding/Definitions/FluxCodecIds.cs`.
     - [x] Ajouter une constante pour chacun des identifiants fixes actuellement retournés par les 25 décodeurs et les 24 encodeurs.
