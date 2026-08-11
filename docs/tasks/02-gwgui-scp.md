@@ -1605,11 +1605,10 @@
 
 - [ ] `src/GWGUI.MediaEngine/Flux/FluxBitstream.cs`
   - [ ] Organisation des responsabilités du flux
-    - [ ] Représentation immuable des bits
+    - [x] Représentation immuable des bits
       - [x] Déplacer le fichier vers `Representations/Flux/FluxBitstream.cs`.
       - [x] Remplacer son namespace `GWGUI.MediaEngine.Decoding` par celui de la représentation de flux.
-      - [ ] Conserver dans `FluxBitstream` uniquement les bits reconstruits, la durée de cellule et la création d'une queue circulaire.
-        - Dépendance restante : les méthodes d'estimation, de reconstruction et de lecture des bits ne peuvent être retirées qu'après leur déplacement dans les trois groupes suivants et l'adaptation de leurs consommateurs.
+      - [x] Conserver dans `FluxBitstream` uniquement les bits reconstruits, la durée de cellule et la création d'une queue circulaire.
       - [x] Adapter les imports et constructions dans tous les décodeurs, `RawFluxDecoder` et `AppleScpSectorDecoder`.
     - [x] Estimation temporelle
       - [x] Créer `Representations/Flux/FluxTimingEstimator.cs`.
