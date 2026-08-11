@@ -18,7 +18,13 @@ public sealed class AtrReader : ISectorImageReader
     /// <param name="path">Chemin du conteneur ATR.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
     /// <returns>Image sectorielle dont les tailles et adresses proviennent du conteneur.</returns>
+    /// <exception cref="ArgumentException">Le chemin est vide ou présente un format invalide.</exception>
+    /// <exception cref="FileNotFoundException">Le fichier ATR est introuvable.</exception>
+    /// <exception cref="DirectoryNotFoundException">Un répertoire du chemin est introuvable.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès au fichier ATR est refusé.</exception>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
     /// <exception cref="InvalidDataException">L'en-tête, la taille déclarée ou la disposition des secteurs est invalide.</exception>
+    /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrêt de la lecture.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await ReadValidatedContainerAsync(path, cancellationToken).ConfigureAwait(false);
@@ -43,7 +49,13 @@ public sealed class AtrReader : ISectorImageReader
     /// <param name="path">Chemin du conteneur ATR.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
     /// <returns>Octets complets du conteneur validé, en-tête inclus.</returns>
+    /// <exception cref="ArgumentException">Le chemin est vide ou présente un format invalide.</exception>
+    /// <exception cref="FileNotFoundException">Le fichier ATR est introuvable.</exception>
+    /// <exception cref="DirectoryNotFoundException">Un répertoire du chemin est introuvable.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès au fichier ATR est refusé.</exception>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
     /// <exception cref="InvalidDataException">Le fichier ne respecte pas la disposition ATR attendue.</exception>
+    /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrêt de la lecture.</exception>
     internal static async Task<byte[]> ReadValidatedContainerAsync(string path, CancellationToken cancellationToken)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);

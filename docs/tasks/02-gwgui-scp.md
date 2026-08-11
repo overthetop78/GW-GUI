@@ -1591,10 +1591,10 @@
       - [x] Reprendre la mise en forme de tout le fichier afin de ne plus éclater inutilement les ternaires, conditions, calculs, appels et la construction de `SectorImage`.
       - [x] Conserver ensemble sur une ligne les expressions qui restent lisibles et ne contiennent qu'une seule instruction.
       - [x] Ne modifier aucune condition, valeur, opération ni ordre d'exécution pendant cette remise en forme.
-    - [ ] Documentation XML
-      - [ ] Compléter en français la documentation de `ReadAsync` avec les erreurs de chemin, d'accès, de lecture et d'annulation qu'elle propage.
-      - [ ] Compléter en français la documentation de `ReadValidatedContainerAsync` avec les mêmes erreurs applicables.
-      - [ ] Mettre à jour la documentation de chaque membre modifié sans ajouter de comportement qui n'existe pas.
+    - [x] Documentation XML
+      - [x] Compléter en français la documentation de `ReadAsync` avec les erreurs de chemin, d'accès, de lecture et d'annulation qu'elle propage.
+      - [x] Compléter en français la documentation de `ReadValidatedContainerAsync` avec les mêmes erreurs applicables.
+      - [x] Mettre à jour la documentation de chaque membre modifié sans ajouter de comportement qui n'existe pas.
     - [ ] Tests ciblés
       - [ ] Tester le calcul de zone d'amorçage pour les tailles sectorielles `128`, `256` et `512`.
       - [ ] Lire les images ATR correspondantes et vérifier que les nombres, tailles, index logiques et adresses des secteurs restent identiques.
