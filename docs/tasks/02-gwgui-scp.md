@@ -1950,7 +1950,7 @@
     - [x] Utiliser une image de `image_test` lorsqu’elle existe ; appliquer la règle d’obtention d’image du document lorsqu’elle manque.
     - [x] Exécuter uniquement les tests de la paire traitée avant de terminer son groupe.
 
-- [ ] Descriptions techniques encore construites en texte brut par les décodeurs
+- [x] Descriptions techniques encore construites en texte brut par les décodeurs
   - [x] `Decoding/FluxStructureDescriptions.cs`
     - [x] Création des descriptions communes
       - [x] Créer `Decoding/FluxStructureDescriptions.cs` comme propriétaire unique des descriptions attachées aux `FluxStructure`.
