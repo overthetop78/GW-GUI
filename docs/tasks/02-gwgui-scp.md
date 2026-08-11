@@ -2382,12 +2382,12 @@
       - [x] Conserver la sélection Lisa explicite lorsqu'un format Lisa est demandé.
       - [x] Lorsque le format n'est pas imposé, laisser la reconstruction de l'image déterminer Macintosh ou Lisa à partir des informations globales au lieu de l'affirmer au niveau d'une seule révolution.
       - [x] Conserver l'octet de format lu dans `values[3]` et le transmettre au traitement qui décide finalement de l'identité de l'image.
-    - [ ] Définitions Apple IWM GCR
-      - [ ] Créer les définitions communes contenant les identifiants, noms affichés, marques d'adresse et de données, longueurs des marques, tailles d'en-tête, de tags, de données, de blocs décodés et de symboles encodés.
-      - [ ] Y définir la taille du prolongement circulaire, la fenêtre de recherche des données, les positions des symboles de checksum et les limites des groupes 6-and-2.
-      - [ ] Y définir les masques et décalages utilisés pour reconstruire cylindre, face, format et checksum.
-      - [ ] Remplacer les valeurs brutes `8192`, `512`, `24`, `5`, `704`, `699`, `700`, `701`, `702`, `703`, `12`, `524`, `175` et `174` par ces définitions.
-      - [ ] Remplacer les tailles sectorielles et le code de taille bruts des `DecodedSector` par les définitions communes correspondantes.
+    - [x] Définitions Apple IWM GCR
+      - [x] Créer les définitions communes contenant les identifiants, noms affichés, marques d'adresse et de données, longueurs des marques, tailles d'en-tête, de tags, de données, de blocs décodés et de symboles encodés.
+      - [x] Y définir la taille du prolongement circulaire, la fenêtre de recherche des données, les positions des symboles de checksum et les limites des groupes 6-and-2.
+      - [x] Y définir les masques et décalages utilisés pour reconstruire cylindre, face, format et checksum.
+      - [x] Remplacer les valeurs brutes `8192`, `512`, `24`, `5`, `704`, `699`, `700`, `701`, `702`, `703`, `12`, `524`, `175` et `174` par ces définitions.
+      - [x] Remplacer les tailles sectorielles et le code de taille bruts des `DecodedSector` par les définitions communes correspondantes.
     - [ ] Table et codec 6-and-2
       - [ ] Réutiliser la table 6-and-2 Apple commune créée dans le groupe `AppleIIGcrDecoder.cs` et supprimer la copie locale.
       - [ ] Utiliser une table inverse commune en lecture seule au lieu de reconstruire une copie propre au décodeur.

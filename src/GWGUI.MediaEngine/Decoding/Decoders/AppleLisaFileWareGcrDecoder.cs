@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class AppleLisaFileWareGcrDecoder : AppleIwmGcrDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.AppleLisaFileWareGcr;
+    public override string Id => AppleIwmGcrFormat.LisaCodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.AppleLisaFileWareGcr;
+    public override string DisplayName => AppleIwmGcrFormat.LisaCodecDisplayName;
 }

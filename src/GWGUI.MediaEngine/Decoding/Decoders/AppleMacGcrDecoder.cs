@@ -4,8 +4,8 @@ namespace GWGUI.MediaEngine.Decoding;
 public sealed class AppleMacGcrDecoder : AppleIwmGcrDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec Macintosh.</summary>
-    public override string Id => FluxCodecIds.AppleMacGcr;
+    public override string Id => AppleIwmGcrFormat.MacintoshCodecId;
 
     /// <summary>Obtient le nom affiché du codec Macintosh.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.AppleMacGcr;
+    public override string DisplayName => AppleIwmGcrFormat.MacintoshCodecDisplayName;
 }

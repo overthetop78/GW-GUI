@@ -1,10 +1,16 @@
-using GWGUI.MediaEngine.Decoding.Definitions;
+namespace GWGUI.MediaEngine.Decoding.Definitions;
 
-namespace GWGUI.MediaEngine.Encoding.Definitions;
-
-/// <summary>Regroupe les définitions techniques du format Apple Mac Gcr.</summary>
-internal static class AppleMacGcrFormat
+/// <summary>Regroupe les définitions techniques du format Apple IWM GCR commun à Macintosh et Lisa FileWare.</summary>
+internal static class AppleIwmGcrFormat
 {
+    /// <summary>Identifiant technique de la spécialisation Macintosh.</summary>
+    public const string MacintoshCodecId = FluxCodecIds.AppleMacGcr;
+    /// <summary>Nom affiché de la spécialisation Macintosh.</summary>
+    public const string MacintoshCodecDisplayName = FluxCodecDisplayNames.AppleMacGcr;
+    /// <summary>Identifiant technique de la spécialisation Lisa FileWare.</summary>
+    public const string LisaCodecId = FluxCodecIds.AppleLisaFileWareGcr;
+    /// <summary>Nom affiché de la spécialisation Lisa FileWare.</summary>
+    public const string LisaCodecDisplayName = FluxCodecDisplayNames.AppleLisaFileWareGcr;
     /// <summary>Crée l'exception signalant invalide secteur taille.</summary>
     /// <param name="actualSize">Valeur observée utilisée pour décrire précisément l'erreur.</param>
     /// <returns>Exception contenant les valeurs attendues et observées.</returns>
@@ -35,6 +41,18 @@ internal static class AppleMacGcrFormat
     public const int DataSymbolCount = 704;
     /// <summary>Définit encodé charge utile symbol nombre utilisé par ce format.</summary>
     public const int EncodedPayloadSymbolCount = 699;
+    /// <summary>Position du symbole identifiant le secteur dans le bloc de données.</summary>
+    public const int DataSectorSymbolOffset = 0;
+    /// <summary>Position du premier symbole de checksum dans le bloc de données.</summary>
+    public const int ChecksumSymbolOffset = EncodedPayloadSymbolCount + 1;
+    /// <summary>Position du symbole contenant les bits hauts des trois checksums.</summary>
+    public const int PackedChecksumSymbolOffset = ChecksumSymbolOffset;
+    /// <summary>Position du symbole de checksum associé au troisième accumulateur.</summary>
+    public const int ThirdChecksumSymbolOffset = ChecksumSymbolOffset + 1;
+    /// <summary>Position du symbole de checksum associé au deuxième accumulateur.</summary>
+    public const int SecondChecksumSymbolOffset = ChecksumSymbolOffset + 2;
+    /// <summary>Position du symbole de checksum associé au premier accumulateur.</summary>
+    public const int FirstChecksumSymbolOffset = ChecksumSymbolOffset + 3;
     /// <summary>Définit somme de contrôle symbol nombre utilisé par ce format.</summary>
     public const int ChecksumSymbolCount = 4;
     /// <summary>Définit tag octet nombre utilisé par ce format.</summary>
