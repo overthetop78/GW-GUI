@@ -1785,9 +1785,9 @@
     - [x] Vérifier pour chaque valeur d’octet que deux inversions successives restituent la valeur initiale.
     - [x] Exécuter les tests ciblés des cinq consommateurs dont la méthode relais a été supprimée.
 - [ ] `src/GWGUI.MediaEngine/Primitives/Crc16Calculator.cs`
-  - [ ] Responsabilité et emplacement
-    - [ ] Conserver le fichier dans `Primitives`, car son calcul CRC ne dépend d’aucun format ou codec particulier.
-    - [ ] Conserver `Compute` pour une séquence complète et `Update` pour l’ajout incrémental d’un octet dans le même composant.
+  - [x] Responsabilité et emplacement
+    - [x] Conserver le fichier dans `Primitives`, car son calcul CRC ne dépend d’aucun format ou codec particulier.
+    - [x] Conserver `Compute` pour une séquence complète et `Update` pour l’ajout incrémental d’un octet dans le même composant.
   - [ ] Paramètres CRC communs
     - [ ] Ajouter des constantes nommées pour le polynôme CCITT `0x1021`, le polynôme IBM `0x8005`, la valeur initiale tous bits à un `0xFFFF`, la valeur initiale nulle et le masque du bit fort `0x8000`.
     - [ ] Ajouter une constante nommée pour le décalage d’un octet dans le mot CRC et réutiliser `BitPrimitives.BitsPerByte` pour le nombre d’itérations.
