@@ -6,6 +6,9 @@ internal static class AppleRwts18Format
     public const string CodecId = FluxCodecIds.AppleRwts18;
     public const string CodecDisplayName = FluxCodecDisplayNames.AppleRwts18;
     public const string StructureDescriptionName = "Apple II RWTS18";
+    public const string AddressChecksumLabel = "address checksum";
+    public const string DataChecksumLabel = "checksum";
+    public const byte LogicalHead = 0;
     /// <summary>Crée l'exception signalant invalide piste layout.</summary>
     /// <param name="actualSectorCount">Valeur observée utilisée pour décrire précisément l'erreur.</param>
     /// <returns>Exception contenant les valeurs attendues et observées.</returns>

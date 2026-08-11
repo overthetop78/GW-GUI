@@ -2428,12 +2428,12 @@
       - [x] Réutiliser la table Apple GCR 6-and-2 commune et supprimer `Nibbles` ainsi que la table `Inverse` locales.
       - [x] Créer un codec RWTS18 commun pour l'encodage et le décodage des trois pages et du checksum.
       - [x] Raccorder `AppleRwts18Decoder.cs` et `AppleRwts18TrackEncoder.cs` au codec commun puis supprimer les algorithmes dupliqués devenus inutiles.
-    - [ ] Décodage et résultat
-      - [ ] Extraire de `DecodeCore` la recherche et la validation de l'adresse, la lecture des données, la création des structures et la création du secteur.
-      - [ ] Extraire de `TryReadData` la recherche du bloc RWTS18, la conversion des symboles et la validation de l'épilogue.
-      - [ ] Remplacer l'identifiant, le nom et les descriptions textuelles brutes par les définitions communes recevant piste, secteur, taille et état du checksum.
-      - [ ] Remplacer les tailles sectorielles et le code de taille bruts par les définitions communes correspondantes.
-      - [ ] Utiliser le calcul de confiance commun avec les paramètres RWTS18.
+    - [x] Décodage et résultat
+      - [x] Extraire de `DecodeCore` la recherche et la validation de l'adresse, la lecture des données, la création des structures et la création du secteur.
+      - [x] Extraire de `TryReadData` la recherche du bloc RWTS18, la conversion des symboles et la validation de l'épilogue.
+      - [x] Remplacer l'identifiant, le nom et les descriptions textuelles brutes par les définitions communes recevant piste, secteur, taille et état du checksum.
+      - [x] Remplacer les tailles sectorielles et le code de taille bruts par les définitions communes correspondantes.
+      - [x] Utiliser le calcul de confiance commun avec les paramètres RWTS18.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
