@@ -12,7 +12,7 @@ public sealed class FluxDecoderRegistry
     {
         Decoders = [new IsoMfmDecoder(), new IsoFmDecoder(), new AmigaMfmDecoder(), new AppleIIGcrDecoder(), new AppleRwts18Decoder(), new AppleMacGcrDecoder(), new AppleLisaFileWareGcrDecoder(), new CommodoreGcrDecoder(), new HpMmfmDecoder(), new DataGeneralFmDecoder(), new MicropolisMfmDecoder(), new MembrainMfmDecoder(), new Aed6200pMfmDecoder(), new QdMo5MfmDecoder(), new CenturionMfmDecoder(), new NorthstarMfmDecoder(), new HeathkitFmDecoder(), new MicralNFmDecoder(), new EmuFmDecoder(), new TycomFmDecoder(), new DecRx02Decoder(), new ArburgDecoder(), new Victor9kGcrDecoder(), new Commodore900GcrDecoder(), new RawFluxDecoder()];
         var byId = new Dictionary<string, IFluxDecoder>(StringComparer.Ordinal);
-        foreach (var decoder in Decoders) if (!byId.TryAdd(decoder.Id, decoder)) throw new InvalidOperationException($"A flux decoder with identifier '{decoder.Id}' is already registered.");
+        foreach (var decoder in Decoders) if (!byId.TryAdd(decoder.Id, decoder)) throw FluxDecoderRegistryExceptions.DuplicateIdentifier(decoder.Id);
         decodersById = byId;
     }
 
@@ -27,7 +27,7 @@ public sealed class FluxDecoderRegistry
         var results = _cache.GetValue(revolution, _ => new(StringComparer.Ordinal));
         return results.GetOrAdd(id, decoderId => new(() =>
         {
-            if (!decodersById.TryGetValue(decoderId, out var decoder)) throw new KeyNotFoundException($"No flux decoder is registered with identifier '{decoderId}'.");
+            if (!decodersById.TryGetValue(decoderId, out var decoder)) throw FluxDecoderRegistryExceptions.IdentifierNotFound(decoderId);
             return decoder.Decode(revolution);
         }, LazyThreadSafetyMode.ExecutionAndPublication)).Value;
     }
@@ -46,15 +46,15 @@ public sealed class FluxDecoderRegistry
         var valid = sectors.Count(sector => sector.IntegrityValid == true);
         var invalid = sectors.Count(sector => sector.IntegrityValid == false);
         if (valid > 0)
-            return 4 + valid / (double)Math.Max(1, valid + invalid) + result.Confidence * .1;
+            return FluxDecoderScoring.ValidSectorBaseScore + valid / (double)Math.Max(1, valid + invalid) + result.Confidence * FluxDecoderScoring.ValidSectorConfidenceWeight;
         if (sectors.Count > 0 && invalid == 0)
-            return 3 + result.Confidence;
+            return FluxDecoderScoring.UnverifiedSectorBaseScore + result.Confidence;
         if (invalid > 0)
-            return result.Confidence * .01;
+            return result.Confidence * FluxDecoderScoring.InvalidSectorConfidenceWeight;
         if (result.DecoderId == FluxCodecIds.Raw)
-            return 1 + result.Confidence;
+            return FluxDecoderScoring.RawFluxBaseScore + result.Confidence;
         if (result.Structures.Count > 0)
-            return 2 + result.Confidence;
+            return FluxDecoderScoring.StructuredFluxBaseScore + result.Confidence;
         return result.Confidence;
     }
 }

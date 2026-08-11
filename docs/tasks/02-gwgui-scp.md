@@ -2122,11 +2122,11 @@
     - [x] Construire un dictionnaire par identifiant.
     - [x] Refuser les doublons.
     - [x] Remplacer les recherches `First` par une erreur explicite.
-  - [ ] Valeurs brutes et erreurs du registre
-    - [ ] Créer `FluxDecoderScoring.cs` avec un nom pour chaque poids actuellement utilisé par `AutomaticScore`.
-    - [ ] Remplacer l’identifiant `raw` par `FluxCodecIds.Raw`.
-    - [ ] Créer `Decoding/FluxDecoderRegistryExceptions.cs` avec les erreurs recevant l’identifiant de codec absent ou dupliqué.
-    - [ ] Remplacer les textes et constructions directes d’exception du registre.
+  - [x] Valeurs brutes et erreurs du registre
+    - [x] Créer `FluxDecoderScoring.cs` avec un nom pour chaque poids actuellement utilisé par `AutomaticScore`.
+    - [x] Remplacer l’identifiant `raw` par `FluxCodecIds.Raw`.
+    - [x] Créer `Decoding/FluxDecoderRegistryExceptions.cs` avec les erreurs recevant l’identifiant de codec absent ou dupliqué.
+    - [x] Remplacer les textes et constructions directes d’exception du registre.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `FluxDecoderRegistry`, `FluxDecoderScoring` et `FluxDecoderRegistryExceptions`.
     - [ ] Ajouter la documentation XML des méthodes `DecodeAutomatic, Decode, AutomaticScore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
