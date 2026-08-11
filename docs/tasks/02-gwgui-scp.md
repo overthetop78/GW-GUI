@@ -2005,7 +2005,7 @@
   - [x] Vérification de la suppression
     - [x] Exécuter les tests ciblés de chaque ancien dérivé et comparer secteurs, structures, offsets, intégrité, confiance et bit-cell avant et après la suppression.
     - [x] Vérifier que la compilation ne contient plus aucune référence à `SignatureMfmDecoder`.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/Aed6200pMfmDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/Aed6200pMfmDecoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `Aed6200pMfmDecoder`.
     - [x] Ajouter la documentation XML de `Decode`, `FindDataMark` et des méthodes conservées ou créées après suppression des délégations locales, avec paramètres, résultat, unités et invariants applicables.
