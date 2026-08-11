@@ -1325,7 +1325,7 @@
     - [x] Documenter en français la responsabilité de l’interface, la valeur indicative retournée par `CanRead`, le résultat de `ReadAsync`, son paramètre de chemin et son jeton d’annulation.
   - [x] Vérification du raccordement
     - [x] Compiler après le changement de namespace afin de vérifier que chaque implémentation et chaque consommateur utilise le contrat déplacé.
-- [ ] `src/GWGUI.MediaEngine/Images/MsaImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/MsaImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/Atari/Msa/MsaReader.cs`.
     - [x] Créer `Containers/Atari/Msa/MsaRleDecoder.cs` et y déplacer `Unpack` sans changer l’ordre de lecture ni les conditions de rejet.
@@ -1343,11 +1343,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML française des types `MsaReader` et `MsaRleDecoder`.
     - [x] Ajouter la documentation XML française des méthodes `CanRead`, `ReadAsync`, `Unpack` et `ReadWord`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
-    - [ ] Ajouter une image MSA locale contenant une piste brute et une piste compressée avec données connues.
-    - [ ] Vérifier la signature, la géométrie, la décompression RLE, l’ordre des pistes et le contenu des secteurs.
-    - [ ] Vérifier que la capacité reconstruite sélectionne le même identifiant Atari ST qu’avant le déplacement.
-    - [ ] Vérifier le rejet d’une signature, d’une géométrie, d’une longueur de piste ou d’une séquence RLE invalide.
+  - [x] Tests déterministes
+    - [x] Ajouter une image MSA locale contenant une piste brute et une piste compressée avec données connues.
+    - [x] Vérifier la signature, la géométrie, la décompression RLE, l’ordre des pistes et le contenu des secteurs.
+    - [x] Vérifier que la capacité reconstruite sélectionne le même identifiant Atari ST qu’avant le déplacement.
+    - [x] Vérifier le rejet d’une signature, d’une géométrie, d’une longueur de piste ou d’une séquence RLE invalide.
 - [ ] `src/GWGUI.MediaEngine/Images/Td0ImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/TeleDisk/Td0Reader.cs`.
