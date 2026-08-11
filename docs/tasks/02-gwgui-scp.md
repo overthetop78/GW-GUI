@@ -1922,11 +1922,11 @@
     - [x] Créer `Encoding/Definitions/AmigaMfmFormat.cs`.
     - [x] Sortir les mots de synchronisation, tailles d’en-tête et de données, disposition odd/even, gaps, parités et tailles sectorielles de `AmigaMfmDecoder.cs` et `AmigaMfmTrackEncoder.cs`.
     - [x] Remplacer toutes les valeurs brutes correspondantes dans le décodeur et l’encodeur.
-  - [ ] Commodore GCR
-    - [ ] Créer `Encoding/Definitions/CommodoreGcrFormat.cs` et `Commodore900GcrFormat.cs`.
-    - [ ] Déplacer la table GCR dupliquée entre décodeurs et encodeurs Commodore.
-    - [ ] Sortir séparément les marques, tailles, gaps et checksums des formats Commodore 1541 et Commodore 900.
-    - [ ] Remplacer toutes les valeurs brutes correspondantes dans les quatre fichiers.
+  - [x] Commodore GCR
+    - [x] Créer `Encoding/Definitions/CommodoreGcrFormat.cs` et `Commodore900GcrFormat.cs`.
+    - [x] Déplacer la table GCR dupliquée entre décodeurs et encodeurs Commodore.
+    - [x] Sortir séparément les marques, tailles, gaps et checksums des formats Commodore 1541 et Commodore 900.
+    - [x] Remplacer toutes les valeurs brutes correspondantes dans les quatre fichiers.
   - [ ] Victor 9000 GCR
     - [ ] Créer `Encoding/Definitions/Victor9kGcrFormat.cs`.
     - [ ] Déplacer la table GCR, les marques de huit octets, les tailles de secteurs et de champs, les offsets de bits et les gaps dupliqués.
