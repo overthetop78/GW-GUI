@@ -1212,14 +1212,14 @@
     - [x] Représenter avec ces enums ou leurs masques nommés les valeurs actuellement écrites `0x0008`, `0x0018`, `0x0080`, `0x0060`, `0x0800` et `0x1000`.
     - [x] Distinguer le drapeau indiquant deux faces, le masque et la valeur de l’encodage MFM, l’en-tête étendu, l’ordre inversé des octets et la présence du nombre explicite de bits.
     - [x] Remplacer toutes les opérations binaires brutes du Reader et du convertisseur par ces valeurs nommées.
-  - [ ] Parsing de la table et des pistes
-    - [ ] Remplacer `offsets` par un nom indiquant le nombre d’entrées de la table de pistes.
-    - [ ] Conserver dans `I86fReader` le calcul contrôlé de la fin de table à partir de son offset, du nombre d’entrées et de la taille d’une entrée.
-    - [ ] Conserver `NextOffset` dans le parser, car il recherche la prochaine piste présente dans la table du conteneur.
-    - [ ] Renommer et faire retourner `ReadTrack` sous la forme d’un `I86fTrack` au lieu de fabriquer une `ScpRevolution`.
-    - [ ] Faire normaliser dans le parser l’ordre des octets de chaque mot selon le drapeau 86F avant d’exposer les bits.
-    - [ ] Conserver le calcul du nombre explicite de bits ou, à défaut, du nombre de bits déduit de la plage de piste et de son en-tête.
-    - [ ] Conserver l’ignorance des entrées de table nulles et des pistes ne contenant aucune transition utile.
+  - [x] Parsing de la table et des pistes
+    - [x] Remplacer `offsets` par un nom indiquant le nombre d’entrées de la table de pistes.
+    - [x] Conserver dans `I86fReader` le calcul contrôlé de la fin de table à partir de son offset, du nombre d’entrées et de la taille d’une entrée.
+    - [x] Conserver `NextOffset` dans le parser, car il recherche la prochaine piste présente dans la table du conteneur.
+    - [x] Renommer et faire retourner `ReadTrack` sous la forme d’un `I86fTrack` au lieu de fabriquer une `ScpRevolution`.
+    - [x] Faire normaliser dans le parser l’ordre des octets de chaque mot selon le drapeau 86F avant d’exposer les bits.
+    - [x] Conserver le calcul du nombre explicite de bits ou, à défaut, du nombre de bits déduit de la plage de piste et de son en-tête.
+    - [x] Conserver l’ignorance des entrées de table nulles et des pistes ne contenant aucune transition utile.
   - [ ] Conversion des cellules de bits vers les décodeurs
     - [ ] Créer `Flux/Conversion/I86fBitCellFluxConverter.cs` et y déplacer l’accumulation des cellules jusqu’à chaque bit positionné.
     - [ ] Faire recevoir au convertisseur les bits normalisés et l’unité de ticks définie par `I86fLayout`.
