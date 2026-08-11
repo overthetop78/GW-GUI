@@ -36,15 +36,7 @@ public sealed class AtrReader : ISectorImageReader
             offset += length;
         }
 
-        return new(
-            AtrFormat.GetFormatId(sectorSize, sectorCount),
-            sectorSize,
-            sectorCount,
-            AtrLayout.LogicalHeadCount,
-            AtrLayout.LogicalSectorsPerCylinder,
-            blocks,
-            allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize,
-            capacity: payloadLength);
+        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, sectorCount, AtrLayout.LogicalHeadCount, AtrLayout.LogicalSectorsPerCylinder, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: payloadLength);
     }
 
     /// <summary>Charge un conteneur ATR et vérifie son en-tête, ses longueurs et l'intégrité de ses limites sectorielles.</summary>
@@ -55,26 +47,19 @@ public sealed class AtrReader : ISectorImageReader
     internal static async Task<byte[]> ReadValidatedContainerAsync(string path, CancellationToken cancellationToken)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        ushort? observedSignature = data.Length >= sizeof(ushort)
-            ? BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SignatureOffset))
-            : null;
-        if (data.Length < AtrLayout.HeaderSize || observedSignature != AtrFormat.Signature)
-            throw AtrExceptions.InvalidHeader(data.Length, AtrLayout.HeaderSize, observedSignature, AtrFormat.Signature);
+        ushort? observedSignature = data.Length >= sizeof(ushort) ? BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SignatureOffset)) : null;
+        if (data.Length < AtrLayout.HeaderSize || observedSignature != AtrFormat.Signature) throw AtrExceptions.InvalidHeader(data.Length, AtrLayout.HeaderSize, observedSignature, AtrFormat.Signature);
 
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
-        if (!AtrLayout.IsSupportedSectorSize(sectorSize))
-            throw AtrExceptions.UnsupportedSectorSize(sectorSize, AtrLayout.SingleDensitySectorSize, AtrLayout.DoubleDensitySectorSize, AtrLayout.ExtendedSectorSize);
+        if (!AtrLayout.IsSupportedSectorSize(sectorSize)) throw AtrExceptions.UnsupportedSectorSize(sectorSize, AtrLayout.SingleDensitySectorSize, AtrLayout.DoubleDensitySectorSize, AtrLayout.ExtendedSectorSize);
 
-        var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16)
-            | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
+        var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16) | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
         var declaredPayloadLength = paragraphCount * AtrLayout.ParagraphSize;
         var observedPayloadLength = data.Length - AtrLayout.HeaderSize;
-        if (declaredPayloadLength != observedPayloadLength)
-            throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
+        if (declaredPayloadLength != observedPayloadLength) throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
 
         var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
-        if (observedPayloadLength < bootAreaLength || (observedPayloadLength - bootAreaLength) % sectorSize != 0)
-            throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
+        if (observedPayloadLength < bootAreaLength || (observedPayloadLength - bootAreaLength) % sectorSize != 0) throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
         return data;
     }
 }

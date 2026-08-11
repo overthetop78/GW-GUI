@@ -1587,10 +1587,10 @@
       - [x] Remplacer dans la boucle de `ReadAsync` les valeurs brutes correspondantes par ces définitions.
       - [x] Calculer une seule fois l'index logique correspondant à `sector - 1` et le réutiliser comme index de bloc et cylindre logique.
       - [x] Remplacer dans la construction de `SectorImage` les nombres bruts de faces et de secteurs par cylindre par les mêmes définitions.
-    - [ ] Mise en forme complète de `AtrReader.cs`
-      - [ ] Reprendre la mise en forme de tout le fichier afin de ne plus éclater inutilement les ternaires, conditions, calculs, appels et la construction de `SectorImage`.
-      - [ ] Conserver ensemble sur une ligne les expressions qui restent lisibles et ne contiennent qu'une seule instruction.
-      - [ ] Ne modifier aucune condition, valeur, opération ni ordre d'exécution pendant cette remise en forme.
+    - [x] Mise en forme complète de `AtrReader.cs`
+      - [x] Reprendre la mise en forme de tout le fichier afin de ne plus éclater inutilement les ternaires, conditions, calculs, appels et la construction de `SectorImage`.
+      - [x] Conserver ensemble sur une ligne les expressions qui restent lisibles et ne contiennent qu'une seule instruction.
+      - [x] Ne modifier aucune condition, valeur, opération ni ordre d'exécution pendant cette remise en forme.
     - [ ] Documentation XML
       - [ ] Compléter en français la documentation de `ReadAsync` avec les erreurs de chemin, d'accès, de lecture et d'annulation qu'elle propage.
       - [ ] Compléter en français la documentation de `ReadValidatedContainerAsync` avec les mêmes erreurs applicables.
