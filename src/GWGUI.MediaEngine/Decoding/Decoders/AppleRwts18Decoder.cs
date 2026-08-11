@@ -20,7 +20,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
 
     public string Id => "apple2.rwts18";
     public string DisplayName => "Apple II Brøderbund RWTS18";
-    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxBitstream.FromNrziIntervals(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 
     private FluxDecodeResult DecodeCore(FluxBitstream source)

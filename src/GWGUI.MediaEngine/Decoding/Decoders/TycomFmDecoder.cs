@@ -12,7 +12,7 @@ public sealed class TycomFmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedData = new HashSet<int>();
         const int markBits = 4 * 8;
         const int headerBits = 5 * 32;

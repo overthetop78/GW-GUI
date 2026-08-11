@@ -10,12 +10,12 @@ public class AppleMacGcrDecoder : IFluxDecoder
     private static readonly byte[] DataMark = [0xd5, 0xaa, 0xad];
     public virtual string Id => "applemac.gcr"; public virtual string DisplayName => "Apple Macintosh GCR";
 
-    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxBitstream.FromNrziIntervals(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new ScpRevolution((uint)bits.Length, 0, []), new FluxBitstream(bits, 1));
 
     public FluxDecodeResult DecodeAtBitCell(ScpRevolution revolution, double bitCellTicks) =>
-        DecodeCore(revolution, FluxBitstream.FromNrziIntervals(revolution.FluxIntervals, bitCellTicks));
+        DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals, bitCellTicks));
 
     private FluxDecodeResult DecodeCore(ScpRevolution revolution, FluxBitstream stream)
     {

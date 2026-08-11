@@ -11,7 +11,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromDoubledNrziIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
+        var stream = FluxTransitionDecoder.DecodeDoubledNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
         const int markBits = 64; const int headerBytes = 6; const int sectorBytes = 512; const int decodedDataBytes = 1 + sectorBytes + 2;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {

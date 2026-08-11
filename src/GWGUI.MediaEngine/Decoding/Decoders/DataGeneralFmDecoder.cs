@@ -12,7 +12,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals, fm: true);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals, fm: true);
         var structures = new List<FluxStructure>();
         var sectors = new List<DecodedSector>();
         var bytes = new List<byte>();

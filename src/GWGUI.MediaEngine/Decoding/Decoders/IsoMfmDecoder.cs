@@ -8,14 +8,14 @@ public sealed class IsoMfmDecoder : IFluxDecoder
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var centre = FluxTimingEstimator.EstimateBitCell(revolution.FluxIntervals);
-        var first = DecodeCore(FluxBitstream.FromIntervalsPll(revolution.FluxIntervals, centre));
+        var first = DecodeCore(FluxTransitionDecoder.DecodePll(revolution.FluxIntervals, centre));
         if (first.Sectors?.All(sector => sector.Data is not null && sector.IntegrityValid == true) == true) return first;
 
         var best = first;
         var bestScore = Score(first);
         foreach (var factor in new[] { .98, 1.02, .96, 1.04, .94, 1.06 })
         {
-            var candidate = DecodeCore(FluxBitstream.FromIntervalsPll(revolution.FluxIntervals, centre * factor));
+            var candidate = DecodeCore(FluxTransitionDecoder.DecodePll(revolution.FluxIntervals, centre * factor));
             var score = Score(candidate);
             if (score > bestScore) { best = candidate; bestScore = score; }
         }

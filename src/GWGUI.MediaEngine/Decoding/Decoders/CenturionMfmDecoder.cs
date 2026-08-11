@@ -11,7 +11,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
         const int markBits = 4 * 8;
         const int headerBits = markBits + 4 * 16;

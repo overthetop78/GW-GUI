@@ -8,7 +8,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
     public string Id => "commodore.gcr"; public string DisplayName => "Commodore GCR";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromNrziIntervals(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();
+        var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>();
         var headers = new List<(int SyncOffset, int DataOffset, int EndOffset, byte[]? Bytes)>(); var dataBlocks = new List<(int SyncOffset, int DataOffset, int EndOffset, byte[]? Bytes)>();
         for (var offset = 0; offset < stream.Bits.Length; offset++)
         {

@@ -16,7 +16,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromNrziIntervals(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals);
         var structures = new List<FluxStructure>();
         var decodedBytes = new List<byte>();
         var headers = new List<(int Offset, int End, byte[] Bytes)>();

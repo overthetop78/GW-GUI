@@ -9,7 +9,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     private static readonly Dictionary<byte, byte> InverseSixAndTwo = SixAndTwo.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);
     private static readonly Dictionary<byte, byte> InverseFiveAndThree = FiveAndThree.Select((value, index) => (value, index)).ToDictionary(x => x.value, x => (byte)x.index);
     public string Id => "apple2.gcr"; public string DisplayName => "Apple II GCR";
-    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxBitstream.FromNrziIntervals(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 

@@ -1615,11 +1615,11 @@
       - [x] Créer `Representations/Flux/FluxTimingEstimator.cs`.
       - [x] Y déplacer `EstimateBitCell` et `EstimateNrziBitCell`.
       - [x] Adapter les appels directs de `RawFluxDecoder`, `IsoMfmDecoder` et `AppleScpSectorDecoder`.
-    - [ ] Reconstruction des transitions
-      - [ ] Créer `Representations/Flux/FluxTransitionDecoder.cs`.
-      - [ ] Y déplacer les deux algorithmes privés `Reconstruct` et `ReconstructPll`.
-      - [ ] Y déplacer les fabriques `FromIntervals`, `FromIntervalsPll`, `FromNrziIntervals` et `FromDoubledNrziIntervals` en leur donnant des noms qui décrivent le mode temporel réellement appliqué.
-      - [ ] Adapter chaque décodeur consommateur vers cette fabrique sans changer le mode FM, MFM, NRZI ou doubled-NRZI qu'il utilise actuellement.
+    - [x] Reconstruction des transitions
+      - [x] Créer `Representations/Flux/FluxTransitionDecoder.cs`.
+      - [x] Y déplacer les deux algorithmes privés `Reconstruct` et `ReconstructPll`.
+      - [x] Y déplacer les fabriques `FromIntervals`, `FromIntervalsPll`, `FromNrziIntervals` et `FromDoubledNrziIntervals` en leur donnant des noms qui décrivent le mode temporel réellement appliqué.
+      - [x] Adapter chaque décodeur consommateur vers cette fabrique sans changer le mode FM, MFM, NRZI ou doubled-NRZI qu'il utilise actuellement.
     - [ ] Lecture des bits reconstruits
       - [ ] Créer `Representations/Flux/FluxBitReader.cs`.
       - [ ] Y déplacer les deux surcharges de `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32`.

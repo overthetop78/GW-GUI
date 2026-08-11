@@ -11,7 +11,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var classifiedMarks = new HashSet<int>();
         const int markBits = 8 * 8;
         const int headerBits = 5 * 32;

@@ -12,7 +12,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxBitstream.FromIntervals(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
         var structures = new List<FluxStructure>();
         var sectors = new List<DecodedSector>();
         var bytes = new List<byte>();
