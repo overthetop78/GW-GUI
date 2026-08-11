@@ -1397,9 +1397,9 @@
 
 - [ ] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
   - [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs`
-    - [ ] Responsabilité et emplacement
-      - [ ] Conserver le fichier à la racine de `Recognition`, car il transporte les mêmes indices et octets entre toutes les politiques d’une tentative de reconnaissance.
-      - [ ] Conserver le type public puisqu’il fait partie du contrat public des politiques de reconnaissance.
+    - [x] Responsabilité et emplacement
+      - [x] Conserver le fichier à la racine de `Recognition`, car il transporte les mêmes indices et octets entre toutes les politiques d’une tentative de reconnaissance.
+      - [x] Conserver le type public puisqu’il fait partie du contrat public des politiques de reconnaissance.
     - [ ] Validation de la construction
       - [ ] Refuser un chemin nul, vide ou composé uniquement d’espaces avant de créer `FileInfo`.
       - [ ] Conserver séparément le chemin reçu, la longueur observée à la création, l’extension normalisée et l’identifiant explicitement demandé.
