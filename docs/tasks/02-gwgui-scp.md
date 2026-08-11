@@ -1516,9 +1516,9 @@
     - [x] Lecture sans seconde ouverture
       - [x] Adapter `ReaderBackedRecognitionPolicy` et `AppleDiskImageReader` pour transmettre à la lecture les octets et l’extension déjà détenus par le contexte.
       - [x] Supprimer la délégation actuelle à `reader.ReadAsync(path, ...)` qui relit le fichier.
-    - [ ] Familles explicitement demandées
-      - [ ] Conserver dans une méthode nommée la vérification des préfixes Apple II, Apple III, Lisa, Apple Macintosh et Macintosh brut réellement acceptés.
-      - [ ] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
+    - [x] Familles explicitement demandées
+      - [x] Conserver dans une méthode nommée la vérification des préfixes Apple II, Apple III, Lisa, Apple Macintosh et Macintosh brut réellement acceptés.
+      - [x] Faire utiliser cette même méthode aux branches `.dsk` et `.img` au lieu de maintenir des tests de préfixes séparés.
     - [ ] Mise en forme
       - [ ] Remettre sur une seule ligne les conditions de signatures, de familles et les expressions courtes lorsqu’elles tiennent lisiblement.
     - [ ] Documentation XML et encodage
