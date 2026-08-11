@@ -1623,7 +1623,7 @@
       - [x] Créer `Representations/Flux/FluxBitReader.cs`.
       - [x] Y déplacer les deux surcharges de `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32`.
       - [x] Adapter tous les décodeurs qui recherchent un motif ou décodent un octet afin qu'ils utilisent ce lecteur sur le même `FluxBitstream`.
-  - [ ] `Representations/Flux/FluxBitstream.cs`
+  - [x] `Representations/Flux/FluxBitstream.cs`
     - [x] Protection de la représentation
       - [x] Copier le tableau reçu par le constructeur avant de le conserver.
       - [x] Remplacer la propriété modifiable `bool[] Bits` par une vue en lecture seule permettant toujours l'indexation et la lecture de la longueur.
