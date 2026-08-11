@@ -1872,10 +1872,10 @@
     - [x] Conserver le nom affiché de chaque codec distinct de son identifiant technique.
   - [x] Documentation XML
     - [x] Documenter en français `FluxCodecIds` et chacune de ses constantes.
-  - [ ] Tests ciblés
-    - [ ] Vérifier qu’un même identifiant n’est pas déclaré pour deux codecs différents.
-    - [ ] Vérifier que chaque décodeur et son encodeur correspondant utilisent la même constante lorsqu’ils représentent le même codec.
-    - [ ] Exécuter les tests ciblés des registres de codecs.
+  - [x] Tests ciblés
+    - [x] Vérifier qu’un même identifiant n’est pas déclaré pour deux codecs différents.
+    - [x] Vérifier que chaque décodeur et son encodeur correspondant utilisent la même constante lorsqu’ils représentent le même codec.
+    - [x] Exécuter les tests ciblés des registres de codecs.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecDisplayNames.cs`
   - [ ] Création des noms affichés de codecs
     - [ ] Créer `Decoding/Definitions/FluxCodecDisplayNames.cs` séparément de `FluxCodecIds.cs`.

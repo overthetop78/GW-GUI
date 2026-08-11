@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
 
 namespace GWGUI.Tests;
@@ -15,6 +16,14 @@ public sealed class TrackEncoderTests
         { "micraln.fm", 128 }, { "emu.fm", 0xe00 }, { "tycom.fm", 128 },
         { "dec.rx02", 128 }, { "victor9k.gcr", 512 }
     };
+
+    [Fact]
+    public void FluxCodecIdentifiersAreUnique()
+    {
+        var identifiers = typeof(FluxCodecIds).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).Select(field => Assert.IsType<string>(field.GetRawConstantValue())).ToArray();
+
+        Assert.Equal(identifiers.Length, identifiers.Distinct(StringComparer.Ordinal).Count());
+    }
 
     [Fact]
     public void RegistryContainsEncoderForEverySemanticDecoder()

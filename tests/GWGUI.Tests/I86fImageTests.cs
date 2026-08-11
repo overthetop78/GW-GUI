@@ -2,6 +2,7 @@ using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.I86f;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Flux.Conversion;
 using GWGUI.MediaEngine.Images;
@@ -97,8 +98,8 @@ public sealed class I86fImageTests
     [Fact]
     public void DecoderAndFormatIdentifiersFollowFlagsAndGeometry()
     {
-        Assert.Equal(FluxDecoderIds.IsoFm, I86fSectorImageReader.DecoderIdFor(I86fTrackFlags.None));
-        Assert.Equal(FluxDecoderIds.IsoMfm, I86fSectorImageReader.DecoderIdFor(I86fTrackFlags.MfmEncoding));
+        Assert.Equal(FluxCodecIds.IsoFm, I86fSectorImageReader.DecoderIdFor(I86fTrackFlags.None));
+        Assert.Equal(FluxCodecIds.IsoMfm, I86fSectorImageReader.DecoderIdFor(I86fTrackFlags.MfmEncoding));
         Assert.Equal("86f.256.40.1.10", DiskImageFormatIds.I86fFromGeometry(256, 40, 1, 10));
         Assert.Equal(DiskImageFormatIds.Ibm360, IbmPcImageReader.FormatIdForGeometry(40, 2, 9));
     }
