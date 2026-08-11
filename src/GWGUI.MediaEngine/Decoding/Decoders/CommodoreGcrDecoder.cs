@@ -35,7 +35,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
         foreach (var block in dataBlocks)
         {
             bool? valid = null;
-            if (block.Bytes is not null) { byte checksum = 0; for (var index = 1; index < CommodoreGcrFormat.DataRecordByteCount; index++) checksum ^= block.Bytes[index]; valid = checksum == 0; }
+            if (block.Bytes is not null) valid = CommodoreGcrChecksum.IsValid(block.Bytes.Skip(CommodoreGcrFormat.DataPayloadOffset));
             structures.Add(new(FluxStructureKind.FormatData, block.SyncOffset, Math.Max(CommodoreGcrFormat.MinimumSyncBitCount, block.EndOffset - block.SyncOffset), $"{FluxStructureDescriptions.Identity(CommodoreGcrFormat.StructureDescriptionName, FluxStructureKind.FormatData, 0, CommodoreGcrFormat.LogicalHead, 0, CommodoreGcrFormat.SectorByteCount, null, CommodoreGcrFormat.DataBlockDescription)}, {FluxStructureDescriptions.Integrity(CommodoreGcrFormat.DataChecksumDescription, valid)}"));
         }
         for (var headerIndex = 0; headerIndex < headers.Count; headerIndex++)
@@ -48,7 +48,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
             }
             var nextHeaderOffset = headerIndex + 1 < headers.Count ? headers[headerIndex + 1].SyncOffset : int.MaxValue;
             var data = dataBlocks.FirstOrDefault(candidate => candidate.SyncOffset > block.EndOffset && candidate.SyncOffset < nextHeaderOffset); bool? dataValid = null;
-            if (data.Bytes is not null) { byte checksum = 0; for (var index = 1; index < CommodoreGcrFormat.DataRecordByteCount; index++) checksum ^= data.Bytes[index]; dataValid = checksum == 0; }
+            if (data.Bytes is not null) dataValid = CommodoreGcrChecksum.IsValid(data.Bytes.Skip(CommodoreGcrFormat.DataPayloadOffset));
             bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
             var payload = data.Bytes is null ? null : data.Bytes.Skip(CommodoreGcrFormat.DataPayloadOffset).Take(CommodoreGcrFormat.SectorByteCount).ToArray();
             sectors.Add(new(cylinder, CommodoreGcrFormat.LogicalHead, number, CommodoreGcrFormat.SectorSizeCode, CommodoreGcrFormat.SectorByteCount, integrity, block.SyncOffset, SectorIntegrityKind.Checksum, payload));

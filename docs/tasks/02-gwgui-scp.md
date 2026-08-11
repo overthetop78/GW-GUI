@@ -2543,10 +2543,10 @@
       - [x] Y définir les six octets d'en-tête, les 258 octets du bloc de données, la taille sectorielle de 256 octets et leurs longueurs encodées.
       - [x] Y définir les positions du checksum, du secteur, de la piste, des deux identifiants de disque et de la charge utile, ainsi que la face logique et le code de taille.
       - [x] Remplacer les valeurs et descriptions brutes correspondantes par ces définitions.
-    - [ ] Utilisation du codec GCR commun
-      - [ ] Raccorder le fichier au codec GCR Commodore créé dans le groupe `Commodore900GcrDecoder.cs`.
-      - [ ] Supprimer la table `Gcr`, `TryDecodeByte` et `TryDecodeBytes` après leur remplacement par le codec commun.
-      - [ ] Extraire le checksum XOR dans une opération commune et l'utiliser pour l'en-tête et les données sans recalcul dupliqué.
+    - [x] Utilisation du codec GCR commun
+      - [x] Raccorder le fichier au codec GCR Commodore créé dans le groupe `Commodore900GcrDecoder.cs`.
+      - [x] Supprimer la table `Gcr`, `TryDecodeByte` et `TryDecodeBytes` après leur remplacement par le codec commun.
+      - [x] Extraire le checksum XOR dans une opération commune et l'utiliser pour l'en-tête et les données sans recalcul dupliqué.
     - [ ] Décodage et appariement
       - [ ] Créer des modèles internes nommés pour les en-têtes et blocs de données au lieu des tuples anonymes.
       - [ ] Supprimer du modèle d'en-tête le champ `DataOffset` actuellement enregistré mais jamais lu.

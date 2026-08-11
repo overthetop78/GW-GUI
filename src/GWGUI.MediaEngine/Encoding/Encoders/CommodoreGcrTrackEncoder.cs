@@ -18,7 +18,7 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
         {
             if(sector.Data.Count!=CommodoreGcrFormat.SectorByteCount) throw CommodoreGcrFormat.InvalidSectorSize(sector.Data.Count);
             byte[] header=[CommodoreGcrFormat.HeaderMark,(byte)(sector.Number^diskTrack^id2^id1),(byte)sector.Number,(byte)diskTrack,id2,id1];
-            byte checksum=0; foreach(var value in sector.Data) checksum^=value;
+            var checksum=CommodoreGcrChecksum.Calculate(sector.Data);
             bits.Gap(CommodoreGcrFormat.LeadingGapBitCount,true); bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount)); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true); bits.AddRange(CommodoreGcrCodec.Encode(header)); bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount); bits.Gap(CommodoreGcrFormat.SyncGapBitCount,true);
             bits.AddRange(CommodoreGcrCodec.Encode(new byte[]{CommodoreGcrFormat.DataMark}.Concat(sector.Data).Append(checksum))); bits.Gap(CommodoreGcrFormat.TrailingGapBitCount);
         }
