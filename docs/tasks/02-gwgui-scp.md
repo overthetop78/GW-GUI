@@ -2002,9 +2002,9 @@
     - [x] Vérifier qu'aucune construction, référence de type ou contrainte générique n'utilise encore `SignatureMfmDecoder`.
     - [x] Supprimer `Decoding/Base/SignatureMfmDecoder.cs`.
     - [x] Ne pas créer `SignatureFluxDecoder`, `FluxSignature` ni un enum de mode devenus inutiles après cette suppression.
-  - [ ] Vérification de la suppression
-    - [ ] Exécuter les tests ciblés de chaque ancien dérivé et comparer secteurs, structures, offsets, intégrité, confiance et bit-cell avant et après la suppression.
-    - [ ] Vérifier que la compilation ne contient plus aucune référence à `SignatureMfmDecoder`.
+  - [x] Vérification de la suppression
+    - [x] Exécuter les tests ciblés de chaque ancien dérivé et comparer secteurs, structures, offsets, intégrité, confiance et bit-cell avant et après la suppression.
+    - [x] Vérifier que la compilation ne contient plus aucune référence à `SignatureMfmDecoder`.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/Aed6200pMfmDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `Aed6200pMfmDecoder`.
