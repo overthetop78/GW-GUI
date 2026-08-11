@@ -8,6 +8,8 @@ internal static class AppleBitLatch
 
     public static byte[]? TryReadBytes(IReadOnlyList<bool> bits, ref int offset, int count)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+        if ((uint)offset > (uint)bits.Count) throw new ArgumentOutOfRangeException(nameof(offset));
         var result = new byte[count];
         for (var index = 0; index < count; index++)
         {

@@ -1982,9 +1982,9 @@
     - [x] Remplacer les deux usages du nombre brut `8` par la définition commune du nombre de bits d'un octet.
     - [x] Ajouter une constante nommée pour le masque `0x80` indiquant qu'un octet Apple synchronisé a été trouvé.
     - [x] Remplacer le masque brut utilisé dans la boucle de synchronisation par cette constante.
-  - [ ] Validation des paramètres
-    - [ ] Rejeter un nombre d'octets négatif avant l'allocation du résultat.
-    - [ ] Rejeter un offset négatif ou supérieur à la longueur du tableau de bits.
+  - [x] Validation des paramètres
+    - [x] Rejeter un nombre d'octets négatif avant l'allocation du résultat.
+    - [x] Rejeter un offset négatif ou supérieur à la longueur du tableau de bits.
   - [x] Documentation XML
     - [ ] Documenter en français `AppleBitLatch`, son masque de synchronisation et `TryReadBytes`.
     - [ ] Documenter le déplacement de l'offset, le résultat nul lorsque les bits manquent et les exceptions de paramètres.
