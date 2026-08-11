@@ -37,10 +37,10 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
         {
             cells++;
             if (!set) continue;
-            intervals.Add(cells * 40);
+            intervals.Add(cells * I86fLayout.TicksPerBitCell);
             cells = 0;
         }
-        return new((uint)(track.BitCount * 40), (uint)intervals.Count, intervals);
+        return new((uint)(track.BitCount * I86fLayout.TicksPerBitCell), (uint)intervals.Count, intervals);
     }
 
     private static SectorImage BuildSectorImage(Dictionary<SectorAddress, List<DecodedSector>> candidates)

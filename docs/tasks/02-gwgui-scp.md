@@ -1199,12 +1199,12 @@
     - [x] Déplacer la dépendance `FluxDecoderRegistry` du parser de conteneur vers `I86fSectorImageReader`.
     - [x] Adapter la politique de reconnaissance et `Images/DiskImageExplorerFactory.cs` pour appeler `I86fSectorImageReader.ReadAsync`.
     - [x] Supprimer `Images/I86fImageReader.cs` après raccordement des nouveaux composants.
-  - [ ] Définitions du format 86F
-    - [ ] Créer `Containers/I86f/I86fFormat.cs` avec la signature little-endian `0x46423638` et sa longueur de quatre octets.
-    - [ ] Créer `Containers/I86f/I86fLayout.cs` avec la longueur minimale de huit octets, l’offset des drapeaux, leur longueur, l’offset de table et les entrées de table de quatre octets.
-    - [ ] Y définir les 256 entrées par face, les 512 entrées pour deux faces, les en-têtes de piste de six et dix octets et l’offset du nombre explicite de bits.
-    - [ ] Y définir l’alignement du stockage sur des mots de 16 bits, les deux octets par mot, les huit bits par octet et le masque du bit de poids fort utilisé pendant la lecture.
-    - [ ] Y définir l’unité actuelle de 40 ticks par cellule utilisée pour convertir les pistes 86F vers les intervalles acceptés par les décodeurs.
+  - [x] Définitions du format 86F
+    - [x] Créer `Containers/I86f/I86fFormat.cs` avec la signature little-endian `0x46423638` et sa longueur de quatre octets.
+    - [x] Créer `Containers/I86f/I86fLayout.cs` avec la longueur minimale de huit octets, l’offset des drapeaux, leur longueur, l’offset de table et les entrées de table de quatre octets.
+    - [x] Y définir les 256 entrées par face, les 512 entrées pour deux faces, les en-têtes de piste de six et dix octets et l’offset du nombre explicite de bits.
+    - [x] Y définir l’alignement du stockage sur des mots de 16 bits, les deux octets par mot, les huit bits par octet et le masque du bit de poids fort utilisé pendant la lecture.
+    - [x] Y définir l’unité actuelle de 40 ticks par cellule utilisée pour convertir les pistes 86F vers les intervalles acceptés par les décodeurs.
   - [ ] Drapeaux 86F nommés selon leur portée
     - [ ] Créer l’enum marqué `[Flags]` `I86fFileFlags` pour les drapeaux lus dans l’en-tête du fichier.
     - [ ] Créer l’enum marqué `[Flags]` `I86fTrackFlags` pour les drapeaux relus au début de chaque piste.
