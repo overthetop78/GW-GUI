@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using GWGUI.MediaEngine.Containers.Scp;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -13,10 +14,17 @@ public sealed class FluxDecoderRegistry
 
     public FluxDecoderRegistry(IReadOnlyList<IFluxDecoder> decoders)
     {
+        ArgumentNullException.ThrowIfNull(decoders);
+        if (decoders.Count == 0) throw new ArgumentException("At least one flux decoder must be registered.", nameof(decoders));
+        for (var index = 0; index < decoders.Count; index++)
+        {
+            if (decoders[index] is null) throw new ArgumentException($"The flux decoder at position {index} is null.", nameof(decoders));
+            if (string.IsNullOrWhiteSpace(decoders[index].Id)) throw new ArgumentException($"The flux decoder at position {index} has an empty identifier.", nameof(decoders));
+        }
         Decoders = Array.AsReadOnly(decoders.ToArray());
         var byId = new Dictionary<string, IFluxDecoder>(StringComparer.Ordinal);
         foreach (var decoder in Decoders) if (!byId.TryAdd(decoder.Id, decoder)) throw FluxDecoderRegistryExceptions.DuplicateIdentifier(decoder.Id);
-        decodersById = byId;
+        decodersById = byId.ToFrozenDictionary(StringComparer.Ordinal);
     }
 
     public IReadOnlyList<IFluxDecoder> Decoders { get; }

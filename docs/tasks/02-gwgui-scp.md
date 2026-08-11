@@ -2145,15 +2145,15 @@
       - [x] Ajouter à `FluxDecoderRegistry` un constructeur recevant la collection de décodeurs.
       - [x] Conserver un constructeur sans paramètre utilisant le catalogue par défaut pour les consommateurs actuels.
       - [x] Copier la collection reçue et exposer `Decoders` sous forme réellement non modifiable.
-    - [ ] Validation et indexation
-      - [ ] Refuser une collection nulle ou vide.
-      - [ ] Refuser un élément de décodeur nul.
-      - [ ] Refuser un identifiant nul, vide ou composé uniquement d'espaces.
-      - [ ] Construire une seule fois un dictionnaire immuable par identifiant avec la comparaison ordinale choisie par le contrat.
-      - [ ] Refuser deux décodeurs possédant le même identifiant selon cette comparaison.
-      - [ ] Remplacer la recherche `Decoders.First` de `Decode` par le dictionnaire.
-      - [ ] Créer `Decoding/FluxDecoderRegistryExceptions.cs` avec des erreurs recevant l'identifiant absent ou dupliqué et la position d'un décodeur nul ou invalide.
-      - [ ] Remplacer l'exception indirecte de `First` par l'erreur dédiée d'identifiant absent.
+    - [x] Validation et indexation
+      - [x] Refuser une collection nulle ou vide.
+      - [x] Refuser un élément de décodeur nul.
+      - [x] Refuser un identifiant nul, vide ou composé uniquement d'espaces.
+      - [x] Construire une seule fois un dictionnaire immuable par identifiant avec la comparaison ordinale choisie par le contrat.
+      - [x] Refuser deux décodeurs possédant le même identifiant selon cette comparaison.
+      - [x] Remplacer la recherche `Decoders.First` de `Decode` par le dictionnaire.
+      - [x] Créer `Decoding/FluxDecoderRegistryExceptions.cs` avec des erreurs recevant l'identifiant absent ou dupliqué et la position d'un décodeur nul ou invalide.
+      - [x] Remplacer l'exception indirecte de `First` par l'erreur dédiée d'identifiant absent.
     - [ ] Cache des résultats
       - [ ] Conserver le cache faible par instance de `ScpRevolution` sans empêcher la libération des révolutions.
       - [ ] Utiliser l'identifiant canonique du décodeur comme clé du cache après sa résolution dans le dictionnaire.
