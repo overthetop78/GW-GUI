@@ -1490,8 +1490,8 @@
     - [x] Classification CPC ou PCW
       - [x] Conserver la règle actuelle : au moins 80 cylindres et exactement deux têtes produisent `AmstradPcw`, les autres géométries CPCEMU valides produisent `AmstradCpc`.
       - [x] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
-    - [ ] Mise en forme
-      - [ ] Remettre sur une seule ligne la sélection de l’identifiant CPC/PCW et les expressions courtes qui tiennent lisiblement.
+    - [x] Mise en forme
+      - [x] Remettre sur une seule ligne la sélection de l’identifiant CPC/PCW et les expressions courtes qui tiennent lisiblement.
     - [ ] Documentation XML et encodage
       - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
       - [ ] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
