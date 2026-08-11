@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Containers.Apple.Nib;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Containers.Apple.Woz;
 
@@ -37,6 +38,8 @@ internal static class WozLayout
     public const int TrackMapLength = AppleIITrackCount * TrackMapEntriesPerTrack;
     /// <summary>Nombre de pistes Apple II examinées.</summary>
     public const int AppleIITrackCount = 40;
+    /// <summary>Index de la première piste Apple II examinée.</summary>
+    public const int FirstAppleIITrackIndex = 0;
     /// <summary>Nombre d’entrées TMAP examinées pour chaque piste Apple II.</summary>
     public const int TrackMapEntriesPerTrack = 4;
     /// <summary>Valeur TMAP indiquant qu’aucun descripteur n’est associé.</summary>
@@ -47,12 +50,16 @@ internal static class WozLayout
     public const int Woz1BitCountOffset = 6648;
     /// <summary>Longueur du champ de nombre de bits WOZ1.</summary>
     public const int Woz1BitCountLength = 2;
+    /// <summary>Nombre maximal de bits stockables dans les données d'une piste WOZ1.</summary>
+    public const int Woz1MaximumBitCount = Woz1BitCountOffset * BitPrimitives.BitsPerByte;
     /// <summary>Taille d’un bloc de données WOZ2.</summary>
     public const int Woz2BlockLength = 512;
     /// <summary>Taille d’un descripteur de piste WOZ2.</summary>
     public const int Woz2TrackDescriptorLength = Woz2BitCountOffset + Woz2BitCountLength;
     /// <summary>Position du premier bloc dans un descripteur WOZ2.</summary>
     public const int Woz2StartBlockOffset = 0;
+    /// <summary>Valeur indiquant l'absence de bloc de départ WOZ2.</summary>
+    public const int MissingWoz2StartBlock = 0;
     /// <summary>Position du nombre de blocs dans un descripteur WOZ2.</summary>
     public const int Woz2BlockCountOffset = Woz2StartBlockOffset + Woz2BlockFieldLength;
     /// <summary>Position du nombre de bits dans un descripteur WOZ2.</summary>
@@ -61,4 +68,8 @@ internal static class WozLayout
     public const int Woz2BlockFieldLength = 2;
     /// <summary>Longueur du champ de nombre de bits WOZ2.</summary>
     public const int Woz2BitCountLength = 4;
+    /// <summary>Valeur indiquant qu'une piste ne contient aucun bit.</summary>
+    public const int EmptyTrackBitCount = 0;
+    /// <summary>Valeur indiquant qu'un descripteur WOZ2 ne référence aucun bloc.</summary>
+    public const int EmptyWoz2BlockCount = 0;
 }

@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
@@ -84,6 +85,44 @@ public sealed class AppleWozNibReaderTests
         await AssertInvalidWoz(invalidCrc, "CRC32");
         await AssertInvalidWoz(truncatedChunk, "INFO");
         await AssertInvalidWoz(invalidReference, "descriptor 254");
+    }
+
+    /// <summary>Vérifie qu'un chunk inconnu n'empêche pas la lecture du conteneur WOZ.</summary>
+    [Fact]
+    public async Task IgnoresUnknownWozChunk()
+    {
+        var source = await File.ReadAllBytesAsync(Path.Combine(AppleImageRoot(), "3DChart! (1984)(Spectral Graphics Software)(US)(Disk 1 of 2).woz"));
+        var bytes = new byte[source.Length + WozLayout.ChunkHeaderLength + 3];
+        source.CopyTo(bytes, 0);
+        "TEST"u8.CopyTo(bytes.AsSpan(source.Length + WozLayout.ChunkIdOffset, WozLayout.ChunkIdLength));
+        BinaryPrimitives.WriteUInt32LittleEndian(bytes.AsSpan(source.Length + WozLayout.ChunkLengthOffset, WozLayout.ChunkLengthSize), 3);
+        bytes[^3..].AsSpan().Fill(0x5a);
+        WriteCrc(bytes);
+
+        Assert.NotEmpty(WozReader.Read(bytes).AvailableBlocks);
+    }
+
+    /// <summary>Vérifie le traitement des longueurs de bits invalides dans les pistes WOZ1 et WOZ2.</summary>
+    [Fact]
+    public async Task HandlesInvalidWozTrackBitLengths()
+    {
+        var woz1 = await File.ReadAllBytesAsync(Path.Combine(AppleImageRoot(), "3DChart! (1984)(Spectral Graphics Software)(US)(Disk 1 of 2).woz"));
+        var woz1Chunks = ReadChunks(woz1);
+        foreach (var descriptor in woz1.AsSpan(woz1Chunks[WozFormat.TrackMapChunkId].Offset, WozLayout.TrackMapLength).ToArray().Where(value => value != WozLayout.MissingTrackDescriptor).Distinct())
+        {
+            var entry = woz1Chunks[WozFormat.TracksChunkId].Offset + descriptor * WozLayout.Woz1TrackEntryLength;
+            BinaryPrimitives.WriteUInt16LittleEndian(woz1.AsSpan(entry + WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength), ushort.MaxValue);
+        }
+        WriteCrc(woz1);
+        Assert.Empty(WozReader.Read(woz1).AvailableBlocks);
+
+        var woz2 = await File.ReadAllBytesAsync(Path.Combine(AppleImageRoot(), "816-Paint v3.1 (1987)(Baudville)(IIE)[128K][5.25''].woz"));
+        var woz2Chunks = ReadChunks(woz2);
+        var descriptor2 = woz2.AsSpan(woz2Chunks[WozFormat.TrackMapChunkId].Offset, WozLayout.TrackMapLength).ToArray().First(value => value != WozLayout.MissingTrackDescriptor);
+        var entry2 = woz2Chunks[WozFormat.TracksChunkId].Offset + descriptor2 * WozLayout.Woz2TrackDescriptorLength;
+        BinaryPrimitives.WriteUInt32LittleEndian(woz2.AsSpan(entry2 + WozLayout.Woz2BitCountOffset, WozLayout.Woz2BitCountLength), uint.MaxValue);
+        WriteCrc(woz2);
+        Assert.Throws<InvalidDataException>(() => WozReader.Read(woz2));
     }
 
     [Fact]

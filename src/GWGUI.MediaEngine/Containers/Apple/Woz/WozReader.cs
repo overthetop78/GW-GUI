@@ -3,7 +3,6 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding.BitPacking;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Containers.Apple.Woz;
@@ -58,7 +57,7 @@ internal static class WozReader
         var selector = new AppleTrackDecodeSelector();
         var standardTracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
         var rwts18Tracks = new List<(int Track, IReadOnlyList<DecodedSector> Sectors)>();
-        for (var track = 0; track < WozLayout.AppleIITrackCount; track++)
+        for (var track = WozLayout.FirstAppleIITrackIndex; track < WozLayout.AppleIITrackCount; track++)
         {
             IReadOnlyList<DecodedSector>? bestStandard = null;
             IReadOnlyList<DecodedSector>? bestRwts18 = null;
@@ -108,7 +107,7 @@ internal static class WozReader
         var offset = checked(index * WozLayout.Woz1TrackEntryLength);
         if (offset > tracks.Length - WozLayout.Woz1TrackEntryLength) throw WozExceptions.TrackReferenceOutOfBounds(track, index);
         var bitCount = BinaryPrimitives.ReadUInt16LittleEndian(tracks.Slice(offset + WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength));
-        if (bitCount == 0 || bitCount > WozLayout.Woz1BitCountOffset * BitPrimitives.BitsPerByte) return [];
+        if (bitCount == WozLayout.EmptyTrackBitCount || bitCount > WozLayout.Woz1MaximumBitCount) return [];
         return MsbFirstBitPacker.Unpack(tracks.Slice(offset, MsbFirstBitPacker.RequiredByteCount(bitCount)), bitCount);
     }
 
@@ -127,8 +126,8 @@ internal static class WozReader
         var bitCount = BinaryPrimitives.ReadUInt32LittleEndian(tracks.Slice(descriptorOffset + WozLayout.Woz2BitCountOffset, WozLayout.Woz2BitCountLength));
         if (bitCount > int.MaxValue) throw WozExceptions.TrackReferenceOutOfBounds(track, index);
         var offset = checked(startBlock * WozLayout.Woz2BlockLength);
-        var byteCount = bitCount == 0 ? 0 : MsbFirstBitPacker.RequiredByteCount((int)bitCount);
-        if (startBlock == 0 || blockCount == 0 || bitCount == 0 || byteCount > blockCount * WozLayout.Woz2BlockLength || offset > file.Length - byteCount) throw WozExceptions.TrackReferenceOutOfBounds(track, index);
+        var byteCount = bitCount == WozLayout.EmptyTrackBitCount ? 0 : MsbFirstBitPacker.RequiredByteCount((int)bitCount);
+        if (startBlock == WozLayout.MissingWoz2StartBlock || blockCount == WozLayout.EmptyWoz2BlockCount || bitCount == WozLayout.EmptyTrackBitCount || byteCount > blockCount * WozLayout.Woz2BlockLength || offset > file.Length - byteCount) throw WozExceptions.TrackReferenceOutOfBounds(track, index);
         return MsbFirstBitPacker.Unpack(file.Slice(offset, byteCount), (int)bitCount);
     }
 }

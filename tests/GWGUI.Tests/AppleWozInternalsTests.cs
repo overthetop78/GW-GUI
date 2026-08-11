@@ -39,17 +39,22 @@ public sealed class AppleWozInternalsTests
         Assert.Equal(1, WozLayout.InfoDiskTypeOffset);
         Assert.Equal(160, WozLayout.TrackMapLength);
         Assert.Equal(40, WozLayout.AppleIITrackCount);
+        Assert.Equal(0, WozLayout.FirstAppleIITrackIndex);
         Assert.Equal(4, WozLayout.TrackMapEntriesPerTrack);
         Assert.Equal(0xff, WozLayout.MissingTrackDescriptor);
         Assert.Equal(NibLayout.TrackLengthBytes, WozLayout.Woz1TrackEntryLength);
         Assert.Equal(6648, WozLayout.Woz1BitCountOffset);
         Assert.Equal(2, WozLayout.Woz1BitCountLength);
+        Assert.Equal(53184, WozLayout.Woz1MaximumBitCount);
         Assert.Equal(512, WozLayout.Woz2BlockLength);
         Assert.Equal(0, WozLayout.Woz2StartBlockOffset);
+        Assert.Equal(0, WozLayout.MissingWoz2StartBlock);
         Assert.Equal(2, WozLayout.Woz2BlockCountOffset);
         Assert.Equal(4, WozLayout.Woz2BitCountOffset);
         Assert.Equal(2, WozLayout.Woz2BlockFieldLength);
         Assert.Equal(4, WozLayout.Woz2BitCountLength);
+        Assert.Equal(0, WozLayout.EmptyTrackBitCount);
+        Assert.Equal(0, WozLayout.EmptyWoz2BlockCount);
         Assert.Equal(8, WozLayout.Woz2TrackDescriptorLength);
     }
 

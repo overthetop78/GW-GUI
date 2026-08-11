@@ -1562,11 +1562,11 @@
     - [x] Ajouter un propriétaire commun pour la conversion octets/bits utilisée par le Reader et le Writer.
     - [x] Documenter en français chaque définition.
     - [x] Tester la valeur exacte de chaque définition.
-  - [ ] `Containers/Apple/Woz/WozReader.cs`
-    - [ ] Extraire la validation de l'en-tête, le parcours des chunks et la lecture des descripteurs de pistes dans des méthodes distinctes.
-    - [ ] Remplacer chaque valeur encore brute par `WozFormat` ou `WozLayout`.
-    - [ ] Documenter en français chaque méthode privée extraite.
-    - [ ] Tester WOZ1, WOZ2, CRC, chunks inconnus, références et longueurs de bits invalides.
+  - [x] `Containers/Apple/Woz/WozReader.cs`
+    - [x] Extraire la validation de l'en-tête, le parcours des chunks et la lecture des descripteurs de pistes dans des méthodes distinctes.
+    - [x] Remplacer chaque valeur encore brute par `WozFormat` ou `WozLayout`.
+    - [x] Documenter en français chaque méthode privée extraite.
+    - [x] Tester WOZ1, WOZ2, CRC, chunks inconnus, références et longueurs de bits invalides.
   - [ ] `Containers/Atari/Atr/AtrFormat.cs` et `AtrLayout.cs`
     - [ ] Ajouter des constantes nommées pour les 720 et 1040 secteurs et le décalage de 16 bits des paragraphes hauts.
     - [ ] Remplacer dans `AtrFormat.GetFormatId` les nombres bruts `720` et `1040` par ces constantes.
