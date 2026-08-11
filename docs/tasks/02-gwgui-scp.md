@@ -1034,6 +1034,7 @@
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
   - [ ] Remplacement par la politique de reconnaissance commune
     - [ ] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `I86fImageReader.ReadAsync` par la politique commune créée avec `DirectContainerPolicy.cs` sous `Recognition/Policies`.
+      - Dépendance restante : `ExtensionHintRecognitionPolicy` n'existe pas encore ; sa création appartient au groupe suivant, `DirectContainerPolicy.cs`. Cette action reste non cochée jusqu'à l'exécution de ce groupe dans l'ordre du document.
     - [ ] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `Cp2ImageReader.ReadAsync` par cette même politique commune.
     - [ ] Conserver `DiskImageFileExtensions.Format86F` et `DiskImageFileExtensions.Cp2` comme indices de présélection de leurs lecteurs respectifs.
     - [ ] Supprimer `Images/Containers/DelegatingContainerPolicy.cs` après le remplacement de ses deux seuls consommateurs.
