@@ -3,7 +3,7 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class MicropolisMfmTrackEncoder : TrackEncoderBase
 {
     public override string Id => FluxCodecIds.MicropolisMfm;
-    public override string DisplayName => "Micropolis MFM";
+    public override string DisplayName => FluxCodecDisplayNames.MicropolisMfm;
 
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

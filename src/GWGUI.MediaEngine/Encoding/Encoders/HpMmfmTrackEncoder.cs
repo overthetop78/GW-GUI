@@ -3,7 +3,7 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class HpMmfmTrackEncoder : TrackEncoderBase
 {
     public override string Id => FluxCodecIds.HpMmfm;
-    public override string DisplayName => "HP MMFM";
+    public override string DisplayName => FluxCodecDisplayNames.HpMmfm;
 
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

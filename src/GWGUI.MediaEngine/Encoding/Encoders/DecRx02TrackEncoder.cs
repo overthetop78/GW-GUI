@@ -3,7 +3,7 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class DecRx02TrackEncoder : TrackEncoderBase
 {
     public override string Id => FluxCodecIds.DecRx02;
-    public override string DisplayName => "DEC RX02 M²FM";
+    public override string DisplayName => FluxCodecDisplayNames.DecRx02;
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits();

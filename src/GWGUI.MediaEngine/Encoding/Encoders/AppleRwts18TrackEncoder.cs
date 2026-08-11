@@ -12,7 +12,7 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
     ];
 
     public override string Id => FluxCodecIds.AppleRwts18;
-    public override string DisplayName => "Apple II Brøderbund RWTS18";
+    public override string DisplayName => FluxCodecDisplayNames.AppleRwts18;
 
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

@@ -3,7 +3,7 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
 {
     public override string Id => FluxCodecIds.HeathkitFm;
-    public override string DisplayName => "Heathkit hard-sectored FM";
+    public override string DisplayName => FluxCodecDisplayNames.HeathkitFm;
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

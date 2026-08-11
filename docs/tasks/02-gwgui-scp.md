@@ -1885,10 +1885,10 @@
     - [x] Remplacer les noms affichés bruts dans les décodeurs AED, Amiga, Apple II, Lisa, Macintosh, RWTS18, Arburg et Centurion.
     - [x] Remplacer les noms affichés bruts dans les décodeurs Commodore, Commodore 900, Data General, DEC RX02, E-mu, Heathkit et HP.
     - [x] Remplacer les noms affichés bruts dans les décodeurs ISO FM, ISO MFM, Membrain, Micral N, Micropolis, North Star, QD MO5, Raw Flux, TYCOM et Victor 9000.
-  - [ ] Raccordement des encodeurs
-    - [ ] Remplacer les noms affichés bruts dans chaque encodeur possédant le même identifiant qu'un décodeur par la même constante de `FluxCodecDisplayNames`.
-    - [ ] Remplacer les noms affichés propres aux encodeurs sans décodeur correspondant par une constante associée à leur identifiant de codec.
-    - [ ] Supprimer les copies de noms actuellement identiques entre décodeur et encodeur Apple II, Lisa, Macintosh, RWTS18, Arburg, Commodore, HP, Membrain, Micropolis et QD MO5.
+  - [x] Raccordement des encodeurs
+    - [x] Remplacer les noms affichés bruts dans chaque encodeur possédant le même identifiant qu'un décodeur par la même constante de `FluxCodecDisplayNames`.
+    - [x] Remplacer les noms affichés propres aux encodeurs sans décodeur correspondant par une constante associée à leur identifiant de codec.
+    - [x] Supprimer les copies de noms actuellement identiques entre décodeur et encodeur Apple II, Lisa, Macintosh, RWTS18, Arburg, Commodore, HP, Membrain, Micropolis et QD MO5.
   - [ ] Documentation XML française
     - [ ] Documenter en français `FluxCodecDisplayNames` et chaque constante avec l'identifiant de codec correspondant.
   - [ ] Tests ciblés

@@ -5,7 +5,7 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class MembrainMfmTrackEncoder : TrackEncoderBase
 {
     public override string Id => FluxCodecIds.MembrainMfm;
-    public override string DisplayName => "Membrain MFM";
+    public override string DisplayName => FluxCodecDisplayNames.MembrainMfm;
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
