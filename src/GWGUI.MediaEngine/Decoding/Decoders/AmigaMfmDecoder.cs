@@ -11,6 +11,8 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.AmigaMfm;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP dont les intervalles sont décodés selon le format MFM Amiga.</param>
+    /// <returns>Résultat contenant les structures, secteurs, octets décodés et la durée estimée d'une cellule.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
@@ -40,6 +42,10 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
+    /// <param name="stream">Flux binaire MFM source.</param>
+    /// <param name="offset">Offset du premier octet encodé, exprimé en bits.</param>
+    /// <param name="count">Nombre d'octets à décoder.</param>
+    /// <returns>Octets décodés, ou <see langword="null"/> si la plage est incomplète ou invalide.</returns>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * AmigaMfmFormat.EncodedByteBitCount > stream.Bits.Length) return null; var result = new byte[count];
@@ -47,6 +53,8 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         return result;
     }
     /// <summary>Exécute le traitement « Decode Odd Even » propre à ce format.</summary>
+    /// <param name="encoded">Octets encodés, composés de deux moitiés de même longueur contenant respectivement les bits impairs et pairs.</param>
+    /// <returns>Octets reconstruits par entrelacement des deux moitiés.</returns>
     private static byte[] DecodeOddEven(IReadOnlyList<byte> encoded)
     {
         var result = new byte[encoded.Count]; var half = encoded.Count / 2;
@@ -57,6 +65,9 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         return result;
     }
     /// <summary>Exécute le traitement « Interleave » propre à ce format.</summary>
+    /// <param name="odd">Demi-octet contenant les bits impairs.</param>
+    /// <param name="even">Demi-octet contenant les bits pairs.</param>
+    /// <returns>Octet reconstruit en alternant les bits impairs et pairs.</returns>
     private static byte Interleave(byte odd, byte even)
     {
         byte value = 0; for (var index = 0; index < AmigaMfmFormat.NibbleBitCount; index++) { value |= (byte)(((odd >> (3 - index)) & 1) << (7 - index * 2)); value |= (byte)(((even >> (3 - index)) & 1) << (6 - index * 2)); } return value;
