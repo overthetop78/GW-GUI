@@ -1290,14 +1290,14 @@
     - [x] Faire produire à `ImdExceptions` l’erreur de section tronquée en injectant section, offset, longueur requise et longueur disponible.
     - [x] Y déplacer les erreurs de signature, d’en-tête de piste, de code de taille, de type d’enregistrement et d’absence de secteurs avec les valeurs observées utiles.
     - [x] Remplacer toutes les constructions directes et tous les textes bruts de `InvalidDataException` par ces méthodes.
-  - [ ] Détection Epson commune hors du parser IMD
-    - [ ] Déplacer `SectorImages/EpsonQx10FormatDetector.cs` vers `Geometries/Epson/EpsonQx10FormatDetector.cs`.
-    - [ ] Faire recevoir au détecteur une collection commune de descripteurs cylindre, face, numéro et taille, indépendante de `IsoSectorCandidate`.
-    - [ ] Adapter le reconstructeur SCP Epson à construire ces descripteurs depuis ses candidats.
-    - [ ] Remplacer `ImdReader.DetectFormat` par l’appel au même détecteur construit depuis les `ImdSector`.
-    - [ ] Conserver `DiskImageFormatIds.Imd` lorsque la disposition sectorielle ne correspond à aucune géométrie Epson QX-10 validée.
-    - [ ] Supprimer du Reader IMD les nombres bruts de secteurs de 256 octets et de capacités Epson après raccordement au détecteur commun.
-    - [ ] Faire utiliser au détecteur les définitions de `Geometries/Epson/EpsonQx10GeometryCatalog.cs` plutôt que de maintenir une seconde table de dispositions.
+  - [x] Détection Epson commune hors du parser IMD
+    - [x] Déplacer `SectorImages/EpsonQx10FormatDetector.cs` vers `Geometries/Epson/EpsonQx10FormatDetector.cs`.
+    - [x] Faire recevoir au détecteur une collection commune de descripteurs cylindre, face, numéro et taille, indépendante de `IsoSectorCandidate`.
+    - [x] Adapter le reconstructeur SCP Epson à construire ces descripteurs depuis ses candidats.
+    - [x] Remplacer `ImdReader.DetectFormat` par l’appel au même détecteur construit depuis les `ImdSector`.
+    - [x] Conserver `DiskImageFormatIds.Imd` lorsque la disposition sectorielle ne correspond à aucune géométrie Epson QX-10 validée.
+    - [x] Supprimer du Reader IMD les nombres bruts de secteurs de 256 octets et de capacités Epson après raccordement au détecteur commun.
+    - [x] Faire utiliser au détecteur les définitions de `Geometries/Epson/EpsonQx10GeometryCatalog.cs` plutôt que de maintenir une seconde table de dispositions.
   - [ ] Documentation XML française et mise en forme
     - [ ] Remplacer la documentation anglaise de `ImdReader` par une CSDoc française.
     - [ ] Documenter en français `ImdFormat`, `ImdLayout`, `ImdMode`, `ImdHeadFlags`, `ImdSectorRecordType`, `ImdSection`, `ImdExceptions` et chacun de leurs membres.

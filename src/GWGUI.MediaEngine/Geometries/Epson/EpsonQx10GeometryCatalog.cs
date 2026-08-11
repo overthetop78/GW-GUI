@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Geometries.Epson;
 
 internal static class EpsonQx10GeometryCatalog
 {
@@ -8,10 +8,8 @@ internal static class EpsonQx10GeometryCatalog
     {
         DiskImageFormatIds.EpsonQx10_320 => EpsonQx10Geometry.Uniform(40, 2, new(1, 16, 256)),
         DiskImageFormatIds.EpsonQx10_400 => EpsonQx10Geometry.Uniform(40, 2, new(1, 5, 1024)),
-        DiskImageFormatIds.EpsonQx10Booter => new(15, 1, (cylinder, _) =>
-            cylinder == 0 ? new(1, 16, 256) : new(1, 17, 256)),
-        DiskImageFormatIds.EpsonQx10_399 => new(40, 2, (cylinder, head) =>
-            cylinder == 0 && head == 0 ? new(1, 16, 256) : new(1, 10, 512)),
+        DiskImageFormatIds.EpsonQx10Booter => new(15, 1, (cylinder, _) => cylinder == 0 ? new(1, 16, 256) : new(1, 17, 256)),
+        DiskImageFormatIds.EpsonQx10_399 => new(40, 2, (cylinder, head) => cylinder == 0 && head == 0 ? new(1, 16, 256) : new(1, 10, 512)),
         DiskImageFormatIds.EpsonQx10Logo => new(40, 2, (cylinder, _) => cylinder switch
         {
             0 or 1 or 4 => new(1, 16, 256),
@@ -19,8 +17,7 @@ internal static class EpsonQx10GeometryCatalog
             3 or 7 => default,
             _ => new(1, 10, 512)
         }),
-        _ => new(40, 2, (cylinder, _) =>
-            cylinder <= 1 ? new(1, 16, 256) : new(1, 10, 512))
+        _ => new(40, 2, (cylinder, _) => cylinder <= 1 ? new(1, 16, 256) : new(1, 10, 512))
     };
 }
 

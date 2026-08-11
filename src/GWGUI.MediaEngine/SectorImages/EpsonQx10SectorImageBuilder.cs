@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Geometries.Epson;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal static class EpsonQx10SectorImageBuilder

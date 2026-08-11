@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Containers.ImageDisk;
@@ -111,25 +111,9 @@ public sealed class ImdReader : ISectorImageReader
         var ordered = sectors.OrderBy(sector => sector.Cylinder).ThenBy(sector => sector.Head).ThenBy(sector => sector.Number).ToArray();
         var blocks = ordered.Select((sector, logical) => (sector, logical)).Where(item => item.sector.Available).Select(item => new SectorBlock(item.logical, new(item.sector.Cylinder, item.sector.Head, item.sector.Number), item.sector.Data, item.sector.IntegrityValid)).ToArray();
         var capacity = ordered.Sum(sector => (long)sector.Data.Length);
-        var formatId = DetectFormat(sectors, blockSize, capacity);
+        var descriptors = sectors.Select(sector => new EpsonQx10SectorDescriptor(sector.Cylinder, sector.Head, sector.Number, sector.Data.Length)).ToArray();
+        var formatId = EpsonQx10FormatDetector.TryDetect(descriptors, out var detectedFormat) ? detectedFormat : DiskImageFormatIds.Imd;
         return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, sectors.Any(sector => sector.Data.Length != blockSize), capacity, ordered.Length);
-    }
-
-    private static string DetectFormat(IReadOnlyList<ImdSector> sectors, int blockSize, long capacity)
-    {
-        var sectors256 = sectors.Count(sector => sector.Data.Length == 256);
-        if (sectors256 >= 64 && blockSize == 512) return DiskImageFormatIds.EpsonQx10_396;
-        if (sectors256 == 16 && blockSize == 512 && capacity == 399 * DataSizeConstants.BytesPerKibibyte) return DiskImageFormatIds.EpsonQx10_399;
-        if (sectors256 == 16 && blockSize == 512) return DiskImageFormatIds.EpsonQx10Logo;
-        return (blockSize, capacity) switch
-        {
-            (256, 320 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_320,
-            (512, 396 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_396,
-            (512, 399 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_399,
-            (512, 400 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10Logo,
-            (1024, 400 * DataSizeConstants.BytesPerKibibyte) => DiskImageFormatIds.EpsonQx10_400,
-            _ => DiskImageFormatIds.Imd
-        };
     }
 
     private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, ImdSection section)
