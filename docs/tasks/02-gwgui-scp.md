@@ -1840,10 +1840,10 @@
     - [x] Ajouter une méthode recevant le bloc logique, la taille observée et la taille attendue.
     - [x] Remplacer les textes et constructions directes d’exception de `SectorImage.cs`.
     - [x] Documenter en français `SectorImageExceptions` et chacune de ses méthodes.
-  - [ ] Tests du modèle sectoriel
-    - [ ] Tester les dimensions et le nombre logique invalides.
-    - [ ] Tester un bloc manquant et une taille fixe invalide avec les valeurs injectées dans l’erreur.
-    - [ ] Tester les blocs de taille variable, la capacité, les blocs disponibles et la liste des blocs manquants.
+  - [x] Tests du modèle sectoriel
+    - [x] Tester les dimensions et le nombre logique invalides.
+    - [x] Tester un bloc manquant et une taille fixe invalide avec les valeurs injectées dans l’erreur.
+    - [x] Tester les blocs de taille variable, la capacité, les blocs disponibles et la liste des blocs manquants.
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `SectorAddress, SectorBlock, SectorImage`.
     - [ ] Ajouter la documentation XML des méthodes `SectorAddress, SectorBlock, TryGetBlock, GetBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
