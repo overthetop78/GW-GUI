@@ -2280,10 +2280,10 @@
       - [x] Extraire la recherche et la lecture du bloc de données dans un traitement nommé.
       - [x] Extraire le calcul de l'intégrité et l'ajout des marques de données non appariées.
       - [x] Conserver exactement la progression actuelle des offsets et l'ordre des structures et secteurs.
-    - [ ] Mise en forme complète
-      - [ ] Séparer toutes les déclarations, affectations, conditions, ajouts et boucles actuellement collés sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions complètes qui doivent l'être.
-      - [ ] Ne modifier aucune condition ni valeur pendant la remise en forme.
+    - [x] Mise en forme complète
+      - [x] Séparer toutes les déclarations, affectations, conditions, ajouts et boucles actuellement collés sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions complètes qui doivent l'être.
+      - [x] Ne modifier aucune condition ni valeur pendant la remise en forme.
     - [ ] Documentation XML
       - [ ] Documenter en français le décodeur, chaque membre et chaque méthode conservée ou créée.
     - [ ] Tests ciblés

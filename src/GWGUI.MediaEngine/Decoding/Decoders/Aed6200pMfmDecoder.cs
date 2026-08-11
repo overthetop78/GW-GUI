@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -17,8 +17,11 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
-        var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
-        const int headerBits = Aed6200pMfmFormat.HeaderByteCount * MfmEncoding.EncodedByteBitCount; var pairedData = new HashSet<int>();
+        var structures = new List<FluxStructure>();
+        var sectors = new List<DecodedSector>();
+        var bytes = new List<byte>();
+        const int headerBits = Aed6200pMfmFormat.HeaderByteCount * MfmEncoding.EncodedByteBitCount;
+        var pairedData = new HashSet<int>();
         for (var offset = 0; offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, Aed6200pMfmFormat.HeaderPattern)) continue;
@@ -34,7 +37,10 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], size, null, null, headerValid, data.Valid)));
                 offset = Math.Max(offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1, data.StructureEnd - 1);
             }
-            else structures.Add(new(FluxStructureKind.FormatHeader, offset, Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatHeader, Aed6200pMfmFormat.HeaderAddressMark, null)));
+            else
+            {
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatHeader, Aed6200pMfmFormat.HeaderAddressMark, null)));
+            }
             if (!complete) offset += Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1;
         }
         AddUnpairedDataMarks(stream, pairedData, structures);
@@ -44,7 +50,12 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     private static bool TryReadHeader(FluxBitstream stream, int offset, out byte[] header, out int size, out bool valid)
     {
         header = TryDecodeMfmBytes(stream, offset, Aed6200pMfmFormat.HeaderByteCount)!;
-        if (header is null) { size = 0; valid = false; return false; }
+        if (header is null)
+        {
+            size = 0;
+            valid = false;
+            return false;
+        }
         size = (header[Aed6200pMfmFormat.SizeHighOffset] << BitPrimitives.BitsPerByte) | header[Aed6200pMfmFormat.SizeLowOffset];
         valid = header[Aed6200pMfmFormat.HeaderMarkOffset] == Aed6200pMfmFormat.HeaderAddressMark && Primitives.Crc16Calculator.Compute(header) == 0;
         return true;
@@ -91,7 +102,10 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     /// <returns>Offset en bits de la première marque trouvée, ou <c>-1</c> si aucune marque complète n'est présente dans l'intervalle.</returns>
     private static int FindDataMark(FluxBitstream stream, int start, int end)
     {
-        for (var offset = Math.Max(0, start); offset + MfmEncoding.EncodedByteBitCount <= end; offset++) if (Aed6200pMfmFormat.DataPatterns.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
+        for (var offset = Math.Max(0, start); offset + MfmEncoding.EncodedByteBitCount <= end; offset++)
+        {
+            if (Aed6200pMfmFormat.DataPatterns.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
+        }
         return -1;
     }
 
@@ -103,7 +117,10 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * MfmEncoding.EncodedByteBitCount, out result[index])) return null;
+        for (var index = 0; index < count; index++)
+        {
+            if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * MfmEncoding.EncodedByteBitCount, out result[index])) return null;
+        }
         return result;
     }
 }
