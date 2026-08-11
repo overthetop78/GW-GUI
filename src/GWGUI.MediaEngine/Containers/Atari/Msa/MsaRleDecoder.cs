@@ -11,15 +11,15 @@ internal static class MsaRleDecoder
         var written = 0;
         while (input < packed.Length && written < output.Length)
         {
-            if (packed[input] != 0xE5)
+            if (packed[input] != MsaFormat.RleMarker)
             {
                 output[written++] = packed[input++];
                 continue;
             }
-            if (input + 4 > packed.Length) throw new InvalidDataException("An MSA compressed run is truncated.");
-            var value = packed[input + 1];
-            var count = BinaryPrimitives.ReadUInt16BigEndian(packed[(input + 2)..]);
-            input += 4;
+            if (input + MsaLayout.RleSequenceSize > packed.Length) throw new InvalidDataException("An MSA compressed run is truncated.");
+            var value = packed[input + MsaLayout.RleValueOffset];
+            var count = BinaryPrimitives.ReadUInt16BigEndian(packed[(input + MsaLayout.RleCountOffset)..]);
+            input += MsaLayout.RleSequenceSize;
             if (count == 0 || written + count > output.Length) throw new InvalidDataException("An MSA compressed run exceeds its track.");
             output.AsSpan(written, count).Fill(value);
             written += count;

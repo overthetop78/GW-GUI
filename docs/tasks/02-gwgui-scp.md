@@ -1331,11 +1331,11 @@
     - [x] Créer `Containers/Atari/Msa/MsaRleDecoder.cs` et y déplacer `Unpack` sans changer l’ordre de lecture ni les conditions de rejet.
     - [x] Remplacer les suites d’instructions actuellement écrites sur une même ligne dans le Reader et le décodeur par une instruction par ligne.
     - [x] Conserver sur une seule ligne les signatures et expressions courtes qui tiennent lisiblement.
-  - [ ] Définitions MSA
-    - [ ] Créer `Containers/Atari/Msa/MsaFormat.cs` avec la signature `0x0E0F`, le marqueur RLE `0xE5` et l’identifiant Atari ST produit.
-    - [ ] Créer `Containers/Atari/Msa/MsaLayout.cs` avec la taille d’en-tête, les offsets des secteurs, faces et cylindres, la taille des longueurs de pistes et la taille sectorielle.
-    - [ ] Ajouter les limites actuelles de secteurs, faces et cylindres comme constantes nommées.
-    - [ ] Remplacer dans `MsaReader` et le décompresseur toutes les valeurs brutes correspondantes.
+  - [x] Définitions MSA
+    - [x] Créer `Containers/Atari/Msa/MsaFormat.cs` avec la signature `0x0E0F`, le marqueur RLE `0xE5` et l’identifiant Atari ST produit.
+    - [x] Créer `Containers/Atari/Msa/MsaLayout.cs` avec la taille d’en-tête, les offsets des secteurs, faces et cylindres, la taille des longueurs de pistes et la taille sectorielle.
+    - [x] Ajouter les limites actuelles de secteurs, faces et cylindres comme constantes nommées.
+    - [x] Remplacer dans `MsaReader` et le décompresseur toutes les valeurs brutes correspondantes.
   - [ ] Erreurs MSA
     - [ ] Créer `Containers/Atari/Msa/MsaExceptions.cs`.
     - [ ] Ajouter des méthodes permettant d’injecter piste, longueur compressée, longueur attendue et position.
