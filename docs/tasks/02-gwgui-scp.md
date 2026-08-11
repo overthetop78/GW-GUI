@@ -2037,7 +2037,7 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ArburgDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, ScanFmData, ScanSystemData, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/CenturionMfmDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/CenturionMfmDecoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `CenturionMfmDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, FindDataMark, SizeCode, Crc16`, avec paramètres, résultat, exceptions, unités et invariants applicables.
