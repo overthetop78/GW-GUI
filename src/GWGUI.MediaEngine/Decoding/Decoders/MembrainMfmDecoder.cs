@@ -8,7 +8,7 @@ public sealed class MembrainMfmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorHeader = [0x44, 0x89, 0x55, 0x54];
     private static readonly byte[] SectorData = [0x44, 0x89, 0x55, 0x4a];
-    public override string Id => FluxCodecIds.MembrainMfm; public override string DisplayName => "Membrain MFM";
+    public override string Id => FluxCodecIds.MembrainMfm; public override string DisplayName => FluxCodecDisplayNames.MembrainMfm;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorHeader, FluxStructureKind.FormatHeader, "Membrain sector header"), (SectorData, FluxStructureKind.FormatData, "Membrain sector data")];
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)

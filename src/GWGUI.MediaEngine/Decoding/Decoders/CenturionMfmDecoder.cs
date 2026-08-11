@@ -8,7 +8,7 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] SectorMark = [0x91, 0x22, 0x44, 0x89];
     private static readonly byte[] DataMark = [0xaa, 0xaa, 0xaa, 0xa9];
-    public override string Id => FluxCodecIds.CenturionMfm; public override string DisplayName => "Centurion MFM";
+    public override string Id => FluxCodecIds.CenturionMfm; public override string DisplayName => FluxCodecDisplayNames.CenturionMfm;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(SectorMark, FluxStructureKind.FormatHeader, "Centurion sector mark"), (DataMark, FluxStructureKind.FormatData, "Centurion data mark")];
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)

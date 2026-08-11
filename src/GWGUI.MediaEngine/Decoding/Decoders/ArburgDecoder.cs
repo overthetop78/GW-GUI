@@ -6,7 +6,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
 {
     private static readonly byte[] DataMark = [0x44,0x44,0x44,0x44,0x55,0x55,0x55,0x55];
     private static readonly byte[] SystemMark = [0x55,0x55,0x55,0x55,0x55,0x24,0x92,0x49];
-    public override string Id => FluxCodecIds.Arburg; public override string DisplayName => "Arburg system/data";
+    public override string Id => FluxCodecIds.Arburg; public override string DisplayName => FluxCodecDisplayNames.Arburg;
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(DataMark, FluxStructureKind.FormatData, "Arburg data block"), (SystemMark, FluxStructureKind.FormatHeader, "Arburg system block")];
 

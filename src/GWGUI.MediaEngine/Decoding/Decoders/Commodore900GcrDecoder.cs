@@ -12,7 +12,7 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     };
 
     public string Id => FluxCodecIds.Commodore900Gcr;
-    public string DisplayName => "Commodore 900 GCR";
+    public string DisplayName => FluxCodecDisplayNames.Commodore900Gcr;
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {

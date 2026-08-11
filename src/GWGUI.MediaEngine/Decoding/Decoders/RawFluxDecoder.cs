@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class RawFluxDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.Raw; public string DisplayName => "Flux brut";
+    public string Id => FluxCodecIds.Raw; public string DisplayName => FluxCodecDisplayNames.Raw;
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var median = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals);

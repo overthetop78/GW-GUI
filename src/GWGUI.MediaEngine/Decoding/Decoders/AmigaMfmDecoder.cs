@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Decoding;
 
 public sealed class AmigaMfmDecoder : IFluxDecoder
 {
-    public string Id => FluxCodecIds.AmigaMfm; public string DisplayName => "Amiga MFM";
+    public string Id => FluxCodecIds.AmigaMfm; public string DisplayName => FluxCodecDisplayNames.AmigaMfm;
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();

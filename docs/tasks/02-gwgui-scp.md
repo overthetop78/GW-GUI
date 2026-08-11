@@ -1881,10 +1881,10 @@
     - [x] Créer `Decoding/Definitions/FluxCodecDisplayNames.cs` séparément de `FluxCodecIds.cs`.
     - [x] Ajouter une constante pour chaque nom actuellement retourné en texte brut par la propriété `DisplayName` des décodeurs et encodeurs.
     - [x] Utiliser exactement un nom affiché par identifiant de codec et signaler dans les tests tout identifiant portant plusieurs noms contradictoires.
-  - [ ] Raccordement des décodeurs
-    - [ ] Remplacer les noms affichés bruts dans les décodeurs AED, Amiga, Apple II, Lisa, Macintosh, RWTS18, Arburg et Centurion.
-    - [ ] Remplacer les noms affichés bruts dans les décodeurs Commodore, Commodore 900, Data General, DEC RX02, E-mu, Heathkit et HP.
-    - [ ] Remplacer les noms affichés bruts dans les décodeurs ISO FM, ISO MFM, Membrain, Micral N, Micropolis, North Star, QD MO5, Raw Flux, TYCOM et Victor 9000.
+  - [x] Raccordement des décodeurs
+    - [x] Remplacer les noms affichés bruts dans les décodeurs AED, Amiga, Apple II, Lisa, Macintosh, RWTS18, Arburg et Centurion.
+    - [x] Remplacer les noms affichés bruts dans les décodeurs Commodore, Commodore 900, Data General, DEC RX02, E-mu, Heathkit et HP.
+    - [x] Remplacer les noms affichés bruts dans les décodeurs ISO FM, ISO MFM, Membrain, Micral N, Micropolis, North Star, QD MO5, Raw Flux, TYCOM et Victor 9000.
   - [ ] Raccordement des encodeurs
     - [ ] Remplacer les noms affichés bruts dans chaque encodeur possédant le même identifiant qu'un décodeur par la même constante de `FluxCodecDisplayNames`.
     - [ ] Remplacer les noms affichés propres aux encodeurs sans décodeur correspondant par une constante associée à leur identifiant de codec.

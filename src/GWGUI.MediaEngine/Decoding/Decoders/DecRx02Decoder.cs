@@ -8,7 +8,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
 {
     private static readonly byte[] HeaderMark = [0x55,0x11,0x15,0x54];
     private static readonly (byte[] Pattern, byte Mark)[] DataMarks = [([0x55,0x11,0x14,0x44], 0xf8), ([0x55,0x11,0x14,0x45], 0xf9), ([0x55,0x11,0x14,0x54], 0xfa), ([0x55,0x11,0x14,0x55], 0xfb), ([0x55,0x11,0x15,0x44], 0xfc), ([0x55,0x11,0x15,0x45], 0xfd)];
-    public override string Id => FluxCodecIds.DecRx02; public override string DisplayName => "DEC RX02 M²FM";
+    public override string Id => FluxCodecIds.DecRx02; public override string DisplayName => FluxCodecDisplayNames.DecRx02;
     protected override bool IsFm => true;
     protected override IReadOnlyList<(byte[], FluxStructureKind, string)> Signatures => [(HeaderMark, FluxStructureKind.FormatHeader, "DEC RX02 sector header"), .. DataMarks.Select(item => (item.Pattern, FluxStructureKind.FormatData, $"DEC RX02 {item.Mark:X2} data"))];
 
