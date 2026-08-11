@@ -124,7 +124,7 @@ public sealed class DecRx02RecognitionTests
             CanReadCalls++;
             return context.Length == DecRx02ImageReader.ImageSize &&
                    DecRx02ImageReader.LooksLikeRt11(
-                       await context.ReadBytesAsync(cancellationToken));
+                       (await context.ReadBytesAsync(cancellationToken)).Span);
         }
 
         /// <summary>Délègue la remise en ordre au lecteur RX02 public.</summary>

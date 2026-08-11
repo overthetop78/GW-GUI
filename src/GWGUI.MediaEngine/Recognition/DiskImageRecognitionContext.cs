@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.Recognition;
 public sealed class DiskImageRecognitionContext
 {
     /// <summary>Contenu du fichier chargé lors de la première demande.</summary>
-    private byte[]? bytes;
+    private ReadOnlyMemory<byte>? bytes;
 
     /// <summary>Crée le contexte associé à un fichier et au format éventuellement demandé.</summary>
     /// <param name="path">Chemin du fichier à reconnaître.</param>
@@ -35,9 +35,9 @@ public sealed class DiskImageRecognitionContext
     /// <exception cref="OperationCanceledException">Le jeton est annulé avant ou pendant la première lecture.</exception>
     /// <exception cref="IOException">Une erreur d'entrée-sortie empêche la lecture.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>
-    public async Task<byte[]> ReadBytesAsync(CancellationToken cancellationToken = default)
+    public async Task<ReadOnlyMemory<byte>> ReadBytesAsync(CancellationToken cancellationToken = default)
     {
         bytes ??= await File.ReadAllBytesAsync(Path, cancellationToken).ConfigureAwait(false);
-        return bytes;
+        return bytes.Value;
     }
 }

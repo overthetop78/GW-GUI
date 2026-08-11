@@ -16,7 +16,7 @@ internal sealed class MsxContainerPolicy(MsxImageReader reader) : IDiskImageReco
     {
         if (!context.Extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)) return false;
         return context.RequestedFormatId?.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-               MsxImageReader.LooksLikeMsx(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false));
+               MsxImageReader.LooksLikeMsx((await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false)).Span);
     }
 
     /// <summary>Lit l’image MSX validée par la politique.</summary>

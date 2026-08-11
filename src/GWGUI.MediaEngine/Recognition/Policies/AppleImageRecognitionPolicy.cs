@@ -26,10 +26,10 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
     public override async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
-        if (bytes.AsSpan().StartsWith(TwoImgFormat.SignatureBytes) ||
-            DiskCopyReader.HasPrivateWord(bytes) ||
-            bytes.AsSpan().StartsWith(WozFormat.Version1Signature) ||
-            bytes.AsSpan().StartsWith(WozFormat.Version2Signature))
+        if (bytes.Span.StartsWith(TwoImgFormat.SignatureBytes) ||
+            DiskCopyReader.HasPrivateWord(bytes.Span) ||
+            bytes.Span.StartsWith(WozFormat.Version1Signature) ||
+            bytes.Span.StartsWith(WozFormat.Version2Signature))
             return true;
 
         if (RawHints.Contains(context.Extension)) return true;

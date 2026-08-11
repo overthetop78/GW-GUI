@@ -39,5 +39,5 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     /// <param name="bytes">Contenu du fichier.</param>
     /// <param name="signature">Signature CPCEMU attendue.</param>
     /// <returns><see langword="true"/> lorsque la signature est complète et identique.</returns>
-    private static bool StartsWith(byte[] bytes, string signature) => bytes.AsSpan().StartsWith(System.Text.Encoding.ASCII.GetBytes(signature));
+    private static bool StartsWith(ReadOnlyMemory<byte> bytes, string signature) => bytes.Span.StartsWith(System.Text.Encoding.ASCII.GetBytes(signature));
 }

@@ -482,24 +482,24 @@
     - [x] Tester l’absence de candidat sans format demandé et avec un format explicitement demandé.
     - [x] Tester un candidat rejeté et vérifier son identité et son exception interne.
     - [x] Tester plusieurs rejets et vérifier que chacun reste présent dans l’erreur finale.
-- [ ] `src/GWGUI.MediaEngine/Recognition/IDiskImageRecognitionPolicy.cs`
-  - [ ] Responsabilité et stabilité du contrat
-    - [ ] Conserver l’interface à la racine de `Recognition` et la conserver publique pour les politiques ajoutées par les consommateurs du moteur.
-    - [ ] Conserver `ValueTask<bool>` pour la présélection, certaines politiques répondant immédiatement et d’autres devant examiner les octets partagés.
-    - [ ] Conserver `Task<SectorImage>` pour la validation et la lecture complète du candidat.
-    - [ ] Ne pas ajouter de niveau de priorité ou de force absent du fonctionnement retenu ; l’ordre reste celui du registre.
-  - [ ] Contrat du contexte partagé
-    - [ ] Adapter la documentation et les implémentations au contenu en `ReadOnlyMemory<byte>` fourni par `DiskImageRecognitionContext`.
-    - [ ] Préciser que `CanReadAsync` présélectionne seulement un candidat et que `ReadAsync` reste propriétaire de sa validation complète.
-    - [ ] Préciser que `ReadAsync` signale un contenu incompatible par `InvalidDataException` ou `NotSupportedException`, seules exceptions permettant au registre de poursuivre.
-  - [ ] Mise en forme
-    - [ ] Conserver les deux signatures complètes sur une seule ligne lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de l’interface et de ses deux méthodes.
-    - [ ] Documenter chaque paramètre, résultat, exception de rejet, annulation et erreur d’accès pouvant être propagée.
-  - [ ] Tests du contrat public
-    - [ ] Tester une politique synchrone incompatible et une politique asynchrone qui examine les octets partagés.
-    - [ ] Tester une politique qui valide puis lit le candidat et une politique dont la lecture le rejette avec chacune des deux exceptions prévues.
+- [x] `src/GWGUI.MediaEngine/Recognition/IDiskImageRecognitionPolicy.cs`
+  - [x] Responsabilité et stabilité du contrat
+    - [x] Conserver l’interface à la racine de `Recognition` et la conserver publique pour les politiques ajoutées par les consommateurs du moteur.
+    - [x] Conserver `ValueTask<bool>` pour la présélection, certaines politiques répondant immédiatement et d’autres devant examiner les octets partagés.
+    - [x] Conserver `Task<SectorImage>` pour la validation et la lecture complète du candidat.
+    - [x] Ne pas ajouter de niveau de priorité ou de force absent du fonctionnement retenu ; l’ordre reste celui du registre.
+  - [x] Contrat du contexte partagé
+    - [x] Adapter la documentation et les implémentations au contenu en `ReadOnlyMemory<byte>` fourni par `DiskImageRecognitionContext`.
+    - [x] Préciser que `CanReadAsync` présélectionne seulement un candidat et que `ReadAsync` reste propriétaire de sa validation complète.
+    - [x] Préciser que `ReadAsync` signale un contenu incompatible par `InvalidDataException` ou `NotSupportedException`, seules exceptions permettant au registre de poursuivre.
+  - [x] Mise en forme
+    - [x] Conserver les deux signatures complètes sur une seule ligne lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de l’interface et de ses deux méthodes.
+    - [x] Documenter chaque paramètre, résultat, exception de rejet, annulation et erreur d’accès pouvant être propagée.
+  - [x] Tests du contrat public
+    - [x] Tester une politique synchrone incompatible et une politique asynchrone qui examine les octets partagés.
+    - [x] Tester une politique qui valide puis lit le candidat et une politique dont la lecture le rejette avec chacune des deux exceptions prévues.
 - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/CoherentImageRecognitionPolicy.cs`
   - [ ] Responsabilité et raccordements
     - [ ] Conserver la politique sous `Recognition/Policies`, car elle présélectionne une image brute depuis la structure interne de son superbloc, indépendamment de l’extension.

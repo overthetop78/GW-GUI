@@ -23,8 +23,8 @@ public sealed class DiskImageRecognitionContextTests
             Assert.Equal(expectedBytes.Length, context.Length);
             Assert.Equal(".dsk", context.Extension);
             Assert.Equal("test.format", context.RequestedFormatId);
-            Assert.Equal(expectedBytes, firstRead);
-            Assert.Same(firstRead, secondRead);
+            Assert.Equal(expectedBytes, firstRead.ToArray());
+            Assert.Equal(firstRead, secondRead);
         }
         finally
         {

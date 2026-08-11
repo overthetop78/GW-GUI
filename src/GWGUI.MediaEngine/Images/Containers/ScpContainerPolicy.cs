@@ -17,7 +17,7 @@ internal sealed class ScpContainerPolicy(ScpImageExplorationService exploration,
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         return bytes.Length >= ScpFormatConstants.SignatureLength &&
-               bytes.AsSpan(0, ScpFormatConstants.SignatureLength).SequenceEqual(ScpFormatConstants.FileSignature);
+               bytes.Span[..ScpFormatConstants.SignatureLength].SequenceEqual(ScpFormatConstants.FileSignature);
     }
 
     /// <summary>Valide le format demandé puis lance la reconstruction de l’image SCP.</summary>

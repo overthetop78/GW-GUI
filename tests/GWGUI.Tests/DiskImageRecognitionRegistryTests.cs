@@ -27,7 +27,7 @@ public sealed class DiskImageRecognitionRegistryTests
             Assert.Equal(1, rejected.ReadCalls);
             Assert.Equal(1, accepted.CanReadCalls);
             Assert.Equal(1, accepted.ReadCalls);
-            Assert.Same(rejected.ReceivedBytes, accepted.ReceivedBytes);
+            Assert.Equal(rejected.ReceivedBytes, accepted.ReceivedBytes);
         }
         finally
         {
@@ -152,7 +152,7 @@ public sealed class DiskImageRecognitionRegistryTests
         /// <summary>Nombre d'appels de lecture reçus.</summary>
         public int ReadCalls { get; private set; }
         /// <summary>Référence du tableau partagé reçu pendant la lecture.</summary>
-        public byte[]? ReceivedBytes { get; private set; }
+        public ReadOnlyMemory<byte>? ReceivedBytes { get; private set; }
 
         /// <summary>Compte la présélection et retourne la décision configurée.</summary>
         public ValueTask<bool> CanReadAsync(
@@ -173,11 +173,11 @@ public sealed class DiskImageRecognitionRegistryTests
             if (rejection is not null) throw rejection;
             return new(
                 context.RequestedFormatId ?? "accepted.format",
-                ReceivedBytes.Length,
+                ReceivedBytes.Value.Length,
                 1,
                 1,
                 1,
-                [new SectorBlock(0, new SectorAddress(0, 0, 1), ReceivedBytes)]);
+                [new SectorBlock(0, new SectorAddress(0, 0, 1), ReceivedBytes.Value.ToArray())]);
         }
     }
 }

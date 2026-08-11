@@ -14,11 +14,11 @@ internal sealed class RawImgContainerPolicy : IDiskImageRecognitionPolicy
     public async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
-        var hasFatBpb = IbmPcImageReader.HasValidBpbGeometry(bytes);
-        var image = IbmPcImageReader.Create(bytes, cancellationToken);
-        if (!hasFatBpb && AmstradCpmFileSystemReader.LooksLikeCpcRawImage(bytes))
+        var hasFatBpb = IbmPcImageReader.HasValidBpbGeometry(bytes.Span);
+        var image = IbmPcImageReader.Create(bytes.Span, cancellationToken);
+        if (!hasFatBpb && AmstradCpmFileSystemReader.LooksLikeCpcRawImage(bytes.ToArray()))
             return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradCpc);
-        if (!hasFatBpb && AmstradCpmFileSystemReader.LooksLikePcwDiskSpecification(bytes))
+        if (!hasFatBpb && AmstradCpmFileSystemReader.LooksLikePcwDiskSpecification(bytes.Span))
             return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradPcw);
         return image;
     }

@@ -16,6 +16,6 @@ internal sealed class DecRx02ImageRecognitionPolicy(DecRx02ImageReader reader) :
         if (context.Length != DecRx02ImageReader.ImageSize) return false;
         if (context.RequestedFormatId?.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) == true)
             return true;
-        return DecRx02ImageReader.LooksLikeRt11(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false));
+        return DecRx02ImageReader.LooksLikeRt11((await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false)).Span);
     }
 }
