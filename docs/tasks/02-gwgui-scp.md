@@ -874,7 +874,7 @@
     - [x] Vérifier le rejet d’une image vide, d’une longueur non multiple d’une piste et d’un nombre de bits supérieur aux octets disponibles.
     - [x] Vérifier que NIB et WOZ sélectionnent la même famille et les mêmes secteurs lorsqu’ils contiennent les mêmes bits de piste.
     - [x] Tester séparément les limites de secteurs, les tailles attendues, les scores et le seuil de sélection RWTS18.
-- [ ] `src/GWGUI.MediaEngine/Images/AtrImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/AtrImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.
     - [x] Déplacer `WriteRawPayloadAsync` vers `Conversion/Atari/AtrPayloadWriter.cs`.
@@ -888,10 +888,10 @@
     - [x] Créer `Containers/Atari/Atr/AtrExceptions.cs`.
     - [x] Ajouter des méthodes recevant les valeurs observées et attendues pour l’en-tête, la taille sectorielle, la longueur déclarée et la charge utile tronquée.
     - [x] Remplacer tous les textes et constructions directes d’exception du Reader ATR.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AtrReader` et `AtrPayloadWriter`.
     - [x] Ajouter la documentation XML des méthodes `CanRead, ReadAsync, WriteRawPayloadAsync, ReadValidatedContainerAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-    - [ ] Compléter la documentation de `AtrPayloadWriter.WriteRawPayloadAsync` avec `ArgumentException`, `FileNotFoundException`, `UnauthorizedAccessException`, `IOException` et `OperationCanceledException`.
+    - [x] Compléter la documentation de `AtrPayloadWriter.WriteRawPayloadAsync` avec `ArgumentException`, `FileNotFoundException`, `UnauthorizedAccessException`, `IOException` et `OperationCanceledException`.
   - [x] Tests déterministes
     - [x] Utiliser dans `image_test` une image ATR à secteurs de 128 octets et une image ATR à secteurs de 256 octets avec les trois secteurs d’amorçage attendus ; appliquer la règle d’obtention d’image si elles manquent.
     - [x] Vérifier la signature, la longueur en paragraphes, la taille des secteurs, les adresses, la capacité et le contenu lus depuis chaque image.
