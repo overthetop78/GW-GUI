@@ -35,6 +35,14 @@ internal static class ArburgFormat
     public const int SystemZeroEncodedBitCount = 2;
     /// <summary>Nombre de bits encodant un bit système à un.</summary>
     public const int SystemOneEncodedBitCount = 3;
+    /// <summary>Premier bit commun aux représentations système de zéro et de un.</summary>
+    public const bool SystemPrefixBit = false;
+    /// <summary>Second bit représentant une valeur système à zéro.</summary>
+    public const bool SystemZeroSecondBit = true;
+    /// <summary>Second bit représentant une valeur système à un.</summary>
+    public const bool SystemOneSecondBit = false;
+    /// <summary>Troisième bit terminant une valeur système à un.</summary>
+    public const bool SystemOneThirdBit = true;
     /// <summary>Nombre de bits séparant deux blocs produits par l'encodeur.</summary>
     public const int GapBitCount = 64;
     /// <summary>Cylindre logique attribué aux blocs Arburg.</summary>

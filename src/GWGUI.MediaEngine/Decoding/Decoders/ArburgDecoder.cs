@@ -22,7 +22,7 @@ public sealed class ArburgDecoder : IFluxDecoder
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         ScanFmData(stream, structures, sectors, bytes);
         ScanSystemData(stream, structures, sectors, bytes);
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * ArburgFormat.ConfidenceSectorWeight + structures.Count) / ArburgFormat.ConfidenceDivisor), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
+        return new(Id, DisplayName, FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, ArburgFormat.ConfidenceSectorWeight, ArburgFormat.ConfidenceDivisor), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
     /// <summary>Analyse les blocs de données FM.</summary>
@@ -33,18 +33,16 @@ public sealed class ArburgDecoder : IFluxDecoder
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, DataMark)) continue;
-            var complete = offset + markBits + blockSize * ArburgFormat.FmEncodedByteBitCount <= stream.Bits.Length; bool? valid = null;
+            var complete = offset + markBits + blockSize * ArburgFormat.FmEncodedByteBitCount <= stream.Bits.Length;
+            (byte[] Data, bool Valid)? decoded = null;
             if (complete)
             {
-                var decoded = TryDecodeFmBytes(stream, offset + markBits, blockSize);
+                decoded = TryDecodeFmBlock(stream, offset + markBits, blockSize, usefulSize);
                 if (decoded is null) continue;
-                ushort checksum = 0; var data = new byte[usefulSize];
-                for (var index = 0; index < usefulSize; index++) { var value = Primitives.BitPrimitives.ReverseBits(decoded[index]); data[index] = value; checksum += value; }
-                var low = Primitives.BitPrimitives.ReverseBits(decoded[usefulSize]); var high = Primitives.BitPrimitives.ReverseBits(decoded[usefulSize + 1]);
-                valid = low == (byte)checksum && high == (byte)(checksum >> Primitives.BitPrimitives.BitsPerByte); bytes.AddRange(data);
+                bytes.AddRange(decoded.Value.Data);
             }
-            sectors.Add(new(ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, ArburgFormat.SectorSizeCode, blockSize, valid, offset, SectorIntegrityKind.Checksum));
-            structures.Add(new(FluxStructureKind.FormatData, offset, complete ? markBits + blockSize * ArburgFormat.FmEncodedByteBitCount : markBits, FluxStructureDescriptions.WithIntegrity(ArburgFormat.StructureDescriptionName, FluxStructureKind.FormatData, ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, blockSize, null, ArburgFormat.DataBlockDescription, ArburgFormat.ChecksumDescription, valid)));
+            sectors.Add(new(ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, ArburgFormat.SectorSizeCode, blockSize, decoded?.Valid, offset, SectorIntegrityKind.Checksum, decoded?.Data));
+            structures.Add(new(FluxStructureKind.FormatData, offset, complete ? markBits + blockSize * ArburgFormat.FmEncodedByteBitCount : markBits, FluxStructureDescriptions.WithIntegrity(ArburgFormat.StructureDescriptionName, FluxStructureKind.FormatData, ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, blockSize, null, ArburgFormat.DataBlockDescription, ArburgFormat.ChecksumDescription, decoded?.Valid)));
             offset += ArburgFormat.DataMarkAdvanceBitCount;
         }
     }
@@ -57,38 +55,22 @@ public sealed class ArburgDecoder : IFluxDecoder
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, SystemMark)) continue;
-            var decoded = TryDecodeSystemBytes(stream, offset + markBits, blockSize); bool? valid = null;
+            var decoded = TryDecodeSystemBlock(stream, offset + markBits, blockSize, usefulSize);
             if (decoded is not null)
             {
-                ushort checksum = 0; for (var index = 0; index < usefulSize; index++) checksum += decoded.Value.Bytes[index];
-                valid = decoded.Value.Bytes[usefulSize] == (byte)checksum && decoded.Value.Bytes[usefulSize + 1] == (byte)(checksum >> Primitives.BitPrimitives.BitsPerByte); bytes.AddRange(decoded.Value.Bytes.Take(usefulSize));
+                bytes.AddRange(decoded.Value.Data);
             }
-            sectors.Add(new(ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, ArburgFormat.SectorSizeCode, blockSize, valid, offset, SectorIntegrityKind.Checksum));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, decoded is null ? markBits : decoded.Value.EndOffset - offset, FluxStructureDescriptions.WithIntegrity(ArburgFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, blockSize, null, ArburgFormat.SystemBlockDescription, ArburgFormat.ChecksumDescription, valid)));
+            sectors.Add(new(ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, ArburgFormat.SectorSizeCode, blockSize, decoded?.Valid, offset, SectorIntegrityKind.Checksum, decoded?.Data));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, decoded is null ? markBits : decoded.Value.EndOffset - offset, FluxStructureDescriptions.WithIntegrity(ArburgFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, blockSize, null, ArburgFormat.SystemBlockDescription, ArburgFormat.ChecksumDescription, decoded?.Valid)));
             offset += ArburgFormat.SystemMarkAdvanceBitCount;
         }
     }
 
     /// <summary>Tente de décoder les octets d'un bloc système.</summary>
-    private static (byte[] Bytes, int EndOffset)? TryDecodeSystemBytes(FluxBitstream stream, int start, int count)
+    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSystemBlock(FluxBitstream stream, int start, int blockSize, int usefulSize)
     {
-        var result = new byte[count]; var offset = start;
-        for (var index = 0; index < count; index++)
-        {
-            byte value = 0;
-            for (var bit = 0; bit < Primitives.BitPrimitives.BitsPerByte; bit++)
-            {
-                if (offset + 2 > stream.Bits.Length || stream.Bits[offset]) return null;
-                if (stream.Bits[offset + 1]) offset += 2;
-                else
-                {
-                    if (offset + 3 > stream.Bits.Length || !stream.Bits[offset + 2]) return null;
-                    value |= (byte)(1 << bit); offset += 3;
-                }
-            }
-            result[index] = value;
-        }
-        return (result, offset);
+        var decoded = ArburgSystemCodec.Decode(stream, start, blockSize);
+        return decoded is null ? null : (decoded.Value.Bytes.Take(usefulSize).ToArray(), ArburgChecksum.IsValid(decoded.Value.Bytes, usefulSize), decoded.Value.EndOffset);
     }
 
     /// <summary>Tente de décoder une suite d'octets FM.</summary>
@@ -97,5 +79,13 @@ public sealed class ArburgDecoder : IFluxDecoder
         var result = new byte[count];
         for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeFmByte32(stream, offset + index * 32, out result[index])) return null;
         return result;
+    }
+
+    private static (byte[] Data, bool Valid)? TryDecodeFmBlock(FluxBitstream stream, int offset, int blockSize, int usefulSize)
+    {
+        var encoded = TryDecodeFmBytes(stream, offset, blockSize);
+        if (encoded is null) return null;
+        var block = encoded.Select(Primitives.BitPrimitives.ReverseBits).ToArray();
+        return (block.Take(usefulSize).ToArray(), ArburgChecksum.IsValid(block, usefulSize));
     }
 }

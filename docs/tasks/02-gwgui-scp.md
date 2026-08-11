@@ -2458,14 +2458,14 @@
       - [x] Y définir les tailles physiques et utiles `0xa00`, `0x9fe`, `0xf00` et `0xefe`, les deux octets de checksum et les paramètres des codages FM et système.
       - [x] Y définir l'adresse logique produite pour les deux blocs et les valeurs d'avancement du balayage.
       - [x] Remplacer toutes les valeurs et descriptions brutes correspondantes par ces définitions.
-    - [ ] Décodage des blocs
-      - [ ] Extraire le checksum additif 16 bits dans une opération Arburg commune aux deux formes de blocs.
-      - [ ] Faire retourner par chaque balayage les octets utiles décodés avec leur état de validation.
-      - [ ] Renseigner les données du `DecodedSector` au lieu de créer des secteurs sans charge utile.
-      - [ ] Utiliser les tailles physique et utile nommées à leurs emplacements actuels sans modifier la limite des données couvertes par le checksum.
-      - [ ] Extraire le décodage du codage système variable dans un composant nommé et documenté.
-      - [ ] Remplacer les descriptions textuelles brutes par un constructeur commun recevant le type, la taille et l'état du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec les paramètres Arburg.
+    - [x] Décodage des blocs
+      - [x] Extraire le checksum additif 16 bits dans une opération Arburg commune aux deux formes de blocs.
+      - [x] Faire retourner par chaque balayage les octets utiles décodés avec leur état de validation.
+      - [x] Renseigner les données du `DecodedSector` au lieu de créer des secteurs sans charge utile.
+      - [x] Utiliser les tailles physique et utile nommées à leurs emplacements actuels sans modifier la limite des données couvertes par le checksum.
+      - [x] Extraire le décodage du codage système variable dans un composant nommé et documenté.
+      - [x] Remplacer les descriptions textuelles brutes par un constructeur commun recevant le type, la taille et l'état du checksum.
+      - [x] Utiliser le calcul de confiance commun avec les paramètres Arburg.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
