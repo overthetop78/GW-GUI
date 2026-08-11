@@ -2030,9 +2030,9 @@
     - [x] Ajouter la documentation XML des types `AppleMacGcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeAtBitCell, DecodeCore, DecodeSixAndTwo, TryReadSymbols, FindMark`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleRwts18Decoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleRwts18Decoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleRwts18Decoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/ArburgDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `ArburgDecoder`.

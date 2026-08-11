@@ -5,10 +5,7 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
-/// <summary>
-/// Decodes Roland Gustafsson's Brøderbund RWTS18 track format: six physical
-/// sectors of 768 bytes (three independently scattered 256-byte pages) per track.
-/// </summary>
+/// <summary>Décode le format de piste Brøderbund RWTS18 de Roland Gustafsson : six secteurs physiques de 768 octets, formés chacun de trois pages indépendantes de 256 octets.</summary>
 public sealed class AppleRwts18Decoder : IFluxDecoder
 {
     /// <summary>Conserve la définition « Inverse » utilisée par ce codec.</summary>
@@ -20,10 +17,14 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.AppleRwts18;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP à décoder en NRZI RWTS18.</param><returns>Résultat du décodage.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
+    /// <summary>Décode directement les bits d'une piste RWTS18.</summary>
+    /// <param name="bits">Bits de la piste.</param><returns>Résultat du décodage.</returns>
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 
     /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
+    /// <param name="source">Flux binaire source.</param><returns>Structures, secteurs et octets RWTS18 reconnus.</returns>
     private FluxDecodeResult DecodeCore(FluxBitstream source)
     {
         var trackBitLength = source.Bits.Length;
