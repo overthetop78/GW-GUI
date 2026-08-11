@@ -5,6 +5,24 @@ namespace GWGUI.MediaEngine.Encoding.BitPacking;
 /// <summary>Convertit un flux d'octets en bits ordonnés du poids fort vers le poids faible.</summary>
 internal static class MsbFirstBitPacker
 {
+    /// <summary>Écrit des bits dans une destination en commençant par le bit de poids fort de chaque octet.</summary>
+    /// <param name="bits">Bits à écrire dans leur ordre logique.</param>
+    /// <param name="destination">Octets recevant les bits.</param>
+    /// <param name="paddingBit">Valeur appliquée aux bits de destination non remplacés.</param>
+    /// <exception cref="ArgumentException">La destination ne contient pas assez d'octets.</exception>
+    public static void Pack(IReadOnlyList<bool> bits, Span<byte> destination, bool paddingBit = false)
+    {
+        ArgumentNullException.ThrowIfNull(bits);
+        if (bits.Count > destination.Length * BitPrimitives.BitsPerByte) throw new ArgumentException("The destination cannot contain all supplied bits.", nameof(destination));
+        destination.Fill(paddingBit ? byte.MaxValue : byte.MinValue);
+        for (var bit = 0; bit < bits.Count; bit++)
+        {
+            var mask = (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit % BitPrimitives.BitsPerByte));
+            if (bits[bit]) destination[bit / BitPrimitives.BitsPerByte] |= mask;
+            else destination[bit / BitPrimitives.BitsPerByte] &= (byte)~mask;
+        }
+    }
+
     /// <summary>Calcule le nombre d'octets requis pour contenir un nombre positif de bits.</summary>
     /// <param name="bitCount">Nombre de bits à stocker.</param>
     /// <returns>Nombre minimal d'octets requis.</returns>

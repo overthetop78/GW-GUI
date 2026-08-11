@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Encoding.BitPacking;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -27,7 +28,7 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         var output = new byte[tracks.Count * NibLayout.TrackLengthBytes];
         Array.Fill(output, (byte)0xff);
         for (var track = 0; track < tracks.Count; track++)
-            PackBits(tracks[track], output.AsSpan(track * NibLayout.TrackLengthBytes, NibLayout.TrackLengthBytes));
+            MsbFirstBitPacker.Pack(tracks[track], output.AsSpan(track * NibLayout.TrackLengthBytes, NibLayout.TrackLengthBytes), true);
         await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
     }
 
@@ -59,7 +60,7 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
         for (var track = 0; track < tracks.Count; track++)
         {
             var entry = trks.AsSpan(track * WozLayout.Woz1TrackEntryLength, WozLayout.Woz1TrackEntryLength);
-            PackBits(tracks[track], entry[..WozLayout.Woz1BitCountOffset]);
+            MsbFirstBitPacker.Pack(tracks[track], entry[..WozLayout.Woz1BitCountOffset], true);
             BinaryPrimitives.WriteUInt16LittleEndian(entry.Slice(WozLayout.Woz1BitCountOffset, WozLayout.Woz1BitCountLength), checked((ushort)tracks[track].Count));
         }
         WriteChunk(stream, WozFormat.TracksChunkId, trks);
@@ -91,17 +92,6 @@ public sealed class AppleNibbleImageWriter(FluxEncoderRegistry? encoders = null)
             tracks.Add(encoded.Bits);
         }
         return tracks;
-    }
-
-    private static void PackBits(IReadOnlyList<bool> bits, Span<byte> destination)
-    {
-        destination.Fill(0xff);
-        for (var bit = 0; bit < bits.Count; bit++)
-        {
-            var mask = (byte)(1 << (BitPrimitives.BitsPerByte - 1 - bit % BitPrimitives.BitsPerByte));
-            if (bits[bit]) destination[bit / BitPrimitives.BitsPerByte] |= mask;
-            else destination[bit / BitPrimitives.BitsPerByte] &= (byte)~mask;
-        }
     }
 
     private static void WriteChunk(Stream stream, string id, byte[] data)

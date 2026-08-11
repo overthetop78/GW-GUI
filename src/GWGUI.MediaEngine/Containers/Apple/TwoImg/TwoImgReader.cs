@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Recognition.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Containers.Apple.TwoImg;
@@ -43,7 +43,7 @@ internal static class TwoImgReader
         {
             TwoImgImageFormat.DOS => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Do),
             TwoImgImageFormat.ProDOS => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Po),
-            TwoImgImageFormat.NIB => NibTrackImageReader.Read(payload),
+            TwoImgImageFormat.NIB => NibReader.Read(payload),
             _ => throw TwoImgExceptions.UnsupportedImageFormat(imageFormat)
         };
     }

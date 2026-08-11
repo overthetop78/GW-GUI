@@ -844,35 +844,36 @@
     - [x] Vérifier que le Reader NIB découpe toujours une image en pistes exactes de `6 656` octets après le déplacement.
     - [x] Vérifier que le Writer NIB et les pistes WOZ1 utilisent la même longueur sans recopier sa valeur.
 - [ ] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackImageReader.cs`
-  - [ ] Déplacement du Reader NIB
-    - [ ] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibReader.cs`.
-    - [ ] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter `AppleDiskImageReader`, `TwoImgReader` et les tests.
-    - [ ] Conserver dans `NibReader` la validation de la longueur du conteneur, son découpage en pistes et l’appel au décodeur partagé.
-  - [ ] Conversion commune entre octets et bits
-    - [ ] Déplacer `ConvertToBits` vers `Encoding/BitPacking/MsbFirstBitPacker.cs`, commun au Reader NIB, au Reader WOZ et aux Writers Apple.
-    - [ ] Faire valider au bit packer que `bitCount` est positif et ne dépasse pas le nombre de bits disponible dans les octets reçus.
-    - [ ] Remplacer les divisions, modulos, décalages et masques fondés sur huit bits par `BitPrimitives.BitsPerByte` et les primitives de bits communes.
-    - [ ] Faire utiliser le bit packer par `NibReader`, `WozReader` et les Writers concernés, puis supprimer `ConvertToBits` du Reader NIB.
-  - [ ] Décodage Apple commun aux pistes NIB et WOZ
-    - [ ] Créer `Decoding/Apple/AppleTrackDecodeSelector.cs` pour exécuter `AppleGcrDecoder` et `AppleRwts18Decoder` sur les mêmes bits et retourner leurs secteurs filtrés et leur score.
-    - [ ] Créer un résultat nommé contenant séparément les secteurs Apple II standards, les secteurs RWTS18 et leurs scores afin d’éviter les tuples recopiés.
-    - [ ] Déplacer depuis `WozReader` dans ce composant commun le filtrage par cylindre, numéro et taille de secteur ainsi que le calcul des scores par secteurs distincts, intégrité et nombre total.
-    - [ ] Faire utiliser ce composant par `NibReader` et `WozReader` au lieu de construire séparément les deux décodeurs et leurs listes de résultats.
+  - [x] Déplacement du Reader NIB
+    - [x] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibReader.cs`.
+    - [x] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter `AppleDiskImageReader`, `TwoImgReader` et les tests.
+    - [x] Conserver dans `NibReader` la validation de la longueur du conteneur, son découpage en pistes et l’appel au décodeur partagé.
+  - [x] Conversion commune entre octets et bits
+    - [x] Déplacer `ConvertToBits` vers `Encoding/BitPacking/MsbFirstBitPacker.cs`, commun au Reader NIB, au Reader WOZ et aux Writers Apple.
+    - [x] Faire valider au bit packer que `bitCount` est positif et ne dépasse pas le nombre de bits disponible dans les octets reçus.
+    - [x] Remplacer les divisions, modulos, décalages et masques fondés sur huit bits par `BitPrimitives.BitsPerByte` et les primitives de bits communes.
+    - [x] Faire utiliser le bit packer par `NibReader`, `WozReader` et les Writers concernés, puis supprimer `ConvertToBits` du Reader NIB.
+  - [x] Décodage Apple commun aux pistes NIB et WOZ
+    - [x] Créer `Decoding/Apple/AppleTrackDecodeSelector.cs` pour exécuter `AppleGcrDecoder` et `AppleRwts18Decoder` sur les mêmes bits et retourner leurs secteurs filtrés et leur score.
+    - [x] Créer un résultat nommé contenant séparément les secteurs Apple II standards, les secteurs RWTS18 et leurs scores afin d’éviter les tuples recopiés.
+    - [x] Déplacer depuis `WozReader` dans ce composant commun le filtrage par cylindre, numéro et taille de secteur ainsi que le calcul des scores par secteurs distincts, intégrité et nombre total.
+    - [x] Faire utiliser ce composant par `NibReader` et `WozReader` au lieu de construire séparément les deux décodeurs et leurs listes de résultats.
   - [ ] Règles Apple de sélection
-    - [ ] Créer des définitions Apple nommées pour les secteurs standards `0` à `15` de `256` octets, les secteurs RWTS18 `0` à `5` de `768` octets, les poids de score et le minimum actuel de deux pistes RWTS18 crédibles.
-    - [ ] Remplacer dans le sélecteur, `NibReader`, `WozReader` et les builders Apple chaque valeur brute correspondant exactement à ces règles.
+    - [x] Créer des définitions Apple nommées pour les secteurs standards `0` à `15` de `256` octets, les secteurs RWTS18 `0` à `5` de `768` octets, les poids de score et le minimum actuel de deux pistes RWTS18 crédibles.
+    - [x] Remplacer dans le sélecteur, `NibReader`, `WozReader` et les builders Apple chaque valeur brute correspondant exactement à ces règles.
     - [ ] Faire appeler par le Reader les builders Apple II et RWTS18 prévus dans les groupes de reconstruction, sans conserver leur construction sous `Images`.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne les conditions, appels à la conversion de bits et constructions courtes qui tiennent lisiblement.
-    - [ ] Conserver une instruction par ligne dans le parcours des pistes.
-  - [ ] Documentation XML et encodage
-    - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de `NibReader` et de ses membres.
-    - [ ] Documenter en français le bit packer, le sélecteur Apple, son résultat nommé, chaque règle extraite et tous leurs membres.
-  - [ ] Tests ciblés
-    - [ ] Lire par l’API Apple une image NIB Apple II standard et une image NIB RWTS18 dont les pistes et secteurs attendus sont connus.
-    - [ ] Vérifier le rejet d’une image vide, d’une longueur non multiple d’une piste et d’un nombre de bits supérieur aux octets disponibles.
-    - [ ] Vérifier que NIB et WOZ sélectionnent la même famille et les mêmes secteurs lorsqu’ils contiennent les mêmes bits de piste.
-    - [ ] Tester séparément les limites de secteurs, les tailles attendues, les scores et le seuil de sélection RWTS18.
+      - Dépendance restante : les builders demandés sont créés plus loin, dans les groupes de reconstruction `AppleIISectorImageBuilder` et `AppleRwts18SectorImageBuilder`. Cette action reste non cochée jusqu'à leur exécution dans l'ordre du document.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne les conditions, appels à la conversion de bits et constructions courtes qui tiennent lisiblement.
+    - [x] Conserver une instruction par ligne dans le parcours des pistes.
+  - [x] Documentation XML et encodage
+    - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue de `NibReader` et de ses membres.
+    - [x] Documenter en français le bit packer, le sélecteur Apple, son résultat nommé, chaque règle extraite et tous leurs membres.
+  - [x] Tests ciblés
+    - [x] Lire par l’API Apple une image NIB Apple II standard et une image NIB RWTS18 dont les pistes et secteurs attendus sont connus.
+    - [x] Vérifier le rejet d’une image vide, d’une longueur non multiple d’une piste et d’un nombre de bits supérieur aux octets disponibles.
+    - [x] Vérifier que NIB et WOZ sélectionnent la même famille et les mêmes secteurs lorsqu’ils contiennent les mêmes bits de piste.
+    - [x] Tester séparément les limites de secteurs, les tailles attendues, les scores et le seuil de sélection RWTS18.
 - [ ] `src/GWGUI.MediaEngine/Images/AtrImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le parser vers `Containers/Atari/Atr/AtrReader.cs`.

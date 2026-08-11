@@ -1,10 +1,10 @@
+using System.IO;
 using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Encoding.BitPacking;
-using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.Tests;
 
@@ -38,7 +38,23 @@ public sealed class AppleWozInternalsTests
         Assert.Equal(1, MsbFirstBitPacker.RequiredByteCount(8));
         Assert.Equal(2, MsbFirstBitPacker.RequiredByteCount(9));
         Assert.Equal([true, false, true, false, false], MsbFirstBitPacker.Unpack([0xa0], 5));
+        var packed = new byte[2];
+        MsbFirstBitPacker.Pack([true, false, true, false, false, false, false, false, true], packed);
+        Assert.Equal([0xa0, 0x80], packed);
+        Assert.Throws<ArgumentOutOfRangeException>(() => MsbFirstBitPacker.Unpack([0x00], 9));
     }
+
+    /// <summary>Vérifie les limites et tailles nommées utilisées pour filtrer les secteurs Apple.</summary>
+    [Fact]
+    public void AppleTrackSelectionRulesExposeExpectedLimitsAndSizes()
+    {
+        Assert.Equal((0, 15, 256), (AppleTrackSelectionRules.StandardMinimumSectorNumber, AppleTrackSelectionRules.StandardMaximumSectorNumber, AppleTrackSelectionRules.StandardSectorSize));
+        Assert.Equal((0, 5, 768), (AppleTrackSelectionRules.Rwts18MinimumSectorNumber, AppleTrackSelectionRules.Rwts18MaximumSectorNumber, AppleTrackSelectionRules.Rwts18SectorSize));
+    }
+
+    /// <summary>Vérifie qu'un conteneur NIB vide est rejeté.</summary>
+    [Fact]
+    public void NibReaderRejectsEmptyContainer() => Assert.Throws<InvalidDataException>(() => NibReader.Read([]));
 
     /// <summary>Vérifie le classement des secteurs Apple II standards selon leur nombre et leur intégrité.</summary>
     [Fact]
@@ -70,8 +86,8 @@ public sealed class AppleWozInternalsTests
     [Fact]
     public void Rwts18SelectionRequiresMoreThanOneDecodedTrack()
     {
-        Assert.NotEqual("apple2.rwts18", NibTrackImageReader.Read(CreateRwts18Nib(1)).FormatId);
-        Assert.Equal("apple2.rwts18", NibTrackImageReader.Read(CreateRwts18Nib(AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount)).FormatId);
+        Assert.NotEqual("apple2.rwts18", NibReader.Read(CreateRwts18Nib(1)).FormatId);
+        Assert.Equal("apple2.rwts18", NibReader.Read(CreateRwts18Nib(AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount)).FormatId);
     }
 
     /// <summary>Crée en mémoire le nombre demandé de pistes NIB RWTS18 à partir de l'encodeur du moteur.</summary>

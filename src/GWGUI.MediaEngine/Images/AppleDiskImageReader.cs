@@ -1,9 +1,9 @@
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
+using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Recognition.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -39,7 +39,7 @@ public sealed class AppleDiskImageReader : ISectorImageReader
             bytes.AsSpan().StartsWith(WozFormat.Version2Signature))
             return WozReader.Read(bytes);
         if (extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase))
-            return NibTrackImageReader.Read(bytes);
+            return NibReader.Read(bytes);
         return AppleRawImageReader.Read(bytes, extension);
     }
 
