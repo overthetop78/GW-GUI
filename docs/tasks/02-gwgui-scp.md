@@ -1450,7 +1450,7 @@
       - [x] Tester séparément l’absence de candidat et l’échec de tous les candidats présélectionnés.
       - [x] Vérifier qu’une collection injectée puis modifiée ne change pas le registre.
       - [x] Tester la propagation immédiate de l’annulation, d’une erreur d’accès et d’une exception non reconnue comme rejet de format.
-  - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
     - [x] Responsabilité et contrat de délégation
       - [x] Conserver le type abstrait sous `Recognition/Policies`, car il centralise uniquement le `ReadAsync` identique des politiques adossées à un Reader.
       - [x] Remplacer la fonction `Func<string, CancellationToken, Task<SectorImage>>` par une fonction recevant `DiskImageRecognitionContext` et `CancellationToken`.
@@ -1469,11 +1469,11 @@
       - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
       - [x] Documenter que la politique concrète choisit les données du contexte à transmettre et que le Reader reste propriétaire de la validation complète.
       - [x] Documenter les exceptions de rejet propagées par la fonction de lecture.
-    - [ ] Tests ciblés
-      - [ ] Tester le rejet d’une fonction de lecture nulle.
-      - [ ] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
-      - [ ] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
-      - [ ] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
+    - [x] Tests ciblés
+      - [x] Tester le rejet d’une fonction de lecture nulle.
+      - [x] Vérifier que `ReadAsync` transmet exactement le contexte et le jeton reçus à la fonction de lecture.
+      - [x] Vérifier avec Apple, Coherent et DEC RX02 qu’une présélection suivie de la lecture complète n’ouvre le fichier qu’une seule fois.
+      - [x] Comparer pour ces trois politiques l’image obtenue depuis le contexte avec celle obtenue par la façade publique utilisant le chemin.
   - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs`
     - [ ] Responsabilité et dépendances
       - [ ] Conserver cette politique spécialisée, car elle présélectionne CPCEMU puis attribue l’interprétation CPC ou PCW à l’image neutre produite par le Reader.
