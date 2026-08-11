@@ -30,13 +30,13 @@ public sealed class IsoMfmDecoder : IFluxDecoder
         var headers = new List<(int Offset, byte Cylinder, byte Head, byte Number, byte SizeCode, int Size, bool? Valid)>(); var dataMarks = new List<(int Offset, byte Mark)>();
         for (var offset = 0; offset + 64 <= originalLength; offset++)
         {
-            if (!stream.Match(offset, 0x4489) || !stream.Match(offset + 16, 0x4489) || !stream.Match(offset + 32, 0x4489)) continue;
-            var mark = stream.DecodeMfmByte(offset + 48); var kind = mark switch { 0xfe => FluxStructureKind.IdAddressMark, 0xfb => FluxStructureKind.DataAddressMark, 0xf8 => FluxStructureKind.DeletedDataAddressMark, _ => FluxStructureKind.Sync };
+            if (!FluxBitReader.Match(stream, offset, 0x4489) || !FluxBitReader.Match(stream, offset + 16, 0x4489) || !FluxBitReader.Match(stream, offset + 32, 0x4489)) continue;
+            var mark = FluxBitReader.DecodeMfmByte(stream, offset + 48); var kind = mark switch { 0xfe => FluxStructureKind.IdAddressMark, 0xfb => FluxStructureKind.DataAddressMark, 0xf8 => FluxStructureKind.DeletedDataAddressMark, _ => FluxStructureKind.Sync };
             var description = mark is 0xfe ? "En-tête de secteur MFM" : mark is 0xfb ? "Données de secteur MFM" : mark is 0xf8 ? "Données supprimées MFM" : $"Synchronisation MFM, marque 0x{mark:X2}";
             if (mark == 0xfe && offset + 160 <= stream.Bits.Length)
             {
-                var cylinder = stream.DecodeMfmByte(offset + 64); var head = stream.DecodeMfmByte(offset + 80); var number = stream.DecodeMfmByte(offset + 96); var sizeCode = stream.DecodeMfmByte(offset + 112);
-                var storedCrc = (ushort)((stream.DecodeMfmByte(offset + 128) << 8) | stream.DecodeMfmByte(offset + 144));
+                var cylinder = FluxBitReader.DecodeMfmByte(stream, offset + 64); var head = FluxBitReader.DecodeMfmByte(stream, offset + 80); var number = FluxBitReader.DecodeMfmByte(stream, offset + 96); var sizeCode = FluxBitReader.DecodeMfmByte(stream, offset + 112);
+                var storedCrc = (ushort)((FluxBitReader.DecodeMfmByte(stream, offset + 128) << 8) | FluxBitReader.DecodeMfmByte(stream, offset + 144));
                 var calculatedCrc = Crc16([0xa1, 0xa1, 0xa1, 0xfe, cylinder, head, number, sizeCode]); var valid = storedCrc == calculatedCrc;
                 headers.Add((offset, cylinder, head, number, sizeCode, sizeCode <= 7 ? 128 << sizeCode : 0, valid));
                 description = $"Secteur C{cylinder} H{head} R{number} N{sizeCode} ({(sizeCode <= 7 ? 128 << sizeCode : 0)} octets), CRC {(valid ? "valide" : "incorrect")}";
@@ -57,8 +57,8 @@ public sealed class IsoMfmDecoder : IFluxDecoder
                 var end = data.Value.Offset + 64 + (header.Size + 2) * 16;
                 if (end <= stream.Bits.Length)
                 {
-                    payload = Enumerable.Range(0, header.Size).Select(byteIndex => stream.DecodeMfmByte(data.Value.Offset + 64 + byteIndex * 16)).ToArray();
-                    var stored = (ushort)((stream.DecodeMfmByte(data.Value.Offset + 64 + header.Size * 16) << 8) | stream.DecodeMfmByte(data.Value.Offset + 64 + (header.Size + 1) * 16)); dataValid = stored == Crc16(new byte[] { 0xa1,0xa1,0xa1,data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
+                    payload = Enumerable.Range(0, header.Size).Select(byteIndex => FluxBitReader.DecodeMfmByte(stream, data.Value.Offset + 64 + byteIndex * 16)).ToArray();
+                    var stored = (ushort)((FluxBitReader.DecodeMfmByte(stream, data.Value.Offset + 64 + header.Size * 16) << 8) | FluxBitReader.DecodeMfmByte(stream, data.Value.Offset + 64 + (header.Size + 1) * 16)); dataValid = stored == Crc16(new byte[] { 0xa1,0xa1,0xa1,data.Value.Mark }.Concat(payload)); bytes.AddRange(payload);
                     structures.RemoveAll(structure => structure.BitOffset == data.Value.Offset); structures.Add(new(data.Value.Mark == 0xfb ? FluxStructureKind.DataAddressMark : FluxStructureKind.DeletedDataAddressMark, data.Value.Offset, end - data.Value.Offset, $"MFM {(data.Value.Mark == 0xf8 ? "deleted " : "")}data, {header.Size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                 }
             }

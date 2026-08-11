@@ -16,11 +16,11 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
         const int headerBits = 7 * 16; var pairedData = new HashSet<int>();
         for (var offset = 0; offset + SectorHeader.Length * 8 <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorHeader)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorHeader)) continue;
             var complete = offset + headerBits <= stream.Bits.Length;
             if (complete)
             {
-                var header = Enumerable.Range(0, 7).Select(index => stream.DecodeMfmByte(offset + index * 16)).ToArray();
+                var header = Enumerable.Range(0, 7).Select(index => FluxBitReader.DecodeMfmByte(stream, offset + index * 16)).ToArray();
                 var size = (header[4] << 8) | header[2]; var headerValid = header[0] == 0xc6 && Crc16(header) == 0; bytes.AddRange(header);
                 var dataOffset = FindDataMark(stream, offset + 1, Math.Min(stream.Bits.Length, offset + 104 * 8));
                 bool? dataValid = null; var structureEnd = offset + headerBits;
@@ -29,7 +29,7 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
                     pairedData.Add(dataOffset); var dataBlockBytes = 1 + size + 2; var dataEnd = (long)dataOffset + dataBlockBytes * 16L;
                     if (size > 0 && dataEnd <= stream.Bits.Length)
                     {
-                        var data = Enumerable.Range(0, dataBlockBytes).Select(index => stream.DecodeMfmByte(dataOffset + index * 16)).ToArray();
+                        var data = Enumerable.Range(0, dataBlockBytes).Select(index => FluxBitReader.DecodeMfmByte(stream, dataOffset + index * 16)).ToArray();
                         dataValid = data[0] is >= 0xc0 and <= 0xc3 && Crc16(data) == 0; bytes.AddRange(data.Skip(1).Take(size)); structureEnd = (int)dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"AED 6200P data {data[0]:X2}, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                     }
@@ -43,13 +43,13 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
             else structures.Add(new(FluxStructureKind.FormatHeader, offset, SectorHeader.Length * 8, "AED 6200P C6 header mark"));
             if (!complete) offset += SectorHeader.Length * 8 - 1;
         }
-        for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (SectorData.Any(mark => stream.MatchBytes(offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, "Unpaired AED 6200P data block")); offset += 15; }
+        for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark)) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, 16, "Unpaired AED 6200P data block")); offset += 15; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
     private static int FindDataMark(FluxBitstream stream, int start, int end)
     {
-        for (var offset = Math.Max(0, start); offset + 16 <= end; offset++) if (SectorData.Any(mark => stream.MatchBytes(offset, mark))) return offset;
+        for (var offset = Math.Max(0, start); offset + 16 <= end; offset++) if (SectorData.Any(mark => FluxBitReader.MatchBytes(stream, offset, mark))) return offset;
         return -1;
     }
 

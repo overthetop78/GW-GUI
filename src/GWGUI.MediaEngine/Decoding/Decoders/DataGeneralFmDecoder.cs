@@ -23,8 +23,8 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             var headerOffset = syncOffsets[index];
             var headerStart = headerOffset + 32;
             if (headerStart + 32 > stream.Bits.Length) continue;
-            var cylinderByte = stream.DecodeMfmByte(headerStart);
-            var sectorByte = stream.DecodeMfmByte(headerStart + 16);
+            var cylinderByte = FluxBitReader.DecodeMfmByte(stream, headerStart);
+            var sectorByte = FluxBitReader.DecodeMfmByte(stream, headerStart + 16);
             var cylinder = (byte)(cylinderByte & 0x7f);
             var head = (byte)(cylinderByte >> 7);
             var sectorNumber = sectorByte >> 2;
@@ -37,7 +37,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             bool? valid = null;
             if (dataStart + dataBytes * 16 <= stream.Bits.Length)
             {
-                var block = Enumerable.Range(0, dataBytes).Select(byteIndex => stream.DecodeMfmByte(dataStart + byteIndex * 16)).ToArray();
+                var block = Enumerable.Range(0, dataBytes).Select(byteIndex => FluxBitReader.DecodeMfmByte(stream, dataStart + byteIndex * 16)).ToArray();
                 var stored = (ushort)((block[512] << 8) | block[513]);
                 valid = Checksum(block.AsSpan(0, 512)) == stored;
                 bytes.AddRange(block.AsSpan(0, 512).ToArray());
@@ -56,7 +56,7 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
     private static List<int> FindAll(FluxBitstream stream, IReadOnlyList<byte> pattern)
     {
         var offsets = new List<int>();
-        for (var offset = 0; offset + pattern.Count * 8 <= stream.Bits.Length; offset++) if (stream.MatchBytes(offset, pattern)) offsets.Add(offset);
+        for (var offset = 0; offset + pattern.Count * 8 <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) offsets.Add(offset);
         return offsets;
     }
 

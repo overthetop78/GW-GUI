@@ -25,7 +25,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
         const int markBits = 24; const int headerSymbols = 5; const int dataSymbols = 704;
         for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, AddressMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, AddressMark)) continue;
             var header = TryReadSymbols(stream, offset + markBits, headerSymbols); bool? headerValid = null; byte cylinder = 0, head = 0, number = 0;
             if (header is not null && header.All(Inverse.ContainsKey))
             {
@@ -53,7 +53,7 @@ public class AppleMacGcrDecoder : IFluxDecoder
             structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(markBits, headerEnd - offset), $"Apple Macintosh C{cylinder} H{head} S{number}, address checksum {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
             offset = headerValid == true ? Math.Max(offset + markBits - 1, structureEnd - 1) : offset + markBits - 1;
         }
-        for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++) if (stream.MatchBytes(offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, markBits, "Unpaired Apple Macintosh data prologue")); offset += markBits - 1; }
+        for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, markBits, "Unpaired Apple Macintosh data prologue")); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
 
@@ -81,11 +81,11 @@ public class AppleMacGcrDecoder : IFluxDecoder
     private static byte[]? TryReadSymbols(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * 8 > stream.Bits.Length) return null;
-        return Enumerable.Range(0, count).Select(index => stream.DecodeByte(offset + index * 8)).ToArray();
+        return Enumerable.Range(0, count).Select(index => FluxBitReader.DecodeByte(stream, offset + index * 8)).ToArray();
     }
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
-        for (var offset = start; offset + mark.Count * 8 <= end; offset++) if (stream.MatchBytes(offset, mark)) return offset;
+        for (var offset = start; offset + mark.Count * 8 <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
         return -1;
     }
 }

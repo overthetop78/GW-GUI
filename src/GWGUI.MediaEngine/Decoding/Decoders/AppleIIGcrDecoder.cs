@@ -20,7 +20,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
         var structures = new List<FluxStructure>(); var bytes = new List<byte>(); var sectors = new List<DecodedSector>(); var pairedData = new HashSet<int>();
         for (var offset = 0; offset < trackBitLength && offset + 24 <= stream.Bits.Length; offset++)
         {
-            if (!stream.Match(offset, 0xD5AA96, 24)) continue;
+            if (!FluxBitReader.Match(stream, offset, 0xD5AA96, 24)) continue;
             var address = TryReadBytes(stream.Bits, offset + 24, 8); bool? headerValid = null; byte volume = 0; byte cylinder = 0; byte number = 0;
             if (address is not null)
             {
@@ -49,7 +49,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
             offset = headerValid == true ? Math.Max(offset + 23, structureEnd - 1) : offset + 23;
         }
         DecodeFiveAndThree(stream, trackBitLength, structures, bytes, sectors, pairedData);
-        for (var offset = 0; offset < trackBitLength && offset + 24 <= stream.Bits.Length; offset++) if (stream.Match(offset, 0xD5AAAD, 24) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, 24, "Unpaired Apple II data prologue D5 AA AD")); offset += 23; }
+        for (var offset = 0; offset < trackBitLength && offset + 24 <= stream.Bits.Length; offset++) if (FluxBitReader.Match(stream, offset, 0xD5AAAD, 24) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, 24, "Unpaired Apple II data prologue D5 AA AD")); offset += 23; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 32d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
@@ -58,7 +58,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     {
         for (var offset = 0; offset < trackBitLength && offset + 24 <= stream.Bits.Length; offset++)
         {
-            if (!stream.Match(offset, 0xD5AAB5, 24)) continue;
+            if (!FluxBitReader.Match(stream, offset, 0xD5AAB5, 24)) continue;
             var address = TryReadBytes(stream.Bits, offset + 24, 8); bool? headerValid = null;
             byte volume = 0, cylinder = 0, number = 0;
             if (address is not null)
@@ -99,7 +99,7 @@ public sealed class AppleGcrDecoder : IFluxDecoder
     }
     private static int Find(FluxBitstream stream, int start, int end, uint mark)
     {
-        for (var offset = Math.Max(0, start); offset + 24 <= end; offset++) if (stream.Match(offset, mark, 24)) return offset;
+        for (var offset = Math.Max(0, start); offset + 24 <= end; offset++) if (FluxBitReader.Match(stream, offset, mark, 24)) return offset;
         return -1;
     }
     private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(bool[] bits, int offset)

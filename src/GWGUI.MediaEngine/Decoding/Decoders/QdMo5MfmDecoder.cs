@@ -17,14 +17,14 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
         const int headerBits = 10 * 8 + 16 * 16;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, HeaderMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
             if (offset + headerBits > stream.Bits.Length)
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "QD MO5 sector header"));
                 offset += markBits - 1; continue;
             }
 
-            var high = stream.DecodeMfmByte(offset + markBits); var low = stream.DecodeMfmByte(offset + markBits + 16);
+            var high = FluxBitReader.DecodeMfmByte(stream, offset + markBits); var low = FluxBitReader.DecodeMfmByte(stream, offset + markBits + 16);
             var number = (high << 8) | low; bytes.Add(high); bytes.Add(low);
             var dataOffset = FindNextData(stream, offset + headerBits, (88 + 16) * 8);
             var completeData = dataOffset >= 0 && dataOffset + 10 * 8 + 130 * 16 <= stream.Bits.Length;
@@ -32,8 +32,8 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
             if (completeData)
             {
                 byte checksum = 0; var data = new byte[128];
-                for (var index = 0; index < 129; index++) { var value = stream.DecodeMfmByte(dataOffset + 10 * 8 + index * 16); checksum += value; if (index > 0) data[index - 1] = value; }
-                var stored = stream.DecodeMfmByte(dataOffset + 10 * 8 + 129 * 16); checksumValid = checksum == stored;
+                for (var index = 0; index < 129; index++) { var value = FluxBitReader.DecodeMfmByte(stream, dataOffset + 10 * 8 + index * 16); checksum += value; if (index > 0) data[index - 1] = value; }
+                var stored = FluxBitReader.DecodeMfmByte(stream, dataOffset + 10 * 8 + 129 * 16); checksumValid = checksum == stored;
                 pairedDataMarks.Add(dataOffset); bytes.AddRange(data);
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, 10 * 8 + 130 * 16, $"QD MO5 R{number} data, checksum {(checksumValid == true ? "valid" : "invalid")}"));
             }
@@ -43,7 +43,7 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
         }
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!pairedDataMarks.Contains(offset) && stream.MatchBytes(offset, DataMark)) structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "QD MO5 sector data"));
+            if (!pairedDataMarks.Contains(offset) && FluxBitReader.MatchBytes(stream, offset, DataMark)) structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "QD MO5 sector data"));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
@@ -53,8 +53,8 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
         var end = Math.Min(stream.Bits.Length - DataMark.Length * 8, start + maximumDistance);
         for (var offset = start; offset <= end; offset++)
         {
-            if (stream.MatchBytes(offset, DataMark)) return offset;
-            if (stream.MatchBytes(offset, HeaderMark)) return -1;
+            if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset;
+            if (FluxBitReader.MatchBytes(stream, offset, HeaderMark)) return -1;
         }
         return -1;
     }

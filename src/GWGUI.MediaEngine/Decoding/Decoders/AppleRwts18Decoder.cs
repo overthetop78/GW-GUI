@@ -33,7 +33,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
 
         for (var offset = 0; offset + 16 <= trackBitLength; offset++)
         {
-            if (!stream.Match(offset, 0xd59d, 16)) continue;
+            if (!FluxBitReader.Match(stream, offset, 0xd59d, 16)) continue;
             var cursor = offset + 16;
             var address = AppleBitLatch.TryReadBytes(stream.Bits, ref cursor, 4);
             if (address is null || !Inverse.TryGetValue(address[0], out var track) ||

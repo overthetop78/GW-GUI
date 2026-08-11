@@ -17,15 +17,15 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
         const int markBits = 4 * 16; const int syncOffset = 3 * 16; const int blockBytes = 1 + 2 + 128 + 1;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
             var blockStart = offset + syncOffset;
             var complete = blockStart + blockBytes * 16 <= stream.Bits.Length;
             if (complete)
             {
-                var number = stream.DecodeMfmByte(blockStart + 16);
-                var cylinder = stream.DecodeMfmByte(blockStart + 32);
-                var data = Enumerable.Range(0, 128).Select(index => stream.DecodeMfmByte(blockStart + (3 + index) * 16)).ToArray();
-                var storedChecksum = stream.DecodeMfmByte(blockStart + 131 * 16);
+                var number = FluxBitReader.DecodeMfmByte(stream, blockStart + 16);
+                var cylinder = FluxBitReader.DecodeMfmByte(stream, blockStart + 32);
+                var data = Enumerable.Range(0, 128).Select(index => FluxBitReader.DecodeMfmByte(stream, blockStart + (3 + index) * 16)).ToArray();
+                var storedChecksum = FluxBitReader.DecodeMfmByte(stream, blockStart + 131 * 16);
                 byte checksum = 0;
                 foreach (var value in data) checksum = UpdateChecksum(checksum, value);
                 var valid = checksum == storedChecksum;

@@ -20,7 +20,7 @@ public sealed class HpMmfmDecoder : IFluxDecoder
 
         for (var offset = 0; offset + 32 + 64 <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorSync)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorSync)) continue;
 
             var id = DecodeBytes(stream, offset + 32, 4);
             var headerValid = Crc16(id) == 0;
@@ -61,11 +61,11 @@ public sealed class HpMmfmDecoder : IFluxDecoder
     }
 
     private static byte[] DecodeBytes(FluxBitstream stream, int offset, int count) =>
-        Enumerable.Range(0, count).Select(index => stream.DecodeMfmByte(offset + index * 16)).ToArray();
+        Enumerable.Range(0, count).Select(index => FluxBitReader.DecodeMfmByte(stream, offset + index * 16)).ToArray();
 
     private static int Find(FluxBitstream stream, int start, int end, IReadOnlyList<byte> pattern)
     {
-        for (var offset = start; offset + pattern.Count * 8 <= end; offset++) if (stream.MatchBytes(offset, pattern)) return offset;
+        for (var offset = start; offset + pattern.Count * 8 <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, pattern)) return offset;
         return -1;
     }
 

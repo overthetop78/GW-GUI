@@ -18,14 +18,14 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
         const int headerTailBits = 4 * 16;
         for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
             var complete = offset + signatureBits + headerTailBits <= stream.Bits.Length;
             if (complete)
             {
-                var volume = ReverseBits(stream.DecodeMfmByte(offset + signatureBits));
-                var cylinder = ReverseBits(stream.DecodeMfmByte(offset + signatureBits + 16));
-                var sectorNumber = ReverseBits(stream.DecodeMfmByte(offset + signatureBits + 32));
-                var stored = ReverseBits(stream.DecodeMfmByte(offset + signatureBits + 48));
+                var volume = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits));
+                var cylinder = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 16));
+                var sectorNumber = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 32));
+                var stored = ReverseBits(FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 48));
                 byte checksum = 0;
                 foreach (var value in new[] { volume, cylinder, sectorNumber }) { checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1)); }
                 var headerValid = stored == checksum; var dataOffset = FindNextMark(stream, offset + signatureBits + headerTailBits, (88 + 16) * 8); bool? dataValid = null; var structureEnd = offset + signatureBits + headerTailBits;
@@ -35,8 +35,8 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
                     pairedData.Add(dataOffset); var dataEnd = dataOffset + signatureBits + 257 * 16;
                     if (dataEnd <= stream.Bits.Length)
                     {
-                        var data = Enumerable.Range(0, 256).Select(index => ReverseBits(stream.DecodeMfmByte(dataOffset + signatureBits + index * 16))).ToArray();
-                        var dataStored = ReverseBits(stream.DecodeMfmByte(dataOffset + signatureBits + 256 * 16)); byte dataChecksum = 0;
+                        var data = Enumerable.Range(0, 256).Select(index => ReverseBits(FluxBitReader.DecodeMfmByte(stream, dataOffset + signatureBits + index * 16))).ToArray();
+                        var dataStored = ReverseBits(FluxBitReader.DecodeMfmByte(stream, dataOffset + signatureBits + 256 * 16)); byte dataChecksum = 0;
                         foreach (var value in data) { dataChecksum ^= value; dataChecksum = (byte)((dataChecksum >> 7) | (dataChecksum << 1)); }
                         dataValid = dataStored == dataChecksum; bytes.AddRange(data); structureEnd = dataEnd;
                         structures.Add(new(FluxStructureKind.FormatData, dataOffset, dataEnd - dataOffset, $"Heathkit data, 256 bytes, checksum {(dataValid == true ? "valid" : "invalid")}"));
@@ -51,14 +51,14 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
             else structures.Add(new(FluxStructureKind.FormatHeader, offset, signatureBits, "Heathkit hard-sector header"));
             if (!complete) offset += signatureBits - 1;
         }
-        for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++) if (stream.MatchBytes(offset, SectorMark) && !pairedData.Contains(offset) && structures.All(item => item.BitOffset != offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, signatureBits, "Unpaired Heathkit data block")); offset += signatureBits - 1; }
+        for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark) && !pairedData.Contains(offset) && structures.All(item => item.BitOffset != offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, signatureBits, "Unpaired Heathkit data block")); offset += signatureBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
     private static int FindNextMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - SectorMark.Length * 8, start + maximumDistance);
-        for (var offset = start; offset <= end; offset++) if (stream.MatchBytes(offset, SectorMark)) return offset;
+        for (var offset = start; offset <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return offset;
         return -1;
     }
 

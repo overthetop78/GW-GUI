@@ -17,19 +17,19 @@ public sealed class NorthstarMfmDecoder : SignatureMfmDecoder
         const int payloadBits = 512 * 16;
         for (var offset = 0; offset + signatureBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
             var hasIdentity = offset + signatureBits + 16 <= stream.Bits.Length; var fullBlock = offset + signatureBits + 16 + payloadBits + 16 <= stream.Bits.Length;
-            var info = hasIdentity ? stream.DecodeMfmByte(offset + signatureBits) : (byte)0;
+            var info = hasIdentity ? FluxBitReader.DecodeMfmByte(stream, offset + signatureBits) : (byte)0;
             var cylinder = (byte)(info >> 4); var sectorNumber = (byte)(info & 0x0f); bool? checksumValid = null;
             if (fullBlock)
             {
                 byte checksum = 0; var data = new byte[512];
                 for (var index = 0; index < 512; index++)
                 {
-                    var value = stream.DecodeMfmByte(offset + signatureBits + 16 + index * 16); data[index] = value;
+                    var value = FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 16 + index * 16); data[index] = value;
                     checksum ^= value; checksum = (byte)((checksum >> 7) | (checksum << 1));
                 }
-                var stored = stream.DecodeMfmByte(offset + signatureBits + 16 + payloadBits);
+                var stored = FluxBitReader.DecodeMfmByte(stream, offset + signatureBits + 16 + payloadBits);
                 checksumValid = stored == checksum; bytes.Add(info); bytes.AddRange(data);
             }
             if (hasIdentity) sectors.Add(new(cylinder, 0, sectorNumber, 2, 512, checksumValid, offset, SectorIntegrityKind.Checksum));

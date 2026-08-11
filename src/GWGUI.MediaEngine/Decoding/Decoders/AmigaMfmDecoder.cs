@@ -11,7 +11,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
         const int encodedBytes = 540; const int headerBytes = 28; const int dataOffset = 28; const int dataBytes = 512;
         for (var offset = 0; offset + 32 <= stream.Bits.Length; offset++)
         {
-            if (!stream.Match(offset, 0x4489) || !stream.Match(offset + 16, 0x4489)) continue;
+            if (!FluxBitReader.Match(stream, offset, 0x4489) || !FluxBitReader.Match(stream, offset + 16, 0x4489)) continue;
             var encoded = TryDecodeMfmBytes(stream, offset + 32, encodedBytes); var available = encoded ?? TryDecodeMfmBytes(stream, offset + 32, headerBytes);
             bool? headerValid = null; bool? dataValid = null; byte cylinder = 0; byte head = 0; byte number = 0; var length = 32; byte[]? payload = null;
             if (available is not null)
@@ -36,7 +36,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * 16 > stream.Bits.Length) return null; var result = new byte[count];
-        for (var index = 0; index < count; index++) result[index] = stream.DecodeMfmByte(offset + index * 16);
+        for (var index = 0; index < count; index++) result[index] = FluxBitReader.DecodeMfmByte(stream, offset + index * 16);
         return result;
     }
     private static byte[] DecodeOddEven(IReadOnlyList<byte> encoded)

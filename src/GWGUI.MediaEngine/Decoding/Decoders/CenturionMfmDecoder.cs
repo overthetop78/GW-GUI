@@ -17,11 +17,11 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
         const int headerBits = markBits + 4 * 16;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark)) continue;
             var complete = offset + headerBits <= stream.Bits.Length;
             if (complete)
             {
-                var header = Enumerable.Range(0, 4).Select(index => stream.DecodeMfmByte(offset + markBits + index * 16)).ToArray();
+                var header = Enumerable.Range(0, 4).Select(index => FluxBitReader.DecodeMfmByte(stream, offset + markBits + index * 16)).ToArray();
                 var headerValid = Crc16(header) == 0; bytes.AddRange(header);
                 var dataOffset = FindDataMark(stream, offset + headerBits + 400); bool? dataValid = null; var size = 0; var structureEnd = offset + headerBits;
                 if (dataOffset >= 0)
@@ -29,11 +29,11 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
                     pairedData.Add(dataOffset); var prefixEnd = dataOffset + markBits + 3 * 16;
                     if (prefixEnd <= stream.Bits.Length)
                     {
-                        var key = stream.DecodeMfmByte(dataOffset + markBits); size = (stream.DecodeMfmByte(dataOffset + markBits + 16) << 8) | stream.DecodeMfmByte(dataOffset + markBits + 32);
+                        var key = FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits); size = (FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits + 16) << 8) | FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits + 32);
                         var dataEnd = (long)prefixEnd + (size + 2L) * 16;
                         if (key == 0 && size > 0 && dataEnd <= stream.Bits.Length)
                         {
-                            var block = Enumerable.Range(0, size + 4).Select(index => stream.DecodeMfmByte(dataOffset + markBits + 16 + index * 16)).ToArray();
+                            var block = Enumerable.Range(0, size + 4).Select(index => FluxBitReader.DecodeMfmByte(stream, dataOffset + markBits + 16 + index * 16)).ToArray();
                             dataValid = Crc16(block) == 0; bytes.AddRange(block.Skip(2).Take(size)); structureEnd = (int)dataEnd;
                             structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, $"Centurion data, {size} bytes, CRC {(dataValid == true ? "valid" : "invalid")}"));
                         }
@@ -49,13 +49,13 @@ public sealed class CenturionMfmDecoder : SignatureMfmDecoder
             else structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "Centurion sector mark"));
             if (!complete) offset += markBits - 1;
         }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (stream.MatchBytes(offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Unpaired Centurion data block")); offset += markBits - 1; }
+        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Unpaired Centurion data block")); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
     private static int FindDataMark(FluxBitstream stream, int start)
     {
-        for (var offset = Math.Max(0, start); offset + DataMark.Length * 8 <= stream.Bits.Length; offset++) { if (stream.MatchBytes(offset, SectorMark)) return -1; if (stream.MatchBytes(offset, DataMark)) return offset; }
+        for (var offset = Math.Max(0, start); offset + DataMark.Length * 8 <= stream.Bits.Length; offset++) { if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return -1; if (FluxBitReader.MatchBytes(stream, offset, DataMark)) return offset; }
         return -1;
     }
 

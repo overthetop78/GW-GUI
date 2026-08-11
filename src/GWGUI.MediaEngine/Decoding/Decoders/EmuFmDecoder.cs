@@ -18,9 +18,9 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
         const int sectorSize = 0xe00;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SectorMark) || offset + headerBits > stream.Bits.Length) continue;
-            var rawTrack = stream.DecodeFmByte32(offset + markBits);
-            var crcHigh = stream.DecodeFmByte32(offset + markBits + 32); var crcLow = stream.DecodeFmByte32(offset + markBits + 64);
+            if (!FluxBitReader.MatchBytes(stream, offset, SectorMark) || offset + headerBits > stream.Bits.Length) continue;
+            var rawTrack = FluxBitReader.DecodeFmByte32(stream, offset + markBits);
+            var crcHigh = FluxBitReader.DecodeFmByte32(stream, offset + markBits + 32); var crcLow = FluxBitReader.DecodeFmByte32(stream, offset + markBits + 64);
             if (Crc16([rawTrack, crcHigh, crcLow]) != 0) continue;
 
             var track = ReverseBits(rawTrack); var cylinder = (byte)(track >> 1); var head = (byte)(track & 1); bytes.Add(track); classifiedMarks.Add(offset);
@@ -30,7 +30,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
             if (completeData)
             {
                 ushort crc = 0; var data = new byte[sectorSize];
-                for (var index = 0; index < sectorSize + 2; index++) { var value = stream.DecodeFmByte32(dataOffset + markBits + index * 32); crc = UpdateCrc(crc, value); if (index < sectorSize) data[index] = value; }
+                for (var index = 0; index < sectorSize + 2; index++) { var value = FluxBitReader.DecodeFmByte32(stream, dataOffset + markBits + index * 32); crc = UpdateCrc(crc, value); if (index < sectorSize) data[index] = value; }
                 dataCrcValid = crc == 0; classifiedMarks.Add(dataOffset); bytes.AddRange(data);
                 structures.Add(new(FluxStructureKind.FormatData, dataOffset, markBits + (sectorSize + 2) * 32, $"E-mu C{cylinder} H{head} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
             }
@@ -40,7 +40,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
         }
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!classifiedMarks.Contains(offset) && stream.MatchBytes(offset, SectorMark)) structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "E-mu Emulator unclassified header/data mark"));
+            if (!classifiedMarks.Contains(offset) && FluxBitReader.MatchBytes(stream, offset, SectorMark)) structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "E-mu Emulator unclassified header/data mark"));
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
@@ -48,7 +48,7 @@ public sealed class EmuFmDecoder : SignatureMfmDecoder
     private static int FindNextMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - SectorMark.Length * 8, start + maximumDistance);
-        for (var offset = start; offset <= end; offset++) if (stream.MatchBytes(offset, SectorMark)) return offset;
+        for (var offset = start; offset <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, SectorMark)) return offset;
         return -1;
     }
 

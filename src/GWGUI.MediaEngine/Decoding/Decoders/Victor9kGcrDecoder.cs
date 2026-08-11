@@ -15,7 +15,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
         const int markBits = 64; const int headerBytes = 6; const int sectorBytes = 512; const int decodedDataBytes = 1 + sectorBytes + 2;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, HeaderMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
             var header = TryDecodeBytes(stream.Bits, offset + 49, headerBytes); bool? headerValid = null; byte cylinder = 0; byte number = 0;
             if (header is not null)
             {
@@ -40,13 +40,13 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
             structures.Add(new(FluxStructureKind.FormatHeader, offset, Math.Max(markBits, (header?.EndOffset ?? offset + markBits) - offset), $"Victor 9000 C{cylinder} H0 R{number}, header {(headerValid is null ? "unavailable" : headerValid == true ? "valid" : "invalid")}, data checksum {(dataValid is null ? "unavailable" : dataValid == true ? "valid" : "invalid")}"));
             offset = Math.Max(offset + markBits - 1, structureEnd - 1);
         }
-        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (stream.MatchBytes(offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Unpaired Victor 9000 data block")); offset += markBits - 1; }
+        for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, "Unpaired Victor 9000 data block")); offset += markBits - 1; }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);
     }
 
     private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
-        for (var offset = Math.Max(0, start); offset + mark.Count * 8 <= end; offset++) if (stream.MatchBytes(offset, mark)) return offset;
+        for (var offset = Math.Max(0, start); offset + mark.Count * 8 <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, mark)) return offset;
         return -1;
     }
 

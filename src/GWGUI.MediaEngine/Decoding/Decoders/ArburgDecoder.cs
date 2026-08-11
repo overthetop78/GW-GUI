@@ -24,13 +24,13 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         const int markBits = 8 * 8, blockSize = 0xa00, usefulSize = 0x9fe;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, DataMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, DataMark)) continue;
             var complete = offset + markBits + blockSize * 32 <= stream.Bits.Length; bool? valid = null;
             if (complete)
             {
                 ushort checksum = 0; var data = new byte[usefulSize];
-                for (var index = 0; index < usefulSize; index++) { var value = ReverseBits(stream.DecodeFmByte32(offset + markBits + index * 32)); data[index] = value; checksum += value; }
-                var low = ReverseBits(stream.DecodeFmByte32(offset + markBits + usefulSize * 32)); var high = ReverseBits(stream.DecodeFmByte32(offset + markBits + (usefulSize + 1) * 32));
+                for (var index = 0; index < usefulSize; index++) { var value = ReverseBits(FluxBitReader.DecodeFmByte32(stream, offset + markBits + index * 32)); data[index] = value; checksum += value; }
+                var low = ReverseBits(FluxBitReader.DecodeFmByte32(stream, offset + markBits + usefulSize * 32)); var high = ReverseBits(FluxBitReader.DecodeFmByte32(stream, offset + markBits + (usefulSize + 1) * 32));
                 valid = low == (byte)checksum && high == (byte)(checksum >> 8); bytes.AddRange(data);
             }
             sectors.Add(new(0, 0, 1, 0, blockSize, valid, offset, SectorIntegrityKind.Checksum));
@@ -44,7 +44,7 @@ public sealed class ArburgDecoder : SignatureMfmDecoder
         const int markBits = 8 * 8, blockSize = 0xf00, usefulSize = 0xefe;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, SystemMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, SystemMark)) continue;
             var decoded = TryDecodeSystemBytes(stream, offset + markBits, blockSize); bool? valid = null;
             if (decoded is not null)
             {

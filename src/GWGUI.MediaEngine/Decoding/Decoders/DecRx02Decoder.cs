@@ -18,13 +18,13 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         const int headerBits = 7 * 32;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!stream.MatchBytes(offset, HeaderMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, HeaderMark)) continue;
             if (offset + headerBits > stream.Bits.Length)
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, markBits, "DEC RX02 sector header")); offset += markBits - 1; continue;
             }
-            var cylinder = stream.DecodeFmByte32(offset + 32); var head = stream.DecodeFmByte32(offset + 64); var number = stream.DecodeFmByte32(offset + 96); var sizeCode = stream.DecodeFmByte32(offset + 128);
-            var crcHigh = stream.DecodeFmByte32(offset + 160); var crcLow = stream.DecodeFmByte32(offset + 192);
+            var cylinder = FluxBitReader.DecodeFmByte32(stream, offset + 32); var head = FluxBitReader.DecodeFmByte32(stream, offset + 64); var number = FluxBitReader.DecodeFmByte32(stream, offset + 96); var sizeCode = FluxBitReader.DecodeFmByte32(stream, offset + 128);
+            var crcHigh = FluxBitReader.DecodeFmByte32(stream, offset + 160); var crcLow = FluxBitReader.DecodeFmByte32(stream, offset + 192);
             if (Crc16([0xfe, cylinder, head, number, sizeCode, crcHigh, crcLow]) != 0)
             {
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, $"DEC RX02 C{cylinder} H{head} R{number}, header CRC invalid")); offset += markBits - 1; continue;
@@ -45,7 +45,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
                 else
                 {
                     payload = new byte[sectorSize];
-                    for (var index = 1; index < 1 + sectorSize + 2; index++) { var value = stream.DecodeFmByte32(data.Offset + index * 32); crc = UpdateCrc(crc, value); if (index <= sectorSize) payload[index - 1] = value; }
+                    for (var index = 1; index < 1 + sectorSize + 2; index++) { var value = FluxBitReader.DecodeFmByte32(stream, data.Offset + index * 32); crc = UpdateCrc(crc, value); if (index <= sectorSize) payload[index - 1] = value; }
                 }
                 dataCrcValid = crc == 0; classifiedData.Add(data.Offset); bytes.AddRange(payload);
                 structures.Add(new(FluxStructureKind.FormatData, data.Offset, m2fm ? markBits + 1 + decodedCount * 16 : (1 + sectorSize + 2) * 32, $"DEC RX02 {data.Mark:X2} C{cylinder} H{head} R{number} {(m2fm ? "M²FM" : "FM")} data, CRC {(dataCrcValid == true ? "valid" : "invalid")}"));
@@ -57,7 +57,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
             if (classifiedData.Contains(offset)) continue;
-            foreach (var item in DataMarks) if (stream.MatchBytes(offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, $"DEC RX02 {item.Mark:X2} data")); offset += markBits - 1; break; }
+            foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) { structures.Add(new(FluxStructureKind.FormatData, offset, markBits, $"DEC RX02 {item.Mark:X2} data")); offset += markBits - 1; break; }
         }
         return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 20d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
@@ -65,7 +65,7 @@ public sealed class DecRx02Decoder : SignatureMfmDecoder
     private static (int Offset, byte Mark) FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - HeaderMark.Length * 8, start + maximumDistance);
-        for (var offset = start; offset <= end; offset++) foreach (var item in DataMarks) if (stream.MatchBytes(offset, item.Pattern)) return (offset, item.Mark);
+        for (var offset = start; offset <= end; offset++) foreach (var item in DataMarks) if (FluxBitReader.MatchBytes(stream, offset, item.Pattern)) return (offset, item.Mark);
         return (-1, 0);
     }
 

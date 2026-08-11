@@ -18,7 +18,7 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
         {
             foreach (var signature in Signatures)
             {
-                if (!stream.MatchBytes(offset, signature.Pattern)) continue;
+                if (!FluxBitReader.MatchBytes(stream, offset, signature.Pattern)) continue;
                 structures.Add(new(signature.Kind, offset, signature.Pattern.Length * 8, signature.Description));
                 offset += signature.Pattern.Length * 8 - 1; break;
             }

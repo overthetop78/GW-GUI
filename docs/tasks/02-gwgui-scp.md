@@ -1620,10 +1620,10 @@
       - [x] Y déplacer les deux algorithmes privés `Reconstruct` et `ReconstructPll`.
       - [x] Y déplacer les fabriques `FromIntervals`, `FromIntervalsPll`, `FromNrziIntervals` et `FromDoubledNrziIntervals` en leur donnant des noms qui décrivent le mode temporel réellement appliqué.
       - [x] Adapter chaque décodeur consommateur vers cette fabrique sans changer le mode FM, MFM, NRZI ou doubled-NRZI qu'il utilise actuellement.
-    - [ ] Lecture des bits reconstruits
-      - [ ] Créer `Representations/Flux/FluxBitReader.cs`.
-      - [ ] Y déplacer les deux surcharges de `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32`.
-      - [ ] Adapter tous les décodeurs qui recherchent un motif ou décodent un octet afin qu'ils utilisent ce lecteur sur le même `FluxBitstream`.
+    - [x] Lecture des bits reconstruits
+      - [x] Créer `Representations/Flux/FluxBitReader.cs`.
+      - [x] Y déplacer les deux surcharges de `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32`.
+      - [x] Adapter tous les décodeurs qui recherchent un motif ou décodent un octet afin qu'ils utilisent ce lecteur sur le même `FluxBitstream`.
   - [ ] `Representations/Flux/FluxBitstream.cs`
     - [ ] Protection de la représentation
       - [ ] Copier le tableau reçu par le constructeur avant de le conserver.
