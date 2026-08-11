@@ -58,8 +58,9 @@ internal static class FluxBitReader
 
     /// <summary>Décode les huit bits de données d'un octet MFM.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
-    /// <param name="offset">Position du premier bit d'horloge MFM.</param>
-    /// <returns>Octet de données décodé.</returns>
+    /// <param name="offset">Position de la première cellule d'horloge parmi les seize cellules MFM alternant horloge et donnée.</param>
+    /// <param name="value">Reçoit l'octet formé par les huit cellules de données.</param>
+    /// <returns><see langword="true"/> lorsque les seize cellules sont disponibles ; sinon <see langword="false"/>.</returns>
     public static bool TryDecodeMfmByte(FluxBitstream stream, int offset, out byte value)
     {
         value = 0;
@@ -74,7 +75,8 @@ internal static class FluxBitReader
     /// <summary>Décode huit bits consécutifs en un octet.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
     /// <param name="offset">Position du premier bit.</param>
-    /// <returns>Octet décodé.</returns>
+    /// <param name="value">Reçoit l'octet formé par les huit bits consécutifs.</param>
+    /// <returns><see langword="true"/> lorsque les huit bits sont disponibles ; sinon <see langword="false"/>.</returns>
     public static bool TryDecodeByte(FluxBitstream stream, int offset, out byte value)
     {
         value = 0;
@@ -88,8 +90,9 @@ internal static class FluxBitReader
 
     /// <summary>Décode les huit bits de données d'un mot FM de trente-deux bits.</summary>
     /// <param name="stream">Flux de bits à lire.</param>
-    /// <param name="offset">Position du premier groupe FM.</param>
-    /// <returns>Octet de données décodé.</returns>
+    /// <param name="offset">Position de la première cellule parmi les huit groupes FM de quatre cellules.</param>
+    /// <param name="value">Reçoit l'octet formé par la quatrième cellule de chaque groupe FM.</param>
+    /// <returns><see langword="true"/> lorsque les trente-deux cellules sont disponibles ; sinon <see langword="false"/>.</returns>
     public static bool TryDecodeFmByte32(FluxBitstream stream, int offset, out byte value)
     {
         value = 0;
@@ -101,5 +104,10 @@ internal static class FluxBitReader
         return true;
     }
 
+    /// <summary>Vérifie qu'une plage de bits complète appartient au flux sans addition susceptible de dépasser la capacité d'un entier.</summary>
+    /// <param name="stream">Flux de bits contenant la plage.</param>
+    /// <param name="offset">Position du premier bit de la plage.</param>
+    /// <param name="length">Nombre de bits de la plage.</param>
+    /// <returns><see langword="true"/> lorsque la plage est valide ; sinon <see langword="false"/>.</returns>
     private static bool IsValidRange(FluxBitstream stream, int offset, int length) => offset >= 0 && length >= 0 && offset <= stream.Bits.Length - length;
 }

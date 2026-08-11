@@ -1728,10 +1728,10 @@
       - [x] Conserver les positions actuelles du bit de données pour brut, MFM sur deux cellules et FM32 sur quatre cellules.
       - [x] Adapter chaque consommateur afin qu'il traite explicitement l'échec au bord du flux au lieu d'utiliser un octet partiel complété par zéro.
       - [x] Utiliser les constantes communes des bits par octet et des cellules par bit.
-    - [ ] Présentation et CSDoc
-      - [ ] Développer entièrement `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32` actuellement écrits sur une seule ligne.
-      - [ ] Conserver sur une seule ligne les signatures et expressions complètes qui restent lisibles.
-      - [ ] Documenter en français le type et chaque méthode avec la disposition des bits attendue.
+    - [x] Présentation et CSDoc
+      - [x] Développer entièrement `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32` actuellement écrits sur une seule ligne.
+      - [x] Conserver sur une seule ligne les signatures et expressions complètes qui restent lisibles.
+      - [x] Documenter en français le type et chaque méthode avec la disposition des bits attendue.
   - [ ] Raccordement des consommateurs
     - [ ] Décodeurs FM/MFM
       - [ ] Adapter `SignatureMfmDecoder`, `IsoMfmDecoder`, `IsoFmDecoder`, `AmigaMfmDecoder`, `CenturionMfmDecoder`, `ArburgDecoder`, `TycomFmDecoder`, `QdMo5MfmDecoder`, `NorthstarMfmDecoder`, `HpMmfmDecoder`, `DecRx02Decoder`, `Aed6200pMfmDecoder`, `MicropolisMfmDecoder`, `HeathkitFmDecoder`, `DataGeneralFmDecoder`, `MicralNFmDecoder`, `EmuFmDecoder` et `MembrainMfmDecoder`.
