@@ -218,6 +218,9 @@ public sealed class ScpReaderDeterministicTests
     }
 
     [Fact]
+    public void RejectsNullScpImageHeader() => Assert.Throws<ArgumentNullException>(() => new ScpImage(null!, [], true, 0));
+
+    [Fact]
     public async Task ReadsTrackDescriptorsAndTheirRevolutions()
     {
         var image = await new ScpReader().ReadAsync(Images.Value.Valid);

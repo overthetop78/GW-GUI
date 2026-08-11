@@ -233,19 +233,19 @@
     - [x] Mise en forme de la documentation XML
       - [x] Remettre sur une seule ligne les documentations XML courtes du type et du constructeur.
       - [x] Remettre sur une seule ligne les documentations XML courtes de `TrackNumber`, `Cylinder`, `Head` et `Revolutions`.
-  - [ ] `Containers/Scp/ScpImage.cs`
+  - [x] `Containers/Scp/ScpImage.cs`
     - [x] Adapter le namespace de `ScpImage` à son emplacement `GWGUI.MediaEngine.Containers.Scp`.
     - [x] Copier ou figer `Tracks` à la construction afin que la collection source ne puisse plus modifier l'image.
     - [x] Rejeter une taille de fichier négative à la construction.
     - [x] Documenter en français le record, chaque paramètre et chaque propriété.
     - [x] Tester la protection de la collection, le checksum valide ou invalide et le rejet d'une taille négative.
-    - [ ] Validation de l'en-tête
-      - [ ] Rejeter un paramètre `header` nul dans le constructeur de `ScpImage`.
-      - [ ] Documenter en français l'`ArgumentNullException` correspondante.
-      - [ ] Tester le rejet d'un en-tête nul.
-    - [ ] Mise en forme de la documentation XML
-      - [ ] Remettre sur une seule ligne la documentation XML courte du type et du constructeur.
-      - [ ] Remettre sur une seule ligne la documentation XML courte de `Header`, `Tracks`, `ChecksumValid` et `FileSize`.
+    - [x] Validation de l'en-tête
+      - [x] Rejeter un paramètre `header` nul dans le constructeur de `ScpImage`.
+      - [x] Documenter en français l'`ArgumentNullException` correspondante.
+      - [x] Tester le rejet d'un en-tête nul.
+    - [x] Mise en forme de la documentation XML
+      - [x] Remettre sur une seule ligne la documentation XML courte du type et du constructeur.
+      - [x] Remettre sur une seule ligne la documentation XML courte de `Header`, `Tracks`, `ChecksumValid` et `FileSize`.
   - [ ] `Containers/Scp/ScpReader.cs`
     - [x] Créer `Containers/Scp/ScpFileCache.cs` pour isoler l'identité de fichier, le cache et son invalidation du parsing SCP.
     - [x] Conserver dans `ScpReader` l'orchestration de lecture et le parsing de l'en-tête et des pistes.
