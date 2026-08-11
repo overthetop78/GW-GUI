@@ -46,10 +46,11 @@ public sealed class DiskImageRecognitionRegistryTests
             var rejected = new FakePolicy(canRead: true, original);
             var registry = new DiskImageRecognitionRegistry([incompatible, rejected]);
 
-            var exception = await Assert.ThrowsAsync<InvalidDataException>(() => registry.ReadAsync(path, null, CancellationToken.None));
+            var exception = await Assert.ThrowsAsync<DiskImageCandidatesRejectedException>(() => registry.ReadAsync(path, null, CancellationToken.None));
 
-            Assert.Contains(nameof(FakePolicy), exception.Message, StringComparison.Ordinal);
-            Assert.Same(original, exception.InnerException);
+            var failure = Assert.Single(exception.Failures);
+            Assert.Contains(nameof(FakePolicy), failure.PolicyName, StringComparison.Ordinal);
+            Assert.Same(original, failure.Exception);
             Assert.Equal(1, incompatible.CanReadCalls);
             Assert.Equal(0, incompatible.ReadCalls);
             Assert.Equal(1, rejected.CanReadCalls);
@@ -91,12 +92,63 @@ public sealed class DiskImageRecognitionRegistryTests
             var second = new NotSupportedException("second rejet");
             var registry = new DiskImageRecognitionRegistry([new FakePolicy(true, first), new FakePolicy(true, second)]);
 
-            var exception = await Assert.ThrowsAsync<AggregateException>(() => registry.ReadAsync(path, "requested.format", CancellationToken.None));
+            var exception = await Assert.ThrowsAsync<DiskImageCandidatesRejectedException>(() => registry.ReadAsync(path, "requested.format", CancellationToken.None));
 
             Assert.Equal(2, exception.InnerExceptions.Count);
-            Assert.All(exception.InnerExceptions, rejection => Assert.Contains(nameof(FakePolicy), rejection.Message, StringComparison.Ordinal));
-            Assert.Same(first, exception.InnerExceptions[0].InnerException);
-            Assert.Same(second, exception.InnerExceptions[1].InnerException);
+            Assert.All(exception.Failures, failure => Assert.Contains(nameof(FakePolicy), failure.PolicyName, StringComparison.Ordinal));
+            Assert.Same(first, exception.Failures[0].Exception);
+            Assert.Same(second, exception.Failures[1].Exception);
+            Assert.Equal(".img", exception.Extension);
+            Assert.Equal("requested.format", exception.RequestedFormatId);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
+    /// <summary>Vérifie le rejet d'une collection ou d'une entrée nulle.</summary>
+    [Fact]
+    public void RejectsNullPolicyCollectionsAndEntries()
+    {
+        Assert.Throws<ArgumentNullException>(() => new DiskImageRecognitionRegistry(null!));
+        Assert.Throws<ArgumentException>(() => new DiskImageRecognitionRegistry([null!]));
+    }
+
+    /// <summary>Vérifie que la copie du registre ne suit pas les modifications de la collection source.</summary>
+    [Fact]
+    public async Task IgnoresLaterChangesToTheInjectedCollection()
+    {
+        var path = await CreateTemporaryImageAsync();
+        try
+        {
+            var accepted = new FakePolicy(true);
+            var policies = new List<IDiskImageRecognitionPolicy> { accepted };
+            var registry = new DiskImageRecognitionRegistry(policies);
+            policies.Clear();
+            policies.Add(new FakePolicy(false));
+
+            _ = await registry.ReadAsync(path, null, CancellationToken.None);
+            Assert.Equal(1, accepted.ReadCalls);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
+    /// <summary>Vérifie qu'une erreur de programmation n'est pas transformée en rejet de format.</summary>
+    [Fact]
+    public async Task PropagatesUnexpectedExceptionsImmediately()
+    {
+        var path = await CreateTemporaryImageAsync();
+        try
+        {
+            var error = new InvalidOperationException("erreur factice");
+            var registry = new DiskImageRecognitionRegistry([new FakePolicy(true, error), new FakePolicy(true)]);
+
+            var actual = await Assert.ThrowsAsync<InvalidOperationException>(() => registry.ReadAsync(path, null, CancellationToken.None));
+            Assert.Same(error, actual);
         }
         finally
         {

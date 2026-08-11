@@ -1420,7 +1420,7 @@
       - [x] Tester le chemin, la longueur, l’extension normalisée et l’identifiant demandé exposés par le contexte.
       - [x] Lancer plusieurs lectures concurrentes et vérifier qu’elles partagent le même contenu sans permettre sa modification.
       - [x] Tester l’annulation et l’erreur de lecture, puis vérifier le comportement documenté des appels suivants.
-  - [ ] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs`
+  - [x] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs`
     - [x] Collection ordonnée des politiques
       - [x] Refuser une collection de politiques nulle et une entrée nulle dans le constructeur.
       - [x] Copier la collection reçue dans une liste en lecture seule afin qu’une modification extérieure ne change pas l’ordre ou le contenu du registre.
@@ -1444,12 +1444,12 @@
       - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du registre, de son champ, de son constructeur et de `ReadAsync`.
       - [x] Documenter en français `DiskImageRecognitionFailure` et ses deux données.
       - [x] Documenter l’ordre d’essai, les deux résultats d’échec, les exceptions poursuivies et celles immédiatement propagées.
-    - [ ] Tests ciblés
-      - [ ] Tester une politique incompatible, un candidat accepté, un rejet suivi d’une réussite et deux rejets successifs.
-      - [ ] Vérifier l’identité et l’exception interne conservées pour chaque candidat rejeté.
-      - [ ] Tester séparément l’absence de candidat et l’échec de tous les candidats présélectionnés.
-      - [ ] Vérifier qu’une collection injectée puis modifiée ne change pas le registre.
-      - [ ] Tester la propagation immédiate de l’annulation, d’une erreur d’accès et d’une exception non reconnue comme rejet de format.
+    - [x] Tests ciblés
+      - [x] Tester une politique incompatible, un candidat accepté, un rejet suivi d’une réussite et deux rejets successifs.
+      - [x] Vérifier l’identité et l’exception interne conservées pour chaque candidat rejeté.
+      - [x] Tester séparément l’absence de candidat et l’échec de tous les candidats présélectionnés.
+      - [x] Vérifier qu’une collection injectée puis modifiée ne change pas le registre.
+      - [x] Tester la propagation immédiate de l’annulation, d’une erreur d’accès et d’une exception non reconnue comme rejet de format.
   - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs`
     - [ ] Responsabilité et contrat de délégation
       - [ ] Conserver le type abstrait sous `Recognition/Policies`, car il centralise uniquement le `ReadAsync` identique des politiques adossées à un Reader.
