@@ -2020,8 +2020,8 @@
     - [x] Adapter le registre et les consommateurs.
     - [x] Extraire les tables Apple II partagées avec l’encodeur.
   - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleGcrDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore, DecodeFiveAndThree, DecodeFourAndFour, TryReadBytes, Find`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - [x] Ajouter la documentation XML des types `AppleGcrDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore, DecodeFiveAndThree, DecodeFourAndFour, TryReadBytes, Find`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AppleLisaFileWareGcrDecoder`.
@@ -3268,7 +3268,7 @@
     - [ ] Vérifier les autres encodeurs FM avant tout raccordement et ne pas remplacer un motif identique dont les cellules d'horloge ont une autre signification.
     - [ ] Documenter en français chaque marque avec l'octet de données et la disposition de cellules qu'elle représente.
     - [ ] Tester la séquence binaire exacte de chaque marque puis l'aller-retour DEC RX02 et TYCOM.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [ ] Ajouter la documentation XML française de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator` et `TrackEncodingExceptions`.
     - [ ] Ajouter la documentation XML des méthodes conservées ou créées après le découpage, avec paramètres, résultat, exceptions, unités et invariants applicables.
 

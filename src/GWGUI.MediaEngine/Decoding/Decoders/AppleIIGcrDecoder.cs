@@ -17,11 +17,18 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => FluxCodecDisplayNames.AppleIIGcr;
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
+    /// <param name="revolution">Révolution SCP dont les intervalles sont décodés en NRZI Apple II.</param>
+    /// <returns>Résultat du décodage de la piste.</returns>
     public FluxDecodeResult Decode(ScpRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
+    /// <summary>Décode directement les bits d'une piste Apple II.</summary>
+    /// <param name="bits">Bits de la piste dans leur ordre logique.</param>
+    /// <returns>Résultat du décodage de la piste.</returns>
     internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 
     /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
+    /// <param name="stream">Flux binaire à analyser.</param>
+    /// <returns>Structures, secteurs et octets reconnus dans le flux.</returns>
     private FluxDecodeResult DecodeCore(FluxBitstream stream)
     {
         var trackBitLength = stream.Bits.Length;
@@ -63,6 +70,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Decode Five And Three » propre à ce format.</summary>
+    /// <param name="stream">Flux binaire à analyser.</param><param name="trackBitLength">Longueur logique de la piste en bits.</param><param name="structures">Structures auxquelles ajouter les blocs reconnus.</param><param name="bytes">Octets auxquels ajouter les données décodées.</param><param name="sectors">Secteurs auxquels ajouter les secteurs reconnus.</param><param name="pairedData">Offsets en bits des données déjà associées à une adresse.</param>
     private static void DecodeFiveAndThree(FluxBitstream stream, int trackBitLength, List<FluxStructure> structures,
         List<byte> bytes, List<DecodedSector> sectors, HashSet<int> pairedData)
     {
@@ -101,8 +109,10 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Decode Four And Four » propre à ce format.</summary>
+    /// <param name="high">Premier octet encodé.</param><param name="low">Second octet encodé.</param><returns>Valeur Apple II décodée.</returns>
     private static byte DecodeFourAndFour(byte high, byte low) => (byte)(((high << 1) | 1) & low);
     /// <summary>Exécute le traitement « Try Read Bytes » propre à ce format.</summary>
+    /// <param name="bits">Bits source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre d'octets à lire.</param><returns>Octets lus, ou <see langword="null"/> si la plage est incomplète.</returns>
     private static byte[]? TryReadBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         if (offset + count * BitPrimitives.BitsPerByte > bits.Count) return null; var result = new byte[count];
@@ -110,6 +120,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
         return result;
     }
     /// <summary>Recherche le prochain motif dans la plage indiquée.</summary>
+    /// <param name="stream">Flux binaire à parcourir.</param><param name="start">Offset de départ inclus, en bits.</param><param name="end">Offset de fin exclu, en bits.</param><param name="mark">Motif à rechercher.</param><returns>Offset du motif en bits, ou <c>-1</c> s'il est absent.</returns>
     private static int Find(FluxBitstream stream, int start, int end, uint mark)
     {
         for (var offset = Math.Max(0, start); offset + AppleIIGcrFormat.PrologueBitCount <= end; offset++) if (FluxBitReader.Match(stream, offset, mark, AppleIIGcrFormat.PrologueBitCount)) return offset;
