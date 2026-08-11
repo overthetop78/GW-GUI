@@ -2033,7 +2033,7 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleRwts18Decoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Decoding/Decoders/ArburgDecoder.cs`
+- [x] `src/GWGUI.MediaEngine/Decoding/Decoders/ArburgDecoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `ArburgDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, ScanFmData, ScanSystemData, ReverseBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
