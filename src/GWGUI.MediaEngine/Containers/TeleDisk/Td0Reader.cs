@@ -1,12 +1,12 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Recognition.TeleDisk;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Reading;
 
-namespace GWGUI.MediaEngine.Images;
+namespace GWGUI.MediaEngine.Containers.TeleDisk;
 
 /// <summary>Reads ordinary (uppercase TD signature) TeleDisk images.</summary>
-public sealed class Td0ImageReader : ISectorImageReader
+public sealed class Td0Reader : ISectorImageReader
 {
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase);
 
@@ -68,7 +68,7 @@ public sealed class Td0ImageReader : ISectorImageReader
                     offset += 3;
                     if (encodedLength == 0) throw new InvalidDataException($"TeleDisk sector {cylinder}/{head}/{number} has no encoded data.");
                     EnsureAvailable(data, offset, encodedLength - 1, "TeleDisk sector data");
-                    sectorData = DecodeSector(data.Slice(offset, encodedLength - 1), encoding, expectedLength);
+                    sectorData = Td0SectorDecoder.Decode(data.Slice(offset, encodedLength - 1), encoding, expectedLength);
                     offset += encodedLength - 1;
                 }
 
@@ -96,78 +96,8 @@ public sealed class Td0ImageReader : ISectorImageReader
             .Select((sector, logical) => new SectorBlock(logical,
                 new SectorAddress(sector.Cylinder, sector.Head, sector.Number), sector.Data, sector.IntegrityValid))
             .ToArray();
-        var formatId = DetectFormat(blocks, blockSize, cylinders, heads, sectorsPerTrack);
+        var formatId = Td0SectorImageClassifier.Detect(blocks, blockSize, cylinders, heads, sectorsPerTrack);
         return new SectorImage(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: blocks.LongLength * blockSize, logicalBlockCount: blocks.Length);
-    }
-
-    private static string DetectFormat(IReadOnlyList<SectorBlock> blocks, int blockSize, int cylinders, int heads, int sectorsPerTrack)
-    {
-        var boot = blocks.FirstOrDefault(block => block.Address.Cylinder == 0 && block.Address.Head == 0 && block.Address.Number == 1)?.Data;
-        var hasFatBpb = boot is { Count: >= 36 }
-            && (boot[11] | boot[12] << 8) == blockSize
-            && boot[13] > 0
-            && (boot[24] | boot[25] << 8) is > 0 and <= 64
-            && (boot[26] | boot[27] << 8) is > 0 and <= 8;
-        var hasDosBootJump = boot is { Count: >= 3 } && boot[0] is 0xeb or 0xe9;
-        if ((hasFatBpb || hasDosBootJump) && blockSize == 512)
-        {
-            return (cylinders, heads, sectorsPerTrack) switch
-            {
-                (40, 1, 8) => DiskImageFormatIds.Ibm160,
-                (40, 1, 9) => DiskImageFormatIds.Ibm180,
-                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8) => DiskImageFormatIds.Ibm320,
-                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm360,
-                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm720,
-                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 15) => DiskImageFormatIds.Ibm1200,
-                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 18) => DiskImageFormatIds.Ibm1440,
-                _ => DiskImageFormatIds.IbmScan
-            };
-        }
-        return DiskImageFormatIds.UcsdIbmMfm;
-    }
-
-    private static byte[] DecodeSector(ReadOnlySpan<byte> encoded, byte encoding, int expectedLength)
-    {
-        var output = new List<byte>(expectedLength);
-        switch (encoding)
-        {
-            case 0:
-                output.AddRange(encoded.ToArray());
-                break;
-            case 1:
-                if (encoded.Length != 4) throw new InvalidDataException("A TeleDisk repeated sector has an invalid payload.");
-                var repetitions = ReadUInt16(encoded, 0);
-                for (var index = 0; index < repetitions; index++) { output.Add(encoded[2]); output.Add(encoded[3]); }
-                break;
-            case 2:
-                for (var offset = 0; offset < encoded.Length;)
-                {
-                    if (offset + 2 > encoded.Length) throw new InvalidDataException("A TeleDisk RLE sector is truncated.");
-                    var patternWords = encoded[offset++];
-                    var count = encoded[offset++];
-                    if (patternWords == 0)
-                    {
-                        if (offset + count > encoded.Length) throw new InvalidDataException("A TeleDisk literal run is truncated.");
-                        output.AddRange(encoded.Slice(offset, count).ToArray());
-                        offset += count;
-                    }
-                    else
-                    {
-                        var patternLength = patternWords * 2;
-                        if (offset + patternLength > encoded.Length) throw new InvalidDataException("A TeleDisk repeated run is truncated.");
-                        var pattern = encoded.Slice(offset, patternLength).ToArray();
-                        offset += patternLength;
-                        for (var repeat = 0; repeat < count; repeat++) output.AddRange(pattern);
-                    }
-                }
-                break;
-            default:
-                throw new InvalidDataException($"TeleDisk sector encoding {encoding} is not supported.");
-        }
-
-        if (output.Count != expectedLength)
-            throw new InvalidDataException($"A TeleDisk sector expands to {output.Count} bytes instead of {expectedLength}.");
-        return output.ToArray();
     }
 
     private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, string description)

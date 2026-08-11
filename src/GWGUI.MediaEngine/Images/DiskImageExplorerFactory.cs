@@ -8,6 +8,7 @@ using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Containers.I86f;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Containers.Raw;
+using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
@@ -52,7 +53,7 @@ internal static class DiskImageExplorerFactory
             new AmstradImageRecognitionPolicy(new CpcDskReader()),
             new RawImgRecognitionPolicy(new RawImgReader()),
             new ExtensionHintRecognitionPolicy(new IbmPcImageReader().ReadAsync, DiskImageFileExtensions.Ima),
-            new ExtensionHintRecognitionPolicy(new Td0ImageReader().ReadAsync, DiskImageFileExtensions.Td0),
+            new ExtensionHintRecognitionPolicy(new Td0Reader().ReadAsync, DiskImageFileExtensions.Td0),
             new ExtensionHintRecognitionPolicy(new I86fSectorImageReader(new I86fReader(), decoders).ReadAsync, DiskImageFileExtensions.I86f),
             new ExtensionHintRecognitionPolicy(new Cp2Reader().ReadAsync, DiskImageFileExtensions.Cp2),
             new ExtensionHintRecognitionPolicy(new ImdReader().ReadAsync, DiskImageFileExtensions.Imd),

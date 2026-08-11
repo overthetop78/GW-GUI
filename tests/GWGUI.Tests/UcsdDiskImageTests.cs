@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
@@ -29,7 +30,7 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
     {
         var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", fileName));
         if (!File.Exists(path)) return;
-        var image = await new Td0ImageReader().ReadAsync(path);
+        var image = await new Td0Reader().ReadAsync(path);
         var reader = new UcsdFileSystemReader();
         Assert.True(reader.CanRead(image));
         var volume = reader.Read(image);

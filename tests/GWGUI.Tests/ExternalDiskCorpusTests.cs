@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
 
@@ -58,7 +59,7 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         {
             try
             {
-                var td0 = await new Td0ImageReader().ReadAsync(path);
+                var td0 = await new Td0Reader().ReadAsync(path);
                 output.WriteLine($"TD0 reader | format={td0.FormatId} | geometry={td0.Cylinders}x{td0.Heads}x{td0.SectorsPerTrack} | available={td0.AvailableBlocks.Count}");
             }
             catch (Exception exception)

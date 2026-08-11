@@ -1349,12 +1349,12 @@
     - [x] Vérifier que la capacité reconstruite sélectionne le même identifiant Atari ST qu’avant le déplacement.
     - [x] Vérifier le rejet d’une signature, d’une géométrie, d’une longueur de piste ou d’une séquence RLE invalide.
 - [ ] `src/GWGUI.MediaEngine/Images/Td0ImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Containers/TeleDisk/Td0Reader.cs`.
-    - [ ] Adapter son namespace, les politiques de reconnaissance, la composition et les tests qui le consomment.
-    - [ ] Conserver `Td0Sector` comme record privé du Reader tant qu’aucun autre fichier ne consomme ce modèle intermédiaire.
-    - [ ] Créer `Containers/TeleDisk/Td0SectorDecoder.cs` et y déplacer `DecodeSector` et la lecture little-endian utilisée par ses encodages.
-    - [ ] Créer `Recognition/TeleDisk/Td0SectorImageClassifier.cs` et y déplacer `DetectFormat`, qui classe l’image sectorielle reconstruite mais ne parse pas le conteneur TeleDisk.
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Containers/TeleDisk/Td0Reader.cs`.
+    - [x] Adapter son namespace, les politiques de reconnaissance, la composition et les tests qui le consomment.
+    - [x] Conserver `Td0Sector` comme record privé du Reader tant qu’aucun autre fichier ne consomme ce modèle intermédiaire.
+    - [x] Créer `Containers/TeleDisk/Td0SectorDecoder.cs` et y déplacer `DecodeSector` et la lecture little-endian utilisée par ses encodages.
+    - [x] Créer `Recognition/TeleDisk/Td0SectorImageClassifier.cs` et y déplacer `DetectFormat`, qui classe l’image sectorielle reconstruite mais ne parse pas le conteneur TeleDisk.
   - [ ] Définitions TeleDisk
     - [ ] Créer `Containers/TeleDisk/Td0Format.cs` avec les signatures majuscule non compressée et minuscule compressée et leur signification.
     - [ ] Créer `Containers/TeleDisk/Td0Layout.cs` avec la taille d’en-tête, les tailles des en-têtes de commentaire, piste, secteur et données ainsi que chaque offset lu.
