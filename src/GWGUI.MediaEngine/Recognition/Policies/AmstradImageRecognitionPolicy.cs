@@ -5,7 +5,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 
-/// <summary>Reconnaît les signatures CPCEMU DSK puis applique l'interprétation Amstrad correspondant à la géométrie lue.</summary>
+/// <summary>Présélectionne les signatures CPCEMU DSK, laisse le Reader valider entièrement le conteneur, puis choisit l'identifiant CPC ou PCW d'après sa géométrie.</summary>
 /// <param name="reader">Lecteur neutre des conteneurs CPCEMU DSK.</param>
 internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDiskImageRecognitionPolicy
 {
@@ -19,7 +19,7 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
         return bytes.Span.StartsWith(CpcDskFormat.StandardSignatureBytes) || bytes.Span.StartsWith(CpcDskFormat.ExtendedSignatureBytes);
     }
 
-    /// <summary>Lit le conteneur neutre puis lui attribue l'identifiant CPC ou PCW déterminé par sa géométrie.</summary>
+    /// <summary>Fait valider entièrement le conteneur par le Reader, puis attribue à l'image neutre l'identifiant CPC ou PCW déterminé par sa géométrie.</summary>
     /// <param name="context">Contexte du conteneur CPCEMU à lire.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
     /// <returns>Image sectorielle dont les secteurs restent inchangés et dont l'identifiant décrit l'interprétation Amstrad.</returns>

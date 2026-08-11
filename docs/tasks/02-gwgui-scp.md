@@ -1492,9 +1492,9 @@
       - [x] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
     - [x] Mise en forme
       - [x] Remettre sur une seule ligne la sélection de l’identifiant CPC/PCW et les expressions courtes qui tiennent lisiblement.
-    - [ ] Documentation XML et encodage
-      - [ ] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
-      - [ ] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
+    - [x] Documentation XML et encodage
+      - [x] Réécrire en français UTF-8 valide la CSDoc actuellement corrompue du type, de son paramètre primaire et de ses deux méthodes.
+      - [x] Documenter la présélection par signature, la validation complète par le Reader et la règle de réidentification CPC/PCW.
     - [ ] Tests ciblés
       - [ ] Tester les signatures binaires Standard et Extended ainsi qu’un contenu sans signature, quelle que soit leur extension.
       - [ ] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
