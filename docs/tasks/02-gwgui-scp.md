@@ -1262,12 +1262,12 @@
     - [ ] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée et laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Imd`.
       - Dépendance restante : `ISectorImageReader` existe encore et impose `CanRead`. Sa suppression est prévue dans le groupe ultérieur consacré à cette interface ; cette action reste non cochée jusque-là.
     - [x] Adapter `Images/DiskImageExplorerFactory.cs`, la politique de reconnaissance et les tests au nouveau type.
-  - [ ] En-tête et disposition ImageDisk
-    - [ ] Créer `Containers/ImageDisk/ImdFormat.cs` avec la signature binaire `IMD`, sa longueur de trois octets et le terminateur de commentaire `0x1A`.
-    - [ ] Créer `Containers/ImageDisk/ImdLayout.cs` avec la taille de cinq octets de l’en-tête de piste et les positions successives du mode, du cylindre, des drapeaux de face, du nombre de secteurs et du code de taille.
-    - [ ] Y définir la taille d’une entrée des cartes de numéros, cylindres et faces, la taille de deux octets d’une entrée de carte de tailles et la taille sectorielle de base de 128 octets.
-    - [ ] Y définir le code `0xFF` annonçant une carte de tailles explicites et le code de taille exponentiel maximal `6`.
-    - [ ] Remplacer dans le Reader chaque signature, longueur, offset, taille d’entrée et code de taille écrits en brut par ces définitions.
+  - [x] En-tête et disposition ImageDisk
+    - [x] Créer `Containers/ImageDisk/ImdFormat.cs` avec la signature binaire `IMD`, sa longueur de trois octets et le terminateur de commentaire `0x1A`.
+    - [x] Créer `Containers/ImageDisk/ImdLayout.cs` avec la taille de cinq octets de l’en-tête de piste et les positions successives du mode, du cylindre, des drapeaux de face, du nombre de secteurs et du code de taille.
+    - [x] Y définir la taille d’une entrée des cartes de numéros, cylindres et faces, la taille de deux octets d’une entrée de carte de tailles et la taille sectorielle de base de 128 octets.
+    - [x] Y définir le code `0xFF` annonçant une carte de tailles explicites et le code de taille exponentiel maximal `6`.
+    - [x] Remplacer dans le Reader chaque signature, longueur, offset, taille d’entrée et code de taille écrits en brut par ces définitions.
   - [ ] Modes, drapeaux et types d’enregistrements
     - [ ] Créer l’enum byte `ImdMode` avec les six modes ImageDisk acceptés de `0` à `5`, en utilisant leurs noms FM/MFM et débits réels après vérification de la définition du format.
     - [ ] Créer l’enum marqué `[Flags]` `ImdHeadFlags` avec le masque de face `0x01`, la présence de la carte de faces `0x40` et la présence de la carte de cylindres `0x80`.

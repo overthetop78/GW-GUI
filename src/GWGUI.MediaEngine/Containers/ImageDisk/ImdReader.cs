@@ -19,8 +19,8 @@ public sealed class ImdReader : ISectorImageReader
 
     internal static SectorImage Read(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
     {
-        var commentEnd = data.IndexOf((byte)0x1a);
-        if (commentEnd < 3 || !data[..3].SequenceEqual("IMD"u8))
+        var commentEnd = data.IndexOf(ImdFormat.CommentTerminator);
+        if (commentEnd < ImdFormat.SignatureLength || !data[..ImdFormat.SignatureLength].SequenceEqual(ImdFormat.Signature))
             throw new InvalidDataException("The image does not contain an ImageDisk header.");
 
         var offset = commentEnd + 1;
@@ -28,46 +28,50 @@ public sealed class ImdReader : ISectorImageReader
         while (offset < data.Length)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            EnsureAvailable(data, offset, 5, "ImageDisk track header");
-            var mode = data[offset++];
-            var trackCylinder = data[offset++];
-            var headFlags = data[offset++];
+            EnsureAvailable(data, offset, ImdLayout.TrackHeaderSize, "ImageDisk track header");
+            var header = data.Slice(offset, ImdLayout.TrackHeaderSize);
+            var mode = header[ImdLayout.ModeOffset];
+            var trackCylinder = header[ImdLayout.CylinderOffset];
+            var headFlags = header[ImdLayout.HeadFlagsOffset];
             var trackHead = headFlags & 1;
-            var count = data[offset++];
-            var sizeCode = data[offset++];
+            var count = header[ImdLayout.SectorCountOffset];
+            var sizeCode = header[ImdLayout.SectorSizeCodeOffset];
+            offset += ImdLayout.TrackHeaderSize;
             if (mode > 5 || count == 0) throw new InvalidDataException("The ImageDisk track header is invalid.");
 
-            EnsureAvailable(data, offset, count, "ImageDisk sector-number map");
-            var numbers = data.Slice(offset, count).ToArray();
-            offset += count;
+            var mapLength = count * ImdLayout.MapEntrySize;
+            EnsureAvailable(data, offset, mapLength, "ImageDisk sector-number map");
+            var numbers = data.Slice(offset, mapLength).ToArray();
+            offset += mapLength;
             byte[]? cylinders = null;
             byte[]? heads = null;
             if ((headFlags & 0x80) != 0)
             {
-                EnsureAvailable(data, offset, count, "ImageDisk cylinder map");
-                cylinders = data.Slice(offset, count).ToArray();
-                offset += count;
+                EnsureAvailable(data, offset, mapLength, "ImageDisk cylinder map");
+                cylinders = data.Slice(offset, mapLength).ToArray();
+                offset += mapLength;
             }
             if ((headFlags & 0x40) != 0)
             {
-                EnsureAvailable(data, offset, count, "ImageDisk head map");
-                heads = data.Slice(offset, count).ToArray();
-                offset += count;
+                EnsureAvailable(data, offset, mapLength, "ImageDisk head map");
+                heads = data.Slice(offset, mapLength).ToArray();
+                offset += mapLength;
             }
 
             int[] sizes;
-            if (sizeCode == 0xff)
+            if (sizeCode == ImdLayout.ExplicitSectorSizeCode)
             {
-                EnsureAvailable(data, offset, count * 2, "ImageDisk sector-size map");
+                var sizeMapLength = count * ImdLayout.SectorSizeMapEntrySize;
+                EnsureAvailable(data, offset, sizeMapLength, "ImageDisk sector-size map");
                 sizes = new int[count];
                 for (var index = 0; index < count; index++)
-                    sizes[index] = BinaryPrimitives.ReadUInt16LittleEndian(data.Slice(offset + index * 2, 2));
-                offset += count * 2;
+                    sizes[index] = BinaryPrimitives.ReadUInt16LittleEndian(data.Slice(offset + index * ImdLayout.SectorSizeMapEntrySize, ImdLayout.SectorSizeMapEntrySize));
+                offset += sizeMapLength;
             }
             else
             {
-                if (sizeCode > 6) throw new InvalidDataException("The ImageDisk sector-size code is invalid.");
-                sizes = Enumerable.Repeat(128 << sizeCode, count).ToArray();
+                if (sizeCode > ImdLayout.MaximumExponentialSizeCode) throw new InvalidDataException("The ImageDisk sector-size code is invalid.");
+                sizes = Enumerable.Repeat(ImdLayout.BaseSectorSize << sizeCode, count).ToArray();
             }
 
             for (var index = 0; index < count; index++)
@@ -142,5 +146,4 @@ public sealed class ImdReader : ISectorImageReader
 
     private sealed record ImdSector(int Cylinder, int Head, int Number, byte[] Data, bool Available, bool IntegrityValid);
 }
-
 
