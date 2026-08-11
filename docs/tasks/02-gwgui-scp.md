@@ -1487,9 +1487,9 @@
       - [x] Ajouter au `CpcDskReader` le point d’entrée en mémoire prévu dans son groupe et lui transmettre les octets déjà chargés par le contexte.
       - [x] Supprimer l’appel à `reader.ReadAsync(context.Path, ...)` qui rouvre actuellement le même fichier après sa présélection.
       - [x] Utiliser la méthode de retagging immuable de `SectorImage` prévue par son groupe au lieu de `SectorImageInterpretation.Retag`.
-    - [ ] Classification CPC ou PCW
-      - [ ] Conserver la règle actuelle : au moins 80 cylindres et exactement deux têtes produisent `AmstradPcw`, les autres géométries CPCEMU valides produisent `AmstradCpc`.
-      - [ ] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
+    - [x] Classification CPC ou PCW
+      - [x] Conserver la règle actuelle : au moins 80 cylindres et exactement deux têtes produisent `AmstradPcw`, les autres géométries CPCEMU valides produisent `AmstradCpc`.
+      - [x] Continuer à utiliser `DiskGeometryConstants.EightyTrackCylinderCount` et `DoubleSidedHeadCount` sans créer de nouvelles copies Amstrad de ces nombres communs.
     - [ ] Mise en forme
       - [ ] Remettre sur une seule ligne la sélection de l’identifiant CPC/PCW et les expressions courtes qui tiennent lisiblement.
     - [ ] Documentation XML et encodage
