@@ -7,42 +7,87 @@ internal static class FluxTransitionDecoder
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="fm">Indique si l'estimation doit utiliser la distribution FM.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodeAdaptiveClock(IReadOnlyList<uint> intervals, bool fm = false) => Reconstruct(intervals, fm ? FluxTimingEstimator.EstimateFmBitCell(intervals) : FluxTimingEstimator.EstimateNonFmBitCell(intervals), 32);
+    public static FluxBitstream DecodeAdaptiveFm(IReadOnlyList<uint> intervals)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return Reconstruct(intervals, FluxTimingEstimator.EstimateFmBitCell(intervals), 32);
+    }
+
+    /// <summary>Reconstruit un flux MFM avec estimation et adaptation de l'horloge.</summary>
+    /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
+    /// <returns>Flux de bits reconstruit.</returns>
+    public static FluxBitstream DecodeAdaptiveMfm(IReadOnlyList<uint> intervals)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return Reconstruct(intervals, FluxTimingEstimator.EstimateNonFmBitCell(intervals), 32);
+    }
 
     /// <summary>Reconstruit un flux FM ou MFM avec la PLL et une durée de cellule estimée.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="fm">Indique si l'estimation doit utiliser la distribution FM.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodePll(IReadOnlyList<uint> intervals, bool fm = false) => ReconstructPll(intervals, fm ? FluxTimingEstimator.EstimateFmBitCell(intervals) : FluxTimingEstimator.EstimateNonFmBitCell(intervals), 32);
+    public static FluxBitstream DecodePllFm(IReadOnlyList<uint> intervals)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return ReconstructPll(intervals, FluxTimingEstimator.EstimateFmBitCell(intervals), 32);
+    }
+
+    /// <summary>Reconstruit un flux MFM avec la PLL et une durée de cellule estimée.</summary>
+    /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
+    /// <returns>Flux de bits reconstruit.</returns>
+    public static FluxBitstream DecodePllMfm(IReadOnlyList<uint> intervals)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return ReconstructPll(intervals, FluxTimingEstimator.EstimateNonFmBitCell(intervals), 32);
+    }
 
     /// <summary>Reconstruit un flux FM ou MFM avec la PLL et la durée de cellule fournie.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="bitCellTicks">Durée de cellule fournie, en ticks.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodePll(IReadOnlyList<uint> intervals, double bitCellTicks) => ReconstructPll(intervals, Math.Max(1, bitCellTicks), 32);
+    public static FluxBitstream DecodePll(IReadOnlyList<uint> intervals, double bitCellTicks)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return ReconstructPll(intervals, Math.Max(FluxDecodingParameters.MinimumBitCellTicks, bitCellTicks), 32);
+    }
 
     /// <summary>Reconstruit un flux NRZI avec estimation et adaptation de l'horloge.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodeNrzi(IReadOnlyList<uint> intervals) => Reconstruct(intervals, FluxTimingEstimator.EstimateNrziBitCell(intervals), 64);
+    public static FluxBitstream DecodeNrzi(IReadOnlyList<uint> intervals)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return Reconstruct(intervals, FluxTimingEstimator.EstimateNrziBitCell(intervals), 64);
+    }
 
     /// <summary>Reconstruit un flux NRZI avec la durée de cellule fournie et sans adaptation de l'horloge.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="bitCellTicks">Durée de cellule fournie, en ticks.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodeNrzi(IReadOnlyList<uint> intervals, double bitCellTicks) => Reconstruct(intervals, Math.Max(1, bitCellTicks), 64, adaptClock: false);
+    public static FluxBitstream DecodeNrzi(IReadOnlyList<uint> intervals, double bitCellTicks)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return Reconstruct(intervals, Math.Max(FluxDecodingParameters.MinimumBitCellTicks, bitCellTicks), 64, adaptClock: false);
+    }
 
-    /// <summary>Reconstruit un flux NRZI doublé avec estimation et adaptation facultative de l'horloge.</summary>
+    /// <summary>Reconstruit un flux NRZI doublé avec estimation et adaptation de l'horloge.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
-    /// <param name="adaptClock">Indique si la durée de cellule doit suivre les observations valides.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodeDoubledNrzi(IReadOnlyList<uint> intervals, bool adaptClock = true) => Reconstruct(intervals, FluxTimingEstimator.EstimateNonFmBitCell(intervals), 64, adaptClock);
+    public static FluxBitstream DecodeAdaptiveDoubledNrzi(IReadOnlyList<uint> intervals)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return Reconstruct(intervals, FluxTimingEstimator.EstimateNonFmBitCell(intervals), 64);
+    }
 
     /// <summary>Reconstruit un flux NRZI doublé avec la durée de cellule fournie et sans adaptation de l'horloge.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
     /// <param name="bitCellTicks">Durée de cellule fournie, en ticks.</param>
     /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodeDoubledNrzi(IReadOnlyList<uint> intervals, double bitCellTicks) => Reconstruct(intervals, Math.Max(1, bitCellTicks), 64, adaptClock: false);
+    public static FluxBitstream DecodeDoubledNrzi(IReadOnlyList<uint> intervals, double bitCellTicks)
+    {
+        ArgumentNullException.ThrowIfNull(intervals);
+        return Reconstruct(intervals, Math.Max(FluxDecodingParameters.MinimumBitCellTicks, bitCellTicks), 64, adaptClock: false);
+    }
 
     /// <summary>Reconstruit les bits en quantifiant chaque intervalle avec une cellule éventuellement adaptée.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
@@ -52,6 +97,7 @@ internal static class FluxTransitionDecoder
     /// <returns>Bits reconstruits et durée moyenne de cellule.</returns>
     public static FluxBitstream Reconstruct(IReadOnlyList<uint> intervals, double initialCell, int maximumCells, bool adaptClock = true)
     {
+        ArgumentNullException.ThrowIfNull(intervals);
         var currentCell = initialCell; var accumulatedCell = 0d; var samples = 0; var bits = new List<bool>(intervals.Count * 4);
         for (var index = 0; index < intervals.Count; index++)
         {
@@ -72,6 +118,7 @@ internal static class FluxTransitionDecoder
     /// <returns>Bits reconstruits et durée moyenne de cellule.</returns>
     public static FluxBitstream ReconstructPll(IReadOnlyList<uint> intervals, double centre, int maximumCells)
     {
+        ArgumentNullException.ThrowIfNull(intervals);
         var clock = centre;
         var minimum = centre * FluxDecodingParameters.MinimumPllClockRatio;
         var maximum = centre * FluxDecodingParameters.MaximumPllClockRatio;

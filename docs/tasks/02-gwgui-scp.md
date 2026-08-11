@@ -1686,12 +1686,12 @@
       - [x] Remettre sur une seule ligne les signatures et expressions complètes qui tiennent lisiblement.
       - [x] Documenter en français le type et chaque méthode publique ou privée.
   - [ ] `Representations/Flux/FluxTransitionDecoder.cs`
-    - [ ] Contrats des fabriques
-      - [ ] Refuser une collection d'intervalles nulle avant toute estimation ou reconstruction.
-      - [ ] Utiliser la durée minimale nommée pour une durée explicite inférieure à un tick.
-      - [ ] Distinguer par les noms des méthodes reconstruction adaptative FM/MFM, reconstruction PLL, NRZI et doubled-NRZI.
-      - [ ] Conserver l'absence d'adaptation d'horloge pour les surcharges recevant une durée explicite.
-      - [ ] Remplacer le booléen `adaptClock` exposé par deux chemins nommés ou une option technique explicite interne.
+    - [x] Contrats des fabriques
+      - [x] Refuser une collection d'intervalles nulle avant toute estimation ou reconstruction.
+      - [x] Utiliser la durée minimale nommée pour une durée explicite inférieure à un tick.
+      - [x] Distinguer par les noms des méthodes reconstruction adaptative FM/MFM, reconstruction PLL, NRZI et doubled-NRZI.
+      - [x] Conserver l'absence d'adaptation d'horloge pour les surcharges recevant une durée explicite.
+      - [x] Remplacer le booléen `adaptClock` exposé par deux chemins nommés ou une option technique explicite interne.
     - [ ] Reconstruction adaptative
       - [ ] Séparer `currentCell`, `accumulatedCell`, `samples` et la liste des bits actuellement initialisés sur une même ligne.
       - [ ] Séparer la lecture de l'intervalle et le calcul borné du nombre de cellules.

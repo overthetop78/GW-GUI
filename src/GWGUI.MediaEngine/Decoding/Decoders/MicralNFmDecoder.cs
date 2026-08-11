@@ -12,7 +12,7 @@ public sealed class MicralNFmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals, fm: true);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         const int markBits = 4 * 16; const int syncOffset = 3 * 16; const int blockBytes = 1 + 2 + 128 + 1;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)

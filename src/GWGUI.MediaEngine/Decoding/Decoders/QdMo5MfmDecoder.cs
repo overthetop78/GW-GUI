@@ -11,7 +11,7 @@ public sealed class QdMo5MfmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedDataMarks = new HashSet<int>();
         const int markBits = 12 * 8;
         const int headerBits = 10 * 8 + 16 * 16;

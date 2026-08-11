@@ -12,7 +12,7 @@ public sealed class HeathkitFmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals, fm: true);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>(); var pairedData = new HashSet<int>();
         const int signatureBits = 4 * 16;
         const int headerTailBits = 4 * 16;

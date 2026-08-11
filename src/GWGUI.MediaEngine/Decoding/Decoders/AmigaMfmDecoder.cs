@@ -7,7 +7,7 @@ public sealed class AmigaMfmDecoder : IFluxDecoder
     public string Id => "amiga.mfm"; public string DisplayName => "Amiga MFM";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         const int encodedBytes = 540; const int headerBytes = 28; const int dataOffset = 28; const int dataBytes = 512;
         for (var offset = 0; offset + 32 <= stream.Bits.Length; offset++)
         {

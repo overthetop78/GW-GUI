@@ -7,7 +7,7 @@ public sealed class IsoFmDecoder : IFluxDecoder
     public string Id => FluxDecoderIds.IsoFm; public string DisplayName => "ISO FM (simple densité)";
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals, fm: true); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
+        var stream = FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals); var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         var headers = new List<(int Offset, byte Cylinder, byte Head, byte Number, byte SizeCode, int Size, bool? Valid)>(); var dataMarks = new List<(int Offset, byte Mark)>();
         for (var offset = 0; offset + 16 <= stream.Bits.Length; offset++)
         {

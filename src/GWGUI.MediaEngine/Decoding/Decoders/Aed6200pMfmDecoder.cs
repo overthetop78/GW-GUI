@@ -11,7 +11,7 @@ public sealed class Aed6200pMfmDecoder : SignatureMfmDecoder
 
     public override FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>(); var sectors = new List<DecodedSector>(); var bytes = new List<byte>();
         const int headerBits = 7 * 16; var pairedData = new HashSet<int>();
         for (var offset = 0; offset + SectorHeader.Length * 8 <= stream.Bits.Length; offset++)

@@ -13,7 +13,7 @@ public abstract class SignatureMfmDecoder : IFluxDecoder
 
     public virtual FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = IsNrzi ? FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals) : FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals, IsFm); var structures = new List<FluxStructure>();
+        var stream = IsNrzi ? FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals) : IsFm ? FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals) : FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals); var structures = new List<FluxStructure>();
         for (var offset = 0; offset < stream.Bits.Length; offset++)
         {
             foreach (var signature in Signatures)

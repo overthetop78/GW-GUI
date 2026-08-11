@@ -12,7 +12,7 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
 
     public FluxDecodeResult Decode(ScpRevolution revolution)
     {
-        var stream = FluxTransitionDecoder.DecodeAdaptiveClock(revolution.FluxIntervals);
+        var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>();
         var sectors = new List<DecodedSector>();
         var bytes = new List<byte>();
