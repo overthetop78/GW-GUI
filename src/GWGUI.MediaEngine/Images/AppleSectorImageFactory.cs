@@ -17,8 +17,7 @@ internal static class AppleSectorImageFactory
                 new(logical / perCylinder, logical / sectorsPerTrack % heads, logical % sectorsPerTrack),
                 data.AsSpan(logical * blockSize, blockSize).ToArray());
         }
-        return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks,
-            capacity: data.Length, logicalBlockCount: count);
+        return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: data.Length, logicalBlockCount: count);
     }
 
     public static SectorImage CreateAppleMacZoned(byte[] data, string formatId, int heads)
@@ -28,8 +27,7 @@ internal static class AppleSectorImageFactory
         for (var logical = 0; logical < count; logical++)
             blocks[logical] = new(logical, AppleDiskGeometry.AppleMacZonedAddress(logical, heads),
                 data.AsSpan(logical * 512, 512).ToArray());
-        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
-            capacity: data.Length, logicalBlockCount: count);
+        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks, capacity: data.Length, logicalBlockCount: count);
     }
 
     public static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
@@ -44,9 +42,7 @@ internal static class AppleSectorImageFactory
         var sectorsPerTrack = selected.Count > 0 && selected.Keys.Max(key => key.Number) < 13 ? 13 : 16;
         var dosBlocks = selected.Where(pair => pair.Key.Number < sectorsPerTrack)
             .Select(pair => new SectorBlock(
-                pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == 16
-                    ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number]
-                    : pair.Key.Number),
+                pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == 16 ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number),
                 new(pair.Key.Track, 0, pair.Key.Number), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid))
             .ToArray();
         if (dosBlocks.Length == 0) return new(DiskImageFormatIds.AppleIIGcr, 256, trackCount, 1, 16, []);

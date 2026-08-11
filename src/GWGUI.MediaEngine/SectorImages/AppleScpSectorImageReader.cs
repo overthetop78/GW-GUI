@@ -21,8 +21,7 @@ public sealed class AppleScpSectorImageReader
         _rwts18 = new(sectorDecoder);
     }
 
-    public async Task<SectorImage> ReadAsync(string path, string? formatId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         var scp = await _scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) == true)

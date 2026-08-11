@@ -36,15 +36,12 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
         var root = ReadDirectory(image, layout.RootAddress, layout.Resolve, visited, warnings, 0);
         var volumeName = layout.VolumeName;
         var freeBytes = layout.FreeBytes;
-        return new(volumeName.Length == 0 ? root.Name : volumeName, "Acorn ADFS", image.Capacity, freeBytes,
-            null, null, root.Children, warnings);
+        return new(volumeName.Length == 0 ? root.Name : volumeName, "Acorn ADFS", image.Capacity, freeBytes, null, null, root.Children, warnings);
     }
 
     private sealed record DirectoryData(string Name, string Title, IReadOnlyList<FileSystemEntry> Children);
 
-    private static DirectoryData ReadDirectory(SectorImage image, int startBlock, AddressResolver resolve,
-        HashSet<int> visited,
-        List<string> warnings, int depth)
+    private static DirectoryData ReadDirectory(SectorImage image, int startBlock, AddressResolver resolve, HashSet<int> visited, List<string> warnings, int depth)
     {
         if (depth > 64)
         {
@@ -137,8 +134,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
         return output;
     }
 
-    private static bool TryReadDirectory(SectorImage image, int startBlock, AddressResolver resolve,
-        out byte[] directory)
+    private static bool TryReadDirectory(SectorImage image, int startBlock, AddressResolver resolve, out byte[] directory)
     {
         if (!TryReadBytes(image, startBlock, resolve, DirectorySize, out directory)) return false;
         var header = System.Text.Encoding.ASCII.GetString(directory, 1, 4);
@@ -146,8 +142,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
         return (header is "Hugo" or "Nick") && footer == header && directory[0] == directory[DirectorySize - 6];
     }
 
-    private static bool TryReadBytes(SectorImage image, int indirectAddress, AddressResolver resolve, int length,
-        out byte[] output)
+    private static bool TryReadBytes(SectorImage image, int indirectAddress, AddressResolver resolve, int length, out byte[] output)
     {
         output = new byte[length];
         var copied = 0;

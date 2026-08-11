@@ -10,8 +10,7 @@ internal sealed class AppleRwts18ScpSectorReconstructor(AppleScpSectorDecoder de
         var candidates = decoder.DecodeCandidates(scp, DiskImageFormatIds.AppleIIRwts18, 768, cancellationToken);
         if (candidates.Count == 0)
             throw new InvalidDataException("No Apple II RWTS18 sectors could be decoded from the SCP image.");
-        var blocks = candidates.Where(pair => pair.Key.Cylinder is >= 0 and < 50 &&
-                                               pair.Key.Number is >= 0 and < 6)
+        var blocks = candidates.Where(pair => pair.Key.Cylinder is >= 0 and < 50 && pair.Key.Number is >= 0 and < 6)
             .Select(pair => AppleScpSectorDecoder.Select(pair.Key.Cylinder * 6 + pair.Key.Number, pair.Key, pair.Value)).ToArray();
         if (blocks.Length == 0)
             throw new InvalidDataException("No usable Apple II RWTS18 sectors could be reconstructed.");

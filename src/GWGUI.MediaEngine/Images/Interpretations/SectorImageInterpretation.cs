@@ -30,8 +30,7 @@ internal static class SectorImageInterpretation
         return false;
     }
 
-    public static bool TryReadFatGeometry(SectorImage image, out int cylinders, out int heads,
-        out int sectorsPerTrack, out int totalSectors)
+    public static bool TryReadFatGeometry(SectorImage image, out int cylinders, out int heads, out int sectorsPerTrack, out int totalSectors)
     {
         cylinders = heads = sectorsPerTrack = totalSectors = 0;
         if (image.BlockSize != 512 || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 36) return false;

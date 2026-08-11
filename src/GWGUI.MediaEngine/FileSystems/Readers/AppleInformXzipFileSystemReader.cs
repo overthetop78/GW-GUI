@@ -24,8 +24,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
 
     public bool CanRead(SectorImage image)
     {
-        if (image.BlockSize != SectorSize || image.SectorsPerTrack != 16 || image.Heads != 1 ||
-            image.BlockCount < 35 * 16)
+        if (image.BlockSize != SectorSize || image.SectorsPerTrack != 16 || image.Heads != 1 || image.BlockCount < 35 * 16)
             return false;
 
         var story = ReadStory(image, headerOnly: false);
@@ -45,8 +44,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
         FileSystemEntry[] entries =
         [
             new("INTERPRETER.BIN", FileSystemEntryKind.File, interpreter.Length, null, "", 0, 0, true, [], interpreter),
-            new($"STORY.Z{version}", FileSystemEntryKind.File, storyFile.Length, null, "", 0,
-                InterpreterSectors, true, [], storyFile)
+            new($"STORY.Z{version}", FileSystemEntryKind.File, storyFile.Length, null, "", 0, InterpreterSectors, true, [], storyFile)
         ];
 
         var used = interpreter.LongLength + storyFile.LongLength;

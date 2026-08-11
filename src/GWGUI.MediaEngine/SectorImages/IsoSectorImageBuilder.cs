@@ -42,8 +42,7 @@ internal static class IsoSectorImageBuilder
             var logical = (address.Cylinder * heads + address.Head) * sectorsPerTrack + index;
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
-        return new(formatId, sectorSize, cylinders, heads, sectorsPerTrack, blocks,
-            allowVariableBlockSize: allowVariableBlockSize, capacity: capacity);
+        return new(formatId, sectorSize, cylinders, heads, sectorsPerTrack, blocks, allowVariableBlockSize: allowVariableBlockSize, capacity: capacity);
     }
 
     public static byte[] BestData(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates, SectorAddress address)

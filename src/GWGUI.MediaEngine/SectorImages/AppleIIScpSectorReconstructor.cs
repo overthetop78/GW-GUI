@@ -14,12 +14,9 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
             throw new InvalidDataException("No Apple II GCR sectors could be decoded from the SCP image.");
         if (prodosOrder) return CreateProDosImage(candidates);
         var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= 13) ? 16 : 13;
-        var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 &&
-                                               pair.Key.Number < sectorsPerTrack)
+        var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
             .Select(pair => AppleScpSectorDecoder.Select(
-                pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == 16
-                    ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number]
-                    : pair.Key.Number), pair.Key, pair.Value)).ToArray();
+                pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == 16 ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
         var formatId = sectorsPerTrack == 13 ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
         return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1),
             1, sectorsPerTrack, blocks);

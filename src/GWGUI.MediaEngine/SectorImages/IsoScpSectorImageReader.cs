@@ -35,8 +35,7 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
 
     private static double Score(FluxDecodeResult result) => (result.Sectors?.Count(sector => sector.Data is not null) ?? 0) * 10 + result.Confidence;
 
-    private static void AddCandidate(Dictionary<SectorAddress, List<IsoSectorCandidate>> candidates,
-        SectorAddress address, DecodedSector sector, int revolution)
+    private static void AddCandidate(Dictionary<SectorAddress, List<IsoSectorCandidate>> candidates, SectorAddress address, DecodedSector sector, int revolution)
     {
         if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
         list.Add(new(sector, revolution));

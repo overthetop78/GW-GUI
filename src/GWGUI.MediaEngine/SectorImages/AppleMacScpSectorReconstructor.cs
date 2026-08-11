@@ -32,8 +32,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true
             ? requestedFormatId
             : DiskImageFormatIds.AppleMacGcr;
-        if (requestedFormatId is null && blocks.Any(block =>
-                block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
+        if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
             formatId = DiskImageFormatIds.AppleLisaOffice;
         if (requestedFormatId is null && AppleScpSectorDecoder.TryFlattenPayload(provisional, out var payload) &&
             AppleDiskImageSignatures.LooksLikeLisaOfficePayload(payload))
@@ -50,7 +49,6 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
                         ? DiskImageFormatIds.AppleMacHfs
                         : DiskImageFormatIds.AppleIIProDos;
         }
-        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
-            capacity: count * 512L, logicalBlockCount: count);
+        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks, capacity: count * 512L, logicalBlockCount: count);
     }
 }

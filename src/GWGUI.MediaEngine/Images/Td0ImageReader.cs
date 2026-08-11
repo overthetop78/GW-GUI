@@ -96,8 +96,7 @@ public sealed class Td0ImageReader : ISectorImageReader
                 new SectorAddress(sector.Cylinder, sector.Head, sector.Number), sector.Data, sector.IntegrityValid))
             .ToArray();
         var formatId = DetectFormat(blocks, blockSize, cylinders, heads, sectorsPerTrack);
-        return new SectorImage(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks,
-            capacity: blocks.LongLength * blockSize, logicalBlockCount: blocks.Length);
+        return new SectorImage(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: blocks.LongLength * blockSize, logicalBlockCount: blocks.Length);
     }
 
     private static string DetectFormat(IReadOnlyList<SectorBlock> blocks, int blockSize, int cylinders, int heads, int sectorsPerTrack)

@@ -29,8 +29,7 @@ internal static class EpsonQx10FormatDetector
         {
             var smallTracks = tracks.Where(track => Matches(track, 1, 16, 256)).ToArray();
             var normalTracks = tracks.Where(track => Matches(track, 1, 10, 512)).ToArray();
-            if (smallTracks.Length == 1 && smallTracks[0].Cylinder == 0 && smallTracks[0].Head == 0 &&
-                smallTracks.Length + normalTracks.Length == tracks.Length) formatId = DiskImageFormatIds.EpsonQx10_399;
+            if (smallTracks.Length == 1 && smallTracks[0].Cylinder == 0 && smallTracks[0].Head == 0 && smallTracks.Length + normalTracks.Length == tracks.Length) formatId = DiskImageFormatIds.EpsonQx10_399;
             else if (smallTracks.Length >= 4 && smallTracks.All(track => track.Cylinder <= 1) &&
                      smallTracks.Length + normalTracks.Length == tracks.Length) formatId = DiskImageFormatIds.EpsonQx10_396;
             else
@@ -46,8 +45,7 @@ internal static class EpsonQx10FormatDetector
     }
 
     private static bool Matches(DetectedTrack track, int first, int count, int size) =>
-        track.Sectors.Count == count && track.Sectors.All(sector =>
-            sector.Number >= first && sector.Number < first + count && sector.Size == size);
+        track.Sectors.Count == count && track.Sectors.All(sector => sector.Number >= first && sector.Number < first + count && sector.Size == size);
 
     private readonly record struct DetectedSector(int Number, int Size);
     private readonly record struct DetectedTrack(int Cylinder, int Head, IReadOnlyList<DetectedSector> Sectors);

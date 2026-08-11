@@ -46,8 +46,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         if (image.AvailableBlocks.Count != image.BlockCount) return false;
         foreach (var block in image.AvailableBlocks)
         {
-            if (block.LogicalBlock < 0 || block.LogicalBlock >= image.BlockCount ||
-                block.Data.Count != image.BlockSize) return false;
+            if (block.LogicalBlock < 0 || block.LogicalBlock >= image.BlockCount || block.Data.Count != image.BlockSize) return false;
             block.Data.ToArray().CopyTo(payload, block.LogicalBlock * image.BlockSize);
         }
         return true;

@@ -204,8 +204,7 @@ internal sealed class AcornFileCoreNewMap
                 discSize > imageCapacity || zoneSpare >= 8 << log2Sector)
                 return false;
             var name = System.Text.Encoding.ASCII.GetString(data[22..32]).TrimEnd('\0', '\r', ' ');
-            record = new(log2Sector, idLength, log2BytesPerMapBit, zones, zoneSpare, root, discSize,
-                name, data[40] & 0x0F);
+            record = new(log2Sector, idLength, log2BytesPerMapBit, zones, zoneSpare, root, discSize, name, data[40] & 0x0F);
             return true;
         }
     }

@@ -1005,9 +1005,9 @@
     - [x] Compiler la solution sans restauration et vérifier l’absence d’erreur et d’avertissement.
     - [x] Exécuter les tests ciblés des conteneurs, géométries, politiques, explorateurs, encodeurs et reconstructeurs modifiés.
     - [x] Vérifier que les 205 tests ciblés réussissent sans test ignoré.
-- [ ] Retours à la ligne courts encore présents après le premier contrôle
-  - [ ] Conteneurs et reconnaissance
-    - [ ] Remettre sur une ligne les neuf méthodes courtes de `Containers/Amstrad/CpcDsk/CpcDskExceptions.cs` qui construisent directement une exception.
+- [x] Retours à la ligne courts encore présents après le premier contrôle
+  - [x] Conteneurs et reconnaissance
+    - [x] Remettre sur une ligne les neuf méthodes courtes de `Containers/Amstrad/CpcDsk/CpcDskExceptions.cs` qui construisent directement une exception.
     - [x] Remettre sur une ligne la lecture de `ImageFormat` dans `Containers/Apple/TwoImg/TwoImgReader.cs`.
     - [x] Remettre sur une ligne la signature de `PolicyRejectedContent` dans `Recognition/DiskImageRecognitionExceptions.cs`.
     - [x] Remettre sur une ligne l'appel à `ConvertToBits` dans `Recognition/Apple/NibTrackImageReader.cs`.
@@ -1028,9 +1028,9 @@
     - [x] Remettre sur une ligne la signature de `CreateImage` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
     - [x] Remettre sur une ligne la signature de `TryDetectFormat` dans `SectorImages/EpsonQx10SectorImagePolicy.cs`.
     - [x] Remettre sur une ligne la signature de `BestData` dans `SectorImages/IsoSectorImageBuilder.cs`.
-  - [ ] Vérification du formatage
-    - [ ] Relancer le contrôle des constructions parenthésées complètes de `180` caractères ou moins sur tous les fichiers C# de production.
-    - [ ] Exécuter les tests ciblés des fichiers dont seule la mise en forme a changé.
+  - [x] Vérification du formatage
+    - [x] Relancer le contrôle des constructions parenthésées complètes de `180` caractères ou moins sur tous les fichiers C# de production.
+    - [x] Exécuter les tests ciblés des fichiers dont seule la mise en forme a changé.
 - [ ] `src/GWGUI.MediaEngine/Images/Containers/DelegatingContainerPolicy.cs`
   - [ ] Remplacement par la politique de reconnaissance commune
     - [ ] Remplacer dans `Images/DiskImageExplorerFactory.cs` l’enregistrement délégué de `I86fImageReader.ReadAsync` par la politique commune créée avec `DirectContainerPolicy.cs` sous `Recognition/Policies`.
