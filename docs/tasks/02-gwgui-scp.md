@@ -1500,10 +1500,10 @@
       - [x] Vérifier qu’une présélection suivie d’une lecture n’ouvre le fichier qu’une seule fois.
       - [x] Tester une géométrie CPC, une géométrie PCW et la conservation exacte des secteurs lors du changement d’identifiant.
   - [ ] `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs`
-    - [ ] Responsabilité et dépendances
-      - [ ] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
-      - [ ] Adapter les imports de `DiskImageFileExtensions` et `DiskImageFormatIds` à leur déplacement sous `GWGUI.MediaEngine.Definitions`.
-      - [ ] Conserver `RawHints` privé et construit uniquement avec les constantes communes `.do`, `.po`, `.d13` et `.nib`.
+    - [x] Responsabilité et dépendances
+      - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
+      - [x] Adapter les imports de `DiskImageFileExtensions` et `DiskImageFormatIds` à leur déplacement sous `GWGUI.MediaEngine.Definitions`.
+      - [x] Conserver `RawHints` privé et construit uniquement avec les constantes communes `.do`, `.po`, `.d13` et `.nib`.
     - [ ] Probe des images Apple brutes
       - [ ] Créer `Recognition/Apple/AppleRawImageProbe.cs` et y déplacer la logique de `AppleDiskImageReader.LooksLikeAppleImage` qui examine extension, taille et signatures internes.
       - [ ] Faire recevoir au probe l’extension, les octets déjà chargés et l’identifiant éventuellement demandé, sans lire le chemin ni intercepter toutes les exceptions.
