@@ -1909,11 +1909,11 @@
     - [x] Déplacer les tables 5-and-3 et 6-and-2 actuellement dupliquées entre `AppleIIGcrDecoder.cs` et `AppleIIGcrTrackEncoder.cs`.
     - [x] Sortir les prologues, épilogues, tailles de champs, longueurs encodées, gaps et valeurs de volume par défaut.
     - [x] Remplacer toutes les valeurs brutes correspondantes dans le décodeur et l’encodeur.
-  - [ ] Macintosh et Lisa GCR
-    - [ ] Créer `Encoding/Definitions/AppleMacGcrFormat.cs` et `AppleLisaFileWareGcrFormat.cs`.
-    - [ ] Déplacer la table 6-and-2, les marques d’adresse et de données, les tailles de tags, secteurs, champs et checksums communes à `AppleMacGcrDecoder.cs` et `AppleMacGcrTrackEncoder.cs`.
-    - [ ] Placer les valeurs propres à Lisa FileWare, dont le format `0x12`, dans `AppleLisaFileWareGcrFormat.cs`.
-    - [ ] Remplacer toutes les valeurs brutes correspondantes dans les deux décodeurs et les deux encodeurs.
+  - [x] Macintosh et Lisa GCR
+    - [x] Créer `Encoding/Definitions/AppleMacGcrFormat.cs` et `AppleLisaFileWareGcrFormat.cs`.
+    - [x] Déplacer la table 6-and-2, les marques d’adresse et de données, les tailles de tags, secteurs, champs et checksums communes à `AppleMacGcrDecoder.cs` et `AppleMacGcrTrackEncoder.cs`.
+    - [x] Placer les valeurs propres à Lisa FileWare, dont le format `0x12`, dans `AppleLisaFileWareGcrFormat.cs`.
+    - [x] Remplacer toutes les valeurs brutes correspondantes dans les deux décodeurs et les deux encodeurs.
   - [ ] Apple RWTS18
     - [ ] Créer `Encoding/Definitions/AppleRwts18Format.cs`.
     - [ ] Déplacer la table de nibbles, les marques, les six secteurs, les tailles `768` et `1024`, les gaps et l’identifiant par défaut actuellement dupliqués.

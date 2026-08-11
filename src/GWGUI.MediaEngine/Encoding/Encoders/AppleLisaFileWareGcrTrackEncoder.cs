@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Encoding.Definitions;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 /// <summary>
@@ -9,5 +11,5 @@ public sealed class AppleLisaFileWareGcrTrackEncoder : AppleMacGcrTrackEncoder
 {
     public override string Id => FluxCodecIds.AppleLisaFileWareGcr;
     public override string DisplayName => FluxCodecDisplayNames.AppleLisaFileWareGcr;
-    protected override byte DefaultFormat => 0x12;
+    protected override byte DefaultFormat => AppleLisaFileWareGcrFormat.DefaultFormat;
 }

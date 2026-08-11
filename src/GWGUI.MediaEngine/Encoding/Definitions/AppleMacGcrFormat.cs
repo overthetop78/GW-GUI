@@ -1,0 +1,51 @@
+namespace GWGUI.MediaEngine.Encoding.Definitions;
+
+internal static class AppleMacGcrFormat
+{
+    public const byte AddressMarkFirstByte = 0xd5;
+    public const byte AddressMarkSecondByte = 0xaa;
+    public const byte AddressMarkLastByte = 0x96;
+    public const byte DataMarkLastByte = 0xad;
+    public const byte EpilogueFirstByte = 0xde;
+    public const byte EpilogueSecondByte = 0xaa;
+    public const byte SyncByte = 0xff;
+    public const int MarkByteCount = 3;
+    public const int MarkBitCount = MarkByteCount * Primitives.BitPrimitives.BitsPerByte;
+    public const int HeaderSymbolCount = 5;
+    public const int HeaderValueCount = 4;
+    public const int DataSymbolCount = 704;
+    public const int EncodedPayloadSymbolCount = 699;
+    public const int ChecksumSymbolCount = 4;
+    public const int TagByteCount = 12;
+    public const int SectorByteCount = 512;
+    public const int TaggedSectorByteCount = TagByteCount + SectorByteCount;
+    public const byte SectorSizeCode = 2;
+    public const byte DefaultFormat = 0x12;
+    public const int CylinderHighBitMask = 0x03;
+    public const int CylinderHighBitShift = 6;
+    public const int HeadBitShift = 5;
+    public const int HeadBitMask = 0x01;
+    public const int GroupByteCount = 175;
+    public const int LastGroupIndex = GroupByteCount - 1;
+    public const byte SixBitMask = 0x3f;
+    public const uint ChecksumByteMask = 0xff;
+    public const uint ChecksumCarryBit = 0x100;
+    public const uint ChecksumHighBitsMask = 0xc0;
+    public const int EncodedHighBitsMask = 0xc0;
+    public const int FirstChecksumShift = 6;
+    public const int SecondChecksumShift = 4;
+    public const int ThirdChecksumShift = 2;
+    public const int FirstPackedChecksumMask = 0x30;
+    public const int SecondPackedChecksumMask = 0x0c;
+    public const int ThirdPackedChecksumMask = 0x03;
+    public const int DataSearchBitCount = 512;
+    public const int CircularTailBitCount = 8192;
+    public const int AddressLeadingGapBitCount = 100;
+    public const int AddressTrailingGapBitCount = 32;
+    public const int DataTrailingGapBitCount = 64;
+    public const string FormatAttributeName = "format";
+    public const string TagAttributePrefix = "tag";
+    public static IReadOnlyList<byte> SixAndTwoTable => AppleIIGcrFormat.SixAndTwoTable;
+    public static IReadOnlyList<byte> AddressMark { get; } = Array.AsReadOnly<byte>([AddressMarkFirstByte, AddressMarkSecondByte, AddressMarkLastByte]);
+    public static IReadOnlyList<byte> DataMark { get; } = Array.AsReadOnly<byte>([AddressMarkFirstByte, AddressMarkSecondByte, DataMarkLastByte]);
+}
