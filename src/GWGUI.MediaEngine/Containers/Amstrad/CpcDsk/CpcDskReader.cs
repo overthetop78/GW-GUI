@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
@@ -15,7 +16,7 @@ public sealed class CpcDskReader
     /// <param name="path">Chemin du conteneur DSK à lire.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du fichier et le parcours des pistes.</param>
     /// <returns>
-    /// Une image sectorielle neutre identifiée par <c>cpcemu.dsk</c>. Les adresses de cylindre, de face et de secteur
+    /// Une image sectorielle neutre identifiée par <see cref="DiskImageFormatIds.CpcEmuDsk"/>. Les adresses de cylindre, de face et de secteur
     /// proviennent des descripteurs de pistes ; les tailles et la capacité sont exprimées en octets.
     /// </returns>
     /// <exception cref="ArgumentException"><paramref name="path"/> est vide ou n'est pas un chemin valide.</exception>
@@ -31,16 +32,13 @@ public sealed class CpcDskReader
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         if (bytes.Length < CpcDskLayout.DiskInformationBlockSize) throw CpcDskExceptions.TruncatedHeader();
-        var signature = System.Text.Encoding.ASCII.GetString(bytes, 0, CpcDskLayout.DiskSignatureLength);
-        var extended = signature.StartsWith(CpcDskFormat.ExtendedSignature, StringComparison.Ordinal);
-        if (!extended && !signature.StartsWith(CpcDskFormat.StandardSignature, StringComparison.Ordinal))
-            throw CpcDskExceptions.UnrecognizedSignature();
+        var signature = bytes.AsSpan(0, CpcDskLayout.DiskSignatureLength);
+        var extended = signature.StartsWith(CpcDskFormat.ExtendedSignatureBytes);
+        if (!extended && !signature.StartsWith(CpcDskFormat.StandardSignatureBytes)) throw CpcDskExceptions.UnrecognizedSignature();
 
         var cylinders = bytes[CpcDskLayout.CylinderCountOffset];
         var heads = bytes[CpcDskLayout.HeadCountOffset];
-        if (cylinders is 0 or > CpcDskLayout.MaximumCylinderCount ||
-            heads is 0 or > CpcDskLayout.MaximumHeadCount)
-            throw CpcDskExceptions.InvalidGeometry();
+        if (cylinders is < CpcDskLayout.MinimumCylinderCount or > CpcDskLayout.MaximumCylinderCount || heads is < CpcDskLayout.MinimumHeadCount or > CpcDskLayout.MaximumHeadCount) throw CpcDskExceptions.InvalidGeometry();
         var trackCount = checked(cylinders * heads);
         if (extended && CpcDskLayout.ExtendedTrackSizeTableOffset + trackCount > CpcDskLayout.DiskInformationBlockSize)
             throw CpcDskExceptions.InvalidExtendedTrackTable();
@@ -48,7 +46,6 @@ public sealed class CpcDskReader
         var blocks = new List<SectorBlock>();
         var position = CpcDskLayout.DiskInformationBlockSize;
         var logicalBlock = 0;
-        var dominantSize = 0;
         var maximumSectors = 0;
         var sectorSizes = new Dictionary<int, int>();
         for (var trackIndex = 0; trackIndex < trackCount; trackIndex++)
@@ -60,29 +57,22 @@ public sealed class CpcDskReader
             if (trackSize == 0) continue;
             if (position + trackSize > bytes.Length || trackSize < CpcDskLayout.TrackInformationBlockSize)
                 throw CpcDskExceptions.TruncatedTrack(trackIndex);
-            if (!System.Text.Encoding.ASCII.GetString(bytes, position, CpcDskLayout.TrackSignatureLength)
-                    .StartsWith(CpcDskFormat.TrackSignature, StringComparison.Ordinal))
-                throw CpcDskExceptions.InvalidTrackHeader(trackIndex);
+            if (!bytes.AsSpan(position, CpcDskLayout.TrackSignatureLength).StartsWith(CpcDskFormat.TrackSignatureBytes)) throw CpcDskExceptions.InvalidTrackHeader(trackIndex);
 
             var cylinder = bytes[position + CpcDskLayout.TrackCylinderOffset];
             var head = bytes[position + CpcDskLayout.TrackHeadOffset];
             var sectorCount = bytes[position + CpcDskLayout.TrackSectorCountOffset];
             maximumSectors = Math.Max(maximumSectors, sectorCount);
-            if (position + CpcDskLayout.SectorDescriptorTableOffset +
-                sectorCount * CpcDskLayout.SectorDescriptorSize >
-                position + CpcDskLayout.TrackInformationBlockSize)
-                throw CpcDskExceptions.InvalidSectorTable(trackIndex);
+            if (position + CpcDskLayout.SectorDescriptorTableOffset + sectorCount * CpcDskLayout.SectorDescriptorSize > position + CpcDskLayout.TrackInformationBlockSize) throw CpcDskExceptions.InvalidSectorTable(trackIndex);
             var dataPosition = position + CpcDskLayout.TrackInformationBlockSize;
             var trackSectors = new List<(int Cylinder, int Head, int Id, byte[] Data, bool Valid)>();
             for (var sectorIndex = 0; sectorIndex < sectorCount; sectorIndex++)
             {
-                var descriptor = position + CpcDskLayout.SectorDescriptorTableOffset +
-                                 sectorIndex * CpcDskLayout.SectorDescriptorSize;
+                var descriptor = position + CpcDskLayout.SectorDescriptorTableOffset + sectorIndex * CpcDskLayout.SectorDescriptorSize;
                 var sectorCylinder = bytes[descriptor + CpcDskLayout.SectorCylinderOffset];
                 var sectorHead = bytes[descriptor + CpcDskLayout.SectorHeadOffset];
                 var sectorId = bytes[descriptor + CpcDskLayout.SectorIdOffset];
-                var sizeCode = bytes[descriptor + CpcDskLayout.SectorSizeCodeOffset] &
-                               CpcDskLayout.SectorSizeCodeMask;
+                var sizeCode = bytes[descriptor + CpcDskLayout.SectorSizeCodeOffset] & CpcDskLayout.SectorSizeCodeMask;
                 var nominalSize = CpcDskLayout.MinimumSectorSize << sizeCode;
                 var storedSize = extended
                     ? BinaryPrimitives.ReadUInt16LittleEndian(bytes.AsSpan(descriptor + CpcDskLayout.SectorStoredSizeOffset, CpcDskLayout.StoredSizeFieldLength))
@@ -93,8 +83,8 @@ public sealed class CpcDskReader
                 var data = bytes.AsSpan(dataPosition, Math.Min(nominalSize, storedSize)).ToArray();
                 var status1 = bytes[descriptor + CpcDskLayout.SectorStatus1Offset];
                 var status2 = bytes[descriptor + CpcDskLayout.SectorStatus2Offset];
-                var crcValid = (status1 & CpcDskLayout.DataErrorMask) == 0;
-                trackSectors.Add((sectorCylinder, sectorHead, sectorId, data, crcValid));
+                var integrityValid = (status1 & CpcDskLayout.DataErrorMask) == 0 && (status2 & CpcDskLayout.DataErrorMask) == 0;
+                trackSectors.Add((sectorCylinder, sectorHead, sectorId, data, integrityValid));
                 sectorSizes[nominalSize] = sectorSizes.GetValueOrDefault(nominalSize) + 1;
                 dataPosition += storedSize;
             }
@@ -103,7 +93,7 @@ public sealed class CpcDskReader
             position += trackSize;
         }
         if (blocks.Count == 0) throw CpcDskExceptions.NoSectors();
-        dominantSize = sectorSizes.OrderByDescending(item => item.Value).First().Key;
+        var dominantSize = sectorSizes.OrderByDescending(item => item.Value).First().Key;
         return new(CpcDskFormat.FormatId, dominantSize, cylinders, heads, Math.Max(1, maximumSectors), blocks,
             allowVariableBlockSize: sectorSizes.Count > 1, capacity: blocks.Sum(block => (long)block.Data.Count), logicalBlockCount: blocks.Count);
     }

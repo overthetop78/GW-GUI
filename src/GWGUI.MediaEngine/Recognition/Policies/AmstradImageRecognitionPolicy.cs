@@ -18,7 +18,7 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
     public async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
-        return StartsWith(bytes, CpcDskFormat.StandardSignature) || StartsWith(bytes, CpcDskFormat.ExtendedSignature);
+        return bytes.Span.StartsWith(CpcDskFormat.StandardSignatureBytes) || bytes.Span.StartsWith(CpcDskFormat.ExtendedSignatureBytes);
     }
 
     /// <summary>Lit le conteneur neutre puis lui attribue l'identifiant CPC ou PCW déterminé par sa géométrie.</summary>
@@ -35,9 +35,4 @@ internal sealed class AmstradImageRecognitionPolicy(CpcDskReader reader) : IDisk
         return SectorImageInterpretation.Retag(image, formatId);
     }
 
-    /// <summary>Indique si les premiers octets correspondent à une signature ASCII donnée.</summary>
-    /// <param name="bytes">Contenu du fichier.</param>
-    /// <param name="signature">Signature CPCEMU attendue.</param>
-    /// <returns><see langword="true"/> lorsque la signature est complète et identique.</returns>
-    private static bool StartsWith(ReadOnlyMemory<byte> bytes, string signature) => bytes.Span.StartsWith(System.Text.Encoding.ASCII.GetBytes(signature));
 }

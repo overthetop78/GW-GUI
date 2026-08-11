@@ -40,9 +40,13 @@ public static class CpcDskLayout
 
     /// <summary>Nombre maximal de cylindres accepté dans la géométrie déclarée.</summary>
     public const int MaximumCylinderCount = 168;
+    /// <summary>Nombre minimal de cylindres accepté dans la géométrie déclarée.</summary>
+    public const int MinimumCylinderCount = 1;
 
     /// <summary>Nombre maximal de faces accepté dans la géométrie déclarée.</summary>
     public const int MaximumHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
+    /// <summary>Nombre minimal de faces accepté dans la géométrie déclarée.</summary>
+    public const int MinimumHeadCount = 1;
 
     /// <summary>Nombre d’octets lus au début d’une piste pour reconnaître sa signature.</summary>
     public const int TrackSignatureLength = 12;

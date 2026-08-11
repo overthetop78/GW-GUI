@@ -10,6 +10,15 @@ public sealed class CpcDskReaderTests
 {
     private static readonly Lazy<TestImages> Images = new(CreateTestImages);
 
+    [Fact]
+    public void ExposesTheExactPublicSignaturesAndFormatIdentifier()
+    {
+        Assert.Equal("MV - CPC", Encoding.ASCII.GetString(CpcDskFormat.StandardSignatureBytes));
+        Assert.Equal("EXTENDED CPC DSK File", Encoding.ASCII.GetString(CpcDskFormat.ExtendedSignatureBytes));
+        Assert.Equal("Track-Info", Encoding.ASCII.GetString(CpcDskFormat.TrackSignatureBytes));
+        Assert.Equal("cpcemu.dsk", CpcDskFormat.FormatId);
+    }
+
     [Theory]
     [InlineData("standard", "158738173A8F0AE7ABBBA4A05DD0575D194EFD4B6DA9DB510A134F8743753122")]
     [InlineData("extended", "E289A13850E2BC62672CDBA4916D3EFD36B75FB77D238688B25A1E40DABE4852")]
@@ -55,6 +64,43 @@ public sealed class CpcDskReaderTests
         Assert.All(sectors[1].Data, value => Assert.Equal(0xa5, value));
         Assert.Equal(256, image.GetBlock(0).Length);
         Assert.Equal(512, image.GetBlock(1).Length);
+    }
+
+    [Fact]
+    public async Task UsesBothStatusBytesToDetermineSectorIntegrity()
+    {
+        var image = await new CpcDskReader().ReadAsync(Images.Value.Invalid["status2-error"]);
+
+        var sectors = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).ToArray();
+        Assert.True(sectors[0].IntegrityValid);
+        Assert.False(sectors[1].IntegrityValid);
+    }
+
+    [Theory]
+    [InlineData(true, 0)]
+    [InlineData(true, CpcDskLayout.MaximumCylinderCount + 1)]
+    [InlineData(false, 0)]
+    [InlineData(false, CpcDskLayout.MaximumHeadCount + 1)]
+    public async Task RejectsGeometryOutsideTheDeclaredLimits(bool cylinder, int value)
+    {
+        var path = WriteVariant(Path.GetDirectoryName(Images.Value.VariableExtended)!, $"invalid-{(cylinder ? "cylinder" : "head")}-{value}.edsk", File.ReadAllBytes(Images.Value.VariableExtended), bytes => bytes[cylinder ? CpcDskLayout.CylinderCountOffset : CpcDskLayout.HeadCountOffset] = checked((byte)value));
+
+        await Assert.ThrowsAsync<InvalidDataException>(() => new CpcDskReader().ReadAsync(path));
+    }
+
+    [Theory]
+    [InlineData(CpcDskLayout.MaximumCylinderCount, CpcDskLayout.MinimumHeadCount)]
+    [InlineData(CpcDskLayout.MinimumCylinderCount, CpcDskLayout.MaximumHeadCount)]
+    public async Task AcceptsTheMaximumGeometryLimitsBeforeCheckingForSectors(int cylinders, int heads)
+    {
+        var bytes = new byte[CpcDskLayout.DiskInformationBlockSize];
+        CpcDskFormat.StandardSignatureBytes.CopyTo(bytes);
+        bytes[CpcDskLayout.CylinderCountOffset] = checked((byte)cylinders);
+        bytes[CpcDskLayout.HeadCountOffset] = checked((byte)heads);
+        var path = Write(Path.GetDirectoryName(Images.Value.VariableExtended)!, $"maximum-geometry-{cylinders}-{heads}.dsk", bytes);
+
+        var exception = await Assert.ThrowsAsync<InvalidDataException>(() => new CpcDskReader().ReadAsync(path));
+        Assert.Contains("no sectors", exception.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Theory]
@@ -127,6 +173,12 @@ public sealed class CpcDskReaderTests
                     CpcDskLayout.StoredSizeFieldLength);
                 var oversized = checked((ushort)(BinaryPrimitives.ReadUInt16LittleEndian(storedSize) + 1));
                 BinaryPrimitives.WriteUInt16LittleEndian(storedSize, oversized);
+            }),
+            ["status2-error"] = WriteVariant(outputDirectory, "status2-error.edsk", validBytes, bytes =>
+            {
+                var secondDescriptor = CpcDskLayout.DiskInformationBlockSize + CpcDskLayout.SectorDescriptorTableOffset + CpcDskLayout.SectorDescriptorSize;
+                bytes[secondDescriptor + CpcDskLayout.SectorStatus1Offset] = 0;
+                bytes[secondDescriptor + CpcDskLayout.SectorStatus2Offset] = CpcDskLayout.DataErrorMask;
             })
         };
 

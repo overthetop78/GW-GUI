@@ -11,7 +11,7 @@ public sealed class DiskImageFormatIdsTests
     {
         var expected = new HashSet<string>(StringComparer.Ordinal)
         {
-            "unknown", "imd", "td0",
+            "unknown", "imd", "td0", "cpcemu.dsk",
             "acorn.adfs.", "acorn.adfs.800", "acorn.dfs.", "acorn.dfs.ss", "acorn.dfs.ss80",
             "acorn.dfs.ds", "acorn.dfs.ds80",
             "amiga.", "amiga.amigados", "amiga.amigados_hd",

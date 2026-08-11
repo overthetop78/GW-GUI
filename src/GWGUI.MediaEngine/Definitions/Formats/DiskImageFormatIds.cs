@@ -9,4 +9,6 @@ public static partial class DiskImageFormatIds
     public const string Imd = "imd";
     /// <summary>Identifiant générique des conteneurs Teledisk.</summary>
     public const string Td0 = "td0";
+    /// <summary>Identifiant neutre des conteneurs CPCEMU DSK.</summary>
+    public const string CpcEmuDsk = "cpcemu.dsk";
 }

@@ -543,21 +543,21 @@
     - [x] Tester une capacité différente de RX02, une sélection explicite RX02, un home block RT-11 valide et une image RX02 sans structure RT-11 crédible.
     - [x] Vérifier qu’un candidat rejeté laisse le registre continuer.
     - [x] Vérifier que probe et lecture complète partagent une seule lecture du fichier.
-- [ ] `src/GWGUI.MediaEngine/Images/AmstradDskImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/AmstradDskImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/Amstrad/CpcDsk/CpcDskReader.cs`.
     - [x] Faire produire des pistes sectorielles sans décider CPC ou PCW.
-  - [ ] Définitions du format CPCEMU DSK
+  - [x] Définitions du format CPCEMU DSK
     - [x] Créer `Containers/Amstrad/CpcDsk/CpcDskFormat.cs`.
     - [x] Déplacer la signature Standard `MV - CPC` dans une constante nommée de `CpcDskFormat`.
     - [x] Déplacer la signature Extended `EXTENDED CPC DSK File` dans une constante nommée de `CpcDskFormat`.
     - [x] Déplacer la signature de piste `Track-Info` dans une constante nommée de `CpcDskFormat`.
     - [x] Déplacer l’identifiant neutre `cpcemu.dsk` dans une constante publique nommée de `CpcDskFormat`.
     - [x] Remplacer dans `CpcDskReader` les signatures et l’identifiant écrits en texte brut par ces constantes.
-    - [ ] Ajouter dans `CpcDskFormat` des représentations binaires immuables des signatures Standard, Extended et de piste.
-    - [ ] Faire utiliser ces signatures binaires par `CpcDskReader` et `AmstradImageRecognitionPolicy` sans réencoder les chaînes ASCII à chaque lecture.
-    - [ ] Ajouter `CpcEmuDsk` à `DiskImageFormatIds`, faire référencer cet identifiant unique par `CpcDskFormat`, puis supprimer toute valeur `cpcemu.dsk` dupliquée.
-  - [ ] Description de la disposition binaire CPCEMU DSK
+    - [x] Ajouter dans `CpcDskFormat` des représentations binaires immuables des signatures Standard, Extended et de piste.
+    - [x] Faire utiliser ces signatures binaires par `CpcDskReader` et `AmstradImageRecognitionPolicy` sans réencoder les chaînes ASCII à chaque lecture.
+    - [x] Ajouter `CpcEmuDsk` à `DiskImageFormatIds`, faire référencer cet identifiant unique par `CpcDskFormat`, puis supprimer toute valeur `cpcemu.dsk` dupliquée.
+  - [x] Description de la disposition binaire CPCEMU DSK
     - [x] Créer `Containers/Amstrad/CpcDsk/CpcDskLayout.cs`.
     - [x] Remplacer `HeaderSize` par deux constantes nommées distinguant la taille du bloc d’informations disque et celle du bloc d’informations de piste.
     - [x] Nommer la longueur de signature du bloc d’informations disque.
@@ -565,7 +565,7 @@
     - [x] Nommer les offsets du nombre de cylindres, du nombre de faces et de la taille de piste Standard.
     - [x] Nommer l’offset de la table des tailles de pistes Extended et l’unité de taille de ses entrées.
     - [x] Nommer les limites de cylindres et de faces acceptées par le conteneur.
-    - [ ] Ajouter `MinimumCylinderCount` et `MinimumHeadCount`, puis remplacer dans `CpcDskReader` les comparaisons brutes à zéro par ces limites.
+    - [x] Ajouter `MinimumCylinderCount` et `MinimumHeadCount`, puis remplacer dans `CpcDskReader` les comparaisons brutes à zéro par ces limites.
     - [x] Nommer la longueur de signature d’une piste.
     - [x] Nommer les offsets du cylindre, de la face et du nombre de secteurs dans le bloc d’informations de piste.
     - [x] Nommer les offsets du code de taille par défaut, de GAP#3 et de l’octet de remplissage dans le bloc d’informations de piste.
@@ -585,17 +585,17 @@
     - [x] Ajouter une méthode créant l’erreur d’image sans secteur.
     - [x] Déplacer tous les textes des `InvalidDataException` de `CpcDskReader` dans ces méthodes.
     - [x] Remplacer chaque construction directe d’`InvalidDataException` dans `CpcDskReader` par la méthode correspondante.
-  - [ ] Nettoyage de `CpcDskReader.cs`
-    - [ ] Traitement des octets d’état des secteurs
-      - [ ] Vérifier si l’octet lu avec `SectorStatus2Offset` doit participer au calcul de la validité du secteur.
-      - [ ] S’il ne participe pas à ce calcul, supprimer la lecture inutilisée de `status2`.
-      - [ ] S’il ne reste qu’un octet d’état lu, renommer `status1` selon son rôle sans conserver une numérotation devenue inutile.
-      - [ ] Renommer `crcValid` pour indiquer que la valeur provient du masque d’erreur d’état et non d’un calcul de CRC.
-    - [ ] Variables et mise en forme sans changement de comportement
-      - [ ] Supprimer l’initialisation de `dominantSize` à zéro et déclarer la variable lors de son calcul après la vérification qu’au moins un secteur existe.
-      - [ ] Remettre sur une seule ligne les conditions, appels et expressions courtes de `CpcDskReader.cs` qui tiennent sur une ligne.
-    - [ ] Documentation du lecteur
-      - [ ] Remplacer dans la documentation XML de `ReadAsync` l’identifiant `cpcemu.dsk` écrit en texte brut par une référence à l’identifiant central du format.
+  - [x] Nettoyage de `CpcDskReader.cs`
+    - [x] Traitement des octets d’état des secteurs
+      - [x] Vérifier si l’octet lu avec `SectorStatus2Offset` doit participer au calcul de la validité du secteur.
+      - [x] S’il ne participe pas à ce calcul, supprimer la lecture inutilisée de `status2`.
+      - [x] S’il ne reste qu’un octet d’état lu, renommer `status1` selon son rôle sans conserver une numérotation devenue inutile.
+      - [x] Renommer `crcValid` pour indiquer que la valeur provient du masque d’erreur d’état et non d’un calcul de CRC.
+    - [x] Variables et mise en forme sans changement de comportement
+      - [x] Supprimer l’initialisation de `dominantSize` à zéro et déclarer la variable lors de son calcul après la vérification qu’au moins un secteur existe.
+      - [x] Remettre sur une seule ligne les conditions, appels et expressions courtes de `CpcDskReader.cs` qui tiennent sur une ligne.
+    - [x] Documentation du lecteur
+      - [x] Remplacer dans la documentation XML de `ReadAsync` l’identifiant `cpcemu.dsk` écrit en texte brut par une référence à l’identifiant central du format.
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmstradDskImageReader`.
     - [x] Ajouter la documentation XML des méthodes `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
@@ -609,16 +609,16 @@
     - [x] Créer `CpcDskReaderTests.cs` et vérifier la signature, la géométrie, les adresses, l’ordre, le contenu, l’intégrité et l’identifiant neutre `cpcemu.dsk` des deux images.
     - [x] Vérifier avec des copies tronquées ou corrompues des images locales que l’en-tête, la table des pistes, les descripteurs et les données incomplètes sont rejetés.
     - [x] Vérifier que ces tests exécutent réellement `CpcDskReader.ReadAsync` sans variable d’environnement ni retour anticipé.
-  - [ ] Tests des définitions et erreurs extraites
+  - [x] Tests des définitions et erreurs extraites
     - [x] Remplacer dans `CpcDskReaderTests` l’identifiant `cpcemu.dsk` écrit en brut par `CpcDskFormat.FormatId`.
     - [x] Construire les images CPCEMU générées avec les signatures et valeurs de disposition publiques utilisables sans recopier leurs valeurs.
     - [x] Vérifier qu’une erreur de piste contient l’index de la piste rejetée.
     - [x] Vérifier qu’une erreur de secteur contient le cylindre, la face et l’identifiant du secteur rejeté.
     - [x] Exécuter tous les tests de `CpcDskReaderTests` après extraction des définitions et erreurs.
-    - [ ] Vérifier les valeurs exactes des signatures Standard, Extended et de piste ainsi que de l’identifiant public CPCEMU DSK.
-    - [ ] Tester pour les cylindres et les faces la limite minimale, la limite maximale, zéro et la valeur immédiatement supérieure au maximum.
-    - [ ] Tester le calcul de validité d’un secteur avec les octets d’état utilisés par le lecteur après leur traitement.
-    - [ ] Vérifier que le nettoyage des variables et de la mise en forme ne modifie ni les secteurs produits ni leur validité.
+    - [x] Vérifier les valeurs exactes des signatures Standard, Extended et de piste ainsi que de l’identifiant public CPCEMU DSK.
+    - [x] Tester pour les cylindres et les faces la limite minimale, la limite maximale, zéro et la valeur immédiatement supérieure au maximum.
+    - [x] Tester le calcul de validité d’un secteur avec les octets d’état utilisés par le lecteur après leur traitement.
+    - [x] Vérifier que le nettoyage des variables et de la mise en forme ne modifie ni les secteurs produits ni leur validité.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleContainerImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Créer `Containers/Apple/TwoImg/TwoImgReader.cs` et y déplacer le parsing 2IMG.
