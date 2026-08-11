@@ -2235,11 +2235,11 @@
       - [x] Conserver l'identifiant comme chaîne technique extensible plutôt que le transformer en enum fermé.
       - [x] Remplacer les noms affichés écrits directement par le catalogue commun de noms de codecs.
       - [x] Documenter l'unicité exigée des identifiants et le rôle purement descriptif du nom affiché.
-    - [ ] Contrat de décodage
-      - [ ] Documenter que `Decode` analyse une révolution complète et retourne un résultat immuable sans modifier les intervalles reçus.
-      - [ ] Documenter le comportement attendu pour une révolution vide, un flux non reconnu, un flux tronqué et un flux reconnu mais corrompu.
-      - [ ] Documenter que l'absence de secteurs est représentée par une collection vide et que l'intégrité peut rester indéterminée.
-      - [ ] Documenter les unités temporelles transmises au décodeur et retournées dans `FluxDecodeResult`.
+    - [x] Contrat de décodage
+      - [x] Documenter que `Decode` analyse une révolution complète et retourne un résultat immuable sans modifier les intervalles reçus.
+      - [x] Documenter le comportement attendu pour une révolution vide, un flux non reconnu, un flux tronqué et un flux reconnu mais corrompu.
+      - [x] Documenter que l'absence de secteurs est représentée par une collection vide et que l'intégrité peut rester indéterminée.
+      - [x] Documenter les unités temporelles transmises au décodeur et retournées dans `FluxDecodeResult`.
     - [ ] Présentation et CSDoc
       - [ ] Conserver chaque propriété et la signature de `Decode` sur sa propre ligne.
       - [ ] Ajouter la CSDoc française au type `IFluxDecoder`, à `Id`, à `DisplayName` et à `Decode`.
