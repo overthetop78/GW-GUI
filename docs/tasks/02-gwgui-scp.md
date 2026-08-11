@@ -2417,13 +2417,13 @@
       - [x] Tester la sélection explicite Lisa et la décision finale Macintosh ou Lisa effectuée avec les informations globales de l'image.
       - [x] Vérifier l'identifiant final, le nom, les tags, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/AppleRwts18Decoder.cs`
-    - [ ] Définitions RWTS18 communes
-      - [ ] Créer les définitions RWTS18 communes au décodeur et à `AppleRwts18TrackEncoder.cs`.
-      - [ ] Y définir l'identifiant, le nom affiché, la synchronisation `0xd59d`, sa longueur, le terminateur d'adresse `0xaa` et l'épilogue `0xd4`.
-      - [ ] Y définir le nombre de secteurs physiques, le nombre de pages par secteur, la taille d'une page, la taille sectorielle et le code de taille correspondant.
-      - [ ] Y définir les tailles de l'adresse, du flux lu, des symboles de données, du bloc complet et les positions du checksum et de l'épilogue.
-      - [ ] Y définir la taille du prolongement circulaire, les masques, les décalages et les valeurs d'avancement du balayage.
-      - [ ] Remplacer les valeurs brutes `16_384`, `16`, `4`, `6`, `15`, `1_100`, `1_027`, `1_026`, `1_025`, `1_024`, `768`, `256`, `0x3f` et `0xc0` par ces définitions.
+    - [x] Définitions RWTS18 communes
+      - [x] Créer les définitions RWTS18 communes au décodeur et à `AppleRwts18TrackEncoder.cs`.
+      - [x] Y définir l'identifiant, le nom affiché, la synchronisation `0xd59d`, sa longueur, le terminateur d'adresse `0xaa` et l'épilogue `0xd4`.
+      - [x] Y définir le nombre de secteurs physiques, le nombre de pages par secteur, la taille d'une page, la taille sectorielle et le code de taille correspondant.
+      - [x] Y définir les tailles de l'adresse, du flux lu, des symboles de données, du bloc complet et les positions du checksum et de l'épilogue.
+      - [x] Y définir la taille du prolongement circulaire, les masques, les décalages et les valeurs d'avancement du balayage.
+      - [x] Remplacer les valeurs brutes `16_384`, `16`, `4`, `6`, `15`, `1_100`, `1_027`, `1_026`, `1_025`, `1_024`, `768`, `256`, `0x3f` et `0xc0` par ces définitions.
     - [ ] Table et codec RWTS18
       - [ ] Réutiliser la table Apple GCR 6-and-2 commune et supprimer `Nibbles` ainsi que la table `Inverse` locales.
       - [ ] Créer un codec RWTS18 commun pour l'encodage et le décodage des trois pages et du checksum.

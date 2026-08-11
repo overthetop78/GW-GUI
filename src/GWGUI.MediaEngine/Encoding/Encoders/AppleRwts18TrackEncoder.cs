@@ -1,4 +1,3 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
@@ -35,14 +34,14 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
         var encoded = new byte[AppleRwts18Format.PayloadWithChecksumSymbolCount]; byte checksum = 0;
         for (var index = 0; index < AppleRwts18Format.PageByteCount; index++)
         {
-            var one = data[index]; var two = data[AppleRwts18Format.PageByteCount + index]; var three = data[AppleRwts18Format.PageByteCount * 2 + index];
-            var high = (byte)(((one >> 6) << 4) | ((two >> 6) << 2) | (three >> 6));
-            var values = new[] { high, (byte)(one & 0x3f), (byte)(two & 0x3f), (byte)(three & 0x3f) };
+            var one = data[index]; var two = data[AppleRwts18Format.PageByteCount * AppleRwts18Format.SecondPageIndex + index]; var three = data[AppleRwts18Format.PageByteCount * AppleRwts18Format.ThirdPageIndex + index];
+            var high = (byte)(((one >> AppleRwts18Format.SourceHighBitShift) << AppleRwts18Format.FirstPagePackedShift) | ((two >> AppleRwts18Format.SourceHighBitShift) << AppleRwts18Format.SecondPagePackedShift) | (three >> AppleRwts18Format.SourceHighBitShift));
+            var values = new[] { high, (byte)(one & AppleRwts18Format.SixBitMask), (byte)(two & AppleRwts18Format.SixBitMask), (byte)(three & AppleRwts18Format.SixBitMask) };
             for (var valueIndex = 0; valueIndex < values.Length; valueIndex++)
             {
                 var value = values[valueIndex];
                 checksum ^= value;
-                encoded[index * 4 + valueIndex] = AppleRwts18Format.NibbleTable[value];
+                encoded[index * AppleRwts18Format.SymbolsPerPageGroup + valueIndex] = AppleRwts18Format.NibbleTable[value];
             }
         }
         encoded[AppleRwts18Format.PayloadSymbolCount] = AppleRwts18Format.NibbleTable[checksum & AppleRwts18Format.SixBitMask];

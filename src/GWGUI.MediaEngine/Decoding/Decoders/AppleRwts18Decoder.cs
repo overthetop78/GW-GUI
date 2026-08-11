@@ -1,6 +1,5 @@
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Decoding.Apple;
-using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -55,12 +54,12 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
                     $"{FluxStructureDescriptions.Identity("Apple II RWTS18", FluxStructureKind.AppleData, track, 0, sector, AppleRwts18Format.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", data.Value.Valid)}"));
                 decodedBytes.AddRange(data.Value.Data);
             }
-            sectors.Add(new(track, 0, sector, AppleRwts18Format.SectorSizeCode, AppleRwts18Format.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, payload));
-            offset = Math.Max(offset + AppleRwts18Format.AddressMarkBitCount - 1, (data?.EndOffset ?? cursor) - 1);
+            sectors.Add(new(track, 0, sector, SectorSizeCode.FromByteCount(AppleRwts18Format.SectorByteCount), AppleRwts18Format.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, payload));
+            offset = Math.Max(offset + AppleRwts18Format.AddressMarkAdvanceBitCount, (data?.EndOffset ?? cursor) - 1);
         }
 
         var valid = sectors.Count(sector => sector.IntegrityValid == true);
-        var confidence = sectors.Count == 0 ? 0 : Math.Min(1, valid / (double)AppleRwts18Format.SectorCount + sectors.Count / 24d);
+        var confidence = sectors.Count == 0 ? 0 : Math.Min(1, valid / (double)AppleRwts18Format.ConfidenceCompleteSectorDivisor + sectors.Count / AppleRwts18Format.ConfidenceDetectedSectorDivisor);
         return new(Id, DisplayName, confidence, source.BitCellTicks, structures, decodedBytes, sectors);
     }
 
@@ -78,11 +77,11 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
             var validSymbols = true;
             for (var index = 0; index < values.Length; index++)
             {
-                if (Inverse.TryGetValue(stream[start + 1 + index], out values[index])) continue;
+                if (Inverse.TryGetValue(stream[start + AppleRwts18Format.PayloadOffset + index], out values[index])) continue;
                 validSymbols = false;
                 break;
             }
-            if (!validSymbols || stream[start + AppleRwts18Format.DataRecordByteCount - 1] != AppleRwts18Format.DataEpilogue) continue;
+            if (!validSymbols || stream[start + AppleRwts18Format.DataEpilogueOffset] != AppleRwts18Format.DataEpilogue) continue;
             var decoded = DecodePayload(values);
             var startOffset = offset + start * BitPrimitives.BitsPerByte;
             var endOffset = offset + (start + AppleRwts18Format.DataRecordByteCount) * BitPrimitives.BitsPerByte;
@@ -98,15 +97,15 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
         byte accumulator = 0; byte previousPage1 = 0;
         for (var index = 0; index < AppleRwts18Format.PageByteCount; index++)
         {
-            var high = values[index * 4];
+            var high = values[index * AppleRwts18Format.SymbolsPerPageGroup];
             var checksum = (byte)(accumulator ^ previousPage1 ^ high);
-            page1[index] = (byte)(((high << 2) & 0xc0) | values[index * 4 + 1]);
+            page1[index] = (byte)(((high << AppleRwts18Format.FirstPageHighBitShift) & AppleRwts18Format.HighBitMask) | values[index * AppleRwts18Format.SymbolsPerPageGroup + 1]);
             previousPage1 = page1[index];
-            page2[index] = (byte)(((high << 4) & 0xc0) | values[index * 4 + 2]);
-            page3[index] = (byte)(((high << 6) & 0xc0) | values[index * 4 + 3]);
+            page2[index] = (byte)(((high << AppleRwts18Format.SecondPageHighBitShift) & AppleRwts18Format.HighBitMask) | values[index * AppleRwts18Format.SymbolsPerPageGroup + 2]);
+            page3[index] = (byte)(((high << AppleRwts18Format.ThirdPageHighBitShift) & AppleRwts18Format.HighBitMask) | values[index * AppleRwts18Format.SymbolsPerPageGroup + 3]);
             accumulator = (byte)(page3[index] ^ page2[index] ^ checksum);
         }
-        var valid = ((accumulator ^ values[AppleRwts18Format.PayloadSymbolCount] ^ previousPage1) & AppleRwts18Format.SixBitMask) == 0;
+        var valid = ((accumulator ^ values[AppleRwts18Format.PayloadChecksumOffset] ^ previousPage1) & AppleRwts18Format.SixBitMask) == 0;
         return ([.. page1, .. page2, .. page3], valid);
     }
 
