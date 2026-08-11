@@ -2448,10 +2448,10 @@
       - [x] Tester un bloc franchissant la fin circulaire de la piste.
       - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/ArburgDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
-      - [ ] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
+      - [x] Supprimer la délégation locale `ReverseBits` et appeler directement la primitive commune.
     - [ ] Définitions Arburg
       - [ ] Créer `Decoding/Definitions/ArburgFormat.cs`.
       - [ ] Y définir l'identifiant, le nom, les marques des blocs de données et système, leurs descriptions et leurs longueurs en bits.
