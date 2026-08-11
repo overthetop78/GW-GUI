@@ -1664,7 +1664,7 @@
     - [x] Remplacer le booléen de `EstimateBitCell` par cet enum afin que chaque appel indique explicitement le mode demandé.
     - [x] Conserver des fabriques clairement nommées pour que les décodeurs n'aient pas à fournir cet enum lorsque leur mode est déjà imposé par la méthode choisie.
     - [x] Documenter en français l'enum et chacune de ses valeurs.
-  - [ ] `Representations/Flux/FluxTimingEstimator.cs`
+  - [x] `Representations/Flux/FluxTimingEstimator.cs`
     - [x] Validation et échantillons
       - [x] Retourner la durée minimale nommée pour une collection vide ou ne contenant aucun intervalle positif.
       - [x] Conserver l'exclusion du premier intervalle pour les estimations non-FM et NRZI, car il commence à l'impulsion d'index.
