@@ -1268,12 +1268,12 @@
     - [x] Y définir la taille d’une entrée des cartes de numéros, cylindres et faces, la taille de deux octets d’une entrée de carte de tailles et la taille sectorielle de base de 128 octets.
     - [x] Y définir le code `0xFF` annonçant une carte de tailles explicites et le code de taille exponentiel maximal `6`.
     - [x] Remplacer dans le Reader chaque signature, longueur, offset, taille d’entrée et code de taille écrits en brut par ces définitions.
-  - [ ] Modes, drapeaux et types d’enregistrements
-    - [ ] Créer l’enum byte `ImdMode` avec les six modes ImageDisk acceptés de `0` à `5`, en utilisant leurs noms FM/MFM et débits réels après vérification de la définition du format.
-    - [ ] Créer l’enum marqué `[Flags]` `ImdHeadFlags` avec le masque de face `0x01`, la présence de la carte de faces `0x40` et la présence de la carte de cylindres `0x80`.
-    - [ ] Créer l’enum byte `ImdSectorRecordType` avec les neuf valeurs de `0` à `8` : indisponible, normal ou compressé, supprimé ou non et avec ou sans erreur.
-    - [ ] Définir sur cet enum des fonctions indiquant si une charge utile est disponible, compressée et considérée intègre.
-    - [ ] Remplacer les comparaisons brutes à `0`, `1`, `5`, `6`, `7` et `8`, le test de parité et les masques de face par ces enums et fonctions.
+  - [x] Modes, drapeaux et types d’enregistrements
+    - [x] Créer l’enum byte `ImdMode` avec les six modes ImageDisk acceptés de `0` à `5`, en utilisant leurs noms FM/MFM et débits réels après vérification de la définition du format.
+    - [x] Créer l’enum marqué `[Flags]` `ImdHeadFlags` avec le masque de face `0x01`, la présence de la carte de faces `0x40` et la présence de la carte de cylindres `0x80`.
+    - [x] Créer l’enum byte `ImdSectorRecordType` avec les neuf valeurs de `0` à `8` : indisponible, normal ou compressé, supprimé ou non et avec ou sans erreur.
+    - [x] Définir sur cet enum des fonctions indiquant si une charge utile est disponible, compressée et considérée intègre.
+    - [x] Remplacer les comparaisons brutes à `0`, `1`, `5`, `6`, `7` et `8`, le test de parité et les masques de face par ces enums et fonctions.
   - [ ] Découpage du parsing
     - [ ] Extraire de `Read` une méthode privée qui valide la signature et localise la fin du commentaire.
     - [ ] Extraire une méthode privée qui lit et valide l’en-tête d’une piste.
