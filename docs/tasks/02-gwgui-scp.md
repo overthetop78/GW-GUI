@@ -1732,7 +1732,7 @@
       - [x] Développer entièrement `Match`, `MatchBytes`, `DecodeMfmByte`, `DecodeByte` et `DecodeFmByte32` actuellement écrits sur une seule ligne.
       - [x] Conserver sur une seule ligne les signatures et expressions complètes qui restent lisibles.
       - [x] Documenter en français le type et chaque méthode avec la disposition des bits attendue.
-  - [ ] Raccordement des consommateurs
+  - [x] Raccordement des consommateurs
     - [x] Décodeurs FM/MFM
       - [x] Adapter `SignatureMfmDecoder`, `IsoMfmDecoder`, `IsoFmDecoder`, `AmigaMfmDecoder`, `CenturionMfmDecoder`, `ArburgDecoder`, `TycomFmDecoder`, `QdMo5MfmDecoder`, `NorthstarMfmDecoder`, `HpMmfmDecoder`, `DecRx02Decoder`, `Aed6200pMfmDecoder`, `MicropolisMfmDecoder`, `HeathkitFmDecoder`, `DataGeneralFmDecoder`, `MicralNFmDecoder`, `EmuFmDecoder` et `MembrainMfmDecoder`.
       - [x] Conserver pour chacun le mode temporel actuel, les positions de motifs et la disposition de décodage des octets.
