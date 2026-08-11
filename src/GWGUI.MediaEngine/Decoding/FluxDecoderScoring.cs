@@ -23,4 +23,10 @@ internal static class FluxDecoderScoring
         if (result.Structures.Count > 0) return StructuredFluxBaseScore + result.Confidence;
         return result.Confidence;
     }
+
+    public static (int ValidSectors, int InvalidSectorPenalty, int SectorsWithData, double Confidence, int Structures) CalculateExplicit(FluxDecodeResult result)
+    {
+        var sectors = result.Sectors ?? [];
+        return (sectors.Count(sector => sector.IntegrityValid == true), -sectors.Count(sector => sector.IntegrityValid == false), sectors.Count(sector => sector.Data is not null), result.Confidence, result.Structures.Count);
+    }
 }

@@ -2166,12 +2166,12 @@
       - [x] Remplacer l'identifiant brut `raw` par `FluxCodecIds.Raw`.
       - [x] Déplacer `AutomaticScore` dans ce composant sans modifier l'ordre de priorité actuel.
       - [x] Conserver comme départage la confiance, le nombre de structures puis l'ordre stable du catalogue.
-    - [ ] Sélection entre révolutions
-      - [ ] Extraire dans un modèle nommé le couple `RevolutionIndex` et `Result` retourné par `DecodeBest`.
-      - [ ] Conserver un résultat absent lorsque la collection de révolutions est vide.
-      - [ ] Lorsque le décodeur est automatique, comparer les révolutions avec le score automatique avant la confiance et le nombre de structures.
-      - [ ] Lorsque le décodeur est imposé, définir dans `FluxDecoderScoring` le score fondé sur l'intégrité, la présence des données, la confiance et les structures.
-      - [ ] Conserver le premier index en cas d'égalité complète.
+    - [x] Sélection entre révolutions
+      - [x] Extraire dans un modèle nommé le couple `RevolutionIndex` et `Result` retourné par `DecodeBest`.
+      - [x] Conserver un résultat absent lorsque la collection de révolutions est vide.
+      - [x] Lorsque le décodeur est automatique, comparer les révolutions avec le score automatique avant la confiance et le nombre de structures.
+      - [x] Lorsque le décodeur est imposé, définir dans `FluxDecoderScoring` le score fondé sur l'intégrité, la présence des données, la confiance et les structures.
+      - [x] Conserver le premier index en cas d'égalité complète.
     - [ ] Présentation et documentation
       - [ ] Remettre sur une seule ligne la déclaration du cache si elle tient dans la largeur retenue.
       - [ ] Séparer les constructions, recherches, créations de `Lazy` et tris afin qu'une instruction corresponde à une action lisible.

@@ -44,13 +44,15 @@ public sealed class FluxDecoderRegistry
         var results = GetOrCreateRevolutionCache(revolution);
         return results.GetOrAdd(decoder.Id, _ => CreateDeferredResult(decoder, revolution)).Value;
     }
-    public (int RevolutionIndex, FluxDecodeResult Result)? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
+    public FluxDecodeSelection? DecodeBest(IReadOnlyList<ScpRevolution> revolutions, string? decoderId = null)
     {
         if (revolutions.Count == 0) return null;
-        return revolutions.Select((revolution, index) => (RevolutionIndex: index, Result: decoderId is null ? DecodeAutomatic(revolution) : Decode(decoderId, revolution)))
-            .OrderByDescending(candidate => candidate.Result.Confidence)
+        var candidates = revolutions.Select((revolution, index) => new FluxDecodeSelection(index, decoderId is null ? DecodeAutomatic(revolution) : Decode(decoderId, revolution)));
+        if (decoderId is null) return candidates.OrderByDescending(candidate => FluxDecoderScoring.Calculate(candidate.Result))
+            .ThenByDescending(candidate => candidate.Result.Confidence)
             .ThenByDescending(candidate => candidate.Result.Structures.Count)
             .First();
+        return candidates.OrderByDescending(candidate => FluxDecoderScoring.CalculateExplicit(candidate.Result)).First();
     }
 
     private System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<FluxDecodeResult>> GetOrCreateRevolutionCache(ScpRevolution revolution) => _cache.GetValue(revolution, _ => new(StringComparer.Ordinal));
