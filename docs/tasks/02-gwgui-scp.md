@@ -1737,10 +1737,10 @@
       - [x] Adapter `SignatureMfmDecoder`, `IsoMfmDecoder`, `IsoFmDecoder`, `AmigaMfmDecoder`, `CenturionMfmDecoder`, `ArburgDecoder`, `TycomFmDecoder`, `QdMo5MfmDecoder`, `NorthstarMfmDecoder`, `HpMmfmDecoder`, `DecRx02Decoder`, `Aed6200pMfmDecoder`, `MicropolisMfmDecoder`, `HeathkitFmDecoder`, `DataGeneralFmDecoder`, `MicralNFmDecoder`, `EmuFmDecoder` et `MembrainMfmDecoder`.
       - [x] Conserver pour chacun le mode temporel actuel, les positions de motifs et la disposition de décodage des octets.
       - [x] Traiter explicitement chaque échec de lecture complète au bord du flux.
-    - [ ] Décodeurs GCR et NRZI
-      - [ ] Adapter `Commodore900GcrDecoder`, `Victor9kGcrDecoder`, `AppleRwts18Decoder`, `AppleMacGcrDecoder`, `AppleIIGcrDecoder` et `CommodoreGcrDecoder`.
-      - [ ] Adapter leurs helpers recevant `bool[]` à la vue en lecture seule du flux.
-      - [ ] Conserver les longueurs actuelles de queue circulaire définies par chaque format dans le groupe de ce décodeur, sans les déplacer dans les paramètres généraux du flux.
+    - [x] Décodeurs GCR et NRZI
+      - [x] Adapter `Commodore900GcrDecoder`, `Victor9kGcrDecoder`, `AppleRwts18Decoder`, `AppleMacGcrDecoder`, `AppleIIGcrDecoder` et `CommodoreGcrDecoder`.
+      - [x] Adapter leurs helpers recevant `bool[]` à la vue en lecture seule du flux.
+      - [x] Conserver les longueurs actuelles de queue circulaire définies par chaque format dans le groupe de ce décodeur, sans les déplacer dans les paramètres généraux du flux.
     - [ ] Autres consommateurs
       - [ ] Adapter `RawFluxDecoder` et `AppleScpSectorDecoder` vers `FluxTimingEstimator`.
       - [ ] Vérifier qu'aucun consommateur ne référence encore le namespace `GWGUI.MediaEngine.Decoding` pour le type déplacé.
