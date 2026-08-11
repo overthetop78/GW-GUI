@@ -1581,7 +1581,7 @@
       - [x] Créer un calcul ATR commun de longueur de zone d'amorçage à partir de la taille sectorielle.
       - [x] Faire retourner à ce calcul exactement `0` pour les secteurs de `128` octets et `BootSectorCount * BootSectorSize` pour les secteurs de `256` et `512` octets.
       - [x] Remplacer par ce calcul commun les deux expressions identiques de `ReadAsync` et `ReadValidatedContainerAsync`.
-      - [ ] Utiliser le calcul ATR commun du nombre de secteurs dans `ReadAsync`.
+      - [x] Utiliser le calcul ATR commun du nombre de secteurs dans `ReadAsync`.
     - [ ] Adressage et géométrie produits
       - [ ] Ajouter des définitions Atari nommées pour le premier numéro de secteur `1`, la tête logique `0`, le nombre de faces `1` et le secteur logique unique par cylindre `1`.
       - [ ] Remplacer dans la boucle de `ReadAsync` les valeurs brutes correspondantes par ces définitions.
