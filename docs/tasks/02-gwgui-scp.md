@@ -1504,11 +1504,11 @@
       - [x] Conserver cette politique pour réunir les preuves de conteneurs Apple signés, les indices d’extensions brutes et les formats Apple explicitement demandés.
       - [x] Adapter les imports de `DiskImageFileExtensions` et `DiskImageFormatIds` à leur déplacement sous `GWGUI.MediaEngine.Definitions`.
       - [x] Conserver `RawHints` privé et construit uniquement avec les constantes communes `.do`, `.po`, `.d13` et `.nib`.
-    - [ ] Probe des images Apple brutes
-      - [ ] Créer `Recognition/Apple/AppleRawImageProbe.cs` et y déplacer la logique de `AppleDiskImageReader.LooksLikeAppleImage` qui examine extension, taille et signatures internes.
-      - [ ] Faire recevoir au probe l’extension, les octets déjà chargés et l’identifiant éventuellement demandé, sans lire le chemin ni intercepter toutes les exceptions.
-      - [ ] Remplacer dans le probe les capacités Apple II, Macintosh et Lisa brutes par les layouts et géométries Apple propriétaires déjà prévus.
-      - [ ] Supprimer `LooksLikeAppleImage` du Reader après raccordement de la politique au probe.
+    - [x] Probe des images Apple brutes
+      - [x] Créer `Recognition/Apple/AppleRawImageProbe.cs` et y déplacer la logique de `AppleDiskImageReader.LooksLikeAppleImage` qui examine extension, taille et signatures internes.
+      - [x] Faire recevoir au probe l’extension, les octets déjà chargés et l’identifiant éventuellement demandé, sans lire le chemin ni intercepter toutes les exceptions.
+      - [x] Remplacer dans le probe les capacités Apple II, Macintosh et Lisa brutes par les layouts et géométries Apple propriétaires déjà prévus.
+      - [x] Supprimer `LooksLikeAppleImage` du Reader après raccordement de la politique au probe.
     - [ ] Présélection des conteneurs signés
       - [ ] Examiner `TwoImgFormat.SignatureBytes`, le mot privé DiskCopy et les signatures WOZ1/WOZ2 directement dans la mémoire en lecture seule du contexte.
       - [ ] Conserver l’indépendance de l’extension pour ces quatre signatures de conteneurs.

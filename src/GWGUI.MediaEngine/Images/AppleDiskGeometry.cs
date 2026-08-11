@@ -6,6 +6,10 @@ namespace GWGUI.MediaEngine.Images;
 
 internal static class AppleDiskGeometry
 {
+    public const int AppleII525Capacity = 143_360;
+    public const int Macintosh400KCapacity = 409_600;
+    public const int Macintosh800KCapacity = 819_200;
+    public const int Macintosh1440KCapacity = 1_474_560;
     public const int LisaFileWareBlockCount = 1702;
     public const int LisaFileWareCylinderCount = 46;
     public const int LisaFileWareHeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
@@ -72,6 +76,8 @@ internal static class AppleDiskGeometry
         < MacintoshCylinderCount => 8,
         _ => throw new ArgumentOutOfRangeException(nameof(cylinder))
     };
+
+    public static bool IsSupportedMacintoshCapacity(int capacity) => capacity is Macintosh400KCapacity or Macintosh800KCapacity or Macintosh1440KCapacity;
 
     public static byte[] ConvertDosOrderToProDosBlocks(ReadOnlySpan<byte> dosOrder)
     {

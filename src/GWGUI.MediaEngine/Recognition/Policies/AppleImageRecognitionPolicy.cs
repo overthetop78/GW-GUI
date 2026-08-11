@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 
@@ -34,11 +35,11 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
 
         if (RawHints.Contains(context.Extension)) return true;
         if (context.Extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase))
-            return IsRequestedAppleFormat(context.RequestedFormatId) || AppleDiskImageReader.LooksLikeAppleImage(context.Path);
+            return IsRequestedAppleFormat(context.RequestedFormatId) || AppleRawImageProbe.LooksLikeAppleImage(context.Extension, bytes, context.RequestedFormatId);
         if (context.Extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase))
             return context.RequestedFormatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
                    context.RequestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ||
-                   AppleDiskImageReader.LooksLikeAppleImage(context.Path);
+                   AppleRawImageProbe.LooksLikeAppleImage(context.Extension, bytes, context.RequestedFormatId);
         return false;
     }
 

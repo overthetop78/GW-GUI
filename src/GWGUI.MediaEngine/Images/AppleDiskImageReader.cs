@@ -60,41 +60,6 @@ public sealed class AppleDiskImageReader : ISectorImageReader
         return AppleRawImageReader.Read(bytes, extension);
     }
 
-    /// <summary>Vérifie les indices d'extension, de taille et de structure utilisés pour présélectionner une image Apple brute.</summary>
-    /// <param name="path">Chemin du fichier à examiner.</param>
-    /// <returns><see langword="true"/> lorsque les indices Apple attendus sont présents ; sinon <see langword="false"/>.</returns>
-    public static bool LooksLikeAppleImage(string path)
-    {
-        try
-        {
-            var extension = Path.GetExtension(path);
-            if (extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.Image, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.Dc42, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase) ||
-                extension.Equals(DiskImageFileExtensions.Woz, StringComparison.OrdinalIgnoreCase)) return true;
-            if (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase))
-            {
-                var raw = File.ReadAllBytes(path);
-                return AppleDiskImageSignatures.LooksLikeLisaOfficePayload(raw) ||
-                       raw.Length is 409_600 or 819_200 or 1_474_560 &&
-                       AppleDiskImageSignatures.LooksLikeMac(raw);
-            }
-            if (!extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)) return false;
-            var bytes = File.ReadAllBytes(path);
-            return bytes.Length == 143_360 ||
-                   bytes.Length is 409_600 or 819_200 or 1_474_560 &&
-                   AppleDiskImageSignatures.LooksLikeMac(bytes);
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
     /// <summary>Retourne le nombre de secteurs FileWare Lisa pour un cylindre.</summary>
     /// <param name="cylinder">Index du cylindre.</param>
     /// <returns>Nombre de secteurs présents sur le cylindre.</returns>
