@@ -3,6 +3,14 @@ namespace GWGUI.MediaEngine.Decoding.Definitions;
 /// <summary>Regroupe les définitions techniques du format Apple IWM GCR commun à Macintosh et Lisa FileWare.</summary>
 internal static class AppleIwmGcrFormat
 {
+    public const string StructureDescriptionName = "Apple Macintosh";
+    public const string ChecksumLabel = "checksum";
+    public const string AddressChecksumLabel = "address checksum";
+    public const string DataChecksumLabel = "data checksum";
+    public const string UnavailableChecksumVariant = "checksum unavailable";
+    public const string UnpairedDataVariant = "data prologue";
+    public const int ConfidenceSectorWeight = 2;
+    public const double ConfidenceDivisor = 24;
     /// <summary>Identifiant technique de la spécialisation Macintosh.</summary>
     public const string MacintoshCodecId = FluxCodecIds.AppleMacGcr;
     /// <summary>Nom affiché de la spécialisation Macintosh.</summary>
@@ -33,6 +41,7 @@ internal static class AppleIwmGcrFormat
     public const int MarkByteCount = 3;
     /// <summary>Définit marque bit nombre utilisé par ce format.</summary>
     public const int MarkBitCount = MarkByteCount * Primitives.BitPrimitives.BitsPerByte;
+    public const int MarkAdvanceBitCount = MarkBitCount - 1;
     /// <summary>Définit en-tête symbol nombre utilisé par ce format.</summary>
     public const int HeaderSymbolCount = 5;
     /// <summary>Définit en-tête valeur nombre utilisé par ce format.</summary>

@@ -14,20 +14,19 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
     /// <param name="revolution">Révolution SCP à décoder en NRZI Macintosh.</param><returns>Résultat du décodage.</returns>
-    public FluxDecodeResult Decode(FluxRevolution revolution) => DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
+    public FluxDecodeResult Decode(FluxRevolution revolution) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals));
 
     /// <summary>Décode directement les bits d'une piste Macintosh.</summary>
     /// <param name="bits">Bits de la piste.</param><returns>Résultat du décodage.</returns>
-    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxRevolution((uint)bits.Length, []), new FluxBitstream(bits, 1));
+    internal FluxDecodeResult DecodeBits(bool[] bits) => DecodeCore(new FluxBitstream(bits, 1));
 
     /// <summary>Exécute le traitement « Decode At Bit Cell » propre à ce format.</summary>
     /// <param name="revolution">Révolution SCP à décoder.</param><param name="bitCellTicks">Durée imposée d'une cellule en ticks.</param><returns>Résultat du décodage.</returns>
-    public FluxDecodeResult DecodeAtBitCell(FluxRevolution revolution, double bitCellTicks) =>
-        DecodeCore(revolution, FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals, bitCellTicks));
+    public FluxDecodeResult DecodeAtBitCell(FluxRevolution revolution, double bitCellTicks) => DecodeCore(FluxTransitionDecoder.DecodeNrzi(revolution.FluxIntervals, bitCellTicks));
 
     /// <summary>Exécute le traitement « Decode Core » propre à ce format.</summary>
-    /// <param name="revolution">Révolution source.</param><param name="stream">Flux binaire décodé.</param><returns>Structures, secteurs et octets reconnus.</returns>
-    private FluxDecodeResult DecodeCore(FluxRevolution revolution, FluxBitstream stream)
+    /// <param name="stream">Flux binaire décodé.</param><returns>Structures, secteurs et octets reconnus.</returns>
+    private FluxDecodeResult DecodeCore(FluxBitstream stream)
     {
         var trackBitLength = stream.Bits.Length;
         stream = stream.WithCircularTail(AppleIwmGcrFormat.CircularTailBitCount);
@@ -36,36 +35,68 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
         for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++)
         {
             if (!FluxBitReader.MatchBytes(stream, offset, AppleIwmGcrFormat.AddressMark)) continue;
-            var header = TryReadSymbols(stream, offset + markBits, headerSymbols); bool? headerValid = null; byte cylinder = 0, head = 0, number = 0, format = 0;
-            if (header is not null && header.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
-            {
-                var values = header.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray();
-                cylinder = (byte)(((values[2] & AppleIwmGcrFormat.CylinderHighBitMask) << AppleIwmGcrFormat.CylinderHighBitShift) | (values[0] & AppleIwmGcrFormat.SixBitMask)); head = (byte)((values[2] >> AppleIwmGcrFormat.HeadBitShift) & AppleIwmGcrFormat.HeadBitMask); number = values[1]; format = values[3];
-                headerValid = (byte)((values[0] ^ values[1] ^ values[2] ^ values[3]) & AppleIwmGcrFormat.SixBitMask) == values[4];
-            }
+            var header = TryReadSymbols(stream, offset + markBits, headerSymbols);
+            var address = DecodeAddress(header);
             var headerEnd = offset + markBits + (header is null ? 0 : headerSymbols * BitPrimitives.BitsPerByte);
-            var dataOffset = headerValid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIwmGcrFormat.DataSearchBitCount), AppleIwmGcrFormat.DataMark) : -1;
-            bool? dataValid = null; byte[]? sectorData = null; byte[]? sectorTag = null; var structureEnd = headerEnd;
-            if (dataOffset >= 0)
-            {
-                pairedData.Add(dataOffset); var encoded = TryReadSymbols(stream, dataOffset + markBits, dataSymbols);
-                if (encoded is not null && encoded.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
-                {
-                    var values = encoded.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray(); var decoded = AppleIwmGcrCodec.Decode(values.AsSpan(1, AppleIwmGcrFormat.EncodedPayloadSymbolCount), out var checksum);
-                    dataValid = checksum[3] == values[AppleIwmGcrFormat.PackedChecksumSymbolOffset] && checksum[2] == values[AppleIwmGcrFormat.ThirdChecksumSymbolOffset] && checksum[1] == values[AppleIwmGcrFormat.SecondChecksumSymbolOffset] && checksum[0] == values[AppleIwmGcrFormat.FirstChecksumSymbolOffset];
-                    sectorTag = decoded.Take(AppleIwmGcrFormat.TagByteCount).ToArray(); sectorData = decoded.Skip(AppleIwmGcrFormat.TagByteCount).Take(AppleIwmGcrFormat.SectorByteCount).ToArray(); bytes.AddRange(sectorData); structureEnd = dataOffset + markBits + dataSymbols * BitPrimitives.BitsPerByte;
-                    structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, $"{FluxStructureDescriptions.Identity("Apple Macintosh", FluxStructureKind.AppleData, cylinder, head, number, AppleIwmGcrFormat.SectorByteCount, null, null)}, {FluxStructureDescriptions.Integrity("checksum", dataValid)}"));
-                }
-                else structures.Add(new(FluxStructureKind.AppleData, dataOffset, markBits, FluxStructureDescriptions.Truncated("Apple Macintosh", FluxStructureKind.AppleData, null, "checksum unavailable")));
-            }
-            bool? integrity = headerValid == false || dataValid == false ? false : dataValid is null ? null : true;
-            sectors.Add(new(cylinder, head, number, AppleIwmGcrFormat.SectorSizeCode, AppleIwmGcrFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, sectorData, sectorTag, format));
-            structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(markBits, headerEnd - offset), FluxStructureDescriptions.Complete("Apple Macintosh", FluxStructureKind.AppleAddress, cylinder, head, number, AppleIwmGcrFormat.SectorByteCount, null, null, headerValid, dataValid, "address checksum", "data checksum")));
-            offset = headerValid == true ? Math.Max(offset + markBits - 1, structureEnd - 1) : offset + markBits - 1;
+            var data = FindAndDecodeData(stream, headerEnd, address, structures, bytes, pairedData);
+            AddSectorAndAddress(offset, headerEnd, address, data, sectors, structures);
+            offset = address?.Valid == true ? Math.Max(offset + AppleIwmGcrFormat.MarkAdvanceBitCount, data.StructureEnd - 1) : offset + AppleIwmGcrFormat.MarkAdvanceBitCount;
         }
-        for (var offset = 0; offset < trackBitLength && offset + markBits <= stream.Bits.Length; offset++) if (FluxBitReader.MatchBytes(stream, offset, AppleIwmGcrFormat.DataMark) && !pairedData.Contains(offset)) { structures.Add(new(FluxStructureKind.AppleData, offset, markBits, FluxStructureDescriptions.UnpairedData("Apple Macintosh", null, "data prologue"))); offset += markBits - 1; }
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
+        AddUnpairedDataStructures(stream, trackBitLength, pairedData, structures);
+        return new(Id, DisplayName, FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, AppleIwmGcrFormat.ConfidenceSectorWeight, AppleIwmGcrFormat.ConfidenceDivisor), stream.BitCellTicks, structures.OrderBy(item => item.BitOffset).ToArray(), bytes, sectors);
     }
+
+    private static AppleIwmAddressDecodeResult? DecodeAddress(byte[]? header)
+    {
+        if (header is null || !header.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey)) return null;
+        var values = header.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray();
+        var cylinder = (byte)(((values[2] & AppleIwmGcrFormat.CylinderHighBitMask) << AppleIwmGcrFormat.CylinderHighBitShift) | (values[0] & AppleIwmGcrFormat.SixBitMask));
+        var head = (byte)((values[2] >> AppleIwmGcrFormat.HeadBitShift) & AppleIwmGcrFormat.HeadBitMask);
+        var valid = (byte)((values[0] ^ values[1] ^ values[2] ^ values[3]) & AppleIwmGcrFormat.SixBitMask) == values[4];
+        return new(cylinder, head, values[1], values[3], valid);
+    }
+
+    private static AppleIwmDataDecodeResult FindAndDecodeData(FluxBitstream stream, int headerEnd, AppleIwmAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
+    {
+        var dataOffset = address?.Valid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIwmGcrFormat.DataSearchBitCount), AppleIwmGcrFormat.DataMark) : -1;
+        if (dataOffset < 0) return new(null, null, null, headerEnd);
+        pairedData.Add(dataOffset);
+        var encoded = TryReadSymbols(stream, dataOffset + AppleIwmGcrFormat.MarkBitCount, AppleIwmGcrFormat.DataSymbolCount);
+        if (encoded is null || !encoded.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
+        {
+            structures.Add(new(FluxStructureKind.AppleData, dataOffset, AppleIwmGcrFormat.MarkBitCount, FluxStructureDescriptions.Truncated(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, null, AppleIwmGcrFormat.UnavailableChecksumVariant)));
+            return new(null, null, null, headerEnd);
+        }
+        var values = encoded.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray();
+        var decoded = AppleIwmGcrCodec.Decode(values.AsSpan(1, AppleIwmGcrFormat.EncodedPayloadSymbolCount), out var checksum);
+        var valid = checksum[3] == values[AppleIwmGcrFormat.PackedChecksumSymbolOffset] && checksum[2] == values[AppleIwmGcrFormat.ThirdChecksumSymbolOffset] && checksum[1] == values[AppleIwmGcrFormat.SecondChecksumSymbolOffset] && checksum[0] == values[AppleIwmGcrFormat.FirstChecksumSymbolOffset];
+        var tag = decoded.Take(AppleIwmGcrFormat.TagByteCount).ToArray();
+        var data = decoded.Skip(AppleIwmGcrFormat.TagByteCount).Take(AppleIwmGcrFormat.SectorByteCount).ToArray();
+        var structureEnd = dataOffset + AppleIwmGcrFormat.MarkBitCount + AppleIwmGcrFormat.DataSymbolCount * BitPrimitives.BitsPerByte;
+        bytes.AddRange(data);
+        structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, FluxStructureDescriptions.WithIntegrity(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, address?.Cylinder ?? 0, address?.Head ?? 0, address?.Sector ?? 0, AppleIwmGcrFormat.SectorByteCount, null, null, AppleIwmGcrFormat.ChecksumLabel, valid)));
+        return new(data, tag, valid, structureEnd);
+    }
+
+    private static void AddSectorAndAddress(int offset, int headerEnd, AppleIwmAddressDecodeResult? address, AppleIwmDataDecodeResult data, List<DecodedSector> sectors, List<FluxStructure> structures)
+    {
+        bool? integrity = address?.Valid == false || data.Valid == false ? false : data.Valid is null ? null : true;
+        sectors.Add(new(address?.Cylinder ?? 0, address?.Head ?? 0, address?.Sector ?? 0, SectorSizeCode.FromByteCount(AppleIwmGcrFormat.SectorByteCount), AppleIwmGcrFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, data.Data, data.Tag, address?.Format));
+        structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(AppleIwmGcrFormat.MarkBitCount, headerEnd - offset), FluxStructureDescriptions.Complete(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleAddress, address?.Cylinder ?? 0, address?.Head ?? 0, address?.Sector ?? 0, AppleIwmGcrFormat.SectorByteCount, null, null, address?.Valid, data.Valid, AppleIwmGcrFormat.AddressChecksumLabel, AppleIwmGcrFormat.DataChecksumLabel)));
+    }
+
+    private static void AddUnpairedDataStructures(FluxBitstream stream, int trackBitLength, HashSet<int> pairedData, List<FluxStructure> structures)
+    {
+        for (var offset = 0; offset < trackBitLength && offset + AppleIwmGcrFormat.MarkBitCount <= stream.Bits.Length; offset++)
+        {
+            if (!FluxBitReader.MatchBytes(stream, offset, AppleIwmGcrFormat.DataMark) || pairedData.Contains(offset)) continue;
+            structures.Add(new(FluxStructureKind.AppleData, offset, AppleIwmGcrFormat.MarkBitCount, FluxStructureDescriptions.UnpairedData(AppleIwmGcrFormat.StructureDescriptionName, null, AppleIwmGcrFormat.UnpairedDataVariant)));
+            offset += AppleIwmGcrFormat.MarkAdvanceBitCount;
+        }
+    }
+
+    private sealed record AppleIwmAddressDecodeResult(byte Cylinder, byte Head, byte Sector, byte Format, bool Valid);
+    private sealed record AppleIwmDataDecodeResult(byte[]? Data, byte[]? Tag, bool? Valid, int StructureEnd);
 
     /// <summary>Exécute le traitement « Try Read Symbols » propre à ce format.</summary>
     /// <param name="stream">Flux binaire source.</param><param name="offset">Offset de départ en bits.</param><param name="count">Nombre de symboles à lire.</param><returns>Symboles lus, ou <see langword="null"/> si la plage est incomplète.</returns>

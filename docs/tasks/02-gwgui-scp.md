@@ -2394,13 +2394,13 @@
       - [x] Déplacer dans le codec commun le décodage 6-and-2 et le calcul du checksum correspondant à l'encodage de `AppleMacGcrTrackEncoder.cs`.
       - [x] Raccorder le décodeur et l'encodeur Macintosh/Lisa au codec commun puis supprimer les algorithmes dupliqués devenus inutiles.
       - [x] Conserver dans le décodeur les opérations propres au balayage du flux, à la lecture des symboles et à l'appariement des marques.
-    - [ ] Décodage et résultat
-      - [ ] Supprimer le paramètre `ScpRevolution` inutilisé de `DecodeCore`.
-      - [ ] Modifier `DecodeBits` pour appeler directement `DecodeCore` sans construire une fausse `ScpRevolution`.
-      - [ ] Extraire de `DecodeCore` les traitements nommés de l'adresse, de la recherche des données, de la lecture des tags et données, de la validation du checksum et de la création du secteur.
-      - [ ] Extraire le traitement des marques de données non appariées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes des adresses, données, checksums et prologues non appariés par le constructeur commun recevant les valeurs variables.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations de ce décodeur.
+    - [x] Décodage et résultat
+      - [x] Supprimer le paramètre `ScpRevolution` inutilisé de `DecodeCore`.
+      - [x] Modifier `DecodeBits` pour appeler directement `DecodeCore` sans construire une fausse `ScpRevolution`.
+      - [x] Extraire de `DecodeCore` les traitements nommés de l'adresse, de la recherche des données, de la lecture des tags et données, de la validation du checksum et de la création du secteur.
+      - [x] Extraire le traitement des marques de données non appariées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes des adresses, données, checksums et prologues non appariés par le constructeur commun recevant les valeurs variables.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations de ce décodeur.
     - [ ] Présentation et documentation
       - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
       - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
