@@ -27,7 +27,7 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
                 values.Add(new(sector, Revolution: 0, SourceTrack: track.LogicalIndex));
             }
         }
-        if (candidates.Count == 0) throw new InvalidDataException("No FM or MFM sector could be decoded from the 86F image.");
+        if (candidates.Count == 0) throw I86fSectorImageExceptions.NoDecodableSectors(container.Tracks.Count);
         var measured = IsoSectorImageBuilder.Measure(candidates);
         var formatId = measured.SectorSize == 512 ? IbmPcImageReader.FormatIdForGeometry(measured.Cylinders, measured.Heads, measured.SectorsPerTrack, measured.SectorSize) : DiskImageFormatIds.I86fFromGeometry(measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack);
         return IsoSectorImageBuilder.CreateUniform(formatId, candidates, measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1, capacity: (long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);

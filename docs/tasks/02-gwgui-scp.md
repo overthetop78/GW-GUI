@@ -1233,11 +1233,11 @@
     - [x] Utiliser le catalogue de géométries IBM commun lorsque les secteurs font 512 octets.
     - [x] Ajouter à `DiskImageFormatIds` une fonction recevant taille sectorielle, cylindres, faces et secteurs par piste pour construire l’identifiant de repli 86F actuellement interpolé en texte brut.
     - [x] Supprimer `BuildSectorImage` après raccordement au constructeur ISO commun.
-  - [ ] Erreurs 86F paramétrées
-    - [ ] Créer `Containers/I86f/I86fExceptions.cs` pour les erreurs de signature, table, offset, nombre de bits et piste tronquée.
-    - [ ] Faire recevoir aux méthodes concernées l’index de piste, l’offset, l’offset suivant, le nombre de bits et les longueurs observée ou attendue disponibles.
-    - [ ] Créer `SectorImages/I86fSectorImageExceptions.cs` pour l’absence de secteurs FM/MFM décodables.
-    - [ ] Remplacer chaque construction directe et chaque texte brut de `InvalidDataException` par la méthode adaptée.
+  - [x] Erreurs 86F paramétrées
+    - [x] Créer `Containers/I86f/I86fExceptions.cs` pour les erreurs de signature, table, offset, nombre de bits et piste tronquée.
+    - [x] Faire recevoir aux méthodes concernées l’index de piste, l’offset, l’offset suivant, le nombre de bits et les longueurs observée ou attendue disponibles.
+    - [x] Créer `SectorImages/I86fSectorImageExceptions.cs` pour l’absence de secteurs FM/MFM décodables.
+    - [x] Remplacer chaque construction directe et chaque texte brut de `InvalidDataException` par la méthode adaptée.
   - [ ] Documentation XML française et mise en forme
     - [ ] Remplacer la documentation anglaise du Reader par une CSDoc française sur tous les nouveaux types et membres.
     - [ ] Documenter les modèles, drapeaux, dispositions, unités, ordre des bits, conversion de flux, choix du décodeur et construction sectorielle.

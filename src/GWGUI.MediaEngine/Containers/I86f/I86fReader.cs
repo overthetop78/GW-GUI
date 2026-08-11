@@ -7,18 +7,18 @@ public sealed class I86fReader
     public async Task<I86fImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        if (data.Length < I86fLayout.MinimumFileLength || BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fFormat.SignatureOffset, I86fFormat.SignatureLength)) != I86fFormat.Signature) throw new InvalidDataException("The file does not contain an 86F signature.");
+        if (data.Length < I86fLayout.MinimumFileLength || BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fFormat.SignatureOffset, I86fFormat.SignatureLength)) != I86fFormat.Signature) throw I86fExceptions.MissingSignature(data.Length);
 
         var fileFlags = (I86fFileFlags)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(I86fLayout.FileFlagsOffset, I86fLayout.FileFlagsLength));
         var tableEntryCount = fileFlags.HasFlag(I86fFileFlags.TwoSided) ? I86fLayout.TwoSideTrackTableEntries : I86fLayout.TrackTableEntriesPerSide;
         var tableEnd = checked(I86fLayout.TrackTableOffset + tableEntryCount * I86fLayout.TrackTableEntrySize);
-        if (data.Length < tableEnd) throw new InvalidDataException("The 86F track table is incomplete.");
+        if (data.Length < tableEnd) throw I86fExceptions.IncompleteTrackTable(tableEnd, data.Length);
 
         var tracks = new List<I86fTrack>();
         for (var logicalTrack = 0; logicalTrack < tableEntryCount; logicalTrack++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var offset = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fLayout.TrackTableOffset + logicalTrack * I86fLayout.TrackTableEntrySize, I86fLayout.TrackTableEntrySize)));
+            var offset = ReadOffset(data, logicalTrack);
             if (offset == 0) continue;
             var nextOffset = NextOffset(data, logicalTrack + 1, tableEntryCount, data.Length);
             var track = ReadTrack(data, logicalTrack, offset, nextOffset, fileFlags);
@@ -31,14 +31,14 @@ public sealed class I86fReader
     {
         var hasExtraBitCells = fileFlags.HasFlag(I86fFileFlags.ExtraBitCellCount);
         var headerSize = hasExtraBitCells ? I86fLayout.ExtendedTrackHeaderSize : I86fLayout.StandardTrackHeaderSize;
-        if (offset < 0 || offset > data.Length - headerSize || nextOffset < offset + headerSize) throw new InvalidDataException("An 86F track points outside the image.");
+        if (offset < 0 || offset > data.Length - headerSize || nextOffset < offset + headerSize) throw I86fExceptions.InvalidTrackRange(logicalTrack, offset, nextOffset, headerSize, data.Length);
 
         var trackFlags = (I86fTrackFlags)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(offset + I86fLayout.TrackFlagsOffset, I86fLayout.FileFlagsLength));
         var hasExplicitBitCount = hasExtraBitCells && (fileFlags & I86fFileFlags.SpeedShiftMask) == I86fFileFlags.None && fileFlags.HasFlag(I86fFileFlags.SpeedupOrExplicitBitCount);
         var bitCount = hasExplicitBitCount ? BinaryPrimitives.ReadInt32LittleEndian(data.AsSpan(offset + I86fLayout.ExplicitBitCountOffset)) : checked((nextOffset - offset - headerSize) * I86fLayout.BitsPerByte);
-        if (bitCount <= 0) throw new InvalidDataException("An 86F track has an invalid bit-cell count.");
+        if (bitCount <= 0) throw I86fExceptions.InvalidBitCount(logicalTrack, bitCount);
         var byteCount = checked(((bitCount + I86fLayout.WordBitAlignment - 1) / I86fLayout.WordBitAlignment) * I86fLayout.BytesPerWord);
-        if (offset + headerSize > data.Length - byteCount) throw new InvalidDataException("An 86F track is incomplete.");
+        if (offset + headerSize > data.Length - byteCount) throw I86fExceptions.TruncatedTrack(logicalTrack, offset, nextOffset, byteCount, Math.Max(0, data.Length - offset - headerSize));
 
         var source = data.AsSpan(offset + headerSize, byteCount);
         var reverseBytes = fileFlags.HasFlag(I86fFileFlags.ReverseByteOrder);
@@ -57,9 +57,15 @@ public sealed class I86fReader
     {
         for (var index = start; index < count; index++)
         {
-            var value = checked((int)BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fLayout.TrackTableOffset + index * I86fLayout.TrackTableEntrySize, I86fLayout.TrackTableEntrySize)));
+            var value = ReadOffset(data, index);
             if (value != 0) return value;
         }
         return fallback;
+    }
+
+    private static int ReadOffset(byte[] data, int logicalTrack)
+    {
+        var value = BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fLayout.TrackTableOffset + logicalTrack * I86fLayout.TrackTableEntrySize, I86fLayout.TrackTableEntrySize));
+        return value <= int.MaxValue ? (int)value : throw I86fExceptions.TrackOffsetOutsideRange(logicalTrack, value, data.Length);
     }
 }
