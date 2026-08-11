@@ -2325,10 +2325,10 @@
       - [x] Tester l'encodage puis le décodage odd/even et les deux calculs de parité du composant commun.
       - [x] Vérifier l'identifiant, le nom, la taille sectorielle, l'intégrité et la confiance du résultat produit.
   - [ ] `Decoding/Decoders/AppleIIGcrDecoder.cs`
-    - [ ] Nom du type et raccordements
-      - [ ] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder` afin que le type corresponde au nom `AppleIIGcrDecoder.cs`.
-      - [ ] Remplacer la construction de `AppleGcrDecoder` dans le registre par `AppleIIGcrDecoder`.
-      - [ ] Adapter les autres consommateurs qui référencent encore `AppleGcrDecoder`.
+    - [x] Nom du type et raccordements
+      - [x] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder` afin que le type corresponde au nom `AppleIIGcrDecoder.cs`.
+      - [x] Remplacer la construction de `AppleGcrDecoder` dans le registre par `AppleIIGcrDecoder`.
+      - [x] Adapter les autres consommateurs qui référencent encore `AppleGcrDecoder`.
     - [ ] Définitions Apple II GCR
       - [ ] Créer `Decoding/Definitions/AppleIIGcrFormat.cs`.
       - [ ] Y définir l'identifiant `apple2.gcr`, le nom affiché, les prologues d'adresse 13 et 16 secteurs, le prologue de données et l'épilogue.
