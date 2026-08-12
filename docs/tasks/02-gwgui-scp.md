@@ -5355,10 +5355,10 @@
     - [x] Remplacer formats, familles et erreurs bruts par les définitions Apple et erreurs de reconstruction.
     - [x] Documenter en français chaque membre.
     - [x] Tester une sélection explicite, une sélection automatique et une sélection sans candidat.
-  - [ ] `SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
+  - [x] `SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
     - [x] Remplacer tailles, géométries 90K/130K/180K et formats bruts par le catalogue Atari 8-bit.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester les trois géométries et une capacité inconnue.
+    - [x] Tester les trois géométries et une capacité inconnue.
   - [ ] `SectorImages/AtariStIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer capacités, géométries et formats bruts par le catalogue Atari ST commun.
     - [ ] Documenter en français chaque membre.
