@@ -5062,13 +5062,13 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `Atari8BitIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Atari8BitIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AtariScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Atari/AtariScpSectorImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AtariScpSectorImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `AtariScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AtariScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Atari/AtariScpSectorImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AtariScpSectorImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `AtariScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AtariStIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs`.

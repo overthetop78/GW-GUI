@@ -149,7 +149,7 @@ public sealed class AtariDiskImageTests
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_ATARI_CORPUS"); if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
         var generated = Path.Combine(root, "_generated"); if (!Directory.Exists(generated)) return;
-        var scpReader = new GWGUI.MediaEngine.SectorImages.AtariScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()); var compared = 0;
+        var scpReader = new GWGUI.MediaEngine.Reconstruction.Atari.AtariScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()); var compared = 0;
         foreach (var scpPath in Directory.EnumerateFiles(generated, "*.scp", SearchOption.AllDirectories).Where(path => path.Contains("Atari", StringComparison.OrdinalIgnoreCase)))
         {
             var machineFolder = new DirectoryInfo(Path.GetDirectoryName(scpPath)!).Name;
