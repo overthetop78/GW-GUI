@@ -5438,14 +5438,14 @@
     - [x] Tester le choix du meilleur résultat entre les décodeurs autorisés pour une même révolution.
     - [x] Tester l'enregistrement du numéro de révolution et la séparation entre les candidats dont l'adresse correspond à la piste lue et les candidats physiques dont l'adresse interne diffère.
     - [x] Tester une sélection explicite, automatique, de repli et l'erreur obtenue lorsque ni candidat adressé ni candidat physique n'est décodé.
-  - [ ] `SectorImages/UcsdIsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer les identifiants FM/MFM et les valeurs brutes d'une face et de huit secteurs logiques par les définitions UCSD correspondantes.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester une reconstruction UCSD IBM MFM utilisant les candidats physiques et vérifier la géométrie produite.
-  - [ ] `SectorImages/UcsdScpSectorImageReader.cs`
-    - [ ] Reporter les deux appels du wrapper dans `ScpCandidateRegistry` sur `IsoScpSectorImageReader` avec `DiskImageFormatIds.UcsdIbmMfm`.
-    - [ ] Retirer le wrapper du constructeur du registre et de `DiskImageExplorerFactory`, puis supprimer son fichier.
-    - [ ] Reporter ses scénarios explicite et famille ISO sur l'API publique.
+  - [x] `SectorImages/UcsdIsoScpSectorImagePolicy.cs`
+    - [x] Remplacer les identifiants FM/MFM et les valeurs brutes d'une face et de huit secteurs logiques par les définitions UCSD correspondantes.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester une reconstruction UCSD IBM MFM utilisant les candidats physiques et vérifier la géométrie produite.
+  - [x] `SectorImages/UcsdScpSectorImageReader.cs`
+    - [x] Reporter les deux appels du wrapper dans `ScpCandidateRegistry` sur `IsoScpSectorImageReader` avec `DiskImageFormatIds.UcsdIbmMfm`.
+    - [x] Retirer le wrapper du constructeur du registre et de `DiskImageExplorerFactory`, puis supprimer son fichier.
+    - [x] Reporter ses scénarios explicite et famille ISO sur l'API publique.
 
 - [ ] Instructions compactées dans la reconstruction sectorielle
   - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`

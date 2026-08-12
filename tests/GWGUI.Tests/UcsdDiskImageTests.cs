@@ -3,6 +3,10 @@ using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Geometries.Ucsd;
+using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.SectorImages;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
@@ -41,6 +45,17 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(ScpImagePath());
         Assert.Equal(DiskImageFormatIds.UcsdIbmMfm, document.Image.FormatId);
         Assert.True(document.FileSystemRecognized);
+    }
+
+    [Fact]
+    public void UcsdPolicyUsesPhysicalCandidatesAndDeclaredGeometry()
+    {
+        var physical = Enumerable.Range(1, UcsdIbmMfmGeometry.LogicalSectorsPerCylinder).ToDictionary(number => new SectorAddress(0, 0, number), number => new List<IsoSectorCandidate> { new(new(4, 1, number, 2, 512, true, 0, Data: new byte[512]), 1) });
+        var addressed = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
+        var image = new UcsdIsoScpSectorImagePolicy().Build(DiskImageFormatIds.UcsdIbmMfm, new(addressed, physical));
+        Assert.Equal(UcsdIbmMfmGeometry.HeadCount, image.Heads);
+        Assert.Equal(UcsdIbmMfmGeometry.LogicalSectorsPerCylinder, image.SectorsPerTrack);
+        Assert.Equal(UcsdIbmMfmGeometry.LogicalSectorsPerCylinder, image.AvailableBlocks.Count);
     }
 
     private async Task VerifyImage(string fileName)
