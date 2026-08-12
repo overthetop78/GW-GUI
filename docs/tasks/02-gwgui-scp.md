@@ -5385,9 +5385,9 @@
     - [x] Documenter en français chaque membre.
     - [ ] Tester 1541, 1571, 1581, Commodore 900 et la sélection automatique. Les parcours 1541/1581 et automatique disposent de captures ; aucune capture Commodore 1571 ou Commodore 900 n'est présente dans `image_test` pour achever cette validation.
   - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`
-    - [ ] Remplacer codec, géométrie, format et erreurs bruts par `DecRx02Geometry`, `FluxCodecIds` et les erreurs communes.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester une capture RX02 complète, partielle et invalide.
+    - [x] Remplacer codec, géométrie, format et erreurs bruts par `DecRx02Geometry`, `FluxCodecIds` et les erreurs communes.
+    - [x] Documenter en français chaque membre.
+    - [ ] Tester une capture RX02 complète, partielle et invalide. Les cas partiel et invalide sont validés. La capture complète `BA-J837B-BC_MINC_MA_DEMO_23_V2.0_BIN_RX2 [test].scp` échoue actuellement avec `No DEC RX02 sectors could be decoded from the SCP image` ; le décodage RX02 réel reste à corriger.
   - [ ] `SectorImages/EpsonQx10FormatDetector.cs`
     - [ ] Déplacer chaque capacité, secteur, taille, seuil et format Epson dans `EpsonQx10GeometryCatalog`.
     - [ ] Conserver dans le détecteur uniquement le score des secteurs observés et la sélection d'une entrée du catalogue.
