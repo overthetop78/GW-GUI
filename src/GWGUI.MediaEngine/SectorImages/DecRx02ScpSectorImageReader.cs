@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Geometries.Dec;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Reconstruction;
@@ -11,7 +12,7 @@ namespace GWGUI.MediaEngine.SectorImages;
 public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
     private static readonly IReadOnlyDictionary<(int Track, int Sector), int> PhysicalToLogical =
-        Enumerable.Range(0, DecRx02Geometry.PhysicalSectorCount).ToDictionary(LogicalToPhysical, logical => logical);
+        Enumerable.Range(0, DecRx02Geometry.PhysicalSectorCount).ToDictionary(DecRx02SectorOrder.LogicalToPhysical, logical => logical);
 
     /// <summary>Lit la capture et réunit chaque paire de secteurs physiques en bloc logique.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
@@ -42,8 +43,7 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
             first.Value.Sector.Data!.ToArray().CopyTo(data, 0);
             second.Value.Sector.Data!.ToArray().CopyTo(data, DecRx02Geometry.PhysicalSectorSize);
             var valid = first.Value.Sector.IntegrityValid == true && second.Value.Sector.IntegrityValid == true;
-            blocks.Add(new(block, new(block / DecRx02Geometry.LogicalBlocksPerTrack, 0, block % DecRx02Geometry.LogicalBlocksPerTrack + 1), data, valid,
-                Math.Max(first.Value.Revolution, second.Value.Revolution)));
+            blocks.Add(new(block, new(block / DecRx02Geometry.LogicalBlocksPerTrack, DecRx02Geometry.FirstHead, block % DecRx02Geometry.LogicalBlocksPerTrack + DecRx02Geometry.FirstLogicalSectorNumber), data, valid, Math.Max(first.Value.Revolution, second.Value.Revolution)));
         }
         return new(DiskImageFormatIds.DecRx02, DecRx02Geometry.LogicalBlockSize, DecRx02Geometry.TrackCount, DecRx02Geometry.HeadCount, DecRx02Geometry.LogicalBlocksPerTrack, blocks, capacity: DecRx02Geometry.Capacity, logicalBlockCount: DecRx02Geometry.LogicalBlockCount);
     }
@@ -54,17 +54,5 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
         if (!sectors.TryGetValue(logical, out var values)) return null;
         return values.OrderByDescending(value => value.Sector.IntegrityValid == true)
             .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
-    }
-
-    /// <summary>Convertit un index logique RX02 en piste et secteur physiques entrelacés.</summary>
-    private static (int Track, int Sector) LogicalToPhysical(int logicalSector)
-    {
-        var logicalTrack = logicalSector / DecRx02Geometry.PhysicalSectorsPerTrack;
-        var position = logicalSector % DecRx02Geometry.PhysicalSectorsPerTrack;
-        position = (DecRx02Geometry.PhysicalSectorsPerLogicalBlock * position + (position >= DecRx02Geometry.LogicalBlocksPerTrack ? 1 : 0)) % DecRx02Geometry.PhysicalSectorsPerTrack;
-        var sector = 1 + (position + 6 * logicalTrack) % DecRx02Geometry.PhysicalSectorsPerTrack;
-        var track = logicalTrack + 1;
-        if (track >= DecRx02Geometry.TrackCount) track = 0;
-        return (track, sector);
     }
 }

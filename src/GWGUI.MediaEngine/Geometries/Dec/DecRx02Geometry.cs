@@ -23,6 +23,10 @@ public static class DecRx02Geometry
     public const int LogicalBlockCount = PhysicalSectorCount / PhysicalSectorsPerLogicalBlock;
     /// <summary>Nombre de blocs logiques par piste.</summary>
     public const int LogicalBlocksPerTrack = PhysicalSectorsPerTrack / PhysicalSectorsPerLogicalBlock;
+    /// <summary>Première face logique.</summary>
+    public const int FirstHead = 0;
+    /// <summary>Premier numéro de bloc logique dans une piste.</summary>
+    public const int FirstLogicalSectorNumber = 1;
     /// <summary>Capacité totale d'un dump RX02 complet en octets.</summary>
     public const int Capacity = PhysicalSectorCount * PhysicalSectorSize;
 }

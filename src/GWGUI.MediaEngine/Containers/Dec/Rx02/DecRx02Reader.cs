@@ -16,14 +16,34 @@ public sealed class DecRx02Reader
     /// <summary>Valide la capacité puis remet les secteurs du dump en ordre logique.</summary>
     private static SectorImage Read(ReadOnlySpan<byte> bytes, CancellationToken cancellationToken)
     {
-        if (bytes.Length != DecRx02Geometry.Capacity) throw new InvalidDataException("The image is not a complete DEC RX02 dump.");
+        if (bytes.Length != DecRx02Geometry.Capacity) throw DecRx02Exceptions.IncompleteImage(bytes.Length, DecRx02Geometry.Capacity);
+        var logicalSectors = ReadLogicalSectors(bytes, cancellationToken);
+        return AssembleLogicalBlocks(logicalSectors, cancellationToken);
+    }
+
+    /// <summary>Replace les secteurs physiques de 256 octets dans leur ordre logique.</summary>
+    private static byte[][] ReadLogicalSectors(ReadOnlySpan<byte> bytes, CancellationToken cancellationToken)
+    {
+        var sectors = new byte[DecRx02Geometry.PhysicalSectorCount][];
+        for (var logicalSector = 0; logicalSector < sectors.Length; logicalSector++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            sectors[logicalSector] = new byte[DecRx02Geometry.PhysicalSectorSize];
+            DecRx02SectorOrder.CopyLogicalSector(bytes, logicalSector, sectors[logicalSector]);
+        }
+        return sectors;
+    }
+
+    /// <summary>Assemble chaque paire de secteurs physiques consécutifs en bloc logique RT-11 de 512 octets.</summary>
+    private static SectorImage AssembleLogicalBlocks(IReadOnlyList<byte[]> logicalSectors, CancellationToken cancellationToken)
+    {
         var blocks = new SectorBlock[DecRx02Geometry.LogicalBlockCount];
         for (var block = 0; block < blocks.Length; block++)
         {
             cancellationToken.ThrowIfCancellationRequested();
             var data = new byte[DecRx02Geometry.LogicalBlockSize];
-            for (var part = 0; part < DecRx02Geometry.PhysicalSectorsPerLogicalBlock; part++) DecRx02SectorOrder.CopyLogicalSector(bytes, block * DecRx02Geometry.PhysicalSectorsPerLogicalBlock + part, data.AsSpan(part * DecRx02Geometry.PhysicalSectorSize));
-            blocks[block] = new(block, new(block / DecRx02Geometry.LogicalBlocksPerTrack, 0, block % DecRx02Geometry.LogicalBlocksPerTrack + 1), data, true);
+            for (var part = 0; part < DecRx02Geometry.PhysicalSectorsPerLogicalBlock; part++) logicalSectors[block * DecRx02Geometry.PhysicalSectorsPerLogicalBlock + part].CopyTo(data, part * DecRx02Geometry.PhysicalSectorSize);
+            blocks[block] = new(block, new(block / DecRx02Geometry.LogicalBlocksPerTrack, DecRx02Geometry.FirstHead, block % DecRx02Geometry.LogicalBlocksPerTrack + DecRx02Geometry.FirstLogicalSectorNumber), data, true);
         }
         return new(DiskImageFormatIds.DecRx02, DecRx02Geometry.LogicalBlockSize, DecRx02Geometry.TrackCount, DecRx02Geometry.HeadCount, DecRx02Geometry.LogicalBlocksPerTrack, blocks, capacity: DecRx02Geometry.Capacity, logicalBlockCount: DecRx02Geometry.LogicalBlockCount);
     }

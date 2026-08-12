@@ -6,9 +6,13 @@ namespace GWGUI.MediaEngine.FileSystems.Rt11;
 /// <summary>Valide les champs structurants d'un home block RT-11 remis en ordre logique.</summary>
 internal static class Rt11HomeBlockProbe
 {
+    /// <summary>Offset du numéro du premier bloc de répertoire.</summary>
     private const int DirectoryBlockOffset = 468;
+    /// <summary>Offset de l'identifiant du système.</summary>
     private const int SystemIdOffset = 496;
+    /// <summary>Longueur de l'identifiant du système.</summary>
     private const int SystemIdLength = 12;
+    /// <summary>Préfixe identifiant RT-11.</summary>
     private const string SystemIdPrefix = "DECRT11";
 
     /// <summary>Indique si le bloc contient un numéro de répertoire et un identifiant système RT-11 valides.</summary>

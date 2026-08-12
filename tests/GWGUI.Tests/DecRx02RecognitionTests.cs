@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Geometries.Dec;
+using GWGUI.MediaEngine.FileSystems.Rt11;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
@@ -80,20 +81,62 @@ public sealed class DecRx02RecognitionTests
         }
     }
 
+    [Theory]
+    [InlineData(0)]
+    [InlineData(12)]
+    [InlineData(13)]
+    [InlineData(25)]
+    [InlineData(26)]
+    [InlineData(1_987)]
+    [InlineData(2_001)]
+    public void Rx02LogicalToPhysicalOrderCoversTrackHalvesAndFinalWrap(int logicalSector)
+    {
+        var address = DecRx02SectorOrder.LogicalToPhysical(logicalSector);
+        Assert.InRange(address.Track, 0, DecRx02Geometry.TrackCount - 1);
+        Assert.InRange(address.Sector, DecRx02SectorOrder.FirstPhysicalSectorNumber, DecRx02Geometry.PhysicalSectorsPerTrack);
+        if (logicalSector >= (DecRx02Geometry.TrackCount - 1) * DecRx02Geometry.PhysicalSectorsPerTrack) Assert.Equal(0, address.Track);
+    }
+
+    [Fact]
+    public async Task Rx02ReaderReordersEverySectorAndValidatesRt11HomeBlock()
+    {
+        var path = Rx02ImagePath();
+        var raw = await File.ReadAllBytesAsync(path);
+        var image = await new DecRx02Reader().ReadAsync(path);
+        Assert.Equal(DecRx02Geometry.LogicalBlockCount, image.AvailableBlocks.Count);
+        foreach (var logicalBlock in Enumerable.Range(0, DecRx02Geometry.LogicalBlockCount))
+        {
+            Assert.True(image.TryGetBlock(logicalBlock, out var block));
+            Assert.Equal(ExpectedLogicalBlock(raw, logicalBlock), block.Data);
+        }
+        var home = image.GetBlock(1).ToArray();
+        Assert.True(Rt11HomeBlockProbe.LooksLikeRt11(home));
+        var invalidSystem = home.ToArray();
+        invalidSystem[496] = (byte)'X';
+        Assert.False(Rt11HomeBlockProbe.LooksLikeRt11(invalidSystem));
+        var invalidDirectory = home.ToArray();
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(invalidDirectory.AsSpan(468, 2), DecRx02Geometry.LogicalBlockCount);
+        Assert.False(Rt11HomeBlockProbe.LooksLikeRt11(invalidDirectory));
+    }
+
+    [Fact]
+    public async Task Rx02ReaderRejectsWrongCapacityAndHonorsCancellation()
+    {
+        await Assert.ThrowsAsync<InvalidDataException>(() => new DecRx02Reader().ReadAsync(new byte[DecRx02Geometry.Capacity - 1]));
+        await Assert.ThrowsAsync<InvalidDataException>(() => new DecRx02Reader().ReadAsync(new byte[DecRx02Geometry.Capacity + 1]));
+        using var cancellation = new CancellationTokenSource();
+        cancellation.Cancel();
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => new DecRx02Reader().ReadAsync(new byte[DecRx02Geometry.Capacity], cancellation.Token));
+    }
+
     private static byte[] ExpectedLogicalBlock(byte[] physicalDump, int logicalBlock)
     {
         var expected = new byte[512];
         for (var half = 0; half < 2; half++)
         {
             var logicalSector = logicalBlock * 2 + half;
-            var logicalTrack = logicalSector / 26;
-            var position = logicalSector % 26;
-            position = (2 * position + (position >= 13 ? 1 : 0)) % 26;
-            var sector = 1 + (position + 6 * logicalTrack) % 26;
-            var track = logicalTrack + 1;
-            if (track >= 77) track = 0;
-            physicalDump.AsSpan((track * 26 + sector - 1) * 256, 256)
-                .CopyTo(expected.AsSpan(half * 256));
+            var (track, sector) = DecRx02SectorOrder.LogicalToPhysical(logicalSector);
+            physicalDump.AsSpan((track * DecRx02Geometry.PhysicalSectorsPerTrack + sector - DecRx02SectorOrder.FirstPhysicalSectorNumber) * DecRx02Geometry.PhysicalSectorSize, DecRx02Geometry.PhysicalSectorSize).CopyTo(expected.AsSpan(half * DecRx02Geometry.PhysicalSectorSize));
         }
         return expected;
     }

@@ -4785,49 +4785,49 @@
     - [x] Tester D71 sur les deux faces et refuser une face négative ou supérieure à un.
     - [x] Tester les conversions aller-retour D81 aux pistes et secteurs limites.
     - [x] Vérifier que D64/D71, SCP et le système de fichiers produisent les mêmes blocs logiques pour une même adresse.
-- [ ] `src/GWGUI.MediaEngine/Images/DecRx02ImageReader.cs`
-  - [ ] Déplacement du lecteur d’image physique RX02
-    - [ ] Renommer le type en `DecRx02Reader` et déplacer le fichier vers `Containers/Dec/Rx02/DecRx02Reader.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Dec.Rx02`.
-    - [ ] Adapter `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`, `Images/DiskImageExplorerFactory.cs`, les tests et les autres consommateurs au nouveau type.
-  - [ ] Géométrie et ordre physique RX02 communs
-    - [ ] Créer `Geometries/Dec/DecRx02Geometry.cs` avec les 77 pistes, les 26 secteurs physiques par piste et les secteurs physiques de 256 octets.
-    - [ ] Y définir les 2002 secteurs physiques, les 1001 blocs logiques, les blocs logiques de 512 octets, les 13 blocs logiques par piste et la face unique.
-    - [ ] Y calculer la capacité totale à partir des pistes, des secteurs physiques et de leur taille au lieu de conserver l’expression brute `77 * 26 * 256`.
-    - [ ] Créer `Geometries/Dec/DecRx02SectorOrder.cs` et y déplacer l’unique conversion d’un index logique vers la piste et le secteur physiques.
-    - [ ] Y nommer le facteur d’entrelacement `2`, le décalage de seconde moitié `1`, la moitié de piste de 13 secteurs, le décalage de piste `6` et le premier numéro physique `1`.
-    - [ ] Faire utiliser `DecRx02SectorOrder` par `DecRx02Reader` et `SectorImages/DecRx02ScpSectorImageReader.cs`, puis supprimer leurs deux copies de `LogicalToPhysical`.
-    - [ ] Faire utiliser `DecRx02Geometry` par ces deux Readers pour toutes les tailles, pistes, faces, secteurs, blocs et capacités correspondants.
-  - [ ] Séparation de la reconnaissance RT-11
-    - [ ] Créer `FileSystems/Rt11/Rt11HomeBlockProbe.cs` pour valider un home block RT-11 déjà remis en ordre logique.
-    - [ ] Y déplacer l’offset `468` du bloc de répertoire, l’offset `496` de l’identifiant système, sa longueur de 12 octets, les bornes du bloc de répertoire et le préfixe `DECRT11`.
-    - [ ] Remplacer dans `Rt11HomeBlockProbe` la méthode locale `ReadUInt16` par `BinaryPrimitives.ReadUInt16LittleEndian`.
-    - [ ] Faire utiliser `Rt11HomeBlockProbe` par `FileSystems/Readers/Rt11FileSystemReader.cs` afin de supprimer sa copie de cette validation.
-    - [ ] Créer `Recognition/Dec/DecRx02ImageProbe.cs` pour vérifier la capacité RX02, reconstruire le home block depuis les secteurs logiques 2 et 3 et appeler `Rt11HomeBlockProbe`.
-    - [ ] Faire utiliser `DecRx02ImageProbe` par `DecRx02ImageRecognitionPolicy`, puis supprimer `LooksLikeRt11`, `CopyLogicalSector` et `ReadUInt16` de `DecRx02Reader`.
-  - [ ] Construction de l’image sectorielle RX02
-    - [ ] Remplacer les tableaux dimensionnés avec `2002` et `1001` par les nombres fournis par `DecRx02Geometry`.
-    - [ ] Extraire dans une méthode privée la lecture en ordre logique des secteurs physiques de 256 octets à l’aide de `DecRx02SectorOrder`.
-    - [ ] Extraire dans une méthode privée l’assemblage de deux secteurs physiques consécutifs dans chaque bloc logique de 512 octets.
-    - [ ] Construire les adresses des blocs avec la face unique, les 13 blocs par piste et le premier numéro de bloc nommés dans la géométrie.
-    - [ ] Continuer à utiliser `DiskImageFormatIds.DecRx02` pour l’identifiant de l’image produite.
-  - [ ] Erreur de conteneur RX02
-    - [ ] Créer `Containers/Dec/Rx02/DecRx02Exceptions.cs`.
-    - [ ] Y déplacer le texte brut signalant une image physique incomplète dans une méthode recevant la taille observée et la capacité RX02 attendue.
-    - [ ] Remplacer la construction directe de `InvalidDataException` dans `ReadAsync` par cette méthode.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Remplacer la documentation anglaise de `DecRx02Reader` par une CSDoc française.
-    - [ ] Documenter en français `DecRx02Geometry`, `DecRx02SectorOrder`, `DecRx02ImageProbe`, `Rt11HomeBlockProbe` et `DecRx02Exceptions`.
-    - [ ] Documenter en français `ReadAsync` et chaque méthode privée créée, avec les unités, l’ordre physique, les blocs logiques et les exceptions propagées.
-    - [ ] Conserver sur une seule ligne les signatures, calculs, appels et constructions complètes qui restent lisibles ainsi.
-  - [ ] Tests de l’ordre RX02 et de la reconnaissance RT-11
-    - [ ] Utiliser depuis `image_test` une image physique RX02 complète dont plusieurs pistes, secteurs et blocs RT-11 sont connus.
-    - [ ] Tester la conversion logique vers physique au début, au milieu et à la fin de chaque moitié de piste ainsi qu’au retour de la piste 76 vers la piste physique 0.
-    - [ ] Vérifier que `DecRx02Reader` remet les 2002 secteurs en ordre puis assemble exactement les 1001 blocs attendus.
-    - [ ] Vérifier les adresses, tailles, contenus, capacité et identifiant de l’image sectorielle produite.
-    - [ ] Vérifier que le Reader de dump physique et le Reader SCP utilisent la même conversion d’ordre.
-    - [ ] Vérifier la détection d’un home block RT-11 valide, d’un préfixe système invalide et d’un bloc de répertoire hors limites.
-    - [ ] Vérifier le rejet d’une image plus courte ou plus longue que la capacité RX02 et la propagation de l’annulation.
+- [x] `src/GWGUI.MediaEngine/Images/DecRx02ImageReader.cs`
+  - [x] Déplacement du lecteur d’image physique RX02
+    - [x] Renommer le type en `DecRx02Reader` et déplacer le fichier vers `Containers/Dec/Rx02/DecRx02Reader.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Dec.Rx02`.
+    - [x] Adapter `Recognition/Policies/DecRx02ImageRecognitionPolicy.cs`, `Images/DiskImageExplorerFactory.cs`, les tests et les autres consommateurs au nouveau type.
+  - [x] Géométrie et ordre physique RX02 communs
+    - [x] Créer `Geometries/Dec/DecRx02Geometry.cs` avec les 77 pistes, les 26 secteurs physiques par piste et les secteurs physiques de 256 octets.
+    - [x] Y définir les 2002 secteurs physiques, les 1001 blocs logiques, les blocs logiques de 512 octets, les 13 blocs logiques par piste et la face unique.
+    - [x] Y calculer la capacité totale à partir des pistes, des secteurs physiques et de leur taille au lieu de conserver l’expression brute `77 * 26 * 256`.
+    - [x] Créer `Geometries/Dec/DecRx02SectorOrder.cs` et y déplacer l’unique conversion d’un index logique vers la piste et le secteur physiques.
+    - [x] Y nommer le facteur d’entrelacement `2`, le décalage de seconde moitié `1`, la moitié de piste de 13 secteurs, le décalage de piste `6` et le premier numéro physique `1`.
+    - [x] Faire utiliser `DecRx02SectorOrder` par `DecRx02Reader` et `SectorImages/DecRx02ScpSectorImageReader.cs`, puis supprimer leurs deux copies de `LogicalToPhysical`.
+    - [x] Faire utiliser `DecRx02Geometry` par ces deux Readers pour toutes les tailles, pistes, faces, secteurs, blocs et capacités correspondants.
+  - [x] Séparation de la reconnaissance RT-11
+    - [x] Créer `FileSystems/Rt11/Rt11HomeBlockProbe.cs` pour valider un home block RT-11 déjà remis en ordre logique.
+    - [x] Y déplacer l’offset `468` du bloc de répertoire, l’offset `496` de l’identifiant système, sa longueur de 12 octets, les bornes du bloc de répertoire et le préfixe `DECRT11`.
+    - [x] Remplacer dans `Rt11HomeBlockProbe` la méthode locale `ReadUInt16` par `BinaryPrimitives.ReadUInt16LittleEndian`.
+    - [x] Faire utiliser `Rt11HomeBlockProbe` par `FileSystems/Readers/Rt11FileSystemReader.cs` afin de supprimer sa copie de cette validation.
+    - [x] Créer `Recognition/Dec/DecRx02ImageProbe.cs` pour vérifier la capacité RX02, reconstruire le home block depuis les secteurs logiques 2 et 3 et appeler `Rt11HomeBlockProbe`.
+    - [x] Faire utiliser `DecRx02ImageProbe` par `DecRx02ImageRecognitionPolicy`, puis supprimer `LooksLikeRt11`, `CopyLogicalSector` et `ReadUInt16` de `DecRx02Reader`.
+  - [x] Construction de l’image sectorielle RX02
+    - [x] Remplacer les tableaux dimensionnés avec `2002` et `1001` par les nombres fournis par `DecRx02Geometry`.
+    - [x] Extraire dans une méthode privée la lecture en ordre logique des secteurs physiques de 256 octets à l’aide de `DecRx02SectorOrder`.
+    - [x] Extraire dans une méthode privée l’assemblage de deux secteurs physiques consécutifs dans chaque bloc logique de 512 octets.
+    - [x] Construire les adresses des blocs avec la face unique, les 13 blocs par piste et le premier numéro de bloc nommés dans la géométrie.
+    - [x] Continuer à utiliser `DiskImageFormatIds.DecRx02` pour l’identifiant de l’image produite.
+  - [x] Erreur de conteneur RX02
+    - [x] Créer `Containers/Dec/Rx02/DecRx02Exceptions.cs`.
+    - [x] Y déplacer le texte brut signalant une image physique incomplète dans une méthode recevant la taille observée et la capacité RX02 attendue.
+    - [x] Remplacer la construction directe de `InvalidDataException` dans `ReadAsync` par cette méthode.
+  - [x] Documentation XML française et mise en forme
+    - [x] Remplacer la documentation anglaise de `DecRx02Reader` par une CSDoc française.
+    - [x] Documenter en français `DecRx02Geometry`, `DecRx02SectorOrder`, `DecRx02ImageProbe`, `Rt11HomeBlockProbe` et `DecRx02Exceptions`.
+    - [x] Documenter en français `ReadAsync` et chaque méthode privée créée, avec les unités, l’ordre physique, les blocs logiques et les exceptions propagées.
+    - [x] Conserver sur une seule ligne les signatures, calculs, appels et constructions complètes qui restent lisibles ainsi.
+  - [x] Tests de l’ordre RX02 et de la reconnaissance RT-11
+    - [x] Utiliser depuis `image_test` une image physique RX02 complète dont plusieurs pistes, secteurs et blocs RT-11 sont connus.
+    - [x] Tester la conversion logique vers physique au début, au milieu et à la fin de chaque moitié de piste ainsi qu’au retour de la piste 76 vers la piste physique 0.
+    - [x] Vérifier que `DecRx02Reader` remet les 2002 secteurs en ordre puis assemble exactement les 1001 blocs attendus.
+    - [x] Vérifier les adresses, tailles, contenus, capacité et identifiant de l’image sectorielle produite.
+    - [x] Vérifier que le Reader de dump physique et le Reader SCP utilisent la même conversion d’ordre.
+    - [x] Vérifier la détection d’un home block RT-11 valide, d’un préfixe système invalide et d’un bloc de répertoire hors limites.
+    - [x] Vérifier le rejet d’une image plus courte ou plus longue que la capacité RX02 et la propagation de l’annulation.
 - [ ] `src/GWGUI.MediaEngine/Images/IbmPcImageReader.cs`
   - [ ] Déplacement du Reader d’image brute IBM PC
     - [ ] Renommer le type en `IbmRawImageReader` et déplacer le fichier vers `Containers/Ibm/Raw/IbmRawImageReader.cs`.
