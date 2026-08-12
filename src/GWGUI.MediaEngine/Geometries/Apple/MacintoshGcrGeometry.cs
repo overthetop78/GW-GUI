@@ -71,4 +71,17 @@ public static class MacintoshGcrGeometry
 
     /// <summary>Indique si la capacité correspond à une image Macintosh cataloguée.</summary>
     public static bool IsSupportedCapacity(int capacity) => capacity is Capacity400K or Capacity800K or Capacity1440K;
+
+    /// <summary>Crée la disposition zonée correspondant à une ou deux faces.</summary>
+    public static MacintoshGcrImageGeometry ForHeads(int heads)
+    {
+        if (heads is not (SingleSidedHeadCount or DoubleSidedHeadCount)) throw AppleGeometryExceptions.InvalidHeadCount(heads);
+        return new(heads, SingleSidedBlockCount * heads, Capacity400K * heads);
+    }
 }
+
+/// <summary>Décrit une géométrie Macintosh GCR zonée validée pour un nombre de faces précis.</summary>
+/// <param name="Heads">Nombre de faces.</param>
+/// <param name="BlockCount">Nombre de blocs logiques.</param>
+/// <param name="Capacity">Capacité en octets.</param>
+public sealed record MacintoshGcrImageGeometry(int Heads, int BlockCount, int Capacity);

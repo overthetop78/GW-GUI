@@ -9,12 +9,18 @@ public static class AppleIIGeometry
     public const int SectorSize = 256;
     /// <summary>Nombre de secteurs par piste, numérotés à partir de zéro.</summary>
     public const int SectorsPerTrack = 16;
+    /// <summary>Nombre de secteurs par piste d'une image DOS 3.2.</summary>
+    public const int Dos32SectorsPerTrack = 13;
+    /// <summary>Nombre de blocs ProDOS de 512 octets par piste Apple II.</summary>
+    public const int ProDosBlocksPerTrack = 8;
     /// <summary>Taille d'une piste en octets.</summary>
     public const int TrackSize = SectorSize * SectorsPerTrack;
     /// <summary>Nombre de pistes d'une image standard.</summary>
     public const int TrackCount = 35;
     /// <summary>Capacité d'une image standard en octets.</summary>
     public const int Capacity = TrackCount * TrackSize;
+    /// <summary>Capacité d'une image DOS 3.2 à treize secteurs par piste.</summary>
+    public const int Dos32Capacity = TrackCount * Dos32SectorsPerTrack * SectorSize;
     /// <summary>Associe chaque numéro de secteur logique ProDOS, à base zéro, à son numéro de secteur physique.</summary>
     public static ReadOnlyCollection<int> ProDosToPhysical { get; } = Array.AsReadOnly(new[] { 0, 2, 4, 6, 8, 10, 12, 14, 1, 3, 5, 7, 9, 11, 13, 15 });
     /// <summary>Associe chaque numéro de secteur physique, à base zéro, à sa position dans un fichier DOS.</summary>

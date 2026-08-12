@@ -41,7 +41,10 @@ internal static class AppleRawImageProbe
     }
 
     /// <summary>Sonde une signature MFS ou HFS dans le bloc maître Macintosh.</summary>
-    public static bool LooksLikeMac(ReadOnlySpan<byte> data) => MacintoshVolumeSignatures.TryRead(data, out var signature) && MacintoshVolumeSignatures.IsSupported(signature);
+    public static bool LooksLikeMac(ReadOnlySpan<byte> data) => ProbeMac(data) is not null;
+
+    /// <summary>Retourne la variante MFS ou HFS nommée par le bloc maître, ou aucune si le contrôle échoue.</summary>
+    public static MacintoshFileSystemKind? ProbeMac(ReadOnlySpan<byte> data) => MacintoshVolumeSignatures.Identify(data);
 
     /// <summary>Sonde chaque page Lisa jusqu'à trouver une version et un nom de volume valides.</summary>
     public static bool LooksLikeLisaOffice(ReadOnlySpan<byte> data)

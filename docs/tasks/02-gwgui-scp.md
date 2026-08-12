@@ -4457,50 +4457,50 @@
     - [x] Tester pour chaque sonde un tampon vide et chaque longueur juste inférieure au minimum lu.
     - [x] Tester Lisa avec version inconnue, nom vide, trop long et non imprimable.
     - [x] Vérifier que les sondes et les Readers de systèmes de fichiers partagent les mêmes définitions en modifiant aucune valeur dupliquée.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleRawImageReader.cs`
-  - [ ] Déplacement et découpage du Reader brut Apple
-    - [ ] Créer `Containers/Apple/Raw/AppleRawImageReader.cs` comme point d'entrée des charges utiles Apple sans en-tête.
-    - [ ] Créer `Containers/Apple/Raw/AppleII525RawImageReader.cs` et y déplacer `ReadAppleTwo525`.
-    - [ ] Créer `Containers/Apple/Raw/Apple35RawImageReader.cs` et y déplacer `ReadApple35`.
-    - [ ] Adapter la façade Apple, `TwoImgReader` et `DiskCopyReader` aux nouveaux Readers.
-    - [ ] Supprimer `Images/AppleRawImageReader.cs` après raccordement.
-  - [ ] Catalogue des représentations brutes Apple
-    - [ ] Créer `Containers/Apple/Raw/AppleRawImageLayoutCatalog.cs` avec les capacités exactes D13, 140 K, 400 K, 800 K et 1,44 M.
-    - [ ] Associer à chaque capacité ses géométries possibles sans décider du système de fichiers uniquement depuis la taille.
-    - [ ] Remplacer `35 * 13 * 256`, 143 360, 409 600, 819 200 et 1 474 560 par les dispositions cataloguées.
-    - [ ] Réutiliser les géométries Apple II, Lisa et Macintosh déjà sorties de `AppleDiskGeometry`.
-  - [ ] Reader Apple II 5,25 pouces
-    - [ ] Utiliser l'extension PO uniquement comme indice d'ordre ProDOS.
-    - [ ] Utiliser `AppleRawImageProbe` pour distinguer ProDOS, DOS 3.3 et SOS sans recopier leurs structures.
-    - [ ] Utiliser `AppleIISectorOrderConverter` pour la tentative après conversion DOS vers ProDOS.
-    - [ ] Définir l'ordre exact des tentatives PO, ProDOS direct, DOS 3.3 direct, SOS converti, ProDOS converti, puis repli DOS 3.3.
-    - [ ] Faire apparaître dans le résultat de lecture si le dernier choix est une validation ou un repli par géométrie.
-    - [ ] Remplacer 35 pistes, une face, 8, 13 ou 16 secteurs et les tailles 256/512 par les géométries Apple II propriétaires.
-  - [ ] Reader Apple 3,5 pouces
-    - [ ] Utiliser les sondes Lisa, MFS, HFS et ProDOS partagées.
-    - [ ] Remplacer la lecture directe à l'offset 1 024 et les signatures `0xD2D7`/`0x4244` par le résultat nommé de la sonde Macintosh.
-    - [ ] Réutiliser `LisaFileWareGeometry` et `MacintoshGcrGeometry` pour 400 K et 800 K.
-    - [ ] Créer ou réutiliser une géométrie MFM 1,44 M distincte de la géométrie GCR zonée.
-    - [ ] Remplacer le calcul brut `data.Length / 512 / 160` par la propriété secteurs par piste de la géométrie retenue.
-    - [ ] Distinguer explicitement une image Macintosh 1,44 M linéaire d'une image GCR zonée.
-  - [ ] Construction des images sectorielles
-    - [ ] Raccorder chaque branche au builder précis qui remplacera `AppleSectorImageFactory`.
-    - [ ] Ne conserver dans les Readers aucun calcul de bloc, d'adresse ou de capacité déjà possédé par une géométrie ou un builder.
-    - [ ] Éviter la copie supplémentaire du payload 2IMG en faisant accepter une vue en lecture seule au Reader brut.
-  - [ ] Erreurs du format brut Apple
-    - [ ] Créer `Containers/Apple/Raw/AppleRawImageExceptions.cs` avec une erreur recevant taille, extension et sondes essayées.
-    - [ ] Créer une erreur distincte lorsqu'une capacité est connue mais qu'aucune structure ne permet de choisir son interprétation.
-    - [ ] Remplacer les deux textes bruts identiques du fichier par ces erreurs.
-  - [ ] Présentation et CSDoc française
-    - [ ] Remettre sur une seule ligne les conditions, appels de builders et expressions ternaires complètes qui tiennent lisiblement après extraction des arguments.
-    - [ ] Documenter en français les trois Readers, le catalogue, chaque méthode et chaque règle de priorité.
-    - [ ] Documenter pour chaque branche la taille sectorielle, la géométrie et l'ordre sectoriel utilisés.
-  - [ ] Tests ciblés des images Apple brutes
-    - [ ] Tester D13, DOS 3.3, PO/ProDOS, SOS, Lisa 400 K, Macintosh MFS, Macintosh HFS, ProDOS 800 K et 1,44 M.
-    - [ ] Tester les formats ambigus de 140 K dans chaque ordre sectoriel et vérifier le choix exact.
-    - [ ] Tester une capacité connue sans structure reconnue, une capacité inconnue et un contenu tronqué.
-    - [ ] Vérifier pour chaque image format, géométrie, adresses, capacité et contenu des blocs.
-    - [ ] Tester les charges utiles provenant directement d'un fichier brut, de 2IMG et de DiskCopy sans divergence.
+- [x] `src/GWGUI.MediaEngine/Images/AppleRawImageReader.cs`
+  - [x] Déplacement et découpage du Reader brut Apple
+    - [x] Créer `Containers/Apple/Raw/AppleRawImageReader.cs` comme point d'entrée des charges utiles Apple sans en-tête.
+    - [x] Créer `Containers/Apple/Raw/AppleII525RawImageReader.cs` et y déplacer `ReadAppleTwo525`.
+    - [x] Créer `Containers/Apple/Raw/Apple35RawImageReader.cs` et y déplacer `ReadApple35`.
+    - [x] Adapter la façade Apple, `TwoImgReader` et `DiskCopyReader` aux nouveaux Readers.
+    - [x] Supprimer `Images/AppleRawImageReader.cs` après raccordement.
+  - [x] Catalogue des représentations brutes Apple
+    - [x] Créer `Containers/Apple/Raw/AppleRawImageLayoutCatalog.cs` avec les capacités exactes D13, 140 K, 400 K, 800 K et 1,44 M.
+    - [x] Associer à chaque capacité ses géométries possibles sans décider du système de fichiers uniquement depuis la taille.
+    - [x] Remplacer `35 * 13 * 256`, 143 360, 409 600, 819 200 et 1 474 560 par les dispositions cataloguées.
+    - [x] Réutiliser les géométries Apple II, Lisa et Macintosh déjà sorties de `AppleDiskGeometry`.
+  - [x] Reader Apple II 5,25 pouces
+    - [x] Utiliser l'extension PO uniquement comme indice d'ordre ProDOS.
+    - [x] Utiliser `AppleRawImageProbe` pour distinguer ProDOS, DOS 3.3 et SOS sans recopier leurs structures.
+    - [x] Utiliser `AppleIISectorOrderConverter` pour la tentative après conversion DOS vers ProDOS.
+    - [x] Définir l'ordre exact des tentatives PO, ProDOS direct, DOS 3.3 direct, SOS converti, ProDOS converti, puis repli DOS 3.3.
+    - [x] Faire apparaître dans le résultat de lecture si le dernier choix est une validation ou un repli par géométrie.
+    - [x] Remplacer 35 pistes, une face, 8, 13 ou 16 secteurs et les tailles 256/512 par les géométries Apple II propriétaires.
+  - [x] Reader Apple 3,5 pouces
+    - [x] Utiliser les sondes Lisa, MFS, HFS et ProDOS partagées.
+    - [x] Remplacer la lecture directe à l'offset 1 024 et les signatures `0xD2D7`/`0x4244` par le résultat nommé de la sonde Macintosh.
+    - [x] Réutiliser `LisaFileWareGeometry` et `MacintoshGcrGeometry` pour 400 K et 800 K.
+    - [x] Créer ou réutiliser une géométrie MFM 1,44 M distincte de la géométrie GCR zonée.
+    - [x] Remplacer le calcul brut `data.Length / 512 / 160` par la propriété secteurs par piste de la géométrie retenue.
+    - [x] Distinguer explicitement une image Macintosh 1,44 M linéaire d'une image GCR zonée.
+  - [x] Construction des images sectorielles
+    - [x] Raccorder chaque branche au builder précis qui remplacera `AppleSectorImageFactory`.
+    - [x] Ne conserver dans les Readers aucun calcul de bloc, d'adresse ou de capacité déjà possédé par une géométrie ou un builder.
+    - [x] Éviter la copie supplémentaire du payload 2IMG en faisant accepter une vue en lecture seule au Reader brut.
+  - [x] Erreurs du format brut Apple
+    - [x] Créer `Containers/Apple/Raw/AppleRawImageExceptions.cs` avec une erreur recevant taille, extension et sondes essayées.
+    - [x] Créer une erreur distincte lorsqu'une capacité est connue mais qu'aucune structure ne permet de choisir son interprétation.
+    - [x] Remplacer les deux textes bruts identiques du fichier par ces erreurs.
+  - [x] Présentation et CSDoc française
+    - [x] Remettre sur une seule ligne les conditions, appels de builders et expressions ternaires complètes qui tiennent lisiblement après extraction des arguments.
+    - [x] Documenter en français les trois Readers, le catalogue, chaque méthode et chaque règle de priorité.
+    - [x] Documenter pour chaque branche la taille sectorielle, la géométrie et l'ordre sectoriel utilisés.
+  - [x] Tests ciblés des images Apple brutes
+    - [x] Tester D13, DOS 3.3, PO/ProDOS, SOS, Lisa 400 K, Macintosh MFS, Macintosh HFS, ProDOS 800 K et 1,44 M.
+    - [x] Tester les formats ambigus de 140 K dans chaque ordre sectoriel et vérifier le choix exact.
+    - [x] Tester une capacité connue sans structure reconnue, une capacité inconnue et un contenu tronqué.
+    - [x] Vérifier pour chaque image format, géométrie, adresses, capacité et contenu des blocs.
+    - [x] Tester les charges utiles provenant directement d'un fichier brut, de 2IMG et de DiskCopy sans divergence.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleSectorImageFactory.cs`
   - [ ] Builder linéaire commun
     - [ ] Créer `SectorImages/Builders/LinearSectorImageBuilder.cs` et y déplacer `CreateLinear`.

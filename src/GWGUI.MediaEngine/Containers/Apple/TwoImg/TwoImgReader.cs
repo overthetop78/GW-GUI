@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Containers.Apple.Nib;
+using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Containers.Apple.TwoImg;
@@ -29,7 +29,7 @@ internal static class TwoImgReader
     {
         var (headerLength, imageFormat, dataOffset, dataLength) = ReadHeader(container);
         ValidateDataRange(container.Length, headerLength, dataOffset, dataLength);
-        return ReadPayload(container.AsSpan(dataOffset, dataLength), imageFormat);
+        return ReadPayload(container.AsMemory(dataOffset, dataLength), imageFormat);
     }
 
     /// <summary>Valide la signature et la version de l'en-tête, puis lit ses champs de routage.</summary>
@@ -64,13 +64,13 @@ internal static class TwoImgReader
     /// <param name="payload">Charge utile validée du conteneur.</param>
     /// <param name="imageFormat">Organisation déclarée par l'en-tête.</param>
     /// <returns>Image sectorielle reconstruite.</returns>
-    private static SectorImage ReadPayload(ReadOnlySpan<byte> payload, TwoImgImageFormat imageFormat)
+    private static SectorImage ReadPayload(ReadOnlyMemory<byte> payload, TwoImgImageFormat imageFormat)
     {
         return imageFormat switch
         {
-            TwoImgImageFormat.Dos => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Do),
-            TwoImgImageFormat.ProDos => AppleRawImageReader.Read(payload.ToArray(), DiskImageFileExtensions.Po),
-            TwoImgImageFormat.Nib => NibReader.Read(payload),
+            TwoImgImageFormat.Dos => AppleRawImageReader.Read(payload, DiskImageFileExtensions.Do).Image,
+            TwoImgImageFormat.ProDos => AppleRawImageReader.Read(payload, DiskImageFileExtensions.Po).Image,
+            TwoImgImageFormat.Nib => NibReader.Read(payload.Span),
             _ => throw TwoImgExceptions.UnsupportedImageFormat(imageFormat)
         };
     }

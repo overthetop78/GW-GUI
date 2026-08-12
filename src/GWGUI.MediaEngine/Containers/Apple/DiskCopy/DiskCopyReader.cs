@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Recognition.Apple;
@@ -91,7 +91,7 @@ internal static class DiskCopyReader
     {
         if (AppleRawImageProbe.LooksLikeMac(payload) || AppleRawImageProbe.LooksLikeProDos(payload))
         {
-            image = AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image);
+            image = AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image).Image;
             return true;
         }
         image = null!;

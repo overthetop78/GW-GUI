@@ -30,4 +30,20 @@ internal static class MacintoshVolumeSignatures
 
     /// <summary>Indique si la valeur désigne MFS ou HFS.</summary>
     public static bool IsSupported(ushort signature) => signature is Mfs or Hfs;
+
+    /// <summary>Retourne le système de fichiers nommé par la signature du bloc maître.</summary>
+    public static MacintoshFileSystemKind? Identify(ReadOnlySpan<byte> data)
+    {
+        if (!TryRead(data, out var signature)) return null;
+        return signature switch { Mfs => MacintoshFileSystemKind.Mfs, Hfs => MacintoshFileSystemKind.Hfs, _ => null };
+    }
+}
+
+/// <summary>Variantes de systèmes de fichiers nommées par le bloc maître Macintosh.</summary>
+internal enum MacintoshFileSystemKind
+{
+    /// <summary>Macintosh File System.</summary>
+    Mfs,
+    /// <summary>Hierarchical File System.</summary>
+    Hfs
 }

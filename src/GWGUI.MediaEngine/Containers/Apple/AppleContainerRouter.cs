@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
+using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
@@ -24,7 +25,7 @@ internal static class AppleContainerRouter
         if (extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase)) return NibReader.Read(bytes);
         try
         {
-            return AppleRawImageReader.Read(bytes, extension);
+            return AppleRawImageReader.Read(bytes, extension).Image;
         }
         catch (InvalidDataException)
         {
