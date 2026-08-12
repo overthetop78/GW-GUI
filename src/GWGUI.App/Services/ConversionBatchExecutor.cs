@@ -3,18 +3,21 @@ using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Conversion;
 using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Composition;
 
 namespace GWGUI.App.Services;
 
 public sealed class ConversionBatchExecutor(
     IGreaseweazleRunner runner,
-    AppleRwts18ConversionService? appleRwts18 = null)
+    AppleRwts18ConversionService? appleRwts18 = null,
+    AtariStConversionService? atariSt = null)
 {
     private readonly AppleRwts18ConversionService _appleRwts18 = appleRwts18 ?? MediaEngineFactory.CreateAppleRwts18ConversionService();
+    private readonly AtariStConversionService _atariSt = atariSt ?? MediaEngineFactory.CreateAtariStConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension);
+        AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
@@ -38,7 +41,10 @@ public sealed class ConversionBatchExecutor(
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                await _appleRwts18.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
+                if (AtariStConversionService.CanCreate(output.FormatId, output.Extension))
+                    await _atariSt.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
+                else
+                    await _appleRwts18.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
                 completed.Add(new(item, new(0, false, stopwatch.Elapsed, [])));
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -48,7 +54,7 @@ public sealed class ConversionBatchExecutor(
             }
             catch (Exception exception)
             {
-                ErrorLog.Write(exception, "Converting an Apple II RWTS18 image");
+                ErrorLog.Write(exception, $"Converting image to {output.FormatId}");
                 completed.Add(new(item, new(1, false, stopwatch.Elapsed, [])));
             }
         }

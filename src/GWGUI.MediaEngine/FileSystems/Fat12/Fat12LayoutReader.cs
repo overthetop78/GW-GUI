@@ -29,7 +29,7 @@ internal static class Fat12LayoutReader
         if (dataStart >= totalSectors) return false;
         var clusterCount = (totalSectors - dataStart) / sectorsPerCluster;
         if (clusterCount is <= 0 or >= Fat12Layout.MaximumClusterCount) return false;
-        layout = new(reservedSectors, sectorsPerFat, rootStart, rootSectors, dataStart, sectorsPerCluster, clusterCount);
+        layout = new(reservedSectors, sectorsPerFat, rootStart, rootSectors, dataStart, sectorsPerCluster, clusterCount, fatCount);
         return true;
     }
 }

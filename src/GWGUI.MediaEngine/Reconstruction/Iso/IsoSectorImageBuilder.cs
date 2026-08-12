@@ -36,6 +36,7 @@ internal static class IsoSectorImageBuilder
     /// <param name="allowSectorNumbersBeyondGeometry">Autorise les numéros physiques dépassant le nombre logique de secteurs.</param>
     /// <param name="allowVariableBlockSize">Autorise des données dont la taille diffère de la taille nominale.</param>
     /// <param name="capacity">Capacité explicite en octets, ou <see langword="null"/> pour la capacité géométrique.</param>
+    /// <param name="normalizeData">Transformation facultative des données physiques en bloc logique.</param>
     /// <returns>L'image uniforme contenant les meilleurs candidats utilisables.</returns>
     public static SectorImage CreateUniform(
         string formatId,
@@ -47,7 +48,8 @@ internal static class IsoSectorImageBuilder
         Func<SectorAddress, int> sectorIndex,
         bool allowSectorNumbersBeyondGeometry = false,
         bool allowVariableBlockSize = false,
-        long? capacity = null)
+        long? capacity = null,
+        Func<IReadOnlyList<byte>, byte[]>? normalizeData = null)
     {
         var blocks = new List<SectorBlock>();
         foreach (var (address, values) in candidates)
@@ -57,8 +59,10 @@ internal static class IsoSectorImageBuilder
             var index = sectorIndex(address);
             if (index < 0 || index >= sectorsPerTrack) continue;
             var best = Best(values);
+            var data = normalizeData is null ? best.Sector.Data!.ToArray() : normalizeData(best.Sector.Data!);
+            if (data.Length == 0) continue;
             var logical = (address.Cylinder * heads + address.Head) * sectorsPerTrack + index;
-            blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
+            blocks.Add(new(logical, address, data, best.Sector.IntegrityValid, best.Revolution));
         }
         return new(formatId, sectorSize, cylinders, heads, sectorsPerTrack, blocks, allowVariableBlockSize: allowVariableBlockSize, capacity: capacity);
     }

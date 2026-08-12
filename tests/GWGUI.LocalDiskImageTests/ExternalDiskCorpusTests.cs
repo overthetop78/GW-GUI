@@ -85,8 +85,12 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         const string path = @"F:\Disquettes\Génération 4\Génération 4 N°37- Octobre 1991\Génération 4 N°37- Octobre 1991.scp";
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
-        Assert.Equal(["amiga", "atari-st"], document.Metadata.SystemIds);
+        Assert.Equal(["atari-st", "amiga"], document.Metadata.SystemIds);
         Assert.DoesNotContain(document.Metadata.SystemIds, system => system is "acorn-bbc" or "amstrad" or "ibm-pc" or "commodore" or "epson-qx10");
+        var auto = Assert.Single(document.Volume.Entries, entry => entry.Name.Equals("AUTO", StringComparison.OrdinalIgnoreCase));
+        var program = Assert.Single(auto.Children);
+        Assert.Equal("TERII.PRG", program.Name, ignoreCase: true);
+        Assert.Equal(1578, program.Size);
     }
 
     [Fact]

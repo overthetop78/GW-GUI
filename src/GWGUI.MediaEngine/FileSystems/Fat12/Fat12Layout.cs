@@ -7,13 +7,14 @@ public sealed class Fat12Layout
     public const int MaximumClusterCount = 4085;
 
     /// <summary>Crée et valide une disposition FAT12.</summary>
-    public Fat12Layout(int reservedSectors, int sectorsPerFat, int rootStart, int rootSectors, int dataStart, int sectorsPerCluster, int clusterCount)
+    public Fat12Layout(int reservedSectors, int sectorsPerFat, int rootStart, int rootSectors, int dataStart, int sectorsPerCluster, int clusterCount, int fatCount = 1)
     {
         if (reservedSectors <= 0) throw new ArgumentOutOfRangeException(nameof(reservedSectors));
         if (sectorsPerFat <= 0) throw new ArgumentOutOfRangeException(nameof(sectorsPerFat));
         if (rootStart < reservedSectors || rootSectors <= 0 || dataStart < rootStart + rootSectors) throw new ArgumentOutOfRangeException(nameof(rootStart));
         if (sectorsPerCluster <= 0) throw new ArgumentOutOfRangeException(nameof(sectorsPerCluster));
         if (clusterCount is <= 0 or >= MaximumClusterCount) throw new ArgumentOutOfRangeException(nameof(clusterCount));
+        if (fatCount <= 0) throw new ArgumentOutOfRangeException(nameof(fatCount));
         ReservedSectors = reservedSectors;
         SectorsPerFat = sectorsPerFat;
         RootStart = rootStart;
@@ -21,6 +22,7 @@ public sealed class Fat12Layout
         DataStart = dataStart;
         SectorsPerCluster = sectorsPerCluster;
         ClusterCount = clusterCount;
+        FatCount = fatCount;
     }
 
     /// <summary>Nombre de secteurs réservés.</summary>
@@ -37,4 +39,6 @@ public sealed class Fat12Layout
     public int SectorsPerCluster { get; }
     /// <summary>Nombre de clusters de données.</summary>
     public int ClusterCount { get; }
+    /// <summary>Nombre de copies de la table d'allocation.</summary>
+    public int FatCount { get; }
 }

@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.Geometries.Atari;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 
 namespace GWGUI.MediaEngine.Reconstruction.Atari;
 
@@ -21,12 +22,16 @@ internal sealed class AtariStIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
         var candidates = candidateSet.Addressed;
         var measured = IsoSectorImageBuilder.Measure(candidates);
         var explicitGeometry = formatId is not null && AtariStGeometry.TryFromFormatId(formatId, out var geometry) ? geometry : (AtariStGeometry?)null;
-        var resolvedFormat = explicitGeometry?.FormatId ?? DiskImageFormatIds.AtariStFromCapacity((long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
-        var cylinders = explicitGeometry?.Cylinders ?? measured.Cylinders;
-        var heads = explicitGeometry?.Heads ?? measured.Heads;
-        var sectorsPerTrack = explicitGeometry?.SectorsPerTrack ?? measured.SectorsPerTrack;
-        return IsoSectorImageBuilder.CreateUniform(resolvedFormat, candidates, measured.SectorSize,
+        var bpbGeometry = default(FatBpbGeometry);
+        var hasBpbGeometry = explicitGeometry is null && FatIsoScpGeometryDetector.TryDetect(candidates, out bpbGeometry);
+        var cylinders = explicitGeometry?.Cylinders ?? (hasBpbGeometry ? bpbGeometry.Cylinders : measured.Cylinders);
+        var heads = explicitGeometry?.Heads ?? (hasBpbGeometry ? bpbGeometry.Heads : measured.Heads);
+        var sectorsPerTrack = explicitGeometry?.SectorsPerTrack ?? (hasBpbGeometry ? bpbGeometry.SectorsPerTrack : measured.SectorsPerTrack);
+        var sectorSize = explicitGeometry is not null || hasBpbGeometry ? AtariStGeometry.SectorSize : measured.SectorSize;
+        var resolvedFormat = explicitGeometry?.FormatId ?? DiskImageFormatIds.AtariStFromCapacity((long)cylinders * heads * sectorsPerTrack * sectorSize);
+        return IsoSectorImageBuilder.CreateUniform(resolvedFormat, candidates, sectorSize,
             cylinders, heads, sectorsPerTrack,
-            address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1);
+            address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1,
+            normalizeData: explicitGeometry is not null || hasBpbGeometry ? data => IsoSectorDataNormalizer.PadTo(data, sectorSize) : null);
     }
 }

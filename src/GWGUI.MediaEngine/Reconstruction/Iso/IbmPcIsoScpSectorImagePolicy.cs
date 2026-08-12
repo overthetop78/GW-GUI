@@ -26,7 +26,26 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
         var cylinders = measured.Cylinders;
         var heads = measured.Heads;
         var sectorsPerTrack = measured.SectorsPerTrack;
-        if (measured.SectorSize == FatBootSectorLayout.SectorSize && !measured.ZeroBased)
+        var sectorSize = measured.SectorSize;
+        var bpbGeometry = default(FatBpbGeometry);
+        var hasBpbGeometry = !measured.ZeroBased && FatIsoScpGeometryDetector.TryDetect(candidates, out bpbGeometry);
+        var isAutomaticScan = formatId?.Equals(DiskImageFormatIds.IbmScan, StringComparison.OrdinalIgnoreCase) == true;
+        if (hasBpbGeometry && isAutomaticScan)
+        {
+            var boot = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.BootSectorNumber));
+            var fat = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.FirstFatSectorNumber));
+            var fatMedia = fat.Length > FatBootSectorLayout.FatMediaDescriptorDataOffset ? fat[FatBootSectorLayout.FatMediaDescriptorDataOffset] : FatBootSectorLayout.UnknownMediaDescriptor;
+            hasBpbGeometry = IbmDosDiskProbe.TryIdentify(boot, fatMedia, true, out _);
+            if (!hasBpbGeometry) throw IsoScpReconstructionExceptions.NotIbmDos();
+        }
+        if (hasBpbGeometry)
+        {
+            cylinders = bpbGeometry.Cylinders;
+            heads = bpbGeometry.Heads;
+            sectorsPerTrack = bpbGeometry.SectorsPerTrack;
+            sectorSize = bpbGeometry.SectorSize;
+        }
+        else if (!isAutomaticScan && measured.SectorSize == FatBootSectorLayout.SectorSize && !measured.ZeroBased)
         {
             var boot = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.BootSectorNumber));
             var fat = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.FirstFatSectorNumber));
@@ -39,7 +58,8 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
                 sectorsPerTrack = geometry.SectorsPerTrack;
             }
         }
-        var resolved = IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, measured.SectorSize);
-        return IsoSectorImageBuilder.CreateUniform(resolved, candidates, measured.SectorSize, cylinders, heads, sectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1);
+        var resolved = IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, sectorSize);
+        return IsoSectorImageBuilder.CreateUniform(resolved, candidates, sectorSize, cylinders, heads, sectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1,
+            normalizeData: hasBpbGeometry ? data => IsoSectorDataNormalizer.PadTo(data, sectorSize) : null);
     }
 }

@@ -15,7 +15,8 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public bool CanRead(SectorImage image)
     {
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != FatBootSectorLayout.SectorSize || !image.TryGetBlock(0, out var boot) || boot.Data.Count < FatBootSectorLayout.ExtendedBootMinimumLength) return false;
-        return Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout) && image.TryGetBlock(layout.ReservedSectors, out var fat) && Fat12Table.HasPlausibleHeader(fat.Data.ToArray());
+        var mediaDescriptor = boot.Data[FatBootSectorLayout.MediaDescriptorOffset];
+        return Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout) && Fat12FatReader.HasReadableCopy(image, layout, mediaDescriptor);
     }
 
     /// <summary>Lit le volume, son espace libre et son arborescence en conservant les secteurs absents.</summary>
@@ -23,8 +24,9 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     {
         if (!image.TryGetBlock(0, out var boot) || !Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, image.TryGetBlock(0, out var availableBoot) ? availableBoot.Data : null);
         var warnings = new List<string>();
-        var fat = FatSectorReader.Read(image, layout.ReservedSectors, layout.SectorsPerFat, warnings);
-        if (!fat.IsValid || !Fat12Table.HasPlausibleHeader(fat.Bytes)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, boot.Data);
+        var mediaDescriptor = boot.Data[FatBootSectorLayout.MediaDescriptorOffset];
+        var fat = Fat12FatReader.ReadBest(image, layout, mediaDescriptor, warnings);
+        if (!fat.IsValid || !Fat12FatReader.IsUsable(fat.Bytes, mediaDescriptor, layout.ClusterCount)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, boot.Data);
         var root = FatSectorReader.Read(image, layout.RootStart, layout.RootSectors, warnings);
         var entries = Fat12DirectoryReader.Read(image, root, fat, layout, warnings, 0, string.Empty);
         var freeClusters = 0;

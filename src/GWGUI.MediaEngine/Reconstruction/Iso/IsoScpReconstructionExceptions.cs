@@ -12,4 +12,6 @@ internal static class IsoScpReconstructionExceptions
     /// <param name="physicalCandidateCount">Nombre de candidats conservés à leur adresse physique source.</param>
     /// <returns>L'exception décrivant les deux collections vides.</returns>
     public static InvalidDataException NoCandidates(string? formatId, int addressedCandidateCount, int physicalCandidateCount) => new($"ISO FM/MFM reconstruction for '{formatId ?? "automatic"}' produced {addressedCandidateCount} addressed candidate(s) and {physicalCandidateCount} physical candidate(s).");
+    /// <summary>Crée l'erreur signalant qu'un BPB non DOS ne doit pas être attribué automatiquement à IBM PC.</summary>
+    public static InvalidDataException NotIbmDos() => new("The ISO MFM boot sector contains a FAT BPB but no DOS/IBM identity.");
 }

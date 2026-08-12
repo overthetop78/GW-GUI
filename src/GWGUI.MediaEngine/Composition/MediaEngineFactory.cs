@@ -18,6 +18,7 @@ using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
@@ -55,6 +56,12 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         var decoders = CreateFluxDecoders();
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, decoders), new AppleDiskImageWriter(new AppleRwts18TrackEncodingService()));
+    }
+    /// <summary>Crée le service de conversion sectorielle Atari ST avec ses Reader et Writer partagés.</summary>
+    public static AtariStConversionService CreateAtariStConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtariStReader(), new AtariStWriter());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()
