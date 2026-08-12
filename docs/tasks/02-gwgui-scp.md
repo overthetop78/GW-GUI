@@ -5282,18 +5282,18 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IsoSectorImageBuilder`.
     - [x] Ajouter la documentation XML des méthodes `CreateUniform, BestData, Best`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/UcsdIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Définitions UCSD IBM MFM
-    - [ ] Créer `Geometries/Ucsd/UcsdIbmMfmGeometry.cs` et y définir le nombre de faces et le nombre de secteurs logiques par cylindre actuellement écrits sous la forme `1` et `8`.
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les identifiants définis dans `Decoding/Definitions/FluxCodecIds.cs`.
-    - [ ] Remplacer les valeurs brutes `1` et `8` transmises à `IsoSectorImageBuilder.CreateUniform` par les définitions de `UcsdIbmMfmGeometry`.
-    - [ ] Documenter en français `UcsdIbmMfmGeometry` et chacune de ses définitions.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `UcsdIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/UcsdIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Définitions UCSD IBM MFM
+    - [x] Créer `Geometries/Ucsd/UcsdIbmMfmGeometry.cs` et y définir le nombre de faces et le nombre de secteurs logiques par cylindre actuellement écrits sous la forme `1` et `8`.
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les identifiants définis dans `Decoding/Definitions/FluxCodecIds.cs`.
+    - [x] Remplacer les valeurs brutes `1` et `8` transmises à `IsoSectorImageBuilder.CreateUniform` par les définitions de `UcsdIbmMfmGeometry`.
+    - [x] Documenter en français `UcsdIbmMfmGeometry` et chacune de ses définitions.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `UcsdIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/UcsdScpSectorImageReader.cs`
   - [ ] Suppression du wrapper sans traitement
     - [ ] Dans les lecteurs explicitement sélectionnés de `Images/ScpDetection/ScpCandidateRegistry.cs`, remplacer l'appel au wrapper UCSD par `IsoScpSectorImageReader.ReadAsync` avec `DiskImageFormatIds.UcsdIbmMfm`.
