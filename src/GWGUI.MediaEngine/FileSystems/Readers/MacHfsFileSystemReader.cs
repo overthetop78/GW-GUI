@@ -10,7 +10,6 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class MacHfsFileSystemReader : IFileSystemReader
 {
-    private static readonly DateTimeOffset MacEpoch = new(1904, 1, 1, 0, 0, 0, TimeSpan.Zero);
     public string Id => Definitions.FileSystemIds.MacHfs;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleMacHfs, DiskImageFormatIds.Mac400, DiskImageFormatIds.Mac800, DiskImageFormatIds.Mac1440 };
@@ -27,7 +26,7 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
         var records = ParseCatalog(catalog, image, allocationStart, allocationSize, warnings);
         var entries = BuildChildren(2, records, new HashSet<uint>(), warnings);
         return new(name, Definitions.FileSystemIds.MacHfs, (long)allocationCount * allocationSize, (long)free * allocationSize,
-            MacDate(MacFileSystemPrimitives.ReadUInt32(mdb, 2)), MacDate(MacFileSystemPrimitives.ReadUInt32(mdb, 6)), entries, warnings);
+            MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, 2)), MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, 6)), entries, warnings);
     }
 
     private static List<CatalogRecord> ParseCatalog(byte[] catalog, SectorImage image, int allocationStart, uint allocationSize, List<string> warnings)
@@ -50,7 +49,7 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
                 if (data >= end) continue; var type = node[data];
                 if (type == 1 && data + 70 <= end)
                 {
-                    result.Add(new(parent, MacFileSystemPrimitives.ReadUInt32(node, data + 6), name, true, 0, MacDate(MacFileSystemPrimitives.ReadUInt32(node, data + 14)), "Directory", []));
+                    result.Add(new(parent, MacFileSystemPrimitives.ReadUInt32(node, data + 6), name, true, 0, MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(node, data + 14)), "Directory", []));
                 }
                 else if (type == 2 && data + 102 <= end)
                 {
@@ -61,7 +60,7 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
                     var resourceFork = ReadExtents(image, node.Slice(data + 86, 12), allocationStart, allocationSize, resourceLength, warnings, $"{name} (resource fork)");
                     var content = dataFork.Length > 0 ? dataFork : resourceFork;
                     result.Add(new(parent, MacFileSystemPrimitives.ReadUInt32(node, data + 20), name, false, (long)dataLength + resourceLength,
-                        MacDate(MacFileSystemPrimitives.ReadUInt32(node, data + 48)), string.IsNullOrWhiteSpace(fileType) ? "Macintosh file" : fileType, content));
+                        MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(node, data + 48)), string.IsNullOrWhiteSpace(fileType) ? "Macintosh file" : fileType, content));
                 }
             }
         }
@@ -97,6 +96,5 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
         return output.ToArray().Take(checked((int)Math.Min(logicalLength, int.MaxValue))).ToArray();
     }
 
-    private static DateTimeOffset? MacDate(uint seconds) { try { return seconds == 0 ? null : MacEpoch.AddSeconds(seconds); } catch { return null; } }
     private sealed record CatalogRecord(uint Parent, uint Id, string Name, bool IsDirectory, long Size, DateTimeOffset? Modified, string Type, IReadOnlyList<byte> Content);
 }

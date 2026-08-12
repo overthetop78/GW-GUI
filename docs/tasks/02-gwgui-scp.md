@@ -7009,12 +7009,12 @@
     - [x] Déplacer le décodage des chaînes Pascal et des noms contenant le séparateur Macintosh.
     - [x] Documenter en français le type et chacune de ses méthodes.
     - [x] Tester les deux tailles d'entiers, une chaîne Pascal vide, maximale et un nom contenant `:`.
-  - [ ] `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`
-    - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`.
-    - [ ] Déplacer l'époque Macintosh de 1904 actuellement dupliquée dans HFS et MFS.
-    - [ ] Déplacer la conversion protégée des secondes et définir son unité.
-    - [ ] Documenter en français le type, l'époque et la méthode de conversion.
-    - [ ] Tester zéro, une date valide et une valeur provoquant un dépassement.
+  - [x] `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`
+    - [x] Créer `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`.
+    - [x] Déplacer l'époque Macintosh de 1904 actuellement dupliquée dans HFS et MFS.
+    - [x] Déplacer la conversion protégée des secondes et définir son unité.
+    - [x] Documenter en français le type, l'époque et la méthode de conversion.
+    - [x] Tester zéro, une date valide et une valeur provoquant un dépassement.
   - [ ] `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`
     - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`.
     - [ ] Ajouter une méthode recevant système et signature pour l'erreur de volume non reconnu.

@@ -12,7 +12,6 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class MacMfsFileSystemReader : IFileSystemReader
 {
-    private static readonly DateTimeOffset MacEpoch = new(1904, 1, 1, 0, 0, 0, TimeSpan.Zero);
     public string Id => Definitions.FileSystemIds.MacMfs;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleMacMfs, DiskImageFormatIds.Mac400, DiskImageFormatIds.Mac800, DiskImageFormatIds.Mac1440 };
@@ -47,12 +46,12 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
                 var content = dataFork.Count > 0 ? dataFork : resourceFork;
                 var type = System.Text.Encoding.ASCII.GetString(finder, 0, 4).Trim('\0', ' ');
                 var comment = string.IsNullOrWhiteSpace(type) ? "Macintosh file" : type;
-                entries.Add(new(fileName, FileSystemEntryKind.File, (long)dataLogical + resourceLogical, MacDate(modified), comment, flags, (int)fileNumber, true, [], content));
+                entries.Add(new(fileName, FileSystemEntryKind.File, (long)dataLogical + resourceLogical, MacFileSystemTime.FromSeconds(modified), comment, flags, (int)fileNumber, true, [], content));
                 if (resourceLogical > 0 && resourceStart == 0) warnings.Add($"{fileName}: resource fork metadata is inconsistent.");
                 if (offset <= start) break;
             }
         }
-        return new(name, Definitions.FileSystemIds.MacMfs, image.Capacity, (long)free * allocationSize, MacDate(MacFileSystemPrimitives.ReadUInt32(mdb, 2)), MacDate(MacFileSystemPrimitives.ReadUInt32(mdb, 6)),
+        return new(name, Definitions.FileSystemIds.MacMfs, image.Capacity, (long)free * allocationSize, MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, 2)), MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, 6)),
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
@@ -99,5 +98,4 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
         }
         return result;
     }
-    private static DateTimeOffset? MacDate(uint seconds) { try { return seconds == 0 ? null : MacEpoch.AddSeconds(seconds); } catch { return null; } }
 }
