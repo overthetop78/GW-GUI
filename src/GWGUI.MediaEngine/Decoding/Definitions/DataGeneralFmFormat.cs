@@ -31,6 +31,10 @@ internal static class DataGeneralFmFormat
     public const byte CylinderMask = 0x7f;
     /// <summary>Masque isolant la face.</summary>
     public const byte HeadMask = 0x80;
+    /// <summary>Plus grand cylindre représentable sous le bit de face.</summary>
+    public const int MaximumCylinder = CylinderMask;
+    /// <summary>Plus grande face représentable par le bit de face.</summary>
+    public const int MaximumHead = 1;
     /// <summary>Décalage du bit de face.</summary>
     public const int HeadShift = 7;
     /// <summary>Décalage du numéro de secteur.</summary>

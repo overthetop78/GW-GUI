@@ -3807,36 +3807,36 @@
       - [x] Tester la suite exacte des synchronisations, du motif brut et des gaps autour des champs.
       - [x] Tester le rejet d'une taille sectorielle, d'un identifiant, d'une géométrie, d'une piste disque ou d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Commodore avec le décodeur correspondant dans chaque zone de vitesse prise en charge.
-  - [ ] `Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Data General
-      - [ ] Remplacer l'identifiant brut `datageneral.fm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Data General 2F` par la définition centrale correspondante.
-    - [ ] Définitions du format Data General FM
-      - [ ] Déplacer la marque FM `[0, 1]`, utilisée avant l'adresse puis avant les données, dans `DataGeneralFmFormat`.
-      - [ ] Déplacer la taille sectorielle et les deux longueurs de gaps dans `DataGeneralFmFormat`.
-      - [ ] Déplacer le bit de tête, le décalage du numéro de secteur et leurs masques dans `DataGeneralFmFormat`.
-      - [ ] Nommer l'ordre des deux octets du checksum écrit après les données.
-    - [ ] Construction d'un secteur Data General
-      - [ ] Extraire la composition de l'octet cylindre/tête et de l'octet secteur dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire l'écriture du champ d'adresse et de son gap dans une fonction privée.
-      - [ ] Extraire l'écriture du champ de données, du checksum et du gap final dans une fonction privée.
-      - [ ] Déplacer `Checksum` dans un composant commun au décodeur et à l'encodeur Data General.
-      - [ ] Conserver et documenter dans ce composant l'itération terminale avec un octet nul actuellement réalisée par la boucle `index <= data.Count`.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant de le combiner avec le bit de tête.
-      - [ ] Valider la tête avant son décalage dans l'octet cylindre/tête.
-      - [ ] Valider le numéro de secteur avant son décalage de deux bits.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser la présentation des tableaux d'octets, décalages, masques et conversions.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité, de `EncodeBits` et des fonctions conservées ou créées.
-    - [ ] Tests ciblés de l'encodeur Data General
-      - [ ] Tester la composition de l'adresse pour les deux têtes, les cylindres limites et un numéro de secteur connu.
-      - [ ] Tester la présence des deux marques FM et les longueurs exactes des deux gaps.
-      - [ ] Tester le checksum commun avec des données connues, y compris son itération terminale nulle et l'ordre de ses octets.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Data General avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
+    - [x] Identité de l'encodeur Data General
+      - [x] Remplacer l'identifiant brut `datageneral.fm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Data General 2F` par la définition centrale correspondante.
+    - [x] Définitions du format Data General FM
+      - [x] Déplacer la marque FM `[0, 1]`, utilisée avant l'adresse puis avant les données, dans `DataGeneralFmFormat`.
+      - [x] Déplacer la taille sectorielle et les deux longueurs de gaps dans `DataGeneralFmFormat`.
+      - [x] Déplacer le bit de tête, le décalage du numéro de secteur et leurs masques dans `DataGeneralFmFormat`.
+      - [x] Nommer l'ordre des deux octets du checksum écrit après les données.
+    - [x] Construction d'un secteur Data General
+      - [x] Extraire la composition de l'octet cylindre/tête et de l'octet secteur dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire l'écriture du champ d'adresse et de son gap dans une fonction privée.
+      - [x] Extraire l'écriture du champ de données, du checksum et du gap final dans une fonction privée.
+      - [x] Déplacer `Checksum` dans un composant commun au décodeur et à l'encodeur Data General.
+      - [x] Conserver et documenter dans ce composant l'itération terminale avec un octet nul actuellement réalisée par la boucle `index <= data.Count`.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant de le combiner avec le bit de tête.
+      - [x] Valider la tête avant son décalage dans l'octet cylindre/tête.
+      - [x] Valider le numéro de secteur avant son décalage de deux bits.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser la présentation des tableaux d'octets, décalages, masques et conversions.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité, de `EncodeBits` et des fonctions conservées ou créées.
+    - [x] Tests ciblés de l'encodeur Data General
+      - [x] Tester la composition de l'adresse pour les deux têtes, les cylindres limites et un numéro de secteur connu.
+      - [x] Tester la présence des deux marques FM et les longueurs exactes des deux gaps.
+      - [x] Tester le checksum commun avec des données connues, y compris son itération terminale nulle et l'ordre de ses octets.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Data General avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/DecRx02TrackEncoder.cs`
     - [ ] Identité et variantes de l'encodeur DEC RX02
       - [ ] Remplacer l'identifiant brut `dec.rx02` par la définition centrale correspondante.
