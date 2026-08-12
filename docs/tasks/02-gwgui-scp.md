@@ -3587,22 +3587,22 @@
       - [x] Tester les limites et dépassements du volume, du cylindre, du secteur et de la taille sectorielle.
       - [x] Tester les prologues, l'épilogue, le 4-and-4 et les checksums avec des valeurs connues.
       - [x] Tester les deux codecs, leurs longueurs exactes et les allers-retours avec le décodeur Apple II.
-  - [ ] `Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Lisa FileWare
-      - [ ] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Apple Lisa FileWare GCR` par la définition centrale correspondante.
-    - [ ] Spécialisation Lisa FileWare
-      - [ ] Remplacer la valeur brute `0x12` de `DefaultFormat` par la définition de format Lisa FileWare prévue dans `AppleLisaFileWareGcrFormat`.
-      - [ ] Vérifier lors du traitement de `AppleMacGcrTrackEncoder.cs` si son `DefaultFormat` possède la même valeur ; si l'override Lisa est alors sans effet, supprimer cet override au lieu de conserver une fausse spécialisation.
-      - [ ] Raccorder cet encodeur au composant Apple IWM GCR commun prévu pour partager l'encodage sectoriel entre Macintosh et Lisa FileWare.
-    - [ ] Documentation et présentation du fichier
-      - [ ] Traduire en français la CSDoc du type et décrire uniquement la spécialisation réellement apportée par cette classe.
-      - [ ] Ajouter la CSDoc française aux membres publics et protégés conservés dans la classe.
-      - [ ] Conserver sur une seule ligne les déclarations et expressions de ce fichier lorsqu'elles tiennent lisiblement sur une ligne.
-    - [ ] Tests ciblés de l'encodeur Lisa FileWare
-      - [ ] Tester que l'encodeur expose l'identifiant et le nom Lisa FileWare définis centralement.
-      - [ ] Tester la valeur de format réellement écrite par l'encodage Lisa FileWare.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Lisa FileWare avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
+    - [x] Identité de l'encodeur Lisa FileWare
+      - [x] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Apple Lisa FileWare GCR` par la définition centrale correspondante.
+    - [x] Spécialisation Lisa FileWare
+      - [x] Remplacer la valeur brute `0x12` de `DefaultFormat` par la définition de format Lisa FileWare prévue dans `AppleLisaFileWareGcrFormat`.
+      - [x] Vérifier lors du traitement de `AppleMacGcrTrackEncoder.cs` si son `DefaultFormat` possède la même valeur ; si l'override Lisa est alors sans effet, supprimer cet override au lieu de conserver une fausse spécialisation.
+      - [x] Raccorder cet encodeur au composant Apple IWM GCR commun prévu pour partager l'encodage sectoriel entre Macintosh et Lisa FileWare.
+    - [x] Documentation et présentation du fichier
+      - [x] Traduire en français la CSDoc du type et décrire uniquement la spécialisation réellement apportée par cette classe.
+      - [x] Ajouter la CSDoc française aux membres publics et protégés conservés dans la classe.
+      - [x] Conserver sur une seule ligne les déclarations et expressions de ce fichier lorsqu'elles tiennent lisiblement sur une ligne.
+    - [x] Tests ciblés de l'encodeur Lisa FileWare
+      - [x] Tester que l'encodeur expose l'identifiant et le nom Lisa FileWare définis centralement.
+      - [x] Tester la valeur de format réellement écrite par l'encodage Lisa FileWare.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Lisa FileWare avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
     - [ ] Identité et paramètres de l'encodeur Macintosh
       - [ ] Remplacer l'identifiant brut `applemac.gcr` par la définition centrale correspondante.

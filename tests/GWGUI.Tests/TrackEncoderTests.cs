@@ -201,7 +201,8 @@ public sealed class TrackEncoderTests
     {
         var data = Enumerable.Range(0, size).Select(index => (byte)(index * 37 + 11)).ToArray();
         var sectorNumber = id == "qdmo5.mfm" ? 0x123 : 3;
-        var request = new TrackEncodeRequest(2, 0, [new TrackSector(sectorNumber, data)]);
+        var attributes = id == FluxCodecIds.AppleIIGcr ? new Dictionary<string, int> { [AppleIIGcrFormat.SectorsPerTrackAttributeName] = AppleIIGcrFormat.SixAndTwoSectorsPerTrack } : null;
+        var request = new TrackEncodeRequest(2, 0, [new TrackSector(sectorNumber, data)], attributes);
         var encoded = new FluxEncoderRegistry().Encode(id, request);
 
         Assert.Equal(id, encoded.EncoderId);
