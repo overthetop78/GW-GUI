@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 
 namespace GWGUI.MediaEngine.Geometries.Ibm;
 
@@ -9,7 +9,7 @@ public static class IbmRawImageGeometryDetector
     /// <summary>Détecte la géométrie ou signale précisément pourquoi elle ne peut pas l'être.</summary>
     public static IbmPcGeometry Detect(ReadOnlySpan<byte> data)
     {
-        if (data.Length == 0 || data.Length % FatBpbLayout.SectorSize != 0) throw IbmRawImageExceptions.InvalidLength(data.Length, FatBpbLayout.SectorSize);
+        if (data.Length == 0 || data.Length % FatBootSectorLayout.SectorSize != 0) throw IbmRawImageExceptions.InvalidLength(data.Length, FatBootSectorLayout.SectorSize);
         if (FatBpbGeometryDetector.TryDetect(data, data.Length, out var bpb)) return new(IbmPcGeometryCatalog.FormatIdForGeometry(bpb.Cylinders, bpb.Heads, bpb.SectorsPerTrack), bpb.Cylinders, bpb.Heads, bpb.SectorsPerTrack);
         if (IbmPcGeometryCatalog.TryFromCapacity(data.Length, out var geometry)) return geometry;
         throw IbmRawImageExceptions.UnknownGeometry(data.Length);

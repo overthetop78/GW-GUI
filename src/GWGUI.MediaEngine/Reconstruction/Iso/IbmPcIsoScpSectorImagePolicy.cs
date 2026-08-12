@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Recognition.Ibm;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
@@ -26,11 +26,11 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
         var cylinders = measured.Cylinders;
         var heads = measured.Heads;
         var sectorsPerTrack = measured.SectorsPerTrack;
-        if (measured.SectorSize == FatBpbLayout.SectorSize && !measured.ZeroBased)
+        if (measured.SectorSize == FatBootSectorLayout.SectorSize && !measured.ZeroBased)
         {
-            var boot = IsoSectorImageBuilder.BestData(candidates, new(FatBpbLayout.SystemCylinder, FatBpbLayout.SystemHead, FatBpbLayout.BootSectorNumber));
-            var fat = IsoSectorImageBuilder.BestData(candidates, new(FatBpbLayout.SystemCylinder, FatBpbLayout.SystemHead, FatBpbLayout.FirstFatSectorNumber));
-            var fatMedia = fat.Length > FatBpbLayout.FatMediaDescriptorDataOffset ? fat[FatBpbLayout.FatMediaDescriptorDataOffset] : FatBpbLayout.UnknownMediaDescriptor;
+            var boot = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.BootSectorNumber));
+            var fat = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.FirstFatSectorNumber));
+            var fatMedia = fat.Length > FatBootSectorLayout.FatMediaDescriptorDataOffset ? fat[FatBootSectorLayout.FatMediaDescriptorDataOffset] : FatBootSectorLayout.UnknownMediaDescriptor;
             var identified = explicitlySelected ? IbmBootGeometryDetector.TryDetect(boot, fatMedia, out var geometry) : IbmDosDiskProbe.TryIdentify(boot, fatMedia, true, out geometry);
             if (identified)
             {

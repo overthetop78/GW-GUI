@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Geometries.Ibm;
@@ -48,7 +48,7 @@ public static class IbmPcGeometryCatalog
         return false;
     }
     /// <summary>Retourne l'identifiant d'une géométrie connue ou un identifiant déduit de sa capacité.</summary>
-    public static string FormatIdForGeometry(int cylinders, int heads, int sectorsPerTrack, int sectorSize = FatBpbLayout.SectorSize)
+    public static string FormatIdForGeometry(int cylinders, int heads, int sectorsPerTrack, int sectorSize = FatBootSectorLayout.SectorSize)
     {
         var capacity = checked(cylinders * heads * sectorsPerTrack * sectorSize);
         return TryFromCapacity(capacity, out var geometry) ? geometry.FormatId : DiskImageFormatIds.IbmFromCapacity(capacity);

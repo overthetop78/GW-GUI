@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Cpm;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition.Amstrad;

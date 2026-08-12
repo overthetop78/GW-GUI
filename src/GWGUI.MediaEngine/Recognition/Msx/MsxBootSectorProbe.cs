@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 
 namespace GWGUI.MediaEngine.Recognition.Msx;
 
@@ -12,8 +12,8 @@ internal static class MsxBootSectorProbe
     /// <returns><see langword="true"/> lorsque la taille, l'OEM et les champs indispensables du BPB sont valides.</returns>
     public static bool LooksLikeMsx(ReadOnlySpan<byte> data)
     {
-        if (data.Length < FatBpbLayout.SectorSize || data.Length % FatBpbLayout.SectorSize != 0) return false;
-        var oem = System.Text.Encoding.ASCII.GetString(data.Slice(FatBpbLayout.OemOffset, FatBpbLayout.OemLength));
+        if (data.Length < FatBootSectorLayout.SectorSize || data.Length % FatBootSectorLayout.SectorSize != 0) return false;
+        var oem = System.Text.Encoding.ASCII.GetString(data.Slice(FatBootSectorLayout.OemOffset, FatBootSectorLayout.OemLength));
         return oem.StartsWith(OemPrefix, StringComparison.OrdinalIgnoreCase) && FatBpbGeometryDetector.TryDetect(data, data.Length, out _);
     }
 }

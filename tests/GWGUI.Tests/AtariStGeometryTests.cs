@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Atari;
 
 namespace GWGUI.Tests;
@@ -45,7 +45,7 @@ public sealed class AtariStGeometryTests
     public void InvalidBpbFallsBackToCapacity()
     {
         var data = CreateBpbImage(80, 2, 9);
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.BytesPerSectorOffset), 256);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), 256);
         Assert.Equal(AtariStGeometryEvidence.CapacityFallback, AtariStGeometryDetector.Detect(data).Evidence);
     }
 
@@ -87,10 +87,10 @@ public sealed class AtariStGeometryTests
     {
         var totalSectors = cylinders * heads * sectors;
         var data = new byte[totalSectors * AtariStGeometry.SectorSize];
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.BytesPerSectorOffset), AtariStGeometry.SectorSize);
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.TotalSectors16Offset), checked((ushort)totalSectors));
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.SectorsPerTrackOffset), checked((ushort)sectors));
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.HeadCountOffset), checked((ushort)heads));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), AtariStGeometry.SectorSize);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.TotalSectors16Offset), checked((ushort)totalSectors));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.SectorsPerTrackOffset), checked((ushort)sectors));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.HeadCountOffset), checked((ushort)heads));
         return data;
     }
 

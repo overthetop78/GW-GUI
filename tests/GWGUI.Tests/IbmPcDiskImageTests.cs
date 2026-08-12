@@ -1,7 +1,7 @@
 using System.IO;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Recognition.Ibm;
 using GWGUI.MediaEngine.SectorImages.Builders;
@@ -59,8 +59,8 @@ public sealed class IbmPcDiskImageTests
     [InlineData("UNKNOWN ", false)]
     public void DosOemProbeOnlyAcceptsDocumentedPrefixes(string oem, bool expected)
     {
-        var boot = new byte[FatBpbLayout.MinimumLength];
-        System.Text.Encoding.ASCII.GetBytes(oem).CopyTo(boot, FatBpbLayout.OemOffset);
+        var boot = new byte[FatBootSectorLayout.MinimumLength];
+        System.Text.Encoding.ASCII.GetBytes(oem).CopyTo(boot, FatBootSectorLayout.OemOffset);
         Assert.Equal(expected, IbmDosOemProbe.IsKnownDosOem(boot));
     }
 
@@ -68,9 +68,9 @@ public sealed class IbmPcDiskImageTests
     public void FatBpbDetectorSupportsBothTotalsAndValidatesImageLengthAndLimits()
     {
         var boot = CreateBpb(720, 9, 2, useLargeTotal: false);
-        Assert.True(FatBpbGeometryDetector.TryDetect(boot, 720 * FatBpbLayout.SectorSize, out var small));
+        Assert.True(FatBpbGeometryDetector.TryDetect(boot, 720 * FatBootSectorLayout.SectorSize, out var small));
         Assert.Equal(40, small.Cylinders);
-        Assert.False(FatBpbGeometryDetector.TryDetect(boot, 721 * FatBpbLayout.SectorSize, out _));
+        Assert.False(FatBpbGeometryDetector.TryDetect(boot, 721 * FatBootSectorLayout.SectorSize, out _));
         var large = CreateBpb(2_880, 18, 2, useLargeTotal: true);
         Assert.True(FatBpbGeometryDetector.TryDetect(large, null, out var detectedLarge));
         Assert.Equal(80, detectedLarge.Cylinders);
@@ -81,11 +81,11 @@ public sealed class IbmPcDiskImageTests
     public void RawGeometryAndBuilderValidateInputOffsetsCancellationAndImmutability()
     {
         Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect([]));
-        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect(new byte[FatBpbLayout.SectorSize + 1]));
-        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect(new byte[100 * FatBpbLayout.SectorSize]));
+        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect(new byte[FatBootSectorLayout.SectorSize + 1]));
+        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect(new byte[100 * FatBootSectorLayout.SectorSize]));
         var geometry = IbmPcGeometryCatalog.ByCapacity[160 * 1024];
         var data = new byte[160 * 1024];
-        data[FatBpbLayout.SectorSize] = 0x5a;
+        data[FatBootSectorLayout.SectorSize] = 0x5a;
         var image = IbmRawSectorImageBuilder.Create(data, geometry);
         Assert.True(image.TryGetBlock(1, out var block));
         Assert.Equal(new(0, 0, 2), block.Address);
@@ -100,12 +100,12 @@ public sealed class IbmPcDiskImageTests
     /// <summary>Crée un BPB FAT minimal avec total sur 16 ou 32 bits.</summary>
     private static byte[] CreateBpb(int totalSectors, int sectorsPerTrack, int heads, bool useLargeTotal = false)
     {
-        var boot = new byte[FatBpbLayout.MinimumLength];
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.BytesPerSectorOffset), FatBpbLayout.SectorSize);
-        if (useLargeTotal) System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(boot.AsSpan(FatBpbLayout.TotalSectors32Offset), checked((uint)totalSectors));
-        else System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.TotalSectors16Offset), checked((ushort)totalSectors));
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.SectorsPerTrackOffset), checked((ushort)sectorsPerTrack));
-        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.HeadCountOffset), checked((ushort)heads));
+        var boot = new byte[FatBootSectorLayout.MinimumLength];
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), FatBootSectorLayout.SectorSize);
+        if (useLargeTotal) System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(boot.AsSpan(FatBootSectorLayout.TotalSectors32Offset), checked((uint)totalSectors));
+        else System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.TotalSectors16Offset), checked((ushort)totalSectors));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.SectorsPerTrackOffset), checked((ushort)sectorsPerTrack));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.HeadCountOffset), checked((ushort)heads));
         return boot;
     }
 

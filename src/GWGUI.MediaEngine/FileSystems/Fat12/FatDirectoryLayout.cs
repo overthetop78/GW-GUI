@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.FileSystems.Fat;
+namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
 /// <summary>Définit la disposition d'une entrée de répertoire FAT.</summary>
 public static class FatDirectoryLayout
@@ -27,6 +27,12 @@ public static class FatDirectoryLayout
     public const byte DeletedMarker = 0xe5;
     /// <summary>Combinaison d'attributs identifiant une entrée de nom long.</summary>
     public const FatDirectoryAttributes LongFileName = FatDirectoryAttributes.ReadOnly | FatDirectoryAttributes.Hidden | FatDirectoryAttributes.System | FatDirectoryAttributes.VolumeLabel;
+    /// <summary>Nom spécial du répertoire courant.</summary>
+    public const string CurrentDirectoryName = ".";
+    /// <summary>Nom spécial du répertoire parent.</summary>
+    public const string ParentDirectoryName = "..";
+    /// <summary>Séparateur entre nom et extension 8.3.</summary>
+    public const char ExtensionSeparator = '.';
 }
 
 /// <summary>Décrit les attributs d'une entrée de répertoire FAT.</summary>

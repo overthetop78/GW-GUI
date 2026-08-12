@@ -1,13 +1,10 @@
-namespace GWGUI.MediaEngine.FileSystems.Fat;
+namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
 /// <summary>Décrit la disposition calculée d'un volume FAT12.</summary>
 public sealed class Fat12Layout
 {
     /// <summary>Nombre maximal de clusters d'un volume FAT12.</summary>
     public const int MaximumClusterCount = 4085;
-
-    /// <summary>Premier numéro de cluster contenant des données.</summary>
-    public const int FirstDataCluster = 2;
 
     /// <summary>Crée et valide une disposition FAT12.</summary>
     public Fat12Layout(int reservedSectors, int sectorsPerFat, int rootStart, int rootSectors, int dataStart, int sectorsPerCluster, int clusterCount)

@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
@@ -119,13 +119,13 @@ public sealed class MsxImageRecognitionPolicyTests
     private static async Task<string> CreateMsxImageAsync(int cylinders, int heads, int sectorsPerTrack, byte mediaDescriptor)
     {
         var totalSectors = cylinders * heads * sectorsPerTrack;
-        var data = new byte[totalSectors * FatBpbLayout.SectorSize];
-        "MSX     "u8.CopyTo(data.AsSpan(FatBpbLayout.OemOffset, FatBpbLayout.OemLength));
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.BytesPerSectorOffset), FatBpbLayout.SectorSize);
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.TotalSectors16Offset), checked((ushort)totalSectors));
-        data[FatBpbLayout.MediaDescriptorOffset] = mediaDescriptor;
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.SectorsPerTrackOffset), checked((ushort)sectorsPerTrack));
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.HeadCountOffset), checked((ushort)heads));
+        var data = new byte[totalSectors * FatBootSectorLayout.SectorSize];
+        "MSX     "u8.CopyTo(data.AsSpan(FatBootSectorLayout.OemOffset, FatBootSectorLayout.OemLength));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), FatBootSectorLayout.SectorSize);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.TotalSectors16Offset), checked((ushort)totalSectors));
+        data[FatBootSectorLayout.MediaDescriptorOffset] = mediaDescriptor;
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.SectorsPerTrackOffset), checked((ushort)sectorsPerTrack));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBootSectorLayout.HeadCountOffset), checked((ushort)heads));
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-msx-{Guid.NewGuid():N}.dsk");
         await File.WriteAllBytesAsync(path, data);
         return path;

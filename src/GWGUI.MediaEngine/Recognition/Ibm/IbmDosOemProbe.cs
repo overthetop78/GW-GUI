@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 
 namespace GWGUI.MediaEngine.Recognition.Ibm;
 
@@ -11,8 +11,8 @@ internal static class IbmDosOemProbe
     /// <summary>Indique si le champ OEM normalisé commence par un identifiant DOS connu.</summary>
     public static bool IsKnownDosOem(ReadOnlySpan<byte> boot)
     {
-        if (boot.Length < FatBpbLayout.OemOffset + FatBpbLayout.OemLength) return false;
-        var oem = System.Text.Encoding.ASCII.GetString(boot.Slice(FatBpbLayout.OemOffset, FatBpbLayout.OemLength)).Trim(FatBpbLayout.NullPadding, FatBpbLayout.SpacePadding).ToUpperInvariant();
+        if (boot.Length < FatBootSectorLayout.OemOffset + FatBootSectorLayout.OemLength) return false;
+        var oem = System.Text.Encoding.ASCII.GetString(boot.Slice(FatBootSectorLayout.OemOffset, FatBootSectorLayout.OemLength)).Trim(FatBootSectorLayout.NullPadding, FatBootSectorLayout.SpacePadding).ToUpperInvariant();
         return Prefixes.Any(prefix => oem.StartsWith(prefix, StringComparison.Ordinal));
     }
 }

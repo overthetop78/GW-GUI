@@ -6864,81 +6864,81 @@
       - [x] Tester les géométries 1541, seconde face 1571 et 1581, y compris une coordonnée invalide.
       - [x] Tester BAM D64, les deux BAM D71 et les deux BAM D81, absents, tronqués et indiquant zéro libre.
       - [x] Vérifier avec des images connues de `image_test` les volumes, entrées, contenus, types, drapeaux, références, validités, avertissements et espaces libres.
-  - [ ] `FileSystems/Readers/Fat12FileSystemReader.cs`
-    - [ ] Emplacement, identité et formats pris en charge
-      - [ ] Déplacer le Reader et ses nouveaux composants vers `FileSystems/Fat12/` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `fat12` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Remplacer le `HashSet` modifiable exposé par une collection réellement immuable des formats Atari ST, IBM PC et MSX pris en charge.
-      - [ ] Remplacer les tests de préfixes bruts `ibm.` et `msx.` par une association explicite entre chaque format catalogué et son système FAT12.
-      - [ ] Remplacer les noms bruts `IBM PC FAT12`, `MSX-DOS FAT12` et `Atari TOS FAT12` par les définitions techniques centrales de cette association.
-    - [ ] Disposition du secteur d'amorçage FAT
-      - [ ] Créer `FatBootSectorLayout.cs` et y définir les offsets et longueurs des champs BPB lus aux positions 11, 13, 14, 16, 17, 19, 22 et 32.
-      - [ ] Y définir les offsets et longueurs du label de volume étendu aux positions 43 et 11 octets, ainsi que la longueur minimale 54 requise pour le lire.
-      - [ ] Y définir la taille sectorielle FAT12 attendue de 512 octets et la formule nommée du nombre de secteurs du répertoire racine.
-      - [ ] Créer `Fat12Layout.cs` pour contenir les secteurs réservés, secteurs par FAT, début et longueur de la racine, début des données, secteurs par cluster et nombre de clusters après validation.
-      - [ ] Remplacer le record privé `Layout` et tous les accès correspondants par ce type.
-      - [ ] Remplacer la limite brute de 4 085 clusters par la limite FAT12 nommée.
-    - [ ] Dispositions IBM historiques sans BPB
-      - [ ] Créer `Fat12LegacyLayoutCatalog.cs` avec les quatre dispositions IBM 160, 180, 320 et 360 actuellement codées dans le `switch`.
-      - [ ] Nommer pour chaque disposition le total de secteurs, les secteurs par cluster, les entrées racine et les secteurs par FAT.
-      - [ ] Nommer le secteur réservé unique et les deux copies de FAT communs à ces dispositions.
-      - [ ] Faire retourner directement un `Fat12Layout` validé par le catalogue.
-      - [ ] Conserver le contrôle actuel d'un secteur d'amorçage rempli d'un même octet avant d'accepter cette compatibilité historique.
-      - [ ] Supprimer le `switch` et les nombres bruts du Reader après raccordement.
-    - [ ] En-tête et table FAT12
-      - [ ] Créer `Fat12Table.cs` pour lire les entrées 12 bits paires et impaires à partir de leur indice de cluster.
-      - [ ] Y définir les marqueurs nommés de cluster libre, premier cluster de données et fin de chaîne `0xFF8` à `0xFFF`.
-      - [ ] Y valider la présence des deux octets nécessaires au lieu de retourner silencieusement `0xFFF` lorsque l'entrée demandée sort de la table.
-      - [ ] Déplacer dans ce composant la validation des trois premiers octets de la FAT et nommer `0xF0`, `0xFF` et leurs rôles.
-      - [ ] Remplacer `ReadFat12` et `HasPlausibleFatHeader` après raccordement.
-    - [ ] Entrées de répertoire FAT
-      - [ ] Créer `FatDirectoryLayout.cs` et y définir la taille d'entrée 32, les offsets et longueurs du nom, de l'extension, des attributs, du cluster, de la taille et des dates.
-      - [ ] Créer un enum de drapeaux pour les attributs FAT, notamment volume, répertoire et combinaison de nom long.
-      - [ ] Y définir les marqueurs d'entrée finale zéro et d'entrée supprimée `0xE5`.
-      - [ ] Déplacer le décodage du nom 8.3, du label et des champs Latin-1 dans `FatDirectoryEntryReader.cs`.
-      - [ ] Remplacer `NO NAME`, les bornes ASCII `0x20` et `0x7E`, le séparateur de nom et les longueurs 8, 3 et 11 par leurs définitions nommées.
-      - [ ] Conserver le traitement particulier des entrées `.` et `..` dans le parcours de sous-répertoires.
-      - [ ] Déplacer le décodage de date et heure FAT dans `FatDateTime.cs` avec l'année de base 1980 et les masques/décalages nommés.
-    - [ ] Lecture positionnelle des secteurs
-      - [ ] Remplacer `ReadSectors` par un résultat contenant les octets, la présence de chaque secteur et la validité globale.
-      - [ ] Réserver exactement 512 octets pour chaque secteur absent ou de mauvaise taille afin de conserver les positions des secteurs suivants.
-      - [ ] Remplacer le texte brut `Sector {n} is missing.` par une définition recevant le secteur et la taille observée.
-      - [ ] Ne pas considérer les octets de remplacement comme valides lors de la lecture de la FAT, de la racine ou du contenu d'un fichier.
-    - [ ] Parcours des chaînes de clusters
-      - [ ] Faire retourner par la lecture d'une chaîne son contenu, sa validité et les clusters réellement visités.
-      - [ ] Distinguer une fin de chaîne, une entrée FAT illisible, un cluster hors plage, un cycle et un secteur de cluster absent.
-      - [ ] Remplacer le texte brut d'une chaîne invalide ou cyclique par une définition recevant le cluster concerné.
-      - [ ] Conserver la position logique d'un cluster dont un secteur manque au lieu de rapprocher les données suivantes.
-      - [ ] Utiliser un ensemble de clusters propre à chaque chaîne et ne transmettre au sous-répertoire qu'une nouvelle protection contre ses propres cycles.
-      - [ ] Faire porter la validité obtenue par le `FileSystemEntry` au lieu de créer systématiquement l'entrée avec `true`.
-      - [ ] Signaler comme invalide un fichier dont la taille déclarée dépasse les données valides reconstruites.
-    - [ ] Parcours récursif des répertoires
-      - [ ] Nommer la profondeur maximale 64 et remplacer le texte brut correspondant par une définition paramétrée.
-      - [ ] Séparer la lecture d'une entrée, la lecture de son contenu et le parcours récursif actuellement regroupés dans `ReadDirectory`.
-      - [ ] Conserver le tri actuel qui place les répertoires avant les fichiers puis trie les noms sans casse.
-      - [ ] Remplacer le bloc `catch` compact par un traitement lisible qui associe l'avertissement au nom sans perdre la validité de l'entrée.
-    - [ ] Calcul de l'espace libre
-      - [ ] Parcourir uniquement les numéros de clusters de données définis par le layout.
-      - [ ] Compter comme libres uniquement les entrées FAT lisibles dont la valeur est le marqueur de cluster libre.
-      - [ ] Rendre l'espace libre inconnu lorsque les secteurs de FAT nécessaires sont absents ou invalides, au lieu de compter leurs zéros de remplacement.
-      - [ ] Calculer les octets libres avec la taille sectorielle du layout et les secteurs par cluster, sans conserver le littéral 512 dans le Reader.
-    - [ ] Erreurs FAT12
-      - [ ] Créer `Fat12FileSystemExceptions.cs` pour l'image non reconnue, la chaîne cyclique ou hors plage, le secteur absent, la profondeur maximale et le contenu incomplet.
-      - [ ] Faire recevoir à chaque méthode les valeurs observées nécessaires au message au lieu de construire les textes dans le Reader.
-      - [ ] Remplacer tous les textes d'erreur et d'avertissement bruts du fichier par ces méthodes.
-    - [ ] Présentation et CSDoc française
-      - [ ] Séparer toutes les instructions multiples placées sur une même ligne dans `Read`, `ReadDirectory`, `ReadClusterChain`, `TryReadLayout`, `ReadFat12`, `ReadVolumeLabel`, `DecodeName` et `DecodeDateTime`.
-      - [ ] Remettre sur une seule ligne chaque signature, appel, condition ou expression complète qui tient lisiblement sur une ligne après cette séparation.
-      - [ ] Documenter en français `Fat12FileSystemReader` et chacun de ses membres conservés.
-      - [ ] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode créé pour FAT12.
-    - [ ] Tests ciblés FAT12
-      - [ ] Tester par le Reader public une image Atari ST, une IBM PC et une MSX de `image_test`, avec reconnaissance, volume, entrées, contenus et espace libre attendus.
-      - [ ] Tester les quatre dispositions IBM historiques sans BPB et leur refus lorsque le contenu ou le nombre de secteurs ne correspond pas.
-      - [ ] Tester une entrée FAT12 paire, impaire, libre, de fin de chaîne et tronquée.
-      - [ ] Tester un secteur absent au milieu de la FAT, de la racine et d'un fichier sans déplacement des secteurs suivants.
-      - [ ] Tester une chaîne cyclique, un cluster hors plage, un fichier tronqué et la validité de l'entrée produite.
-      - [ ] Tester label de racine, label d'amorçage, `NO NAME`, nom 8.3, entrée supprimée, nom long ignoré, répertoire et profondeur maximale.
-      - [ ] Tester une FAT invalide et vérifier que l'espace libre n'est pas présenté comme fiable.
+  - [x] `FileSystems/Readers/Fat12FileSystemReader.cs`
+    - [x] Emplacement, identité et formats pris en charge
+      - [x] Déplacer le Reader et ses nouveaux composants vers `FileSystems/Fat12/` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `fat12` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Remplacer le `HashSet` modifiable exposé par une collection réellement immuable des formats Atari ST, IBM PC et MSX pris en charge.
+      - [x] Remplacer les tests de préfixes bruts `ibm.` et `msx.` par une association explicite entre chaque format catalogué et son système FAT12.
+      - [x] Remplacer les noms bruts `IBM PC FAT12`, `MSX-DOS FAT12` et `Atari TOS FAT12` par les définitions techniques centrales de cette association.
+    - [x] Disposition du secteur d'amorçage FAT
+      - [x] Créer `FatBootSectorLayout.cs` et y définir les offsets et longueurs des champs BPB lus aux positions 11, 13, 14, 16, 17, 19, 22 et 32.
+      - [x] Y définir les offsets et longueurs du label de volume étendu aux positions 43 et 11 octets, ainsi que la longueur minimale 54 requise pour le lire.
+      - [x] Y définir la taille sectorielle FAT12 attendue de 512 octets et la formule nommée du nombre de secteurs du répertoire racine.
+      - [x] Créer `Fat12Layout.cs` pour contenir les secteurs réservés, secteurs par FAT, début et longueur de la racine, début des données, secteurs par cluster et nombre de clusters après validation.
+      - [x] Remplacer le record privé `Layout` et tous les accès correspondants par ce type.
+      - [x] Remplacer la limite brute de 4 085 clusters par la limite FAT12 nommée.
+    - [x] Dispositions IBM historiques sans BPB
+      - [x] Créer `Fat12LegacyLayoutCatalog.cs` avec les quatre dispositions IBM 160, 180, 320 et 360 actuellement codées dans le `switch`.
+      - [x] Nommer pour chaque disposition le total de secteurs, les secteurs par cluster, les entrées racine et les secteurs par FAT.
+      - [x] Nommer le secteur réservé unique et les deux copies de FAT communs à ces dispositions.
+      - [x] Faire retourner directement un `Fat12Layout` validé par le catalogue.
+      - [x] Conserver le contrôle actuel d'un secteur d'amorçage rempli d'un même octet avant d'accepter cette compatibilité historique.
+      - [x] Supprimer le `switch` et les nombres bruts du Reader après raccordement.
+    - [x] En-tête et table FAT12
+      - [x] Créer `Fat12Table.cs` pour lire les entrées 12 bits paires et impaires à partir de leur indice de cluster.
+      - [x] Y définir les marqueurs nommés de cluster libre, premier cluster de données et fin de chaîne `0xFF8` à `0xFFF`.
+      - [x] Y valider la présence des deux octets nécessaires au lieu de retourner silencieusement `0xFFF` lorsque l'entrée demandée sort de la table.
+      - [x] Déplacer dans ce composant la validation des trois premiers octets de la FAT et nommer `0xF0`, `0xFF` et leurs rôles.
+      - [x] Remplacer `ReadFat12` et `HasPlausibleFatHeader` après raccordement.
+    - [x] Entrées de répertoire FAT
+      - [x] Créer `FatDirectoryLayout.cs` et y définir la taille d'entrée 32, les offsets et longueurs du nom, de l'extension, des attributs, du cluster, de la taille et des dates.
+      - [x] Créer un enum de drapeaux pour les attributs FAT, notamment volume, répertoire et combinaison de nom long.
+      - [x] Y définir les marqueurs d'entrée finale zéro et d'entrée supprimée `0xE5`.
+      - [x] Déplacer le décodage du nom 8.3, du label et des champs Latin-1 dans `FatDirectoryEntryReader.cs`.
+      - [x] Remplacer `NO NAME`, les bornes ASCII `0x20` et `0x7E`, le séparateur de nom et les longueurs 8, 3 et 11 par leurs définitions nommées.
+      - [x] Conserver le traitement particulier des entrées `.` et `..` dans le parcours de sous-répertoires.
+      - [x] Déplacer le décodage de date et heure FAT dans `FatDateTime.cs` avec l'année de base 1980 et les masques/décalages nommés.
+    - [x] Lecture positionnelle des secteurs
+      - [x] Remplacer `ReadSectors` par un résultat contenant les octets, la présence de chaque secteur et la validité globale.
+      - [x] Réserver exactement 512 octets pour chaque secteur absent ou de mauvaise taille afin de conserver les positions des secteurs suivants.
+      - [x] Remplacer le texte brut `Sector {n} is missing.` par une définition recevant le secteur et la taille observée.
+      - [x] Ne pas considérer les octets de remplacement comme valides lors de la lecture de la FAT, de la racine ou du contenu d'un fichier.
+    - [x] Parcours des chaînes de clusters
+      - [x] Faire retourner par la lecture d'une chaîne son contenu, sa validité et les clusters réellement visités.
+      - [x] Distinguer une fin de chaîne, une entrée FAT illisible, un cluster hors plage, un cycle et un secteur de cluster absent.
+      - [x] Remplacer le texte brut d'une chaîne invalide ou cyclique par une définition recevant le cluster concerné.
+      - [x] Conserver la position logique d'un cluster dont un secteur manque au lieu de rapprocher les données suivantes.
+      - [x] Utiliser un ensemble de clusters propre à chaque chaîne et ne transmettre au sous-répertoire qu'une nouvelle protection contre ses propres cycles.
+      - [x] Faire porter la validité obtenue par le `FileSystemEntry` au lieu de créer systématiquement l'entrée avec `true`.
+      - [x] Signaler comme invalide un fichier dont la taille déclarée dépasse les données valides reconstruites.
+    - [x] Parcours récursif des répertoires
+      - [x] Nommer la profondeur maximale 64 et remplacer le texte brut correspondant par une définition paramétrée.
+      - [x] Séparer la lecture d'une entrée, la lecture de son contenu et le parcours récursif actuellement regroupés dans `ReadDirectory`.
+      - [x] Conserver le tri actuel qui place les répertoires avant les fichiers puis trie les noms sans casse.
+      - [x] Remplacer le bloc `catch` compact par un traitement lisible qui associe l'avertissement au nom sans perdre la validité de l'entrée.
+    - [x] Calcul de l'espace libre
+      - [x] Parcourir uniquement les numéros de clusters de données définis par le layout.
+      - [x] Compter comme libres uniquement les entrées FAT lisibles dont la valeur est le marqueur de cluster libre.
+      - [x] Rendre l'espace libre inconnu lorsque les secteurs de FAT nécessaires sont absents ou invalides, au lieu de compter leurs zéros de remplacement.
+      - [x] Calculer les octets libres avec la taille sectorielle du layout et les secteurs par cluster, sans conserver le littéral 512 dans le Reader.
+    - [x] Erreurs FAT12
+      - [x] Créer `Fat12FileSystemExceptions.cs` pour l'image non reconnue, la chaîne cyclique ou hors plage, le secteur absent, la profondeur maximale et le contenu incomplet.
+      - [x] Faire recevoir à chaque méthode les valeurs observées nécessaires au message au lieu de construire les textes dans le Reader.
+      - [x] Remplacer tous les textes d'erreur et d'avertissement bruts du fichier par ces méthodes.
+    - [x] Présentation et CSDoc française
+      - [x] Séparer toutes les instructions multiples placées sur une même ligne dans `Read`, `ReadDirectory`, `ReadClusterChain`, `TryReadLayout`, `ReadFat12`, `ReadVolumeLabel`, `DecodeName` et `DecodeDateTime`.
+      - [x] Remettre sur une seule ligne chaque signature, appel, condition ou expression complète qui tient lisiblement sur une ligne après cette séparation.
+      - [x] Documenter en français `Fat12FileSystemReader` et chacun de ses membres conservés.
+      - [x] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode créé pour FAT12.
+    - [x] Tests ciblés FAT12
+      - [x] Tester par le Reader public une image Atari ST, une IBM PC et une MSX de `image_test`, avec reconnaissance, volume, entrées, contenus et espace libre attendus.
+      - [x] Tester les quatre dispositions IBM historiques sans BPB et leur refus lorsque le contenu ou le nombre de secteurs ne correspond pas.
+      - [x] Tester une entrée FAT12 paire, impaire, libre, de fin de chaîne et tronquée.
+      - [x] Tester un secteur absent au milieu de la FAT, de la racine et d'un fichier sans déplacement des secteurs suivants.
+      - [x] Tester une chaîne cyclique, un cluster hors plage, un fichier tronqué et la validité de l'entrée produite.
+      - [x] Tester label de racine, label d'amorçage, `NO NAME`, nom 8.3, entrée supprimée, nom long ignoré, répertoire et profondeur maximale.
+      - [x] Tester une FAT invalide et vérifier que l'espace libre n'est pas présenté comme fiable.
   - [ ] `FileSystems/Readers/LisaFileSystemReader.cs`
     - [ ] Emplacement, identité et formats annoncés
       - [ ] Déplacer le Reader et ses composants vers `FileSystems/Apple/Lisa/` puis adapter le namespace et les consommateurs.

@@ -1,5 +1,5 @@
 using System.Buffers.Binary;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Containers.Atari.St;
 
@@ -34,12 +34,12 @@ internal static class AtariStGeometryDetector
     private static bool TryReadBpb(ReadOnlySpan<byte> data, out AtariStGeometry geometry)
     {
         geometry = default;
-        if (data.Length < FatBpbLayout.MinimumLength) return false;
-        var bytesPerSector = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBpbLayout.BytesPerSectorOffset..]);
-        var totalSectors = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBpbLayout.TotalSectors16Offset..]);
-        if (totalSectors == 0) totalSectors = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(data[FatBpbLayout.TotalSectors32Offset..])));
-        var sectors = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBpbLayout.SectorsPerTrackOffset..]);
-        var heads = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBpbLayout.HeadCountOffset..]);
+        if (data.Length < FatBootSectorLayout.MinimumLength) return false;
+        var bytesPerSector = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBootSectorLayout.BytesPerSectorOffset..]);
+        var totalSectors = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBootSectorLayout.TotalSectors16Offset..]);
+        if (totalSectors == 0) totalSectors = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(data[FatBootSectorLayout.TotalSectors32Offset..])));
+        var sectors = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBootSectorLayout.SectorsPerTrackOffset..]);
+        var heads = BinaryPrimitives.ReadUInt16LittleEndian(data[FatBootSectorLayout.HeadCountOffset..]);
         if (bytesPerSector != AtariStGeometry.SectorSize || totalSectors != data.Length / AtariStGeometry.SectorSize || sectors is 0 or > MaximumSectorsPerTrack || heads is 0 or > DiskGeometryConstants.DoubleSidedHeadCount || totalSectors % (sectors * heads) != 0) return false;
         geometry = new(totalSectors / (sectors * heads), heads, sectors);
         return true;

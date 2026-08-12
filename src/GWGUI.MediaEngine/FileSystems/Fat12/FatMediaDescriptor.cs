@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.FileSystems.Fat;
+namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
 /// <summary>Identifie les descripteurs FAT historiques pris en charge pour les disquettes IBM PC.</summary>
 public enum FatMediaDescriptor : byte

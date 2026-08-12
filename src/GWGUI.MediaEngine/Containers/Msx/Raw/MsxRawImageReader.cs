@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Msx;
 using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
@@ -26,9 +26,9 @@ public sealed class MsxRawImageReader : ISectorImageReader
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         if (!MsxBootSectorProbe.LooksLikeMsx(data)) throw MsxRawImageExceptions.InvalidBootSector(data.Length);
-        var mediaDescriptor = data[FatBpbLayout.MediaDescriptorOffset];
+        var mediaDescriptor = data[FatBootSectorLayout.MediaDescriptorOffset];
         var geometry = MsxDiskGeometryCatalog.Find(data.Length, mediaDescriptor) ?? throw MsxRawImageExceptions.UnsupportedGeometry(data.Length, mediaDescriptor);
-        var linear = new LinearSectorImageGeometry(FatBpbLayout.SectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, SectorNumbering.OneBased);
+        var linear = new LinearSectorImageGeometry(FatBootSectorLayout.SectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, SectorNumbering.OneBased);
         return LinearSectorImageBuilder.Create(data, geometry.FormatId, linear, cancellationToken);
     }
 }

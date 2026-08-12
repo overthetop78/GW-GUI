@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.FileSystems.Fat12;
 
 namespace GWGUI.MediaEngine.Geometries.Ibm;
 

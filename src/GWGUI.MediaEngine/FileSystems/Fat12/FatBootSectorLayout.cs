@@ -1,8 +1,12 @@
-namespace GWGUI.MediaEngine.FileSystems.Fat;
+namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
 /// <summary>Définit les offsets des champs géométriques du BIOS Parameter Block FAT.</summary>
-internal static class FatBpbLayout
+public static class FatBootSectorLayout
 {
+    /// <summary>Longueur d'un champ 16 bits du BPB.</summary>
+    public const int UInt16Length = sizeof(ushort);
+    /// <summary>Longueur d'un champ 32 bits du BPB.</summary>
+    public const int UInt32Length = sizeof(uint);
     /// <summary>Longueur minimale requise pour tous les champs utilisés.</summary>
     public const int MinimumLength = 36;
     /// <summary>Taille sectorielle attendue en octets.</summary>
@@ -63,4 +67,13 @@ internal static class FatBpbLayout
     public const int VolumeLabelLength = 11;
     /// <summary>Longueur minimale nécessaire pour lire le label étendu.</summary>
     public const int ExtendedBootMinimumLength = VolumeLabelOffset + VolumeLabelLength;
+    /// <summary>Label indiquant l'absence de nom explicite.</summary>
+    public const string EmptyVolumeLabel = "NO NAME";
+    /// <summary>Première valeur ASCII imprimable.</summary>
+    public const byte PrintableAsciiStart = 0x20;
+    /// <summary>Dernière valeur ASCII imprimable.</summary>
+    public const byte PrintableAsciiEnd = 0x7e;
+
+    /// <summary>Calcule par arrondi supérieur le nombre de secteurs du répertoire racine.</summary>
+    public static int RootDirectorySectorCount(int rootEntries) => checked((rootEntries * FatDirectoryLayout.EntrySize + SectorSize - 1) / SectorSize);
 }

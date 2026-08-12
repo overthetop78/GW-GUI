@@ -1,10 +1,12 @@
 using GWGUI.MediaEngine.Primitives;
 
-namespace GWGUI.MediaEngine.FileSystems.Fat;
+namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
 /// <summary>Décode les entrées de douze bits d'une table FAT12.</summary>
 public static class Fat12Table
 {
+    /// <summary>Premier numéro de cluster contenant des données.</summary>
+    public const int FirstDataCluster = 2;
     /// <summary>Valeur d'un cluster libre.</summary>
     public const int FreeCluster = 0x000;
     /// <summary>Première valeur réservée.</summary>
@@ -17,6 +19,10 @@ public static class Fat12Table
     public const int FirstEndOfChain = 0xff8;
     /// <summary>Dernière valeur de fin de chaîne.</summary>
     public const int LastEndOfChain = 0xfff;
+    /// <summary>Valeur minimale acceptée du descripteur de média.</summary>
+    public const byte MinimumMediaDescriptor = 0xf0;
+    /// <summary>Octet de remplissage attendu dans les deux entrées réservées.</summary>
+    public const byte ReservedEntryByte = 0xff;
 
     /// <summary>Tente de décoder une entrée paire ou impaire.</summary>
     /// <param name="fat">Octets de la FAT.</param>
@@ -31,4 +37,7 @@ public static class Fat12Table
         value = (cluster & 1) == 0 ? pair & LastEndOfChain : pair >> 4;
         return true;
     }
+
+    /// <summary>Vérifie les trois octets réservés ouvrant une table FAT12.</summary>
+    public static bool HasPlausibleHeader(ReadOnlySpan<byte> fat) => fat.Length >= 3 && fat[0] >= MinimumMediaDescriptor && fat[1] == ReservedEntryByte && fat[2] == ReservedEntryByte;
 }
