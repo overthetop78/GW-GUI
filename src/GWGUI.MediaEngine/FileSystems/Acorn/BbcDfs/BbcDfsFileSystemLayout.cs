@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.FileSystems.Acorn.BbcDfs;
 
 /// <summary>Définit la disposition et les masques du catalogue BBC DFS.</summary>
-internal static class BbcDfsFileSystemLayout
+public static class BbcDfsFileSystemLayout
 {
     /// <summary>Taille d'un secteur.</summary>
     public const int SectorSize = 256;
@@ -57,4 +57,6 @@ internal static class BbcDfsFileSystemLayout
     public const byte ExecuteHighMask = 0xc0;
     /// <summary>Décalage haut de l'adresse d'exécution.</summary>
     public const int ExecuteHighShift = 10;
+    /// <summary>Caractère désignant le répertoire racine.</summary>
+    public const char RootDirectory = '$';
 }

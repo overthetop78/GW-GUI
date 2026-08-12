@@ -8,7 +8,7 @@ public static class FileSystemReaderCatalog
     [
         new Amiga.AmigaDosFileSystemReader(),
         new Acorn.Adfs.AcornAdfsFileSystemReader(),
-        new Readers.BbcDfsFileSystemReader(),
+        new Acorn.BbcDfs.BbcDfsFileSystemReader(),
         new Readers.CoherentFileSystemReader(),
         new Readers.Rt11FileSystemReader(),
         new Readers.UcsdFileSystemReader(),

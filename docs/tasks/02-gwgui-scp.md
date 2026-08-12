@@ -6637,67 +6637,67 @@
       - [x] Tester un propriétaire correct, nul et différent du numéro de fichier attendu.
       - [x] Tester une longueur utilisée supérieure à la zone de données disponible.
       - [x] Vérifier le contenu partiel, `MetadataValid`, les attributs, la référence, les avertissements et l'espace libre avec une image connue de `image_test`.
-  - [ ] `FileSystems/Readers/BbcDfsFileSystemReader.cs`
-    - [ ] Emplacement et identité BBC DFS
-      - [ ] Déplacer le Reader vers `FileSystems/Acorn/Dfs/BbcDfsFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `acorn-dfs` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer le nom brut `Acorn DFS` du volume par cet identifiant technique central.
-      - [ ] Exposer les quatre formats SSD/DSD 40/80 pistes par un ensemble réellement non modifiable.
-    - [ ] Disposition du catalogue DFS
-      - [ ] Créer `FileSystems/Acorn/Dfs/BbcDfsFileSystemLayout.cs`.
-      - [ ] Y définir les secteurs zéro et un du catalogue et leur taille de 256 octets.
-      - [ ] Y définir les offsets et longueurs des deux parties du titre, du compteur d'entrées et du nombre total de secteurs.
-      - [ ] Y définir les huit octets de chaque moitié d'entrée, les sept octets du nom et l'octet de répertoire/verrouillage.
-      - [ ] Y définir les offsets du load, de l'execute, de la longueur, du secteur initial et de l'octet compacté.
-      - [ ] Y déplacer les masques `0x03`, `0x0c`, `0x30`, `0xc0`, `0x7f`, `0x80` et leurs décalages associés.
-      - [ ] Y définir les 31 entrées maximum et le multiplicateur huit stocké dans le compteur.
-    - [ ] Lecture et validation du catalogue
-      - [ ] Créer `FileSystems/Acorn/Dfs/BbcDfsCatalogReader.cs`.
-      - [ ] Y déplacer la validation des deux secteurs de catalogue, du compteur multiple de huit et de la capacité déclarée.
-      - [ ] Faire retourner un catalogue validé contenant titre, capacité et entrées afin que `Read` ne rappelle pas `CanRead` puis ne relise pas les mêmes blocs.
-      - [ ] Rejeter une capacité déclarée supérieure aux blocs disponibles de l'image.
-      - [ ] Vérifier que chaque offset d'entrée tient dans les deux secteurs avant de lire ses champs.
-    - [ ] Décodage des champs compactés
-      - [ ] Créer `FileSystems/Acorn/Dfs/BbcDfsEntryDecoder.cs`.
-      - [ ] Y extraire les calculs de longueur 18 bits, secteur initial 10 bits, load 18 bits et execute 18 bits.
-      - [ ] Remplacer chaque masque et décalage brut par `BbcDfsFileSystemLayout`.
-      - [ ] Conserver le caractère `$` comme répertoire racine dans une définition nommée et construire le préfixe uniquement pour un autre répertoire.
-      - [ ] Représenter le bit de verrouillage par un drapeau DFS nommé tout en conservant sa valeur dans les attributs bruts de l'entrée.
-    - [ ] Codec des noms et descriptions DFS
-      - [ ] Créer `FileSystems/Acorn/Dfs/BbcDfsNameCodec.cs` et y déplacer `Decode`.
-      - [ ] Déplacer le masque sept bits et les remplissages nul et espace dans ses définitions.
-      - [ ] Créer une fonction de description technique recevant load et execute au lieu de construire le texte brut dans la boucle.
-    - [ ] Lecture du contenu des fichiers
-      - [ ] Créer `FileSystems/Acorn/Dfs/BbcDfsFileReader.cs`.
-      - [ ] Calculer le nombre de secteurs par arrondi supérieur de la longueur avec la taille sectorielle centrale.
-      - [ ] Valider que chaque secteur demandé se trouve dans la capacité déclarée du volume et dans l'image.
-      - [ ] Copier chaque secteur à l'offset `indexDeSecteur * tailleSectorielle` du fichier au lieu d'utiliser un compteur qui n'avance pas lorsqu'un secteur manque.
-      - [ ] Vérifier que les données du bloc contiennent le nombre d'octets attendu avant la copie.
-      - [ ] Conserver les positions des secteurs suivants lorsqu'un secteur est absent ou tronqué et marquer le contenu invalide.
-      - [ ] Remplacer les tableaux LINQ temporaires par une copie de span bornée.
-      - [ ] Faire retourner ensemble le contenu, la validité et la liste des secteurs réellement utilisés.
-    - [ ] Occupation et espace libre
-      - [ ] Construire un ensemble des secteurs occupés initialisé avec les deux secteurs de catalogue.
-      - [ ] Ajouter chaque secteur valide réellement référencé par un fichier une seule fois.
-      - [ ] Détecter et avertir lorsqu'un secteur est référencé par plusieurs entrées.
-      - [ ] Ne pas compter comme occupé un secteur extérieur à la capacité déclarée.
-      - [ ] Calculer l'espace libre depuis la capacité déclarée moins le nombre de secteurs occupés distincts.
-    - [ ] Erreurs et avertissements DFS
-      - [ ] Créer `FileSystems/Acorn/Dfs/BbcDfsExceptions.cs` pour catalogue absent, tronqué ou incohérent.
-      - [ ] Créer `BbcDfsWarnings.cs` pour secteur absent, tronqué, hors volume ou partagé.
-      - [ ] Remplacer le texte anglais construit directement dans le Reader par ces fonctions recevant entrée et secteur.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Décomposer la condition de reconnaissance et les constructions de volume actuellement cassées sur plusieurs lignes en résultats nommés.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-      - [ ] Ajouter en français la CSDoc de chaque type, drapeau, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader BBC DFS
-      - [ ] Tester SSD et DSD en 40 et 80 pistes avec les quatre identifiants catalogués.
-      - [ ] Tester un catalogue valide, tronqué, un compteur non multiple de huit et une capacité supérieure à l'image.
-      - [ ] Tester un nom racine, un nom avec répertoire et le bit verrouillé.
-      - [ ] Tester les valeurs 18 bits de longueur, load et execute et la valeur 10 bits du secteur initial.
-      - [ ] Tester un fichier sur plusieurs secteurs avec un secteur central absent et vérifier que le suivant conserve son offset.
-      - [ ] Tester un bloc tronqué, un secteur hors volume et un secteur partagé entre deux fichiers.
-      - [ ] Vérifier avec une image connue de `image_test` le titre, les entrées, contenus, références, validités, avertissements, capacité et espace libre.
+  - [x] `FileSystems/Readers/BbcDfsFileSystemReader.cs`
+    - [x] Emplacement et identité BBC DFS
+      - [x] Déplacer le Reader vers `FileSystems/Acorn/Dfs/BbcDfsFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `acorn-dfs` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer le nom brut `Acorn DFS` du volume par cet identifiant technique central.
+      - [x] Exposer les quatre formats SSD/DSD 40/80 pistes par un ensemble réellement non modifiable.
+    - [x] Disposition du catalogue DFS
+      - [x] Créer `FileSystems/Acorn/Dfs/BbcDfsFileSystemLayout.cs`.
+      - [x] Y définir les secteurs zéro et un du catalogue et leur taille de 256 octets.
+      - [x] Y définir les offsets et longueurs des deux parties du titre, du compteur d'entrées et du nombre total de secteurs.
+      - [x] Y définir les huit octets de chaque moitié d'entrée, les sept octets du nom et l'octet de répertoire/verrouillage.
+      - [x] Y définir les offsets du load, de l'execute, de la longueur, du secteur initial et de l'octet compacté.
+      - [x] Y déplacer les masques `0x03`, `0x0c`, `0x30`, `0xc0`, `0x7f`, `0x80` et leurs décalages associés.
+      - [x] Y définir les 31 entrées maximum et le multiplicateur huit stocké dans le compteur.
+    - [x] Lecture et validation du catalogue
+      - [x] Créer `FileSystems/Acorn/Dfs/BbcDfsCatalogReader.cs`.
+      - [x] Y déplacer la validation des deux secteurs de catalogue, du compteur multiple de huit et de la capacité déclarée.
+      - [x] Faire retourner un catalogue validé contenant titre, capacité et entrées afin que `Read` ne rappelle pas `CanRead` puis ne relise pas les mêmes blocs.
+      - [x] Rejeter une capacité déclarée supérieure aux blocs disponibles de l'image.
+      - [x] Vérifier que chaque offset d'entrée tient dans les deux secteurs avant de lire ses champs.
+    - [x] Décodage des champs compactés
+      - [x] Créer `FileSystems/Acorn/Dfs/BbcDfsEntryDecoder.cs`.
+      - [x] Y extraire les calculs de longueur 18 bits, secteur initial 10 bits, load 18 bits et execute 18 bits.
+      - [x] Remplacer chaque masque et décalage brut par `BbcDfsFileSystemLayout`.
+      - [x] Conserver le caractère `$` comme répertoire racine dans une définition nommée et construire le préfixe uniquement pour un autre répertoire.
+      - [x] Représenter le bit de verrouillage par un drapeau DFS nommé tout en conservant sa valeur dans les attributs bruts de l'entrée.
+    - [x] Codec des noms et descriptions DFS
+      - [x] Créer `FileSystems/Acorn/Dfs/BbcDfsNameCodec.cs` et y déplacer `Decode`.
+      - [x] Déplacer le masque sept bits et les remplissages nul et espace dans ses définitions.
+      - [x] Créer une fonction de description technique recevant load et execute au lieu de construire le texte brut dans la boucle.
+    - [x] Lecture du contenu des fichiers
+      - [x] Créer `FileSystems/Acorn/Dfs/BbcDfsFileReader.cs`.
+      - [x] Calculer le nombre de secteurs par arrondi supérieur de la longueur avec la taille sectorielle centrale.
+      - [x] Valider que chaque secteur demandé se trouve dans la capacité déclarée du volume et dans l'image.
+      - [x] Copier chaque secteur à l'offset `indexDeSecteur * tailleSectorielle` du fichier au lieu d'utiliser un compteur qui n'avance pas lorsqu'un secteur manque.
+      - [x] Vérifier que les données du bloc contiennent le nombre d'octets attendu avant la copie.
+      - [x] Conserver les positions des secteurs suivants lorsqu'un secteur est absent ou tronqué et marquer le contenu invalide.
+      - [x] Remplacer les tableaux LINQ temporaires par une copie de span bornée.
+      - [x] Faire retourner ensemble le contenu, la validité et la liste des secteurs réellement utilisés.
+    - [x] Occupation et espace libre
+      - [x] Construire un ensemble des secteurs occupés initialisé avec les deux secteurs de catalogue.
+      - [x] Ajouter chaque secteur valide réellement référencé par un fichier une seule fois.
+      - [x] Détecter et avertir lorsqu'un secteur est référencé par plusieurs entrées.
+      - [x] Ne pas compter comme occupé un secteur extérieur à la capacité déclarée.
+      - [x] Calculer l'espace libre depuis la capacité déclarée moins le nombre de secteurs occupés distincts.
+    - [x] Erreurs et avertissements DFS
+      - [x] Créer `FileSystems/Acorn/Dfs/BbcDfsExceptions.cs` pour catalogue absent, tronqué ou incohérent.
+      - [x] Créer `BbcDfsWarnings.cs` pour secteur absent, tronqué, hors volume ou partagé.
+      - [x] Remplacer le texte anglais construit directement dans le Reader par ces fonctions recevant entrée et secteur.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Décomposer la condition de reconnaissance et les constructions de volume actuellement cassées sur plusieurs lignes en résultats nommés.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+      - [x] Ajouter en français la CSDoc de chaque type, drapeau, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader BBC DFS
+      - [x] Tester SSD et DSD en 40 et 80 pistes avec les quatre identifiants catalogués.
+      - [x] Tester un catalogue valide, tronqué, un compteur non multiple de huit et une capacité supérieure à l'image.
+      - [x] Tester un nom racine, un nom avec répertoire et le bit verrouillé.
+      - [x] Tester les valeurs 18 bits de longueur, load et execute et la valeur 10 bits du secteur initial.
+      - [x] Tester un fichier sur plusieurs secteurs avec un secteur central absent et vérifier que le suivant conserve son offset.
+      - [x] Tester un bloc tronqué, un secteur hors volume et un secteur partagé entre deux fichiers.
+      - [x] Vérifier avec une image connue de `image_test` le titre, les entrées, contenus, références, validités, avertissements, capacité et espace libre.
   - [ ] `FileSystems/Readers/CoherentFileSystemReader.cs`
     - [ ] Emplacement et identité COHERENT
       - [ ] Déplacer le Reader vers `FileSystems/Coherent/CoherentFileSystemReader.cs` et adapter son namespace et ses consommateurs.
