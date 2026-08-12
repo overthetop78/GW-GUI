@@ -5896,39 +5896,39 @@
       - [ ] Tester les pointeurs directs et chacun des trois niveaux indirects.
       - [ ] Tester un inode nul, hors image, un fichier trop grand et un bloc indirect absent.
       - État : les 15 tests Coherent existants passent après l'extraction ; les trois niveaux indirects et toutes les erreurs ne sont pas encore isolés dans des tests dédiés.
-  - [ ] Commodore DOS
-    - [ ] `FileSystems/Commodore/CommodoreDosLayout.cs`
-      - [ ] Créer `FileSystems/Commodore/CommodoreDosLayout.cs`.
-      - [ ] Ajouter des dispositions nommées distinctes pour D64/D71 et D81.
-      - [ ] Ajouter pour chaque disposition les adresses piste/secteur du BAM, de l'en-tête et du premier répertoire.
-      - [ ] Ajouter la taille sectorielle `256`, les offsets des liens, des entrées et du nom de volume.
-      - [ ] Ajouter les tailles, nombres et offsets des entrées de répertoire et de BAM.
-      - [ ] Remplacer les tests directs de `Commodore1581` par la disposition résolue.
-      - [ ] Remplacer chaque valeur brute correspondante dans `CommodoreDosFileSystemReader`.
-      - [ ] Documenter en français chaque disposition et chaque propriété.
-    - [ ] `FileSystems/Commodore/CommodoreDosFileType.cs`
-      - [ ] Créer l'enum `CommodoreDosFileType` avec DEL, SEQ, PRG, USR, REL et CBM.
-      - [ ] Ajouter les drapeaux Closed et Locked sans les confondre avec le type de base.
-      - [ ] Remplacer le `switch` numérique de `TypeName` par l'enum et ses drapeaux.
-      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
-      - [ ] Documenter en français chaque valeur et chaque drapeau.
-    - [ ] `FileSystems/Commodore/PetsciiDecoder.cs`
-      - [ ] Créer `FileSystems/Commodore/PetsciiDecoder.cs`.
-      - [ ] Déplacer la classe privée `Petscii` hors du Reader.
-      - [ ] Remplacer le caractère de remplacement corrompu par le caractère Unicode prévu.
-      - [ ] Documenter en français le décodeur, ses plages et sa méthode.
-      - [ ] Tester les plages `0x20..0x5F`, `0x60..0x7A`, les espaces insécables et un octet inconnu.
-    - [ ] `FileSystems/Commodore/CommodoreDosExceptions.cs`
-      - [ ] Créer `FileSystems/Commodore/CommodoreDosExceptions.cs`.
-      - [ ] Ajouter les erreurs d'en-tête absent et de système non pris en charge avec la disposition observée.
-      - [ ] Ajouter l'erreur de chaîne cyclique avec nom, piste et secteur.
-      - [ ] Ajouter l'erreur de secteur absent avec nom, piste et secteur.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions Commodore DOS
-      - [ ] Tester une image D64, D71 et D81 par le Reader public.
-      - [ ] Tester BAM, répertoire, chaque type de fichier et les drapeaux Closed et Locked.
-      - [ ] Tester PETSCII, une chaîne cyclique et un secteur absent.
+  - [x] Commodore DOS
+    - [x] `FileSystems/Commodore/CommodoreDosLayout.cs`
+      - [x] Créer `FileSystems/Commodore/CommodoreDosLayout.cs`.
+      - [x] Ajouter des dispositions nommées distinctes pour D64/D71 et D81.
+      - [x] Ajouter pour chaque disposition les adresses piste/secteur du BAM, de l'en-tête et du premier répertoire.
+      - [x] Ajouter la taille sectorielle `256`, les offsets des liens, des entrées et du nom de volume.
+      - [x] Ajouter les tailles, nombres et offsets des entrées de répertoire et de BAM.
+      - [x] Remplacer les tests directs de `Commodore1581` par la disposition résolue.
+      - [x] Remplacer chaque valeur brute correspondante dans `CommodoreDosFileSystemReader`.
+      - [x] Documenter en français chaque disposition et chaque propriété.
+    - [x] `FileSystems/Commodore/CommodoreDosFileType.cs`
+      - [x] Créer l'enum `CommodoreDosFileType` avec DEL, SEQ, PRG, USR, REL et CBM.
+      - [x] Ajouter les drapeaux Closed et Locked sans les confondre avec le type de base.
+      - [x] Remplacer le `switch` numérique de `TypeName` par l'enum et ses drapeaux.
+      - [x] Déplacer les libellés d'affichage hors du Reader technique.
+      - [x] Documenter en français chaque valeur et chaque drapeau.
+    - [x] `FileSystems/Commodore/PetsciiDecoder.cs`
+      - [x] Créer `FileSystems/Commodore/PetsciiDecoder.cs`.
+      - [x] Déplacer la classe privée `Petscii` hors du Reader.
+      - [x] Remplacer le caractère de remplacement corrompu par le caractère Unicode prévu.
+      - [x] Documenter en français le décodeur, ses plages et sa méthode.
+      - [x] Tester les plages `0x20..0x5F`, `0x60..0x7A`, les espaces insécables et un octet inconnu.
+    - [x] `FileSystems/Commodore/CommodoreDosExceptions.cs`
+      - [x] Créer `FileSystems/Commodore/CommodoreDosExceptions.cs`.
+      - [x] Ajouter les erreurs d'en-tête absent et de système non pris en charge avec la disposition observée.
+      - [x] Ajouter l'erreur de chaîne cyclique avec nom, piste et secteur.
+      - [x] Ajouter l'erreur de secteur absent avec nom, piste et secteur.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions Commodore DOS
+      - [x] Tester une image D64, D71 et D81 par le Reader public.
+      - [x] Tester BAM, répertoire, chaque type de fichier et les drapeaux Closed et Locked.
+      - [x] Tester PETSCII, une chaîne cyclique et un secteur absent.
   - [ ] FAT12
     - [ ] `FileSystems/Fat/Fat12Layout.cs`
       - [ ] Créer `FileSystems/Fat/Fat12Layout.cs` pour remplacer le record privé `Layout`.

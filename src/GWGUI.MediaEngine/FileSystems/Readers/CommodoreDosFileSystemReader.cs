@@ -1,136 +1,143 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Commodore;
 using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
+/// <summary>Lit les volumes Commodore DOS contenus dans les images D64, D71 et D81.</summary>
 public sealed class CommodoreDosFileSystemReader : IFileSystemReader
 {
+    /// <inheritdoc />
     public string Id => Definitions.FileSystemIds.CommodoreDos;
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        { DiskImageFormatIds.Commodore1541, DiskImageFormatIds.Commodore1571, DiskImageFormatIds.Commodore1581 };
 
+    /// <inheritdoc />
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { DiskImageFormatIds.Commodore1541, DiskImageFormatIds.Commodore1571, DiskImageFormatIds.Commodore1581 };
+
+    /// <inheritdoc />
     public bool CanRead(SectorImage image)
     {
-        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != 256) return false;
-        var headerAddress = image.FormatId == DiskImageFormatIds.Commodore1581 ? (40, 0) : (18, 0);
-        return TryGetSector(image, headerAddress.Item1, headerAddress.Item2, out var header)
-            && header.Length == 256
-            && header[2] is 0x41 or 0x44
-            && HasPlausibleDirectory(image, header, headerAddress.Item1, image.FormatId == DiskImageFormatIds.Commodore1581);
+        var layout = CommodoreDosLayout.Resolve(image.FormatId);
+        return layout is not null && image.BlockSize == CommodoreDosLayout.SectorSize && TryGetSector(image, layout.HeaderTrack, layout.HeaderSector, out var header) && header.Length == CommodoreDosLayout.SectorSize && header[CommodoreDosLayout.DirectoryEntriesOffset] is 0x41 or 0x44 && HasPlausibleDirectory(image, header, layout);
     }
 
+    /// <inheritdoc />
     public FileSystemVolume Read(SectorImage image)
     {
-        if (!CanRead(image)) throw new InvalidDataException("The image does not contain a supported CBM DOS file system.");
-        var is1581 = image.FormatId == DiskImageFormatIds.Commodore1581;
-        var headerTrack = is1581 ? 40 : 18;
-        var headerSector = 0;
-        if (!TryGetSector(image, headerTrack, headerSector, out var header)) throw new InvalidDataException("The CBM DOS header sector is missing.");
-
-        var nameOffset = is1581 ? 4 : 0x90;
-        var name = Petscii.Decode(header.AsSpan(nameOffset, 16));
+        var layout = CommodoreDosLayout.Resolve(image.FormatId) ?? throw CommodoreDosExceptions.UnsupportedLayout(image.FormatId);
+        if (!TryGetSector(image, layout.HeaderTrack, layout.HeaderSector, out var header)) throw CommodoreDosExceptions.MissingHeader(layout.HeaderTrack, layout.HeaderSector);
+        if (!CanRead(image)) throw CommodoreDosExceptions.UnsupportedLayout(image.FormatId);
+        var name = PetsciiDecoder.Decode(header.AsSpan(layout.VolumeNameOffset, CommodoreDosLayout.NameLength));
         var warnings = new List<string>();
-        var directoryTrack = header[0];
-        var directorySector = header[1];
+        var directoryTrack = header[CommodoreDosLayout.NextTrackOffset];
+        var directorySector = header[CommodoreDosLayout.NextSectorOffset];
         if (directoryTrack == 0)
         {
-            directoryTrack = (byte)headerTrack;
-            directorySector = (byte)(is1581 ? 3 : 1);
+            directoryTrack = (byte)layout.DirectoryTrack;
+            directorySector = (byte)layout.DirectorySector;
         }
         var entries = ReadDirectory(image, directoryTrack, directorySector, warnings);
-        var freeBlocks = ReadFreeBlocks(image, is1581);
-        return new(name, Definitions.FileSystemDisplayNames.CommodoreDos, image.Capacity, Math.Max(0, freeBlocks) * 256L, null, null, entries, warnings);
+        var freeBlocks = ReadFreeBlocks(image, layout);
+        return new(name, Definitions.FileSystemDisplayNames.CommodoreDos, image.Capacity, Math.Max(0, freeBlocks) * CommodoreDosLayout.SectorSize, null, null, entries, warnings);
     }
 
+    /// <summary>Lit les entrées de la chaîne de répertoire.</summary>
     private static IReadOnlyList<FileSystemEntry> ReadDirectory(SectorImage image, int firstTrack, int firstSector, List<string> warnings)
     {
         var entries = new List<FileSystemEntry>();
         var visited = new HashSet<(int Track, int Sector)>();
-        var track = firstTrack; var sector = firstSector;
+        var track = firstTrack;
+        var sector = firstSector;
         while (track != 0)
         {
-            if (!visited.Add((track, sector))) { warnings.Add($"Cyclic CBM DOS directory chain at {track}/{sector}."); break; }
-            if (!TryGetSector(image, track, sector, out var data)) { warnings.Add($"CBM DOS directory sector {track}/{sector} is missing."); break; }
-            for (var slot = 0; slot < 8; slot++)
+            if (!visited.Add((track, sector))) { warnings.Add(CommodoreDosExceptions.CyclicDirectory(track, sector)); break; }
+            if (!TryGetSector(image, track, sector, out var data)) { warnings.Add(CommodoreDosExceptions.MissingDirectorySector(track, sector)); break; }
+            for (var slot = 0; slot < CommodoreDosLayout.DirectoryEntryCount; slot++)
             {
-                var offset = 2 + slot * 32;
-                var rawType = data[offset];
-                if ((rawType & 0x0f) == 0) continue;
-                var name = Petscii.Decode(data.AsSpan(offset + 3, 16));
+                var offset = CommodoreDosLayout.DirectoryEntriesOffset + slot * CommodoreDosLayout.DirectoryEntrySize;
+                var rawType = (CommodoreDosFileType)data[offset + CommodoreDosLayout.FileTypeOffset];
+                if (((byte)rawType & 0x0f) == 0) continue;
+                var name = PetsciiDecoder.Decode(data.AsSpan(offset + CommodoreDosLayout.FileNameOffset, CommodoreDosLayout.NameLength));
                 if (name.Length == 0) continue;
-                var firstDataTrack = data[offset + 1];
-                var firstDataSector = data[offset + 2];
-                var declaredBlocks = data[offset + 28] | data[offset + 29] << BitPrimitives.BitsPerByte;
+                var firstDataTrack = data[offset + CommodoreDosLayout.FirstDataTrackOffset];
+                var firstDataSector = data[offset + CommodoreDosLayout.FirstDataSectorOffset];
+                var declaredBlocks = data[offset + CommodoreDosLayout.DeclaredBlockCountOffset] | data[offset + CommodoreDosLayout.DeclaredBlockCountOffset + 1] << BitPrimitives.BitsPerByte;
                 IReadOnlyList<byte> content = [];
                 try { content = ReadFile(image, firstDataTrack, firstDataSector, warnings, name); }
                 catch (InvalidDataException exception) { warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception)); }
-                var type = rawType & 7;
-                var comment = TypeName(type) + (((rawType & 0x80) == 0) ? ", open" : string.Empty) + (((rawType & 0x40) != 0) ? ", locked" : string.Empty);
-                entries.Add(new(name, FileSystemEntryKind.File, content.Count == 0 ? declaredBlocks * 254L : content.Count,
-                    null, comment, rawType, TryToLogicalBlock(image, firstDataTrack, firstDataSector), true, [], content));
+                var comment = CommodoreDosFileTypeNames.GetComment(rawType);
+                entries.Add(new(name, FileSystemEntryKind.File, content.Count == 0 ? declaredBlocks * CommodoreDosLayout.DataBytesPerSector : content.Count, null, comment, (uint)(byte)rawType, TryToLogicalBlock(image, firstDataTrack, firstDataSector), true, [], content));
             }
-            track = data[0]; sector = data[1];
+            track = data[CommodoreDosLayout.NextTrackOffset];
+            sector = data[CommodoreDosLayout.NextSectorOffset];
         }
         return entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
+    /// <summary>Reconstruit le contenu d'un fichier à partir de sa chaîne de secteurs.</summary>
     private static IReadOnlyList<byte> ReadFile(SectorImage image, int firstTrack, int firstSector, List<string> warnings, string name)
     {
         if (firstTrack == 0) return [];
         using var stream = new MemoryStream();
         var visited = new HashSet<(int Track, int Sector)>();
-        var track = firstTrack; var sector = firstSector;
+        var track = firstTrack;
+        var sector = firstSector;
         while (track != 0)
         {
-            if (!visited.Add((track, sector))) throw new InvalidDataException($"Cyclic data chain at {track}/{sector}.");
-            if (!TryGetSector(image, track, sector, out var data)) throw new InvalidDataException($"Data sector {track}/{sector} is missing.");
-            var nextTrack = data[0]; var nextSector = data[1];
-            var used = nextTrack == 0 ? Math.Clamp(nextSector - 1, 0, 254) : 254;
-            stream.Write(data, 2, used);
-            track = nextTrack; sector = nextSector;
-            if (stream.Length > image.Capacity) { warnings.Add($"{name}: file chain exceeds image capacity."); break; }
+            if (!visited.Add((track, sector))) throw CommodoreDosExceptions.CyclicChain(name, track, sector);
+            if (!TryGetSector(image, track, sector, out var data)) throw CommodoreDosExceptions.MissingDataSector(name, track, sector);
+            var nextTrack = data[CommodoreDosLayout.NextTrackOffset];
+            var nextSector = data[CommodoreDosLayout.NextSectorOffset];
+            var used = nextTrack == 0 ? Math.Clamp(nextSector - 1, 0, CommodoreDosLayout.DataBytesPerSector) : CommodoreDosLayout.DataBytesPerSector;
+            stream.Write(data, CommodoreDosLayout.DirectoryEntriesOffset, used);
+            track = nextTrack;
+            sector = nextSector;
+            if (stream.Length > image.Capacity) { warnings.Add(CommodoreDosExceptions.ChainExceedsCapacity(name)); break; }
         }
         return stream.ToArray();
     }
 
-    private static int ReadFreeBlocks(SectorImage image, bool is1581)
+    /// <summary>Compte les blocs libres déclarés dans le BAM.</summary>
+    private static int ReadFreeBlocks(SectorImage image, CommodoreDosLayout layout)
     {
-        if (!is1581)
+        if (ReferenceEquals(layout, CommodoreDosLayout.D64D71))
         {
             var tracksPerSide = image.Cylinders;
             var total = 0;
-            if (TryGetSector(image, 18, 0, out var bam))
-                for (var track = 1; track <= Math.Min(35, tracksPerSide); track++) total += bam[4 + (track - 1) * 4];
-            if (image.Heads > DiskGeometryConstants.SingleSidedHeadCount && TryGetSector(image, 18 + tracksPerSide, 0, out var secondBam))
-                for (var track = 1; track <= Math.Min(35, tracksPerSide); track++) total += secondBam[4 + (track - 1) * 4];
+            if (TryGetSector(image, layout.HeaderTrack, layout.BamSectors[0], out var bam))
+                for (var track = 1; track <= Math.Min(layout.BamEntryCount, tracksPerSide); track++) total += bam[layout.BamEntriesOffset + (track - 1) * layout.BamEntrySize];
+            if (image.Heads > DiskGeometryConstants.SingleSidedHeadCount && TryGetSector(image, layout.HeaderTrack + tracksPerSide, layout.BamSectors[0], out var secondBam))
+                for (var track = 1; track <= Math.Min(layout.BamEntryCount, tracksPerSide); track++) total += secondBam[layout.BamEntriesOffset + (track - 1) * layout.BamEntrySize];
             return total;
         }
         var free = 0;
-        foreach (var bamSector in new[] { 1, 2 })
+        foreach (var bamSector in layout.BamSectors)
         {
-            if (!TryGetSector(image, 40, bamSector, out var bam)) continue;
-            for (var entry = 0; entry < 40; entry++)
+            if (!TryGetSector(image, layout.HeaderTrack, bamSector, out var bam)) continue;
+            for (var entry = 0; entry < layout.BamEntryCount; entry++)
             {
-                var offset = 16 + entry * 6;
+                var offset = layout.BamEntriesOffset + entry * layout.BamEntrySize;
                 if (offset < bam.Length) free += bam[offset];
             }
         }
         return free;
     }
 
+    /// <summary>Tente de lire un secteur Commodore à partir de son adresse piste/secteur.</summary>
     internal static bool TryGetSector(SectorImage image, int track, int sector, out byte[] data)
     {
         try
         {
             var logical = ToLogicalBlock(image, track, sector);
-            if (image.TryGetBlock(logical, out var block) && block.Data.Count == 256) { data = block.Data.ToArray(); return true; }
+            if (image.TryGetBlock(logical, out var block) && block.Data.Count == CommodoreDosLayout.SectorSize) { data = block.Data.ToArray(); return true; }
         }
         catch (ArgumentOutOfRangeException) { }
-        data = []; return false;
+        data = [];
+        return false;
     }
 
+    /// <summary>Convertit une adresse Commodore en numéro de bloc logique.</summary>
     internal static int ToLogicalBlock(SectorImage image, int track, int sector)
     {
         if (image.FormatId == DiskImageFormatIds.Commodore1581) return Commodore1581Geometry.ToLogicalBlock(track, sector);
@@ -140,60 +147,39 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
         return image.Heads == Commodore1571Geometry.SideCount ? Commodore1571Geometry.ToLogicalBlock(sideTrack, sector, tracksPerSide, side) : Commodore1541Geometry.ToSideLogicalBlock(sideTrack, sector, tracksPerSide);
     }
 
+    /// <summary>Tente de convertir une adresse Commodore en numéro de bloc logique.</summary>
     private static int TryToLogicalBlock(SectorImage image, int track, int sector)
     {
         try { return ToLogicalBlock(image, track, sector); }
         catch (ArgumentOutOfRangeException) { return -1; }
     }
 
-    private static bool HasPlausibleDirectory(SectorImage image, byte[] header, int headerTrack, bool is1581)
+    /// <summary>Vérifie que la chaîne de répertoire contient uniquement des entrées plausibles.</summary>
+    private static bool HasPlausibleDirectory(SectorImage image, byte[] header, CommodoreDosLayout layout)
     {
-        var track = header[0] == 0 ? headerTrack : header[0];
-        var sector = header[0] == 0 ? (is1581 ? 3 : 1) : header[1];
+        var track = header[CommodoreDosLayout.NextTrackOffset] == 0 ? layout.DirectoryTrack : header[CommodoreDosLayout.NextTrackOffset];
+        var sector = header[CommodoreDosLayout.NextTrackOffset] == 0 ? layout.DirectorySector : header[CommodoreDosLayout.NextSectorOffset];
         var visited = new HashSet<(int Track, int Sector)>();
         var valid = 0;
         var invalid = 0;
-        while (track != 0 && visited.Count < 64 && visited.Add((track, sector)))
+        while (track != 0 && visited.Count < CommodoreDosLayout.MaximumDirectoryChainLength && visited.Add((track, sector)))
         {
             if (!TryGetSector(image, track, sector, out var data)) return false;
-            for (var slot = 0; slot < 8; slot++)
+            for (var slot = 0; slot < CommodoreDosLayout.DirectoryEntryCount; slot++)
             {
-                var offset = 2 + slot * 32;
-                var rawType = data[offset];
+                var offset = CommodoreDosLayout.DirectoryEntriesOffset + slot * CommodoreDosLayout.DirectoryEntrySize;
+                var rawType = data[offset + CommodoreDosLayout.FileTypeOffset];
                 if ((rawType & 0x0f) == 0) continue;
-                var type = rawType & 7;
-                var name = Petscii.Decode(data.AsSpan(offset + 3, 16));
-                var dataTrack = data[offset + 1];
-                var dataSector = data[offset + 2];
-                var plausible = type is >= 1 and <= 5 && name.Length > 0 && !name.Contains('\ufffd')
-                    && (dataTrack == 0 || TryToLogicalBlock(image, dataTrack, dataSector) >= 0);
+                var type = rawType & 0x07;
+                var name = PetsciiDecoder.Decode(data.AsSpan(offset + CommodoreDosLayout.FileNameOffset, CommodoreDosLayout.NameLength));
+                var dataTrack = data[offset + CommodoreDosLayout.FirstDataTrackOffset];
+                var dataSector = data[offset + CommodoreDosLayout.FirstDataSectorOffset];
+                var plausible = type is >= 1 and <= 5 && name.Length > 0 && !name.Contains('\ufffd') && (dataTrack == 0 || TryToLogicalBlock(image, dataTrack, dataSector) >= 0);
                 if (plausible) valid++; else invalid++;
             }
-            track = data[0];
-            sector = data[1];
+            track = data[CommodoreDosLayout.NextTrackOffset];
+            sector = data[CommodoreDosLayout.NextSectorOffset];
         }
         return invalid == 0 && (valid > 0 || visited.Count == 1);
-    }
-
-    private static string TypeName(int type) => type switch { 1 => "SEQ", 2 => "PRG", 3 => "USR", 4 => "REL", 5 => "CBM", _ => "DEL" };
-
-    private static class Petscii
-    {
-        public static string Decode(ReadOnlySpan<byte> bytes)
-        {
-            var chars = new List<char>(bytes.Length);
-            foreach (var raw in bytes)
-            {
-                if (raw is 0 or 0xa0) break;
-                var value = (byte)(raw & 0x7f);
-                chars.Add(value switch
-                {
-                    >= 0x20 and <= 0x5f => (char)value,
-                    >= 0x60 and <= 0x7a => (char)(value - 0x20),
-                    _ => '�'
-                });
-            }
-            return new string(chars.ToArray()).Trim();
-        }
     }
 }
