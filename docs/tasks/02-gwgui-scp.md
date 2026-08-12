@@ -5307,10 +5307,10 @@
     - [x] Vérifier qu'aucun consommateur ne référence encore le wrapper.
 
 - [ ] Compléments issus de la relecture complète de la reconstruction sectorielle
-  - [ ] `SectorImages/IsoScpSectorImagePolicyRegistry.cs`
-    - [ ] Remplacer les préfixes de formats bruts par `DiskImageFormatIds`.
-    - [ ] Documenter en français le type et `Resolve`, notamment la politique automatique obtenue avec un identifiant nul et la politique générique obtenue avec un identifiant explicite non inscrit.
-    - [ ] Tester la résolution des familles Atari 8 bits, Atari ST, Amstrad, IBM/Macintosh 1 440 Kio, Acorn DFS, Epson QX-10 et UCSD, puis les deux replis nul et explicite non inscrit.
+  - [x] `SectorImages/IsoScpSectorImagePolicyRegistry.cs`
+    - [x] Remplacer les préfixes de formats bruts par `DiskImageFormatIds`.
+    - [x] Documenter en français le type et `Resolve`, notamment la politique automatique obtenue avec un identifiant nul et la politique générique obtenue avec un identifiant explicite non inscrit.
+    - [x] Tester la résolution des familles Atari 8 bits, Atari ST, Amstrad, IBM/Macintosh 1 440 Kio, Acorn DFS, Epson QX-10 et UCSD, puis les deux replis nul et explicite non inscrit.
   - [ ] `SectorImages/IsoSectorImageBuilder.cs`
     - [ ] Créer un type nommé pour le résultat à six valeurs actuellement retourné par `Measure`.
     - [ ] Extraire la règle de sélection du meilleur secteur dans `Reconstruction/SectorCandidateSelector.cs` et ne raccorder que les classements strictement identiques.
