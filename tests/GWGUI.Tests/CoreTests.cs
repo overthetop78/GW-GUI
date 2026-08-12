@@ -268,6 +268,8 @@ public sealed class CoreTests
                 var logOutput = Assert.IsType<System.Windows.Controls.TextBox>(window.FindName("LogOutput"));
                 var mainTabs = Assert.IsType<System.Windows.Controls.TabControl>(window.FindName("MainTabs"));
                 var readExecute = Assert.IsType<System.Windows.Controls.Button>(window.FindName("ReadExecuteButton"));
+                foreach (var automationId in new[] { "ReadExecuteButton", "WriteExecuteButton", "ConvertExecuteButton", "EraseExecuteButton", "CleanExecuteButton" })
+                    Assert.Equal(automationId, AutomationProperties.GetAutomationId(Assert.IsType<System.Windows.Controls.Button>(window.FindName(automationId))));
                 foreach (var named in new FrameworkElement[] { readFileName, readExtension, writeSource, convertSource, convertOutput, commandPreview, logOutput, mainTabs })
                     Assert.False(string.IsNullOrWhiteSpace(AutomationProperties.GetName(named)));
                 Assert.NotEqual(AutomationProperties.GetName(commandPreview), AutomationProperties.GetName(logOutput));

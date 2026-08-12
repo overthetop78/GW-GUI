@@ -14,6 +14,6 @@
                 <controls:ConversionFormatsSection x:Name="FormatsSection" Grid.Row="3"/>
             </Grid>
         </ScrollViewer>
-        <Button Grid.Row="1" x:Name="ExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12"/>
+        <Button Grid.Row="1" x:Name="ExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" AutomationProperties.AutomationId="ConvertExecuteButton"/>
     </Grid>
 </UserControl>

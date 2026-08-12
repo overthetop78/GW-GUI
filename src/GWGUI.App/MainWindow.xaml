@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <controls:MainMenu x:Name="ApplicationMenu"/>
-        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}">
+        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}" AutomationProperties.AutomationId="MainTabs">
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Read}"><TabItem.Header><controls:MainTabHeader Icon="&#xE768;" Text="{l:Loc Tab.Read}"/></TabItem.Header>
                 <controls:ReadTabSection x:Name="ReadTabBlock"/>
             </TabItem>

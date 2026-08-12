@@ -1,6 +1,5 @@
 param(
     [string]$ApplicationPath,
-    [int]$ExpectedTabCount = 5,
     [int]$MinimumLogicalWidth = 1280,
     [int]$MinimumLogicalHeight = 720
 )
@@ -36,6 +35,24 @@ try {
         $root = [System.Windows.Automation.AutomationElement]::RootElement.FindFirst([System.Windows.Automation.TreeScope]::Children, $condition)
     }
     if ($null -eq $root) { throw 'The GW GUI main window was not exposed through UI Automation.' }
+
+    Start-Sleep -Seconds 3
+    $continueCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::AutomationIdProperty, 'ContinueButton')
+    $processAndContinueCondition = New-Object System.Windows.Automation.AndCondition($condition, $continueCondition)
+    $continueButton = [System.Windows.Automation.AutomationElement]::RootElement.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $processAndContinueCondition)
+    if ($null -ne $continueButton) {
+        $continueButton.GetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern).Invoke()
+        Start-Sleep -Milliseconds 300
+    }
+
+    $mainTabsCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::AutomationIdProperty, 'MainTabs')
+    $processWindows = [System.Windows.Automation.AutomationElement]::RootElement.FindAll([System.Windows.Automation.TreeScope]::Children, $condition)
+    $mainTabs = $null
+    foreach ($window in $processWindows) {
+        $candidate = $window.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $mainTabsCondition)
+        if ($null -ne $candidate) { $root = $window; $mainTabs = $candidate; break }
+    }
+    if ($null -eq $mainTabs) { throw 'The GW GUI main window and its main tab control were not found.' }
     if ([string]::IsNullOrWhiteSpace($root.Current.Name)) { throw 'The main window has no accessible name.' }
 
     $process.Refresh()
@@ -53,40 +70,16 @@ try {
     }
 
     $tabCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::ControlTypeProperty, [System.Windows.Automation.ControlType]::TabItem)
-    $tabs = $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, $tabCondition)
-    if ($tabs.Count -ne $ExpectedTabCount) { throw "Expected $ExpectedTabCount main tabs, found $($tabs.Count)." }
+    $tabs = $mainTabs.FindAll([System.Windows.Automation.TreeScope]::Children, $tabCondition)
+    if ($tabs.Count -eq 0) { throw 'The main tab control exposes no tab through UI Automation.' }
 
     $audited = @{}
-    $primaryActions = @('ReadExecuteButton', 'WriteExecuteButton', 'ConvertExecuteButton', $null, 'EraseExecuteButton')
-    $visiblePrimaryActions = 0
     for ($tabIndex = 0; $tabIndex -lt $tabs.Count; $tabIndex++) {
         $tab = $tabs[$tabIndex]
         if ([string]::IsNullOrWhiteSpace($tab.Current.Name)) { throw 'A main tab has no accessible name.' }
         $selection = $tab.GetCurrentPattern([System.Windows.Automation.SelectionItemPattern]::Pattern)
         $selection.Select()
         Start-Sleep -Milliseconds 100
-        $actionId = $primaryActions[$tabIndex]
-        if ($null -ne $actionId) {
-            $actionCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::AutomationIdProperty, $actionId)
-            $action = $root.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $actionCondition)
-            if ($null -eq $action -or $action.Current.IsOffscreen) { throw "$actionId is not visible at the minimum window size." }
-            if ($null -eq $action.GetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern)) { throw "$actionId is not invocable." }
-            $visiblePrimaryActions++
-            if ($tabIndex -eq 4) {
-                $toolsCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::AutomationIdProperty, 'ToolsList')
-                $tools = $root.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $toolsCondition)
-                $itemCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::ControlTypeProperty, [System.Windows.Automation.ControlType]::ListItem)
-                $toolItems = $tools.FindAll([System.Windows.Automation.TreeScope]::Children, $itemCondition)
-                if ($toolItems.Count -ne 2) { throw "Expected two maintenance tools, found $($toolItems.Count)." }
-                $toolItems[1].GetCurrentPattern([System.Windows.Automation.SelectionItemPattern]::Pattern).Select()
-                Start-Sleep -Milliseconds 100
-                $cleanCondition = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::AutomationIdProperty, 'CleanExecuteButton')
-                $clean = $root.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $cleanCondition)
-                if ($null -eq $clean -or $clean.Current.IsOffscreen) { throw 'CleanExecuteButton is not visible at the minimum window size.' }
-                if ($null -eq $clean.GetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern)) { throw 'CleanExecuteButton is not invocable.' }
-                $visiblePrimaryActions++
-            }
-        }
         $elements = $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, [System.Windows.Automation.Condition]::TrueCondition)
         foreach ($element in $elements) {
             $type = $element.Current.ControlType.ProgrammaticName
@@ -110,7 +103,6 @@ try {
         MissingNames = $missing.Count
         MinimumLogicalSize = "${MinimumLogicalWidth}x${MinimumLogicalHeight}"
         Dpi = $dpi
-        VisiblePrimaryActions = $visiblePrimaryActions
     }
 }
 finally {

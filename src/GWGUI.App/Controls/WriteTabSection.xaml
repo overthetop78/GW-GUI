@@ -13,6 +13,6 @@
                 <controls:WriteFormatSection x:Name="FormatSection" Grid.Row="2" Margin="0,0,0,12"/>
             </Grid>
         </ScrollViewer>
-        <Button Grid.Row="1" x:Name="ExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12"/>
+        <Button Grid.Row="1" x:Name="ExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" AutomationProperties.AutomationId="WriteExecuteButton"/>
     </Grid>
 </UserControl>
