@@ -21,7 +21,7 @@ public class AppleMacGcrTrackEncoder : TrackEncoderBase
         var bits = TrackBitEncoding.Bits();
         ValidateValue(nameof(request.Cylinder), request.Cylinder, AppleIwmGcrFormat.MaximumCylinder);
         ValidateValue(nameof(request.Head), request.Head, AppleIwmGcrFormat.MaximumHead);
-        var formatValue = Attribute(request, AppleIwmGcrFormat.FormatAttributeName, DefaultFormat);
+        var formatValue = Attribute(request, TrackEncodingAttributeKeys.Format, DefaultFormat);
         ValidateValue(nameof(formatValue), formatValue, AppleIwmGcrFormat.MaximumSixBitValue);
         var format = (byte)formatValue;
         foreach (var sector in request.Sectors)
@@ -51,8 +51,8 @@ public class AppleMacGcrTrackEncoder : TrackEncoderBase
         var tags = new byte[AppleIwmGcrFormat.TagByteCount];
         for (var index = 0; index < tags.Length; index++)
         {
-            var value = Attribute(sector, AppleIwmGcrFormat.TagAttributeName(index), 0);
-            ValidateValue(AppleIwmGcrFormat.TagAttributeName(index), value, AppleIwmGcrFormat.MaximumTagValue);
+            var value = Attribute(sector, TrackEncodingAttributeKeys.Tag(index), 0);
+            ValidateValue(TrackEncodingAttributeKeys.Tag(index), value, AppleIwmGcrFormat.MaximumTagValue);
             tags[index] = (byte)value;
         }
         return tags;

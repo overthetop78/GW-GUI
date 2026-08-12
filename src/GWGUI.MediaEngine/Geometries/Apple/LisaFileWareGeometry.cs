@@ -12,6 +12,8 @@ public static class LisaFileWareGeometry
     public const int CylinderCount = 46;
     /// <summary>Nombre de faces.</summary>
     public const int HeadCount = DiskGeometryConstants.DoubleSidedHeadCount;
+    /// <summary>Dernier nombre de pistes pouvant encore représenter une image Lisa déjà structurée.</summary>
+    public const int LinearTrackThreshold = 84;
     /// <summary>Nombre maximal de secteurs par piste.</summary>
     public const int MaximumSectorsPerTrack = 22;
     /// <summary>Borne exclusive de la première zone.</summary>

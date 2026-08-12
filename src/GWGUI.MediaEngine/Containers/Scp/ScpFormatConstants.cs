@@ -5,6 +5,8 @@ namespace GWGUI.MediaEngine.Containers.Scp;
 /// </summary>
 public static class ScpFormatConstants
 {
+    /// <summary>Convertit une adresse cylindre/tête en numéro de piste SCP.</summary>
+    public static byte ToTrackNumber(int cylinder, int head) => checked((byte)(cylinder * 2 + head));
     /// <summary>Position du premier octet d’un conteneur SCP.</summary>
     public const int FileStartOffset = 0;
 

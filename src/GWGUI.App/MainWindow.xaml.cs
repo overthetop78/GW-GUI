@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Visualization;
 using System.ComponentModel;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;

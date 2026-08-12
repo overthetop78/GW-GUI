@@ -21,6 +21,10 @@ public static class Commodore1581Geometry
     public const int PhysicalSectorSize = 512;
     /// <summary>Nombre de secteurs physiques par piste et par face.</summary>
     public const int PhysicalSectorsPerTrack = 10;
+    /// <summary>Premier numéro de secteur physique.</summary>
+    public const int FirstPhysicalSectorNumber = 1;
+    /// <summary>Code ISO correspondant à un secteur physique de 512 octets.</summary>
+    public const byte PhysicalSectorSizeCode = 2;
     /// <summary>Nombre de blocs logiques contenus dans un secteur physique.</summary>
     public const int LogicalBlocksPerPhysicalSector = PhysicalSectorSize / LogicalBlockSize;
 

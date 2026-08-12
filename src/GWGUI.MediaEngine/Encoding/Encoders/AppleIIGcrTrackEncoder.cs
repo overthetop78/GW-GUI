@@ -45,7 +45,7 @@ public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
     {
         var sectorCount = request.Sectors.Count;
         var explicitSectorCount = 0;
-        var hasExplicitFormat = request.Attributes is not null && request.Attributes.TryGetValue(AppleIIGcrFormat.SectorsPerTrackAttributeName, out explicitSectorCount);
+        var hasExplicitFormat = request.Attributes is not null && request.Attributes.TryGetValue(TrackEncodingAttributeKeys.SectorsPerTrack, out explicitSectorCount);
         if (hasExplicitFormat) sectorCount = explicitSectorCount;
         var format = sectorCount switch { AppleIIGcrFormat.FiveAndThreeSectorsPerTrack => TrackFormat.FiveAndThree, AppleIIGcrFormat.SixAndTwoSectorsPerTrack => TrackFormat.SixAndTwo, _ => throw AppleIIGcrFormat.InvalidSectorsPerTrack(sectorCount) };
         if (hasExplicitFormat && request.Sectors.Count is AppleIIGcrFormat.FiveAndThreeSectorsPerTrack or AppleIIGcrFormat.SixAndTwoSectorsPerTrack && request.Sectors.Count != sectorCount) throw AppleIIGcrFormat.InvalidSectorsPerTrack(request.Sectors.Count);

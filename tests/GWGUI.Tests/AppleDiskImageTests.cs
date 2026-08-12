@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Exploration.Results;

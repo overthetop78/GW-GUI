@@ -1,4 +1,4 @@
-# 02 — Refactor complet et renommage en `GWGUI.MediaEngine`
+﻿# 02 — Refactor complet et renommage en `GWGUI.MediaEngine`
 
 ## Règles de découpage
 
@@ -8243,210 +8243,210 @@
     - [ ] Tester une source Apple non-RWTS18, une source inconnue et une sortie non prise en charge.
     - [ ] Tester l'annulation pendant la lecture et pendant l'écriture.
     - [ ] Tester le service avec ses dépendances injectées sans accès implicite à un nouveau registre.
-- [ ] `src/GWGUI.MediaEngine/Images/SectorImageFluxVisualizer.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/SectorImageFluxVisualizer.cs`.
-    - [ ] Adapter son namespace et les consommateurs de `GWGUI.App` et des tests.
-    - [ ] Ajouter `SectorImageVisualizationPolicyRegistry` aux dépendances injectables du constructeur et ne créer le registre par défaut qu’en l’absence d’une instance fournie.
-    - [ ] Faire utiliser le registre injecté par `CanVisualize` et `Create`.
-    - [ ] Supprimer `EncoderIdFor`, méthode interne sans consommateur qui construit actuellement un second registre de politiques.
-  - [ ] Encodage des pistes
-    - [ ] Extraire dans une méthode privée la création des secteurs de piste, la résolution de l’encodeur et la construction du `ScpTrack` afin que `Create` conserve uniquement le parcours ordonné des pistes.
-    - [ ] Ajouter à `ScpFormatConstants` la conversion inverse d’une adresse cylindre/tête vers un numéro de piste SCP, symétrique de `ToTrackAddress`.
-    - [ ] Remplacer le calcul brut `cylinder * 2 + head` par cette conversion commune.
-    - [ ] Conserver les identifiants d’encodeurs dans les politiques et les raccorder à `FluxCodecIds` dans leurs groupes respectifs.
-  - [ ] Construction de l’image SCP de visualisation
-    - [ ] Créer `Visualization/ScpVisualizationDefaults.cs` pour nommer la version, le type de disque, le nombre de révolutions, la résolution et le checksum employés lors de la création de l’en-tête synthétique.
-    - [ ] Remplacer les valeurs brutes `0, 0, 1, 0, 0` du constructeur de `ScpHeader` par ces définitions sans modifier leur valeur.
-    - [ ] Conserver les drapeaux `IndexAligned | Writable`, l’encodage `Default16Bit` et la sélection de tête sous leurs enums existants.
-    - [ ] Créer `Visualization/SectorImageVisualizationExceptions.cs` avec une erreur recevant l’identifiant du format sans politique ou encodeur et une erreur pour une image ne produisant aucune piste.
-    - [ ] Remplacer les deux textes d’erreur anglais écrits dans `Create` par ces méthodes paramétrées.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne la résolution de politique, les appels courts à `CreateTrackSectors` et `Encode`, la construction de `TrackEncodeRequest` et les expressions LINQ lorsqu’ils tiennent lisiblement.
-    - [ ] Conserver une instruction par ligne dans la boucle d’encodage.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `SectorImageFluxVisualizer`, `ScpVisualizationDefaults` et `SectorImageVisualizationExceptions`.
-    - [ ] Ajouter la documentation XML française du constructeur, de `CanVisualize`, de `Create` et des méthodes privées extraites, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests ciblés
-    - [ ] Tester `CanVisualize` et `Create` avec un registre de politiques injecté afin de vérifier que le registre par défaut n’est pas utilisé à sa place.
-    - [ ] Vérifier l’ordre cylindre/tête, les numéros de pistes SCP, la sélection de tête et les valeurs de l’en-tête synthétique produits pour une image connue.
-    - [ ] Tester l’absence de politique, l’absence d’encodeur et une politique ne produisant aucun secteur, puis vérifier les informations injectées dans les erreurs.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/AppleVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/AppleVisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `TrackAttributes` ensemble, car elles constituent les décisions cohérentes d’une même politique Apple.
-  - [ ] Identifiants et attributs d’encodage
-    - [ ] Remplacer `apple2.rwts18`, `applemac.gcr`, `apple2.gcr`, `applelisa.fileware.gcr` et `iso.mfm` par les membres correspondants de `FluxCodecIds`.
-    - [ ] Créer dans le modèle d’encodage commun les clés d’attribut `SectorsPerTrack` et `Format`, puis faire utiliser ces mêmes définitions par la politique et les encodeurs qui lisent actuellement les textes `sectorsPerTrack` et `format`.
-    - [ ] Définir dans les définitions d’encodage Apple les codes de format `0x24`, `0x02`, `0x22` et `0x12`, avec un nom décrivant chaque variante Apple II, Macintosh ou Lisa.
-    - [ ] Remplacer les chaînes, clés et codes bruts de `EncoderId` et `TrackAttributes` par ces définitions.
-  - [ ] Géométries et découpage des blocs Apple
-    - [ ] Raccorder les tailles de blocs ProDOS et de secteurs Apple II aux définitions sectorielles Apple existantes au lieu de conserver `512`, `256` et le facteur `2` en brut.
-    - [ ] Raccorder la limite de cylindres ProDOS/Macintosh, la face unique Lisa et le seuil de cylindres Lisa à `AppleDiskGeometry` ou aux définitions Apple qui possèdent déjà ces règles.
-    - [ ] Conserver dans `CreateTrackSectors` le découpage d’un bloc ProDOS ou SOS en deux secteurs et vérifier qu’il ne modifie ni leur numéro ni leur ordre.
-    - [ ] Conserver dans `VisualAddress` la conversion des pistes Lisa en cylindre et face de visualisation, après remplacement des valeurs brutes par les définitions Apple.
-  - [ ] Mise en forme
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
-    - [ ] Remettre sur une seule ligne les signatures, conditions et créations de dictionnaires qui tiennent lisiblement ; conserver plusieurs lignes uniquement pour les expressions réellement trop longues.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française du type `AppleVisualizationPolicy`.
-    - [ ] Ajouter la documentation XML française des méthodes `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `TrackAttributes`, avec paramètres, résultat, unités et règles Apple appliquées.
-  - [ ] Tests ciblés
-    - [ ] Tester la sélection des encodeurs RWTS18, Apple II GCR, Macintosh GCR, Lisa FileWare GCR et ISO MFM avec un identifiant de chaque famille.
-    - [ ] Tester le découpage ProDOS/SOS en deux secteurs de 256 octets, leur ordre et le rejet des blocs trop courts.
-    - [ ] Tester la conversion d’adresse Lisa et les attributs produits pour Apple II, Macintosh simple face, Macintosh double face et Lisa.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/AtariVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/AtariVisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver `CanHandle`, `EncoderId` et `VisualAddress` ensemble, car elles constituent les décisions d’une même politique Atari.
-  - [ ] Codecs et géométries Atari
-    - [ ] Remplacer `iso.fm` et `iso.mfm` par les membres correspondants de `FluxCodecIds`.
-    - [ ] Créer `Geometries/Atari/Atari8BitGeometry.cs` avec les nombres de secteurs par piste des variantes simple et densité améliorée, la face unique, le premier numéro de secteur et le nombre de pistes logiques d’une image linéaire Atari 8 bits.
-    - [ ] Raccorder cette définition aux nombres de secteurs déjà utilisés par `AtrFormat` afin qu’ATR et la visualisation ne décrivent pas séparément la même géométrie.
-    - [ ] Remplacer dans `VisualAddress` les valeurs brutes `1`, `18`, `26`, `0` et l’ajustement de numéro de secteur par les membres nommés de cette géométrie.
-    - [ ] Conserver `DiskGeometryConstants.EightyTrackCylinderCount` lorsqu’il représente réellement la limite séparant une image déjà en CHS d’une image linéaire Atari 8 bits.
-  - [ ] Mise en forme
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
-    - [ ] Remettre sur une seule ligne les signatures et conditions qui tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `AtariVisualizationPolicy`, `Atari8BitGeometry` et de chaque membre ajouté.
-    - [ ] Ajouter la documentation XML française de `CanHandle`, `EncoderId` et `VisualAddress`, avec paramètres, résultat et règle de conversion d’adresse.
-  - [ ] Tests ciblés
-    - [ ] Tester la sélection FM pour Atari 90 et MFM pour les autres identifiants Atari pris en charge.
-    - [ ] Tester la conversion linéaire en adresses de pistes à 18 et 26 secteurs ainsi que la conservation d’une adresse Atari ST déjà structurée.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/CommodoreVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/CommodoreVisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `BitCellTicks` ensemble comme décisions de visualisation Commodore.
-  - [ ] Codecs et géométries Commodore
-    - [ ] Remplacer `iso.mfm`, `commodore900.gcr` et `commodore.gcr` par les membres correspondants de `FluxCodecIds`.
-    - [ ] Faire utiliser `Geometries/Commodore/Commodore1581Geometry` pour regrouper deux blocs logiques de 256 octets en un secteur physique de 512 octets et pour convertir l’adresse logique en cylindre, face et secteur physiques.
-    - [ ] Remplacer le diviseur `2`, les tailles `256` et `512`, les `10` secteurs par face, les `20` secteurs par cylindre physique, le premier secteur `1` et le code de taille `2` par les propriétés nommées de cette géométrie ou de la définition sectorielle commune.
-    - [ ] Vérifier que `CreateTrackSectors` ignore toujours un dernier demi-secteur incomplet et conserve l’ordre logique des deux moitiés.
-  - [ ] Zones d’encodage Commodore 900
-    - [ ] Créer `Encoding/Definitions/Commodore900Encoding.cs` avec les bornes de cylindres `39`, `53` et `64` et les ticks de cellule `86`, `93`, `100` et `106`.
-    - [ ] Faire utiliser cette définition par `BitCellTicks` et par tout autre encodeur Commodore 900 qui possède les mêmes zones.
-    - [ ] Remplacer le repli brut `40` par la valeur de ticks par défaut définie dans le modèle commun `TrackEncodeRequest`.
-  - [ ] Mise en forme
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
-    - [ ] Remettre sur une seule ligne les signatures, conditions et constructions courtes qui tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `CommodoreVisualizationPolicy`, `Commodore900Encoding` et de chaque membre ajouté.
-    - [ ] Ajouter la documentation XML française de `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `BitCellTicks`, avec paramètres, résultat, unités et règles de conversion.
-  - [ ] Tests ciblés
-    - [ ] Tester la sélection des encodeurs 1541/1571, 1581 et Commodore 900.
-    - [ ] Tester le regroupement de chaque paire de blocs D81, la conversion d’adresse physique et le rejet d’une moitié incomplète.
-    - [ ] Tester chaque frontière de zone Commodore 900 et la valeur par défaut d’une autre famille Commodore.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/DecRx02VisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/DecRx02VisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver `CanHandle`, `EncoderId` et `CreateTrackSectors` ensemble comme décisions de visualisation RX02.
-  - [ ] Codec et géométrie RX02
-    - [ ] Remplacer `dec.rx02` par le membre correspondant de `FluxCodecIds`.
-    - [ ] Faire utiliser `Geometries/Dec/DecRx02Geometry` pour la taille du bloc logique, la taille des secteurs physiques, le nombre de secteurs physiques par bloc et leur numérotation.
-    - [ ] Remplacer les valeurs brutes `512`, `256`, `2`, le premier secteur `1` et le code de taille `1` par les définitions précédentes ou par la définition commune des codes de taille sectorielle.
-    - [ ] Conserver l’ordre première moitié puis seconde moitié et ignorer comme aujourd’hui un bloc logique plus court que la taille RX02 attendue.
-  - [ ] Mise en forme
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
-    - [ ] Remettre sur une seule ligne la signature de `CreateTrackSectors` et les constructions courtes qui tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française du type `DecRx02VisualizationPolicy`.
-    - [ ] Ajouter la documentation XML française de `CanHandle`, `EncoderId` et `CreateTrackSectors`, avec paramètres, résultat, tailles et ordre des deux secteurs physiques.
-  - [ ] Tests ciblés
-    - [ ] Tester la reconnaissance de l’identifiant RX02 et la sélection de son encodeur.
-    - [ ] Tester la division d’un bloc logique connu en deux secteurs physiques, leurs numéros, leur code de taille et leur contenu.
-    - [ ] Vérifier qu’un bloc trop court ne produit aucun secteur.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/ExactVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/ExactVisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver l’identifiant d’encodeur reçu par le constructeur ; les remplacements des textes bruts doivent être effectués dans le registre qui construit la politique.
-  - [ ] Validation et immuabilité des paramètres
-    - [ ] Remplacer le paramètre primaire `params string[] formatIds` directement capturé par un champ en lecture seule contenant une copie de la collection reçue.
-    - [ ] Refuser un identifiant d’encodeur vide, une collection de formats vide et un identifiant de format vide avant de construire la politique.
-    - [ ] Conserver la comparaison exacte avec `StringComparer.OrdinalIgnoreCase`.
-  - [ ] Mise en forme
-    - [ ] Remettre la déclaration du type et l’expression complète de `CanHandle` sur une seule ligne lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `ExactVisualizationPolicy`, de son constructeur, de `CanHandle` et de `EncoderId`, avec paramètres, résultat et exceptions de validation.
-  - [ ] Tests ciblés
-    - [ ] Tester une correspondance exacte sans tenir compte de la casse, une absence de correspondance et plusieurs identifiants acceptés.
-    - [ ] Vérifier qu’une modification du tableau fourni après construction ne change pas les formats acceptés.
-    - [ ] Tester le rejet d’un encodeur vide, d’une collection vide et d’un identifiant de format vide.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/ISectorImageVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/ISectorImageVisualizationPolicy.cs`, à la racine du module qui expose ce contrat aux politiques et au visualiseur.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver le dictionnaire d’attributs extensible ; ne pas le remplacer par un enum fermé, car chaque encodeur peut définir ses propres attributs.
-  - [ ] Mise en forme
-    - [ ] Remettre la signature complète et courte de `CreateTrackSectors` sur une seule ligne.
-  - [ ] Documentation XML
-    - [ ] Documenter en français `ISectorImageVisualizationPolicy`, `CanHandle`, `EncoderId`, `VisualAddress`, `CreateTrackSectors`, `TrackAttributes` et `BitCellTicks`, avec paramètres, résultats, unités et rôle de chaque décision.
-  - [ ] Vérification du raccordement
-    - [ ] Compiler après le déplacement afin de vérifier que la classe de base, chaque politique, le registre et le visualiseur utilisent le contrat déplacé.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/PrefixVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/PrefixVisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver l’identifiant d’encodeur et les préfixes reçus par le constructeur ; les textes bruts doivent être remplacés dans le registre qui construit la politique.
-  - [ ] Validation et immuabilité des paramètres
-    - [ ] Remplacer le paramètre primaire `params string[] prefixes` directement capturé par un champ en lecture seule contenant une copie de la collection reçue.
-    - [ ] Refuser un identifiant d’encodeur vide, une collection de préfixes vide et un préfixe vide avant de construire la politique.
-    - [ ] Conserver la comparaison par préfixe avec `StringComparison.OrdinalIgnoreCase`.
-  - [ ] Mise en forme
-    - [ ] Remettre la déclaration du type et l’expression complète de `CanHandle` sur une seule ligne lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `PrefixVisualizationPolicy`, de son constructeur, de `CanHandle` et de `EncoderId`, avec paramètres, résultat et exceptions de validation.
-  - [ ] Tests ciblés
-    - [ ] Tester une correspondance de préfixe sans tenir compte de la casse, une absence de correspondance et plusieurs préfixes acceptés.
-    - [ ] Vérifier qu’une modification du tableau fourni après construction ne change pas les préfixes acceptés.
-    - [ ] Tester le rejet d’un encodeur vide, d’une collection vide et d’un préfixe vide.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/Policies/SectorImageVisualizationPolicy.cs`.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Conserver cette classe abstraite comme implémentation des comportements par défaut du contrat de visualisation.
-  - [ ] Définitions d’encodage communes
-    - [ ] Ajouter à `TrackEncoding` une conversion non levante de taille sectorielle vers code de taille, fondée sur la même règle que `SizeCode`.
-    - [ ] Remplacer la table locale `128` à `16384` de `SizeCode` par cette conversion commune, puis supprimer la méthode locale.
-    - [ ] Créer dans le modèle d’attributs d’encodage une fonction recevant l’index d’un tag et retournant sa clé technique.
-    - [ ] Faire utiliser cette fonction commune par `TagAttributes` et par `AppleMacGcrTrackEncoder` au lieu de reconstruire séparément `$"tag{index}"`.
-    - [ ] Remplacer le retour brut de `40` ticks par la valeur par défaut nommée de `TrackEncodeRequest`.
-    - [ ] Conserver `null` pour une taille sectorielle sans code ISO et pour une absence de tags ou d’attributs de piste.
-  - [ ] Découpage et mise en forme
-    - [ ] Conserver `TagAttributes` dans la classe de base, car elle traduit directement les tags de `SectorBlock` vers les attributs de `TrackSector` utilisés par toutes les politiques.
-    - [ ] Remettre sur une seule ligne la signature et l’expression de `CreateTrackSectors`, la projection des tags et les autres expressions courtes lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `SectorImageVisualizationPolicy` et des nouvelles définitions d’attributs et de conversion de taille.
-    - [ ] Ajouter la documentation XML française de `CanHandle`, `EncoderId`, `VisualAddress`, `CreateTrackSectors`, `TrackAttributes`, `BitCellTicks` et `TagAttributes`, avec paramètres, résultat, unités et comportements par défaut.
-  - [ ] Tests ciblés
-    - [ ] Tester les comportements par défaut d’adresse, de construction des secteurs, d’absence d’attributs et de ticks de cellule.
-    - [ ] Tester chaque taille sectorielle reconnue de 128 à 16 384 octets et une taille sans code.
-    - [ ] Tester la conversion d’une liste de tags en clés indexées et l’absence de dictionnaire pour une liste nulle ou vide.
-- [ ] `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicyRegistry.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Visualization/SectorImageVisualizationPolicyRegistry.cs`, à la racine du module qui l’utilise.
-    - [ ] Adapter son namespace et tous ses consommateurs.
-    - [ ] Ajouter un constructeur recevant une collection ordonnée de `ISectorImageVisualizationPolicy` et en conserver une copie en lecture seule.
-    - [ ] Conserver un constructeur ou une fabrique par défaut qui crée les politiques actuellement enregistrées dans le même ordre.
-    - [ ] Faire utiliser ce constructeur injectable par `SectorImageFluxVisualizer`.
-  - [ ] Catalogue par défaut
-    - [ ] Remplacer `amiga.mfm`, `iso.fm` et `iso.mfm` par les membres correspondants de `FluxCodecIds`.
-    - [ ] Conserver `DiskImageFormatIds` comme propriétaire des préfixes et identifiants de formats passés aux politiques exactes et par préfixe.
-    - [ ] Conserver explicitement l’ordre Apple, Commodore, DEC RX02, Atari, Amiga, Acorn DFS, Acorn ADFS, familles ISO MFM puis IMD/TD0, car `Resolve` retourne la première politique compatible.
-    - [ ] Refuser une collection de politiques nulle et une entrée nulle avant de construire le registre.
-  - [ ] Résolution et mise en forme
-    - [ ] Refuser une image nulle dans `Resolve` avec le nom du paramètre concerné.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
-    - [ ] Remettre sur une seule ligne les constructions de politiques et l’expression de `Resolve` lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `SectorImageVisualizationPolicyRegistry`, de ses constructeurs et de `Resolve`, avec paramètres, résultat, exceptions et règle de priorité.
-  - [ ] Tests ciblés
-    - [ ] Tester chaque association du catalogue par défaut entre famille de format et codec attendu.
-    - [ ] Tester que la première de deux politiques injectées compatibles est retournée.
-    - [ ] Vérifier qu’une modification de la collection fournie après construction ne modifie pas le registre.
-    - [ ] Tester le rejet d’une collection nulle, d’une politique nulle et d’une image nulle.
+- [x] `src/GWGUI.MediaEngine/Images/SectorImageFluxVisualizer.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/SectorImageFluxVisualizer.cs`.
+    - [x] Adapter son namespace et les consommateurs de `GWGUI.App` et des tests.
+    - [x] Ajouter `SectorImageVisualizationPolicyRegistry` aux dépendances injectables du constructeur et ne créer le registre par défaut qu’en l’absence d’une instance fournie.
+    - [x] Faire utiliser le registre injecté par `CanVisualize` et `Create`.
+    - [x] Supprimer `EncoderIdFor`, méthode interne sans consommateur qui construit actuellement un second registre de politiques.
+  - [x] Encodage des pistes
+    - [x] Extraire dans une méthode privée la création des secteurs de piste, la résolution de l’encodeur et la construction du `ScpTrack` afin que `Create` conserve uniquement le parcours ordonné des pistes.
+    - [x] Ajouter à `ScpFormatConstants` la conversion inverse d’une adresse cylindre/tête vers un numéro de piste SCP, symétrique de `ToTrackAddress`.
+    - [x] Remplacer le calcul brut `cylinder * 2 + head` par cette conversion commune.
+    - [x] Conserver les identifiants d’encodeurs dans les politiques et les raccorder à `FluxCodecIds` dans leurs groupes respectifs.
+  - [x] Construction de l’image SCP de visualisation
+    - [x] Créer `Visualization/ScpVisualizationDefaults.cs` pour nommer la version, le type de disque, le nombre de révolutions, la résolution et le checksum employés lors de la création de l’en-tête synthétique.
+    - [x] Remplacer les valeurs brutes `0, 0, 1, 0, 0` du constructeur de `ScpHeader` par ces définitions sans modifier leur valeur.
+    - [x] Conserver les drapeaux `IndexAligned | Writable`, l’encodage `Default16Bit` et la sélection de tête sous leurs enums existants.
+    - [x] Créer `Visualization/SectorImageVisualizationExceptions.cs` avec une erreur recevant l’identifiant du format sans politique ou encodeur et une erreur pour une image ne produisant aucune piste.
+    - [x] Remplacer les deux textes d’erreur anglais écrits dans `Create` par ces méthodes paramétrées.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne la résolution de politique, les appels courts à `CreateTrackSectors` et `Encode`, la construction de `TrackEncodeRequest` et les expressions LINQ lorsqu’ils tiennent lisiblement.
+    - [x] Conserver une instruction par ligne dans la boucle d’encodage.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `SectorImageFluxVisualizer`, `ScpVisualizationDefaults` et `SectorImageVisualizationExceptions`.
+    - [x] Ajouter la documentation XML française du constructeur, de `CanVisualize`, de `Create` et des méthodes privées extraites, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Tests ciblés
+    - [x] Tester `CanVisualize` et `Create` avec un registre de politiques injecté afin de vérifier que le registre par défaut n’est pas utilisé à sa place.
+    - [x] Vérifier l’ordre cylindre/tête, les numéros de pistes SCP, la sélection de tête et les valeurs de l’en-tête synthétique produits pour une image connue.
+    - [x] Tester l’absence de politique, l’absence d’encodeur et une politique ne produisant aucun secteur, puis vérifier les informations injectées dans les erreurs.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/AppleVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/AppleVisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `TrackAttributes` ensemble, car elles constituent les décisions cohérentes d’une même politique Apple.
+  - [x] Identifiants et attributs d’encodage
+    - [x] Remplacer `apple2.rwts18`, `applemac.gcr`, `apple2.gcr`, `applelisa.fileware.gcr` et `iso.mfm` par les membres correspondants de `FluxCodecIds`.
+    - [x] Créer dans le modèle d’encodage commun les clés d’attribut `SectorsPerTrack` et `Format`, puis faire utiliser ces mêmes définitions par la politique et les encodeurs qui lisent actuellement les textes `sectorsPerTrack` et `format`.
+    - [x] Définir dans les définitions d’encodage Apple les codes de format `0x24`, `0x02`, `0x22` et `0x12`, avec un nom décrivant chaque variante Apple II, Macintosh ou Lisa.
+    - [x] Remplacer les chaînes, clés et codes bruts de `EncoderId` et `TrackAttributes` par ces définitions.
+  - [x] Géométries et découpage des blocs Apple
+    - [x] Raccorder les tailles de blocs ProDOS et de secteurs Apple II aux définitions sectorielles Apple existantes au lieu de conserver `512`, `256` et le facteur `2` en brut.
+    - [x] Raccorder la limite de cylindres ProDOS/Macintosh, la face unique Lisa et le seuil de cylindres Lisa à `AppleDiskGeometry` ou aux définitions Apple qui possèdent déjà ces règles.
+    - [x] Conserver dans `CreateTrackSectors` le découpage d’un bloc ProDOS ou SOS en deux secteurs et vérifier qu’il ne modifie ni leur numéro ni leur ordre.
+    - [x] Conserver dans `VisualAddress` la conversion des pistes Lisa en cylindre et face de visualisation, après remplacement des valeurs brutes par les définitions Apple.
+  - [x] Mise en forme
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
+    - [x] Remettre sur une seule ligne les signatures, conditions et créations de dictionnaires qui tiennent lisiblement ; conserver plusieurs lignes uniquement pour les expressions réellement trop longues.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française du type `AppleVisualizationPolicy`.
+    - [x] Ajouter la documentation XML française des méthodes `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `TrackAttributes`, avec paramètres, résultat, unités et règles Apple appliquées.
+  - [x] Tests ciblés
+    - [x] Tester la sélection des encodeurs RWTS18, Apple II GCR, Macintosh GCR, Lisa FileWare GCR et ISO MFM avec un identifiant de chaque famille.
+    - [x] Tester le découpage ProDOS/SOS en deux secteurs de 256 octets, leur ordre et le rejet des blocs trop courts.
+    - [x] Tester la conversion d’adresse Lisa et les attributs produits pour Apple II, Macintosh simple face, Macintosh double face et Lisa.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/AtariVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/AtariVisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver `CanHandle`, `EncoderId` et `VisualAddress` ensemble, car elles constituent les décisions d’une même politique Atari.
+  - [x] Codecs et géométries Atari
+    - [x] Remplacer `iso.fm` et `iso.mfm` par les membres correspondants de `FluxCodecIds`.
+    - [x] Créer `Geometries/Atari/Atari8BitGeometry.cs` avec les nombres de secteurs par piste des variantes simple et densité améliorée, la face unique, le premier numéro de secteur et le nombre de pistes logiques d’une image linéaire Atari 8 bits.
+    - [x] Raccorder cette définition aux nombres de secteurs déjà utilisés par `AtrFormat` afin qu’ATR et la visualisation ne décrivent pas séparément la même géométrie.
+    - [x] Remplacer dans `VisualAddress` les valeurs brutes `1`, `18`, `26`, `0` et l’ajustement de numéro de secteur par les membres nommés de cette géométrie.
+    - [x] Conserver `DiskGeometryConstants.EightyTrackCylinderCount` lorsqu’il représente réellement la limite séparant une image déjà en CHS d’une image linéaire Atari 8 bits.
+  - [x] Mise en forme
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
+    - [x] Remettre sur une seule ligne les signatures et conditions qui tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `AtariVisualizationPolicy`, `Atari8BitGeometry` et de chaque membre ajouté.
+    - [x] Ajouter la documentation XML française de `CanHandle`, `EncoderId` et `VisualAddress`, avec paramètres, résultat et règle de conversion d’adresse.
+  - [x] Tests ciblés
+    - [x] Tester la sélection FM pour Atari 90 et MFM pour les autres identifiants Atari pris en charge.
+    - [x] Tester la conversion linéaire en adresses de pistes à 18 et 26 secteurs ainsi que la conservation d’une adresse Atari ST déjà structurée.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/CommodoreVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/CommodoreVisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `BitCellTicks` ensemble comme décisions de visualisation Commodore.
+  - [x] Codecs et géométries Commodore
+    - [x] Remplacer `iso.mfm`, `commodore900.gcr` et `commodore.gcr` par les membres correspondants de `FluxCodecIds`.
+    - [x] Faire utiliser `Geometries/Commodore/Commodore1581Geometry` pour regrouper deux blocs logiques de 256 octets en un secteur physique de 512 octets et pour convertir l’adresse logique en cylindre, face et secteur physiques.
+    - [x] Remplacer le diviseur `2`, les tailles `256` et `512`, les `10` secteurs par face, les `20` secteurs par cylindre physique, le premier secteur `1` et le code de taille `2` par les propriétés nommées de cette géométrie ou de la définition sectorielle commune.
+    - [x] Vérifier que `CreateTrackSectors` ignore toujours un dernier demi-secteur incomplet et conserve l’ordre logique des deux moitiés.
+  - [x] Zones d’encodage Commodore 900
+    - [x] Créer `Encoding/Definitions/Commodore900Encoding.cs` avec les bornes de cylindres `39`, `53` et `64` et les ticks de cellule `86`, `93`, `100` et `106`.
+    - [x] Faire utiliser cette définition par `BitCellTicks` et par tout autre encodeur Commodore 900 qui possède les mêmes zones.
+    - [x] Remplacer le repli brut `40` par la valeur de ticks par défaut définie dans le modèle commun `TrackEncodeRequest`.
+  - [x] Mise en forme
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
+    - [x] Remettre sur une seule ligne les signatures, conditions et constructions courtes qui tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `CommodoreVisualizationPolicy`, `Commodore900Encoding` et de chaque membre ajouté.
+    - [x] Ajouter la documentation XML française de `CanHandle`, `EncoderId`, `CreateTrackSectors`, `VisualAddress` et `BitCellTicks`, avec paramètres, résultat, unités et règles de conversion.
+  - [x] Tests ciblés
+    - [x] Tester la sélection des encodeurs 1541/1571, 1581 et Commodore 900.
+    - [x] Tester le regroupement de chaque paire de blocs D81, la conversion d’adresse physique et le rejet d’une moitié incomplète.
+    - [x] Tester chaque frontière de zone Commodore 900 et la valeur par défaut d’une autre famille Commodore.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/DecRx02VisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/DecRx02VisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver `CanHandle`, `EncoderId` et `CreateTrackSectors` ensemble comme décisions de visualisation RX02.
+  - [x] Codec et géométrie RX02
+    - [x] Remplacer `dec.rx02` par le membre correspondant de `FluxCodecIds`.
+    - [x] Faire utiliser `Geometries/Dec/DecRx02Geometry` pour la taille du bloc logique, la taille des secteurs physiques, le nombre de secteurs physiques par bloc et leur numérotation.
+    - [x] Remplacer les valeurs brutes `512`, `256`, `2`, le premier secteur `1` et le code de taille `1` par les définitions précédentes ou par la définition commune des codes de taille sectorielle.
+    - [x] Conserver l’ordre première moitié puis seconde moitié et ignorer comme aujourd’hui un bloc logique plus court que la taille RX02 attendue.
+  - [x] Mise en forme
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
+    - [x] Remettre sur une seule ligne la signature de `CreateTrackSectors` et les constructions courtes qui tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française du type `DecRx02VisualizationPolicy`.
+    - [x] Ajouter la documentation XML française de `CanHandle`, `EncoderId` et `CreateTrackSectors`, avec paramètres, résultat, tailles et ordre des deux secteurs physiques.
+  - [x] Tests ciblés
+    - [x] Tester la reconnaissance de l’identifiant RX02 et la sélection de son encodeur.
+    - [x] Tester la division d’un bloc logique connu en deux secteurs physiques, leurs numéros, leur code de taille et leur contenu.
+    - [x] Vérifier qu’un bloc trop court ne produit aucun secteur.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/ExactVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/ExactVisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver l’identifiant d’encodeur reçu par le constructeur ; les remplacements des textes bruts doivent être effectués dans le registre qui construit la politique.
+  - [x] Validation et immuabilité des paramètres
+    - [x] Remplacer le paramètre primaire `params string[] formatIds` directement capturé par un champ en lecture seule contenant une copie de la collection reçue.
+    - [x] Refuser un identifiant d’encodeur vide, une collection de formats vide et un identifiant de format vide avant de construire la politique.
+    - [x] Conserver la comparaison exacte avec `StringComparer.OrdinalIgnoreCase`.
+  - [x] Mise en forme
+    - [x] Remettre la déclaration du type et l’expression complète de `CanHandle` sur une seule ligne lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `ExactVisualizationPolicy`, de son constructeur, de `CanHandle` et de `EncoderId`, avec paramètres, résultat et exceptions de validation.
+  - [x] Tests ciblés
+    - [x] Tester une correspondance exacte sans tenir compte de la casse, une absence de correspondance et plusieurs identifiants acceptés.
+    - [x] Vérifier qu’une modification du tableau fourni après construction ne change pas les formats acceptés.
+    - [x] Tester le rejet d’un encodeur vide, d’une collection vide et d’un identifiant de format vide.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/ISectorImageVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/ISectorImageVisualizationPolicy.cs`, à la racine du module qui expose ce contrat aux politiques et au visualiseur.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver le dictionnaire d’attributs extensible ; ne pas le remplacer par un enum fermé, car chaque encodeur peut définir ses propres attributs.
+  - [x] Mise en forme
+    - [x] Remettre la signature complète et courte de `CreateTrackSectors` sur une seule ligne.
+  - [x] Documentation XML
+    - [x] Documenter en français `ISectorImageVisualizationPolicy`, `CanHandle`, `EncoderId`, `VisualAddress`, `CreateTrackSectors`, `TrackAttributes` et `BitCellTicks`, avec paramètres, résultats, unités et rôle de chaque décision.
+  - [x] Vérification du raccordement
+    - [x] Compiler après le déplacement afin de vérifier que la classe de base, chaque politique, le registre et le visualiseur utilisent le contrat déplacé.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/PrefixVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/PrefixVisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver l’identifiant d’encodeur et les préfixes reçus par le constructeur ; les textes bruts doivent être remplacés dans le registre qui construit la politique.
+  - [x] Validation et immuabilité des paramètres
+    - [x] Remplacer le paramètre primaire `params string[] prefixes` directement capturé par un champ en lecture seule contenant une copie de la collection reçue.
+    - [x] Refuser un identifiant d’encodeur vide, une collection de préfixes vide et un préfixe vide avant de construire la politique.
+    - [x] Conserver la comparaison par préfixe avec `StringComparison.OrdinalIgnoreCase`.
+  - [x] Mise en forme
+    - [x] Remettre la déclaration du type et l’expression complète de `CanHandle` sur une seule ligne lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `PrefixVisualizationPolicy`, de son constructeur, de `CanHandle` et de `EncoderId`, avec paramètres, résultat et exceptions de validation.
+  - [x] Tests ciblés
+    - [x] Tester une correspondance de préfixe sans tenir compte de la casse, une absence de correspondance et plusieurs préfixes acceptés.
+    - [x] Vérifier qu’une modification du tableau fourni après construction ne change pas les préfixes acceptés.
+    - [x] Tester le rejet d’un encodeur vide, d’une collection vide et d’un préfixe vide.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/Policies/SectorImageVisualizationPolicy.cs`.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Conserver cette classe abstraite comme implémentation des comportements par défaut du contrat de visualisation.
+  - [x] Définitions d’encodage communes
+    - [x] Ajouter à `TrackEncoding` une conversion non levante de taille sectorielle vers code de taille, fondée sur la même règle que `SizeCode`.
+    - [x] Remplacer la table locale `128` à `16384` de `SizeCode` par cette conversion commune, puis supprimer la méthode locale.
+    - [x] Créer dans le modèle d’attributs d’encodage une fonction recevant l’index d’un tag et retournant sa clé technique.
+    - [x] Faire utiliser cette fonction commune par `TagAttributes` et par `AppleMacGcrTrackEncoder` au lieu de reconstruire séparément `$"tag{index}"`.
+    - [x] Remplacer le retour brut de `40` ticks par la valeur par défaut nommée de `TrackEncodeRequest`.
+    - [x] Conserver `null` pour une taille sectorielle sans code ISO et pour une absence de tags ou d’attributs de piste.
+  - [x] Découpage et mise en forme
+    - [x] Conserver `TagAttributes` dans la classe de base, car elle traduit directement les tags de `SectorBlock` vers les attributs de `TrackSector` utilisés par toutes les politiques.
+    - [x] Remettre sur une seule ligne la signature et l’expression de `CreateTrackSectors`, la projection des tags et les autres expressions courtes lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `SectorImageVisualizationPolicy` et des nouvelles définitions d’attributs et de conversion de taille.
+    - [x] Ajouter la documentation XML française de `CanHandle`, `EncoderId`, `VisualAddress`, `CreateTrackSectors`, `TrackAttributes`, `BitCellTicks` et `TagAttributes`, avec paramètres, résultat, unités et comportements par défaut.
+  - [x] Tests ciblés
+    - [x] Tester les comportements par défaut d’adresse, de construction des secteurs, d’absence d’attributs et de ticks de cellule.
+    - [x] Tester chaque taille sectorielle reconnue de 128 à 16 384 octets et une taille sans code.
+    - [x] Tester la conversion d’une liste de tags en clés indexées et l’absence de dictionnaire pour une liste nulle ou vide.
+- [x] `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicyRegistry.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Visualization/SectorImageVisualizationPolicyRegistry.cs`, à la racine du module qui l’utilise.
+    - [x] Adapter son namespace et tous ses consommateurs.
+    - [x] Ajouter un constructeur recevant une collection ordonnée de `ISectorImageVisualizationPolicy` et en conserver une copie en lecture seule.
+    - [x] Conserver un constructeur ou une fabrique par défaut qui crée les politiques actuellement enregistrées dans le même ordre.
+    - [x] Faire utiliser ce constructeur injectable par `SectorImageFluxVisualizer`.
+  - [x] Catalogue par défaut
+    - [x] Remplacer `amiga.mfm`, `iso.fm` et `iso.mfm` par les membres correspondants de `FluxCodecIds`.
+    - [x] Conserver `DiskImageFormatIds` comme propriétaire des préfixes et identifiants de formats passés aux politiques exactes et par préfixe.
+    - [x] Conserver explicitement l’ordre Apple, Commodore, DEC RX02, Atari, Amiga, Acorn DFS, Acorn ADFS, familles ISO MFM puis IMD/TD0, car `Resolve` retourne la première politique compatible.
+    - [x] Refuser une collection de politiques nulle et une entrée nulle avant de construire le registre.
+  - [x] Résolution et mise en forme
+    - [x] Refuser une image nulle dans `Resolve` avec le nom du paramètre concerné.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu du même groupe.
+    - [x] Remettre sur une seule ligne les constructions de politiques et l’expression de `Resolve` lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `SectorImageVisualizationPolicyRegistry`, de ses constructeurs et de `Resolve`, avec paramètres, résultat, exceptions et règle de priorité.
+  - [x] Tests ciblés
+    - [x] Tester chaque association du catalogue par défaut entre famille de format et codec attendu.
+    - [x] Tester que la première de deux politiques injectées compatibles est retournée.
+    - [x] Vérifier qu’une modification de la collection fournie après construction ne modifie pas le registre.
+    - [x] Tester le rejet d’une collection nulle, d’une politique nulle et d’une image nulle.
