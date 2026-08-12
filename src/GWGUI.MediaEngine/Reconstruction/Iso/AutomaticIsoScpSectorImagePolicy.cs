@@ -22,9 +22,9 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
         if (TryDetectEpsonFormat(candidates.Physical, out var epsonFormat)) return EpsonQx10SectorImageBuilder.Create(epsonFormat, candidates.Physical);
 
         var measured = IsoSectorImageBuilder.Measure(candidates.Addressed);
-        if (measured.ZeroBased && measured.SectorSize == 256 && measured.SectorsPerTrack == 10)
+        if (measured.ZeroBased && measured.SectorSize == AutomaticIsoScpSelectionRules.BbcSectorSize && measured.SectorsPerTrack == AutomaticIsoScpSelectionRules.BbcSectorsPerTrack)
             return new BbcIsoScpSectorImagePolicy().Build(null, candidates);
-        if (measured.SectorSize == 512 && !measured.ZeroBased)
+        if (measured.SectorSize == AutomaticIsoScpSelectionRules.IbmSectorSize && !measured.ZeroBased)
         {
             var boot = IsoSectorImageBuilder.BestData(candidates.Addressed, new(0, 0, 1));
             var fat = IsoSectorImageBuilder.BestData(candidates.Addressed, new(0, 0, 2));
@@ -33,7 +33,7 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
                 return new IbmPcIsoScpSectorImagePolicy(false).Build(null, candidates);
         }
 
-        var atari8Bit = measured.SectorSize is 128 or 256 && measured.Heads == DiskGeometryConstants.SingleSidedHeadCount && measured.SectorsPerTrack is 18 or 26;
+        var atari8Bit = measured.SectorSize is AutomaticIsoScpSelectionRules.AtariSingleDensitySectorSize or AutomaticIsoScpSelectionRules.AtariDoubleDensitySectorSize && measured.Heads == DiskGeometryConstants.SingleSidedHeadCount && measured.SectorsPerTrack is AutomaticIsoScpSelectionRules.AtariStandardSectorsPerTrack or AutomaticIsoScpSelectionRules.AtariEnhancedSectorsPerTrack;
         return atari8Bit ? new Atari8BitIsoScpSectorImagePolicy(null).Build(null, candidates) : new AtariStIsoScpSectorImagePolicy().Build(null, candidates);
     }
 
@@ -49,7 +49,7 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
     {
         var withData = pair.Value.Where(value => value.Sector.Data is not null).ToArray();
         if (withData.Length == 0) return null;
-        var size = withData.GroupBy(value => value.Sector.IntegrityValid == true ? 2 : value.Sector.IntegrityValid is null ? 1 : 0).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
+        var size = withData.GroupBy(value => value.Sector.IntegrityValid == true ? AutomaticIsoScpSelectionRules.ValidIntegrityScore : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
         return new(pair.Key.Cylinder, pair.Key.Head, pair.Key.Number, size);
     }
 }

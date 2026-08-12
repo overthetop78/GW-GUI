@@ -5368,10 +5368,10 @@
     - [x] Documenter en français chaque membre.
     - [x] Tester Atari 8-bit, Atari ST, un format explicite et la sélection automatique.
   - [ ] `SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
-    - [ ] Extraire les seuils, poids et limites de géométrie automatique dans des constantes nommées.
-    - [ ] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester un candidat unique, ambigu, insuffisant et absent.
+    - [x] Extraire les seuils, poids et limites de géométrie automatique dans des constantes nommées.
+    - [ ] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés. **Non applicable en l'état :** cette politique ne construit et ne lève aucune erreur ; elle délègue aux politiques sélectionnées et à l'erreur ISO commune de mesure.
+    - [x] Documenter en français chaque membre.
+    - [ ] Tester un candidat unique, ambigu, insuffisant et absent. Les candidats absents et les ensembles Epson mêlant un candidat insuffisant à une géométrie valide sont couverts ; la politique actuelle ne définit pas de résultat distinct nommé « ambigu » ou « insuffisant » à valider sans inventer un nouveau comportement.
   - [ ] `SectorImages/BbcIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer géométries SSD/DSD, pistes, faces, secteurs et formats bruts par les définitions BBC DFS.
     - [ ] Documenter en français chaque membre.
