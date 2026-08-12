@@ -7,6 +7,8 @@ using GWGUI.App;
 using GWGUI.App.Rendering;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Containers.Adf;
+using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
@@ -46,7 +48,7 @@ public sealed class RealScpCorpusTests
         var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga.adf");
         var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga [test].scp");
 
-        var expected = await new AdfImageReader().ReadAsync(adfPath);
+        var expected = await new AdfReader().ReadAsync(adfPath);
         var actual = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(scpPath);
 
         Assert.Equal(expected.SectorsPerTrack, actual.SectorsPerTrack);
@@ -64,7 +66,7 @@ public sealed class RealScpCorpusTests
         var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga.adf");
         var scpPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_SCP") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga [test].scp");
 
-        var format = new FileInfo(adfPath).Length == AdfImageReader.HighDensityBytes ? "amiga.amigados_hd" : "amiga.amigados";
+        var format = new FileInfo(adfPath).Length == AmigaAdfGeometry.HighDensityCapacity ? "amiga.amigados_hd" : "amiga.amigados";
         var explorer = DiskImageExplorer.CreateDefault();
         var expected = await explorer.ExploreAsync(adfPath, format);
         var actual = await explorer.ExploreAsync(scpPath, format);
@@ -83,7 +85,7 @@ public sealed class RealScpCorpusTests
     {
         var adfPath = Environment.GetEnvironmentVariable("GWGUI_REAL_AMIGA_ADF") ?? TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces DD - AmigaDOS OFS", "seeds-of-evil-amiga.adf");
 
-        var expected = await new AdfImageReader().ReadAsync(adfPath);
+        var expected = await new AdfReader().ReadAsync(adfPath);
         var encoder = new GWGUI.MediaEngine.Encoding.FluxEncoderRegistry();
         var tracks = new List<ScpTrack>();
         for (var cylinder = 0; cylinder < expected.Cylinders; cylinder++)

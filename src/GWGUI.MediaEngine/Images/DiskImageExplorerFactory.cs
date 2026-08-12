@@ -38,7 +38,7 @@ internal static class DiskImageExplorerFactory
         var apple = new AppleDiskImageReader();
         var containers = new DiskImageRecognitionRegistry(
         [
-            new ExtensionHintRecognitionPolicy(new AdfImageReader().ReadAsync, DiskImageFileExtensions.Adf),
+            new ExtensionHintRecognitionPolicy(new Containers.Adf.AdfReader().ReadAsync, DiskImageFileExtensions.Adf),
             new ExtensionHintRecognitionPolicy(new BbcDfsImageReader().ReadAsync, DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
             new CoherentImageRecognitionPolicy(new CoherentRawImageReader()),
             new DecRx02ImageRecognitionPolicy(new DecRx02Reader()),

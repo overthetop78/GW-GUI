@@ -4306,38 +4306,38 @@
     - [x] Tester chaque reconstructeur avec une capture SCP de `image_test` dont les secteurs attendus sont connus.
     - [x] Appliquer la règle d’obtention d’image du document lorsqu’une capture manque.
     - [x] Exécuter uniquement les tests du reconstructeur ou de la politique traitée.
-- [ ] `src/GWGUI.MediaEngine/Images/AdfImageReader.cs`
-  - [ ] Déplacement du Reader de format ADF
-    - [ ] Créer `Containers/Adf/AdfReader.cs` et y déplacer `AdfImageReader` sous le nom `AdfReader`.
-    - [ ] Remplacer son namespace `Images` par `Containers.Adf`.
-    - [ ] Adapter la reconnaissance et tous les consommateurs au nouveau type.
-    - [ ] Supprimer `Images/AdfImageReader.cs` après raccordement.
-  - [ ] Géométries ADF distinctes
-    - [ ] Créer `Geometries/Acorn/AcornAdfGeometry.cs` avec la capacité 819 200 octets, la variante rembourrée de 820 224 octets, les blocs de 1 024 octets, 80 cylindres, deux faces et cinq secteurs par piste.
-    - [ ] Créer `Geometries/Amiga/AmigaAdfGeometry.cs` avec les capacités DD 901 120 et HD 1 802 240 octets, les secteurs de 512 octets, 80 cylindres, deux faces et respectivement 11 ou 22 secteurs par piste.
-    - [ ] Faire exposer par chaque géométrie son identifiant central de format et sa capacité calculée.
-    - [ ] Remplacer les quatre constantes publiques et les constantes locales du Reader par ces géométries.
-    - [ ] Conserver le rembourrage Acorn hors de la capacité sectorielle utile et documenter cette différence.
-  - [ ] Reconstruction sectorielle commune
-    - [ ] Créer ou réutiliser une fonction commune de construction d'une image sectorielle brute à géométrie régulière recevant données, géométrie, numérotation initiale et jeton d'annulation.
-    - [ ] Utiliser cette fonction pour les branches Acorn et Amiga au lieu de recopier les deux boucles de création de `SectorBlock`.
-    - [ ] Conserver la numérotation sectorielle zéro actuellement produite par les deux branches ADF.
-    - [ ] Vérifier que la fonction ignore uniquement les 1 024 octets de rembourrage Acorn autorisés et refuse toute autre donnée excédentaire.
-  - [ ] Reconnaissance et erreurs ADF
-    - [ ] Conserver l'extension ADF comme indice dans la politique de reconnaissance et non comme validation complète dans le Reader.
-    - [ ] Sélectionner la géométrie uniquement depuis une capacité exactement cataloguée.
-    - [ ] Créer `Containers/Adf/AdfExceptions.cs` avec une erreur recevant la taille observée et les tailles ADF acceptées.
-    - [ ] Remplacer le texte brut anglais de taille invalide par cette erreur.
-  - [ ] Présentation et CSDoc française
-    - [ ] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français `AdfReader`, chaque membre restant, les deux géométries et chaque constante ou propriété créée.
-    - [ ] Documenter les unités, la numérotation des secteurs et la particularité de la variante Acorn rembourrée.
-  - [ ] Tests ciblés ADF
-    - [ ] Tester par le Reader public une image Acorn ADFS de 819 200 octets et sa variante rembourrée de 820 224 octets.
-    - [ ] Tester une image Amiga DD et une image Amiga HD de `image_test`.
-    - [ ] Vérifier identifiant, taille de bloc, cylindres, faces, secteurs par piste, blocs logiques, adresses et capacité.
-    - [ ] Tester une taille vide, non sectorielle et non cataloguée et vérifier l'erreur paramétrée.
-    - [ ] Vérifier que l'annulation interrompt la reconstruction sans produire une image partielle.
+- [x] `src/GWGUI.MediaEngine/Images/AdfImageReader.cs`
+  - [x] Déplacement du Reader de format ADF
+    - [x] Créer `Containers/Adf/AdfReader.cs` et y déplacer `AdfImageReader` sous le nom `AdfReader`.
+    - [x] Remplacer son namespace `Images` par `Containers.Adf`.
+    - [x] Adapter la reconnaissance et tous les consommateurs au nouveau type.
+    - [x] Supprimer `Images/AdfImageReader.cs` après raccordement.
+  - [x] Géométries ADF distinctes
+    - [x] Créer `Geometries/Acorn/AcornAdfGeometry.cs` avec la capacité 819 200 octets, la variante rembourrée de 820 224 octets, les blocs de 1 024 octets, 80 cylindres, deux faces et cinq secteurs par piste.
+    - [x] Créer `Geometries/Amiga/AmigaAdfGeometry.cs` avec les capacités DD 901 120 et HD 1 802 240 octets, les secteurs de 512 octets, 80 cylindres, deux faces et respectivement 11 ou 22 secteurs par piste.
+    - [x] Faire exposer par chaque géométrie son identifiant central de format et sa capacité calculée.
+    - [x] Remplacer les quatre constantes publiques et les constantes locales du Reader par ces géométries.
+    - [x] Conserver le rembourrage Acorn hors de la capacité sectorielle utile et documenter cette différence.
+  - [x] Reconstruction sectorielle commune
+    - [x] Créer ou réutiliser une fonction commune de construction d'une image sectorielle brute à géométrie régulière recevant données, géométrie, numérotation initiale et jeton d'annulation.
+    - [x] Utiliser cette fonction pour les branches Acorn et Amiga au lieu de recopier les deux boucles de création de `SectorBlock`.
+    - [x] Conserver la numérotation sectorielle zéro actuellement produite par les deux branches ADF.
+    - [x] Vérifier que la fonction ignore uniquement les 1 024 octets de rembourrage Acorn autorisés et refuse toute autre donnée excédentaire.
+  - [x] Reconnaissance et erreurs ADF
+    - [x] Conserver l'extension ADF comme indice dans la politique de reconnaissance et non comme validation complète dans le Reader.
+    - [x] Sélectionner la géométrie uniquement depuis une capacité exactement cataloguée.
+    - [x] Créer `Containers/Adf/AdfExceptions.cs` avec une erreur recevant la taille observée et les tailles ADF acceptées.
+    - [x] Remplacer le texte brut anglais de taille invalide par cette erreur.
+  - [x] Présentation et CSDoc française
+    - [x] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français `AdfReader`, chaque membre restant, les deux géométries et chaque constante ou propriété créée.
+    - [x] Documenter les unités, la numérotation des secteurs et la particularité de la variante Acorn rembourrée.
+  - [x] Tests ciblés ADF
+    - [x] Tester par le Reader public une image Acorn ADFS de 819 200 octets et sa variante rembourrée de 820 224 octets.
+    - [x] Tester une image Amiga DD et une image Amiga HD de `image_test`.
+    - [x] Vérifier identifiant, taille de bloc, cylindres, faces, secteurs par piste, blocs logiques, adresses et capacité.
+    - [x] Tester une taille vide, non sectorielle et non cataloguée et vérifier l'erreur paramétrée.
+    - [x] Vérifier que l'annulation interrompt la reconstruction sans produire une image partielle.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleDiskGeometry.cs`
   - [ ] Séparation du fichier par géométrie
     - [ ] Créer `Geometries/Apple/AppleIIGeometry.cs` pour les secteurs Apple II et leurs ordres DOS, physique et ProDOS.

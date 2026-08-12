@@ -2,6 +2,9 @@ using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Containers.Adf;
+using GWGUI.MediaEngine.Geometries.Acorn;
+using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
@@ -90,15 +93,15 @@ public sealed class DiskImageExplorerTests
     }
 
     [Theory]
-    [InlineData(AdfImageReader.DoubleDensityBytes, 11, "amiga.amigados")]
-    [InlineData(AdfImageReader.HighDensityBytes, 22, "amiga.amigados_hd")]
+    [InlineData(AmigaAdfGeometry.DoubleDensityCapacity, 11, "amiga.amigados")]
+    [InlineData(AmigaAdfGeometry.HighDensityCapacity, 22, "amiga.amigados_hd")]
     public async Task AdfReaderBuildsAmigaGeometry(int byteLength, int sectorsPerTrack, string formatId)
     {
         var path = Path.GetTempFileName();
         try
         {
             await File.WriteAllBytesAsync(path, new byte[byteLength]);
-            var image = await new AdfImageReader().ReadAsync(path);
+            var image = await new AdfReader().ReadAsync(path);
             Assert.Equal(formatId, image.FormatId);
             Assert.Equal(80, image.Cylinders); Assert.Equal(2, image.Heads); Assert.Equal(sectorsPerTrack, image.SectorsPerTrack);
             Assert.Equal(byteLength, image.Capacity); Assert.Empty(image.MissingBlocks);
@@ -107,22 +110,58 @@ public sealed class DiskImageExplorerTests
     }
 
     [Theory]
-    [InlineData(AdfImageReader.AcornDoubleDensityBytes)]
-    [InlineData(AdfImageReader.AcornDoubleDensityPaddedBytes)]
+    [InlineData(AcornAdfGeometry.Capacity)]
+    [InlineData(AcornAdfGeometry.PaddedCapacity)]
     public async Task AdfReaderPreservesAcornCapacityWithOrWithoutPadding(int byteLength)
     {
         var path = Path.GetTempFileName();
         try
         {
             await File.WriteAllBytesAsync(path, new byte[byteLength]);
-            var image = await new AdfImageReader().ReadAsync(path);
+            var image = await new AdfReader().ReadAsync(path);
             Assert.Equal("acorn.adfs.800", image.FormatId);
-            Assert.Equal(AdfImageReader.AcornDoubleDensityBytes, image.Capacity);
+            Assert.Equal(AcornAdfGeometry.Capacity, image.Capacity);
             Assert.Equal(1024, image.BlockSize);
             Assert.Equal(80, image.Cylinders); Assert.Equal(2, image.Heads); Assert.Equal(5, image.SectorsPerTrack);
             Assert.Empty(image.MissingBlocks);
         }
         finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(513)]
+    public async Task AdfReaderRejectsEveryUncataloguedSize(int byteLength)
+    {
+        var path = Path.GetTempFileName();
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[byteLength]);
+            var error = await Assert.ThrowsAsync<InvalidDataException>(() => new AdfReader().ReadAsync(path));
+            Assert.Contains(byteLength.ToString(), error.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
+    [Fact]
+    public async Task AdfReaderPropagatesCancellationBeforeReconstruction()
+    {
+        var path = Path.GetTempFileName();
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[AcornAdfGeometry.Capacity]);
+            using var cancellation = new CancellationTokenSource();
+            cancellation.Cancel();
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => new AdfReader().ReadAsync(path, cancellation.Token));
+        }
+        finally
+        {
+            File.Delete(path);
+        }
     }
 
     [Fact]
