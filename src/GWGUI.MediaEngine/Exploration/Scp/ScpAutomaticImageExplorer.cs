@@ -17,9 +17,18 @@ internal sealed class ScpAutomaticImageExplorer(ScpCandidateRegistry candidates,
         var inspections = await Task.WhenAll(registrations.Select(candidate => inspector.InspectAsync(candidate, path, cancellationToken))).ConfigureAwait(false);
         var ranking = ScpCandidateRanker.Rank(inspections);
         if (ranking.BestDecoded is null) return documents.CreateUnknown(path);
-        if (ranking.BestFileSystem is null) return documents.Create(path, ranking.BestRecognized ?? ranking.BestDecoded, ranking.Detected, ranking.DecodedFormatIds);
+        if (ranking.BestFileSystem is null) return documents.Create(path, ranking.BestRecognized ?? ranking.BestDecoded, ranking.Detected, CredibleFormatIds(ranking, ranking.Detected));
         var primaryIdentity = FileSystemInterpretationIdentity.Create(ranking.BestFileSystem);
         var ordered = new[] { ranking.BestFileSystem }.Concat(ranking.Detected.Where(match => FileSystemInterpretationIdentity.Create(match) != primaryIdentity && FileSystemAlternativePolicy.IsCredible(match.Volume))).ToArray();
-        return documents.Create(path, ranking.BestRecognized ?? ranking.BestDecoded, ordered, ranking.DecodedFormatIds);
+        return documents.Create(path, ranking.BestRecognized ?? ranking.BestDecoded, ordered, CredibleFormatIds(ranking, ordered));
+    }
+
+    /// <summary>Conserve les formats étayés par une interprétation crédible et le meilleur décodage physique distinct.</summary>
+    private static IReadOnlyList<string> CredibleFormatIds(ScpCandidateRanker.Result ranking, IEnumerable<ExploredFileSystem> detected)
+    {
+        var formats = detected.Select(match => match.FormatId).ToList();
+        var physical = ranking.DecodedFormatIds.FirstOrDefault();
+        if (formats.Count <= 1 && physical is not null && !formats.Contains(physical, StringComparer.OrdinalIgnoreCase)) formats.Add(physical);
+        return formats.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
     }
 }

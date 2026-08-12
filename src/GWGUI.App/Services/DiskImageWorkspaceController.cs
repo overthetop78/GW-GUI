@@ -101,23 +101,24 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     {
         if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
-            await Task.WhenAll(LoadVisualizerAsync(path, displayFileName), LoadExplorerAsync(path));
+            await Task.WhenAll(LoadVisualizerAsync(path, displayFileName), LoadExplorerAsync(path, true));
             return;
         }
 
-        var explored = await LoadExplorerAsync(path);
+        var explored = await LoadExplorerAsync(path, true);
         await LoadVisualizerAsync(path, displayFileName, explored);
     }
 
-    public async Task<ExploredDiskImage?> LoadExplorerAsync(string path)
+    public async Task<ExploredDiskImage?> LoadExplorerAsync(string path, bool newImage = true)
     {
         var cancellation = _cancellation.BeginExplorer();
         ExplorerPath = path;
-        _explorer.Clear(path);
+        _explorer.Clear(path, newImage);
         _explorer.SetLoading(true);
         try
         {
-            var document = await _diskImageExplorer.ExploreAsync(path, _explorer.FormatIdForLoading, cancellation.Token);
+            var requestedFormat = newImage ? _explorer.FormatIdForNewImage : _explorer.SelectedFormatId;
+            var document = await _diskImageExplorer.ExploreAsync(path, requestedFormat, cancellation.Token);
             if (!cancellation.IsCancellationRequested)
             {
                 _explorer.Display(document);

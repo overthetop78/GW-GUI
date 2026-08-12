@@ -1335,6 +1335,54 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ExplorerRunsAutomaticClassificationOnlyForANewImage()
+    {
+        Exception? failure = null;
+        var thread = new Thread(() =>
+        {
+            try
+            {
+                const string path = @"F:\disk.scp";
+                var explorer = new ExplorerSection();
+                explorer.SetFormats(new BuiltInImageFormatCatalog().Formats, null);
+                var selector = Assert.IsType<DiskClassificationSelector>(explorer.FindName("Classification"));
+
+                explorer.Clear(path, true);
+                explorer.Display(Document(path, "amiga.amigados"));
+                Assert.Equal("Amiga", selector.SelectedMachine);
+
+                var machine = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
+                machine.SelectedItem = "Atari ST";
+                var selected = selector.SelectedFormatId;
+                Assert.NotNull(selected);
+                Assert.StartsWith("atarist.", selected, StringComparison.OrdinalIgnoreCase);
+
+                explorer.Clear(path, false);
+                explorer.Display(Document(path, "amiga.amigados"));
+                Assert.Equal(selected, selector.SelectedFormatId);
+
+                explorer.Clear(path, true);
+                explorer.Display(Document(path, "amiga.amigados"));
+                Assert.Equal("amiga.amigados", selector.SelectedFormatId);
+            }
+            catch (Exception exception) { failure = exception; }
+            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
+        });
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        Assert.True(thread.Join(TimeSpan.FromSeconds(10)), "The Explorer classification test timed out.");
+        if (failure is not null) throw failure;
+
+        static ExploredDiskImage Document(string path, string formatId)
+        {
+            var image = new GWGUI.MediaEngine.SectorImages.SectorImage(formatId, 512, 1, 1, 1,
+                [new GWGUI.MediaEngine.SectorImages.SectorBlock(0, new(0, 0, 0), new byte[512], true)]);
+            var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("TEST", "test", 512, 0, null, null, [], []);
+            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null));
+        }
+    }
+
+    [Fact]
     public void DisplayCommandQuotesPathsWithSpaces()
     {
         var command = new GwCommand("C:\\GW Tools\\gw.exe", "read", ["F:\\Disquettes été\\Tilt n°117 漢字.scp"]);

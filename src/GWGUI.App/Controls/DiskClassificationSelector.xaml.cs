@@ -26,7 +26,9 @@ public partial class DiskClassificationSelector : UserControl
     public void SetAutomaticDetection(bool enabled)
     {
         if (Automatic.IsChecked == enabled) return;
+        _updating = true;
         Automatic.IsChecked = enabled;
+        _updating = false;
     }
 
     public void SetCatalog(IEnumerable<DiskFormat> formats)

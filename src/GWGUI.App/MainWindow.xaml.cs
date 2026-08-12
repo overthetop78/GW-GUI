@@ -414,7 +414,7 @@ public partial class MainWindow : Window
         DiskExplorer.ReadDiskRequested += ReadDiskIntoExplorer_Click;
         DiskExplorer.FormatChanged += async (_, _) =>
         {
-            if (!string.IsNullOrWhiteSpace(_diskImageWorkspace.ExplorerPath)) await LoadExplorerImageAsync(_diskImageWorkspace.ExplorerPath);
+            if (!string.IsNullOrWhiteSpace(_diskImageWorkspace.ExplorerPath)) await LoadExplorerImageAsync(_diskImageWorkspace.ExplorerPath, false);
         };
     }
 
@@ -468,8 +468,8 @@ public partial class MainWindow : Window
         }
     }
 
-    private async Task<ExploredDiskImage?> LoadExplorerImageAsync(string path)
-        => await _diskImageWorkspace.LoadExplorerAsync(path);
+    private async Task<ExploredDiskImage?> LoadExplorerImageAsync(string path, bool newImage = true)
+        => await _diskImageWorkspace.LoadExplorerAsync(path, newImage);
 
     private async void OpenScp_Click(object sender, RoutedEventArgs e)
     {

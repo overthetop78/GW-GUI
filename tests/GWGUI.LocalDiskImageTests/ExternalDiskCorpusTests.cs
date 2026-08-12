@@ -79,6 +79,27 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         Assert.DoesNotContain(formats, format => format.StartsWith("msx.", StringComparison.OrdinalIgnoreCase));
     }
 
+    [Fact]
+    public async Task Generation4Number37ReportsOnlyAmigaAndAtari()
+    {
+        const string path = @"F:\Disquettes\Génération 4\Génération 4 N°37- Octobre 1991\Génération 4 N°37- Octobre 1991.scp";
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+        Assert.Equal(["amiga", "atari-st"], document.Metadata.SystemIds);
+        Assert.DoesNotContain(document.Metadata.SystemIds, system => system is "acorn-bbc" or "amstrad" or "ibm-pc" or "commodore" or "epson-qx10");
+    }
+
+    [Theory]
+    [InlineData(@"F:\Disquettes\Tilt\Tilt N°105\Tilt N°105 - Septembre 1992.scp")]
+    [InlineData(@"F:\Disquettes\Tilt\Tilt N°110\Tilt N°110 - Janvier 1993.scp")]
+    [InlineData(@"F:\Disquettes\Tilt\Tilt N°117\Tilt N°117 - Septembre 1993.scp")]
+    public async Task TiltHybridCorpusDoesNotReportGeometryAliasesAsSystems(string path)
+    {
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+        Assert.DoesNotContain(document.Metadata.SystemIds, system => system is "acorn-bbc" or "amstrad" or "ibm-pc" or "commodore" or "epson-qx10");
+    }
+
     private async Task VerifyScp(string path, bool requireRecognized)
     {
         if (!File.Exists(path)) return;

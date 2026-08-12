@@ -16,6 +16,7 @@ public partial class ExplorerSection : UserControl
     private IReadOnlyList<FileSystemEntry> _rootEntries = [];
     private IReadOnlyList<DiskFormat> _formats = [];
     private readonly ObservableCollection<ExplorerFolderItem> _visibleFolders = [];
+    private bool _applyDetectionOnDisplay;
 
     public ExplorerSection()
     {
@@ -35,7 +36,7 @@ public partial class ExplorerSection : UserControl
         [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
     public string? SelectedFormatId => Classification.SelectedProtectionId ?? Classification.SelectedFormatId;
-    public string? FormatIdForLoading => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
+    public string? FormatIdForNewImage => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
 
     private void AutomaticDetection_Changed(object sender, RoutedEventArgs e)
     {
@@ -55,8 +56,9 @@ public partial class ExplorerSection : UserControl
 
     public void SetLoading(bool loading) => LoadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
 
-    public void Clear(string? path = null)
+    public void Clear(string? path = null, bool newImage = true)
     {
+        _applyDetectionOnDisplay = newImage && AutomaticDetection.IsChecked == true;
         PathText.Text = path ?? string.Empty;
         VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
         SystemText.Text = ProtectionText.Text = "\u2014";
@@ -74,7 +76,8 @@ public partial class ExplorerSection : UserControl
         _document = document;
         PathText.Text = document.SourcePath;
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
-        Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId);
+        if (_applyDetectionOnDisplay) Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId);
+        _applyDetectionOnDisplay = false;
         var volumeName = !document.FileSystemRecognized
             ? LocExtension.Get("Explorer.Unknown")
             : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
