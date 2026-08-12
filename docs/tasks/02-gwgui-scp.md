@@ -5414,10 +5414,10 @@
   - [x] `SectorImages/EpsonQx10SectorImagePolicy.cs`
     - [x] Reporter les tests de création sur `EpsonQx10SectorImageBuilder` et les tests de détection sur `EpsonQx10FormatDetector`.
     - [x] Vérifier qu'aucun consommateur ne référence encore le wrapper avant sa suppression.
-  - [ ] `SectorImages/GenericIsoScpSectorImagePolicy.cs`
-    - [ ] Utiliser les identifiants FM et MFM de `Decoding/Definitions/FluxCodecIds.cs` dans `DecoderIds`.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester plusieurs géométries uniformes et une géométrie incohérente.
+  - [x] `SectorImages/GenericIsoScpSectorImagePolicy.cs`
+    - [x] Utiliser les identifiants FM et MFM de `Decoding/Definitions/FluxCodecIds.cs` dans `DecoderIds`.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester plusieurs géométries uniformes et une géométrie incohérente.
   - [ ] `SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer les identifiants de décodeurs, la taille sectorielle et les positions FAT brutes par les définitions communes correspondantes.
     - [ ] Utiliser `IbmBootGeometryDetector`, `IbmDosDiskProbe` et le catalogue IBM à la place des méthodes de détection et de résolution de `IbmPcImageReader`.
