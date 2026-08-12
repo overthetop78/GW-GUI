@@ -5250,13 +5250,13 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IsoScpSectorImageReader`.
     - [x] Ajouter la documentation XML des méthodes `IsoScpSectorImageReader, ReadAsync, Score, AddCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IsoSectorCandidate.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidate.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoSectorCandidate`.
-    - [ ] Ajouter la documentation XML des méthodes `IsoSectorCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IsoSectorCandidate.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidate.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoSectorCandidate`.
+    - [x] Ajouter la documentation XML des méthodes `IsoSectorCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IsoSectorCandidateSet.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidateSet.cs`.

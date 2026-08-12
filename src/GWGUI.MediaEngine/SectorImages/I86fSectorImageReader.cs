@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Flux.Conversion;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Geometries.Ibm;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 
 namespace GWGUI.MediaEngine.SectorImages;
 

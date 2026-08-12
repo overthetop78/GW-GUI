@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Decoding;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Iso;
 
 /// <summary>Associe un secteur ISO décodé à sa révolution et, si nécessaire, à sa piste source.</summary>
 /// <param name="Sector">Secteur décodé.</param>

@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Flux.Conversion;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.SectorImages;
 
