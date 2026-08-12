@@ -22,6 +22,7 @@ public static class ScpCaptureInfoReader
     /// Les métadonnées de la capture. Les nombres de pistes, de cylindres et de faces sont des décomptes
     /// positifs ou nuls ; la taille du fichier est exprimée en octets.
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="path"/> est nul.</exception>
     /// <exception cref="ArgumentException"><paramref name="path"/> est vide ou n'est pas un chemin valide.</exception>
     /// <exception cref="FileNotFoundException">Le fichier désigné par <paramref name="path"/> n'existe pas.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès en lecture au fichier est refusé.</exception>
@@ -39,27 +40,36 @@ public static class ScpCaptureInfoReader
         var slots = new List<int>();
         for (var slot = header.StartTrack; slot <= header.EndTrack; slot++)
         {
-            if (BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(ScpFormatConstants.TrackTableOffset + slot * ScpFormatConstants.TrackTableEntrySize, ScpFormatConstants.TrackTableEntrySize)) != 0) slots.Add(slot);
+            var entryOffset = ScpFormatConstants.TrackTableOffset + slot * ScpFormatConstants.TrackTableEntrySize;
+            var trackOffset = BinaryPrimitives.ReadUInt32LittleEndian(table.AsSpan(entryOffset, ScpFormatConstants.TrackTableEntrySize));
+            if (trackOffset != ScpFormatConstants.MissingTrackOffset) slots.Add(slot);
         }
 
         stream.Position = ScpFormatConstants.TrackTableOffset;
         var buffer = new byte[ReadBufferSize];
-        uint checksum = 0;
+        var checksum = await ReadChecksumAsync(stream, buffer, cancellationToken).ConfigureAwait(false);
+        var checksumValid = ScpFormatAlgorithms.IsChecksumValid(header.Checksum, header.Flags, checksum);
+        var addresses = slots.Select(ScpFormatAlgorithms.ToTrackAddress).ToArray();
+        var capturedTracks = slots.Count;
+        var missingTracks = Math.Max(0, header.TrackCount - capturedTracks);
+        var cylinders = addresses.Select(address => address.Cylinder).Distinct().Count();
+        var sides = addresses.Select(address => address.Head).Distinct().Count();
+        return new(header, capturedTracks, missingTracks, cylinders, sides, checksumValid, stream.Length);
+    }
+
+    /// <summary>Calcule incrémentalement la somme des octets lus depuis la position courante du flux jusqu'à sa fin.</summary>
+    /// <param name="stream">Flux SCP positionné au début de la plage couverte par la somme.</param>
+    /// <param name="buffer">Tampon réutilisé pour chaque lecture séquentielle.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler les lectures.</param>
+    /// <returns>Somme non signée des octets lus.</returns>
+    private static async Task<uint> ReadChecksumAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken)
+    {
+        var checksum = ScpFormatConstants.InitialChecksum;
         while (true)
         {
             var read = await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false);
-            if (read == 0) break;
-            checksum = ScpFormatAlgorithms.UpdateChecksum(checksum, buffer.AsSpan(0, read));
+            if (read == 0) return checksum;
+            checksum = ScpFormatAlgorithms.UpdateChecksum(checksum, buffer.Span[..read]);
         }
-        var checksumValid = ScpFormatAlgorithms.IsChecksumValid(header.Checksum, header.Flags, checksum);
-        var addresses = slots.Select(ScpFormatAlgorithms.ToTrackAddress).ToArray();
-        return new(
-            header,
-            slots.Count,
-            Math.Max(0, header.TrackCount - slots.Count),
-            addresses.Select(address => address.Cylinder).Distinct().Count(),
-            addresses.Select(address => address.Head).Distinct().Count(),
-            checksumValid,
-            stream.Length);
     }
 }

@@ -7372,46 +7372,46 @@
       - [x] Conserver la signature complète du constructeur sur une seule ligne puisqu'elle tient lisiblement sur une ligne.
       - [x] Vérifier après correction qu'aucune séquence de texte corrompue `Ã` ou `Â` ne subsiste dans le fichier.
       - [x] Compiler le projet MediaEngine afin de vérifier les références XML de la CSDoc corrigée.
-  - [ ] `Exploration/ScpCaptureInfoReader.cs`
-    - [ ] Définitions SCP utilisées pendant l'exploration
-      - [ ] Ajouter dans les définitions du conteneur SCP une valeur nommée pour l'offset de piste nul qui indique une entrée absente de la table.
-      - [ ] Remplacer la comparaison brute `!= 0` de l'entrée de piste par cette définition.
-      - [ ] Ajouter dans les définitions du checksum SCP sa valeur initiale nulle utilisée par le calcul incrémental.
-      - [ ] Remplacer l'initialisation brute de `checksum` par cette définition sans modifier `UpdateChecksum` ni `IsChecksumValid`.
-      - [ ] Conserver `ReadBufferSize` dans ce fichier : sa valeur `81920` est déjà nommée, n'est utilisée qu'ici et sert à la fois au flux et au tampon séquentiel.
-    - [ ] Lecture de la table des pistes
-      - [ ] Extraire dans une variable nommée l'offset de l'entrée courante calculé depuis `TrackTableOffset`, le numéro de slot et `TrackTableEntrySize`.
-      - [ ] Extraire dans une variable nommée la lecture little-endian de l'offset de piste.
-      - [ ] Ajouter le slot uniquement lorsque cet offset diffère de la valeur centrale représentant une piste absente.
-      - [ ] Conserver les bornes `StartTrack` et `EndTrack` validées par `ScpReader.ReadHeader`.
-    - [ ] Lecture incrémentale du checksum
-      - [ ] Extraire la lecture séquentielle et la mise à jour du checksum dans une fonction privée asynchrone recevant le flux, le tampon et le jeton d'annulation.
-      - [ ] Conserver le repositionnement au début de la table des pistes avant le calcul afin de respecter la plage couverte par le checksum SCP.
-      - [ ] Conserver la fin de lecture signalée par un nombre d'octets lus égal à zéro sans créer de constante artificielle pour cette convention de flux.
-      - [ ] Utiliser `ScpFormatConstants.IsChecksumValid` pour interpréter le checksum déclaré, les drapeaux et la valeur calculée.
-    - [ ] Construction des métadonnées
-      - [ ] Conserver la conversion des slots présents par `ScpFormatConstants.ToTrackAddress`.
-      - [ ] Calculer dans des variables nommées le nombre de pistes capturées, le nombre de pistes absentes, les cylindres distincts et les faces distinctes.
-      - [ ] Conserver la borne inférieure nulle appliquée au nombre de pistes absentes.
-      - [ ] Remettre l'appel final au constructeur de `ScpCaptureInfo` sur une seule ligne après extraction de ces calculs, puisqu'il ne contiendra plus que sept arguments nommés localement.
-    - [ ] Correction de la CSDoc française corrompue
-      - [ ] Corriger les caractères corrompus du résumé du type et de la constante `ReadBufferSize`.
-      - [ ] Corriger les caractères corrompus du résumé, des paramètres et du résultat de `ReadAsync`.
-      - [ ] Corriger les caractères corrompus des exceptions `FileNotFoundException`, `UnauthorizedAccessException`, `EndOfStreamException`, `InvalidDataException`, `IOException` et `OperationCanceledException`.
-      - [ ] Ajouter à la CSDoc l'exception réellement produite lorsqu'un chemin nul est fourni si elle n'est pas déjà couverte par le contrat du flux.
-      - [ ] Ajouter en français la CSDoc de la fonction privée de checksum créée, avec la plage lue et l'unité de son résultat.
-    - [ ] Présentation du fichier
-      - [ ] Décomposer la ligne qui calcule et lit actuellement l'entrée de piste en une suite d'instructions distinctes et nommées.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Vérifier après correction qu'aucune séquence de texte corrompue `Ã` ou `Â` ne subsiste dans le fichier.
-    - [ ] Tests ciblés de `ScpCaptureInfoReader`
-      - [ ] Tester une capture contenant des pistes présentes et absentes et vérifier les décomptes obtenus depuis la table.
-      - [ ] Tester une capture sans piste présente et vérifier les valeurs nulles des pistes, cylindres et faces.
-      - [ ] Tester une capture utilisant les deux têtes et plusieurs cylindres.
-      - [ ] Tester un checksum valide, un checksum invalide et le cas autorisé par les drapeaux SCP pour un checksum déclaré nul.
-      - [ ] Tester le rejet d'un en-tête ou d'une table tronqués.
-      - [ ] Tester un chemin nul, vide ou absent et vérifier le type d'erreur réellement documenté.
-      - [ ] Tester l'annulation pendant la lecture asynchrone du checksum.
+  - [x] `Exploration/ScpCaptureInfoReader.cs`
+    - [x] Définitions SCP utilisées pendant l'exploration
+      - [x] Ajouter dans les définitions du conteneur SCP une valeur nommée pour l'offset de piste nul qui indique une entrée absente de la table.
+      - [x] Remplacer la comparaison brute `!= 0` de l'entrée de piste par cette définition.
+      - [x] Ajouter dans les définitions du checksum SCP sa valeur initiale nulle utilisée par le calcul incrémental.
+      - [x] Remplacer l'initialisation brute de `checksum` par cette définition sans modifier `UpdateChecksum` ni `IsChecksumValid`.
+      - [x] Conserver `ReadBufferSize` dans ce fichier : sa valeur `81920` est déjà nommée, n'est utilisée qu'ici et sert à la fois au flux et au tampon séquentiel.
+    - [x] Lecture de la table des pistes
+      - [x] Extraire dans une variable nommée l'offset de l'entrée courante calculé depuis `TrackTableOffset`, le numéro de slot et `TrackTableEntrySize`.
+      - [x] Extraire dans une variable nommée la lecture little-endian de l'offset de piste.
+      - [x] Ajouter le slot uniquement lorsque cet offset diffère de la valeur centrale représentant une piste absente.
+      - [x] Conserver les bornes `StartTrack` et `EndTrack` validées par `ScpReader.ReadHeader`.
+    - [x] Lecture incrémentale du checksum
+      - [x] Extraire la lecture séquentielle et la mise à jour du checksum dans une fonction privée asynchrone recevant le flux, le tampon et le jeton d'annulation.
+      - [x] Conserver le repositionnement au début de la table des pistes avant le calcul afin de respecter la plage couverte par le checksum SCP.
+      - [x] Conserver la fin de lecture signalée par un nombre d'octets lus égal à zéro sans créer de constante artificielle pour cette convention de flux.
+      - [x] Utiliser `ScpFormatConstants.IsChecksumValid` pour interpréter le checksum déclaré, les drapeaux et la valeur calculée.
+    - [x] Construction des métadonnées
+      - [x] Conserver la conversion des slots présents par `ScpFormatConstants.ToTrackAddress`.
+      - [x] Calculer dans des variables nommées le nombre de pistes capturées, le nombre de pistes absentes, les cylindres distincts et les faces distinctes.
+      - [x] Conserver la borne inférieure nulle appliquée au nombre de pistes absentes.
+      - [x] Remettre l'appel final au constructeur de `ScpCaptureInfo` sur une seule ligne après extraction de ces calculs, puisqu'il ne contiendra plus que sept arguments nommés localement.
+    - [x] Correction de la CSDoc française corrompue
+      - [x] Corriger les caractères corrompus du résumé du type et de la constante `ReadBufferSize`.
+      - [x] Corriger les caractères corrompus du résumé, des paramètres et du résultat de `ReadAsync`.
+      - [x] Corriger les caractères corrompus des exceptions `FileNotFoundException`, `UnauthorizedAccessException`, `EndOfStreamException`, `InvalidDataException`, `IOException` et `OperationCanceledException`.
+      - [x] Ajouter à la CSDoc l'exception réellement produite lorsqu'un chemin nul est fourni si elle n'est pas déjà couverte par le contrat du flux.
+      - [x] Ajouter en français la CSDoc de la fonction privée de checksum créée, avec la plage lue et l'unité de son résultat.
+    - [x] Présentation du fichier
+      - [x] Décomposer la ligne qui calcule et lit actuellement l'entrée de piste en une suite d'instructions distinctes et nommées.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Vérifier après correction qu'aucune séquence de texte corrompue `Ã` ou `Â` ne subsiste dans le fichier.
+    - [x] Tests ciblés de `ScpCaptureInfoReader`
+      - [x] Tester une capture contenant des pistes présentes et absentes et vérifier les décomptes obtenus depuis la table.
+      - [x] Tester une capture sans piste présente et vérifier les valeurs nulles des pistes, cylindres et faces.
+      - [x] Tester une capture utilisant les deux têtes et plusieurs cylindres.
+      - [x] Tester un checksum valide, un checksum invalide et le cas autorisé par les drapeaux SCP pour un checksum déclaré nul.
+      - [x] Tester le rejet d'un en-tête ou d'une table tronqués.
+      - [x] Tester un chemin nul, vide ou absent et vérifier le type d'erreur réellement documenté.
+      - [x] Tester l'annulation pendant la lecture asynchrone du checksum.
 
 - [ ] Données brutes de l’interprétation et de l’exploration
   - [ ] Fichiers de `Images/Interpretations`

@@ -74,9 +74,27 @@ public sealed class ScpCaptureInfoTests
     }
 
     [Fact]
+    public async Task AcceptsMissingChecksumOnWritableCapture()
+    {
+        var info = await ScpCaptureInfoReader.ReadAsync(Images.Value.WritableWithoutChecksum);
+        Assert.True(info.ChecksumValid);
+    }
+
+    [Fact]
     public async Task RejectsTruncatedTrackTable()
     {
         await Assert.ThrowsAsync<EndOfStreamException>(() => ScpCaptureInfoReader.ReadAsync(Images.Value.Truncated));
+    }
+
+    [Fact]
+    public async Task RejectsTruncatedHeader() => await Assert.ThrowsAnyAsync<Exception>(() => ScpCaptureInfoReader.ReadAsync(Images.Value.TruncatedHeader));
+
+    [Fact]
+    public async Task RejectsNullEmptyAndMissingPaths()
+    {
+        await Assert.ThrowsAsync<ArgumentNullException>(() => ScpCaptureInfoReader.ReadAsync(null!));
+        await Assert.ThrowsAsync<ArgumentException>(() => ScpCaptureInfoReader.ReadAsync(string.Empty));
+        await Assert.ThrowsAsync<FileNotFoundException>(() => ScpCaptureInfoReader.ReadAsync(Path.Combine(FindImageTestRoot(), "absent.scp")));
     }
 
     [Fact]
@@ -86,6 +104,15 @@ public sealed class ScpCaptureInfoTests
         cancellation.Cancel();
 
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => ScpCaptureInfoReader.ReadAsync(Images.Value.Source, cancellation.Token));
+    }
+
+    [Fact]
+    public async Task PropagatesCancellationStartedDuringAsynchronousRead()
+    {
+        using var cancellation = new CancellationTokenSource();
+        var task = ScpCaptureInfoReader.ReadAsync(Images.Value.Source, cancellation.Token);
+        cancellation.Cancel();
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => task);
     }
 
     private static TestImages CreateTestImages()
@@ -101,6 +128,8 @@ public sealed class ScpCaptureInfoTests
         var multipleRevolutions = Path.Combine(outputDirectory, "pfs-file-disk02-two-revolutions.scp");
         var corrupted = Path.Combine(outputDirectory, "pfs-file-disk02-corrupted-checksum.scp");
         var truncated = Path.Combine(outputDirectory, "pfs-file-disk02-truncated-table.scp");
+        var truncatedHeader = Path.Combine(outputDirectory, "pfs-file-disk02-truncated-header.scp");
+        var writableWithoutChecksum = Path.Combine(outputDirectory, "pfs-file-disk02-writable-without-checksum.scp");
 
         var sourceBytes = File.ReadAllBytes(source);
 
@@ -123,7 +152,14 @@ public sealed class ScpCaptureInfoTests
 
         File.WriteAllBytes(truncated, sourceBytes.AsSpan(0, 100).ToArray());
 
-        return new(source, missingTrack, noTracks, multipleRevolutions, corrupted, truncated);
+        File.WriteAllBytes(truncatedHeader, sourceBytes.AsSpan(0, ScpFormatConstants.HeaderLength - 1).ToArray());
+
+        var writableBytes = (byte[])sourceBytes.Clone();
+        writableBytes[ScpFormatConstants.FlagsOffset] |= (byte)ScpFlags.Writable;
+        BinaryPrimitives.WriteUInt32LittleEndian(writableBytes.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), ScpFormatConstants.MissingChecksum);
+        File.WriteAllBytes(writableWithoutChecksum, writableBytes);
+
+        return new(source, missingTrack, noTracks, multipleRevolutions, corrupted, truncated, truncatedHeader, writableWithoutChecksum);
     }
 
     private static string FindImageTestRoot()
@@ -167,5 +203,5 @@ public sealed class ScpCaptureInfoTests
         return data;
     }
 
-    private sealed record TestImages(string Source, string MissingTrack, string NoTracks, string MultipleRevolutions, string Corrupted, string Truncated);
+    private sealed record TestImages(string Source, string MissingTrack, string NoTracks, string MultipleRevolutions, string Corrupted, string Truncated, string TruncatedHeader, string WritableWithoutChecksum);
 }
