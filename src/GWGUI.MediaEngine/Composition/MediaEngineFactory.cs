@@ -26,12 +26,14 @@ using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Recognition.Msx;
+using GWGUI.MediaEngine.Recognition.Scp;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Reconstruction.Atari;
@@ -39,6 +41,7 @@ using GWGUI.MediaEngine.Reconstruction.Commodore;
 using GWGUI.MediaEngine.Reconstruction.Dec;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Scp;
 
 namespace GWGUI.MediaEngine.Composition;
 
@@ -83,11 +86,50 @@ internal static class MediaEngineFactory
     private static ScpCandidateRegistry CreateScpCandidates(ScpReader scpReader, FluxDecoderRegistry decoders)
     {
         var isoReader = new IsoScpSectorImageReader(scpReader, decoders);
-        return new(new AmigaScpSectorImageReader(scpReader, decoders), isoReader, new AtariScpSectorImageReader(scpReader, decoders), new CommodoreScpSectorImageReader(scpReader, decoders), new AppleScpSectorImageReader(scpReader, decoders), new DecRx02ScpSectorImageReader(scpReader, decoders));
+        var amigaReader = new AmigaScpSectorImageReader(scpReader, decoders);
+        var atariReader = new AtariScpSectorImageReader(scpReader, decoders);
+        var commodoreReader = new CommodoreScpSectorImageReader(scpReader, decoders);
+        var appleReader = new AppleScpSectorImageReader(scpReader, decoders);
+        var decReader = new DecRx02ScpSectorImageReader(scpReader, decoders);
+        var isoAutomatic = new ScpSectorImageCandidate(ScpCandidateIds.IsoAutomatic, ScpFormatFamily.Iso, (path, _, token) => isoReader.ReadAsync(path, null, token));
+        var isoSelected = new ScpSectorImageCandidate(ScpCandidateIds.IsoSelected, ScpFormatFamily.Iso, (path, format, token) => isoReader.ReadAsync(path, format, token));
+        var amiga = new ScpSectorImageCandidate(ScpCandidateIds.Amiga, ScpFormatFamily.Amiga, (path, _, token) => amigaReader.ReadAsync(path, token));
+        var atari = new ScpSectorImageCandidate(ScpCandidateIds.Atari, ScpFormatFamily.Iso, (path, format, token) => atariReader.ReadAsync(path, format, token));
+        var commodoreAutomatic = new ScpSectorImageCandidate(ScpCandidateIds.CommodoreAutomatic, ScpFormatFamily.Commodore, (path, _, token) => commodoreReader.ReadAsync(path, null, token));
+        var commodore1581 = new ScpSectorImageCandidate(ScpCandidateIds.Commodore1581, ScpFormatFamily.Iso, (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token));
+        var apple = new ScpSectorImageCandidate(ScpCandidateIds.Apple, ScpFormatFamily.Apple, (path, format, token) => appleReader.ReadAsync(path, format, token));
+        var dec = new ScpSectorImageCandidate(ScpCandidateIds.Dec, ScpFormatFamily.Dec, (path, _, token) => decReader.ReadAsync(path, token));
+        ScpSectorImageCandidate Iso(string format) => new(ScpCandidateIds.IsoFormat(format), ScpFormatFamily.Iso, (path, _, token) => isoReader.ReadAsync(path, format, token));
+        var acornAdfs = Iso(DiskImageFormatIds.AcornAdfs800);
+        var amstradCpc = Iso(DiskImageFormatIds.AmstradCpc);
+        var amstradPcw = Iso(DiskImageFormatIds.AmstradPcw);
+        var ibmScan = Iso(DiskImageFormatIds.IbmScan);
+        var ucsd = Iso(DiskImageFormatIds.UcsdIbmMfm);
+        var epson = EpsonQx10GeometryCatalog.ScpCandidateFormatIds.Select(Iso).ToArray();
+        var isoFamily = new[] { isoAutomatic, acornAdfs, amstradCpc, amstradPcw, ibmScan, ucsd, commodore1581 }.Concat(epson).ToArray();
+        var defaults = new[] { isoAutomatic, amiga, commodore1581, commodoreAutomatic, amstradCpc, amstradPcw, ibmScan }.Concat(epson).Append(apple).ToArray();
+        var selections = new[]
+        {
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase), amiga),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.CommodorePrefix, StringComparison.OrdinalIgnoreCase), commodoreAutomatic),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.AmstradPrefix, StringComparison.OrdinalIgnoreCase), isoSelected),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || id.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase), isoSelected),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AcornAdfsPrefix, StringComparison.OrdinalIgnoreCase), isoSelected),
+            new ScpFormatSelection(id => id.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase), dec),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase) || id.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase), isoSelected),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase), atari),
+            new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase), apple)
+        };
+        KeyValuePair<ScpFormatFamily, IReadOnlyList<ScpSectorImageCandidate>>[] families = [new(ScpFormatFamily.Iso, isoFamily), new(ScpFormatFamily.Amiga, [amiga]), new(ScpFormatFamily.Commodore, [commodoreAutomatic]), new(ScpFormatFamily.Apple, [apple]), new(ScpFormatFamily.Dec, [dec])];
+        return new(selections, defaults, families, [ScpFormatFamily.Iso, ScpFormatFamily.Amiga, ScpFormatFamily.Commodore, ScpFormatFamily.Apple, ScpFormatFamily.Dec], isoSelected);
     }
 
     /// <summary>Crée la détection de famille et les deux parcours d'exploration SCP avec leurs instances partagées.</summary>
-    private static ScpImageExplorationService CreateScpExploration(ScpReader scpReader, FluxDecoderRegistry decoders, ScpCandidateRegistry candidates, FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents) => new(candidates, new ScpFamilyProbe(scpReader, decoders), fileSystems, interpretations, documents);
+    private static ScpImageExplorationService CreateScpExploration(ScpReader scpReader, FluxDecoderRegistry decoders, ScpCandidateRegistry candidates, FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents)
+    {
+        var automatic = new ScpAutomaticImageExplorer(candidates, new ScpFamilyProbe(scpReader, decoders), new ScpCandidateInspector(fileSystems, interpretations), documents);
+        return new(automatic, new ScpSectorImageReader(candidates, fileSystems));
+    }
 
     /// <summary>Crée le registre des politiques de reconnaissance dans l'ordre historique conservé.</summary>
     private static DiskImageRecognitionRegistry CreateRecognition(FluxDecoderRegistry decoders, ScpImageExplorationService scpExploration, FileSystemRegistry fileSystems)

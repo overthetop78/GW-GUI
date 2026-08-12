@@ -55,7 +55,7 @@ public sealed class DiskImageInterpretationComponentsTests
         try
         {
             File.WriteAllBytes(path, [1, 2, 3]);
-            var unknown = factory.Unknown(path);
+            var unknown = factory.CreateUnknown(path);
             Assert.Equal(DiskImageFormatIds.Unknown, unknown.Image.FormatId);
             Assert.Equal(3, unknown.Volume.Capacity);
         }

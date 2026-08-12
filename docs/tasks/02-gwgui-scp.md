@@ -7965,200 +7965,200 @@
     - [x] Vérifier la conservation d’une capacité explicite et d’un nombre logique de blocs contenant des blocs manquants.
     - [x] Vérifier la conservation de l’autorisation des tailles variables avec un bloc dont la taille diffère de `BlockSize`.
     - [x] Vérifier la conservation des adresses, données, tags, intégrités et révolutions de tous les blocs.
-- [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpAutomaticImageExplorer.cs`
-  - [ ] Déplacement dans l’exploration SCP
-    - [ ] Déplacer le fichier vers `Exploration/Scp/ScpAutomaticImageExplorer.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.Exploration.Scp`.
-    - [ ] Adapter `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs` au nouveau type.
-    - [ ] Faire recevoir `DiskImageDocumentFactory`, `DiskImageDecodeScore`, `FileSystemInterpretationIdentity` et `FileSystemAlternativePolicy` extraits du service d’interprétation.
-  - [ ] Inspection isolée d’un candidat SCP
-    - [ ] Créer `Exploration/Scp/ScpCandidateInspector.cs` et y déplacer le contenu de la fonction locale `InspectAsync` qui lit un candidat et cherche ses systèmes de fichiers.
-    - [ ] Créer `Exploration/Scp/ScpCandidateInspection.cs` pour retourner l’image décodée, les images normalisées et les véritables correspondances de Readers de systèmes de fichiers.
-    - [ ] Faire recevoir à l’inspecteur `FileSystemRegistry` et `DiskImageInterpretationService`.
-    - [ ] Conserver la normalisation de chaque image reconnue puis relire son volume avec le même `ReaderId` lorsqu’elle a changé.
-    - [ ] Utiliser le résultat complet de `FileSystemRegistry.TryReadMatch` pour les interprétations supplémentaires, au lieu d’enregistrer leur identifiant de format comme `ReaderId`.
-    - [ ] Conserver l’absence d’inspection exploitable lorsqu’un candidat produit `InvalidDataException`.
-    - [ ] Associer au résultat le diagnostic et l’identité du candidat rejeté fournis par le registre SCP, au lieu de vider définitivement l’exception.
-  - [ ] Classement et déduplication des inspections
-    - [ ] Créer `Exploration/Scp/ScpCandidateRanker.cs` et y déplacer le choix du meilleur décodage, du meilleur système reconnu et l’agrégation des résultats détectés.
-    - [ ] Créer `Exploration/Scp/ScpExplorationThresholds.cs` avec le score minimal actuellement fixé à `0.5` pour conserver un identifiant de format décodé.
-    - [ ] Initialiser explicitement l’absence de score reconnu au lieu de laisser `-1` brut dans l’explorateur.
-    - [ ] Utiliser `DiskImageDecodeScore` pour tous les calculs et ne calculer qu’une fois le score de chaque image inspectée.
-    - [ ] Conserver le premier candidat rencontré en cas d’égalité de score, comme le fait la comparaison stricte actuelle.
-    - [ ] Utiliser `FileSystemInterpretationIdentity` pour dédupliquer les systèmes détectés.
-    - [ ] Conserver l’ordre de première détection des identifiants de formats avec une liste accompagnée d’un ensemble de contrôle, au lieu de dépendre de l’ordre d’énumération d’un `HashSet`.
-    - [ ] Utiliser `FileSystemAlternativePolicy` pour filtrer les alternatives ajoutées après le meilleur résultat.
-  - [ ] Orchestration restante de l’explorateur
-    - [ ] Conserver dans `ExploreAsync` la détection des familles, l’obtention ordonnée des candidats automatiques, leur inspection et la création du document final.
-    - [ ] Conserver l’exécution concurrente des lectures de candidats et la propagation de l’annulation.
-    - [ ] Utiliser `DiskImageDocumentFactory.CreateUnknown` lorsqu’aucun candidat n’est décodé.
-    - [ ] Utiliser `DiskImageDocumentFactory.Create` avec le meilleur décodage lorsqu’aucun système de fichiers n’est reconnu.
-    - [ ] Utiliser le meilleur candidat reconnu comme image principale et placer son système de fichiers en tête lorsque des reconnaissances existent.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `ScpAutomaticImageExplorer`, son constructeur et `ExploreAsync`.
-    - [ ] Documenter en français `ScpCandidateInspector`, `ScpCandidateInspection`, `ScpCandidateRanker`, `ScpExplorationThresholds` et chacun de leurs membres.
-    - [ ] Documenter le parallélisme, le classement, les égalités, la déduplication, les alternatives et les diagnostics rejetés.
-    - [ ] Conserver sur une seule ligne les déclarations, signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
-  - [ ] Tests du parcours automatique SCP
-    - [ ] Tester plusieurs candidats avec des scores différents et vérifier le meilleur décodage.
-    - [ ] Tester deux scores égaux et vérifier que le premier candidat ordonné reste retenu.
-    - [ ] Tester une image normalisée qui doit être relue par le même Reader de système de fichiers.
-    - [ ] Tester une interprétation supplémentaire et vérifier son véritable `ReaderId`.
-    - [ ] Tester deux systèmes identiques, une alternative crédible et une alternative rejetée par les avertissements.
-    - [ ] Tester un candidat rejeté suivi d’une réussite et vérifier la conservation du diagnostic du rejet.
-    - [ ] Tester l’absence totale de décodage, un décodage sans système de fichiers et un décodage reconnu.
-    - [ ] Vérifier l’ordre des identifiants détectés et la propagation de l’annulation pendant les inspections concurrentes.
-- [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpCandidateRegistry.cs`
-  - [ ] Déplacement du registre de reconstructeurs SCP
-    - [ ] Déplacer le fichier vers `SectorImages/Scp/ScpCandidateRegistry.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.SectorImages.Scp`.
-    - [ ] Adapter `ScpSectorImageReader`, `ScpAutomaticImageExplorer`, `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs`.
-  - [ ] Types nommés des candidats et sélections
-    - [ ] Créer `SectorImages/Scp/ScpSectorImageCandidate.cs` avec un identifiant technique, une famille `ScpFormatFamily` et la fonction de reconstruction asynchrone.
-    - [ ] Créer `SectorImages/Scp/ScpFormatSelection.cs` avec le prédicat de format et le candidat à appeler.
-    - [ ] Remplacer le delegate privé `Candidate`, les tuples de `selectedReaders` et les fonctions sans identité retournées par ces types nommés.
-    - [ ] Faire conserver l’identifiant du candidat jusqu’à l’inspecteur et au Reader sectoriel afin que leurs diagnostics puissent nommer le reconstructeur rejeté.
-  - [ ] Injection de toutes les inscriptions
-    - [ ] Remplacer le constructeur à onze Readers par des collections injectées de sélections explicites, candidats par défaut et candidats par famille, plus le candidat ISO de repli.
-    - [ ] Copier chaque collection reçue et rendre le dictionnaire de familles et ses listes réellement immuables.
-    - [ ] Faire construire une seule fois chaque candidat nommé par `Composition/MediaEngineFactory.cs` puis réutiliser la même inscription dans les listes explicites, par défaut et familiales nécessaires.
-    - [ ] Ne plus recréer dans le registre les delegates vers Amiga, ISO, Atari, Amstrad, BBC, IBM, Epson, UCSD, Commodore, Apple et DEC.
-  - [ ] Sélections explicites sans préfixe brut
-    - [ ] Remplacer `amiga.` par `DiskImageFormatIds.AmigaPrefix`.
-    - [ ] Remplacer `commodore.` par `DiskImageFormatIds.CommodorePrefix`.
-    - [ ] Remplacer `amstrad.` par `DiskImageFormatIds.AmstradPrefix`.
-    - [ ] Conserver `DiskImageFormatIds.IbmPrefix`, `Mac1440`, `AcornDfsPrefix`, `DecRx02`, `EpsonQx10Prefix` et `UcsdIbmMfm`.
-    - [ ] Remplacer `atari.` et `atarist.` par `DiskImageFormatIds.AtariPrefix` et `AtariStPrefix`.
-    - [ ] Remplacer le préfixe trop général `apple` par les préfixes définis Apple II, Apple III, Apple Macintosh et Apple Lisa, puis conserver séparément `DiskImageFormatIds.MacPrefix`.
-    - [ ] Conserver l’ordre actuel des sélections explicites et le candidat ISO comme repli lorsqu’aucun prédicat spécialisé ne correspond.
-  - [ ] Candidats Epson partagés
-    - [ ] Ajouter à `Geometries/Epson/EpsonQx10GeometryCatalog.cs` la collection immuable ordonnée des formats 396, 399, 320, 400 et LOGO actuellement inscrits ici.
-    - [ ] Faire utiliser cette collection par la composition des candidats ISO, par défaut et sélectionnés.
-    - [ ] Supprimer le tableau privé mutable `EpsonFormats` du registre.
-  - [ ] Ordre déterministe des candidats automatiques
-    - [ ] Définir dans la composition l’ordre des familles ISO, Amiga, Commodore, Apple et DEC actuellement insérées dans le dictionnaire.
-    - [ ] Lorsque la sonde ne retourne aucune famille, parcourir explicitement cet ordre complet.
-    - [ ] Lorsque la sonde retourne un ensemble de familles, les remettre dans l’ordre d’inscription avant de concaténer leurs candidats.
-    - [ ] Ignorer ou diagnostiquer une famille sans inscription au lieu d’indexer aveuglément le dictionnaire.
-    - [ ] Conserver l’ordre des candidats à l’intérieur de chaque famille.
-  - [ ] Résultats des méthodes du registre
-    - [ ] Faire retourner par `Selected` un `ScpSectorImageCandidate` lié au chemin, au format et au jeton, ou aucun candidat en l’absence de format explicite.
-    - [ ] Faire retourner par `Default` les candidats nommés dans leur ordre actuel.
-    - [ ] Faire retourner par `Automatic` les candidats nommés dans l’ordre familial déterministe.
-    - [ ] Ne pas capturer ni supprimer les exceptions dans le registre ; laisser le Reader et l’inspecteur les associer au candidat nommé.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `ScpCandidateRegistry`, `ScpSectorImageCandidate`, `ScpFormatSelection`, leurs constructeurs, propriétés et méthodes.
-    - [ ] Documenter les trois parcours, le repli ISO, l’ordre des familles et la conservation de l’identité des candidats.
-    - [ ] Conserver sur une seule ligne les déclarations de types, signatures, prédicats et appels complets qui restent lisibles ; répartir les longues collections uniquement entre leurs éléments.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
-  - [ ] Tests des inscriptions et des ordres
-    - [ ] Tester chaque famille de format explicite et le repli ISO d’un identifiant sans sélection spécialisée.
-    - [ ] Tester l’absence de format explicite dans `Selected`.
-    - [ ] Vérifier l’ordre complet des candidats par défaut.
-    - [ ] Vérifier l’ordre complet des familles et des candidats automatiques lorsque la sonde ne retourne rien.
-    - [ ] Vérifier le même ordre déterministe avec un ensemble de familles fourni dans un ordre différent.
-    - [ ] Tester une famille sans inscription et deux inscriptions explicites qui se chevauchent.
-    - [ ] Vérifier que l’identité du candidat est conservée jusqu’au résultat ou au diagnostic de rejet.
-    - [ ] Vérifier que les collections sources ne peuvent pas modifier le registre après sa construction.
-- [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpFamilyProbe.cs`
-  - [ ] Déplacement dans la reconnaissance SCP
-    - [ ] Déplacer le fichier vers `Recognition/Scp/ScpFamilyProbe.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.Recognition.Scp`.
-    - [ ] Adapter `ScpAutomaticImageExplorer`, `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs`.
-  - [ ] Catalogue nommé des sondes de familles
-    - [ ] Créer `Recognition/Scp/ScpFamilyProbeDefinition.cs` avec la famille et l’identifiant de décodeur.
-    - [ ] Créer `Recognition/Scp/ScpFamilyProbeCatalog.cs` et y déplacer les huit couples actuellement stockés dans des tuples.
-    - [ ] Remplacer `iso.mfm`, `iso.fm`, `amiga.mfm`, `commodore.gcr`, `apple2.gcr`, `apple2.rwts18`, `applemac.gcr` et `dec.rx02` par les constantes de `Decoding/Definitions/FluxCodecIds.cs`.
-    - [ ] Exposer une liste réellement immuable et conserver l’ordre ISO, Amiga, Commodore, Apple et DEC actuel.
-    - [ ] Faire recevoir le catalogue au `ScpFamilyProbe` ou utiliser sa liste immuable sans recopier les inscriptions.
-  - [ ] Échantillonnage uniforme des pistes
-    - [ ] Créer `Recognition/Scp/ScpTrackSampler.cs` et y déplacer la sélection répartie entre la première et la dernière piste.
-    - [ ] Définir le maximum actuel de six pistes échantillonnées dans ce composant.
-    - [ ] Faire supprimer les doublons de numéro de piste après calcul des positions.
-    - [ ] Exclure les pistes sans révolution avant le lancement des sondes.
-    - [ ] Conserver la première révolution comme révolution sondée et nommer son index de base zéro.
-    - [ ] Remplacer dans `DetectAsync` la formule mêlant `Range`, multiplication, division, `Math.Max` et `DistinctBy` par l’appel au sampler.
-  - [ ] Exécution des sondes
-    - [ ] Extraire dans une méthode privée la validation d’un résultat contenant au moins un secteur avec données et intégrité explicitement valide.
-    - [ ] Conserver l’exécution concurrente des pistes échantillonnées et la vérification du jeton d’annulation dans chaque travail.
-    - [ ] Ne plus essayer les autres décodeurs d’une famille déjà trouvée lorsque l’état concurrent permet de l’éviter.
-    - [ ] Conserver une seule occurrence de chaque `ScpFormatFamily` dans le résultat.
-    - [ ] Retourner un ensemble vide pour une capture sans piste ou sans révolution exploitable.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `ScpFamilyProbe`, son constructeur et `DetectAsync`.
-    - [ ] Documenter en français `ScpFamilyProbeDefinition`, `ScpFamilyProbeCatalog`, `ScpTrackSampler` et chacun de leurs membres.
-    - [ ] Documenter l’ordre des sondes, l’échantillonnage, la première révolution, le critère d’un secteur valide, le parallélisme et l’annulation.
-    - [ ] Conserver sur une seule ligne les déclarations, signatures, tuples remplacés, conditions et appels complets qui restent lisibles ainsi.
-  - [ ] Tests des sondes de familles
-    - [ ] Tester l’échantillonnage de zéro à six pistes puis de plus de six pistes, en vérifiant première, dernière et répartition intermédiaire.
-    - [ ] Tester les numéros de pistes dupliqués et les pistes sans révolution.
-    - [ ] Tester chacun des huit décodeurs et les cinq familles correspondantes avec une capture ou une révolution connue.
-    - [ ] Vérifier qu’un secteur sans données, invalide ou d’intégrité inconnue ne suffit pas à déclarer la famille trouvée.
-    - [ ] Vérifier l’unicité des familles lorsque plusieurs pistes ou décodeurs de la même famille réussissent.
-    - [ ] Vérifier l’ensemble vide sans piste exploitable et la propagation de l’annulation.
-- [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpFormatFamily.cs`
-  - [ ] Déplacement de l’enum de reconnaissance
-    - [ ] Déplacer le fichier vers `Recognition/Scp/ScpFormatFamily.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.Recognition.Scp`.
-    - [ ] Adapter le catalogue de sondes et le registre de candidats SCP au nouveau namespace.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Documenter en français `ScpFormatFamily`.
-    - [ ] Documenter `Iso` comme famille FM/MFM sectorielle commune.
-    - [ ] Documenter `Amiga`, `Commodore`, `Apple` et `Dec` selon les codecs spécialisés regroupés par le catalogue de sondes.
-    - [ ] Conserver chaque valeur sur une ligne simple sans valeur numérique explicite inutile.
-  - [ ] Cohérence avec les catalogues
-    - [ ] Vérifier dans les tests de composition que chaque définition de `ScpFamilyProbeCatalog` référence une valeur de l’enum.
-    - [ ] Vérifier que chaque valeur de l’enum possède au moins une sonde et au moins un candidat dans la composition par défaut.
-- [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpSectorImageReader.cs`
-  - [ ] Déplacement avec le registre de candidats
-    - [ ] Déplacer le fichier vers `SectorImages/Scp/ScpSectorImageReader.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.SectorImages.Scp`.
-    - [ ] Adapter `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs`.
-  - [ ] Lecture d’un format explicitement sélectionné
-    - [ ] Faire recevoir de `ScpCandidateRegistry.Selected` le candidat nommé lié au format demandé.
-    - [ ] Exécuter directement ce candidat lorsqu’il existe et conserver son exception précise en cas de rejet.
-    - [ ] Laisser le candidat ISO de repli traiter les identifiants explicites sans sélection spécialisée selon la règle conservée dans le registre.
-  - [ ] Parcours des candidats par défaut
-    - [ ] Conserver la première image sectorielle décodée avec succès comme repli.
-    - [ ] Continuer à essayer les candidats suivants jusqu’à ce qu’un système de fichiers soit reconnu.
-    - [ ] Retourner immédiatement la première image dont `FileSystemRegistry` reconnaît un système de fichiers.
-    - [ ] Lorsque plusieurs images sont décodées sans système reconnu, retourner la première selon l’ordre du registre.
-    - [ ] Capturer comme rejets de candidat `InvalidDataException` et `NotSupportedException`, tout en laissant remonter les erreurs d’accès, d’E/S inattendues et d’annulation.
-  - [ ] Conservation des diagnostics de rejet
-    - [ ] Créer `SectorImages/Scp/ScpCandidateFailure.cs` avec l’identifiant du candidat et son exception de rejet.
-    - [ ] Accumuler un échec pour chaque candidat rejeté au lieu de laisser un `catch` vide.
-    - [ ] Créer `SectorImages/Scp/ScpSectorImageExceptions.cs` avec une erreur d’échec total recevant le chemin, le format demandé et la liste des échecs.
-    - [ ] Remplacer le texte brut `No supported sectors could be decoded from the SCP image.` par cette erreur détaillée lorsque tous les candidats échouent sans produire d’image.
-    - [ ] Conserver les diagnostics accumulés accessibles à l’exploration automatique ou dans l’exception finale sans masquer leurs exceptions internes.
-  - [ ] Découpage interne
-    - [ ] Extraire le parcours des candidats par défaut dans une méthode privée afin de séparer la sélection explicite du repli automatique.
-    - [ ] Extraire dans une méthode privée le test de reconnaissance d’un système de fichiers si cela évite de répéter l’appel après l’introduction des diagnostics.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `ScpSectorImageReader`, son constructeur, `ReadAsync` et chaque méthode privée créée.
-    - [ ] Documenter en français `ScpCandidateFailure`, `ScpSectorImageExceptions` et chacun de leurs membres.
-    - [ ] Documenter la sélection explicite, l’ordre par défaut, le premier décodage, les types de rejets poursuivis et les erreurs propagées.
-    - [ ] Conserver sur une seule ligne les déclarations, signatures, conditions, appels et retours complets qui restent lisibles ainsi.
-  - [ ] Tests de sélection et de repli
-    - [ ] Tester un candidat explicitement sélectionné qui réussit puis un qui échoue avec son diagnostic intact.
-    - [ ] Tester un premier candidat par défaut rejeté puis un second reconnu par un système de fichiers.
-    - [ ] Tester plusieurs décodages sans système de fichiers et vérifier le retour du premier.
-    - [ ] Tester un `InvalidDataException` puis une réussite et un `NotSupportedException` puis une réussite.
-    - [ ] Tester l’échec de tous les candidats et vérifier l’identité et l’exception de chaque rejet dans l’erreur finale.
-    - [ ] Vérifier qu’une erreur d’E/S et une annulation interrompent immédiatement le parcours.
-- [ ] `src/GWGUI.MediaEngine/Images/ScpImageExplorationService.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Exploration/Scp/ScpImageExplorationService.cs` et adapter son namespace et ses consommateurs.
-    - [ ] Faire recevoir directement au constructeur `ScpAutomaticImageExplorer` et `ScpSectorImageReader`, qui sont les deux services auxquels cette façade délègue.
-    - [ ] Déplacer la construction de `DiskImageInterpretationService`, `ScpAutomaticImageExplorer` et `ScpSectorImageReader` vers le groupe de composition de `DiskImageExplorerFactory`.
-    - [ ] Supprimer du constructeur de la façade les dépendances `ScpCandidateRegistry`, `ScpFamilyProbe` et `FileSystemRegistry` une fois leur composition déplacée.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne les deux délégations de `ExploreAutomaticallyAsync` et `ReadAsync` lorsqu’elles tiennent lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française du type `ScpImageExplorationService` et de son constructeur interne.
-    - [ ] Ajouter la documentation XML française des méthodes `ExploreAutomaticallyAsync` et `ReadAsync`, avec paramètres, résultat, exceptions et comportement délégué.
-  - [ ] Tests ciblés
-    - [ ] Vérifier que `ExploreAutomaticallyAsync` restitue le résultat de l’explorateur automatique injecté.
-    - [ ] Vérifier que `ReadAsync` transmet sans modification le chemin, l’identifiant de format et le jeton d’annulation au Reader sectoriel injecté.
+- [x] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpAutomaticImageExplorer.cs`
+  - [x] Déplacement dans l’exploration SCP
+    - [x] Déplacer le fichier vers `Exploration/Scp/ScpAutomaticImageExplorer.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.Exploration.Scp`.
+    - [x] Adapter `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs` au nouveau type.
+    - [x] Faire recevoir `DiskImageDocumentFactory`, `DiskImageDecodeScore`, `FileSystemInterpretationIdentity` et `FileSystemAlternativePolicy` extraits du service d’interprétation.
+  - [x] Inspection isolée d’un candidat SCP
+    - [x] Créer `Exploration/Scp/ScpCandidateInspector.cs` et y déplacer le contenu de la fonction locale `InspectAsync` qui lit un candidat et cherche ses systèmes de fichiers.
+    - [x] Créer `Exploration/Scp/ScpCandidateInspection.cs` pour retourner l’image décodée, les images normalisées et les véritables correspondances de Readers de systèmes de fichiers.
+    - [x] Faire recevoir à l’inspecteur `FileSystemRegistry` et `DiskImageInterpretationService`.
+    - [x] Conserver la normalisation de chaque image reconnue puis relire son volume avec le même `ReaderId` lorsqu’elle a changé.
+    - [x] Utiliser le résultat complet de `FileSystemRegistry.TryReadMatch` pour les interprétations supplémentaires, au lieu d’enregistrer leur identifiant de format comme `ReaderId`.
+    - [x] Conserver l’absence d’inspection exploitable lorsqu’un candidat produit `InvalidDataException`.
+    - [x] Associer au résultat le diagnostic et l’identité du candidat rejeté fournis par le registre SCP, au lieu de vider définitivement l’exception.
+  - [x] Classement et déduplication des inspections
+    - [x] Créer `Exploration/Scp/ScpCandidateRanker.cs` et y déplacer le choix du meilleur décodage, du meilleur système reconnu et l’agrégation des résultats détectés.
+    - [x] Créer `Exploration/Scp/ScpExplorationThresholds.cs` avec le score minimal actuellement fixé à `0.5` pour conserver un identifiant de format décodé.
+    - [x] Initialiser explicitement l’absence de score reconnu au lieu de laisser `-1` brut dans l’explorateur.
+    - [x] Utiliser `DiskImageDecodeScore` pour tous les calculs et ne calculer qu’une fois le score de chaque image inspectée.
+    - [x] Conserver le premier candidat rencontré en cas d’égalité de score, comme le fait la comparaison stricte actuelle.
+    - [x] Utiliser `FileSystemInterpretationIdentity` pour dédupliquer les systèmes détectés.
+    - [x] Conserver l’ordre de première détection des identifiants de formats avec une liste accompagnée d’un ensemble de contrôle, au lieu de dépendre de l’ordre d’énumération d’un `HashSet`.
+    - [x] Utiliser `FileSystemAlternativePolicy` pour filtrer les alternatives ajoutées après le meilleur résultat.
+  - [x] Orchestration restante de l’explorateur
+    - [x] Conserver dans `ExploreAsync` la détection des familles, l’obtention ordonnée des candidats automatiques, leur inspection et la création du document final.
+    - [x] Conserver l’exécution concurrente des lectures de candidats et la propagation de l’annulation.
+    - [x] Utiliser `DiskImageDocumentFactory.CreateUnknown` lorsqu’aucun candidat n’est décodé.
+    - [x] Utiliser `DiskImageDocumentFactory.Create` avec le meilleur décodage lorsqu’aucun système de fichiers n’est reconnu.
+    - [x] Utiliser le meilleur candidat reconnu comme image principale et placer son système de fichiers en tête lorsque des reconnaissances existent.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `ScpAutomaticImageExplorer`, son constructeur et `ExploreAsync`.
+    - [x] Documenter en français `ScpCandidateInspector`, `ScpCandidateInspection`, `ScpCandidateRanker`, `ScpExplorationThresholds` et chacun de leurs membres.
+    - [x] Documenter le parallélisme, le classement, les égalités, la déduplication, les alternatives et les diagnostics rejetés.
+    - [x] Conserver sur une seule ligne les déclarations, signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
+  - [x] Tests du parcours automatique SCP
+    - [x] Tester plusieurs candidats avec des scores différents et vérifier le meilleur décodage.
+    - [x] Tester deux scores égaux et vérifier que le premier candidat ordonné reste retenu.
+    - [x] Tester une image normalisée qui doit être relue par le même Reader de système de fichiers.
+    - [x] Tester une interprétation supplémentaire et vérifier son véritable `ReaderId`.
+    - [x] Tester deux systèmes identiques, une alternative crédible et une alternative rejetée par les avertissements.
+    - [x] Tester un candidat rejeté suivi d’une réussite et vérifier la conservation du diagnostic du rejet.
+    - [x] Tester l’absence totale de décodage, un décodage sans système de fichiers et un décodage reconnu.
+    - [x] Vérifier l’ordre des identifiants détectés et la propagation de l’annulation pendant les inspections concurrentes.
+- [x] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpCandidateRegistry.cs`
+  - [x] Déplacement du registre de reconstructeurs SCP
+    - [x] Déplacer le fichier vers `SectorImages/Scp/ScpCandidateRegistry.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.SectorImages.Scp`.
+    - [x] Adapter `ScpSectorImageReader`, `ScpAutomaticImageExplorer`, `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs`.
+  - [x] Types nommés des candidats et sélections
+    - [x] Créer `SectorImages/Scp/ScpSectorImageCandidate.cs` avec un identifiant technique, une famille `ScpFormatFamily` et la fonction de reconstruction asynchrone.
+    - [x] Créer `SectorImages/Scp/ScpFormatSelection.cs` avec le prédicat de format et le candidat à appeler.
+    - [x] Remplacer le delegate privé `Candidate`, les tuples de `selectedReaders` et les fonctions sans identité retournées par ces types nommés.
+    - [x] Faire conserver l’identifiant du candidat jusqu’à l’inspecteur et au Reader sectoriel afin que leurs diagnostics puissent nommer le reconstructeur rejeté.
+  - [x] Injection de toutes les inscriptions
+    - [x] Remplacer le constructeur à onze Readers par des collections injectées de sélections explicites, candidats par défaut et candidats par famille, plus le candidat ISO de repli.
+    - [x] Copier chaque collection reçue et rendre le dictionnaire de familles et ses listes réellement immuables.
+    - [x] Faire construire une seule fois chaque candidat nommé par `Composition/MediaEngineFactory.cs` puis réutiliser la même inscription dans les listes explicites, par défaut et familiales nécessaires.
+    - [x] Ne plus recréer dans le registre les delegates vers Amiga, ISO, Atari, Amstrad, BBC, IBM, Epson, UCSD, Commodore, Apple et DEC.
+  - [x] Sélections explicites sans préfixe brut
+    - [x] Remplacer `amiga.` par `DiskImageFormatIds.AmigaPrefix`.
+    - [x] Remplacer `commodore.` par `DiskImageFormatIds.CommodorePrefix`.
+    - [x] Remplacer `amstrad.` par `DiskImageFormatIds.AmstradPrefix`.
+    - [x] Conserver `DiskImageFormatIds.IbmPrefix`, `Mac1440`, `AcornDfsPrefix`, `DecRx02`, `EpsonQx10Prefix` et `UcsdIbmMfm`.
+    - [x] Remplacer `atari.` et `atarist.` par `DiskImageFormatIds.AtariPrefix` et `AtariStPrefix`.
+    - [x] Remplacer le préfixe trop général `apple` par les préfixes définis Apple II, Apple III, Apple Macintosh et Apple Lisa, puis conserver séparément `DiskImageFormatIds.MacPrefix`.
+    - [x] Conserver l’ordre actuel des sélections explicites et le candidat ISO comme repli lorsqu’aucun prédicat spécialisé ne correspond.
+  - [x] Candidats Epson partagés
+    - [x] Ajouter à `Geometries/Epson/EpsonQx10GeometryCatalog.cs` la collection immuable ordonnée des formats 396, 399, 320, 400 et LOGO actuellement inscrits ici.
+    - [x] Faire utiliser cette collection par la composition des candidats ISO, par défaut et sélectionnés.
+    - [x] Supprimer le tableau privé mutable `EpsonFormats` du registre.
+  - [x] Ordre déterministe des candidats automatiques
+    - [x] Définir dans la composition l’ordre des familles ISO, Amiga, Commodore, Apple et DEC actuellement insérées dans le dictionnaire.
+    - [x] Lorsque la sonde ne retourne aucune famille, parcourir explicitement cet ordre complet.
+    - [x] Lorsque la sonde retourne un ensemble de familles, les remettre dans l’ordre d’inscription avant de concaténer leurs candidats.
+    - [x] Ignorer ou diagnostiquer une famille sans inscription au lieu d’indexer aveuglément le dictionnaire.
+    - [x] Conserver l’ordre des candidats à l’intérieur de chaque famille.
+  - [x] Résultats des méthodes du registre
+    - [x] Faire retourner par `Selected` un `ScpSectorImageCandidate` lié au chemin, au format et au jeton, ou aucun candidat en l’absence de format explicite.
+    - [x] Faire retourner par `Default` les candidats nommés dans leur ordre actuel.
+    - [x] Faire retourner par `Automatic` les candidats nommés dans l’ordre familial déterministe.
+    - [x] Ne pas capturer ni supprimer les exceptions dans le registre ; laisser le Reader et l’inspecteur les associer au candidat nommé.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `ScpCandidateRegistry`, `ScpSectorImageCandidate`, `ScpFormatSelection`, leurs constructeurs, propriétés et méthodes.
+    - [x] Documenter les trois parcours, le repli ISO, l’ordre des familles et la conservation de l’identité des candidats.
+    - [x] Conserver sur une seule ligne les déclarations de types, signatures, prédicats et appels complets qui restent lisibles ; répartir les longues collections uniquement entre leurs éléments.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
+  - [x] Tests des inscriptions et des ordres
+    - [x] Tester chaque famille de format explicite et le repli ISO d’un identifiant sans sélection spécialisée.
+    - [x] Tester l’absence de format explicite dans `Selected`.
+    - [x] Vérifier l’ordre complet des candidats par défaut.
+    - [x] Vérifier l’ordre complet des familles et des candidats automatiques lorsque la sonde ne retourne rien.
+    - [x] Vérifier le même ordre déterministe avec un ensemble de familles fourni dans un ordre différent.
+    - [x] Tester une famille sans inscription et deux inscriptions explicites qui se chevauchent.
+    - [x] Vérifier que l’identité du candidat est conservée jusqu’au résultat ou au diagnostic de rejet.
+    - [x] Vérifier que les collections sources ne peuvent pas modifier le registre après sa construction.
+- [x] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpFamilyProbe.cs`
+  - [x] Déplacement dans la reconnaissance SCP
+    - [x] Déplacer le fichier vers `Recognition/Scp/ScpFamilyProbe.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.Recognition.Scp`.
+    - [x] Adapter `ScpAutomaticImageExplorer`, `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs`.
+  - [x] Catalogue nommé des sondes de familles
+    - [x] Créer `Recognition/Scp/ScpFamilyProbeDefinition.cs` avec la famille et l’identifiant de décodeur.
+    - [x] Créer `Recognition/Scp/ScpFamilyProbeCatalog.cs` et y déplacer les huit couples actuellement stockés dans des tuples.
+    - [x] Remplacer `iso.mfm`, `iso.fm`, `amiga.mfm`, `commodore.gcr`, `apple2.gcr`, `apple2.rwts18`, `applemac.gcr` et `dec.rx02` par les constantes de `Decoding/Definitions/FluxCodecIds.cs`.
+    - [x] Exposer une liste réellement immuable et conserver l’ordre ISO, Amiga, Commodore, Apple et DEC actuel.
+    - [x] Faire recevoir le catalogue au `ScpFamilyProbe` ou utiliser sa liste immuable sans recopier les inscriptions.
+  - [x] Échantillonnage uniforme des pistes
+    - [x] Créer `Recognition/Scp/ScpTrackSampler.cs` et y déplacer la sélection répartie entre la première et la dernière piste.
+    - [x] Définir le maximum actuel de six pistes échantillonnées dans ce composant.
+    - [x] Faire supprimer les doublons de numéro de piste après calcul des positions.
+    - [x] Exclure les pistes sans révolution avant le lancement des sondes.
+    - [x] Conserver la première révolution comme révolution sondée et nommer son index de base zéro.
+    - [x] Remplacer dans `DetectAsync` la formule mêlant `Range`, multiplication, division, `Math.Max` et `DistinctBy` par l’appel au sampler.
+  - [x] Exécution des sondes
+    - [x] Extraire dans une méthode privée la validation d’un résultat contenant au moins un secteur avec données et intégrité explicitement valide.
+    - [x] Conserver l’exécution concurrente des pistes échantillonnées et la vérification du jeton d’annulation dans chaque travail.
+    - [x] Ne plus essayer les autres décodeurs d’une famille déjà trouvée lorsque l’état concurrent permet de l’éviter.
+    - [x] Conserver une seule occurrence de chaque `ScpFormatFamily` dans le résultat.
+    - [x] Retourner un ensemble vide pour une capture sans piste ou sans révolution exploitable.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `ScpFamilyProbe`, son constructeur et `DetectAsync`.
+    - [x] Documenter en français `ScpFamilyProbeDefinition`, `ScpFamilyProbeCatalog`, `ScpTrackSampler` et chacun de leurs membres.
+    - [x] Documenter l’ordre des sondes, l’échantillonnage, la première révolution, le critère d’un secteur valide, le parallélisme et l’annulation.
+    - [x] Conserver sur une seule ligne les déclarations, signatures, tuples remplacés, conditions et appels complets qui restent lisibles ainsi.
+  - [x] Tests des sondes de familles
+    - [x] Tester l’échantillonnage de zéro à six pistes puis de plus de six pistes, en vérifiant première, dernière et répartition intermédiaire.
+    - [x] Tester les numéros de pistes dupliqués et les pistes sans révolution.
+    - [x] Tester chacun des huit décodeurs et les cinq familles correspondantes avec une capture ou une révolution connue.
+    - [x] Vérifier qu’un secteur sans données, invalide ou d’intégrité inconnue ne suffit pas à déclarer la famille trouvée.
+    - [x] Vérifier l’unicité des familles lorsque plusieurs pistes ou décodeurs de la même famille réussissent.
+    - [x] Vérifier l’ensemble vide sans piste exploitable et la propagation de l’annulation.
+- [x] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpFormatFamily.cs`
+  - [x] Déplacement de l’enum de reconnaissance
+    - [x] Déplacer le fichier vers `Recognition/Scp/ScpFormatFamily.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.Recognition.Scp`.
+    - [x] Adapter le catalogue de sondes et le registre de candidats SCP au nouveau namespace.
+  - [x] Documentation XML française et mise en forme
+    - [x] Documenter en français `ScpFormatFamily`.
+    - [x] Documenter `Iso` comme famille FM/MFM sectorielle commune.
+    - [x] Documenter `Amiga`, `Commodore`, `Apple` et `Dec` selon les codecs spécialisés regroupés par le catalogue de sondes.
+    - [x] Conserver chaque valeur sur une ligne simple sans valeur numérique explicite inutile.
+  - [x] Cohérence avec les catalogues
+    - [x] Vérifier dans les tests de composition que chaque définition de `ScpFamilyProbeCatalog` référence une valeur de l’enum.
+    - [x] Vérifier que chaque valeur de l’enum possède au moins une sonde et au moins un candidat dans la composition par défaut.
+- [x] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpSectorImageReader.cs`
+  - [x] Déplacement avec le registre de candidats
+    - [x] Déplacer le fichier vers `SectorImages/Scp/ScpSectorImageReader.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.ScpDetection` par `GWGUI.MediaEngine.SectorImages.Scp`.
+    - [x] Adapter `ScpImageExplorationService` et `Composition/MediaEngineFactory.cs`.
+  - [x] Lecture d’un format explicitement sélectionné
+    - [x] Faire recevoir de `ScpCandidateRegistry.Selected` le candidat nommé lié au format demandé.
+    - [x] Exécuter directement ce candidat lorsqu’il existe et conserver son exception précise en cas de rejet.
+    - [x] Laisser le candidat ISO de repli traiter les identifiants explicites sans sélection spécialisée selon la règle conservée dans le registre.
+  - [x] Parcours des candidats par défaut
+    - [x] Conserver la première image sectorielle décodée avec succès comme repli.
+    - [x] Continuer à essayer les candidats suivants jusqu’à ce qu’un système de fichiers soit reconnu.
+    - [x] Retourner immédiatement la première image dont `FileSystemRegistry` reconnaît un système de fichiers.
+    - [x] Lorsque plusieurs images sont décodées sans système reconnu, retourner la première selon l’ordre du registre.
+    - [x] Capturer comme rejets de candidat `InvalidDataException` et `NotSupportedException`, tout en laissant remonter les erreurs d’accès, d’E/S inattendues et d’annulation.
+  - [x] Conservation des diagnostics de rejet
+    - [x] Créer `SectorImages/Scp/ScpCandidateFailure.cs` avec l’identifiant du candidat et son exception de rejet.
+    - [x] Accumuler un échec pour chaque candidat rejeté au lieu de laisser un `catch` vide.
+    - [x] Créer `SectorImages/Scp/ScpSectorImageExceptions.cs` avec une erreur d’échec total recevant le chemin, le format demandé et la liste des échecs.
+    - [x] Remplacer le texte brut `No supported sectors could be decoded from the SCP image.` par cette erreur détaillée lorsque tous les candidats échouent sans produire d’image.
+    - [x] Conserver les diagnostics accumulés accessibles à l’exploration automatique ou dans l’exception finale sans masquer leurs exceptions internes.
+  - [x] Découpage interne
+    - [x] Extraire le parcours des candidats par défaut dans une méthode privée afin de séparer la sélection explicite du repli automatique.
+    - [x] Extraire dans une méthode privée le test de reconnaissance d’un système de fichiers si cela évite de répéter l’appel après l’introduction des diagnostics.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `ScpSectorImageReader`, son constructeur, `ReadAsync` et chaque méthode privée créée.
+    - [x] Documenter en français `ScpCandidateFailure`, `ScpSectorImageExceptions` et chacun de leurs membres.
+    - [x] Documenter la sélection explicite, l’ordre par défaut, le premier décodage, les types de rejets poursuivis et les erreurs propagées.
+    - [x] Conserver sur une seule ligne les déclarations, signatures, conditions, appels et retours complets qui restent lisibles ainsi.
+  - [x] Tests de sélection et de repli
+    - [x] Tester un candidat explicitement sélectionné qui réussit puis un qui échoue avec son diagnostic intact.
+    - [x] Tester un premier candidat par défaut rejeté puis un second reconnu par un système de fichiers.
+    - [x] Tester plusieurs décodages sans système de fichiers et vérifier le retour du premier.
+    - [x] Tester un `InvalidDataException` puis une réussite et un `NotSupportedException` puis une réussite.
+    - [x] Tester l’échec de tous les candidats et vérifier l’identité et l’exception de chaque rejet dans l’erreur finale.
+    - [x] Vérifier qu’une erreur d’E/S et une annulation interrompent immédiatement le parcours.
+- [x] `src/GWGUI.MediaEngine/Images/ScpImageExplorationService.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Exploration/Scp/ScpImageExplorationService.cs` et adapter son namespace et ses consommateurs.
+    - [x] Faire recevoir directement au constructeur `ScpAutomaticImageExplorer` et `ScpSectorImageReader`, qui sont les deux services auxquels cette façade délègue.
+    - [x] Déplacer la construction de `DiskImageInterpretationService`, `ScpAutomaticImageExplorer` et `ScpSectorImageReader` vers le groupe de composition de `DiskImageExplorerFactory`.
+    - [x] Supprimer du constructeur de la façade les dépendances `ScpCandidateRegistry`, `ScpFamilyProbe` et `FileSystemRegistry` une fois leur composition déplacée.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne les deux délégations de `ExploreAutomaticallyAsync` et `ReadAsync` lorsqu’elles tiennent lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française du type `ScpImageExplorationService` et de son constructeur interne.
+    - [x] Ajouter la documentation XML française des méthodes `ExploreAutomaticallyAsync` et `ReadAsync`, avec paramètres, résultat, exceptions et comportement délégué.
+  - [x] Tests ciblés
+    - [x] Vérifier que `ExploreAutomaticallyAsync` restitue le résultat de l’explorateur automatique injecté.
+    - [x] Vérifier que `ReadAsync` transmet sans modification le chemin, l’identifiant de format et le jeton d’annulation au Reader sectoriel injecté.
 
 ## 10. Conversion et visualisation technique
 

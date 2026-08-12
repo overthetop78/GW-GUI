@@ -34,7 +34,7 @@ internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadata
     /// <summary>Construit un document inconnu conservant la capacité observée du fichier.</summary>
     /// <param name="path">Chemin du fichier non reconnu.</param>
     /// <returns>Document contenant une image technique inconnue.</returns>
-    public ExploredDiskImage Unknown(string path)
+    public ExploredDiskImage CreateUnknown(string path)
     {
         var capacity = new FileInfo(path).Length;
         var image = new SectorImage(DiskImageFormatIds.Unknown, UnknownBlockSize, UnknownGeometryDimension, UnknownGeometryDimension, UnknownGeometryDimension, [], capacity: capacity, logicalBlockCount: UnknownLogicalBlockCount);

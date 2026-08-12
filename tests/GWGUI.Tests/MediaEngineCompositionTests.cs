@@ -1,11 +1,11 @@
 using System.Reflection;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Recognition.Scp;
 
 namespace GWGUI.Tests;
 
@@ -39,8 +39,9 @@ public sealed class MediaEngineCompositionTests
         var interpretations = Field<DiskImageInterpretationService>(explorer);
         var scpExploration = Field<ScpImageExplorationService>(explorer);
         var automatic = Field<ScpAutomaticImageExplorer>(scpExploration);
-        Assert.Same(fileSystems, Field<FileSystemRegistry>(automatic));
-        Assert.Same(interpretations, Field<DiskImageInterpretationService>(automatic));
+        var inspector = Field<ScpCandidateInspector>(automatic);
+        Assert.Same(fileSystems, Field<FileSystemRegistry>(inspector));
+        Assert.Same(interpretations, Field<DiskImageInterpretationService>(inspector));
         var familyProbe = Field<ScpFamilyProbe>(automatic);
         Assert.NotEmpty(Field<FluxDecoderRegistry>(familyProbe).Decoders);
         Assert.NotEmpty(fileSystems.Readers);

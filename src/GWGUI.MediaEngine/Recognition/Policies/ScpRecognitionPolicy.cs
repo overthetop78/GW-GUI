@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 

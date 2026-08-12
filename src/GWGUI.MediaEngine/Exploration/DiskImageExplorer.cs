@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
@@ -60,7 +61,7 @@ public sealed class DiskImageExplorer
         }
         catch (DiskImageNotRecognizedException)
         {
-            return documents.Unknown(path);
+            return documents.CreateUnknown(path);
         }
 
         var result = formatId is null ? ReadAutomatically(image) : ReadExplicitly(image, formatId);

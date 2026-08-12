@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Exploration.Scp;
 using System.Runtime.CompilerServices;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
