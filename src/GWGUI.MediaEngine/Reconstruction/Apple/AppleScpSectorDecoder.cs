@@ -49,8 +49,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     /// <returns>Le bloc construit avec le candidat dont l'intégrité est la meilleure.</returns>
     public static SectorBlock Select(int logical, SectorAddress address, List<(DecodedSector Sector, int Revolution)> values)
     {
-        var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true)
-            .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+        var best = SectorCandidateSelector.Best(values, value => value.Sector.IntegrityValid);
         return new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution, best.Sector.Tag?.ToArray(), best.Sector.FormatCode);
     }
 

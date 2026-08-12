@@ -3,6 +3,9 @@ namespace GWGUI.MediaEngine.Reconstruction.Iso;
 /// <summary>Construit les erreurs propres aux reconstructions SCP ISO FM et MFM.</summary>
 internal static class IsoScpReconstructionExceptions
 {
+    /// <summary>Crée l'erreur signalant l'absence de candidat adressé à mesurer.</summary>
+    /// <returns>L'exception signalant l'absence de candidat adressé.</returns>
+    public static InvalidDataException NoAddressedCandidates() => new("No consistently addressed ISO FM/MFM sectors could be measured.");
     /// <summary>Crée l'erreur signalant qu'aucun candidat cohérent n'a été décodé.</summary>
     /// <param name="formatId">Identifiant demandé, ou <see langword="null"/> pour la détection automatique.</param>
     /// <param name="addressedCandidateCount">Nombre de candidats dont l'adresse décodée correspond à la piste physique.</param>

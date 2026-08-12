@@ -5264,24 +5264,24 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IsoSectorCandidateSet`.
     - [x] Ajouter la documentation XML des méthodes `IsoSectorCandidateSet`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IsoSectorImageBuilder.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorImageBuilder.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Résultat de mesure ISO
-    - [ ] Créer dans `Reconstruction/Iso` un type nommé regroupant `SectorSize`, `Cylinders`, `Heads`, `SectorsPerTrack`, `SectorOrder` et `ZeroBased`.
-    - [ ] Faire retourner ce type par `Measure` et adapter toutes les politiques ISO qui consomment actuellement le tuple.
-  - [ ] Sélection commune du meilleur candidat
-    - [ ] Créer `Reconstruction/SectorCandidateSelector.cs` pour porter la priorité existante : intégrité valide, puis intégrité inconnue, puis intégrité invalide.
-    - [ ] Faire utiliser ce sélecteur par `Best` et `BestData` sans modifier la règle supplémentaire de `BestData` qui ignore les données vides.
-    - [ ] Raccorder uniquement les autres reconstructeurs dont la règle de classement est strictement identique.
-  - [ ] Erreur de mesure
-    - [ ] Remplacer le texte brut levé par `Measure` lorsqu'aucun candidat adressé n'existe par une méthode sans donnée inventée de `Reconstruction/Iso/IsoScpReconstructionExceptions.cs`.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne la construction finale de `SectorImage` dans `CreateUniform` si elle tient dans la longueur admise par le document.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoSectorImageBuilder`.
-    - [ ] Ajouter la documentation XML des méthodes `CreateUniform, BestData, Best`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IsoSectorImageBuilder.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorImageBuilder.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Résultat de mesure ISO
+    - [x] Créer dans `Reconstruction/Iso` un type nommé regroupant `SectorSize`, `Cylinders`, `Heads`, `SectorsPerTrack`, `SectorOrder` et `ZeroBased`.
+    - [x] Faire retourner ce type par `Measure` et adapter toutes les politiques ISO qui consomment actuellement le tuple.
+  - [x] Sélection commune du meilleur candidat
+    - [x] Créer `Reconstruction/SectorCandidateSelector.cs` pour porter la priorité existante : intégrité valide, puis intégrité inconnue, puis intégrité invalide.
+    - [x] Faire utiliser ce sélecteur par `Best` et `BestData` sans modifier la règle supplémentaire de `BestData` qui ignore les données vides.
+    - [x] Raccorder uniquement les autres reconstructeurs dont la règle de classement est strictement identique.
+  - [x] Erreur de mesure
+    - [x] Remplacer le texte brut levé par `Measure` lorsqu'aucun candidat adressé n'existe par une méthode sans donnée inventée de `Reconstruction/Iso/IsoScpReconstructionExceptions.cs`.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne la construction finale de `SectorImage` dans `CreateUniform` si elle tient dans la longueur admise par le document.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoSectorImageBuilder`.
+    - [x] Ajouter la documentation XML des méthodes `CreateUniform, BestData, Best`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/UcsdIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs`.

@@ -42,7 +42,7 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         foreach (var (address, values) in candidates)
         {
             if (address.Cylinder >= DiskGeometryConstants.EightyTrackCylinderCount || address.Head >= DiskGeometryConstants.DoubleSidedHeadCount || address.Number < 0 || address.Number >= sectorsPerTrack) continue;
-            var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+            var best = SectorCandidateSelector.Best(values, value => value.Sector.IntegrityValid);
             var logical = checked((address.Cylinder * DiskGeometryConstants.DoubleSidedHeadCount + address.Head) * sectorsPerTrack + address.Number);
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }

@@ -64,7 +64,6 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
     private static (DecodedSector Sector, int Revolution)? Best(IReadOnlyDictionary<int, List<(DecodedSector Sector, int Revolution)>> sectors, int logical)
     {
         if (!sectors.TryGetValue(logical, out var values)) return null;
-        return values.OrderByDescending(value => value.Sector.IntegrityValid == true)
-            .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+        return SectorCandidateSelector.Best(values, value => value.Sector.IntegrityValid);
     }
 }

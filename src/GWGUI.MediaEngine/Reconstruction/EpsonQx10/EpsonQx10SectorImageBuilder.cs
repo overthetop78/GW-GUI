@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Geometries.Epson;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Reconstruction.EpsonQx10;
@@ -35,11 +36,10 @@ internal static class EpsonQx10SectorImageBuilder
                     sizes.Add(track.SectorSize);
                     if (!candidates.TryGetValue(address, out var values)) continue;
 
-                    var best = values.Where(value => value.Sector.Data?.Count == track.SectorSize)
-                        .OrderByDescending(value => value.Sector.IntegrityValid == true)
-                        .ThenByDescending(value => value.Sector.IntegrityValid is null)
-                        .FirstOrDefault();
-                    if (best?.Sector.Data is null) continue;
+                    var matching = values.Where(value => value.Sector.Data?.Count == track.SectorSize).ToArray();
+                    if (matching.Length == 0) continue;
+                    var best = SectorCandidateSelector.Best(matching, value => value.Sector.IntegrityValid);
+                    if (best.Sector.Data is null) continue;
                     blocks.Add(new(logical, address, best.Sector.Data.ToArray(), best.Sector.IntegrityValid, best.Revolution));
                 }
             }

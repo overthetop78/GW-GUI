@@ -67,7 +67,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
             var side = key.Track > tracksPerSide ? 1 : 0;
             var track = side == 0 ? key.Track : key.Track - tracksPerSide;
             if (side >= sides || track < 1 || track > tracksPerSide || key.Sector >= Commodore1541Geometry.SectorsPerTrack(track)) continue;
-            var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+            var best = SectorCandidateSelector.Best(values, value => value.Sector.IntegrityValid);
             var logical = is1571 ? Commodore1571Geometry.ToLogicalBlock(track, key.Sector, tracksPerSide, side) : Commodore1541Geometry.ToSideLogicalBlock(track, key.Sector, tracksPerSide);
             blocks.Add(new(logical, new(track - 1, side, key.Sector), best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
@@ -103,7 +103,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         foreach (var (address, values) in candidates)
         {
             if (address.Cylinder is < 0 or >= Commodore1581Geometry.LogicalCylinderCount || address.Head is < 0 or >= Commodore1581Geometry.PhysicalHeadCount) continue;
-            var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+            var best = SectorCandidateSelector.Best(values, value => value.Sector.IntegrityValid);
             var physical = best.Sector.Data!.ToArray();
             var logicalBase = Commodore1581Geometry.PhysicalSectorToLogicalBlock(address.Cylinder, address.Head, address.Number);
             for (var half = 0; half < Commodore1581Geometry.LogicalBlocksPerPhysicalSector; half++)
