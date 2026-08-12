@@ -150,6 +150,25 @@ public sealed class ImdImageTests
     }
 
     [Fact]
+    public void EpsonCatalogContainsUniqueIdentifiersGeometriesAndCapacities()
+    {
+        Assert.Equal(6, EpsonQx10GeometryCatalog.All.Count);
+        Assert.Equal(EpsonQx10GeometryCatalog.All.Count, EpsonQx10GeometryCatalog.All.Keys.Distinct(StringComparer.OrdinalIgnoreCase).Count());
+        var signatures = EpsonQx10GeometryCatalog.All.Values.Select(geometry => $"{geometry.Cylinders}:{geometry.Heads}:{string.Join(';', geometry.AllTracks.Select(track => $"{track.FirstSector},{track.Count},{track.SectorSize}"))}").ToArray();
+        Assert.Equal(signatures.Length, signatures.Distinct(StringComparer.Ordinal).Count());
+        Assert.All(EpsonQx10GeometryCatalog.All.Values, geometry => Assert.True(geometry.AllTracks.Sum(track => (long)track.Count * track.SectorSize) > 0));
+    }
+
+    [Fact]
+    public void AmbiguousSingleSmallTrackUsesTheCatalogPriorityAndEmptyInputDoesNotMatch()
+    {
+        var sectors = Enumerable.Range(0, EpsonQx10GeometryCatalog.Layout320.Count).Select(index => new EpsonQx10SectorDescriptor(0, 0, EpsonQx10GeometryCatalog.Layout320.FirstSector + index, EpsonQx10GeometryCatalog.Layout320.SectorSize)).ToArray();
+        Assert.True(EpsonQx10FormatDetector.TryDetect(sectors, out var formatId));
+        Assert.Equal(DiskImageFormatIds.EpsonQx10_320, formatId);
+        Assert.False(EpsonQx10FormatDetector.TryDetect([], out _));
+    }
+
+    [Fact]
     public void NonEpsonLayoutFallsBackToImd()
     {
         var image = ImdReader.Read(CreateSingleSectorImage());

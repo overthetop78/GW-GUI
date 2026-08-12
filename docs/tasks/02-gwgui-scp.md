@@ -5388,16 +5388,16 @@
     - [x] Remplacer codec, géométrie, format et erreurs bruts par `DecRx02Geometry`, `FluxCodecIds` et les erreurs communes.
     - [x] Documenter en français chaque membre.
     - [ ] Tester une capture RX02 complète, partielle et invalide. Les cas partiel et invalide sont validés. La capture complète `BA-J837B-BC_MINC_MA_DEMO_23_V2.0_BIN_RX2 [test].scp` échoue actuellement avec `No DEC RX02 sectors could be decoded from the SCP image` ; le décodage RX02 réel reste à corriger.
-  - [ ] `SectorImages/EpsonQx10FormatDetector.cs`
-    - [ ] Déplacer chaque capacité, secteur, taille, seuil et format Epson dans `EpsonQx10GeometryCatalog`.
-    - [ ] Conserver dans le détecteur uniquement le score des secteurs observés et la sélection d'une entrée du catalogue.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester chaque format Epson, une ambiguïté et l'absence de correspondance.
-  - [ ] `SectorImages/EpsonQx10GeometryCatalog.cs`
-    - [ ] Créer un type nommé pour chaque géométrie Epson avec format, cylindres, têtes, secteurs, tailles et ordre.
-    - [ ] Protéger la collection du catalogue et refuser deux identifiants ou géométries identiques.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester l'unicité et la capacité de chaque entrée.
+  - [x] `SectorImages/EpsonQx10FormatDetector.cs`
+    - [x] Déplacer chaque capacité, secteur, taille, seuil et format Epson dans `EpsonQx10GeometryCatalog`.
+    - [x] Conserver dans le détecteur uniquement le score des secteurs observés et la sélection d'une entrée du catalogue.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester chaque format Epson, une ambiguïté et l'absence de correspondance.
+  - [x] `SectorImages/EpsonQx10GeometryCatalog.cs`
+    - [x] Créer un type nommé pour chaque géométrie Epson avec format, cylindres, têtes, secteurs, tailles et ordre.
+    - [x] Protéger la collection du catalogue et refuser deux identifiants ou géométries identiques.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester l'unicité et la capacité de chaque entrée.
   - [ ] `SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
     - [ ] Remplacer toute copie de géométrie ou format par une entrée de `EpsonQx10GeometryCatalog`.
     - [ ] Documenter en français chaque membre.
