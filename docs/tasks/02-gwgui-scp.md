@@ -7518,53 +7518,53 @@
     - [x] Vérifier la présence de chaque Reader de système de fichiers et de chaque décodeur requis par les reconstructeurs inscrits.
     - [x] Vérifier que les services partageant le Reader SCP, les décodeurs, les systèmes de fichiers et les interprétations reçoivent les mêmes instances.
     - [x] Ouvrir par la composition par défaut une image brute, un conteneur signé et une capture SCP depuis `image_test`.
-- [ ] `src/GWGUI.MediaEngine/Images/DiskImageInterpretationService.cs`
-  - [ ] Déplacement du coordinateur d’interprétation
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/DiskImageInterpretationService.cs` sans renommer le type.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Interpretation` et adapter tous ses consommateurs.
-    - [ ] Faire recevoir `RecognizedImageNormalizerRegistry` et `AdditionalImageInterpretationRegistry` par le constructeur au lieu de les créer dans des champs.
-    - [ ] Retirer la dépendance directe vers `FileSystemRegistry` après injection des deux registres.
-    - [ ] Faire créer et partager ces dépendances par `Composition/MediaEngineFactory.cs`.
-  - [ ] Extraction de la construction des documents
-    - [ ] Créer `Exploration/Documents/DiskImageDocumentFactory.cs` et y déplacer `CreateDocument` ainsi que `Unknown`.
-    - [ ] Créer `Exploration/Documents/PhysicalSectorTreeBuilder.cs` et y déplacer la construction des répertoires de pistes et des fichiers de secteurs utilisée lorsqu’aucun système de fichiers n’est reconnu.
-    - [ ] Créer `Exploration/Documents/PhysicalSectorEntryNames.cs` avec des fonctions recevant cylindre, face et numéro de secteur pour produire les noms techniques `Txx Hxx` et `Sxx.bin`.
-    - [ ] Remplacer les textes, formats numériques, suffixe `.bin` et chaînes vides recopiés dans la construction des entrées par ces fonctions et par des définitions nommées.
-    - [ ] Créer dans `DiskImageDocumentFactory` l’image inconnue avec `DiskImageFormatIds.Unknown` et des constantes nommées pour son unique bloc logique, sa géométrie minimale et sa taille de bloc technique.
-    - [ ] Faire recevoir `DiskImageDocumentFactory` par `DiskImageExplorer` et `ScpAutomaticImageExplorer` au lieu d’appeler les anciennes méthodes du service.
-  - [ ] Extraction du score de décodage
-    - [ ] Créer `Exploration/Scoring/DiskImageDecodeScore.cs` et y déplacer `DecodeScore`.
-    - [ ] Y nommer le dénominateur minimal d’un bloc qui évite une division par zéro.
-    - [ ] Faire utiliser ce composant par `ScpAutomaticImageExplorer` pour comparer les images décodées.
-    - [ ] Supprimer `DecodeScore` de `DiskImageInterpretationService` après migration de tous ses appels.
-  - [ ] Extraction de l’identité des interprétations
-    - [ ] Créer `Exploration/Interpretation/FileSystemInterpretationIdentity.cs` et y déplacer `FileSystemIdentity`, `InterpretationIdentity` et la fonction locale récursive `Entries`.
-    - [ ] Déplacer dans ce composant l’extraction de la famille depuis le premier point de l’identifiant de format.
-    - [ ] Définir dans ce composant les séparateurs d’identité entre champs, entre entrées et entre segments de chemin au lieu de conserver `\0`, `\u001f` et `/` dans les interpolations.
-    - [ ] Conserver le tri insensible à la casse des entrées avant la création de l’identité.
-    - [ ] Faire utiliser ce composant par `DiskImageExplorer` et `ScpAutomaticImageExplorer`, puis supprimer les méthodes statiques correspondantes du service.
-  - [ ] Extraction de la crédibilité des alternatives
-    - [ ] Créer `Exploration/Interpretation/FileSystemAlternativePolicy.cs` et y déplacer `IsCredibleAlternative`.
-    - [ ] Y nommer le seuil minimal actuel de trois avertissements et conserver la comparaison avec le nombre d’entrées du volume.
-    - [ ] Faire utiliser cette politique par `ScpAutomaticImageExplorer` puis supprimer la méthode statique du service.
-  - [ ] Responsabilité restante du service
-    - [ ] Conserver `NormalizeRecognizedImage` comme délégation au registre injecté des normalizers.
-    - [ ] Conserver `AdditionalFileSystemInterpretations` comme délégation au registre injecté des politiques supplémentaires.
-    - [ ] Renommer ces méthodes uniquement si nécessaire pour refléter exactement leurs résultats, sans modifier les images produites ni l’ordre des interprétations.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `DiskImageInterpretationService`, son constructeur et ses deux méthodes restantes.
-    - [ ] Documenter en français `DiskImageDocumentFactory`, `PhysicalSectorTreeBuilder`, `PhysicalSectorEntryNames`, `DiskImageDecodeScore`, `FileSystemInterpretationIdentity` et `FileSystemAlternativePolicy`.
-    - [ ] Documenter chaque type, constructeur, propriété, constante et méthode créée avec ses paramètres, son résultat et ses invariants.
-    - [ ] Conserver sur une seule ligne les signatures, appels, conditions et expressions complètes qui restent lisibles ainsi.
-    - [ ] Supprimer la ligne vide inutile avant l’accolade finale et remettre les directives `using` dans un seul bloc ordonné.
-  - [ ] Tests séparés des responsabilités extraites
-    - [ ] Tester la normalisation reconnue avec un normalizer qui réussit, plusieurs normalizers ordonnés et aucun résultat.
-    - [ ] Tester les interprétations supplémentaires avec plusieurs politiques ordonnées et une collection vide.
-    - [ ] Tester la création d’un document avec systèmes de fichiers détectés, sans système de fichiers et avec une image inconnue.
-    - [ ] Vérifier les noms et la hiérarchie des pistes, faces et secteurs produits par `PhysicalSectorTreeBuilder`.
-    - [ ] Tester le score avec aucun bloc, une image partielle et une image complète.
-    - [ ] Tester l’identité avec des entrées imbriquées, un ordre source différent, des familles de formats identiques et différentes.
-    - [ ] Tester la règle de crédibilité avec moins de trois avertissements, exactement le seuil et un nombre d’avertissements supérieur au nombre d’entrées.
+- [x] `src/GWGUI.MediaEngine/Images/DiskImageInterpretationService.cs`
+  - [x] Déplacement du coordinateur d’interprétation
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/DiskImageInterpretationService.cs` sans renommer le type.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Interpretation` et adapter tous ses consommateurs.
+    - [x] Faire recevoir `RecognizedImageNormalizerRegistry` et `AdditionalImageInterpretationRegistry` par le constructeur au lieu de les créer dans des champs.
+    - [x] Retirer la dépendance directe vers `FileSystemRegistry` après injection des deux registres.
+    - [x] Faire créer et partager ces dépendances par `Composition/MediaEngineFactory.cs`.
+  - [x] Extraction de la construction des documents
+    - [x] Créer `Exploration/Documents/DiskImageDocumentFactory.cs` et y déplacer `CreateDocument` ainsi que `Unknown`.
+    - [x] Créer `Exploration/Documents/PhysicalSectorTreeBuilder.cs` et y déplacer la construction des répertoires de pistes et des fichiers de secteurs utilisée lorsqu’aucun système de fichiers n’est reconnu.
+    - [x] Créer `Exploration/Documents/PhysicalSectorEntryNames.cs` avec des fonctions recevant cylindre, face et numéro de secteur pour produire les noms techniques `Txx Hxx` et `Sxx.bin`.
+    - [x] Remplacer les textes, formats numériques, suffixe `.bin` et chaînes vides recopiés dans la construction des entrées par ces fonctions et par des définitions nommées.
+    - [x] Créer dans `DiskImageDocumentFactory` l’image inconnue avec `DiskImageFormatIds.Unknown` et des constantes nommées pour son unique bloc logique, sa géométrie minimale et sa taille de bloc technique.
+    - [x] Faire recevoir `DiskImageDocumentFactory` par `DiskImageExplorer` et `ScpAutomaticImageExplorer` au lieu d’appeler les anciennes méthodes du service.
+  - [x] Extraction du score de décodage
+    - [x] Créer `Exploration/Scoring/DiskImageDecodeScore.cs` et y déplacer `DecodeScore`.
+    - [x] Y nommer le dénominateur minimal d’un bloc qui évite une division par zéro.
+    - [x] Faire utiliser ce composant par `ScpAutomaticImageExplorer` pour comparer les images décodées.
+    - [x] Supprimer `DecodeScore` de `DiskImageInterpretationService` après migration de tous ses appels.
+  - [x] Extraction de l’identité des interprétations
+    - [x] Créer `Exploration/Interpretation/FileSystemInterpretationIdentity.cs` et y déplacer `FileSystemIdentity`, `InterpretationIdentity` et la fonction locale récursive `Entries`.
+    - [x] Déplacer dans ce composant l’extraction de la famille depuis le premier point de l’identifiant de format.
+    - [x] Définir dans ce composant les séparateurs d’identité entre champs, entre entrées et entre segments de chemin au lieu de conserver `\0`, `\u001f` et `/` dans les interpolations.
+    - [x] Conserver le tri insensible à la casse des entrées avant la création de l’identité.
+    - [x] Faire utiliser ce composant par `DiskImageExplorer` et `ScpAutomaticImageExplorer`, puis supprimer les méthodes statiques correspondantes du service.
+  - [x] Extraction de la crédibilité des alternatives
+    - [x] Créer `Exploration/Interpretation/FileSystemAlternativePolicy.cs` et y déplacer `IsCredibleAlternative`.
+    - [x] Y nommer le seuil minimal actuel de trois avertissements et conserver la comparaison avec le nombre d’entrées du volume.
+    - [x] Faire utiliser cette politique par `ScpAutomaticImageExplorer` puis supprimer la méthode statique du service.
+  - [x] Responsabilité restante du service
+    - [x] Conserver `NormalizeRecognizedImage` comme délégation au registre injecté des normalizers.
+    - [x] Conserver `AdditionalFileSystemInterpretations` comme délégation au registre injecté des politiques supplémentaires.
+    - [x] Renommer ces méthodes uniquement si nécessaire pour refléter exactement leurs résultats, sans modifier les images produites ni l’ordre des interprétations.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `DiskImageInterpretationService`, son constructeur et ses deux méthodes restantes.
+    - [x] Documenter en français `DiskImageDocumentFactory`, `PhysicalSectorTreeBuilder`, `PhysicalSectorEntryNames`, `DiskImageDecodeScore`, `FileSystemInterpretationIdentity` et `FileSystemAlternativePolicy`.
+    - [x] Documenter chaque type, constructeur, propriété, constante et méthode créée avec ses paramètres, son résultat et ses invariants.
+    - [x] Conserver sur une seule ligne les signatures, appels, conditions et expressions complètes qui restent lisibles ainsi.
+    - [x] Supprimer la ligne vide inutile avant l’accolade finale et remettre les directives `using` dans un seul bloc ordonné.
+  - [x] Tests séparés des responsabilités extraites
+    - [x] Tester la normalisation reconnue avec un normalizer qui réussit, plusieurs normalizers ordonnés et aucun résultat.
+    - [x] Tester les interprétations supplémentaires avec plusieurs politiques ordonnées et une collection vide.
+    - [x] Tester la création d’un document avec systèmes de fichiers détectés, sans système de fichiers et avec une image inconnue.
+    - [x] Vérifier les noms et la hiérarchie des pistes, faces et secteurs produits par `PhysicalSectorTreeBuilder`.
+    - [x] Tester le score avec aucun bloc, une image partielle et une image complète.
+    - [x] Tester l’identité avec des entrées imbriquées, un ordre source différent, des familles de formats identiques et différentes.
+    - [x] Tester la règle de crédibilité avec moins de trois avertissements, exactement le seuil et un nombre d’avertissements supérieur au nombre d’entrées.
 - [ ] `src/GWGUI.MediaEngine/Images/DiskImageMetadata.cs`
   - [ ] Séparation du modèle et de sa résolution
     - [ ] Déplacer le record vers `Exploration/Metadata/DiskImageMetadata.cs`.

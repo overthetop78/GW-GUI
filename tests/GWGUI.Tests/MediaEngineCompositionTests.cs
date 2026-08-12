@@ -1,6 +1,7 @@
 using System.Reflection;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.ScpDetection;

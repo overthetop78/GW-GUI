@@ -6,17 +6,22 @@ namespace GWGUI.MediaEngine.Images.Interpretations;
 
 /// <summary>Coordonne les politiques produisant des interprétations supplémentaires.</summary>
 /// <param name="fileSystems">Registre utilisé par la politique IBM pour valider ses formats.</param>
-internal sealed class AdditionalImageInterpretationRegistry(FileSystemRegistry fileSystems)
+internal sealed class AdditionalImageInterpretationRegistry
 {
     /// <summary>Politiques examinées dans leur ordre de priorité.</summary>
-    private readonly IReadOnlyList<IAdditionalImageInterpretationPolicy> policies =
-    [
-        new IbmAdditionalImageInterpretationPolicy(fileSystems),
-        new MsxAdditionalImageInterpretationPolicy(),
-        new CompatibleFormatInterpretationPolicy()
-    ];
+    private readonly IReadOnlyList<IAdditionalImageInterpretationPolicy> policies;
+
+    /// <summary>Crée le registre avec les politiques supplémentaires par défaut.</summary>
+    /// <param name="fileSystems">Registre requis par la politique IBM.</param>
+    public AdditionalImageInterpretationRegistry(FileSystemRegistry fileSystems) : this([new IbmAdditionalImageInterpretationPolicy(fileSystems), new MsxAdditionalImageInterpretationPolicy(), new CompatibleFormatInterpretationPolicy()]) { }
+
+    /// <summary>Crée le registre avec une copie ordonnée des politiques fournies.</summary>
+    /// <param name="policies">Politiques à copier dans leur ordre d'exécution.</param>
+    public AdditionalImageInterpretationRegistry(IEnumerable<IAdditionalImageInterpretationPolicy> policies) => this.policies = Array.AsReadOnly(policies.ToArray());
 
     /// <summary>Énumère les interprétations supplémentaires d'une image compatible ISO.</summary>
+    /// <param name="image">Image source à interpréter.</param>
+    /// <returns>Interprétations produites dans l'ordre des politiques.</returns>
     public IEnumerable<SectorImage> Create(SectorImage image)
     {
         if (!IsIsoCompatible(image.FormatId)) yield break;

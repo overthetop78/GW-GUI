@@ -1,4 +1,7 @@
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Exploration.Documents;
+using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Scoring;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.ScpDetection;
@@ -7,7 +10,8 @@ internal sealed class ScpAutomaticImageExplorer(
     ScpCandidateRegistry candidates,
     ScpFamilyProbe familyProbe,
     FileSystemRegistry fileSystems,
-    DiskImageInterpretationService interpretations)
+    DiskImageInterpretationService interpretations,
+    DiskImageDocumentFactory documents)
 {
     public async Task<ExploredDiskImage> ExploreAsync(string path, CancellationToken cancellationToken)
     {
@@ -51,21 +55,21 @@ internal sealed class ScpAutomaticImageExplorer(
             {
                 if (inspection.Image is null) continue;
                 if (bestDecoded is null ||
-                    DiskImageInterpretationService.DecodeScore(inspection.Image) >
-                    DiskImageInterpretationService.DecodeScore(bestDecoded))
+                    DiskImageDecodeScore.Calculate(inspection.Image) >
+                    DiskImageDecodeScore.Calculate(bestDecoded))
                     bestDecoded = inspection.Image;
-                if (DiskImageInterpretationService.DecodeScore(inspection.Image) >= .5)
+                if (DiskImageDecodeScore.Calculate(inspection.Image) >= .5)
                     decodedFormatIds.Add(inspection.Image.FormatId);
                 foreach (var recognized in inspection.Matches)
                 {
-                    var score = DiskImageInterpretationService.DecodeScore(recognized.Image);
+                    var score = DiskImageDecodeScore.Calculate(recognized.Image);
                     if (bestRecognized is null || score > bestRecognizedScore)
                     {
                         bestRecognized = recognized.Image;
                         bestRecognizedFileSystem = recognized.Match;
                         bestRecognizedScore = score;
                     }
-                    var key = DiskImageInterpretationService.InterpretationIdentity(recognized.Match);
+                    var key = FileSystemInterpretationIdentity.Create(recognized.Match);
                     if (keys.Add(key)) detected.Add(recognized.Match);
                 }
             }
@@ -73,13 +77,12 @@ internal sealed class ScpAutomaticImageExplorer(
 
         var families = await familyProbe.DetectAsync(path, cancellationToken).ConfigureAwait(false);
         await InspectAsync(candidates.Automatic(path, families, cancellationToken)).ConfigureAwait(false);
-        if (bestDecoded is null) return interpretations.Unknown(path);
+        if (bestDecoded is null) return documents.Unknown(path);
         if (bestRecognizedFileSystem is null)
-            return interpretations.CreateDocument(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
-        var primaryIdentity = DiskImageInterpretationService.InterpretationIdentity(bestRecognizedFileSystem);
+            return documents.Create(path, bestRecognized ?? bestDecoded, detected, decodedFormatIds.ToArray());
+        var primaryIdentity = FileSystemInterpretationIdentity.Create(bestRecognizedFileSystem);
         var orderedDetected = new[] { bestRecognizedFileSystem }.Concat(
-            detected.Where(match => DiskImageInterpretationService.InterpretationIdentity(match) != primaryIdentity &&
-                                    DiskImageInterpretationService.IsCredibleAlternative(match.Volume))).ToArray();
-        return interpretations.CreateDocument(path, bestRecognized ?? bestDecoded, orderedDetected, decodedFormatIds.ToArray());
+            detected.Where(match => FileSystemInterpretationIdentity.Create(match) != primaryIdentity && FileSystemAlternativePolicy.IsCredible(match.Volume))).ToArray();
+        return documents.Create(path, bestRecognized ?? bestDecoded, orderedDetected, decodedFormatIds.ToArray());
     }
 }

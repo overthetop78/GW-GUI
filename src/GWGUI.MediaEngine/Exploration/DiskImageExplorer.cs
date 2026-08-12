@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Exploration.Documents;
+using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition;
@@ -19,14 +21,17 @@ public sealed class DiskImageExplorer
     private readonly ScpImageExplorationService scpExploration;
     /// <summary>Service partagé de normalisation et d'interprétation des images.</summary>
     private readonly DiskImageInterpretationService interpretations;
+    /// <summary>Fabrique partagée des documents d'exploration.</summary>
+    private readonly DiskImageDocumentFactory documents;
 
     /// <summary>Initialise l'explorateur avec les services partagés composés par le moteur.</summary>
-    internal DiskImageExplorer(DiskImageRecognitionRegistry recognition, FileSystemRegistry fileSystems, ScpImageExplorationService scpExploration, DiskImageInterpretationService interpretations)
+    internal DiskImageExplorer(DiskImageRecognitionRegistry recognition, FileSystemRegistry fileSystems, ScpImageExplorationService scpExploration, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents)
     {
         this.recognition = recognition;
         this.fileSystems = fileSystems;
         this.scpExploration = scpExploration;
         this.interpretations = interpretations;
+        this.documents = documents;
     }
 
     /// <summary>Identifiants de formats associés aux lecteurs de systèmes de fichiers disponibles.</summary>
@@ -55,12 +60,12 @@ public sealed class DiskImageExplorer
         }
         catch (DiskImageNotRecognizedException)
         {
-            return interpretations.Unknown(path);
+            return documents.Unknown(path);
         }
 
         var result = formatId is null ? ReadAutomatically(image) : ReadExplicitly(image, formatId);
         var unique = Deduplicate(result.Detected);
-        return interpretations.CreateDocument(path, result.Image, unique, [result.Image.FormatId]);
+        return documents.Create(path, result.Image, unique, [result.Image.FormatId]);
     }
 
     /// <summary>Vérifie la signature SCP commune sans se fier à l'extension du chemin.</summary>
@@ -98,6 +103,6 @@ public sealed class DiskImageExplorer
     private IReadOnlyList<ExploredFileSystem> Deduplicate(IEnumerable<ExploredFileSystem> detected)
     {
         var identities = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        return detected.Where(item => identities.Add(DiskImageInterpretationService.InterpretationIdentity(item))).ToArray();
+        return detected.Where(item => identities.Add(FileSystemInterpretationIdentity.Create(item))).ToArray();
     }
 }

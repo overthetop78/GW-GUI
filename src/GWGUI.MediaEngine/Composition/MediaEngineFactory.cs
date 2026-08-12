@@ -20,9 +20,12 @@ using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Documents;
+using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.ScpDetection;
+using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
@@ -44,11 +47,11 @@ internal static class MediaEngineFactory
         var scpReader = CreateScpReader();
         var decoders = CreateFluxDecoders();
         var fileSystems = CreateFileSystems();
-        var interpretations = CreateInterpretations(fileSystems);
+        var (interpretations, documents) = CreateInterpretations(fileSystems);
         var candidates = CreateScpCandidates(scpReader, decoders);
-        var scpExploration = CreateScpExploration(scpReader, decoders, candidates, fileSystems, interpretations);
+        var scpExploration = CreateScpExploration(scpReader, decoders, candidates, fileSystems, interpretations, documents);
         var recognition = CreateRecognition(decoders, scpExploration, fileSystems);
-        return new(recognition, fileSystems, scpExploration, interpretations);
+        return new(recognition, fileSystems, scpExploration, interpretations, documents);
     }
 
     /// <summary>Crée l'unique lecteur de conteneur SCP partagé par les reconstructeurs.</summary>
@@ -61,7 +64,12 @@ internal static class MediaEngineFactory
     private static FileSystemRegistry CreateFileSystems() => new(FileSystemReaderCatalog.CreateDefault());
 
     /// <summary>Crée le service d'interprétation partagé par les explorateurs général et SCP.</summary>
-    private static DiskImageInterpretationService CreateInterpretations(FileSystemRegistry fileSystems) => new(fileSystems);
+    private static (DiskImageInterpretationService Interpretations, DiskImageDocumentFactory Documents) CreateInterpretations(FileSystemRegistry fileSystems)
+    {
+        var normalizers = new RecognizedImageNormalizerRegistry();
+        var additionalInterpretations = new AdditionalImageInterpretationRegistry(fileSystems);
+        return (new(normalizers, additionalInterpretations), new());
+    }
 
     /// <summary>Crée les reconstructeurs SCP dans leur ordre explicite et les réunit dans leur registre.</summary>
     private static ScpCandidateRegistry CreateScpCandidates(ScpReader scpReader, FluxDecoderRegistry decoders)
@@ -71,7 +79,7 @@ internal static class MediaEngineFactory
     }
 
     /// <summary>Crée la détection de famille et les deux parcours d'exploration SCP avec leurs instances partagées.</summary>
-    private static ScpImageExplorationService CreateScpExploration(ScpReader scpReader, FluxDecoderRegistry decoders, ScpCandidateRegistry candidates, FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations) => new(candidates, new ScpFamilyProbe(scpReader, decoders), fileSystems, interpretations);
+    private static ScpImageExplorationService CreateScpExploration(ScpReader scpReader, FluxDecoderRegistry decoders, ScpCandidateRegistry candidates, FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents) => new(candidates, new ScpFamilyProbe(scpReader, decoders), fileSystems, interpretations, documents);
 
     /// <summary>Crée le registre des politiques de reconnaissance dans l'ordre historique conservé.</summary>
     private static DiskImageRecognitionRegistry CreateRecognition(FluxDecoderRegistry decoders, ScpImageExplorationService scpExploration, FileSystemRegistry fileSystems)
