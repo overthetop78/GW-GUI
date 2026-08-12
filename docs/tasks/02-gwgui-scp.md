@@ -3066,62 +3066,62 @@
       - [x] Tester un bloc tronqué, une marque absente et une marque de données non appariée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
 
-- [ ] Instructions compactées dans les fichiers de décodage
-  - [ ] Base et registres
-    - [ ] `Decoding/FluxDecoderRegistry.cs`
-      - [ ] Séparer les constructions, recherches et calculs actuellement juxtaposés ; normaliser les espaces sans casser les expressions courtes complètes.
-  - [ ] Décodeurs Apple, Amiga et Commodore
-    - [ ] `Decoding/Decoders/AmigaMfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le décodage odd/even.
-    - [ ] `Decoding/Decoders/AppleIIGcrDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les parcours 5-and-3 et 6-and-2.
-    - [ ] `Decoding/Decoders/AppleMacGcrDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage circulaire.
-    - [ ] `Decoding/Decoders/AppleRwts18Decoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'ordre sectoriel.
-    - [ ] `Decoding/Decoders/CommodoreGcrDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement en-tête/données.
-    - [ ] `Decoding/Decoders/Commodore900GcrDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage GCR.
-  - [ ] Décodeurs FM, MFM et MMFM spécialisés
-    - [ ] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier la progression des offsets.
-    - [ ] `Decoding/Decoders/ArburgDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les deux formes de blocs.
-    - [ ] `Decoding/Decoders/CenturionMfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement des données.
-    - [ ] `Decoding/Decoders/DataGeneralFmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier la recherche des marques.
-    - [ ] `Decoding/Decoders/DecRx02Decoder.cs`
-      - [ ] Séparer les affectations, validations, parcours M2FM et ajouts de structures actuellement juxtaposés.
-      - [ ] Normaliser les espaces sans modifier la transformation M2FM ni le calcul CRC.
-    - [ ] `Decoding/Decoders/EmuFmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les marques partagées.
-    - [ ] `Decoding/Decoders/HeathkitFmDecoder.cs`
-      - [ ] Séparer les affectations, calculs de checksum et ajouts de structures actuellement juxtaposés.
-    - [ ] `Decoding/Decoders/HpMmfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le décodage MMFM.
-    - [ ] `Decoding/Decoders/IsoFmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement IDAM/DAM.
-    - [ ] `Decoding/Decoders/IsoMfmDecoder.cs`
-      - [ ] Séparer les affectations, sélections de marques, calculs CRC, scores et ajouts de structures actuellement juxtaposés.
-    - [ ] `Decoding/Decoders/MembrainMfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement des données.
-    - [ ] `Decoding/Decoders/MicralNFmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le checksum.
-    - [ ] `Decoding/Decoders/MicropolisMfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les limites de bloc.
-    - [ ] `Decoding/Decoders/NorthstarMfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le checksum tournant.
-    - [ ] `Decoding/Decoders/QdMo5MfmDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier les marques QD MO5.
-    - [ ] `Decoding/Decoders/TycomFmDecoder.cs`
-      - [ ] Séparer les affectations, validations, calculs CRC et ajouts de structures actuellement juxtaposés.
-    - [ ] `Decoding/Decoders/Victor9kGcrDecoder.cs`
-      - [ ] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage GCR.
-  - [ ] Vérification ciblée
-    - [ ] Résultats de décodage
-      - [ ] Exécuter uniquement les tests des décodeurs dont la disposition des instructions a changé et comparer secteurs, structures, offsets, intégrité et confiance avant et après.
+- [x] Instructions compactées dans les fichiers de décodage
+  - [x] Base et registres
+    - [x] `Decoding/FluxDecoderRegistry.cs`
+      - [x] Séparer les constructions, recherches et calculs actuellement juxtaposés ; normaliser les espaces sans casser les expressions courtes complètes.
+  - [x] Décodeurs Apple, Amiga et Commodore
+    - [x] `Decoding/Decoders/AmigaMfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le décodage odd/even.
+    - [x] `Decoding/Decoders/AppleIIGcrDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier les parcours 5-and-3 et 6-and-2.
+    - [x] `Decoding/Decoders/AppleMacGcrDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage circulaire.
+    - [x] `Decoding/Decoders/AppleRwts18Decoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier l'ordre sectoriel.
+    - [x] `Decoding/Decoders/CommodoreGcrDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement en-tête/données.
+    - [x] `Decoding/Decoders/Commodore900GcrDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage GCR.
+  - [x] Décodeurs FM, MFM et MMFM spécialisés
+    - [x] `Decoding/Decoders/Aed6200pMfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier la progression des offsets.
+    - [x] `Decoding/Decoders/ArburgDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier les deux formes de blocs.
+    - [x] `Decoding/Decoders/CenturionMfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement des données.
+    - [x] `Decoding/Decoders/DataGeneralFmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier la recherche des marques.
+    - [x] `Decoding/Decoders/DecRx02Decoder.cs`
+      - [x] Séparer les affectations, validations, parcours M2FM et ajouts de structures actuellement juxtaposés.
+      - [x] Normaliser les espaces sans modifier la transformation M2FM ni le calcul CRC.
+    - [x] `Decoding/Decoders/EmuFmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier les marques partagées.
+    - [x] `Decoding/Decoders/HeathkitFmDecoder.cs`
+      - [x] Séparer les affectations, calculs de checksum et ajouts de structures actuellement juxtaposés.
+    - [x] `Decoding/Decoders/HpMmfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le décodage MMFM.
+    - [x] `Decoding/Decoders/IsoFmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement IDAM/DAM.
+    - [x] `Decoding/Decoders/IsoMfmDecoder.cs`
+      - [x] Séparer les affectations, sélections de marques, calculs CRC, scores et ajouts de structures actuellement juxtaposés.
+    - [x] `Decoding/Decoders/MembrainMfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier l'appariement des données.
+    - [x] `Decoding/Decoders/MicralNFmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le checksum.
+    - [x] `Decoding/Decoders/MicropolisMfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier les limites de bloc.
+    - [x] `Decoding/Decoders/NorthstarMfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le checksum tournant.
+    - [x] `Decoding/Decoders/QdMo5MfmDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier les marques QD MO5.
+    - [x] `Decoding/Decoders/TycomFmDecoder.cs`
+      - [x] Séparer les affectations, validations, calculs CRC et ajouts de structures actuellement juxtaposés.
+    - [x] `Decoding/Decoders/Victor9kGcrDecoder.cs`
+      - [x] Séparer les instructions distinctes et normaliser les espaces sans modifier le balayage GCR.
+  - [x] Vérification ciblée
+    - [x] Résultats de décodage
+      - [x] Exécuter uniquement les tests des décodeurs dont la disposition des instructions a changé et comparer secteurs, structures, offsets, intégrité et confiance avant et après.
 
 ## 6. Encodage
 
