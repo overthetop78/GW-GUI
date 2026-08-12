@@ -7015,13 +7015,13 @@
     - [x] Déplacer la conversion protégée des secondes et définir son unité.
     - [x] Documenter en français le type, l'époque et la méthode de conversion.
     - [x] Tester zéro, une date valide et une valeur provoquant un dépassement.
-  - [ ] `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`
-    - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`.
-    - [ ] Ajouter une méthode recevant système et signature pour l'erreur de volume non reconnu.
-    - [ ] Ajouter une méthode recevant fichier, fork et bloc pour l'avertissement de bloc absent.
-    - [ ] Ajouter une méthode recevant fichier, fork, longueur obtenue et attendue pour l'avertissement de données incomplètes.
-    - [ ] Ajouter une méthode recevant identifiant de dossier pour l'erreur de cycle.
-    - [ ] Documenter en français le type et chacune de ses méthodes.
+  - [x] `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`
+    - [x] Créer `FileSystems/Apple/Macintosh/MacFileSystemExceptions.cs`.
+    - [x] Ajouter une méthode recevant système et signature pour l'erreur de volume non reconnu.
+    - [x] Ajouter une méthode recevant fichier, fork et bloc pour l'avertissement de bloc absent.
+    - [x] Ajouter une méthode recevant fichier, fork, longueur obtenue et attendue pour l'avertissement de données incomplètes.
+    - [x] Ajouter une méthode recevant identifiant de dossier pour l'erreur de cycle.
+    - [x] Documenter en français le type et chacune de ses méthodes.
   - [ ] `FileSystems/Readers/MacHfsFileSystemReader.cs`
     - [ ] Emplacement, identité et catalogue
       - [ ] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Hfs/MacHfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
