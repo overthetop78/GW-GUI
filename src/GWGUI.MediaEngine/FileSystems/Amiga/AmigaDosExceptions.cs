@@ -3,6 +3,8 @@ namespace GWGUI.MediaEngine.FileSystems.Amiga;
 /// <summary>Construit les erreurs et avertissements propres au lecteur AmigaDOS.</summary>
 internal static class AmigaDosExceptions
 {
+    /// <summary>Crée l'erreur signalant un boot AmigaDOS non reconnu.</summary>
+    public static InvalidDataException UnsupportedBoot() => new("The image does not contain a supported AmigaDOS boot block.");
     /// <summary>Crée l'erreur signalant une variante de boot non prise en charge.</summary>
     /// <param name="variant">Variante observée.</param>
     /// <returns>Erreur de données correspondante.</returns>

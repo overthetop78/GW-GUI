@@ -6,7 +6,7 @@ public static class FileSystemReaderCatalog
     /// <summary>Crée une nouvelle collection contenant les lecteurs par défaut dans leur ordre de détection.</summary>
     public static IReadOnlyList<IFileSystemReader> CreateDefault() => Array.AsReadOnly<IFileSystemReader>(
     [
-        new Readers.AmigaDosFileSystemReader(),
+        new Amiga.AmigaDosFileSystemReader(),
         new Acorn.Adfs.AcornAdfsFileSystemReader(),
         new Readers.BbcDfsFileSystemReader(),
         new Readers.CoherentFileSystemReader(),

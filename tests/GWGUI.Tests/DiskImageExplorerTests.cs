@@ -11,6 +11,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
@@ -174,7 +175,7 @@ public sealed class DiskImageExplorerTests
         var image = BuildAmigaImage(fastFileSystem: true);
         var volume = new AmigaDosFileSystemReader().Read(image);
 
-        Assert.Equal("Workbench", volume.Name); Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, volume.FileSystemId);
+        Assert.Equal("Workbench", volume.Name); Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosFfs, volume.FileSystemId);
         var file = Assert.Single(volume.Entries, entry => entry.Kind == FileSystemEntryKind.File);
         Assert.Equal("Hello", file.Name); Assert.Equal("hello"u8.ToArray(), file.Content);
         var drawer = Assert.Single(volume.Entries, entry => entry.Kind == FileSystemEntryKind.Directory);
@@ -188,7 +189,7 @@ public sealed class DiskImageExplorerTests
     {
         var image = BuildAmigaImage(fastFileSystem: false);
         var volume = new AmigaDosFileSystemReader().Read(image);
-        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, volume.FileSystemId);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosOfs, volume.FileSystemId);
         Assert.Equal("hello"u8.ToArray(), volume.Entries.Single(entry => entry.Name == "Hello").Content);
     }
 
@@ -199,18 +200,18 @@ public sealed class DiskImageExplorerTests
         var volume = new AmigaDosFileSystemReader().Read(image);
 
         Assert.Equal("Workbench", volume.Name);
-        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, volume.FileSystemId);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosFfs, volume.FileSystemId);
     }
 
     [Theory]
-    [InlineData(0, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(1, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(2, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(3, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(4, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(5, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(6, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
-    [InlineData(7, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(0, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosOfs)]
+    [InlineData(1, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosFfs)]
+    [InlineData(2, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosOfsInternational)]
+    [InlineData(3, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosFfsInternational)]
+    [InlineData(4, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosOfsDirectoryCache)]
+    [InlineData(5, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosFfsDirectoryCache)]
+    [InlineData(6, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosOfsLongNames)]
+    [InlineData(7, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDosFfsLongNames)]
     public void AmigaDosReaderRecognizesEveryVariant(byte variant, string expected) => Assert.Equal(expected, new AmigaDosFileSystemReader().Read(BuildAmigaImage((variant & 1) != 0, variant: variant)).FileSystemId);
 
     [Fact]
@@ -242,13 +243,14 @@ public sealed class DiskImageExplorerTests
     public void AmigaDosReaderValidatesExtensionBlocks()
     {
         var source = BuildAmigaImage(true);
-        var valid = ReplaceAmigaBlock(source, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
+        var validExtension = ReplaceAmigaBlock(source, 15, block => { WriteInt(block, 0, 2); WriteInt(block, 508, -3); SetChecksum(block); });
+        var valid = ReplaceAmigaBlock(validExtension, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
         Assert.DoesNotContain(new AmigaDosFileSystemReader().Read(valid).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
 
         var invalid = ReplaceAmigaBlock(source, 10, block => { WriteInt(block, 504, source.BlockCount); SetChecksum(block); });
         Assert.Contains(new AmigaDosFileSystemReader().Read(invalid).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
 
-        var absentPointer = ReplaceAmigaBlock(source, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
+        var absentPointer = ReplaceAmigaBlock(validExtension, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
         var absent = new SectorImage(absentPointer.FormatId, absentPointer.BlockSize, absentPointer.Cylinders, absentPointer.Heads, absentPointer.SectorsPerTrack, absentPointer.AvailableBlocks.Where(block => block.LogicalBlock != 15), capacity: absentPointer.Capacity, logicalBlockCount: absentPointer.BlockCount);
         Assert.Contains(new AmigaDosFileSystemReader().Read(absent).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
     }

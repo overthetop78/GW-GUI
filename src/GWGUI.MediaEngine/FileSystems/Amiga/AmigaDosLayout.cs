@@ -1,10 +1,18 @@
 namespace GWGUI.MediaEngine.FileSystems.Amiga;
 
 /// <summary>Définit la disposition binaire et les limites d'AmigaDOS.</summary>
-internal static class AmigaDosLayout
+public static class AmigaDosLayout
 {
     /// <summary>Taille d'un bloc logique.</summary>
     public const int BlockSize = 512;
+    /// <summary>Largeur d'un mot ou pointeur AmigaDOS.</summary>
+    public const int WordSize = sizeof(uint);
+    /// <summary>Numéro du bloc de boot.</summary>
+    public const int BootBlock = 0;
+    /// <summary>Longueur de la signature DOS.</summary>
+    public const int DosSignatureLength = 3;
+    /// <summary>Offset de la variante après la signature DOS.</summary>
+    public const int DosVariantOffset = DosSignatureLength;
     /// <summary>Nombre d'entrées de la table de hachage racine.</summary>
     public const int RootHashTableEntryCount = 72;
     /// <summary>Offset du type primaire.</summary>
@@ -57,6 +65,10 @@ internal static class AmigaDosLayout
     public const double TickDurationMilliseconds = 20d;
     /// <summary>Nombre maximal de pointeurs de bitmap racine.</summary>
     public const int MaximumBitmapPointerCount = 25;
+    /// <summary>Offset des mots de bitmap après leur checksum.</summary>
+    public const int BitmapDataOffset = WordSize;
+    /// <summary>Somme attendue d'un bloc dont le checksum est valide.</summary>
+    public const uint ValidChecksumSum = 0;
     /// <summary>Taille de l'en-tête d'un bloc de données OFS.</summary>
     public const int OfsDataHeaderLength = 24;
     /// <summary>Longueur maximale des données d'un bloc OFS.</summary>

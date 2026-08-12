@@ -118,7 +118,7 @@ public sealed class RealScpCorpusTests
         Assert.Empty(actual.MissingBlocks);
         for (var logical = 0; logical < expected.BlockCount; logical++)
             Assert.Equal(expected.GetBlock(logical).ToArray(), actual.GetBlock(logical).ToArray());
-        var volume = new GWGUI.MediaEngine.FileSystems.Readers.AmigaDosFileSystemReader().Read(actual);
+        var volume = new GWGUI.MediaEngine.FileSystems.Amiga.AmigaDosFileSystemReader().Read(actual);
         Assert.False(string.IsNullOrWhiteSpace(volume.Name));
         Assert.Empty(volume.Warnings);
     }
@@ -131,7 +131,7 @@ public sealed class RealScpCorpusTests
         var image = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(path);
         Assert.True(image.TryGetBlock(image.BlockCount / 2, out _),
             $"AmigaDOS root block {image.BlockCount / 2} is missing; decoded {image.AvailableBlocks.Count}/{image.BlockCount} blocks.");
-        var volume = new GWGUI.MediaEngine.FileSystems.Readers.AmigaDosFileSystemReader().Read(image);
+        var volume = new GWGUI.MediaEngine.FileSystems.Amiga.AmigaDosFileSystemReader().Read(image);
         Assert.False(string.IsNullOrWhiteSpace(volume.Name));
     }
 

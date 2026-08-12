@@ -6336,100 +6336,100 @@
       - [x] Tester plusieurs Readers associés au même format sans les traiter comme un doublon de Reader.
       - [x] Tester qu'un premier candidat corrompu est conservé comme échec et que le candidat suivant est tout de même essayé.
       - [x] Tester distinctement aucun système reconnu, système reconnu et lu, et système reconnu mais corrompu.
-  - [ ] `FileSystems/Readers/AmigaDosFileSystemReader.cs`
-    - [ ] Emplacement et identité AmigaDOS
-      - [ ] Déplacer le Reader vers `FileSystems/Amiga/AmigaDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `amigados` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Exposer `DiskImageFormatIds.AmigaDos` et `AmigaDosHighDensity` par un ensemble réellement non modifiable.
-    - [ ] Variantes AmigaDOS
-      - [ ] Créer `FileSystems/Amiga/AmigaDosVariant.cs` avec les valeurs de type DOS zéro à sept.
-      - [ ] Distinguer dans chaque valeur OFS ou FFS, International, Directory Cache et Long Names sans conserver le `switch` de noms bruts.
-      - [ ] Créer une définition centrale associant chaque variante à son identifiant technique de système de fichiers.
-      - [ ] Remplacer le test brut `(dosType & 1) != 0` par une propriété nommée indiquant si la variante utilise FFS.
-      - [ ] Remplacer le test brut `dosType < 6` par une propriété nommée indiquant si la variante accepte les noms longs.
-    - [ ] Disposition AmigaDOS commune
-      - [ ] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
-      - [ ] Y déplacer la taille de bloc de 512 octets, les 72 entrées de table de hachage et la profondeur maximale de 64.
-      - [ ] Y déplacer la signature `DOS`, sa longueur, la position du type DOS et sa valeur maximale.
-      - [ ] Y définir le bloc de boot zéro, l'offset 8 du pointeur racine et la règle de bloc racine conventionnel situé à la moitié de l'image.
-      - [ ] Y définir les offsets et valeurs de type primaire et secondaire du root block, de sa taille de hachage, de son nom, de ses dates et de ses pointeurs bitmap.
-      - [ ] Y définir les offsets et longueurs des champs d'une entrée de répertoire, du commentaire, des attributs, de la taille, de la date, du lien de chaîne et du type secondaire.
-      - [ ] Y définir les offsets de séquence, données, extension et pointeurs d'un fichier OFS/FFS.
-    - [ ] Reconnaissance du volume
-      - [ ] Réunir les deux surcharges de `HasDosSignature` autour d'une seule fonction recevant des données en lecture seule.
-      - [ ] Remplacer les quatre comparaisons de signature et la limite de type par les définitions centrales.
-      - [ ] Conserver la reconnaissance directe d'un boot block AmigaDOS normal.
-      - [ ] Extraire dans une fonction nommée le chemin protégé/demo qui accepte un boot personnalisé uniquement avec un root block conventionnel structurellement valide et un checksum correct.
-      - [ ] Traduire en français le commentaire anglais qui explique ce chemin ou le remplacer par la CSDoc de la fonction extraite.
-      - [ ] Faire produire par la reconnaissance le root block et la variante nécessaires à `Read` afin de ne pas appeler `CanRead` puis de relire les mêmes structures.
-    - [ ] Validation et lecture du root block
-      - [ ] Créer `FileSystems/Amiga/AmigaDosRootBlockReader.cs`.
-      - [ ] Y déplacer `IsRootBlock`, la sélection entre pointeur déclaré et bloc conventionnel et la validation des types primaire et secondaire.
-      - [ ] Remplacer les valeurs brutes `2` et `1` et leurs offsets par `AmigaDosLayout`.
-      - [ ] Extraire la taille de table de hachage avec sa borne et sa valeur de repli nommées.
-      - [ ] Conserver un avertissement distinct lorsque la structure racine est valide mais son checksum incorrect.
-    - [ ] Parcours des répertoires
-      - [ ] Créer `FileSystems/Amiga/AmigaDosDirectoryReader.cs` et y déplacer `ReadDirectory`.
-      - [ ] Remplacer les offsets 24, 496 et 508, la largeur quatre et les 72 entrées par la disposition centrale.
-      - [ ] Créer `AmigaDosEntryType` pour les types secondaires répertoire `2`, fichier `-3` et liens `3`, `4`, `-4`.
-      - [ ] Remplacer le `switch` brut par la conversion commune vers `FileSystemEntryKind`.
-      - [ ] Conserver séparément l'ensemble global des blocs visités et l'ensemble local de chaque chaîne de hachage.
-      - [ ] Remplacer les textes de profondeur, cycle et bloc absent par des avertissements paramétrables recevant profondeur et bloc.
-      - [ ] Conserver le tri des répertoires avant les autres entrées puis des noms sans casse.
-    - [ ] Lecture des fichiers OFS et FFS
-      - [ ] Créer `FileSystems/Amiga/AmigaDosFileReader.cs` et y déplacer `ReadFile`.
-      - [ ] Remplacer les bornes brutes de séquence, l'ordre inverse des 72 pointeurs et leurs offsets par `AmigaDosLayout`.
-      - [ ] Conserver pour FFS la lecture directe des blocs de données.
-      - [ ] Définir pour OFS le type de bloc `8`, les 24 octets d'en-tête, la taille maximale de données 488 et la position de la longueur.
-      - [ ] Vérifier le checksum des blocs de données OFS avant d'accepter leur contenu.
-      - [ ] Remplacer l'avertissement brut de type OFS inattendu par une définition recevant bloc et type observé.
-      - [ ] Conserver la chaîne des blocs d'extension via l'offset 504 et détecter adresse invalide, cycle ou bloc absent.
-      - [ ] Vérifier la structure et le checksum de chaque bloc d'extension avant d'utiliser ses pointeurs.
-      - [ ] Retourner avec le contenu un état de validité indiquant les blocs manquants, invalides ou les données plus courtes que la taille déclarée.
-      - [ ] Faire contribuer cet état à `FileSystemEntry.MetadataValid` au lieu d'utiliser seulement le checksum du bloc d'entrée.
-    - [ ] Bitmap et espace libre
-      - [ ] Créer `FileSystems/Amiga/AmigaDosBitmapReader.cs` et y déplacer `CountFreeBlocks`.
-      - [ ] Déplacer dans la disposition l'offset 316, les 25 pointeurs, leur largeur de quatre octets et l'offset de quatre octets du checksum de bitmap.
-      - [ ] Conserver un avertissement distinct pour bitmap absent et checksum invalide.
-      - [ ] Utiliser le nombre de bits par mot et `BitOperations.PopCount` sans conserver les tailles brutes dans la boucle.
-      - [ ] Conserver le plafonnement du nombre libre par le nombre total de blocs de l'image.
-    - [ ] Checksum AmigaDOS
-      - [ ] Créer `FileSystems/Amiga/AmigaDosChecksum.cs` et y déplacer `ChecksumValid`.
-      - [ ] Déplacer la taille attendue du bloc, la largeur de mot et la somme nulle attendue dans ses définitions.
-      - [ ] Conserver l'addition non vérifiée des mots big-endian conformément au format.
-      - [ ] Remplacer la boucle actuellement écrite sur la même ligne que l'initialisation par des instructions séparées.
-    - [ ] Noms B-string et dates
-      - [ ] Créer `FileSystems/Amiga/AmigaDosNameCodec.cs` et y déplacer `ReadBString` et `ReadEntryName`.
-      - [ ] Déplacer les offsets et longueurs des noms ordinaires, longs, du volume et des commentaires dans `AmigaDosLayout`.
-      - [ ] Conserver le décodage Latin-1 et le retrait du terminateur nul avec validation de la plage.
-      - [ ] Créer `FileSystems/Amiga/AmigaDosTime.cs` et y déplacer l'époque du 1er janvier 1978 UTC et `ReadDate`.
-      - [ ] Déplacer les trois offsets relatifs jours/minutes/ticks, les 1 440 minutes par jour, 3 000 ticks par minute et 20 millisecondes par tick dans des définitions nommées.
-      - [ ] Remplacer le `catch` sans type par la capture des seules erreurs de date ou de débordement attendues.
-    - [ ] Accès big-endian et blocs requis
-      - [ ] Remplacer `ReadInt32` et `ReadUInt32` par des primitives big-endian communes validant l'offset et la longueur disponibles.
-      - [ ] Remplacer le paramètre textuel `description` de `ReadRequiredBlock` par un identifiant technique de section AmigaDOS.
-      - [ ] Créer une erreur paramétrable traduisant cet identifiant avec le numéro de bloc.
-    - [ ] Erreurs, avertissements et résultat du volume
-      - [ ] Créer `FileSystems/Amiga/AmigaDosExceptions.cs` pour boot non reconnu, root invalide et bloc requis absent.
-      - [ ] Créer `FileSystems/Amiga/AmigaDosWarnings.cs` pour checksum, profondeur, chaîne, entrée, données, extension et bitmap.
-      - [ ] Remplacer tous les textes anglais construits directement dans le Reader par ces définitions injectables.
-      - [ ] Construire `FileSystemVolume` avec l'identifiant technique de la variante, les dates racine, l'espace libre et les avertissements collectés.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Supprimer l'import `System.Text` inutilisé ou l'utiliser à la place du nom pleinement qualifié, sans conserver les deux formes.
-      - [ ] Séparer le contrôle de profondeur, les `try`/`catch`, les lectures de date et la somme de checksum actuellement juxtaposés sur une même ligne.
-      - [ ] Remettre sur une seule ligne les signatures et appels qui tiennent lisiblement après le découpage.
-      - [ ] Présenter chaque branche de variante et chaque type d'entrée sur sa propre ligne lisible.
-      - [ ] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader AmigaDOS
-      - [ ] Tester les huit variantes DOS et leurs identifiants techniques, y compris OFS, FFS et noms longs.
-      - [ ] Tester un boot `DOS` normal et un boot personnalisé accepté uniquement grâce à un root conventionnel valide.
-      - [ ] Tester un pointeur racine déclaré valide puis le repli sur le bloc conventionnel.
-      - [ ] Tester un sous-répertoire, chaque type de lien, une chaîne cyclique, un bloc d'entrée absent et la limite de profondeur.
-      - [ ] Tester un fichier FFS, un fichier OFS, plusieurs blocs d'extension, un bloc de données absent et un checksum OFS invalide.
-      - [ ] Tester un nom ordinaire, un nom long et les limites d'une B-string.
-      - [ ] Tester une date valide et chaque composante hors plage.
-      - [ ] Tester un bitmap valide, absent et au checksum invalide et vérifier l'espace libre.
-      - [ ] Tester avec une image AmigaDOS connue de `image_test` le volume, l'arborescence, les contenus, attributs, dates, validités et avertissements.
+  - [x] `FileSystems/Readers/AmigaDosFileSystemReader.cs`
+    - [x] Emplacement et identité AmigaDOS
+      - [x] Déplacer le Reader vers `FileSystems/Amiga/AmigaDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `amigados` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Exposer `DiskImageFormatIds.AmigaDos` et `AmigaDosHighDensity` par un ensemble réellement non modifiable.
+    - [x] Variantes AmigaDOS
+      - [x] Créer `FileSystems/Amiga/AmigaDosVariant.cs` avec les valeurs de type DOS zéro à sept.
+      - [x] Distinguer dans chaque valeur OFS ou FFS, International, Directory Cache et Long Names sans conserver le `switch` de noms bruts.
+      - [x] Créer une définition centrale associant chaque variante à son identifiant technique de système de fichiers.
+      - [x] Remplacer le test brut `(dosType & 1) != 0` par une propriété nommée indiquant si la variante utilise FFS.
+      - [x] Remplacer le test brut `dosType < 6` par une propriété nommée indiquant si la variante accepte les noms longs.
+    - [x] Disposition AmigaDOS commune
+      - [x] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
+      - [x] Y déplacer la taille de bloc de 512 octets, les 72 entrées de table de hachage et la profondeur maximale de 64.
+      - [x] Y déplacer la signature `DOS`, sa longueur, la position du type DOS et sa valeur maximale.
+      - [x] Y définir le bloc de boot zéro, l'offset 8 du pointeur racine et la règle de bloc racine conventionnel situé à la moitié de l'image.
+      - [x] Y définir les offsets et valeurs de type primaire et secondaire du root block, de sa taille de hachage, de son nom, de ses dates et de ses pointeurs bitmap.
+      - [x] Y définir les offsets et longueurs des champs d'une entrée de répertoire, du commentaire, des attributs, de la taille, de la date, du lien de chaîne et du type secondaire.
+      - [x] Y définir les offsets de séquence, données, extension et pointeurs d'un fichier OFS/FFS.
+    - [x] Reconnaissance du volume
+      - [x] Réunir les deux surcharges de `HasDosSignature` autour d'une seule fonction recevant des données en lecture seule.
+      - [x] Remplacer les quatre comparaisons de signature et la limite de type par les définitions centrales.
+      - [x] Conserver la reconnaissance directe d'un boot block AmigaDOS normal.
+      - [x] Extraire dans une fonction nommée le chemin protégé/demo qui accepte un boot personnalisé uniquement avec un root block conventionnel structurellement valide et un checksum correct.
+      - [x] Traduire en français le commentaire anglais qui explique ce chemin ou le remplacer par la CSDoc de la fonction extraite.
+      - [x] Faire produire par la reconnaissance le root block et la variante nécessaires à `Read` afin de ne pas appeler `CanRead` puis de relire les mêmes structures.
+    - [x] Validation et lecture du root block
+      - [x] Créer `FileSystems/Amiga/AmigaDosRootBlockReader.cs`.
+      - [x] Y déplacer `IsRootBlock`, la sélection entre pointeur déclaré et bloc conventionnel et la validation des types primaire et secondaire.
+      - [x] Remplacer les valeurs brutes `2` et `1` et leurs offsets par `AmigaDosLayout`.
+      - [x] Extraire la taille de table de hachage avec sa borne et sa valeur de repli nommées.
+      - [x] Conserver un avertissement distinct lorsque la structure racine est valide mais son checksum incorrect.
+    - [x] Parcours des répertoires
+      - [x] Créer `FileSystems/Amiga/AmigaDosDirectoryReader.cs` et y déplacer `ReadDirectory`.
+      - [x] Remplacer les offsets 24, 496 et 508, la largeur quatre et les 72 entrées par la disposition centrale.
+      - [x] Créer `AmigaDosEntryType` pour les types secondaires répertoire `2`, fichier `-3` et liens `3`, `4`, `-4`.
+      - [x] Remplacer le `switch` brut par la conversion commune vers `FileSystemEntryKind`.
+      - [x] Conserver séparément l'ensemble global des blocs visités et l'ensemble local de chaque chaîne de hachage.
+      - [x] Remplacer les textes de profondeur, cycle et bloc absent par des avertissements paramétrables recevant profondeur et bloc.
+      - [x] Conserver le tri des répertoires avant les autres entrées puis des noms sans casse.
+    - [x] Lecture des fichiers OFS et FFS
+      - [x] Créer `FileSystems/Amiga/AmigaDosFileReader.cs` et y déplacer `ReadFile`.
+      - [x] Remplacer les bornes brutes de séquence, l'ordre inverse des 72 pointeurs et leurs offsets par `AmigaDosLayout`.
+      - [x] Conserver pour FFS la lecture directe des blocs de données.
+      - [x] Définir pour OFS le type de bloc `8`, les 24 octets d'en-tête, la taille maximale de données 488 et la position de la longueur.
+      - [x] Vérifier le checksum des blocs de données OFS avant d'accepter leur contenu.
+      - [x] Remplacer l'avertissement brut de type OFS inattendu par une définition recevant bloc et type observé.
+      - [x] Conserver la chaîne des blocs d'extension via l'offset 504 et détecter adresse invalide, cycle ou bloc absent.
+      - [x] Vérifier la structure et le checksum de chaque bloc d'extension avant d'utiliser ses pointeurs.
+      - [x] Retourner avec le contenu un état de validité indiquant les blocs manquants, invalides ou les données plus courtes que la taille déclarée.
+      - [x] Faire contribuer cet état à `FileSystemEntry.MetadataValid` au lieu d'utiliser seulement le checksum du bloc d'entrée.
+    - [x] Bitmap et espace libre
+      - [x] Créer `FileSystems/Amiga/AmigaDosBitmapReader.cs` et y déplacer `CountFreeBlocks`.
+      - [x] Déplacer dans la disposition l'offset 316, les 25 pointeurs, leur largeur de quatre octets et l'offset de quatre octets du checksum de bitmap.
+      - [x] Conserver un avertissement distinct pour bitmap absent et checksum invalide.
+      - [x] Utiliser le nombre de bits par mot et `BitOperations.PopCount` sans conserver les tailles brutes dans la boucle.
+      - [x] Conserver le plafonnement du nombre libre par le nombre total de blocs de l'image.
+    - [x] Checksum AmigaDOS
+      - [x] Créer `FileSystems/Amiga/AmigaDosChecksum.cs` et y déplacer `ChecksumValid`.
+      - [x] Déplacer la taille attendue du bloc, la largeur de mot et la somme nulle attendue dans ses définitions.
+      - [x] Conserver l'addition non vérifiée des mots big-endian conformément au format.
+      - [x] Remplacer la boucle actuellement écrite sur la même ligne que l'initialisation par des instructions séparées.
+    - [x] Noms B-string et dates
+      - [x] Créer `FileSystems/Amiga/AmigaDosNameCodec.cs` et y déplacer `ReadBString` et `ReadEntryName`.
+      - [x] Déplacer les offsets et longueurs des noms ordinaires, longs, du volume et des commentaires dans `AmigaDosLayout`.
+      - [x] Conserver le décodage Latin-1 et le retrait du terminateur nul avec validation de la plage.
+      - [x] Créer `FileSystems/Amiga/AmigaDosTime.cs` et y déplacer l'époque du 1er janvier 1978 UTC et `ReadDate`.
+      - [x] Déplacer les trois offsets relatifs jours/minutes/ticks, les 1 440 minutes par jour, 3 000 ticks par minute et 20 millisecondes par tick dans des définitions nommées.
+      - [x] Remplacer le `catch` sans type par la capture des seules erreurs de date ou de débordement attendues.
+    - [x] Accès big-endian et blocs requis
+      - [x] Remplacer `ReadInt32` et `ReadUInt32` par des primitives big-endian communes validant l'offset et la longueur disponibles.
+      - [x] Remplacer le paramètre textuel `description` de `ReadRequiredBlock` par un identifiant technique de section AmigaDOS.
+      - [x] Créer une erreur paramétrable traduisant cet identifiant avec le numéro de bloc.
+    - [x] Erreurs, avertissements et résultat du volume
+      - [x] Créer `FileSystems/Amiga/AmigaDosExceptions.cs` pour boot non reconnu, root invalide et bloc requis absent.
+      - [x] Créer `FileSystems/Amiga/AmigaDosWarnings.cs` pour checksum, profondeur, chaîne, entrée, données, extension et bitmap.
+      - [x] Remplacer tous les textes anglais construits directement dans le Reader par ces définitions injectables.
+      - [x] Construire `FileSystemVolume` avec l'identifiant technique de la variante, les dates racine, l'espace libre et les avertissements collectés.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Supprimer l'import `System.Text` inutilisé ou l'utiliser à la place du nom pleinement qualifié, sans conserver les deux formes.
+      - [x] Séparer le contrôle de profondeur, les `try`/`catch`, les lectures de date et la somme de checksum actuellement juxtaposés sur une même ligne.
+      - [x] Remettre sur une seule ligne les signatures et appels qui tiennent lisiblement après le découpage.
+      - [x] Présenter chaque branche de variante et chaque type d'entrée sur sa propre ligne lisible.
+      - [x] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader AmigaDOS
+      - [x] Tester les huit variantes DOS et leurs identifiants techniques, y compris OFS, FFS et noms longs.
+      - [x] Tester un boot `DOS` normal et un boot personnalisé accepté uniquement grâce à un root conventionnel valide.
+      - [x] Tester un pointeur racine déclaré valide puis le repli sur le bloc conventionnel.
+      - [x] Tester un sous-répertoire, chaque type de lien, une chaîne cyclique, un bloc d'entrée absent et la limite de profondeur.
+      - [x] Tester un fichier FFS, un fichier OFS, plusieurs blocs d'extension, un bloc de données absent et un checksum OFS invalide.
+      - [x] Tester un nom ordinaire, un nom long et les limites d'une B-string.
+      - [x] Tester une date valide et chaque composante hors plage.
+      - [x] Tester un bitmap valide, absent et au checksum invalide et vérifier l'espace libre.
+      - [x] Tester avec une image AmigaDOS connue de `image_test` le volume, l'arborescence, les contenus, attributs, dates, validités et avertissements.
   - [ ] `FileSystems/Readers/AppleDosFileSystemReader.cs`
     - [ ] Emplacement et identité Apple DOS
       - [ ] Déplacer le Reader vers `FileSystems/Apple/Dos/AppleDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.

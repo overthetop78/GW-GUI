@@ -9,6 +9,22 @@ public static class FileSystemIds
     public const string AcornDfs = "acorn-dfs";
     /// <summary>Identifie AmigaDOS.</summary>
     public const string AmigaDos = "amigados";
+    /// <summary>Identifie AmigaDOS OFS.</summary>
+    public const string AmigaDosOfs = "amigados.ofs";
+    /// <summary>Identifie AmigaDOS FFS.</summary>
+    public const string AmigaDosFfs = "amigados.ffs";
+    /// <summary>Identifie AmigaDOS OFS International.</summary>
+    public const string AmigaDosOfsInternational = "amigados.ofs-international";
+    /// <summary>Identifie AmigaDOS FFS International.</summary>
+    public const string AmigaDosFfsInternational = "amigados.ffs-international";
+    /// <summary>Identifie AmigaDOS OFS Directory Cache.</summary>
+    public const string AmigaDosOfsDirectoryCache = "amigados.ofs-directory-cache";
+    /// <summary>Identifie AmigaDOS FFS Directory Cache.</summary>
+    public const string AmigaDosFfsDirectoryCache = "amigados.ffs-directory-cache";
+    /// <summary>Identifie AmigaDOS OFS Long Names.</summary>
+    public const string AmigaDosOfsLongNames = "amigados.ofs-long-names";
+    /// <summary>Identifie AmigaDOS FFS Long Names.</summary>
+    public const string AmigaDosFfsLongNames = "amigados.ffs-long-names";
     /// <summary>Identifie la variante Amstrad de CP/M.</summary>
     public const string AmstradCpm = "amstrad.cpm";
     /// <summary>Identifie Apple DOS.</summary>
