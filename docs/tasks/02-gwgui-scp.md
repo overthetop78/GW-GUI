@@ -5351,10 +5351,10 @@
     - [x] Déplacer les poids de score et seuils de sélection dans des constantes Apple nommées.
     - [x] Documenter en français chaque membre.
     - [ ] Tester la sélection Apple II, RWTS18, Macintosh et Lisa.
-  - [ ] `SectorImages/AppleScpSectorImageReader.cs`
-    - [ ] Remplacer formats, familles et erreurs bruts par les définitions Apple et erreurs de reconstruction.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester une sélection explicite, une sélection automatique et une sélection sans candidat.
+  - [x] `SectorImages/AppleScpSectorImageReader.cs`
+    - [x] Remplacer formats, familles et erreurs bruts par les définitions Apple et erreurs de reconstruction.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester une sélection explicite, une sélection automatique et une sélection sans candidat.
   - [ ] `SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer tailles, géométries 90K/130K/180K et formats bruts par le catalogue Atari 8-bit.
     - [ ] Documenter en français chaque membre.
