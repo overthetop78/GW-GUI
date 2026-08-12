@@ -3245,16 +3245,16 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `TrackSector, TrackEncodeRequest, EncodedTrack, ITrackEncoder`.
     - [x] Ajouter la documentation XML des méthodes `TrackSector, TrackEncodeRequest, EncodedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncoderBase.cs`
-  - [ ] Validations et erreurs communes
-    - [ ] Créer `Encoding/TrackEncodingLimits.cs` avec les bornes de cylindre, de face et de code de taille actuellement écrites en brut.
-    - [ ] Créer `Encoding/TrackEncodingExceptions.cs`.
-    - [ ] Ajouter des méthodes permettant d’injecter cylindre, face, identifiant d’encodeur, nombre de secteurs et nombre de bits produits.
-    - [ ] Remplacer les textes et constructions directes d’exception de `TrackEncoderBase.cs`.
-    - [ ] Documenter en français les deux nouveaux fichiers et leurs membres.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `TrackEncoderBase`.
-    - [ ] Ajouter la documentation XML des méthodes `Encode, EncodeBits, Attribute`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/TrackEncoderBase.cs`
+  - [x] Validations et erreurs communes
+    - [x] Créer `Encoding/TrackEncodingLimits.cs` avec les bornes de cylindre, de face et de code de taille actuellement écrites en brut.
+    - [x] Créer `Encoding/TrackEncodingExceptions.cs`.
+    - [x] Ajouter des méthodes permettant d’injecter cylindre, face, identifiant d’encodeur, nombre de secteurs et nombre de bits produits.
+    - [x] Remplacer les textes et constructions directes d’exception de `TrackEncoderBase.cs`.
+    - [x] Documenter en français les deux nouveaux fichiers et leurs membres.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `TrackEncoderBase`.
+    - [x] Ajouter la documentation XML des méthodes `Encode, EncodeBits, Attribute`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncoding.cs`
   - [ ] Valeurs brutes et erreurs d’encodage
     - [ ] Créer `Primitives/SectorSizeCode.cs` avec la correspondance commune entre tailles sectorielles `128` à `16384` et codes `0` à `7`.
