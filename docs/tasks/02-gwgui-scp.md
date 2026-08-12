@@ -5102,14 +5102,14 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `BbcIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/BbcScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Raccorder le registre directement à `BbcIsoScpSectorImagePolicy` pour les identifiants `AcornDfsPrefix`.
-    - [ ] Conserver le routage des identifiants `AcornAdfsPrefix` vers la politique ISO générique avec l'identifiant demandé, car le wrapper accepte actuellement aussi ADFS.
-    - [ ] Adapter les consommateurs et les tests.
-    - [ ] Supprimer le fichier.
-  - [ ] Vérification des deux routages conservés
-    - [ ] Tester après suppression une sélection DFS et une sélection ADFS par l'API publique.
+- [x] `src/GWGUI.MediaEngine/SectorImages/BbcScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Raccorder le registre directement à `BbcIsoScpSectorImagePolicy` pour les identifiants `AcornDfsPrefix`.
+    - [x] Conserver le routage des identifiants `AcornAdfsPrefix` vers la politique ISO générique avec l'identifiant demandé, car le wrapper accepte actuellement aussi ADFS.
+    - [x] Adapter les consommateurs et les tests.
+    - [x] Supprimer le fichier.
+  - [x] Vérification des deux routages conservés
+    - [x] Tester après suppression une sélection DFS et une sélection ADFS par l'API publique.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/CommodoreScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Commodore/CommodoreScpSectorImageReader.cs`.

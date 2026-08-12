@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Flux;
@@ -24,13 +25,23 @@ public sealed class RecentFormatCodecTests
         var decoded = new FluxDecoderRegistry().Decode("iso.fm", revolution);
         Assert.NotNull(decoded.Sectors);
         Assert.NotEmpty(decoded.Sectors);
-        var image = await new BbcScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry())
-            .ReadAsync("unused.scp", "acorn.dfs.ss");
+        var image = await new IsoScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.AcornDfsSingleSided);
 
         Assert.Equal("acorn.dfs.ss", image.FormatId);
         Assert.True(new FileSystemRegistry().TryRead(image, null, out var volume));
         Assert.Equal("Acorn DFS", volume.FileSystem);
         Assert.Contains(volume.Entries, entry => entry.Name == "FILE" && entry.Content!.SequenceEqual(new byte[] { 1, 2, 3 }));
+    }
+
+    [Fact]
+    public async Task AcornAdfsSelectionUsesTheGenericIsoPolicy()
+    {
+        var sectors = Enumerable.Range(1, 5).Select(number => new TrackSector(number, new byte[256])).ToArray();
+        var revolution = new FluxEncoderRegistry().Encode("iso.fm", new TrackEncodeRequest(0, 0, sectors)).Revolution;
+
+        var image = await new IsoScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.AcornAdfs800);
+
+        Assert.Equal(DiskImageFormatIds.AcornAdfs800, image.FormatId);
     }
 
     [Fact]
