@@ -13,11 +13,6 @@ internal static class IbmDosDiskProbe
         var hasBpb = FatBpbGeometryDetector.TryDetect(boot, null, out var bpb);
         var legacy = !hasBpb && IbmPcGeometryCatalog.TryFromMediaDescriptor(fatMedia, out geometry);
         if (requireDosOem && !IbmDosOemProbe.IsKnownDosOem(boot) && !legacy) { geometry = default; return false; }
-        if (hasBpb)
-        {
-            geometry = new(IbmPcGeometryCatalog.FormatIdForGeometry(bpb.Cylinders, bpb.Heads, bpb.SectorsPerTrack, bpb.SectorSize), bpb.Cylinders, bpb.Heads, bpb.SectorsPerTrack);
-            return true;
-        }
-        return legacy;
+        return IbmBootGeometryDetector.TryDetect(boot, fatMedia, out geometry);
     }
 }

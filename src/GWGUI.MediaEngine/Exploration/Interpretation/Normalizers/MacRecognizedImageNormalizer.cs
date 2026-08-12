@@ -15,7 +15,7 @@ internal sealed class MacRecognizedImageNormalizer : IRecognizedImageNormalizer
     {
         normalized = image;
         if (!readerId.Equals(FileSystemIds.MacHfs, StringComparison.OrdinalIgnoreCase) && !readerId.Equals(FileSystemIds.MacMfs, StringComparison.OrdinalIgnoreCase)) return false;
-        if (image.BlockSize != MacintoshMfm1440Geometry.SectorSize || image.BlockCount != MacintoshMfm1440Geometry.SectorCount || image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return false;
+        if (image.BlockSize != MacintoshMfmGeometry.SectorSize || image.BlockCount != MacintoshMfmGeometry.SectorCount || image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return false;
         normalized = image.WithFormatId(DiskImageFormatIds.Mac1440);
         return true;
     }

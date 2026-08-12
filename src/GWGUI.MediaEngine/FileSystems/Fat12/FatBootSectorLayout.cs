@@ -21,6 +21,10 @@ public static class FatBootSectorLayout
     public const char SpacePadding = ' ';
     /// <summary>Premier numéro de secteur logique.</summary>
     public const int FirstSectorNumber = 1;
+    /// <summary>Indice logique du bloc d'amorçage dans l'image sectorielle.</summary>
+    public const int BootLogicalBlock = 0;
+    /// <summary>Indice logique du premier bloc FAT dans l'image sectorielle.</summary>
+    public const int FirstFatLogicalBlock = 1;
     /// <summary>Numéro de cylindre du secteur d'amorçage et du premier secteur FAT.</summary>
     public const int SystemCylinder = 0;
     /// <summary>Numéro de face du secteur d'amorçage et du premier secteur FAT.</summary>

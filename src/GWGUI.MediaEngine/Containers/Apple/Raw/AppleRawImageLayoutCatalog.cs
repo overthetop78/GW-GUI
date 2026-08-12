@@ -14,7 +14,7 @@ internal static class AppleRawImageLayoutCatalog
     /// <summary>Image Apple 800 Kio pouvant représenter Macintosh GCR ou ProDOS.</summary>
     public static AppleRawImageLayout Apple800K { get; } = new("Apple 800 K", MacintoshGcrGeometry.Capacity800K, [AppleRawGeometryKind.MacintoshGcr800, AppleRawGeometryKind.ProDos800]);
     /// <summary>Image Macintosh MFM 1,44 Mio.</summary>
-    public static AppleRawImageLayout Macintosh1440K { get; } = new("Macintosh 1.44 M", MacintoshMfm1440Geometry.Capacity, [AppleRawGeometryKind.MacintoshMfm1440]);
+    public static AppleRawImageLayout Macintosh1440K { get; } = new("Macintosh 1.44 M", MacintoshMfmGeometry.Capacity, [AppleRawGeometryKind.MacintoshMfm1440]);
     /// <summary>Toutes les dispositions cataloguées dans l'ordre de sélection.</summary>
     public static IReadOnlyList<AppleRawImageLayout> All { get; } = Array.AsReadOnly(new[] { D13, AppleII140K, Apple400K, Apple800K, Macintosh1440K });
 

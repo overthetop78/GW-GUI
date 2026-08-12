@@ -7711,42 +7711,42 @@
     - [x] Tester chacune des cinq familles sources autorisées.
     - [x] Tester un format source incompatible et vérifier qu’aucune politique n’est appelée.
     - [x] Vérifier qu’une modification de la collection source après construction ne change pas les politiques du registre.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/AtariRecognizedImageNormalizer.cs`
-  - [ ] Déplacement du normalizer Atari
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Normalizers`.
-    - [ ] Adapter `RecognizedImageNormalizerRegistry` et `Composition/MediaEngineFactory.cs` au nouveau type.
-  - [ ] Identifiant du Reader FAT12
-    - [ ] Créer ou compléter `FileSystems/Definitions/FileSystemIds.cs` avec la constante technique `Fat12` correspondant à l’identifiant du Reader FAT12.
-    - [ ] Remplacer le texte brut `fat12` par `FileSystemIds.Fat12`.
-    - [ ] Faire utiliser la même constante par `Fat12FileSystemReader.Id` afin que le producteur et le consommateur ne recopient pas l’identifiant.
-  - [ ] Normalisation Atari ST depuis le BPB FAT
-    - [ ] Remplacer `SectorImageInterpretation.TryReadFatGeometry` par `FileSystems/Fat/FatBpbGeometryDetector` créé avec le groupe IBM.
-    - [ ] Faire valider le boot sector, la taille sectorielle, le total, les têtes, les secteurs par piste et les cylindres par ce détecteur commun.
-    - [ ] Conserver la normalisation uniquement lorsque le total déclaré est inférieur au nombre de blocs de l’image Atari ST reconnue.
-    - [ ] Calculer une seule fois la capacité normalisée depuis le total et la taille sectorielle retournée par le BPB.
-    - [ ] Remplacer les deux valeurs brutes `512` par la taille sectorielle validée du BPB.
-    - [ ] Conserver uniquement les blocs dont l’index logique est inférieur au total déclaré.
-    - [ ] Construire le nouvel identifiant avec `DiskImageFormatIds.AtariStFromCapacity` et la capacité calculée.
-  - [ ] Normalisation IBM vers Atari ST par contenu
-    - [ ] Créer `Recognition/Atari/AtariProgramDefinitions.cs` avec les extensions TTP, TOS, ACC et GTP et la signature exécutable Atari utilisée actuellement.
-    - [ ] Créer `Recognition/Atari/AtariProgramDetector.cs` et y déplacer la recherche récursive de programmes actuellement placée dans `SectorImageInterpretation.ContainsAtariStProgram`.
-    - [ ] Faire utiliser le détecteur par le normalizer lorsque l’image reconnue appartient d’abord à `DiskImageFormatIds.IbmPrefix`.
-    - [ ] Réidentifier l’image avec le composant commun de copie de `SectorImage` et `DiskImageFormatIds.AtariStFromCapacity` lorsque le contenu Atari est trouvé.
-    - [ ] Supprimer l’appel à `SectorImageInterpretation.ContainsAtariStProgram` après migration.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `AtariRecognizedImageNormalizer` et `TryNormalize`.
-    - [ ] Documenter les deux branches indépendantes : réduction par BPB d’une image Atari ST et réidentification d’une image IBM contenant un programme Atari.
-    - [ ] Documenter en français `FileSystemIds.Fat12`, `AtariProgramDefinitions`, `AtariProgramDetector` et chacun de leurs membres.
-    - [ ] Conserver sur une seule ligne les signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
-  - [ ] Tests des deux normalisations Atari
-    - [ ] Tester qu’un Reader différent de FAT12 ne déclenche aucune normalisation.
-    - [ ] Tester une image Atari ST dont le BPB déclare moins de secteurs et vérifier géométrie, blocs conservés, capacité et identifiant normalisés.
-    - [ ] Tester un BPB invalide, un total égal au nombre de blocs et un total supérieur, sans modification de l’image.
-    - [ ] Tester récursivement chaque extension Atari reconnue et la signature exécutable sans extension.
-    - [ ] Tester une image IBM sans programme Atari et une image de famille non IBM contenant le même nom de fichier.
-    - [ ] Vérifier que les données, adresses, intégrités et blocs manquants sont conservés pendant la réidentification.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/AtariRecognizedImageNormalizer.cs`
+  - [x] Déplacement du normalizer Atari
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Normalizers`.
+    - [x] Adapter `RecognizedImageNormalizerRegistry` et `Composition/MediaEngineFactory.cs` au nouveau type.
+  - [x] Identifiant du Reader FAT12
+    - [x] Créer ou compléter `FileSystems/Definitions/FileSystemIds.cs` avec la constante technique `Fat12` correspondant à l’identifiant du Reader FAT12.
+    - [x] Remplacer le texte brut `fat12` par `FileSystemIds.Fat12`.
+    - [x] Faire utiliser la même constante par `Fat12FileSystemReader.Id` afin que le producteur et le consommateur ne recopient pas l’identifiant.
+  - [x] Normalisation Atari ST depuis le BPB FAT
+    - [x] Remplacer `SectorImageInterpretation.TryReadFatGeometry` par `FileSystems/Fat/FatBpbGeometryDetector` créé avec le groupe IBM.
+    - [x] Faire valider le boot sector, la taille sectorielle, le total, les têtes, les secteurs par piste et les cylindres par ce détecteur commun.
+    - [x] Conserver la normalisation uniquement lorsque le total déclaré est inférieur au nombre de blocs de l’image Atari ST reconnue.
+    - [x] Calculer une seule fois la capacité normalisée depuis le total et la taille sectorielle retournée par le BPB.
+    - [x] Remplacer les deux valeurs brutes `512` par la taille sectorielle validée du BPB.
+    - [x] Conserver uniquement les blocs dont l’index logique est inférieur au total déclaré.
+    - [x] Construire le nouvel identifiant avec `DiskImageFormatIds.AtariStFromCapacity` et la capacité calculée.
+  - [x] Normalisation IBM vers Atari ST par contenu
+    - [x] Créer `Recognition/Atari/AtariProgramDefinitions.cs` avec les extensions TTP, TOS, ACC et GTP et la signature exécutable Atari utilisée actuellement.
+    - [x] Créer `Recognition/Atari/AtariProgramDetector.cs` et y déplacer la recherche récursive de programmes actuellement placée dans `SectorImageInterpretation.ContainsAtariStProgram`.
+    - [x] Faire utiliser le détecteur par le normalizer lorsque l’image reconnue appartient d’abord à `DiskImageFormatIds.IbmPrefix`.
+    - [x] Réidentifier l’image avec le composant commun de copie de `SectorImage` et `DiskImageFormatIds.AtariStFromCapacity` lorsque le contenu Atari est trouvé.
+    - [x] Supprimer l’appel à `SectorImageInterpretation.ContainsAtariStProgram` après migration.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `AtariRecognizedImageNormalizer` et `TryNormalize`.
+    - [x] Documenter les deux branches indépendantes : réduction par BPB d’une image Atari ST et réidentification d’une image IBM contenant un programme Atari.
+    - [x] Documenter en français `FileSystemIds.Fat12`, `AtariProgramDefinitions`, `AtariProgramDetector` et chacun de leurs membres.
+    - [x] Conserver sur une seule ligne les signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
+  - [x] Tests des deux normalisations Atari
+    - [x] Tester qu’un Reader différent de FAT12 ne déclenche aucune normalisation.
+    - [x] Tester une image Atari ST dont le BPB déclare moins de secteurs et vérifier géométrie, blocs conservés, capacité et identifiant normalisés.
+    - [x] Tester un BPB invalide, un total égal au nombre de blocs et un total supérieur, sans modification de l’image.
+    - [x] Tester récursivement chaque extension Atari reconnue et la signature exécutable sans extension.
+    - [x] Tester une image IBM sans programme Atari et une image de famille non IBM contenant le même nom de fichier.
+    - [x] Vérifier que les données, adresses, intégrités et blocs manquants sont conservés pendant la réidentification.
 - [x] `src/GWGUI.MediaEngine/Images/Interpretations/CompatibleFormatInterpretationPolicy.cs`
   - [x] Déplacement de la politique de compatibilité
     - [x] Déplacer le fichier vers `Exploration/Interpretation/Policies/CompatibleFormatInterpretationPolicy.cs`.
@@ -7790,43 +7790,43 @@
     - [x] Ajouter une CSDoc française à `IAdditionalImageInterpretationPolicy` et `CreateCandidates`.
     - [x] Documenter l’image source, l’énumération ordonnée retournée et la responsabilité de validation laissée aux Readers de systèmes de fichiers.
     - [x] Conserver la signature complète sur une seule ligne.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/IbmAdditionalImageInterpretationPolicy.cs`
-  - [ ] Déplacement de la politique IBM
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Policies`.
-    - [ ] Adapter le contrat renommé, `Composition/MediaEngineFactory.cs` et le registre d’interprétations supplémentaires.
-  - [ ] Dépendance limitée aux formats pris en charge
-    - [ ] Remplacer le paramètre `FileSystemRegistry` par l’ensemble `IReadOnlySet<string>` des identifiants de formats pris en charge dont la politique a réellement besoin.
-    - [ ] Copier cet ensemble avec une comparaison insensible à la casse dans le constructeur.
-    - [ ] Faire transmettre `FileSystemRegistry.SupportedFormatIds` par la composition sans conserver le registre complet dans la politique.
-  - [ ] Définitions des blocs FAT examinés
-    - [ ] Ajouter à `FileSystems/Fat/FatBpbLayout.cs` le bloc logique de boot `0`, le premier bloc FAT `1` et l’offset `0` du descripteur de média dans ce bloc FAT.
-    - [ ] Remplacer les index bruts `0` et `1`, la taille `512` et l’accès `fat.Data[0]` par ces définitions FAT.
-    - [ ] Utiliser la taille sectorielle validée commune du BPB pour vérifier le bloc de boot.
-  - [ ] Détection de géométrie IBM depuis le boot
-    - [ ] Créer `Geometries/Ibm/IbmBootGeometryDetector.cs` pour combiner `FatBpbGeometryDetector` et le repli de `IbmPcGeometryCatalog` par `FatMediaDescriptor`.
-    - [ ] Faire retourner au détecteur un `IbmPcGeometry` lorsqu’un BPB valide ou un média FAT historique permet la résolution.
-    - [ ] Faire utiliser ce détecteur par cette politique, par `IbmDosDiskProbe` et par `IbmPcIsoScpSectorImagePolicy` explicitement sélectionnée.
-    - [ ] Remplacer l’appel à `IbmPcImageReader.TryDetectFluxGeometry` par `IbmBootGeometryDetector`.
-    - [ ] Conserver l’arrêt sans candidat lorsqu’aucune géométrie ne peut être détectée.
-  - [ ] Choix de l’identifiant interprété
-    - [ ] Conserver l’absence d’interprétation lorsque l’image appartient déjà à `DiskImageFormatIds.IbmPrefix`.
-    - [ ] Conserver l’identifiant IBM précis lorsque la géométrie détectée appartient à la famille IBM et figure dans les formats pris en charge.
-    - [ ] Conserver `DiskImageFormatIds.IbmScan` comme repli dans les autres cas détectés.
-    - [ ] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `IbmAdditionalImageInterpretationPolicy`, son constructeur et `CreateCandidates`.
-    - [ ] Documenter le filtrage des images déjà IBM, la source du boot et du média FAT, la géométrie détectée et le repli `IbmScan`.
-    - [ ] Documenter en français `IbmBootGeometryDetector` et ses membres.
-    - [ ] Conserver sur une seule ligne la déclaration du type, les signatures, conditions, appels et expressions complètes qui restent lisibles ainsi.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
-  - [ ] Tests de l’interprétation IBM
-    - [ ] Tester une image non IBM de 512 octets par bloc avec un BPB dont la géométrie précise est prise en charge.
-    - [ ] Tester une géométrie détectée mais absente des formats pris en charge et vérifier `DiskImageFormatIds.IbmScan`.
-    - [ ] Tester chacun des quatre médias FAT historiques sans BPB valide.
-    - [ ] Tester une image déjà IBM, un bloc de boot absent ou de mauvaise taille, un bloc FAT absent et une géométrie invalide.
-    - [ ] Vérifier que la modification de l’ensemble source des formats après construction ne change pas la politique.
-    - [ ] Vérifier que la réidentification conserve blocs, adresses, données, intégrité, capacité et blocs manquants.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/IbmAdditionalImageInterpretationPolicy.cs`
+  - [x] Déplacement de la politique IBM
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Policies`.
+    - [x] Adapter le contrat renommé, `Composition/MediaEngineFactory.cs` et le registre d’interprétations supplémentaires.
+  - [x] Dépendance limitée aux formats pris en charge
+    - [x] Remplacer le paramètre `FileSystemRegistry` par l’ensemble `IReadOnlySet<string>` des identifiants de formats pris en charge dont la politique a réellement besoin.
+    - [x] Copier cet ensemble avec une comparaison insensible à la casse dans le constructeur.
+    - [x] Faire transmettre `FileSystemRegistry.SupportedFormatIds` par la composition sans conserver le registre complet dans la politique.
+  - [x] Définitions des blocs FAT examinés
+    - [x] Ajouter à `FileSystems/Fat/FatBpbLayout.cs` le bloc logique de boot `0`, le premier bloc FAT `1` et l’offset `0` du descripteur de média dans ce bloc FAT.
+    - [x] Remplacer les index bruts `0` et `1`, la taille `512` et l’accès `fat.Data[0]` par ces définitions FAT.
+    - [x] Utiliser la taille sectorielle validée commune du BPB pour vérifier le bloc de boot.
+  - [x] Détection de géométrie IBM depuis le boot
+    - [x] Créer `Geometries/Ibm/IbmBootGeometryDetector.cs` pour combiner `FatBpbGeometryDetector` et le repli de `IbmPcGeometryCatalog` par `FatMediaDescriptor`.
+    - [x] Faire retourner au détecteur un `IbmPcGeometry` lorsqu’un BPB valide ou un média FAT historique permet la résolution.
+    - [x] Faire utiliser ce détecteur par cette politique, par `IbmDosDiskProbe` et par `IbmPcIsoScpSectorImagePolicy` explicitement sélectionnée.
+    - [x] Remplacer l’appel à `IbmPcImageReader.TryDetectFluxGeometry` par `IbmBootGeometryDetector`.
+    - [x] Conserver l’arrêt sans candidat lorsqu’aucune géométrie ne peut être détectée.
+  - [x] Choix de l’identifiant interprété
+    - [x] Conserver l’absence d’interprétation lorsque l’image appartient déjà à `DiskImageFormatIds.IbmPrefix`.
+    - [x] Conserver l’identifiant IBM précis lorsque la géométrie détectée appartient à la famille IBM et figure dans les formats pris en charge.
+    - [x] Conserver `DiskImageFormatIds.IbmScan` comme repli dans les autres cas détectés.
+    - [x] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `IbmAdditionalImageInterpretationPolicy`, son constructeur et `CreateCandidates`.
+    - [x] Documenter le filtrage des images déjà IBM, la source du boot et du média FAT, la géométrie détectée et le repli `IbmScan`.
+    - [x] Documenter en français `IbmBootGeometryDetector` et ses membres.
+    - [x] Conserver sur une seule ligne la déclaration du type, les signatures, conditions, appels et expressions complètes qui restent lisibles ainsi.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
+  - [x] Tests de l’interprétation IBM
+    - [x] Tester une image non IBM de 512 octets par bloc avec un BPB dont la géométrie précise est prise en charge.
+    - [x] Tester une géométrie détectée mais absente des formats pris en charge et vérifier `DiskImageFormatIds.IbmScan`.
+    - [x] Tester chacun des quatre médias FAT historiques sans BPB valide.
+    - [x] Tester une image déjà IBM, un bloc de boot absent ou de mauvaise taille, un bloc FAT absent et une géométrie invalide.
+    - [x] Vérifier que la modification de l’ensemble source des formats après construction ne change pas la politique.
+    - [x] Vérifier que la réidentification conserve blocs, adresses, données, intégrité, capacité et blocs manquants.
 - [x] `src/GWGUI.MediaEngine/Images/Interpretations/IRecognizedImageNormalizer.cs`
   - [x] Déplacement du contrat de normalisation
     - [x] Déplacer le fichier vers `Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs`.
@@ -7837,80 +7837,80 @@
     - [x] Documenter l’image reconnue, l’identifiant technique du Reader de système de fichiers, le volume lu, le booléen de succès et l’image normalisée.
     - [x] Préciser que l’implémentation doit retourner l’image source dans le paramètre de sortie lorsqu’elle refuse la normalisation.
     - [x] Conserver la signature complète sur une seule ligne.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/MacRecognizedImageNormalizer.cs`
-  - [ ] Déplacement du normalizer Macintosh
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Normalizers`.
-    - [ ] Adapter `RecognizedImageNormalizerRegistry` et `Composition/MediaEngineFactory.cs` au nouveau type.
-  - [ ] Identifiants des Readers Macintosh
-    - [ ] Ajouter `MacHfs` et `MacMfs` à `FileSystems/Definitions/FileSystemIds.cs` avec les identifiants techniques actuellement écrits `mac-hfs` et `mac-mfs`.
-    - [ ] Faire utiliser ces constantes par `MacHfsFileSystemReader.Id`, `MacMfsFileSystemReader.Id` et le normalizer.
-    - [ ] Remplacer les deux comparaisons de textes bruts par les constantes et conserver la comparaison insensible à la casse.
-  - [ ] Géométrie Macintosh MFM 1,44 Mio
-    - [ ] Créer `Geometries/Apple/MacintoshMfmGeometry.cs`, distincte de `MacintoshGcrGeometry`.
-    - [ ] Y définir la taille sectorielle de 512 octets, les 2 880 blocs, les 80 cylindres, les deux têtes, les 18 secteurs par piste et la capacité calculée.
-    - [ ] Faire utiliser cette géométrie par `AppleRawImageReader`, le normalizer, la reconstruction ISO sélectionnée comme `DiskImageFormatIds.Mac1440` et la visualisation Macintosh MFM.
-    - [ ] Remplacer dans le normalizer les valeurs brutes `512` et `2880` par `MacintoshMfmGeometry`.
-  - [ ] Normalisation du format Macintosh
-    - [ ] Conserver la normalisation uniquement après reconnaissance par le Reader HFS ou MFS et lorsque taille de bloc et nombre de blocs correspondent exactement à `MacintoshMfmGeometry`.
-    - [ ] Conserver l’absence de modification lorsque l’image porte déjà `DiskImageFormatIds.Mac1440`.
-    - [ ] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
-    - [ ] Conserver `DiskImageFormatIds.Mac1440` comme identifiant normalisé.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `MacRecognizedImageNormalizer`, `TryNormalize`, `MacintoshMfmGeometry` et chacun de ses membres.
-    - [ ] Documenter que la reconnaissance du système de fichiers et la géométrie complète sont toutes deux nécessaires avant la réidentification.
-    - [ ] Conserver sur une seule ligne les signatures, conditions, appels et expressions complètes qui restent lisibles ainsi.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
-  - [ ] Tests de la normalisation Macintosh
-    - [ ] Tester une image de 2 880 blocs reconnue HFS puis MFS et vérifier sa réidentification en `Mac1440`.
-    - [ ] Tester un autre Reader, une taille sectorielle différente, un nombre de blocs différent et une image déjà `Mac1440`.
-    - [ ] Vérifier que données, adresses, intégrités, capacité et blocs manquants sont conservés pendant la réidentification.
-    - [ ] Vérifier que tous les consommateurs de la géométrie Macintosh MFM obtiennent les mêmes constantes.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/MsxAdditionalImageInterpretationPolicy.cs`
-  - [ ] Déplacement de la politique MSX
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Policies/MsxAdditionalImageInterpretationPolicy.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Policies`.
-    - [ ] Adapter le contrat renommé, `Composition/MediaEngineFactory.cs` et le registre d’interprétations supplémentaires.
-  - [ ] Extraction de l’interpréteur sectoriel MSX
-    - [ ] Créer `Exploration/Interpretation/Policies/MsxSectorImageInterpreter.cs` et y déplacer `SectorImageInterpretation.TryCreateMsx`.
-    - [ ] Faire utiliser à cet interpréteur `Recognition/Msx/MsxBootSectorProbe.cs` pour valider le bloc de boot.
-    - [ ] Faire utiliser `Geometries/Msx/MsxDiskGeometryCatalog.cs` créé avec le Reader MSX pour résoudre les variantes 1D, 1DD, 2D et 2DD.
-    - [ ] Utiliser les définitions FAT/MSX communes pour le bloc de boot, sa taille de 512 octets et le descripteur média `0xF8` au lieu de conserver ces valeurs dans l’interpréteur.
-    - [ ] Conserver l’absence d’interprétation lorsque l’image appartient déjà à `DiskImageFormatIds.MsxPrefix`.
-    - [ ] Conserver l’absence d’interprétation lorsque le boot est absent, invalide ou que le nombre de blocs ne correspond à aucune géométrie MSX.
-    - [ ] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
-  - [ ] Responsabilité restante de la politique
-    - [ ] Remplacer le test brut `image.BlockSize == 512` par la taille sectorielle du catalogue MSX.
-    - [ ] Faire déléguer `CreateCandidates` à `MsxSectorImageInterpreter` et ne produire le candidat que lorsque l’interprétation réussit.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `MsxAdditionalImageInterpretationPolicy`, `CreateCandidates`, `MsxSectorImageInterpreter` et chacun de ses membres.
-    - [ ] Documenter la validation du boot, le choix entre les deux variantes de même capacité et les cas sans candidat.
-    - [ ] Conserver sur une seule ligne les signatures, conditions, appels et expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests de l’interprétation MSX
-    - [ ] Tester les quatre géométries MSX prises en charge.
-    - [ ] Tester séparément les variantes 1DD et 2D de même nombre de blocs à partir du descripteur média.
-    - [ ] Tester une image déjà MSX, une taille de bloc différente, un boot absent, un boot invalide et un nombre de blocs inconnu.
-    - [ ] Vérifier que données, adresses, intégrités, capacité et blocs manquants sont conservés pendant la réidentification.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/MsxRecognizedImageNormalizer.cs`
-  - [ ] Déplacement du normalizer MSX
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Normalizers`.
-    - [ ] Adapter `RecognizedImageNormalizerRegistry` et `Composition/MediaEngineFactory.cs` au nouveau type.
-  - [ ] Réutilisation des définitions et de l’interpréteur MSX
-    - [ ] Remplacer le texte brut `fat12` par `FileSystems/Definitions/FileSystemIds.Fat12`.
-    - [ ] Faire recevoir ou utiliser le même `MsxSectorImageInterpreter` que la politique d’interprétation supplémentaire.
-    - [ ] Remplacer l’appel à `SectorImageInterpretation.TryCreateMsx` par cet interpréteur commun.
-    - [ ] Conserver l’image source dans `normalized` lorsque le Reader n’est pas FAT12 ou lorsque l’interpréteur refuse l’image.
-    - [ ] Conserver la normalisation uniquement après reconnaissance effective du système de fichiers FAT12.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `MsxRecognizedImageNormalizer`, son éventuel constructeur et `TryNormalize`.
-    - [ ] Documenter le rôle de `readerId`, le fait que le volume n’est pas inspecté par cette règle et les conditions de réidentification MSX.
-    - [ ] Conserver sur une seule ligne la signature et l’expression booléenne complète lorsqu’elles restent lisibles ainsi.
-  - [ ] Tests de la normalisation MSX reconnue
-    - [ ] Tester les quatre formats MSX après reconnaissance FAT12.
-    - [ ] Tester les deux variantes de même capacité distinguées par le descripteur média.
-    - [ ] Tester un Reader différent de FAT12, une image déjà MSX, un boot invalide et une géométrie inconnue.
-    - [ ] Vérifier que le paramètre de sortie reste l’image source lorsque la normalisation échoue.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/MacRecognizedImageNormalizer.cs`
+  - [x] Déplacement du normalizer Macintosh
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Normalizers`.
+    - [x] Adapter `RecognizedImageNormalizerRegistry` et `Composition/MediaEngineFactory.cs` au nouveau type.
+  - [x] Identifiants des Readers Macintosh
+    - [x] Ajouter `MacHfs` et `MacMfs` à `FileSystems/Definitions/FileSystemIds.cs` avec les identifiants techniques actuellement écrits `mac-hfs` et `mac-mfs`.
+    - [x] Faire utiliser ces constantes par `MacHfsFileSystemReader.Id`, `MacMfsFileSystemReader.Id` et le normalizer.
+    - [x] Remplacer les deux comparaisons de textes bruts par les constantes et conserver la comparaison insensible à la casse.
+  - [x] Géométrie Macintosh MFM 1,44 Mio
+    - [x] Créer `Geometries/Apple/MacintoshMfmGeometry.cs`, distincte de `MacintoshGcrGeometry`.
+    - [x] Y définir la taille sectorielle de 512 octets, les 2 880 blocs, les 80 cylindres, les deux têtes, les 18 secteurs par piste et la capacité calculée.
+    - [x] Faire utiliser cette géométrie par `AppleRawImageReader`, le normalizer, la reconstruction ISO sélectionnée comme `DiskImageFormatIds.Mac1440` et la visualisation Macintosh MFM.
+    - [x] Remplacer dans le normalizer les valeurs brutes `512` et `2880` par `MacintoshMfmGeometry`.
+  - [x] Normalisation du format Macintosh
+    - [x] Conserver la normalisation uniquement après reconnaissance par le Reader HFS ou MFS et lorsque taille de bloc et nombre de blocs correspondent exactement à `MacintoshMfmGeometry`.
+    - [x] Conserver l’absence de modification lorsque l’image porte déjà `DiskImageFormatIds.Mac1440`.
+    - [x] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
+    - [x] Conserver `DiskImageFormatIds.Mac1440` comme identifiant normalisé.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `MacRecognizedImageNormalizer`, `TryNormalize`, `MacintoshMfmGeometry` et chacun de ses membres.
+    - [x] Documenter que la reconnaissance du système de fichiers et la géométrie complète sont toutes deux nécessaires avant la réidentification.
+    - [x] Conserver sur une seule ligne les signatures, conditions, appels et expressions complètes qui restent lisibles ainsi.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
+  - [x] Tests de la normalisation Macintosh
+    - [x] Tester une image de 2 880 blocs reconnue HFS puis MFS et vérifier sa réidentification en `Mac1440`.
+    - [x] Tester un autre Reader, une taille sectorielle différente, un nombre de blocs différent et une image déjà `Mac1440`.
+    - [x] Vérifier que données, adresses, intégrités, capacité et blocs manquants sont conservés pendant la réidentification.
+    - [x] Vérifier que tous les consommateurs de la géométrie Macintosh MFM obtiennent les mêmes constantes.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/MsxAdditionalImageInterpretationPolicy.cs`
+  - [x] Déplacement de la politique MSX
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Policies/MsxAdditionalImageInterpretationPolicy.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Policies`.
+    - [x] Adapter le contrat renommé, `Composition/MediaEngineFactory.cs` et le registre d’interprétations supplémentaires.
+  - [x] Extraction de l’interpréteur sectoriel MSX
+    - [x] Créer `Exploration/Interpretation/Policies/MsxSectorImageInterpreter.cs` et y déplacer `SectorImageInterpretation.TryCreateMsx`.
+    - [x] Faire utiliser à cet interpréteur `Recognition/Msx/MsxBootSectorProbe.cs` pour valider le bloc de boot.
+    - [x] Faire utiliser `Geometries/Msx/MsxDiskGeometryCatalog.cs` créé avec le Reader MSX pour résoudre les variantes 1D, 1DD, 2D et 2DD.
+    - [x] Utiliser les définitions FAT/MSX communes pour le bloc de boot, sa taille de 512 octets et le descripteur média `0xF8` au lieu de conserver ces valeurs dans l’interpréteur.
+    - [x] Conserver l’absence d’interprétation lorsque l’image appartient déjà à `DiskImageFormatIds.MsxPrefix`.
+    - [x] Conserver l’absence d’interprétation lorsque le boot est absent, invalide ou que le nombre de blocs ne correspond à aucune géométrie MSX.
+    - [x] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
+  - [x] Responsabilité restante de la politique
+    - [x] Remplacer le test brut `image.BlockSize == 512` par la taille sectorielle du catalogue MSX.
+    - [x] Faire déléguer `CreateCandidates` à `MsxSectorImageInterpreter` et ne produire le candidat que lorsque l’interprétation réussit.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `MsxAdditionalImageInterpretationPolicy`, `CreateCandidates`, `MsxSectorImageInterpreter` et chacun de ses membres.
+    - [x] Documenter la validation du boot, le choix entre les deux variantes de même capacité et les cas sans candidat.
+    - [x] Conserver sur une seule ligne les signatures, conditions, appels et expressions complètes qui restent lisibles ainsi.
+  - [x] Tests de l’interprétation MSX
+    - [x] Tester les quatre géométries MSX prises en charge.
+    - [x] Tester séparément les variantes 1DD et 2D de même nombre de blocs à partir du descripteur média.
+    - [x] Tester une image déjà MSX, une taille de bloc différente, un boot absent, un boot invalide et un nombre de blocs inconnu.
+    - [x] Vérifier que données, adresses, intégrités, capacité et blocs manquants sont conservés pendant la réidentification.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/MsxRecognizedImageNormalizer.cs`
+  - [x] Déplacement du normalizer MSX
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Normalizers`.
+    - [x] Adapter `RecognizedImageNormalizerRegistry` et `Composition/MediaEngineFactory.cs` au nouveau type.
+  - [x] Réutilisation des définitions et de l’interpréteur MSX
+    - [x] Remplacer le texte brut `fat12` par `FileSystems/Definitions/FileSystemIds.Fat12`.
+    - [x] Faire recevoir ou utiliser le même `MsxSectorImageInterpreter` que la politique d’interprétation supplémentaire.
+    - [x] Remplacer l’appel à `SectorImageInterpretation.TryCreateMsx` par cet interpréteur commun.
+    - [x] Conserver l’image source dans `normalized` lorsque le Reader n’est pas FAT12 ou lorsque l’interpréteur refuse l’image.
+    - [x] Conserver la normalisation uniquement après reconnaissance effective du système de fichiers FAT12.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `MsxRecognizedImageNormalizer`, son éventuel constructeur et `TryNormalize`.
+    - [x] Documenter le rôle de `readerId`, le fait que le volume n’est pas inspecté par cette règle et les conditions de réidentification MSX.
+    - [x] Conserver sur une seule ligne la signature et l’expression booléenne complète lorsqu’elles restent lisibles ainsi.
+  - [x] Tests de la normalisation MSX reconnue
+    - [x] Tester les quatre formats MSX après reconnaissance FAT12.
+    - [x] Tester les deux variantes de même capacité distinguées par le descripteur média.
+    - [x] Tester un Reader différent de FAT12, une image déjà MSX, un boot invalide et une géométrie inconnue.
+    - [x] Vérifier que le paramètre de sortie reste l’image source lorsque la normalisation échoue.
 - [x] `src/GWGUI.MediaEngine/Images/Interpretations/RecognizedImageNormalizerRegistry.cs`
   - [x] Déplacement et injection du registre
     - [x] Déplacer le fichier vers `Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs`.

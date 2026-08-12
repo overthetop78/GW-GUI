@@ -14,6 +14,6 @@ internal static class MsxBootSectorProbe
     {
         if (data.Length < FatBootSectorLayout.SectorSize || data.Length % FatBootSectorLayout.SectorSize != 0) return false;
         var oem = System.Text.Encoding.ASCII.GetString(data.Slice(FatBootSectorLayout.OemOffset, FatBootSectorLayout.OemLength));
-        return oem.StartsWith(OemPrefix, StringComparison.OrdinalIgnoreCase) && FatBpbGeometryDetector.TryDetect(data, data.Length, out _);
+        return oem.StartsWith(OemPrefix, StringComparison.OrdinalIgnoreCase) && FatBpbGeometryDetector.TryDetect(data, null, out _);
     }
 }

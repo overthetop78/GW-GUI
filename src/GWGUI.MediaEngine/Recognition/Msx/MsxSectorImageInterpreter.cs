@@ -12,7 +12,7 @@ internal sealed class MsxSectorImageInterpreter
     public bool TryInterpret(SectorImage image, out SectorImage interpretation)
     {
         interpretation = image;
-        if (image.FormatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) || image.BlockSize != FatBootSectorLayout.SectorSize || !image.TryGetBlock(FatBootSectorLayout.FirstSectorNumber, out var boot) || boot.Data.Count != FatBootSectorLayout.SectorSize || !MsxBootSectorProbe.LooksLikeMsx(boot.Data.ToArray())) return false;
+        if (image.FormatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) || image.BlockSize != FatBootSectorLayout.SectorSize || !image.TryGetBlock(FatBootSectorLayout.BootLogicalBlock, out var boot) || boot.Data.Count != FatBootSectorLayout.SectorSize || !MsxBootSectorProbe.LooksLikeMsx(boot.Data.ToArray())) return false;
         var geometry = MsxDiskGeometryCatalog.Find(checked(image.BlockCount * image.BlockSize), boot.Data[FatBootSectorLayout.MediaDescriptorOffset]);
         if (geometry is null) return false;
         interpretation = image.WithFormatId(geometry.FormatId);

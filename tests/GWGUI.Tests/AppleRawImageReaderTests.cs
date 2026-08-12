@@ -82,9 +82,9 @@ public sealed class AppleRawImageReaderTests
         var proDos = AppleRawImageReader.Read(CreateProDos(MacintoshGcrGeometry.Capacity800K), DiskImageFileExtensions.Po);
         Assert.Equal(DiskImageFormatIds.AppleIIProDos, proDos.Image.FormatId);
 
-        var mfm = AppleRawImageReader.Read(CreateMacintosh(MacintoshMfm1440Geometry.Capacity, MacintoshVolumeSignatures.Hfs), DiskImageFileExtensions.Dsk);
+        var mfm = AppleRawImageReader.Read(CreateMacintosh(MacintoshMfmGeometry.Capacity, MacintoshVolumeSignatures.Hfs), DiskImageFileExtensions.Dsk);
         Assert.Equal(DiskImageFormatIds.Mac1440, mfm.Image.FormatId);
-        AssertImage(mfm.Image, MacintoshMfm1440Geometry.SectorSize, MacintoshMfm1440Geometry.CylinderCount, MacintoshMfm1440Geometry.HeadCount, MacintoshMfm1440Geometry.SectorsPerTrack, MacintoshMfm1440Geometry.Capacity);
+        AssertImage(mfm.Image, MacintoshMfmGeometry.SectorSize, MacintoshMfmGeometry.CylinderCount, MacintoshMfmGeometry.HeadCount, MacintoshMfmGeometry.SectorsPerTrack, MacintoshMfmGeometry.Capacity);
     }
 
     /// <summary>Vérifie les erreurs distinctes de capacité connue, inconnue et tronquée.</summary>
@@ -107,7 +107,7 @@ public sealed class AppleRawImageReaderTests
         var twoImg = await new AppleDiskImageReader().ReadAsync(BuildTwoImg(raw), DiskImageFileExtensions.TwoMg, null);
         AssertEquivalent(direct, twoImg);
 
-        var mac = CreateMacintosh(MacintoshMfm1440Geometry.Capacity, MacintoshVolumeSignatures.Hfs);
+        var mac = CreateMacintosh(MacintoshMfmGeometry.Capacity, MacintoshVolumeSignatures.Hfs);
         var rawMac = AppleRawImageReader.Read(mac, DiskImageFileExtensions.Dsk).Image;
         var diskCopy = await new AppleDiskImageReader().ReadAsync(BuildDiskCopy(mac), DiskImageFileExtensions.Image, null);
         AssertEquivalent(rawMac, diskCopy);

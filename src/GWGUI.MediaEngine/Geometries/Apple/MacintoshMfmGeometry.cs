@@ -2,8 +2,8 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Geometries.Apple;
 
-/// <summary>Définit la géométrie linéaire Macintosh MFM de 1,44 Mio.</summary>
-public static class MacintoshMfm1440Geometry
+/// <summary>Définit la géométrie linéaire Macintosh MFM de 1,44 Mio, distincte des géométries GCR.</summary>
+public static class MacintoshMfmGeometry
 {
     /// <summary>Taille d'un secteur en octets.</summary>
     public const int SectorSize = 512;
@@ -15,6 +15,6 @@ public static class MacintoshMfm1440Geometry
     public const int SectorsPerTrack = 18;
     /// <summary>Nombre total de secteurs.</summary>
     public const int SectorCount = CylinderCount * HeadCount * SectorsPerTrack;
-    /// <summary>Capacité en octets.</summary>
+    /// <summary>Capacité totale en octets.</summary>
     public const int Capacity = SectorCount * SectorSize;
 }

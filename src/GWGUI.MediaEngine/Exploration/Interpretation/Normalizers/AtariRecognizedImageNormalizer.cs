@@ -16,7 +16,7 @@ internal sealed class AtariRecognizedImageNormalizer : IRecognizedImageNormalize
     {
         normalized = image;
         if (!readerId.Equals(FileSystemIds.Fat12, StringComparison.OrdinalIgnoreCase)) return false;
-        if (image.FormatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase) && image.TryGetBlock(FatBootSectorLayout.FirstSectorNumber, out var boot) && FatBpbGeometryDetector.TryDetect(boot.Data.ToArray(), null, out var geometry) && geometry.TotalSectors < image.BlockCount)
+        if (image.FormatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase) && image.TryGetBlock(FatBootSectorLayout.BootLogicalBlock, out var boot) && FatBpbGeometryDetector.TryDetect(boot.Data.ToArray(), null, out var geometry) && geometry.TotalSectors < image.BlockCount)
         {
             var blocks = image.AvailableBlocks.Where(block => block.LogicalBlock < geometry.TotalSectors).ToArray();
             var capacity = geometry.TotalSectors * (long)geometry.SectorSize;
