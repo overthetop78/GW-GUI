@@ -7,13 +7,21 @@ using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Recognition.Apple;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
 /// <summary>Reconstruit les images Macintosh et Lisa à zones depuis des secteurs SCP décodés.</summary>
+/// <param name="decoder">Décodeur commun chargé de regrouper les candidats sectoriels Apple.</param>
 internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
     /// <summary>Reconstruit et classe une image Macintosh ou Lisa.</summary>
+    /// <param name="scp">Capture SCP déjà analysée.</param>
+    /// <param name="requestedFormatId">Identifiant demandé, ou <see langword="null"/> pour détecter automatiquement le format Apple.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le décodage des révolutions.</param>
+    /// <returns>L'image Macintosh ou Lisa reconstruite avec sa capacité et son nombre logique de blocs.</returns>
+    /// <exception cref="InvalidDataException">Aucun secteur GCR Apple IWM n'a été décodé ou aucun candidat ne respecte la géométrie zonée.</exception>
+    /// <remarks>La capacité est exprimée en octets et dépend du nombre de faces détecté dans les adresses candidates.</remarks>
     public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, AppleIwmGcrFormat.SectorByteCount, cancellationToken);
