@@ -2,11 +2,7 @@ using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
-/// <summary>
-/// Encodes the Lisa FileWare/Twiggy sector layout. FileWare uses the same
-/// 6-and-2 sector payload coding as Apple's IWM family, with Lisa's format
-/// byte and its own zoned 46-track, double-sided geometry.
-/// </summary>
+/// <summary>Encode les secteurs Lisa FileWare/Twiggy avec le codage 6-and-2 de la famille IWM, l'octet de format Lisa et sa géométrie zonée de 46 pistes sur deux faces.</summary>
 public sealed class AppleLisaFileWareGcrTrackEncoder : AppleMacGcrTrackEncoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>

@@ -3138,9 +3138,9 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleIIGcrTrackEncoder`.
     - [x] Ajouter la documentation XML des méthodes `EncodeBits, EncodeSixAndTwo, EncodeFiveAndThree`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleLisaFileWareGcrTrackEncoder`.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleLisaFileWareGcrTrackEncoder`.
 - [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AppleMacGcrTrackEncoder`.
