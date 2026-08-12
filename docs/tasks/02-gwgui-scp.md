@@ -3603,45 +3603,45 @@
       - [x] Tester que l'encodeur expose l'identifiant et le nom Lisa FileWare définis centralement.
       - [x] Tester la valeur de format réellement écrite par l'encodage Lisa FileWare.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Lisa FileWare avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
-    - [ ] Identité et paramètres de l'encodeur Macintosh
-      - [ ] Remplacer l'identifiant brut `applemac.gcr` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Apple Macintosh GCR` par la définition centrale correspondante.
-      - [ ] Remplacer la clé d'attribut brute `format` par la définition commune utilisée pour demander le format Apple IWM GCR.
-      - [ ] Remplacer la valeur brute `0x12` de `DefaultFormat` par la définition centrale du format par défaut.
-      - [ ] Remplacer la construction répétée des clés `tag0` à `tag11` par une définition ou une fonction commune recevant l'index du tag.
-    - [ ] Définitions binaires Macintosh et Lisa communes
-      - [ ] Déplacer la table GCR de 64 octets vers la définition ou le codec Apple IWM GCR commun au décodeur et à l'encodeur.
-      - [ ] Remplacer les tailles brutes du secteur, des tags, de l'en-tête et des données encodées par les définitions centrales correspondantes.
-      - [ ] Remplacer les prologues, épilogues et longueurs de gaps bruts par les définitions centrales correspondantes.
-      - [ ] Remplacer les masques et décalages servant à composer l'en-tête et son checksum par les définitions centrales correspondantes.
-    - [ ] Construction d'une piste Apple IWM GCR
-      - [ ] Extraire la construction du champ d'adresse dans une fonction privée recevant la requête, le secteur et le format.
-      - [ ] Extraire la lecture des tags dans une fonction privée utilisant le nombre de tags défini centralement.
-      - [ ] Extraire la construction du champ de données dans une fonction privée recevant les tags et les 512 octets du secteur.
-      - [ ] Créer un composant Apple IWM GCR commun chargé du codec 6-and-2 utilisé par l'encodeur et par le décodeur correspondant.
-      - [ ] Déplacer `EncodeData` dans ce composant commun et remplacer les tailles brutes `175`, `174` et `703` par les longueurs dérivées de la disposition du codec.
-      - [ ] Raccorder `AppleMacGcrTrackEncoder` et `AppleLisaFileWareGcrTrackEncoder` à ce composant commun.
-    - [ ] Validation des données avant encodage
-      - [ ] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant les masquages qui composent ses bits bas et hauts afin de ne pas tronquer silencieusement une valeur hors plage.
-      - [ ] Valider la tête avant son décalage dans l'en-tête afin de ne pas produire un index extérieur à la table GCR.
-      - [ ] Valider le numéro de secteur avant son masquage par `0x3f` afin de ne pas encoder silencieusement un autre numéro.
-      - [ ] Valider que la valeur de l'attribut de format appartient à la plage encodable avant sa conversion en octet.
-      - [ ] Valider chaque valeur de tag avant sa conversion en octet.
-      - [ ] Faire valider par le codec commun que la charge utile reçue contient exactement les tags et les données attendus avant d'accéder à ses positions.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Séparer chaque instruction actuellement juxtaposée à une autre sur la même ligne dans `EncodeBits` et `EncodeData`.
-      - [ ] Normaliser les espaces autour des affectations, opérateurs, conditions, initialisations de tableaux et expressions lambda.
-      - [ ] Conserver sur une seule ligne chaque signature, appel ou expression qui tient lisiblement sur une seule ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité, du format par défaut et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodage Apple IWM GCR
-      - [ ] Tester l'identifiant, le nom et le format par défaut de l'encodeur Macintosh.
-      - [ ] Tester la composition exacte du champ d'adresse pour les cylindres utilisant uniquement les bits bas puis les bits hauts.
-      - [ ] Tester l'encodage des douze tags et d'un secteur de 512 octets avec un résultat connu.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête, d'un numéro de secteur, d'un format et d'un tag hors plage.
-      - [ ] Tester le codec 6-and-2 commun avec sa longueur d'entrée exacte, sa longueur de sortie exacte et des données connues.
-      - [ ] Tester, par l'encodeur public, l'aller-retour Macintosh puis Lisa FileWare avec leurs décodeurs correspondants.
+  - [x] `Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
+    - [x] Identité et paramètres de l'encodeur Macintosh
+      - [x] Remplacer l'identifiant brut `applemac.gcr` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Apple Macintosh GCR` par la définition centrale correspondante.
+      - [x] Remplacer la clé d'attribut brute `format` par la définition commune utilisée pour demander le format Apple IWM GCR.
+      - [x] Remplacer la valeur brute `0x12` de `DefaultFormat` par la définition centrale du format par défaut.
+      - [x] Remplacer la construction répétée des clés `tag0` à `tag11` par une définition ou une fonction commune recevant l'index du tag.
+    - [x] Définitions binaires Macintosh et Lisa communes
+      - [x] Déplacer la table GCR de 64 octets vers la définition ou le codec Apple IWM GCR commun au décodeur et à l'encodeur.
+      - [x] Remplacer les tailles brutes du secteur, des tags, de l'en-tête et des données encodées par les définitions centrales correspondantes.
+      - [x] Remplacer les prologues, épilogues et longueurs de gaps bruts par les définitions centrales correspondantes.
+      - [x] Remplacer les masques et décalages servant à composer l'en-tête et son checksum par les définitions centrales correspondantes.
+    - [x] Construction d'une piste Apple IWM GCR
+      - [x] Extraire la construction du champ d'adresse dans une fonction privée recevant la requête, le secteur et le format.
+      - [x] Extraire la lecture des tags dans une fonction privée utilisant le nombre de tags défini centralement.
+      - [x] Extraire la construction du champ de données dans une fonction privée recevant les tags et les 512 octets du secteur.
+      - [x] Créer un composant Apple IWM GCR commun chargé du codec 6-and-2 utilisé par l'encodeur et par le décodeur correspondant.
+      - [x] Déplacer `EncodeData` dans ce composant commun et remplacer les tailles brutes `175`, `174` et `703` par les longueurs dérivées de la disposition du codec.
+      - [x] Raccorder `AppleMacGcrTrackEncoder` et `AppleLisaFileWareGcrTrackEncoder` à ce composant commun.
+    - [x] Validation des données avant encodage
+      - [x] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant les masquages qui composent ses bits bas et hauts afin de ne pas tronquer silencieusement une valeur hors plage.
+      - [x] Valider la tête avant son décalage dans l'en-tête afin de ne pas produire un index extérieur à la table GCR.
+      - [x] Valider le numéro de secteur avant son masquage par `0x3f` afin de ne pas encoder silencieusement un autre numéro.
+      - [x] Valider que la valeur de l'attribut de format appartient à la plage encodable avant sa conversion en octet.
+      - [x] Valider chaque valeur de tag avant sa conversion en octet.
+      - [x] Faire valider par le codec commun que la charge utile reçue contient exactement les tags et les données attendus avant d'accéder à ses positions.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Séparer chaque instruction actuellement juxtaposée à une autre sur la même ligne dans `EncodeBits` et `EncodeData`.
+      - [x] Normaliser les espaces autour des affectations, opérateurs, conditions, initialisations de tableaux et expressions lambda.
+      - [x] Conserver sur une seule ligne chaque signature, appel ou expression qui tient lisiblement sur une seule ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité, du format par défaut et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodage Apple IWM GCR
+      - [x] Tester l'identifiant, le nom et le format par défaut de l'encodeur Macintosh.
+      - [x] Tester la composition exacte du champ d'adresse pour les cylindres utilisant uniquement les bits bas puis les bits hauts.
+      - [x] Tester l'encodage des douze tags et d'un secteur de 512 octets avec un résultat connu.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête, d'un numéro de secteur, d'un format et d'un tag hors plage.
+      - [x] Tester le codec 6-and-2 commun avec sa longueur d'entrée exacte, sa longueur de sortie exacte et des données connues.
+      - [x] Tester, par l'encodeur public, l'aller-retour Macintosh puis Lisa FileWare avec leurs décodeurs correspondants.
   - [ ] `Encoding/Encoders/AppleRwts18TrackEncoder.cs`
     - [ ] Identité et paramètres de l'encodeur RWTS18
       - [ ] Remplacer l'identifiant brut `apple2.rwts18` par la définition centrale correspondante.

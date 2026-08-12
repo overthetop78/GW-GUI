@@ -131,10 +131,30 @@ internal static class AppleIwmGcrFormat
     public const string FormatAttributeName = "format";
     /// <summary>Définit tag attribut préfixe utilisé par ce format.</summary>
     public const string TagAttributePrefix = "tag";
+    /// <summary>Plus grand numéro de cylindre représentable dans l'adresse IWM.</summary>
+    public const int MaximumCylinder = byte.MaxValue;
+    /// <summary>Plus grand numéro de face représentable dans l'adresse IWM.</summary>
+    public const int MaximumHead = 1;
+    /// <summary>Plus grand numéro de secteur ou format indexable dans la table GCR.</summary>
+    public const int MaximumSixBitValue = SixBitMask;
+    /// <summary>Plus grande valeur d'un octet de tag.</summary>
+    public const int MaximumTagValue = byte.MaxValue;
     /// <summary>Expose la table de conversion GCR 6-et-2 partagée avec le format Apple II.</summary>
     public static IReadOnlyList<byte> SixAndTwoTable => AppleIIGcrFormat.SixAndTwoTable;
     /// <summary>Expose adresse marque utilisé par ce format.</summary>
     public static IReadOnlyList<byte> AddressMark { get; } = Array.AsReadOnly<byte>([AddressMarkFirstByte, AddressMarkSecondByte, AddressMarkLastByte]);
     /// <summary>Expose données marque utilisé par ce format.</summary>
     public static IReadOnlyList<byte> DataMark { get; } = Array.AsReadOnly<byte>([AddressMarkFirstByte, AddressMarkSecondByte, DataMarkLastByte]);
+    /// <summary>Séquence terminant le champ d'adresse avant son gap.</summary>
+    public static IReadOnlyList<byte> AddressEpilogue { get; } = Array.AsReadOnly<byte>([EpilogueFirstByte, EpilogueSecondByte, SyncByte, SyncByte]);
+    /// <summary>Séquence terminant le champ de données avant son gap.</summary>
+    public static IReadOnlyList<byte> DataEpilogue { get; } = Array.AsReadOnly<byte>([EpilogueFirstByte, EpilogueSecondByte, SyncByte]);
+
+    /// <summary>Construit la clé d'attribut d'un octet de tag IWM.</summary>
+    /// <param name="index">Index du tag, de zéro à onze.</param><returns>Clé technique du tag.</returns>
+    public static string TagAttributeName(int index) => $"{TagAttributePrefix}{index}";
+
+    /// <summary>Crée l'erreur signalant une longueur de bloc tagué invalide.</summary>
+    /// <param name="actualSize">Longueur observée.</param><returns>Erreur contenant les longueurs attendue et observée.</returns>
+    public static ArgumentException InvalidTaggedSectorSize(int actualSize) => new($"Apple IWM GCR expects {TaggedSectorByteCount} tagged bytes; received {actualSize} bytes.");
 }
