@@ -7361,17 +7361,17 @@
 ## 9. Interprétation et exploration
 
 - [ ] Compléments issus de la relecture complète de `Exploration`
-  - [ ] `Exploration/ScpCaptureInfo.cs`
-    - [ ] Correction de la CSDoc française corrompue
-      - [ ] Remplacer `DÃ©crit les mÃ©tadonnÃ©es` par le texte français correctement encodé dans le résumé du type.
-      - [ ] Corriger les caractères corrompus du résumé du constructeur.
-      - [ ] Corriger les caractères corrompus des sept balises `param` du constructeur.
-      - [ ] Corriger les caractères corrompus des résumés de `Header`, `CapturedTracks`, `MissingTracks`, `Cylinders`, `Sides` et `ChecksumValid`.
-      - [ ] Conserver les unités et la signification actuelles de chaque paramètre et propriété sans modifier le modèle.
-    - [ ] Présentation et vérification du fichier
-      - [ ] Conserver la signature complète du constructeur sur une seule ligne puisqu'elle tient lisiblement sur une ligne.
-      - [ ] Vérifier après correction qu'aucune séquence de texte corrompue `Ã` ou `Â` ne subsiste dans le fichier.
-      - [ ] Compiler le projet MediaEngine afin de vérifier les références XML de la CSDoc corrigée.
+  - [x] `Exploration/ScpCaptureInfo.cs`
+    - [x] Correction de la CSDoc française corrompue
+      - [x] Remplacer `DÃ©crit les mÃ©tadonnÃ©es` par le texte français correctement encodé dans le résumé du type.
+      - [x] Corriger les caractères corrompus du résumé du constructeur.
+      - [x] Corriger les caractères corrompus des sept balises `param` du constructeur.
+      - [x] Corriger les caractères corrompus des résumés de `Header`, `CapturedTracks`, `MissingTracks`, `Cylinders`, `Sides` et `ChecksumValid`.
+      - [x] Conserver les unités et la signification actuelles de chaque paramètre et propriété sans modifier le modèle.
+    - [x] Présentation et vérification du fichier
+      - [x] Conserver la signature complète du constructeur sur une seule ligne puisqu'elle tient lisiblement sur une ligne.
+      - [x] Vérifier après correction qu'aucune séquence de texte corrompue `Ã` ou `Â` ne subsiste dans le fichier.
+      - [x] Compiler le projet MediaEngine afin de vérifier les références XML de la CSDoc corrigée.
   - [ ] `Exploration/ScpCaptureInfoReader.cs`
     - [ ] Définitions SCP utilisées pendant l'exploration
       - [ ] Ajouter dans les définitions du conteneur SCP une valeur nommée pour l'offset de piste nul qui indique une entrée absente de la table.
