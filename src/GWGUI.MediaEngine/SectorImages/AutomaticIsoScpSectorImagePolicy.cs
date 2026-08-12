@@ -1,5 +1,7 @@
 using GWGUI.MediaEngine.Primitives;
 
+using GWGUI.MediaEngine.Reconstruction.Atari;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy

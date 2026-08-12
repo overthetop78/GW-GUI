@@ -5052,16 +5052,16 @@
   - [x] Mise en forme et commentaire
     - [x] Remettre sur une seule ligne la signature complète de `ReadAsync`.
     - [x] Remplacer le commentaire anglais du rejet dans `TryAdd` par une explication française du passage au reconstructeur Apple suivant.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiants et mise en forme
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
-    - [ ] Remettre sur une seule ligne l'affectation conditionnelle complète de `DecoderIds`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `Atari8BitIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Atari8BitIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiants et mise en forme
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
+    - [x] Remettre sur une seule ligne l'affectation conditionnelle complète de `DecoderIds`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `Atari8BitIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Atari8BitIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AtariScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Atari/AtariScpSectorImageReader.cs`.

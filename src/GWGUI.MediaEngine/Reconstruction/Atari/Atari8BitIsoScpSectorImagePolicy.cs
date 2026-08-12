@@ -1,12 +1,20 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Atari;
 
+/// <summary>Construit une image Atari 8 bits depuis des candidats ISO FM ou MFM.</summary>
+/// <param name="requestedFormatId">Identifiant Atari demandé, utilisé pour sélectionner le décodeur FM du format 90 Kio ou le décodeur MFM des autres formats.</param>
 internal sealed class Atari8BitIsoScpSectorImagePolicy(string? requestedFormatId) : IIsoScpSectorImagePolicy
 {
-    public IReadOnlyList<string> DecoderIds { get; } = requestedFormatId == DiskImageFormatIds.Atari90
-        ? [FluxCodecIds.IsoFm] : [FluxCodecIds.IsoMfm];
+    /// <summary>Identifiant du décodeur ISO adapté au format Atari demandé.</summary>
+    public IReadOnlyList<string> DecoderIds { get; } = requestedFormatId == DiskImageFormatIds.Atari90 ? [FluxCodecIds.IsoFm] : [FluxCodecIds.IsoMfm];
 
+    /// <summary>Mesure les candidats Atari et construit l'image en tenant compte des trois secteurs d'amorçage de 128 octets.</summary>
+    /// <param name="formatId">Identifiant demandé, ou <see langword="null"/> pour le déduire de la taille et du nombre de secteurs.</param>
+    /// <param name="candidateSet">Candidats ISO regroupés et validés avant la construction.</param>
+    /// <returns>L'image sectorielle Atari avec sa capacité logique exacte, exprimée en octets.</returns>
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {
         var candidates = candidateSet.Addressed;

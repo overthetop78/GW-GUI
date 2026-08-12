@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Definitions;
 
 using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.Reconstruction.Atari;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
