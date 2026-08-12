@@ -50,6 +50,8 @@ internal static class IsoFmFormat
     public const int MaximumSectorSizeCode = 7;
     /// <summary>Taille sectorielle de base.</summary>
     public const int BaseSectorSize = 128;
+    /// <summary>Plus grande valeur représentable par les champs CHRN sur un octet.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
     /// <summary>Avancement après une marque.</summary>
     public const int MarkScanAdvance = EncodedMarkBitCount - 1;
     /// <summary>Avancement après un en-tête.</summary>
@@ -76,4 +78,10 @@ internal static class IsoFmFormat
 
     /// <summary>Calcule la taille sectorielle associée au code fourni.</summary>
     public static int SectorSize(byte sizeCode) => sizeCode <= MaximumSectorSizeCode ? BaseSectorSize << sizeCode : 0;
+
+    /// <summary>Obtient la définition fermée de la marque de données normale ou supprimée.</summary>
+    public static IsoFmMarkDefinition DataMark(bool deleted) => Marks.Single(mark => mark.Deleted == deleted && mark.Mark != IdAddressMark);
+
+    /// <summary>Crée l'erreur signalant un code de taille incompatible avec les données.</summary>
+    public static ArgumentException InvalidSizeCode(byte sizeCode, int actualSize) => new($"ISO FM size code {sizeCode} describes {SectorSize(sizeCode)} bytes; received {actualSize} bytes.");
 }

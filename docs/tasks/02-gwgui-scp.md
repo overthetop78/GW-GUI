@@ -3977,39 +3977,39 @@
       - [x] Tester les deux synchronisations et les longueurs exactes de leurs gaps.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête, d'un secteur hors plage et d'une charge utile impaire passée à la transformation commune.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste HP MMFM avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/IsoFmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur ISO FM
-      - [ ] Remplacer l'identifiant brut `iso.fm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `ISO FM` par la définition centrale correspondante.
-    - [ ] Définitions du format ISO FM
-      - [ ] Déplacer la marque d'adresse `0xfe` et son motif à horloge spéciale `F57E` dans `IsoFmFormat`.
-      - [ ] Déplacer les marques de données normale `0xfb` et supprimée `0xf8` ainsi que leurs motifs `F56F` et `F56A` dans `IsoFmFormat`.
-      - [ ] Représenter chaque marque avec son motif à horloge spéciale dans une seule définition afin d'éviter deux sélections séparées qui pourraient diverger.
-      - [ ] Déplacer les longueurs des gaps d'adresse et de données dans `IsoFmFormat`.
-      - [ ] Centraliser avec le décodeur ISO FM les codes de taille, les paramètres CRC et l'ordre des deux octets du CRC.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire le calcul ou la validation du code de taille dans une fonction privée recevant le secteur.
-      - [ ] Extraire la construction de l'en-tête complet utilisé pour le CRC dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire l'écriture du motif d'adresse, des champs situés après la marque, du CRC et du premier gap dans une fonction privée.
-    - [ ] Construction du champ de données
-      - [ ] Extraire la sélection commune de la marque de données et de son motif à partir de `sector.Deleted`.
-      - [ ] Extraire le calcul du CRC sur la marque et les données dans une fonction privée.
-      - [ ] Extraire l'écriture du motif de données, de la charge utile, du CRC et du second gap dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Valider le cylindre, la tête et le numéro de secteur avant leur conversion en octet.
-      - [ ] Lorsque `SizeCode` est absent, conserver son calcul à partir de la longueur des données avec la définition ISO FM commune.
-      - [ ] Lorsque `SizeCode` est fourni, vérifier qu'il correspond à la longueur réelle des données avant d'écrire l'en-tête.
-      - [ ] Remplacer les textes d'erreur nécessaires par des définitions paramétrables recevant les champs et tailles observés et attendus.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser la présentation des tableaux, conversions, concaténations et ternaires.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur ISO FM
-      - [ ] Tester le champ d'adresse, son motif à horloge spéciale et son CRC avec des valeurs connues.
-      - [ ] Tester les champs de données normal et supprimé et vérifier pour chacun la cohérence entre marque, motif et CRC.
-      - [ ] Tester plusieurs longueurs sectorielles et leurs codes de taille calculés.
-      - [ ] Tester le rejet des champs d'adresse hors plage et d'un code de taille fourni incompatible avec les données.
-      - [ ] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur ISO FM.
+  - [x] `Encoding/Encoders/IsoFmTrackEncoder.cs`
+    - [x] Identité de l'encodeur ISO FM
+      - [x] Remplacer l'identifiant brut `iso.fm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `ISO FM` par la définition centrale correspondante.
+    - [x] Définitions du format ISO FM
+      - [x] Déplacer la marque d'adresse `0xfe` et son motif à horloge spéciale `F57E` dans `IsoFmFormat`.
+      - [x] Déplacer les marques de données normale `0xfb` et supprimée `0xf8` ainsi que leurs motifs `F56F` et `F56A` dans `IsoFmFormat`.
+      - [x] Représenter chaque marque avec son motif à horloge spéciale dans une seule définition afin d'éviter deux sélections séparées qui pourraient diverger.
+      - [x] Déplacer les longueurs des gaps d'adresse et de données dans `IsoFmFormat`.
+      - [x] Centraliser avec le décodeur ISO FM les codes de taille, les paramètres CRC et l'ordre des deux octets du CRC.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire le calcul ou la validation du code de taille dans une fonction privée recevant le secteur.
+      - [x] Extraire la construction de l'en-tête complet utilisé pour le CRC dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire l'écriture du motif d'adresse, des champs situés après la marque, du CRC et du premier gap dans une fonction privée.
+    - [x] Construction du champ de données
+      - [x] Extraire la sélection commune de la marque de données et de son motif à partir de `sector.Deleted`.
+      - [x] Extraire le calcul du CRC sur la marque et les données dans une fonction privée.
+      - [x] Extraire l'écriture du motif de données, de la charge utile, du CRC et du second gap dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Valider le cylindre, la tête et le numéro de secteur avant leur conversion en octet.
+      - [x] Lorsque `SizeCode` est absent, conserver son calcul à partir de la longueur des données avec la définition ISO FM commune.
+      - [x] Lorsque `SizeCode` est fourni, vérifier qu'il correspond à la longueur réelle des données avant d'écrire l'en-tête.
+      - [x] Remplacer les textes d'erreur nécessaires par des définitions paramétrables recevant les champs et tailles observés et attendus.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser la présentation des tableaux, conversions, concaténations et ternaires.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur ISO FM
+      - [x] Tester le champ d'adresse, son motif à horloge spéciale et son CRC avec des valeurs connues.
+      - [x] Tester les champs de données normal et supprimé et vérifier pour chacun la cohérence entre marque, motif et CRC.
+      - [x] Tester plusieurs longueurs sectorielles et leurs codes de taille calculés.
+      - [x] Tester le rejet des champs d'adresse hors plage et d'un code de taille fourni incompatible avec les données.
+      - [x] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur ISO FM.
   - [ ] `Encoding/Encoders/IsoMfmTrackEncoder.cs`
     - [ ] Identité de l'encodeur ISO MFM
       - [ ] Remplacer l'identifiant brut `iso.mfm` par la définition centrale correspondante.
