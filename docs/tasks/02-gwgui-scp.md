@@ -3030,41 +3030,41 @@
       - [x] Tester qu'une nouvelle marque d'en-tête arrête la recherche des données du secteur précédent.
       - [x] Tester une marque absente, un bloc tronqué et une marque de données non appariée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/Victor9kGcrDecoder.cs`
-    - [ ] Définitions Victor 9000 GCR
-      - [ ] Créer `Decoding/Definitions/Victor9kGcrFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom et les marques d'en-tête `55 55 55 55 55 55 11 11` et de données `55 55 55 55 55 55 11 04`.
-      - [ ] Y définir la longueur de marque de 64 bits et le décalage de départ `49` du flux GCR entrelacé.
-      - [ ] Y définir les six octets d'en-tête : `0x06`, cylindre, secteur, somme, `0xa1` et `0x1a`, avec la position de chaque champ.
-      - [ ] Y définir le préfixe de données `0x00`, la taille sectorielle de 512 octets, les deux octets de checksum en ordre faible puis fort et le total de 515 octets décodés.
-      - [ ] Y définir la borne de recherche `98 * 16`, la face, le code de taille et les gaps d'encodage `20` et `64`.
-      - [ ] Remplacer toutes les marques, tailles, positions, valeurs fixes, distances, gaps, identifiants, noms et descriptions bruts dans le décodeur et `Victor9kGcrTrackEncoder.cs`.
-    - [ ] Codec GCR commun
-      - [ ] Raccorder le décodeur et l'encodeur Victor 9000 à la table des seize symboles du codec GCR Commodore commun.
-      - [ ] Étendre ce codec pour lire et écrire les symboles avec un pas de deux bits sans dupliquer la table de conversion.
-      - [ ] Remplacer `Gcr`, `TryDecodeNibble` et la boucle GCR de `AddBlock` par ce codec commun.
-      - [ ] Conserver dans le composant Victor 9000 uniquement l'entrelacement spécifique commençant au bit 49.
-    - [ ] En-tête, données et checksum
-      - [ ] Créer un modèle d'en-tête nommé et valider les trois octets fixes `0x06`, `0xa1` et `0x1a` en plus de la somme cylindre/secteur.
-      - [ ] Extraire le checksum additif 16 bits des données dans une opération commune au décodeur et à l'encodeur.
-      - [ ] Extraire la recherche bornée de la marque de données dans une méthode utilisant les définitions du format.
-      - [ ] Extraire la lecture du préfixe, des 512 octets et du checksum faible/fort dans une méthode nommée.
-      - [ ] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
-      - [ ] Extraire la collecte des marques de données non appariées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et états de l'en-tête et du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Victor 9000 actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions, au modèle et aux opérations Victor 9000 créés.
-    - [ ] Vérification du groupe Victor 9000
-      - [ ] Tester les seize symboles GCR valides avec le pas de deux bits puis un symbole invalide.
-      - [ ] Tester les marques d'en-tête et de données et le départ entrelacé au bit 49.
-      - [ ] Tester un en-tête valide puis chaque octet fixe et la somme rendus invalides séparément.
-      - [ ] Tester un secteur de 512 octets avec checksum valide puis invalide et vérifier l'ordre faible/fort.
-      - [ ] Tester un bloc tronqué, une marque absente et une marque de données non appariée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/Victor9kGcrDecoder.cs`
+    - [x] Définitions Victor 9000 GCR
+      - [x] Créer `Decoding/Definitions/Victor9kGcrFormat.cs`.
+      - [x] Y définir l'identifiant, le nom et les marques d'en-tête `55 55 55 55 55 55 11 11` et de données `55 55 55 55 55 55 11 04`.
+      - [x] Y définir la longueur de marque de 64 bits et le décalage de départ `49` du flux GCR entrelacé.
+      - [x] Y définir les six octets d'en-tête : `0x06`, cylindre, secteur, somme, `0xa1` et `0x1a`, avec la position de chaque champ.
+      - [x] Y définir le préfixe de données `0x00`, la taille sectorielle de 512 octets, les deux octets de checksum en ordre faible puis fort et le total de 515 octets décodés.
+      - [x] Y définir la borne de recherche `98 * 16`, la face, le code de taille et les gaps d'encodage `20` et `64`.
+      - [x] Remplacer toutes les marques, tailles, positions, valeurs fixes, distances, gaps, identifiants, noms et descriptions bruts dans le décodeur et `Victor9kGcrTrackEncoder.cs`.
+    - [x] Codec GCR commun
+      - [x] Raccorder le décodeur et l'encodeur Victor 9000 à la table des seize symboles du codec GCR Commodore commun.
+      - [x] Étendre ce codec pour lire et écrire les symboles avec un pas de deux bits sans dupliquer la table de conversion.
+      - [x] Remplacer `Gcr`, `TryDecodeNibble` et la boucle GCR de `AddBlock` par ce codec commun.
+      - [x] Conserver dans le composant Victor 9000 uniquement l'entrelacement spécifique commençant au bit 49.
+    - [x] En-tête, données et checksum
+      - [x] Créer un modèle d'en-tête nommé et valider les trois octets fixes `0x06`, `0xa1` et `0x1a` en plus de la somme cylindre/secteur.
+      - [x] Extraire le checksum additif 16 bits des données dans une opération commune au décodeur et à l'encodeur.
+      - [x] Extraire la recherche bornée de la marque de données dans une méthode utilisant les définitions du format.
+      - [x] Extraire la lecture du préfixe, des 512 octets et du checksum faible/fort dans une méthode nommée.
+      - [x] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
+      - [x] Extraire la collecte des marques de données non appariées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et états de l'en-tête et du checksum.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Victor 9000 actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions, au modèle et aux opérations Victor 9000 créés.
+    - [x] Vérification du groupe Victor 9000
+      - [x] Tester les seize symboles GCR valides avec le pas de deux bits puis un symbole invalide.
+      - [x] Tester les marques d'en-tête et de données et le départ entrelacé au bit 49.
+      - [x] Tester un en-tête valide puis chaque octet fixe et la somme rendus invalides séparément.
+      - [x] Tester un secteur de 512 octets avec checksum valide puis invalide et vérifier l'ordre faible/fort.
+      - [x] Tester un bloc tronqué, une marque absente et une marque de données non appariée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
 
 - [ ] Instructions compactées dans les fichiers de décodage
   - [ ] Base et registres
