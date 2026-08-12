@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;
 using System.Net.Http;
 using System.Diagnostics;

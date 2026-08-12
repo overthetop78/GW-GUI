@@ -1,4 +1,6 @@
 using System.IO;
+using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
@@ -37,7 +39,7 @@ public sealed class DiskImageInterpretationComponentsTests
     [Fact]
     public void DocumentFactoryBuildsRecognizedPhysicalAndUnknownDocuments()
     {
-        var factory = new DiskImageDocumentFactory();
+        var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
         var image = Image(2, [Block(0, 0, 0, 1), Block(1, 0, 1, 2)]);
         var volume = Volume("VOL", [Entry("FILE", 1)]);
         var recognized = factory.Create("disk.img", image, [new("ibm.160", "fat12", volume)]);

@@ -1,5 +1,5 @@
 using GWGUI.App.Localization;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.App.Controls;
 
@@ -22,8 +22,8 @@ public static class ExplorerDetailsPresenter
         return new(title, ExplorerIconKind.DiskImage,
         [
             new("Explorer.Volume", title),
-            new("Explorer.System", document.Metadata.SystemName),
-            new("Explorer.Protection", document.Metadata.ProtectionName ?? "\u2014"),
+            new("Explorer.System", ExplorerMetadataPresenter.Systems(document.Metadata)),
+            new("Explorer.Protection", ExplorerMetadataPresenter.Protection(document.Metadata)),
             new("Explorer.FileSystem", FileSystemText(document)),
             new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
             new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"),

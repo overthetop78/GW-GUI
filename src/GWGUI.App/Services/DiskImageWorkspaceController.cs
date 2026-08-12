@@ -13,6 +13,7 @@ using GWGUI.Domain.Write;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Services;
@@ -120,8 +121,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             if (!cancellation.IsCancellationRequested)
             {
                 _explorer.Display(document);
-                _visualizer.Header.ApplyDetection(document.Image.FormatId,
-                    document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
+                _visualizer.Header.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId);
                 ApplyClassification();
             }
             return cancellation.IsCancellationRequested ? null : document;

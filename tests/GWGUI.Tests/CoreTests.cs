@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Profiles;
 using GWGUI.MediaEngine;
@@ -1147,7 +1148,7 @@ public sealed class CoreTests
             "TEST", "Atari TOS FAT12", 737280, 249 * 1024, null, null, [folder], ["warning"]);
 
         var image = new GWGUI.MediaEngine.SectorImages.SectorImage("atarist.720", 512, 80, 2, 9, []);
-        var diskDetails = ExplorerDetailsPresenter.ForDisk(new GWGUI.MediaEngine.Images.ExploredDiskImage("test.st", image, volume));
+        var diskDetails = ExplorerDetailsPresenter.ForDisk(new ExploredDiskImage("test.st", image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata(["atari-st"], null)));
         var fileDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(child));
         var folderDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(folder));
 

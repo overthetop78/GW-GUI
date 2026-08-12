@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation;

@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.SectorImages;
 

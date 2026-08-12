@@ -5,7 +5,7 @@ using System.Windows.Input;
 using GWGUI.App.Localization;
 using GWGUI.Domain.Formats;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.App.Controls;
 
@@ -42,8 +42,7 @@ public partial class ExplorerSection : UserControl
         var enabled = AutomaticDetection.IsChecked == true;
         Classification.SetAutomaticDetection(enabled);
         if (enabled && _document is not null)
-            Classification.ApplyDetection(_document.Image.FormatId,
-                _document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
+            Classification.ApplyDetection(_document.Image.FormatId, _document.Metadata.ProtectionId);
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -75,14 +74,13 @@ public partial class ExplorerSection : UserControl
         _document = document;
         PathText.Text = document.SourcePath;
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
-        Classification.ApplyDetection(document.Image.FormatId,
-            document.Metadata.ProtectionName is null ? null : "apple2.rwts18");
+        Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId);
         var volumeName = !document.FileSystemRecognized
             ? LocExtension.Get("Explorer.Unknown")
             : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
         VolumeNameText.Text = volumeName;
-        SystemText.Text = document.Metadata.SystemName;
-        ProtectionText.Text = document.Metadata.ProtectionName ?? "\u2014";
+        SystemText.Text = ExplorerMetadataPresenter.Systems(document.Metadata);
+        ProtectionText.Text = ExplorerMetadataPresenter.Protection(document.Metadata);
         FileSystemText.Text = ExplorerDetailsPresenter.FileSystemText(document);
         CapacityText.Text = ExplorerFormatting.FormatBytes(document.Volume.Capacity);
         FreeText.Text = document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";

@@ -1,4 +1,6 @@
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Exploration.Metadata;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine;
@@ -90,7 +92,7 @@ public sealed class DiskImageExplorerTests
         };
         var image = new SectorImage("apple2.dos33", 256, 1, 1, 3, blocks);
         var volume = new FileSystemVolume("TEST", GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos, 768, 0, null, null, [], ["Catalog warning"]);
-        var issues = ExplorerSection.BuildIssues(new ExploredDiskImage("test.nib", image, volume));
+        var issues = ExplorerSection.BuildIssues(new ExploredDiskImage("test.nib", image, volume, new DiskImageMetadata(["apple-ii"], null)));
 
         Assert.Contains("Catalog warning", issues);
         Assert.Contains(issues, issue => issue.Contains("1", StringComparison.Ordinal));

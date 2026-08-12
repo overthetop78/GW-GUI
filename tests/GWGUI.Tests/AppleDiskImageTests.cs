@@ -1,4 +1,6 @@
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
@@ -30,19 +32,21 @@ public sealed class AppleDiskImageTests
         var protectedImage = new SectorImage("apple2.rwts18", 768, 35, 1, 6, []);
         var ordinaryImage = new SectorImage("apple2.dos33", 256, 35, 1, 16, []);
 
-        Assert.Equal(new DiskImageMetadata("Apple II", "Brøderbund RWTS18"), DiskImageMetadata.From(protectedImage));
-        Assert.Equal(new DiskImageMetadata("Apple II", null), DiskImageMetadata.From(ordinaryImage));
+        var factory = new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver());
+        Assert.Equal(["apple-ii"], factory.Create(protectedImage).SystemIds);
+        Assert.Equal("apple2.rwts18", factory.Create(protectedImage).ProtectionId);
+        Assert.Equal(["apple-ii"], factory.Create(ordinaryImage).SystemIds);
+        Assert.Null(factory.Create(ordinaryImage).ProtectionId);
     }
 
     [Fact]
     public void DecodedPhysicalAppleDiskDoesNotPresentItsFileSystemAsUnknown()
     {
         var image = new SectorImage("apple2.dos33", 256, 35, 1, 16, []);
-        var document = new ExploredDiskImage("airheart.scp", image,
-            new FileSystemVolume("", "apple2.dos33", 143_360, 0, null, null, [], []), false,
-            DetectedImageFormatIds: ["apple2.dos33"]);
+        var metadata = new DiskImageMetadata(["apple-ii"], null);
+        var document = new ExploredDiskImage("airheart.scp", image, new FileSystemVolume("", "apple2.dos33", 143_360, 0, null, null, [], []), metadata, false, detectedImageFormatIds: ["apple2.dos33"]);
 
-        Assert.Equal("Apple II", document.Metadata.SystemName);
+        Assert.Equal(["apple-ii"], document.Metadata.SystemIds);
         Assert.NotEqual(LocExtension.Get("Explorer.Unknown"), ExplorerDetailsPresenter.FileSystemText(document));
         Assert.Equal(LocExtension.Get("Explorer.PhysicalSectorsNoFileSystem"), ExplorerDetailsPresenter.FileSystemText(document));
     }
@@ -332,7 +336,7 @@ public sealed class AppleDiskImageTests
         var flux = await explorer.ExploreAsync(scpPath);
 
         Assert.Equal(source.Image.FormatId, flux.Image.FormatId);
-        Assert.Equal(source.Metadata.SystemName, flux.Metadata.SystemName);
+        Assert.Equal(source.Metadata.SystemIds, flux.Metadata.SystemIds);
         Assert.Equal(FlattenBlocks(source.Image.AvailableBlocks), FlattenBlocks(flux.Image.AvailableBlocks));
         Assert.Equal(source.FileSystemRecognized, flux.FileSystemRecognized);
         if (source.FileSystemRecognized)
@@ -363,13 +367,13 @@ public sealed class AppleDiskImageTests
         Assert.Equal(800, image.AvailableBlocks.Count);
         Assert.False(new LisaFileSystemReader().CanRead(image));
         Assert.NotEmpty(new SectorImageFluxVisualizer().Create(image).Tracks);
-        Assert.Equal("Apple Lisa", DiskImageMetadata.From(image).SystemName);
+        Assert.Equal(["lisa"], new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()).Create(image).SystemIds);
 
         var scpPath = Directory.EnumerateFiles(root, "*MacWorks*.scp", SearchOption.AllDirectories).FirstOrDefault();
         if (scpPath is null) return;
         var scp = await DiskImageExplorer.CreateDefault().ExploreAsync(scpPath);
         Assert.Equal("applelisa.macworks", scp.Image.FormatId);
-        Assert.Equal("Apple Lisa", scp.Metadata.SystemName);
+        Assert.Equal(["lisa"], scp.Metadata.SystemIds);
         Assert.False(scp.FileSystemRecognized);
         Assert.NotEmpty(scp.Volume.Entries);
         Assert.Equal(FlattenBlocks(image.AvailableBlocks), FlattenBlocks(scp.Image.AvailableBlocks));
@@ -409,7 +413,7 @@ public sealed class AppleDiskImageTests
         Assert.Equal("applelisa.office", source.Image.FormatId);
         Assert.True(source.FileSystemRecognized);
         Assert.Equal("applelisa.raw", scp.Image.FormatId);
-        Assert.Equal("Apple Lisa", scp.Metadata.SystemName);
+        Assert.Equal(["lisa"], scp.Metadata.SystemIds);
         Assert.False(scp.FileSystemRecognized);
         Assert.NotEmpty(scp.Volume.Entries);
         Assert.Equal(FlattenBlocks(source.Image.AvailableBlocks), FlattenBlocks(scp.Image.AvailableBlocks));

@@ -73,7 +73,7 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path, string.IsNullOrWhiteSpace(requestedFormat) ? null : requestedFormat);
         started.Stop();
         output.WriteLine($"analysis={started.Elapsed.TotalSeconds:F3}s");
-        output.WriteLine($"{Path.GetFileName(path)} | primary={document.Image.FormatId} | system={document.Metadata.SystemName} | protection={document.Metadata.ProtectionName ?? "-"} | recognized={document.FileSystemRecognized} | geometry={document.Image.Cylinders}x{document.Image.Heads}x{document.Image.SectorsPerTrack} | available={document.Image.AvailableBlocks.Count} | missing={document.Image.MissingBlocks.Count}");
+        output.WriteLine($"{Path.GetFileName(path)} | primary={document.Image.FormatId} | systems={string.Join(',', document.Metadata.SystemIds)} | protection={document.Metadata.ProtectionId ?? "-"} | recognized={document.FileSystemRecognized} | geometry={document.Image.Cylinders}x{document.Image.Heads}x{document.Image.SectorsPerTrack} | available={document.Image.AvailableBlocks.Count} | missing={document.Image.MissingBlocks.Count}");
         if (document.Image.MissingBlocks.Count > 0)
             output.WriteLine($"missing-blocks={string.Join(',', document.Image.MissingBlocks.Take(30))}");
         if (document.Image.TryGetBlock(0, out var boot)) output.WriteLine($"boot={Convert.ToHexString(boot.Data.Take(16).ToArray())}");

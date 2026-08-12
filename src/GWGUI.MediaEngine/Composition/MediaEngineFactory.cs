@@ -22,6 +22,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.ScpDetection;
@@ -68,7 +69,8 @@ internal static class MediaEngineFactory
     {
         var normalizers = new RecognizedImageNormalizerRegistry();
         var additionalInterpretations = new AdditionalImageInterpretationRegistry(fileSystems);
-        return (new(normalizers, additionalInterpretations), new());
+        var metadata = new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver());
+        return (new(normalizers, additionalInterpretations), new(metadata));
     }
 
     /// <summary>Crée les reconstructeurs SCP dans leur ordre explicite et les réunit dans leur registre.</summary>

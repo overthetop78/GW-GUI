@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition;

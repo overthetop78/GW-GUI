@@ -28,7 +28,7 @@ public sealed class EpsonQx10DiskImageTests(ITestOutputHelper output)
             output.WriteLine($"{entry.Name}\t{entry.Size}\t{entry.Modified:O}\tvalid={entry.MetadataValid}");
         Assert.True(disk.FileSystemRecognized);
         Assert.Equal(expectedFormat, disk.Image.FormatId);
-        Assert.Equal("Epson QX-10", disk.Metadata.SystemName);
+        Assert.Equal("epson-qx10", disk.Metadata.SystemIds[0]);
         Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Cpm, disk.Volume.FileSystemId);
         if (requireComplete) Assert.Empty(disk.Image.MissingBlocks);
         Assert.NotEmpty(disk.Volume.Entries);

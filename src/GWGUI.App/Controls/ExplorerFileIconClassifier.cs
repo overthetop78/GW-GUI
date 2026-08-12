@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 
