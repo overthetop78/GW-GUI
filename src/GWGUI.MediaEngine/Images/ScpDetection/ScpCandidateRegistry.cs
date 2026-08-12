@@ -23,7 +23,6 @@ internal sealed class ScpCandidateRegistry
         IsoScpSectorImageReader isoReader,
         AtariScpSectorImageReader atariReader,
         IbmPcScpSectorImageReader ibmReader,
-        EpsonQx10ScpSectorImageReader epsonReader,
         UcsdScpSectorImageReader ucsdReader,
         CommodoreScpSectorImageReader commodoreReader,
         AppleScpSectorImageReader appleReader,
@@ -47,7 +46,7 @@ internal sealed class ScpCandidateRegistry
             (id => id.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase),
                 (path, _, token) => decReader.ReadAsync(path, token)),
             (id => id.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase),
-                (path, id, token) => epsonReader.ReadAsync(path, id!, token)),
+                (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase),
                 (path, _, token) => ucsdReader.ReadAsync(path, token)),
             (id => id.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase),
@@ -67,7 +66,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token)
         };
         isoCandidates.AddRange(EpsonFormats.Select<string, Candidate>(formatId =>
-            (path, _, token) => epsonReader.ReadAsync(path, formatId, token)));
+            (path, _, token) => isoReader.ReadAsync(path, formatId, token)));
 
         defaultReaders =
         [
@@ -79,7 +78,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
             (path, _, token) => ibmReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
             .. EpsonFormats.Select<string, Candidate>(formatId =>
-                (path, _, token) => epsonReader.ReadAsync(path, formatId, token)),
+                (path, _, token) => isoReader.ReadAsync(path, formatId, token)),
             (path, _, token) => appleReader.ReadAsync(path, null, token)
         ];
 
