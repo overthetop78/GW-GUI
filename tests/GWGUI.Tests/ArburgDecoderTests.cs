@@ -15,7 +15,7 @@ public sealed class ArburgDecoderTests
         var data = CreateData(ArburgFormat.DataUsefulSize);
         var block = ArburgChecksum.CreateBlock(data, ArburgFormat.DataBlockSize);
         block[ArburgFormat.DataUsefulSize] ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(ArburgFormat.DataMark.ToArray());
         bits.DoubleFm(block.Select(BitPrimitives.ReverseBits));
 
@@ -33,7 +33,7 @@ public sealed class ArburgDecoderTests
         var data = CreateData(ArburgFormat.SystemUsefulSize);
         var block = ArburgChecksum.CreateBlock(data, ArburgFormat.SystemBlockSize);
         block[ArburgFormat.SystemUsefulSize + 1] ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(ArburgFormat.SystemMark.ToArray());
         bits.AddRange(ArburgSystemCodec.Encode(block));
 
@@ -59,7 +59,7 @@ public sealed class ArburgDecoderTests
     [Fact]
     public void TruncatedFmBlockHasNoPayload()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(ArburgFormat.DataMark.ToArray());
         bits.DoubleFm([0x00]);
 
@@ -75,7 +75,7 @@ public sealed class ArburgDecoderTests
     [Fact]
     public void InvalidSystemSequenceHasNoPayload()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(ArburgFormat.SystemMark.ToArray());
         bits.Add(!ArburgFormat.SystemPrefixBit);
         bits.Add(ArburgFormat.SystemZeroSecondBit);
@@ -89,7 +89,7 @@ public sealed class ArburgDecoderTests
     }
 
     /// <summary>Décode les bits fournis avec la même chaîne publique que les pistes encodées.</summary>
-    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new ArburgDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new ArburgDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 
     /// <summary>Crée des données déterministes sensibles à l'ordre de leurs bits.</summary>
     private static byte[] CreateData(int size) => Enumerable.Range(0, size).Select(index => (byte)(index * 37 + 0x53)).ToArray();

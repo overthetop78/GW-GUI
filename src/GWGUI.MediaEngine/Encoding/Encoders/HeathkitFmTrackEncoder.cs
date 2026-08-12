@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -15,17 +16,17 @@ public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Heathkit attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         var volume = (byte)Attribute(request, HeathkitFmFormat.VolumeAttributeName, HeathkitFmFormat.DefaultVolume);
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != HeathkitFmFormat.SectorSize) throw HeathkitFmFormat.InvalidSectorSize(sector.Data.Count);
             byte[] identity = [volume, (byte)request.Cylinder, (byte)sector.Number];
             bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
-            bits.Fm(identity.Append(TrackEncoding.RotatingChecksum(identity)).Select(Primitives.BitPrimitives.ReverseBits));
+            bits.Fm(identity.Append(RotatingChecksumCalculator.Compute(identity)).Select(Primitives.BitPrimitives.ReverseBits));
             bits.Gap(HeathkitFmFormat.HeaderGapBitCount);
             bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
-            bits.Fm(sector.Data.Append(TrackEncoding.RotatingChecksum(sector.Data)).Select(Primitives.BitPrimitives.ReverseBits));
+            bits.Fm(sector.Data.Append(RotatingChecksumCalculator.Compute(sector.Data)).Select(Primitives.BitPrimitives.ReverseBits));
             bits.Gap(HeathkitFmFormat.DataGapBitCount);
         }
         return bits;

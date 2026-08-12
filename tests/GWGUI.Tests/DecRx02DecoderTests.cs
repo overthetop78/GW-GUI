@@ -68,7 +68,7 @@ public sealed class DecRx02DecoderTests
     {
         var definition = DecRx02Format.DataMarks.Single(mark => mark.Mark == DecRx02Format.FmDataMark);
         var bits = definition.Pattern.SelectMany(value => Enumerable.Range(0, 8).Select(bit => (value & 1 << (7 - bit)) != 0)).ToArray();
-        var result = new DecRx02Decoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+        var result = new DecRx02Decoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 
         Assert.Empty(result.Sectors);
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatData);

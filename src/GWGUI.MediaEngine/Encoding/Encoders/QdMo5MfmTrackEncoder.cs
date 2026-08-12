@@ -16,7 +16,7 @@ public sealed class QdMo5MfmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille QD MO5 attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != QdMo5MfmFormat.SectorSize) throw QdMo5MfmFormat.InvalidSectorSize(sector.Data.Count);

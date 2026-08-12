@@ -101,7 +101,7 @@ public sealed class Victor9kGcrDecoderTests
 
     private static FluxBitstream Block(IReadOnlyList<byte> marker, IEnumerable<byte> values)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(marker.ToArray());
         CommodoreGcrCodec.Write(bits, Victor9kGcrFormat.EncodedDataStartBitOffset, values, Victor9kGcrFormat.EncodedCellStride);
         return new(bits.ToArray(), 40);

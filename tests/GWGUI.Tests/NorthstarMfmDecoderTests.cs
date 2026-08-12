@@ -37,7 +37,7 @@ public sealed class NorthstarMfmDecoderTests
     [Fact]
     public void IdentityOnlyAndTruncatedIdentityRemainIncomplete()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Mfm([NorthstarMfmAddress.Pack(3, 5)]);
         var identityOnly = new FluxBitstream(bits.ToArray(), 40);
         var identity = Assert.IsType<NorthstarMfmIdentity>(NorthstarMfmDecoder.TryDecodeIdentity(identityOnly, 0));
@@ -70,9 +70,9 @@ public sealed class NorthstarMfmDecoderTests
 
     private static FluxBitstream BlockStream(int cylinder, int sector, IReadOnlyList<byte> payload, bool validChecksum)
     {
-        var checksum = TrackEncoding.RotatingChecksum(payload);
+        var checksum = GWGUI.MediaEngine.Primitives.RotatingChecksumCalculator.Compute(payload);
         if (!validChecksum) checksum ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Mfm([NorthstarMfmAddress.Pack(cylinder, sector)]);
         bits.Mfm(payload);
         bits.Mfm([checksum]);

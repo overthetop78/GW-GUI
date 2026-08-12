@@ -18,7 +18,7 @@ public sealed class DecRx02TrackEncoder : TrackEncoderBase
     /// <remarks>Les secteurs RX02 utilisent une marque FM suivie d'une charge utile transformée en M²FM.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             var m2fm = sector.Data.Count == DecRx02Format.M2FmSectorByteCount;
@@ -36,7 +36,7 @@ public sealed class DecRx02TrackEncoder : TrackEncoderBase
             if (mark.Encoding == DecRx02DataEncoding.M2Fm)
             {
                 bits.Add(false);
-                var encoded = TrackEncoding.Bits();
+                var encoded = TrackBitEncoding.Bits();
                 encoded.Mfm(payload);
                 DecRx02M2FmCodec.Encode(encoded);
                 bits.AddRange(encoded);

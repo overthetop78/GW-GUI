@@ -14,7 +14,7 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
     /// <remarks>Chaque bloc conserve l'entrelacement odd/even et les parités distinctes de l'en-tête et des données.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != AmigaMfmFormat.SectorByteCount) throw AmigaMfmFormat.InvalidSectorSize(sector.Data.Count);

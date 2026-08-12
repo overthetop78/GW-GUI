@@ -36,9 +36,9 @@ public sealed class HpMmfmDecoderTests
     {
         byte cylinder = 12, head = 1, sector = 5;
         byte[] identity = [BitPrimitives.ReverseBits(cylinder), BitPrimitives.ReverseBits((byte)(sector | head << HpMmfmFormat.HeadShift))];
-        var header = TrackEncoding.WithCrc(identity);
+        var header = Crc16Calculator.Append(identity);
         if (!valid) header[^1] ^= byte.MaxValue;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(HpMmfmFormat.SectorSync.ToArray());
         bits.Mfm(header);
 
@@ -76,9 +76,9 @@ public sealed class HpMmfmDecoderTests
     public void MissingAndAlreadyUsedDataSynchronizationsAreHandled()
     {
         Assert.Equal(-1, HpMmfmDecoder.FindDataSync(new FluxBitstream(new bool[HpMmfmFormat.MaximumDataSearchOffsetBits + HpMmfmFormat.SyncBitCount], 40), 0));
-        byte[] Header(byte sector) => TrackEncoding.WithCrc([BitPrimitives.ReverseBits((byte)1), BitPrimitives.ReverseBits(sector)]);
+        byte[] Header(byte sector) => Crc16Calculator.Append([BitPrimitives.ReverseBits((byte)1), BitPrimitives.ReverseBits(sector)]);
         var payload = HpMmfmCodec.EncodePayload(new byte[HpMmfmFormat.SectorSize]);
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(HpMmfmFormat.SectorSync.ToArray());
         bits.Mfm(Header(1));
         bits.Gap(64);
@@ -86,10 +86,10 @@ public sealed class HpMmfmDecoderTests
         bits.Mfm(Header(2));
         bits.Gap(64);
         bits.Raw(HpMmfmFormat.DataSync.ToArray());
-        bits.Mfm(TrackEncoding.WithCrc(payload));
+        bits.Mfm(Crc16Calculator.Append(payload));
         bits.Gap(1, true);
 
-        var result = new HpMmfmDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+        var result = new HpMmfmDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
         Assert.Equal(2, result.Sectors.Count);
         Assert.Single(result.Sectors, sector => sector.Data is not null);
     }

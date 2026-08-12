@@ -15,7 +15,7 @@ public sealed class Victor9kGcrTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Victor 9000 attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != Victor9kGcrFormat.SectorByteCount) throw Victor9kGcrFormat.InvalidSectorSize(sector.Data.Count);

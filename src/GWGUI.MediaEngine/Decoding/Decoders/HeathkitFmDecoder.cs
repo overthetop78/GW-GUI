@@ -1,7 +1,7 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
 
@@ -64,7 +64,7 @@ public sealed class HeathkitFmDecoder : IFluxDecoder
         var cylinder = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderCylinderOffset]);
         var sector = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderSectorOffset]);
         var stored = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderChecksumOffset]);
-        return new(volume, cylinder, sector, stored == TrackEncoding.RotatingChecksum([volume, cylinder, sector]));
+        return new(volume, cylinder, sector, stored == RotatingChecksumCalculator.Compute([volume, cylinder, sector]));
     }
 
     /// <summary>Lit, inverse et valide les données suivant une marque.</summary>
@@ -74,7 +74,7 @@ public sealed class HeathkitFmDecoder : IFluxDecoder
         if (decoded is null) return null;
         var payload = decoded.Take(HeathkitFmFormat.SectorSize).Select(BitPrimitives.ReverseBits).ToArray();
         var stored = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.SectorSize]);
-        return new(payload, stored == TrackEncoding.RotatingChecksum(payload));
+        return new(payload, stored == RotatingChecksumCalculator.Compute(payload));
     }
 
     /// <summary>Recherche la marque suivante dans la distance autorisée.</summary>

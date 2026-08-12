@@ -13,7 +13,7 @@ public sealed class CenturionMfmDecoderTests
     public void CompleteSectorExposesPayloadAndMetadata()
     {
         var payload = Enumerable.Range(0, 256).Select(index => (byte)(index * 29 + 3)).ToArray();
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 4, 7, true);
         AddData(bits, CenturionMfmFormat.SupportedDataKey, payload, true);
 
@@ -33,7 +33,7 @@ public sealed class CenturionMfmDecoderTests
     [Fact]
     public void InvalidHeaderCrcIsReported()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 4, 7, false);
         AddData(bits, CenturionMfmFormat.SupportedDataKey, new byte[256], true);
 
@@ -47,7 +47,7 @@ public sealed class CenturionMfmDecoderTests
     public void InvalidDataCrcIsReported()
     {
         var payload = Enumerable.Repeat((byte)0x5a, 256).ToArray();
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 4, 7, true);
         AddData(bits, CenturionMfmFormat.SupportedDataKey, payload, false);
 
@@ -61,7 +61,7 @@ public sealed class CenturionMfmDecoderTests
     [Fact]
     public void UnpairedDataMarkIsReported()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddData(bits, CenturionMfmFormat.SupportedDataKey, new byte[256], true);
 
         var result = Decode(bits);
@@ -74,7 +74,7 @@ public sealed class CenturionMfmDecoderTests
     [Fact]
     public void NewSectorMarkStopsDataSearch()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 1, 2, true);
         AddHeader(bits, 3, 4, true);
 
@@ -87,7 +87,7 @@ public sealed class CenturionMfmDecoderTests
     [Fact]
     public void UnsupportedKeyIsRejected()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 1, 2, true);
         AddData(bits, 1, new byte[256], true);
 
@@ -101,7 +101,7 @@ public sealed class CenturionMfmDecoderTests
     [Fact]
     public void ZeroSizeIsRejected()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 1, 2, true);
         AddData(bits, CenturionMfmFormat.SupportedDataKey, [], true);
 
@@ -112,7 +112,7 @@ public sealed class CenturionMfmDecoderTests
     [Fact]
     public void TruncatedPayloadIsRejected()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 1, 2, true);
         bits.Raw(CenturionMfmFormat.DataMark.ToArray());
         bits.Mfm([CenturionMfmFormat.SupportedDataKey, 1, 0, 0x55]);
@@ -125,7 +125,7 @@ public sealed class CenturionMfmDecoderTests
     public void NonStandardSizeUsesFallbackSizeCode()
     {
         byte[] payload = [0x12, 0x34, 0x56];
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddHeader(bits, 1, 2, true);
         AddData(bits, CenturionMfmFormat.SupportedDataKey, payload, true);
 
@@ -161,5 +161,5 @@ public sealed class CenturionMfmDecoderTests
     }
 
     /// <summary>Décode les bits fournis avec la chaîne publique du codec.</summary>
-    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new CenturionMfmDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new CenturionMfmDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 }

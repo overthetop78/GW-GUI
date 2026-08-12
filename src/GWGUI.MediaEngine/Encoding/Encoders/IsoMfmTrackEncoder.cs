@@ -17,10 +17,10 @@ public sealed class IsoMfmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentOutOfRangeException">La taille d'un secteur ne correspond à aucun code ISO pris en charge.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            var sizeCode = sector.SizeCode ?? TrackEncoding.SizeCode(sector.Data.Count);
+            var sizeCode = sector.SizeCode ?? SectorSizeCode.FromByteCount(sector.Data.Count);
             byte[] header = [IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.IdAddressMark, (byte)request.Cylinder, (byte)request.Head, (byte)sector.Number, sizeCode];
             var headerCrc = Crc16Calculator.Compute(header, IsoMfmFormat.CrcPolynomial, IsoMfmFormat.CrcInitialValue);
             bits.RawHex(IsoMfmFormat.EncodedSyncHex);

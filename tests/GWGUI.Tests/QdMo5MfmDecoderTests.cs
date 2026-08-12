@@ -106,7 +106,7 @@ public sealed class QdMo5MfmDecoderTests
 
     private static FluxBitstream HeaderStream(int sector)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(QdMo5MfmFormat.Preamble.ToArray());
         bits.Mfm([QdMo5MfmFormat.HeaderAddressMark]);
         bits.Mfm([(byte)(sector >> 8), (byte)sector]);
@@ -118,7 +118,7 @@ public sealed class QdMo5MfmDecoderTests
     {
         var checksum = QdMo5Checksum.Compute(prefix, payload);
         if (!validChecksum) checksum ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(QdMo5MfmFormat.Preamble.ToArray());
         bits.Mfm(new[] { prefix }.Concat(payload).Append(checksum));
         return new(bits.ToArray(), 40);

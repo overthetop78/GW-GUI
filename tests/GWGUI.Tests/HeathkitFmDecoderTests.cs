@@ -13,7 +13,7 @@ public sealed class HeathkitFmDecoderTests
     [Fact]
     public void CommonMarkContainsThreeZerosAndAddressMark()
     {
-        Assert.Equal(TrackBitEncoding.EncodeFm(0, 0, 0, HeathkitFmFormat.AddressMark), HeathkitFmFormat.SectorMark);
+        Assert.Equal(TrackBitEncoding.EncodeCompactFm(0, 0, 0, HeathkitFmFormat.AddressMark), HeathkitFmFormat.SectorMark);
     }
 
     /// <summary>Vérifie qu'un checksum d'en-tête altéré est signalé.</summary>
@@ -21,8 +21,8 @@ public sealed class HeathkitFmDecoderTests
     public void InvalidHeaderChecksumInvalidatesSector()
     {
         byte[] identity = [0, 4, 6];
-        var invalidChecksum = (byte)(TrackEncoding.RotatingChecksum(identity) + 1);
-        var bits = TrackEncoding.Bits();
+        var invalidChecksum = (byte)(GWGUI.MediaEngine.Primitives.RotatingChecksumCalculator.Compute(identity) + 1);
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
         bits.Fm(identity.Append(invalidChecksum).Select(BitPrimitives.ReverseBits));
         bits.Gap(1, true);
@@ -51,5 +51,5 @@ public sealed class HeathkitFmDecoderTests
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader || structure.Kind == FluxStructureKind.FormatData);
     }
 
-    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new HeathkitFmDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new HeathkitFmDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 }

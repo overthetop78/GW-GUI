@@ -16,7 +16,7 @@ public sealed class Commodore900GcrTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne contient pas 512 octets.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != Commodore900GcrFormat.SectorByteCount) throw Commodore900GcrFormat.InvalidSectorSize(sector.Data.Count);

@@ -16,7 +16,7 @@ public sealed class Aed6200pMfmTrackEncoder : TrackEncoderBase
     /// <remarks>La taille de chaque charge utile est enregistrée sur deux octets dans l'en-tête ; les CRC couvrent respectivement l'identité et la marque suivie des données.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             var size = sector.Data.Count;

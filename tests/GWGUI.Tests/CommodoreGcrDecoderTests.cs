@@ -57,7 +57,7 @@ public sealed class CommodoreGcrDecoderTests
     [Fact]
     public void ShortSynchronizationIsIgnored()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddRecord(bits, CommodoreGcrFormat.MinimumSyncBitCount - 1, Header(1, 2, 3, 4, true));
 
         Assert.Empty(Decode(bits).Sectors);
@@ -97,7 +97,7 @@ public sealed class CommodoreGcrDecoderTests
     /// <returns>Bits de la piste.</returns>
     private static List<bool> Track(params byte[][] records)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var record in records)
         {
             AddRecord(bits, CommodoreGcrFormat.SyncGapBitCount, record);
@@ -150,5 +150,5 @@ public sealed class CommodoreGcrDecoderTests
     /// <summary>Décode les bits avec la chaîne publique Commodore GCR.</summary>
     /// <param name="bits">Bits à décoder.</param>
     /// <returns>Résultat du décodeur.</returns>
-    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new CommodoreGcrDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new CommodoreGcrDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 }

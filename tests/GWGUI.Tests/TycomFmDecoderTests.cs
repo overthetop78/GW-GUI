@@ -95,7 +95,7 @@ public sealed class TycomFmDecoderTests
     {
         var crc = Crc16Calculator.Compute([TycomFmFormat.HeaderAddressMark, cylinder, sector], TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue);
         if (!validCrc) crc ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(TycomFmFormat.HeaderMark.ToArray());
         bits.DoubleFm([cylinder, sector, (byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]);
         return new(bits.ToArray(), 40);
@@ -105,7 +105,7 @@ public sealed class TycomFmDecoderTests
     {
         var crc = Crc16Calculator.Compute(new[] { definition.Mark }.Concat(payload), TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue);
         if (!validCrc) crc ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(definition.Pattern.ToArray());
         bits.DoubleFm(payload.Concat([(byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]));
         return new(bits.ToArray(), 40);

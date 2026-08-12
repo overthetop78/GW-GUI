@@ -109,7 +109,7 @@ public sealed class MembrainMfmDecoderTests
         byte[] header = [MembrainMfmFormat.SyncByte, MembrainMfmFormat.HeaderAddressMark, address.CylinderHigh, address.PackedAddress];
         var crc = Crc16Calculator.Compute(header, MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue);
         if (!validCrc) crc ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(MembrainMfmFormat.HeaderPattern.ToArray());
         bits.Mfm([address.CylinderHigh, address.PackedAddress, (byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]);
         return new(bits.ToArray(), 40);
@@ -119,7 +119,7 @@ public sealed class MembrainMfmDecoderTests
     {
         var crc = Crc16Calculator.Compute(new[] { MembrainMfmFormat.SyncByte, mark }.Concat(payload), MembrainMfmFormat.CrcPolynomial, MembrainMfmFormat.CrcInitialValue);
         if (!validCrc) crc ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex("4489");
         bits.Mfm(new[] { mark }.Concat(payload).Concat([(byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]));
         return new(bits.ToArray(), 40);

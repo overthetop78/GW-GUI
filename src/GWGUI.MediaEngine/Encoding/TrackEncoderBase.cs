@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Flux;
+
 namespace GWGUI.MediaEngine.Encoding;
 
 /// <summary>Fournit les validations et la construction du résultat communes aux encodeurs de pistes.</summary>
@@ -26,7 +28,7 @@ public abstract class TrackEncoderBase : ITrackEncoder
         if (request.IndexTimeTicks == 0) throw TrackEncodingExceptions.ZeroIndexTime(request.IndexTimeTicks);
         var bits = EncodeBits(request);
         if (bits.Count == 0) throw TrackEncodingExceptions.EmptyTrack(Id, bits.Count);
-        return new(Id, bits, TrackEncoding.ToRevolution(bits, request.BitCellTicks, request.IndexTimeTicks));
+        return new(Id, bits, FluxRevolutionFactory.Create(bits, request.BitCellTicks, request.IndexTimeTicks));
     }
 
     /// <summary>Produit les cellules binaires propres au format de l'encodeur.</summary>

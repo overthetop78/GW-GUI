@@ -120,7 +120,7 @@ public sealed class TrackEncoderTests
         var requestAttributes = new Dictionary<string, int> { ["track"] = 4 };
         var request = new TrackEncodeRequest(2, 1, sectors, requestAttributes);
         var bits = new[] { true, false };
-        var encoded = new EncodedTrack("test", bits, TrackEncoding.ToRevolution(bits, 1, 2));
+        var encoded = new EncodedTrack("test", bits, GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 1, 2));
 
         data[0] = 9;
         sectorAttributes["sector"] = 9;
@@ -352,7 +352,7 @@ public sealed class TrackEncoderTests
         public string Id { get; } = id;
         public string DisplayName => Id;
         public TrackEncodeRequest? LastRequest { get; private set; }
-        public EncodedTrack Result { get; } = new(id, [true], TrackEncoding.ToRevolution([true], 1, 1));
+        public EncodedTrack Result { get; } = new(id, [true], GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create([true], 1, 1));
 
         public EncodedTrack Encode(TrackEncodeRequest request)
         {

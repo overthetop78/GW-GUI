@@ -32,7 +32,7 @@ public sealed class MicropolisMfmDecoderTests
     {
         var record = MicropolisMfmRecord.Create(2, 3, new byte[MicropolisMfmFormat.SectorSize]);
         if (!validChecksum) record.Bytes[MicropolisMfmFormat.ChecksumOffset] ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Mfm(record.Bytes);
 
         var decoded = Assert.IsType<MicropolisMfmRecord>(MicropolisMfmDecoder.TryDecodeRecord(new FluxBitstream(bits.ToArray(), 40), 0));

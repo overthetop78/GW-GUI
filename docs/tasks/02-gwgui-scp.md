@@ -3255,7 +3255,7 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `TrackEncoderBase`.
     - [x] Ajouter la documentation XML des méthodes `Encode, EncodeBits, Attribute`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncoding.cs`
+- [x] `src/GWGUI.MediaEngine/Encoding/TrackEncoding.cs`
   - [x] Valeurs brutes et erreurs d’encodage
     - [x] Créer `Primitives/SectorSizeCode.cs` avec la correspondance commune entre tailles sectorielles `128` à `16384` et codes `0` à `7`.
     - [x] Raccorder `TrackEncoding.SizeCode`, les décodeurs et la visualisation à cette définition unique.
@@ -3269,10 +3269,9 @@
     - [x] Vérifier les autres encodeurs FM avant tout raccordement et ne pas remplacer un motif identique dont les cellules d'horloge ont une autre signification.
     - [x] Documenter en français chaque marque avec l'octet de données et la disposition de cellules qu'elle représente.
     - [x] Tester la séquence binaire exacte de chaque marque puis l'aller-retour DEC RX02 et TYCOM.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator` et `TrackEncodingExceptions`.
-    - [ ] Ajouter la documentation XML des méthodes conservées ou créées après le découpage, avec paramètres, résultat, exceptions, unités et invariants applicables.
-    - Blocage : `FluxRevolutionFactory` et `RotatingChecksumCalculator` n'existent pas encore ; leur création est prévue dans le découpage détaillé de `TrackEncoding.cs` plus loin dans cette section.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator` et `TrackEncodingExceptions`.
+    - [x] Ajouter la documentation XML des méthodes conservées ou créées après le découpage, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
 - [ ] Compléments issus de la relecture complète de l'encodage
   - [x] `Encoding/FluxEncoderRegistry.cs`
@@ -3396,92 +3395,92 @@
       - [x] Tester le rejet d'une collection de bits vide avec l'identifiant de l'encodeur dans l'erreur.
       - [x] Tester les attributs présents et absents d'une requête puis d'un secteur.
       - [x] Tester qu'un encodeur minimal valide produit ses bits et une `FluxRevolution` avec les deux durées demandées.
-  - [ ] `Encoding/TrackEncoding.cs`
-    - [ ] Séparation des responsabilités du fichier
-      - [ ] Renommer `Encoding/TrackEncoding.cs` en `Encoding/TrackBitEncoding.cs` et le type `TrackEncoding` en `TrackBitEncoding` après en avoir sorti les responsabilités non binaires.
-      - [ ] Conserver dans `TrackBitEncoding` uniquement la création du tampon de bits, l'écriture brute, FM, MFM, double FM, les gaps et les primitives compactées déplacées depuis `FluxEncoding.cs`.
-      - [ ] Adapter les encodeurs et décodeurs qui appellent ces primitives au nouveau nom sans modifier les séquences produites.
-      - [ ] Supprimer l'import `System.Text`, qui n'est utilisé par aucun membre du fichier.
-    - [ ] Création d'une révolution de flux générique
-      - [ ] Créer `Flux/FluxRevolutionFactory.cs` et y déplacer `ToRevolution`.
-      - [ ] Remplacer son résultat `ScpRevolution` par le modèle générique `FluxRevolution`.
-      - [ ] Supprimer de la primitive déplacée l'import vers `Containers.Scp`.
-      - [ ] Conserver l'accumulation des cellules jusqu'à chaque transition et l'ajout de l'intervalle terminal lorsque des cellules restent après la dernière transition.
-      - [ ] Conserver le calcul vérifié `cells * cellTicks` et remplacer son éventuel débordement par une erreur paramétrable recevant le nombre de cellules et les ticks par cellule.
-      - [ ] Valider une collection de bits non nulle, des ticks de cellule strictement positifs et des ticks d'index strictement positifs.
-      - [ ] Construire la révolution avec la durée d'index, les intervalles copiés et leur nombre réel sans donnée propre au conteneur SCP.
-    - [ ] Code de taille sectorielle
-      - [ ] Créer `Primitives/SectorSizeCode.cs` et y déplacer la correspondance actuellement calculée par `SizeCode`.
-      - [ ] Y définir la taille de base de 128 octets et les codes pris en charge de zéro à sept.
-      - [ ] Fournir la conversion taille vers code utilisée par les encodeurs.
-      - [ ] Fournir la conversion code vers taille utilisée par les décodeurs et la visualisation afin de ne pas recopier la formule inverse.
-      - [ ] Remplacer le texte d'exception brut par une erreur paramétrable recevant la taille ou le code non pris en charge.
-      - [ ] Supprimer `TrackEncoding.SizeCode` après raccordement de tous ses consommateurs.
-    - [ ] CRC, checksum rotatif et inversion des bits
-      - [ ] Remplacer `TrackEncoding.Crc16` par les appels directs à `Primitives.Crc16Calculator` avec les définitions de paramètres possédées par chaque format.
-      - [ ] Ajouter au calculateur CRC commun une fonction qui retourne les données suivies des deux octets de CRC afin de remplacer `WithCrc` sans recopier cette construction.
-      - [ ] Conserver explicitement l'ordre fort puis faible actuellement utilisé par `WithCrc`.
-      - [ ] Créer `Primitives/RotatingChecksumCalculator.cs` et y déplacer `RotatingChecksum`, réellement partagé par Heathkit et NorthStar.
-      - [ ] Y remplacer les décalages bruts de sept et un bits par les définitions de rotation d'un octet.
-      - [ ] Remplacer `TrackEncoding.ReverseBits` par les appels directs à `Primitives.BitPrimitives.Reverse`.
-      - [ ] Supprimer les quatre wrappers `Crc16`, `WithCrc`, `RotatingChecksum` et `ReverseBits` après raccordement de leurs consommateurs.
-    - [ ] Primitives d'écriture de bits conservées
-      - [ ] Conserver `Bits` comme création d'un tampon de bits vide.
-      - [ ] Remplacer dans `Raw`, `Mfm`, `Fm` et `DoubleFm` les bornes et décalages bruts de huit bits par les définitions de `BitPrimitives`.
-      - [ ] Parenthéser explicitement les décalages avant les opérations de masque afin que l'ordre des opérations soit visible.
-      - [ ] Conserver dans `Mfm` l'état précédent fourni et sa propagation entre les octets d'un même appel.
-      - [ ] Supprimer `DoubledCells`, qui n'a aucun consommateur dans le projet.
-      - [ ] Supprimer le paramètre optionnel `reverse` de `DoubleFm`, qui n'est fourni par aucun consommateur, et conserver l'inversion explicite faite par les formats qui en ont besoin.
-      - [ ] Renommer le booléen `value` de `Gap` pour indiquer qu'il sélectionne soit une suite de bits à un, soit le motif alterné actuel.
-    - [ ] Validation des entrées textuelles et des gaps
-      - [ ] Faire rejeter par `RawBits` tout caractère différent de `0` ou `1` au lieu de le convertir silencieusement en bit nul.
-      - [ ] Conserver dans `RawHex` la conversion hexadécimale de la plateforme et documenter les erreurs qu'elle propage.
-      - [ ] Faire rejeter par `Gap` un nombre de cellules négatif au lieu de produire silencieusement un gap vide.
-      - [ ] Ajouter dans `TrackEncodingExceptions.cs` les erreurs paramétrables recevant le caractère binaire invalide, sa position et la longueur de gap négative.
-    - [ ] Présentation et CSDoc des fichiers obtenus
-      - [ ] Séparer les appels et affectations distincts actuellement juxtaposés dans `DoubleFm`, `WithCrc` et `RotatingChecksum` avant leur déplacement ou suppression.
-      - [ ] Développer les corps de boucle actuellement écrits sur la même ligne lorsque plusieurs actions y sont exécutées.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator`, de leurs membres et de chaque méthode conservée ou créée.
-      - [ ] Documenter l'ordre des bits, l'état MFM précédent, le motif des gaps, les ordres de CRC et les unités des ticks.
-    - [ ] Tests ciblés des primitives d'encodage
-      - [ ] Tester `Raw` avec les bits fort et faible de plusieurs octets.
-      - [ ] Tester `RawHex` avec un motif valide et une chaîne hexadécimale invalide.
-      - [ ] Tester `RawBits` avec `0`, `1` et chaque caractère invalide accompagné de sa position.
-      - [ ] Tester MFM sur une suite où l'état précédent change le premier bit d'horloge de l'octet suivant.
-      - [ ] Tester FM et double FM avec des octets connus et vérifier chaque cellule produite.
-      - [ ] Tester les deux formes de gap, une longueur nulle et le rejet d'une longueur négative.
-      - [ ] Tester les conversions aller-retour de chaque code sectoriel de zéro à sept et le rejet des autres tailles ou codes.
-      - [ ] Tester le checksum rotatif Heathkit/NorthStar avec des valeurs connues.
-      - [ ] Tester la création d'une révolution sans transition, avec plusieurs transitions et avec un intervalle terminal.
-      - [ ] Tester le rejet des ticks nuls et le débordement du produit cellules/ticks.
-  - [ ] `Encoding/FluxEncoding.cs`
-    - [ ] Regroupement des primitives FM/MFM
-      - [ ] Déplacer `EncodeMfm` dans `TrackBitEncoding.cs` sous un nom indiquant qu'il produit un motif binaire compacté à partir d'octets MFM.
-      - [ ] Déplacer `EncodeFm` dans `TrackBitEncoding.cs` sous un nom indiquant qu'il produit un motif binaire compacté à partir d'octets FM.
-      - [ ] Déplacer `Pack` avec ces deux méthodes comme primitive privée commune de compactage des bits.
-      - [ ] Conserver pour MFM l'état du bit de données précédent entre tous les octets d'un même appel.
-      - [ ] Conserver pour FM l'alternance d'un bit d'horloge vrai et du bit de données.
-      - [ ] Conserver dans `Pack` l'ordre du bit fort vers le bit faible à l'intérieur de chaque octet produit.
-    - [ ] Définitions techniques communes
-      - [ ] Remplacer les nombres bruts de huit bits par octet et seize bits encodés par octet source par les définitions techniques déjà prévues dans le groupe de `TrackEncoding.cs`.
-      - [ ] Utiliser les mêmes définitions pour le calcul de capacité, les bornes de boucle, les divisions d'index et les décalages de compactage.
-    - [ ] Raccordement des consommateurs
-      - [ ] Remplacer dans `DataGeneralFmDecoder.cs` l'appel à `FluxEncoding.EncodeFm` par la primitive déplacée.
-      - [ ] Remplacer dans `HeathkitFmDecoder.cs` l'appel à `FluxEncoding.EncodeFm` par la primitive déplacée.
-      - [ ] Remplacer dans `MicralNFmDecoder.cs` l'appel à `FluxEncoding.EncodeFm` par la primitive déplacée.
-      - [ ] Remplacer dans `MicropolisMfmDecoder.cs` l'appel à `FluxEncoding.EncodeMfm` par la primitive déplacée.
-      - [ ] Remplacer dans `NorthstarMfmDecoder.cs` l'appel à `FluxEncoding.EncodeMfm` par la primitive déplacée.
-      - [ ] Vérifier par recherche qu'aucun appel à `FluxEncoding` ne subsiste, puis supprimer `Encoding/FluxEncoding.cs`.
-    - [ ] Présentation et CSDoc des primitives déplacées
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc des deux méthodes FM/MFM déplacées et de la primitive de compactage, avec l'ordre des bits produit.
-    - [ ] Tests ciblés des primitives FM/MFM
-      - [ ] Tester l'encodage FM d'un octet nul, d'un octet plein et d'une suite de plusieurs octets.
-      - [ ] Tester l'encodage MFM d'un octet nul, d'un octet plein et d'une suite où l'état du dernier bit du premier octet influence l'horloge du suivant.
-      - [ ] Tester une entrée vide et vérifier qu'elle produit un tableau vide.
-      - [ ] Tester le compactage d'un motif connu et vérifier l'ordre exact des bits dans les octets.
-      - [ ] Tester que les cinq motifs statiques construits par les décodeurs restent identiques après le raccordement.
+- [x] `Encoding/TrackEncoding.cs`
+    - [x] Séparation des responsabilités du fichier
+      - [x] Renommer `Encoding/TrackEncoding.cs` en `Encoding/TrackBitEncoding.cs` et le type `TrackEncoding` en `TrackBitEncoding` après en avoir sorti les responsabilités non binaires.
+      - [x] Conserver dans `TrackBitEncoding` uniquement la création du tampon de bits, l'écriture brute, FM, MFM, double FM, les gaps et les primitives compactées déplacées depuis `FluxEncoding.cs`.
+      - [x] Adapter les encodeurs et décodeurs qui appellent ces primitives au nouveau nom sans modifier les séquences produites.
+      - [x] Supprimer l'import `System.Text`, qui n'est utilisé par aucun membre du fichier.
+    - [x] Création d'une révolution de flux générique
+      - [x] Créer `Flux/FluxRevolutionFactory.cs` et y déplacer `ToRevolution`.
+      - [x] Remplacer son résultat `ScpRevolution` par le modèle générique `FluxRevolution`.
+      - [x] Supprimer de la primitive déplacée l'import vers `Containers.Scp`.
+      - [x] Conserver l'accumulation des cellules jusqu'à chaque transition et l'ajout de l'intervalle terminal lorsque des cellules restent après la dernière transition.
+      - [x] Conserver le calcul vérifié `cells * cellTicks` et remplacer son éventuel débordement par une erreur paramétrable recevant le nombre de cellules et les ticks par cellule.
+      - [x] Valider une collection de bits non nulle, des ticks de cellule strictement positifs et des ticks d'index strictement positifs.
+      - [x] Construire la révolution avec la durée d'index, les intervalles copiés et leur nombre réel sans donnée propre au conteneur SCP.
+    - [x] Code de taille sectorielle
+      - [x] Créer `Primitives/SectorSizeCode.cs` et y déplacer la correspondance actuellement calculée par `SizeCode`.
+      - [x] Y définir la taille de base de 128 octets et les codes pris en charge de zéro à sept.
+      - [x] Fournir la conversion taille vers code utilisée par les encodeurs.
+      - [x] Fournir la conversion code vers taille utilisée par les décodeurs et la visualisation afin de ne pas recopier la formule inverse.
+      - [x] Remplacer le texte d'exception brut par une erreur paramétrable recevant la taille ou le code non pris en charge.
+      - [x] Supprimer `TrackEncoding.SizeCode` après raccordement de tous ses consommateurs.
+    - [x] CRC, checksum rotatif et inversion des bits
+      - [x] Remplacer `TrackEncoding.Crc16` par les appels directs à `Primitives.Crc16Calculator` avec les définitions de paramètres possédées par chaque format.
+      - [x] Ajouter au calculateur CRC commun une fonction qui retourne les données suivies des deux octets de CRC afin de remplacer `WithCrc` sans recopier cette construction.
+      - [x] Conserver explicitement l'ordre fort puis faible actuellement utilisé par `WithCrc`.
+      - [x] Créer `Primitives/RotatingChecksumCalculator.cs` et y déplacer `RotatingChecksum`, réellement partagé par Heathkit et NorthStar.
+      - [x] Y remplacer les décalages bruts de sept et un bits par les définitions de rotation d'un octet.
+      - [x] Remplacer `TrackEncoding.ReverseBits` par les appels directs à `Primitives.BitPrimitives.Reverse`.
+      - [x] Supprimer les quatre wrappers `Crc16`, `WithCrc`, `RotatingChecksum` et `ReverseBits` après raccordement de leurs consommateurs.
+    - [x] Primitives d'écriture de bits conservées
+      - [x] Conserver `Bits` comme création d'un tampon de bits vide.
+      - [x] Remplacer dans `Raw`, `Mfm`, `Fm` et `DoubleFm` les bornes et décalages bruts de huit bits par les définitions de `BitPrimitives`.
+      - [x] Parenthéser explicitement les décalages avant les opérations de masque afin que l'ordre des opérations soit visible.
+      - [x] Conserver dans `Mfm` l'état précédent fourni et sa propagation entre les octets d'un même appel.
+      - [x] Supprimer `DoubledCells`, qui n'a aucun consommateur dans le projet.
+      - [x] Supprimer le paramètre optionnel `reverse` de `DoubleFm`, qui n'est fourni par aucun consommateur, et conserver l'inversion explicite faite par les formats qui en ont besoin.
+      - [x] Renommer le booléen `value` de `Gap` pour indiquer qu'il sélectionne soit une suite de bits à un, soit le motif alterné actuel.
+    - [x] Validation des entrées textuelles et des gaps
+      - [x] Faire rejeter par `RawBits` tout caractère différent de `0` ou `1` au lieu de le convertir silencieusement en bit nul.
+      - [x] Conserver dans `RawHex` la conversion hexadécimale de la plateforme et documenter les erreurs qu'elle propage.
+      - [x] Faire rejeter par `Gap` un nombre de cellules négatif au lieu de produire silencieusement un gap vide.
+      - [x] Ajouter dans `TrackEncodingExceptions.cs` les erreurs paramétrables recevant le caractère binaire invalide, sa position et la longueur de gap négative.
+    - [x] Présentation et CSDoc des fichiers obtenus
+      - [x] Séparer les appels et affectations distincts actuellement juxtaposés dans `DoubleFm`, `WithCrc` et `RotatingChecksum` avant leur déplacement ou suppression.
+      - [x] Développer les corps de boucle actuellement écrits sur la même ligne lorsque plusieurs actions y sont exécutées.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator`, de leurs membres et de chaque méthode conservée ou créée.
+      - [x] Documenter l'ordre des bits, l'état MFM précédent, le motif des gaps, les ordres de CRC et les unités des ticks.
+    - [x] Tests ciblés des primitives d'encodage
+      - [x] Tester `Raw` avec les bits fort et faible de plusieurs octets.
+      - [x] Tester `RawHex` avec un motif valide et une chaîne hexadécimale invalide.
+      - [x] Tester `RawBits` avec `0`, `1` et chaque caractère invalide accompagné de sa position.
+      - [x] Tester MFM sur une suite où l'état précédent change le premier bit d'horloge de l'octet suivant.
+      - [x] Tester FM et double FM avec des octets connus et vérifier chaque cellule produite.
+      - [x] Tester les deux formes de gap, une longueur nulle et le rejet d'une longueur négative.
+      - [x] Tester les conversions aller-retour de chaque code sectoriel de zéro à sept et le rejet des autres tailles ou codes.
+      - [x] Tester le checksum rotatif Heathkit/NorthStar avec des valeurs connues.
+      - [x] Tester la création d'une révolution sans transition, avec plusieurs transitions et avec un intervalle terminal.
+      - [x] Tester le rejet des ticks nuls et le débordement du produit cellules/ticks.
+- [x] `Encoding/FluxEncoding.cs`
+    - [x] Regroupement des primitives FM/MFM
+      - [x] Déplacer `EncodeMfm` dans `TrackBitEncoding.cs` sous un nom indiquant qu'il produit un motif binaire compacté à partir d'octets MFM.
+      - [x] Déplacer `EncodeFm` dans `TrackBitEncoding.cs` sous un nom indiquant qu'il produit un motif binaire compacté à partir d'octets FM.
+      - [x] Déplacer `Pack` avec ces deux méthodes comme primitive privée commune de compactage des bits.
+      - [x] Conserver pour MFM l'état du bit de données précédent entre tous les octets d'un même appel.
+      - [x] Conserver pour FM l'alternance d'un bit d'horloge vrai et du bit de données.
+      - [x] Conserver dans `Pack` l'ordre du bit fort vers le bit faible à l'intérieur de chaque octet produit.
+    - [x] Définitions techniques communes
+      - [x] Remplacer les nombres bruts de huit bits par octet et seize bits encodés par octet source par les définitions techniques déjà prévues dans le groupe de `TrackEncoding.cs`.
+      - [x] Utiliser les mêmes définitions pour le calcul de capacité, les bornes de boucle, les divisions d'index et les décalages de compactage.
+    - [x] Raccordement des consommateurs
+      - [x] Remplacer dans `DataGeneralFmDecoder.cs` l'appel à `FluxEncoding.EncodeFm` par la primitive déplacée.
+      - [x] Remplacer dans `HeathkitFmDecoder.cs` l'appel à `FluxEncoding.EncodeFm` par la primitive déplacée.
+      - [x] Remplacer dans `MicralNFmDecoder.cs` l'appel à `FluxEncoding.EncodeFm` par la primitive déplacée.
+      - [x] Remplacer dans `MicropolisMfmDecoder.cs` l'appel à `FluxEncoding.EncodeMfm` par la primitive déplacée.
+      - [x] Remplacer dans `NorthstarMfmDecoder.cs` l'appel à `FluxEncoding.EncodeMfm` par la primitive déplacée.
+      - [x] Vérifier par recherche qu'aucun appel à `FluxEncoding` ne subsiste, puis supprimer `Encoding/FluxEncoding.cs`.
+    - [x] Présentation et CSDoc des primitives déplacées
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc des deux méthodes FM/MFM déplacées et de la primitive de compactage, avec l'ordre des bits produit.
+    - [x] Tests ciblés des primitives FM/MFM
+      - [x] Tester l'encodage FM d'un octet nul, d'un octet plein et d'une suite de plusieurs octets.
+      - [x] Tester l'encodage MFM d'un octet nul, d'un octet plein et d'une suite où l'état du dernier bit du premier octet influence l'horloge du suivant.
+      - [x] Tester une entrée vide et vérifier qu'elle produit un tableau vide.
+      - [x] Tester le compactage d'un motif connu et vérifier l'ordre exact des bits dans les octets.
+      - [x] Tester que les cinq motifs statiques construits par les décodeurs restent identiques après le raccordement.
   - [ ] `Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
     - [ ] Définitions AED communes
       - [ ] Remplacer l'identifiant et le nom par les définitions AED créées avec `Aed6200pMfmDecoder.cs`.

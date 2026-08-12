@@ -16,7 +16,7 @@ public sealed class CenturionMfmTrackEncoder : TrackEncoderBase
     /// <remarks>Les charges utiles sont complétées par blocs d'allocation avant le calcul du CRC.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             byte[] identity = [(byte)request.Cylinder,(byte)sector.Number];

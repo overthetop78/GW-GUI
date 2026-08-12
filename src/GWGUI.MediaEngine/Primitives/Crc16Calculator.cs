@@ -30,6 +30,20 @@ internal static class Crc16Calculator
         return crc;
     }
 
+    /// <summary>Ajoute aux données leur CRC sur deux octets, poids fort puis poids faible.</summary>
+    /// <param name="values">Octets à copier et à couvrir par le CRC.</param>
+    /// <param name="polynomial">Polynôme non réfléchi.</param>
+    /// <param name="initial">Valeur initiale du registre.</param>
+    /// <returns>Copie des données suivie des deux octets du CRC.</returns>
+    public static byte[] Append(IEnumerable<byte> values, ushort polynomial = CcittPolynomial, ushort initial = AllBitsSetInitialValue)
+    {
+        var result = values.ToList();
+        var crc = Compute(result, polynomial, initial);
+        result.Add((byte)(crc >> BitPrimitives.BitsPerByte));
+        result.Add((byte)crc);
+        return result.ToArray();
+    }
+
     /// <summary>Met à jour un registre CRC avec un octet supplémentaire.</summary>
     /// <param name="crc">Valeur courante du registre CRC.</param>
     /// <param name="value">Octet à intégrer au registre.</param>

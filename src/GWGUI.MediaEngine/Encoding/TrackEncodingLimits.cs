@@ -14,7 +14,7 @@ internal static class TrackEncodingLimits
     /// <summary>Nombre minimal de secteurs nécessaire pour encoder une piste.</summary>
     public const int MinimumSectorCount = 1;
     /// <summary>Plus petit code de taille sectorielle ISO admis.</summary>
-    public const byte MinimumSectorSizeCode = 0;
+    public const byte MinimumSectorSizeCode = Primitives.SectorSizeCode.MinimumCode;
     /// <summary>Plus grand code de taille sectorielle ISO admis.</summary>
-    public const byte MaximumSectorSizeCode = 7;
+    public const byte MaximumSectorSizeCode = Primitives.SectorSizeCode.MaximumCode;
 }

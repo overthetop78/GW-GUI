@@ -16,7 +16,7 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Commodore attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         var id2 = (byte)Attribute(request, CommodoreGcrFormat.Id2AttributeName, CommodoreGcrFormat.DefaultId2);
         var id1 = (byte)Attribute(request, CommodoreGcrFormat.Id1AttributeName, CommodoreGcrFormat.DefaultId1);
         var diskTrack = Attribute(request, CommodoreGcrFormat.TrackAttributeName, request.Cylinder + 1 + request.Head * CommodoreGcrFormat.TracksPerSide);

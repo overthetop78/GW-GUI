@@ -16,7 +16,7 @@ public sealed class TycomFmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille TYCOM attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != TycomFmFormat.SectorSize) throw TycomFmFormat.InvalidSectorSize(sector.Data.Count);

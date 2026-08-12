@@ -114,6 +114,6 @@ public sealed class DataGeneralFmDecoderTests
     private static FluxDecodeResult Decode(string bits)
     {
         var cells = bits.Select(bit => bit == '1').ToArray();
-        return new DataGeneralFmDecoder().Decode(TrackEncoding.ToRevolution(cells, 40, 8_000_000));
+        return new DataGeneralFmDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(cells, 40, 8_000_000));
     }
 }

@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Encoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -18,7 +18,7 @@ public class AppleMacGcrTrackEncoder : TrackEncoderBase
     /// <remarks>L'en-tête protège ses quatre champs par XOR sur six bits ; les tags et la charge utile sont ensuite encodés ensemble en 6-and-2.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits=TrackEncoding.Bits(); var format=(byte)Attribute(request,AppleIwmGcrFormat.FormatAttributeName,DefaultFormat);
+        var bits=TrackBitEncoding.Bits(); var format=(byte)Attribute(request,AppleIwmGcrFormat.FormatAttributeName,DefaultFormat);
         foreach(var sector in request.Sectors)
         {
             if(sector.Data.Count!=AppleIwmGcrFormat.SectorByteCount) throw AppleIwmGcrFormat.InvalidSectorSize(sector.Data.Count);

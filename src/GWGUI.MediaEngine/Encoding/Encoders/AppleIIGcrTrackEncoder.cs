@@ -16,7 +16,7 @@ public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
     /// <remarks>Le nombre de secteurs demandé sélectionne le parcours 5-and-3 à treize secteurs ; les autres pistes utilisent le parcours 6-and-2.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits(); var volume = (byte)Attribute(request, AppleIIGcrFormat.VolumeAttributeName, AppleIIGcrFormat.DefaultVolume);
+        var bits = TrackBitEncoding.Bits(); var volume = (byte)Attribute(request, AppleIIGcrFormat.VolumeAttributeName, AppleIIGcrFormat.DefaultVolume);
         var useFiveAndThree = Attribute(request, AppleIIGcrFormat.SectorsPerTrackAttributeName, request.Sectors.Count) == AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
         foreach (var sector in request.Sectors)
         {

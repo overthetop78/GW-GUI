@@ -64,7 +64,7 @@ internal static class DataGeneralFmFormat
     /// <summary>Longueur du remplissage suivant les données.</summary>
     public const int DataGapBitCount = 128;
     /// <summary>Synchronisation FM encodée utilisée pour l'en-tête et les données.</summary>
-    public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeFm(FirstSyncByte, SecondSyncByte));
+    public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeCompactFm(FirstSyncByte, SecondSyncByte));
 
     /// <summary>Crée l'exception signalant une taille de secteur incompatible.</summary>
     /// <param name="actualSize">Taille observée.</param>

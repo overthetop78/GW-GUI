@@ -16,7 +16,7 @@ public sealed class ArburgTrackEncoder : TrackEncoderBase
     /// <remarks>Chaque bloc est complété avec son contrôle avant l'encodage des cellules.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits=TrackEncoding.Bits();
+        var bits=TrackBitEncoding.Bits();
         foreach(var sector in request.Sectors)
         {
             var system=Attribute(sector,ArburgFormat.SystemAttribute,0)!=0;

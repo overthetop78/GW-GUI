@@ -24,9 +24,9 @@ public sealed class Commodore900GcrDecoderTests
     [Fact]
     public void SynchronizationMustReachMinimumLength()
     {
-        var shortBits = TrackEncoding.Bits();
+        var shortBits = TrackBitEncoding.Bits();
         AddRecord(shortBits, Commodore900GcrFormat.MinimumSyncBitCount - 1, Header(2, 3, true));
-        var validBits = TrackEncoding.Bits();
+        var validBits = TrackBitEncoding.Bits();
         AddRecord(validBits, Commodore900GcrFormat.MinimumSyncBitCount, Header(2, 3, true));
 
         Assert.Empty(Decode(shortBits).Sectors);
@@ -95,7 +95,7 @@ public sealed class Commodore900GcrDecoderTests
     [Fact]
     public void TruncatedBlockProducesNoSector()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddRecord(bits, Commodore900GcrFormat.MinimumSyncBitCount, [Commodore900GcrFormat.DataMark]);
 
         Assert.Empty(Decode(bits).Sectors);
@@ -104,7 +104,7 @@ public sealed class Commodore900GcrDecoderTests
     /// <summary>Construit une piste composée des enregistrements fournis.</summary>
     private static List<bool> Track(params byte[][] records)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var record in records)
         {
             AddRecord(bits, Commodore900GcrFormat.SyncGapBitCount, record);
@@ -140,5 +140,5 @@ public sealed class Commodore900GcrDecoderTests
     private static bool[] Bits(int value, int count) => Enumerable.Range(0, count).Select(bit => (value & (1 << (count - 1 - bit))) != 0).ToArray();
 
     /// <summary>Décode les bits avec la chaîne publique Commodore 900.</summary>
-    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new Commodore900GcrDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new Commodore900GcrDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 }

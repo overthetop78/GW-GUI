@@ -17,7 +17,7 @@ public sealed class IsoMfmDecoderTests
     [InlineData(0xf9)]
     public void SynchronizationReturnsFollowingMark(byte mark)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex(IsoMfmFormat.EncodedSyncHex);
         bits.Mfm([mark]);
 
@@ -60,7 +60,7 @@ public sealed class IsoMfmDecoderTests
     {
         var fields = new byte[] { 2, 1, 3, 0 };
         var crc = Crc16Calculator.Compute(new[] { IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.IdAddressMark }.Concat(fields));
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex(IsoMfmFormat.EncodedSyncHex);
         bits.Mfm(new[] { IsoMfmFormat.IdAddressMark }.Concat(fields).Concat([(byte)(crc >> 8), validCrc ? (byte)crc : (byte)(crc ^ 0xff)]));
 
@@ -74,7 +74,7 @@ public sealed class IsoMfmDecoderTests
     [Fact]
     public void TruncatedHeaderHasNoDecodedFieldsOrCrcState()
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex(IsoMfmFormat.EncodedSyncHex);
         bits.Mfm([IsoMfmFormat.IdAddressMark]);
 
@@ -95,7 +95,7 @@ public sealed class IsoMfmDecoderTests
         var payload = Enumerable.Range(0, 128).Select(index => (byte)index).ToArray();
         var definition = IsoMfmFormat.Marks.Single(mark => mark.Mark == (deleted ? IsoMfmFormat.DeletedDataAddressMark : IsoMfmFormat.DataAddressMark));
         var crc = Crc16Calculator.Compute(new[] { IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, definition.Mark }.Concat(payload));
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex(IsoMfmFormat.EncodedSyncHex);
         bits.Mfm(new[] { definition.Mark }.Concat(payload).Concat([(byte)(crc >> 8), validCrc ? (byte)crc : (byte)(crc ^ 0xff)]));
 
@@ -110,7 +110,7 @@ public sealed class IsoMfmDecoderTests
     public void TruncatedDataIsRejected()
     {
         var definition = IsoMfmFormat.Marks.Single(mark => mark.Mark == IsoMfmFormat.DataAddressMark);
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex(IsoMfmFormat.EncodedSyncHex);
         bits.Mfm([definition.Mark, 1, 2, 3]);
 
@@ -124,7 +124,7 @@ public sealed class IsoMfmDecoderTests
         var dataCrc = Crc16Calculator.Compute(new[] { IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.DataAddressMark }.Concat(payload));
         var headerFields = new byte[] { 1, 0, 2, 0 };
         var headerCrc = Crc16Calculator.Compute(new[] { IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.IdAddressMark }.Concat(headerFields));
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.RawHex(IsoMfmFormat.EncodedSyncHex);
         bits.Mfm(new[] { IsoMfmFormat.DataAddressMark }.Concat(payload).Concat([(byte)(dataCrc >> 8), (byte)dataCrc]));
         bits.Gap(64);

@@ -17,17 +17,17 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille HP attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != HpMmfmFormat.SectorSize) throw HpMmfmFormat.InvalidSectorSize(sector.Data.Count);
             var encodedSector = (byte)(sector.Number | request.Head << HpMmfmFormat.HeadShift);
             byte[] identity = [BitPrimitives.ReverseBits((byte)request.Cylinder), BitPrimitives.ReverseBits(encodedSector)];
             bits.Raw(HpMmfmFormat.SectorSync.ToArray());
-            bits.Mfm(TrackEncoding.WithCrc(identity));
+            bits.Mfm(Crc16Calculator.Append(identity));
             bits.Gap(HpMmfmFormat.HeaderGapBitCount);
             bits.Raw(HpMmfmFormat.DataSync.ToArray());
-            bits.Mfm(TrackEncoding.WithCrc(HpMmfmCodec.EncodePayload(sector.Data)));
+            bits.Mfm(Crc16Calculator.Append(HpMmfmCodec.EncodePayload(sector.Data)));
             bits.Gap(HpMmfmFormat.DataGapBitCount);
         }
         return bits;

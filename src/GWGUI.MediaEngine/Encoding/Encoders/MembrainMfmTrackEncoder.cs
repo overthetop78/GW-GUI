@@ -16,7 +16,7 @@ public sealed class MembrainMfmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Membrain attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != MembrainMfmFormat.SectorSize) throw MembrainMfmFormat.InvalidSectorSize(sector.Data.Count);

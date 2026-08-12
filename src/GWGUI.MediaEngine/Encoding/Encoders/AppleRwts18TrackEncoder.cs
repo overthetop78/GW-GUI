@@ -17,7 +17,7 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
     /// <remarks>Les secteurs sont émis dans l'ordre décroissant imposé par RWTS18.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors.OrderByDescending(sector => sector.Number))
         {
             if (sector.Number is < 0 or >= AppleRwts18Format.SectorCount || sector.Data.Count != AppleRwts18Format.SectorByteCount)

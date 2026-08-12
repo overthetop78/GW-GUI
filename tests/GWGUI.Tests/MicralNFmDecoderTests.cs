@@ -68,7 +68,7 @@ public sealed class MicralNFmDecoderTests
     {
         var checksum = MicralNChecksum.Compute(payload);
         if (!validChecksum) checksum ^= 1;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         bits.Raw(MicralNFmFormat.SectorMark.ToArray());
         bits.Fm(new[] { sector, cylinder }.Concat(payload).Append(checksum));
         return new(bits.ToArray(), 40);

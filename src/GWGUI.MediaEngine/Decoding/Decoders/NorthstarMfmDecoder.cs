@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Flux;
 
@@ -57,7 +58,7 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
     {
         var data = TryDecodeMfmBytes(stream, offset + NorthstarMfmFormat.IdentityBitCount, NorthstarMfmFormat.SectorSize);
         if (data is null || !FluxBitReader.TryDecodeMfmByte(stream, offset + NorthstarMfmFormat.IdentityBitCount + NorthstarMfmFormat.PayloadBitCount, out var storedChecksum)) return null;
-        return new(identity, data, storedChecksum, TrackEncoding.RotatingChecksum(data) == storedChecksum);
+        return new(identity, data, storedChecksum, RotatingChecksumCalculator.Compute(data) == storedChecksum);
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>

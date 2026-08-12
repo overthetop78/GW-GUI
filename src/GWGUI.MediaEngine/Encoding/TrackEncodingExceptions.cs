@@ -3,6 +3,23 @@ namespace GWGUI.MediaEngine.Encoding;
 /// <summary>Construit les erreurs communes produites pendant l'encodage d'une piste.</summary>
 internal static class TrackEncodingExceptions
 {
+    /// <summary>Crée l'erreur signalant un caractère invalide dans une chaîne binaire.</summary>
+    /// <param name="value">Caractère observé.</param>
+    /// <param name="index">Position du caractère.</param>
+    /// <returns>Erreur contenant le caractère et sa position.</returns>
+    public static ArgumentException InvalidBinaryCharacter(char value, int index) => new($"Binary text contains '{value}' at index {index}; only '0' and '1' are allowed.", "values");
+
+    /// <summary>Crée l'erreur signalant une longueur de gap négative.</summary>
+    /// <param name="count">Longueur observée, en cellules.</param>
+    /// <returns>Erreur contenant la longueur invalide.</returns>
+    public static ArgumentOutOfRangeException NegativeGapLength(int count) => new(nameof(count), count, "Gap length cannot be negative.");
+
+    /// <summary>Crée l'erreur signalant le dépassement d'un intervalle de flux.</summary>
+    /// <param name="cells">Nombre de cellules de l'intervalle.</param>
+    /// <param name="cellTicks">Durée d'une cellule, en ticks.</param>
+    /// <returns>Erreur contenant les deux facteurs du produit.</returns>
+    public static OverflowException FluxIntervalOverflow(uint cells, uint cellTicks) => new($"A flux interval of {cells} cells at {cellTicks} ticks per cell exceeds UInt32.");
+
     /// <summary>Crée l'erreur signalant une taille sectorielle sans code ISO correspondant.</summary>
     /// <param name="sizeBytes">Taille sectorielle observée, en octets.</param>
     /// <returns>Erreur contenant la taille non prise en charge.</returns>

@@ -59,5 +59,5 @@ public sealed class EmuFmDecoderTests
     }
 
     private static byte[] Payload() => Enumerable.Range(0, EmuFmFormat.PayloadByteCount).Select(index => (byte)(index * 13)).ToArray();
-    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new EmuFmDecoder().Decode(TrackEncoding.ToRevolution(bits, 40, 8_000_000));
+    private static FluxDecodeResult Decode(IReadOnlyList<bool> bits) => new EmuFmDecoder().Decode(GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(bits, 40, 8_000_000));
 }

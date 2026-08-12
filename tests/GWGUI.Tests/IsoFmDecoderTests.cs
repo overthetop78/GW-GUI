@@ -59,7 +59,7 @@ public sealed class IsoFmDecoderTests
         byte[] fields = [2, 1, 3, 0];
         var crc = Crc16Calculator.Compute(new[] { IsoFmFormat.IdAddressMark }.Concat(fields), IsoFmFormat.CrcPolynomial, IsoFmFormat.CrcInitialValue);
         if (!valid) crc ^= ushort.MaxValue;
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         AddMark(bits, IsoFmFormat.EncodedIdAddressMark);
         bits.Fm(fields.Concat([(byte)(crc >> 8), (byte)crc]));
 

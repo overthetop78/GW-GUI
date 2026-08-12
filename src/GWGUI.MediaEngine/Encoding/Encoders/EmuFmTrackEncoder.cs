@@ -17,7 +17,7 @@ public sealed class EmuFmTrackEncoder : TrackEncoderBase
     /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille E-mu attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits = TrackEncoding.Bits();
+        var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != EmuFmFormat.SectorSize) throw EmuFmFormat.InvalidSectorSize(sector.Data.Count);
