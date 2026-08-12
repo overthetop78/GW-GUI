@@ -1,16 +1,22 @@
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Reconstruction;
+using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Amiga;
 
 /// <summary>Reconstruit une image sectorielle Amiga depuis les révolutions d'une capture SCP.</summary>
+/// <param name="scpReader">Lecteur utilisé pour analyser le conteneur SCP.</param>
+/// <param name="decoders">Registre fournissant le décodeur MFM Amiga.</param>
 public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
-    /// <summary>Lit la capture, sélectionne les meilleurs secteurs Amiga et construit l'image.</summary>
+    /// <summary>Lit la capture, sélectionne les meilleurs secteurs Amiga et construit l'image sectorielle.</summary>
+    /// <param name="path">Chemin de la capture SCP à reconstruire.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la reconstruction.</param>
+    /// <returns>L'image Amiga DD ou HD reconstruite à partir des secteurs utilisables.</returns>
+    /// <exception cref="InvalidDataException">Aucun secteur Amiga n'a été décodé ou aucun secteur décodé ne respecte la géométrie Amiga.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
@@ -36,20 +42,21 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         foreach (var (address, values) in candidates)
         {
             if (address.Cylinder >= DiskGeometryConstants.EightyTrackCylinderCount || address.Head >= DiskGeometryConstants.DoubleSidedHeadCount || address.Number < 0 || address.Number >= sectorsPerTrack) continue;
-            var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true)
-                .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
+            var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
             var logical = checked((address.Cylinder * DiskGeometryConstants.DoubleSidedHeadCount + address.Head) * sectorsPerTrack + address.Number);
             blocks.Add(new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
+        if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(AmigaMfmFormat.StructureDescriptionName, candidates.Count, blocks.Count);
         var formatId = sectorsPerTrack == AmigaMfmFormat.HighDensitySectorsPerTrack ? DiskImageFormatIds.AmigaDosHighDensity : DiskImageFormatIds.AmigaDos;
         return new(formatId, AmigaMfmFormat.SectorByteCount, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, sectorsPerTrack, blocks);
     }
 
     /// <summary>Détermine si les adresses observées décrivent une piste DD ou HD.</summary>
+    /// <param name="addresses">Adresses des candidats Amiga décodés.</param>
+    /// <returns>Le nombre de secteurs par piste de la géométrie DD ou HD retenue.</returns>
+    /// <remarks>Un identifiant isolé supérieur à 10 peut provenir d'une piste DD endommagée ou protégée. La géométrie HD exige donc plusieurs pistes contenant un ensemble crédible de 22 secteurs.</remarks>
     public static int InferSectorsPerTrack(IEnumerable<SectorAddress> addresses)
     {
-        // A damaged or copy-protected DD track can yield an isolated bogus sector ID above 10.
-        // Treat the image as HD only when multiple physical tracks contain a convincing 22-sector set.
         var convincingHighDensityTracks = addresses
             .Where(address => address.Cylinder < DiskGeometryConstants.EightyTrackCylinderCount && address.Head < DiskGeometryConstants.DoubleSidedHeadCount && address.Number is >= 0 and < AmigaMfmFormat.HighDensitySectorsPerTrack)
             .GroupBy(address => (address.Cylinder, address.Head))

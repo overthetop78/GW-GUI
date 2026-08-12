@@ -11,6 +11,7 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.App.Controls;
 
@@ -330,6 +331,20 @@ public sealed class DiskImageExplorerTests
         Assert.Equal("amiga.amigados", image.FormatId);
         Assert.Equal(Enumerable.Repeat((byte)8, 512), image.GetBlock(7).ToArray());
         Assert.Equal(11, image.AvailableBlocks.Count);
+    }
+
+    [Fact]
+    public async Task AmigaReconstructionRejectsCandidatesOutsideItsGeometry()
+    {
+        var sectors = new[] { new TrackSector(0, new byte[512]) };
+        var encoded = new FluxEncoderRegistry().Encode("amiga.mfm", new TrackEncodeRequest(80, 0, sectors));
+        var scp = new ScpImage(new(0, 0, 1, 160, 160, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0),
+            [new ScpTrack(160, 80, 0, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)])], true, 0);
+        var reader = new AmigaScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry());
+
+        var error = await Assert.ThrowsAsync<InvalidDataException>(() => reader.ReadAsync("memory.scp"));
+
+        Assert.Contains("1 candidate(s) decoded, 0 usable", error.Message, StringComparison.Ordinal);
     }
 
     [Fact]

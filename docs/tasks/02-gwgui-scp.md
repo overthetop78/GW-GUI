@@ -4973,18 +4973,18 @@
     - [x] Appliquer la règle d’obtention d’image du document pour chaque image manquante.
     - [x] Passer par les Readers publics du moteur.
     - [x] Exécuter uniquement les tests du Reader traité.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AmigaScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Amiga/AmigaScpSectorImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AmigaScpSectorImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `AmigaScpSectorImageReader, ReadAsync, InferSectorsPerTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Validation après filtrage de la géométrie
-    - [ ] Vérifier `blocks.Count` après le rejet des adresses hors géométrie afin de ne pas retourner une image Amiga vide alors que seuls des candidats inutilisables ont été décodés.
-    - [ ] Utiliser l’erreur Amiga prévue dans `ScpReconstructionExceptions` en lui transmettant le nombre de candidats décodés et le nombre de blocs conservés.
-    - [ ] Remplacer les deux commentaires anglais de `InferSectorsPerTrack` par une explication française du rejet d’un identifiant isolé et du seuil HD.
-    - [ ] Tester un ensemble non vide de candidats dont toutes les adresses sont rejetées par la géométrie.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AmigaScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Amiga/AmigaScpSectorImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AmigaScpSectorImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `AmigaScpSectorImageReader, ReadAsync, InferSectorsPerTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Validation après filtrage de la géométrie
+    - [x] Vérifier `blocks.Count` après le rejet des adresses hors géométrie afin de ne pas retourner une image Amiga vide alors que seuls des candidats inutilisables ont été décodés.
+    - [x] Utiliser l’erreur Amiga prévue dans `ScpReconstructionExceptions` en lui transmettant le nombre de candidats décodés et le nombre de blocs conservés.
+    - [x] Remplacer les deux commentaires anglais de `InferSectorsPerTrack` par une explication française du rejet d’un identifiant isolé et du seuil HD.
+    - [x] Tester un ensemble non vide de candidats dont toutes les adresses sont rejetées par la géométrie.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AmstradIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs`.

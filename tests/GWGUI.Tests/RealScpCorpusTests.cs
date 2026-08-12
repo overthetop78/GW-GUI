@@ -11,6 +11,7 @@ using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.SectorImages;
 using SkiaSharp;
 
