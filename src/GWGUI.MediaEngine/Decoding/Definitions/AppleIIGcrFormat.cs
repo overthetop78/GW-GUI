@@ -87,8 +87,6 @@ internal static class AppleIIGcrFormat
     public const int SixAndTwoDecodedByteCount = 342;
     /// <summary>Définit six and two auxiliary octet nombre utilisé par ce format.</summary>
     public const int SixAndTwoAuxiliaryByteCount = 86;
-    /// <summary>Définit six and two work buffer octet nombre utilisé par ce format.</summary>
-    public const int SixAndTwoWorkBufferByteCount = 300;
     /// <summary>Définit five and three encodé octet nombre utilisé par ce format.</summary>
     public const int FiveAndThreeEncodedByteCount = 411;
     /// <summary>Définit five and three auxiliary octet nombre utilisé par ce format.</summary>
@@ -97,6 +95,8 @@ internal static class AppleIIGcrFormat
     public const int FiveAndThreeChunkByteCount = 51;
     /// <summary>Définit five and three sectors per piste utilisé par ce format.</summary>
     public const int FiveAndThreeSectorsPerTrack = 13;
+    /// <summary>Nombre de secteurs d'une piste Apple DOS 3.3 encodée en 6-and-2.</summary>
+    public const int SixAndTwoSectorsPerTrack = 16;
     /// <summary>Définit leading intervalle bit nombre utilisé par ce format.</summary>
     public const int LeadingGapBitCount = 100;
     /// <summary>Définit trailing intervalle bit nombre utilisé par ce format.</summary>
@@ -107,6 +107,13 @@ internal static class AppleIIGcrFormat
     public const string VolumeAttributeName = "volume";
     /// <summary>Définit sectors per piste attribut name utilisé par ce format.</summary>
     public const string SectorsPerTrackAttributeName = "sectorsPerTrack";
+    /// <summary>Plus grande valeur représentable pour le volume, le cylindre et le secteur.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
+    /// <summary>Longueur minimale du tampon de travail 6-and-2 : un secteur suivi des deux octets auxiliaires encore indexés.</summary>
+    public const int MinimumSixAndTwoWorkBufferByteCount = SectorSize + 2;
+
+    /// <summary>Crée l'erreur signalant un nombre de secteurs par piste inconnu ou ambigu.</summary>
+    public static ArgumentException InvalidSectorsPerTrack(int actualCount) => new($"Apple II tracks contain {FiveAndThreeSectorsPerTrack} sectors for 5-and-3 or {SixAndTwoSectorsPerTrack} sectors for 6-and-2; received {actualCount}.");
     /// <summary>Expose six and two table utilisé par ce format.</summary>
     public static IReadOnlyList<byte> SixAndTwoTable { get; } = Array.AsReadOnly<byte>(
     [
@@ -125,4 +132,12 @@ internal static class AppleIIGcrFormat
     public static IReadOnlyDictionary<byte, byte> InverseSixAndTwoTable { get; } = new ReadOnlyDictionary<byte, byte>(SixAndTwoTable.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => (byte)item.index));
     /// <summary>Expose la table inverse 5-and-3 construite depuis la table commune.</summary>
     public static IReadOnlyDictionary<byte, byte> InverseFiveAndThreeTable { get; } = new ReadOnlyDictionary<byte, byte>(FiveAndThreeTable.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => (byte)item.index));
+    /// <summary>Prologue d'adresse d'une piste Apple II 5-and-3.</summary>
+    public static IReadOnlyList<byte> FiveAndThreeAddressPrologueBytes { get; } = Array.AsReadOnly([PrologueFirstByte, PrologueSecondByte, FiveAndThreeAddressPrologueLastByte]);
+    /// <summary>Prologue d'adresse d'une piste Apple II 6-and-2.</summary>
+    public static IReadOnlyList<byte> SixAndTwoAddressPrologueBytes { get; } = Array.AsReadOnly([PrologueFirstByte, PrologueSecondByte, SixAndTwoAddressPrologueLastByte]);
+    /// <summary>Épilogue d'un champ Apple II.</summary>
+    public static IReadOnlyList<byte> EpilogueBytes { get; } = Array.AsReadOnly([EpilogueFirstByte, EpilogueSecondByte, EpilogueLastByte]);
+    /// <summary>Séquence séparant l'adresse des données : épilogue, synchronisation puis prologue de données.</summary>
+    public static IReadOnlyList<byte> AddressToDataSeparatorBytes { get; } = Array.AsReadOnly([EpilogueFirstByte, EpilogueSecondByte, EpilogueLastByte, SyncByte, SyncByte, SyncByte, PrologueFirstByte, PrologueSecondByte, DataPrologueLastByte]);
 }

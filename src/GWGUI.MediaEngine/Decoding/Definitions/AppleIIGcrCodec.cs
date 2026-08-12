@@ -13,6 +13,25 @@ internal static class AppleIIGcrCodec
     /// <param name="value">Valeur à encoder.</param><returns>Les deux octets encodés.</returns>
     public static (byte High, byte Low) EncodeFourAndFour(byte value) => ((byte)((value >> 1) | AppleIIGcrFormat.FourAndFourMask), (byte)(value | AppleIIGcrFormat.FourAndFourMask));
 
+    /// <summary>Calcule le checksum XOR des trois valeurs d'adresse Apple II.</summary>
+    /// <param name="volume">Numéro du volume.</param><param name="cylinder">Numéro de piste.</param><param name="sector">Numéro de secteur.</param><returns>Checksum d'adresse.</returns>
+    public static byte ComputeAddressChecksum(byte volume, byte cylinder, byte sector) => (byte)(volume ^ cylinder ^ sector);
+
+    /// <summary>Encode volume, piste, secteur et checksum en représentation 4-and-4.</summary>
+    /// <param name="volume">Numéro du volume.</param><param name="cylinder">Numéro de piste.</param><param name="sector">Numéro de secteur.</param><returns>Les huit octets constituant l'adresse encodée.</returns>
+    public static byte[] EncodeAddress(byte volume, byte cylinder, byte sector)
+    {
+        var encoded = new byte[AppleIIGcrFormat.EncodedAddressByteCount];
+        var values = new[] { volume, cylinder, sector, ComputeAddressChecksum(volume, cylinder, sector) };
+        for (var index = 0; index < values.Length; index++)
+        {
+            var pair = EncodeFourAndFour(values[index]);
+            encoded[index * AppleIIGcrFormat.EncodedBytesPerAddressValue] = pair.High;
+            encoded[index * AppleIIGcrFormat.EncodedBytesPerAddressValue + 1] = pair.Low;
+        }
+        return encoded;
+    }
+
     /// <summary>Décode un bloc de secteur Apple II 6-and-2 depuis un flux de bits.</summary>
     /// <param name="bits">Bits de la piste.</param><param name="offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
     public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(IReadOnlyList<bool> bits, int offset)
@@ -99,7 +118,8 @@ internal static class AppleIIGcrCodec
     /// <param name="source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
     public static byte[] EncodeSixAndTwo(IReadOnlyList<byte> source)
     {
-        var buffer = new byte[AppleIIGcrFormat.SixAndTwoWorkBufferByteCount];
+        if (source.Count != AppleIIGcrFormat.SectorSize) throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
+        var buffer = new byte[AppleIIGcrFormat.MinimumSixAndTwoWorkBufferByteCount];
         for (var index = 0; index < source.Count; index++) buffer[index] = source[index];
         var encoded = new List<byte>(AppleIIGcrFormat.SixAndTwoEncodedByteCount);
         byte checksum = 0;
@@ -123,6 +143,7 @@ internal static class AppleIIGcrCodec
     /// <param name="source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
     public static byte[] EncodeFiveAndThree(IReadOnlyList<byte> source)
     {
+        if (source.Count != AppleIIGcrFormat.SectorSize) throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
         const int chunkSize = AppleIIGcrFormat.FiveAndThreeChunkByteCount;
         const int threeSize = AppleIIGcrFormat.FiveAndThreeAuxiliaryByteCount;
         var top = new byte[AppleIIGcrFormat.SectorSize];

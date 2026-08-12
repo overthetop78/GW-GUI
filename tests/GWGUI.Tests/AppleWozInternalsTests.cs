@@ -3,6 +3,7 @@ using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding.Apple;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Encoding.BitPacking;
 
@@ -93,7 +94,7 @@ public sealed class AppleWozInternalsTests
     public void SelectorScoresStandardAppleSectors()
     {
         var sectors = Enumerable.Range(0, 2).Select(number => new TrackSector(number, Enumerable.Repeat((byte)number, AppleTrackSelectionRules.StandardSectorSize).ToArray())).ToArray();
-        var encoded = new AppleIIGcrTrackEncoder().Encode(new(0, 0, sectors));
+        var encoded = new AppleIIGcrTrackEncoder().Encode(new(0, 0, sectors, new Dictionary<string, int> { [AppleIIGcrFormat.SectorsPerTrackAttributeName] = AppleIIGcrFormat.SixAndTwoSectorsPerTrack }));
         var result = new AppleTrackDecodeSelector().Decode(encoded.Bits.ToArray(), 0);
 
         Assert.Equal(2, result.StandardSectors.Select(sector => sector.Number).Distinct().Count());

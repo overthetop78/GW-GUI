@@ -3546,47 +3546,47 @@
       - [x] Tester l'aller-retour odd/even de l'en-tête, du label et des données.
       - [x] Tester les parités d'en-tête et de données avec des valeurs attendues connues.
       - [x] Tester la synchronisation, les gaps et l'aller-retour encodeur/décodeur d'une piste complète.
-  - [ ] `Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
-    - [ ] Définitions Apple II communes
-      - [ ] Remplacer l'identifiant, le nom, les tables 5-and-3 et 6-and-2, les prologues, l'épilogue et les gaps par les définitions créées avec `AppleIIGcrDecoder.cs`.
-      - [ ] Remplacer le volume par défaut `254`, les formats à 13 et 16 secteurs et la taille sectorielle de 256 octets par des définitions nommées.
-      - [ ] Remplacer les clés brutes `volume` et `sectorsPerTrack` par les clés d'attribut communes.
-      - [ ] Remplacer les octets bruts `0xd5`, `0xaa`, `0xb5`, `0x96`, `0xad`, `0xde`, `0xeb` et les trois `0xff` par les blocs nommés de la disposition Apple II.
-    - [ ] Sélection du format de piste
-      - [ ] Créer une définition fermée distinguant l'encodage 5-and-3 à 13 secteurs et l'encodage 6-and-2 à 16 secteurs.
-      - [ ] Accepter explicitement les valeurs 13 et 16 de `sectorsPerTrack` et rejeter une autre valeur au lieu de la traiter implicitement comme 16 secteurs.
-      - [ ] Lorsque l'attribut est absent, déduire le format seulement d'une collection contenant exactement 13 ou 16 secteurs ; demander un attribut explicite pour une piste partielle.
-      - [ ] Extraire cette sélection dans une méthode nommée utilisée avant le parcours des secteurs.
-    - [ ] Adresse 4-and-4
-      - [ ] Raccorder l'encodeur au codec Apple II commun pour encoder volume, piste, secteur et checksum en 4-and-4.
-      - [ ] Extraire la construction du checksum XOR d'adresse dans l'opération commune correspondante.
-      - [ ] Remplacer la boucle locale et les masques `0xaa` par cette opération.
-      - [ ] Vérifier avant conversion que volume, cylindre et numéro de secteur tiennent dans un octet.
-    - [ ] Encodage 5-and-3 et 6-and-2
-      - [ ] Déplacer `EncodeFiveAndThree` et `EncodeSixAndTwo` dans le codec commun utilisé par le décodeur.
-      - [ ] Remplacer les tableaux `SixAndTwo` et `FiveAndThree` par les tables communes en lecture seule.
-      - [ ] Remplacer le tampon brut de 300 octets par la longueur minimale nommée de 258 octets réellement indexée par l'algorithme 6-and-2.
-      - [ ] Remplacer les tailles `343`, `411`, `86`, `172`, `154`, `51`, `256` et les masques/décalages par les dispositions communes.
-      - [ ] Faire valider par le codec une source de 256 octets avant tout indexage.
-      - [ ] Supprimer les deux méthodes locales après raccordement.
-    - [ ] Validation et erreurs
-      - [ ] Remplacer l'exception textuelle de taille sectorielle par l'erreur d'encodage Apple II recevant taille observée et taille attendue.
-      - [ ] Rejeter un volume, un cylindre ou un secteur hors de la plage représentable avant les conversions en `byte`.
-      - [ ] Rejeter une combinaison incohérente entre format choisi et nombre de secteurs fournis.
-    - [ ] Présentation et documentation
-      - [ ] Présenter les grandes tables sur plusieurs lignes structurées jusqu'à leur suppression au profit des tables communes.
-      - [ ] Séparer `bits` et `volume`, les écritures de prologue et les boucles actuellement placées sur les mêmes lignes.
-      - [ ] Déplier tous les corps contenant plusieurs instructions et ajouter les espaces manquants autour des opérateurs et séparateurs.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions cohérentes qui tiennent correctement.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Documenter les deux formats, les tables, le volume, les prologues, les checksums et les unités des gaps.
-    - [ ] Vérification de l'encodeur Apple II
-      - [ ] Tester une piste 13 secteurs 5-and-3 et une piste 16 secteurs 6-and-2.
-      - [ ] Tester un attribut absent sur une piste complète puis sur une piste partielle.
-      - [ ] Tester les valeurs 13, 16 et une valeur invalide de `sectorsPerTrack`.
-      - [ ] Tester les limites et dépassements du volume, du cylindre, du secteur et de la taille sectorielle.
-      - [ ] Tester les prologues, l'épilogue, le 4-and-4 et les checksums avec des valeurs connues.
-      - [ ] Tester les deux codecs, leurs longueurs exactes et les allers-retours avec le décodeur Apple II.
+  - [x] `Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
+    - [x] Définitions Apple II communes
+      - [x] Remplacer l'identifiant, le nom, les tables 5-and-3 et 6-and-2, les prologues, l'épilogue et les gaps par les définitions créées avec `AppleIIGcrDecoder.cs`.
+      - [x] Remplacer le volume par défaut `254`, les formats à 13 et 16 secteurs et la taille sectorielle de 256 octets par des définitions nommées.
+      - [x] Remplacer les clés brutes `volume` et `sectorsPerTrack` par les clés d'attribut communes.
+      - [x] Remplacer les octets bruts `0xd5`, `0xaa`, `0xb5`, `0x96`, `0xad`, `0xde`, `0xeb` et les trois `0xff` par les blocs nommés de la disposition Apple II.
+    - [x] Sélection du format de piste
+      - [x] Créer une définition fermée distinguant l'encodage 5-and-3 à 13 secteurs et l'encodage 6-and-2 à 16 secteurs.
+      - [x] Accepter explicitement les valeurs 13 et 16 de `sectorsPerTrack` et rejeter une autre valeur au lieu de la traiter implicitement comme 16 secteurs.
+      - [x] Lorsque l'attribut est absent, déduire le format seulement d'une collection contenant exactement 13 ou 16 secteurs ; demander un attribut explicite pour une piste partielle.
+      - [x] Extraire cette sélection dans une méthode nommée utilisée avant le parcours des secteurs.
+    - [x] Adresse 4-and-4
+      - [x] Raccorder l'encodeur au codec Apple II commun pour encoder volume, piste, secteur et checksum en 4-and-4.
+      - [x] Extraire la construction du checksum XOR d'adresse dans l'opération commune correspondante.
+      - [x] Remplacer la boucle locale et les masques `0xaa` par cette opération.
+      - [x] Vérifier avant conversion que volume, cylindre et numéro de secteur tiennent dans un octet.
+    - [x] Encodage 5-and-3 et 6-and-2
+      - [x] Déplacer `EncodeFiveAndThree` et `EncodeSixAndTwo` dans le codec commun utilisé par le décodeur.
+      - [x] Remplacer les tableaux `SixAndTwo` et `FiveAndThree` par les tables communes en lecture seule.
+      - [x] Remplacer le tampon brut de 300 octets par la longueur minimale nommée de 258 octets réellement indexée par l'algorithme 6-and-2.
+      - [x] Remplacer les tailles `343`, `411`, `86`, `172`, `154`, `51`, `256` et les masques/décalages par les dispositions communes.
+      - [x] Faire valider par le codec une source de 256 octets avant tout indexage.
+      - [x] Supprimer les deux méthodes locales après raccordement.
+    - [x] Validation et erreurs
+      - [x] Remplacer l'exception textuelle de taille sectorielle par l'erreur d'encodage Apple II recevant taille observée et taille attendue.
+      - [x] Rejeter un volume, un cylindre ou un secteur hors de la plage représentable avant les conversions en `byte`.
+      - [x] Rejeter une combinaison incohérente entre format choisi et nombre de secteurs fournis.
+    - [x] Présentation et documentation
+      - [x] Présenter les grandes tables sur plusieurs lignes structurées jusqu'à leur suppression au profit des tables communes.
+      - [x] Séparer `bits` et `volume`, les écritures de prologue et les boucles actuellement placées sur les mêmes lignes.
+      - [x] Déplier tous les corps contenant plusieurs instructions et ajouter les espaces manquants autour des opérateurs et séparateurs.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions cohérentes qui tiennent correctement.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Documenter les deux formats, les tables, le volume, les prologues, les checksums et les unités des gaps.
+    - [x] Vérification de l'encodeur Apple II
+      - [x] Tester une piste 13 secteurs 5-and-3 et une piste 16 secteurs 6-and-2.
+      - [x] Tester un attribut absent sur une piste complète puis sur une piste partielle.
+      - [x] Tester les valeurs 13, 16 et une valeur invalide de `sectorsPerTrack`.
+      - [x] Tester les limites et dépassements du volume, du cylindre, du secteur et de la taille sectorielle.
+      - [x] Tester les prologues, l'épilogue, le 4-and-4 et les checksums avec des valeurs connues.
+      - [x] Tester les deux codecs, leurs longueurs exactes et les allers-retours avec le décodeur Apple II.
   - [ ] `Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
     - [ ] Identité de l'encodeur Lisa FileWare
       - [ ] Remplacer l'identifiant brut `applelisa.fileware.gcr` par la définition centrale correspondante.
