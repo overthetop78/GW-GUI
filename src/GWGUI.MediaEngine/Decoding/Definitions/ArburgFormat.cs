@@ -5,6 +5,11 @@ namespace GWGUI.MediaEngine.Decoding.Definitions;
 /// <summary>Regroupe les définitions techniques communes du format Arburg.</summary>
 internal static class ArburgFormat
 {
+    /// <summary>Distingue les deux types de blocs physiques Arburg.</summary>
+    public enum BlockKind { Data, System }
+
+    /// <summary>Regroupe les tailles et la marque propres à un type de bloc.</summary>
+    public sealed record BlockDefinition(BlockKind Kind, int UsefulSize, int TotalSize, IReadOnlyList<byte> Mark);
     /// <summary>Identifiant technique du codec Arburg.</summary>
     public const string CodecId = FluxCodecIds.Arburg;
     /// <summary>Nom affiché du codec Arburg.</summary>
@@ -74,5 +79,13 @@ internal static class ArburgFormat
     /// <param name="system">Indique si le bloc demandé est un bloc système.</param>
     /// <param name="actualSize">Taille observée.</param>
     /// <returns>Exception contenant les tailles attendues et observées.</returns>
-    public static ArgumentException InvalidPayloadSize(bool system, int actualSize) => new($"Arburg {(system ? "system" : "data")} payload must contain {(system ? SystemUsefulSize : DataUsefulSize)} useful bytes or {(system ? SystemBlockSize : DataBlockSize)} complete bytes; received {actualSize} bytes.");
+    public static ArgumentException InvalidPayloadSize(BlockDefinition definition, int actualSize) => new($"Arburg {definition.Kind.ToString().ToLowerInvariant()} payload must contain {definition.UsefulSize} useful bytes or {definition.TotalSize} complete bytes; received {actualSize} bytes.");
+
+    /// <summary>Obtient la définition du bloc demandé par l'attribut système.</summary>
+    public static BlockDefinition Definition(bool system) => system ? SystemDefinition : DataDefinition;
+
+    /// <summary>Définition du bloc de données Arburg.</summary>
+    public static BlockDefinition DataDefinition { get; } = new(BlockKind.Data, DataUsefulSize, DataBlockSize, DataMark);
+    /// <summary>Définition du bloc système Arburg.</summary>
+    public static BlockDefinition SystemDefinition { get; } = new(BlockKind.System, SystemUsefulSize, SystemBlockSize, SystemMark);
 }

@@ -3677,38 +3677,38 @@
       - [x] Tester le codec de charge utile avec 768 octets connus et vérifier ses 1 025 octets de sortie.
       - [x] Tester le rejet d'un secteur absent, dupliqué, hors plage ou de mauvaise taille, d'un cylindre hors plage et d'un identifiant hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste RWTS18 avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/ArburgTrackEncoder.cs`
-    - [ ] Identité et sélection du type de bloc Arburg
-      - [ ] Remplacer l'identifiant brut `arburg` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Arburg system/data` par la définition centrale correspondante.
-      - [ ] Remplacer la clé d'attribut brute `system` par une définition Arburg commune.
-      - [ ] Représenter la sélection système ou données par un type nommé plutôt que de propager un booléen et des textes bruts dans l'encodeur.
-    - [ ] Définitions des blocs Arburg
-      - [ ] Déplacer les tailles utiles et complètes des blocs système et données dans `ArburgFormat`.
-      - [ ] Déplacer les deux signatures hexadécimales dans `ArburgFormat` sous des noms distinguant le bloc système du bloc données.
-      - [ ] Déplacer les motifs de bits `001` et `01`, le nombre de bits par octet et la longueur du gap final dans `ArburgFormat`.
-      - [ ] Déplacer la taille et l'ordre little-endian du checksum ainsi que la valeur de remplissage dans `ArburgFormat`.
-    - [ ] Construction du bloc commun
-      - [ ] Extraire la sélection des tailles utiles et complètes dans une définition obtenue à partir du type de bloc.
-      - [ ] Extraire la construction des données utiles, du checksum et du remplissage dans une fonction privée commune aux deux chemins.
-      - [ ] Conserver explicitement la règle actuelle : lorsqu'un bloc complet est fourni, utiliser ses octets utiles puis reconstruire son checksum et son remplissage.
-      - [ ] Remplacer le texte d'exception brut par une erreur paramétrable recevant le type de bloc, la taille observée, la taille utile et la taille complète attendues.
-    - [ ] Encodages système et données
-      - [ ] Extraire l'écriture du bloc système dans une fonction privée utilisant sa signature et ses motifs de bits nommés.
-      - [ ] Extraire l'écriture du bloc données dans une fonction privée utilisant sa signature et l'encodage double FM.
-      - [ ] Conserver l'inversion des bits du chemin données en la rendant explicite dans le nom de la fonction appelée.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Séparer toutes les déclarations, boucles, conditions et écritures actuellement juxtaposées sur une même ligne.
-      - [ ] Développer le bloc `else` actuellement entièrement écrit sur une ligne.
-      - [ ] Normaliser les espaces autour des affectations, comparaisons, ternaires, opérateurs et arguments.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Arburg
-      - [ ] Tester l'encodage d'un bloc système fourni à sa taille utile puis à sa taille complète.
-      - [ ] Tester l'encodage d'un bloc données fourni à sa taille utile puis à sa taille complète.
-      - [ ] Vérifier pour les deux chemins la signature, le checksum little-endian, le remplissage et le gap final.
-      - [ ] Tester le rejet d'une taille qui n'est ni la taille utile ni la taille complète du type sélectionné.
-      - [ ] Tester, par l'encodeur public, les allers-retours des structures système et données avec le décodeur Arburg.
+  - [x] `Encoding/Encoders/ArburgTrackEncoder.cs`
+    - [x] Identité et sélection du type de bloc Arburg
+      - [x] Remplacer l'identifiant brut `arburg` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Arburg system/data` par la définition centrale correspondante.
+      - [x] Remplacer la clé d'attribut brute `system` par une définition Arburg commune.
+      - [x] Représenter la sélection système ou données par un type nommé plutôt que de propager un booléen et des textes bruts dans l'encodeur.
+    - [x] Définitions des blocs Arburg
+      - [x] Déplacer les tailles utiles et complètes des blocs système et données dans `ArburgFormat`.
+      - [x] Déplacer les deux signatures hexadécimales dans `ArburgFormat` sous des noms distinguant le bloc système du bloc données.
+      - [x] Déplacer les motifs de bits `001` et `01`, le nombre de bits par octet et la longueur du gap final dans `ArburgFormat`.
+      - [x] Déplacer la taille et l'ordre little-endian du checksum ainsi que la valeur de remplissage dans `ArburgFormat`.
+    - [x] Construction du bloc commun
+      - [x] Extraire la sélection des tailles utiles et complètes dans une définition obtenue à partir du type de bloc.
+      - [x] Extraire la construction des données utiles, du checksum et du remplissage dans une fonction privée commune aux deux chemins.
+      - [x] Conserver explicitement la règle actuelle : lorsqu'un bloc complet est fourni, utiliser ses octets utiles puis reconstruire son checksum et son remplissage.
+      - [x] Remplacer le texte d'exception brut par une erreur paramétrable recevant le type de bloc, la taille observée, la taille utile et la taille complète attendues.
+    - [x] Encodages système et données
+      - [x] Extraire l'écriture du bloc système dans une fonction privée utilisant sa signature et ses motifs de bits nommés.
+      - [x] Extraire l'écriture du bloc données dans une fonction privée utilisant sa signature et l'encodage double FM.
+      - [x] Conserver l'inversion des bits du chemin données en la rendant explicite dans le nom de la fonction appelée.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Séparer toutes les déclarations, boucles, conditions et écritures actuellement juxtaposées sur une même ligne.
+      - [x] Développer le bloc `else` actuellement entièrement écrit sur une ligne.
+      - [x] Normaliser les espaces autour des affectations, comparaisons, ternaires, opérateurs et arguments.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Arburg
+      - [x] Tester l'encodage d'un bloc système fourni à sa taille utile puis à sa taille complète.
+      - [x] Tester l'encodage d'un bloc données fourni à sa taille utile puis à sa taille complète.
+      - [x] Vérifier pour les deux chemins la signature, le checksum little-endian, le remplissage et le gap final.
+      - [x] Tester le rejet d'une taille qui n'est ni la taille utile ni la taille complète du type sélectionné.
+      - [x] Tester, par l'encodeur public, les allers-retours des structures système et données avec le décodeur Arburg.
   - [ ] `Encoding/Encoders/CenturionMfmTrackEncoder.cs`
     - [ ] Identité de l'encodeur Centurion
       - [ ] Remplacer l'identifiant brut `centurion.mfm` par la définition centrale correspondante.

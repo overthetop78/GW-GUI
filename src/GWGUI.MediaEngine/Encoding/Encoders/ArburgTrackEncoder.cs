@@ -16,22 +16,36 @@ public sealed class ArburgTrackEncoder : TrackEncoderBase
     /// <remarks>Chaque bloc est complété avec son contrôle avant l'encodage des cellules.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
-        var bits=TrackBitEncoding.Bits();
-        foreach(var sector in request.Sectors)
+        var bits = TrackBitEncoding.Bits();
+        foreach (var sector in request.Sectors)
         {
-            var system=Attribute(sector,ArburgFormat.SystemAttribute,0)!=0;
-            var useful=system?ArburgFormat.SystemUsefulSize:ArburgFormat.DataUsefulSize; var total=system?ArburgFormat.SystemBlockSize:ArburgFormat.DataBlockSize;
-            if(sector.Data.Count!=useful&&sector.Data.Count!=total) throw ArburgFormat.InvalidPayloadSize(system,sector.Data.Count);
-            var data=sector.Data.Take(useful).ToArray();
-            var block=ArburgChecksum.CreateBlock(data,total);
-            if(system)
-            {
-                bits.Raw(ArburgFormat.SystemMark.ToArray());
-                bits.AddRange(ArburgSystemCodec.Encode(block));
-            }
-            else { bits.Raw(ArburgFormat.DataMark.ToArray()); bits.DoubleFm(block.Select(Primitives.BitPrimitives.ReverseBits)); }
-            bits.Gap(ArburgFormat.GapBitCount,true);
+            var definition = ArburgFormat.Definition(Attribute(sector, ArburgFormat.SystemAttribute, 0) != 0);
+            var block = BuildBlock(sector.Data, definition);
+            if (definition.Kind == ArburgFormat.BlockKind.System) WriteSystemBlock(bits, block, definition.Mark);
+            else WriteDataBlock(bits, block, definition.Mark);
+            bits.Gap(ArburgFormat.GapBitCount, true);
         }
         return bits;
+    }
+
+    /// <summary>Reconstruit toujours le checksum et le remplissage depuis les octets utiles reçus.</summary>
+    private static byte[] BuildBlock(IReadOnlyList<byte> source, ArburgFormat.BlockDefinition definition)
+    {
+        if (source.Count != definition.UsefulSize && source.Count != definition.TotalSize) throw ArburgFormat.InvalidPayloadSize(definition, source.Count);
+        return ArburgChecksum.CreateBlock(source.Take(definition.UsefulSize).ToArray(), definition.TotalSize);
+    }
+
+    /// <summary>Écrit la marque puis le codage variable d'un bloc système.</summary>
+    private static void WriteSystemBlock(List<bool> bits, IReadOnlyList<byte> block, IReadOnlyList<byte> mark)
+    {
+        bits.Raw(mark.ToArray());
+        bits.AddRange(ArburgSystemCodec.Encode(block));
+    }
+
+    /// <summary>Écrit la marque puis le double FM d'un bloc de données aux bits inversés.</summary>
+    private static void WriteDataBlock(List<bool> bits, IReadOnlyList<byte> block, IReadOnlyList<byte> mark)
+    {
+        bits.Raw(mark.ToArray());
+        bits.DoubleFm(block.Select(Primitives.BitPrimitives.ReverseBits));
     }
 }
