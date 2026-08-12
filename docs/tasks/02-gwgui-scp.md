@@ -3878,36 +3878,36 @@
       - [x] Tester le remplacement M²FM avec un motif présent, plusieurs motifs et aucun motif.
       - [x] Tester le rejet d'une taille différente de 128 ou 256 octets, des champs d'adresse hors plage et d'un code de taille incohérent.
       - [x] Tester, par l'encodeur public, l'aller-retour des quatre variantes RX02 avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/EmuFmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur E-mu
-      - [ ] Remplacer l'identifiant brut `emu.fm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `E-mu Emulator FM` par la définition centrale correspondante.
-    - [ ] Définitions du format E-mu FM
-      - [ ] Déplacer la taille sectorielle `0xe00` dans `EmuFmFormat` et utiliser cette même définition pour produire la taille décimale du message d'erreur.
-      - [ ] Déplacer la synchronisation de huit octets, répétée avant l'en-tête et les données, dans `EmuFmFormat`.
-      - [ ] Déplacer le polynôme `0x8005`, la valeur initiale du CRC et l'ordre de ses deux octets dans la définition commune au décodeur et à l'encodeur E-mu.
-      - [ ] Déplacer la longueur et la valeur du gap commun aux deux champs dans `EmuFmFormat`.
-      - [ ] Déplacer le décalage de la piste et la position du bit de tête dans `EmuFmFormat`.
-    - [ ] Construction des champs E-mu
-      - [ ] Extraire la composition puis l'inversion des bits de l'octet piste/tête dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire l'écriture de la synchronisation, de l'octet piste/tête, du CRC d'en-tête et du premier gap dans une fonction privée.
-      - [ ] Extraire l'écriture de la synchronisation, des données, du CRC de données et du second gap dans une fonction privée.
-      - [ ] Utiliser le même calcul CRC commun pour les deux champs sans répéter ses paramètres.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 3 584 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant son décalage et sa conversion en octet.
-      - [ ] Valider la tête avant son insertion dans le bit faible de l'octet piste/tête.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Séparer les calculs, écritures de champ et écritures de gap actuellement juxtaposés sur une même ligne.
-      - [ ] Normaliser les espaces autour des affectations, comparaisons, décalages, opérateurs, tableaux et arguments.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur E-mu
-      - [ ] Tester la composition et l'inversion de l'octet piste/tête avec des valeurs connues.
-      - [ ] Tester les CRC d'en-tête et de données avec des résultats connus et vérifier l'ordre de leurs octets.
-      - [ ] Tester la présence de la même synchronisation et du même gap autour des deux champs.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre et d'une tête hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste E-mu avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/EmuFmTrackEncoder.cs`
+    - [x] Identité de l'encodeur E-mu
+      - [x] Remplacer l'identifiant brut `emu.fm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `E-mu Emulator FM` par la définition centrale correspondante.
+    - [x] Définitions du format E-mu FM
+      - [x] Déplacer la taille sectorielle `0xe00` dans `EmuFmFormat` et utiliser cette même définition pour produire la taille décimale du message d'erreur.
+      - [x] Déplacer la synchronisation de huit octets, répétée avant l'en-tête et les données, dans `EmuFmFormat`.
+      - [x] Déplacer le polynôme `0x8005`, la valeur initiale du CRC et l'ordre de ses deux octets dans la définition commune au décodeur et à l'encodeur E-mu.
+      - [x] Déplacer la longueur et la valeur du gap commun aux deux champs dans `EmuFmFormat`.
+      - [x] Déplacer le décalage de la piste et la position du bit de tête dans `EmuFmFormat`.
+    - [x] Construction des champs E-mu
+      - [x] Extraire la composition puis l'inversion des bits de l'octet piste/tête dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire l'écriture de la synchronisation, de l'octet piste/tête, du CRC d'en-tête et du premier gap dans une fonction privée.
+      - [x] Extraire l'écriture de la synchronisation, des données, du CRC de données et du second gap dans une fonction privée.
+      - [x] Utiliser le même calcul CRC commun pour les deux champs sans répéter ses paramètres.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 3 584 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant son décalage et sa conversion en octet.
+      - [x] Valider la tête avant son insertion dans le bit faible de l'octet piste/tête.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Séparer les calculs, écritures de champ et écritures de gap actuellement juxtaposés sur une même ligne.
+      - [x] Normaliser les espaces autour des affectations, comparaisons, décalages, opérateurs, tableaux et arguments.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur E-mu
+      - [x] Tester la composition et l'inversion de l'octet piste/tête avec des valeurs connues.
+      - [x] Tester les CRC d'en-tête et de données avec des résultats connus et vérifier l'ordre de leurs octets.
+      - [x] Tester la présence de la même synchronisation et du même gap autour des deux champs.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'une tête hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste E-mu avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/HeathkitFmTrackEncoder.cs`
     - [ ] Identité et volume de l'encodeur Heathkit
       - [ ] Remplacer l'identifiant brut `heathkit.fm` par la définition centrale correspondante.

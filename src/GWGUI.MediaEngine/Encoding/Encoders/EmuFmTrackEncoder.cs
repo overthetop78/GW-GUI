@@ -18,19 +18,45 @@ public sealed class EmuFmTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackBitEncoding.Bits();
+        ValidateAddress(nameof(request.Cylinder), request.Cylinder, EmuFmFormat.MaximumCylinder);
+        ValidateAddress(nameof(request.Head), request.Head, EmuFmFormat.MaximumHead);
+        var rawTrack = ComposeRawTrack(request.Cylinder, request.Head);
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != EmuFmFormat.SectorSize) throw EmuFmFormat.InvalidSectorSize(sector.Data.Count);
-            var rawTrack = BitPrimitives.ReverseBits((byte)(request.Cylinder << EmuFmFormat.TrackShift | request.Head));
-            var headerCrc = Crc16Calculator.Compute([rawTrack], EmuFmFormat.CrcPolynomial, EmuFmFormat.CrcInitialValue);
-            bits.Raw(EmuFmFormat.SectorMark.ToArray());
-            bits.DoubleFm([rawTrack, (byte)(headerCrc >> BitPrimitives.BitsPerByte), (byte)headerCrc]);
-            bits.Gap(EmuFmFormat.GapBitCount, true);
-            var dataCrc = Crc16Calculator.Compute(sector.Data, EmuFmFormat.CrcPolynomial, EmuFmFormat.CrcInitialValue);
-            bits.Raw(EmuFmFormat.SectorMark.ToArray());
-            bits.DoubleFm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte), (byte)dataCrc]));
-            bits.Gap(EmuFmFormat.GapBitCount, true);
+            WriteHeader(bits, rawTrack);
+            WriteData(bits, sector.Data);
         }
         return bits;
+    }
+
+    /// <summary>Compose le cylindre et la face puis inverse l'ordre de leurs bits pour le stockage E-mu.</summary>
+    private static byte ComposeRawTrack(int cylinder, int head) => BitPrimitives.ReverseBits((byte)(cylinder << EmuFmFormat.TrackShift | head));
+
+    /// <summary>Écrit la marque commune, l'adresse inversée, son CRC fort puis faible et le premier gap.</summary>
+    private static void WriteHeader(List<bool> bits, byte rawTrack)
+    {
+        var crc = CalculateCrc([rawTrack]);
+        bits.Raw(EmuFmFormat.SectorMark.ToArray());
+        bits.DoubleFm([rawTrack, (byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]);
+        bits.Gap(EmuFmFormat.GapBitCount, true);
+    }
+
+    /// <summary>Écrit la marque commune, les données, leur CRC fort puis faible et le second gap.</summary>
+    private static void WriteData(List<bool> bits, IReadOnlyList<byte> data)
+    {
+        var crc = CalculateCrc(data);
+        bits.Raw(EmuFmFormat.SectorMark.ToArray());
+        bits.DoubleFm(data.Concat([(byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]));
+        bits.Gap(EmuFmFormat.GapBitCount, true);
+    }
+
+    /// <summary>Calcule le CRC IBM commun aux champs d'adresse et de données.</summary>
+    private static ushort CalculateCrc(IEnumerable<byte> values) => Crc16Calculator.Compute(values, EmuFmFormat.CrcPolynomial, EmuFmFormat.CrcInitialValue);
+
+    /// <summary>Valide une composante de l'adresse avant son empaquetage.</summary>
+    private static void ValidateAddress(string field, int value, int maximum)
+    {
+        if (value is < 0 || value > maximum) throw TrackEncodingExceptions.FormatValueOutOfRange("E-mu FM", field, value, maximum);
     }
 }

@@ -49,6 +49,10 @@ internal static class EmuFmFormat
     public const int TrackShift = 1;
     /// <summary>Masque isolant la face.</summary>
     public const byte HeadMask = 1;
+    /// <summary>Plus grand cylindre représentable avec le bit de face.</summary>
+    public const int MaximumCylinder = byte.MaxValue >> TrackShift;
+    /// <summary>Plus grande face représentable dans le bit faible.</summary>
+    public const int MaximumHead = HeadMask;
     /// <summary>Longueur du remplissage produit par l'encodeur.</summary>
     public const int GapBitCount = 64;
     /// <summary>Distance maximale de recherche des données.</summary>
