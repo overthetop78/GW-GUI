@@ -5321,10 +5321,10 @@
     - [x] Tester le filtrage des adresses hors géométrie, le calcul du numéro logique, les options de taille variable et de capacité, puis la priorité des candidats valides, inconnus et invalides.
     - [x] Tester l'absence de candidat adressé et l'absence de données pour l'adresse demandée à `BestData`.
   - [ ] `SectorImages/AmigaScpSectorImageReader.cs`
-    - [ ] Remplacer format, codec, géométrie, tailles et seuils bruts par les définitions Amiga communes.
-    - [ ] Remplacer les erreurs brutes par une méthode injectant piste, secteur et nombre de candidats.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester une capture Amiga DD, une capture Amiga HD et une capture sans secteur valide.
+    - [x] Remplacer format, codec, géométrie, tailles et seuils bruts par les définitions Amiga communes.
+    - [ ] Remplacer les erreurs brutes par une méthode injectant piste, secteur et nombre de candidats. **Non applicable en l'état :** les deux erreurs sont déjà centralisées et signalent l'échec global de la reconstruction ; aucune piste ni aucun secteur unique ne correspond à cet échec. `NoUsableSectors` reçoit les nombres globaux de candidats et de blocs utilisables.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester une capture Amiga DD, une capture Amiga HD et une capture sans secteur valide.
   - [ ] `SectorImages/AmstradIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer formats CPC/PCW, géométries et tailles brutes par les définitions Amstrad correspondantes.
     - [ ] Documenter en français chaque membre.

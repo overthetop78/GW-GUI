@@ -10,6 +10,8 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.SectorImages;
@@ -19,6 +21,15 @@ namespace GWGUI.Tests;
 
 public sealed class RealScpCorpusTests
 {
+    [Fact]
+    public async Task RealAmigaHighDensityScpUsesTheHighDensityGeometry()
+    {
+        var path = TestImagePath("validated_images", "Commodore", "Amiga", "3.5 pouces HD - AmigaDOS FFS", "Boot-HD-FFS [test].scp");
+        var image = await new AmigaScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()).ReadAsync(path);
+        Assert.Equal(DiskImageFormatIds.AmigaDosHighDensity, image.FormatId);
+        Assert.Equal(AmigaMfmFormat.HighDensitySectorsPerTrack, image.SectorsPerTrack);
+    }
+
     [Fact]
     public async Task RealAmigaScpPreparesAndRendersBothFacesWhenRequested()
     {
