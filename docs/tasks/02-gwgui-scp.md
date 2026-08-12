@@ -6029,38 +6029,38 @@
       - [x] Tester chaque drapeau d'entrée et plusieurs drapeaux combinés.
       - [x] Tester un nom RADIX-50, une date valide et une date invalide.
       - [x] Tester plusieurs segments, une paire de blocs absente et un contenu tronqué.
-  - [ ] UCSD p-System
-    - [ ] `FileSystems/Ucsd/UcsdFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemLayout.cs`.
-      - [ ] Ajouter la taille de bloc `512`, le bloc de répertoire `2` et la taille d'entrée `26`.
-      - [ ] Ajouter les deux fins de répertoire acceptées `6` et `10`.
-      - [ ] Ajouter la longueur maximale de volume `7`, le nombre maximal de fichiers `77` et les bornes ASCII des noms.
-      - [ ] Ajouter les offsets du volume, du nombre de blocs, du nombre de fichiers et de la date.
-      - [ ] Ajouter les offsets d'une entrée de fichier, de sa plage de blocs, de sa taille, de son type et de sa date.
-      - [ ] Remplacer chaque valeur brute correspondante dans `UcsdFileSystemReader`.
-      - [ ] Documenter en français chaque constante et chaque offset.
-    - [ ] `FileSystems/Ucsd/UcsdByteOrder.cs`
-      - [ ] Créer l'enum `UcsdByteOrder` avec LittleEndian et BigEndian.
-      - [ ] Remplacer le `bool?` retourné par `DetectByteOrder` par un résultat explicite contenant succès et ordre.
-      - [ ] Remplacer le booléen `littleEndian` de `ReadUInt16` par l'enum.
-      - [ ] Documenter en français l'enum et chacune de ses valeurs.
-    - [ ] `FileSystems/Ucsd/UcsdFileKind.cs`
-      - [ ] Créer l'enum `UcsdFileKind` avec Untyped, ExternalDisk, Code, Text, Info, Data, Graphics, Photo et SecureDirectory.
-      - [ ] Remplacer le `switch` numérique de `FileKindName` par cet enum.
-      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
-      - [ ] Documenter en français l'enum et chacune de ses valeurs.
-    - [ ] `FileSystems/Ucsd/UcsdFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de répertoire absent avec bloc et taille observée.
-      - [ ] Ajouter l'erreur d'ordre des octets indéterminé avec les quatre premiers octets.
-      - [ ] Ajouter l'avertissement de plage incomplète avec premier bloc, nombre de blocs et longueur obtenue.
-      - [ ] Ajouter l'erreur d'entrée invalide avec index, nom et plage déclarée.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions UCSD
-      - [ ] Tester les deux ordres d'octets et les deux valeurs de fin de répertoire.
-      - [ ] Tester chaque type de fichier et une date valide.
-      - [ ] Tester un ordre indéterminé, un nom invalide et une plage incomplète.
+  - [x] UCSD p-System
+    - [x] `FileSystems/Ucsd/UcsdFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Ucsd/UcsdFileSystemLayout.cs`.
+      - [x] Ajouter la taille de bloc `512`, le bloc de répertoire `2` et la taille d'entrée `26`.
+      - [x] Ajouter les deux fins de répertoire acceptées `6` et `10`.
+      - [x] Ajouter la longueur maximale de volume `7`, le nombre maximal de fichiers `77` et les bornes ASCII des noms.
+      - [x] Ajouter les offsets du volume, du nombre de blocs, du nombre de fichiers et de la date.
+      - [x] Ajouter les offsets d'une entrée de fichier, de sa plage de blocs, de sa taille, de son type et de sa date.
+      - [x] Remplacer chaque valeur brute correspondante dans `UcsdFileSystemReader`.
+      - [x] Documenter en français chaque constante et chaque offset.
+    - [x] `FileSystems/Ucsd/UcsdByteOrder.cs`
+      - [x] Créer l'enum `UcsdByteOrder` avec LittleEndian et BigEndian.
+      - [x] Remplacer le `bool?` retourné par `DetectByteOrder` par un résultat explicite contenant succès et ordre.
+      - [x] Remplacer le booléen `littleEndian` de `ReadUInt16` par l'enum.
+      - [x] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] `FileSystems/Ucsd/UcsdFileKind.cs`
+      - [x] Créer l'enum `UcsdFileKind` avec Untyped, ExternalDisk, Code, Text, Info, Data, Graphics, Photo et SecureDirectory.
+      - [x] Remplacer le `switch` numérique de `FileKindName` par cet enum.
+      - [x] Déplacer les libellés d'affichage hors du Reader technique.
+      - [x] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] `FileSystems/Ucsd/UcsdFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Ucsd/UcsdFileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de répertoire absent avec bloc et taille observée.
+      - [x] Ajouter l'erreur d'ordre des octets indéterminé avec les quatre premiers octets.
+      - [x] Ajouter l'avertissement de plage incomplète avec premier bloc, nombre de blocs et longueur obtenue.
+      - [x] Ajouter l'erreur d'entrée invalide avec index, nom et plage déclarée.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions UCSD
+      - [x] Tester les deux ordres d'octets et les deux valeurs de fin de répertoire.
+      - [x] Tester chaque type de fichier et une date valide.
+      - [x] Tester un ordre indéterminé, un nom invalide et une plage incomplète.
 
 - [ ] Compléments issus de la relecture complète des systèmes de fichiers
   - [ ] `FileSystems/Readers/AcornAdfsFileSystemReader.cs`
