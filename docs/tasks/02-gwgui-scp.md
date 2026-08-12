@@ -5376,10 +5376,10 @@
     - [x] Remplacer géométries SSD/DSD, pistes, faces, secteurs et formats bruts par les définitions BBC DFS.
     - [x] Documenter en français chaque membre.
     - [x] Tester SSD/DSD 40 et 80 pistes.
-  - [ ] `SectorImages/BbcScpSectorImageReader.cs`
-    - [ ] Remplacer codec, formats et erreurs bruts par les définitions BBC et erreurs de reconstruction.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester un format explicite, la sélection automatique et une capture sans secteur valide.
+  - [x] `SectorImages/BbcScpSectorImageReader.cs`
+    - [x] Remplacer codec, formats et erreurs bruts par les définitions BBC et erreurs de reconstruction. Le wrapper a été supprimé ; les parcours BBC appellent directement le lecteur ISO et la politique BBC.
+    - [x] Documenter en français chaque membre. Aucun membre du wrapper ne subsiste.
+    - [x] Tester un format explicite, la sélection automatique et une capture sans secteur valide.
   - [ ] `SectorImages/CommodoreScpSectorImageReader.cs`
     - [ ] Remplacer codecs, zones, géométries et formats bruts par `CommodoreGeometry` et `FluxCodecIds`.
     - [ ] Documenter en français chaque membre.
