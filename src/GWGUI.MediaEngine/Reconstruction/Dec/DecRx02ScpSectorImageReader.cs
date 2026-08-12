@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Geometries.Dec;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Reconstruction.Dec;
 
@@ -30,13 +31,13 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
-            foreach (var sector in decoders.Decode(FluxCodecIds.DecRx02, track.Revolutions[revolution].Flux).Sectors)
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
+            foreach (var sector in decoders.Decode(FluxCodecIds.DecRx02, window.Flux).Sectors)
             {
                 if (sector.Data is not { Count: DecRx02Geometry.PhysicalSectorSize } || sector.Head != 0 ||
                     !PhysicalToLogical.TryGetValue((sector.Cylinder, sector.Number), out var logical)) continue;
                 if (!sectors.TryGetValue(logical, out var values)) sectors[logical] = values = [];
-                values.Add((sector, revolution + 1));
+                values.Add((sector, window.Revolution));
             }
         }
         if (sectors.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(DecRx02Format.StructureDescriptionName);

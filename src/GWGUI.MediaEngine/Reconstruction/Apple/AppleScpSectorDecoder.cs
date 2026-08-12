@@ -3,6 +3,8 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Flux;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
@@ -24,17 +26,17 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
                 var decoded = decoderId == FluxCodecIds.AppleMacGcr
-                    ? DecodeMacTrack(track, track.Revolutions[revolution])
-                    : decoders.Decode(decoderId, track.Revolutions[revolution].Flux);
+                    ? DecodeMacTrack(track, window.Flux)
+                    : decoders.Decode(decoderId, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is not { Count: var length } || length != size) continue;
                     var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);
                     if (!result.TryGetValue(address, out var list)) result[address] = list = [];
-                    list.Add((sector, revolution + 1));
+                    list.Add((sector, window.Revolution));
                 }
             }
         }
@@ -56,7 +58,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     /// <param name="track">Piste SCP dont le cylindre et la face bornent les secteurs plausibles.</param>
     /// <param name="revolution">RÃ©volution contenant le flux Ã  essayer avec plusieurs durÃ©es de cellule.</param>
     /// <returns>Le rÃ©sultat de dÃ©codage obtenant le meilleur score de secteurs Macintosh plausibles.</returns>
-    private FluxDecodeResult DecodeMacTrack(ScpTrack track, ScpRevolution revolution)
+    private FluxDecodeResult DecodeMacTrack(ScpTrack track, FluxRevolution revolution)
     {
         var expected = MacintoshGcrGeometry.Sectors(track.Cylinder);
         var initial = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals) * 2;
@@ -65,7 +67,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         var bestScore = int.MinValue;
         foreach (var factor in factors)
         {
-            var candidate = _macDecoder.DecodeAtBitCell(revolution.Flux, initial * factor);
+            var candidate = _macDecoder.DecodeAtBitCell(revolution, initial * factor);
             var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == AppleIwmGcrFormat.SectorByteCount &&
                 sector.Cylinder == track.Cylinder && sector.Head == track.Head &&
                 sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
@@ -78,6 +80,6 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
             if (plausible.Where(sector => sector.IntegrityValid == true).Select(sector => sector.Number)
                     .Distinct().Count() == expected) break;
         }
-        return best ?? _macDecoder.Decode(revolution.Flux);
+        return best ?? _macDecoder.Decode(revolution);
     }
 }

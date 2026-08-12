@@ -7,9 +7,6 @@ internal static class ScpTrackSampler
 {
     /// <summary>Nombre maximal de pistes sondées.</summary>
     public const int MaximumTrackCount = 6;
-    /// <summary>Indice de la première révolution sondée.</summary>
-    public const int FirstRevolutionIndex = 0;
-
     /// <summary>Retourne au plus six pistes distinctes possédant au moins une révolution.</summary>
     public static IReadOnlyList<ScpTrack> Sample(IReadOnlyList<ScpTrack> tracks)
     {

@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Reconstruction.Commodore;
 
@@ -39,15 +40,15 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         foreach (var physicalTrack in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            for (var revolution = 0; revolution < physicalTrack.Revolutions.Count; revolution++)
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(physicalTrack))
             {
-                var decoded = decoders.Decode(FluxCodecIds.CommodoreGcr, physicalTrack.Revolutions[revolution].Flux);
+                var decoded = decoders.Decode(FluxCodecIds.CommodoreGcr, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is null || sector.Cylinder is < 1 or > DiskGeometryConstants.EightyTrackCylinderCount || sector.Number < 0) continue;
                     var key = ((int)sector.Cylinder, sector.Number);
                     if (!candidates.TryGetValue(key, out var list)) candidates[key] = list = [];
-                    list.Add((sector, revolution + 1));
+                    list.Add((sector, window.Revolution));
                 }
             }
         }
@@ -86,15 +87,15 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
-                var decoded = decoders.Decode(FluxCodecIds.IsoMfm, track.Revolutions[revolution].Flux);
+                var decoded = decoders.Decode(FluxCodecIds.IsoMfm, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is null || sector.Data.Count != Commodore1581Geometry.PhysicalSectorSize || sector.Number is < 1 or > Commodore1581Geometry.PhysicalSectorsPerTrack) continue;
                     var address = new SectorAddress(track.Cylinder, track.Head, sector.Number);
                     if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
-                    list.Add((sector, revolution + 1));
+                    list.Add((sector, window.Revolution));
                 }
             }
         }

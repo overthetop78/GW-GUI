@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Flux;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Recognition.Scp;
 
@@ -19,15 +20,15 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         return found.Keys.ToHashSet();
     }
 
-    /// <summary>Sonde la première révolution d'une piste et évite les décodeurs d'une famille déjà trouvée.</summary>
+    /// <summary>Sonde la vue continue d'une piste et évite les décodeurs d'une famille déjà trouvée.</summary>
     private void ProbeTrack(ScpTrack track, ConcurrentDictionary<ScpFormatFamily, byte> found, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var revolution = track.Revolutions[ScpTrackSampler.FirstRevolutionIndex];
+        var window = ScpTrackDecodeWindowFactory.Primary(track);
         foreach (var definition in ScpFamilyProbeCatalog.Definitions)
         {
             if (found.ContainsKey(definition.Family)) continue;
-            var result = decoders.Decode(definition.DecoderId, revolution.Flux);
+            var result = decoders.Decode(definition.DecoderId, window.Flux);
             if (HasValidSector(result)) found.TryAdd(definition.Family, 0);
         }
     }

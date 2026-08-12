@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
 
@@ -25,17 +26,17 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
-                var result = policy.DecoderIds.Select(decoder => decoders.Decode(decoder, track.Revolutions[revolution].Flux))
+                var result = policy.DecoderIds.Select(decoder => decoders.Decode(decoder, window.Flux))
                     .OrderByDescending(Score).First();
                 foreach (var sector in result.Sectors)
                 {
                     if (sector.Data is null || sector.Number < 0) continue;
-                    AddCandidate(physicalCandidates, new(track.Cylinder, track.Head, sector.Number), sector, revolution + 1);
+                    AddCandidate(physicalCandidates, new(track.Cylinder, track.Head, sector.Number), sector, window.Revolution);
                     if (sector.Cylinder != track.Cylinder || sector.Head != track.Head) continue;
                     var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);
-                    AddCandidate(candidates, address, sector, revolution + 1);
+                    AddCandidate(candidates, address, sector, window.Revolution);
                 }
             }
         }

@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Reconstruction.Amiga;
 
@@ -24,15 +25,15 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            for (var revolution = 0; revolution < track.Revolutions.Count; revolution++)
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
-                var result = decoders.Decode(FluxCodecIds.AmigaMfm, track.Revolutions[revolution].Flux);
+                var result = decoders.Decode(FluxCodecIds.AmigaMfm, window.Flux);
                 foreach (var sector in result.Sectors)
                 {
                     if (sector.Data is not { Count: AmigaMfmFormat.SectorByteCount } || sector.Cylinder != track.Cylinder || sector.Head != track.Head) continue;
                     var address = new SectorAddress(sector.Cylinder, sector.Head, sector.Number);
                     if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
-                    list.Add((sector, revolution + 1));
+                    list.Add((sector, window.Revolution));
                 }
             }
         }
