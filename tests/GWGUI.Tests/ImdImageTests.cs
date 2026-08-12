@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 
 namespace GWGUI.Tests;
 
@@ -14,9 +15,9 @@ public sealed class ImdImageTests
     public void EpsonDetectionIgnoresCandidatesWithoutData()
     {
         var empty = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
-        Assert.False(EpsonQx10SectorImagePolicy.TryDetectFormat(empty, out _));
+        Assert.False(AutomaticIsoScpSectorImagePolicy.TryDetectEpsonFormat(empty, out _));
         empty[new(0, 0, 0)] = [new(new(0, 0, 0, 1, 256, null, 0), 1)];
-        Assert.False(EpsonQx10SectorImagePolicy.TryDetectFormat(empty, out _));
+        Assert.False(AutomaticIsoScpSectorImagePolicy.TryDetectEpsonFormat(empty, out _));
 
         var mixed = new Dictionary<SectorAddress, List<IsoSectorCandidate>> { [new(0, 0, 99)] = [new(new(0, 0, 99, 1, 256, null, 0), 1)] };
         var geometry = EpsonQx10GeometryCatalog.Layout320;
@@ -25,7 +26,7 @@ public sealed class ImdImageTests
             var number = geometry.FirstSector + index;
             mixed[new(0, 0, number)] = [new(new(0, 0, number, 1, geometry.SectorSize, true, 0, Data: new byte[geometry.SectorSize]), 1)];
         }
-        Assert.True(EpsonQx10SectorImagePolicy.TryDetectFormat(mixed, out _));
+        Assert.True(AutomaticIsoScpSectorImagePolicy.TryDetectEpsonFormat(mixed, out _));
     }
 
     [Theory]

@@ -5178,11 +5178,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `EpsonQx10SectorImageBuilder`.
     - [x] Ajouter la documentation XML des méthodes `Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10SectorImagePolicy.cs`
-  - [ ] Suppression du wrapper sans traitement
-    - [ ] Remplacer `CreateImage` par des appels directs à `EpsonQx10SectorImageBuilder.Create` dans ses deux consommateurs.
-    - [ ] Remplacer `TryDetectFormat` par un appel direct à `EpsonQx10FormatDetector.TryDetect` dans `AutomaticIsoScpSectorImagePolicy`.
-    - [ ] Supprimer le fichier après adaptation de ses trois appels.
+- [x] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10SectorImagePolicy.cs`
+  - [x] Suppression du wrapper sans traitement
+    - [x] Remplacer `CreateImage` par des appels directs à `EpsonQx10SectorImageBuilder.Create` dans ses deux consommateurs.
+    - [x] Remplacer `TryDetectFormat` par un appel direct à `EpsonQx10FormatDetector.TryDetect` dans `AutomaticIsoScpSectorImagePolicy`.
+    - [x] Supprimer le fichier après adaptation de ses trois appels.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/GenericIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs`.
