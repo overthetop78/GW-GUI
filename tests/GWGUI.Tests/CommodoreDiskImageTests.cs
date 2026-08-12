@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 using GWGUI.MediaEngine.Containers.Commodore;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
@@ -288,7 +288,7 @@ public sealed class CommodoreDiskImageTests
     public async Task RealCommodoreCorpusCanBeOpened()
     {
         var root = Environment.GetEnvironmentVariable("GWGUI_COMMODORE_CORPUS");
-        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) return;
+        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root)) root = FindImageTestRoot();
         var files = Directory.EnumerateFiles(root, "*.*", SearchOption.AllDirectories)
             .Where(path => new[] { ".d64", ".d71", ".d81" }.Contains(Path.GetExtension(path), StringComparer.OrdinalIgnoreCase))
             .OrderBy(path => path, StringComparer.OrdinalIgnoreCase).ToArray();
@@ -302,6 +302,17 @@ public sealed class CommodoreDiskImageTests
             Assert.True(explored.Volume.Entries.Count > 0, file);
             var expected = Path.GetFileName(file).Contains("cpm", StringComparison.OrdinalIgnoreCase) ? GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Cpm : GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.CommodoreDos;
             Assert.Equal(expected, explored.Volume.FileSystemId);
+            Assert.InRange(explored.Volume.FreeBytes, 0, explored.Volume.Capacity);
+            if (expected == GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.CommodoreDos)
+            {
+                Assert.All(explored.Volume.Entries, entry =>
+                {
+                    Assert.False(string.IsNullOrWhiteSpace(entry.Name));
+                    Assert.NotNull(entry.Content);
+                    Assert.InRange(entry.RawAttributes & (uint)CommodoreDosFileType.BaseTypeMask, 1u, (uint)CommodoreDosFileType.Cbm);
+                    Assert.True(entry.StorageReference >= 0);
+                });
+            }
         }
     }
 
@@ -338,5 +349,16 @@ public sealed class CommodoreDiskImageTests
             Assert.True(automatic.FileSystemRecognized, $"Automatic detection failed for {generated}");
             Assert.StartsWith("commodore.", automatic.Image.FormatId);
         }
+    }
+
+    /// <summary>Recherche le corpus local non versionné à partir du dossier d'exécution des tests.</summary>
+    private static string FindImageTestRoot()
+    {
+        for (var directory = new DirectoryInfo(AppContext.BaseDirectory); directory is not null; directory = directory.Parent)
+        {
+            var candidate = Path.Combine(directory.FullName, "image_test");
+            if (Directory.Exists(candidate)) return candidate;
+        }
+        throw new DirectoryNotFoundException("Le dossier local image_test est introuvable.");
     }
 }

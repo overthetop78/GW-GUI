@@ -20,7 +20,7 @@ public static class FileSystemReaderCatalog
         new Readers.LisaFileSystemReader(),
         new Cpm.AmstradCpmFileSystemReader(),
         new Cpm.CpmFileSystemReader(),
-        new Readers.CommodoreDosFileSystemReader(),
+        new Commodore.Dos.CommodoreDosFileSystemReader(),
         new Readers.Fat12FileSystemReader(),
         new Atari.Dos.AtariDosFileSystemReader()
     ]);

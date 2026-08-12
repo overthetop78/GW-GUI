@@ -6783,87 +6783,87 @@
       - [x] Tester un répertoire, un fichier, un lien ou type pris en charge et un nœud de périphérique de taille nulle.
       - [x] Tester un cycle de répertoire, une seconde référence et un bloc logique absent dans l'image aplatie.
       - [x] Vérifier avec une image connue de `image_test` le volume, les entrées, contenus positionnés, modes, validités, dates, avertissements et espace libre.
-  - [ ] `FileSystems/Readers/CommodoreDosFileSystemReader.cs`
-    - [ ] Emplacement et identité CBM DOS
-      - [ ] Déplacer le Reader vers `FileSystems/Commodore/Dos/CommodoreDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `commodore-dos` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer le nom brut `CBM DOS` du volume par cet identifiant technique central.
-      - [ ] Exposer Commodore 1541, 1571 et 1581 par un ensemble réellement non modifiable.
-    - [ ] Layouts CBM DOS séparés
-      - [ ] Créer `Commodore1541DosLayout.cs` pour D64/D71 et `Commodore1581DosLayout.cs` pour D81.
-      - [ ] Déplacer dans chaque layout sa piste d'en-tête 18 ou 40, son secteur d'en-tête, son premier secteur de répertoire de repli et l'offset du nom 0x90 ou 4.
-      - [ ] Déplacer les signatures d'en-tête `0x41` et `0x44` dans le layout auquel elles appartiennent.
-      - [ ] Déplacer la taille sectorielle de 256 octets, les huit entrées par secteur et les 32 octets par entrée dans les définitions communes CBM DOS.
-      - [ ] Déplacer les offsets de lien, type, première donnée, nom et nombre déclaré de blocs dans la disposition de répertoire.
-    - [ ] Géométrie piste/secteur commune
-      - [ ] Déplacer `ToLogicalBlock`, `TryToLogicalBlock` et la sélection 1541/1581 dans la géométrie Commodore commune hors du dossier `Images`.
-      - [ ] Faire utiliser cette géométrie commune par le Reader d'image et le Reader de système de fichiers.
-      - [ ] Supprimer l'import et la dépendance du Reader vers `GWGUI.MediaEngine.Images`.
-      - [ ] Remplacer le résultat sentinelle `-1` de `TryToLogicalBlock` par une tentative retournant explicitement l'absence de bloc logique.
-    - [ ] Accès aux secteurs CBM
-      - [ ] Décomposer `TryGetSector` en conversion de coordonnées, récupération du bloc et contrôle de taille distincts.
-      - [ ] Conserver l'échec silencieux de la sonde pour une coordonnée invalide, mais ne pas vider les diagnostics lors d'une lecture confirmée.
-      - [ ] Retourner les données en lecture seule ou ne les copier que lorsque le consommateur doit les conserver.
-    - [ ] Types et drapeaux de fichiers CBM
-      - [ ] Créer `CommodoreDosFileType.cs` avec DEL, SEQ, PRG, USR, REL et CBM.
-      - [ ] Remplacer les masques bruts du type bas, de fermeture `0x80` et de verrouillage `0x40` par un enum de drapeaux.
-      - [ ] Déplacer les noms `SEQ`, `PRG`, `USR`, `REL`, `CBM`, `DEL`, `open` et `locked` hors du Reader technique.
-      - [ ] Conserver la valeur complète des drapeaux dans les attributs bruts de l'entrée.
-    - [ ] Codec PETSCII commun
-      - [ ] Créer `Primitives/PetsciiCodec.cs` réutilisable par les Readers Commodore.
-      - [ ] Y déplacer les terminateurs nul et `0xa0`, le masque sept bits et les plages de conversion de casse.
-      - [ ] Remplacer le texte ou caractère mojibake actuellement produit pour une valeur inconnue par le caractère Unicode de remplacement `\uFFFD` exact.
-      - [ ] Faire utiliser ce codec par le nom du volume et les noms de fichiers.
-    - [ ] Reconnaissance du volume et du répertoire
-      - [ ] Créer un résultat de reconnaissance contenant le layout, l'en-tête et la première coordonnée de répertoire.
-      - [ ] Faire réutiliser ce résultat par `Read` au lieu d'appeler `CanRead` puis de relire l'en-tête.
-      - [ ] Déplacer `HasPlausibleDirectory` dans `CommodoreDosDirectoryReader.cs`.
-      - [ ] Remplacer la limite brute de 64 secteurs visités, les huit slots, tailles et offsets par les définitions centrales.
-      - [ ] Conserver la règle qui accepte un répertoire vide d'un seul secteur mais rejette toute entrée active non plausible.
-      - [ ] Utiliser la tentative de géométrie commune pour valider la première donnée d'une entrée.
-    - [ ] Lecture du répertoire
-      - [ ] Déplacer `ReadDirectory` dans `CommodoreDosDirectoryReader.cs`.
-      - [ ] Distinguer cycle de répertoire, secteur absent et secteur tronqué dans les avertissements.
-      - [ ] Valider chaque offset d'entrée avant d'accéder à ses champs.
-      - [ ] Lire le nombre déclaré de blocs little-endian avec une primitive bornée.
-      - [ ] Conserver le tri final des noms sans casse.
-    - [ ] Lecture d'une chaîne de fichier
-      - [ ] Créer `CommodoreDosFileReader.cs` et y déplacer `ReadFile`.
-      - [ ] Faire retourner ensemble le contenu, la validité, les secteurs visités et les avertissements.
-      - [ ] Distinguer cycle, coordonnée invalide, secteur absent et secteur tronqué.
-      - [ ] Remplacer les 254 octets utiles d'un secteur intermédiaire et les deux octets de lien par les définitions centrales.
-      - [ ] Valider dans le dernier secteur la valeur `nextSector - 1` au lieu de la borner silencieusement entre zéro et 254.
-      - [ ] Conserver une limite par capacité de l'image mais la faire contribuer à l'invalidité au lieu d'ajouter seulement un avertissement.
-      - [ ] Faire utiliser `MetadataValid` à partir de ce résultat au lieu de toujours fournir `true`.
-      - [ ] Distinguer un fichier vide valide d'un contenu vide causé par une erreur avant d'utiliser le nombre déclaré de blocs comme taille de repli.
-      - [ ] Remplacer la référence sentinelle `-1` par une référence optionnelle issue de la géométrie commune.
-    - [ ] BAM D64 et D71
-      - [ ] Créer `Commodore1541BamReader.cs` avec la piste BAM 18, l'offset quatre, la largeur quatre et le nombre de pistes défini par la géométrie.
-      - [ ] Remplacer la limite brute de 35 pistes par la définition correspondant réellement à l'image 1541 reconnue.
-      - [ ] Conserver le second BAM de la seconde face pour D71 avec une coordonnée nommée.
-      - [ ] Retourner une valeur d'espace libre optionnelle et des avertissements lorsqu'un BAM requis est absent ou tronqué.
-    - [ ] BAM D81
-      - [ ] Créer `Commodore1581BamReader.cs` avec les secteurs BAM un et deux de la piste 40.
-      - [ ] Déplacer les quarante entrées, leur offset 16 et leur largeur six dans le layout D81.
-      - [ ] Valider chaque entrée avant de lire son compteur libre.
-      - [ ] Distinguer un BAM absent d'un disque réellement plein.
-    - [ ] Erreurs et avertissements CBM DOS
-      - [ ] Créer `CommodoreDosExceptions.cs` pour volume, en-tête, coordonnée et dernier secteur invalides.
-      - [ ] Créer `CommodoreDosWarnings.cs` pour cycles, secteurs, capacité, BAM et tailles déclarées.
-      - [ ] Remplacer tous les textes anglais construits directement dans le Reader par ces fonctions recevant nom, piste, secteur et valeur observée.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Séparer les coordonnées, liens, types, retours conditionnels et affectations actuellement juxtaposés sur une même ligne.
-      - [ ] Développer les corps de `try`/`catch` et de tentative de secteur actuellement écrits sur une ligne.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-      - [ ] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader CBM DOS
-      - [ ] Tester D64, D71 et D81 avec leurs en-têtes, coordonnées de répertoire et noms PETSCII.
-      - [ ] Tester chacun des six types, un fichier ouvert, verrouillé et supprimé.
-      - [ ] Tester une chaîne valide, cyclique, au secteur absent, tronqué et au dernier compteur invalide.
-      - [ ] Tester un fichier vide valide et un échec avant lecture sans les confondre.
-      - [ ] Tester les géométries 1541, seconde face 1571 et 1581, y compris une coordonnée invalide.
-      - [ ] Tester BAM D64, les deux BAM D71 et les deux BAM D81, absents, tronqués et indiquant zéro libre.
-      - [ ] Vérifier avec des images connues de `image_test` les volumes, entrées, contenus, types, drapeaux, références, validités, avertissements et espaces libres.
+  - [x] `FileSystems/Readers/CommodoreDosFileSystemReader.cs`
+    - [x] Emplacement et identité CBM DOS
+      - [x] Déplacer le Reader vers `FileSystems/Commodore/Dos/CommodoreDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `commodore-dos` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer le nom brut `CBM DOS` du volume par cet identifiant technique central.
+      - [x] Exposer Commodore 1541, 1571 et 1581 par un ensemble réellement non modifiable.
+    - [x] Layouts CBM DOS séparés
+      - [x] Créer `Commodore1541DosLayout.cs` pour D64/D71 et `Commodore1581DosLayout.cs` pour D81.
+      - [x] Déplacer dans chaque layout sa piste d'en-tête 18 ou 40, son secteur d'en-tête, son premier secteur de répertoire de repli et l'offset du nom 0x90 ou 4.
+      - [x] Déplacer les signatures d'en-tête `0x41` et `0x44` dans le layout auquel elles appartiennent.
+      - [x] Déplacer la taille sectorielle de 256 octets, les huit entrées par secteur et les 32 octets par entrée dans les définitions communes CBM DOS.
+      - [x] Déplacer les offsets de lien, type, première donnée, nom et nombre déclaré de blocs dans la disposition de répertoire.
+    - [x] Géométrie piste/secteur commune
+      - [x] Déplacer `ToLogicalBlock`, `TryToLogicalBlock` et la sélection 1541/1581 dans la géométrie Commodore commune hors du dossier `Images`.
+      - [x] Faire utiliser cette géométrie commune par le Reader d'image et le Reader de système de fichiers.
+      - [x] Supprimer l'import et la dépendance du Reader vers `GWGUI.MediaEngine.Images`.
+      - [x] Remplacer le résultat sentinelle `-1` de `TryToLogicalBlock` par une tentative retournant explicitement l'absence de bloc logique.
+    - [x] Accès aux secteurs CBM
+      - [x] Décomposer `TryGetSector` en conversion de coordonnées, récupération du bloc et contrôle de taille distincts.
+      - [x] Conserver l'échec silencieux de la sonde pour une coordonnée invalide, mais ne pas vider les diagnostics lors d'une lecture confirmée.
+      - [x] Retourner les données en lecture seule ou ne les copier que lorsque le consommateur doit les conserver.
+    - [x] Types et drapeaux de fichiers CBM
+      - [x] Créer `CommodoreDosFileType.cs` avec DEL, SEQ, PRG, USR, REL et CBM.
+      - [x] Remplacer les masques bruts du type bas, de fermeture `0x80` et de verrouillage `0x40` par un enum de drapeaux.
+      - [x] Déplacer les noms `SEQ`, `PRG`, `USR`, `REL`, `CBM`, `DEL`, `open` et `locked` hors du Reader technique.
+      - [x] Conserver la valeur complète des drapeaux dans les attributs bruts de l'entrée.
+    - [x] Codec PETSCII commun
+      - [x] Créer `Primitives/PetsciiCodec.cs` réutilisable par les Readers Commodore.
+      - [x] Y déplacer les terminateurs nul et `0xa0`, le masque sept bits et les plages de conversion de casse.
+      - [x] Remplacer le texte ou caractère mojibake actuellement produit pour une valeur inconnue par le caractère Unicode de remplacement `\uFFFD` exact.
+      - [x] Faire utiliser ce codec par le nom du volume et les noms de fichiers.
+    - [x] Reconnaissance du volume et du répertoire
+      - [x] Créer un résultat de reconnaissance contenant le layout, l'en-tête et la première coordonnée de répertoire.
+      - [x] Faire réutiliser ce résultat par `Read` au lieu d'appeler `CanRead` puis de relire l'en-tête.
+      - [x] Déplacer `HasPlausibleDirectory` dans `CommodoreDosDirectoryReader.cs`.
+      - [x] Remplacer la limite brute de 64 secteurs visités, les huit slots, tailles et offsets par les définitions centrales.
+      - [x] Conserver la règle qui accepte un répertoire vide d'un seul secteur mais rejette toute entrée active non plausible.
+      - [x] Utiliser la tentative de géométrie commune pour valider la première donnée d'une entrée.
+    - [x] Lecture du répertoire
+      - [x] Déplacer `ReadDirectory` dans `CommodoreDosDirectoryReader.cs`.
+      - [x] Distinguer cycle de répertoire, secteur absent et secteur tronqué dans les avertissements.
+      - [x] Valider chaque offset d'entrée avant d'accéder à ses champs.
+      - [x] Lire le nombre déclaré de blocs little-endian avec une primitive bornée.
+      - [x] Conserver le tri final des noms sans casse.
+    - [x] Lecture d'une chaîne de fichier
+      - [x] Créer `CommodoreDosFileReader.cs` et y déplacer `ReadFile`.
+      - [x] Faire retourner ensemble le contenu, la validité, les secteurs visités et les avertissements.
+      - [x] Distinguer cycle, coordonnée invalide, secteur absent et secteur tronqué.
+      - [x] Remplacer les 254 octets utiles d'un secteur intermédiaire et les deux octets de lien par les définitions centrales.
+      - [x] Valider dans le dernier secteur la valeur `nextSector - 1` au lieu de la borner silencieusement entre zéro et 254.
+      - [x] Conserver une limite par capacité de l'image mais la faire contribuer à l'invalidité au lieu d'ajouter seulement un avertissement.
+      - [x] Faire utiliser `MetadataValid` à partir de ce résultat au lieu de toujours fournir `true`.
+      - [x] Distinguer un fichier vide valide d'un contenu vide causé par une erreur avant d'utiliser le nombre déclaré de blocs comme taille de repli.
+      - [x] Remplacer la référence sentinelle `-1` par une référence optionnelle issue de la géométrie commune.
+    - [x] BAM D64 et D71
+      - [x] Créer `Commodore1541BamReader.cs` avec la piste BAM 18, l'offset quatre, la largeur quatre et le nombre de pistes défini par la géométrie.
+      - [x] Remplacer la limite brute de 35 pistes par la définition correspondant réellement à l'image 1541 reconnue.
+      - [x] Conserver le second BAM de la seconde face pour D71 avec une coordonnée nommée.
+      - [x] Retourner une valeur d'espace libre optionnelle et des avertissements lorsqu'un BAM requis est absent ou tronqué.
+    - [x] BAM D81
+      - [x] Créer `Commodore1581BamReader.cs` avec les secteurs BAM un et deux de la piste 40.
+      - [x] Déplacer les quarante entrées, leur offset 16 et leur largeur six dans le layout D81.
+      - [x] Valider chaque entrée avant de lire son compteur libre.
+      - [x] Distinguer un BAM absent d'un disque réellement plein.
+    - [x] Erreurs et avertissements CBM DOS
+      - [x] Créer `CommodoreDosExceptions.cs` pour volume, en-tête, coordonnée et dernier secteur invalides.
+      - [x] Créer `CommodoreDosWarnings.cs` pour cycles, secteurs, capacité, BAM et tailles déclarées.
+      - [x] Remplacer tous les textes anglais construits directement dans le Reader par ces fonctions recevant nom, piste, secteur et valeur observée.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Séparer les coordonnées, liens, types, retours conditionnels et affectations actuellement juxtaposés sur une même ligne.
+      - [x] Développer les corps de `try`/`catch` et de tentative de secteur actuellement écrits sur une ligne.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+      - [x] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader CBM DOS
+      - [x] Tester D64, D71 et D81 avec leurs en-têtes, coordonnées de répertoire et noms PETSCII.
+      - [x] Tester chacun des six types, un fichier ouvert, verrouillé et supprimé.
+      - [x] Tester une chaîne valide, cyclique, au secteur absent, tronqué et au dernier compteur invalide.
+      - [x] Tester un fichier vide valide et un échec avant lecture sans les confondre.
+      - [x] Tester les géométries 1541, seconde face 1571 et 1581, y compris une coordonnée invalide.
+      - [x] Tester BAM D64, les deux BAM D71 et les deux BAM D81, absents, tronqués et indiquant zéro libre.
+      - [x] Vérifier avec des images connues de `image_test` les volumes, entrées, contenus, types, drapeaux, références, validités, avertissements et espaces libres.
   - [ ] `FileSystems/Readers/Fat12FileSystemReader.cs`
     - [ ] Emplacement, identité et formats pris en charge
       - [ ] Déplacer le Reader et ses nouveaux composants vers `FileSystems/Fat12/` puis adapter le namespace et les consommateurs.

@@ -1,15 +1,16 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 
-namespace GWGUI.MediaEngine.FileSystems.Commodore;
+namespace GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 
 /// <summary>Décrit l'organisation des secteurs système d'un volume Commodore DOS.</summary>
 public sealed class CommodoreDosLayout
 {
     /// <summary>Disposition utilisée par les images D64 et D71.</summary>
-    public static CommodoreDosLayout D64D71 { get; } = new(18, 0, 18, 1, 0x90, [0], 4, 4, 35);
+    public static CommodoreDosLayout D64D71 { get; } = new(Commodore1541DosLayout.HeaderTrack, Commodore1541DosLayout.HeaderSector, Commodore1541DosLayout.HeaderTrack, Commodore1541DosLayout.DirectorySector, Commodore1541DosLayout.VolumeNameOffset, [Commodore1541DosLayout.HeaderSector], Commodore1541DosLayout.BamEntriesOffset, Commodore1541DosLayout.BamEntrySize, Geometries.Commodore.Commodore1541Geometry.StandardTrackCount, Commodore1541DosLayout.HeaderSignature);
 
     /// <summary>Disposition utilisée par les images D81.</summary>
-    public static CommodoreDosLayout D81 { get; } = new(40, 0, 40, 3, 4, [1, 2], 16, 6, 40);
+    public static CommodoreDosLayout D81 { get; } = new(Commodore1581DosLayout.HeaderTrack, Commodore1581DosLayout.HeaderSector, Commodore1581DosLayout.HeaderTrack, Commodore1581DosLayout.DirectorySector, Commodore1581DosLayout.VolumeNameOffset, [Commodore1581DosLayout.FirstBamSector, Commodore1581DosLayout.SecondBamSector], Commodore1581DosLayout.BamEntriesOffset, Commodore1581DosLayout.BamEntrySize, Commodore1581DosLayout.BamEntryCount, Commodore1581DosLayout.HeaderSignature);
 
     /// <summary>Taille d'un secteur logique Commodore DOS.</summary>
     public const int SectorSize = 256;
@@ -22,6 +23,8 @@ public sealed class CommodoreDosLayout
 
     /// <summary>Offset de la première entrée dans un secteur de répertoire.</summary>
     public const int DirectoryEntriesOffset = 2;
+    /// <summary>Nombre d'octets du lien placé au début d'un secteur chaîné.</summary>
+    public const int LinkLength = DirectoryEntriesOffset;
 
     /// <summary>Nombre d'entrées contenues dans un secteur de répertoire.</summary>
     public const int DirectoryEntryCount = 8;
@@ -30,22 +33,22 @@ public sealed class CommodoreDosLayout
     public const int DirectoryEntrySize = 32;
 
     /// <summary>Offset du type de fichier dans une entrée.</summary>
-    public const int FileTypeOffset = 0;
+    public const int FileTypeOffset = 2;
 
     /// <summary>Offset de la première piste de données dans une entrée.</summary>
-    public const int FirstDataTrackOffset = 1;
+    public const int FirstDataTrackOffset = 3;
 
     /// <summary>Offset du premier secteur de données dans une entrée.</summary>
-    public const int FirstDataSectorOffset = 2;
+    public const int FirstDataSectorOffset = 4;
 
     /// <summary>Offset du nom dans une entrée.</summary>
-    public const int FileNameOffset = 3;
+    public const int FileNameOffset = 5;
 
     /// <summary>Longueur du nom d'un fichier ou d'un volume.</summary>
     public const int NameLength = 16;
 
     /// <summary>Offset du nombre de blocs déclaré dans une entrée.</summary>
-    public const int DeclaredBlockCountOffset = 28;
+    public const int DeclaredBlockCountOffset = 30;
 
     /// <summary>Nombre maximal d'octets de données dans un secteur chaîné.</summary>
     public const int DataBytesPerSector = SectorSize - DirectoryEntriesOffset;
@@ -53,17 +56,18 @@ public sealed class CommodoreDosLayout
     /// <summary>Valeur maximale de piste visitée lors du contrôle d'un répertoire.</summary>
     public const int MaximumDirectoryChainLength = 64;
 
-    private CommodoreDosLayout(int headerTrack, int headerSector, int directoryTrack, int directorySector, int volumeNameOffset, IReadOnlyList<int> bamSectors, int bamEntriesOffset, int bamEntrySize, int bamEntryCount)
+    private CommodoreDosLayout(int headerTrack, int headerSector, int directoryTrack, int directorySector, int volumeNameOffset, IReadOnlyList<int> bamSectors, int bamEntriesOffset, int bamEntrySize, int bamEntryCount, byte headerSignature)
     {
         HeaderTrack = headerTrack;
         HeaderSector = headerSector;
         DirectoryTrack = directoryTrack;
         DirectorySector = directorySector;
         VolumeNameOffset = volumeNameOffset;
-        BamSectors = bamSectors;
+        BamSectors = Array.AsReadOnly(bamSectors.ToArray());
         BamEntriesOffset = bamEntriesOffset;
         BamEntrySize = bamEntrySize;
         BamEntryCount = bamEntryCount;
+        HeaderSignature = headerSignature;
     }
 
     /// <summary>Piste du secteur d'en-tête.</summary>
@@ -92,6 +96,9 @@ public sealed class CommodoreDosLayout
 
     /// <summary>Nombre d'entrées de BAM prises en charge.</summary>
     public int BamEntryCount { get; }
+
+    /// <summary>Marqueur attendu dans le secteur d'en-tête.</summary>
+    public byte HeaderSignature { get; }
 
     /// <summary>Résout la disposition correspondant à un identifiant de format.</summary>
     /// <param name="formatId">Identifiant du format d'image.</param>

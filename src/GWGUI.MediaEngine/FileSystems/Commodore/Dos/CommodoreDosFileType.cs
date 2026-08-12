@@ -1,9 +1,11 @@
-namespace GWGUI.MediaEngine.FileSystems.Commodore;
+namespace GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 
 /// <summary>Décrit le type et les drapeaux d'une entrée Commodore DOS.</summary>
 [Flags]
 public enum CommodoreDosFileType : byte
 {
+    /// <summary>Masque isolant le type de base.</summary>
+    BaseTypeMask = 0x07,
     /// <summary>Entrée supprimée.</summary>
     Del = 0,
     /// <summary>Fichier séquentiel.</summary>
@@ -28,7 +30,7 @@ public static class CommodoreDosFileTypeNames
     /// <summary>Retourne le libellé du type de base.</summary>
     /// <param name="fileType">Type et drapeaux lus dans le répertoire.</param>
     /// <returns>Libellé du type de base.</returns>
-    public static string GetBaseTypeName(CommodoreDosFileType fileType) => (fileType & (CommodoreDosFileType)0x07) switch
+    public static string GetBaseTypeName(CommodoreDosFileType fileType) => (fileType & CommodoreDosFileType.BaseTypeMask) switch
     {
         CommodoreDosFileType.Seq => "SEQ",
         CommodoreDosFileType.Prg => "PRG",
