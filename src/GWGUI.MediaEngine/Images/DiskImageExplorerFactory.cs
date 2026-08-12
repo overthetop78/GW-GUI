@@ -17,6 +17,7 @@ using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Atari.St;
+using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -41,7 +42,7 @@ internal static class DiskImageExplorerFactory
         var containers = new DiskImageRecognitionRegistry(
         [
             new ExtensionHintRecognitionPolicy(new Containers.Adf.AdfReader().ReadAsync, DiskImageFileExtensions.Adf),
-            new ExtensionHintRecognitionPolicy(new BbcDfsImageReader().ReadAsync, DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
+            new ExtensionHintRecognitionPolicy(new BbcDfsReader().ReadAsync, DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
             new CoherentImageRecognitionPolicy(new CoherentRawImageReader()),
             new DecRx02ImageRecognitionPolicy(new DecRx02Reader()),
             new ExtensionHintRecognitionPolicy(new AtariStReader().ReadAsync, DiskImageFileExtensions.St),

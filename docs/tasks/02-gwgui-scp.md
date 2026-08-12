@@ -4579,39 +4579,39 @@
     - [x] Tester un BPB incohérent suivi d'un repli valide et un contenu sans aucune géométrie possible.
     - [x] Tester une longueur vide, non multiple de 512 et incompatible avec la géométrie retenue.
     - [x] Vérifier format, cylindres, faces, secteurs, adresses, capacité et contenu sur les images ST de `image_test`.
-- [ ] `src/GWGUI.MediaEngine/Images/BbcDfsImageReader.cs`
-  - [ ] Déplacement du Reader SSD/DSD
-    - [ ] Créer `Containers/Acorn/BbcDfs/BbcDfsReader.cs` et y déplacer le Reader des fichiers SSD et DSD.
-    - [ ] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
-    - [ ] Supprimer `Images/BbcDfsImageReader.cs` après raccordement.
-  - [ ] Géométries BBC DFS communes
-    - [ ] Créer `Geometries/Acorn/BbcDfsGeometry.cs` avec secteurs de 256 octets, dix secteurs par piste et cylindres 40 ou 80.
-    - [ ] Créer quatre géométries immuables pour SSD40, SSD80, DSD40 et DSD80 avec leur identifiant central.
-    - [ ] Calculer dans la géométrie la taille d'une piste, la capacité et le nombre de blocs.
-    - [ ] Réutiliser ces géométries dans le Reader de fichier, le Reader de système de fichiers, le Reader SCP et la visualisation lorsqu'ils emploient les mêmes valeurs.
-  - [ ] Sélection SSD ou DSD
-    - [ ] Créer `Containers/Acorn/BbcDfs/BbcDfsContainerKind.cs` avec SSD et DSD.
-    - [ ] Associer les extensions centrales SSD et DSD à ce type sans comparer plusieurs fois les chaînes.
-    - [ ] Déduire une ou deux faces depuis ce type puis sélectionner 40 ou 80 cylindres uniquement depuis une capacité exacte.
-    - [ ] Refuser une extension autre que SSD/DSD dans la façade du format au lieu de la traiter implicitement comme SSD.
-  - [ ] Ordre des pistes et construction sectorielle
-    - [ ] Nommer et documenter l'ordre DSD qui stocke les pistes complètes entrelacées par face.
-    - [ ] Extraire le calcul de l'offset source DSD dans une fonction de disposition testable.
-    - [ ] Utiliser le builder linéaire commun uniquement si son ordre produit exactement le même enchaînement cylindre, face, secteur ; sinon créer un builder BBC dédié.
-    - [ ] Conserver la numérotation des secteurs à zéro utilisée par DFS et SCP.
-    - [ ] Indenter séparément les trois boucles cylindre, face et secteur.
-  - [ ] Erreurs BBC DFS
-    - [ ] Créer `Containers/Acorn/BbcDfs/BbcDfsExceptions.cs` pour extension inconnue, piste incomplète et nombre de cylindres autre que 40 ou 80.
-    - [ ] Faire recevoir aux erreurs extension, taille, nombre de faces, taille de piste et cylindres observés.
-    - [ ] Remplacer les deux textes bruts anglais du Reader.
-  - [ ] Présentation et CSDoc française
-    - [ ] Conserver sur une seule ligne les conditions, calculs d'offsets et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le Reader, l'enum, les géométries, l'ordre DSD et chaque membre.
-  - [ ] Tests ciblés SSD/DSD
-    - [ ] Tester SSD40, SSD80, DSD40 et DSD80 avec une image connue de `image_test`.
-    - [ ] Vérifier format, cylindres, faces, adresses, ordre des blocs et contenu du catalogue DFS.
-    - [ ] Tester une piste tronquée, une capacité correspondant à 41 ou 79 pistes et une extension inconnue.
-    - [ ] Vérifier explicitement l'ordre des faces DSD sur plusieurs cylindres.
+- [x] `src/GWGUI.MediaEngine/Images/BbcDfsImageReader.cs`
+  - [x] Déplacement du Reader SSD/DSD
+    - [x] Créer `Containers/Acorn/BbcDfs/BbcDfsReader.cs` et y déplacer le Reader des fichiers SSD et DSD.
+    - [x] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
+    - [x] Supprimer `Images/BbcDfsImageReader.cs` après raccordement.
+  - [x] Géométries BBC DFS communes
+    - [x] Créer `Geometries/Acorn/BbcDfsGeometry.cs` avec secteurs de 256 octets, dix secteurs par piste et cylindres 40 ou 80.
+    - [x] Créer quatre géométries immuables pour SSD40, SSD80, DSD40 et DSD80 avec leur identifiant central.
+    - [x] Calculer dans la géométrie la taille d'une piste, la capacité et le nombre de blocs.
+    - [x] Réutiliser ces géométries dans le Reader de fichier, le Reader de système de fichiers, le Reader SCP et la visualisation lorsqu'ils emploient les mêmes valeurs.
+  - [x] Sélection SSD ou DSD
+    - [x] Créer `Containers/Acorn/BbcDfs/BbcDfsContainerKind.cs` avec SSD et DSD.
+    - [x] Associer les extensions centrales SSD et DSD à ce type sans comparer plusieurs fois les chaînes.
+    - [x] Déduire une ou deux faces depuis ce type puis sélectionner 40 ou 80 cylindres uniquement depuis une capacité exacte.
+    - [x] Refuser une extension autre que SSD/DSD dans la façade du format au lieu de la traiter implicitement comme SSD.
+  - [x] Ordre des pistes et construction sectorielle
+    - [x] Nommer et documenter l'ordre DSD qui stocke les pistes complètes entrelacées par face.
+    - [x] Extraire le calcul de l'offset source DSD dans une fonction de disposition testable.
+    - [x] Utiliser le builder linéaire commun uniquement si son ordre produit exactement le même enchaînement cylindre, face, secteur ; sinon créer un builder BBC dédié.
+    - [x] Conserver la numérotation des secteurs à zéro utilisée par DFS et SCP.
+    - [x] Indenter séparément les trois boucles cylindre, face et secteur.
+  - [x] Erreurs BBC DFS
+    - [x] Créer `Containers/Acorn/BbcDfs/BbcDfsExceptions.cs` pour extension inconnue, piste incomplète et nombre de cylindres autre que 40 ou 80.
+    - [x] Faire recevoir aux erreurs extension, taille, nombre de faces, taille de piste et cylindres observés.
+    - [x] Remplacer les deux textes bruts anglais du Reader.
+  - [x] Présentation et CSDoc française
+    - [x] Conserver sur une seule ligne les conditions, calculs d'offsets et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le Reader, l'enum, les géométries, l'ordre DSD et chaque membre.
+  - [x] Tests ciblés SSD/DSD
+    - [x] Tester SSD40, SSD80, DSD40 et DSD80 avec une image connue de `image_test`.
+    - [x] Vérifier format, cylindres, faces, adresses, ordre des blocs et contenu du catalogue DFS.
+    - [x] Tester une piste tronquée, une capacité correspondant à 41 ou 79 pistes et une extension inconnue.
+    - [x] Vérifier explicitement l'ordre des faces DSD sur plusieurs cylindres.
 - [ ] `src/GWGUI.MediaEngine/Images/CoherentImageReader.cs`
   - [ ] Déplacement du Reader de dump Coherent
     - [ ] Créer `Containers/Coherent/CoherentRawImageReader.cs` et y déplacer la lecture du dump sectoriel brut.

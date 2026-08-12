@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Geometries.Acorn;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
@@ -15,8 +16,8 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
 
     public bool CanRead(SectorImage image)
     {
-        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != 256 || !image.TryGetBlock(0, out var names)
-            || !image.TryGetBlock(1, out var metadata) || names.Data.Count != 256 || metadata.Data.Count != 256) return false;
+        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != BbcDfsGeometry.SectorSize || !image.TryGetBlock(0, out var names)
+            || !image.TryGetBlock(1, out var metadata) || names.Data.Count != BbcDfsGeometry.SectorSize || metadata.Data.Count != BbcDfsGeometry.SectorSize) return false;
         var count = metadata.Data[5];
         return count % 8 == 0 && count <= 31 * 8 && ((metadata.Data[6] & 3) << BitPrimitives.BitsPerByte | metadata.Data[7]) <= image.BlockCount;
     }
@@ -45,7 +46,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
             var start = metadata[metaOffset + 7] | (packed & 3) << BitPrimitives.BitsPerByte;
             var load = metadata[metaOffset] | metadata[metaOffset + 1] << BitPrimitives.BitsPerByte | (packed & 0x0c) << 14;
             var execute = metadata[metaOffset + 2] | metadata[metaOffset + 3] << BitPrimitives.BitsPerByte | (packed & 0xc0) << 10;
-            var sectorCount = (length + 255) / 256;
+            var sectorCount = (length + BbcDfsGeometry.SectorSize - 1) / BbcDfsGeometry.SectorSize;
             usedSectors += sectorCount;
             var content = new byte[length];
             var copied = 0;
@@ -58,7 +59,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
                     valid = false;
                     continue;
                 }
-                var count = Math.Min(256, length - copied);
+                var count = Math.Min(BbcDfsGeometry.SectorSize, length - copied);
                 block.Data.Take(count).ToArray().CopyTo(content, copied);
                 copied += count;
             }
@@ -66,8 +67,8 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
             entries.Add(new(name, FileSystemEntryKind.File, length, null, comment,
                 (uint)((directoryByte & 0x80) != 0 ? 1 : 0), start, valid, [], content));
         }
-        var capacity = (long)totalSectors * 256;
-        return new(title.Trim(), "Acorn DFS", capacity, Math.Max(0, totalSectors - usedSectors) * 256L,
+        var capacity = (long)totalSectors * BbcDfsGeometry.SectorSize;
+        return new(title.Trim(), "Acorn DFS", capacity, Math.Max(0, totalSectors - usedSectors) * (long)BbcDfsGeometry.SectorSize,
             null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
