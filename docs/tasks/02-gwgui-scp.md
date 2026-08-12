@@ -4918,27 +4918,27 @@
     - [x] Vérifier que le catalogue ne peut pas être modifié depuis un consommateur.
     - [ ] Vérifier que le Reader brut, IMG, CP2, 86F et les politiques SCP obtiennent la même géométrie pour les mêmes données.
       - Vérification restante : les tests IBM bruts réussissent, mais deux tests 86F réels exposent une capacité sectorielle incohérente déjà produite par le Reader 86F ; ce point reste au groupe 86F au lieu d'être masqué ici.
-- [ ] `src/GWGUI.MediaEngine/Images/MsxImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Renommer et déplacer le fichier vers `Containers/Msx/Raw/MsxRawImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-    - [ ] Supprimer `LooksLikeMsx` du Reader après son déplacement dans `Recognition/Msx/MsxBootSectorProbe.cs` par le groupe de reconnaissance MSX.
-    - [ ] Faire appeler `MsxBootSectorProbe` par `MsxRawImageReader` avant de résoudre la géométrie.
-  - [ ] Définitions et erreurs MSX
-    - [ ] Créer `Geometries/Msx/MsxDiskGeometryCatalog.cs` avec les capacités, nombres de cylindres, nombres de faces, nombres de secteurs et identifiants des variantes 1D, 1DD, 2D et 2DD.
-    - [ ] Faire porter le préfixe OEM `MSX` par `MsxBootSectorProbe` et réutiliser `FileSystems/Fat/FatBpbLayout` pour les offsets BPB communs au lieu de les redéfinir dans le Reader.
-    - [ ] Définir la valeur média `0xF8` employée pour distinguer 1DD de 2D dans la définition MSX qui possède cette règle.
-    - [ ] Remplacer dans le `switch` les capacités, le nombre brut de secteurs par piste et l’accès brut à l’octet média par le catalogue et les définitions précédentes.
-    - [ ] Conserver les identifiants de résultat dans `DiskImageFormatIds` et ne pas les recopier dans le catalogue.
-    - [ ] Créer `Containers/Msx/Raw/MsxRawImageExceptions.cs` avec les erreurs recevant la taille ou la géométrie observée.
-    - [ ] Remplacer les textes bruts correspondants par les méthodes de `MsxRawImageExceptions`.
-  - [ ] Construction sectorielle
-    - [ ] Remplacer la taille sectorielle brute `512` par la définition commune correspondant aux secteurs MSX-DOS.
-    - [ ] Conserver dans le Reader le calcul linéaire des adresses CHS tant qu’il n’existe qu’un seul consommateur MSX de cet ordre.
-    - [ ] Écrire sur une seule ligne la construction courte de chaque `SectorBlock` lorsqu’elle tient lisiblement.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `MsxRawImageReader`, `MsxDiskGeometryCatalog` et `MsxRawImageExceptions`.
-    - [ ] Ajouter la documentation XML française des méthodes `CanRead` et `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Images/MsxImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Renommer et déplacer le fichier vers `Containers/Msx/Raw/MsxRawImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+    - [x] Supprimer `LooksLikeMsx` du Reader après son déplacement dans `Recognition/Msx/MsxBootSectorProbe.cs` par le groupe de reconnaissance MSX.
+    - [x] Faire appeler `MsxBootSectorProbe` par `MsxRawImageReader` avant de résoudre la géométrie.
+  - [x] Définitions et erreurs MSX
+    - [x] Créer `Geometries/Msx/MsxDiskGeometryCatalog.cs` avec les capacités, nombres de cylindres, nombres de faces, nombres de secteurs et identifiants des variantes 1D, 1DD, 2D et 2DD.
+    - [x] Faire porter le préfixe OEM `MSX` par `MsxBootSectorProbe` et réutiliser `FileSystems/Fat/FatBpbLayout` pour les offsets BPB communs au lieu de les redéfinir dans le Reader.
+    - [x] Définir la valeur média `0xF8` employée pour distinguer 1DD de 2D dans la définition MSX qui possède cette règle.
+    - [x] Remplacer dans le `switch` les capacités, le nombre brut de secteurs par piste et l’accès brut à l’octet média par le catalogue et les définitions précédentes.
+    - [x] Conserver les identifiants de résultat dans `DiskImageFormatIds` et ne pas les recopier dans le catalogue.
+    - [x] Créer `Containers/Msx/Raw/MsxRawImageExceptions.cs` avec les erreurs recevant la taille ou la géométrie observée.
+    - [x] Remplacer les textes bruts correspondants par les méthodes de `MsxRawImageExceptions`.
+  - [x] Construction sectorielle
+    - [x] Remplacer la taille sectorielle brute `512` par la définition commune correspondant aux secteurs MSX-DOS.
+    - [x] Conserver dans le Reader le calcul linéaire des adresses CHS tant qu’il n’existe qu’un seul consommateur MSX de cet ordre.
+    - [x] Écrire sur une seule ligne la construction courte de chaque `SectorBlock` lorsqu’elle tient lisiblement.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `MsxRawImageReader`, `MsxDiskGeometryCatalog` et `MsxRawImageExceptions`.
+    - [x] Ajouter la documentation XML française des méthodes `CanRead` et `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] Vérification des Readers d’images sectorielles brutes modifiés
   - [ ] ADF
     - [ ] Tester par le Reader public une image ADF Acorn, une Amiga DD et une Amiga HD avec tailles, géométries et contenu connus.

@@ -7,6 +7,7 @@ using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Containers.Commodore.D81;
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
+using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Containers.Cp2;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Containers.I86f;
@@ -56,7 +57,7 @@ internal static class DiskImageExplorerFactory
             new ExtensionHintRecognitionPolicy(new D71Reader().ReadAsync, DiskImageFileExtensions.D71),
             new ExtensionHintRecognitionPolicy(new D81Reader().ReadAsync, DiskImageFileExtensions.D81),
             new AppleImageRecognitionPolicy(apple),
-            new MsxImageRecognitionPolicy(new MsxImageReader()),
+            new MsxImageRecognitionPolicy(new MsxRawImageReader()),
             new AmstradImageRecognitionPolicy(new CpcDskReader()),
             new RawImgRecognitionPolicy(new RawImgReader()),
             new ExtensionHintRecognitionPolicy(new IbmRawImageReader().ReadAsync, DiskImageFileExtensions.Ima),

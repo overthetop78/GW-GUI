@@ -27,6 +27,8 @@ internal static class FatBpbLayout
     public const int BytesPerSectorOffset = 11;
     /// <summary>Décalage du nombre total de secteurs sur 16 bits.</summary>
     public const int TotalSectors16Offset = 19;
+    /// <summary>Offset du descripteur de média.</summary>
+    public const int MediaDescriptorOffset = 21;
     /// <summary>Décalage du nombre de secteurs par piste.</summary>
     public const int SectorsPerTrackOffset = 24;
     /// <summary>Décalage du nombre de faces.</summary>

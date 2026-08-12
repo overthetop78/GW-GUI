@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
@@ -27,7 +28,7 @@ public sealed class MsxImageRecognitionPolicyTests
         try
         {
             var context = new DiskImageRecognitionContext(path, DiskImageFormatIds.Msx2Dd);
-            Assert.False(await new MsxImageRecognitionPolicy(new MsxImageReader()).CanReadAsync(context, CancellationToken.None));
+            Assert.False(await new MsxImageRecognitionPolicy(new MsxRawImageReader()).CanReadAsync(context, CancellationToken.None));
         }
         finally { File.Delete(path); }
     }
@@ -40,7 +41,7 @@ public sealed class MsxImageRecognitionPolicyTests
         try
         {
             var context = new DiskImageRecognitionContext(path, null);
-            Assert.False(await new MsxImageRecognitionPolicy(new MsxImageReader()).CanReadAsync(context, CancellationToken.None));
+            Assert.False(await new MsxImageRecognitionPolicy(new MsxRawImageReader()).CanReadAsync(context, CancellationToken.None));
         }
         finally { File.Delete(path); }
     }
@@ -52,8 +53,9 @@ public sealed class MsxImageRecognitionPolicyTests
         var path = await CreateImageAsync(".dsk");
         try
         {
-            var registry = new DiskImageRecognitionRegistry([new MsxImageRecognitionPolicy(new MsxImageReader())]);
-            await Assert.ThrowsAsync<InvalidDataException>(() => registry.ReadAsync(path, DiskImageFormatIds.Msx2Dd, CancellationToken.None));
+            var registry = new DiskImageRecognitionRegistry([new MsxImageRecognitionPolicy(new MsxRawImageReader())]);
+            var exception = await Assert.ThrowsAsync<DiskImageCandidatesRejectedException>(() => registry.ReadAsync(path, DiskImageFormatIds.Msx2Dd, CancellationToken.None));
+            Assert.IsType<InvalidDataException>(Assert.Single(exception.Failures).Exception);
         }
         finally { File.Delete(path); }
     }
@@ -68,7 +70,7 @@ public sealed class MsxImageRecognitionPolicyTests
             using var cancellation = new CancellationTokenSource();
             cancellation.Cancel();
             var context = new DiskImageRecognitionContext(path, null);
-            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await new MsxImageRecognitionPolicy(new MsxImageReader()).CanReadAsync(context, cancellation.Token));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await new MsxImageRecognitionPolicy(new MsxRawImageReader()).CanReadAsync(context, cancellation.Token));
         }
         finally { File.Delete(path); }
     }
