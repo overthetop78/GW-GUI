@@ -5846,25 +5846,26 @@
       - [ ] Tester une chaîne complète, un cycle, un secteur absent et un propriétaire incohérent.
       - État : les 56 tests Atari existants passent ; les variantes sectorielles et erreurs composées ne sont pas encore toutes isolées dans des tests dédiés.
   - [ ] BBC DFS
-    - [ ] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`.
-      - [ ] Ajouter la taille sectorielle `256` et les secteurs `0` et `1` du catalogue.
-      - [ ] Ajouter le nombre maximal de `31` entrées, la taille de huit octets de chaque partie d'entrée et le pas de huit octets.
-      - [ ] Ajouter les offsets du titre, du compteur d'entrées, du nombre total de secteurs et du numéro de cycle.
-      - [ ] Ajouter les masques et décalages utilisés pour reconstruire longueur, adresse de chargement, adresse d'exécution et secteur initial sur 18 bits.
-      - [ ] Ajouter le bit de verrouillage porté par le caractère de répertoire.
-      - [ ] Remplacer chaque valeur brute correspondante dans `BbcDfsFileSystemReader`.
-      - [ ] Documenter en français chaque constante et chaque masque.
-    - [ ] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de catalogue invalide avec compte et nombre total de secteurs observés.
-      - [ ] Ajouter l'avertissement de plage de fichier hors image avec nom, premier secteur et longueur.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [x] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`.
+      - [x] Ajouter la taille sectorielle `256` et les secteurs `0` et `1` du catalogue.
+      - [x] Ajouter le nombre maximal de `31` entrées, la taille de huit octets de chaque partie d'entrée et le pas de huit octets.
+      - [x] Ajouter les offsets du titre, du compteur d'entrées, du nombre total de secteurs et du numéro de cycle.
+      - [x] Ajouter les masques et décalages utilisés pour reconstruire longueur, adresse de chargement, adresse d'exécution et secteur initial sur 18 bits.
+      - [x] Ajouter le bit de verrouillage porté par le caractère de répertoire.
+      - [x] Remplacer chaque valeur brute correspondante dans `BbcDfsFileSystemReader`.
+      - [x] Documenter en français chaque constante et chaque masque.
+    - [x] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de catalogue invalide avec compte et nombre total de secteurs observés.
+      - [x] Ajouter l'avertissement de plage de fichier hors image avec nom, premier secteur et longueur.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
     - [ ] Tests des définitions BBC DFS
       - [ ] Tester un catalogue SSD et un catalogue DSD par le Reader public.
       - [ ] Tester le titre, le répertoire, le verrouillage et les champs 18 bits.
       - [ ] Tester un compte d'entrées invalide et une plage de fichier hors image.
+      - État : les 21 tests BBC existants passent ; les variantes SSD/DSD et erreurs ne sont pas encore toutes isolées dans des tests dédiés.
   - [ ] Coherent
     - [ ] `FileSystems/Coherent/CoherentFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
