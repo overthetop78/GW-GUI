@@ -5430,14 +5430,14 @@
   - [x] `SectorImages/IIsoScpSectorImagePolicy.cs`
     - [x] Documenter en français le contrat, chaque paramètre et le résultat de construction.
     - [x] Ajouter uniquement les annotations de nullabilité nécessaires aux consommateurs existants.
-  - [ ] `SectorImages/IsoScpSectorImageReader.cs`
-    - [ ] Remplacer le poids brut du score et l'erreur brute d'absence de secteur par les définitions ISO communes.
-    - [ ] Conserver `Score` et `AddCandidate` dans ce fichier, où ils servent uniquement à sélectionner et enregistrer les résultats de décodage de chaque révolution.
-    - [ ] Remettre sur une seule ligne la signature de `AddCandidate` si elle reste lisible, puis supprimer la ligne vide finale inutile.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester le choix du meilleur résultat entre les décodeurs autorisés pour une même révolution.
-    - [ ] Tester l'enregistrement du numéro de révolution et la séparation entre les candidats dont l'adresse correspond à la piste lue et les candidats physiques dont l'adresse interne diffère.
-    - [ ] Tester une sélection explicite, automatique, de repli et l'erreur obtenue lorsque ni candidat adressé ni candidat physique n'est décodé.
+  - [x] `SectorImages/IsoScpSectorImageReader.cs`
+    - [x] Remplacer le poids brut du score et l'erreur brute d'absence de secteur par les définitions ISO communes.
+    - [x] Conserver `Score` et `AddCandidate` dans ce fichier, où ils servent uniquement à sélectionner et enregistrer les résultats de décodage de chaque révolution.
+    - [x] Remettre sur une seule ligne la signature de `AddCandidate` si elle reste lisible, puis supprimer la ligne vide finale inutile.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester le choix du meilleur résultat entre les décodeurs autorisés pour une même révolution.
+    - [x] Tester l'enregistrement du numéro de révolution et la séparation entre les candidats dont l'adresse correspond à la piste lue et les candidats physiques dont l'adresse interne diffère.
+    - [x] Tester une sélection explicite, automatique, de repli et l'erreur obtenue lorsque ni candidat adressé ni candidat physique n'est décodé.
   - [ ] `SectorImages/UcsdIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer les identifiants FM/MFM et les valeurs brutes d'une face et de huit secteurs logiques par les définitions UCSD correspondantes.
     - [ ] Documenter en français chaque membre.

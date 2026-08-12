@@ -2,6 +2,7 @@ using System.IO;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
@@ -84,6 +85,33 @@ public sealed class RecentFormatCodecTests
     }
 
     [Fact]
+    public async Task IsoReaderSelectsTheDecoderProducingSectorDataAndRecordsTheRevolution()
+    {
+        var first = new FluxEncoderRegistry().Encode(FluxCodecIds.IsoFm, new TrackEncodeRequest(0, 0, [new TrackSector(1, Enumerable.Repeat((byte)1, 256).ToArray())])).Revolution;
+        var second = new FluxEncoderRegistry().Encode(FluxCodecIds.IsoFm, new TrackEncodeRequest(0, 0, [new TrackSector(1, Enumerable.Repeat((byte)2, 256).ToArray())])).Revolution;
+        var image = await new IsoScpSectorImageReader(Fake(0, 0, first, second), new FluxDecoderRegistry()).ReadAsync("unused.scp", "custom.iso");
+        var block = Assert.Single(image.AvailableBlocks);
+        Assert.Equal(1, block.Revolution);
+        Assert.All(block.Data, value => Assert.Equal(1, value));
+    }
+
+    [Fact]
+    public async Task IsoReaderSeparatesMismatchedInternalAddressIntoPhysicalCandidates()
+    {
+        var revolution = new FluxEncoderRegistry().Encode(FluxCodecIds.IsoMfm, new TrackEncodeRequest(2, 0, Enumerable.Range(1, 8).Select(number => new TrackSector(number, new byte[512])).ToArray())).Revolution;
+        var image = await new IsoScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.UcsdIbmMfm);
+        Assert.Equal(DiskImageFormatIds.UcsdIbmMfm, image.FormatId);
+        Assert.NotEmpty(image.AvailableBlocks);
+    }
+
+    [Fact]
+    public async Task IsoReaderRejectsRevolutionWithoutAddressedOrPhysicalCandidate()
+    {
+        var empty = new FluxRevolution(1, []);
+        await Assert.ThrowsAsync<InvalidDataException>(() => new IsoScpSectorImageReader(Fake(0, 0, empty), new FluxDecoderRegistry()).ReadAsync("unused.scp", "custom.iso"));
+    }
+
+    [Fact]
     public void ExplicitIbmPolicyRejectsAnUnrelatedIdentifier()
     {
         var empty = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
@@ -113,9 +141,9 @@ public sealed class RecentFormatCodecTests
         await Assert.ThrowsAsync<InvalidDataException>(() => new DecRx02ScpSectorImageReader(Fake(1, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp"));
     }
 
-    private static IScpReader Fake(int cylinder, int head, FluxRevolution revolution) => new FakeReader(new ScpImage(
+    private static IScpReader Fake(int cylinder, int head, params FluxRevolution[] revolutions) => new FakeReader(new ScpImage(
         new ScpHeader(0, 0, 1, (byte)(cylinder * 2 + head), (byte)(cylinder * 2 + head), ScpFlags.None, ScpBitCellEncoding.Default16Bit, ScpHeadSelection.Both, 0, 0),
-        [new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, [new ScpRevolution(revolution, (uint)revolution.FluxIntervals.Count)])], true, 0));
+        [new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, revolutions.Select(revolution => new ScpRevolution(revolution, (uint)revolution.FluxIntervals.Count)).ToArray())], true, 0));
 
     private sealed class FakeReader(ScpImage image) : IScpReader
     {
