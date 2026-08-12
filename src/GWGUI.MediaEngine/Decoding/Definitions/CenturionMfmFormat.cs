@@ -43,6 +43,16 @@ internal static class CenturionMfmFormat
     public const int CrcByteCount = 2;
     /// <summary>Taille d'un bloc d'allocation Centurion.</summary>
     public const int AllocationBlockSize = 256;
+    /// <summary>Nombre minimal de blocs alloués à une charge utile, même vide.</summary>
+    public const int MinimumAllocationBlockCount = 1;
+    /// <summary>Plus grand numéro de cylindre ou de secteur écrit sur un octet.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
+    /// <summary>Plus grand nombre de blocs écrit dans le champ de taille.</summary>
+    public const int MaximumAllocationBlockCount = byte.MaxValue;
+    /// <summary>Octet réservé placé avant le nombre de blocs.</summary>
+    public const byte ReservedDataPrefixByte = SupportedDataKey;
+    /// <summary>Octet de remplissage du dernier bloc.</summary>
+    public const byte PaddingByte = 0;
     /// <summary>Distance de recherche entre la fin de l'en-tête et les données.</summary>
     public const int DataSearchDistanceBitCount = 400;
     /// <summary>Nombre de bits séparant l'en-tête et les données produits par l'encodeur.</summary>

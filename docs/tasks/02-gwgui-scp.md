@@ -3709,36 +3709,36 @@
       - [x] Vérifier pour les deux chemins la signature, le checksum little-endian, le remplissage et le gap final.
       - [x] Tester le rejet d'une taille qui n'est ni la taille utile ni la taille complète du type sélectionné.
       - [x] Tester, par l'encodeur public, les allers-retours des structures système et données avec le décodeur Arburg.
-  - [ ] `Encoding/Encoders/CenturionMfmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Centurion
-      - [ ] Remplacer l'identifiant brut `centurion.mfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Centurion MFM` par la définition centrale correspondante.
-    - [ ] Définitions du format Centurion MFM
-      - [ ] Déplacer les signatures hexadécimales d'adresse et de données dans `CenturionMfmFormat`.
-      - [ ] Déplacer la taille de bloc de 256 octets et le minimum d'un bloc dans `CenturionMfmFormat`.
-      - [ ] Déplacer les octets réservés des champs de données dans `CenturionMfmFormat`.
-      - [ ] Déplacer le polynôme et la valeur initiale du CRC ainsi que l'ordre de ses deux octets dans la définition Centurion commune au décodeur et à l'encodeur.
-      - [ ] Déplacer les longueurs de gaps d'adresse et de fin de secteur dans `CenturionMfmFormat`.
-    - [ ] Construction du secteur Centurion
-      - [ ] Extraire la construction de l'identité et de son CRC dans une fonction privée recevant le cylindre et le secteur validés.
-      - [ ] Extraire le calcul du nombre de blocs et le remplissage du dernier bloc dans une fonction privée recevant les données sectorielles.
-      - [ ] Extraire la construction du champ de données, de ses octets réservés et de son CRC dans une fonction privée.
-      - [ ] Utiliser la même définition de disposition CRC pour les octets inclus dans le calcul et les octets réellement écrits.
-    - [ ] Validation avant encodage
-      - [ ] Valider le cylindre avant sa conversion en octet.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet.
-      - [ ] Valider que le nombre de blocs calculé tient dans l'octet écrit dans le champ de données.
-      - [ ] Remplacer les éventuels textes d'erreur ajoutés par des définitions paramétrables recevant la valeur observée et la plage attendue.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser les espaces dans les initialisations de tableaux, conversions, appels CRC et concaténations.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Centurion
-      - [ ] Tester le champ d'adresse et son CRC avec un cylindre et un secteur connus.
-      - [ ] Tester une charge utile vide, une charge utile d'un bloc exact et une charge utile nécessitant le remplissage du dernier bloc.
-      - [ ] Tester le champ de données, le nombre de blocs, les octets réservés, le remplissage et le CRC avec un résultat connu.
-      - [ ] Tester le rejet d'un cylindre, d'un numéro de secteur et d'un nombre de blocs qui ne tiennent pas dans leurs champs.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Centurion avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/CenturionMfmTrackEncoder.cs`
+    - [x] Identité de l'encodeur Centurion
+      - [x] Remplacer l'identifiant brut `centurion.mfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Centurion MFM` par la définition centrale correspondante.
+    - [x] Définitions du format Centurion MFM
+      - [x] Déplacer les signatures hexadécimales d'adresse et de données dans `CenturionMfmFormat`.
+      - [x] Déplacer la taille de bloc de 256 octets et le minimum d'un bloc dans `CenturionMfmFormat`.
+      - [x] Déplacer les octets réservés des champs de données dans `CenturionMfmFormat`.
+      - [x] Déplacer le polynôme et la valeur initiale du CRC ainsi que l'ordre de ses deux octets dans la définition Centurion commune au décodeur et à l'encodeur.
+      - [x] Déplacer les longueurs de gaps d'adresse et de fin de secteur dans `CenturionMfmFormat`.
+    - [x] Construction du secteur Centurion
+      - [x] Extraire la construction de l'identité et de son CRC dans une fonction privée recevant le cylindre et le secteur validés.
+      - [x] Extraire le calcul du nombre de blocs et le remplissage du dernier bloc dans une fonction privée recevant les données sectorielles.
+      - [x] Extraire la construction du champ de données, de ses octets réservés et de son CRC dans une fonction privée.
+      - [x] Utiliser la même définition de disposition CRC pour les octets inclus dans le calcul et les octets réellement écrits.
+    - [x] Validation avant encodage
+      - [x] Valider le cylindre avant sa conversion en octet.
+      - [x] Valider le numéro de secteur avant sa conversion en octet.
+      - [x] Valider que le nombre de blocs calculé tient dans l'octet écrit dans le champ de données.
+      - [x] Remplacer les éventuels textes d'erreur ajoutés par des définitions paramétrables recevant la valeur observée et la plage attendue.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser les espaces dans les initialisations de tableaux, conversions, appels CRC et concaténations.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Centurion
+      - [x] Tester le champ d'adresse et son CRC avec un cylindre et un secteur connus.
+      - [x] Tester une charge utile vide, une charge utile d'un bloc exact et une charge utile nécessitant le remplissage du dernier bloc.
+      - [x] Tester le champ de données, le nombre de blocs, les octets réservés, le remplissage et le CRC avec un résultat connu.
+      - [x] Tester le rejet d'un cylindre, d'un numéro de secteur et d'un nombre de blocs qui ne tiennent pas dans leurs champs.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Centurion avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
     - [ ] Identité de l'encodeur Commodore 900
       - [ ] Remplacer l'identifiant brut `commodore900.gcr` par la définition centrale correspondante.
