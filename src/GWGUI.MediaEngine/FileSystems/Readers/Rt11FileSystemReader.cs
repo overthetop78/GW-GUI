@@ -87,7 +87,7 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
                 }
 
                 var valid = TryReadContent(image, dataBlock, blockLength, out var content);
-                if (!valid) warnings.Add($"{name}: one or more data blocks are missing.");
+                if (!valid) warnings.Add(Definitions.FileSystemWarningMessages.MissingDataBlocks(name));
                 var date = DecodeDate(ReadUInt16(bytes, offset + 12));
                 var comment = (status & Tentative) != 0 ? "RT-11 tentative file" : "RT-11 file";
                 entries.Add(new(name, FileSystemEntryKind.File, blockLength * 512L, date, comment,

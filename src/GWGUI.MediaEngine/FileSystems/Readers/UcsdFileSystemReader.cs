@@ -70,7 +70,7 @@ public sealed class UcsdFileSystemReader : IFileSystemReader
             var lastBytes = ReadUInt16(entry, 22, littleEndian);
             var size = blocks == 0 ? 0 : checked((long)(blocks - 1) * BlockSize + Math.Min(lastBytes == 0 ? BlockSize : lastBytes, BlockSize));
             var content = ReadFile(image, firstBlock, blocks, size, out var complete);
-            if (!complete) warnings.Add($"{name}: one or more data blocks are missing.");
+            if (!complete) warnings.Add(Definitions.FileSystemWarningMessages.MissingDataBlocks(name));
             var kind = ReadUInt16(entry, 4, littleEndian) & 0x0f;
             entries.Add(new(name, FileSystemEntryKind.File, size, DecodeDate(ReadUInt16(entry, 24, littleEndian)),
                 FileKindName(kind), 0, firstBlock, complete, [], content));

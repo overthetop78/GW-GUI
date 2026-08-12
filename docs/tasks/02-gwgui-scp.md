@@ -5483,18 +5483,18 @@
     - [ ] Vérifier que chaque Reader enregistré produit le nom commun associé à son identifiant.
     - [x] Vérifier les noms variant selon AmigaDOS, CP/M et FAT sans comparer un texte de diagnostic localisé.
     - Blocage : les corpus actuels ne couvrent pas encore une image lisible pour chacun des 17 Readers enregistrés ; la vérification exhaustive de leur sortie reste donc non cochée.
-- [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs`
-  - [ ] Avertissements neutres répétés entre plusieurs systèmes
-    - [ ] Créer `FileSystems/Definitions/FileSystemWarningMessages.cs`.
-    - [ ] Ajouter une méthode recevant le nom d'une entrée et une exception de lecture pour produire l'avertissement actuellement dupliqué dans les Readers Acorn ADFS, AmigaDOS, Coherent, Commodore DOS et FAT12.
-    - [ ] Ajouter une méthode recevant le nom d'une entrée pour produire l'avertissement de blocs de données manquants actuellement dupliqué dans les Readers RT-11 et UCSD.
-    - [ ] Remplacer les sept constructions de texte correspondantes par ces deux méthodes communes.
-    - [ ] Laisser dans les erreurs propres à chaque format les diagnostics qui contiennent une structure ou une règle particulière à ce format.
-  - [ ] Documentation XML française
-    - [ ] Documenter en français le type, les deux méthodes, leurs paramètres et leur résultat.
-  - [ ] Tests ciblés
-    - [ ] Tester l'injection du nom et du message d'exception sans perdre le diagnostic d'origine.
-    - [ ] Tester l'avertissement commun de blocs manquants par les APIs publiques RT-11 et UCSD.
+- [x] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs`
+  - [x] Avertissements neutres répétés entre plusieurs systèmes
+    - [x] Créer `FileSystems/Definitions/FileSystemWarningMessages.cs`.
+    - [x] Ajouter une méthode recevant le nom d'une entrée et une exception de lecture pour produire l'avertissement actuellement dupliqué dans les Readers Acorn ADFS, AmigaDOS, Coherent, Commodore DOS et FAT12.
+    - [x] Ajouter une méthode recevant le nom d'une entrée pour produire l'avertissement de blocs de données manquants actuellement dupliqué dans les Readers RT-11 et UCSD.
+    - [x] Remplacer les sept constructions de texte correspondantes par ces deux méthodes communes.
+    - [x] Laisser dans les erreurs propres à chaque format les diagnostics qui contiennent une structure ou une règle particulière à ce format.
+  - [x] Documentation XML française
+    - [x] Documenter en français le type, les deux méthodes, leurs paramètres et leur résultat.
+  - [x] Tests ciblés
+    - [x] Tester l'injection du nom et du message d'exception sans perdre le diagnostic d'origine.
+    - [x] Tester l'avertissement commun de blocs manquants par les APIs publiques RT-11 et UCSD.
 - [ ] Définitions utilisées par les Readers de systèmes de fichiers
   - [ ] AmigaDOS
     - [ ] `FileSystems/Amiga/AmigaDosLayout.cs`

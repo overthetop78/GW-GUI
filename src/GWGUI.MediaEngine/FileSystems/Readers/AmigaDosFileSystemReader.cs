@@ -91,7 +91,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
                 if (kind == FileSystemEntryKind.File)
                 {
                     try { content = ReadFile(image, block, checked((int)size), (dosType & 1) != 0, warnings); }
-                    catch (Exception exception) when (exception is InvalidDataException or OverflowException) { warnings.Add($"{name}: {exception.Message}"); }
+                    catch (Exception exception) when (exception is InvalidDataException or OverflowException) { warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception)); }
                 }
                 entries.Add(new(name, kind, size, ReadDate(block, 420), ReadBString(block, 328, 79), ReadUInt32(block, 320), blockNumber,
                     ChecksumValid(block), children, content));

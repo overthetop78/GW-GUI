@@ -65,7 +65,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
                 var declaredBlocks = data[offset + 28] | data[offset + 29] << BitPrimitives.BitsPerByte;
                 IReadOnlyList<byte> content = [];
                 try { content = ReadFile(image, firstDataTrack, firstDataSector, warnings, name); }
-                catch (InvalidDataException exception) { warnings.Add($"{name}: {exception.Message}"); }
+                catch (InvalidDataException exception) { warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception)); }
                 var type = rawType & 7;
                 var comment = TypeName(type) + (((rawType & 0x80) == 0) ? ", open" : string.Empty) + (((rawType & 0x40) != 0) ? ", locked" : string.Empty);
                 entries.Add(new(name, FileSystemEntryKind.File, content.Count == 0 ? declaredBlocks * 254L : content.Count,

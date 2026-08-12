@@ -68,7 +68,7 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
             }
             catch (InvalidDataException exception)
             {
-                warnings.Add($"{name}: {exception.Message}");
+                warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception));
             }
         }
         return result.OrderByDescending(entry => entry.Kind == FileSystemEntryKind.Directory)

@@ -77,7 +77,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
             if (isDirectory && metadataValid)
             {
                 try { children = ReadDirectory(image, indirectAddress, resolve, visited, warnings, depth + 1).Children; }
-                catch (InvalidDataException exception) { warnings.Add($"{name}: {exception.Message}"); metadataValid = false; }
+                catch (InvalidDataException exception) { warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception)); metadataValid = false; }
             }
             else if (!isDirectory)
             {

@@ -72,7 +72,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
                 if (isDirectory) children = ReadDirectory(image, bytes, fat, layout, warnings, depth + 1, new HashSet<int>());
                 else content = bytes.Take(checked((int)Math.Min(size, int.MaxValue))).ToArray();
             }
-            catch (InvalidDataException exception) { warnings.Add($"{name}: {exception.Message}"); }
+            catch (InvalidDataException exception) { warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception)); }
             entries.Add(new(name, isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, size,
                 DecodeDateTime(BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + 24)), BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + 22))),
                 string.Empty, attributes, cluster, true, children, content));
