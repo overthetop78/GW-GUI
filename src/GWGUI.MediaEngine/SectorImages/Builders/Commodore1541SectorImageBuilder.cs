@@ -15,7 +15,7 @@ internal static class Commodore1541SectorImageBuilder
         for (var logical = 0; logical < blockCount; logical++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var address = Commodore1541Geometry.FromLogicalBlock(logical, tracks, sides);
+            var address = sides == Commodore1571Geometry.SideCount ? Commodore1571Geometry.FromLogicalBlock(logical, tracks) : Commodore1541Geometry.FromLogicalBlock(logical, tracks, sides);
             byte? errorCode = errorMapOffset is { } mapOffset ? data[mapOffset + logical] : null;
             var integrity = errorCode is null || errorCode == (byte)CommodoreDiskErrorCode.None;
             blocks[logical] = new(logical, new(Commodore1541Geometry.ToCylinder(address.Track), address.Side, address.Sector), data.Slice(logical * Commodore1541Geometry.SectorSize, Commodore1541Geometry.SectorSize).ToArray(), integrity, DiagnosticCode: errorCode);

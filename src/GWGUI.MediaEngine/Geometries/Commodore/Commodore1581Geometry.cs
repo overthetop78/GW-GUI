@@ -25,8 +25,17 @@ public static class Commodore1581Geometry
     /// <summary>Convertit une piste D81 indexée à un et son secteur logique en bloc logique.</summary>
     public static int ToLogicalBlock(int track, int sector)
     {
-        if (track is < 1 or > LogicalCylinderCount || sector is < 0 or >= LogicalBlocksPerTrack) throw new ArgumentOutOfRangeException();
+        if (track is < 1 or > LogicalCylinderCount) throw CommodoreGeometryExceptions.InvalidTrack(track, 1, LogicalCylinderCount);
+        if (sector is < 0 or >= LogicalBlocksPerTrack) throw CommodoreGeometryExceptions.InvalidSector(sector, 0, LogicalBlocksPerTrack - 1);
         return (track - 1) * LogicalBlocksPerTrack + sector;
+    }
+
+    /// <summary>Convertit un bloc logique en piste D81 indexée à un et secteur logique indexé à zéro.</summary>
+    public static (int Track, int Sector) FromLogicalBlock(int logicalBlock)
+    {
+        var blockCount = LogicalCylinderCount * LogicalBlocksPerTrack;
+        if (logicalBlock is < 0 || logicalBlock >= blockCount) throw CommodoreGeometryExceptions.InvalidLogicalBlock(logicalBlock, blockCount);
+        return (logicalBlock / LogicalBlocksPerTrack + 1, logicalBlock % LogicalBlocksPerTrack);
     }
 
     /// <summary>Calcule le premier bloc logique d'un secteur physique 1581, en conservant l'inversion actuelle des faces SCP.</summary>

@@ -121,6 +121,33 @@ public sealed class CommodoreDiskImageTests
     public void Commodore1541GeometryDefinesEveryZoneBoundary(int track, int sectors) => Assert.Equal(sectors, Commodore1541Geometry.SectorsPerTrack(track));
 
     [Fact]
+    public void CommodoreGeometriesValidateBoundsAndRoundTripZoneBoundaries()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => Commodore1541Geometry.SectorsPerTrack(0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => Commodore1541Geometry.SectorsPerTrack(41));
+        foreach (var track in new[] { 1, 17, 18, 24, 25, 30, 31, 40 })
+        {
+            var sector = Commodore1541Geometry.SectorsPerTrack(track) - 1;
+            var logical = Commodore1541Geometry.ToSideLogicalBlock(track, sector, Commodore1541Geometry.ExtendedTrackCount);
+            Assert.Equal(new Commodore1541Address(track, sector, 0), Commodore1541Geometry.FromLogicalBlock(logical, Commodore1541Geometry.ExtendedTrackCount, 1));
+        }
+        foreach (var side in new[] { 0, 1 })
+        {
+            var logical = Commodore1571Geometry.ToLogicalBlock(40, Commodore1541Geometry.SectorsPerTrack(40) - 1, 40, side);
+            Assert.Equal(new Commodore1541Address(40, 16, side), Commodore1571Geometry.FromLogicalBlock(logical, 40));
+        }
+        Assert.Throws<ArgumentOutOfRangeException>(() => Commodore1571Geometry.ToLogicalBlock(1, 0, 35, -1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => Commodore1571Geometry.ToLogicalBlock(1, 0, 35, 2));
+        foreach (var logical in new[] { 0, 39, 40, 3_199 })
+        {
+            var address = Commodore1581Geometry.FromLogicalBlock(logical);
+            Assert.Equal(logical, Commodore1581Geometry.ToLogicalBlock(address.Track, address.Sector));
+        }
+        Assert.Throws<ArgumentOutOfRangeException>(() => Commodore1581Geometry.ToLogicalBlock(0, 0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => Commodore1581Geometry.ToLogicalBlock(1, 40));
+    }
+
+    [Fact]
     public void D64LayoutsHaveExactLengthsAndRejectATruncatedErrorMap()
     {
         Assert.Equal(new[] { 174_848, 175_531, 196_608, 197_376 }, D64Layout.Supported.Select(layout => layout.ImageLength));

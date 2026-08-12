@@ -4746,45 +4746,45 @@
     - [x] Vérifier les 3 200 blocs, les adresses logiques 0/39/40/3 199 et la capacité.
     - [x] Tester la transformation entre un secteur physique 1581 et ses deux blocs logiques.
     - [x] Vérifier la cohérence entre Reader D81, Reader SCP 1581, système de fichiers et visualisation.
-- [ ] `src/GWGUI.MediaEngine/Images/CommodoreGeometry.cs`
-  - [ ] Séparation des géométries Commodore
-    - [ ] Créer `Geometries/Commodore/Commodore1541Geometry.cs` pour les pistes zonées d'une face 1541.
-    - [ ] Créer `Geometries/Commodore/Commodore1571Geometry.cs` comme composition de deux faces 1541 avec leur ordre logique.
-    - [ ] Déplacer la logique 1581 vers `Geometries/Commodore/Commodore1581Geometry.cs` créé avec D81.
-    - [ ] Adapter D64, D71, D81, les Readers SCP, le système de fichiers et la visualisation à la géométrie précise.
-    - [ ] Supprimer `Images/CommodoreGeometry.cs` après raccordement.
-  - [ ] Géométrie 1541
-    - [ ] Définir les pistes valides de 1 à 40 avant toute sélection de zone.
-    - [ ] Définir les zones 1–17, 18–24, 25–30 et 31–40 avec 21, 19, 18 et 17 secteurs.
-    - [ ] Remplacer le `switch` par une table de zones immuable ou des bornes nommées.
-    - [ ] Corriger le comportement actuel où une piste nulle ou négative tombe dans la branche `<= 24` et retourne 19 secteurs.
-    - [ ] Déplacer `SectorsFor1541Track`, `BlocksPer1541Side`, la conversion vers bloc logique et la conversion inverse.
-    - [ ] Valider le nombre de pistes demandé avant `Enumerable.Range`.
-    - [ ] Calculer une seule fois les préfixes de blocs par piste dans une table plutôt que de sommer les zones à chaque conversion.
-  - [ ] Géométrie 1571
-    - [ ] Définir exactement deux faces composées du même nombre de pistes 1541.
-    - [ ] Valider la face reçue dans la conversion logique ; le code actuel accepte toute valeur entière dans `To1541LogicalBlock`.
-    - [ ] Déplacer l'ordre première face puis seconde utilisé par D71 dans cette géométrie.
-    - [ ] Faire retourner une adresse nommée avec piste indexée à un, secteur et face.
-  - [ ] Géométrie 1581
-    - [ ] Déplacer `To1581LogicalBlock` dans `Commodore1581Geometry`.
-    - [ ] Remplacer 80 pistes et 40 blocs logiques par les propriétés de la vue logique D81.
-    - [ ] Fournir l'inverse bloc logique vers piste/secteur pour éviter les calculs recopiés dans Readers et visualisation.
-    - [ ] Utiliser une erreur précisant séparément piste ou secteur invalide au lieu d'un `ArgumentOutOfRangeException` sans paramètre.
-  - [ ] Erreurs de géométrie
-    - [ ] Créer `Geometries/Commodore/CommodoreGeometryExceptions.cs` avec piste, nombre de pistes, face, nombre de faces, secteur et bloc logique.
-    - [ ] Faire recevoir aux méthodes valeurs observées et bornes attendues.
-    - [ ] Remplacer `ArgumentOutOfRangeException` et `InvalidOperationException` sans explication.
-    - [ ] Conserver l'exception finale de conversion inverse uniquement comme invariant impossible documenté après validation complète.
-  - [ ] Présentation et CSDoc française
-    - [ ] Extraire les sommes et offsets dans des variables nommées, puis conserver chaque expression complète courte sur une seule ligne.
-    - [ ] Documenter en français les trois géométries, leurs bases d'indexation, zones, capacités et méthodes de conversion.
-  - [ ] Tests ciblés des géométries Commodore
-    - [ ] Tester les pistes 0, 1, 17, 18, 24, 25, 30, 31, 40 et 41 du 1541.
-    - [ ] Tester les conversions aller-retour de chaque frontière de zone et du dernier bloc d'une face.
-    - [ ] Tester D71 sur les deux faces et refuser une face négative ou supérieure à un.
-    - [ ] Tester les conversions aller-retour D81 aux pistes et secteurs limites.
-    - [ ] Vérifier que D64/D71, SCP et le système de fichiers produisent les mêmes blocs logiques pour une même adresse.
+- [x] `src/GWGUI.MediaEngine/Images/CommodoreGeometry.cs`
+  - [x] Séparation des géométries Commodore
+    - [x] Créer `Geometries/Commodore/Commodore1541Geometry.cs` pour les pistes zonées d'une face 1541.
+    - [x] Créer `Geometries/Commodore/Commodore1571Geometry.cs` comme composition de deux faces 1541 avec leur ordre logique.
+    - [x] Déplacer la logique 1581 vers `Geometries/Commodore/Commodore1581Geometry.cs` créé avec D81.
+    - [x] Adapter D64, D71, D81, les Readers SCP, le système de fichiers et la visualisation à la géométrie précise.
+    - [x] Supprimer `Images/CommodoreGeometry.cs` après raccordement.
+  - [x] Géométrie 1541
+    - [x] Définir les pistes valides de 1 à 40 avant toute sélection de zone.
+    - [x] Définir les zones 1–17, 18–24, 25–30 et 31–40 avec 21, 19, 18 et 17 secteurs.
+    - [x] Remplacer le `switch` par une table de zones immuable ou des bornes nommées.
+    - [x] Corriger le comportement actuel où une piste nulle ou négative tombe dans la branche `<= 24` et retourne 19 secteurs.
+    - [x] Déplacer `SectorsFor1541Track`, `BlocksPer1541Side`, la conversion vers bloc logique et la conversion inverse.
+    - [x] Valider le nombre de pistes demandé avant `Enumerable.Range`.
+    - [x] Calculer une seule fois les préfixes de blocs par piste dans une table plutôt que de sommer les zones à chaque conversion.
+  - [x] Géométrie 1571
+    - [x] Définir exactement deux faces composées du même nombre de pistes 1541.
+    - [x] Valider la face reçue dans la conversion logique ; le code actuel accepte toute valeur entière dans `To1541LogicalBlock`.
+    - [x] Déplacer l'ordre première face puis seconde utilisé par D71 dans cette géométrie.
+    - [x] Faire retourner une adresse nommée avec piste indexée à un, secteur et face.
+  - [x] Géométrie 1581
+    - [x] Déplacer `To1581LogicalBlock` dans `Commodore1581Geometry`.
+    - [x] Remplacer 80 pistes et 40 blocs logiques par les propriétés de la vue logique D81.
+    - [x] Fournir l'inverse bloc logique vers piste/secteur pour éviter les calculs recopiés dans Readers et visualisation.
+    - [x] Utiliser une erreur précisant séparément piste ou secteur invalide au lieu d'un `ArgumentOutOfRangeException` sans paramètre.
+  - [x] Erreurs de géométrie
+    - [x] Créer `Geometries/Commodore/CommodoreGeometryExceptions.cs` avec piste, nombre de pistes, face, nombre de faces, secteur et bloc logique.
+    - [x] Faire recevoir aux méthodes valeurs observées et bornes attendues.
+    - [x] Remplacer `ArgumentOutOfRangeException` et `InvalidOperationException` sans explication.
+    - [x] Conserver l'exception finale de conversion inverse uniquement comme invariant impossible documenté après validation complète.
+  - [x] Présentation et CSDoc française
+    - [x] Extraire les sommes et offsets dans des variables nommées, puis conserver chaque expression complète courte sur une seule ligne.
+    - [x] Documenter en français les trois géométries, leurs bases d'indexation, zones, capacités et méthodes de conversion.
+  - [x] Tests ciblés des géométries Commodore
+    - [x] Tester les pistes 0, 1, 17, 18, 24, 25, 30, 31, 40 et 41 du 1541.
+    - [x] Tester les conversions aller-retour de chaque frontière de zone et du dernier bloc d'une face.
+    - [x] Tester D71 sur les deux faces et refuser une face négative ou supérieure à un.
+    - [x] Tester les conversions aller-retour D81 aux pistes et secteurs limites.
+    - [x] Vérifier que D64/D71, SCP et le système de fichiers produisent les mêmes blocs logiques pour une même adresse.
 - [ ] `src/GWGUI.MediaEngine/Images/DecRx02ImageReader.cs`
   - [ ] Déplacement du lecteur d’image physique RX02
     - [ ] Renommer le type en `DecRx02Reader` et déplacer le fichier vers `Containers/Dec/Rx02/DecRx02Reader.cs`.

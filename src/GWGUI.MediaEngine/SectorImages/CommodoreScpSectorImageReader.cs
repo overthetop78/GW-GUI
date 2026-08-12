@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
@@ -41,26 +40,26 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         }
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(CommodoreGcrFormat.StructureDescriptionName);
         var maxTrack = candidates.Keys.Max(key => key.Track);
-        var is1571 = requestedFormat == DiskImageFormatIds.Commodore1571 || maxTrack > CommodoreGeometry.ExtendedTrackCount || scp.Tracks.Any(track => track.Head == 1);
+        var is1571 = requestedFormat == DiskImageFormatIds.Commodore1571 || maxTrack > Commodore1541Geometry.ExtendedTrackCount || scp.Tracks.Any(track => track.Head == 1);
         var hasExtendedData = candidates
-            .Where(candidate => candidate.Key.Track > CommodoreGeometry.StandardTrackCount && candidate.Key.Track <= CommodoreGeometry.ExtendedTrackCount)
+            .Where(candidate => candidate.Key.Track > Commodore1541Geometry.StandardTrackCount && candidate.Key.Track <= Commodore1541Geometry.ExtendedTrackCount)
             .SelectMany(candidate => candidate.Value)
             .Any(candidate => candidate.Sector.Data?.Any(value => value != 0) == true);
-        var tracksPerSide = is1571 ? CommodoreGeometry.StandardTrackCount : maxTrack > CommodoreGeometry.StandardTrackCount && hasExtendedData ? CommodoreGeometry.ExtendedTrackCount : CommodoreGeometry.StandardTrackCount;
-        var sides = is1571 ? CommodoreGeometry.DoubleSideCount : CommodoreGeometry.StandardSideCount;
-        var count = CommodoreGeometry.BlocksPer1541Side(tracksPerSide) * sides;
+        var tracksPerSide = is1571 ? Commodore1541Geometry.StandardTrackCount : maxTrack > Commodore1541Geometry.StandardTrackCount && hasExtendedData ? Commodore1541Geometry.ExtendedTrackCount : Commodore1541Geometry.StandardTrackCount;
+        var sides = is1571 ? Commodore1571Geometry.SideCount : DiskGeometryConstants.SingleSidedHeadCount;
+        var count = Commodore1541Geometry.BlocksPerSide(tracksPerSide) * sides;
         var blocks = new List<SectorBlock>();
         foreach (var (key, values) in candidates)
         {
             var side = key.Track > tracksPerSide ? 1 : 0;
             var track = side == 0 ? key.Track : key.Track - tracksPerSide;
-            if (side >= sides || track < 1 || track > tracksPerSide || key.Sector >= CommodoreGeometry.SectorsFor1541Track(track)) continue;
+            if (side >= sides || track < 1 || track > tracksPerSide || key.Sector >= Commodore1541Geometry.SectorsPerTrack(track)) continue;
             var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
-            var logical = CommodoreGeometry.To1541LogicalBlock(track, key.Sector, tracksPerSide, side);
+            var logical = is1571 ? Commodore1571Geometry.ToLogicalBlock(track, key.Sector, tracksPerSide, side) : Commodore1541Geometry.ToSideLogicalBlock(track, key.Sector, tracksPerSide);
             blocks.Add(new(logical, new(track - 1, side, key.Sector), best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution));
         }
         var formatId = is1571 ? DiskImageFormatIds.Commodore1571 : DiskImageFormatIds.Commodore1541;
-        return new(formatId, CommodoreGcrFormat.SectorByteCount, tracksPerSide, sides, CommodoreGeometry.MaximumSectorsPer1541Track, blocks, capacity: count * (long)CommodoreGcrFormat.SectorByteCount, logicalBlockCount: count);
+        return new(formatId, CommodoreGcrFormat.SectorByteCount, tracksPerSide, sides, Commodore1541Geometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)CommodoreGcrFormat.SectorByteCount, logicalBlockCount: count);
     }
 
     /// <summary>Reconstruit les blocs logiques d'une image 1581 depuis les secteurs MFM.</summary>

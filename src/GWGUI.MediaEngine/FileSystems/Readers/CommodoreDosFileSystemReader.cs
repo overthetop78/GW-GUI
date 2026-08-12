@@ -1,9 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.SectorImages;
-
-
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -140,7 +137,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
         var tracksPerSide = image.Cylinders;
         var side = track > tracksPerSide ? 1 : 0;
         var sideTrack = side == 0 ? track : track - tracksPerSide;
-        return CommodoreGeometry.To1541LogicalBlock(sideTrack, sector, tracksPerSide, side);
+        return image.Heads == Commodore1571Geometry.SideCount ? Commodore1571Geometry.ToLogicalBlock(sideTrack, sector, tracksPerSide, side) : Commodore1541Geometry.ToSideLogicalBlock(sideTrack, sector, tracksPerSide);
     }
 
     private static int TryToLogicalBlock(SectorImage image, int track, int sector)
