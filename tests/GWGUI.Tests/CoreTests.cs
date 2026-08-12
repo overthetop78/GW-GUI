@@ -1182,6 +1182,24 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ExplorerMarksARecognizedVolumeWithoutARealNameAsSynthetic()
+    {
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("amiga.amigados", 512, 1, 1, 1,
+            [new GWGUI.MediaEngine.SectorImages.SectorBlock(0, new(0, 0, 0), new byte[512], false)]);
+        var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume(string.Empty, "amigados.ofs", 512, 0, null, null, [], []);
+        var document = new ExploredDiskImage("test.adf", image, volume,
+            new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata(["amiga"], null));
+
+        var name = ExplorerDetailsPresenter.VolumeName(document);
+        var details = ExplorerDetailsPresenter.ForDisk(document);
+
+        Assert.True(name.IsSynthetic);
+        Assert.Equal($"({LocExtension.Get("Explorer.Unnamed")})", name.Text);
+        Assert.True(details.IsSyntheticTitle);
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.Volume" && row.IsSyntheticValue);
+    }
+
+    [Fact]
     public void VisualizationUsesGwOnlyForAdvertisedInputAndScpOutput()
     {
         var catalog = new BuiltInImageFormatCatalog();

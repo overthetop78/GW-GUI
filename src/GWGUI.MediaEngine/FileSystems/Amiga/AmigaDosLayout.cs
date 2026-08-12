@@ -75,6 +75,8 @@ public static class AmigaDosLayout
     public const int OfsDataMaximumLength = 488;
     /// <summary>Type primaire d'un bloc d'en-tête.</summary>
     public const int HeaderPrimaryType = 2;
+    /// <summary>Type primaire d'un bloc d'extension de fichier.</summary>
+    public const int FileExtensionPrimaryType = 16;
     /// <summary>Type primaire d'un bloc de données OFS.</summary>
     public const int OfsDataPrimaryType = 8;
     /// <summary>Type secondaire d'un bloc racine.</summary>

@@ -8,11 +8,12 @@ public sealed record ExplorerFormatChoice(string? Id, string Name);
 
 public sealed class ExplorerFolderItem
 {
-    public ExplorerFolderItem(string name, FileSystemEntry? entry, int depth, IEnumerable<FileSystemEntry> children)
+    public ExplorerFolderItem(string name, FileSystemEntry? entry, int depth, IEnumerable<FileSystemEntry> children, bool isSyntheticName = false)
     {
         Name = name;
         Entry = entry;
         Depth = depth;
+        IsSyntheticName = isSyntheticName;
         Children = children.Where(child => child.Kind == FileSystemEntryKind.Directory)
             .Select(child => new ExplorerFolderItem(child.Name, child, depth + 1, child.Children)).ToArray();
     }
@@ -20,6 +21,7 @@ public sealed class ExplorerFolderItem
     public string Name { get; }
     public FileSystemEntry? Entry { get; }
     public int Depth { get; }
+    public bool IsSyntheticName { get; }
     public IReadOnlyList<ExplorerFolderItem> Children { get; }
     public bool IsExpanded { get; set; }
     public string ToggleText => Children.Count == 0 ? string.Empty : IsExpanded ? "-" : "+";

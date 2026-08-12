@@ -264,7 +264,7 @@ public sealed class DiskImageExplorerTests
     public void AmigaDosReaderValidatesExtensionBlocks()
     {
         var source = BuildAmigaImage(true);
-        var validExtension = ReplaceAmigaBlock(source, 15, block => { WriteInt(block, 0, 2); WriteInt(block, 508, -3); SetChecksum(block); });
+        var validExtension = ReplaceAmigaBlock(source, 15, block => { WriteInt(block, 0, AmigaDosLayout.FileExtensionPrimaryType); WriteInt(block, 508, AmigaDosLayout.FileSecondaryType); SetChecksum(block); });
         var valid = ReplaceAmigaBlock(validExtension, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
         Assert.DoesNotContain(new AmigaDosFileSystemReader().Read(valid).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
 

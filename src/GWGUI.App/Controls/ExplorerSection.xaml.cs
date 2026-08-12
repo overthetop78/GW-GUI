@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using GWGUI.App.Localization;
 using GWGUI.Domain.Formats;
 using GWGUI.MediaEngine.FileSystems;
@@ -62,6 +63,7 @@ public partial class ExplorerSection : UserControl
         PathText.Text = path ?? string.Empty;
         DetectedFormatsText.Text = "\u2014";
         DetectedFormatsText.ToolTip = null;
+        VolumeNameText.Foreground = (Brush)FindResource("TextBrush");
         VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
         SystemText.Text = ProtectionText.Text = "\u2014";
         _rootFolder = null;
@@ -83,10 +85,9 @@ public partial class ExplorerSection : UserControl
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (_applyDetectionOnDisplay) Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId, DetectedFormats(document));
         _applyDetectionOnDisplay = false;
-        var volumeName = !document.FileSystemRecognized
-            ? LocExtension.Get("Explorer.Unknown")
-            : string.IsNullOrWhiteSpace(document.Volume.Name) ? LocExtension.Get("Explorer.Unnamed") : document.Volume.Name;
-        VolumeNameText.Text = volumeName;
+        var volumeName = ExplorerDetailsPresenter.VolumeName(document);
+        VolumeNameText.Text = volumeName.Text;
+        VolumeNameText.Foreground = (Brush)FindResource(volumeName.IsSynthetic ? "SyntheticNameBrush" : "TextBrush");
         SystemText.Text = ExplorerMetadataPresenter.Systems(document.Metadata);
         ProtectionText.Text = ExplorerMetadataPresenter.Protection(document.Metadata);
         FileSystemText.Text = ExplorerDetailsPresenter.FileSystemText(document);
@@ -94,7 +95,7 @@ public partial class ExplorerSection : UserControl
         FreeText.Text = document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
         EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
         _rootEntries = document.Volume.Entries;
-        _rootFolder = new ExplorerFolderItem(volumeName, null, 0, _rootEntries) { IsExpanded = true };
+        _rootFolder = new ExplorerFolderItem(volumeName.Text, null, 0, _rootEntries, volumeName.IsSynthetic) { IsExpanded = true };
         RefreshVisibleFolders(_rootFolder);
         FolderList.SelectedItem = _rootFolder;
         ShowContents(_rootEntries);

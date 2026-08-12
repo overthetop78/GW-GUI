@@ -56,7 +56,9 @@ public static class AmigaDosFileReader
                 break;
             }
             metadata = extensionBlock.Data.ToArray();
-            if (BigEndianInt32.Read(metadata, AmigaDosLayout.PrimaryTypeOffset) != AmigaDosLayout.HeaderPrimaryType || !AmigaDosChecksum.IsValid(metadata))
+            if (BigEndianInt32.Read(metadata, AmigaDosLayout.PrimaryTypeOffset) != AmigaDosLayout.FileExtensionPrimaryType ||
+                BigEndianInt32.Read(metadata, AmigaDosLayout.SecondaryTypeOffset) != AmigaDosLayout.FileSecondaryType ||
+                !AmigaDosChecksum.IsValid(metadata))
             {
                 warnings.Add(AmigaDosWarnings.InvalidExtensionChecksum(extension));
                 valid = false;

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.Windows.Controls;
+using System.Windows.Media;
 using GWGUI.App.Localization;
 
 namespace GWGUI.App.Controls;
@@ -27,6 +28,7 @@ public partial class ExplorerDetailsPanel : UserControl
         _item = null;
         DetailsIcon.Kind = ExplorerIconKind.DiskImage;
         DetailsTitle.Text = "\u2014";
+        DetailsTitle.Foreground = BrushFor(false);
         SetRows([]);
     }
 
@@ -71,10 +73,13 @@ public partial class ExplorerDetailsPanel : UserControl
     {
         DetailsIcon.Kind = presentation.IconKind;
         DetailsTitle.Text = presentation.Title;
-        SetRows(presentation.Rows.Select(row => ((string?)row.Key, (string?)row.Value)).ToArray());
+        DetailsTitle.Foreground = BrushFor(presentation.IsSyntheticTitle);
+        SetRows(presentation.Rows.Select(row => ((string?)row.Key, (string?)row.Value, row.IsSyntheticValue)).ToArray());
     }
 
-    private void SetRows(IReadOnlyList<(string? Key, string? Value)> values)
+    private Brush BrushFor(bool synthetic) => (Brush)FindResource(synthetic ? "SyntheticNameBrush" : "TextBrush");
+
+    private void SetRows(IReadOnlyList<(string? Key, string? Value, bool IsSynthetic)> values)
     {
         var rows = new[] { DetailRow1, DetailRow2, DetailRow3, DetailRow4, DetailRow5, DetailRow6, DetailRow7, DetailRow8 };
         var labels = new[] { DetailLabel1, DetailLabel2, DetailLabel3, DetailLabel4, DetailLabel5, DetailLabel6, DetailLabel7, DetailLabel8 };
@@ -86,6 +91,7 @@ public partial class ExplorerDetailsPanel : UserControl
             if (!visible) continue;
             labels[index].Text = LocExtension.Get(values[index].Key!);
             displayedValues[index].Text = string.IsNullOrWhiteSpace(values[index].Value) ? "\u2014" : values[index].Value;
+            displayedValues[index].Foreground = BrushFor(values[index].IsSynthetic);
         }
     }
 }

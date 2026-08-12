@@ -120,7 +120,18 @@
                                 <Grid.ColumnDefinitions><ColumnDefinition Width="24"/><ColumnDefinition Width="26"/><ColumnDefinition/></Grid.ColumnDefinitions>
                                 <Button Grid.Column="0" Content="{Binding ToggleText}" Tag="{Binding}" Click="FolderToggle_Click" Width="22" Height="22" MinWidth="0" MinHeight="0" Padding="0" Margin="0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold"/>
                                 <controls:FileEntryIcon Grid.Column="1" Kind="Folder" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSyntheticName}" Value="True">
+                                                    <Setter Property="Foreground" Value="{DynamicResource SyntheticNameBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
