@@ -58,7 +58,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
         var visited = new HashSet<int> { rootBlock };
         var entries = ReadDirectory(image, root, hashSize, variant, visited, warnings, 0);
         var freeBlocks = CountFreeBlocks(image, root, warnings);
-        var fileSystem = Definitions.FileSystemDisplayNames.AmigaDos(variant);
+        var fileSystem = Definitions.FileSystemIds.AmigaDos;
         return new(ReadBString(root, AmigaDosLayout.OrdinaryNameOffset, AmigaDosLayout.OrdinaryNameMaximumLength), fileSystem, image.Capacity, (long)freeBlocks * AmigaDosLayout.BlockSize, ReadDate(root, AmigaDosLayout.DateOffset), ReadDate(root, AmigaDosLayout.VolumeModifiedDateOffset), entries, warnings);
     }
 

@@ -39,7 +39,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
         }
         var entries = ReadDirectory(image, directoryTrack, directorySector, warnings);
         var freeBlocks = ReadFreeBlocks(image, layout);
-        return new(name, Definitions.FileSystemDisplayNames.CommodoreDos, image.Capacity, Math.Max(0, freeBlocks) * CommodoreDosLayout.SectorSize, null, null, entries, warnings);
+        return new(name, Definitions.FileSystemIds.CommodoreDos, image.Capacity, Math.Max(0, freeBlocks) * CommodoreDosLayout.SectorSize, null, null, entries, warnings);
     }
 
     /// <summary>Lit les entrées de la chaîne de répertoire.</summary>

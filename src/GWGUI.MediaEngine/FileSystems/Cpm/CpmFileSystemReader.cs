@@ -49,6 +49,6 @@ public sealed class CpmFileSystemReader : IFileSystemReader
         }
         var totalAllocations = Math.Max(0, (logical.Bytes.Length - layout.AllocationOrigin) / layout.AllocationBlockSize);
         var freeAllocations = Math.Max(0, totalAllocations - usedAllocations.Count - layout.DirectoryBlocks);
-        return new(directory.VolumeName, FileSystemDisplayNames.Cpm3, image.Capacity, freeAllocations * (long)layout.AllocationBlockSize, null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
+        return new(directory.VolumeName, FileSystemIds.Cpm, image.Capacity, freeAllocations * (long)layout.AllocationBlockSize, null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 }

@@ -43,7 +43,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
         ];
 
         var used = interpreter.LongLength + storyFile.LongLength;
-        return new("", Definitions.FileSystemDisplayNames.AppleInformXzip, image.Capacity, Math.Max(0, image.Capacity - used), null, null,
+        return new("", Definitions.FileSystemIds.AppleInformXzip, image.Capacity, Math.Max(0, image.Capacity - used), null, null,
             entries, []);
     }
 

@@ -60,7 +60,7 @@ public sealed class Fat12DefinitionsTests
         Assert.Equal(string.Empty, volume.Name);
         var entry = Assert.Single(volume.Entries);
         Assert.Equal("FILE.TXT", entry.Name);
-        Assert.Equal((uint)(FatDirectoryAttributes.ReadOnly | FatDirectoryAttributes.Hidden | FatDirectoryAttributes.System | FatDirectoryAttributes.Archive), entry.Protection);
+        Assert.Equal((uint)(FatDirectoryAttributes.ReadOnly | FatDirectoryAttributes.Hidden | FatDirectoryAttributes.System | FatDirectoryAttributes.Archive), entry.RawAttributes);
         Assert.Equal(new DateTimeOffset(2024, 6, 15, 12, 34, 56, TimeSpan.Zero), entry.Modified);
     }
 

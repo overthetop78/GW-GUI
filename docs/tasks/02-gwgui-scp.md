@@ -6238,50 +6238,50 @@
       - [x] Tester `FindNextSetBit` avec bit trouvé, fin atteinte et bornes invalides.
       - [x] Tester une adresse nulle, un offset négatif, un bloc zéro, un bloc hors image et un décalage débordant.
       - [x] Tester l'espace libre calculé et son plafonnement par la capacité de l'image.
-  - [ ] `FileSystems/FileSystemModels.cs`
-    - [ ] Découpage des quatre types publics
-      - [ ] Créer `FileSystems/FileSystemEntryKind.cs` et y déplacer uniquement l'enum `FileSystemEntryKind`.
-      - [ ] Créer `FileSystems/FileSystemEntry.cs` et y déplacer uniquement le record `FileSystemEntry`.
-      - [ ] Créer `FileSystems/FileSystemVolume.cs` et y déplacer uniquement le record `FileSystemVolume`.
-      - [ ] Créer `FileSystems/IFileSystemReader.cs` et y déplacer uniquement l'interface `IFileSystemReader`.
-      - [ ] Adapter les références aux quatre types sans modifier leur namespace public.
-      - [ ] Supprimer `FileSystems/FileSystemModels.cs` après le déplacement de tous ses types.
-    - [ ] Nature d'une entrée de système de fichiers
-      - [ ] Présenter `Directory`, `File`, `Link` et `Unknown` sur des lignes distinctes afin de pouvoir documenter chaque valeur.
-      - [ ] Conserver `Unknown` pour une entrée reconnue dont le type propre au format n'est pas encore interprété.
-      - [ ] Ne pas ajouter au modèle commun les types fermés propres à AmigaDOS, ProDOS, FAT ou aux autres formats.
-    - [ ] Noms des données communes d'une entrée
-      - [ ] Renommer `HeaderBlock`, qui contient selon les Readers un secteur logique, un numéro de fichier ou un bloc-clé, avec un nom générique décrivant une référence de stockage propre au format.
-      - [ ] Renommer `Protection`, qui contient aussi des types et drapeaux autres que la protection, avec un nom indiquant qu'il s'agit des attributs bruts propres au format.
-      - [ ] Adapter chaque Reader et chaque consommateur aux deux nouveaux noms sans modifier les valeurs décodées.
-      - [ ] Documenter que `Comment` contient la description technique décodée ou construite par le Reader, et non un message d'interface localisé.
-      - [ ] Conserver `MetadataValid` comme état séparé de la présence éventuelle du contenu.
-    - [ ] Identité technique du volume
-      - [ ] Renommer `FileSystemVolume.FileSystem` en `FileSystemId` afin que la propriété reçoive un identifiant technique et non un nom d'affichage.
-      - [ ] Remplacer dans chaque Reader les noms de systèmes écrits en brut par les valeurs centrales de `FileSystemIds`.
-      - [ ] Laisser la traduction d'un identifiant technique en nom affiché au consommateur chargé de l'interface.
-    - [ ] Immuabilité de `FileSystemEntry`
-      - [ ] Copier la collection `Children` reçue avant de l'exposer par une vue non modifiable.
-      - [ ] Copier la collection optionnelle `Content` reçue avant de l'exposer par une vue non modifiable.
-      - [ ] Conserver la distinction entre un contenu absent et un contenu présent mais vide.
-    - [ ] Immuabilité de `FileSystemVolume`
-      - [ ] Copier la collection `Entries` reçue avant de l'exposer par une vue non modifiable.
-      - [ ] Copier la collection `Warnings` reçue avant de l'exposer par une vue non modifiable.
-    - [ ] Contrat `IFileSystemReader`
-      - [ ] Conserver `Id` comme identifiant technique central du Reader.
-      - [ ] Exiger que `CatalogFormatIds` soit exposé par un ensemble réellement non modifiable et constitué d'identifiants centraux.
-      - [ ] Conserver la séparation entre `CanRead`, qui sonde l'image sectorielle, et `Read`, qui produit le volume complet ou signale sa corruption.
-    - [ ] Présentation et CSDoc des quatre fichiers
-      - [ ] Conserver sur une seule ligne les déclarations de records lorsqu'elles tiennent lisiblement après le renommage ; ne pas casser artificiellement une signature courte.
-      - [ ] Ajouter en français la CSDoc de l'enum, de chacune de ses valeurs, des deux records et de l'interface.
-      - [ ] Documenter chaque paramètre et propriété avec son unité, son caractère optionnel et sa signification commune ou propre au format.
-      - [ ] Documenter en français `Id`, `CatalogFormatIds`, `CanRead` et `Read`, avec leurs paramètres, résultats et exceptions.
-    - [ ] Tests ciblés des modèles de systèmes de fichiers
-      - [ ] Tester que la modification ultérieure de `Children` et `Content` ne modifie pas une entrée déjà construite.
-      - [ ] Tester que la modification ultérieure de `Entries` et `Warnings` ne modifie pas un volume déjà construit.
-      - [ ] Tester la distinction entre contenu nul et contenu vide.
-      - [ ] Tester que les quatre natures d'entrée restent distinctes après le déplacement de l'enum.
-      - [ ] Tester qu'un Reader expose un identifiant de système de fichiers central et un catalogue impossible à modifier.
+  - [x] `FileSystems/FileSystemModels.cs`
+    - [x] Découpage des quatre types publics
+      - [x] Créer `FileSystems/FileSystemEntryKind.cs` et y déplacer uniquement l'enum `FileSystemEntryKind`.
+      - [x] Créer `FileSystems/FileSystemEntry.cs` et y déplacer uniquement le record `FileSystemEntry`.
+      - [x] Créer `FileSystems/FileSystemVolume.cs` et y déplacer uniquement le record `FileSystemVolume`.
+      - [x] Créer `FileSystems/IFileSystemReader.cs` et y déplacer uniquement l'interface `IFileSystemReader`.
+      - [x] Adapter les références aux quatre types sans modifier leur namespace public.
+      - [x] Supprimer `FileSystems/FileSystemModels.cs` après le déplacement de tous ses types.
+    - [x] Nature d'une entrée de système de fichiers
+      - [x] Présenter `Directory`, `File`, `Link` et `Unknown` sur des lignes distinctes afin de pouvoir documenter chaque valeur.
+      - [x] Conserver `Unknown` pour une entrée reconnue dont le type propre au format n'est pas encore interprété.
+      - [x] Ne pas ajouter au modèle commun les types fermés propres à AmigaDOS, ProDOS, FAT ou aux autres formats.
+    - [x] Noms des données communes d'une entrée
+      - [x] Renommer `HeaderBlock`, qui contient selon les Readers un secteur logique, un numéro de fichier ou un bloc-clé, avec un nom générique décrivant une référence de stockage propre au format.
+      - [x] Renommer `Protection`, qui contient aussi des types et drapeaux autres que la protection, avec un nom indiquant qu'il s'agit des attributs bruts propres au format.
+      - [x] Adapter chaque Reader et chaque consommateur aux deux nouveaux noms sans modifier les valeurs décodées.
+      - [x] Documenter que `Comment` contient la description technique décodée ou construite par le Reader, et non un message d'interface localisé.
+      - [x] Conserver `MetadataValid` comme état séparé de la présence éventuelle du contenu.
+    - [x] Identité technique du volume
+      - [x] Renommer `FileSystemVolume.FileSystem` en `FileSystemId` afin que la propriété reçoive un identifiant technique et non un nom d'affichage.
+      - [x] Remplacer dans chaque Reader les noms de systèmes écrits en brut par les valeurs centrales de `FileSystemIds`.
+      - [x] Laisser la traduction d'un identifiant technique en nom affiché au consommateur chargé de l'interface.
+    - [x] Immuabilité de `FileSystemEntry`
+      - [x] Copier la collection `Children` reçue avant de l'exposer par une vue non modifiable.
+      - [x] Copier la collection optionnelle `Content` reçue avant de l'exposer par une vue non modifiable.
+      - [x] Conserver la distinction entre un contenu absent et un contenu présent mais vide.
+    - [x] Immuabilité de `FileSystemVolume`
+      - [x] Copier la collection `Entries` reçue avant de l'exposer par une vue non modifiable.
+      - [x] Copier la collection `Warnings` reçue avant de l'exposer par une vue non modifiable.
+    - [x] Contrat `IFileSystemReader`
+      - [x] Conserver `Id` comme identifiant technique central du Reader.
+      - [x] Exiger que `CatalogFormatIds` soit exposé par un ensemble réellement non modifiable et constitué d'identifiants centraux.
+      - [x] Conserver la séparation entre `CanRead`, qui sonde l'image sectorielle, et `Read`, qui produit le volume complet ou signale sa corruption.
+    - [x] Présentation et CSDoc des quatre fichiers
+      - [x] Conserver sur une seule ligne les déclarations de records lorsqu'elles tiennent lisiblement après le renommage ; ne pas casser artificiellement une signature courte.
+      - [x] Ajouter en français la CSDoc de l'enum, de chacune de ses valeurs, des deux records et de l'interface.
+      - [x] Documenter chaque paramètre et propriété avec son unité, son caractère optionnel et sa signification commune ou propre au format.
+      - [x] Documenter en français `Id`, `CatalogFormatIds`, `CanRead` et `Read`, avec leurs paramètres, résultats et exceptions.
+    - [x] Tests ciblés des modèles de systèmes de fichiers
+      - [x] Tester que la modification ultérieure de `Children` et `Content` ne modifie pas une entrée déjà construite.
+      - [x] Tester que la modification ultérieure de `Entries` et `Warnings` ne modifie pas un volume déjà construit.
+      - [x] Tester la distinction entre contenu nul et contenu vide.
+      - [x] Tester que les quatre natures d'entrée restent distinctes après le déplacement de l'enum.
+      - [x] Tester qu'un Reader expose un identifiant de système de fichiers central et un catalogue impossible à modifier.
   - [ ] `FileSystems/FileSystemRegistry.cs`
     - [ ] Séparation du catalogue par défaut et du registre
       - [ ] Créer `FileSystems/FileSystemReaderCatalog.cs` pour construire les dix-sept Readers actuellement instanciés directement dans le registre.

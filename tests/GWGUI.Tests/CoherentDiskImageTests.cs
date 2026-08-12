@@ -22,7 +22,7 @@ public sealed class CoherentDiskImageTests
         var volume = new FileSystemRegistry().Read(image);
 
         Assert.Equal(DiskImageFormatIds.Commodore900Coherent, image.FormatId);
-        Assert.Equal("COHERENT (Commodore 900)", volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Coherent, volume.FileSystemId);
         Assert.NotEmpty(volume.Entries);
         Assert.Contains(volume.Entries, entry => entry.Name == "coherent");
         Assert.All(volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));

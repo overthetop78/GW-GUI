@@ -80,7 +80,7 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         if (document.Image.TryGetBlock(rootBlock, out var root)) output.WriteLine($"root[{rootBlock}]={Convert.ToHexString(root.Data.Take(24).ToArray())}");
         foreach (var detected in document.DetectedFileSystems ?? [])
         {
-            output.WriteLine($"{detected.FormatId} | {detected.Volume.FileSystem} | volume={detected.Volume.Name} | entries={Count(detected.Volume.Entries)} | warnings={detected.Volume.Warnings.Count}");
+            output.WriteLine($"{detected.FormatId} | {detected.Volume.FileSystemId} | volume={detected.Volume.Name} | entries={Count(detected.Volume.Entries)} | warnings={detected.Volume.Warnings.Count}");
             foreach (var entry in detected.Volume.Entries.Take(30)) output.WriteLine($"  entry: {entry.Name} | {entry.Size} | {entry.Comment}");
             foreach (var warning in detected.Volume.Warnings.Take(10)) output.WriteLine($"  warning: {warning}");
         }

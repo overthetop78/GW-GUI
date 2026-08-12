@@ -88,7 +88,7 @@ public sealed class DiskImageExplorerTests
             new SectorBlock(1, new SectorAddress(0, 0, 1), new byte[256], IntegrityValid: false)
         };
         var image = new SectorImage("apple2.dos33", 256, 1, 1, 3, blocks);
-        var volume = new FileSystemVolume("TEST", "Apple DOS 3.3", 768, 0, null, null, [], ["Catalog warning"]);
+        var volume = new FileSystemVolume("TEST", GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos, 768, 0, null, null, [], ["Catalog warning"]);
         var issues = ExplorerSection.BuildIssues(new ExploredDiskImage("test.nib", image, volume));
 
         Assert.Contains("Catalog warning", issues);
@@ -174,7 +174,7 @@ public sealed class DiskImageExplorerTests
         var image = BuildAmigaImage(fastFileSystem: true);
         var volume = new AmigaDosFileSystemReader().Read(image);
 
-        Assert.Equal("Workbench", volume.Name); Assert.Equal("AmigaDOS FFS", volume.FileSystem);
+        Assert.Equal("Workbench", volume.Name); Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, volume.FileSystemId);
         var file = Assert.Single(volume.Entries, entry => entry.Kind == FileSystemEntryKind.File);
         Assert.Equal("Hello", file.Name); Assert.Equal("hello"u8.ToArray(), file.Content);
         var drawer = Assert.Single(volume.Entries, entry => entry.Kind == FileSystemEntryKind.Directory);
@@ -188,7 +188,7 @@ public sealed class DiskImageExplorerTests
     {
         var image = BuildAmigaImage(fastFileSystem: false);
         var volume = new AmigaDosFileSystemReader().Read(image);
-        Assert.Equal("AmigaDOS OFS", volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, volume.FileSystemId);
         Assert.Equal("hello"u8.ToArray(), volume.Entries.Single(entry => entry.Name == "Hello").Content);
     }
 
@@ -199,19 +199,19 @@ public sealed class DiskImageExplorerTests
         var volume = new AmigaDosFileSystemReader().Read(image);
 
         Assert.Equal("Workbench", volume.Name);
-        Assert.Equal("AmigaDOS FFS", volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, volume.FileSystemId);
     }
 
     [Theory]
-    [InlineData(0, "AmigaDOS OFS")]
-    [InlineData(1, "AmigaDOS FFS")]
-    [InlineData(2, "AmigaDOS OFS International")]
-    [InlineData(3, "AmigaDOS FFS International")]
-    [InlineData(4, "AmigaDOS OFS Directory Cache")]
-    [InlineData(5, "AmigaDOS FFS Directory Cache")]
-    [InlineData(6, "AmigaDOS OFS Long Names")]
-    [InlineData(7, "AmigaDOS FFS Long Names")]
-    public void AmigaDosReaderRecognizesEveryVariant(byte variant, string expected) => Assert.Equal(expected, new AmigaDosFileSystemReader().Read(BuildAmigaImage((variant & 1) != 0, variant: variant)).FileSystem);
+    [InlineData(0, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(1, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(2, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(3, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(4, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(5, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(6, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    [InlineData(7, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos)]
+    public void AmigaDosReaderRecognizesEveryVariant(byte variant, string expected) => Assert.Equal(expected, new AmigaDosFileSystemReader().Read(BuildAmigaImage((variant & 1) != 0, variant: variant)).FileSystemId);
 
     [Fact]
     public void AmigaDosReaderValidatesRootTypeAndChecksum()

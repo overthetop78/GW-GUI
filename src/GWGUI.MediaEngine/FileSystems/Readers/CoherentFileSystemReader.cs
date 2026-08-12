@@ -33,7 +33,7 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
         if (volumeName is CoherentSuperblockLayout.PlaceholderName or CoherentSuperblockLayout.DefaultVolumeName) volumeName = string.Empty;
         var freeBytes = (long)CoherentCanonicalBinary.ReadUInt32(bytes.AsSpan(CoherentSuperblockLayout.FreeBlockCountOffset, CoherentCanonicalBinary.UInt32Length)) * CoherentSuperblockLayout.BlockSize;
         var modified = DecodeTime(CoherentCanonicalBinary.ReadUInt32(bytes.AsSpan(CoherentSuperblockLayout.ModifiedTimeOffset, CoherentCanonicalBinary.UInt32Length)));
-        return new(volumeName, Definitions.FileSystemDisplayNames.CoherentCommodore900, (long)fileSystemBlocks * CoherentSuperblockLayout.BlockSize, Math.Clamp(freeBytes, 0, (long)fileSystemBlocks * CoherentSuperblockLayout.BlockSize), null, modified, entries, warnings);
+        return new(volumeName, Definitions.FileSystemIds.Coherent, (long)fileSystemBlocks * CoherentSuperblockLayout.BlockSize, Math.Clamp(freeBytes, 0, (long)fileSystemBlocks * CoherentSuperblockLayout.BlockSize), null, modified, entries, warnings);
     }
 
     /// <summary>Lit récursivement un répertoire en empêchant les cycles d'inodes.</summary>

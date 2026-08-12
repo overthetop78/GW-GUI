@@ -46,7 +46,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         }
         var totalAllocations = Math.Max(0, (logical.Bytes.Length - layout.AllocationOrigin) / layout.AllocationBlockSize);
         var freeAllocations = Math.Max(0, totalAllocations - usedAllocations.Count - layout.DirectoryBlocks);
-        return new(directory.VolumeName, FileSystemDisplayNames.AmstradCpm(image.FormatId), image.Capacity, freeAllocations * (long)layout.AllocationBlockSize, null, null, files.OrderBy(file => file.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
+        return new(directory.VolumeName, FileSystemIds.AmstradCpm, image.Capacity, freeAllocations * (long)layout.AllocationBlockSize, null, null, files.OrderBy(file => file.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
     /// <summary>Résout une disposition CPC depuis l'identifiant du premier secteur ou une disposition PCW depuis sa spécification validée.</summary>

@@ -22,13 +22,13 @@ public sealed class EpsonQx10DiskImageTests(ITestOutputHelper output)
         var path = TestImage("Epson QX-10", fileName);
         if (!File.Exists(path)) return;
         var disk = await DiskImageExplorer.CreateDefault().ExploreAsync(path, automatic ? null : "epson.qx10.396");
-        output.WriteLine($"Format={disk.Image.FormatId}; FS={disk.Volume.FileSystem}; Volume='{disk.Volume.Name}'; Capacity={disk.Volume.Capacity}; Free={disk.Volume.FreeBytes}");
+        output.WriteLine($"Format={disk.Image.FormatId}; FS={disk.Volume.FileSystemId}; Volume='{disk.Volume.Name}'; Capacity={disk.Volume.Capacity}; Free={disk.Volume.FreeBytes}");
         foreach (var entry in disk.Volume.Entries)
             output.WriteLine($"{entry.Name}\t{entry.Size}\t{entry.Modified:O}\tvalid={entry.MetadataValid}");
         Assert.True(disk.FileSystemRecognized);
         Assert.Equal(expectedFormat, disk.Image.FormatId);
         Assert.Equal("Epson QX-10", disk.Metadata.SystemName);
-        Assert.Contains("CP/M", disk.Volume.FileSystem, StringComparison.OrdinalIgnoreCase);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Cpm, disk.Volume.FileSystemId);
         if (requireComplete) Assert.Empty(disk.Image.MissingBlocks);
         Assert.NotEmpty(disk.Volume.Entries);
         Assert.All(disk.Volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));

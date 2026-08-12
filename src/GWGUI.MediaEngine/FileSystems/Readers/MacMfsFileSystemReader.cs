@@ -51,7 +51,7 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
                 if (offset <= start) break;
             }
         }
-        return new(name, Definitions.FileSystemDisplayNames.MacMfs, image.Capacity, (long)free * allocationSize, MacDate(U32(mdb, 2)), MacDate(U32(mdb, 6)),
+        return new(name, Definitions.FileSystemIds.MacMfs, image.Capacity, (long)free * allocationSize, MacDate(U32(mdb, 2)), MacDate(U32(mdb, 6)),
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

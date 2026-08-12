@@ -186,7 +186,7 @@ public sealed class AppleDiskImageTests
             var image = await new AppleDiskImageReader().ReadAsync(path);
             Assert.Equal("apple2.dos33", image.FormatId);
             var volume = new FileSystemRegistry().Read(image);
-            Assert.Equal("Apple DOS 3.3", volume.FileSystem);
+            Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos, volume.FileSystemId);
             Assert.Contains(volume.Entries, entry => entry.Name == "HELLO");
         }
         finally { File.Delete(path); }
@@ -227,7 +227,7 @@ public sealed class AppleDiskImageTests
 
         var volume = new FileSystemRegistry().Read(image);
 
-        Assert.Equal("Apple II Inform/XZIP", volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleInformXzip, volume.FileSystemId);
         Assert.Equal(2, volume.Entries.Count);
         Assert.Equal(16_384, volume.Entries.Single(entry => entry.Name == "INTERPRETER.BIN").Size);
         var extractedStory = volume.Entries.Single(entry => entry.Name == "STORY.Z5");
@@ -270,7 +270,7 @@ public sealed class AppleDiskImageTests
                 else
                 {
                     if (rawNibbleContainer) recognizedNibbleImages++;
-                    results.Add($"OPEN {Path.GetRelativePath(root, path)}: {document.Volume.FileSystem}, {document.Volume.Entries.Count} root entries");
+                    results.Add($"OPEN {Path.GetRelativePath(root, path)}: {document.Volume.FileSystemId}, {document.Volume.Entries.Count} root entries");
                 }
             }
             catch (Exception exception)
@@ -302,7 +302,7 @@ public sealed class AppleDiskImageTests
         if (source.FileSystemRecognized)
         {
             Assert.Equal(source.Volume.Name, flux.Volume.Name);
-            Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+            Assert.Equal(source.Volume.FileSystemId, flux.Volume.FileSystemId);
             Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
             Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
             Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
@@ -332,7 +332,7 @@ public sealed class AppleDiskImageTests
         if (source.FileSystemRecognized)
         {
             Assert.Equal(source.Volume.Name, flux.Volume.Name);
-            Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+            Assert.Equal(source.Volume.FileSystemId, flux.Volume.FileSystemId);
             Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
             Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
             Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
@@ -435,7 +435,7 @@ public sealed class AppleDiskImageTests
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
 
         Assert.True(document.FileSystemRecognized);
-        Assert.Equal("Apple DOS 3.2", document.Volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos, document.Volume.FileSystemId);
         Assert.Contains(document.Volume.Entries, entry => entry.Name == "AUTODEMO");
         Assert.Contains(document.Volume.Entries, entry => entry.Name == "THRDIM");
         Assert.NotEmpty(document.Volume.Warnings);
@@ -481,7 +481,7 @@ public sealed class AppleDiskImageTests
                     failures.Add($"NO FILESYSTEM SCP {Path.GetRelativePath(root, path)}: {document.Image.FormatId}; blocks={indexes.Length}; range={(indexes.Length == 0 ? "empty" : $"{indexes[0]}..{indexes[^1]}")}; addresses={addressRange}; block2={block2}");
                 }
                 else
-                    results.Add($"OPEN SCP {Path.GetRelativePath(root, path)}: {document.Image.FormatId}, {document.Volume.FileSystem}");
+                    results.Add($"OPEN SCP {Path.GetRelativePath(root, path)}: {document.Image.FormatId}, {document.Volume.FileSystemId}");
             }
             catch (Exception exception)
             {
@@ -497,7 +497,7 @@ public sealed class AppleDiskImageTests
     private static string[] Flatten(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
         .SelectMany(entry => new[]
         {
-            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
+            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.RawAttributes}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
         }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
         .ToArray();
 

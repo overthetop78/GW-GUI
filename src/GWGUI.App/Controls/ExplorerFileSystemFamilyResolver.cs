@@ -7,7 +7,7 @@ internal static class ExplorerFileSystemFamilyResolver
     public static ExplorerFileSystemFamily Resolve(ExploredDiskImage document)
     {
         var format = document.Image.FormatId;
-        var fileSystem = document.Volume.FileSystem;
+        var fileSystem = document.Volume.FileSystemId;
         if (fileSystem.Contains("CP/M", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Cpm;
         if (format.StartsWith("acorn.dfs", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.BbcMicro;
         if (format.StartsWith("dec.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Dec;

@@ -25,7 +25,7 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
         var catalog = ReadExtents(image, mdb.Slice(150, 12), allocationStart, allocationSize, catalogSize, warnings, "catalog");
         var records = ParseCatalog(catalog, image, allocationStart, allocationSize, warnings);
         var entries = BuildChildren(2, records, new HashSet<uint>(), warnings);
-        return new(name, Definitions.FileSystemDisplayNames.MacHfs, (long)allocationCount * allocationSize, (long)free * allocationSize,
+        return new(name, Definitions.FileSystemIds.MacHfs, (long)allocationCount * allocationSize, (long)free * allocationSize,
             MacDate(U32(mdb, 2)), MacDate(U32(mdb, 6)), entries, warnings);
     }
 

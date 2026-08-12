@@ -138,11 +138,11 @@ public sealed class IbmPcDiskImageTests
             var explored = await explorer.ExploreAsync(file);
             Assert.True(explored.FileSystemRecognized,
                 $"{file}; format={explored.Image.FormatId}; geometry={explored.Image.Cylinders}x{explored.Image.Heads}x{explored.Image.SectorsPerTrack}; blocks={explored.Image.AvailableBlocks.Count}; missing={explored.Image.MissingBlocks.Count}");
-            Assert.Equal("IBM PC FAT12", explored.Volume.FileSystem);
+            Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Fat12, explored.Volume.FileSystemId);
             Assert.StartsWith("ibm.", explored.Image.FormatId);
             var automatic = await explorer.ExploreAsync(file);
             Assert.True(automatic.FileSystemRecognized, $"Automatic detection failed for {file}");
-            Assert.True(automatic.Volume.FileSystem == "IBM PC FAT12", $"{file}; automatic file system={automatic.Volume.FileSystem}; format={automatic.Image.FormatId}");
+            Assert.True(automatic.Volume.FileSystemId == GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Fat12, $"{file}; automatic file system={automatic.Volume.FileSystemId}; format={automatic.Image.FormatId}");
             Assert.StartsWith("ibm.", automatic.Image.FormatId);
         }
     }
@@ -163,11 +163,11 @@ public sealed class IbmPcDiskImageTests
             var explored = await explorer.ExploreAsync(file, "ibm.scan");
             Assert.True(explored.FileSystemRecognized,
                 $"{file}; format={explored.Image.FormatId}; geometry={explored.Image.Cylinders}x{explored.Image.Heads}x{explored.Image.SectorsPerTrack}; blocks={explored.Image.AvailableBlocks.Count}; missing={explored.Image.MissingBlocks.Count}");
-            Assert.Equal("IBM PC FAT12", explored.Volume.FileSystem);
+            Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Fat12, explored.Volume.FileSystemId);
             Assert.StartsWith("ibm.", explored.Image.FormatId);
             var automatic = await explorer.ExploreAsync(file);
             Assert.True(automatic.FileSystemRecognized, $"Automatic detection failed for {file}");
-            Assert.True(automatic.Volume.FileSystem == "IBM PC FAT12", $"{file}; automatic file system={automatic.Volume.FileSystem}; format={automatic.Image.FormatId}");
+            Assert.True(automatic.Volume.FileSystemId == GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Fat12, $"{file}; automatic file system={automatic.Volume.FileSystemId}; format={automatic.Image.FormatId}");
             Assert.StartsWith("ibm.", automatic.Image.FormatId);
         }
     }

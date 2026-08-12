@@ -298,10 +298,10 @@ public sealed class CommodoreDiskImageTests
         {
             var explored = await explorer.ExploreAsync(file);
             Assert.True(explored.FileSystemRecognized, file);
-            Assert.False(string.IsNullOrWhiteSpace(explored.Volume.FileSystem), file);
+            Assert.False(string.IsNullOrWhiteSpace(explored.Volume.FileSystemId), file);
             Assert.True(explored.Volume.Entries.Count > 0, file);
-            var expected = Path.GetFileName(file).Contains("cpm", StringComparison.OrdinalIgnoreCase) ? "CP/M 3" : "CBM DOS";
-            Assert.Equal(expected, explored.Volume.FileSystem);
+            var expected = Path.GetFileName(file).Contains("cpm", StringComparison.OrdinalIgnoreCase) ? GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Cpm : GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.CommodoreDos;
+            Assert.Equal(expected, explored.Volume.FileSystemId);
         }
     }
 

@@ -80,7 +80,7 @@ public sealed class UcsdFileSystemReader : IFileSystemReader
 
         if (declaredFiles != entries.Count) warnings.Add($"The UCSD directory declares {declaredFiles} files but {entries.Count} valid entries were found.");
         var freeBlocks = Math.Max(0, totalBlocks - usedBlocks);
-        return new FileSystemVolume(volumeName, Definitions.FileSystemDisplayNames.Ucsd, (long)totalBlocks * UcsdFileSystemLayout.BlockSize, (long)freeBlocks * UcsdFileSystemLayout.BlockSize,
+        return new FileSystemVolume(volumeName, Definitions.FileSystemIds.Ucsd, (long)totalBlocks * UcsdFileSystemLayout.BlockSize, (long)freeBlocks * UcsdFileSystemLayout.BlockSize,
             null, volumeDate, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

@@ -134,7 +134,7 @@ public sealed class AtariDiskImageTests
         var explorer = DiskImageExplorer.CreateDefault(); var opened = 0;
         foreach (var path in Directory.EnumerateFiles(root, "*.*", SearchOption.AllDirectories).Where(path => Path.GetExtension(path).ToLowerInvariant() is ".st" or ".msa" or ".atr"))
         {
-            try { var document = await explorer.ExploreAsync(path); Console.WriteLine($"OPEN {Path.GetFileName(path)}: {document.Volume.FileSystem}, {document.Volume.Entries.Count} root entries"); opened++; }
+            try { var document = await explorer.ExploreAsync(path); Console.WriteLine($"OPEN {Path.GetFileName(path)}: {document.Volume.FileSystemId}, {document.Volume.Entries.Count} root entries"); opened++; }
             catch (InvalidDataException exception) { Console.WriteLine($"CONTAINER ONLY {Path.GetFileName(path)}: {exception.Message}");
                 if (Path.GetExtension(path).Equals(".st", StringComparison.OrdinalIgnoreCase)) _ = await new AtariStReader().ReadAsync(path);
                 else if (Path.GetExtension(path).Equals(".msa", StringComparison.OrdinalIgnoreCase)) _ = await new MsaReader().ReadAsync(path);

@@ -47,7 +47,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
             entries.Add(new(name, FileSystemEntryKind.File, content.Length, null, $"Lisa file ${group.Key:X4}", 0, ordered[0].Block.LogicalBlock, catalog.Names.ContainsKey(group.Key), [], content.ToArray()));
         }
         var freePages = image.AvailableBlocks.Count(block => TagFileId(block) is LisaFileSystemLayout.FreePageFileId or LisaFileSystemLayout.AlternateFreePageFileId);
-        return new(volumeName, Definitions.FileSystemDisplayNames.Lisa(version), image.Capacity, (long)freePages * image.BlockSize, null, null, entries, warnings);
+        return new(volumeName, Definitions.FileSystemIds.Lisa, image.Capacity, (long)freePages * image.BlockSize, null, null, entries, warnings);
     }
 
     /// <summary>Lit l'identifiant de fichier conservé dans le tag d'un bloc.</summary>

@@ -25,7 +25,7 @@ public sealed class AmstradDiskImageTests
         Assert.True(source.FileSystemRecognized, dskPath);
         Assert.True(flux.FileSystemRecognized, scpPath);
         Assert.Equal(source.Volume.Name, flux.Volume.Name);
-        Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+        Assert.Equal(source.Volume.FileSystemId, flux.Volume.FileSystemId);
         Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
         Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
         Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
@@ -60,7 +60,7 @@ public sealed class AmstradDiskImageTests
         Assert.True(source.FileSystemRecognized, dskPath);
         Assert.True(flux.FileSystemRecognized, scpPath);
         Assert.Equal(source.Volume.Name, flux.Volume.Name);
-        Assert.Equal(source.Volume.FileSystem, flux.Volume.FileSystem);
+        Assert.Equal(source.Volume.FileSystemId, flux.Volume.FileSystemId);
         Assert.Equal(source.Volume.Capacity, flux.Volume.Capacity);
         Assert.Equal(source.Volume.FreeBytes, flux.Volume.FreeBytes);
         Assert.Equal(Flatten(source.Volume.Entries), Flatten(flux.Volume.Entries));
@@ -92,7 +92,7 @@ public sealed class AmstradDiskImageTests
         {
             var explored = await explorer.ExploreAsync(file);
             Assert.True(explored.FileSystemRecognized, file);
-            Assert.Contains("Amstrad", explored.Volume.FileSystem);
+            Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmstradCpm, explored.Volume.FileSystemId);
             Assert.True(explored.Image.AvailableBlocks.Count > 0, file);
         }
     }
@@ -123,7 +123,7 @@ public sealed class AmstradDiskImageTests
     private static string[] Flatten(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
         .SelectMany(entry => new[]
         {
-            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
+            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.RawAttributes}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
         }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
         .ToArray();
 }

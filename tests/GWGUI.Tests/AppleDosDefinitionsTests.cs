@@ -10,9 +10,9 @@ public sealed class AppleDosDefinitionsTests
 {
     /// <summary>Vérifie les géométries Apple DOS 3.2 et 3.3.</summary>
     [Theory]
-    [InlineData(AppleDosFileSystemLayout.Dos32SectorsPerTrack, "Apple DOS 3.2")]
-    [InlineData(AppleDosFileSystemLayout.Dos33SectorsPerTrack, "Apple DOS 3.3")]
-    public void ReadsBothAppleDosGeometries(int sectorsPerTrack, string expected) => Assert.Equal(expected, new AppleDosFileSystemReader().Read(BuildImage(sectorsPerTrack, AppleDosFileType.Text)).FileSystem);
+    [InlineData(AppleDosFileSystemLayout.Dos32SectorsPerTrack, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos)]
+    [InlineData(AppleDosFileSystemLayout.Dos33SectorsPerTrack, GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos)]
+    public void ReadsBothAppleDosGeometries(int sectorsPerTrack, string expected) => Assert.Equal(expected, new AppleDosFileSystemReader().Read(BuildImage(sectorsPerTrack, AppleDosFileType.Text)).FileSystemId);
 
     /// <summary>Vérifie chaque type de fichier et le décodage du nom à bit fort.</summary>
     [Theory]

@@ -70,7 +70,7 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
             sector = bytes[AppleDosFileSystemLayout.VtocCatalogSectorOffset];
         }
         var free = CountFree(vtoc, tracks, sectors);
-        return new($"DOS-{vtoc[AppleDosFileSystemLayout.VtocVolumeNumberOffset]:D3}", sectors == AppleDosFileSystemLayout.Dos32SectorsPerTrack ? Definitions.FileSystemDisplayNames.AppleDos32 : Definitions.FileSystemDisplayNames.AppleDos33, image.Capacity, (long)free * AppleDosFileSystemLayout.SectorSize, null, null,
+        return new($"DOS-{vtoc[AppleDosFileSystemLayout.VtocVolumeNumberOffset]:D3}", sectors == AppleDosFileSystemLayout.Dos32SectorsPerTrack ? Definitions.FileSystemIds.AppleDos : Definitions.FileSystemIds.AppleDos, image.Capacity, (long)free * AppleDosFileSystemLayout.SectorSize, null, null,
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

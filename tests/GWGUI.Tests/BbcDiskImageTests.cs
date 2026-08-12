@@ -97,7 +97,7 @@ public sealed class BbcDiskImageTests
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
         Assert.True(document.FileSystemRecognized);
-        Assert.Equal("Acorn DFS", document.Volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AcornDfs, document.Volume.FileSystemId);
         Assert.Equal("The Seeds of", document.Volume.Name);
         Assert.Equal(204_800, document.Volume.Capacity);
         Assert.Contains(document.Volume.Entries, entry => entry.Name == "BUILD" && entry.Size > 0);

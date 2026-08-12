@@ -30,7 +30,7 @@ public sealed class FileSystemWarningMessagesTests
         var path = Directory.EnumerateFiles(ImageTestRoot(), "BA-J837B-BC_MINC_MA_DEMO_23_V2.0_BIN_RX2.img", SearchOption.AllDirectories).First();
         var source = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
         var entry = source.Volume.Entries.First();
-        var incomplete = WithoutBlock(source.Image, entry.HeaderBlock);
+        var incomplete = WithoutBlock(source.Image, entry.StorageReference);
         var volume = new Rt11FileSystemReader().Read(incomplete);
         Assert.Contains(volume.Warnings, warning => warning == FileSystemWarningMessages.MissingDataBlocks(entry.Name));
     }
@@ -43,7 +43,7 @@ public sealed class FileSystemWarningMessagesTests
         var source = await new Td0Reader().ReadAsync(path);
         var reader = new UcsdFileSystemReader();
         var entry = reader.Read(source).Entries.First();
-        var volume = reader.Read(WithoutBlock(source, entry.HeaderBlock));
+        var volume = reader.Read(WithoutBlock(source, entry.StorageReference));
         Assert.Contains(volume.Warnings, warning => warning == FileSystemWarningMessages.MissingDataBlocks(entry.Name));
     }
 

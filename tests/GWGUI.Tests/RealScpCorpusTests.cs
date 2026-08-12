@@ -84,7 +84,7 @@ public sealed class RealScpCorpusTests
         var actual = await explorer.ExploreAsync(scpPath, format);
 
         Assert.Equal(expected.Volume.Name, actual.Volume.Name);
-        Assert.Equal(expected.Volume.FileSystem, actual.Volume.FileSystem);
+        Assert.Equal(expected.Volume.FileSystemId, actual.Volume.FileSystemId);
         Assert.Equal(expected.Volume.Capacity, actual.Volume.Capacity);
         Assert.Equal(expected.Volume.FreeBytes, actual.Volume.FreeBytes);
         Assert.Equal(Flatten(expected.Volume.Entries), Flatten(actual.Volume.Entries));
@@ -244,7 +244,7 @@ public sealed class RealScpCorpusTests
     private static string[] Flatten(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries, string prefix = "") => entries
         .SelectMany(entry => new[]
         {
-            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.Protection}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
+            $"{prefix}/{entry.Name}|{entry.Kind}|{entry.Size}|{entry.Comment}|{entry.RawAttributes}|{entry.MetadataValid}|{Convert.ToBase64String(entry.Content?.ToArray() ?? [])}"
         }.Concat(Flatten(entry.Children, $"{prefix}/{entry.Name}")))
         .ToArray();
 

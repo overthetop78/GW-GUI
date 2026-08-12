@@ -9,8 +9,8 @@ public sealed record ExplorerDetailsPresentation(string Title, ExplorerIconKind 
 public static class ExplorerDetailsPresenter
 {
     public static string FileSystemText(ExploredDiskImage document) => document.FileSystemRecognized
-        ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystem)
-            .Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystem))
+        ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystemId)
+            .Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystemId))
         : LocExtension.Get("Explorer.PhysicalSectorsNoFileSystem");
 
     public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document)

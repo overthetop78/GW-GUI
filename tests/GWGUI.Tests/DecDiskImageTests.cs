@@ -12,12 +12,12 @@ public sealed class DecDiskImageTests
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
         Assert.True(document.FileSystemRecognized);
-        Assert.Equal("DEC RT-11", document.Volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Rt11, document.Volume.FileSystemId);
         Assert.NotEmpty(document.Volume.Name);
         Assert.NotEmpty(document.Volume.Entries);
         Assert.All(document.Volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));
         Assert.All(document.Volume.Entries, entry => Assert.True(entry.Size > 0));
-        Console.WriteLine($"{document.Volume.Name} | {document.Volume.FileSystem} | {document.Volume.Capacity} bytes | {document.Volume.FreeBytes} free");
+        Console.WriteLine($"{document.Volume.Name} | {document.Volume.FileSystemId} | {document.Volume.Capacity} bytes | {document.Volume.FreeBytes} free");
         foreach (var entry in document.Volume.Entries)
             Console.WriteLine($"{entry.Name} | {entry.Size} bytes | {entry.Modified:yyyy-MM-dd} | valid={entry.MetadataValid}");
     }
@@ -55,7 +55,7 @@ public sealed class DecDiskImageTests
     private static void AssertValid(ExploredDiskImage document)
     {
         Assert.True(document.FileSystemRecognized);
-        Assert.Equal("DEC RT-11", document.Volume.FileSystem);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Rt11, document.Volume.FileSystemId);
         Assert.NotEmpty(document.Volume.Name);
         Assert.NotEmpty(document.Volume.Entries);
         Assert.All(document.Volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));
@@ -64,7 +64,7 @@ public sealed class DecDiskImageTests
 
     private static void Print(ExploredDiskImage document)
     {
-        Console.WriteLine($"{document.Volume.Name} | {document.Volume.FileSystem} | {document.Volume.Capacity} bytes | {document.Volume.FreeBytes} free | {document.Volume.Entries.Count} files");
+        Console.WriteLine($"{document.Volume.Name} | {document.Volume.FileSystemId} | {document.Volume.Capacity} bytes | {document.Volume.FreeBytes} free | {document.Volume.Entries.Count} files");
         foreach (var entry in document.Volume.Entries)
             Console.WriteLine($"{entry.Name} | {entry.Size} bytes | {entry.Modified:yyyy-MM-dd} | valid={entry.MetadataValid}");
     }

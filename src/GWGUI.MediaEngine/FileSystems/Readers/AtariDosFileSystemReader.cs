@@ -40,7 +40,7 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
             }
         }
         var freeSectors = ReadFreeSectors(image);
-        return new(string.Empty, Definitions.FileSystemDisplayNames.AtariDos, image.Capacity, freeSectors < 0 ? 0 : (long)freeSectors * image.BlockSize, null, null,
+        return new(string.Empty, Definitions.FileSystemIds.AtariDos, image.Capacity, freeSectors < 0 ? 0 : (long)freeSectors * image.BlockSize, null, null,
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

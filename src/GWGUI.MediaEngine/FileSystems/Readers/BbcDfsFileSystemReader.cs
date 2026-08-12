@@ -71,7 +71,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
                 (uint)((directoryByte & BbcDfsFileSystemLayout.LockedBit) != 0 ? 1 : 0), start, valid, [], content));
         }
         var capacity = (long)totalSectors * BbcDfsFileSystemLayout.SectorSize;
-        return new(title.Trim(), Definitions.FileSystemDisplayNames.AcornDfs, capacity, Math.Max(0, totalSectors - usedSectors) * (long)BbcDfsFileSystemLayout.SectorSize,
+        return new(title.Trim(), Definitions.FileSystemIds.AcornDfs, capacity, Math.Max(0, totalSectors - usedSectors) * (long)BbcDfsFileSystemLayout.SectorSize,
             null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

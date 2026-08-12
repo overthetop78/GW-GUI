@@ -38,7 +38,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         var entries = ReadDirectory(image, root, fat, layout, warnings, 0, string.Empty, new HashSet<int>());
         var freeClusters = Enumerable.Range(Fat12Layout.FirstDataCluster, Math.Max(0, layout.ClusterCount - Fat12Layout.FirstDataCluster)).Count(cluster => Fat12Table.TryRead(fat, cluster, out var value) && value == Fat12Table.FreeCluster);
         var label = ReadVolumeLabel(root) ?? ReadBootVolumeLabel(boot.Data);
-        return new(label, Definitions.FileSystemDisplayNames.Fat12(image.FormatId), image.Capacity, (long)freeClusters * layout.SectorsPerCluster * FatBpbLayout.SectorSize, null, null, entries, warnings);
+        return new(label, Definitions.FileSystemIds.Fat12, image.Capacity, (long)freeClusters * layout.SectorsPerCluster * FatBpbLayout.SectorSize, null, null, entries, warnings);
     }
 
     /// <summary>Lit le label de volume présent dans le secteur d'amorçage.</summary>

@@ -33,6 +33,6 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
         if (!CanRead(image)) throw Rt11FileSystemExceptions.InvalidHomeBlock(signature, directoryBlock);
         var volumeName = System.Text.Encoding.ASCII.GetString(home.Slice(Rt11FileSystemLayout.VolumeNameOffset, Rt11FileSystemLayout.VolumeNameLength)).TrimEnd('\0', ' ');
         var directory = Rt11DirectoryReader.Read(image, directoryBlock);
-        return new(volumeName, Definitions.FileSystemDisplayNames.Rt11, image.Capacity, directory.FreeBlocks * Rt11FileSystemLayout.BlockSize, null, directory.Entries.Select(entry => entry.Modified).Where(date => date.HasValue).Max(), directory.Entries, directory.Warnings);
+        return new(volumeName, Definitions.FileSystemIds.Rt11, image.Capacity, directory.FreeBlocks * Rt11FileSystemLayout.BlockSize, null, directory.Entries.Select(entry => entry.Modified).Where(date => date.HasValue).Max(), directory.Entries, directory.Warnings);
     }
 }

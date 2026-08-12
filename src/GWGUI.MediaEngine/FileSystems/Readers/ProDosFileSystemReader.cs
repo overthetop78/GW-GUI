@@ -36,7 +36,7 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
         var warnings = new List<string>();
         var entries = ReadDirectory(image, ProDosFileSystemLayout.RootBlock, warnings, new HashSet<int>(), 0);
         var free = CountFreeBlocks(image, bitmap, Math.Min(total, image.BlockCount), warnings);
-        var system = Definitions.FileSystemDisplayNames.ProDos(image.FormatId);
+        var system = Definitions.FileSystemIds.ProDos;
         return new(name, system, (long)Math.Min(total, image.BlockCount) * ProDosFileSystemLayout.BlockSize, (long)free * ProDosFileSystemLayout.BlockSize, ReadDate(root, ProDosFileSystemLayout.HeaderOffset + ProDosFileSystemLayout.CreatedDateOffset), null, entries, warnings);
     }
 
