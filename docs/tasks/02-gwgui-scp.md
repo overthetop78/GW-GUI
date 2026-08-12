@@ -6505,68 +6505,68 @@
       - [x] Tester un secteur de données absent et vérifier le contenu partiel et `MetadataValid = false`.
       - [x] Tester une taille déclarée cohérente et incohérente.
       - [x] Tester avec une image connue de `image_test` le volume, les entrées, contenus, types, verrouillages, références, validités, avertissements et espace libre.
-  - [ ] `FileSystems/Readers/AppleInformXzipFileSystemReader.cs`
-    - [ ] Emplacement et identité Inform/XZIP
-      - [ ] Déplacer le Reader vers `FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `apple-inform-xzip` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer le nom brut `Apple II Inform/XZIP` du volume par cet identifiant technique central.
-      - [ ] Exposer les formats DOS 3.3 et Apple DOS 140 par un ensemble réellement non modifiable.
-    - [ ] Disposition physique XZIP
-      - [ ] Raccorder le Reader à `AppleInformXzipLayout` pour les secteurs de 256 octets, les 16 secteurs par piste, la tête unique et les 35 pistes minimales.
-      - [ ] Déplacer les 64 secteurs d'interpréteur et les 394 secteurs maximum d'histoire dans cette disposition.
-      - [ ] Déplacer la table `Interleave` dans une collection réellement immuable.
-      - [ ] Remplacer les masques bruts `0xff0` et `0x0f` par les définitions de piste et de position intra-piste.
-      - [ ] Construire une table inverse de position stockée afin de ne pas appeler `Array.IndexOf` pour chaque secteur d'histoire.
-    - [ ] Lecture en deux étapes de l'histoire
-      - [ ] Supprimer le paramètre `headerOnly`, qui n'est jamais appelé avec `true`.
-      - [ ] Créer une fonction qui lit uniquement le premier secteur entrelacé contenant l'en-tête Z-machine.
-      - [ ] Parser et valider cet en-tête afin d'obtenir la longueur réelle avant de lire le reste.
-      - [ ] Calculer le nombre exact de secteurs nécessaires par arrondi supérieur de la longueur à la taille sectorielle.
-      - [ ] Lire uniquement ces secteurs entrelacés au lieu d'exiger systématiquement les 394 secteurs possibles.
-      - [ ] Accepter qu'un secteur situé après la fin réelle de l'histoire soit absent.
-      - [ ] Rejeter un secteur absent ou de mauvaise taille lorsqu'il appartient à la plage réellement nécessaire.
-    - [ ] En-tête Z-machine version 5
-      - [ ] Créer `FileSystems/Apple/InformXzip/ZMachineV5Header.cs`.
-      - [ ] Y déplacer la version attendue `5`, la taille minimale 64 octets et les offsets de high memory, initial PC, dictionnaire, objets, globales, mémoire statique, longueur et checksum.
-      - [ ] Déplacer l'unité de quatre octets de la longueur de fichier et la limite maximale fondée sur 394 secteurs.
-      - [ ] Lire chaque mot big-endian directement depuis le span avec une plage préalablement validée.
-      - [ ] Conserver les contraintes actuelles entre high memory, initial PC, dictionnaire, objets, globales, mémoire statique et longueur du fichier.
-      - [ ] Remplacer le booléen et le paramètre `out length` de `TryReadStoryLength` par un résultat d'en-tête validé contenant la longueur.
-    - [ ] Checksum Z-machine
-      - [ ] Créer `FileSystems/Apple/InformXzip/ZMachineChecksum.cs`.
-      - [ ] Y déplacer l'offset de départ `0x40`, la réduction sur 16 bits et la lecture du checksum déclaré.
-      - [ ] Remplacer le masque brut `0xffff` par la définition de largeur du checksum.
-      - [ ] Calculer le checksum uniquement jusqu'à la longueur déclarée validée.
-    - [ ] Lecture de l'interpréteur et copies de secteurs
-      - [ ] Conserver la lecture linéaire des 64 secteurs d'interpréteur dans un composant nommé.
-      - [ ] Remplacer les `ToArray` temporaires par une copie directe des données sectorielles dans le tampon de sortie.
-      - [ ] Remplacer le texte brut de secteur absent par une erreur recevant le secteur logique et la plage interpréteur ou histoire.
-    - [ ] Entrées techniques synthétiques
-      - [ ] Créer `AppleInformXzipEntryNames.cs` avec le nom constant `INTERPRETER.BIN` et une fonction recevant la version pour construire `STORY.Z{version}`.
-      - [ ] Utiliser des chaînes vides nommées ou les valeurs par défaut du modèle pour l'absence de description, de nom de volume et d'avertissement, sans multiplier les littéraux bruts.
-      - [ ] Conserver comme références de stockage le premier secteur de l'interpréteur et le premier secteur de l'histoire.
-      - [ ] Remplacer les attributs bruts nuls par la valeur technique commune indiquant l'absence d'attribut propre au format.
-    - [ ] Capacité utilisée et espace libre
-      - [ ] Calculer l'espace occupé par les 64 secteurs alloués à l'interpréteur.
-      - [ ] Calculer l'espace occupé par le nombre arrondi de secteurs alloués à l'histoire et non par sa seule longueur utile.
-      - [ ] Soustraire ces deux espaces alloués de la capacité avec une borne inférieure nulle.
-      - [ ] Conserver la longueur utile exacte comme taille de chaque entrée synthétique.
-    - [ ] Erreurs Inform/XZIP
-      - [ ] Créer `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs` pour layout absent, version, en-tête, adresse, longueur, checksum et secteur manquant.
-      - [ ] Permettre d'injecter version observée, adresse, longueur, checksum attendu/calculé et numéro de secteur selon l'erreur.
-      - [ ] Remplacer le texte anglais construit directement dans `Read` et `ReadLinear` par ces définitions.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Traduire en français la CSDoc anglaise du type et documenter la disposition sans catalogue.
-      - [ ] Remplacer les lignes cassées de géométrie, calcul de secteur stocké, création d'entrée et construction du volume par des variables nommées puis des appels sur une seule ligne lorsqu'ils tiennent.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-      - [ ] Ajouter en français la CSDoc de chaque type, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader Inform/XZIP
-      - [ ] Tester une histoire version 5 valide avec son interpréteur et son checksum.
-      - [ ] Tester une histoire dont la longueur n'occupe qu'une partie des 394 secteurs et un secteur absent après sa fin, qui doit rester acceptable.
-      - [ ] Tester un secteur requis absent ou de mauvaise taille dans l'interpréteur puis dans l'histoire.
-      - [ ] Tester une version différente, chaque adresse d'en-tête hors limites, une longueur trop petite ou trop grande et un checksum incorrect.
-      - [ ] Tester l'entrelacement au début, au changement de piste et au dernier secteur pris en charge.
-      - [ ] Tester les noms synthétiques, leurs références, leurs tailles utiles et l'espace libre fondé sur les secteurs alloués.
+  - [x] `FileSystems/Readers/AppleInformXzipFileSystemReader.cs`
+    - [x] Emplacement et identité Inform/XZIP
+      - [x] Déplacer le Reader vers `FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `apple-inform-xzip` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer le nom brut `Apple II Inform/XZIP` du volume par cet identifiant technique central.
+      - [x] Exposer les formats DOS 3.3 et Apple DOS 140 par un ensemble réellement non modifiable.
+    - [x] Disposition physique XZIP
+      - [x] Raccorder le Reader à `AppleInformXzipLayout` pour les secteurs de 256 octets, les 16 secteurs par piste, la tête unique et les 35 pistes minimales.
+      - [x] Déplacer les 64 secteurs d'interpréteur et les 394 secteurs maximum d'histoire dans cette disposition.
+      - [x] Déplacer la table `Interleave` dans une collection réellement immuable.
+      - [x] Remplacer les masques bruts `0xff0` et `0x0f` par les définitions de piste et de position intra-piste.
+      - [x] Construire une table inverse de position stockée afin de ne pas appeler `Array.IndexOf` pour chaque secteur d'histoire.
+    - [x] Lecture en deux étapes de l'histoire
+      - [x] Supprimer le paramètre `headerOnly`, qui n'est jamais appelé avec `true`.
+      - [x] Créer une fonction qui lit uniquement le premier secteur entrelacé contenant l'en-tête Z-machine.
+      - [x] Parser et valider cet en-tête afin d'obtenir la longueur réelle avant de lire le reste.
+      - [x] Calculer le nombre exact de secteurs nécessaires par arrondi supérieur de la longueur à la taille sectorielle.
+      - [x] Lire uniquement ces secteurs entrelacés au lieu d'exiger systématiquement les 394 secteurs possibles.
+      - [x] Accepter qu'un secteur situé après la fin réelle de l'histoire soit absent.
+      - [x] Rejeter un secteur absent ou de mauvaise taille lorsqu'il appartient à la plage réellement nécessaire.
+    - [x] En-tête Z-machine version 5
+      - [x] Créer `FileSystems/Apple/InformXzip/ZMachineV5Header.cs`.
+      - [x] Y déplacer la version attendue `5`, la taille minimale 64 octets et les offsets de high memory, initial PC, dictionnaire, objets, globales, mémoire statique, longueur et checksum.
+      - [x] Déplacer l'unité de quatre octets de la longueur de fichier et la limite maximale fondée sur 394 secteurs.
+      - [x] Lire chaque mot big-endian directement depuis le span avec une plage préalablement validée.
+      - [x] Conserver les contraintes actuelles entre high memory, initial PC, dictionnaire, objets, globales, mémoire statique et longueur du fichier.
+      - [x] Remplacer le booléen et le paramètre `out length` de `TryReadStoryLength` par un résultat d'en-tête validé contenant la longueur.
+    - [x] Checksum Z-machine
+      - [x] Créer `FileSystems/Apple/InformXzip/ZMachineChecksum.cs`.
+      - [x] Y déplacer l'offset de départ `0x40`, la réduction sur 16 bits et la lecture du checksum déclaré.
+      - [x] Remplacer le masque brut `0xffff` par la définition de largeur du checksum.
+      - [x] Calculer le checksum uniquement jusqu'à la longueur déclarée validée.
+    - [x] Lecture de l'interpréteur et copies de secteurs
+      - [x] Conserver la lecture linéaire des 64 secteurs d'interpréteur dans un composant nommé.
+      - [x] Remplacer les `ToArray` temporaires par une copie directe des données sectorielles dans le tampon de sortie.
+      - [x] Remplacer le texte brut de secteur absent par une erreur recevant le secteur logique et la plage interpréteur ou histoire.
+    - [x] Entrées techniques synthétiques
+      - [x] Créer `AppleInformXzipEntryNames.cs` avec le nom constant `INTERPRETER.BIN` et une fonction recevant la version pour construire `STORY.Z{version}`.
+      - [x] Utiliser des chaînes vides nommées ou les valeurs par défaut du modèle pour l'absence de description, de nom de volume et d'avertissement, sans multiplier les littéraux bruts.
+      - [x] Conserver comme références de stockage le premier secteur de l'interpréteur et le premier secteur de l'histoire.
+      - [x] Remplacer les attributs bruts nuls par la valeur technique commune indiquant l'absence d'attribut propre au format.
+    - [x] Capacité utilisée et espace libre
+      - [x] Calculer l'espace occupé par les 64 secteurs alloués à l'interpréteur.
+      - [x] Calculer l'espace occupé par le nombre arrondi de secteurs alloués à l'histoire et non par sa seule longueur utile.
+      - [x] Soustraire ces deux espaces alloués de la capacité avec une borne inférieure nulle.
+      - [x] Conserver la longueur utile exacte comme taille de chaque entrée synthétique.
+    - [x] Erreurs Inform/XZIP
+      - [x] Créer `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs` pour layout absent, version, en-tête, adresse, longueur, checksum et secteur manquant.
+      - [x] Permettre d'injecter version observée, adresse, longueur, checksum attendu/calculé et numéro de secteur selon l'erreur.
+      - [x] Remplacer le texte anglais construit directement dans `Read` et `ReadLinear` par ces définitions.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Traduire en français la CSDoc anglaise du type et documenter la disposition sans catalogue.
+      - [x] Remplacer les lignes cassées de géométrie, calcul de secteur stocké, création d'entrée et construction du volume par des variables nommées puis des appels sur une seule ligne lorsqu'ils tiennent.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+      - [x] Ajouter en français la CSDoc de chaque type, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader Inform/XZIP
+      - [x] Tester une histoire version 5 valide avec son interpréteur et son checksum.
+      - [x] Tester une histoire dont la longueur n'occupe qu'une partie des 394 secteurs et un secteur absent après sa fin, qui doit rester acceptable.
+      - [x] Tester un secteur requis absent ou de mauvaise taille dans l'interpréteur puis dans l'histoire.
+      - [x] Tester une version différente, chaque adresse d'en-tête hors limites, une longueur trop petite ou trop grande et un checksum incorrect.
+      - [x] Tester l'entrelacement au début, au changement de piste et au dernier secteur pris en charge.
+      - [x] Tester les noms synthétiques, leurs références, leurs tailles utiles et l'espace libre fondé sur les secteurs alloués.
   - [ ] `FileSystems/Readers/AtariDosFileSystemReader.cs`
     - [ ] Emplacement et identité Atari DOS
       - [ ] Déplacer le Reader vers `FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.

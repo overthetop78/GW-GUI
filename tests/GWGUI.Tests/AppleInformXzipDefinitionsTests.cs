@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
-using GWGUI.MediaEngine.FileSystems.Readers;
+
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -19,7 +19,7 @@ public sealed class AppleInformXzipDefinitionsTests
     public void ParsesValidVersionFiveHeaderAndChecksum()
     {
         var story = Story();
-        Assert.True(ZMachineStoryHeader.TryParse(story, out var header));
+        Assert.True(ZMachineV5Header.TryParse(story, out var header));
         Assert.Equal(AppleInformXzipLayout.ZMachineVersion, header.Version);
         Assert.True(header.ChecksumMatches(story));
     }
@@ -30,15 +30,15 @@ public sealed class AppleInformXzipDefinitionsTests
     {
         var story = Story();
         story[AppleInformXzipLayout.VersionOffset] = 4;
-        Assert.False(ZMachineStoryHeader.TryParse(story, out _));
+        Assert.False(ZMachineV5Header.TryParse(story, out _));
         story = Story();
         BinaryPrimitives.WriteUInt16BigEndian(story.AsSpan(AppleInformXzipLayout.InitialProgramCounterOffset), 0);
-        Assert.False(ZMachineStoryHeader.TryParse(story, out _));
+        Assert.False(ZMachineV5Header.TryParse(story, out _));
         story = Story();
         BinaryPrimitives.WriteUInt16BigEndian(story.AsSpan(AppleInformXzipLayout.LengthOffset), ushort.MaxValue);
-        Assert.False(ZMachineStoryHeader.TryParse(story, out _));
+        Assert.False(ZMachineV5Header.TryParse(story, out _));
         story = Story(); story[^1] ^= 1;
-        Assert.True(ZMachineStoryHeader.TryParse(story, out var header));
+        Assert.True(ZMachineV5Header.TryParse(story, out var header));
         Assert.False(header.ChecksumMatches(story));
     }
 

@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
 
 /// <summary>Définit la disposition Apple II Inform/XZIP et l'en-tête Z-machine reconnu.</summary>
-internal static class AppleInformXzipLayout
+public static class AppleInformXzipLayout
 {
     /// <summary>Taille d'un secteur, en octets.</summary>
     public const int SectorSize = 256;
@@ -45,11 +45,22 @@ internal static class AppleInformXzipLayout
     public const int StoryTrackMask = 0xff0;
     /// <summary>Ordre d'entrelacement exact des seize secteurs.</summary>
     public static IReadOnlyList<int> Interleave { get; } = Array.AsReadOnly(new[] { 0, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 15 });
+    private static readonly IReadOnlyList<int> InverseInterleave = BuildInverseInterleave();
 
     /// <summary>Retourne la position stockée d'un secteur logique dans la table d'entrelacement.</summary>
     public static int StoredSectorIndex(int logicalSectorWithinTrack)
     {
-        for (var index = 0; index < Interleave.Count; index++) if (Interleave[index] == logicalSectorWithinTrack) return index;
-        throw new ArgumentOutOfRangeException(nameof(logicalSectorWithinTrack));
+        if (logicalSectorWithinTrack < 0 || logicalSectorWithinTrack >= InverseInterleave.Count) throw new ArgumentOutOfRangeException(nameof(logicalSectorWithinTrack));
+        return InverseInterleave[logicalSectorWithinTrack];
+    }
+
+    /// <summary>Calcule le nombre de secteurs nécessaires pour une longueur en octets.</summary>
+    public static int RequiredStorySectors(int byteLength) => checked((byteLength + SectorSize - 1) / SectorSize);
+
+    private static IReadOnlyList<int> BuildInverseInterleave()
+    {
+        var inverse = new int[Interleave.Count];
+        for (var index = 0; index < Interleave.Count; index++) inverse[Interleave[index]] = index;
+        return Array.AsReadOnly(inverse);
     }
 }
