@@ -23,7 +23,6 @@ internal sealed class ScpCandidateRegistry
         AmigaScpSectorImageReader amigaReader,
         IsoScpSectorImageReader isoReader,
         AtariScpSectorImageReader atariReader,
-        UcsdScpSectorImageReader ucsdReader,
         CommodoreScpSectorImageReader commodoreReader,
         AppleScpSectorImageReader appleReader,
         DecRx02ScpSectorImageReader decReader)
@@ -48,7 +47,7 @@ internal sealed class ScpCandidateRegistry
             (id => id.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase),
-                (path, _, token) => ucsdReader.ReadAsync(path, token)),
+                (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => atariReader.ReadAsync(path, id, token)),
             (id => id.StartsWith("apple", StringComparison.OrdinalIgnoreCase) || id.StartsWith("mac.", StringComparison.OrdinalIgnoreCase),
@@ -62,7 +61,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradCpc, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
-            (path, _, token) => ucsdReader.ReadAsync(path, token),
+            (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.UcsdIbmMfm, token),
             (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token)
         };
         isoCandidates.AddRange(EpsonFormats.Select<string, Candidate>(formatId =>

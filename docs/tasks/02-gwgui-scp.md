@@ -5294,17 +5294,17 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `UcsdIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/UcsdScpSectorImageReader.cs`
-  - [ ] Suppression du wrapper sans traitement
-    - [ ] Dans les lecteurs explicitement sélectionnés de `Images/ScpDetection/ScpCandidateRegistry.cs`, remplacer l'appel au wrapper UCSD par `IsoScpSectorImageReader.ReadAsync` avec `DiskImageFormatIds.UcsdIbmMfm`.
-    - [ ] Dans les candidats de la famille ISO du même registre, remplacer la tentative du wrapper UCSD par le même appel direct au lecteur ISO.
-    - [ ] Retirer `UcsdScpSectorImageReader` du constructeur de `ScpCandidateRegistry`.
-    - [ ] Retirer sa création de `Images/DiskImageExplorerFactory.cs`.
-    - [ ] Supprimer `UcsdScpSectorImageReader.cs` après adaptation de ses deux appels.
-  - [ ] Vérification après suppression
-    - [ ] Tester par l'API publique une sélection explicite de `DiskImageFormatIds.UcsdIbmMfm`.
-    - [ ] Tester la tentative UCSD dans le parcours des candidats de la famille ISO.
-    - [ ] Vérifier qu'aucun consommateur ne référence encore le wrapper.
+- [x] `src/GWGUI.MediaEngine/SectorImages/UcsdScpSectorImageReader.cs`
+  - [x] Suppression du wrapper sans traitement
+    - [x] Dans les lecteurs explicitement sélectionnés de `Images/ScpDetection/ScpCandidateRegistry.cs`, remplacer l'appel au wrapper UCSD par `IsoScpSectorImageReader.ReadAsync` avec `DiskImageFormatIds.UcsdIbmMfm`.
+    - [x] Dans les candidats de la famille ISO du même registre, remplacer la tentative du wrapper UCSD par le même appel direct au lecteur ISO.
+    - [x] Retirer `UcsdScpSectorImageReader` du constructeur de `ScpCandidateRegistry`.
+    - [x] Retirer sa création de `Images/DiskImageExplorerFactory.cs`.
+    - [x] Supprimer `UcsdScpSectorImageReader.cs` après adaptation de ses deux appels.
+  - [x] Vérification après suppression
+    - [x] Tester par l'API publique une sélection explicite de `DiskImageFormatIds.UcsdIbmMfm`.
+    - [x] Tester la tentative UCSD dans le parcours des candidats de la famille ISO.
+    - [x] Vérifier qu'aucun consommateur ne référence encore le wrapper.
 
 - [ ] Compléments issus de la relecture complète de la reconstruction sectorielle
   - [ ] `SectorImages/IsoScpSectorImagePolicyRegistry.cs`

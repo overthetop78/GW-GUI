@@ -1,5 +1,6 @@
 using System.IO;
 using GWGUI.MediaEngine.Containers.TeleDisk;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
@@ -26,6 +27,22 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
     [Fact]
     public Task SuppliedUcsdZInterpreterTeleDiskImageExposesItsDirectory() => VerifyImage("ucsdzint.td0");
 
+    [Fact]
+    public async Task ExplicitUcsdScpSelectionUsesTheIsoReader()
+    {
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(ScpImagePath(), DiskImageFormatIds.UcsdIbmMfm);
+        Assert.Equal(DiskImageFormatIds.UcsdIbmMfm, document.Image.FormatId);
+        Assert.True(document.FileSystemRecognized);
+    }
+
+    [Fact]
+    public async Task AutomaticIsoCandidatesIncludeUcsd()
+    {
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(ScpImagePath());
+        Assert.Equal(DiskImageFormatIds.UcsdIbmMfm, document.Image.FormatId);
+        Assert.True(document.FileSystemRecognized);
+    }
+
     private async Task VerifyImage(string fileName)
     {
         var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", fileName));
@@ -41,5 +58,12 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
         Assert.NotEmpty(volume.Entries);
         Assert.All(volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));
         Assert.Empty(volume.Warnings);
+    }
+
+    private static string ScpImagePath()
+    {
+        var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", "ucsdpasc [test].scp"));
+        Assert.True(File.Exists(path), $"Image SCP UCSD obligatoire absente : {path}");
+        return path;
     }
 }
