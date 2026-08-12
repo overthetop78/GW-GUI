@@ -12,6 +12,9 @@ internal enum DecRx02DataEncoding
     M2Fm
 }
 
+/// <summary>Distingue les secteurs RX01 FM et RX02 M²FM à partir de leur taille.</summary>
+internal enum DecRx02SectorEncoding { Fm, M2Fm }
+
 /// <summary>Décrit une marque de données RX02.</summary>
 /// <param name="Mark">Valeur décodée.</param>
 /// <param name="Pattern">Motif binaire.</param>
@@ -97,6 +100,8 @@ internal static class DecRx02Format
     public const int HeaderBitCount = MarkBitCount + HeaderDecodedByteCount * EncodedFmByteBitCount;
     /// <summary>Longueur du remplissage produit par l'encodeur.</summary>
     public const int GapBitCount = 64;
+    /// <summary>Plus grande adresse représentable dans l'en-tête.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
     /// <summary>Distance maximale de recherche d'une marque de données.</summary>
     public const int MaximumDataSearchDistanceBits = (88 + 16) * BitPrimitives.BitsPerByte * 2;
     /// <summary>Polynôme CRC RX02.</summary>
@@ -128,6 +133,12 @@ internal static class DecRx02Format
     /// <param name="actualSize">Taille observée.</param>
     /// <returns>Exception décrivant les tailles admises.</returns>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"DEC RX sectors contain {FmSectorByteCount} or {M2FmSectorByteCount} bytes; received {actualSize} bytes.");
+
+    /// <summary>Obtient l'encodage et le code de taille imposés par la taille sectorielle.</summary>
+    public static (DecRx02SectorEncoding Encoding, byte SizeCode) EncodingForSize(int size) => size switch { FmSectorByteCount => (DecRx02SectorEncoding.Fm, FmSectorSizeCode), M2FmSectorByteCount => (DecRx02SectorEncoding.M2Fm, M2FmSectorSizeCode), _ => throw InvalidSectorSize(size) };
+
+    /// <summary>Obtient la marque fermée correspondant à l'encodage et à l'état supprimé.</summary>
+    public static DecRx02DataMarkDefinition DataMarkFor(DecRx02SectorEncoding encoding, bool deleted) => DataMarks.Single(mark => mark.Encoding == (encoding == DecRx02SectorEncoding.M2Fm ? DecRx02DataEncoding.M2Fm : DecRx02DataEncoding.Fm) && mark.Deleted == deleted && (mark.Mark == FmDataMark || mark.Mark == FmDeletedDataMark || mark.Mark == M2FmDataMark || mark.Mark == M2FmDeletedDataMark));
 
     /// <summary>Construit une définition de marque depuis son motif et son encodage.</summary>
     private static DecRx02DataMarkDefinition Mark(byte mark, DecRx02DataEncoding encoding, bool deleted) => new(mark, FmAddressMarkPatterns.For(mark), encoding, deleted, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorByteCount : FmSectorByteCount, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorSizeCode : FmSectorSizeCode);

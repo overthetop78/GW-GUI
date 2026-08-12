@@ -43,14 +43,12 @@ public sealed class DecRx02DecoderTests
         Assert.Equal(decoded.Structures.OrderBy(item => item.BitOffset), decoded.Structures);
     }
 
-    /// <summary>Vérifie qu'un code de taille incompatible avec la marque empêche la production du secteur.</summary>
+    /// <summary>Vérifie qu'un code de taille incompatible est rejeté avant l'encodage.</summary>
     [Fact]
     public void InconsistentHeaderSizeCodeIsRejected()
     {
         var payload = new byte[DecRx02Format.M2FmSectorByteCount];
-        var encoded = new DecRx02TrackEncoder().Encode(new(4, 1, [new(6, payload, SizeCode: DecRx02Format.FmSectorSizeCode)]));
-
-        Assert.Empty(new DecRx02Decoder().Decode(encoded.Revolution).Sectors);
+        Assert.Throws<ArgumentException>(() => new DecRx02TrackEncoder().Encode(new(4, 1, [new(6, payload, SizeCode: DecRx02Format.FmSectorSizeCode)])));
     }
 
     /// <summary>Vérifie qu'une paire binaire M²FM invalide est rejetée.</summary>

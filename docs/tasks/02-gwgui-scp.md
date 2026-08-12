@@ -3837,47 +3837,47 @@
       - [x] Tester le checksum commun avec des données connues, y compris son itération terminale nulle et l'ordre de ses octets.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Data General avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/DecRx02TrackEncoder.cs`
-    - [ ] Identité et variantes de l'encodeur DEC RX02
-      - [ ] Remplacer l'identifiant brut `dec.rx02` par la définition centrale correspondante.
-      - [ ] Corriger le nom affiché corrompu `DEC RX02 MÂ²FM`, puis utiliser sa définition centrale.
-      - [ ] Représenter les deux encodages FM et M²FM par un type nommé déterminé à partir de la taille sectorielle.
-      - [ ] Représenter les quatre combinaisons FM/M²FM et normal/supprimé par des marques nommées plutôt que par des ternaires d'octets bruts.
-    - [ ] Définitions du format RX02
-      - [ ] Déplacer les tailles sectorielles 128 et 256 octets dans `DecRx02Format` ou `DecRx02Geometry` selon leur propriétaire existant.
-      - [ ] Déplacer la marque d'adresse `0xfe`, les marques de données `0xf8`, `0xf9`, `0xfb` et `0xfd` et leurs motifs bruts dans `DecRx02Format`.
-      - [ ] Déplacer le motif brut d'adresse et la longueur commune des gaps dans `DecRx02Format`.
-      - [ ] Déplacer les motifs `normal` et `encoded`, leur point de départ, leur pas de recherche et l'avancement après remplacement dans une définition M²FM commune au décodeur et à l'encodeur RX02.
-      - [ ] Nommer l'ordre des octets du CRC écrit après l'adresse et après les données.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire le calcul ou la validation du code de taille dans une fonction privée recevant le secteur et l'encodage retenu.
-      - [ ] Extraire le calcul du CRC d'adresse avec la marque, le cylindre, la tête, le secteur et le code de taille.
-      - [ ] Extraire l'écriture du motif d'adresse, de ses champs, du CRC et du gap dans une fonction privée.
-    - [ ] Construction du champ de données
-      - [ ] Extraire la sélection de la marque de données dans une fonction recevant l'encodage et l'état supprimé.
-      - [ ] Remplacer le `switch` de chaînes hexadécimales par l'association centrale entre chaque marque et son motif brut exact.
-      - [ ] Extraire la construction de la charge utile et de son CRC dans une fonction privée.
-      - [ ] Déplacer `ReplaceM2Fm` dans le composant RX02 M²FM commun et raccorder l'encodeur à ce composant.
-      - [ ] Conserver explicitement le bit nul ajouté avant la charge utile M²FM et l'encodage double FM utilisé pour une charge utile FM.
-    - [ ] Validation avant encodage
-      - [ ] Remplacer le texte brut de taille invalide par une erreur paramétrable indiquant la taille observée et les tailles 128 ou 256 attendues.
-      - [ ] Valider le cylindre, la tête et le numéro de secteur avant leur conversion en octet.
-      - [ ] Lorsque `SizeCode` est fourni, vérifier qu'il correspond à la taille sectorielle retenue au lieu d'écrire une combinaison incohérente.
-      - [ ] Faire vérifier par le composant M²FM que le tampon possède une longueur suffisante avant de rechercher et remplacer ses motifs.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Corriger `MÂ²FM` et utiliser `M²FM` dans la CSDoc française et le nom affiché.
-      - [ ] Séparer la sélection M²FM, les validations, calculs CRC, écritures de marques, constructions de tampons, boucles et conditions actuellement juxtaposés.
-      - [ ] Développer les corps de `if`, `else`, `for` et `switch` compactés afin que chaque action occupe sa propre ligne.
-      - [ ] Normaliser les espaces autour des affectations, opérateurs, comparaisons, tableaux et expressions du `switch`.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur RX02
-      - [ ] Tester les secteurs FM de 128 octets normaux et supprimés et vérifier leurs deux marques distinctes.
-      - [ ] Tester les secteurs M²FM de 256 octets normaux et supprimés et vérifier leurs deux marques distinctes.
-      - [ ] Tester le champ d'adresse, son code de taille, son CRC et l'ordre de ses champs avec des valeurs connues.
-      - [ ] Tester le remplacement M²FM avec un motif présent, plusieurs motifs et aucun motif.
-      - [ ] Tester le rejet d'une taille différente de 128 ou 256 octets, des champs d'adresse hors plage et d'un code de taille incohérent.
-      - [ ] Tester, par l'encodeur public, l'aller-retour des quatre variantes RX02 avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/DecRx02TrackEncoder.cs`
+    - [x] Identité et variantes de l'encodeur DEC RX02
+      - [x] Remplacer l'identifiant brut `dec.rx02` par la définition centrale correspondante.
+      - [x] Corriger le nom affiché corrompu `DEC RX02 MÂ²FM`, puis utiliser sa définition centrale.
+      - [x] Représenter les deux encodages FM et M²FM par un type nommé déterminé à partir de la taille sectorielle.
+      - [x] Représenter les quatre combinaisons FM/M²FM et normal/supprimé par des marques nommées plutôt que par des ternaires d'octets bruts.
+    - [x] Définitions du format RX02
+      - [x] Déplacer les tailles sectorielles 128 et 256 octets dans `DecRx02Format` ou `DecRx02Geometry` selon leur propriétaire existant.
+      - [x] Déplacer la marque d'adresse `0xfe`, les marques de données `0xf8`, `0xf9`, `0xfb` et `0xfd` et leurs motifs bruts dans `DecRx02Format`.
+      - [x] Déplacer le motif brut d'adresse et la longueur commune des gaps dans `DecRx02Format`.
+      - [x] Déplacer les motifs `normal` et `encoded`, leur point de départ, leur pas de recherche et l'avancement après remplacement dans une définition M²FM commune au décodeur et à l'encodeur RX02.
+      - [x] Nommer l'ordre des octets du CRC écrit après l'adresse et après les données.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire le calcul ou la validation du code de taille dans une fonction privée recevant le secteur et l'encodage retenu.
+      - [x] Extraire le calcul du CRC d'adresse avec la marque, le cylindre, la tête, le secteur et le code de taille.
+      - [x] Extraire l'écriture du motif d'adresse, de ses champs, du CRC et du gap dans une fonction privée.
+    - [x] Construction du champ de données
+      - [x] Extraire la sélection de la marque de données dans une fonction recevant l'encodage et l'état supprimé.
+      - [x] Remplacer le `switch` de chaînes hexadécimales par l'association centrale entre chaque marque et son motif brut exact.
+      - [x] Extraire la construction de la charge utile et de son CRC dans une fonction privée.
+      - [x] Déplacer `ReplaceM2Fm` dans le composant RX02 M²FM commun et raccorder l'encodeur à ce composant.
+      - [x] Conserver explicitement le bit nul ajouté avant la charge utile M²FM et l'encodage double FM utilisé pour une charge utile FM.
+    - [x] Validation avant encodage
+      - [x] Remplacer le texte brut de taille invalide par une erreur paramétrable indiquant la taille observée et les tailles 128 ou 256 attendues.
+      - [x] Valider le cylindre, la tête et le numéro de secteur avant leur conversion en octet.
+      - [x] Lorsque `SizeCode` est fourni, vérifier qu'il correspond à la taille sectorielle retenue au lieu d'écrire une combinaison incohérente.
+      - [x] Faire vérifier par le composant M²FM que le tampon possède une longueur suffisante avant de rechercher et remplacer ses motifs.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Corriger `MÂ²FM` et utiliser `M²FM` dans la CSDoc française et le nom affiché.
+      - [x] Séparer la sélection M²FM, les validations, calculs CRC, écritures de marques, constructions de tampons, boucles et conditions actuellement juxtaposés.
+      - [x] Développer les corps de `if`, `else`, `for` et `switch` compactés afin que chaque action occupe sa propre ligne.
+      - [x] Normaliser les espaces autour des affectations, opérateurs, comparaisons, tableaux et expressions du `switch`.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur RX02
+      - [x] Tester les secteurs FM de 128 octets normaux et supprimés et vérifier leurs deux marques distinctes.
+      - [x] Tester les secteurs M²FM de 256 octets normaux et supprimés et vérifier leurs deux marques distinctes.
+      - [x] Tester le champ d'adresse, son code de taille, son CRC et l'ordre de ses champs avec des valeurs connues.
+      - [x] Tester le remplacement M²FM avec un motif présent, plusieurs motifs et aucun motif.
+      - [x] Tester le rejet d'une taille différente de 128 ou 256 octets, des champs d'adresse hors plage et d'un code de taille incohérent.
+      - [x] Tester, par l'encodeur public, l'aller-retour des quatre variantes RX02 avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/EmuFmTrackEncoder.cs`
     - [ ] Identité de l'encodeur E-mu
       - [ ] Remplacer l'identifiant brut `emu.fm` par la définition centrale correspondante.
