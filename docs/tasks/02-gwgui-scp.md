@@ -5347,9 +5347,9 @@
     - [x] Documenter en français chaque membre.
     - [ ] Tester une capture RWTS18 complète, partielle et incohérente. La capture complète est validée ; les variantes partielle et incohérente restent à fournir ou à produire sans ajouter d'outil au code de production.
   - [ ] `SectorImages/AppleScpSectorDecoder.cs`
-    - [ ] Remplacer les identifiants des codecs Apple bruts par `FluxCodecIds`.
-    - [ ] Déplacer les poids de score et seuils de sélection dans des constantes Apple nommées.
-    - [ ] Documenter en français chaque membre.
+    - [x] Remplacer les identifiants des codecs Apple bruts par `FluxCodecIds`.
+    - [x] Déplacer les poids de score et seuils de sélection dans des constantes Apple nommées.
+    - [x] Documenter en français chaque membre.
     - [ ] Tester la sélection Apple II, RWTS18, Macintosh et Lisa.
   - [ ] `SectorImages/AppleScpSectorImageReader.cs`
     - [ ] Remplacer formats, familles et erreurs bruts par les définitions Apple et erreurs de reconstruction.
