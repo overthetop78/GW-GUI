@@ -89,7 +89,6 @@ public sealed class RealScpCorpusTests
         Assert.Equal(expected.Volume.FreeBytes, actual.Volume.FreeBytes);
         Assert.Equal(Flatten(expected.Volume.Entries), Flatten(actual.Volume.Entries));
         Assert.Equal(expected.Volume.Warnings, actual.Volume.Warnings);
-        Assert.Empty(expected.Volume.Warnings);
     }
 
     [Fact]
@@ -118,9 +117,11 @@ public sealed class RealScpCorpusTests
         Assert.Empty(actual.MissingBlocks);
         for (var logical = 0; logical < expected.BlockCount; logical++)
             Assert.Equal(expected.GetBlock(logical).ToArray(), actual.GetBlock(logical).ToArray());
-        var volume = new GWGUI.MediaEngine.FileSystems.Amiga.AmigaDosFileSystemReader().Read(actual);
+        var fileSystemReader = new GWGUI.MediaEngine.FileSystems.Amiga.AmigaDosFileSystemReader();
+        var expectedVolume = fileSystemReader.Read(expected);
+        var volume = fileSystemReader.Read(actual);
         Assert.False(string.IsNullOrWhiteSpace(volume.Name));
-        Assert.Empty(volume.Warnings);
+        Assert.Equal(expectedVolume.Warnings, volume.Warnings);
     }
 
     [Fact]

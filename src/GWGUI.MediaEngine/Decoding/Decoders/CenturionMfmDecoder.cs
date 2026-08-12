@@ -49,7 +49,8 @@ public sealed class CenturionMfmDecoder : IFluxDecoder
             }
             var size = data?.Size ?? 0;
             bool? integrity = header.Value.Valid == false || data?.Valid == false ? false : data?.Valid is null ? null : true;
-            sectors.Add(new(cylinder, CenturionMfmFormat.LogicalHead, sector, SectorSizeCode.FromByteCount(size), size, integrity, offset, SectorIntegrityKind.Crc, data?.Data));
+            SectorSizeCode.TryFromByteCount(size, out var sizeCode);
+            sectors.Add(new(cylinder, CenturionMfmFormat.LogicalHead, sector, sizeCode, size, integrity, offset, SectorIntegrityKind.Crc, data?.Data));
             structures.Add(new(FluxStructureKind.FormatHeader, offset, CenturionMfmFormat.HeaderBitCount, CenturionMfmDescriptions.Header(cylinder, sector, size, header.Value.Valid, data?.Valid)));
             offset = Math.Max(offset + CenturionMfmFormat.SectorMarkAdvanceBitCount, structureEnd - 1);
         }

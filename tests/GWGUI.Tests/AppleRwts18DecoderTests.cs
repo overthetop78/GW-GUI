@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.Tests;
 
@@ -125,9 +126,14 @@ public sealed class AppleRwts18DecoderTests
     private static (bool[] Bits, byte[] Data, int AddressOffset) EncodeSingleSector()
     {
         var data = Enumerable.Range(0, AppleRwts18Format.SectorByteCount).Select(index => (byte)(index * 41 + 7)).ToArray();
-        var encoded = new AppleRwts18TrackEncoder().Encode(new(18, 0, [new(0, data)]));
-        var bits = encoded.Bits.ToArray();
-        return (bits, data, FindAddressMark(bits));
+        var bits = TrackBitEncoding.Bits();
+        bits.Gap(AppleRwts18Format.FirstSectorGapBitCount, true);
+        bits.Raw((byte)(AppleRwts18Format.EncodedAddressMark >> BitPrimitives.BitsPerByte), (byte)(AppleRwts18Format.EncodedAddressMark & byte.MaxValue), AppleIIGcrFormat.SixAndTwoTable[18], AppleIIGcrFormat.SixAndTwoTable[0], AppleIIGcrFormat.SixAndTwoTable[18], AppleRwts18Format.AddressTrailer, AppleRwts18Format.SyncByte, AppleRwts18Format.SyncByte);
+        bits.Raw(AppleRwts18Format.DefaultIdentifier);
+        bits.Raw(AppleRwts18Codec.EncodePayload(data));
+        bits.Raw(AppleRwts18Format.DataEpilogue, AppleRwts18Format.SyncByte);
+        var encodedBits = bits.ToArray();
+        return (encodedBits, data, FindAddressMark(encodedBits));
     }
 
     /// <summary>Recherche la marque d'adresse RWTS18 dans les bits encodés.</summary>

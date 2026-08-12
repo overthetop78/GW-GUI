@@ -72,7 +72,7 @@ public sealed class DiskImageRecognitionRegistryTests
         {
             var registry = new DiskImageRecognitionRegistry([new FakePolicy(canRead: false)]);
 
-            var exception = await Assert.ThrowsAsync<NotSupportedException>(() => registry.ReadAsync(path, requestedFormat, CancellationToken.None));
+            var exception = await Assert.ThrowsAsync<DiskImageNotRecognizedException>(() => registry.ReadAsync(path, requestedFormat, CancellationToken.None));
 
             Assert.Contains(requestedFormat ?? path, exception.Message, StringComparison.Ordinal);
         }

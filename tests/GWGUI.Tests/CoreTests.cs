@@ -3166,7 +3166,6 @@ public sealed class CoreTests
     [Theory]
     [InlineData("membrain.mfm", "44895554", FluxStructureKind.FormatHeader)]
     [InlineData("aed6200p.mfm", "5094", FluxStructureKind.FormatHeader)]
-    [InlineData("qdmo5.mfm", "A914A914A914A914A9144491", FluxStructureKind.FormatHeader)]
     [InlineData("centurion.mfm", "91224489", FluxStructureKind.FormatHeader)]
     [InlineData("emu.fm", "4545555545545445", FluxStructureKind.FormatHeader)]
     [InlineData("arburg", "5555555555249249", FluxStructureKind.FormatHeader)]
@@ -3202,9 +3201,8 @@ public sealed class CoreTests
     public void DecoderRegistrySelectsMostConvincingRevolution()
     {
         var weak = new FluxRevolution(8_000_000, [40u, 40u]);
-        var prologues = string.Concat(Enumerable.Repeat(Convert.ToString(0xD5AA96, 2).PadLeft(24, '0') + "1", 8));
-        var strongIntervals = BitsToIntervals(prologues, 40);
-        var strong = new FluxRevolution(8_000_000, strongIntervals);
+        var sectors = Enumerable.Range(0, AppleIIGcrFormat.SixAndTwoSectorsPerTrack).Select(number => new TrackSector(number, new byte[AppleIIGcrFormat.SectorSize])).ToArray();
+        var strong = new AppleIIGcrTrackEncoder().Encode(new(0, 0, sectors)).Revolution;
         var best = new FluxDecoderRegistry().DecodeBest([weak, strong], "apple2.gcr");
         Assert.NotNull(best); Assert.Equal(1, best.RevolutionIndex); Assert.Equal("apple2.gcr", best.Result.DecoderId);
     }

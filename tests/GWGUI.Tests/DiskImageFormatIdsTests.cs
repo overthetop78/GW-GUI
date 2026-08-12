@@ -25,7 +25,7 @@ public sealed class DiskImageFormatIdsTests
             "atarist.", "atarist.180", "atarist.360", "atarist.400", "atarist.440", "atarist.720",
             "atarist.800", "atarist.810", "atarist.880", "atarist.1440",
             "commodore.", "commodore.1541", "commodore.1571", "commodore.1581",
-            "commodore900.", "commodore900.coherent", "dec.rx02",
+            "commodore900.", "commodore900.coherent", "dec.", "dec.rx02", "86f.",
             "epson.qx10.", "epson.qx10.320", "epson.qx10.396", "epson.qx10.399", "epson.qx10.400",
             "epson.qx10.booter", "epson.qx10.logo",
             "ibm.", "ibm.160", "ibm.180", "ibm.320", "ibm.360", "ibm.720", "ibm.800", "ibm.1200",

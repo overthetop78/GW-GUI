@@ -49,7 +49,7 @@ public sealed class Td0ReaderTests
         BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.SectorsPerTrackOffset), 9);
         BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.HeadCountOffset), 2);
         Assert.Equal(DiskImageFormatIds.Ibm720, Td0SectorImageClassifier.Detect(blocks, 512, 80, 2, 9));
-        boot[FatBootSectorLayout.BytesPerSectorOffset] = 0;
+        BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), 0);
         Assert.Equal(DiskImageFormatIds.UcsdIbmMfm, Td0SectorImageClassifier.Detect(blocks, 512, 80, 2, 9));
     }
 

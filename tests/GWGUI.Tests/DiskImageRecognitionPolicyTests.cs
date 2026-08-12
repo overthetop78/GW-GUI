@@ -89,7 +89,7 @@ public sealed class DiskImageRecognitionPolicyTests
             DiskImageFormatIds.AppleIIDos33
         },
         {
-            Path.Combine("COHERENT - ordinateur Ã  identifier", "COHERENT - Volume 1 - Low Resolution.bin"),
+            Path.Combine("COHERENT - ordinateur à identifier", "COHERENT - Volume 1 - Low Resolution.bin"),
             DiskImageFormatIds.Commodore900Coherent
         },
         {

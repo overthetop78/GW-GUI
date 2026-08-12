@@ -32,7 +32,7 @@ public sealed class ExtensionHintRecognitionPolicyTests
         try
         {
             var registry = new DiskImageRecognitionRegistry([new ExtensionHintRecognitionPolicy((_, _) => { calls++; return Task.FromResult(CreateImage("unexpected")); }, ".img")]);
-            await Assert.ThrowsAsync<NotSupportedException>(() => registry.ReadAsync(path, null, CancellationToken.None));
+            await Assert.ThrowsAsync<DiskImageNotRecognizedException>(() => registry.ReadAsync(path, null, CancellationToken.None));
             Assert.Equal(0, calls);
         }
         finally { File.Delete(path); }

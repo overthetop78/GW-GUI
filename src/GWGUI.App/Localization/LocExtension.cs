@@ -44,9 +44,15 @@ public sealed class LocExtension(string key) : MarkupExtension
     public static IReadOnlySet<string> GetDefinedKeys(string catalog, CultureInfo culture)
     {
         var resources = CreateResourceManager(catalog);
-        var set = resources.GetResourceSet(culture, createIfNotExists: true, tryParents: false);
-        return set is null ? new HashSet<string>() : set.Cast<System.Collections.DictionaryEntry>()
-            .Select(entry => (string)entry.Key).ToHashSet(StringComparer.Ordinal);
+        var keys = new HashSet<string>(StringComparer.Ordinal);
+        var neutral = resources.GetResourceSet(CultureInfo.InvariantCulture, createIfNotExists: true, tryParents: false);
+        if (neutral is not null) keys.UnionWith(neutral.Cast<System.Collections.DictionaryEntry>().Select(entry => (string)entry.Key));
+        if (!culture.Equals(CultureInfo.InvariantCulture))
+        {
+            var localized = resources.GetResourceSet(culture, createIfNotExists: true, tryParents: false);
+            if (localized is not null) keys.UnionWith(localized.Cast<System.Collections.DictionaryEntry>().Select(entry => (string)entry.Key));
+        }
+        return keys;
     }
 
     private static IReadOnlyDictionary<string, ResourceManager> BuildResourceIndex()

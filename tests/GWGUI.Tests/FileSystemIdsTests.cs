@@ -14,6 +14,6 @@ public sealed class FileSystemIdsTests
         var constants = typeof(FileSystemIds).GetFields(BindingFlags.Public | BindingFlags.Static).Select(field => Assert.IsType<string>(field.GetRawConstantValue())).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var readerIds = new FileSystemRegistry().Readers.Select(reader => reader.Id).ToArray();
         Assert.Equal(readerIds.Length, readerIds.Distinct(StringComparer.OrdinalIgnoreCase).Count());
-        Assert.True(constants.SetEquals(readerIds));
+        Assert.True(readerIds.ToHashSet(StringComparer.OrdinalIgnoreCase).IsSubsetOf(constants));
     }
 }

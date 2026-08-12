@@ -246,7 +246,7 @@ public sealed class CoherentDiskImageTests
         var volume = new CoherentFileSystemReader().Read(image);
 
         Assert.Contains(volume.Warnings, warning => warning.Contains("cycle", StringComparison.Ordinal));
-        Assert.Contains(volume.Warnings, warning => warning.Contains("dÃ©jÃ  Ã©tÃ© parcouru", StringComparison.Ordinal));
+        Assert.Contains(volume.Warnings, warning => warning.Contains("déjà été parcouru", StringComparison.Ordinal));
         Assert.Contains(volume.Entries, entry => entry.Name == "A" && !entry.MetadataValid);
         Assert.Contains(volume.Entries, entry => entry.Name == "B" && !entry.MetadataValid);
     }
