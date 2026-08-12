@@ -8,7 +8,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
-using GWGUI.MediaEngine.FileSystems.ProDos;
+using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.MediaEngine.FileSystems.Sos;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
@@ -129,9 +129,9 @@ public sealed class AppleRawImageReaderTests
     private static byte[] CreateProDos(int capacity)
     {
         var data = new byte[capacity];
-        var offset = ProDosVolumeHeader.BlockNumber * ProDosVolumeHeader.BlockSize;
-        data[offset + ProDosVolumeHeader.StorageAndNameLengthOffset] = (ProDosVolumeHeader.VolumeStorageType << 4) | 1;
-        data[offset + ProDosVolumeHeader.EntryLengthOffset] = ProDosVolumeHeader.EntryLength;
+        var offset = ProDosFileSystemLayout.RootBlock * ProDosFileSystemLayout.BlockSize;
+        data[offset + ProDosFileSystemLayout.HeaderOffset] = (byte)(((int)ProDosStorageType.VolumeHeader << ProDosFileSystemLayout.StorageTypeShift) | 1);
+        data[offset + ProDosFileSystemLayout.HeaderEntryLengthOffset] = ProDosFileSystemLayout.EntrySize;
         return data;
     }
 

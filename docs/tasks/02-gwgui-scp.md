@@ -7153,74 +7153,74 @@
       - [x] Tester data fork, resource fork, fichier avec les deux et métadonnées de fork incohérentes.
       - [x] Tester cycle, allocation hors carte, fin prématurée et bloc absent sans glissement du contenu.
       - [x] Tester une taille d'allocation invalide et un nombre libre incohérent.
-  - [ ] `FileSystems/Readers/ProDosFileSystemReader.cs`
-    - [ ] Emplacement, identité et formats
-      - [ ] Déplacer le Reader et ses composants vers `FileSystems/Apple/ProDos/` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `prodos` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Rendre immuable la collection des formats ProDOS et SOS annoncés.
-      - [ ] Remplacer le préfixe brut `apple3.` par une association explicite des formats au nom de système.
-      - [ ] Remplacer `Apple SOS / ProDOS` et `Apple ProDOS` par les définitions techniques centrales correspondantes.
-    - [ ] Disposition ProDOS
-      - [ ] Créer `ProDosFileSystemLayout.cs` et y définir la taille de bloc 512, le bloc racine 2, les offsets d'en-tête, de bitmap, du total et de date du volume.
-      - [ ] Y définir la taille d'entrée 39, l'offset de la première entrée du premier bloc, l'offset des blocs suivants et le pointeur de bloc suivant.
-      - [ ] Y définir tous les offsets et longueurs de nom, type, clé, EOF 24 bits, drapeaux et date d'une entrée.
-      - [ ] Y définir les 256 pointeurs d'un bloc index, leurs deux moitiés basse/haute et les 4 096 bits couverts par un bloc bitmap.
-      - [ ] Remplacer tous les offsets, tailles, masques et nombres bruts correspondants du Reader.
-    - [ ] Types de stockage et de fichiers
-      - [ ] Créer `ProDosStorageType.cs` pour entrée inactive, seedling, sapling, tree, sous-répertoire et en-tête de volume.
-      - [ ] Remplacer les valeurs brutes zéro, 1 à 3, `0x0D` et `0x0F` par cet enum.
-      - [ ] Créer `ProDosFileType.cs` avec les types connus texte, binaire, répertoire, BASIC, variables et système.
-      - [ ] Remplacer `TypeName` par une définition centrale recevant l'enum ou la valeur inconnue et produisant le nom technique.
-    - [ ] Reconnaissance et en-tête de volume
-      - [ ] Extraire dans `ProDosVolumeHeaderReader.cs` la validation du type d'en-tête, de la longueur de nom et de la longueur d'entrée `0x27`.
-      - [ ] Faire retourner nom, bitmap, total de blocs et date après validation complète du bloc racine.
-      - [ ] Remplacer l'erreur brute de volume non reconnu par une définition centrale.
-      - [ ] Ne pas relire le bloc racine dans `Read` après l'avoir déjà validé et analysé pour la reconnaissance.
-    - [ ] Répertoires ProDOS
-      - [ ] Créer `ProDosDirectoryReader.cs` et y déplacer le parcours de la chaîne de blocs et des entrées.
-      - [ ] Nommer la profondeur maximale 64 et produire un avertissement paramétré lorsqu'elle est atteinte.
-      - [ ] Distinguer bloc absent, bloc de mauvaise taille, cycle dans la chaîne courante et bloc déjà utilisé par une autre branche.
-      - [ ] Valider chaque plage d'entrée contre la taille réelle du bloc au lieu de borner la boucle au littéral 512.
-      - [ ] Extraire la lecture du nom ASCII et de l'EOF 24 bits dans des primitives ProDOS nommées.
-      - [ ] Faire porter aux entrées de répertoire la validité de leur chaîne et aux fichiers celle de leur contenu.
-      - [ ] Conserver le tri actuel des dossiers avant les fichiers puis des noms sans casse.
-    - [ ] Lecture seedling, sapling et tree
-      - [ ] Créer `ProDosFileContentReader.cs` et y déplacer `ReadFile`, `ReadIndex` et `Pointer`.
-      - [ ] Faire retourner contenu, validité, blocs de données et blocs d'index visités.
-      - [ ] Pour seedling, conserver le bloc clé unique à sa position logique.
-      - [ ] Pour sapling, parcourir les 256 emplacements d'index dans leur ordre et conserver un emplacement nul comme bloc creux au lieu de rapprocher le pointeur suivant.
-      - [ ] Pour tree, conserver également les 256 emplacements de chaque index enfant et la plage logique représentée par un pointeur maître nul.
-      - [ ] Réserver exactement 512 octets pour un bloc de données absent ou de mauvaise taille afin de préserver le contenu suivant.
-      - [ ] Distinguer un pointeur creux valide d'un pointeur hors image et d'un bloc réellement absent.
-      - [ ] Arrêter la reconstruction à l'EOF 24 bits tout en signalant une chaîne trop courte.
-      - [ ] Détecter les blocs d'index cycliques ou réutilisés pendant la reconstruction.
-    - [ ] Bitmap et espace libre
-      - [ ] Créer `ProDosBitmapReader.cs` et y déplacer `CountFreeBlocks`.
-      - [ ] Nommer le bit de poids fort `0x80`, les huit bits par octet et les 4 096 blocs décrits par bloc bitmap.
-      - [ ] Valider chaque bloc bitmap et sa taille avant de lire un bit.
-      - [ ] Faire retourner le nombre libre avec sa validité au lieu de traiter un bloc bitmap absent comme zéro bloc libre.
-      - [ ] Ne limiter le total déclaré au nombre de blocs disponibles qu'après avoir produit un avertissement décrivant l'incohérence.
-      - [ ] Calculer capacité et espace libre avec la taille de bloc nommée.
-    - [ ] Dates ProDOS
-      - [ ] Créer `ProDosDateTime.cs` et y déplacer la lecture little-endian et la conversion de date.
-      - [ ] Nommer l'année de base 1900, le pivot 1940 et les masques/décalages de date et d'heure.
-      - [ ] Conserver le retour nul pour une date impossible sans bloc `catch` compact sur une seule ligne.
-    - [ ] Erreurs et avertissements ProDOS
-      - [ ] Créer `ProDosFileSystemExceptions.cs` pour le volume non reconnu, la profondeur, le cycle, les blocs de répertoire/index/données/bitmap absents et le contenu tronqué.
-      - [ ] Faire recevoir aux méthodes le fichier, le type de stockage, le bloc, la profondeur et les longueurs utiles.
-      - [ ] Remplacer tous les textes bruts du Reader par ces définitions.
-    - [ ] Présentation et CSDoc française
-      - [ ] Séparer les initialisations, parcours de répertoire, lectures d'entrée, boucles d'index et corps des fonctions de nom et date actuellement regroupés.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
-      - [ ] Documenter en français le Reader et chacun de ses membres restants.
-      - [ ] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode ProDOS créé.
-    - [ ] Tests ciblés ProDOS et SOS
-      - [ ] Tester par le Reader public des images ProDOS 140 K, ProDOS 800 K et Apple III SOS disponibles dans `image_test` avec volume, répertoires, fichiers et espace libre attendus.
-      - [ ] Tester un fichier seedling, sapling et tree, y compris un pointeur creux au milieu sans déplacement du contenu suivant.
-      - [ ] Tester un sous-répertoire, une chaîne cyclique, la profondeur maximale et un bloc de répertoire absent.
-      - [ ] Tester un bloc maître, index ou données absent, hors image ou de mauvaise taille et vérifier la validité produite.
-      - [ ] Tester un bitmap valide, absent, tronqué et un total déclaré supérieur au nombre de blocs de l'image.
-      - [ ] Tester les types de fichiers connus, un type inconnu, une date valide et une date impossible.
+  - [x] `FileSystems/Readers/ProDosFileSystemReader.cs`
+    - [x] Emplacement, identité et formats
+      - [x] Déplacer le Reader et ses composants vers `FileSystems/Apple/ProDos/` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `prodos` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Rendre immuable la collection des formats ProDOS et SOS annoncés.
+      - [x] Remplacer le préfixe brut `apple3.` par une association explicite des formats au nom de système.
+      - [x] Remplacer `Apple SOS / ProDOS` et `Apple ProDOS` par les définitions techniques centrales correspondantes.
+    - [x] Disposition ProDOS
+      - [x] Créer `ProDosFileSystemLayout.cs` et y définir la taille de bloc 512, le bloc racine 2, les offsets d'en-tête, de bitmap, du total et de date du volume.
+      - [x] Y définir la taille d'entrée 39, l'offset de la première entrée du premier bloc, l'offset des blocs suivants et le pointeur de bloc suivant.
+      - [x] Y définir tous les offsets et longueurs de nom, type, clé, EOF 24 bits, drapeaux et date d'une entrée.
+      - [x] Y définir les 256 pointeurs d'un bloc index, leurs deux moitiés basse/haute et les 4 096 bits couverts par un bloc bitmap.
+      - [x] Remplacer tous les offsets, tailles, masques et nombres bruts correspondants du Reader.
+    - [x] Types de stockage et de fichiers
+      - [x] Créer `ProDosStorageType.cs` pour entrée inactive, seedling, sapling, tree, sous-répertoire et en-tête de volume.
+      - [x] Remplacer les valeurs brutes zéro, 1 à 3, `0x0D` et `0x0F` par cet enum.
+      - [x] Créer `ProDosFileType.cs` avec les types connus texte, binaire, répertoire, BASIC, variables et système.
+      - [x] Remplacer `TypeName` par une définition centrale recevant l'enum ou la valeur inconnue et produisant le nom technique.
+    - [x] Reconnaissance et en-tête de volume
+      - [x] Extraire dans `ProDosVolumeHeaderReader.cs` la validation du type d'en-tête, de la longueur de nom et de la longueur d'entrée `0x27`.
+      - [x] Faire retourner nom, bitmap, total de blocs et date après validation complète du bloc racine.
+      - [x] Remplacer l'erreur brute de volume non reconnu par une définition centrale.
+      - [x] Ne pas relire le bloc racine dans `Read` après l'avoir déjà validé et analysé pour la reconnaissance.
+    - [x] Répertoires ProDOS
+      - [x] Créer `ProDosDirectoryReader.cs` et y déplacer le parcours de la chaîne de blocs et des entrées.
+      - [x] Nommer la profondeur maximale 64 et produire un avertissement paramétré lorsqu'elle est atteinte.
+      - [x] Distinguer bloc absent, bloc de mauvaise taille, cycle dans la chaîne courante et bloc déjà utilisé par une autre branche.
+      - [x] Valider chaque plage d'entrée contre la taille réelle du bloc au lieu de borner la boucle au littéral 512.
+      - [x] Extraire la lecture du nom ASCII et de l'EOF 24 bits dans des primitives ProDOS nommées.
+      - [x] Faire porter aux entrées de répertoire la validité de leur chaîne et aux fichiers celle de leur contenu.
+      - [x] Conserver le tri actuel des dossiers avant les fichiers puis des noms sans casse.
+    - [x] Lecture seedling, sapling et tree
+      - [x] Créer `ProDosFileContentReader.cs` et y déplacer `ReadFile`, `ReadIndex` et `Pointer`.
+      - [x] Faire retourner contenu, validité, blocs de données et blocs d'index visités.
+      - [x] Pour seedling, conserver le bloc clé unique à sa position logique.
+      - [x] Pour sapling, parcourir les 256 emplacements d'index dans leur ordre et conserver un emplacement nul comme bloc creux au lieu de rapprocher le pointeur suivant.
+      - [x] Pour tree, conserver également les 256 emplacements de chaque index enfant et la plage logique représentée par un pointeur maître nul.
+      - [x] Réserver exactement 512 octets pour un bloc de données absent ou de mauvaise taille afin de préserver le contenu suivant.
+      - [x] Distinguer un pointeur creux valide d'un pointeur hors image et d'un bloc réellement absent.
+      - [x] Arrêter la reconstruction à l'EOF 24 bits tout en signalant une chaîne trop courte.
+      - [x] Détecter les blocs d'index cycliques ou réutilisés pendant la reconstruction.
+    - [x] Bitmap et espace libre
+      - [x] Créer `ProDosBitmapReader.cs` et y déplacer `CountFreeBlocks`.
+      - [x] Nommer le bit de poids fort `0x80`, les huit bits par octet et les 4 096 blocs décrits par bloc bitmap.
+      - [x] Valider chaque bloc bitmap et sa taille avant de lire un bit.
+      - [x] Faire retourner le nombre libre avec sa validité au lieu de traiter un bloc bitmap absent comme zéro bloc libre.
+      - [x] Ne limiter le total déclaré au nombre de blocs disponibles qu'après avoir produit un avertissement décrivant l'incohérence.
+      - [x] Calculer capacité et espace libre avec la taille de bloc nommée.
+    - [x] Dates ProDOS
+      - [x] Créer `ProDosDateTime.cs` et y déplacer la lecture little-endian et la conversion de date.
+      - [x] Nommer l'année de base 1900, le pivot 1940 et les masques/décalages de date et d'heure.
+      - [x] Conserver le retour nul pour une date impossible sans bloc `catch` compact sur une seule ligne.
+    - [x] Erreurs et avertissements ProDOS
+      - [x] Créer `ProDosFileSystemExceptions.cs` pour le volume non reconnu, la profondeur, le cycle, les blocs de répertoire/index/données/bitmap absents et le contenu tronqué.
+      - [x] Faire recevoir aux méthodes le fichier, le type de stockage, le bloc, la profondeur et les longueurs utiles.
+      - [x] Remplacer tous les textes bruts du Reader par ces définitions.
+    - [x] Présentation et CSDoc française
+      - [x] Séparer les initialisations, parcours de répertoire, lectures d'entrée, boucles d'index et corps des fonctions de nom et date actuellement regroupés.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
+      - [x] Documenter en français le Reader et chacun de ses membres restants.
+      - [x] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode ProDOS créé.
+    - [x] Tests ciblés ProDOS et SOS
+      - [x] Tester par le Reader public des images ProDOS 140 K, ProDOS 800 K et Apple III SOS disponibles dans `image_test` avec volume, répertoires, fichiers et espace libre attendus.
+      - [x] Tester un fichier seedling, sapling et tree, y compris un pointeur creux au milieu sans déplacement du contenu suivant.
+      - [x] Tester un sous-répertoire, une chaîne cyclique, la profondeur maximale et un bloc de répertoire absent.
+      - [x] Tester un bloc maître, index ou données absent, hors image ou de mauvaise taille et vérifier la validité produite.
+      - [x] Tester un bitmap valide, absent, tronqué et un total déclaré supérieur au nombre de blocs de l'image.
+      - [x] Tester les types de fichiers connus, un type inconnu, une date valide et une date impossible.
   - [ ] `FileSystems/Readers/Rt11FileSystemReader.cs`
     - [ ] Emplacement, identité et format
       - [ ] Déplacer le Reader et ses composants vers `FileSystems/Dec/Rt11/` puis adapter le namespace et les consommateurs.

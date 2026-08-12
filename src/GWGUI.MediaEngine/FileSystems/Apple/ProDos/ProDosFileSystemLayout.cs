@@ -9,6 +9,8 @@ internal static class ProDosFileSystemLayout
     public const int RootBlock = 2;
     /// <summary>Offset du premier en-tête.</summary>
     public const int HeaderOffset = 4;
+    /// <summary>Offset de la longueur d'entrée dans l'en-tête.</summary>
+    public const int HeaderEntryLengthOffset = 0x23;
     /// <summary>Taille d'une entrée de répertoire.</summary>
     public const int EntrySize = 0x27;
     /// <summary>Offset du nom dans une entrée.</summary>
@@ -33,16 +35,24 @@ internal static class ProDosFileSystemLayout
     public const int NextBlockOffset = 2;
     /// <summary>Offset de la première entrée suivant l'en-tête de volume.</summary>
     public const int FirstVolumeEntryOffset = HeaderOffset + EntrySize;
+    /// <summary>Offset de la première entrée des blocs suivants.</summary>
+    public const int FirstChainedEntryOffset = HeaderOffset;
     /// <summary>Nombre de pointeurs dans un bloc d'index.</summary>
     public const int IndexPointerCount = 256;
     /// <summary>Offset de la partie haute des pointeurs d'index.</summary>
     public const int IndexHighBytesOffset = 256;
+    /// <summary>Nombre d'octets dans chaque moitié d'un bloc d'index.</summary>
+    public const int IndexHalfLength = 256;
     /// <summary>Offset du bloc bitmap dans l'en-tête du volume.</summary>
     public const int BitmapBlockOffset = HeaderOffset + 35;
     /// <summary>Offset du nombre total de blocs.</summary>
     public const int TotalBlocksOffset = HeaderOffset + 37;
     /// <summary>Nombre de blocs décrits par un bloc bitmap.</summary>
     public const int BlocksPerBitmapBlock = 4096;
+    /// <summary>Masque du bit de poids fort d'un octet de bitmap.</summary>
+    public const byte BitmapHighBitMask = 0x80;
+    /// <summary>Nombre de bits dans un octet.</summary>
+    public const int BitsPerByte = 8;
     /// <summary>Profondeur maximale protégeant des cycles de répertoires.</summary>
     public const int MaximumDirectoryDepth = 64;
     /// <summary>Masque de la longueur d'un nom.</summary>
@@ -50,13 +60,13 @@ internal static class ProDosFileSystemLayout
     /// <summary>Décalage du type de stockage.</summary>
     public const int StorageTypeShift = 4;
     /// <summary>Type de stockage seedling.</summary>
-    public const int SeedlingStorageType = 1;
+    public const int SeedlingStorageType = (int)ProDosStorageType.Seedling;
     /// <summary>Type de stockage sapling.</summary>
-    public const int SaplingStorageType = 2;
+    public const int SaplingStorageType = (int)ProDosStorageType.Sapling;
     /// <summary>Type de stockage tree.</summary>
-    public const int TreeStorageType = 3;
+    public const int TreeStorageType = (int)ProDosStorageType.Tree;
     /// <summary>Type de stockage d'un sous-répertoire.</summary>
-    public const int SubdirectoryStorageType = 0x0d;
+    public const int SubdirectoryStorageType = (int)ProDosStorageType.Subdirectory;
     /// <summary>Type de stockage d'un en-tête de volume.</summary>
-    public const int VolumeHeaderStorageType = 0x0f;
+    public const int VolumeHeaderStorageType = (int)ProDosStorageType.VolumeHeader;
 }

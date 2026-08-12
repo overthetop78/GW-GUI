@@ -52,5 +52,9 @@ internal static class FileSystemDisplayNames
     /// <summary>Retourne le nom ProDOS ou SOS correspondant au format.</summary>
     /// <param name="formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de ProDOS ou SOS.</returns>
-    public static string ProDos(string formatId) => formatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) ? "Apple SOS / ProDOS" : "Apple ProDOS";
+    public static string ProDos(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? AppleSosProDos : AppleProDos;
+    /// <summary>Nom affiché d'un volume Apple III SOS lu par le moteur ProDOS.</summary>
+    public const string AppleSosProDos = "Apple SOS / ProDOS";
+    /// <summary>Nom affiché d'un volume Apple ProDOS.</summary>
+    public const string AppleProDos = "Apple ProDOS";
 }

@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
-using GWGUI.MediaEngine.FileSystems.ProDos;
+using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.MediaEngine.FileSystems.Sos;
 using GWGUI.MediaEngine.Geometries.Apple;
 
@@ -36,8 +36,8 @@ internal static class AppleRawImageProbe
     /// <summary>Sonde l'en-tête de volume ProDOS sans lever d'exception sur un contenu trop court.</summary>
     public static bool LooksLikeProDos(ReadOnlySpan<byte> data)
     {
-        var offset = ProDosVolumeHeader.BlockNumber * ProDosVolumeHeader.BlockSize;
-        return data.Length >= offset + ProDosVolumeHeader.BlockSize && ProDosVolumeHeader.IsValid(data.Slice(offset, ProDosVolumeHeader.BlockSize));
+        var offset = ProDosFileSystemLayout.RootBlock * ProDosFileSystemLayout.BlockSize;
+        return data.Length >= offset + ProDosFileSystemLayout.BlockSize && ProDosVolumeHeaderReader.TryRead(data.Slice(offset, ProDosFileSystemLayout.BlockSize), out _);
     }
 
     /// <summary>Sonde une signature MFS ou HFS dans le bloc maître Macintosh.</summary>

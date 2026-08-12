@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
-using GWGUI.MediaEngine.FileSystems.ProDos;
+using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.MediaEngine.FileSystems.Sos;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Recognition.Apple;
@@ -31,12 +31,12 @@ public sealed class AppleRawImageProbeTests
     [Fact]
     public void ProbesProDosVolumeHeaderWithoutFalsePositive()
     {
-        var data = new byte[(ProDosVolumeHeader.BlockNumber + 1) * ProDosVolumeHeader.BlockSize];
-        var offset = ProDosVolumeHeader.BlockNumber * ProDosVolumeHeader.BlockSize;
-        data[offset + ProDosVolumeHeader.StorageAndNameLengthOffset] = (ProDosVolumeHeader.VolumeStorageType << 4) | 1;
-        data[offset + ProDosVolumeHeader.EntryLengthOffset] = ProDosVolumeHeader.EntryLength;
+        var data = new byte[(ProDosFileSystemLayout.RootBlock + 1) * ProDosFileSystemLayout.BlockSize];
+        var offset = ProDosFileSystemLayout.RootBlock * ProDosFileSystemLayout.BlockSize;
+        data[offset + ProDosFileSystemLayout.HeaderOffset] = (byte)(((int)ProDosStorageType.VolumeHeader << ProDosFileSystemLayout.StorageTypeShift) | 1);
+        data[offset + ProDosFileSystemLayout.HeaderEntryLengthOffset] = ProDosFileSystemLayout.EntrySize;
         Assert.True(AppleRawImageProbe.LooksLikeProDos(data));
-        data[offset + ProDosVolumeHeader.StorageAndNameLengthOffset] = ProDosVolumeHeader.VolumeStorageType << 4;
+        data[offset + ProDosFileSystemLayout.HeaderOffset] = (byte)((int)ProDosStorageType.VolumeHeader << ProDosFileSystemLayout.StorageTypeShift);
         Assert.False(AppleRawImageProbe.LooksLikeProDos(data));
     }
 
@@ -83,7 +83,7 @@ public sealed class AppleRawImageProbeTests
         Assert.False(AppleRawImageProbe.LooksLikeDos33([]));
         Assert.False(AppleRawImageProbe.LooksLikeDos33(new byte[AppleIIGeometry.Capacity - 1]));
         Assert.False(AppleRawImageProbe.LooksLikeProDos([]));
-        Assert.False(AppleRawImageProbe.LooksLikeProDos(new byte[((ProDosVolumeHeader.BlockNumber + 1) * ProDosVolumeHeader.BlockSize) - 1]));
+        Assert.False(AppleRawImageProbe.LooksLikeProDos(new byte[((ProDosFileSystemLayout.RootBlock + 1) * ProDosFileSystemLayout.BlockSize) - 1]));
         Assert.False(AppleRawImageProbe.LooksLikeMac([]));
         Assert.False(AppleRawImageProbe.LooksLikeMac(new byte[MacintoshVolumeSignatures.MinimumImageLength - 1]));
         Assert.False(AppleRawImageProbe.LooksLikeLisaOffice([]));
