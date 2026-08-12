@@ -5794,33 +5794,34 @@
       - [x] Tester une version, une adresse, une longueur et un checksum invalides.
       - [x] Tester un secteur logique absent.
   - [ ] Apple ProDOS
-    - [ ] `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`.
-      - [ ] Ajouter la taille de bloc `512`, le bloc racine `2`, l'offset d'en-tête `4` et la taille d'entrée `0x27`.
-      - [ ] Ajouter les offsets du nom, du type, du bloc clé, du nombre de blocs, de la longueur, des dates et du pointeur de sous-répertoire.
-      - [ ] Ajouter les types de stockage seedling, sapling, tree, sous-répertoire et en-tête de volume.
-      - [ ] Ajouter la disposition des pointeurs bas et hauts d'un bloc d'index.
-      - [ ] Ajouter les offsets du bitmap et du nombre total de blocs.
-      - [ ] Ajouter la limite de profondeur `64` avec un nom décrivant la protection contre les cycles.
-      - [ ] Remplacer chaque valeur correspondante dans `ProDosFileSystemReader`.
-      - [ ] Documenter en français chaque constante et son unité.
-    - [ ] `FileSystems/Apple/ProDos/ProDosFileType.cs`
-      - [ ] Créer l'enum `ProDosFileType` avec les valeurs Text, Binary, Directory, BASIC, Variables et System actuellement reconnues.
-      - [ ] Remplacer le `switch` numérique de `TypeName` par cet enum.
-      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
-      - [ ] Documenter en français l'enum et chacune de ses valeurs.
-    - [ ] `FileSystems/Apple/ProDos/ProDosFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Apple/ProDos/ProDosFileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de volume non reconnu avec bloc et octets observés.
-      - [ ] Ajouter l'avertissement de profondeur avec profondeur et répertoire.
-      - [ ] Ajouter l'avertissement de bloc d'index absent avec nom et numéro de bloc.
-      - [ ] Ajouter l'erreur de chaîne de blocs invalide avec nom, stockage et bloc.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [x] `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`.
+      - [x] Ajouter la taille de bloc `512`, le bloc racine `2`, l'offset d'en-tête `4` et la taille d'entrée `0x27`.
+      - [x] Ajouter les offsets du nom, du type, du bloc clé, du nombre de blocs, de la longueur, des dates et du pointeur de sous-répertoire.
+      - [x] Ajouter les types de stockage seedling, sapling, tree, sous-répertoire et en-tête de volume.
+      - [x] Ajouter la disposition des pointeurs bas et hauts d'un bloc d'index.
+      - [x] Ajouter les offsets du bitmap et du nombre total de blocs.
+      - [x] Ajouter la limite de profondeur `64` avec un nom décrivant la protection contre les cycles.
+      - [x] Remplacer chaque valeur correspondante dans `ProDosFileSystemReader`.
+      - [x] Documenter en français chaque constante et son unité.
+    - [x] `FileSystems/Apple/ProDos/ProDosFileType.cs`
+      - [x] Créer l'enum `ProDosFileType` avec les valeurs Text, Binary, Directory, BASIC, Variables et System actuellement reconnues.
+      - [x] Remplacer le `switch` numérique de `TypeName` par cet enum.
+      - [x] Déplacer les libellés d'affichage hors du Reader technique.
+      - [x] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] `FileSystems/Apple/ProDos/ProDosFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Apple/ProDos/ProDosFileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de volume non reconnu avec bloc et octets observés.
+      - [x] Ajouter l'avertissement de profondeur avec profondeur et répertoire.
+      - [x] Ajouter l'avertissement de bloc d'index absent avec nom et numéro de bloc.
+      - [x] Ajouter l'erreur de chaîne de blocs invalide avec nom, stockage et bloc.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
     - [ ] Tests des définitions ProDOS
       - [ ] Tester les stockages seedling, sapling et tree avec un contenu attendu.
       - [ ] Tester un sous-répertoire, le bitmap et les dates.
       - [ ] Tester un bloc d'index absent, un cycle et la limite de profondeur.
+      - État : les 32 tests Apple existants passent après le raccordement ; les scénarios seedling/sapling/tree et les erreurs composées ne sont pas encore tous isolés dans des tests dédiés.
   - [ ] Atari DOS
     - [ ] `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.

@@ -1,0 +1,62 @@
+namespace GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+
+/// <summary>Définit la disposition des volumes, répertoires et fichiers ProDOS.</summary>
+internal static class ProDosFileSystemLayout
+{
+    /// <summary>Taille d'un bloc.</summary>
+    public const int BlockSize = 512;
+    /// <summary>Bloc du répertoire racine.</summary>
+    public const int RootBlock = 2;
+    /// <summary>Offset du premier en-tête.</summary>
+    public const int HeaderOffset = 4;
+    /// <summary>Taille d'une entrée de répertoire.</summary>
+    public const int EntrySize = 0x27;
+    /// <summary>Offset du nom dans une entrée.</summary>
+    public const int NameOffset = 1;
+    /// <summary>Longueur maximale du nom.</summary>
+    public const int MaximumNameLength = 15;
+    /// <summary>Offset du type de fichier.</summary>
+    public const int FileTypeOffset = 16;
+    /// <summary>Offset du bloc clé.</summary>
+    public const int KeyBlockOffset = 17;
+    /// <summary>Offset du nombre de blocs utilisés.</summary>
+    public const int BlocksUsedOffset = 19;
+    /// <summary>Offset de la longueur du fichier.</summary>
+    public const int EndOfFileOffset = 21;
+    /// <summary>Offset de la date de création.</summary>
+    public const int CreatedDateOffset = 24;
+    /// <summary>Offset des droits d'accès.</summary>
+    public const int AccessOffset = 30;
+    /// <summary>Offset de la date de modification.</summary>
+    public const int ModifiedDateOffset = 33;
+    /// <summary>Offset du pointeur vers le bloc suivant.</summary>
+    public const int NextBlockOffset = 2;
+    /// <summary>Offset de la première entrée suivant l'en-tête de volume.</summary>
+    public const int FirstVolumeEntryOffset = HeaderOffset + EntrySize;
+    /// <summary>Nombre de pointeurs dans un bloc d'index.</summary>
+    public const int IndexPointerCount = 256;
+    /// <summary>Offset de la partie haute des pointeurs d'index.</summary>
+    public const int IndexHighBytesOffset = 256;
+    /// <summary>Offset du bloc bitmap dans l'en-tête du volume.</summary>
+    public const int BitmapBlockOffset = HeaderOffset + 35;
+    /// <summary>Offset du nombre total de blocs.</summary>
+    public const int TotalBlocksOffset = HeaderOffset + 37;
+    /// <summary>Nombre de blocs décrits par un bloc bitmap.</summary>
+    public const int BlocksPerBitmapBlock = 4096;
+    /// <summary>Profondeur maximale protégeant des cycles de répertoires.</summary>
+    public const int MaximumDirectoryDepth = 64;
+    /// <summary>Masque de la longueur d'un nom.</summary>
+    public const byte NameLengthMask = 0x0f;
+    /// <summary>Décalage du type de stockage.</summary>
+    public const int StorageTypeShift = 4;
+    /// <summary>Type de stockage seedling.</summary>
+    public const int SeedlingStorageType = 1;
+    /// <summary>Type de stockage sapling.</summary>
+    public const int SaplingStorageType = 2;
+    /// <summary>Type de stockage tree.</summary>
+    public const int TreeStorageType = 3;
+    /// <summary>Type de stockage d'un sous-répertoire.</summary>
+    public const int SubdirectoryStorageType = 0x0d;
+    /// <summary>Type de stockage d'un en-tête de volume.</summary>
+    public const int VolumeHeaderStorageType = 0x0f;
+}
