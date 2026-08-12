@@ -7003,12 +7003,12 @@
       - [x] Tester des pages ordonnées, désordonnées, dupliquées et manquantes sans glissement du contenu.
       - [x] Tester un catalogue absent et vérifier les noms de secours, avertissements et validités obtenus.
       - [x] Tester un MDDF tronqué et une version inconnue.
-  - [ ] `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`
-    - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`.
-    - [ ] Déplacer la lecture big-endian des entiers 16 et 32 bits dupliquée dans les Readers HFS et MFS.
-    - [ ] Déplacer le décodage des chaînes Pascal et des noms contenant le séparateur Macintosh.
-    - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tester les deux tailles d'entiers, une chaîne Pascal vide, maximale et un nom contenant `:`.
+  - [x] `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`
+    - [x] Créer `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`.
+    - [x] Déplacer la lecture big-endian des entiers 16 et 32 bits dupliquée dans les Readers HFS et MFS.
+    - [x] Déplacer le décodage des chaînes Pascal et des noms contenant le séparateur Macintosh.
+    - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tester les deux tailles d'entiers, une chaîne Pascal vide, maximale et un nom contenant `:`.
   - [ ] `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`
     - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemTime.cs`.
     - [ ] Déplacer l'époque Macintosh de 1904 actuellement dupliquée dans HFS et MFS.

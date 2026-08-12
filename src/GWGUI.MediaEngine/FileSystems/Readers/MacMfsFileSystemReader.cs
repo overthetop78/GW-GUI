@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
@@ -22,9 +23,9 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
     {
         if (!CanRead(image)) throw new InvalidDataException("The image does not contain a Macintosh MFS volume.");
         var warnings = new List<string>();
-        var mdb = ReadBlocks(image, 2, 2, warnings, "MFS volume information"); var directoryStart = U16(mdb, 14); var directoryLength = U16(mdb, 16);
-        var allocationCount = U16(mdb, 18); var allocationSize = U32(mdb, 20); var allocationStart = U16(mdb, 28); var free = U16(mdb, 34);
-        var name = Pascal(mdb, 36, 27); var map = DecodeAllocationMap(mdb.AsSpan(64, 960), allocationCount);
+        var mdb = ReadBlocks(image, 2, 2, warnings, "MFS volume information"); var directoryStart = MacFileSystemPrimitives.ReadUInt16(mdb, 14); var directoryLength = MacFileSystemPrimitives.ReadUInt16(mdb, 16);
+        var allocationCount = MacFileSystemPrimitives.ReadUInt16(mdb, 18); var allocationSize = MacFileSystemPrimitives.ReadUInt32(mdb, 20); var allocationStart = MacFileSystemPrimitives.ReadUInt16(mdb, 28); var free = MacFileSystemPrimitives.ReadUInt16(mdb, 34);
+        var name = MacFileSystemPrimitives.ReadPascalString(mdb, 36, 27); var map = DecodeAllocationMap(mdb.AsSpan(64, 960), allocationCount);
         var entries = new List<FileSystemEntry>();
         for (var blockNumber = directoryStart; blockNumber < directoryStart + directoryLength && blockNumber < image.BlockCount; blockNumber++)
         {
@@ -33,11 +34,11 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
             while (offset + 51 <= bytes.Length && (bytes[offset] & 0x80) != 0)
             {
                 var start = offset; var flags = bytes[offset++]; offset++; var finder = bytes.AsSpan(offset, 16).ToArray(); offset += 16;
-                var fileNumber = U32(bytes, offset); offset += 4; var dataStart = U16(bytes, offset); offset += 2;
-                var dataLogical = U32(bytes, offset); offset += 4; offset += 4; var resourceStart = U16(bytes, offset); offset += 2;
-                var resourceLogical = U32(bytes, offset); offset += 4; offset += 4; var created = U32(bytes, offset); offset += 4; var modified = U32(bytes, offset); offset += 4;
+                var fileNumber = MacFileSystemPrimitives.ReadUInt32(bytes, offset); offset += 4; var dataStart = MacFileSystemPrimitives.ReadUInt16(bytes, offset); offset += 2;
+                var dataLogical = MacFileSystemPrimitives.ReadUInt32(bytes, offset); offset += 4; offset += 4; var resourceStart = MacFileSystemPrimitives.ReadUInt16(bytes, offset); offset += 2;
+                var resourceLogical = MacFileSystemPrimitives.ReadUInt32(bytes, offset); offset += 4; offset += 4; var created = MacFileSystemPrimitives.ReadUInt32(bytes, offset); offset += 4; var modified = MacFileSystemPrimitives.ReadUInt32(bytes, offset); offset += 4;
                 var nameLength = bytes[offset++]; if (nameLength > 63 || offset + nameLength > bytes.Length) { warnings.Add($"Invalid MFS directory entry in block {blockNumber}."); break; }
-                var fileName = DecodeMac(bytes.AsSpan(offset, nameLength)); offset += nameLength; if ((offset & 1) != 0) offset++;
+                var fileName = MacFileSystemPrimitives.DecodeName(bytes.AsSpan(offset, nameLength)); offset += nameLength; if ((offset & 1) != 0) offset++;
                 var dataFork = ReadFork(image, map, allocationStart, allocationSize, dataStart, dataLogical, warnings, $"{fileName} (data fork)");
                 var resourceFork = ReadFork(image, map, allocationStart, allocationSize, resourceStart, resourceLogical, warnings, $"{fileName} (resource fork)");
                 // Classic Macintosh applications commonly keep nearly all their
@@ -51,7 +52,7 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
                 if (offset <= start) break;
             }
         }
-        return new(name, Definitions.FileSystemIds.MacMfs, image.Capacity, (long)free * allocationSize, MacDate(U32(mdb, 2)), MacDate(U32(mdb, 6)),
+        return new(name, Definitions.FileSystemIds.MacMfs, image.Capacity, (long)free * allocationSize, MacDate(MacFileSystemPrimitives.ReadUInt32(mdb, 2)), MacDate(MacFileSystemPrimitives.ReadUInt32(mdb, 6)),
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 
@@ -98,9 +99,5 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
         }
         return result;
     }
-    private static ushort U16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16BigEndian(data.Slice(offset, 2));
-    private static uint U32(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt32BigEndian(data.Slice(offset, 4));
-    private static string Pascal(ReadOnlySpan<byte> data, int offset, int max) { var length = Math.Min(data[offset], max); return DecodeMac(data.Slice(offset + 1, length)); }
-    private static string DecodeMac(ReadOnlySpan<byte> value) => System.Text.Encoding.Latin1.GetString(value).Replace(':', '/');
     private static DateTimeOffset? MacDate(uint seconds) { try { return seconds == 0 ? null : MacEpoch.AddSeconds(seconds); } catch { return null; } }
 }
