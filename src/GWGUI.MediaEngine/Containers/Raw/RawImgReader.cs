@@ -23,8 +23,12 @@ internal sealed class RawImgReader
         var hasFatBpb = FatBpbGeometryDetector.TryDetect(bytes, bytes.Length, out _);
         var geometry = IbmRawImageGeometryDetector.Detect(bytes);
         var image = IbmRawSectorImageBuilder.Create(bytes, geometry, cancellationToken);
-        if (!hasFatBpb && CpmDirectoryProbe.FindCpcRawDirectory(bytes) is not null) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradCpc);
-        if (!hasFatBpb && PcwDiskSpecificationProbe.LooksLikePcwDiskSpecification(bytes)) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradPcw);
+        if (!hasFatBpb)
+        {
+            var logical = CpmDirectoryReader.Flatten(image);
+            if (CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcSystem, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false) is not null) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradCpc);
+        }
+        if (!hasFatBpb && AmstradCpmDiskSpecification.TryParse(bytes, out _)) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradPcw);
         return image;
     }
 }

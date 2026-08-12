@@ -5528,214 +5528,216 @@
       - [x] Tester les noms ordinaires et longs, une date valide et une date hors limites.
       - [x] Tester un bloc d'extension valide, invalide et absent.
   - [ ] CP/M et Amstrad CP/M
-    - [ ] `FileSystems/Cpm/CpmFormat.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmFormat.cs`.
-      - [ ] Ajouter `DirectoryEntrySize` avec la valeur commune `32` utilisée pour avancer entre deux entrées CP/M.
-      - [ ] Ajouter `RecordSize` avec la valeur commune `128` utilisée pour convertir le compteur d'enregistrements en longueur.
-      - [ ] Ajouter `FileNameLength` avec la valeur `8` et `FileExtensionLength` avec la valeur `3`.
-      - [ ] Ajouter `FileNameOffset`, `FileExtensionOffset`, `ExtentLowOffset`, `ExtentHighOffset`, `RecordCountOffset` et `AllocationOffset` avec les positions réellement lues dans les deux Readers.
-      - [ ] Ajouter `UnusedEntryMarker`, `VolumeLabelUser`, `PasswordLabelUser`, `MaximumUserNumber` et `AttributeBitMask` avec les valeurs réellement comparées dans les deux Readers.
-      - [ ] Ajouter `ExtentHighShift` avec la valeur `5` utilisée par les deux Readers pour reconstruire le numéro d'extent.
-      - [ ] Ajouter `NarrowAllocationCount`, `WideAllocationCount` et `WideAllocationSize` avec les valeurs correspondant aux champs `16..31`.
-      - [ ] Documenter en français `CpmFormat` et chacune de ses constantes.
-    - [ ] `FileSystems/Cpm/CpmLayout.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmLayout.cs`.
-      - [ ] Déplacer dans `CpmLayout` les propriétés `DirectoryOffset`, `AllocationOrigin`, `DirectoryEntries`, `AllocationBlockSize`, `DirectoryBlocks` et `WideAllocations` nécessaires aux deux Readers.
-      - [ ] Ajouter au constructeur de `CpmLayout` la validation des offsets, nombres d'entrées, tailles d'allocation et nombres de blocs de répertoire.
-      - [ ] Documenter en français `CpmLayout`, son constructeur et chacune de ses propriétés.
-    - [ ] `FileSystems/Cpm/CpmLayoutCatalog.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmLayoutCatalog.cs` et y déplacer `CpmFileSystemReader.Layout.For`.
-      - [ ] Créer un layout nommé pour Commodore 1541, Commodore 1571 et Commodore 1581.
-      - [ ] Créer un layout nommé pour Epson QX-10 320, 396, 399, 400 et LOGO.
-      - [ ] Sortir de `Layout.For` les offsets `0x0A00`, les nombres d'entrées `64` et `128`, les tailles d'allocation `1024` et `2048`, les deux blocs de répertoire et les calculs de zones réservées Epson.
-      - [ ] Associer chaque identifiant de format à son layout nommé sans recopier la même liste dans `CpmFileSystemReader`.
-      - [ ] Exposer les identifiants pris en charge par une collection réellement immuable utilisable par `CatalogFormatIds`.
-      - [ ] Documenter en français le catalogue, chaque layout nommé et la méthode de résolution.
-      - [ ] Tester la résolution de chaque format, l'absence de format et l'impossibilité de modifier la collection exposée.
-    - [ ] `FileSystems/Cpm/CpmExtent.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmExtent.cs`.
-      - [ ] Déplacer dans `CpmExtent` l'utilisateur, le nom, le numéro, le compteur d'enregistrements et les allocations actuellement dupliqués dans deux records privés.
-      - [ ] Copier la collection d'allocations reçue afin qu'elle ne puisse pas être modifiée après construction.
-      - [ ] Documenter en français `CpmExtent`, son constructeur et chacune de ses propriétés.
-    - [ ] `FileSystems/Cpm/CpmExtentKeyComparer.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmExtentKeyComparer.cs`.
-      - [ ] Déplacer l'égalité utilisateur/nom insensible à la casse actuellement dupliquée dans les deux `ExtentKeyComparer` privés.
-      - [ ] Documenter en français `CpmExtentKeyComparer`, `Equals` et `GetHashCode`.
-    - [ ] `FileSystems/Cpm/CpmDirectoryReader.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmDirectoryReader.cs`.
-      - [ ] Déplacer dans `CpmDirectoryReader` la validation des caractères et le décodage commun du nom 8.3.
-      - [ ] Déplacer dans `CpmDirectoryReader` la lecture commune des allocations étroites et larges.
-      - [ ] Déplacer dans `CpmDirectoryReader` le regroupement des extents par utilisateur et nom.
-      - [ ] Déplacer dans `CpmDirectoryReader` la reconstruction ordonnée du contenu à partir des blocs d'allocation.
-      - [ ] Déplacer dans `CpmDirectoryReader` le calcul du score de répertoire actuellement contenu dans `CpmFileSystemReader.ScoreDirectory`.
-      - [ ] Déplacer dans `CpmDirectoryReader` la lecture et la validation du label de volume actuellement contenues dans `IsPlausibleLabel`.
-      - [ ] Traiter les marqueurs `VolumeLabelUser` et `PasswordLabelUser` par leurs définitions CP/M au lieu de comparer directement `0x20` et `0x21`.
-      - [ ] Comparer les règles de noms des deux Readers, notamment les minuscules et les bits d'attribut, puis conserver explicitement la règle CP/M validée dans le composant commun.
-      - [ ] Faire recevoir à `CpmDirectoryReader` un `CpmLayout` afin de conserver hors du cœur commun les dispositions propres aux machines.
-      - [ ] Documenter en français `CpmDirectoryReader` et chacune de ses méthodes.
-    - [ ] `FileSystems/Cpm/CpmFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Cpm/CpmFileSystemExceptions.cs`.
-      - [ ] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de layout CP/M absent.
-      - [ ] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de répertoire CP/M non reconnu.
-      - [ ] Ajouter une méthode recevant le nom, le bloc, l'offset observé et la longueur de l'image pour produire l'erreur d'allocation hors limites.
-      - [ ] Documenter en français `CpmFileSystemExceptions` et chacune de ses méthodes.
+    - [x] `FileSystems/Cpm/CpmFormat.cs`
+      - [x] Créer `FileSystems/Cpm/CpmFormat.cs`.
+      - [x] Ajouter `DirectoryEntrySize` avec la valeur commune `32` utilisée pour avancer entre deux entrées CP/M.
+      - [x] Ajouter `RecordSize` avec la valeur commune `128` utilisée pour convertir le compteur d'enregistrements en longueur.
+      - [x] Ajouter `FileNameLength` avec la valeur `8` et `FileExtensionLength` avec la valeur `3`.
+      - [x] Ajouter `FileNameOffset`, `FileExtensionOffset`, `ExtentLowOffset`, `ExtentHighOffset`, `RecordCountOffset` et `AllocationOffset` avec les positions réellement lues dans les deux Readers.
+      - [x] Ajouter `UnusedEntryMarker`, `VolumeLabelUser`, `PasswordLabelUser`, `MaximumUserNumber` et `AttributeBitMask` avec les valeurs réellement comparées dans les deux Readers.
+      - [x] Ajouter `ExtentHighShift` avec la valeur `5` utilisée par les deux Readers pour reconstruire le numéro d'extent.
+      - [x] Ajouter `NarrowAllocationCount`, `WideAllocationCount` et `WideAllocationSize` avec les valeurs correspondant aux champs `16..31`.
+      - [x] Documenter en français `CpmFormat` et chacune de ses constantes.
+    - [x] `FileSystems/Cpm/CpmLayout.cs`
+      - [x] Créer `FileSystems/Cpm/CpmLayout.cs`.
+      - [x] Déplacer dans `CpmLayout` les propriétés `DirectoryOffset`, `AllocationOrigin`, `DirectoryEntries`, `AllocationBlockSize`, `DirectoryBlocks` et `WideAllocations` nécessaires aux deux Readers.
+      - [x] Ajouter au constructeur de `CpmLayout` la validation des offsets, nombres d'entrées, tailles d'allocation et nombres de blocs de répertoire.
+      - [x] Documenter en français `CpmLayout`, son constructeur et chacune de ses propriétés.
+    - [x] `FileSystems/Cpm/CpmLayoutCatalog.cs`
+      - [x] Créer `FileSystems/Cpm/CpmLayoutCatalog.cs` et y déplacer `CpmFileSystemReader.Layout.For`.
+      - [x] Créer un layout nommé pour Commodore 1541, Commodore 1571 et Commodore 1581.
+      - [x] Créer un layout nommé pour Epson QX-10 320, 396, 399, 400 et LOGO.
+      - [x] Sortir de `Layout.For` les offsets `0x0A00`, les nombres d'entrées `64` et `128`, les tailles d'allocation `1024` et `2048`, les deux blocs de répertoire et les calculs de zones réservées Epson.
+      - [x] Associer chaque identifiant de format à son layout nommé sans recopier la même liste dans `CpmFileSystemReader`.
+      - [x] Exposer les identifiants pris en charge par une collection réellement immuable utilisable par `CatalogFormatIds`.
+      - [x] Documenter en français le catalogue, chaque layout nommé et la méthode de résolution.
+      - [x] Tester la résolution de chaque format, l'absence de format et l'impossibilité de modifier la collection exposée.
+    - [x] `FileSystems/Cpm/CpmExtent.cs`
+      - [x] Créer `FileSystems/Cpm/CpmExtent.cs`.
+      - [x] Déplacer dans `CpmExtent` l'utilisateur, le nom, le numéro, le compteur d'enregistrements et les allocations actuellement dupliqués dans deux records privés.
+      - [x] Copier la collection d'allocations reçue afin qu'elle ne puisse pas être modifiée après construction.
+      - [x] Documenter en français `CpmExtent`, son constructeur et chacune de ses propriétés.
+    - [x] `FileSystems/Cpm/CpmExtentKeyComparer.cs`
+      - [x] Créer `FileSystems/Cpm/CpmExtentKeyComparer.cs`.
+      - [x] Déplacer l'égalité utilisateur/nom insensible à la casse actuellement dupliquée dans les deux `ExtentKeyComparer` privés.
+      - [x] Documenter en français `CpmExtentKeyComparer`, `Equals` et `GetHashCode`.
+    - [x] `FileSystems/Cpm/CpmDirectoryReader.cs`
+      - [x] Créer `FileSystems/Cpm/CpmDirectoryReader.cs`.
+      - [x] Déplacer dans `CpmDirectoryReader` la validation des caractères et le décodage commun du nom 8.3.
+      - [x] Déplacer dans `CpmDirectoryReader` la lecture commune des allocations étroites et larges.
+      - [x] Déplacer dans `CpmDirectoryReader` le regroupement des extents par utilisateur et nom.
+      - [x] Déplacer dans `CpmDirectoryReader` la reconstruction ordonnée du contenu à partir des blocs d'allocation.
+      - [x] Déplacer dans `CpmDirectoryReader` le calcul du score de répertoire actuellement contenu dans `CpmFileSystemReader.ScoreDirectory`.
+      - [x] Déplacer dans `CpmDirectoryReader` la lecture et la validation du label de volume actuellement contenues dans `IsPlausibleLabel`.
+      - [x] Traiter les marqueurs `VolumeLabelUser` et `PasswordLabelUser` par leurs définitions CP/M au lieu de comparer directement `0x20` et `0x21`.
+      - [x] Comparer les règles de noms des deux Readers, notamment les minuscules et les bits d'attribut, puis conserver explicitement la règle CP/M validée dans le composant commun.
+      - [x] Faire recevoir à `CpmDirectoryReader` un `CpmLayout` afin de conserver hors du cœur commun les dispositions propres aux machines.
+      - [x] Documenter en français `CpmDirectoryReader` et chacune de ses méthodes.
+    - [x] `FileSystems/Cpm/CpmFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Cpm/CpmFileSystemExceptions.cs`.
+      - [x] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de layout CP/M absent.
+      - [x] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de répertoire CP/M non reconnu.
+      - [x] Ajouter une méthode recevant le nom, le bloc, l'offset observé et la longueur de l'image pour produire l'erreur d'allocation hors limites.
+      - [x] Documenter en français `CpmFileSystemExceptions` et chacune de ses méthodes.
     - [ ] `FileSystems/Cpm/CpmFileSystemReader.cs`
-      - [ ] Emplacement et identité du Reader CP/M
-        - [ ] Déplacer le fichier vers `FileSystems/Cpm/CpmFileSystemReader.cs`.
-        - [ ] Adapter son namespace et tous ses consommateurs.
-        - [ ] Remplacer l'identifiant brut `cpm` par la valeur centrale correspondante de `FileSystemIds`.
-        - [ ] Remplacer le nom brut `CP/M 3` du volume par l'identifiant technique central correspondant.
-        - [ ] Remplacer la liste locale de formats par la collection réellement immuable de `CpmLayoutCatalog`.
-      - [ ] Layouts CP/M nommés
-        - [ ] Remplacer le record privé `Layout` et sa méthode `For` par `CpmLayout` et `CpmLayoutCatalog`.
-        - [ ] Utiliser les layouts nommés Commodore 1541, 1571, 1581 et Epson QX-10 320, 396, 399, 400 et LOGO.
-        - [ ] Supprimer du Reader les offsets `0x0a00`, nombres d'entrées, tailles d'allocation, blocs de répertoire et calculs géométriques après raccordement.
-        - [ ] Utiliser distinctement `DirectoryOffset` pour lire les entrées et `AllocationOrigin` pour résoudre un numéro d'allocation.
-        - [ ] Calculer le nombre total d'allocations depuis `AllocationOrigin`, et non depuis `DirectoryOffset`.
-      - [ ] Tailles sectorielles acceptées
-        - [ ] Remplacer les tailles brutes 256, 512 et 1 024 par un ensemble CP/M nommé de tailles prises en charge.
-        - [ ] Faire dépendre la validation de la taille des layouts réellement catalogués plutôt que d'une condition indépendante.
-      - [ ] Image logique aplatie avec présence des blocs
-        - [ ] Remplacer `Flatten` par un résultat contenant un tampon de longueur `BlockCount * BlockSize` et un masque des blocs logiques présents.
-        - [ ] Réserver exactement `BlockSize` octets à chaque bloc, qu'il soit présent, absent ou tronqué.
-        - [ ] Copier au plus `BlockSize` octets d'un bloc présent sans laisser une taille différente décaler les blocs suivants.
-        - [ ] Marquer comme absent ou tronqué tout bloc dont les données n'ont pas la taille attendue.
-        - [ ] Ne pas considérer les zéros de remplacement comme des données valides pendant le score, les labels ou la reconstruction.
-      - [ ] Score et recherche du répertoire
-        - [ ] Déplacer `ScoreDirectory` dans `CpmDirectoryReader` et remplacer le seuil brut quatre par `MinimumDirectoryScore`.
-        - [ ] Faire ignorer ou invalider une entrée dont les 32 octets traversent un bloc logique absent.
-        - [ ] Créer `CpmEpsonLayoutDetector.cs` et y déplacer `ResolveLayout` pour les formats Epson.
-        - [ ] Remplacer le préfixe Epson brut par les identifiants catalogués correspondant à un layout Epson.
-        - [ ] Remplacer la limite brute de 64 KiB et le pas 32 par `MaximumEpsonDirectorySearchLength` et `CpmFormat.DirectoryEntrySize`.
-        - [ ] Conserver la règle d'égalité actuelle : garder le layout configuré ou le premier offset ayant le meilleur score, et la documenter explicitement.
-        - [ ] Traduire en français le commentaire anglais expliquant la recherche sur les frontières logiques de 128 octets, ou le remplacer par la CSDoc du détecteur.
-      - [ ] Entrées et labels CP/M communs
-        - [ ] Remplacer `TryDecodeName`, `DecodePart`, `ReadAllocations`, `Extent` et `ExtentKeyComparer` par `CpmDirectoryReader`, `CpmExtent` et `CpmExtentKeyComparer`.
-        - [ ] Remplacer tous les offsets, marqueurs, limites utilisateur, masque d'attribut et décalage d'extent par `CpmFormat`.
-        - [ ] Traiter explicitement le label de volume `0x20` et l'entrée de mot de passe `0x21`.
-        - [ ] Déplacer `IsPlausibleLabel` et ses caractères autorisés dans le composant commun.
-        - [ ] Conserver explicitement la règle validée qui rejette les minuscules dans les noms CP/M de ce Reader.
-        - [ ] Regrouper les extents par zone utilisateur et nom sans casse puis les ordonner par numéro.
-      - [ ] Règle de sélection d'un fichier plausible
-        - [ ] Remplacer le test brut « moins de la moitié des allocations dans la plage » par une règle CP/M nommée recevant allocations référencées et nombre total.
-        - [ ] Distinguer les allocations nulles, valides, hors limites et traversant un bloc absent avant d'appliquer la règle.
-        - [ ] Ne pas inclure les extents d'un fichier rejeté dans les allocations utilisées pour calculer l'espace libre.
-        - [ ] Documenter que cette règle sert à éviter les faux positifs de répertoire et non à valider le contenu d'un fichier déjà reconnu.
-      - [ ] Reconstruction positionnelle des extents
-        - [ ] Déplacer la reconstruction dans `CpmDirectoryReader` et faire retourner contenu, validité et allocations réellement utilisées.
-        - [ ] Calculer chaque offset depuis `AllocationOrigin + allocation * AllocationBlockSize`.
-        - [ ] Pour une allocation hors limites ou traversant un bloc absent, conserver sa place logique dans l'extent au lieu de faire glisser l'allocation suivante.
-        - [ ] Limiter chaque extent à `RecordCount * CpmFormat.RecordSize` après avoir conservé les positions des allocations.
-        - [ ] Combiner les extents dans leur ordre numérique sans recalculer séparément leur validité et leurs allocations.
-        - [ ] Remplacer la référence brute `-1` par l'absence explicite de référence prévue dans le modèle commun.
-        - [ ] Remplacer le texte brut `CP/M user {n}` par la fonction technique commune et documenter l'origine de cette zone utilisateur.
-      - [ ] Calcul de l'espace libre
-        - [ ] Utiliser uniquement les allocations valides appartenant aux fichiers conservés.
-        - [ ] Compter une allocation dupliquée une seule fois.
-        - [ ] Exclure allocations nulles, hors limites et extents ignorés.
-        - [ ] Soustraire séparément les blocs de répertoire définis par le layout.
-        - [ ] Conserver une borne inférieure nulle et multiplier par la taille d'allocation du layout.
-      - [ ] Erreurs et avertissements CP/M
-        - [ ] Remplacer les erreurs anglaises de layout absent et de score insuffisant par `CpmFileSystemExceptions` avec l'identifiant de format.
-        - [ ] Remplacer l'avertissement brut d'allocation hors image par la définition recevant nom, allocation, offset et longueur.
-        - [ ] Ajouter des avertissements distincts pour bloc logique absent, bloc tronqué et allocation dupliquée.
-      - [ ] Suppression des éléments privés remplacés
-        - [ ] Supprimer `ScoreDirectory`, `ResolveLayout`, `TryDecodeName`, `DecodePart`, `IsPlausibleLabel`, `ReadAllocations`, `Flatten`, `Extent`, `Layout` et `ExtentKeyComparer` après raccordement.
-        - [ ] Supprimer l'import `System.Text` inutilisé et l'import `BinaryPrimitives` s'il n'est plus nécessaire après déplacement des allocations larges.
-      - [ ] Présentation et CSDoc du Reader
-        - [ ] Séparer `metadataValid` et `continue`, le nom et l'extension, et les boucles d'allocations actuellement juxtaposés.
-        - [ ] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-        - [ ] Ajouter en français la CSDoc de `CpmFileSystemReader` et de chacun de ses membres restants.
+      - [x] Emplacement et identité du Reader CP/M
+        - [x] Déplacer le fichier vers `FileSystems/Cpm/CpmFileSystemReader.cs`.
+        - [x] Adapter son namespace et tous ses consommateurs.
+        - [x] Remplacer l'identifiant brut `cpm` par la valeur centrale correspondante de `FileSystemIds`.
+        - [x] Remplacer le nom brut `CP/M 3` du volume par l'identifiant technique central correspondant.
+        - [x] Remplacer la liste locale de formats par la collection réellement immuable de `CpmLayoutCatalog`.
+      - [x] Layouts CP/M nommés
+        - [x] Remplacer le record privé `Layout` et sa méthode `For` par `CpmLayout` et `CpmLayoutCatalog`.
+        - [x] Utiliser les layouts nommés Commodore 1541, 1571, 1581 et Epson QX-10 320, 396, 399, 400 et LOGO.
+        - [x] Supprimer du Reader les offsets `0x0a00`, nombres d'entrées, tailles d'allocation, blocs de répertoire et calculs géométriques après raccordement.
+        - [x] Utiliser distinctement `DirectoryOffset` pour lire les entrées et `AllocationOrigin` pour résoudre un numéro d'allocation.
+        - [x] Calculer le nombre total d'allocations depuis `AllocationOrigin`, et non depuis `DirectoryOffset`.
+      - [x] Tailles sectorielles acceptées
+        - [x] Remplacer les tailles brutes 256, 512 et 1 024 par un ensemble CP/M nommé de tailles prises en charge.
+        - [x] Faire dépendre la validation de la taille des layouts réellement catalogués plutôt que d'une condition indépendante.
+      - [x] Image logique aplatie avec présence des blocs
+        - [x] Remplacer `Flatten` par un résultat contenant un tampon de longueur `BlockCount * BlockSize` et un masque des blocs logiques présents.
+        - [x] Réserver exactement `BlockSize` octets à chaque bloc, qu'il soit présent, absent ou tronqué.
+        - [x] Copier au plus `BlockSize` octets d'un bloc présent sans laisser une taille différente décaler les blocs suivants.
+        - [x] Marquer comme absent ou tronqué tout bloc dont les données n'ont pas la taille attendue.
+        - [x] Ne pas considérer les zéros de remplacement comme des données valides pendant le score, les labels ou la reconstruction.
+      - [x] Score et recherche du répertoire
+        - [x] Déplacer `ScoreDirectory` dans `CpmDirectoryReader` et remplacer le seuil brut quatre par `MinimumDirectoryScore`.
+        - [x] Faire ignorer ou invalider une entrée dont les 32 octets traversent un bloc logique absent.
+        - [x] Créer `CpmEpsonLayoutDetector.cs` et y déplacer `ResolveLayout` pour les formats Epson.
+        - [x] Remplacer le préfixe Epson brut par les identifiants catalogués correspondant à un layout Epson.
+        - [x] Remplacer la limite brute de 64 KiB et le pas 32 par `MaximumEpsonDirectorySearchLength` et `CpmFormat.DirectoryEntrySize`.
+        - [x] Conserver la règle d'égalité actuelle : garder le layout configuré ou le premier offset ayant le meilleur score, et la documenter explicitement.
+        - [x] Traduire en français le commentaire anglais expliquant la recherche sur les frontières logiques de 128 octets, ou le remplacer par la CSDoc du détecteur.
+      - [x] Entrées et labels CP/M communs
+        - [x] Remplacer `TryDecodeName`, `DecodePart`, `ReadAllocations`, `Extent` et `ExtentKeyComparer` par `CpmDirectoryReader`, `CpmExtent` et `CpmExtentKeyComparer`.
+        - [x] Remplacer tous les offsets, marqueurs, limites utilisateur, masque d'attribut et décalage d'extent par `CpmFormat`.
+        - [x] Traiter explicitement le label de volume `0x20` et l'entrée de mot de passe `0x21`.
+        - [x] Déplacer `IsPlausibleLabel` et ses caractères autorisés dans le composant commun.
+        - [x] Conserver explicitement la règle validée qui rejette les minuscules dans les noms CP/M de ce Reader.
+        - [x] Regrouper les extents par zone utilisateur et nom sans casse puis les ordonner par numéro.
+      - [x] Règle de sélection d'un fichier plausible
+        - [x] Remplacer le test brut « moins de la moitié des allocations dans la plage » par une règle CP/M nommée recevant allocations référencées et nombre total.
+        - [x] Distinguer les allocations nulles, valides, hors limites et traversant un bloc absent avant d'appliquer la règle.
+        - [x] Ne pas inclure les extents d'un fichier rejeté dans les allocations utilisées pour calculer l'espace libre.
+        - [x] Documenter que cette règle sert à éviter les faux positifs de répertoire et non à valider le contenu d'un fichier déjà reconnu.
+      - [x] Reconstruction positionnelle des extents
+        - [x] Déplacer la reconstruction dans `CpmDirectoryReader` et faire retourner contenu, validité et allocations réellement utilisées.
+        - [x] Calculer chaque offset depuis `AllocationOrigin + allocation * AllocationBlockSize`.
+        - [x] Pour une allocation hors limites ou traversant un bloc absent, conserver sa place logique dans l'extent au lieu de faire glisser l'allocation suivante.
+        - [x] Limiter chaque extent à `RecordCount * CpmFormat.RecordSize` après avoir conservé les positions des allocations.
+        - [x] Combiner les extents dans leur ordre numérique sans recalculer séparément leur validité et leurs allocations.
+        - [x] Remplacer la référence brute `-1` par l'absence explicite de référence prévue dans le modèle commun.
+        - [x] Remplacer le texte brut `CP/M user {n}` par la fonction technique commune et documenter l'origine de cette zone utilisateur.
+      - [x] Calcul de l'espace libre
+        - [x] Utiliser uniquement les allocations valides appartenant aux fichiers conservés.
+        - [x] Compter une allocation dupliquée une seule fois.
+        - [x] Exclure allocations nulles, hors limites et extents ignorés.
+        - [x] Soustraire séparément les blocs de répertoire définis par le layout.
+        - [x] Conserver une borne inférieure nulle et multiplier par la taille d'allocation du layout.
+      - [x] Erreurs et avertissements CP/M
+        - [x] Remplacer les erreurs anglaises de layout absent et de score insuffisant par `CpmFileSystemExceptions` avec l'identifiant de format.
+        - [x] Remplacer l'avertissement brut d'allocation hors image par la définition recevant nom, allocation, offset et longueur.
+        - [x] Ajouter des avertissements distincts pour bloc logique absent, bloc tronqué et allocation dupliquée.
+      - [x] Suppression des éléments privés remplacés
+        - [x] Supprimer `ScoreDirectory`, `ResolveLayout`, `TryDecodeName`, `DecodePart`, `IsPlausibleLabel`, `ReadAllocations`, `Flatten`, `Extent`, `Layout` et `ExtentKeyComparer` après raccordement.
+        - [x] Supprimer l'import `System.Text` inutilisé et l'import `BinaryPrimitives` s'il n'est plus nécessaire après déplacement des allocations larges.
+      - [x] Présentation et CSDoc du Reader
+        - [x] Séparer `metadataValid` et `continue`, le nom et l'extension, et les boucles d'allocations actuellement juxtaposés.
+        - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+        - [x] Ajouter en français la CSDoc de `CpmFileSystemReader` et de chacun de ses membres restants.
       - [ ] Tests ciblés du Reader CP/M
         - [ ] Tester par le Reader public tous les layouts Commodore et Epson réellement catalogués avec des images de `image_test`.
-        - [ ] Tester noms, rejet des minuscules, bits d'attribut, label, mot de passe, utilisateurs et extents successifs.
-        - [ ] Tester allocations étroites et larges et l'origine distincte de chaque layout.
+        - [x] Tester noms, rejet des minuscules, bits d'attribut, label, mot de passe, utilisateurs et extents successifs.
+        - [x] Tester allocations étroites et larges et l'origine distincte de chaque layout.
         - [ ] Tester un bloc logique absent et un bloc tronqué entre deux blocs présents sans décaler les données suivantes.
         - [ ] Tester une allocation hors limites, dupliquée, un fichier rejeté par la règle de majorité et le calcul d'espace libre correspondant.
         - [ ] Tester la recherche Epson, la limite, le pas et un score à égalité.
         - [ ] Tester l'immuabilité des formats pris en charge et l'absence de layout ou de répertoire crédible.
-    - [ ] `FileSystems/Cpm/AmstradCpmLayout.cs`
-      - [ ] Créer `FileSystems/Cpm/AmstradCpmLayout.cs`.
-      - [ ] Ajouter un layout nommé pour un disque CPC système dont les identifiants de secteurs vont de `C1` à `C9`.
-      - [ ] Ajouter un layout nommé pour un disque CPC données dont les identifiants de secteurs vont de `41` à `49`.
-      - [ ] Ajouter une fabrique de layout PCW recevant les champs validés du Disk Specification.
-      - [ ] Remplacer les nombres bruts `64`, `1024`, `2`, `9` et `512` par les propriétés nommées du layout auquel ils appartiennent.
-      - [ ] Documenter en français `AmstradCpmLayout` et chacun de ses membres.
-    - [ ] `Recognition/Amstrad/AmstradCpmDiskSpecification.cs`
-      - [ ] Créer `Recognition/Amstrad/AmstradCpmDiskSpecification.cs`.
-      - [ ] Ajouter les offsets nommés des pistes, secteurs par piste, code de taille sectorielle, pistes réservées, code de taille d'allocation et blocs de répertoire.
-      - [ ] Ajouter les limites nommées actuellement comparées à `96`, `64`, `8`, `16`, `128`, `4096`, `512` et `16384`.
-      - [ ] Déplacer `LooksLikePcwDiskSpecification` dans une méthode retournant les champs validés du Disk Specification.
-      - [ ] Documenter en français le type, ses champs et sa méthode de validation.
+        - État : l'immuabilité et l'absence de layout sont testées ; les corpus présents ne couvrent pas encore chacun des huit layouts catalogués et les scénarios restants demeurent non cochés.
+    - [x] `FileSystems/Cpm/AmstradCpmLayout.cs`
+      - [x] Créer `FileSystems/Cpm/AmstradCpmLayout.cs`.
+      - [x] Ajouter un layout nommé pour un disque CPC système dont les identifiants de secteurs vont de `C1` à `C9`.
+      - [x] Ajouter un layout nommé pour un disque CPC données dont les identifiants de secteurs vont de `41` à `49`.
+      - [x] Ajouter une fabrique de layout PCW recevant les champs validés du Disk Specification.
+      - [x] Remplacer les nombres bruts `64`, `1024`, `2`, `9` et `512` par les propriétés nommées du layout auquel ils appartiennent.
+      - [x] Documenter en français `AmstradCpmLayout` et chacun de ses membres.
+    - [x] `Recognition/Amstrad/AmstradCpmDiskSpecification.cs`
+      - [x] Créer `Recognition/Amstrad/AmstradCpmDiskSpecification.cs`.
+      - [x] Ajouter les offsets nommés des pistes, secteurs par piste, code de taille sectorielle, pistes réservées, code de taille d'allocation et blocs de répertoire.
+      - [x] Ajouter les limites nommées actuellement comparées à `96`, `64`, `8`, `16`, `128`, `4096`, `512` et `16384`.
+      - [x] Déplacer `LooksLikePcwDiskSpecification` dans une méthode retournant les champs validés du Disk Specification.
+      - [x] Documenter en français le type, ses champs et sa méthode de validation.
     - [ ] `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`
-      - [ ] Emplacement et identité du Reader Amstrad CP/M
-        - [ ] Déplacer le fichier vers `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`.
-        - [ ] Adapter son namespace et tous ses consommateurs.
-        - [ ] Remplacer l'identifiant brut `amstrad.cpm` par la valeur centrale correspondante de `FileSystemIds`.
-        - [ ] Remplacer les noms bruts `Amstrad PCW CP/M Plus` et `Amstrad CPC CP/M` par les identifiants techniques centraux correspondant à la disposition retenue.
-        - [ ] Exposer les formats CPC et PCW par un ensemble réellement non modifiable.
-      - [ ] Reconnaissance du Disk Specification PCW
-        - [ ] Remplacer `LooksLikePcwDiskSpecification` par la tentative de parsing de `AmstradCpmDiskSpecification`.
-        - [ ] Remplacer les offsets `2` à `7`, masques, décalages et limites par les définitions du Disk Specification.
-        - [ ] Faire retourner les champs validés plutôt qu'un simple booléen afin que le layout PCW ne relise pas les mêmes octets.
-        - [ ] Conserver le rejet d'un tampon de moins de 512 octets avec la taille minimale nommée.
-      - [ ] Sélection des layouts CPC et PCW
-        - [ ] Remplacer le record privé `Layout` par `CpmLayout` et `AmstradCpmLayout`.
-        - [ ] Remplacer les plages brutes de secteurs `C1..C9` et `41..49` par les définitions des layouts CPC système et données.
-        - [ ] Remplacer les calculs bruts `2 * 9 * 512`, les 64 entrées, les blocs de 1 024 octets et les deux blocs de répertoire par les propriétés des layouts nommés.
-        - [ ] Construire le layout PCW depuis le Disk Specification déjà validé et déterminer les allocations larges depuis le nombre réel de blocs.
-        - [ ] Conserver la recherche de répertoire comme repli CPC lorsque l'identifiant du premier secteur ne suffit pas.
-      - [ ] Aplatissement de l'image sectorielle
-        - [ ] Remplacer `Flatten`, qui concatène uniquement les blocs disponibles et décale les blocs suivants lorsqu'un bloc logique manque, par une représentation conservant chaque position logique.
-        - [ ] Calculer la longueur depuis la plage de blocs logiques et la taille de bloc attendue au lieu de la somme des seuls blocs présents.
-        - [ ] Conserver la liste ou le masque des blocs logiques absents avec les octets aplatis.
-        - [ ] Ne pas traiter les octets de remplacement d'un bloc absent comme des données valides pendant la reconnaissance du répertoire ou la reconstruction d'un fichier.
-        - [ ] Supprimer les conversions `ToArray` inutiles lors de la copie des données présentes.
-      - [ ] Détection du répertoire
-        - [ ] Déplacer `FindDirectory` et `LooksLikeDirectory` vers `CpmDirectoryReader` avec un `CpmLayout`.
-        - [ ] Remplacer le pas brut de 512 octets et la taille brute de 32 octets par les définitions appropriées.
-        - [ ] Conserver la règle PCW qui autorise un répertoire entièrement inutilisé et la règle CPC qui exige au moins une entrée active.
-        - [ ] Traduire en français le commentaire anglais qui explique pourquoi une fenêtre entièrement effacée ne suffit pas à reconnaître CP/M, ou le remplacer par la CSDoc de la règle.
-        - [ ] Faire rejeter une fenêtre traversant un bloc logique absent.
-      - [ ] Entrées, labels et extents CP/M communs
-        - [ ] Remplacer le record privé `Extent` et `ExtentKeyComparer` par `CpmExtent` et `CpmExtentKeyComparer`.
-        - [ ] Remplacer `TryDecodeName`, `DecodePart` et `ReadAllocations` par `CpmDirectoryReader`.
-        - [ ] Remplacer les marqueurs bruts `0xe5`, `0x20`, `0x21`, la limite utilisateur 31 et les positions d'extent par `CpmFormat`.
-        - [ ] Lire le label de volume par le composant commun et traiter distinctement l'entrée de mot de passe sans la confondre avec un fichier.
-        - [ ] Conserver le regroupement des extents par utilisateur et nom sans casse puis leur ordre numérique.
-      - [ ] Reconstruction du contenu des fichiers
-        - [ ] Déplacer la reconstruction des allocations dans `CpmDirectoryReader`.
-        - [ ] Utiliser distinctement `AllocationOrigin` et `AllocationBlockSize` du layout pour calculer chaque plage.
-        - [ ] Remplacer les 128 octets par enregistrement par `CpmFormat.RecordSize`.
-        - [ ] Signaler comme invalide toute allocation hors image ou traversant un bloc logique absent.
-        - [ ] Conserver le contenu réellement reconstruit sans présenter les octets de remplacement d'un bloc absent comme valides.
-        - [ ] Remplacer la référence de stockage brute `-1` par l'absence explicite de référence prévue dans le modèle commun.
-        - [ ] Remplacer le texte brut `CP/M user {n}` par la fonction technique commune recevant le numéro de zone utilisateur et documenter que ce nombre vient du premier octet de l'entrée CP/M.
-      - [ ] Calcul de l'espace libre
-        - [ ] Calculer le nombre total d'allocations depuis `AllocationOrigin`, la longueur logique et `AllocationBlockSize`.
-        - [ ] Exclure du comptage utilisé les allocations nulles, hors limites et provenant d'extents ignorés.
-        - [ ] Compter une allocation dupliquée une seule fois.
-        - [ ] Soustraire séparément les blocs de répertoire définis par le layout.
-        - [ ] Conserver une borne inférieure nulle pour l'espace libre calculé.
-      - [ ] Erreurs et avertissements CP/M
-        - [ ] Remplacer les deux erreurs anglaises de layout et de répertoire par `CpmFileSystemExceptions` avec l'identifiant de format.
-        - [ ] Remplacer l'avertissement brut d'allocation hors image par la définition recevant nom, allocation, offset et longueur.
-        - [ ] Ajouter un avertissement distinct pour un bloc logique absent traversé par une allocation.
-      - [ ] Suppression des éléments privés remplacés
-        - [ ] Supprimer `Layout`, `Extent`, `ExtentKeyComparer`, `TryDecodeName`, `DecodePart`, `ReadAllocations`, `FindDirectory`, `LooksLikeDirectory` et `Flatten` après raccordement aux composants communs.
-        - [ ] Supprimer l'import `System.Text` après déplacement du décodage ASCII.
-      - [ ] Présentation et CSDoc du Reader
-        - [ ] Traduire en français la CSDoc anglaise du type.
-        - [ ] Séparer les compteurs `active` et `unused`, le nom et l'extension et les corps de boucle actuellement juxtaposés.
-        - [ ] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-        - [ ] Ajouter en français la CSDoc du Reader et de chacun de ses membres restants.
+      - [x] Emplacement et identité du Reader Amstrad CP/M
+        - [x] Déplacer le fichier vers `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`.
+        - [x] Adapter son namespace et tous ses consommateurs.
+        - [x] Remplacer l'identifiant brut `amstrad.cpm` par la valeur centrale correspondante de `FileSystemIds`.
+        - [x] Remplacer les noms bruts `Amstrad PCW CP/M Plus` et `Amstrad CPC CP/M` par les identifiants techniques centraux correspondant à la disposition retenue.
+        - [x] Exposer les formats CPC et PCW par un ensemble réellement non modifiable.
+      - [x] Reconnaissance du Disk Specification PCW
+        - [x] Remplacer `LooksLikePcwDiskSpecification` par la tentative de parsing de `AmstradCpmDiskSpecification`.
+        - [x] Remplacer les offsets `2` à `7`, masques, décalages et limites par les définitions du Disk Specification.
+        - [x] Faire retourner les champs validés plutôt qu'un simple booléen afin que le layout PCW ne relise pas les mêmes octets.
+        - [x] Conserver le rejet d'un tampon de moins de 512 octets avec la taille minimale nommée.
+      - [x] Sélection des layouts CPC et PCW
+        - [x] Remplacer le record privé `Layout` par `CpmLayout` et `AmstradCpmLayout`.
+        - [x] Remplacer les plages brutes de secteurs `C1..C9` et `41..49` par les définitions des layouts CPC système et données.
+        - [x] Remplacer les calculs bruts `2 * 9 * 512`, les 64 entrées, les blocs de 1 024 octets et les deux blocs de répertoire par les propriétés des layouts nommés.
+        - [x] Construire le layout PCW depuis le Disk Specification déjà validé et déterminer les allocations larges depuis le nombre réel de blocs.
+        - [x] Conserver la recherche de répertoire comme repli CPC lorsque l'identifiant du premier secteur ne suffit pas.
+      - [x] Aplatissement de l'image sectorielle
+        - [x] Remplacer `Flatten`, qui concatène uniquement les blocs disponibles et décale les blocs suivants lorsqu'un bloc logique manque, par une représentation conservant chaque position logique.
+        - [x] Calculer la longueur depuis la plage de blocs logiques et la taille de bloc attendue au lieu de la somme des seuls blocs présents.
+        - [x] Conserver la liste ou le masque des blocs logiques absents avec les octets aplatis.
+        - [x] Ne pas traiter les octets de remplacement d'un bloc absent comme des données valides pendant la reconnaissance du répertoire ou la reconstruction d'un fichier.
+        - [x] Supprimer les conversions `ToArray` inutiles lors de la copie des données présentes.
+      - [x] Détection du répertoire
+        - [x] Déplacer `FindDirectory` et `LooksLikeDirectory` vers `CpmDirectoryReader` avec un `CpmLayout`.
+        - [x] Remplacer le pas brut de 512 octets et la taille brute de 32 octets par les définitions appropriées.
+        - [x] Conserver la règle PCW qui autorise un répertoire entièrement inutilisé et la règle CPC qui exige au moins une entrée active.
+        - [x] Traduire en français le commentaire anglais qui explique pourquoi une fenêtre entièrement effacée ne suffit pas à reconnaître CP/M, ou le remplacer par la CSDoc de la règle.
+        - [x] Faire rejeter une fenêtre traversant un bloc logique absent.
+      - [x] Entrées, labels et extents CP/M communs
+        - [x] Remplacer le record privé `Extent` et `ExtentKeyComparer` par `CpmExtent` et `CpmExtentKeyComparer`.
+        - [x] Remplacer `TryDecodeName`, `DecodePart` et `ReadAllocations` par `CpmDirectoryReader`.
+        - [x] Remplacer les marqueurs bruts `0xe5`, `0x20`, `0x21`, la limite utilisateur 31 et les positions d'extent par `CpmFormat`.
+        - [x] Lire le label de volume par le composant commun et traiter distinctement l'entrée de mot de passe sans la confondre avec un fichier.
+        - [x] Conserver le regroupement des extents par utilisateur et nom sans casse puis leur ordre numérique.
+      - [x] Reconstruction du contenu des fichiers
+        - [x] Déplacer la reconstruction des allocations dans `CpmDirectoryReader`.
+        - [x] Utiliser distinctement `AllocationOrigin` et `AllocationBlockSize` du layout pour calculer chaque plage.
+        - [x] Remplacer les 128 octets par enregistrement par `CpmFormat.RecordSize`.
+        - [x] Signaler comme invalide toute allocation hors image ou traversant un bloc logique absent.
+        - [x] Conserver le contenu réellement reconstruit sans présenter les octets de remplacement d'un bloc absent comme valides.
+        - [x] Remplacer la référence de stockage brute `-1` par l'absence explicite de référence prévue dans le modèle commun.
+        - [x] Remplacer le texte brut `CP/M user {n}` par la fonction technique commune recevant le numéro de zone utilisateur et documenter que ce nombre vient du premier octet de l'entrée CP/M.
+      - [x] Calcul de l'espace libre
+        - [x] Calculer le nombre total d'allocations depuis `AllocationOrigin`, la longueur logique et `AllocationBlockSize`.
+        - [x] Exclure du comptage utilisé les allocations nulles, hors limites et provenant d'extents ignorés.
+        - [x] Compter une allocation dupliquée une seule fois.
+        - [x] Soustraire séparément les blocs de répertoire définis par le layout.
+        - [x] Conserver une borne inférieure nulle pour l'espace libre calculé.
+      - [x] Erreurs et avertissements CP/M
+        - [x] Remplacer les deux erreurs anglaises de layout et de répertoire par `CpmFileSystemExceptions` avec l'identifiant de format.
+        - [x] Remplacer l'avertissement brut d'allocation hors image par la définition recevant nom, allocation, offset et longueur.
+        - [x] Ajouter un avertissement distinct pour un bloc logique absent traversé par une allocation.
+      - [x] Suppression des éléments privés remplacés
+        - [x] Supprimer `Layout`, `Extent`, `ExtentKeyComparer`, `TryDecodeName`, `DecodePart`, `ReadAllocations`, `FindDirectory`, `LooksLikeDirectory` et `Flatten` après raccordement aux composants communs.
+        - [x] Supprimer l'import `System.Text` après déplacement du décodage ASCII.
+      - [x] Présentation et CSDoc du Reader
+        - [x] Traduire en français la CSDoc anglaise du type.
+        - [x] Séparer les compteurs `active` et `unused`, le nom et l'extension et les corps de boucle actuellement juxtaposés.
+        - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+        - [x] Ajouter en français la CSDoc du Reader et de chacun de ses membres restants.
       - [ ] Tests ciblés du Reader Amstrad CP/M
-        - [ ] Tester par le Reader public un CPC système, un CPC données et un PCW avec Disk Specification valide.
+        - [x] Tester par le Reader public un CPC système, un CPC données et un PCW avec Disk Specification valide.
         - [ ] Tester un PCW vide autorisé, un répertoire CPC trouvé par recherche et les allocations étroites et larges.
         - [ ] Tester labels de volume, entrée de mot de passe, utilisateurs, attributs de nom et extents successifs.
         - [ ] Tester un bloc logique manquant entre deux blocs présents et vérifier que les suivants ne sont pas décalés.
         - [ ] Tester une allocation hors image, une allocation traversant un bloc absent, une allocation dupliquée et le calcul d'espace libre.
         - [ ] Tester le rejet d'un Disk Specification invalide, d'un identifiant de secteur hors plage et d'un répertoire CPC non crédible.
+        - État : le Disk Specification invalide est testé ; les autres scénarios composés et les corpus manquants restent non cochés.
   - [ ] Apple DOS
     - [ ] `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`.

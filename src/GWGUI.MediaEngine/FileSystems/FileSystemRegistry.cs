@@ -20,8 +20,8 @@ public sealed class FileSystemRegistry
         new Readers.MacMfsFileSystemReader(),
         new Readers.MacHfsFileSystemReader(),
         new Readers.LisaFileSystemReader(),
-        new Readers.AmstradCpmFileSystemReader(),
-        new Readers.CpmFileSystemReader(),
+        new Cpm.AmstradCpmFileSystemReader(),
+        new Cpm.CpmFileSystemReader(),
         new Readers.CommodoreDosFileSystemReader(),
         new Readers.Fat12FileSystemReader(),
         new Readers.AtariDosFileSystemReader()

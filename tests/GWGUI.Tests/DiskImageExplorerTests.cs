@@ -316,7 +316,8 @@ public sealed class DiskImageExplorerTests
             bytes[falseDirectory] = 0;
             "FAKE    TXT"u8.CopyTo(bytes.AsSpan(falseDirectory + 1));
             bytes[falseDirectory + 15] = 1;
-            Assert.NotNull(CpmDirectoryProbe.FindCpcRawDirectory(bytes));
+            var logical = CpmDirectoryReader.Flatten(new SectorImage(DiskImageFormatIds.AmstradCpc, 512, 80, 1, 9, Enumerable.Range(0, bytes.Length / 512).Select(block => new SectorBlock(block, new(block / 9, 0, block % 9), bytes.AsSpan(block * 512, 512).ToArray()))));
+            Assert.NotNull(CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcSystem, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false));
 
             await File.WriteAllBytesAsync(path, bytes);
             var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
