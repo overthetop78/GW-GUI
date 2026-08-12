@@ -1,11 +1,11 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.Images.Interpretations;
+namespace GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 
 /// <summary>Définit la normalisation d'une image dont le système de fichiers est déjà reconnu.</summary>
 internal interface IRecognizedImageNormalizer
 {
-    /// <summary>Tente de produire l'identité et la géométrie finales de l'image reconnue.</summary>
+    /// <summary>Tente de normaliser l'image et laisse l'image source dans <paramref name="normalized"/> en cas de refus.</summary>
     bool TryNormalize(SectorImage image, string readerId, FileSystemVolume volume, out SectorImage normalized);
 }

@@ -2,7 +2,6 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
-using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition.Amstrad;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Builders;
@@ -26,9 +25,9 @@ internal sealed class RawImgReader
         if (!hasFatBpb)
         {
             var logical = CpmDirectoryReader.Flatten(image);
-            if (CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcSystem, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false) is not null) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradCpc);
+            if (CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcSystem, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false) is not null) return image.WithFormatId(DiskImageFormatIds.AmstradCpc);
         }
-        if (!hasFatBpb && AmstradCpmDiskSpecification.TryParse(bytes, out _)) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradPcw);
+        if (!hasFatBpb && AmstradCpmDiskSpecification.TryParse(bytes, out _)) return image.WithFormatId(DiskImageFormatIds.AmstradPcw);
         return image;
     }
 }

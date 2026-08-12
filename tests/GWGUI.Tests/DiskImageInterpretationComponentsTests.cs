@@ -4,10 +4,10 @@ using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Scoring;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -108,7 +108,7 @@ public sealed class DiskImageInterpretationComponentsTests
 
     private sealed class FakeAdditionalPolicy(string formatId) : IAdditionalImageInterpretationPolicy
     {
-        public IEnumerable<SectorImage> Create(SectorImage image)
+        public IEnumerable<SectorImage> CreateCandidates(SectorImage image)
         {
             yield return new(formatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack, image.AvailableBlocks, logicalBlockCount: image.BlockCount);
         }

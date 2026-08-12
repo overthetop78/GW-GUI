@@ -7683,34 +7683,34 @@
     - [x] Vérifier que les collections sources modifiées après construction ne changent pas le résultat.
     - [x] Vérifier la suppression ordonnée des doublons de formats avec des casses différentes.
     - [x] Vérifier que plusieurs accès à `Metadata` retournent les données déjà calculées sans relancer la résolution.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/AdditionalImageInterpretationRegistry.cs`
-  - [ ] Déplacement du registre d’interprétations
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/AdditionalImageInterpretationRegistry.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation` et adapter ses consommateurs.
-    - [ ] Faire recevoir au constructeur la collection ordonnée de `IAdditionalImageInterpretationPolicy` au lieu de créer les politiques IBM, MSX et compatibles dans un champ.
-    - [ ] Copier la collection reçue afin qu’une modification de la liste de composition ne change pas le registre construit.
-    - [ ] Faire créer les trois politiques et leur ordre par `Composition/MediaEngineFactory.cs`.
-    - [ ] Supprimer la dépendance du registre vers `FileSystemRegistry`, qui ne sert actuellement qu’à construire la politique IBM.
-  - [ ] Filtrage des formats sources compatibles
-    - [ ] Conserver dans le registre la vérification préalable des familles ISO actuellement autorisées avant d’appeler les politiques.
-    - [ ] Continuer à utiliser `DiskImageFormatIds.AtariStPrefix`, `AtariPrefix`, `IbmPrefix`, `AcornDfsPrefix` et `Imd` sans réintroduire de préfixe brut.
-    - [ ] Renommer `IsIsoCompatible` pour indiquer qu’il valide la source d’une interprétation supplémentaire et pas le standard d’encodage du conteneur.
-    - [ ] Conserver l’arrêt sans résultat lorsqu’un format source n’appartient pas à cette liste, afin de ne pas élargir silencieusement les réinterprétations existantes.
-  - [ ] Parcours ordonné des politiques
-    - [ ] Conserver l’ordre d’injection pendant l’appel à chaque politique.
-    - [ ] Conserver l’ordre de chaque interprétation produite par une politique.
-    - [ ] Laisser la déduplication finale au composant commun d’identité utilisé par l’explorateur.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `AdditionalImageInterpretationRegistry`, son constructeur, `Create` et la méthode de validation du format source.
-    - [ ] Documenter l’ordre, le filtrage préalable et le caractère différé de l’énumération retournée.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et expressions complètes qui restent lisibles ainsi.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
-  - [ ] Tests du registre injecté
-    - [ ] Tester une collection vide de politiques.
-    - [ ] Tester deux politiques produisant plusieurs interprétations et vérifier leur ordre exact.
-    - [ ] Tester chacune des cinq familles sources autorisées.
-    - [ ] Tester un format source incompatible et vérifier qu’aucune politique n’est appelée.
-    - [ ] Vérifier qu’une modification de la collection source après construction ne change pas les politiques du registre.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/AdditionalImageInterpretationRegistry.cs`
+  - [x] Déplacement du registre d’interprétations
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/AdditionalImageInterpretationRegistry.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation` et adapter ses consommateurs.
+    - [x] Faire recevoir au constructeur la collection ordonnée de `IAdditionalImageInterpretationPolicy` au lieu de créer les politiques IBM, MSX et compatibles dans un champ.
+    - [x] Copier la collection reçue afin qu’une modification de la liste de composition ne change pas le registre construit.
+    - [x] Faire créer les trois politiques et leur ordre par `Composition/MediaEngineFactory.cs`.
+    - [x] Supprimer la dépendance du registre vers `FileSystemRegistry`, qui ne sert actuellement qu’à construire la politique IBM.
+  - [x] Filtrage des formats sources compatibles
+    - [x] Conserver dans le registre la vérification préalable des familles ISO actuellement autorisées avant d’appeler les politiques.
+    - [x] Continuer à utiliser `DiskImageFormatIds.AtariStPrefix`, `AtariPrefix`, `IbmPrefix`, `AcornDfsPrefix` et `Imd` sans réintroduire de préfixe brut.
+    - [x] Renommer `IsIsoCompatible` pour indiquer qu’il valide la source d’une interprétation supplémentaire et pas le standard d’encodage du conteneur.
+    - [x] Conserver l’arrêt sans résultat lorsqu’un format source n’appartient pas à cette liste, afin de ne pas élargir silencieusement les réinterprétations existantes.
+  - [x] Parcours ordonné des politiques
+    - [x] Conserver l’ordre d’injection pendant l’appel à chaque politique.
+    - [x] Conserver l’ordre de chaque interprétation produite par une politique.
+    - [x] Laisser la déduplication finale au composant commun d’identité utilisé par l’explorateur.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `AdditionalImageInterpretationRegistry`, son constructeur, `Create` et la méthode de validation du format source.
+    - [x] Documenter l’ordre, le filtrage préalable et le caractère différé de l’énumération retournée.
+    - [x] Conserver sur une seule ligne les signatures, conditions et expressions complètes qui restent lisibles ainsi.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
+  - [x] Tests du registre injecté
+    - [x] Tester une collection vide de politiques.
+    - [x] Tester deux politiques produisant plusieurs interprétations et vérifier leur ordre exact.
+    - [x] Tester chacune des cinq familles sources autorisées.
+    - [x] Tester un format source incompatible et vérifier qu’aucune politique n’est appelée.
+    - [x] Vérifier qu’une modification de la collection source après construction ne change pas les politiques du registre.
 - [ ] `src/GWGUI.MediaEngine/Images/Interpretations/AtariRecognizedImageNormalizer.cs`
   - [ ] Déplacement du normalizer Atari
     - [ ] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs`.
@@ -7747,49 +7747,49 @@
     - [ ] Tester récursivement chaque extension Atari reconnue et la signature exécutable sans extension.
     - [ ] Tester une image IBM sans programme Atari et une image de famille non IBM contenant le même nom de fichier.
     - [ ] Vérifier que les données, adresses, intégrités et blocs manquants sont conservés pendant la réidentification.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/CompatibleFormatInterpretationPolicy.cs`
-  - [ ] Déplacement de la politique de compatibilité
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Policies/CompatibleFormatInterpretationPolicy.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Policies`.
-    - [ ] Adapter `Composition/MediaEngineFactory.cs` et le registre des interprétations supplémentaires au nouveau type.
-  - [ ] Catalogue immuable des compatibilités par taille de bloc
-    - [ ] Créer `Exploration/Interpretation/Definitions/CompatibleFormatCatalog.cs`.
-    - [ ] Y déplacer l’association des blocs de 512 octets avec UCSD IBM MFM, Commodore 900 COHERENT et les trois dispositions Epson 396, 399 et LOGO.
-    - [ ] Y déplacer l’association des blocs de 256 octets avec les quatre dispositions Acorn DFS et Epson QX-10 320.
-    - [ ] Y déplacer l’association des blocs de 1024 octets avec Epson QX-10 400.
-    - [ ] Définir dans ce catalogue les trois tailles de bloc qui servent de clés afin qu’aucun nombre brut ne reste dans la politique.
-    - [ ] Conserver tous les formats sous forme de constantes `DiskImageFormatIds`.
-    - [ ] Construire les listes une seule fois, les exposer en lecture seule et ne pas exposer de dictionnaire modifiable.
-    - [ ] Faire retourner une collection vide pour une taille de bloc absente du catalogue.
-  - [ ] Création des interprétations compatibles
-    - [ ] Remplacer le switch et les listes allouées à chaque appel par la résolution du catalogue.
-    - [ ] Exclure le format déjà porté par l’image avec une comparaison insensible à la casse.
-    - [ ] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
-    - [ ] Conserver l’ordre des formats défini dans chaque liste du catalogue.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `CompatibleFormatInterpretationPolicy`, `Create`, `CompatibleFormatCatalog` et chacun de ses membres.
-    - [ ] Expliquer que la taille de bloc produit seulement des candidats et que le Reader de système de fichiers les valide ensuite.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et appels complets qui restent lisibles ; répartir les longues listes uniquement entre leurs éléments.
-    - [ ] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
-  - [ ] Tests des compatibilités
-    - [ ] Tester l’ordre exact des cinq formats pour 512 octets.
-    - [ ] Tester l’ordre exact des cinq formats pour 256 octets.
-    - [ ] Tester le format unique pour 1024 octets et une taille inconnue sans résultat.
-    - [ ] Vérifier que le format déjà porté par l’image n’est pas reproduit dans les interprétations.
-    - [ ] Vérifier que les données, adresses, intégrités, capacité et blocs manquants sont conservés pendant chaque réidentification.
-    - [ ] Vérifier que le catalogue et ses listes ne peuvent pas être modifiés depuis un consommateur.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/IAdditionalImageInterpretationPolicy.cs`
-  - [ ] Déplacement du contrat d’interprétation
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Contracts/IAdditionalImageInterpretationPolicy.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Contracts`.
-    - [ ] Adapter le registre et les trois politiques qui implémentent ce contrat.
-  - [ ] Nom de l’action du contrat
-    - [ ] Renommer `Create` en `CreateCandidates` afin d’indiquer que la méthode peut produire zéro, une ou plusieurs images candidates sans les valider comme système de fichiers.
-    - [ ] Adapter chaque implémentation et l’énumération du registre au nouveau nom sans modifier leur ordre ni leur caractère différé.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `IAdditionalImageInterpretationPolicy` et `CreateCandidates`.
-    - [ ] Documenter l’image source, l’énumération ordonnée retournée et la responsabilité de validation laissée aux Readers de systèmes de fichiers.
-    - [ ] Conserver la signature complète sur une seule ligne.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/CompatibleFormatInterpretationPolicy.cs`
+  - [x] Déplacement de la politique de compatibilité
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Policies/CompatibleFormatInterpretationPolicy.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Policies`.
+    - [x] Adapter `Composition/MediaEngineFactory.cs` et le registre des interprétations supplémentaires au nouveau type.
+  - [x] Catalogue immuable des compatibilités par taille de bloc
+    - [x] Créer `Exploration/Interpretation/Definitions/CompatibleFormatCatalog.cs`.
+    - [x] Y déplacer l’association des blocs de 512 octets avec UCSD IBM MFM, Commodore 900 COHERENT et les trois dispositions Epson 396, 399 et LOGO.
+    - [x] Y déplacer l’association des blocs de 256 octets avec les quatre dispositions Acorn DFS et Epson QX-10 320.
+    - [x] Y déplacer l’association des blocs de 1024 octets avec Epson QX-10 400.
+    - [x] Définir dans ce catalogue les trois tailles de bloc qui servent de clés afin qu’aucun nombre brut ne reste dans la politique.
+    - [x] Conserver tous les formats sous forme de constantes `DiskImageFormatIds`.
+    - [x] Construire les listes une seule fois, les exposer en lecture seule et ne pas exposer de dictionnaire modifiable.
+    - [x] Faire retourner une collection vide pour une taille de bloc absente du catalogue.
+  - [x] Création des interprétations compatibles
+    - [x] Remplacer le switch et les listes allouées à chaque appel par la résolution du catalogue.
+    - [x] Exclure le format déjà porté par l’image avec une comparaison insensible à la casse.
+    - [x] Utiliser le composant commun de copie d’une `SectorImage` avec un nouvel identifiant à la place de `SectorImageInterpretation.Retag`.
+    - [x] Conserver l’ordre des formats défini dans chaque liste du catalogue.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `CompatibleFormatInterpretationPolicy`, `Create`, `CompatibleFormatCatalog` et chacun de ses membres.
+    - [x] Expliquer que la taille de bloc produit seulement des candidats et que le Reader de système de fichiers les valide ensuite.
+    - [x] Conserver sur une seule ligne les signatures, conditions et appels complets qui restent lisibles ; répartir les longues listes uniquement entre leurs éléments.
+    - [x] Regrouper et ordonner les directives `using` sans ligne vide au milieu.
+  - [x] Tests des compatibilités
+    - [x] Tester l’ordre exact des cinq formats pour 512 octets.
+    - [x] Tester l’ordre exact des cinq formats pour 256 octets.
+    - [x] Tester le format unique pour 1024 octets et une taille inconnue sans résultat.
+    - [x] Vérifier que le format déjà porté par l’image n’est pas reproduit dans les interprétations.
+    - [x] Vérifier que les données, adresses, intégrités, capacité et blocs manquants sont conservés pendant chaque réidentification.
+    - [x] Vérifier que le catalogue et ses listes ne peuvent pas être modifiés depuis un consommateur.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/IAdditionalImageInterpretationPolicy.cs`
+  - [x] Déplacement du contrat d’interprétation
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Contracts/IAdditionalImageInterpretationPolicy.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Contracts`.
+    - [x] Adapter le registre et les trois politiques qui implémentent ce contrat.
+  - [x] Nom de l’action du contrat
+    - [x] Renommer `Create` en `CreateCandidates` afin d’indiquer que la méthode peut produire zéro, une ou plusieurs images candidates sans les valider comme système de fichiers.
+    - [x] Adapter chaque implémentation et l’énumération du registre au nouveau nom sans modifier leur ordre ni leur caractère différé.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `IAdditionalImageInterpretationPolicy` et `CreateCandidates`.
+    - [x] Documenter l’image source, l’énumération ordonnée retournée et la responsabilité de validation laissée aux Readers de systèmes de fichiers.
+    - [x] Conserver la signature complète sur une seule ligne.
 - [ ] `src/GWGUI.MediaEngine/Images/Interpretations/IbmAdditionalImageInterpretationPolicy.cs`
   - [ ] Déplacement de la politique IBM
     - [ ] Déplacer le fichier vers `Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs`.
@@ -7827,16 +7827,16 @@
     - [ ] Tester une image déjà IBM, un bloc de boot absent ou de mauvaise taille, un bloc FAT absent et une géométrie invalide.
     - [ ] Vérifier que la modification de l’ensemble source des formats après construction ne change pas la politique.
     - [ ] Vérifier que la réidentification conserve blocs, adresses, données, intégrité, capacité et blocs manquants.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/IRecognizedImageNormalizer.cs`
-  - [ ] Déplacement du contrat de normalisation
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Contracts`.
-    - [ ] Adapter le registre et les trois normalizers Atari, Macintosh et MSX.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `IRecognizedImageNormalizer` et `TryNormalize`.
-    - [ ] Documenter l’image reconnue, l’identifiant technique du Reader de système de fichiers, le volume lu, le booléen de succès et l’image normalisée.
-    - [ ] Préciser que l’implémentation doit retourner l’image source dans le paramètre de sortie lorsqu’elle refuse la normalisation.
-    - [ ] Conserver la signature complète sur une seule ligne.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/IRecognizedImageNormalizer.cs`
+  - [x] Déplacement du contrat de normalisation
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation.Contracts`.
+    - [x] Adapter le registre et les trois normalizers Atari, Macintosh et MSX.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `IRecognizedImageNormalizer` et `TryNormalize`.
+    - [x] Documenter l’image reconnue, l’identifiant technique du Reader de système de fichiers, le volume lu, le booléen de succès et l’image normalisée.
+    - [x] Préciser que l’implémentation doit retourner l’image source dans le paramètre de sortie lorsqu’elle refuse la normalisation.
+    - [x] Conserver la signature complète sur une seule ligne.
 - [ ] `src/GWGUI.MediaEngine/Images/Interpretations/MacRecognizedImageNormalizer.cs`
   - [ ] Déplacement du normalizer Macintosh
     - [ ] Déplacer le fichier vers `Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs`.
@@ -7911,60 +7911,60 @@
     - [ ] Tester les deux variantes de même capacité distinguées par le descripteur média.
     - [ ] Tester un Reader différent de FAT12, une image déjà MSX, un boot invalide et une géométrie inconnue.
     - [ ] Vérifier que le paramètre de sortie reste l’image source lorsque la normalisation échoue.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/RecognizedImageNormalizerRegistry.cs`
-  - [ ] Déplacement et injection du registre
-    - [ ] Déplacer le fichier vers `Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation`.
-    - [ ] Faire recevoir au constructeur la collection ordonnée de `IRecognizedImageNormalizer` au lieu de créer Macintosh, MSX et Atari dans un champ.
-    - [ ] Copier la collection reçue afin qu’une modification de la liste de composition ne change pas le registre construit.
-    - [ ] Faire créer les trois normalizers et leur ordre par `Composition/MediaEngineFactory.cs`.
-    - [ ] Adapter `DiskImageInterpretationService` au registre injecté.
-  - [ ] Parcours des normalizers
-    - [ ] Conserver l’appel des normalizers dans l’ordre fourni.
-    - [ ] Conserver le retour immédiat de la première image normalisée avec succès.
-    - [ ] Conserver l’image source lorsqu’aucun normalizer ne l’accepte.
-    - [ ] Ne pas enchaîner un second normalizer sur l’image produite par le premier sans décision distincte, afin de préserver le comportement actuel.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `RecognizedImageNormalizerRegistry`, son constructeur et `Normalize`.
-    - [ ] Documenter l’ordre, le premier succès, les paramètres transmis et le retour de l’image source en l’absence de succès.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et retours complets qui restent lisibles ainsi.
-  - [ ] Tests du registre ordonné
-    - [ ] Tester une collection vide et vérifier le retour de l’image source.
-    - [ ] Tester un premier normalizer qui refuse puis un second qui réussit.
-    - [ ] Tester deux normalizers qui réussissent et vérifier que seul le premier est utilisé.
-    - [ ] Vérifier que l’identifiant du Reader et le volume sont transmis sans modification.
-    - [ ] Vérifier qu’une modification de la collection source après construction ne change pas le registre.
-- [ ] `src/GWGUI.MediaEngine/Images/Interpretations/SectorImageInterpretation.cs`
-  - [ ] Remplacement de `Retag` par une opération du modèle sectoriel
-    - [ ] Ajouter `WithFormatId` à `SectorImages/SectorImage.cs`, car seul `SectorImage` peut recopier exactement ses champs privés de capacité, nombre logique de blocs et autorisation des tailles variables.
-    - [ ] Faire construire par `WithFormatId` une nouvelle image avec le nouvel identifiant et les mêmes taille de bloc, géométrie, blocs, capacité explicite, nombre logique de blocs et règle de taille variable.
-    - [ ] Remplacer tous les appels à `SectorImageInterpretation.Retag` dans la reconnaissance Amstrad, le Reader IMG, l’explorateur et les politiques ou normalizers par `SectorImage.WithFormatId`.
-    - [ ] Supprimer `Retag` après migration de ses neuf consommateurs actuels.
-  - [ ] Déplacement de la détection de programmes Atari
-    - [ ] Déplacer les extensions `.ttp`, `.tos`, `.acc`, `.gtp` et les octets de signature `0x60 0x1A` vers `Recognition/Atari/AtariProgramDefinitions.cs` selon le groupe du normalizer Atari.
-    - [ ] Déplacer la récursion sur `FileSystemEntry.Children` vers `Recognition/Atari/AtariProgramDetector.cs`.
-    - [ ] Remplacer l’appel du normalizer Atari puis supprimer `ContainsAtariStProgram`.
-  - [ ] Déplacement de la lecture de géométrie FAT
-    - [ ] Remplacer les offsets, tailles, décalages et assemblages manuels de `TryReadFatGeometry` par `FileSystems/Fat/FatBpbGeometryDetector`.
-    - [ ] Faire vérifier par l’appelant Atari la cohérence avec `SectorImage.BlockCount` à partir du résultat nommé `FatBpbGeometry`.
-    - [ ] Supprimer `TryReadFatGeometry` après migration du normalizer Atari.
-  - [ ] Déplacement de l’interprétation MSX
-    - [ ] Déplacer la validation du boot et la résolution des quatre formats vers `MsxSectorImageInterpreter` selon le groupe de la politique MSX.
-    - [ ] Remplacer les nombres bruts `512`, `360`, `720`, `21`, `0xF8` et `1440` par les définitions FAT et le catalogue de géométries MSX.
-    - [ ] Remplacer les deux appels des composants MSX puis supprimer `TryCreateMsx`.
-  - [ ] Suppression du fichier sans responsabilité restante
-    - [ ] Vérifier qu’aucun consommateur ne référence encore `SectorImageInterpretation`.
-    - [ ] Supprimer les directives `using` devenues inutiles dans chaque consommateur migré.
-    - [ ] Supprimer `Images/Interpretations/SectorImageInterpretation.cs` lorsque ses quatre méthodes ont été déplacées.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `SectorImage.WithFormatId` expliquant ce qui est modifié et ce qui est conservé.
-    - [ ] Documenter dans leurs groupes respectifs les détecteurs Atari, FAT et MSX recevant les trois autres responsabilités.
-    - [ ] Conserver sur une seule ligne la signature et la construction de copie lorsqu’elles restent lisibles ainsi.
-  - [ ] Tests de la copie avec nouvel identifiant
-    - [ ] Vérifier que seul `FormatId` change sur une image uniforme.
-    - [ ] Vérifier la conservation d’une capacité explicite et d’un nombre logique de blocs contenant des blocs manquants.
-    - [ ] Vérifier la conservation de l’autorisation des tailles variables avec un bloc dont la taille diffère de `BlockSize`.
-    - [ ] Vérifier la conservation des adresses, données, tags, intégrités et révolutions de tous les blocs.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/RecognizedImageNormalizerRegistry.cs`
+  - [x] Déplacement et injection du registre
+    - [x] Déplacer le fichier vers `Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images.Interpretations` par `GWGUI.MediaEngine.Exploration.Interpretation`.
+    - [x] Faire recevoir au constructeur la collection ordonnée de `IRecognizedImageNormalizer` au lieu de créer Macintosh, MSX et Atari dans un champ.
+    - [x] Copier la collection reçue afin qu’une modification de la liste de composition ne change pas le registre construit.
+    - [x] Faire créer les trois normalizers et leur ordre par `Composition/MediaEngineFactory.cs`.
+    - [x] Adapter `DiskImageInterpretationService` au registre injecté.
+  - [x] Parcours des normalizers
+    - [x] Conserver l’appel des normalizers dans l’ordre fourni.
+    - [x] Conserver le retour immédiat de la première image normalisée avec succès.
+    - [x] Conserver l’image source lorsqu’aucun normalizer ne l’accepte.
+    - [x] Ne pas enchaîner un second normalizer sur l’image produite par le premier sans décision distincte, afin de préserver le comportement actuel.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `RecognizedImageNormalizerRegistry`, son constructeur et `Normalize`.
+    - [x] Documenter l’ordre, le premier succès, les paramètres transmis et le retour de l’image source en l’absence de succès.
+    - [x] Conserver sur une seule ligne les signatures, conditions et retours complets qui restent lisibles ainsi.
+  - [x] Tests du registre ordonné
+    - [x] Tester une collection vide et vérifier le retour de l’image source.
+    - [x] Tester un premier normalizer qui refuse puis un second qui réussit.
+    - [x] Tester deux normalizers qui réussissent et vérifier que seul le premier est utilisé.
+    - [x] Vérifier que l’identifiant du Reader et le volume sont transmis sans modification.
+    - [x] Vérifier qu’une modification de la collection source après construction ne change pas le registre.
+- [x] `src/GWGUI.MediaEngine/Images/Interpretations/SectorImageInterpretation.cs`
+  - [x] Remplacement de `Retag` par une opération du modèle sectoriel
+    - [x] Ajouter `WithFormatId` à `SectorImages/SectorImage.cs`, car seul `SectorImage` peut recopier exactement ses champs privés de capacité, nombre logique de blocs et autorisation des tailles variables.
+    - [x] Faire construire par `WithFormatId` une nouvelle image avec le nouvel identifiant et les mêmes taille de bloc, géométrie, blocs, capacité explicite, nombre logique de blocs et règle de taille variable.
+    - [x] Remplacer tous les appels à `SectorImageInterpretation.Retag` dans la reconnaissance Amstrad, le Reader IMG, l’explorateur et les politiques ou normalizers par `SectorImage.WithFormatId`.
+    - [x] Supprimer `Retag` après migration de ses neuf consommateurs actuels.
+  - [x] Déplacement de la détection de programmes Atari
+    - [x] Déplacer les extensions `.ttp`, `.tos`, `.acc`, `.gtp` et les octets de signature `0x60 0x1A` vers `Recognition/Atari/AtariProgramDefinitions.cs` selon le groupe du normalizer Atari.
+    - [x] Déplacer la récursion sur `FileSystemEntry.Children` vers `Recognition/Atari/AtariProgramDetector.cs`.
+    - [x] Remplacer l’appel du normalizer Atari puis supprimer `ContainsAtariStProgram`.
+  - [x] Déplacement de la lecture de géométrie FAT
+    - [x] Remplacer les offsets, tailles, décalages et assemblages manuels de `TryReadFatGeometry` par `FileSystems/Fat/FatBpbGeometryDetector`.
+    - [x] Faire vérifier par l’appelant Atari la cohérence avec `SectorImage.BlockCount` à partir du résultat nommé `FatBpbGeometry`.
+    - [x] Supprimer `TryReadFatGeometry` après migration du normalizer Atari.
+  - [x] Déplacement de l’interprétation MSX
+    - [x] Déplacer la validation du boot et la résolution des quatre formats vers `MsxSectorImageInterpreter` selon le groupe de la politique MSX.
+    - [x] Remplacer les nombres bruts `512`, `360`, `720`, `21`, `0xF8` et `1440` par les définitions FAT et le catalogue de géométries MSX.
+    - [x] Remplacer les deux appels des composants MSX puis supprimer `TryCreateMsx`.
+  - [x] Suppression du fichier sans responsabilité restante
+    - [x] Vérifier qu’aucun consommateur ne référence encore `SectorImageInterpretation`.
+    - [x] Supprimer les directives `using` devenues inutiles dans chaque consommateur migré.
+    - [x] Supprimer `Images/Interpretations/SectorImageInterpretation.cs` lorsque ses quatre méthodes ont été déplacées.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `SectorImage.WithFormatId` expliquant ce qui est modifié et ce qui est conservé.
+    - [x] Documenter dans leurs groupes respectifs les détecteurs Atari, FAT et MSX recevant les trois autres responsabilités.
+    - [x] Conserver sur une seule ligne la signature et la construction de copie lorsqu’elles restent lisibles ainsi.
+  - [x] Tests de la copie avec nouvel identifiant
+    - [x] Vérifier que seul `FormatId` change sur une image uniforme.
+    - [x] Vérifier la conservation d’une capacité explicite et d’un nombre logique de blocs contenant des blocs manquants.
+    - [x] Vérifier la conservation de l’autorisation des tailles variables avec un bloc dont la taille diffère de `BlockSize`.
+    - [x] Vérifier la conservation des adresses, données, tags, intégrités et révolutions de tous les blocs.
 - [ ] `src/GWGUI.MediaEngine/Images/ScpDetection/ScpAutomaticImageExplorer.cs`
   - [ ] Déplacement dans l’exploration SCP
     - [ ] Déplacer le fichier vers `Exploration/Scp/ScpAutomaticImageExplorer.cs`.

@@ -5,7 +5,6 @@ using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -95,7 +94,7 @@ public sealed class DiskImageExplorer
     /// <summary>Lit le système de fichiers correspondant au format explicitement demandé.</summary>
     private (SectorImage Image, IReadOnlyList<ExploredFileSystem> Detected) ReadExplicitly(SectorImage image, string formatId)
     {
-        var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : SectorImageInterpretation.Retag(image, formatId);
+        var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);
         if (fileSystems.TryRead(selectedImage, formatId, out var match) || fileSystems.TryRead(selectedImage, null, out match)) return (selectedImage, [new(formatId, match.ReaderId, match.Volume)]);
         return (selectedImage, []);
     }

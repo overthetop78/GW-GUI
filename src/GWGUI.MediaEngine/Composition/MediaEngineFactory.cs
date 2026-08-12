@@ -22,13 +22,16 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+using GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
+using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.ScpDetection;
-using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
+using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Reconstruction.Atari;
@@ -67,8 +70,11 @@ internal static class MediaEngineFactory
     /// <summary>Crée le service d'interprétation partagé par les explorateurs général et SCP.</summary>
     private static (DiskImageInterpretationService Interpretations, DiskImageDocumentFactory Documents) CreateInterpretations(FileSystemRegistry fileSystems)
     {
-        var normalizers = new RecognizedImageNormalizerRegistry();
-        var additionalInterpretations = new AdditionalImageInterpretationRegistry(fileSystems);
+        var msxInterpreter = new MsxSectorImageInterpreter();
+        IRecognizedImageNormalizer[] normalizerPolicies = [new MacRecognizedImageNormalizer(), new MsxRecognizedImageNormalizer(msxInterpreter), new AtariRecognizedImageNormalizer()];
+        IAdditionalImageInterpretationPolicy[] additionalPolicies = [new IbmAdditionalImageInterpretationPolicy(fileSystems.SupportedFormatIds), new MsxAdditionalImageInterpretationPolicy(msxInterpreter), new CompatibleFormatInterpretationPolicy()];
+        var normalizers = new RecognizedImageNormalizerRegistry(normalizerPolicies);
+        var additionalInterpretations = new AdditionalImageInterpretationRegistry(additionalPolicies);
         var metadata = new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver());
         return (new(normalizers, additionalInterpretations), new(metadata));
     }
