@@ -5078,17 +5078,17 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AtariStIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiants et mise en forme
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
-    - [ ] Remettre sur une seule ligne la condition complète affectée à `atari8Bit`.
-    - [ ] Remettre sur une seule ligne le retour conditionnel choisissant la politique Atari 8 bits ou Atari ST.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AutomaticIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiants et mise en forme
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
+    - [x] Remettre sur une seule ligne la condition complète affectée à `atari8Bit`.
+    - [x] Remettre sur une seule ligne le retour conditionnel choisissant la politique Atari 8 bits ou Atari ST.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AutomaticIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/BbcIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs`.
