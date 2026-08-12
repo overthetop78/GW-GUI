@@ -7023,69 +7023,70 @@
     - [x] Ajouter une méthode recevant identifiant de dossier pour l'erreur de cycle.
     - [x] Documenter en français le type et chacune de ses méthodes.
   - [ ] `FileSystems/Readers/MacHfsFileSystemReader.cs`
-    - [ ] Emplacement, identité et catalogue
-      - [ ] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Hfs/MacHfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `mac-hfs` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Rendre immuable la collection des formats HFS annoncés.
-      - [ ] Remplacer le nom brut `Macintosh HFS` par la définition centrale du système.
-    - [ ] Disposition HFS
-      - [ ] Créer `MacHfsFileSystemLayout.cs` et y définir la taille sectorielle 512, le bloc MDB 2, sa longueur minimale 162 et la signature `0x42 0x44`.
-      - [ ] Y définir les offsets et longueurs MDB des dates, du nombre et de la taille des allocations, du début d'allocation, des allocations libres et du nom Pascal.
-      - [ ] Y définir les offsets et longueurs de la taille du catalogue et de ses trois extents intégrés aux positions 146 et 150.
-      - [ ] Y définir les tailles, offsets, types et limites des nœuds et records de catalogue actuellement codés dans `ParseCatalog`.
-      - [ ] Remplacer tous les nombres bruts correspondants dans le Reader.
-    - [ ] Primitives Macintosh communes
-      - [ ] Remplacer `U16`, `U32`, `Pascal`, `DecodeMac`, `MacEpoch` et `MacDate` par `MacFileSystemPrimitives` et `MacFileSystemTime` communs à HFS et MFS.
-      - [ ] Conserver dans la primitive de nom la conversion du séparateur Macintosh `:` vers le séparateur exposé `/`.
-      - [ ] Supprimer les méthodes privées et l'import `System.Text` devenus inutiles après raccordement.
-    - [ ] Lecture des extents HFS
-      - [ ] Créer `MacHfsExtentReader.cs` et y déplacer la lecture des trois descripteurs d'extents intégrés.
-      - [ ] Nommer les trois extents, les quatre octets par descripteur et les deux champs 16 bits début/nombre.
-      - [ ] Valider que la taille d'allocation est non nulle et divisible par 512 avant de calculer les blocs par allocation.
-      - [ ] Faire retourner contenu, validité, blocs absents et longueur restant à résoudre.
-      - [ ] Réserver exactement 512 octets lorsqu'un secteur manque afin de conserver la position des suivants.
-      - [ ] Rejeter ou signaler un secteur présent dont la taille n'est pas 512 au lieu d'écrire une longueur variable.
-      - [ ] Distinguer l'absence d'un bloc du besoin de lire les extents supplémentaires du fichier d'extents.
-      - [ ] Utiliser la longueur logique pour tronquer le tampon final sans masquer une donnée manquante.
-    - [ ] Catalogue HFS
-      - [ ] Créer `MacHfsCatalogRecord.cs` pour remplacer le record privé et exposer une collection de contenu immuable.
-      - [ ] Ajouter au record la validité réelle du contenu et distinguer data fork et resource fork au lieu de ne conserver qu'un seul tableau choisi.
-      - [ ] Créer `MacHfsCatalogReader.cs` et y déplacer `ParseCatalog`.
-      - [ ] Valider l'en-tête du catalogue avant de lire la taille de nœud à l'offset 32.
-      - [ ] Nommer la taille de nœud de repli 512, les bornes 256 et 32 768, le type de nœud feuille `-1` et la limite d'enregistrements 512.
-      - [ ] Valider la table d'offsets située à la fin du nœud avant chaque lecture de début et de fin.
-      - [ ] Nommer la longueur minimale de clé 6, les offsets parent/nom et la longueur maximale de nom 31.
-      - [ ] Nommer l'alignement pair du record de données et les types record dossier 1 et fichier 2.
-      - [ ] Définir tous les offsets de dossier, fichier, type Finder, dates, longueurs et extents par la disposition HFS.
-      - [ ] Faire porter au record de fichier la validité combinée de ses forks.
-      - [ ] Remplacer l'avertissement brut de catalogue sans record lisible par une définition centrale.
-    - [ ] Arborescence HFS
-      - [ ] Créer `MacHfsDirectoryBuilder.cs` et y déplacer `BuildChildren`.
-      - [ ] Conserver la racine HFS identifiée par le parent 2 dans une définition nommée.
-      - [ ] Détecter un cycle avec le chemin courant et produire une erreur recevant l'identifiant du dossier.
-      - [ ] Utiliser la validité du record lors de la création de chaque entrée au lieu de fournir systématiquement `true`.
-      - [ ] Conserver le tri dossiers puis fichiers et noms sans casse.
-      - [ ] Définir la conversion protégée d'un identifiant HFS `uint` vers la référence exposée par le modèle sans répéter `Math.Min` dans le Reader.
-    - [ ] Capacité et espace libre
-      - [ ] Calculer la capacité logique depuis le nombre et la taille des allocations validés.
-      - [ ] Calculer l'espace libre depuis le nombre d'allocations libres seulement lorsque ces champs MDB sont cohérents.
-      - [ ] Ne pas présenter un calcul fiable lorsque la taille d'allocation est nulle, non divisible par la taille sectorielle ou que le nombre libre dépasse le total.
-    - [ ] Erreurs et avertissements HFS
-      - [ ] Utiliser `MacFileSystemExceptions` pour le volume non reconnu, le catalogue tronqué, le bloc absent, les données incomplètes et le cycle.
-      - [ ] Ajouter une erreur paramétrée pour une taille d'allocation invalide et un nœud/catalogue structurellement tronqué.
-      - [ ] Remplacer tous les textes bruts du Reader et des composants HFS par ces définitions.
-    - [ ] Présentation et CSDoc française
-      - [ ] Séparer les lectures MDB, nœuds, clés, records et extents actuellement regroupées sur une même ligne.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
-      - [ ] Documenter en français le Reader et chacun de ses membres restants.
-      - [ ] Documenter en français chaque type, propriété et méthode HFS créé.
+    - [x] Emplacement, identité et catalogue
+      - [x] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Hfs/MacHfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `mac-hfs` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Rendre immuable la collection des formats HFS annoncés.
+      - [x] Remplacer le nom brut `Macintosh HFS` par la définition centrale du système.
+    - [x] Disposition HFS
+      - [x] Créer `MacHfsFileSystemLayout.cs` et y définir la taille sectorielle 512, le bloc MDB 2, sa longueur minimale 162 et la signature `0x42 0x44`.
+      - [x] Y définir les offsets et longueurs MDB des dates, du nombre et de la taille des allocations, du début d'allocation, des allocations libres et du nom Pascal.
+      - [x] Y définir les offsets et longueurs de la taille du catalogue et de ses trois extents intégrés aux positions 146 et 150.
+      - [x] Y définir les tailles, offsets, types et limites des nœuds et records de catalogue actuellement codés dans `ParseCatalog`.
+      - [x] Remplacer tous les nombres bruts correspondants dans le Reader.
+    - [x] Primitives Macintosh communes
+      - [x] Remplacer `U16`, `U32`, `Pascal`, `DecodeMac`, `MacEpoch` et `MacDate` par `MacFileSystemPrimitives` et `MacFileSystemTime` communs à HFS et MFS.
+      - [x] Conserver dans la primitive de nom la conversion du séparateur Macintosh `:` vers le séparateur exposé `/`.
+      - [x] Supprimer les méthodes privées et l'import `System.Text` devenus inutiles après raccordement.
+    - [x] Lecture des extents HFS
+      - [x] Créer `MacHfsExtentReader.cs` et y déplacer la lecture des trois descripteurs d'extents intégrés.
+      - [x] Nommer les trois extents, les quatre octets par descripteur et les deux champs 16 bits début/nombre.
+      - [x] Valider que la taille d'allocation est non nulle et divisible par 512 avant de calculer les blocs par allocation.
+      - [x] Faire retourner contenu, validité, blocs absents et longueur restant à résoudre.
+      - [x] Réserver exactement 512 octets lorsqu'un secteur manque afin de conserver la position des suivants.
+      - [x] Rejeter ou signaler un secteur présent dont la taille n'est pas 512 au lieu d'écrire une longueur variable.
+      - [x] Distinguer l'absence d'un bloc du besoin de lire les extents supplémentaires du fichier d'extents.
+      - [x] Utiliser la longueur logique pour tronquer le tampon final sans masquer une donnée manquante.
+    - [x] Catalogue HFS
+      - [x] Créer `MacHfsCatalogRecord.cs` pour remplacer le record privé et exposer une collection de contenu immuable.
+      - [x] Ajouter au record la validité réelle du contenu et distinguer data fork et resource fork au lieu de ne conserver qu'un seul tableau choisi.
+      - [x] Créer `MacHfsCatalogReader.cs` et y déplacer `ParseCatalog`.
+      - [x] Valider l'en-tête du catalogue avant de lire la taille de nœud à l'offset 32.
+      - [x] Nommer la taille de nœud de repli 512, les bornes 256 et 32 768, le type de nœud feuille `-1` et la limite d'enregistrements 512.
+      - [x] Valider la table d'offsets située à la fin du nœud avant chaque lecture de début et de fin.
+      - [x] Nommer la longueur minimale de clé 6, les offsets parent/nom et la longueur maximale de nom 31.
+      - [x] Nommer l'alignement pair du record de données et les types record dossier 1 et fichier 2.
+      - [x] Définir tous les offsets de dossier, fichier, type Finder, dates, longueurs et extents par la disposition HFS.
+      - [x] Faire porter au record de fichier la validité combinée de ses forks.
+      - [x] Remplacer l'avertissement brut de catalogue sans record lisible par une définition centrale.
+    - [x] Arborescence HFS
+      - [x] Créer `MacHfsDirectoryBuilder.cs` et y déplacer `BuildChildren`.
+      - [x] Conserver la racine HFS identifiée par le parent 2 dans une définition nommée.
+      - [x] Détecter un cycle avec le chemin courant et produire une erreur recevant l'identifiant du dossier.
+      - [x] Utiliser la validité du record lors de la création de chaque entrée au lieu de fournir systématiquement `true`.
+      - [x] Conserver le tri dossiers puis fichiers et noms sans casse.
+      - [x] Définir la conversion protégée d'un identifiant HFS `uint` vers la référence exposée par le modèle sans répéter `Math.Min` dans le Reader.
+    - [x] Capacité et espace libre
+      - [x] Calculer la capacité logique depuis le nombre et la taille des allocations validés.
+      - [x] Calculer l'espace libre depuis le nombre d'allocations libres seulement lorsque ces champs MDB sont cohérents.
+      - [x] Ne pas présenter un calcul fiable lorsque la taille d'allocation est nulle, non divisible par la taille sectorielle ou que le nombre libre dépasse le total.
+    - [x] Erreurs et avertissements HFS
+      - [x] Utiliser `MacFileSystemExceptions` pour le volume non reconnu, le catalogue tronqué, le bloc absent, les données incomplètes et le cycle.
+      - [x] Ajouter une erreur paramétrée pour une taille d'allocation invalide et un nœud/catalogue structurellement tronqué.
+      - [x] Remplacer tous les textes bruts du Reader et des composants HFS par ces définitions.
+    - [x] Présentation et CSDoc française
+      - [x] Séparer les lectures MDB, nœuds, clés, records et extents actuellement regroupées sur une même ligne.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
+      - [x] Documenter en français le Reader et chacun de ses membres restants.
+      - [x] Documenter en français chaque type, propriété et méthode HFS créé.
     - [ ] Tests ciblés HFS
       - [ ] Tester par le Reader public des images HFS 400 K, 800 K et 1,44 M de `image_test` avec volume, dates, capacité et espace libre attendus.
-      - [ ] Tester le MDB, sa signature, sa longueur minimale et une taille d'allocation invalide.
-      - [ ] Tester un catalogue valide, tronqué, un nœud non-feuille, une table d'offsets invalide et aucun record lisible.
-      - [ ] Tester dossiers, data fork, resource fork et fichier possédant les deux forks.
-      - [ ] Tester trois extents intégrés, besoin d'extents supplémentaires et bloc absent sans déplacement des données suivantes.
-      - [ ] Tester un cycle de dossiers et la validité propagée aux entrées.
+        - Blocage : les images HFS reelles 800 Kio et 1,44 Mio sont validees, mais aucune image HFS reelle 400 Kio ne se trouve dans `image_test` ni dans les sources verifiees ; les images 400 Kio disponibles sont au format MFS.
+      - [x] Tester le MDB, sa signature, sa longueur minimale et une taille d'allocation invalide.
+      - [x] Tester un catalogue valide, tronqué, un nœud non-feuille, une table d'offsets invalide et aucun record lisible.
+      - [x] Tester dossiers, data fork, resource fork et fichier possédant les deux forks.
+      - [x] Tester trois extents intégrés, besoin d'extents supplémentaires et bloc absent sans déplacement des données suivantes.
+      - [x] Tester un cycle de dossiers et la validité propagée aux entrées.
   - [ ] `FileSystems/Readers/MacMfsFileSystemReader.cs`
     - [ ] Emplacement, identité et catalogue
       - [ ] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Mfs/MacMfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
