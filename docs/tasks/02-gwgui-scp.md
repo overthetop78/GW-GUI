@@ -5329,10 +5329,10 @@
     - [x] Remplacer formats CPC/PCW, géométries et tailles brutes par les définitions Amstrad correspondantes.
     - [x] Documenter en français chaque membre.
     - [ ] Tester les sélections CPC, PCW et le rejet d'une géométrie incompatible. Les sélections CPC et PCW sont validées par les deux images SCP réelles. **Rejet non applicable :** cette politique mesure volontairement la géométrie des candidats et n'impose aucune géométrie CPC/PCW à rejeter.
-  - [ ] `SectorImages/AmstradScpSectorImageReader.cs`
-    - [ ] Remplacer codec, formats et messages bruts par les définitions Amstrad et erreurs de reconstruction.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester la lecture explicite CPC, PCW et un format absent.
+  - [x] `SectorImages/AmstradScpSectorImageReader.cs`
+    - [x] Remplacer codec, formats et messages bruts par les définitions Amstrad et erreurs de reconstruction. Le wrapper a été supprimé et les parcours CPC/PCW appellent directement le lecteur ISO avec les identifiants communs.
+    - [x] Documenter en français chaque membre. Aucun membre ne subsiste après la suppression du wrapper.
+    - [x] Tester la lecture explicite CPC, PCW et un format absent.
   - [ ] `SectorImages/AppleIIScpSectorReconstructor.cs`
     - [ ] Remplacer ordres sectoriels, tailles, pistes et formats bruts par `AppleIIGeometry` et `AppleIIGcrFormat`.
     - [ ] Utiliser le sélecteur Apple commun uniquement pour la règle de meilleur secteur identique.
