@@ -3908,38 +3908,38 @@
       - [x] Tester la présence de la même synchronisation et du même gap autour des deux champs.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'une tête hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste E-mu avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/HeathkitFmTrackEncoder.cs`
-    - [ ] Identité et volume de l'encodeur Heathkit
-      - [ ] Remplacer l'identifiant brut `heathkit.fm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Heathkit hard-sectored FM` par la définition centrale correspondante.
-      - [ ] Remplacer la clé d'attribut brute `volume` et sa valeur par défaut par les définitions Heathkit correspondantes.
-    - [ ] Définitions du format Heathkit FM
-      - [ ] Déplacer la taille sectorielle dans `HeathkitFmFormat`.
-      - [ ] Déplacer le préambule FM `[0, 0, 0, 0xbf]`, répété avant l'identité et les données, dans `HeathkitFmFormat`.
-      - [ ] Déplacer les longueurs des gaps d'identité et de données dans `HeathkitFmFormat`.
-      - [ ] Définir dans le composant Heathkit commun l'ordre des champs volume, cylindre et secteur.
-      - [ ] Centraliser la règle commune qui ajoute le checksum rotatif puis inverse les bits de chaque octet avant l'encodage FM.
-    - [ ] Construction d'un secteur Heathkit
-      - [ ] Extraire la construction de l'identité dans une fonction privée recevant le volume, le cylindre et le secteur validés.
-      - [ ] Extraire l'ajout du checksum rotatif et l'inversion des bits dans une fonction commune utilisée pour l'identité et les données.
-      - [ ] Extraire l'écriture du préambule, de l'identité et du premier gap dans une fonction privée.
-      - [ ] Extraire l'écriture du préambule, des données et du second gap dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le volume avant sa conversion en octet.
-      - [ ] Valider le cylindre avant sa conversion en octet.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser les espaces dans les tableaux, appels, conversions et chaînes d'opérations LINQ.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Heathkit
-      - [ ] Tester l'ordre exact du volume, du cylindre et du secteur dans l'identité.
-      - [ ] Tester le checksum rotatif et l'inversion des bits de l'identité avec un résultat connu.
-      - [ ] Tester le checksum rotatif et l'inversion des bits d'un secteur de 256 octets avec un résultat connu.
-      - [ ] Tester la répétition du préambule et les deux longueurs de gaps.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un volume, d'un cylindre et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Heathkit avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/HeathkitFmTrackEncoder.cs`
+    - [x] Identité et volume de l'encodeur Heathkit
+      - [x] Remplacer l'identifiant brut `heathkit.fm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Heathkit hard-sectored FM` par la définition centrale correspondante.
+      - [x] Remplacer la clé d'attribut brute `volume` et sa valeur par défaut par les définitions Heathkit correspondantes.
+    - [x] Définitions du format Heathkit FM
+      - [x] Déplacer la taille sectorielle dans `HeathkitFmFormat`.
+      - [x] Déplacer le préambule FM `[0, 0, 0, 0xbf]`, répété avant l'identité et les données, dans `HeathkitFmFormat`.
+      - [x] Déplacer les longueurs des gaps d'identité et de données dans `HeathkitFmFormat`.
+      - [x] Définir dans le composant Heathkit commun l'ordre des champs volume, cylindre et secteur.
+      - [x] Centraliser la règle commune qui ajoute le checksum rotatif puis inverse les bits de chaque octet avant l'encodage FM.
+    - [x] Construction d'un secteur Heathkit
+      - [x] Extraire la construction de l'identité dans une fonction privée recevant le volume, le cylindre et le secteur validés.
+      - [x] Extraire l'ajout du checksum rotatif et l'inversion des bits dans une fonction commune utilisée pour l'identité et les données.
+      - [x] Extraire l'écriture du préambule, de l'identité et du premier gap dans une fonction privée.
+      - [x] Extraire l'écriture du préambule, des données et du second gap dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le volume avant sa conversion en octet.
+      - [x] Valider le cylindre avant sa conversion en octet.
+      - [x] Valider le numéro de secteur avant sa conversion en octet.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser les espaces dans les tableaux, appels, conversions et chaînes d'opérations LINQ.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Heathkit
+      - [x] Tester l'ordre exact du volume, du cylindre et du secteur dans l'identité.
+      - [x] Tester le checksum rotatif et l'inversion des bits de l'identité avec un résultat connu.
+      - [x] Tester le checksum rotatif et l'inversion des bits d'un secteur de 256 octets avec un résultat connu.
+      - [x] Tester la répétition du préambule et les deux longueurs de gaps.
+      - [x] Tester le rejet d'une taille sectorielle, d'un volume, d'un cylindre et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Heathkit avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/HpMmfmTrackEncoder.cs`
     - [ ] Identité de l'encodeur HP MMFM
       - [ ] Remplacer l'identifiant brut `hp.mmfm` par la définition centrale correspondante.

@@ -58,6 +58,8 @@ internal static class HeathkitFmFormat
     public const string VolumeAttributeName = "volume";
     /// <summary>Volume utilisé par défaut.</summary>
     public const byte DefaultVolume = 0;
+    /// <summary>Plus grande valeur représentable pour le volume, le cylindre et le secteur.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
     /// <summary>Marque FM commune aux en-têtes et aux données.</summary>
     public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeCompactFm(0, 0, 0, AddressMark));
 

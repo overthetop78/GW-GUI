@@ -60,11 +60,8 @@ public sealed class HeathkitFmDecoder : IFluxDecoder
     {
         var decoded = TryDecodeFmBytes(stream, offset + HeathkitFmFormat.MarkBitCount, HeathkitFmFormat.HeaderByteCount);
         if (decoded is null) return null;
-        var volume = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderVolumeOffset]);
-        var cylinder = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderCylinderOffset]);
-        var sector = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderSectorOffset]);
-        var stored = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.HeaderChecksumOffset]);
-        return new(volume, cylinder, sector, stored == RotatingChecksumCalculator.Compute([volume, cylinder, sector]));
+        var record = HeathkitFmCodec.DecodeRecord(decoded);
+        return new(record.Payload[HeathkitFmFormat.HeaderVolumeOffset], record.Payload[HeathkitFmFormat.HeaderCylinderOffset], record.Payload[HeathkitFmFormat.HeaderSectorOffset], record.Valid);
     }
 
     /// <summary>Lit, inverse et valide les données suivant une marque.</summary>
@@ -72,9 +69,8 @@ public sealed class HeathkitFmDecoder : IFluxDecoder
     {
         var decoded = TryDecodeFmBytes(stream, offset + HeathkitFmFormat.MarkBitCount, HeathkitFmFormat.DataBlockByteCount);
         if (decoded is null) return null;
-        var payload = decoded.Take(HeathkitFmFormat.SectorSize).Select(BitPrimitives.ReverseBits).ToArray();
-        var stored = BitPrimitives.ReverseBits(decoded[HeathkitFmFormat.SectorSize]);
-        return new(payload, stored == RotatingChecksumCalculator.Compute(payload));
+        var record = HeathkitFmCodec.DecodeRecord(decoded);
+        return new(record.Payload, record.Valid);
     }
 
     /// <summary>Recherche la marque suivante dans la distance autorisée.</summary>

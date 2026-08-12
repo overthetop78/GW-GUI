@@ -17,18 +17,31 @@ public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackBitEncoding.Bits();
-        var volume = (byte)Attribute(request, HeathkitFmFormat.VolumeAttributeName, HeathkitFmFormat.DefaultVolume);
+        var volumeValue = Attribute(request, HeathkitFmFormat.VolumeAttributeName, HeathkitFmFormat.DefaultVolume);
+        ValidateAddress(HeathkitFmFormat.VolumeAttributeName, volumeValue);
+        ValidateAddress(nameof(request.Cylinder), request.Cylinder);
+        var volume = (byte)volumeValue;
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != HeathkitFmFormat.SectorSize) throw HeathkitFmFormat.InvalidSectorSize(sector.Data.Count);
-            byte[] identity = [volume, (byte)request.Cylinder, (byte)sector.Number];
-            bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
-            bits.Fm(identity.Append(RotatingChecksumCalculator.Compute(identity)).Select(Primitives.BitPrimitives.ReverseBits));
-            bits.Gap(HeathkitFmFormat.HeaderGapBitCount);
-            bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
-            bits.Fm(sector.Data.Append(RotatingChecksumCalculator.Compute(sector.Data)).Select(Primitives.BitPrimitives.ReverseBits));
-            bits.Gap(HeathkitFmFormat.DataGapBitCount);
+            ValidateAddress(nameof(sector.Number), sector.Number);
+            WriteRecord(bits, [volume, (byte)request.Cylinder, (byte)sector.Number], HeathkitFmFormat.HeaderGapBitCount);
+            WriteRecord(bits, sector.Data, HeathkitFmFormat.DataGapBitCount);
         }
         return bits;
+    }
+
+    /// <summary>Écrit le préambule, les octets protégés puis le gap demandé.</summary>
+    private static void WriteRecord(List<bool> bits, IReadOnlyList<byte> values, int gapBitCount)
+    {
+        bits.Raw(HeathkitFmFormat.SectorMark.ToArray());
+        bits.Fm(HeathkitFmCodec.EncodeRecord(values));
+        bits.Gap(gapBitCount);
+    }
+
+    /// <summary>Valide une adresse avant sa conversion en octet.</summary>
+    private static void ValidateAddress(string field, int value)
+    {
+        if (value is < 0 || value > HeathkitFmFormat.MaximumAddressValue) throw TrackEncodingExceptions.FormatValueOutOfRange("Heathkit FM", field, value, HeathkitFmFormat.MaximumAddressValue);
     }
 }
