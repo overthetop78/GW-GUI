@@ -6064,178 +6064,180 @@
 
 - [ ] Compléments issus de la relecture complète des systèmes de fichiers
   - [ ] `FileSystems/Readers/AcornAdfsFileSystemReader.cs`
-    - [ ] Emplacement et identité du Reader ADFS
-      - [ ] Déplacer le Reader vers `FileSystems/Acorn/Adfs/AcornAdfsFileSystemReader.cs`.
-      - [ ] Adapter son namespace et tous ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `acorn-adfs` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer le nom brut `Acorn ADFS` fourni au volume par le même identifiant technique central.
-      - [ ] Exposer `CatalogFormatIds` par un ensemble réellement non modifiable contenant `DiskImageFormatIds.AcornAdfs800`.
-    - [ ] Disposition du format ADFS
-      - [ ] Créer `FileSystems/Acorn/Adfs/AcornAdfsLayout.cs`.
-      - [ ] Y déplacer la taille de bloc de 1 024 octets, l'unité FileCore de 256 octets, la taille de répertoire de 2 048 octets, les 77 entrées et les 26 octets de chaque entrée.
-      - [ ] Y définir le nombre attendu de 800 blocs de l'image ADFS reconnue sans laisser cette géométrie brute dans `CanRead`.
-      - [ ] Y définir l'offset initial des entrées, les positions et longueurs du nom, du load, de l'execute, de la longueur, de l'adresse indirecte et des attributs.
-      - [ ] Y définir la position de la queue du répertoire, du titre, du nom du répertoire, de la copie de séquence et de la signature finale.
-      - [ ] Y déplacer les signatures ASCII `Hugo` et `Nick` et leurs longueurs.
-      - [ ] Y définir le bit d'attribut indiquant un répertoire.
-      - [ ] Y définir la profondeur maximale de 64 niveaux.
-    - [ ] Résolution commune des adresses FileCore
-      - [ ] Créer `FileSystems/Acorn/FileCore/IFileCoreAddressResolver.cs`.
-      - [ ] Y exposer l'adresse racine, le nom du volume, l'espace libre et la résolution d'une adresse indirecte avec un offset d'objet.
-      - [ ] Remplacer le delegate privé `AddressResolver` et le record privé `Layout` par ce contrat.
-      - [ ] Faire implémenter ce contrat par les résolveurs old-map et new-map.
-    - [ ] Ancien map FileCore
-      - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreOldMap.cs`.
-      - [ ] Y déplacer la racine brute `4` et la résolution linéaire fondée sur l'unité FileCore.
-      - [ ] Y déplacer `ReadOldMapName` avec les longueurs et positions des deux moitiés entrelacées du nom.
-      - [ ] Y déplacer `ReadOldMapFreeBytes` avec l'offset, le nombre de 82 entrées, leur largeur de trois octets et leur unité de 256 octets.
-      - [ ] Remplacer les limites brutes `507` et `502` par les longueurs minimales dérivées des derniers champs lus.
-      - [ ] Remplacer `ReadUInt24` par une primitive little-endian 24 bits commune avec validation de la plage reçue.
-      - [ ] Conserver le plafonnement de l'espace libre par la capacité de l'image.
-    - [ ] Création unique du layout
-      - [ ] Créer une fonction qui tente d'abord le new-map puis construit le old-map lorsqu'il s'applique.
-      - [ ] Faire retourner avec le résolveur la validation du répertoire racine nécessaire à la reconnaissance.
-      - [ ] Faire utiliser cette fonction une seule fois par `Read` au lieu d'appeler `CanRead` puis de recréer le layout.
-      - [ ] Faire utiliser la même fonction par `CanRead` sans lire l'arborescence complète.
-    - [ ] Modèle de répertoire ADFS
-      - [ ] Créer `FileSystems/Acorn/Adfs/AcornAdfsDirectoryData.cs` et y déplacer `DirectoryData`.
-      - [ ] Copier la collection d'enfants reçue avant de l'exposer par une vue non modifiable.
-      - [ ] Conserver distinctement le nom du répertoire et son titre.
-    - [ ] Lecture et validation d'un répertoire
-      - [ ] Créer `FileSystems/Acorn/Adfs/AcornAdfsDirectoryReader.cs`.
-      - [ ] Y déplacer `TryReadDirectory`, `TryReadBytes`, `ReadDirectory` et le parcours récursif des entrées.
-      - [ ] Comparer les signatures d'en-tête et de pied avec les définitions ASCII centrales sans recréer de chaînes à chaque lecture.
-      - [ ] Vérifier la copie de séquence située au début et à la fin du répertoire avec les offsets centraux.
-      - [ ] Remplacer chaque offset et longueur d'entrée brut par `AcornAdfsLayout`.
-      - [ ] Définir centralement la valeur nulle qui termine la liste d'entrées.
-      - [ ] Conserver le tri des répertoires avant les fichiers puis des noms sans casse.
-    - [ ] Parcours récursif et références de répertoires
-      - [ ] Remplacer la profondeur brute par la limite centrale et une erreur ou un avertissement paramétrable recevant la profondeur observée.
-      - [ ] Conserver l'ensemble des adresses visitées pour détecter un cycle ou une seconde référence au même répertoire.
-      - [ ] Remplacer les textes bruts de cycle et de répertoire incomplet par des définitions recevant l'adresse du répertoire.
-      - [ ] Conserver le nom de l'entrée dans l'avertissement lorsqu'un sous-répertoire est rejeté.
-    - [ ] Lecture des fichiers ADFS
-      - [ ] Déplacer `ReadFile` dans un composant `AcornAdfsFileReader.cs` utilisant le résolveur commun.
-      - [ ] Conserver un contenu vide pour un fichier de longueur nulle.
-      - [ ] Valider la longueur avant sa conversion en entier et l'adresse avant la première lecture.
-      - [ ] Vérifier que l'offset calculé se trouve réellement dans les données du bloc obtenu avant de calculer le nombre d'octets à copier.
-      - [ ] Remplacer les copies LINQ temporaires par une copie de span bornée vers le tampon de sortie.
-      - [ ] Ne plus retourner comme contenu valide un tampon dont la fin est artificiellement remplie de zéros lorsqu'une adresse ou un bloc manque ; conserver l'invalidité et un contenu absent ou explicitement partiel.
-      - [ ] Remplacer les avertissements bruts par des fonctions recevant le nom, l'adresse, l'offset, la longueur et le bloc manquant.
-    - [ ] Noms, attributs et descriptions techniques
-      - [ ] Déplacer `DecodeName` dans un codec de nom ADFS avec le masque ASCII sept bits, le terminateur nul, le retour chariot et le remplissage espace nommés.
-      - [ ] Remplacer le masque brut `0x08` par le drapeau de répertoire défini centralement.
-      - [ ] Créer des fonctions de description technique recevant load, execute et type RISC OS au lieu de construire les deux textes directement dans la boucle.
-      - [ ] Conserver les attributs ADFS bruts dans le champ générique prévu par `FileSystemEntry`.
-    - [ ] Horodatage RISC OS
-      - [ ] Créer `FileSystems/Acorn/AcornFileSystemTime.cs`.
-      - [ ] Y déplacer l'époque RISC OS du 1er janvier 1900 UTC.
-      - [ ] Y déplacer le masque `0xFFF00000` qui signale un timestamp et le masque `0xFF` de ses bits hauts.
-      - [ ] Y déplacer la composition des centisecondes depuis load et execute et la conversion de dix millisecondes par centiseconde.
-      - [ ] Conserver un timestamp absent lorsque les bits de load ne signalent pas cette représentation ou lorsque la date dépasse la plage prise en charge.
-    - [ ] Erreurs et avertissements ADFS
-      - [ ] Créer `FileSystems/Acorn/Adfs/AcornAdfsExceptions.cs` pour l'image non reconnue et le répertoire invalide, avec les informations techniques injectables.
-      - [ ] Créer `FileSystems/Acorn/Adfs/AcornAdfsWarnings.cs` pour profondeur, cycle, adresse, longueur et bloc manquant.
-      - [ ] Remplacer tous les textes anglais écrits directement dans le Reader par ces définitions techniques.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Supprimer l'import `System.Text` inutilisé ou utiliser l'import au lieu des deux noms pleinement qualifiés, sans conserver les deux formes.
-      - [ ] Remettre sur une seule ligne les signatures de `ReadDirectory`, `ReadFile`, `TryReadDirectory` et `TryReadBytes` lorsqu'elles tiennent lisiblement après le découpage.
-      - [ ] Séparer les `try`, `catch`, affectations et changements de validité actuellement juxtaposés sur une même ligne.
-      - [ ] Conserver sur une seule ligne les appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc de chaque type, record, interface, propriété, constante et méthode conservé ou créé.
+    - [x] Emplacement et identité du Reader ADFS
+      - [x] Déplacer le Reader vers `FileSystems/Acorn/Adfs/AcornAdfsFileSystemReader.cs`.
+      - [x] Adapter son namespace et tous ses consommateurs.
+      - [x] Remplacer l'identifiant brut `acorn-adfs` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer le nom brut `Acorn ADFS` fourni au volume par le même identifiant technique central.
+      - [x] Exposer `CatalogFormatIds` par un ensemble réellement non modifiable contenant `DiskImageFormatIds.AcornAdfs800`.
+    - [x] Disposition du format ADFS
+      - [x] Créer `FileSystems/Acorn/Adfs/AcornAdfsLayout.cs`.
+      - [x] Y déplacer la taille de bloc de 1 024 octets, l'unité FileCore de 256 octets, la taille de répertoire de 2 048 octets, les 77 entrées et les 26 octets de chaque entrée.
+      - [x] Y définir le nombre attendu de 800 blocs de l'image ADFS reconnue sans laisser cette géométrie brute dans `CanRead`.
+      - [x] Y définir l'offset initial des entrées, les positions et longueurs du nom, du load, de l'execute, de la longueur, de l'adresse indirecte et des attributs.
+      - [x] Y définir la position de la queue du répertoire, du titre, du nom du répertoire, de la copie de séquence et de la signature finale.
+      - [x] Y déplacer les signatures ASCII `Hugo` et `Nick` et leurs longueurs.
+      - [x] Y définir le bit d'attribut indiquant un répertoire.
+      - [x] Y définir la profondeur maximale de 64 niveaux.
+    - [x] Résolution commune des adresses FileCore
+      - [x] Créer `FileSystems/Acorn/FileCore/IFileCoreAddressResolver.cs`.
+      - [x] Y exposer l'adresse racine, le nom du volume, l'espace libre et la résolution d'une adresse indirecte avec un offset d'objet.
+      - [x] Remplacer le delegate privé `AddressResolver` et le record privé `Layout` par ce contrat.
+      - [x] Faire implémenter ce contrat par les résolveurs old-map et new-map.
+    - [x] Ancien map FileCore
+      - [x] Créer `FileSystems/Acorn/FileCore/AcornFileCoreOldMap.cs`.
+      - [x] Y déplacer la racine brute `4` et la résolution linéaire fondée sur l'unité FileCore.
+      - [x] Y déplacer `ReadOldMapName` avec les longueurs et positions des deux moitiés entrelacées du nom.
+      - [x] Y déplacer `ReadOldMapFreeBytes` avec l'offset, le nombre de 82 entrées, leur largeur de trois octets et leur unité de 256 octets.
+      - [x] Remplacer les limites brutes `507` et `502` par les longueurs minimales dérivées des derniers champs lus.
+      - [x] Remplacer `ReadUInt24` par une primitive little-endian 24 bits commune avec validation de la plage reçue.
+      - [x] Conserver le plafonnement de l'espace libre par la capacité de l'image.
+    - [x] Création unique du layout
+      - [x] Créer une fonction qui tente d'abord le new-map puis construit le old-map lorsqu'il s'applique.
+      - [x] Faire retourner avec le résolveur la validation du répertoire racine nécessaire à la reconnaissance.
+      - [x] Faire utiliser cette fonction une seule fois par `Read` au lieu d'appeler `CanRead` puis de recréer le layout.
+      - [x] Faire utiliser la même fonction par `CanRead` sans lire l'arborescence complète.
+    - [x] Modèle de répertoire ADFS
+      - [x] Créer `FileSystems/Acorn/Adfs/AcornAdfsDirectoryData.cs` et y déplacer `DirectoryData`.
+      - [x] Copier la collection d'enfants reçue avant de l'exposer par une vue non modifiable.
+      - [x] Conserver distinctement le nom du répertoire et son titre.
+    - [x] Lecture et validation d'un répertoire
+      - [x] Créer `FileSystems/Acorn/Adfs/AcornAdfsDirectoryReader.cs`.
+      - [x] Y déplacer `TryReadDirectory`, `TryReadBytes`, `ReadDirectory` et le parcours récursif des entrées.
+      - [x] Comparer les signatures d'en-tête et de pied avec les définitions ASCII centrales sans recréer de chaînes à chaque lecture.
+      - [x] Vérifier la copie de séquence située au début et à la fin du répertoire avec les offsets centraux.
+      - [x] Remplacer chaque offset et longueur d'entrée brut par `AcornAdfsLayout`.
+      - [x] Définir centralement la valeur nulle qui termine la liste d'entrées.
+      - [x] Conserver le tri des répertoires avant les fichiers puis des noms sans casse.
+    - [x] Parcours récursif et références de répertoires
+      - [x] Remplacer la profondeur brute par la limite centrale et une erreur ou un avertissement paramétrable recevant la profondeur observée.
+      - [x] Conserver l'ensemble des adresses visitées pour détecter un cycle ou une seconde référence au même répertoire.
+      - [x] Remplacer les textes bruts de cycle et de répertoire incomplet par des définitions recevant l'adresse du répertoire.
+      - [x] Conserver le nom de l'entrée dans l'avertissement lorsqu'un sous-répertoire est rejeté.
+    - [x] Lecture des fichiers ADFS
+      - [x] Déplacer `ReadFile` dans un composant `AcornAdfsFileReader.cs` utilisant le résolveur commun.
+      - [x] Conserver un contenu vide pour un fichier de longueur nulle.
+      - [x] Valider la longueur avant sa conversion en entier et l'adresse avant la première lecture.
+      - [x] Vérifier que l'offset calculé se trouve réellement dans les données du bloc obtenu avant de calculer le nombre d'octets à copier.
+      - [x] Remplacer les copies LINQ temporaires par une copie de span bornée vers le tampon de sortie.
+      - [x] Ne plus retourner comme contenu valide un tampon dont la fin est artificiellement remplie de zéros lorsqu'une adresse ou un bloc manque ; conserver l'invalidité et un contenu absent ou explicitement partiel.
+      - [x] Remplacer les avertissements bruts par des fonctions recevant le nom, l'adresse, l'offset, la longueur et le bloc manquant.
+    - [x] Noms, attributs et descriptions techniques
+      - [x] Déplacer `DecodeName` dans un codec de nom ADFS avec le masque ASCII sept bits, le terminateur nul, le retour chariot et le remplissage espace nommés.
+      - [x] Remplacer le masque brut `0x08` par le drapeau de répertoire défini centralement.
+      - [x] Créer des fonctions de description technique recevant load, execute et type RISC OS au lieu de construire les deux textes directement dans la boucle.
+      - [x] Conserver les attributs ADFS bruts dans le champ générique prévu par `FileSystemEntry`.
+    - [x] Horodatage RISC OS
+      - [x] Créer `FileSystems/Acorn/AcornFileSystemTime.cs`.
+      - [x] Y déplacer l'époque RISC OS du 1er janvier 1900 UTC.
+      - [x] Y déplacer le masque `0xFFF00000` qui signale un timestamp et le masque `0xFF` de ses bits hauts.
+      - [x] Y déplacer la composition des centisecondes depuis load et execute et la conversion de dix millisecondes par centiseconde.
+      - [x] Conserver un timestamp absent lorsque les bits de load ne signalent pas cette représentation ou lorsque la date dépasse la plage prise en charge.
+    - [x] Erreurs et avertissements ADFS
+      - [x] Créer `FileSystems/Acorn/Adfs/AcornAdfsExceptions.cs` pour l'image non reconnue et le répertoire invalide, avec les informations techniques injectables.
+      - [x] Créer `FileSystems/Acorn/Adfs/AcornAdfsWarnings.cs` pour profondeur, cycle, adresse, longueur et bloc manquant.
+      - [x] Remplacer tous les textes anglais écrits directement dans le Reader par ces définitions techniques.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Supprimer l'import `System.Text` inutilisé ou utiliser l'import au lieu des deux noms pleinement qualifiés, sans conserver les deux formes.
+      - [x] Remettre sur une seule ligne les signatures de `ReadDirectory`, `ReadFile`, `TryReadDirectory` et `TryReadBytes` lorsqu'elles tiennent lisiblement après le découpage.
+      - [x] Séparer les `try`, `catch`, affectations et changements de validité actuellement juxtaposés sur une même ligne.
+      - [x] Conserver sur une seule ligne les appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc de chaque type, record, interface, propriété, constante et méthode conservé ou créé.
     - [ ] Tests ciblés du Reader ADFS
-      - [ ] Tester la reconnaissance de la géométrie ADFS 800 blocs et le rejet d'une géométrie différente.
-      - [ ] Tester un old-map et un new-map avec le même parcours public du Reader.
-      - [ ] Tester les signatures `Hugo` et `Nick`, une signature de pied différente et une copie de séquence différente.
-      - [ ] Tester le nom et l'espace libre entrelacés de l'ancien map.
+      - [x] Tester la reconnaissance de la géométrie ADFS 800 blocs et le rejet d'une géométrie différente.
+      - [x] Tester un old-map et un new-map avec le même parcours public du Reader.
+      - [x] Tester les signatures `Hugo` et `Nick`, une signature de pied différente et une copie de séquence différente.
+      - [x] Tester le nom et l'espace libre entrelacés de l'ancien map.
       - [ ] Tester un timestamp RISC OS valide, un load sans timestamp et une date hors plage.
-      - [ ] Tester un sous-répertoire, un cycle, une seconde référence et la limite de profondeur.
-      - [ ] Tester un fichier vide, un fichier sur plusieurs blocs, une adresse invalide, un offset hors bloc et un bloc absent sans accepter de zéros artificiels comme contenu valide.
-      - [ ] Tester avec une image ADFS connue de `image_test` le nom du volume, l'arborescence, les contenus, attributs, descriptions, avertissements et l'espace libre.
+        - État : le timestamp valide et le load sans timestamp sont testés. La représentation RISC OS utilisée ne peut pas dépasser la plage de `DateTimeOffset` : ses 40 bits de centisecondes couvrent environ 348 ans après 1900 ; aucun encodage sur disque ne permet donc de fabriquer le cas « date hors plage » demandé.
+      - [x] Tester un sous-répertoire, un cycle, une seconde référence et la limite de profondeur.
+      - [x] Tester un fichier vide, un fichier sur plusieurs blocs, une adresse invalide, un offset hors bloc et un bloc absent sans accepter de zéros artificiels comme contenu valide.
+      - [x] Tester avec une image ADFS connue de `image_test` le nom du volume, l'arborescence, les contenus, attributs, descriptions, avertissements et l'espace libre.
   - [ ] `FileSystems/Readers/AcornFileCoreNewMap.cs`
-    - [ ] Emplacement et contrat du résolveur new-map
-      - [ ] Déplacer le fichier vers `FileSystems/Acorn/FileCore/AcornFileCoreNewMap.cs`.
-      - [ ] Adapter son namespace et ses consommateurs ADFS.
-      - [ ] Faire implémenter à `AcornFileCoreNewMap` le contrat `IFileCoreAddressResolver` créé avec le Reader ADFS.
-      - [ ] Exposer par ce contrat l'adresse racine, le nom du disque, l'espace libre et `TryResolveByteOffset` sans exposer le DiscRecord complet au Reader.
-    - [ ] Disposition générale FileCore
-      - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreLayout.cs`.
-      - [ ] Y déplacer l'offset 4 et la longueur 60 du DiscRecord et dériver sa longueur en bits du nombre de bits par octet.
-      - [ ] Y déplacer l'identifiant de fragment racine `2`.
-      - [ ] Y définir la longueur de 32 bits qui précède la carte de chaque zone et la présence du DiscRecord dans la première zone.
-      - [ ] Y définir les positions des liens de zone, les décalages de fragments, les masques `0xFF` et `0x7FFF` et les décalages de huit bits de l'adresse indirecte.
-      - [ ] Y définir la longueur maximale de quinze bits utilisée pour les identifiants de la liste libre.
-    - [ ] Modèle et parsing du DiscRecord
-      - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreDiscRecord.cs` et y déplacer `DiscRecord`.
-      - [ ] Créer une disposition nommée pour chaque offset et longueur lu actuellement aux positions `0`, `4`, `5`, `9`, `10..12`, `12..16`, `16..20`, `22..32`, `36..40`, `40` et `42`.
-      - [ ] Dériver la taille de zone en bits depuis la taille sectorielle et les bits de réserve avec des définitions nommées.
-      - [ ] Conserver les limites de logarithme sectoriel 8 à 10, d'identifiant, de map-bit, de zone, de racine, de taille disque et de réserve.
-      - [ ] Remplacer chacune de ces bornes brutes par une définition expliquant le champ contrôlé.
-      - [ ] Extraire la composition 64 bits de la taille disque dans une fonction grandement nommée utilisant ses mots bas et haut little-endian.
-      - [ ] Extraire le décodage ASCII et le retrait des terminateurs nul, retour chariot et espace dans un codec de nom FileCore commun.
-      - [ ] Remplacer le masque brut `0x0F` de `Log2ShareSize` par sa définition de champ.
-      - [ ] Remplacer `record = null!` par une signature de tentative qui représente explicitement l'absence de DiscRecord.
-    - [ ] Modèle de zone FileCore
-      - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreZone.cs` et y déplacer `Zone`.
-      - [ ] Copier les données de zone reçues avant de les exposer par une vue non modifiable ou un stockage privé.
-      - [ ] Conserver distinctement la position de map, le premier bit utile et le dernier bit exclusif.
-      - [ ] Valider à la construction que les limites de bits sont ordonnées et contenues dans les données de zone.
-    - [ ] Construction de la new-map
-      - [ ] Remplacer le bloc brut zéro par la définition du premier bloc contenant le DiscRecord.
-      - [ ] Extraire le calcul de l'adresse de la carte dans une fonction utilisant le nombre de zones, leur taille, le DiscRecord et le décalage map-vers-bloc.
-      - [ ] Conserver le calcul vérifié de l'adresse et son contrôle par rapport au nombre de blocs de l'image.
-      - [ ] Extraire le calcul du nombre de bits décrits par la capacité de l'image.
-      - [ ] Extraire le calcul des limites de la première zone, des zones intermédiaires et de la dernière zone.
-      - [ ] Remplacer tous les `32`, tailles de DiscRecord et corrections de première zone par les définitions centrales.
-      - [ ] Conserver le rejet d'un bloc de zone absent, incomplet ou dont les limites sont invalides.
-    - [ ] Primitive de lecture de bits
-      - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreBitReader.cs` et y déplacer `GetBits` et `FindNextSetBit`.
-      - [ ] Remplacer les tailles brutes de trois bits de décalage, quatre octets de fenêtre et sept bits intra-octet par `BitPrimitives`.
-      - [ ] Faire valider par `GetBits` un offset non négatif et une fenêtre réellement contenue dans les données avant de créer le span.
-      - [ ] Faire valider par `FindNextSetBit` des bornes ordonnées, non négatives et contenues dans le nombre de bits disponible.
-      - [ ] Accepter des données en lecture seule afin de ne pas nécessiter un tableau mutable.
-      - [ ] Remplacer les accès hors plage par des erreurs FileCore paramétrables au lieu de laisser `AsSpan` ou l'indexeur produire une erreur sans contexte.
-    - [ ] Résolution d'une adresse indirecte
-      - [ ] Extraire la séparation entre l'offset de partage bas et l'identifiant de fragment haut dans une définition d'adresse FileCore.
-      - [ ] Remplacer le masque `0xFF`, le décalage de huit bits et la soustraction d'un du partage par ces définitions.
-      - [ ] Conserver la zone centrale pour le fragment racine et le calcul par `idsPerZone` pour les autres fragments.
-      - [ ] Valider que `idsPerZone` est strictement positif avant toute division.
-      - [ ] Conserver le balayage circulaire des zones dans leur ordre actuel.
-      - [ ] Extraire le calcul de `mapPosition`, `sectorOffset` et du bloc résolu dans une fonction dédiée utilisant le décalage map-vers-bloc.
-      - [ ] Conserver le rejet du bloc zéro, réservé, et de tout bloc extérieur à l'image.
-    - [ ] Recherche de fragment dans une zone
-      - [ ] Remplacer les offsets bruts de huit bits et le masque de lien libre `0x7FFF` par `AcornFileCoreLayout`.
-      - [ ] Extraire la lecture et l'avancement de la chaîne de liens libres dans une fonction dédiée.
-      - [ ] Extraire la comparaison et la consommation de la longueur d'un fragment recherché dans une fonction dédiée.
-      - [ ] Conserver la borne de fin de fragment déterminée par le prochain bit positionné.
-      - [ ] Valider les additions de liens et les longueurs avant leur conversion en entier.
-    - [ ] Calcul de l'espace libre
-      - [ ] Remplacer la limite brute de quinze bits, l'offset de lien huit et les masques locaux par les définitions communes.
-      - [ ] Extraire le parcours d'une liste libre de zone dans une fonction qui retourne son nombre de map-bits libres.
-      - [ ] Conserver le plafonnement du résultat final par la capacité de l'image.
-      - [ ] Conserver la conversion des map-bits libres en octets par `Log2BytesPerMapBit` avec contrôle de débordement.
-    - [ ] Décalages vérifiés
-      - [ ] Déplacer `Shift` dans une primitive FileCore nommée indiquant qu'un décalage positif multiplie et qu'un décalage négatif divise.
-      - [ ] Valider la plage du nombre de bits de décalage avant l'opération.
-      - [ ] Conserver le contrôle de débordement du décalage vers la gauche.
+    - [x] Emplacement et contrat du résolveur new-map
+      - [x] Déplacer le fichier vers `FileSystems/Acorn/FileCore/AcornFileCoreNewMap.cs`.
+      - [x] Adapter son namespace et ses consommateurs ADFS.
+      - [x] Faire implémenter à `AcornFileCoreNewMap` le contrat `IFileCoreAddressResolver` créé avec le Reader ADFS.
+      - [x] Exposer par ce contrat l'adresse racine, le nom du disque, l'espace libre et `TryResolveByteOffset` sans exposer le DiscRecord complet au Reader.
+    - [x] Disposition générale FileCore
+      - [x] Créer `FileSystems/Acorn/FileCore/AcornFileCoreLayout.cs`.
+      - [x] Y déplacer l'offset 4 et la longueur 60 du DiscRecord et dériver sa longueur en bits du nombre de bits par octet.
+      - [x] Y déplacer l'identifiant de fragment racine `2`.
+      - [x] Y définir la longueur de 32 bits qui précède la carte de chaque zone et la présence du DiscRecord dans la première zone.
+      - [x] Y définir les positions des liens de zone, les décalages de fragments, les masques `0xFF` et `0x7FFF` et les décalages de huit bits de l'adresse indirecte.
+      - [x] Y définir la longueur maximale de quinze bits utilisée pour les identifiants de la liste libre.
+    - [x] Modèle et parsing du DiscRecord
+      - [x] Créer `FileSystems/Acorn/FileCore/AcornFileCoreDiscRecord.cs` et y déplacer `DiscRecord`.
+      - [x] Créer une disposition nommée pour chaque offset et longueur lu actuellement aux positions `0`, `4`, `5`, `9`, `10..12`, `12..16`, `16..20`, `22..32`, `36..40`, `40` et `42`.
+      - [x] Dériver la taille de zone en bits depuis la taille sectorielle et les bits de réserve avec des définitions nommées.
+      - [x] Conserver les limites de logarithme sectoriel 8 à 10, d'identifiant, de map-bit, de zone, de racine, de taille disque et de réserve.
+      - [x] Remplacer chacune de ces bornes brutes par une définition expliquant le champ contrôlé.
+      - [x] Extraire la composition 64 bits de la taille disque dans une fonction grandement nommée utilisant ses mots bas et haut little-endian.
+      - [x] Extraire le décodage ASCII et le retrait des terminateurs nul, retour chariot et espace dans un codec de nom FileCore commun.
+      - [x] Remplacer le masque brut `0x0F` de `Log2ShareSize` par sa définition de champ.
+      - [x] Remplacer `record = null!` par une signature de tentative qui représente explicitement l'absence de DiscRecord.
+    - [x] Modèle de zone FileCore
+      - [x] Créer `FileSystems/Acorn/FileCore/AcornFileCoreZone.cs` et y déplacer `Zone`.
+      - [x] Copier les données de zone reçues avant de les exposer par une vue non modifiable ou un stockage privé.
+      - [x] Conserver distinctement la position de map, le premier bit utile et le dernier bit exclusif.
+      - [x] Valider à la construction que les limites de bits sont ordonnées et contenues dans les données de zone.
+    - [x] Construction de la new-map
+      - [x] Remplacer le bloc brut zéro par la définition du premier bloc contenant le DiscRecord.
+      - [x] Extraire le calcul de l'adresse de la carte dans une fonction utilisant le nombre de zones, leur taille, le DiscRecord et le décalage map-vers-bloc.
+      - [x] Conserver le calcul vérifié de l'adresse et son contrôle par rapport au nombre de blocs de l'image.
+      - [x] Extraire le calcul du nombre de bits décrits par la capacité de l'image.
+      - [x] Extraire le calcul des limites de la première zone, des zones intermédiaires et de la dernière zone.
+      - [x] Remplacer tous les `32`, tailles de DiscRecord et corrections de première zone par les définitions centrales.
+      - [x] Conserver le rejet d'un bloc de zone absent, incomplet ou dont les limites sont invalides.
+    - [x] Primitive de lecture de bits
+      - [x] Créer `FileSystems/Acorn/FileCore/AcornFileCoreBitReader.cs` et y déplacer `GetBits` et `FindNextSetBit`.
+      - [x] Remplacer les tailles brutes de trois bits de décalage, quatre octets de fenêtre et sept bits intra-octet par `BitPrimitives`.
+      - [x] Faire valider par `GetBits` un offset non négatif et une fenêtre réellement contenue dans les données avant de créer le span.
+      - [x] Faire valider par `FindNextSetBit` des bornes ordonnées, non négatives et contenues dans le nombre de bits disponible.
+      - [x] Accepter des données en lecture seule afin de ne pas nécessiter un tableau mutable.
+      - [x] Remplacer les accès hors plage par des erreurs FileCore paramétrables au lieu de laisser `AsSpan` ou l'indexeur produire une erreur sans contexte.
+    - [x] Résolution d'une adresse indirecte
+      - [x] Extraire la séparation entre l'offset de partage bas et l'identifiant de fragment haut dans une définition d'adresse FileCore.
+      - [x] Remplacer le masque `0xFF`, le décalage de huit bits et la soustraction d'un du partage par ces définitions.
+      - [x] Conserver la zone centrale pour le fragment racine et le calcul par `idsPerZone` pour les autres fragments.
+      - [x] Valider que `idsPerZone` est strictement positif avant toute division.
+      - [x] Conserver le balayage circulaire des zones dans leur ordre actuel.
+      - [x] Extraire le calcul de `mapPosition`, `sectorOffset` et du bloc résolu dans une fonction dédiée utilisant le décalage map-vers-bloc.
+      - [x] Conserver le rejet du bloc zéro, réservé, et de tout bloc extérieur à l'image.
+    - [x] Recherche de fragment dans une zone
+      - [x] Remplacer les offsets bruts de huit bits et le masque de lien libre `0x7FFF` par `AcornFileCoreLayout`.
+      - [x] Extraire la lecture et l'avancement de la chaîne de liens libres dans une fonction dédiée.
+      - [x] Extraire la comparaison et la consommation de la longueur d'un fragment recherché dans une fonction dédiée.
+      - [x] Conserver la borne de fin de fragment déterminée par le prochain bit positionné.
+      - [x] Valider les additions de liens et les longueurs avant leur conversion en entier.
+    - [x] Calcul de l'espace libre
+      - [x] Remplacer la limite brute de quinze bits, l'offset de lien huit et les masques locaux par les définitions communes.
+      - [x] Extraire le parcours d'une liste libre de zone dans une fonction qui retourne son nombre de map-bits libres.
+      - [x] Conserver le plafonnement du résultat final par la capacité de l'image.
+      - [x] Conserver la conversion des map-bits libres en octets par `Log2BytesPerMapBit` avec contrôle de débordement.
+    - [x] Décalages vérifiés
+      - [x] Déplacer `Shift` dans une primitive FileCore nommée indiquant qu'un décalage positif multiplie et qu'un décalage négatif divise.
+      - [x] Valider la plage du nombre de bits de décalage avant l'opération.
+      - [x] Conserver le contrôle de débordement du décalage vers la gauche.
     - [ ] Erreurs FileCore
       - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreExceptions.cs` avec les erreurs de plage de bits, zone invalide, adresse de carte, identifiant, lien et décalage.
       - [ ] Permettre d'injecter zone, fragment, offset, longueur observée, longueur attendue et capacité selon l'erreur.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Traduire en français la CSDoc anglaise de `AcornFileCoreNewMap`.
-      - [ ] Remettre sur une seule ligne les signatures et déclarations de records lorsqu'elles tiennent lisiblement après le découpage.
-      - [ ] Décomposer les calculs de `mapAddress`, `endBit`, `discSize` et du constructeur `DiscRecord` en variables nommées plutôt qu'en lignes cassées au milieu d'une expression.
-      - [ ] Conserver sur une seule ligne les appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc de chaque type, record, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés de FileCore new-map
-      - [ ] Tester chaque champ et chaque limite du DiscRecord, y compris les deux mots de taille disque et le nom.
-      - [ ] Tester une carte d'une zone, plusieurs zones et une dernière zone partiellement décrite.
-      - [ ] Tester le fragment racine, un fragment ordinaire, un offset de partage et un fragment réparti sur plusieurs zones.
-      - [ ] Tester une chaîne de liens libres valide, terminée, hors zone et débordante.
-      - [ ] Tester `GetBits` aux limites d'octet et de fenêtre ainsi que chaque plage invalide.
-      - [ ] Tester `FindNextSetBit` avec bit trouvé, fin atteinte et bornes invalides.
-      - [ ] Tester une adresse nulle, un offset négatif, un bloc zéro, un bloc hors image et un décalage débordant.
-      - [ ] Tester l'espace libre calculé et son plafonnement par la capacité de l'image.
+        - État : les erreurs réellement levées injectent l'offset, la longueur et la capacité, ou les limites de zone et le décalage. Les adresses de carte, identifiants et liens invalides appartiennent aux méthodes `TryCreate` et `TryResolveByteOffset`, qui les rejettent par `false` ; leur faire lever une exception changerait le contrat de tentative et créerait des fabriques sans consommateur.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Traduire en français la CSDoc anglaise de `AcornFileCoreNewMap`.
+      - [x] Remettre sur une seule ligne les signatures et déclarations de records lorsqu'elles tiennent lisiblement après le découpage.
+      - [x] Décomposer les calculs de `mapAddress`, `endBit`, `discSize` et du constructeur `DiscRecord` en variables nommées plutôt qu'en lignes cassées au milieu d'une expression.
+      - [x] Conserver sur une seule ligne les appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc de chaque type, record, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés de FileCore new-map
+      - [x] Tester chaque champ et chaque limite du DiscRecord, y compris les deux mots de taille disque et le nom.
+      - [x] Tester une carte d'une zone, plusieurs zones et une dernière zone partiellement décrite.
+      - [x] Tester le fragment racine, un fragment ordinaire, un offset de partage et un fragment réparti sur plusieurs zones.
+      - [x] Tester une chaîne de liens libres valide, terminée, hors zone et débordante.
+      - [x] Tester `GetBits` aux limites d'octet et de fenêtre ainsi que chaque plage invalide.
+      - [x] Tester `FindNextSetBit` avec bit trouvé, fin atteinte et bornes invalides.
+      - [x] Tester une adresse nulle, un offset négatif, un bloc zéro, un bloc hors image et un décalage débordant.
+      - [x] Tester l'espace libre calculé et son plafonnement par la capacité de l'image.
   - [ ] `FileSystems/FileSystemModels.cs`
     - [ ] Découpage des quatre types publics
       - [ ] Créer `FileSystems/FileSystemEntryKind.cs` et y déplacer uniquement l'enum `FileSystemEntryKind`.
