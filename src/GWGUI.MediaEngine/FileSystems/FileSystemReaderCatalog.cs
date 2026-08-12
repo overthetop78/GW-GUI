@@ -17,7 +17,7 @@ public static class FileSystemReaderCatalog
         new Readers.ProDosFileSystemReader(),
         new Readers.MacMfsFileSystemReader(),
         new Readers.MacHfsFileSystemReader(),
-        new Readers.LisaFileSystemReader(),
+        new Apple.Lisa.LisaFileSystemReader(),
         new Cpm.AmstradCpmFileSystemReader(),
         new Cpm.CpmFileSystemReader(),
         new Commodore.Dos.CommodoreDosFileSystemReader(),

@@ -6,7 +6,7 @@ using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.FileSystems.Lisa;
+using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
 using GWGUI.MediaEngine.FileSystems.ProDos;
 using GWGUI.MediaEngine.FileSystems.Sos;
@@ -63,7 +63,7 @@ public sealed class AppleRawImageReaderTests
     public void ReadsAllApple35Interpretations()
     {
         var lisa = new byte[LisaVolumeHeader.Capacity];
-        BinaryPrimitives.WriteUInt16BigEndian(lisa, LisaVolumeHeader.TableCatalogVersion);
+        BinaryPrimitives.WriteUInt16BigEndian(lisa, (ushort)LisaCatalogVersion.Table);
         lisa[LisaVolumeHeader.NameLengthOffset] = 4;
         "Lisa"u8.CopyTo(lisa.AsSpan(LisaVolumeHeader.NameOffset));
         var lisaResult = AppleRawImageReader.Read(lisa, DiskImageFileExtensions.Img);

@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.FileSystems.Lisa;
+using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
 using GWGUI.MediaEngine.FileSystems.ProDos;
 using GWGUI.MediaEngine.FileSystems.Sos;
@@ -57,12 +57,12 @@ public sealed class AppleRawImageProbeTests
     [Fact]
     public void ProbesLisaVersionAndPrintableName()
     {
-        var data = CreateLisaImage(LisaVolumeHeader.TableCatalogVersion, "Lisa"u8);
+        var data = CreateLisaImage((ushort)LisaCatalogVersion.Table, "Lisa"u8);
         Assert.True(AppleRawImageProbe.LooksLikeLisaOffice(data));
         Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage(0x0010, "Lisa"u8)));
-        Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage(LisaVolumeHeader.HashCatalogVersion, [])));
-        Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage(LisaVolumeHeader.BTreeCatalogVersion, new byte[LisaVolumeHeader.MaximumNameLength + 1])));
-        Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage(LisaVolumeHeader.TableCatalogVersion, [0x1F])));
+        Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage((ushort)LisaCatalogVersion.Hash, [])));
+        Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage((ushort)LisaCatalogVersion.BTree, new byte[LisaVolumeHeader.MaximumNameLength + 1])));
+        Assert.False(AppleRawImageProbe.LooksLikeLisaOffice(CreateLisaImage((ushort)LisaCatalogVersion.Table, [0x1F])));
     }
 
     /// <summary>Vérifie la recherche ASCII bornée et sans casse du marqueur SOS.</summary>

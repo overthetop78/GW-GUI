@@ -1,8 +1,7 @@
 using System.Buffers.Binary;
-using System.Text;
 using GWGUI.MediaEngine.Geometries.Apple;
 
-namespace GWGUI.MediaEngine.FileSystems.Lisa;
+namespace GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 
 /// <summary>Définit les champs communs des en-têtes de volume Lisa Office System.</summary>
 internal static class LisaVolumeHeader
@@ -25,13 +24,6 @@ internal static class LisaVolumeHeader
     public const byte MinimumPrintableCharacter = 0x20;
     /// <summary>Dernière valeur ASCII imprimable acceptée.</summary>
     public const byte MaximumPrintableCharacter = 0x7E;
-    /// <summary>Version du catalogue tabulaire.</summary>
-    public const ushort TableCatalogVersion = 0x000E;
-    /// <summary>Version du catalogue haché.</summary>
-    public const ushort HashCatalogVersion = 0x000F;
-    /// <summary>Version du catalogue B-tree.</summary>
-    public const ushort BTreeCatalogVersion = 0x0011;
-
     /// <summary>Vérifie la version, la longueur et les caractères du nom d'une page candidate.</summary>
     public static bool IsValid(ReadOnlySpan<byte> page)
     {
@@ -42,7 +34,7 @@ internal static class LisaVolumeHeader
     }
 
     /// <summary>Indique si la version appartient aux trois variantes Lisa Office connues.</summary>
-    public static bool IsKnownVersion(ushort version) => version is TableCatalogVersion or HashCatalogVersion or BTreeCatalogVersion;
+    public static bool IsKnownVersion(ushort version) => Enum.IsDefined((LisaCatalogVersion)version);
 
     /// <summary>Vérifie que chaque octet du nom appartient à la plage ASCII imprimable.</summary>
     public static bool IsPrintableName(ReadOnlySpan<byte> name)

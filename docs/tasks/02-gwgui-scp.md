@@ -6939,70 +6939,70 @@
       - [x] Tester une chaîne cyclique, un cluster hors plage, un fichier tronqué et la validité de l'entrée produite.
       - [x] Tester label de racine, label d'amorçage, `NO NAME`, nom 8.3, entrée supprimée, nom long ignoré, répertoire et profondeur maximale.
       - [x] Tester une FAT invalide et vérifier que l'espace libre n'est pas présenté comme fiable.
-  - [ ] `FileSystems/Readers/LisaFileSystemReader.cs`
-    - [ ] Emplacement, identité et formats annoncés
-      - [ ] Déplacer le Reader et ses composants vers `FileSystems/Apple/Lisa/` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `lisa` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Rendre immuable la collection des formats annoncés.
-      - [ ] Vérifier puis corriger l'incohérence actuelle entre `CatalogFormatIds`, qui contient aussi `Mac400`, et `CanRead`, qui refuse tout format autre que `AppleLisaOffice`.
-      - [ ] Ne conserver `Mac400` dans ce catalogue que si un test d'image Lisa réellement portée par ce format valide ce chemin ; sinon le retirer.
-    - [ ] Définitions du système de fichiers Lisa
-      - [ ] Créer `LisaFileSystemLayout.cs` et y déplacer les identifiants MDDF `0x0001`, bitmap `0x0002`, S-records `0x0003` et catalogue `0x0004`.
-      - [ ] Y définir les marqueurs de page libre `0x0000` et `0x7FFF`, la borne supérieure des fichiers utilisateur et les quatre identifiants réservés exclus par `IsUserFile`.
-      - [ ] Y définir la longueur de tag Lisa 12 et les offsets/longueurs de l'identifiant de fichier et du numéro de page actuellement lus aux positions 4, 6, 2 et 2.
-      - [ ] Y définir le masque `0x07FF` du numéro de page.
-      - [ ] Y définir les offsets et limites du nom de volume MDDF aux positions 12 et 13, avec sa longueur maximale 31.
-      - [ ] Remplacer les constantes privées et tous les nombres bruts correspondants par ces définitions.
-    - [ ] Versions du catalogue Lisa
-      - [ ] Créer `LisaCatalogVersion.cs` pour les versions table `0x000E`, hash `0x000F` et B-tree `0x0011`.
-      - [ ] Remplacer le `switch` numérique par cet enum et une définition centrale des noms techniques de chaque variante.
-      - [ ] Remplacer le nom construit brut de version inconnue par une fonction recevant la valeur observée.
-      - [ ] Distinguer explicitement dans la sélection du lecteur de catalogue la version table et les versions utilisant la disposition de 64 octets.
-    - [ ] Lecture du MDDF
-      - [ ] Créer `LisaMddfReader.cs` pour sélectionner la page MDDF ordonnée appropriée et valider sa longueur avant chaque lecture.
-      - [ ] Lire la version, la longueur du nom et le nom sans appeler `ReadUInt16BigEndian` sur moins de deux octets.
-      - [ ] Remplacer le nom de secours brut `Lisa` par une définition centrale.
-      - [ ] Signaler avec un avertissement paramétré un MDDF tronqué au lieu de poursuivre avec des champs partiels.
-    - [ ] Lecture des tags Lisa
-      - [ ] Créer `LisaPageTagReader.cs` et y déplacer `TagFileId`, `TagPageNumber` et `IsUserFile`.
-      - [ ] Faire retourner une absence explicite lorsque le tag est absent ou trop court, au lieu de confondre cette situation avec l'identifiant libre zéro ou le numéro logique du bloc.
-      - [ ] Utiliser uniquement les tags valides pour reconnaître le MDDF, regrouper les fichiers et calculer les pages libres.
-      - [ ] Conserver le numéro logique uniquement comme information de repli distincte, sans le présenter comme un numéro de page lu dans un tag absent.
-    - [ ] Catalogues Lisa
-      - [ ] Créer `LisaCatalogReader.cs` et y déplacer `ReadCatalogNames`.
-      - [ ] Définir la taille 54, l'offset d'identifiant 36 et la longueur maximale 31 des entrées du catalogue table.
-      - [ ] Définir l'offset initial `0x50`, la taille 64, le marqueur zéro, la borne `0x20`, l'offset du nom et l'offset d'identifiant du catalogue ultérieur.
-      - [ ] Séparer la lecture d'une entrée table de celle d'une entrée ultérieure.
-      - [ ] Ne parcourir que les pages catalogue dont le tag est présent et valide, ordonnées par leur numéro de page validé.
-      - [ ] Remplacer l'avertissement brut de catalogue absent par une définition expliquant la récupération des noms par tags.
-      - [ ] Traduire les commentaires anglais en CSDoc française des deux dispositions.
-    - [ ] Reconstruction des fichiers par pages
-      - [ ] Créer `LisaFileContentReader.cs` pour regrouper les pages utilisateur par identifiant et les ordonner par numéro de page.
-      - [ ] Détecter les numéros de page dupliqués et les lacunes entre deux pages au lieu de concaténer silencieusement les seules pages disponibles.
-      - [ ] Conserver la position logique d'une page manquante dans le contenu reconstruit lorsque sa taille peut être déterminée.
-      - [ ] Faire retourner contenu, validité et première référence logique par la reconstruction.
-      - [ ] Utiliser cette validité pour `FileSystemEntry` au lieu de la faire dépendre uniquement de la présence du nom dans le catalogue.
-      - [ ] Remplacer `File {id}` et `Lisa file ${id}` par des fonctions recevant l'identifiant de fichier.
-    - [ ] Espace libre
-      - [ ] Compter uniquement les pages dont le tag valide porte explicitement un marqueur libre.
-      - [ ] Ne pas inclure dans le calcul les blocs sans tag ou avec un tag tronqué.
-      - [ ] Rendre l'espace libre inconnu lorsqu'aucun tag exploitable ne permet d'établir ce nombre de façon fiable.
-    - [ ] Erreurs et avertissements Lisa
-      - [ ] Créer `LisaFileSystemExceptions.cs` pour l'image non reconnue, le MDDF tronqué, le tag tronqué, le catalogue absent et les pages dupliquées ou manquantes.
-      - [ ] Faire recevoir aux méthodes les identifiants, numéros de page et tailles observées utiles.
-      - [ ] Remplacer tous les textes bruts du Reader par ces définitions.
-    - [ ] Présentation et CSDoc française
-      - [ ] Remettre sur une seule ligne les signatures, conditions, appels et expressions complètes qui tiennent lisiblement.
-      - [ ] Séparer les opérations distinctes de lecture du MDDF, de sélection des pages et de création des entrées.
-      - [ ] Remplacer la CSDoc anglaise actuelle par une CSDoc française.
-      - [ ] Documenter en français le Reader et chacun de ses membres restants, ainsi que tous les types et membres Lisa créés.
-    - [ ] Tests ciblés Lisa
-      - [ ] Tester par le Reader public une image Lisa de `image_test` avec MDDF, version, volume, catalogue, fichiers, contenu et espace libre attendus.
-      - [ ] Tester séparément les versions table, hash et B-tree disponibles ; obtenir l'image manquante avant d'écrire un test qui en dépend.
-      - [ ] Tester un tag absent, tronqué et valide, ainsi que les identifiants réservés et les deux marqueurs libres.
-      - [ ] Tester des pages ordonnées, désordonnées, dupliquées et manquantes sans glissement du contenu.
-      - [ ] Tester un catalogue absent et vérifier les noms de secours, avertissements et validités obtenus.
-      - [ ] Tester un MDDF tronqué et une version inconnue.
+  - [x] `FileSystems/Readers/LisaFileSystemReader.cs`
+    - [x] Emplacement, identité et formats annoncés
+      - [x] Déplacer le Reader et ses composants vers `FileSystems/Apple/Lisa/` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `lisa` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Rendre immuable la collection des formats annoncés.
+      - [x] Vérifier puis corriger l'incohérence actuelle entre `CatalogFormatIds`, qui contient aussi `Mac400`, et `CanRead`, qui refuse tout format autre que `AppleLisaOffice`.
+      - [x] Ne conserver `Mac400` dans ce catalogue que si un test d'image Lisa réellement portée par ce format valide ce chemin ; sinon le retirer.
+    - [x] Définitions du système de fichiers Lisa
+      - [x] Créer `LisaFileSystemLayout.cs` et y déplacer les identifiants MDDF `0x0001`, bitmap `0x0002`, S-records `0x0003` et catalogue `0x0004`.
+      - [x] Y définir les marqueurs de page libre `0x0000` et `0x7FFF`, la borne supérieure des fichiers utilisateur et les quatre identifiants réservés exclus par `IsUserFile`.
+      - [x] Y définir la longueur de tag Lisa 12 et les offsets/longueurs de l'identifiant de fichier et du numéro de page actuellement lus aux positions 4, 6, 2 et 2.
+      - [x] Y définir le masque `0x07FF` du numéro de page.
+      - [x] Y définir les offsets et limites du nom de volume MDDF aux positions 12 et 13, avec sa longueur maximale 31.
+      - [x] Remplacer les constantes privées et tous les nombres bruts correspondants par ces définitions.
+    - [x] Versions du catalogue Lisa
+      - [x] Créer `LisaCatalogVersion.cs` pour les versions table `0x000E`, hash `0x000F` et B-tree `0x0011`.
+      - [x] Remplacer le `switch` numérique par cet enum et une définition centrale des noms techniques de chaque variante.
+      - [x] Remplacer le nom construit brut de version inconnue par une fonction recevant la valeur observée.
+      - [x] Distinguer explicitement dans la sélection du lecteur de catalogue la version table et les versions utilisant la disposition de 64 octets.
+    - [x] Lecture du MDDF
+      - [x] Créer `LisaMddfReader.cs` pour sélectionner la page MDDF ordonnée appropriée et valider sa longueur avant chaque lecture.
+      - [x] Lire la version, la longueur du nom et le nom sans appeler `ReadUInt16BigEndian` sur moins de deux octets.
+      - [x] Remplacer le nom de secours brut `Lisa` par une définition centrale.
+      - [x] Signaler avec un avertissement paramétré un MDDF tronqué au lieu de poursuivre avec des champs partiels.
+    - [x] Lecture des tags Lisa
+      - [x] Créer `LisaPageTagReader.cs` et y déplacer `TagFileId`, `TagPageNumber` et `IsUserFile`.
+      - [x] Faire retourner une absence explicite lorsque le tag est absent ou trop court, au lieu de confondre cette situation avec l'identifiant libre zéro ou le numéro logique du bloc.
+      - [x] Utiliser uniquement les tags valides pour reconnaître le MDDF, regrouper les fichiers et calculer les pages libres.
+      - [x] Conserver le numéro logique uniquement comme information de repli distincte, sans le présenter comme un numéro de page lu dans un tag absent.
+    - [x] Catalogues Lisa
+      - [x] Créer `LisaCatalogReader.cs` et y déplacer `ReadCatalogNames`.
+      - [x] Définir la taille 54, l'offset d'identifiant 36 et la longueur maximale 31 des entrées du catalogue table.
+      - [x] Définir l'offset initial `0x50`, la taille 64, le marqueur zéro, la borne `0x20`, l'offset du nom et l'offset d'identifiant du catalogue ultérieur.
+      - [x] Séparer la lecture d'une entrée table de celle d'une entrée ultérieure.
+      - [x] Ne parcourir que les pages catalogue dont le tag est présent et valide, ordonnées par leur numéro de page validé.
+      - [x] Remplacer l'avertissement brut de catalogue absent par une définition expliquant la récupération des noms par tags.
+      - [x] Traduire les commentaires anglais en CSDoc française des deux dispositions.
+    - [x] Reconstruction des fichiers par pages
+      - [x] Créer `LisaFileContentReader.cs` pour regrouper les pages utilisateur par identifiant et les ordonner par numéro de page.
+      - [x] Détecter les numéros de page dupliqués et les lacunes entre deux pages au lieu de concaténer silencieusement les seules pages disponibles.
+      - [x] Conserver la position logique d'une page manquante dans le contenu reconstruit lorsque sa taille peut être déterminée.
+      - [x] Faire retourner contenu, validité et première référence logique par la reconstruction.
+      - [x] Utiliser cette validité pour `FileSystemEntry` au lieu de la faire dépendre uniquement de la présence du nom dans le catalogue.
+      - [x] Remplacer `File {id}` et `Lisa file ${id}` par des fonctions recevant l'identifiant de fichier.
+    - [x] Espace libre
+      - [x] Compter uniquement les pages dont le tag valide porte explicitement un marqueur libre.
+      - [x] Ne pas inclure dans le calcul les blocs sans tag ou avec un tag tronqué.
+      - [x] Rendre l'espace libre inconnu lorsqu'aucun tag exploitable ne permet d'établir ce nombre de façon fiable.
+    - [x] Erreurs et avertissements Lisa
+      - [x] Créer `LisaFileSystemExceptions.cs` pour l'image non reconnue, le MDDF tronqué, le tag tronqué, le catalogue absent et les pages dupliquées ou manquantes.
+      - [x] Faire recevoir aux méthodes les identifiants, numéros de page et tailles observées utiles.
+      - [x] Remplacer tous les textes bruts du Reader par ces définitions.
+    - [x] Présentation et CSDoc française
+      - [x] Remettre sur une seule ligne les signatures, conditions, appels et expressions complètes qui tiennent lisiblement.
+      - [x] Séparer les opérations distinctes de lecture du MDDF, de sélection des pages et de création des entrées.
+      - [x] Remplacer la CSDoc anglaise actuelle par une CSDoc française.
+      - [x] Documenter en français le Reader et chacun de ses membres restants, ainsi que tous les types et membres Lisa créés.
+    - [x] Tests ciblés Lisa
+      - [x] Tester par le Reader public une image Lisa de `image_test` avec MDDF, version, volume, catalogue, fichiers, contenu et espace libre attendus.
+      - [x] Tester séparément les versions table, hash et B-tree disponibles ; obtenir l'image manquante avant d'écrire un test qui en dépend.
+      - [x] Tester un tag absent, tronqué et valide, ainsi que les identifiants réservés et les deux marqueurs libres.
+      - [x] Tester des pages ordonnées, désordonnées, dupliquées et manquantes sans glissement du contenu.
+      - [x] Tester un catalogue absent et vérifier les noms de secours, avertissements et validités obtenus.
+      - [x] Tester un MDDF tronqué et une version inconnue.
   - [ ] `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`
     - [ ] Créer `FileSystems/Apple/Macintosh/MacFileSystemPrimitives.cs`.
     - [ ] Déplacer la lecture big-endian des entiers 16 et 32 bits dupliquée dans les Readers HFS et MFS.

@@ -1,4 +1,6 @@
-namespace GWGUI.MediaEngine.FileSystems.Lisa;
+using System.Collections.Frozen;
+
+namespace GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 
 /// <summary>Définit les identifiants, marqueurs et dispositions du système de fichiers Lisa.</summary>
 public static class LisaFileSystemLayout
@@ -19,16 +21,22 @@ public static class LisaFileSystemLayout
     public const ushort FirstUserFileId = CatalogFileId + 1;
     /// <summary>Dernier identifiant de fichier utilisateur.</summary>
     public const ushort LastUserFileId = AlternateFreePageFileId - 1;
+    /// <summary>Longueur en octets d'un identifiant de fichier dans un tag.</summary>
+    public const int TagFileIdLength = sizeof(ushort);
     /// <summary>Offset de l'octet fort de l'identifiant dans un tag.</summary>
     public const int TagFileIdHighOffset = 4;
     /// <summary>Offset de l'octet faible de l'identifiant dans un tag.</summary>
-    public const int TagFileIdLowOffset = 5;
+    public const int TagFileIdLowOffset = TagFileIdHighOffset + TagFileIdLength - 1;
     /// <summary>Offset de l'octet fort du numéro de page dans un tag.</summary>
     public const int TagPageHighOffset = 6;
+    /// <summary>Longueur en octets d'un numéro de page dans un tag.</summary>
+    public const int TagPageNumberLength = sizeof(ushort);
     /// <summary>Offset de l'octet faible du numéro de page dans un tag.</summary>
-    public const int TagPageLowOffset = 7;
+    public const int TagPageLowOffset = TagPageHighOffset + TagPageNumberLength - 1;
     /// <summary>Longueur minimale d'un tag exploitable.</summary>
     public const int MinimumTagLength = TagPageLowOffset + 1;
+    /// <summary>Longueur complète attendue d'un tag Lisa.</summary>
+    public const int TagLength = 12;
     /// <summary>Masque du numéro de page.</summary>
     public const int PageNumberMask = 0x07ff;
     /// <summary>Taille d'une entrée du catalogue tabulaire.</summary>
@@ -43,6 +51,10 @@ public static class LisaFileSystemLayout
     public const int CatalogNameLength = 31;
     /// <summary>Offset de l'identifiant du fichier dans une entrée.</summary>
     public const int CatalogFileIdOffset = 36;
+    /// <summary>Marqueur d'une entrée inutilisée dans les catalogues hachés et B-tree.</summary>
+    public const byte UnusedCatalogEntryMarker = 0;
     /// <summary>Marqueurs de fichiers système réservés exclus des fichiers utilisateur.</summary>
-    public static IReadOnlySet<ushort> ReservedFileIds { get; } = new HashSet<ushort> { 0x00aa, 0x00bb, 0xaaaa, 0xbbbb };
+    public static IReadOnlySet<ushort> ReservedFileIds { get; } = new HashSet<ushort> { 0x00aa, 0x00bb, 0xaaaa, 0xbbbb }.ToFrozenSet();
+    /// <summary>Nom de volume utilisé lorsqu'aucun nom MDDF n'est exploitable.</summary>
+    public const string DefaultVolumeName = "Lisa";
 }

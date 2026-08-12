@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
+using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Containers.Apple;
