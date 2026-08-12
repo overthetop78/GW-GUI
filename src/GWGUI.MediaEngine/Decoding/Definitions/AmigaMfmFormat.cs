@@ -67,6 +67,20 @@ internal static class AmigaMfmFormat
     public const int LeadingGapBitCount = 100;
     /// <summary>Longueur minimale du gap terminant une piste encodée, en bits.</summary>
     public const int TrailingGapBitCount = 128;
+    /// <summary>Plus grand cylindre tenant dans les sept bits du champ de piste.</summary>
+    public const int MaximumCylinder = byte.MaxValue >> TrackCylinderShift;
+    /// <summary>Plus grande face tenant dans le bit faible du champ de piste.</summary>
+    public const int MaximumHead = TrackHeadMask;
+    /// <summary>Plus grand numéro de secteur stockable dans l'en-tête.</summary>
+    public const int MaximumSectorNumber = byte.MaxValue;
+    /// <summary>Plus grand nombre de secteurs restant stockable dans l'en-tête.</summary>
+    public const int MaximumRemainingSectorCount = byte.MaxValue;
+
+    /// <summary>Empaquette le cylindre et la face dans l'octet de piste Amiga.</summary>
+    /// <param name="cylinder">Cylindre compris entre zéro et 127.</param>
+    /// <param name="head">Face égale à zéro ou un.</param>
+    /// <returns>Octet de piste Amiga.</returns>
+    public static byte PackTrack(int cylinder, int head) => (byte)((cylinder << TrackCylinderShift) | (head & TrackHeadMask));
 
     /// <summary>Crée l'erreur signalant une taille de secteur incompatible avec le format Amiga.</summary>
     /// <param name="actualSize">Taille reçue, en octets.</param>
@@ -77,4 +91,7 @@ internal static class AmigaMfmFormat
     /// <param name="actualCount">Nombre d'octets reçu.</param>
     /// <returns>Erreur décrivant la contrainte de parité du nombre d'octets.</returns>
     public static ArgumentException OddEncodedByteCount(int actualCount) => new($"Amiga odd/even encoding requires an even byte count; received {actualCount} bytes.");
+
+    /// <summary>Crée l'erreur signalant une plage incompatible avec le calcul de parité demandé.</summary>
+    public static ArgumentException InvalidParityRange(int offset, int count, int available) => new($"Amiga parity range offset {offset}, count {count}, available {available} is invalid.");
 }

@@ -43,6 +43,7 @@ internal static class AmigaMfmCodec
     /// <returns>Octets haut et bas de la parité calculée.</returns>
     public static (byte High, byte Low) CalculateParity(IReadOnlyList<byte> encoded, int offset, int count)
     {
+        if (offset < 0 || count < 0 || offset + count > encoded.Count || count % AmigaMfmFormat.InfoByteCount != 0) throw AmigaMfmFormat.InvalidParityRange(offset, count, encoded.Count);
         byte high = 0;
         byte low = 0;
         for (var index = 0; index < count; index += 4)
@@ -60,6 +61,7 @@ internal static class AmigaMfmCodec
     /// <returns>Octets haut et bas de la parité calculée.</returns>
     public static (byte High, byte Low) CalculateSplitParity(IReadOnlyList<byte> encoded, int offset, int count)
     {
+        if (offset < 0 || count < 0 || offset + count > encoded.Count || count % AmigaMfmFormat.InfoByteCount != 0) throw AmigaMfmFormat.InvalidParityRange(offset, count, encoded.Count);
         byte high = 0;
         byte low = 0;
         var half = count / 2;

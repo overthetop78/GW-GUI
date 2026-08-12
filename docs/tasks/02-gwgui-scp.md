@@ -3511,41 +3511,41 @@
       - [x] Tester les CRC d'en-tête et de données avec des valeurs attendues connues.
       - [x] Tester les limites de cylindre, de secteur et de taille puis leur dépassement.
       - [x] Tester les gaps exacts et l'aller-retour encodeur/décodeur sans modifier la charge utile ni l'intégrité.
-  - [ ] `Encoding/Encoders/AmigaMfmTrackEncoder.cs`
-    - [ ] Définitions Amiga communes
-      - [ ] Remplacer l'identifiant, le nom, la synchronisation `44894489`, les gaps `100` et `128` et la taille sectorielle de 512 octets par `AmigaMfmFormat`.
-      - [ ] Remplacer le format `0xff`, les seize octets de label, les positions des parités et les octets réservés par la disposition commune.
-      - [ ] Remplacer les masques, décalages et nombres de bits bruts par les définitions Amiga créées avec le décodeur.
-    - [ ] En-tête de secteur
-      - [ ] Parcourir les secteurs avec leur index afin de calculer pour chacun le nombre de secteurs restant jusqu'à la fin de l'écriture.
-      - [ ] Remplacer `request.Sectors.Count` écrit identiquement dans chaque en-tête par `request.Sectors.Count - sectorIndex`.
-      - [ ] Extraire l'empaquetage du cylindre et de la face dans l'octet de piste avec l'opération Amiga commune.
-      - [ ] Extraire la construction des quatre octets d'information : format, piste, secteur et secteurs restant à écrire.
-      - [ ] Construire l'en-tête, le label et les emplacements de parité depuis la disposition commune plutôt qu'avec les tableaux bruts locaux.
-    - [ ] Codec odd/even et parités
-      - [ ] Raccorder l'encodeur à `AmigaMfmCodec` créé avec le décodeur.
-      - [ ] Déplacer ou supprimer `Nibble`, `EncodeOddEven` et `Parity` après raccordement au codec commun.
-      - [ ] Remplacer le booléen `split` par deux opérations de parité nommées pour l'en-tête et les données.
-      - [ ] Faire valider par le codec les longueurs paires et les groupes nécessaires au calcul de parité.
-      - [ ] Conserver exactement l'ordre odd/even utilisé par le décodeur commun.
-    - [ ] Validation de la requête
-      - [ ] Vérifier que chaque secteur contient exactement 512 octets en utilisant l'erreur d'encodage commune avec la taille observée.
-      - [ ] Vérifier que le cylindre tient dans les sept bits disponibles et que la face vaut zéro ou un.
-      - [ ] Vérifier que le numéro de secteur et le nombre de secteurs restant tiennent chacun dans un octet.
-      - [ ] Ne plus laisser les conversions en `byte` tronquer silencieusement cylindre, face, secteur ou nombre de secteurs.
-    - [ ] Présentation et documentation
-      - [ ] Ajouter les espaces manquants dans les collections `info` et `encoded`.
-      - [ ] Séparer les déclarations `result` et `first`, `odd` et `even`, ainsi que les deux opérations de parité actuellement placées sur les mêmes lignes.
-      - [ ] Déplier les corps de boucle contenant plusieurs instructions tout en conservant sur une ligne les signatures et expressions cohérentes qui tiennent correctement.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Documenter l'ordre odd/even, le nombre de secteurs restant, les parités, les tailles et les unités des gaps.
-    - [ ] Vérification de l'encodeur Amiga
-      - [ ] Tester une piste de plusieurs secteurs et vérifier que l'octet des secteurs restant décroît jusqu'à un.
-      - [ ] Tester l'empaquetage des limites de cylindre et de face puis leurs dépassements.
-      - [ ] Tester une taille différente de 512 octets, un numéro de secteur hors limites et plus de 255 secteurs.
-      - [ ] Tester l'aller-retour odd/even de l'en-tête, du label et des données.
-      - [ ] Tester les parités d'en-tête et de données avec des valeurs attendues connues.
-      - [ ] Tester la synchronisation, les gaps et l'aller-retour encodeur/décodeur d'une piste complète.
+- [x] `Encoding/Encoders/AmigaMfmTrackEncoder.cs`
+    - [x] Définitions Amiga communes
+      - [x] Remplacer l'identifiant, le nom, la synchronisation `44894489`, les gaps `100` et `128` et la taille sectorielle de 512 octets par `AmigaMfmFormat`.
+      - [x] Remplacer le format `0xff`, les seize octets de label, les positions des parités et les octets réservés par la disposition commune.
+      - [x] Remplacer les masques, décalages et nombres de bits bruts par les définitions Amiga créées avec le décodeur.
+    - [x] En-tête de secteur
+      - [x] Parcourir les secteurs avec leur index afin de calculer pour chacun le nombre de secteurs restant jusqu'à la fin de l'écriture.
+      - [x] Remplacer `request.Sectors.Count` écrit identiquement dans chaque en-tête par `request.Sectors.Count - sectorIndex`.
+      - [x] Extraire l'empaquetage du cylindre et de la face dans l'octet de piste avec l'opération Amiga commune.
+      - [x] Extraire la construction des quatre octets d'information : format, piste, secteur et secteurs restant à écrire.
+      - [x] Construire l'en-tête, le label et les emplacements de parité depuis la disposition commune plutôt qu'avec les tableaux bruts locaux.
+    - [x] Codec odd/even et parités
+      - [x] Raccorder l'encodeur à `AmigaMfmCodec` créé avec le décodeur.
+      - [x] Déplacer ou supprimer `Nibble`, `EncodeOddEven` et `Parity` après raccordement au codec commun.
+      - [x] Remplacer le booléen `split` par deux opérations de parité nommées pour l'en-tête et les données.
+      - [x] Faire valider par le codec les longueurs paires et les groupes nécessaires au calcul de parité.
+      - [x] Conserver exactement l'ordre odd/even utilisé par le décodeur commun.
+    - [x] Validation de la requête
+      - [x] Vérifier que chaque secteur contient exactement 512 octets en utilisant l'erreur d'encodage commune avec la taille observée.
+      - [x] Vérifier que le cylindre tient dans les sept bits disponibles et que la face vaut zéro ou un.
+      - [x] Vérifier que le numéro de secteur et le nombre de secteurs restant tiennent chacun dans un octet.
+      - [x] Ne plus laisser les conversions en `byte` tronquer silencieusement cylindre, face, secteur ou nombre de secteurs.
+    - [x] Présentation et documentation
+      - [x] Ajouter les espaces manquants dans les collections `info` et `encoded`.
+      - [x] Séparer les déclarations `result` et `first`, `odd` et `even`, ainsi que les deux opérations de parité actuellement placées sur les mêmes lignes.
+      - [x] Déplier les corps de boucle contenant plusieurs instructions tout en conservant sur une ligne les signatures et expressions cohérentes qui tiennent correctement.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Documenter l'ordre odd/even, le nombre de secteurs restant, les parités, les tailles et les unités des gaps.
+    - [x] Vérification de l'encodeur Amiga
+      - [x] Tester une piste de plusieurs secteurs et vérifier que l'octet des secteurs restant décroît jusqu'à un.
+      - [x] Tester l'empaquetage des limites de cylindre et de face puis leurs dépassements.
+      - [x] Tester une taille différente de 512 octets, un numéro de secteur hors limites et plus de 255 secteurs.
+      - [x] Tester l'aller-retour odd/even de l'en-tête, du label et des données.
+      - [x] Tester les parités d'en-tête et de données avec des valeurs attendues connues.
+      - [x] Tester la synchronisation, les gaps et l'aller-retour encodeur/décodeur d'une piste complète.
   - [ ] `Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
     - [ ] Définitions Apple II communes
       - [ ] Remplacer l'identifiant, le nom, les tables 5-and-3 et 6-and-2, les prologues, l'épilogue et les gaps par les définitions créées avec `AppleIIGcrDecoder.cs`.
