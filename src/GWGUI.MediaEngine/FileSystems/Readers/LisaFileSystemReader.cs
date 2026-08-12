@@ -1,131 +1,69 @@
-using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
-using System.Text;
-using GWGUI.MediaEngine.SectorImages;
-
-
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Lisa;
+using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
-/// <summary>
-/// Reads tagged Lisa Office System media. Lisa pages identify their owner through
-/// the 12-byte page tag, which also makes a damaged catalog partially recoverable.
-/// </summary>
+/// <summary>Lit les systèmes Lisa Office à pages taguées.</summary>
 public sealed class LisaFileSystemReader : IFileSystemReader
 {
-    private const ushort MddfFileId = 0x0001;
-    private const ushort BitmapFileId = 0x0002;
-    private const ushort SRecordsFileId = 0x0003;
-    private const ushort CatalogFileId = 0x0004;
-
+    /// <inheritdoc />
     public string Id => Definitions.FileSystemIds.Lisa;
-    public IReadOnlySet<string> CatalogFormatIds { get; } =
-        new HashSet<string>(StringComparer.OrdinalIgnoreCase) { DiskImageFormatIds.AppleLisaOffice, DiskImageFormatIds.Mac400 };
 
-    public bool CanRead(SectorImage image) =>
-        image.FormatId.Equals(DiskImageFormatIds.AppleLisaOffice, StringComparison.OrdinalIgnoreCase) &&
-        image.AvailableBlocks.Any(block => TagFileId(block) == MddfFileId);
+    /// <inheritdoc />
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { DiskImageFormatIds.AppleLisaOffice, DiskImageFormatIds.Mac400 };
 
+    /// <inheritdoc />
+    public bool CanRead(SectorImage image) => image.FormatId.Equals(DiskImageFormatIds.AppleLisaOffice, StringComparison.OrdinalIgnoreCase) && image.AvailableBlocks.Any(block => TagFileId(block) == LisaFileSystemLayout.MddfFileId);
+
+    /// <inheritdoc />
     public FileSystemVolume Read(SectorImage image)
     {
-        if (!CanRead(image))
-            throw new InvalidDataException("The image does not contain a tagged Lisa file system.");
-
-        var warnings = new List<string>();
-        var mddfBlocks = image.AvailableBlocks.Where(block => TagFileId(block) == MddfFileId).ToArray();
-        var mddfBytes = mddfBlocks[^1].Data.ToArray();
+        if (!CanRead(image)) throw LisaFileSystemExceptions.MissingTaggedFileSystem(image.AvailableBlocks.Count);
+        var mddfBytes = image.AvailableBlocks.Where(block => TagFileId(block) == LisaFileSystemLayout.MddfFileId).Last().Data.ToArray();
         var mddf = mddfBytes.AsSpan();
-        var version = BinaryPrimitives.ReadUInt16BigEndian(mddf);
-        var volumeNameLength = mddf.Length > 12 ? Math.Min(mddf[12], (byte)31) : 0;
-        var volumeName = volumeNameLength > 0 && mddf.Length >= 13 + volumeNameLength
-            ? LisaVolumeHeader.DecodeName(mddf.Slice(13, volumeNameLength))
-            : string.Empty;
+        var version = BinaryPrimitives.ReadUInt16BigEndian(mddf[LisaVolumeHeader.VersionOffset..]);
+        var volumeNameLength = mddf.Length > LisaVolumeHeader.NameLengthOffset ? Math.Min(mddf[LisaVolumeHeader.NameLengthOffset], (byte)LisaVolumeHeader.MaximumNameLength) : 0;
+        var volumeName = volumeNameLength > 0 && mddf.Length >= LisaVolumeHeader.NameOffset + volumeNameLength ? LisaVolumeHeader.DecodeName(mddf.Slice(LisaVolumeHeader.NameOffset, volumeNameLength)) : string.Empty;
         if (string.IsNullOrWhiteSpace(volumeName)) volumeName = "Lisa";
-
-        var names = ReadCatalogNames(image, version, warnings);
+        var catalog = LisaCatalogReader.Read(image, version);
+        var warnings = catalog.Warnings.ToList();
         var entries = new List<FileSystemEntry>();
-        foreach (var group in image.AvailableBlocks
-                     .Select(block => (Block: block, FileId: TagFileId(block)))
-                     .Where(item => IsUserFile(item.FileId))
-                     .GroupBy(item => item.FileId)
-                     .OrderBy(group => group.Key))
+        foreach (var group in image.AvailableBlocks.Select(block => (Block: block, FileId: TagFileId(block))).Where(item => IsUserFile(item.FileId)).GroupBy(item => item.FileId).OrderBy(group => group.Key))
         {
             var ordered = group.OrderBy(item => TagPageNumber(item.Block)).ToArray();
             using var content = new MemoryStream();
-            foreach (var item in ordered) content.Write(item.Block.Data.ToArray());
-            var name = names.TryGetValue(group.Key, out var catalogName)
-                ? catalogName
-                : $"File {group.Key:X4}";
-            entries.Add(new(name, FileSystemEntryKind.File, content.Length, null,
-                $"Lisa file ${group.Key:X4}", 0, ordered[0].Block.LogicalBlock,
-                names.ContainsKey(group.Key), [], content.ToArray()));
-        }
-
-        var freePages = image.AvailableBlocks.Count(block => TagFileId(block) is 0x0000 or 0x7fff);
-        var fileSystemName = Definitions.FileSystemDisplayNames.Lisa(version);
-        return new(volumeName, fileSystemName, image.Capacity, (long)freePages * image.BlockSize,
-            null, null, entries, warnings);
-    }
-
-    private static Dictionary<ushort, string> ReadCatalogNames(SectorImage image, ushort version, List<string> warnings)
-    {
-        var result = new Dictionary<ushort, string>();
-        var catalogPages = image.AvailableBlocks
-            .Where(block => TagFileId(block) == CatalogFileId)
-            .OrderBy(TagPageNumber)
-            .ToArray();
-        if (catalogPages.Length == 0)
-        {
-            warnings.Add("The Lisa catalog pages are missing; file names were recovered from page tags only.");
-            return result;
-        }
-
-        var bytes = catalogPages.SelectMany(block => block.Data).ToArray();
-        if (version == 0x000e)
-        {
-            // The original table catalog is a flat array of 54-byte records.
-            // Each record starts with a Pascal filename and stores its file ID
-            // at offset 36. Later B-tree catalogs use the 64-byte layout below.
-            for (var offset = 0; offset + 54 <= bytes.Length; offset += 54)
+            var expectedPage = ordered.Length == 0 ? 0 : TagPageNumber(ordered[0].Block);
+            foreach (var item in ordered)
             {
-                var length = bytes[offset];
-                if (length is 0 or > 31 || offset + 1 + length > bytes.Length) continue;
-                var name = LisaVolumeHeader.DecodeName(bytes.AsSpan(offset + 1, length));
-                var fileId = BinaryPrimitives.ReadUInt16BigEndian(bytes.AsSpan(offset + 36, 2));
-                if (!IsUserFile(fileId) || string.IsNullOrWhiteSpace(name)) continue;
-                result.TryAdd(fileId, name);
+                var page = TagPageNumber(item.Block);
+                while (expectedPage < page) { warnings.Add(LisaFileSystemExceptions.MissingPage(group.Key, expectedPage)); expectedPage++; }
+                content.Write(item.Block.Data.ToArray());
+                expectedPage = page + 1;
             }
-            return result;
+            var name = catalog.Names.TryGetValue(group.Key, out var catalogName) ? catalogName : LisaCatalogReader.FallbackName(group.Key);
+            entries.Add(new(name, FileSystemEntryKind.File, content.Length, null, $"Lisa file ${group.Key:X4}", 0, ordered[0].Block.LogicalBlock, catalog.Names.ContainsKey(group.Key), [], content.ToArray()));
         }
-        // Lisa catalog entries occupy 64 bytes. The first name begins at offset 0x51;
-        // its file identifier follows at entry offset + 36 (big endian).
-        for (var offset = 0x50; offset + 64 <= bytes.Length; offset += 64)
-        {
-            if (bytes[offset] != 0 || bytes[offset + 1] < 0x20) continue;
-            var name = LisaVolumeHeader.DecodeName(bytes.AsSpan(offset + 1, 31));
-            var fileId = BinaryPrimitives.ReadUInt16BigEndian(bytes.AsSpan(offset + 36, 2));
-            if (!IsUserFile(fileId) || string.IsNullOrWhiteSpace(name)) continue;
-            result.TryAdd(fileId, name);
-        }
-        return result;
+        var freePages = image.AvailableBlocks.Count(block => TagFileId(block) is LisaFileSystemLayout.FreePageFileId or LisaFileSystemLayout.AlternateFreePageFileId);
+        return new(volumeName, Definitions.FileSystemDisplayNames.Lisa(version), image.Capacity, (long)freePages * image.BlockSize, null, null, entries, warnings);
     }
 
-    private static ushort TagFileId(SectorBlock block)
+    /// <summary>Lit l'identifiant de fichier conservé dans le tag d'un bloc.</summary>
+    internal static ushort TagFileId(SectorBlock block)
     {
-        if (block.Tag is null || block.Tag.Count < 6) return 0;
-        return (ushort)((block.Tag[4] << BitPrimitives.BitsPerByte) | block.Tag[5]);
+        if (block.Tag is null || block.Tag.Count <= LisaFileSystemLayout.TagFileIdLowOffset) return LisaFileSystemLayout.FreePageFileId;
+        return (ushort)((block.Tag[LisaFileSystemLayout.TagFileIdHighOffset] << BitPrimitives.BitsPerByte) | block.Tag[LisaFileSystemLayout.TagFileIdLowOffset]);
     }
 
-    private static int TagPageNumber(SectorBlock block)
+    /// <summary>Lit le numéro de page conservé dans le tag d'un bloc.</summary>
+    internal static int TagPageNumber(SectorBlock block)
     {
-        if (block.Tag is null || block.Tag.Count < 8) return block.LogicalBlock;
-        return ((block.Tag[6] << BitPrimitives.BitsPerByte) | block.Tag[7]) & 0x07ff;
+        if (block.Tag is null || block.Tag.Count < LisaFileSystemLayout.MinimumTagLength) return block.LogicalBlock;
+        return ((block.Tag[LisaFileSystemLayout.TagPageHighOffset] << BitPrimitives.BitsPerByte) | block.Tag[LisaFileSystemLayout.TagPageLowOffset]) & LisaFileSystemLayout.PageNumberMask;
     }
 
-    private static bool IsUserFile(ushort fileId) =>
-        fileId is > CatalogFileId and < 0x7fff &&
-        fileId is not 0x00aa and not 0x00bb and not 0xaaaa and not 0xbbbb;
-
+    /// <summary>Indique si un identifiant représente un fichier utilisateur.</summary>
+    internal static bool IsUserFile(ushort fileId) => fileId is >= LisaFileSystemLayout.FirstUserFileId and <= LisaFileSystemLayout.LastUserFileId && !LisaFileSystemLayout.ReservedFileIds.Contains(fileId);
 }

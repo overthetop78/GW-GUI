@@ -5968,34 +5968,34 @@
       - [x] Tester une entrée paire, impaire, libre, défectueuse et de fin de chaîne.
       - [x] Tester un volume label `NO NAME`, un nom 8.3, une date et chaque attribut.
       - [x] Tester une chaîne cyclique, un cluster hors plage et un secteur absent.
-  - [ ] Lisa
-    - [ ] `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`.
-      - [ ] Ajouter les identifiants MDDF `0x0001`, bitmap `0x0002`, S-records `0x0003` et catalogue `0x0004`.
-      - [ ] Ajouter les marqueurs de page libre `0x0000` et `0x7FFF` et les bornes des identifiants de fichiers utilisateur.
-      - [ ] Ajouter les versions de catalogue table `0x000E`, hash `0x000F` et B-tree `0x0011`.
-      - [ ] Ajouter les offsets `4`, `5`, `6` et `7` des identifiants et numéros de page dans les tags.
-      - [ ] Ajouter le masque `0x07FF` du numéro de page.
-      - [ ] Ajouter les tailles, offsets et bornes de nom utilisés pour chaque version de catalogue effectivement lue.
-      - [ ] Remplacer chaque valeur brute correspondante dans `LisaFileSystemReader`.
-      - [ ] Documenter en français chaque constante, version et masque.
-    - [ ] `FileSystems/Apple/Lisa/LisaCatalogReader.cs`
-      - [ ] Créer `FileSystems/Apple/Lisa/LisaCatalogReader.cs`.
-      - [ ] Déplacer `ReadCatalogNames` et les branches table, hash et B-tree hors du Reader principal.
-      - [ ] Retourner un résultat contenant les noms trouvés et les avertissements de catalogue.
-      - [ ] Remplacer les noms de secours construits en texte brut par une fonction recevant l'identifiant du fichier.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] `FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de système tagué absent avec nombre de pages examinées.
-      - [ ] Ajouter l'avertissement de catalogue absent avec version observée.
-      - [ ] Ajouter l'avertissement de page manquante avec identifiant de fichier et numéro de page.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions Lisa
-      - [ ] Tester chaque version de catalogue que le Reader sait effectivement lire.
-      - [ ] Tester l'ordre des pages, les fichiers utilisateur et le comptage des pages libres.
-      - [ ] Tester un MDDF absent, un catalogue absent et une page manquante.
+  - [x] Lisa
+    - [x] `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`.
+      - [x] Ajouter les identifiants MDDF `0x0001`, bitmap `0x0002`, S-records `0x0003` et catalogue `0x0004`.
+      - [x] Ajouter les marqueurs de page libre `0x0000` et `0x7FFF` et les bornes des identifiants de fichiers utilisateur.
+      - [x] Ajouter les versions de catalogue table `0x000E`, hash `0x000F` et B-tree `0x0011`.
+      - [x] Ajouter les offsets `4`, `5`, `6` et `7` des identifiants et numéros de page dans les tags.
+      - [x] Ajouter le masque `0x07FF` du numéro de page.
+      - [x] Ajouter les tailles, offsets et bornes de nom utilisés pour chaque version de catalogue effectivement lue.
+      - [x] Remplacer chaque valeur brute correspondante dans `LisaFileSystemReader`.
+      - [x] Documenter en français chaque constante, version et masque.
+    - [x] `FileSystems/Apple/Lisa/LisaCatalogReader.cs`
+      - [x] Créer `FileSystems/Apple/Lisa/LisaCatalogReader.cs`.
+      - [x] Déplacer `ReadCatalogNames` et les branches table, hash et B-tree hors du Reader principal.
+      - [x] Retourner un résultat contenant les noms trouvés et les avertissements de catalogue.
+      - [x] Remplacer les noms de secours construits en texte brut par une fonction recevant l'identifiant du fichier.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] `FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de système tagué absent avec nombre de pages examinées.
+      - [x] Ajouter l'avertissement de catalogue absent avec version observée.
+      - [x] Ajouter l'avertissement de page manquante avec identifiant de fichier et numéro de page.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions Lisa
+      - [x] Tester chaque version de catalogue que le Reader sait effectivement lire.
+      - [x] Tester l'ordre des pages, les fichiers utilisateur et le comptage des pages libres.
+      - [x] Tester un MDDF absent, un catalogue absent et une page manquante.
   - [ ] RT-11
     - [ ] `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`
       - [ ] Créer `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`.
