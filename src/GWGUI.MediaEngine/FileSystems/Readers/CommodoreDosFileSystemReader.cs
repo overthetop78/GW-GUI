@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.SectorImages;
 
 
@@ -135,7 +136,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
 
     internal static int ToLogicalBlock(SectorImage image, int track, int sector)
     {
-        if (image.FormatId == DiskImageFormatIds.Commodore1581) return CommodoreGeometry.To1581LogicalBlock(track, sector);
+        if (image.FormatId == DiskImageFormatIds.Commodore1581) return Commodore1581Geometry.ToLogicalBlock(track, sector);
         var tracksPerSide = image.Cylinders;
         var side = track > tracksPerSide ? 1 : 0;
         var sideTrack = side == 0 ? track : track - tracksPerSide;

@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Containers.Atari.Msa;
 using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
+using GWGUI.MediaEngine.Containers.Commodore.D81;
 using GWGUI.MediaEngine.Containers.Cp2;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Containers.I86f;
@@ -52,7 +53,7 @@ internal static class DiskImageExplorerFactory
             new ExtensionHintRecognitionPolicy(new AtrReader().ReadAsync, DiskImageFileExtensions.Atr),
             new ExtensionHintRecognitionPolicy(new D64Reader().ReadAsync, DiskImageFileExtensions.D64),
             new ExtensionHintRecognitionPolicy(new D71Reader().ReadAsync, DiskImageFileExtensions.D71),
-            new ExtensionHintRecognitionPolicy(new CommodoreD81ImageReader().ReadAsync, DiskImageFileExtensions.D81),
+            new ExtensionHintRecognitionPolicy(new D81Reader().ReadAsync, DiskImageFileExtensions.D81),
             new AppleImageRecognitionPolicy(apple),
             new MsxImageRecognitionPolicy(new MsxImageReader()),
             new AmstradImageRecognitionPolicy(new CpcDskReader()),

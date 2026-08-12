@@ -4715,37 +4715,37 @@
     - [x] Vérifier le dernier bloc de la première face et le premier de la seconde sans chevauchement ni inversion.
     - [x] Tester les codes d'erreur, une carte tronquée, une taille inconnue et l'annulation.
     - [x] Comparer les adresses d'une face D71 à celles du D64 de même nombre de pistes.
-- [ ] `src/GWGUI.MediaEngine/Images/CommodoreD81ImageReader.cs`
-  - [ ] Déplacement du Reader D81
-    - [ ] Créer `Containers/Commodore/D81/D81Reader.cs` et y déplacer le Reader du format D81.
-    - [ ] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
-    - [ ] Supprimer `Images/CommodoreD81ImageReader.cs` après raccordement.
-  - [ ] Disposition D81
-    - [ ] Créer `Containers/Commodore/D81/D81Layout.cs` et y déplacer la capacité publique 819 200 octets.
-    - [ ] Définir 3 200 blocs logiques, 256 octets par bloc, 80 pistes logiques et 40 blocs par piste logique.
-    - [ ] Faire calculer la capacité depuis ces propriétés et vérifier le résultat attendu du format.
-    - [ ] Adapter les tests qui utilisent `ImageBytes` vers `D81Layout.ImageLength`.
-  - [ ] Géométrie logique et géométrie physique 1581
-    - [ ] Créer `Geometries/Commodore/Commodore1581Geometry.cs` et y distinguer explicitement la vue logique D81 de la vue physique MFM utilisée par SCP et la visualisation.
-    - [ ] Conserver pour le modèle sectoriel actuel 80 cylindres logiques, une tête et 40 blocs de 256 octets par piste.
-    - [ ] Définir séparément les deux faces physiques, les secteurs physiques de 512 octets et leur transformation en deux blocs logiques de 256 octets.
-    - [ ] Déplacer `To1581LogicalBlock` et la transformation SCP vers cette géométrie afin qu'ils utilisent la même règle.
-    - [ ] Ne pas appliquer les zones 1541/1571 au D81.
-  - [ ] Construction sectorielle D81
-    - [ ] Utiliser `LinearSectorImageBuilder` avec la géométrie logique D81 et une numérotation sectorielle à zéro.
-    - [ ] Supprimer le calcul local `logical / 40 + 1`, dont la piste intermédiaire est immédiatement reconvertie à zéro.
-    - [ ] Conserver l'identifiant central Commodore 1581 et la capacité exacte.
-  - [ ] Erreurs D81
-    - [ ] Créer `Containers/Commodore/D81/D81Exceptions.cs` avec une erreur recevant taille observée et taille exacte attendue.
-    - [ ] Remplacer le texte brut contenant directement `819200`.
-  - [ ] Présentation et CSDoc française
-    - [ ] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le Reader, le layout, les deux vues géométriques et chaque transformation.
-  - [ ] Tests ciblés D81
-    - [ ] Tester une image D81 exacte et des tailles inférieure ou supérieure d'un octet.
-    - [ ] Vérifier les 3 200 blocs, les adresses logiques 0/39/40/3 199 et la capacité.
-    - [ ] Tester la transformation entre un secteur physique 1581 et ses deux blocs logiques.
-    - [ ] Vérifier la cohérence entre Reader D81, Reader SCP 1581, système de fichiers et visualisation.
+- [x] `src/GWGUI.MediaEngine/Images/CommodoreD81ImageReader.cs`
+  - [x] Déplacement du Reader D81
+    - [x] Créer `Containers/Commodore/D81/D81Reader.cs` et y déplacer le Reader du format D81.
+    - [x] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
+    - [x] Supprimer `Images/CommodoreD81ImageReader.cs` après raccordement.
+  - [x] Disposition D81
+    - [x] Créer `Containers/Commodore/D81/D81Layout.cs` et y déplacer la capacité publique 819 200 octets.
+    - [x] Définir 3 200 blocs logiques, 256 octets par bloc, 80 pistes logiques et 40 blocs par piste logique.
+    - [x] Faire calculer la capacité depuis ces propriétés et vérifier le résultat attendu du format.
+    - [x] Adapter les tests qui utilisent `ImageBytes` vers `D81Layout.ImageLength`.
+  - [x] Géométrie logique et géométrie physique 1581
+    - [x] Créer `Geometries/Commodore/Commodore1581Geometry.cs` et y distinguer explicitement la vue logique D81 de la vue physique MFM utilisée par SCP et la visualisation.
+    - [x] Conserver pour le modèle sectoriel actuel 80 cylindres logiques, une tête et 40 blocs de 256 octets par piste.
+    - [x] Définir séparément les deux faces physiques, les secteurs physiques de 512 octets et leur transformation en deux blocs logiques de 256 octets.
+    - [x] Déplacer `To1581LogicalBlock` et la transformation SCP vers cette géométrie afin qu'ils utilisent la même règle.
+    - [x] Ne pas appliquer les zones 1541/1571 au D81.
+  - [x] Construction sectorielle D81
+    - [x] Utiliser `LinearSectorImageBuilder` avec la géométrie logique D81 et une numérotation sectorielle à zéro.
+    - [x] Supprimer le calcul local `logical / 40 + 1`, dont la piste intermédiaire est immédiatement reconvertie à zéro.
+    - [x] Conserver l'identifiant central Commodore 1581 et la capacité exacte.
+  - [x] Erreurs D81
+    - [x] Créer `Containers/Commodore/D81/D81Exceptions.cs` avec une erreur recevant taille observée et taille exacte attendue.
+    - [x] Remplacer le texte brut contenant directement `819200`.
+  - [x] Présentation et CSDoc française
+    - [x] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le Reader, le layout, les deux vues géométriques et chaque transformation.
+  - [x] Tests ciblés D81
+    - [x] Tester une image D81 exacte et des tailles inférieure ou supérieure d'un octet.
+    - [x] Vérifier les 3 200 blocs, les adresses logiques 0/39/40/3 199 et la capacité.
+    - [x] Tester la transformation entre un secteur physique 1581 et ses deux blocs logiques.
+    - [x] Vérifier la cohérence entre Reader D81, Reader SCP 1581, système de fichiers et visualisation.
 - [ ] `src/GWGUI.MediaEngine/Images/CommodoreGeometry.cs`
   - [ ] Séparation des géométries Commodore
     - [ ] Créer `Geometries/Commodore/Commodore1541Geometry.cs` pour les pistes zonées d'une face 1541.

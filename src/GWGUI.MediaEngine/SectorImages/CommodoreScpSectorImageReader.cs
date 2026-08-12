@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
@@ -74,7 +75,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                 var decoded = decoders.Decode(FluxCodecIds.IsoMfm, track.Revolutions[revolution].Flux);
                 foreach (var sector in decoded.Sectors)
                 {
-                    if (sector.Data is null || sector.Data.Count != CommodoreGeometry.Commodore1581PhysicalSectorSize || sector.Number is < 1 or > CommodoreGeometry.Commodore1581SectorsPerTrack) continue;
+                    if (sector.Data is null || sector.Data.Count != Commodore1581Geometry.PhysicalSectorSize || sector.Number is < 1 or > Commodore1581Geometry.PhysicalSectorsPerTrack) continue;
                     var address = new SectorAddress(track.Cylinder, track.Head, sector.Number);
                     if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
                     list.Add((sector, revolution + 1));
@@ -87,13 +88,13 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         {
             var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true).ThenByDescending(value => value.Sector.IntegrityValid is null).First();
             var physical = best.Sector.Data!.ToArray();
-            var logicalBase = address.Cylinder * CommodoreGeometry.Commodore1581LogicalBlocksPerTrack + ((address.Head ^ 1) * CommodoreGeometry.Commodore1581SectorsPerTrack + address.Number - 1) * CommodoreGeometry.Commodore1581PhysicalSectorsPerLogicalBlock;
-            for (var half = 0; half < CommodoreGeometry.Commodore1581PhysicalSectorsPerLogicalBlock; half++)
+            var logicalBase = Commodore1581Geometry.PhysicalSectorToLogicalBlock(address.Cylinder, address.Head, address.Number);
+            for (var half = 0; half < Commodore1581Geometry.LogicalBlocksPerPhysicalSector; half++)
             {
                 var logical = logicalBase + half;
-                blocks.Add(new(logical, new(logical / CommodoreGeometry.Commodore1581LogicalBlocksPerTrack, 0, logical % CommodoreGeometry.Commodore1581LogicalBlocksPerTrack), physical.AsSpan(half * CommodoreGeometry.Commodore1581LogicalBlockSize, CommodoreGeometry.Commodore1581LogicalBlockSize).ToArray(), best.Sector.IntegrityValid, best.Revolution));
+                blocks.Add(new(logical, new(logical / Commodore1581Geometry.LogicalBlocksPerTrack, 0, logical % Commodore1581Geometry.LogicalBlocksPerTrack), physical.AsSpan(half * Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalBlockSize).ToArray(), best.Sector.IntegrityValid, best.Revolution));
             }
         }
-        return new(DiskImageFormatIds.Commodore1581, CommodoreGeometry.Commodore1581LogicalBlockSize, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, CommodoreGeometry.Commodore1581LogicalBlocksPerTrack, blocks);
+        return new(DiskImageFormatIds.Commodore1581, Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount, Commodore1581Geometry.LogicalBlocksPerTrack, blocks);
     }
 }

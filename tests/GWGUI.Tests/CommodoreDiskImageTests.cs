@@ -3,8 +3,10 @@ using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Containers.Commodore;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
+using GWGUI.MediaEngine.Containers.Commodore.D81;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.Tests;
@@ -136,13 +138,47 @@ public sealed class CommodoreDiskImageTests
         var path = Path.ChangeExtension(Path.GetTempFileName(), ".d81");
         try
         {
-            await File.WriteAllBytesAsync(path, new byte[CommodoreD81ImageReader.ImageBytes]);
-            var image = await new CommodoreD81ImageReader().ReadAsync(path);
+            await File.WriteAllBytesAsync(path, new byte[D81Layout.ImageLength]);
+            var image = await new D81Reader().ReadAsync(path);
             Assert.Equal("commodore.1581", image.FormatId);
             Assert.Equal(3_200, image.BlockCount);
             Assert.Equal(256, image.BlockSize);
         }
         finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task D81ReaderValidatesLengthAndLogicalAddresses()
+    {
+        var path = Path.ChangeExtension(Path.GetTempFileName(), ".d81");
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[D81Layout.ImageLength]);
+            var image = await new D81Reader().ReadAsync(path);
+            foreach (var expected in new[] { (Block: 0, Address: new SectorAddress(0, 0, 0)), (Block: 39, Address: new SectorAddress(0, 0, 39)), (Block: 40, Address: new SectorAddress(1, 0, 0)), (Block: 3_199, Address: new SectorAddress(79, 0, 39)) })
+            {
+                Assert.True(image.TryGetBlock(expected.Block, out var block));
+                Assert.Equal(expected.Address, block.Address);
+            }
+            Assert.Equal(D81Layout.ImageLength, image.Capacity);
+            await File.WriteAllBytesAsync(path, new byte[D81Layout.ImageLength - 1]);
+            await Assert.ThrowsAsync<InvalidDataException>(() => new D81Reader().ReadAsync(path));
+            await File.WriteAllBytesAsync(path, new byte[D81Layout.ImageLength + 1]);
+            await Assert.ThrowsAsync<InvalidDataException>(() => new D81Reader().ReadAsync(path));
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(0, 1, 1, 0)]
+    [InlineData(0, 1, 10, 18)]
+    [InlineData(0, 0, 1, 20)]
+    [InlineData(1, 1, 1, 40)]
+    public void Commodore1581PhysicalSectorsMapToTwoLogicalBlocks(int cylinder, int head, int sector, int firstLogicalBlock)
+    {
+        Assert.Equal(firstLogicalBlock, Commodore1581Geometry.PhysicalSectorToLogicalBlock(cylinder, head, sector));
+        Assert.Equal(firstLogicalBlock, Commodore1581Geometry.ToLogicalBlock(firstLogicalBlock / Commodore1581Geometry.LogicalBlocksPerTrack + 1, firstLogicalBlock % Commodore1581Geometry.LogicalBlocksPerTrack));
+        Assert.Equal(firstLogicalBlock + 1, Commodore1581Geometry.PhysicalSectorToLogicalBlock(cylinder, head, sector) + 1);
     }
 
     [Theory]

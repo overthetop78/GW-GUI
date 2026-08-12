@@ -28,17 +28,18 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
             .OrderBy(group => group.Key).Select(group =>
             {
                 var halves = group.OrderBy(block => block.LogicalBlock).ToArray();
-                var data = halves.SelectMany(block => block.Data).Take(512).ToArray();
-                return new TrackSector(group.Key % 10 + 1, data, SizeCode: 2);
-            }).Where(sector => sector.Data.Count == 512).ToArray();
+                var data = halves.SelectMany(block => block.Data).Take(Commodore1581Geometry.PhysicalSectorSize).ToArray();
+                return new TrackSector(group.Key % Commodore1581Geometry.PhysicalSectorsPerTrack + 1, data, SizeCode: 2);
+            }).Where(sector => sector.Data.Count == Commodore1581Geometry.PhysicalSectorSize).ToArray();
     }
 
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address)
     {
         if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return address;
         var logical = address.Cylinder * image.SectorsPerTrack + address.Number;
-        var physical = logical / 2;
-        return new(physical / 20, physical % 20 / 10, physical % 10 + 1);
+        var physical = logical / Commodore1581Geometry.LogicalBlocksPerPhysicalSector;
+        var sectorsPerCylinder = Commodore1581Geometry.PhysicalHeadCount * Commodore1581Geometry.PhysicalSectorsPerTrack;
+        return new(physical / sectorsPerCylinder, physical % sectorsPerCylinder / Commodore1581Geometry.PhysicalSectorsPerTrack, physical % Commodore1581Geometry.PhysicalSectorsPerTrack + 1);
     }
 
     public override uint BitCellTicks(SectorImage image, int cylinder)
