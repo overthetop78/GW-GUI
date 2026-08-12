@@ -17,23 +17,51 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackBitEncoding.Bits();
-        var id2 = (byte)Attribute(request, CommodoreGcrFormat.Id2AttributeName, CommodoreGcrFormat.DefaultId2);
-        var id1 = (byte)Attribute(request, CommodoreGcrFormat.Id1AttributeName, CommodoreGcrFormat.DefaultId1);
-        var diskTrack = Attribute(request, CommodoreGcrFormat.TrackAttributeName, request.Cylinder + 1 + request.Head * CommodoreGcrFormat.TracksPerSide);
+        var id2 = ReadByteAttribute(request, CommodoreGcrFormat.Id2AttributeName, CommodoreGcrFormat.DefaultId2);
+        var id1 = ReadByteAttribute(request, CommodoreGcrFormat.Id1AttributeName, CommodoreGcrFormat.DefaultId1);
+        var diskTrack = ResolveDiskTrack(request);
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != CommodoreGcrFormat.SectorByteCount) throw CommodoreGcrFormat.InvalidSectorSize(sector.Data.Count);
-            byte[] header = [CommodoreGcrFormat.HeaderMark, (byte)(sector.Number ^ diskTrack ^ id2 ^ id1), (byte)sector.Number, (byte)diskTrack, id2, id1];
-            var checksum = CommodoreGcrChecksum.Calculate(sector.Data);
+            ValidateByte(nameof(sector.Number), sector.Number);
             bits.Gap(CommodoreGcrFormat.LeadingGapBitCount, true);
             bits.RawBits(new string('0', CommodoreGcrFormat.RawGapBitCount));
             bits.Gap(CommodoreGcrFormat.SyncGapBitCount, true);
-            bits.AddRange(CommodoreGcrCodec.Encode(header));
+            bits.AddRange(CommodoreGcrCodec.Encode(BuildHeader((byte)sector.Number, (byte)diskTrack, id2, id1)));
             bits.Gap(CommodoreGcrFormat.HeaderDataGapBitCount);
             bits.Gap(CommodoreGcrFormat.SyncGapBitCount, true);
-            bits.AddRange(CommodoreGcrCodec.Encode(new byte[] { CommodoreGcrFormat.DataMark }.Concat(sector.Data).Append(checksum)));
+            bits.AddRange(CommodoreGcrCodec.Encode(BuildDataRecord(sector.Data)));
             bits.Gap(CommodoreGcrFormat.TrailingGapBitCount);
         }
         return bits;
+    }
+
+    /// <summary>Calcule ou lit le numéro de piste disque et vérifie sa plage standard.</summary>
+    private static int ResolveDiskTrack(TrackEncodeRequest request)
+    {
+        if (request.Cylinder > CommodoreGcrFormat.MaximumCylinder) throw TrackEncodingExceptions.FormatValueOutOfRange("Commodore GCR", nameof(request.Cylinder), request.Cylinder, CommodoreGcrFormat.MaximumCylinder);
+        var diskTrack = Attribute(request, CommodoreGcrFormat.TrackAttributeName, CommodoreGcrFormat.DiskTrack(request.Cylinder, request.Head));
+        if (diskTrack is < CommodoreGcrFormat.MinimumDiskTrack or > CommodoreGcrFormat.MaximumDiskTrack) throw new ArgumentOutOfRangeException(CommodoreGcrFormat.TrackAttributeName, diskTrack, $"Commodore disk track must be between {CommodoreGcrFormat.MinimumDiskTrack} and {CommodoreGcrFormat.MaximumDiskTrack}.");
+        return diskTrack;
+    }
+
+    /// <summary>Construit les six octets d'en-tête dans l'ordre marque, checksum, secteur, piste, ID2 et ID1.</summary>
+    private static byte[] BuildHeader(byte sector, byte diskTrack, byte id2, byte id1) => [CommodoreGcrFormat.HeaderMark, (byte)(sector ^ diskTrack ^ id2 ^ id1), sector, diskTrack, id2, id1];
+
+    /// <summary>Construit le champ de données avec sa marque et son checksum XOR.</summary>
+    private static byte[] BuildDataRecord(IReadOnlyList<byte> data) => new byte[] { CommodoreGcrFormat.DataMark }.Concat(data).Append(CommodoreGcrChecksum.Calculate(data)).ToArray();
+
+    /// <summary>Lit un attribut de requête dont la valeur doit tenir dans un octet.</summary>
+    private static byte ReadByteAttribute(TrackEncodeRequest request, string name, byte fallback)
+    {
+        var value = Attribute(request, name, fallback);
+        ValidateByte(name, value);
+        return (byte)value;
+    }
+
+    /// <summary>Valide une valeur avant sa conversion en octet.</summary>
+    private static void ValidateByte(string field, int value)
+    {
+        if (value is < 0 || value > CommodoreGcrFormat.MaximumByteValue) throw TrackEncodingExceptions.FormatValueOutOfRange("Commodore GCR", field, value, CommodoreGcrFormat.MaximumByteValue);
     }
 }

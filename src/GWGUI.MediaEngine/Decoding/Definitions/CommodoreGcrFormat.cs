@@ -81,6 +81,14 @@ internal static class CommodoreGcrFormat
     public const byte DefaultId1 = 0x1a;
     /// <summary>Nombre de pistes par face utilisé pour calculer la piste logique.</summary>
     public const int TracksPerSide = 35;
+    /// <summary>Premier numéro de piste disque Commodore.</summary>
+    public const int MinimumDiskTrack = 1;
+    /// <summary>Dernier numéro de piste d'une image double face standard.</summary>
+    public const int MaximumDiskTrack = TracksPerSide * 2;
+    /// <summary>Plus grand cylindre d'une face standard.</summary>
+    public const int MaximumCylinder = TracksPerSide - 1;
+    /// <summary>Plus grande valeur d'un identifiant ou numéro de secteur écrit sur un octet.</summary>
+    public const int MaximumByteValue = byte.MaxValue;
     /// <summary>Masque isolant un demi-octet.</summary>
     public const int NibbleMask = CommodoreGcrCodec.NibbleMask;
     /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>
@@ -92,4 +100,7 @@ internal static class CommodoreGcrFormat
     /// <param name="actualSize">Taille observée en octets.</param>
     /// <returns>Exception contenant les tailles attendue et observée.</returns>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Commodore sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
+
+    /// <summary>Calcule le numéro de piste disque depuis le cylindre et la face.</summary>
+    public static int DiskTrack(int cylinder, int head) => cylinder + MinimumDiskTrack + head * TracksPerSide;
 }

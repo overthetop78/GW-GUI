@@ -3771,42 +3771,42 @@
       - [x] Tester les longueurs et valeurs des synchronisations et gaps placés autour des deux champs.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Commodore 900 avec le décodeur correspondant dans chaque zone prise en charge.
-  - [ ] `Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
-    - [ ] Identité et attributs de l'encodeur Commodore GCR
-      - [ ] Remplacer l'identifiant brut `commodore.gcr` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Commodore GCR` par la définition centrale correspondante.
-      - [ ] Remplacer les clés d'attribut brutes `id1`, `id2` et `track` par les définitions centrales correspondantes.
-      - [ ] Remplacer les identifiants par défaut `0x1a` et `0xa1` par des valeurs nommées en conservant leur ordre exact dans l'en-tête.
-    - [ ] Définitions communes et définitions propres au format
-      - [ ] Déplacer la table GCR locale et la conversion commune de chaque nibble en cinq bits dans un codec partagé avec `Commodore900GcrTrackEncoder` et les décodeurs correspondants.
-      - [ ] Donner à la table commune le type minimal adapté à ses codes de cinq bits au lieu de conserver un tableau d'entiers.
-      - [ ] Déplacer la marque d'en-tête `0x08`, la marque de données `0x07` et la taille sectorielle dans `CommodoreGcrFormat`.
-      - [ ] Déplacer les longueurs des synchronisations et gaps ainsi que le motif brut de trois bits dans `CommodoreGcrFormat`.
-      - [ ] Remplacer le nombre brut de pistes par face utilisé dans le calcul de `diskTrack` par la définition géométrique Commodore correspondante.
-      - [ ] Nommer la règle XOR du checksum d'en-tête et celle du checksum de données.
-    - [ ] Construction d'une piste Commodore GCR
-      - [ ] Extraire le calcul du numéro de piste disque à partir du cylindre, de la tête et de l'éventuel attribut `track` dans une fonction dédiée.
-      - [ ] Extraire la construction des six octets de l'en-tête et de son checksum dans une fonction privée.
-      - [ ] Extraire la construction du champ de données et de son checksum dans une fonction privée.
-      - [ ] Remplacer `Gcr` par l'appel au codec Commodore GCR commun sans conserver une seconde table ni une seconde boucle de conversion.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider les attributs `id1` et `id2` avant leur conversion en octet.
-      - [ ] Valider le cylindre, la tête et le numéro de piste disque calculé avant l'écriture de ce dernier dans l'en-tête.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet et avant son utilisation dans le checksum d'en-tête.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Séparer toutes les déclarations, boucles, conditions et écritures actuellement juxtaposées sur une même ligne.
-      - [ ] Développer les trois boucles imbriquées de `Gcr` avant de remplacer cette méthode par le codec commun.
-      - [ ] Normaliser les espaces dans la table, les tableaux, les masques, les expressions et les arguments.
-      - [ ] Conserver sur une seule ligne chaque signature, appel ou expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Commodore GCR
-      - [ ] Tester le calcul de piste disque pour chaque tête et pour une valeur `track` fournie explicitement.
-      - [ ] Tester l'ordre des identifiants, le numéro de secteur et le checksum de l'en-tête avec des valeurs connues.
-      - [ ] Tester l'encodage d'un secteur de 256 octets et son checksum de données avec un résultat connu.
-      - [ ] Tester la suite exacte des synchronisations, du motif brut et des gaps autour des champs.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un identifiant, d'une géométrie, d'une piste disque ou d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Commodore avec le décodeur correspondant dans chaque zone de vitesse prise en charge.
+  - [x] `Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
+    - [x] Identité et attributs de l'encodeur Commodore GCR
+      - [x] Remplacer l'identifiant brut `commodore.gcr` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Commodore GCR` par la définition centrale correspondante.
+      - [x] Remplacer les clés d'attribut brutes `id1`, `id2` et `track` par les définitions centrales correspondantes.
+      - [x] Remplacer les identifiants par défaut `0x1a` et `0xa1` par des valeurs nommées en conservant leur ordre exact dans l'en-tête.
+    - [x] Définitions communes et définitions propres au format
+      - [x] Déplacer la table GCR locale et la conversion commune de chaque nibble en cinq bits dans un codec partagé avec `Commodore900GcrTrackEncoder` et les décodeurs correspondants.
+      - [x] Donner à la table commune le type minimal adapté à ses codes de cinq bits au lieu de conserver un tableau d'entiers.
+      - [x] Déplacer la marque d'en-tête `0x08`, la marque de données `0x07` et la taille sectorielle dans `CommodoreGcrFormat`.
+      - [x] Déplacer les longueurs des synchronisations et gaps ainsi que le motif brut de trois bits dans `CommodoreGcrFormat`.
+      - [x] Remplacer le nombre brut de pistes par face utilisé dans le calcul de `diskTrack` par la définition géométrique Commodore correspondante.
+      - [x] Nommer la règle XOR du checksum d'en-tête et celle du checksum de données.
+    - [x] Construction d'une piste Commodore GCR
+      - [x] Extraire le calcul du numéro de piste disque à partir du cylindre, de la tête et de l'éventuel attribut `track` dans une fonction dédiée.
+      - [x] Extraire la construction des six octets de l'en-tête et de son checksum dans une fonction privée.
+      - [x] Extraire la construction du champ de données et de son checksum dans une fonction privée.
+      - [x] Remplacer `Gcr` par l'appel au codec Commodore GCR commun sans conserver une seconde table ni une seconde boucle de conversion.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider les attributs `id1` et `id2` avant leur conversion en octet.
+      - [x] Valider le cylindre, la tête et le numéro de piste disque calculé avant l'écriture de ce dernier dans l'en-tête.
+      - [x] Valider le numéro de secteur avant sa conversion en octet et avant son utilisation dans le checksum d'en-tête.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Séparer toutes les déclarations, boucles, conditions et écritures actuellement juxtaposées sur une même ligne.
+      - [x] Développer les trois boucles imbriquées de `Gcr` avant de remplacer cette méthode par le codec commun.
+      - [x] Normaliser les espaces dans la table, les tableaux, les masques, les expressions et les arguments.
+      - [x] Conserver sur une seule ligne chaque signature, appel ou expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Commodore GCR
+      - [x] Tester le calcul de piste disque pour chaque tête et pour une valeur `track` fournie explicitement.
+      - [x] Tester l'ordre des identifiants, le numéro de secteur et le checksum de l'en-tête avec des valeurs connues.
+      - [x] Tester l'encodage d'un secteur de 256 octets et son checksum de données avec un résultat connu.
+      - [x] Tester la suite exacte des synchronisations, du motif brut et des gaps autour des champs.
+      - [x] Tester le rejet d'une taille sectorielle, d'un identifiant, d'une géométrie, d'une piste disque ou d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Commodore avec le décodeur correspondant dans chaque zone de vitesse prise en charge.
   - [ ] `Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
     - [ ] Identité de l'encodeur Data General
       - [ ] Remplacer l'identifiant brut `datageneral.fm` par la définition centrale correspondante.
