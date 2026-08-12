@@ -3314,52 +3314,52 @@
       - [x] Tester l'erreur et l'identifiant transmis lorsqu'un encodeur est absent.
       - [x] Tester la sélection puis l'exécution d'un encodeur injecté.
       - [x] Tester que le constructeur sans paramètre permet toujours les encodages actuellement utilisés par le writer Apple et le visualiseur.
-  - [ ] `Encoding/TrackEncodeModels.cs`
-    - [ ] Découpage des quatre types publics
-      - [ ] Créer `Encoding/TrackSector.cs` et y déplacer uniquement le record `TrackSector`.
-      - [ ] Créer `Encoding/TrackEncodeRequest.cs` et y déplacer uniquement le record `TrackEncodeRequest`.
-      - [ ] Créer `Encoding/EncodedTrack.cs` et y déplacer uniquement le record `EncodedTrack`.
-      - [ ] Créer `Encoding/ITrackEncoder.cs` et y déplacer uniquement l'interface `ITrackEncoder`.
-      - [ ] Adapter les références aux quatre types sans modifier leurs namespaces publics.
-      - [ ] Supprimer `Encoding/TrackEncodeModels.cs` après le déplacement de ses quatre types.
-    - [ ] Valeurs techniques par défaut de `TrackEncodeRequest`
-      - [ ] Créer une définition technique d'encodage de piste contenant les 40 ticks de cellule par défaut avec son unité dans le nom.
-      - [ ] Y définir les 8 000 000 ticks de durée d'index par défaut avec son unité dans le nom, sans les décrire comme une fréquence.
-      - [ ] Remplacer les valeurs brutes des paramètres optionnels `BitCellTicks` et `IndexTimeTicks` par ces définitions.
-      - [ ] Raccorder les encodeurs qui emploient les mêmes valeurs par défaut à ces définitions au lieu de les recopier.
-    - [ ] Attributs de piste et de secteur
-      - [ ] Conserver les dictionnaires extensibles de `TrackEncodeRequest` et `TrackSector` pour transporter les attributs propres aux formats.
-      - [ ] Remplacer dans chaque encodeur les clés textuelles brutes par les constantes définies dans le format qui possède l'attribut.
-      - [ ] Ne pas créer un enum fermé commun qui empêcherait l'ajout d'un attribut propre à un nouveau format.
-    - [ ] Immuabilité de `TrackSector`
-      - [ ] Copier la collection `Data` reçue avant de l'exposer par le record.
-      - [ ] Copier le dictionnaire `Attributes` reçu avant de l'exposer par une vue non modifiable.
-      - [ ] Conserver distinctement le numéro, l'état supprimé et le code de taille optionnel.
-    - [ ] Immuabilité de `TrackEncodeRequest`
-      - [ ] Copier la collection `Sectors` reçue avant de l'exposer par le record.
-      - [ ] Copier le dictionnaire `Attributes` reçu avant de l'exposer par une vue non modifiable.
-      - [ ] Conserver distinctement le cylindre, la tête, les ticks de cellule et les ticks de durée d'index.
-    - [ ] Indépendance du modèle `EncodedTrack`
-      - [ ] Remplacer la propriété `ScpRevolution` par le modèle technique `FluxRevolution` prévu dans `Flux/FluxRevolution.cs`.
-      - [ ] Supprimer de `EncodedTrack.cs` la dépendance et l'import vers `Containers.Scp`.
-      - [ ] Copier la collection `Bits` reçue avant de l'exposer par une vue non modifiable.
-      - [ ] Conserver l'identifiant de l'encodeur qui a produit la piste.
-      - [ ] Adapter `TrackEncoderBase.cs`, les writers, le visualiseur et les tests qui consomment la révolution produite.
-    - [ ] Contrat `ITrackEncoder`
-      - [ ] Conserver dans l'interface les membres `Id`, `DisplayName` et `Encode` sans y déplacer de logique de registre ni de format.
-      - [ ] Faire retourner à `Encode` le modèle `EncodedTrack` découplé de SCP.
-    - [ ] Présentation et CSDoc des quatre fichiers
-      - [ ] Écrire la déclaration de chaque record sur une seule ligne lorsqu'elle tient lisiblement sur une ligne, notamment `TrackEncodeRequest` actuellement cassé sur sept lignes.
-      - [ ] Ajouter en français la CSDoc de chaque record et de l'interface.
-      - [ ] Documenter en français chaque paramètre de record, propriété exposée et valeur par défaut avec son unité.
-      - [ ] Documenter en français `ITrackEncoder.Id`, `DisplayName` et `Encode`, ses paramètres, son résultat et ses exceptions communes.
-    - [ ] Tests ciblés des modèles d'encodage
-      - [ ] Tester les valeurs par défaut nommées de cellule et de durée d'index.
-      - [ ] Tester que la modification ultérieure des données ou attributs fournis à `TrackSector` ne modifie pas le secteur.
-      - [ ] Tester que la modification ultérieure des secteurs ou attributs fournis à `TrackEncodeRequest` ne modifie pas la requête.
-      - [ ] Tester que la modification ultérieure des bits fournis à `EncodedTrack` ne modifie pas le résultat.
-      - [ ] Tester que `EncodedTrack` et `ITrackEncoder` ne dépendent plus d'un type du namespace `Containers.Scp`.
-      - [ ] Tester qu'un encodage existant fournit toujours son identifiant, ses bits et une révolution de flux équivalente après le découplage.
+- [x] `Encoding/TrackEncodeModels.cs`
+    - [x] Découpage des quatre types publics
+      - [x] Créer `Encoding/TrackSector.cs` et y déplacer uniquement le record `TrackSector`.
+      - [x] Créer `Encoding/TrackEncodeRequest.cs` et y déplacer uniquement le record `TrackEncodeRequest`.
+      - [x] Créer `Encoding/EncodedTrack.cs` et y déplacer uniquement le record `EncodedTrack`.
+      - [x] Créer `Encoding/ITrackEncoder.cs` et y déplacer uniquement l'interface `ITrackEncoder`.
+      - [x] Adapter les références aux quatre types sans modifier leurs namespaces publics.
+      - [x] Supprimer `Encoding/TrackEncodeModels.cs` après le déplacement de ses quatre types.
+    - [x] Valeurs techniques par défaut de `TrackEncodeRequest`
+      - [x] Créer une définition technique d'encodage de piste contenant les 40 ticks de cellule par défaut avec son unité dans le nom.
+      - [x] Y définir les 8 000 000 ticks de durée d'index par défaut avec son unité dans le nom, sans les décrire comme une fréquence.
+      - [x] Remplacer les valeurs brutes des paramètres optionnels `BitCellTicks` et `IndexTimeTicks` par ces définitions.
+      - [x] Raccorder les encodeurs qui emploient les mêmes valeurs par défaut à ces définitions au lieu de les recopier.
+    - [x] Attributs de piste et de secteur
+      - [x] Conserver les dictionnaires extensibles de `TrackEncodeRequest` et `TrackSector` pour transporter les attributs propres aux formats.
+      - [x] Remplacer dans chaque encodeur les clés textuelles brutes par les constantes définies dans le format qui possède l'attribut.
+      - [x] Ne pas créer un enum fermé commun qui empêcherait l'ajout d'un attribut propre à un nouveau format.
+    - [x] Immuabilité de `TrackSector`
+      - [x] Copier la collection `Data` reçue avant de l'exposer par le record.
+      - [x] Copier le dictionnaire `Attributes` reçu avant de l'exposer par une vue non modifiable.
+      - [x] Conserver distinctement le numéro, l'état supprimé et le code de taille optionnel.
+    - [x] Immuabilité de `TrackEncodeRequest`
+      - [x] Copier la collection `Sectors` reçue avant de l'exposer par le record.
+      - [x] Copier le dictionnaire `Attributes` reçu avant de l'exposer par une vue non modifiable.
+      - [x] Conserver distinctement le cylindre, la tête, les ticks de cellule et les ticks de durée d'index.
+    - [x] Indépendance du modèle `EncodedTrack`
+      - [x] Remplacer la propriété `ScpRevolution` par le modèle technique `FluxRevolution` prévu dans `Flux/FluxRevolution.cs`.
+      - [x] Supprimer de `EncodedTrack.cs` la dépendance et l'import vers `Containers.Scp`.
+      - [x] Copier la collection `Bits` reçue avant de l'exposer par une vue non modifiable.
+      - [x] Conserver l'identifiant de l'encodeur qui a produit la piste.
+      - [x] Adapter `TrackEncoderBase.cs`, les writers, le visualiseur et les tests qui consomment la révolution produite.
+    - [x] Contrat `ITrackEncoder`
+      - [x] Conserver dans l'interface les membres `Id`, `DisplayName` et `Encode` sans y déplacer de logique de registre ni de format.
+      - [x] Faire retourner à `Encode` le modèle `EncodedTrack` découplé de SCP.
+    - [x] Présentation et CSDoc des quatre fichiers
+      - [x] Écrire la déclaration de chaque record sur une seule ligne lorsqu'elle tient lisiblement sur une ligne, notamment `TrackEncodeRequest` actuellement cassé sur sept lignes.
+      - [x] Ajouter en français la CSDoc de chaque record et de l'interface.
+      - [x] Documenter en français chaque paramètre de record, propriété exposée et valeur par défaut avec son unité.
+      - [x] Documenter en français `ITrackEncoder.Id`, `DisplayName` et `Encode`, ses paramètres, son résultat et ses exceptions communes.
+    - [x] Tests ciblés des modèles d'encodage
+      - [x] Tester les valeurs par défaut nommées de cellule et de durée d'index.
+      - [x] Tester que la modification ultérieure des données ou attributs fournis à `TrackSector` ne modifie pas le secteur.
+      - [x] Tester que la modification ultérieure des secteurs ou attributs fournis à `TrackEncodeRequest` ne modifie pas la requête.
+      - [x] Tester que la modification ultérieure des bits fournis à `EncodedTrack` ne modifie pas le résultat.
+      - [x] Tester que `EncodedTrack` et `ITrackEncoder` ne dépendent plus d'un type du namespace `Containers.Scp`.
+      - [x] Tester qu'un encodage existant fournit toujours son identifiant, ses bits et une révolution de flux équivalente après le découplage.
   - [ ] `Encoding/TrackEncoderBase.cs`
     - [ ] Limites communes d'une requête d'encodage
       - [ ] Créer ou compléter `Encoding/TrackEncodingLimits.cs` avec le cylindre minimal zéro et le cylindre maximal 255 acceptés par le contrat général.

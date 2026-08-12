@@ -12,5 +12,8 @@ public interface ITrackEncoder
     /// <summary>Encode une piste logique complète.</summary>
     /// <param name="request">Description de la piste et de ses secteurs.</param>
     /// <returns>Piste encodée et révolution de flux correspondante.</returns>
+    /// <exception cref="ArgumentNullException">La requête est nulle.</exception>
+    /// <exception cref="ArgumentException">La requête ne respecte pas les contraintes communes ou celles du format.</exception>
+    /// <exception cref="InvalidOperationException">L'encodeur ne produit aucune cellule binaire.</exception>
     EncodedTrack Encode(TrackEncodeRequest request);
 }

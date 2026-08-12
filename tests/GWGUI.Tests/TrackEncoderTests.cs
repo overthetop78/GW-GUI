@@ -110,6 +110,40 @@ public sealed class TrackEncoderTests
         Assert.Same(request, encoder.LastRequest);
     }
 
+    [Fact]
+    public void TrackEncodingModelsCopyTheirInputCollectionsAndExposeNamedDefaults()
+    {
+        var data = new byte[] { 1, 2 };
+        var sectorAttributes = new Dictionary<string, int> { ["sector"] = 3 };
+        var sector = new TrackSector(1, data, Attributes: sectorAttributes);
+        var sectors = new[] { sector };
+        var requestAttributes = new Dictionary<string, int> { ["track"] = 4 };
+        var request = new TrackEncodeRequest(2, 1, sectors, requestAttributes);
+        var bits = new[] { true, false };
+        var encoded = new EncodedTrack("test", bits, TrackEncoding.ToRevolution(bits, 1, 2));
+
+        data[0] = 9;
+        sectorAttributes["sector"] = 9;
+        sectors[0] = new TrackSector(2, [9]);
+        requestAttributes["track"] = 9;
+        bits[0] = false;
+
+        Assert.Equal((byte)1, sector.Data[0]);
+        Assert.Equal(3, sector.Attributes!["sector"]);
+        Assert.Same(sector, request.Sectors[0]);
+        Assert.Equal(4, request.Attributes!["track"]);
+        Assert.True(encoded.Bits[0]);
+        Assert.Equal(TrackEncodingDefaults.BitCellTicks, request.BitCellTicks);
+        Assert.Equal(TrackEncodingDefaults.IndexTimeTicks, request.IndexTimeTicks);
+    }
+
+    [Fact]
+    public void EncodedTrackAndEncoderContractDependOnGenericFluxRevolution()
+    {
+        Assert.Equal(typeof(GWGUI.MediaEngine.Flux.FluxRevolution), typeof(EncodedTrack).GetProperty(nameof(EncodedTrack.Revolution))!.PropertyType);
+        Assert.Equal(typeof(EncodedTrack), typeof(ITrackEncoder).GetMethod(nameof(ITrackEncoder.Encode))!.ReturnType);
+    }
+
     private static IReadOnlyDictionary<string, string> CodecDisplayNamesById()
     {
         var identifierFields = typeof(FluxCodecIds).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
@@ -126,6 +160,9 @@ public sealed class TrackEncoderTests
         var request = new TrackEncodeRequest(2, 0, [new TrackSector(sectorNumber, data)]);
         var encoded = new FluxEncoderRegistry().Encode(id, request);
 
+        Assert.Equal(id, encoded.EncoderId);
+        Assert.NotEmpty(encoded.Bits);
+        Assert.IsType<GWGUI.MediaEngine.Flux.FluxRevolution>(encoded.Revolution);
         var decoded = new FluxDecoderRegistry().Decode(id, encoded.Revolution);
 
         var sector = Assert.Single(decoded.Sectors!);
