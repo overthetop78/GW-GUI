@@ -13,7 +13,7 @@ public sealed class HeathkitFmDecoderTests
     [Fact]
     public void CommonMarkContainsThreeZerosAndAddressMark()
     {
-        Assert.Equal(FluxEncoding.EncodeFm(0, 0, 0, HeathkitFmFormat.AddressMark), HeathkitFmFormat.SectorMark);
+        Assert.Equal(TrackBitEncoding.EncodeFm(0, 0, 0, HeathkitFmFormat.AddressMark), HeathkitFmFormat.SectorMark);
     }
 
     /// <summary>Vérifie qu'un checksum d'en-tête altéré est signalé.</summary>

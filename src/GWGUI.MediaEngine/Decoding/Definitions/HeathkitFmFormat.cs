@@ -59,7 +59,7 @@ internal static class HeathkitFmFormat
     /// <summary>Volume utilisé par défaut.</summary>
     public const byte DefaultVolume = 0;
     /// <summary>Marque FM commune aux en-têtes et aux données.</summary>
-    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(FluxEncoding.EncodeFm(0, 0, 0, AddressMark));
+    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeFm(0, 0, 0, AddressMark));
 
     /// <summary>Crée l'exception signalant une taille sectorielle incompatible.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Heathkit sectors contain {SectorSize} bytes; received {actualSize} bytes.");

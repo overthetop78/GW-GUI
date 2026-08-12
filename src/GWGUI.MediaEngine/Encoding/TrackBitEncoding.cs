@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
-internal static class FluxEncoding
+internal static class TrackBitEncoding
 {
     public static byte[] EncodeMfm(params byte[] data)
     {
@@ -42,8 +42,7 @@ internal static class FluxEncoding
         var bytes = new byte[(bits.Count + BitPrimitives.BitsPerByte - 1) / BitPrimitives.BitsPerByte];
         for (var index = 0; index < bits.Count; index++)
         {
-            if (bits[index])
-                bytes[index / BitPrimitives.BitsPerByte] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - index % BitPrimitives.BitsPerByte));
+            if (bits[index]) bytes[index / BitPrimitives.BitsPerByte] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - index % BitPrimitives.BitsPerByte));
         }
 
         return bytes;

@@ -60,7 +60,7 @@ internal static class MicropolisMfmFormat
     /// <summary>Diviseur du calcul de confiance.</summary>
     public const double ConfidenceDivisor = 24;
     /// <summary>Motif minimal composé de trois zéros et de la marque.</summary>
-    public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(FluxEncoding.EncodeMfm(0, 0, 0, AddressMark));
+    public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeMfm(0, 0, 0, AddressMark));
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Micropolis sectors contain {SectorSize} bytes; received {actualSize} bytes.");

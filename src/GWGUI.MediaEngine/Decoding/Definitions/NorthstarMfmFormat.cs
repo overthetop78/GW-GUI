@@ -50,7 +50,7 @@ internal static class NorthstarMfmFormat
     /// <summary>Diviseur du calcul de confiance.</summary>
     public const double ConfidenceDivisor = 20;
     /// <summary>Marque composée de sept zéros suivis de <c>0xfb</c>.</summary>
-    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(FluxEncoding.EncodeMfm(0, 0, 0, 0, 0, 0, 0, AddressMark));
+    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeMfm(0, 0, 0, 0, 0, 0, 0, AddressMark));
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"NorthStar sectors contain {SectorSize} bytes; received {actualSize} bytes.");

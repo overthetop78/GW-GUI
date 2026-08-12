@@ -3232,11 +3232,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML française de `FluxEncoderRegistry` et `FluxEncoderRegistryExceptions`.
     - [x] Ajouter la documentation XML des méthodes `Get, Encode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/FluxEncoding.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer les primitives FM/MFM dans `TrackBitEncoding.cs`.
-    - [ ] Adapter ses consommateurs.
-    - [ ] Supprimer `FluxEncoding.cs`.
+- [x] `src/GWGUI.MediaEngine/Encoding/FluxEncoding.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer les primitives FM/MFM dans `TrackBitEncoding.cs`.
+    - [x] Adapter ses consommateurs.
+    - [x] Supprimer `FluxEncoding.cs`.
 - [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncodeModels.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Créer `Encoding/TrackSector.cs`, `TrackEncodeRequest.cs`, `EncodedTrack.cs` et `ITrackEncoder.cs`.

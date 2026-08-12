@@ -56,7 +56,7 @@ internal static class MicralNFmFormat
     /// <summary>Diviseur du calcul de confiance.</summary>
     public const double ConfidenceDivisor = 20;
     /// <summary>Marque FM composée de trois zéros et de <c>0xff</c>.</summary>
-    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(FluxEncoding.EncodeFm(0, 0, 0, AddressMark));
+    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeFm(0, 0, 0, AddressMark));
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Micral N sectors contain {SectorSize} bytes; received {actualSize} bytes.");
