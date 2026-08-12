@@ -13,7 +13,7 @@ public static class FileSystemReaderCatalog
         new Readers.Rt11FileSystemReader(),
         new Readers.UcsdFileSystemReader(),
         new Readers.AppleInformXzipFileSystemReader(),
-        new Readers.AppleDosFileSystemReader(),
+        new Apple.Dos.AppleDosFileSystemReader(),
         new Readers.ProDosFileSystemReader(),
         new Readers.MacMfsFileSystemReader(),
         new Readers.MacHfsFileSystemReader(),

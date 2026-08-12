@@ -6430,81 +6430,81 @@
       - [x] Tester une date valide et chaque composante hors plage.
       - [x] Tester un bitmap valide, absent et au checksum invalide et vérifier l'espace libre.
       - [x] Tester avec une image AmigaDOS connue de `image_test` le volume, l'arborescence, les contenus, attributs, dates, validités et avertissements.
-  - [ ] `FileSystems/Readers/AppleDosFileSystemReader.cs`
-    - [ ] Emplacement et identité Apple DOS
-      - [ ] Déplacer le Reader vers `FileSystems/Apple/Dos/AppleDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `apple-dos` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer les noms bruts `Apple DOS 3.2` et `Apple DOS 3.3` par les identifiants techniques centraux associés au nombre de secteurs par piste.
-      - [ ] Exposer les trois identifiants de formats Apple DOS par un ensemble réellement non modifiable.
-    - [ ] Disposition Apple DOS commune
-      - [ ] Raccorder le Reader à `AppleDosFileSystemLayout` pour la taille de 256 octets, les 35 pistes minimales et les 13 ou 16 secteurs par piste.
-      - [ ] Remplacer la piste VTOC 17 et tous ses offsets `1`, `2`, `6`, `0x34`, `0x35`, `0x36` et `0x38` par les définitions centrales.
-      - [ ] Remplacer l'offset `0x0b`, la taille 35 et les positions d'une entrée de catalogue par les définitions centrales.
-      - [ ] Remplacer l'offset `0x0c`, la largeur deux et les positions d'une paire piste/secteur de liste T/S par les définitions centrales.
-      - [ ] Remplacer le masque sept bits, les marqueurs d'entrée inutilisée et supprimée et les valeurs de fin de chaîne par les définitions Apple DOS.
-    - [ ] Reconnaissance et lecture du VTOC
-      - [ ] Créer `FileSystems/Apple/Dos/AppleDosVtocReader.cs`.
-      - [ ] Y déplacer les contrôles de géométrie, la récupération du bloc VTOC et la validation de son pointeur de catalogue.
-      - [ ] Remplacer l'allocation `Skip(...).Take(...).ToArray()` par une lecture little-endian directe du span VTOC.
-      - [ ] Valider le nombre de pistes déclaré et le nombre de secteurs par piste par rapport à la géométrie réelle avant toute lecture de catalogue.
-      - [ ] Faire retourner le VTOC validé et ses champs nécessaires afin que `Read` ne rappelle pas `CanRead` puis ne relise pas les mêmes octets.
-    - [ ] Parcours du catalogue
-      - [ ] Créer `FileSystems/Apple/Dos/AppleDosCatalogReader.cs` et y déplacer la chaîne des secteurs de catalogue.
-      - [ ] Valider piste et secteur avant de calculer chaque bloc logique de catalogue.
-      - [ ] Distinguer dans les avertissements un secteur absent d'une chaîne cyclique.
-      - [ ] Conserver la règle qui arrête le secteur de catalogue à la première entrée inutilisée.
-      - [ ] Traduire en français le commentaire anglais sur les données résiduelles après cette entrée ou le remplacer par la CSDoc de la règle.
-      - [ ] Ignorer les entrées marquées supprimées sans les confondre avec la fin du secteur.
-      - [ ] Vérifier la longueur exacte du secteur de catalogue avant d'accéder à ses liens et entrées.
-    - [ ] Types, verrouillage et noms de fichiers
-      - [ ] Créer et utiliser `AppleDosFileType` pour les huit valeurs techniques actuellement traitées par `TypeName`.
-      - [ ] Séparer le bit de verrouillage du masque de type avant de convertir la valeur en enum.
-      - [ ] Conserver dans les attributs bruts de l'entrée le type et le verrouillage observés.
-      - [ ] Déplacer les noms d'affichage `Text`, `Integer BASIC`, `Applesoft BASIC`, `Binary`, `S`, `Relocatable`, `A`, `B` et `File` hors du Reader technique.
-      - [ ] Créer `AppleDosNameCodec.cs` et y déplacer `DecodeName` avec le masque sept bits et les remplissages espace et nul.
-      - [ ] Remplacer les tableaux et opérations LINQ temporaires du décodage par une boucle sur span et un tampon borné.
-    - [ ] Lecture des chaînes piste/secteur
-      - [ ] Créer `FileSystems/Apple/Dos/AppleDosTrackSectorListReader.cs` et y déplacer `ReadFile`.
-      - [ ] Faire retourner ensemble le contenu réellement lu, sa validité, la première référence T/S et les avertissements.
-      - [ ] Valider chaque coordonnée piste/secteur de liste avant de calculer son bloc logique.
-      - [ ] Vérifier la longueur d'un secteur de liste avant d'accéder à ses liens et paires.
-      - [ ] Conserver un ensemble des secteurs de liste visités et distinguer cycle et secteur absent.
-      - [ ] Valider chaque coordonnée de secteur de données avant de calculer son bloc logique.
-      - [ ] Marquer le résultat invalide lorsqu'un secteur de données est absent au lieu de continuer avec `MetadataValid = true`.
-      - [ ] Copier directement les données du bloc sans tableau temporaire inutile.
-      - [ ] Conserver comme référence de stockage de l'entrée la première liste T/S du fichier, et non le secteur de catalogue qui contenait son entrée.
-    - [ ] Taille déclarée du fichier
-      - [ ] Conserver le nombre de secteurs déclaré dans l'entrée de catalogue avec une unité explicitement documentée.
-      - [ ] Comparer le nombre de secteurs effectivement traversés, listes T/S incluses selon la règle Apple DOS, à cette valeur plutôt que de comparer seulement les octets de données à une borne grossière.
-      - [ ] Produire un avertissement paramétrable recevant nom, valeur déclarée et valeur observée lorsqu'elles sont incohérentes.
-      - [ ] Faire contribuer cette incohérence à `MetadataValid` sans supprimer le contenu récupérable.
-    - [ ] Bitmap VTOC et espace libre
-      - [ ] Déplacer `CountFree` dans `AppleDosVtocReader`.
-      - [ ] Remplacer l'offset bitmap, la largeur de quatre octets et les bits sectoriels par `AppleDosFileSystemLayout`.
-      - [ ] Conserver l'ordre big-endian nécessaire à la disposition du bitmap et documenter cet ordre.
-      - [ ] Limiter le parcours au nombre de pistes déclaré validé et aux secteurs réellement pris en charge.
-    - [ ] Nom du volume et résultat
-      - [ ] Remplacer le préfixe brut `DOS-` et le format décimal sur trois chiffres par une fonction technique recevant le numéro de volume VTOC.
-      - [ ] Construire `FileSystemVolume` avec l'identifiant Apple DOS central, la capacité, l'espace libre calculé, les entrées triées et les avertissements.
-    - [ ] Erreurs et avertissements Apple DOS
-      - [ ] Compléter `AppleDosFileSystemExceptions` avec les erreurs d'image non reconnue, VTOC invalide et coordonnée piste/secteur hors limites.
-      - [ ] Créer `AppleDosFileSystemWarnings.cs` pour catalogue, liste T/S, secteur de données et taille incohérente.
-      - [ ] Remplacer tous les textes anglais construits directement dans le Reader par ces définitions recevant nom, piste, secteur et tailles.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Supprimer l'import `System.Text` après déplacement du codec de noms.
-      - [ ] Séparer les initialisations de `sectors`, `vtoc`, `tracks`, collections, coordonnées et paires actuellement juxtaposées.
-      - [ ] Développer chaque contrôle de cycle ou secteur absent dont l'avertissement et le `break` ou `continue` sont sur la même ligne.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-      - [ ] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader Apple DOS
-      - [ ] Tester une image DOS 3.2 à 13 secteurs et une image DOS 3.3 à 16 secteurs par piste.
-      - [ ] Tester la validation du VTOC, son numéro de volume, son pointeur de catalogue et son bitmap.
-      - [ ] Tester chaque type de fichier, le bit verrouillé et un nom avec bit fort.
-      - [ ] Tester plusieurs secteurs de catalogue et l'arrêt à la première entrée inutilisée.
-      - [ ] Tester plusieurs listes T/S, une chaîne cyclique, une coordonnée hors limites et une liste absente.
-      - [ ] Tester un secteur de données absent et vérifier le contenu partiel et `MetadataValid = false`.
-      - [ ] Tester une taille déclarée cohérente et incohérente.
-      - [ ] Tester avec une image connue de `image_test` le volume, les entrées, contenus, types, verrouillages, références, validités, avertissements et espace libre.
+  - [x] `FileSystems/Readers/AppleDosFileSystemReader.cs`
+    - [x] Emplacement et identité Apple DOS
+      - [x] Déplacer le Reader vers `FileSystems/Apple/Dos/AppleDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `apple-dos` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer les noms bruts `Apple DOS 3.2` et `Apple DOS 3.3` par les identifiants techniques centraux associés au nombre de secteurs par piste.
+      - [x] Exposer les trois identifiants de formats Apple DOS par un ensemble réellement non modifiable.
+    - [x] Disposition Apple DOS commune
+      - [x] Raccorder le Reader à `AppleDosFileSystemLayout` pour la taille de 256 octets, les 35 pistes minimales et les 13 ou 16 secteurs par piste.
+      - [x] Remplacer la piste VTOC 17 et tous ses offsets `1`, `2`, `6`, `0x34`, `0x35`, `0x36` et `0x38` par les définitions centrales.
+      - [x] Remplacer l'offset `0x0b`, la taille 35 et les positions d'une entrée de catalogue par les définitions centrales.
+      - [x] Remplacer l'offset `0x0c`, la largeur deux et les positions d'une paire piste/secteur de liste T/S par les définitions centrales.
+      - [x] Remplacer le masque sept bits, les marqueurs d'entrée inutilisée et supprimée et les valeurs de fin de chaîne par les définitions Apple DOS.
+    - [x] Reconnaissance et lecture du VTOC
+      - [x] Créer `FileSystems/Apple/Dos/AppleDosVtocReader.cs`.
+      - [x] Y déplacer les contrôles de géométrie, la récupération du bloc VTOC et la validation de son pointeur de catalogue.
+      - [x] Remplacer l'allocation `Skip(...).Take(...).ToArray()` par une lecture little-endian directe du span VTOC.
+      - [x] Valider le nombre de pistes déclaré et le nombre de secteurs par piste par rapport à la géométrie réelle avant toute lecture de catalogue.
+      - [x] Faire retourner le VTOC validé et ses champs nécessaires afin que `Read` ne rappelle pas `CanRead` puis ne relise pas les mêmes octets.
+    - [x] Parcours du catalogue
+      - [x] Créer `FileSystems/Apple/Dos/AppleDosCatalogReader.cs` et y déplacer la chaîne des secteurs de catalogue.
+      - [x] Valider piste et secteur avant de calculer chaque bloc logique de catalogue.
+      - [x] Distinguer dans les avertissements un secteur absent d'une chaîne cyclique.
+      - [x] Conserver la règle qui arrête le secteur de catalogue à la première entrée inutilisée.
+      - [x] Traduire en français le commentaire anglais sur les données résiduelles après cette entrée ou le remplacer par la CSDoc de la règle.
+      - [x] Ignorer les entrées marquées supprimées sans les confondre avec la fin du secteur.
+      - [x] Vérifier la longueur exacte du secteur de catalogue avant d'accéder à ses liens et entrées.
+    - [x] Types, verrouillage et noms de fichiers
+      - [x] Créer et utiliser `AppleDosFileType` pour les huit valeurs techniques actuellement traitées par `TypeName`.
+      - [x] Séparer le bit de verrouillage du masque de type avant de convertir la valeur en enum.
+      - [x] Conserver dans les attributs bruts de l'entrée le type et le verrouillage observés.
+      - [x] Déplacer les noms d'affichage `Text`, `Integer BASIC`, `Applesoft BASIC`, `Binary`, `S`, `Relocatable`, `A`, `B` et `File` hors du Reader technique.
+      - [x] Créer `AppleDosNameCodec.cs` et y déplacer `DecodeName` avec le masque sept bits et les remplissages espace et nul.
+      - [x] Remplacer les tableaux et opérations LINQ temporaires du décodage par une boucle sur span et un tampon borné.
+    - [x] Lecture des chaînes piste/secteur
+      - [x] Créer `FileSystems/Apple/Dos/AppleDosTrackSectorListReader.cs` et y déplacer `ReadFile`.
+      - [x] Faire retourner ensemble le contenu réellement lu, sa validité, la première référence T/S et les avertissements.
+      - [x] Valider chaque coordonnée piste/secteur de liste avant de calculer son bloc logique.
+      - [x] Vérifier la longueur d'un secteur de liste avant d'accéder à ses liens et paires.
+      - [x] Conserver un ensemble des secteurs de liste visités et distinguer cycle et secteur absent.
+      - [x] Valider chaque coordonnée de secteur de données avant de calculer son bloc logique.
+      - [x] Marquer le résultat invalide lorsqu'un secteur de données est absent au lieu de continuer avec `MetadataValid = true`.
+      - [x] Copier directement les données du bloc sans tableau temporaire inutile.
+      - [x] Conserver comme référence de stockage de l'entrée la première liste T/S du fichier, et non le secteur de catalogue qui contenait son entrée.
+    - [x] Taille déclarée du fichier
+      - [x] Conserver le nombre de secteurs déclaré dans l'entrée de catalogue avec une unité explicitement documentée.
+      - [x] Comparer le nombre de secteurs effectivement traversés, listes T/S incluses selon la règle Apple DOS, à cette valeur plutôt que de comparer seulement les octets de données à une borne grossière.
+      - [x] Produire un avertissement paramétrable recevant nom, valeur déclarée et valeur observée lorsqu'elles sont incohérentes.
+      - [x] Faire contribuer cette incohérence à `MetadataValid` sans supprimer le contenu récupérable.
+    - [x] Bitmap VTOC et espace libre
+      - [x] Déplacer `CountFree` dans `AppleDosVtocReader`.
+      - [x] Remplacer l'offset bitmap, la largeur de quatre octets et les bits sectoriels par `AppleDosFileSystemLayout`.
+      - [x] Conserver l'ordre big-endian nécessaire à la disposition du bitmap et documenter cet ordre.
+      - [x] Limiter le parcours au nombre de pistes déclaré validé et aux secteurs réellement pris en charge.
+    - [x] Nom du volume et résultat
+      - [x] Remplacer le préfixe brut `DOS-` et le format décimal sur trois chiffres par une fonction technique recevant le numéro de volume VTOC.
+      - [x] Construire `FileSystemVolume` avec l'identifiant Apple DOS central, la capacité, l'espace libre calculé, les entrées triées et les avertissements.
+    - [x] Erreurs et avertissements Apple DOS
+      - [x] Compléter `AppleDosFileSystemExceptions` avec les erreurs d'image non reconnue, VTOC invalide et coordonnée piste/secteur hors limites.
+      - [x] Créer `AppleDosFileSystemWarnings.cs` pour catalogue, liste T/S, secteur de données et taille incohérente.
+      - [x] Remplacer tous les textes anglais construits directement dans le Reader par ces définitions recevant nom, piste, secteur et tailles.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Supprimer l'import `System.Text` après déplacement du codec de noms.
+      - [x] Séparer les initialisations de `sectors`, `vtoc`, `tracks`, collections, coordonnées et paires actuellement juxtaposées.
+      - [x] Développer chaque contrôle de cycle ou secteur absent dont l'avertissement et le `break` ou `continue` sont sur la même ligne.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+      - [x] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader Apple DOS
+      - [x] Tester une image DOS 3.2 à 13 secteurs et une image DOS 3.3 à 16 secteurs par piste.
+      - [x] Tester la validation du VTOC, son numéro de volume, son pointeur de catalogue et son bitmap.
+      - [x] Tester chaque type de fichier, le bit verrouillé et un nom avec bit fort.
+      - [x] Tester plusieurs secteurs de catalogue et l'arrêt à la première entrée inutilisée.
+      - [x] Tester plusieurs listes T/S, une chaîne cyclique, une coordonnée hors limites et une liste absente.
+      - [x] Tester un secteur de données absent et vérifier le contenu partiel et `MetadataValid = false`.
+      - [x] Tester une taille déclarée cohérente et incohérente.
+      - [x] Tester avec une image connue de `image_test` le volume, les entrées, contenus, types, verrouillages, références, validités, avertissements et espace libre.
   - [ ] `FileSystems/Readers/AppleInformXzipFileSystemReader.cs`
     - [ ] Emplacement et identité Inform/XZIP
       - [ ] Déplacer le Reader vers `FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs` et adapter son namespace et ses consommateurs.

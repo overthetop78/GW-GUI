@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.FileSystems.Apple.Dos;
 
 /// <summary>Définit la géométrie et les champs binaires d'Apple DOS 3.2 et 3.3.</summary>
-internal static class AppleDosFileSystemLayout
+public static class AppleDosFileSystemLayout
 {
     /// <summary>Taille d'un secteur, en octets.</summary>
     public const int SectorSize = 256;
@@ -57,6 +57,17 @@ internal static class AppleDosFileSystemLayout
     public const byte ValueMask = 0x7f;
     /// <summary>Marqueur d'une entrée supprimée.</summary>
     public const byte DeletedEntryMarker = 0xff;
+    /// <summary>Marqueur d'une entrée inutilisée et fin des entrées du secteur.</summary>
+    public const byte UnusedEntryMarker = 0;
+    /// <summary>Masque du bit de verrouillage dans le type brut.</summary>
+    public const byte LockedMask = 0x80;
+    /// <summary>Offset de la piste suivante dans un catalogue ou une liste T/S.</summary>
+    public const int NextTrackOffset = 1;
+    /// <summary>Offset du secteur suivant dans un catalogue ou une liste T/S.</summary>
+    public const int NextSectorOffset = 2;
+
+    /// <summary>Valide une coordonnée physique Apple DOS.</summary>
+    public static bool IsValidAddress(int track, int sector, int tracks, int sectorsPerTrack) => track >= 0 && track < tracks && sector >= 0 && sector < sectorsPerTrack;
 
     /// <summary>Valide les pointeurs et la géométrie déclarés par un VTOC.</summary>
     public static bool IsValidVtoc(ReadOnlySpan<byte> vtoc, int trackCount, int sectorsPerTrack)
