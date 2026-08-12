@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
+using GWGUI.MediaEngine.Reconstruction.Apple;
 
 
 namespace GWGUI.MediaEngine.Images.ScpDetection;

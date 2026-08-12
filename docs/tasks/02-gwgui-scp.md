@@ -5038,20 +5038,20 @@
   - [x] Mise en forme
     - [x] Remettre sur une seule ligne la signature complète de `Select`.
     - [x] Remettre sur une seule ligne la construction courte du `SectorBlock` retourné par `Select` si elle respecte la limite de longueur du document.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AppleScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleScpSectorImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `ReadAsync, DetectAutomatically, TryAdd`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Conservation des rejets de la détection automatique
-    - [ ] Faire conserver par `TryAdd` chaque `InvalidDataException` rejetée avec l’identité du reconstructeur Macintosh/Lisa, Apple II ou RWTS18 essayé.
-    - [ ] Inclure ces trois rejets dans l’erreur finale prévue par `ScpReconstructionExceptions` lorsque aucun reconstructeur ne produit d’image.
-    - [ ] Tester un rejet suivi d’une réussite et un échec des trois reconstructeurs en vérifiant que leurs diagnostics ne sont plus perdus.
-  - [ ] Mise en forme et commentaire
-    - [ ] Remettre sur une seule ligne la signature complète de `ReadAsync`.
-    - [ ] Remplacer le commentaire anglais du rejet dans `TryAdd` par une explication française du passage au reconstructeur Apple suivant.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AppleScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleScpSectorImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `ReadAsync, DetectAutomatically, TryAdd`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Conservation des rejets de la détection automatique
+    - [x] Faire conserver par `TryAdd` chaque `InvalidDataException` rejetée avec l’identité du reconstructeur Macintosh/Lisa, Apple II ou RWTS18 essayé.
+    - [x] Inclure ces trois rejets dans l’erreur finale prévue par `ScpReconstructionExceptions` lorsque aucun reconstructeur ne produit d’image.
+    - [x] Tester un rejet suivi d’une réussite et un échec des trois reconstructeurs en vérifiant que leurs diagnostics ne sont plus perdus.
+  - [x] Mise en forme et commentaire
+    - [x] Remettre sur une seule ligne la signature complète de `ReadAsync`.
+    - [x] Remplacer le commentaire anglais du rejet dans `TryAdd` par une explication française du passage au reconstructeur Apple suivant.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs`.

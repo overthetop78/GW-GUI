@@ -21,6 +21,7 @@ using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
+using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Atari.St;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;

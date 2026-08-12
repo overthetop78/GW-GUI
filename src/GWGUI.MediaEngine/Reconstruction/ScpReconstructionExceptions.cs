@@ -17,4 +17,8 @@ internal static class ScpReconstructionExceptions
     public static InvalidDataException InvalidRequestedFormat(string family, string formatId) => new($"Requested format '{formatId}' is not supported by the {family} SCP reconstructor.");
     /// <summary>Crée l'erreur signalant qu'une piste ne contient aucun secteur attendu.</summary>
     public static InvalidDataException MissingTrackSectors(string family, int track, int decodedSectorCount) => new($"{family} track {track} contains {decodedSectorCount} decodable sectors; no usable sector was reconstructed.");
+    /// <summary>Crée l'erreur regroupant les diagnostics des trois reconstructeurs Apple essayés automatiquement.</summary>
+    /// <param name="rejections">Rejets conservés avec l'identité de chaque reconstructeur.</param>
+    /// <returns>L'exception contenant les identités dans son message et les rejets originaux dans son exception interne.</returns>
+    public static InvalidDataException AppleCandidatesRejected(IReadOnlyCollection<(string Identity, InvalidDataException Error)> rejections) => new($"Apple reconstruction failed: {string.Join("; ", rejections.Select(rejection => $"{rejection.Identity}: {rejection.Error.Message}"))}", new AggregateException(rejections.Select(rejection => rejection.Error)));
 }

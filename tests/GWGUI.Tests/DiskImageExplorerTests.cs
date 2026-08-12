@@ -7,6 +7,7 @@ using GWGUI.MediaEngine.Geometries.Acorn;
 using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Readers;
@@ -374,6 +375,30 @@ public sealed class DiskImageExplorerTests
         var trackNumber = checked((byte)(cylinder * 2));
         return new(new(0, 0, 1, trackNumber, trackNumber, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0),
             [new ScpTrack(trackNumber, cylinder, 0, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)])], true, 0);
+    }
+
+    [Fact]
+    public async Task AppleAutomaticDetectionContinuesAfterARejectedReconstructor()
+    {
+        var reader = new AppleScpSectorImageReader(new MemoryScpReader(BuildAppleIIScp(0, 0)), new FluxDecoderRegistry());
+
+        var image = await reader.ReadAsync("memory.scp");
+
+        Assert.Equal(DiskImageFormatIds.AppleIIDos32, image.FormatId);
+    }
+
+    [Fact]
+    public async Task AppleAutomaticDetectionPreservesAllThreeRejections()
+    {
+        var scp = new ScpImage(new(0, 0, 1, 0, 0, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0), [], true, 0);
+        var reader = new AppleScpSectorImageReader(new MemoryScpReader(scp), new FluxDecoderRegistry());
+
+        var error = await Assert.ThrowsAsync<InvalidDataException>(() => reader.ReadAsync("memory.scp"));
+
+        Assert.Contains(AppleScpReconstructionDefinitions.MacintoshReconstructorName, error.Message, StringComparison.Ordinal);
+        Assert.Contains(AppleScpReconstructionDefinitions.AppleIIReconstructorName, error.Message, StringComparison.Ordinal);
+        Assert.Contains(AppleScpReconstructionDefinitions.Rwts18ReconstructorName, error.Message, StringComparison.Ordinal);
+        Assert.Equal(3, Assert.IsType<AggregateException>(error.InnerException).InnerExceptions.Count);
     }
 
     [Fact]

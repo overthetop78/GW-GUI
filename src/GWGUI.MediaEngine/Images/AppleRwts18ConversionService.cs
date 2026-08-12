@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
