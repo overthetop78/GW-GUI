@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.I86f;

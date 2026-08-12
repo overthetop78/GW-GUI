@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;

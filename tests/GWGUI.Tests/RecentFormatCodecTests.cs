@@ -33,10 +33,10 @@ public sealed class RecentFormatCodecTests
         var image = await new IsoScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.AcornDfsSingleSided);
 
         Assert.Equal("acorn.dfs.ss", image.FormatId);
-        Assert.True(new FileSystemRegistry().TryRead(image, null, out var volume));
-        Assert.NotNull(volume);
-        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AcornDfs, volume.FileSystemId);
-        Assert.Contains(volume.Entries, entry => entry.Name == "FILE" && entry.Content!.SequenceEqual(new byte[] { 1, 2, 3 }));
+        Assert.True(new FileSystemRegistry().TryRead(image, null, out var match));
+        Assert.NotNull(match);
+        Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AcornDfs, match.Volume.FileSystemId);
+        Assert.Contains(match.Volume.Entries, entry => entry.Name == "FILE" && entry.Content!.SequenceEqual(new byte[] { 1, 2, 3 }));
     }
 
     [Fact]

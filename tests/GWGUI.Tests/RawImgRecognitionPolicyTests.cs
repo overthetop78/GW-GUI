@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Containers.Raw;
@@ -54,8 +55,9 @@ public sealed class RawImgRecognitionPolicyTests
         try
         {
             var registry = new DiskImageRecognitionRegistry([new RawImgRecognitionPolicy(new RawImgReader())]);
-            var exception = await Assert.ThrowsAsync<InvalidDataException>(() => registry.ReadAsync(path, null, CancellationToken.None));
-            Assert.Contains("multiple of 512", exception.InnerException?.Message ?? exception.Message, StringComparison.OrdinalIgnoreCase);
+            var exception = await Assert.ThrowsAsync<DiskImageCandidatesRejectedException>(() => registry.ReadAsync(path, null, CancellationToken.None));
+            Assert.Contains("513", exception.Failures[0].Exception.Message, StringComparison.Ordinal);
+            Assert.Contains("512", exception.Failures[0].Exception.Message, StringComparison.Ordinal);
         }
         finally { File.Delete(path); }
     }

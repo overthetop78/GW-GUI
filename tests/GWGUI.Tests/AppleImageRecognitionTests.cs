@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Images;

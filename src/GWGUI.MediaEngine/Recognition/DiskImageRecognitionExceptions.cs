@@ -6,7 +6,7 @@ internal static class DiskImageRecognitionExceptions
     /// <summary>Crée l'erreur signalant qu'aucune politique n'a validé le fichier.</summary>
     /// <param name="context">Contexte contenant le chemin, l'extension et le format demandé.</param>
     /// <returns>Exception contenant le chemin dont aucun candidat n'a été trouvé.</returns>
-    public static NotSupportedException NoCandidateValidated(DiskImageRecognitionContext context) => new($"No recognition policy validated image '{context.Path}' with extension '{context.Extension}' and requested format '{context.RequestedFormatId ?? "<automatic>"}'.");
+    public static DiskImageNotRecognizedException NoCandidateValidated(DiskImageRecognitionContext context) => new($"No recognition policy validated image '{context.Path}' with extension '{context.Extension}' and requested format '{context.RequestedFormatId ?? "<automatic>"}'.", context.Path);
 
     /// <summary>Crée l'erreur signalant qu'aucune politique ne prend en charge le format explicitement demandé.</summary>
     /// <param name="requestedFormat">Identifiant du format explicitement demandé.</param>

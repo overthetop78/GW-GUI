@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Images;
@@ -67,8 +68,9 @@ public sealed class DiskImageRecognitionPolicyTests
         await File.WriteAllBytesAsync(path, "invalid container"u8.ToArray());
         try
         {
-            var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
-            Assert.Equal(DiskImageFormatIds.Unknown, result.Image.FormatId);
+            var exception = await Assert.ThrowsAsync<DiskImageCandidatesRejectedException>(() => DiskImageExplorer.CreateDefault().ExploreAsync(path));
+            Assert.Single(exception.Failures);
+            Assert.IsType<InvalidDataException>(exception.Failures[0].Exception);
         }
         finally { File.Delete(path); }
     }

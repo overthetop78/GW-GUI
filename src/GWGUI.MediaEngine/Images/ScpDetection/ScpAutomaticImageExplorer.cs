@@ -31,13 +31,13 @@ internal sealed class ScpAutomaticImageExplorer(
                     {
                         var recognizedImage = interpretations.NormalizeRecognizedImage(candidate, match.ReaderId, match.Volume);
                         var recognizedVolume = ReferenceEquals(recognizedImage, candidate) ||
-                            !fileSystems.TryRead(recognizedImage, match.ReaderId, out var normalizedVolume)
-                            ? match.Volume : normalizedVolume;
+                            !fileSystems.TryRead(recognizedImage, match.ReaderId, out var normalizedMatch)
+                            ? match.Volume : normalizedMatch.Volume;
                         matches.Add((new(recognizedImage.FormatId, match.ReaderId, recognizedVolume), recognizedImage));
                     }
                     foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(candidate))
-                        if (fileSystems.TryRead(interpretation, interpretation.FormatId, out var volume))
-                            matches.Add((new(interpretation.FormatId, interpretation.FormatId, volume), interpretation));
+                        if (fileSystems.TryRead(interpretation, interpretation.FormatId, out var interpretationMatch))
+                            matches.Add((new(interpretation.FormatId, interpretationMatch.ReaderId, interpretationMatch.Volume), interpretation));
                     return (Image: candidate, Matches: (IReadOnlyList<(ExploredFileSystem Match, SectorImage Image)>)matches);
                 }
                 catch (InvalidDataException)

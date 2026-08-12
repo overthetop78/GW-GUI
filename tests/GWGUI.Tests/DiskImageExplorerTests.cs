@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine;
@@ -267,6 +268,7 @@ public sealed class DiskImageExplorerTests
             var result = await DiskImageExplorer.CreateDefault().ExploreAsync(path, "amiga.amigados");
             Assert.Equal("Workbench", result.Volume.Name);
             Assert.Contains(result.Volume.Entries, entry => entry.Name == "Hello");
+            Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AmigaDos, Assert.Single(result.DetectedFileSystems!).ReaderId);
         }
         finally { File.Delete(path); }
     }

@@ -30,6 +30,7 @@ using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Atari.St;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Exploration;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -40,13 +41,14 @@ internal static class DiskImageExplorerFactory
         var scp = new ScpReader();
         var decoders = new FluxDecoderRegistry();
         var fileSystems = new FileSystemRegistry();
+        var interpretations = new DiskImageInterpretationService(fileSystems);
         var iso = new IsoScpSectorImageReader(scp, decoders);
         var candidates = new ScpCandidateRegistry(
             new AmigaScpSectorImageReader(scp, decoders), iso,
             new AtariScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new AppleScpSectorImageReader(scp, decoders),
             new DecRx02ScpSectorImageReader(scp, decoders));
-        var scpExploration = new ScpImageExplorationService(candidates, new ScpFamilyProbe(scp, decoders), fileSystems);
+        var scpExploration = new ScpImageExplorationService(candidates, new ScpFamilyProbe(scp, decoders), fileSystems, interpretations);
         var apple = new AppleDiskImageReader();
         var containers = new DiskImageRecognitionRegistry(
         [
@@ -71,6 +73,6 @@ internal static class DiskImageExplorerFactory
             new ExtensionHintRecognitionPolicy(new ImdReader().ReadAsync, DiskImageFileExtensions.Imd),
             new ScpRecognitionPolicy(scpExploration, fileSystems.SupportedFormatIds)
         ]);
-        return new(containers, fileSystems, scpExploration);
+        return new(containers, fileSystems, scpExploration, interpretations);
     }
 }

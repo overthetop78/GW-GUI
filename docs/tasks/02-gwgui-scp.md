@@ -7436,47 +7436,48 @@
     - [x] Exécuter uniquement les tests du fichier ou du groupe traité.
 
 - [ ] `src/GWGUI.MediaEngine/Images/DiskImageExplorer.cs`
-  - [ ] Déplacement de la façade publique d’exploration
-    - [ ] Déplacer le fichier vers `Exploration/DiskImageExplorer.cs` sans renommer le type public.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration` et adapter tous ses consommateurs.
-    - [ ] Renommer le paramètre et le champ `containers` en `recognition`, car le registre traite aussi des images brutes et pas uniquement des conteneurs.
-    - [ ] Injecter `DiskImageInterpretationService` dans le constructeur au lieu de le créer dans un champ à partir de `FileSystemRegistry`.
-    - [ ] Adapter la composition dans la fabrique pour fournir la même instance du service d’interprétation à l’explorateur et aux services SCP qui l’utilisent.
+  - [x] Déplacement de la façade publique d’exploration
+    - [x] Déplacer le fichier vers `Exploration/DiskImageExplorer.cs` sans renommer le type public.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration` et adapter tous ses consommateurs.
+    - [x] Renommer le paramètre et le champ `containers` en `recognition`, car le registre traite aussi des images brutes et pas uniquement des conteneurs.
+    - [x] Injecter `DiskImageInterpretationService` dans le constructeur au lieu de le créer dans un champ à partir de `FileSystemRegistry`.
+    - [x] Adapter la composition dans la fabrique pour fournir la même instance du service d’interprétation à l’explorateur et aux services SCP qui l’utilisent.
   - [ ] Point d’entrée et erreurs d’exploration
     - [ ] Conserver `CreateDefault` comme point d’entrée public vers la composition par défaut, puis le raccorder à la fabrique déplacée et renommée dans son propre groupe.
-    - [ ] Créer `Exploration/DiskImageExplorationExceptions.cs` avec une méthode recevant le chemin absent.
-    - [ ] Remplacer le texte brut `The disk image does not exist.` par cette erreur paramétrée.
-    - [ ] Faire distinguer au registre l’absence de candidat reconnu du rejet d’un conteneur identifié mais corrompu.
-    - [ ] Ne convertir en document inconnu que l’erreur dédiée à l’absence de candidat reconnu.
-    - [ ] Laisser remonter l’erreur précise d’un conteneur identifié mais corrompu, au lieu de convertir toute `InvalidDataException` ou `NotSupportedException` en résultat inconnu.
-  - [ ] Déclenchement de l’exploration SCP
-    - [ ] Remplacer le test spécial fondé uniquement sur `DiskImageFileExtensions.Scp` par la validation commune de `Containers/Scp/ScpSignature.cs`.
-    - [ ] Déclencher `ScpImageExplorationService.ExploreAutomaticallyAsync` uniquement lorsque la signature SCP est présente et qu’aucun format sectoriel n’est explicitement demandé.
-    - [ ] Laisser un faux fichier `.scp` sans signature suivre la reconnaissance normale au lieu de le forcer dans l’exploration SCP.
-    - [ ] Conserver le passage par le registre lorsqu’un format sectoriel est explicitement demandé pour une capture SCP.
-  - [ ] Résultats de systèmes de fichiers
-    - [ ] Extraire la lecture automatique des systèmes de fichiers dans une méthode privée recevant l’image reconnue.
-    - [ ] Extraire la lecture d’un format explicitement demandé dans une méthode privée distincte.
-    - [ ] Faire retourner par `FileSystemRegistry` son `Match` complet lors d’un `TryRead`, afin de conserver le véritable `ReaderId` au lieu d’utiliser `formatId` comme identifiant de Reader.
-    - [ ] Adapter les interprétations supplémentaires au même résultat contenant l’image interprétée, le véritable identifiant du Reader et le volume lu.
-    - [ ] Remplacer la clé brute construite avec trois textes et deux caractères nuls par la fonction commune d’identité d’interprétation extraite de `DiskImageInterpretationService`.
-    - [ ] Conserver l’ordre de la première occurrence lors de la déduplication des systèmes de fichiers détectés.
-    - [ ] Conserver l’image effectivement réidentifiée lorsque l’interprétation supplémentaire retenue réussit.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `DiskImageExplorer`, son constructeur, `SupportedFormatIds`, `CreateDefault` et `ExploreAsync`.
-    - [ ] Documenter les paramètres, le résultat, la détection automatique, la sélection explicite, l’annulation et les erreurs réellement propagées.
+      - Blocage temporaire : le raccordement final dépend du groupe suivant qui déplace et renomme la fabrique.
+    - [x] Créer `Exploration/DiskImageExplorationExceptions.cs` avec une méthode recevant le chemin absent.
+    - [x] Remplacer le texte brut `The disk image does not exist.` par cette erreur paramétrée.
+    - [x] Faire distinguer au registre l’absence de candidat reconnu du rejet d’un conteneur identifié mais corrompu.
+    - [x] Ne convertir en document inconnu que l’erreur dédiée à l’absence de candidat reconnu.
+    - [x] Laisser remonter l’erreur précise d’un conteneur identifié mais corrompu, au lieu de convertir toute `InvalidDataException` ou `NotSupportedException` en résultat inconnu.
+  - [x] Déclenchement de l’exploration SCP
+    - [x] Remplacer le test spécial fondé uniquement sur `DiskImageFileExtensions.Scp` par la validation commune de `Containers/Scp/ScpSignature.cs`.
+    - [x] Déclencher `ScpImageExplorationService.ExploreAutomaticallyAsync` uniquement lorsque la signature SCP est présente et qu’aucun format sectoriel n’est explicitement demandé.
+    - [x] Laisser un faux fichier `.scp` sans signature suivre la reconnaissance normale au lieu de le forcer dans l’exploration SCP.
+    - [x] Conserver le passage par le registre lorsqu’un format sectoriel est explicitement demandé pour une capture SCP.
+  - [x] Résultats de systèmes de fichiers
+    - [x] Extraire la lecture automatique des systèmes de fichiers dans une méthode privée recevant l’image reconnue.
+    - [x] Extraire la lecture d’un format explicitement demandé dans une méthode privée distincte.
+    - [x] Faire retourner par `FileSystemRegistry` son `Match` complet lors d’un `TryRead`, afin de conserver le véritable `ReaderId` au lieu d’utiliser `formatId` comme identifiant de Reader.
+    - [x] Adapter les interprétations supplémentaires au même résultat contenant l’image interprétée, le véritable identifiant du Reader et le volume lu.
+    - [x] Remplacer la clé brute construite avec trois textes et deux caractères nuls par la fonction commune d’identité d’interprétation extraite de `DiskImageInterpretationService`.
+    - [x] Conserver l’ordre de la première occurrence lors de la déduplication des systèmes de fichiers détectés.
+    - [x] Conserver l’image effectivement réidentifiée lorsque l’interprétation supplémentaire retenue réussit.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `DiskImageExplorer`, son constructeur, `SupportedFormatIds`, `CreateDefault` et `ExploreAsync`.
+    - [x] Documenter les paramètres, le résultat, la détection automatique, la sélection explicite, l’annulation et les erreurs réellement propagées.
     - [x] Documenter en français chaque méthode privée extraite.
-    - [ ] Conserver sur une seule ligne les signatures, conditions, appels, constructions et expressions complètes qui restent lisibles ainsi.
-    - [ ] Supprimer la ligne vide inutile placée avant l’accolade finale du type.
-  - [ ] Tests de bout en bout par la façade publique
-    - [ ] Explorer une image sectorielle brute reconnue et vérifier son format, son système de fichiers et son véritable `ReaderId`.
-    - [ ] Explorer un conteneur signé reconnu avec une extension inhabituelle et vérifier qu’il n’est pas déclaré inconnu.
-    - [ ] Explorer une capture SCP signée sans format explicite et vérifier le passage par l’exploration automatique SCP.
-    - [ ] Explorer une capture SCP signée avec un format explicite et vérifier le passage par le registre et la reconstruction demandée.
-    - [ ] Explorer un faux `.scp` sans signature et vérifier qu’il n’est pas envoyé directement au service SCP.
-    - [ ] Explorer un conteneur signé mais corrompu et vérifier que son diagnostic précis est conservé.
-    - [ ] Explorer un contenu qu’aucune politique ne reconnaît et vérifier la création du document inconnu.
-    - [ ] Vérifier la sélection explicite, la réidentification supplémentaire, la déduplication des résultats et la propagation de l’annulation.
+    - [x] Conserver sur une seule ligne les signatures, conditions, appels, constructions et expressions complètes qui restent lisibles ainsi.
+    - [x] Supprimer la ligne vide inutile placée avant l’accolade finale du type.
+  - [x] Tests de bout en bout par la façade publique
+    - [x] Explorer une image sectorielle brute reconnue et vérifier son format, son système de fichiers et son véritable `ReaderId`.
+    - [x] Explorer un conteneur signé reconnu avec une extension inhabituelle et vérifier qu’il n’est pas déclaré inconnu.
+    - [x] Explorer une capture SCP signée sans format explicite et vérifier le passage par l’exploration automatique SCP.
+    - [x] Explorer une capture SCP signée avec un format explicite et vérifier le passage par le registre et la reconstruction demandée.
+    - [x] Explorer un faux `.scp` sans signature et vérifier qu’il n’est pas envoyé directement au service SCP.
+    - [x] Explorer un conteneur signé mais corrompu et vérifier que son diagnostic précis est conservé.
+    - [x] Explorer un contenu qu’aucune politique ne reconnaît et vérifier la création du document inconnu.
+    - [x] Vérifier la sélection explicite, la réidentification supplémentaire, la déduplication des résultats et la propagation de l’annulation.
 - [ ] `src/GWGUI.MediaEngine/Images/DiskImageExplorerFactory.cs`
   - [ ] Déplacement de la racine de composition
     - [ ] Renommer le type en `MediaEngineFactory` et déplacer le fichier vers `Composition/MediaEngineFactory.cs`.

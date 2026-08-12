@@ -48,11 +48,11 @@ public sealed class FileSystemRegistry
     }
 
     /// <summary>Tente chaque candidat jusqu'à la première lecture réussie.</summary>
-    public bool TryRead(SectorImage image, string? readerOrFormatId, [NotNullWhen(true)] out FileSystemVolume? volume)
+    public bool TryRead(SectorImage image, string? readerOrFormatId, [NotNullWhen(true)] out FileSystemMatch? match)
     {
         var report = ReadCandidates(image, readerOrFormatId);
-        volume = report.Matches.FirstOrDefault()?.Volume;
-        return volume is not null;
+        match = report.Matches.FirstOrDefault();
+        return match is not null;
     }
 
     private static FileSystemReadReport ReadCandidates(SectorImage image, IEnumerable<IFileSystemReader> readers)

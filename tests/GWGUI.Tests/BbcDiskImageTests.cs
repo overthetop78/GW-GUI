@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;

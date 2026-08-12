@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Definitions;

@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Coherent;

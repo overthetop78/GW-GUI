@@ -55,8 +55,8 @@ public sealed class FileSystemRegistryTests
         Assert.Single(report.Failures);
         Assert.Equal("corrupt", report.Failures[0].ReaderId);
         Assert.Single(report.Matches);
-        Assert.True(registry.TryRead(Image, null, out var volume));
-        Assert.NotNull(volume);
+        Assert.True(registry.TryRead(Image, null, out var match));
+        Assert.NotNull(match);
     }
 
     [Fact]
