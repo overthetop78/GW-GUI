@@ -2877,35 +2877,35 @@
       - [x] Tester les cas de checksum avec et sans retenue.
       - [x] Tester une marque absente et un bloc tronqué.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/MicropolisMfmDecoder.cs`
-    - [ ] Définitions Micropolis MFM
-      - [ ] Créer `Decoding/Definitions/MicropolisMfmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom et la synchronisation minimale composée de trois octets `0x00` suivis de `0xff`.
-      - [ ] Y définir la longueur de préfixe de trois octets, la longueur totale du record de 275 octets et les positions du marqueur, du cylindre et du secteur.
-      - [ ] Y définir les dix octets réservés, le début et la taille de la charge utile de 256 octets, la position du checksum et les cinq octets terminaux.
-      - [ ] Y définir la plage exacte couverte par le checksum, la face logique, le code de taille, le préfixe de quarante zéros et le gap `128` utilisés par `MicropolisMfmTrackEncoder.cs`.
-      - [ ] Remplacer toutes les tailles, positions, nombres d'octets, identifiants, noms et descriptions bruts dans le décodeur et l'encodeur.
-    - [ ] Record et checksum communs
-      - [ ] Créer un modèle de record Micropolis commun décrivant ses champs au lieu d'accéder directement aux indices `1`, `2`, `13`, `recordBytes - 7` et `recordBytes - 6`.
-      - [ ] Créer une opération de checksum Micropolis commune au décodeur et à l'encodeur.
-      - [ ] Y déplacer l'addition modulo 255 actuellement dupliquée dans les deux méthodes `Checksum`.
-      - [ ] Raccorder le décodeur et l'encodeur au modèle et au checksum communs puis supprimer leurs méthodes locales.
-    - [ ] Décodage et résultat
-      - [ ] Extraire la lecture et la validation d'un record complet dans une méthode nommée.
-      - [ ] Conserver la charge utile extraite et la transmettre au `DecodedSector`.
-      - [ ] Remplacer les descriptions textuelles brutes des records complets et incomplets par le constructeur commun recevant cylindre, secteur et état du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Micropolis actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions, au modèle et au checksum Micropolis communs.
-    - [ ] Vérification du groupe Micropolis
-      - [ ] Tester la synchronisation minimale du décodeur et le préfixe de quarante zéros produit par l'encodeur.
-      - [ ] Tester les positions du cylindre, du secteur, de la charge utile, du checksum et des cinq octets terminaux.
-      - [ ] Tester un record complet avec checksum valide puis invalide.
-      - [ ] Tester un record tronqué et une synchronisation absente.
-      - [ ] Vérifier la charge utile de 256 octets, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/MicropolisMfmDecoder.cs`
+    - [x] Définitions Micropolis MFM
+      - [x] Créer `Decoding/Definitions/MicropolisMfmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom et la synchronisation minimale composée de trois octets `0x00` suivis de `0xff`.
+      - [x] Y définir la longueur de préfixe de trois octets, la longueur totale du record de 275 octets et les positions du marqueur, du cylindre et du secteur.
+      - [x] Y définir les dix octets réservés, le début et la taille de la charge utile de 256 octets, la position du checksum et les cinq octets terminaux.
+      - [x] Y définir la plage exacte couverte par le checksum, la face logique, le code de taille, le préfixe de quarante zéros et le gap `128` utilisés par `MicropolisMfmTrackEncoder.cs`.
+      - [x] Remplacer toutes les tailles, positions, nombres d'octets, identifiants, noms et descriptions bruts dans le décodeur et l'encodeur.
+    - [x] Record et checksum communs
+      - [x] Créer un modèle de record Micropolis commun décrivant ses champs au lieu d'accéder directement aux indices `1`, `2`, `13`, `recordBytes - 7` et `recordBytes - 6`.
+      - [x] Créer une opération de checksum Micropolis commune au décodeur et à l'encodeur.
+      - [x] Y déplacer l'addition modulo 255 actuellement dupliquée dans les deux méthodes `Checksum`.
+      - [x] Raccorder le décodeur et l'encodeur au modèle et au checksum communs puis supprimer leurs méthodes locales.
+    - [x] Décodage et résultat
+      - [x] Extraire la lecture et la validation d'un record complet dans une méthode nommée.
+      - [x] Conserver la charge utile extraite et la transmettre au `DecodedSector`.
+      - [x] Remplacer les descriptions textuelles brutes des records complets et incomplets par le constructeur commun recevant cylindre, secteur et état du checksum.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Micropolis actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions, au modèle et au checksum Micropolis communs.
+    - [x] Vérification du groupe Micropolis
+      - [x] Tester la synchronisation minimale du décodeur et le préfixe de quarante zéros produit par l'encodeur.
+      - [x] Tester les positions du cylindre, du secteur, de la charge utile, du checksum et des cinq octets terminaux.
+      - [x] Tester un record complet avec checksum valide puis invalide.
+      - [x] Tester un record tronqué et une synchronisation absente.
+      - [x] Vérifier la charge utile de 256 octets, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/NorthstarMfmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.

@@ -1,7 +1,5 @@
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Encoding;
-using GWGUI.MediaEngine.Encoding.Definitions;
-
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Decoding;
@@ -9,69 +7,52 @@ namespace GWGUI.MediaEngine.Decoding;
 /// <summary>Décode les pistes utilisant le format Micropolis MFM.</summary>
 public sealed class MicropolisMfmDecoder : IFluxDecoder
 {
-    /// <summary>Conserve la définition « Sync » utilisée par ce codec.</summary>
-    private static readonly byte[] Sync = MicropolisMfmFormat.Sync.ToArray();
-
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public string Id => FluxCodecIds.MicropolisMfm;
+    public string Id => MicropolisMfmFormat.CodecId;
+
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public string DisplayName => FluxCodecDisplayNames.MicropolisMfm;
+    public string DisplayName => MicropolisMfmFormat.CodecDisplayName;
 
     /// <summary>Décode une révolution de flux et restitue ses structures et secteurs.</summary>
-    /// <param name="revolution">Révolution SCP à décoder.</param><returns>Résultat du décodage Micropolis MFM.</returns>
     public FluxDecodeResult Decode(FluxRevolution revolution)
     {
         var stream = FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
         var structures = new List<FluxStructure>();
         var sectors = new List<DecodedSector>();
-        var bytes = new List<byte>();
-        const int recordBytes = MicropolisMfmFormat.RecordByteCount;
-
-        for (var offset = 0; offset + Sync.Length * BitPrimitives.BitsPerByte <= stream.Bits.Length; offset++)
+        var decodedBytes = new List<byte>();
+        for (var offset = 0; offset + MicropolisMfmFormat.SyncBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, Sync)) continue;
-            var recordStart = offset + 3 * 16;
-            if (recordStart + recordBytes * 16 > stream.Bits.Length)
+            if (!FluxBitReader.MatchBytes(stream, offset, MicropolisMfmFormat.Sync)) continue;
+            var recordStart = offset + MicropolisMfmFormat.SyncZeroCount * MicropolisMfmFormat.EncodedByteBitCount;
+            var record = TryDecodeRecord(stream, recordStart);
+            if (record is null)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, Sync.Length * BitPrimitives.BitsPerByte, FluxStructureDescriptions.Truncated("Micropolis", FluxStructureKind.FormatHeader, null, "sector")));
-                offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
+                structures.Add(new(FluxStructureKind.FormatHeader, offset, MicropolisMfmFormat.SyncBitCount, FluxStructureDescriptions.Truncated(MicropolisMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "sector")));
+                offset += MicropolisMfmFormat.SyncBitCount - 1;
                 continue;
             }
-
-            var record = TryDecodeMfmBytes(stream, recordStart, recordBytes);
-            if (record is null) continue;
-            var cylinder = record[1];
-            var sectorNumber = record[2];
-            var valid = Checksum(record.AsSpan(1, recordBytes - 7)) == record[recordBytes - 6];
-            var payload = record.AsSpan(MicropolisMfmFormat.RecordIdentityByteCount + MicropolisMfmFormat.HeaderPaddingByteCount, MicropolisMfmFormat.SectorSize).ToArray();
-            bytes.AddRange(payload);
-            sectors.Add(new(cylinder, 0, sectorNumber, 1, MicropolisMfmFormat.SectorSize, valid, offset, SectorIntegrityKind.Checksum));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, (3 + recordBytes) * 16,
-                $"{FluxStructureDescriptions.Identity("Micropolis", FluxStructureKind.FormatHeader, cylinder, 0, sectorNumber, MicropolisMfmFormat.SectorSize, null, null)}, {FluxStructureDescriptions.Integrity("checksum", valid)}"));
-            offset += Sync.Length * BitPrimitives.BitsPerByte - 1;
+            decodedBytes.AddRange(record.Data);
+            sectors.Add(new(record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSizeCode, MicropolisMfmFormat.SectorSize, record.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: record.Data));
+            structures.Add(new(FluxStructureKind.FormatHeader, offset, (MicropolisMfmFormat.SyncZeroCount + MicropolisMfmFormat.RecordByteCount) * MicropolisMfmFormat.EncodedByteBitCount, $"{FluxStructureDescriptions.Identity(MicropolisMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSize, MicropolisMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", record.ChecksumValid)}"));
+            offset += MicropolisMfmFormat.SyncBitCount - 1;
         }
-
-        return new(Id, DisplayName, Math.Min(1, (sectors.Count * 2 + structures.Count) / 24d), stream.BitCellTicks, structures, bytes, sectors);
+        var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, MicropolisMfmFormat.ConfidenceSectorWeight, MicropolisMfmFormat.ConfidenceDivisor);
+        return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);
     }
 
-    /// <summary>Calcule la somme de contrôle du bloc fourni.</summary>
-    /// <param name="data">Octets du bloc.</param><returns>Somme de contrôle calculée.</returns>
-    private static byte Checksum(ReadOnlySpan<byte> data)
+    /// <summary>Lit et valide un record Micropolis complet.</summary>
+    internal static MicropolisMfmRecord? TryDecodeRecord(FluxBitstream stream, int offset)
     {
-        var value = 0;
-        foreach (var item in data)
-        {
-            if (value > MicropolisMfmFormat.ChecksumModulus) value -= MicropolisMfmFormat.ChecksumModulus;
-            value += item;
-        }
-        return (byte)value;
+        var bytes = TryDecodeMfmBytes(stream, offset, MicropolisMfmFormat.RecordByteCount);
+        return bytes is null ? null : MicropolisMfmRecord.Parse(bytes);
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
     private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
+        if (offset + count * MicropolisMfmFormat.EncodedByteBitCount > stream.Bits.Length) return null;
         var result = new byte[count];
-        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * 16, out result[index])) return null;
+        for (var index = 0; index < count; index++) if (!FluxBitReader.TryDecodeMfmByte(stream, offset + index * MicropolisMfmFormat.EncodedByteBitCount, out result[index])) return null;
         return result;
     }
 }
