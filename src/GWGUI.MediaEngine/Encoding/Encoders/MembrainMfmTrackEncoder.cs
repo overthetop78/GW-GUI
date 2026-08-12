@@ -10,7 +10,10 @@ public sealed class MembrainMfmTrackEncoder : TrackEncoderBase
     public override string Id => MembrainMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => MembrainMfmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs Membrain avec leur adresse compacte et leurs CRC.</summary>
+    /// <param name="request">Piste logique contenant cylindre, face et secteurs à encoder.</param>
+    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Membrain attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

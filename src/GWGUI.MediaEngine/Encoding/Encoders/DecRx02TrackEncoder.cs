@@ -11,7 +11,11 @@ public sealed class DecRx02TrackEncoder : TrackEncoderBase
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => DecRx02Format.CodecDisplayName;
 
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode une piste DEC RX01 ou RX02 en fonction de la taille de chaque secteur.</summary>
+    /// <param name="request">Piste logique contenant cylindre, face et secteurs FM ou M²FM.</param>
+    /// <returns>Cellules FM et M²FM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède aucune des tailles DEC RX admises.</exception>
+    /// <remarks>Les secteurs RX02 utilisent une marque FM suivie d'une charge utile transformée en M²FM.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

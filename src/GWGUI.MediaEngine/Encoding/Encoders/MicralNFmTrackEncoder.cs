@@ -9,7 +9,10 @@ public sealed class MicralNFmTrackEncoder : TrackEncoderBase
     public override string Id => MicralNFmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => MicralNFmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs Micral N avec leur adresse et leur somme de contrôle.</summary>
+    /// <param name="request">Piste logique contenant le cylindre et les secteurs à encoder.</param>
+    /// <returns>Cellules FM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Micral N attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

@@ -10,7 +10,10 @@ public sealed class QdMo5MfmTrackEncoder : TrackEncoderBase
     public override string Id => QdMo5MfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => QdMo5MfmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs QD MO5 avec leur préfixe, leur adresse et leurs CRC.</summary>
+    /// <param name="request">Piste logique contenant les secteurs et leurs attributs de préfixe éventuels.</param>
+    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille QD MO5 attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

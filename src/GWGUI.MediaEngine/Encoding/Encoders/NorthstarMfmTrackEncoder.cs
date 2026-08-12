@@ -9,7 +9,10 @@ public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
     public override string Id => NorthstarMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => NorthstarMfmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs NorthStar avec leur adresse compacte et leur contrôle rotatif.</summary>
+    /// <param name="request">Piste logique contenant le cylindre et les secteurs à encoder.</param>
+    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille NorthStar attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

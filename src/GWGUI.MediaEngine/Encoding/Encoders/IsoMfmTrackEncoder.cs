@@ -11,7 +11,10 @@ public sealed class IsoMfmTrackEncoder : TrackEncoderBase
     /// <summary>Obtient le nom affiché.</summary>
     public override string DisplayName => IsoMfmFormat.CodecDisplayName;
 
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode une piste ISO MFM avec marques de synchronisation, tailles sectorielles et CRC.</summary>
+    /// <param name="request">Piste logique contenant cylindre, face et secteurs à encoder.</param>
+    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">La taille d'un secteur ne correspond à aucun code ISO pris en charge.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

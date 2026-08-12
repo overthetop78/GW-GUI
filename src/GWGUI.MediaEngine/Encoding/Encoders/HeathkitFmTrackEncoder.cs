@@ -9,7 +9,10 @@ public sealed class HeathkitFmTrackEncoder : TrackEncoderBase
     public override string Id => HeathkitFmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => HeathkitFmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs Heathkit avec leur volume, leur adresse et leurs contrôles rotatifs.</summary>
+    /// <param name="request">Piste logique contenant les secteurs et l'attribut de volume éventuel.</param>
+    /// <returns>Cellules FM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille Heathkit attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

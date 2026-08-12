@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
-/// <summary>Encodes the standard Brøderbund RWTS18 six-sector track layout.</summary>
+/// <summary>Encode une piste Apple II selon la disposition RWTS18 à six secteurs de Brøderbund.</summary>
 public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
@@ -10,7 +10,11 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.AppleRwts18;
 
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les six secteurs d'une piste RWTS18 en cellules GCR 6-and-2.</summary>
+    /// <param name="request">Piste logique contenant le cylindre, les secteurs et l'identifiant RWTS18 éventuel.</param>
+    /// <returns>Cellules binaires de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La piste ne contient pas six secteurs RWTS18 de la taille attendue.</exception>
+    /// <remarks>Les secteurs sont émis dans l'ordre décroissant imposé par RWTS18.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

@@ -11,7 +11,10 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => HpMmfmFormat.CodecDisplayName;
 
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs HP avec leur adresse, leur charge utile transformée et leurs CRC.</summary>
+    /// <param name="request">Piste logique contenant cylindre, face et secteurs à encoder.</param>
+    /// <returns>Cellules MMFM de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille HP attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

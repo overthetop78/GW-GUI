@@ -10,7 +10,10 @@ public sealed class TycomFmTrackEncoder : TrackEncoderBase
     public override string Id => TycomFmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => TycomFmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs TYCOM avec leurs marques FM doublées et leurs CRC.</summary>
+    /// <param name="request">Piste logique contenant le cylindre et les secteurs à encoder.</param>
+    /// <returns>Cellules FM doublées de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas la taille TYCOM attendue.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

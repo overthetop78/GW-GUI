@@ -9,7 +9,11 @@ public sealed class ArburgTrackEncoder : TrackEncoderBase
     public override string Id => ArburgFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => ArburgFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les blocs système ou de données d'une piste Arburg.</summary>
+    /// <param name="request">Piste logique et attribut indiquant la nature système de chaque secteur.</param>
+    /// <returns>Cellules binaires de la piste dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne possède pas une taille Arburg admise.</exception>
+    /// <remarks>Chaque bloc est complété avec son contrôle avant l'encodage des cellules.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits=TrackEncoding.Bits();

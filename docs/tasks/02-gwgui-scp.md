@@ -3141,86 +3141,86 @@
 - [x] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleLisaFileWareGcrTrackEncoder`.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleMacGcrTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, EncodeData`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleRwts18TrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleRwts18TrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, EncodePayload`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/ArburgTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `ArburgTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/CenturionMfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `CenturionMfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `Commodore900GcrTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Gcr`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `CommodoreGcrTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Gcr`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DataGeneralFmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/DecRx02TrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DecRx02TrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, ReplaceM2Fm`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/EmuFmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `EmuFmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/HeathkitFmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `HeathkitFmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/HpMmfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `HpMmfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/IsoFmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoFmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/IsoMfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoMfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/MembrainMfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `MembrainMfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/MicralNFmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `MicralNFmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Update`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `MicropolisMfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `NorthstarMfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `QdMo5MfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/TycomFmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `TycomFmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `Victor9kGcrTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, AddBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleMacGcrTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleMacGcrTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, EncodeData`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleRwts18TrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleRwts18TrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, EncodePayload`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/ArburgTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `ArburgTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/CenturionMfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `CenturionMfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `Commodore900GcrTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, Gcr`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `CommodoreGcrTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, Gcr`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/DataGeneralFmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `DataGeneralFmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/DecRx02TrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `DecRx02TrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, ReplaceM2Fm`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/EmuFmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `EmuFmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/HeathkitFmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `HeathkitFmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/HpMmfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `HpMmfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/IsoFmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoFmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/IsoMfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoMfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/MembrainMfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `MembrainMfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/MicralNFmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `MicralNFmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, Update`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `MicropolisMfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, Checksum`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `NorthstarMfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `QdMo5MfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/TycomFmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `TycomFmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `Victor9kGcrTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, AddBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/FluxEncoderRegistry.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Construire un dictionnaire par identifiant.

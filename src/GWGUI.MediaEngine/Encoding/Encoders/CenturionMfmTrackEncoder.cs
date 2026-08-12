@@ -10,7 +10,10 @@ public sealed class CenturionMfmTrackEncoder : TrackEncoderBase
     public override string Id => CenturionMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => CenturionMfmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs d'une piste Centurion avec leurs en-têtes, blocs et CRC.</summary>
+    /// <param name="request">Piste logique contenant le cylindre et les secteurs à encoder.</param>
+    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>
+    /// <remarks>Les charges utiles sont complétées par blocs d'allocation avant le calcul du CRC.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
