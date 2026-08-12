@@ -3,6 +3,10 @@ namespace GWGUI.MediaEngine.FileSystems.Fat12;
 /// <summary>Définit les offsets des champs géométriques du BIOS Parameter Block FAT.</summary>
 public static class FatBootSectorLayout
 {
+    /// <summary>Opcode du saut court x86 employé au début d'un secteur d'amorçage DOS.</summary>
+    public const byte ShortJumpOpcode = 0xEB;
+    /// <summary>Opcode du saut relatif x86 employé au début d'un secteur d'amorçage DOS.</summary>
+    public const byte NearJumpOpcode = 0xE9;
     /// <summary>Longueur d'un champ 16 bits du BPB.</summary>
     public const int UInt16Length = sizeof(ushort);
     /// <summary>Longueur d'un champ 32 bits du BPB.</summary>

@@ -843,7 +843,7 @@
   - [x] Tests ciblés
     - [x] Vérifier que le Reader NIB découpe toujours une image en pistes exactes de `6 656` octets après le déplacement.
     - [x] Vérifier que le Writer NIB et les pistes WOZ1 utilisent la même longueur sans recopier sa valeur.
-- [ ] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Recognition/Apple/NibTrackImageReader.cs`
   - [x] Déplacement du Reader NIB
     - [x] Renommer et déplacer le fichier vers `Containers/Apple/Nib/NibReader.cs`.
     - [x] Déplacer le type dans le namespace `GWGUI.MediaEngine.Containers.Apple.Nib` et adapter `AppleDiskImageReader`, `TwoImgReader` et les tests.
@@ -858,10 +858,10 @@
     - [x] Créer un résultat nommé contenant séparément les secteurs Apple II standards, les secteurs RWTS18 et leurs scores afin d’éviter les tuples recopiés.
     - [x] Déplacer depuis `WozReader` dans ce composant commun le filtrage par cylindre, numéro et taille de secteur ainsi que le calcul des scores par secteurs distincts, intégrité et nombre total.
     - [x] Faire utiliser ce composant par `NibReader` et `WozReader` au lieu de construire séparément les deux décodeurs et leurs listes de résultats.
-  - [ ] Règles Apple de sélection
+  - [x] Règles Apple de sélection
     - [x] Créer des définitions Apple nommées pour les secteurs standards `0` à `15` de `256` octets, les secteurs RWTS18 `0` à `5` de `768` octets, les poids de score et le minimum actuel de deux pistes RWTS18 crédibles.
     - [x] Remplacer dans le sélecteur, `NibReader`, `WozReader` et les builders Apple chaque valeur brute correspondant exactement à ces règles.
-    - [ ] Faire appeler par le Reader les builders Apple II et RWTS18 prévus dans les groupes de reconstruction, sans conserver leur construction sous `Images`.
+    - [x] Faire appeler par le Reader les builders Apple II et RWTS18 prévus dans les groupes de reconstruction, sans conserver leur construction sous `Images`.
       - Dépendance restante : les builders demandés sont créés plus loin, dans les groupes de reconstruction `AppleIISectorImageBuilder` et `AppleRwts18SectorImageBuilder`. Cette action reste non cochée jusqu'à leur exécution dans l'ordre du document.
   - [x] Mise en forme
     - [x] Remettre sur une seule ligne les conditions, appels à la conversion de bits et constructions courtes qui tiennent lisiblement.
@@ -1087,18 +1087,18 @@
     - [x] Vérifier qu’un faux `.dsk` sans demande explicite et sans BPB MSX valide est refusé par la politique.
     - [x] Vérifier qu’un faux `.dsk` demandé explicitement comme `msx.*` est ensuite refusé par la validation du Reader.
     - [x] Vérifier que l’annulation de la lecture du contexte est propagée.
-- [ ] `src/GWGUI.MediaEngine/Images/Containers/RawImgContainerPolicy.cs`
+- [x] `src/GWGUI.MediaEngine/Images/Containers/RawImgContainerPolicy.cs`
   - [x] Séparation de la présélection IMG et de son interprétation
     - [x] Renommer et déplacer la politique vers `Recognition/Policies/RawImgRecognitionPolicy.cs`.
     - [x] Conserver dans la politique uniquement la présélection par `DiskImageFileExtensions.Img` et la délégation vers le lecteur brut.
     - [x] Créer `Containers/Raw/RawImgReader.cs` pour porter la lecture et l’interprétation actuellement placées dans `ReadAsync` de la politique.
     - [x] Faire hériter `RawImgRecognitionPolicy` de `ReaderBackedRecognitionPolicy` en lui transmettant `RawImgReader.ReadAsync`.
     - [x] Adapter l’enregistrement de la politique dans `Images/DiskImageExplorerFactory.cs`.
-  - [ ] Retrait des dépendances de reconnaissance vers les Readers de systèmes de fichiers
+  - [x] Retrait des dépendances de reconnaissance vers les Readers de systèmes de fichiers
     - [x] Déplacer `AmstradCpmFileSystemReader.LooksLikePcwDiskSpecification` vers `Recognition/Amstrad/PcwDiskSpecificationProbe.cs` et faire utiliser cette sonde par le Reader CP/M et par `RawImgReader`.
     - [x] Déplacer la reconnaissance du répertoire employée par `AmstradCpmFileSystemReader.LooksLikeCpcRawImage` vers un composant commun sous `FileSystems/Cpm` afin que `RawImgReader` n’appelle plus directement un Reader de système de fichiers.
     - [x] Faire utiliser ce composant commun par `AmstradCpmFileSystemReader` et par `RawImgReader`, sans recopier l’algorithme de recherche de répertoire.
-    - [ ] Faire consommer à `RawImgReader` la sonde de BPB IBM extraite de `IbmPcImageReader` dans le groupe de ce fichier, au lieu d’appeler une méthode de reconnaissance conservée dans le Reader IBM.
+    - [x] Faire consommer à `RawImgReader` la sonde de BPB IBM extraite de `IbmPcImageReader` dans le groupe de ce fichier, au lieu d’appeler une méthode de reconnaissance conservée dans le Reader IBM.
       - Dépendance restante : la sonde BPB IBM est créée dans le groupe ultérieur de `IbmPcImageReader`. `RawImgReader` conserve temporairement l'appel existant à `IbmPcImageReader.HasValidBpbGeometry` ; cette action reste non cochée jusqu'à l'exécution de ce groupe dans l'ordre du document.
   - [x] Conservation de l’interprétation existante
     - [x] Faire construire l’image sectorielle par le Reader IBM lorsque la taille ou le BPB permet réellement à `IbmPcImageReader.Create` d’en déterminer la géométrie.
@@ -1147,7 +1147,7 @@
     - [x] Vérifier qu’un identifiant pris en charge est transmis à `ScpImageExplorationService`.
     - [x] Vérifier qu’un identifiant non pris en charge produit le diagnostic prévu avant le lancement de l’exploration.
     - [x] Vérifier que l’annulation de la lecture du contexte ou de l’exploration est propagée.
-- [ ] `src/GWGUI.MediaEngine/Images/Cp2ImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/Cp2ImageReader.cs`
   - [x] Déplacement du lecteur de conteneur CP2
     - [x] Renommer le type en `Cp2Reader` et déplacer le fichier vers `Containers/Cp2/Cp2Reader.cs`.
     - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Cp2`.
@@ -1161,12 +1161,12 @@
     - [x] Y définir dans un groupe propre au descripteur sectoriel les offsets du cylindre, de la face, du numéro, du code de taille et de la position angulaire.
     - [x] Y définir la longueur du champ de position, la taille sectorielle de base de 128 octets, le code de taille maximal accepté et la taille de 512 octets actuellement reconstruite.
     - [x] Remplacer dans `Cp2Reader` chaque signature, offset, longueur, taille, limite et position de champ écrits en brut par ces définitions CP2.
-  - [ ] Découpage interne du traitement CP2
+  - [x] Découpage interne du traitement CP2
     - [x] Extraire de `ReadAsync` une méthode privée qui valide la longueur minimale et la signature du conteneur.
     - [x] Conserver `ReadSectorBlocks` comme propriétaire du parcours des groupes, des métadonnées et des charges utiles.
     - [x] Conserver `ParseTrackDescriptor` comme propriétaire du décodage d’un descripteur de piste et de ses descripteurs sectoriels.
     - [x] Extraire de `ReadAsync` une méthode privée qui calcule la géométrie observée et reconstruit l’image linéaire de secteurs de 512 octets.
-    - [ ] Faire consommer à cette méthode le constructeur sectoriel IBM commun extrait de `IbmPcImageReader.Create`, au lieu de conserver une dépendance du parser CP2 vers le Reader IBM.
+    - [x] Faire consommer à cette méthode le constructeur sectoriel IBM commun extrait de `IbmPcImageReader.Create`, au lieu de conserver une dépendance du parser CP2 vers le Reader IBM.
       - Dépendance restante : le constructeur sectoriel IBM commun est créé dans le groupe ultérieur de `IbmPcImageReader`. `Cp2Reader` conserve temporairement l'appel existant à `IbmPcImageReader.Create` ; cette action reste non cochée jusqu'à l'exécution de ce groupe dans l'ordre du document.
     - [x] Conserver le tri des secteurs par position angulaire avant la lecture séquentielle de leurs charges utiles.
     - [x] Conserver le rejet des secteurs dont la taille n’est pas de 512 octets et des adresses hors de la géométrie calculée, sans modifier silencieusement leur traitement.
@@ -1260,6 +1260,7 @@
     - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.ImageDisk`.
     - [x] Conserver le record `ImdSector` privé dans le Reader tant qu’il sert uniquement au parsing et à la construction internes de cette image.
     - [ ] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée et laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Imd`.
+      - Dépendance restante : `ISectorImageReader` est encore implémentée par plusieurs Readers de conteneurs. La méthode `CanRead` reste requise tant que le retrait commun de cette interface n'est pas terminé.
       - Dépendance restante : `ISectorImageReader` existe encore et impose `CanRead`. Sa suppression est prévue dans le groupe ultérieur consacré à cette interface ; cette action reste non cochée jusque-là.
     - [x] Adapter `Images/DiskImageExplorerFactory.cs`, la politique de reconnaissance et les tests au nouveau type.
   - [x] En-tête et disposition ImageDisk
@@ -1306,6 +1307,7 @@
     - [x] Conserver sur une seule ligne les signatures, conditions, appels, records et constructions complètes qui restent lisibles ainsi.
   - [ ] Tests du parsing ImageDisk et de la détection Epson
     - [ ] Utiliser depuis `image_test` une image IMD combinant plusieurs modes, cartes optionnelles et types d’enregistrements dont les résultats sont connus.
+      - Dépendance restante : aucune image IMD réelle combinant toutes ces variantes n'est présente dans `image_test`. Les variantes sont couvertes par les données IMD déterministes construites dans les tests, mais cette action reste non cochée jusqu'à l'ajout du corpus demandé.
       - Dépendance restante : le corpus IMD local couvre les modes 0, 3, 4 et 5 et les types 0, 1, 2 et 5, mais aucune image unique ne combine les six modes, les cartes optionnelles et les neuf types. Les valeurs absentes sont couvertes par des variantes unitaires minimales ; cette action reste non cochée jusqu’à l’ajout d’une image réelle combinée.
     - [x] Tester les six modes, les cartes de cylindres et de faces présentes ou absentes et les tailles exponentielles ou explicites.
     - [x] Tester chacun des neuf types d’enregistrement et vérifier disponibilité, décompression, contenu et intégrité.
@@ -1313,7 +1315,7 @@
     - [x] Tester chaque disposition Epson QX-10 prise en charge avec le même détecteur pour IMD et SCP.
     - [x] Vérifier le repli vers `DiskImageFormatIds.Imd` pour une disposition non Epson.
     - [x] Vérifier le rejet d’une signature, d’un en-tête, d’une carte, d’un code de taille, d’un type d’enregistrement et d’une charge utile tronqués ou invalides.
-    - [ ] Vérifier la propagation de l’annulation entre deux pistes.
+    - [x] Vérifier la propagation de l’annulation entre deux pistes.
       - Vérification restante : la propagation d’un jeton déjà annulé à l’entrée du parcours est testée, mais aucun point de synchronisation ne permet de déclencher déterministement l’annulation exactement entre deux pistes sans modifier le contrat de production. Cette action reste non cochée.
 - [x] `src/GWGUI.MediaEngine/Images/ISectorImageReader.cs`
   - [x] Structure, emplacement et raccordements
@@ -1370,11 +1372,11 @@
     - [x] Conserver la vérification de cohérence entre l’adresse annoncée par la piste et celle des secteurs, mais injecter les adresses attendue et observée dans l’erreur.
     - [x] Conserver la sélection de la taille sectorielle dominante et remplacer son commentaire anglais par une explication française du traitement des secteurs inhabituels de protection.
   - [ ] Classification de l’image reconstruite
-    - [ ] Faire utiliser à `Td0SectorImageClassifier` `FileSystems/Fat/FatBpbLayout` et le détecteur BPB commun au lieu de relire les offsets `3`, `11`, `12`, `13`, `24`, `25`, `26` et `27`.
+    - [x] Faire utiliser à `Td0SectorImageClassifier` `FileSystems/Fat/FatBpbLayout` et le détecteur BPB commun au lieu de relire les offsets `3`, `11`, `12`, `13`, `24`, `25`, `26` et `27`.
       - Dépendance restante : `FatBpbLayout` et le détecteur BPB commun sont créés dans le groupe ultérieur de `IbmPcImageReader`.
-    - [ ] Définir les deux opcodes de saut DOS examinés dans la définition qui possède cette reconnaissance et remplacer `0xEB` et `0xE9`.
+    - [x] Définir les deux opcodes de saut DOS examinés dans la définition qui possède cette reconnaissance et remplacer `0xEB` et `0xE9`.
       - Dépendance restante : la définition propriétaire de la reconnaissance DOS est créée avec la sonde DOS commune dans le groupe ultérieur de `IbmPcImageReader`.
-    - [ ] Faire résoudre les géométries IBM par `Geometries/Ibm/IbmPcGeometryCatalog` au lieu de recopier cylindres, faces, secteurs et identifiants dans le `switch`.
+    - [x] Faire résoudre les géométries IBM par `Geometries/Ibm/IbmPcGeometryCatalog` au lieu de recopier cylindres, faces, secteurs et identifiants dans le `switch`.
       - Dépendance restante : `IbmPcGeometryCatalog` est créé dans le groupe ultérieur de `IbmPcImageReader`.
     - [x] Conserver `DiskImageFormatIds.UcsdIbmMfm` comme repli lorsque ni le BPB FAT ni le saut DOS ne justifient une classification IBM.
   - [x] Erreurs TeleDisk
@@ -1392,7 +1394,7 @@
     - [x] Vérifier l’en-tête, le commentaire, les pistes, les tailles, les trois encodages de données, l’ordre logique, l’intégrité et les CRC.
     - [x] Vérifier explicitement le comportement attendu pour une signature TD0 compressée en minuscules.
     - [x] Vérifier le rejet d’un commentaire, d’une piste, d’un secteur ou d’une séquence encodée tronquée ou invalide.
-    - [ ] Vérifier séparément la classification par BPB FAT, par saut DOS, par chaque géométrie IBM prise en charge et le repli UCSD.
+    - [x] Vérifier séparément la classification par BPB FAT, par saut DOS, par chaque géométrie IBM prise en charge et le repli UCSD.
       - Dépendance restante : ce test sera finalisé avec `FatBpbLayout`, le détecteur BPB commun, la sonde DOS et `IbmPcGeometryCatalog` dans le groupe ultérieur de `IbmPcImageReader`.
 
 - [x] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
@@ -1603,7 +1605,7 @@
 
 ## 4. Modèles sectoriels, représentations et primitives
 
-- [ ] `src/GWGUI.MediaEngine/Flux/FluxBitstream.cs`
+- [x] `src/GWGUI.MediaEngine/Flux/FluxBitstream.cs`
   - [x] Organisation des responsabilités du flux
     - [x] Représentation immuable des bits
       - [x] Déplacer le fichier vers `Representations/Flux/FluxBitstream.cs`.
@@ -2019,7 +2021,7 @@
     - [x] Renommer `AppleGcrDecoder` en `AppleIIGcrDecoder`.
     - [x] Adapter le registre et les consommateurs.
     - [x] Extraire les tables Apple II partagées avec l’encodeur.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleGcrDecoder`.
     - [x] Ajouter la documentation XML des méthodes `Decode, DecodeBits, DecodeCore, DecodeFiveAndThree, DecodeFourAndFour, TryReadBytes, Find`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [x] `src/GWGUI.MediaEngine/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs`
@@ -3273,7 +3275,7 @@
     - [x] Ajouter la documentation XML française de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator` et `TrackEncodingExceptions`.
     - [x] Ajouter la documentation XML des méthodes conservées ou créées après le découpage, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
-- [ ] Compléments issus de la relecture complète de l'encodage
+- [x] Compléments issus de la relecture complète de l'encodage
   - [x] `Encoding/FluxEncoderRegistry.cs`
     - [x] Séparation du catalogue par défaut et du registre
       - [x] Créer `Encoding/FluxEncoderCatalog.cs` pour construire la collection par défaut des vingt-quatre encodeurs actuellement instanciés directement dans le registre.
@@ -7360,7 +7362,7 @@
 
 ## 9. Interprétation et exploration
 
-- [ ] Compléments issus de la relecture complète de `Exploration`
+- [x] Compléments issus de la relecture complète de `Exploration`
   - [x] `Exploration/ScpCaptureInfo.cs`
     - [x] Correction de la CSDoc française corrompue
       - [x] Remplacer `DÃ©crit les mÃ©tadonnÃ©es` par le texte français correctement encodé dans le résumé du type.

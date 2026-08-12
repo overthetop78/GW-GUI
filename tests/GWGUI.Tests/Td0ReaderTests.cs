@@ -1,6 +1,10 @@
 using System.IO;
+using System.Buffers.Binary;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Fat12;
+using GWGUI.MediaEngine.Recognition.TeleDisk;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
@@ -12,6 +16,42 @@ public sealed class Td0ReaderTests
     private const int FirstSectorHeaderOffset = 40;
     private const int FirstSectorEncodingOffset = 48;
     private const int FirstSectorPayloadOffset = 49;
+
+    [Theory]
+    [InlineData(40, 1, 8, DiskImageFormatIds.Ibm160)]
+    [InlineData(40, 1, 9, DiskImageFormatIds.Ibm180)]
+    [InlineData(40, 2, 8, DiskImageFormatIds.Ibm320)]
+    [InlineData(40, 2, 9, DiskImageFormatIds.Ibm360)]
+    [InlineData(80, 2, 9, DiskImageFormatIds.Ibm720)]
+    [InlineData(80, 2, 15, DiskImageFormatIds.Ibm1200)]
+    [InlineData(80, 2, 18, DiskImageFormatIds.Ibm1440)]
+    public void ClassifierUsesTheIbmGeometryCatalog(int cylinders, int heads, int sectorsPerTrack, string formatId)
+    {
+        var boot = new byte[FatBootSectorLayout.SectorSize];
+        boot[0] = FatBootSectorLayout.ShortJumpOpcode;
+        var blocks = new[] { new SectorBlock(0, new SectorAddress(0, 0, FatBootSectorLayout.BootSectorNumber), boot) };
+
+        Assert.Equal(formatId, Td0SectorImageClassifier.Detect(blocks, FatBootSectorLayout.SectorSize, cylinders, heads, sectorsPerTrack));
+    }
+
+    [Fact]
+    public void ClassifierUsesFatBpbNearJumpAndUcsdFallback()
+    {
+        var boot = new byte[FatBootSectorLayout.SectorSize];
+        boot[0] = FatBootSectorLayout.NearJumpOpcode;
+        var blocks = new[] { new SectorBlock(0, new SectorAddress(0, 0, FatBootSectorLayout.BootSectorNumber), boot) };
+
+        Assert.Equal(DiskImageFormatIds.Ibm720, Td0SectorImageClassifier.Detect(blocks, 512, 80, 2, 9));
+        boot[0] = 0;
+        BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), FatBootSectorLayout.SectorSize);
+        boot[FatBootSectorLayout.SectorsPerClusterOffset] = 1;
+        BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.TotalSectors16Offset), 80 * 2 * 9);
+        BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.SectorsPerTrackOffset), 9);
+        BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.HeadCountOffset), 2);
+        Assert.Equal(DiskImageFormatIds.Ibm720, Td0SectorImageClassifier.Detect(blocks, 512, 80, 2, 9));
+        boot[FatBootSectorLayout.BytesPerSectorOffset] = 0;
+        Assert.Equal(DiskImageFormatIds.UcsdIbmMfm, Td0SectorImageClassifier.Detect(blocks, 512, 80, 2, 9));
+    }
 
     /// <summary>Vérifie le commentaire, les trois encodages, l'ordre, l'intégrité et les CRC de l'image connue.</summary>
     [Fact]

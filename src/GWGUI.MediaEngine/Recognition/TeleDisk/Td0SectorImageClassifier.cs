@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.FileSystems.Fat12;
+using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Recognition.TeleDisk;
@@ -17,22 +18,12 @@ internal static class Td0SectorImageClassifier
     public static string Detect(IReadOnlyList<SectorBlock> blocks, int blockSize, int cylinders, int heads, int sectorsPerTrack)
     {
         var boot = blocks.FirstOrDefault(block => block.Address.Cylinder == 0 && block.Address.Head == 0 && block.Address.Number == 1)?.Data;
-        var hasFatBpb = boot is { Count: >= 36 } && (boot[11] | boot[12] << BitPrimitives.BitsPerByte) == blockSize && boot[13] > 0
-            && (boot[24] | boot[25] << BitPrimitives.BitsPerByte) is > 0 and <= 64 && (boot[26] | boot[27] << BitPrimitives.BitsPerByte) is > 0 and <= 8;
-        var hasDosBootJump = boot is { Count: >= 3 } && boot[0] is 0xeb or 0xe9;
-        if ((hasFatBpb || hasDosBootJump) && blockSize == 512)
+        var imageLength = checked(cylinders * heads * sectorsPerTrack * blockSize);
+        var hasFatBpb = boot is not null && FatBpbGeometryDetector.TryDetect(boot.ToArray(), imageLength, out _);
+        var hasDosBootJump = boot is { Count: > 0 } && boot[0] is FatBootSectorLayout.ShortJumpOpcode or FatBootSectorLayout.NearJumpOpcode;
+        if ((hasFatBpb || hasDosBootJump) && blockSize == FatBootSectorLayout.SectorSize)
         {
-            return (cylinders, heads, sectorsPerTrack) switch
-            {
-                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 8) => DiskImageFormatIds.Ibm160,
-                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, 9) => DiskImageFormatIds.Ibm180,
-                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 8) => DiskImageFormatIds.Ibm320,
-                (DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm360,
-                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9) => DiskImageFormatIds.Ibm720,
-                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 15) => DiskImageFormatIds.Ibm1200,
-                (DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 18) => DiskImageFormatIds.Ibm1440,
-                _ => DiskImageFormatIds.IbmScan
-            };
+            return IbmPcGeometryCatalog.TryFromCapacity(imageLength, out var geometry) && geometry.Cylinders == cylinders && geometry.Heads == heads && geometry.SectorsPerTrack == sectorsPerTrack ? geometry.FormatId : DiskImageFormatIds.IbmScan;
         }
         return DiskImageFormatIds.UcsdIbmMfm;
     }
