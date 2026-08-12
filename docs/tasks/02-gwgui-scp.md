@@ -4044,42 +4044,42 @@
       - [x] Tester plusieurs longueurs sectorielles et leurs codes de taille calculés.
       - [x] Tester le rejet des champs d'adresse hors plage et d'un code de taille fourni incompatible avec les données.
       - [x] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur ISO MFM.
-  - [ ] `Encoding/Encoders/MembrainMfmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Membrain
-      - [ ] Remplacer l'identifiant brut `membrain.mfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Membrain MFM` par la définition centrale correspondante.
-    - [ ] Définitions du format Membrain MFM
-      - [ ] Déplacer la taille sectorielle dans `MembrainMfmFormat`.
-      - [ ] Déplacer les octets de synchronisation et marques d'adresse `0xa1, 0xfe` et de données `0xa1, 0xf8` dans `MembrainMfmFormat`.
-      - [ ] Déplacer leurs motifs à horloge spéciale `44895554` et `4489554A` dans les mêmes définitions que leurs octets logiques.
-      - [ ] Déplacer les paramètres CRC `0x8005`, sa valeur initiale et l'ordre de ses octets dans la définition commune au décodeur et à l'encodeur.
-      - [ ] Déplacer les longueurs des gaps d'adresse et de données dans `MembrainMfmFormat`.
-      - [ ] Déplacer les masques, décalages et largeurs des champs cylindre bas, tête et secteur dans la définition de l'adresse Membrain.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire la séparation du cylindre entre l'octet haut et ses trois bits bas dans une fonction privée recevant un cylindre validé.
-      - [ ] Extraire la composition de l'octet contenant cylindre bas, tête et secteur dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire la construction de l'en-tête logique utilisé pour le CRC.
-      - [ ] Extraire l'écriture du motif d'adresse, des deux octets d'adresse, du CRC et du premier gap dans une fonction privée.
-    - [ ] Construction du champ de données
-      - [ ] Remplacer la constante locale `mark` par la marque de données centrale Membrain.
-      - [ ] Extraire le calcul du CRC sur la synchronisation logique, la marque et les données.
-      - [ ] Extraire l'écriture du motif de données, de la charge utile, du CRC et du second gap dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider que le cylindre tient dans l'octet haut et les trois bits bas avant de le découper.
-      - [ ] Valider que la tête tient dans le bit qui lui est réservé.
-      - [ ] Valider que le numéro de secteur tient dans ses quatre bits avant le masquage par `15`.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Parenthéser et espacer explicitement chaque champ de l'expression qui compose l'octet empaqueté.
-      - [ ] Normaliser la présentation des tableaux, conversions, concaténations et appels CRC.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Membrain
-      - [ ] Tester l'empaquetage du cylindre, de la tête et du secteur avec les valeurs minimales, maximales et un cylindre utilisant ses bits hauts.
-      - [ ] Tester le champ d'adresse, son motif spécial et son CRC avec un résultat connu.
-      - [ ] Tester le champ de données, son motif spécial et son CRC avec un secteur connu.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Membrain avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/MembrainMfmTrackEncoder.cs`
+    - [x] Identité de l'encodeur Membrain
+      - [x] Remplacer l'identifiant brut `membrain.mfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Membrain MFM` par la définition centrale correspondante.
+    - [x] Définitions du format Membrain MFM
+      - [x] Déplacer la taille sectorielle dans `MembrainMfmFormat`.
+      - [x] Déplacer les octets de synchronisation et marques d'adresse `0xa1, 0xfe` et de données `0xa1, 0xf8` dans `MembrainMfmFormat`.
+      - [x] Déplacer leurs motifs à horloge spéciale `44895554` et `4489554A` dans les mêmes définitions que leurs octets logiques.
+      - [x] Déplacer les paramètres CRC `0x8005`, sa valeur initiale et l'ordre de ses octets dans la définition commune au décodeur et à l'encodeur.
+      - [x] Déplacer les longueurs des gaps d'adresse et de données dans `MembrainMfmFormat`.
+      - [x] Déplacer les masques, décalages et largeurs des champs cylindre bas, tête et secteur dans la définition de l'adresse Membrain.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire la séparation du cylindre entre l'octet haut et ses trois bits bas dans une fonction privée recevant un cylindre validé.
+      - [x] Extraire la composition de l'octet contenant cylindre bas, tête et secteur dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire la construction de l'en-tête logique utilisé pour le CRC.
+      - [x] Extraire l'écriture du motif d'adresse, des deux octets d'adresse, du CRC et du premier gap dans une fonction privée.
+    - [x] Construction du champ de données
+      - [x] Remplacer la constante locale `mark` par la marque de données centrale Membrain.
+      - [x] Extraire le calcul du CRC sur la synchronisation logique, la marque et les données.
+      - [x] Extraire l'écriture du motif de données, de la charge utile, du CRC et du second gap dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider que le cylindre tient dans l'octet haut et les trois bits bas avant de le découper.
+      - [x] Valider que la tête tient dans le bit qui lui est réservé.
+      - [x] Valider que le numéro de secteur tient dans ses quatre bits avant le masquage par `15`.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Parenthéser et espacer explicitement chaque champ de l'expression qui compose l'octet empaqueté.
+      - [x] Normaliser la présentation des tableaux, conversions, concaténations et appels CRC.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Membrain
+      - [x] Tester l'empaquetage du cylindre, de la tête et du secteur avec les valeurs minimales, maximales et un cylindre utilisant ses bits hauts.
+      - [x] Tester le champ d'adresse, son motif spécial et son CRC avec un résultat connu.
+      - [x] Tester le champ de données, son motif spécial et son CRC avec un secteur connu.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Membrain avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/MicralNFmTrackEncoder.cs`
     - [ ] Identité de l'encodeur Micral N
       - [ ] Remplacer l'identifiant brut `micraln.fm` par la définition centrale correspondante.

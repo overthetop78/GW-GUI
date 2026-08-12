@@ -10,6 +10,17 @@ namespace GWGUI.Tests;
 /// <summary>Vérifie les adresses, marques, CRC et blocs incomplets du format Membrain MFM.</summary>
 public sealed class MembrainMfmDecoderTests
 {
+    /// <summary>Vérifie que l'encodeur rejette les tailles et champs qui ne tiennent pas dans l'adresse Membrain.</summary>
+    [Fact]
+    public void EncoderRejectsInvalidSizeAndAddressFields()
+    {
+        var encoder = new MembrainMfmTrackEncoder();
+        var data = new byte[MembrainMfmFormat.SectorSize];
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new TrackSector(0, data.SkipLast(1).ToArray())])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(MembrainMfmFormat.MaximumCylinder + 1, 0, [new TrackSector(0, data)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, MembrainMfmFormat.MaximumHead + 1, [new TrackSector(0, data)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new TrackSector(MembrainMfmFormat.MaximumSector + 1, data)])));
+    }
     [Theory]
     [InlineData(0, 0, 0)]
     [InlineData(255, 1, 15)]
