@@ -3,18 +3,21 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Reconstruction;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Reconstruit les images Apple II DOS et ProDOS depuis des secteurs SCP décodés.</summary>
 internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
+    /// <summary>Reconstruit une image Apple II dans l'ordre demandé.</summary>
     public SectorImage Decode(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken)
     {
-        var candidates = decoder.DecodeCandidates(scp, DiskImageFormatIds.AppleIIGcr, 256, cancellationToken);
-        if (candidates.Count == 0)
-            throw new InvalidDataException("No Apple II GCR sectors could be decoded from the SCP image.");
+        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleIIGcr, AppleIIGcrFormat.SectorSize, cancellationToken);
+        if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleIIGcrFormat.StructureDescriptionName);
         if (prodosOrder) return CreateProDosImage(candidates);
-        var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= 13) ? 16 : 13;
+        var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= AppleIIGcrFormat.FiveAndThreeSectorsPerTrack) ? AppleIIGcrFormat.SixAndTwoSectorsPerTrack : AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
         var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
             .Select(pair => AppleScpSectorDecoder.Select(
                 pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == 16 ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
@@ -23,6 +26,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
             1, sectorsPerTrack, blocks);
     }
 
+    /// <summary>Réunit les paires de secteurs physiques en blocs ProDOS.</summary>
     private static SectorImage CreateProDosImage(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
     {
         var tracks = Math.Max(35, candidates.Keys.Where(key => key.Cylinder < 50)
@@ -53,8 +57,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
                 blocks.Add(new(track * 8 + blockOnTrack, new(track, 0, blockOnTrack), data,
                     integrity, revolution));
         }
-        if (blocks.Count == 0)
-            throw new InvalidDataException("No usable Apple II ProDOS blocks could be reconstructed.");
+        if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors("Apple II ProDOS");
         return new(DiskImageFormatIds.AppleIIProDos, 512, tracks, DiskGeometryConstants.SingleSidedHeadCount, 8, blocks);
     }
 }

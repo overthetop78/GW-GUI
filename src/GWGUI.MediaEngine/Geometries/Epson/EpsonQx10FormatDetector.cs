@@ -2,10 +2,13 @@ using GWGUI.MediaEngine.Definitions;
 
 namespace GWGUI.MediaEngine.Geometries.Epson;
 
+/// <summary>Décrit un secteur observé pendant la détection Epson QX-10.</summary>
 internal readonly record struct EpsonQx10SectorDescriptor(int Cylinder, int Head, int Number, int Size);
 
+/// <summary>Détecte la disposition Epson QX-10 correspondant aux secteurs observés.</summary>
 internal static class EpsonQx10FormatDetector
 {
+    /// <summary>Tente d'identifier une disposition Epson complète.</summary>
     public static bool TryDetect(IReadOnlyCollection<EpsonQx10SectorDescriptor> sectors, out string formatId)
     {
         formatId = string.Empty;
@@ -14,10 +17,10 @@ internal static class EpsonQx10FormatDetector
 
         if (MatchesAll(tracks, DiskImageFormatIds.EpsonQx10_320)) formatId = DiskImageFormatIds.EpsonQx10_320;
         else if (MatchesAll(tracks, DiskImageFormatIds.EpsonQx10_400)) formatId = DiskImageFormatIds.EpsonQx10_400;
-        else if (tracks.Length <= 15 && tracks.All(track => track.Head == 0) && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10Booter)) formatId = DiskImageFormatIds.EpsonQx10Booter;
-        else if (tracks.Count(track => track.Sectors.All(sector => sector.Size == 256)) == 1 && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10_399)) formatId = DiskImageFormatIds.EpsonQx10_399;
-        else if (tracks.Count(track => track.Sectors.All(sector => sector.Size == 256)) >= 4 && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10_396)) formatId = DiskImageFormatIds.EpsonQx10_396;
-        else if (tracks.Count(track => track.Sectors.All(sector => sector.Size == 256)) >= 6 && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10Logo)) formatId = DiskImageFormatIds.EpsonQx10Logo;
+        else if (tracks.Length <= EpsonQx10GeometryCatalog.BooterTrackCount && tracks.All(track => track.Head == 0) && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10Booter)) formatId = DiskImageFormatIds.EpsonQx10Booter;
+        else if (tracks.Count(track => track.Sectors.All(sector => sector.Size == EpsonQx10GeometryCatalog.Layout320.SectorSize)) == EpsonQx10GeometryCatalog.Format399SmallTrackCount && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10_399)) formatId = DiskImageFormatIds.EpsonQx10_399;
+        else if (tracks.Count(track => track.Sectors.All(sector => sector.Size == EpsonQx10GeometryCatalog.Layout320.SectorSize)) >= EpsonQx10GeometryCatalog.Format396MinimumSmallTrackCount && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10_396)) formatId = DiskImageFormatIds.EpsonQx10_396;
+        else if (tracks.Count(track => track.Sectors.All(sector => sector.Size == EpsonQx10GeometryCatalog.Layout320.SectorSize)) >= EpsonQx10GeometryCatalog.LogoMinimumSmallTrackCount && MatchesAll(tracks, DiskImageFormatIds.EpsonQx10Logo)) formatId = DiskImageFormatIds.EpsonQx10Logo;
         return formatId.Length > 0;
     }
 
@@ -32,3 +35,5 @@ internal static class EpsonQx10FormatDetector
     private readonly record struct DetectedSector(int Number, int Size);
     private readonly record struct DetectedTrack(int Cylinder, int Head, IReadOnlyList<DetectedSector> Sectors);
 }
+    /// <summary>Vérifie que toutes les pistes correspondent à la disposition demandée.</summary>
+    /// <summary>Vérifie les secteurs d'une piste contre sa disposition attendue.</summary>

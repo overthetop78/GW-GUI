@@ -57,6 +57,14 @@ internal static class AmigaMfmFormat
     public const int EncodedSectorByteCount = EncodedHeaderByteCount + EncodedDataByteCount;
     /// <summary>Taille logique d'un secteur Amiga, en octets.</summary>
     public const int SectorByteCount = 512;
+    /// <summary>Nombre de secteurs par piste d'une disquette double densité.</summary>
+    public const int DoubleDensitySectorsPerTrack = 11;
+    /// <summary>Nombre de secteurs par piste d'une disquette haute densité.</summary>
+    public const int HighDensitySectorsPerTrack = 22;
+    /// <summary>Nombre minimal de secteurs intègres rendant une piste haute densité crédible.</summary>
+    public const int HighDensityCredibleSectorCount = 17;
+    /// <summary>Nombre minimal de pistes crédibles requis pour retenir la haute densité.</summary>
+    public const int HighDensityCredibleTrackCount = 2;
     /// <summary>Poids d'un secteur reconnu dans le calcul de confiance.</summary>
     public const int ConfidenceSectorWeight = 3;
     /// <summary>Diviseur propre au codec Amiga dans le calcul de confiance.</summary>

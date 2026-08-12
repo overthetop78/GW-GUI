@@ -3,16 +3,19 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Images;
 
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Reconstruction;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Reconstruit les images Macintosh et Lisa à zones depuis des secteurs SCP décodés.</summary>
 internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
+    /// <summary>Reconstruit et classe une image Macintosh ou Lisa.</summary>
     public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken)
     {
-        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, 512, cancellationToken);
-        if (candidates.Count == 0)
-            throw new InvalidDataException("No Apple Macintosh GCR sectors could be decoded from the SCP image.");
+        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, AppleIwmGcrFormat.SectorByteCount, cancellationToken);
+        if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleIwmGcrFormat.StructureDescriptionName);
         var heads = candidates.Keys.Any(address => address.Head == 1) ? DiskGeometryConstants.DoubleSidedHeadCount : DiskGeometryConstants.SingleSidedHeadCount;
         var blocks = new List<SectorBlock>();
         foreach (var pair in candidates)
@@ -26,8 +29,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
             var logical = priorCylinderBlocks + address.Head * sectorsPerTrack + address.Number;
             blocks.Add(AppleScpSectorDecoder.Select(logical, address, pair.Value));
         }
-        if (blocks.Count == 0)
-            throw new InvalidDataException("No usable Apple Macintosh sectors could be reconstructed.");
+        if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIwmGcrFormat.StructureDescriptionName);
         var count = 400 * heads * 2;
         var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
             capacity: count * 512L, logicalBlockCount: count);

@@ -4281,31 +4281,31 @@
 
 ## 7. Reconstruction des images sectorielles
 
-- [ ] Données brutes des reconstructeurs SCP
-  - [ ] Reconstructeurs Amiga, Apple, Commodore et DEC
-    - [ ] Remplacer tous les identifiants de formats et de codecs par `DiskImageFormatIds` et `FluxCodecIds`.
-    - [ ] Remplacer les tailles sectorielles, pistes, faces et secteurs par les définitions Amiga, Apple, Commodore et DEC correspondantes.
-    - [ ] Créer `Reconstruction/Apple/AppleScpReconstructionDefinitions.cs` et y déplacer les facteurs de cellule Apple Macintosh utilisés par `AppleScpSectorDecoder`.
-    - [ ] Créer `Reconstruction/ScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter famille, piste, format demandé et nombre de secteurs décodés.
-    - [ ] Remplacer les textes bruts correspondants par les méthodes de `ScpReconstructionExceptions`.
-  - [ ] Reconstruction ISO FM/MFM
-    - [ ] Remplacer dans toutes les politiques ISO les identifiants de codecs par `FluxCodecIds`.
-    - [ ] Remplacer les identifiants de formats, préfixes et géométries bruts par `DiskImageFormatIds` et les catalogues concernés.
-    - [ ] Créer `Reconstruction/Iso/IsoScpReconstructionDefinitions.cs` avec les valeurs nommées du score utilisé par `IsoScpSectorImageReader`.
-    - [ ] Créer `Reconstruction/Iso/IsoScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter format demandé et nombre de candidats cohérents.
-    - [ ] Remplacer les textes bruts correspondants par les méthodes de `IsoScpReconstructionExceptions`.
-  - [ ] Epson QX-10
-    - [ ] Remplacer dans les cinq fichiers Epson tous les identifiants bruts par `DiskImageFormatIds`.
-    - [ ] Déplacer dans `EpsonQx10GeometryCatalog` les géométries encore écrites dans `EpsonQx10FormatDetector`.
-    - [ ] Créer des constantes nommées pour chaque disposition 320, 396, 399, 400, booter et LOGO.
-    - [ ] Créer `Reconstruction/EpsonQx10/EpsonQx10Exceptions.cs` avec une erreur permettant d’injecter l’identifiant Epson demandé lorsqu’il est invalide.
-  - [ ] Documentation XML
-    - [ ] Documenter en français `AppleScpReconstructionDefinitions`, `ScpReconstructionExceptions`, `IsoScpReconstructionDefinitions`, `IsoScpReconstructionExceptions` et `EpsonQx10Exceptions`.
-    - [ ] Mettre à jour la documentation française de chaque reconstructeur et politique modifié.
-  - [ ] Tests ciblés
-    - [ ] Tester chaque reconstructeur avec une capture SCP de `image_test` dont les secteurs attendus sont connus.
-    - [ ] Appliquer la règle d’obtention d’image du document lorsqu’une capture manque.
-    - [ ] Exécuter uniquement les tests du reconstructeur ou de la politique traitée.
+- [x] Données brutes des reconstructeurs SCP
+  - [x] Reconstructeurs Amiga, Apple, Commodore et DEC
+    - [x] Remplacer tous les identifiants de formats et de codecs par `DiskImageFormatIds` et `FluxCodecIds`.
+    - [x] Remplacer les tailles sectorielles, pistes, faces et secteurs par les définitions Amiga, Apple, Commodore et DEC correspondantes.
+    - [x] Créer `Reconstruction/Apple/AppleScpReconstructionDefinitions.cs` et y déplacer les facteurs de cellule Apple Macintosh utilisés par `AppleScpSectorDecoder`.
+    - [x] Créer `Reconstruction/ScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter famille, piste, format demandé et nombre de secteurs décodés.
+    - [x] Remplacer les textes bruts correspondants par les méthodes de `ScpReconstructionExceptions`.
+  - [x] Reconstruction ISO FM/MFM
+    - [x] Remplacer dans toutes les politiques ISO les identifiants de codecs par `FluxCodecIds`.
+    - [x] Remplacer les identifiants de formats, préfixes et géométries bruts par `DiskImageFormatIds` et les catalogues concernés.
+    - [x] Créer `Reconstruction/Iso/IsoScpReconstructionDefinitions.cs` avec les valeurs nommées du score utilisé par `IsoScpSectorImageReader`.
+    - [x] Créer `Reconstruction/Iso/IsoScpReconstructionExceptions.cs` avec les erreurs permettant d’injecter format demandé et nombre de candidats cohérents.
+    - [x] Remplacer les textes bruts correspondants par les méthodes de `IsoScpReconstructionExceptions`.
+  - [x] Epson QX-10
+    - [x] Remplacer dans les cinq fichiers Epson tous les identifiants bruts par `DiskImageFormatIds`.
+    - [x] Déplacer dans `EpsonQx10GeometryCatalog` les géométries encore écrites dans `EpsonQx10FormatDetector`.
+    - [x] Créer des constantes nommées pour chaque disposition 320, 396, 399, 400, booter et LOGO.
+    - [x] Créer `Reconstruction/EpsonQx10/EpsonQx10Exceptions.cs` avec une erreur permettant d’injecter l’identifiant Epson demandé lorsqu’il est invalide.
+  - [x] Documentation XML
+    - [x] Documenter en français `AppleScpReconstructionDefinitions`, `ScpReconstructionExceptions`, `IsoScpReconstructionDefinitions`, `IsoScpReconstructionExceptions` et `EpsonQx10Exceptions`.
+    - [x] Mettre à jour la documentation française de chaque reconstructeur et politique modifié.
+  - [x] Tests ciblés
+    - [x] Tester chaque reconstructeur avec une capture SCP de `image_test` dont les secteurs attendus sont connus.
+    - [x] Appliquer la règle d’obtention d’image du document lorsqu’une capture manque.
+    - [x] Exécuter uniquement les tests du reconstructeur ou de la politique traitée.
 - [ ] `src/GWGUI.MediaEngine/Images/AdfImageReader.cs`
   - [ ] Déplacement du Reader de format ADF
     - [ ] Créer `Containers/Adf/AdfReader.cs` et y déplacer `AdfImageReader` sous le nom `AdfReader`.

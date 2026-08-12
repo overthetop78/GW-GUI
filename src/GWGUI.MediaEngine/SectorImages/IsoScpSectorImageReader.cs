@@ -1,10 +1,13 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Reconstruit une image sectorielle depuis des secteurs ISO FM ou MFM décodés d'une capture SCP.</summary>
 public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
+    /// <summary>Lit la capture, sélectionne le meilleur décodeur par révolution et applique la politique demandée.</summary>
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
@@ -28,13 +31,14 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
                 }
             }
         }
-        if (candidates.Count == 0 && physicalCandidates.Count == 0)
-            throw new InvalidDataException("No ISO FM/MFM sectors could be decoded from the SCP image.");
+        if (candidates.Count == 0 && physicalCandidates.Count == 0) throw IsoScpReconstructionExceptions.NoCandidates(formatId, 0);
         return policy.Build(formatId, new(candidates, physicalCandidates));
     }
 
-    private static double Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.Data is not null) * 10 + result.Confidence;
+    /// <summary>Calcule le score d'un résultat de décodage ISO.</summary>
+    private static double Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.Data is not null) * IsoScpReconstructionDefinitions.DataSectorScoreWeight + result.Confidence;
 
+    /// <summary>Ajoute un candidat à la collection de son adresse physique ou logique.</summary>
     private static void AddCandidate(Dictionary<SectorAddress, List<IsoSectorCandidate>> candidates, SectorAddress address, DecodedSector sector, int revolution)
     {
         if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];

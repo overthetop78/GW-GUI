@@ -4,12 +4,22 @@ namespace GWGUI.MediaEngine.Images;
 
 internal static class CommodoreGeometry
 {
+    public const int StandardTrackCount = 35;
+    public const int ExtendedTrackCount = 40;
+    public const int StandardSideCount = 1;
+    public const int DoubleSideCount = 2;
+    public const int MaximumSectorsPer1541Track = 21;
+    public const int Commodore1581PhysicalSectorSize = 512;
+    public const int Commodore1581LogicalBlockSize = 256;
+    public const int Commodore1581SectorsPerTrack = 10;
+    public const int Commodore1581LogicalBlocksPerTrack = 40;
+    public const int Commodore1581PhysicalSectorsPerLogicalBlock = Commodore1581PhysicalSectorSize / Commodore1581LogicalBlockSize;
     public static int SectorsFor1541Track(int track) => track switch
     {
-        >= 1 and <= 17 => 21,
+        >= 1 and <= 17 => MaximumSectorsPer1541Track,
         <= 24 => 19,
         <= 30 => 18,
-        <= 40 => 17,
+        <= ExtendedTrackCount => 17,
         _ => throw new ArgumentOutOfRangeException(nameof(track))
     };
 

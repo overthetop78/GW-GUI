@@ -1,5 +1,6 @@
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Construit une image ISO générique depuis sa géométrie mesurée.</summary>
 internal sealed class GenericIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
 {
     public IReadOnlyList<string> DecoderIds { get; } = [FluxCodecIds.IsoFm, FluxCodecIds.IsoMfm];
@@ -13,3 +14,5 @@ internal sealed class GenericIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
             address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1);
     }
 }
+    /// <summary>Obtient les codecs ISO FM et MFM essayés.</summary>
+    /// <summary>Construit l'image uniforme correspondant à l'identifiant demandé.</summary>

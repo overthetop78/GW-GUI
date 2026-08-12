@@ -2,8 +2,10 @@ using GWGUI.MediaEngine.Geometries.Epson;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Détecte et construit les images sectorielles Epson QX-10.</summary>
 internal static class EpsonQx10SectorImagePolicy
 {
+    /// <summary>Construit l'image selon l'identifiant de disposition demandé.</summary>
     public static SectorImage CreateImage(string formatId, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates) => EpsonQx10SectorImageBuilder.Create(formatId, candidates);
 
     public static bool TryDetectFormat(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates, out string formatId)
@@ -12,3 +14,4 @@ internal static class EpsonQx10SectorImagePolicy
         return EpsonQx10FormatDetector.TryDetect(sectors, out formatId);
     }
 }
+    /// <summary>Tente de détecter la disposition depuis les meilleurs candidats sectoriels.</summary>

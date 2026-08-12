@@ -2,8 +2,10 @@ using GWGUI.MediaEngine.Geometries.Epson;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
+/// <summary>Construit une image Epson QX-10 en respectant ses pistes de tailles variables.</summary>
 internal static class EpsonQx10SectorImageBuilder
 {
+    /// <summary>Sélectionne les meilleurs secteurs et construit l'image selon la géométrie demandée.</summary>
     public static SectorImage Create(string formatId, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates)
     {
         var geometry = EpsonQx10GeometryCatalog.Resolve(formatId);
