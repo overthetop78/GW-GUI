@@ -5447,12 +5447,12 @@
     - [x] Retirer le wrapper du constructeur du registre et de `DiskImageExplorerFactory`, puis supprimer son fichier.
     - [x] Reporter ses scénarios explicite et famille ISO sur l'API publique.
 
-- [ ] Instructions compactées dans la reconstruction sectorielle
-  - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`
-    - [ ] Séparer la sélection des deux moitiés d'un bloc logique actuellement juxtaposée sur une même ligne.
-    - [ ] Conserver sur une seule ligne les expressions complètes courtes et ne séparer que les instructions distinctes.
-  - [ ] Vérification ciblée
-    - [ ] Exécuter uniquement les tests DEC RX02 et vérifier que l'association des deux secteurs physiques à chaque bloc logique reste identique.
+- [x] Instructions compactées dans la reconstruction sectorielle
+  - [x] `SectorImages/DecRx02ScpSectorImageReader.cs`
+    - [x] Séparer la sélection des deux moitiés d'un bloc logique actuellement juxtaposée sur une même ligne.
+    - [x] Conserver sur une seule ligne les expressions complètes courtes et ne séparer que les instructions distinctes.
+  - [x] Vérification ciblée
+    - [x] Exécuter uniquement les tests DEC RX02 et vérifier que l'association des deux secteurs physiques à chaque bloc logique reste identique.
 
 ## 8. Systèmes de fichiers
 
