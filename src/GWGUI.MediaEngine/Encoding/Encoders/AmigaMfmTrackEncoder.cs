@@ -7,7 +7,11 @@ public sealed class AmigaMfmTrackEncoder : TrackEncoderBase
     public override string Id => AmigaMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => AmigaMfmFormat.CodecDisplayName;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs demandés sous forme de cellules MFM Amiga odd/even.</summary>
+    /// <param name="request">Piste logique contenant cylindre, face et secteurs de 512 octets.</param>
+    /// <returns>Cellules binaires de la piste, dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne contient pas exactement 512 octets.</exception>
+    /// <remarks>Chaque bloc conserve l'entrelacement odd/even et les parités distinctes de l'en-tête et des données.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();
