@@ -5133,18 +5133,18 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `DecRx02ScpSectorImageReader`.
     - [x] Ajouter la documentation XML des méthodes `DecRx02ScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10FormatDetector.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Geometries/Epson/EpsonQx10FormatDetector.cs`, conformément à son utilisation commune par les reconstructions SCP et le conteneur IMD.
-    - [ ] Adapter son namespace, le reconstructeur SCP Epson et le Reader IMD.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `EpsonQx10FormatDetector`.
-    - [ ] Ajouter la documentation XML des méthodes `TryDetect, Matches, DetectedSector, DetectedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Candidats sans données
-    - [ ] Écarter avant les appels à `First` un secteur dont aucun `IsoSectorCandidate` ne contient de données.
-    - [ ] Ne créer un `DetectedSector` qu’après avoir sélectionné une taille réellement observée.
-    - [ ] Retourner l’absence de correspondance lorsque toutes les listes de candidats sont vides ou sans données au lieu de produire une `InvalidOperationException` LINQ.
-    - [ ] Tester une liste vide, une liste contenant uniquement des données nulles et un mélange de candidats sans données et de secteurs Epson valides.
+- [x] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10FormatDetector.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Geometries/Epson/EpsonQx10FormatDetector.cs`, conformément à son utilisation commune par les reconstructions SCP et le conteneur IMD.
+    - [x] Adapter son namespace, le reconstructeur SCP Epson et le Reader IMD.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `EpsonQx10FormatDetector`.
+    - [x] Ajouter la documentation XML des méthodes `TryDetect, Matches, DetectedSector, DetectedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Candidats sans données
+    - [x] Écarter avant les appels à `First` un secteur dont aucun `IsoSectorCandidate` ne contient de données.
+    - [x] Ne créer un `DetectedSector` qu’après avoir sélectionné une taille réellement observée.
+    - [x] Retourner l’absence de correspondance lorsque toutes les listes de candidats sont vides ou sans données au lieu de produire une `InvalidOperationException` LINQ.
+    - [x] Tester une liste vide, une liste contenant uniquement des données nulles et un mélange de candidats sans données et de secteurs Epson valides.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10GeometryCatalog.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Geometries/Epson/EpsonQx10GeometryCatalog.cs`, avec le détecteur commun utilisé par SCP et IMD.

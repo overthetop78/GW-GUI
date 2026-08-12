@@ -3,11 +3,31 @@ using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
 public sealed class ImdImageTests
 {
+    [Fact]
+    public void EpsonDetectionIgnoresCandidatesWithoutData()
+    {
+        var empty = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
+        Assert.False(EpsonQx10SectorImagePolicy.TryDetectFormat(empty, out _));
+        empty[new(0, 0, 0)] = [new(new(0, 0, 0, 1, 256, null, 0), 1)];
+        Assert.False(EpsonQx10SectorImagePolicy.TryDetectFormat(empty, out _));
+
+        var mixed = new Dictionary<SectorAddress, List<IsoSectorCandidate>> { [new(0, 0, 99)] = [new(new(0, 0, 99, 1, 256, null, 0), 1)] };
+        var geometry = EpsonQx10GeometryCatalog.Layout320;
+        for (var index = 0; index < geometry.Count; index++)
+        {
+            var number = geometry.FirstSector + index;
+            mixed[new(0, 0, number)] = [new(new(0, 0, number, 1, geometry.SectorSize, true, 0, Data: new byte[geometry.SectorSize]), 1)];
+        }
+        Assert.True(EpsonQx10SectorImagePolicy.TryDetectFormat(mixed, out _));
+    }
+
     [Theory]
     [InlineData(ImdMode.Fm500Kbps)]
     [InlineData(ImdMode.Fm300Kbps)]
