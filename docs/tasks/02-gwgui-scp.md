@@ -5359,10 +5359,10 @@
     - [x] Remplacer tailles, géométries 90K/130K/180K et formats bruts par le catalogue Atari 8-bit.
     - [x] Documenter en français chaque membre.
     - [x] Tester les trois géométries et une capacité inconnue.
-  - [ ] `SectorImages/AtariStIsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer capacités, géométries et formats bruts par le catalogue Atari ST commun.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester chaque capacité ST réellement prise en charge.
+  - [x] `SectorImages/AtariStIsoScpSectorImagePolicy.cs`
+    - [x] Remplacer capacités, géométries et formats bruts par le catalogue Atari ST commun.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester chaque capacité ST réellement prise en charge.
   - [ ] `SectorImages/AtariScpSectorImageReader.cs`
     - [ ] Remplacer codecs, préfixes et erreurs bruts par les définitions Atari et erreurs de reconstruction.
     - [ ] Documenter en français chaque membre.
