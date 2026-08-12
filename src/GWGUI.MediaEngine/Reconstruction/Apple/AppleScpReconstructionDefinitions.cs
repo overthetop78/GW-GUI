@@ -7,6 +7,8 @@ internal static class AppleScpReconstructionDefinitions
     public const string MacintoshReconstructorName = "Macintosh/Lisa";
     /// <summary>Identité du reconstructeur Apple II dans les diagnostics de détection.</summary>
     public const string AppleIIReconstructorName = "Apple II";
+    /// <summary>Identité du reconstructeur Apple II ProDOS dans les diagnostics.</summary>
+    public const string AppleIIProDosReconstructorName = "Apple II ProDOS";
     /// <summary>Identité du reconstructeur RWTS18 dans les diagnostics de détection.</summary>
     public const string Rwts18ReconstructorName = "RWTS18";
     /// <summary>Facteurs essayés autour de la durée de cellule Macintosh estimée.</summary>

@@ -5334,10 +5334,10 @@
     - [x] Documenter en français chaque membre. Aucun membre ne subsiste après la suppression du wrapper.
     - [x] Tester la lecture explicite CPC, PCW et un format absent.
   - [ ] `SectorImages/AppleIIScpSectorReconstructor.cs`
-    - [ ] Remplacer ordres sectoriels, tailles, pistes et formats bruts par `AppleIIGeometry` et `AppleIIGcrFormat`.
-    - [ ] Utiliser le sélecteur Apple commun uniquement pour la règle de meilleur secteur identique.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester DOS 3.2, DOS 3.3, les doublons et les secteurs manquants.
+    - [x] Remplacer ordres sectoriels, tailles, pistes et formats bruts par `AppleIIGeometry` et `AppleIIGcrFormat`.
+    - [x] Utiliser le sélecteur Apple commun uniquement pour la règle de meilleur secteur identique.
+    - [x] Documenter en français chaque membre.
+    - [ ] Tester DOS 3.2, DOS 3.3, les doublons et les secteurs manquants. Les rejets hors plage et les secteurs manquants ProDOS sont validés ; il manque encore des captures DOS 3.2 et DOS 3.3 dédiées ainsi qu'un doublon contrôlé.
   - [ ] `SectorImages/AppleMacScpSectorReconstructor.cs`
     - [ ] Remplacer zones, secteurs par piste, tags et capacités bruts par `MacintoshDiskGeometry` et `AppleMacGcrFormat`.
     - [ ] Documenter en français chaque membre.

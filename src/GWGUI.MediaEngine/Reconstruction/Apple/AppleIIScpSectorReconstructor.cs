@@ -26,13 +26,12 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleIIGcrFormat.StructureDescriptionName);
         if (prodosOrder) return CreateProDosImage(candidates);
         var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= AppleIIGcrFormat.FiveAndThreeSectorsPerTrack) ? AppleIIGcrFormat.SixAndTwoSectorsPerTrack : AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
-        var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
+        var blocks = candidates.Where(pair => pair.Key.Cylinder < AppleIIGeometry.MaximumReconstructedTrackCount && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
             .Select(pair => AppleScpSectorDecoder.Select(
                 pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
         if (blocks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIIGcrFormat.StructureDescriptionName);
-        var formatId = sectorsPerTrack == 13 ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
-        return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1),
-            1, sectorsPerTrack, blocks);
+        var formatId = sectorsPerTrack == AppleIIGeometry.Dos32SectorsPerTrack ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
+        return new(formatId, AppleIIGeometry.SectorSize, Math.Max(AppleIIGeometry.TrackCount, blocks.Max(block => block.Address.Cylinder) + 1), DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, blocks);
     }
 
     /// <summary>Réunit les paires de secteurs physiques en blocs ProDOS.</summary>
@@ -41,36 +40,35 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
     /// <exception cref="InvalidDataException">Aucune piste candidate ne respecte la limite Apple II ou aucun bloc ProDOS complet ne peut être construit.</exception>
     private static SectorImage CreateProDosImage(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
     {
-        var usableTracks = candidates.Keys.Where(key => key.Cylinder < 50).Select(key => key.Cylinder).ToArray();
-        if (usableTracks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors("Apple II ProDOS");
-        var tracks = Math.Max(35, usableTracks.Max() + 1);
+        var usableTracks = candidates.Keys.Where(key => key.Cylinder < AppleIIGeometry.MaximumReconstructedTrackCount).Select(key => key.Cylinder).ToArray();
+        if (usableTracks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleScpReconstructionDefinitions.AppleIIProDosReconstructorName);
+        var tracks = Math.Max(AppleIIGeometry.TrackCount, usableTracks.Max() + 1);
         var blocks = new List<SectorBlock>();
         for (var track = 0; track < tracks; track++)
-        for (var blockOnTrack = 0; blockOnTrack < 8; blockOnTrack++)
+        for (var blockOnTrack = 0; blockOnTrack < AppleIIGeometry.ProDosBlocksPerTrack; blockOnTrack++)
         {
-            var data = new byte[512];
+            var data = new byte[AppleIIGeometry.ProDosBlockSize];
             var integrity = true;
             var revolution = 0;
             var complete = true;
-            for (var half = 0; half < 2; half++)
+            for (var half = 0; half < AppleIIGeometry.SectorsPerProDosBlock; half++)
             {
-                var logicalSector = blockOnTrack * 2 + half;
-                var address = new SectorAddress(track, 0, AppleIIGeometry.ProDosToPhysical[logicalSector]);
+                var logicalSector = blockOnTrack * AppleIIGeometry.SectorsPerProDosBlock + half;
+                var address = new SectorAddress(track, AppleIIGcrFormat.LogicalHead, AppleIIGeometry.ProDosToPhysical[logicalSector]);
                 if (!candidates.TryGetValue(address, out var values))
                 {
                     complete = false;
                     break;
                 }
                 var selected = AppleScpSectorDecoder.Select(0, address, values);
-                selected.Data.ToArray().CopyTo(data, half * 256);
+                selected.Data.ToArray().CopyTo(data, half * AppleIIGeometry.SectorSize);
                 integrity &= selected.IntegrityValid == true;
                 revolution = Math.Max(revolution, selected.Revolution);
             }
             if (complete)
-                blocks.Add(new(track * 8 + blockOnTrack, new(track, 0, blockOnTrack), data,
-                    integrity, revolution));
+                blocks.Add(new(track * AppleIIGeometry.ProDosBlocksPerTrack + blockOnTrack, new(track, AppleIIGcrFormat.LogicalHead, blockOnTrack), data, integrity, revolution));
         }
-        if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors("Apple II ProDOS");
-        return new(DiskImageFormatIds.AppleIIProDos, 512, tracks, DiskGeometryConstants.SingleSidedHeadCount, 8, blocks);
+        if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleScpReconstructionDefinitions.AppleIIProDosReconstructorName);
+        return new(DiskImageFormatIds.AppleIIProDos, AppleIIGeometry.ProDosBlockSize, tracks, DiskGeometryConstants.SingleSidedHeadCount, AppleIIGeometry.ProDosBlocksPerTrack, blocks);
     }
 }

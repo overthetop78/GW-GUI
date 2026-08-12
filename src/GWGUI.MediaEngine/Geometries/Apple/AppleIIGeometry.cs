@@ -17,6 +17,12 @@ public static class AppleIIGeometry
     public const int TrackSize = SectorSize * SectorsPerTrack;
     /// <summary>Nombre de pistes d'une image standard.</summary>
     public const int TrackCount = 35;
+    /// <summary>Nombre maximal de pistes conservées lors de la reconstruction d'une capture.</summary>
+    public const int MaximumReconstructedTrackCount = 50;
+    /// <summary>Nombre de secteurs de 256 octets composant un bloc ProDOS.</summary>
+    public const int SectorsPerProDosBlock = 2;
+    /// <summary>Taille d'un bloc ProDOS en octets.</summary>
+    public const int ProDosBlockSize = SectorSize * SectorsPerProDosBlock;
     /// <summary>Capacité d'une image standard en octets.</summary>
     public const int Capacity = TrackCount * TrackSize;
     /// <summary>Capacité d'une image DOS 3.2 à treize secteurs par piste.</summary>
