@@ -4010,40 +4010,40 @@
       - [x] Tester plusieurs longueurs sectorielles et leurs codes de taille calculés.
       - [x] Tester le rejet des champs d'adresse hors plage et d'un code de taille fourni incompatible avec les données.
       - [x] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur ISO FM.
-  - [ ] `Encoding/Encoders/IsoMfmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur ISO MFM
-      - [ ] Remplacer l'identifiant brut `iso.mfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `ISO MFM` par la définition centrale correspondante.
-    - [ ] Définitions du format ISO MFM
-      - [ ] Déplacer la séquence de trois octets `0xa1` et son motif à horloge spéciale `448944894489` dans une définition unique de `IsoMfmFormat`.
-      - [ ] Utiliser cette même définition pour le préfixe inclus dans les CRC et pour les bits réellement écrits avant les champs.
-      - [ ] Déplacer la marque d'adresse `0xfe` et les marques de données normale `0xfb` et supprimée `0xf8` dans `IsoMfmFormat`.
-      - [ ] Déplacer les longueurs des gaps d'adresse et de données dans `IsoMfmFormat`.
-      - [ ] Centraliser avec le décodeur ISO MFM les codes de taille, les paramètres CRC et l'ordre des deux octets du CRC.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire le calcul ou la validation du code de taille dans une fonction privée recevant le secteur.
-      - [ ] Extraire la construction de l'en-tête complet utilisé pour le CRC dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire l'écriture de la synchronisation spéciale, des champs situés après les trois `A1`, du CRC et du premier gap dans une fonction privée.
-    - [ ] Construction du champ de données
-      - [ ] Extraire la sélection de la marque de données à partir de `sector.Deleted`.
-      - [ ] Extraire le calcul du CRC sur les trois `A1`, la marque et les données dans une fonction privée.
-      - [ ] Extraire l'écriture de la synchronisation spéciale, de la marque, de la charge utile, du CRC et du second gap dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Valider le cylindre, la tête et le numéro de secteur avant leur conversion en octet.
-      - [ ] Lorsque `SizeCode` est absent, conserver son calcul à partir de la longueur des données avec la définition ISO MFM commune.
-      - [ ] Lorsque `SizeCode` est fourni, vérifier qu'il correspond à la longueur réelle des données avant d'écrire l'en-tête.
-      - [ ] Remplacer les textes d'erreur nécessaires par des définitions paramétrables recevant les champs et tailles observés et attendus.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser la présentation des tableaux, conversions, concaténations et ternaires.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur ISO MFM
-      - [ ] Tester le champ d'adresse, ses trois synchronisations spéciales et son CRC avec des valeurs connues.
-      - [ ] Tester les champs de données normal et supprimé et vérifier pour chacun la marque et le CRC.
-      - [ ] Vérifier que les trois `A1` participent aux deux CRC sans être réécrits une seconde fois par l'encodage MFM normal.
-      - [ ] Tester plusieurs longueurs sectorielles et leurs codes de taille calculés.
-      - [ ] Tester le rejet des champs d'adresse hors plage et d'un code de taille fourni incompatible avec les données.
-      - [ ] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur ISO MFM.
+  - [x] `Encoding/Encoders/IsoMfmTrackEncoder.cs`
+    - [x] Identité de l'encodeur ISO MFM
+      - [x] Remplacer l'identifiant brut `iso.mfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `ISO MFM` par la définition centrale correspondante.
+    - [x] Définitions du format ISO MFM
+      - [x] Déplacer la séquence de trois octets `0xa1` et son motif à horloge spéciale `448944894489` dans une définition unique de `IsoMfmFormat`.
+      - [x] Utiliser cette même définition pour le préfixe inclus dans les CRC et pour les bits réellement écrits avant les champs.
+      - [x] Déplacer la marque d'adresse `0xfe` et les marques de données normale `0xfb` et supprimée `0xf8` dans `IsoMfmFormat`.
+      - [x] Déplacer les longueurs des gaps d'adresse et de données dans `IsoMfmFormat`.
+      - [x] Centraliser avec le décodeur ISO MFM les codes de taille, les paramètres CRC et l'ordre des deux octets du CRC.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire le calcul ou la validation du code de taille dans une fonction privée recevant le secteur.
+      - [x] Extraire la construction de l'en-tête complet utilisé pour le CRC dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire l'écriture de la synchronisation spéciale, des champs situés après les trois `A1`, du CRC et du premier gap dans une fonction privée.
+    - [x] Construction du champ de données
+      - [x] Extraire la sélection de la marque de données à partir de `sector.Deleted`.
+      - [x] Extraire le calcul du CRC sur les trois `A1`, la marque et les données dans une fonction privée.
+      - [x] Extraire l'écriture de la synchronisation spéciale, de la marque, de la charge utile, du CRC et du second gap dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Valider le cylindre, la tête et le numéro de secteur avant leur conversion en octet.
+      - [x] Lorsque `SizeCode` est absent, conserver son calcul à partir de la longueur des données avec la définition ISO MFM commune.
+      - [x] Lorsque `SizeCode` est fourni, vérifier qu'il correspond à la longueur réelle des données avant d'écrire l'en-tête.
+      - [x] Remplacer les textes d'erreur nécessaires par des définitions paramétrables recevant les champs et tailles observés et attendus.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser la présentation des tableaux, conversions, concaténations et ternaires.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur ISO MFM
+      - [x] Tester le champ d'adresse, ses trois synchronisations spéciales et son CRC avec des valeurs connues.
+      - [x] Tester les champs de données normal et supprimé et vérifier pour chacun la marque et le CRC.
+      - [x] Vérifier que les trois `A1` participent aux deux CRC sans être réécrits une seconde fois par l'encodage MFM normal.
+      - [x] Tester plusieurs longueurs sectorielles et leurs codes de taille calculés.
+      - [x] Tester le rejet des champs d'adresse hors plage et d'un code de taille fourni incompatible avec les données.
+      - [x] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur ISO MFM.
   - [ ] `Encoding/Encoders/MembrainMfmTrackEncoder.cs`
     - [ ] Identité de l'encodeur Membrain
       - [ ] Remplacer l'identifiant brut `membrain.mfm` par la définition centrale correspondante.

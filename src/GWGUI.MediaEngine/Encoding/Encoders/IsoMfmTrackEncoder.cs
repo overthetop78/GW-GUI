@@ -18,20 +18,52 @@ public sealed class IsoMfmTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackBitEncoding.Bits();
+        ValidateAddress(nameof(request.Cylinder), request.Cylinder);
+        ValidateAddress(nameof(request.Head), request.Head);
         foreach (var sector in request.Sectors)
         {
-            var sizeCode = sector.SizeCode ?? SectorSizeCode.FromByteCount(sector.Data.Count);
-            byte[] header = [IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.IdAddressMark, (byte)request.Cylinder, (byte)request.Head, (byte)sector.Number, sizeCode];
-            var headerCrc = Crc16Calculator.Compute(header, IsoMfmFormat.CrcPolynomial, IsoMfmFormat.CrcInitialValue);
-            bits.RawHex(IsoMfmFormat.EncodedSyncHex);
-            bits.Mfm(header.Skip(IsoMfmFormat.SyncByteCount).Concat([(byte)(headerCrc >> BitPrimitives.BitsPerByte), (byte)headerCrc]));
-            bits.Gap(IsoMfmFormat.HeaderGapBitCount);
-            var mark = sector.Deleted ? IsoMfmFormat.DeletedDataAddressMark : IsoMfmFormat.DataAddressMark;
-            var dataCrc = Crc16Calculator.Compute(new[] { IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, mark }.Concat(sector.Data), IsoMfmFormat.CrcPolynomial, IsoMfmFormat.CrcInitialValue);
-            bits.RawHex(IsoMfmFormat.EncodedSyncHex);
-            bits.Mfm(new[] { mark }.Concat(sector.Data).Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte), (byte)dataCrc]));
-            bits.Gap(IsoMfmFormat.DataGapBitCount);
+            ValidateAddress(nameof(sector.Number), sector.Number);
+            var sizeCode = ResolveSizeCode(sector);
+            WriteAddress(bits, request, sector.Number, sizeCode);
+            WriteData(bits, sector);
         }
         return bits;
+    }
+
+    /// <summary>Calcule ou valide le code de taille sectorielle.</summary>
+    private static byte ResolveSizeCode(TrackSector sector)
+    {
+        var sizeCode = sector.SizeCode ?? SectorSizeCode.FromByteCount(sector.Data.Count);
+        if (IsoMfmFormat.SectorSize(sizeCode) != sector.Data.Count) throw IsoMfmFormat.InvalidSizeCode(sizeCode, sector.Data.Count);
+        return sizeCode;
+    }
+
+    /// <summary>Écrit les synchronisations spéciales, l'adresse CHRN, son CRC et le gap.</summary>
+    private static void WriteAddress(List<bool> bits, TrackEncodeRequest request, int sector, byte sizeCode)
+    {
+        byte[] values = [IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByte, IsoMfmFormat.IdAddressMark, (byte)request.Cylinder, (byte)request.Head, (byte)sector, sizeCode];
+        WriteField(bits, values.Skip(IsoMfmFormat.SyncByteCount), Crc16Calculator.Compute(values, IsoMfmFormat.CrcPolynomial, IsoMfmFormat.CrcInitialValue), IsoMfmFormat.HeaderGapBitCount);
+    }
+
+    /// <summary>Écrit les synchronisations spéciales, la marque de données, la charge utile, son CRC et le gap.</summary>
+    private static void WriteData(List<bool> bits, TrackSector sector)
+    {
+        var mark = IsoMfmFormat.DataMark(sector.Deleted);
+        var values = Enumerable.Repeat(IsoMfmFormat.SyncByte, IsoMfmFormat.SyncByteCount).Append(mark).Concat(sector.Data).ToArray();
+        WriteField(bits, values.Skip(IsoMfmFormat.SyncByteCount), Crc16Calculator.Compute(values, IsoMfmFormat.CrcPolynomial, IsoMfmFormat.CrcInitialValue), IsoMfmFormat.DataGapBitCount);
+    }
+
+    /// <summary>Écrit une synchronisation spéciale unique, son contenu MFM, le CRC fort puis faible et le gap.</summary>
+    private static void WriteField(List<bool> bits, IEnumerable<byte> values, ushort crc, int gapBitCount)
+    {
+        bits.Raw(IsoMfmFormat.EncodedSync.ToArray());
+        bits.Mfm(values.Concat([(byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc]));
+        bits.Gap(gapBitCount);
+    }
+
+    /// <summary>Valide un champ CHRN avant sa conversion en octet.</summary>
+    private static void ValidateAddress(string field, int value)
+    {
+        if (value is < 0 || value > IsoMfmFormat.MaximumAddressValue) throw TrackEncodingExceptions.FormatValueOutOfRange("ISO MFM", field, value, IsoMfmFormat.MaximumAddressValue);
     }
 }

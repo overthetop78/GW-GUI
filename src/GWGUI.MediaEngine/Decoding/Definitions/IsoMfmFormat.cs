@@ -22,6 +22,8 @@ internal static class IsoMfmFormat
     public const ushort EncodedSyncByte = 0x4489;
     /// <summary>Trois motifs de synchronisation encodés.</summary>
     public const string EncodedSyncHex = "448944894489";
+    /// <summary>Trois synchronisations A1 encodées avec horloge spéciale.</summary>
+    public static IReadOnlyList<byte> EncodedSync { get; } = Array.AsReadOnly(Convert.FromHexString(EncodedSyncHex));
     /// <summary>Marque d'identité.</summary>
     public const byte IdAddressMark = 0xfe;
     /// <summary>Marque de données normale.</summary>
@@ -54,6 +56,8 @@ internal static class IsoMfmFormat
     public const int MaximumSectorSizeCode = 7;
     /// <summary>Taille sectorielle de base.</summary>
     public const int BaseSectorSize = 128;
+    /// <summary>Plus grande valeur représentable par un champ CHRN.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
     /// <summary>Avancement après une marque.</summary>
     public const int MarkScanAdvance = SyncBitCount - 1;
     /// <summary>Avancement après un en-tête.</summary>
@@ -90,4 +94,8 @@ internal static class IsoMfmFormat
 
     /// <summary>Calcule la taille associée au code fourni.</summary>
     public static int SectorSize(byte sizeCode) => sizeCode <= MaximumSectorSizeCode ? BaseSectorSize << sizeCode : 0;
+    /// <summary>Obtient la marque de données normale ou supprimée.</summary>
+    public static byte DataMark(bool deleted) => deleted ? DeletedDataAddressMark : DataAddressMark;
+    /// <summary>Crée l'erreur signalant un code de taille incompatible.</summary>
+    public static ArgumentException InvalidSizeCode(byte sizeCode, int actualSize) => new($"ISO MFM size code {sizeCode} describes {SectorSize(sizeCode)} bytes; received {actualSize} bytes.");
 }
