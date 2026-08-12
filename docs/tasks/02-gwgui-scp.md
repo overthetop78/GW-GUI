@@ -7477,22 +7477,21 @@
     - [x] Explorer un conteneur signé mais corrompu et vérifier que son diagnostic précis est conservé.
     - [x] Explorer un contenu qu’aucune politique ne reconnaît et vérifier la création du document inconnu.
     - [x] Vérifier la sélection explicite, la réidentification supplémentaire, la déduplication des résultats et la propagation de l’annulation.
-- [ ] `src/GWGUI.MediaEngine/Images/DiskImageExplorerFactory.cs`
+- [x] `src/GWGUI.MediaEngine/Images/DiskImageExplorerFactory.cs`
   - [x] Déplacement de la racine de composition
     - [x] Renommer le type en `MediaEngineFactory` et déplacer le fichier vers `Composition/MediaEngineFactory.cs`.
     - [x] Utiliser le namespace `GWGUI.MediaEngine.Composition`, car le fichier compose la reconnaissance, les conteneurs, le décodage, la reconstruction sectorielle, les systèmes de fichiers et l’exploration.
     - [x] Renommer `CreateDefault` en `CreateDefaultExplorer` afin que le résultat construit soit explicite.
     - [x] Raccorder `Exploration/DiskImageExplorer.CreateDefault` à `MediaEngineFactory.CreateDefaultExplorer`.
     - [x] Supprimer `Images/DiskImageExplorerFactory.cs` après adaptation de son unique consommateur.
-  - [ ] Découpage de la composition par responsabilité
+  - [x] Découpage de la composition par responsabilité
     - [x] Extraire une méthode privée qui crée les Readers et définitions du conteneur SCP partagés par les reconstructeurs.
     - [x] Extraire une méthode privée qui crée la collection des décodeurs de flux puis la transmet à `FluxDecoderRegistry` lorsque son groupe aura retiré ses inscriptions internes.
     - [x] Extraire une méthode privée qui crée la collection des Readers de systèmes de fichiers puis la transmet à `FileSystemRegistry` lorsque son groupe aura retiré ses inscriptions internes.
     - [x] Extraire une méthode privée qui crée les reconstructeurs SCP et construit `ScpCandidateRegistry` dans leur ordre explicite actuel.
     - [x] Extraire une méthode privée qui crée `ScpFamilyProbe`, `ScpImageExplorationService` et leurs dépendances partagées.
     - [x] Extraire une méthode privée qui crée la collection ordonnée des politiques de reconnaissance puis construit `DiskImageRecognitionRegistry`.
-    - [ ] Extraire une méthode privée qui crée les registres d’interprétation et l’unique `DiskImageInterpretationService` partagé.
-      - Blocage temporaire : les deux registres sont encore construits dans `DiskImageInterpretationService` et leur injection est la première tâche du groupe suivant.
+    - [x] Extraire une méthode privée qui crée les registres d’interprétation et l’unique `DiskImageInterpretationService` partagé.
     - [x] Faire limiter `CreateDefaultExplorer` à l’assemblage des résultats de ces méthodes et à la construction finale de `DiskImageExplorer`.
   - [x] Composition des politiques de reconnaissance
     - [x] Remplacer les anciens `DirectContainerPolicy` et `DelegatingContainerPolicy` par `ExtensionHintRecognitionPolicy` selon leurs groupes respectifs.
