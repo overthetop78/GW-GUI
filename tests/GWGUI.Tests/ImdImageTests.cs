@@ -142,6 +142,13 @@ public sealed class ImdImageTests
     }
 
     [Fact]
+    public void EpsonGeometryResolves396AndRejectsUnknownIdentifier()
+    {
+        Assert.Equal(40, EpsonQx10GeometryCatalog.Resolve(DiskImageFormatIds.EpsonQx10_396).Cylinders);
+        Assert.Throws<ArgumentException>(() => EpsonQx10GeometryCatalog.Resolve("epson.qx10.unknown"));
+    }
+
+    [Fact]
     public void NonEpsonLayoutFallsBackToImd()
     {
         var image = ImdReader.Read(CreateSingleSectorImage());

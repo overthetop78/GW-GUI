@@ -5145,17 +5145,17 @@
     - [x] Ne créer un `DetectedSector` qu’après avoir sélectionné une taille réellement observée.
     - [x] Retourner l’absence de correspondance lorsque toutes les listes de candidats sont vides ou sans données au lieu de produire une `InvalidOperationException` LINQ.
     - [x] Tester une liste vide, une liste contenant uniquement des données nulles et un mélange de candidats sans données et de secteurs Epson valides.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10GeometryCatalog.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Geometries/Epson/EpsonQx10GeometryCatalog.cs`, avec le détecteur commun utilisé par SCP et IMD.
-    - [ ] Adapter son namespace, les reconstructeurs SCP Epson, le détecteur Epson et le Reader IMD.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `EpsonQx10GeometryCatalog, EpsonQx10TrackGeometry, EpsonQx10Geometry`.
-    - [ ] Ajouter la documentation XML des méthodes `Resolve, EpsonQx10TrackGeometry, EpsonQx10Geometry, Uniform`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Résolution explicite du format 396
-    - [ ] Ajouter une branche explicite `DiskImageFormatIds.EpsonQx10_396` utilisant exactement la géométrie actuellement retournée par la branche par défaut.
-    - [ ] Remplacer ensuite la branche par défaut par l’erreur Epson d’identifiant invalide déjà prévue, afin qu’un format inconnu ne soit plus interprété silencieusement comme du 396.
-    - [ ] Tester séparément la résolution 396 et le rejet d’un identifiant inconnu.
+- [x] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10GeometryCatalog.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Geometries/Epson/EpsonQx10GeometryCatalog.cs`, avec le détecteur commun utilisé par SCP et IMD.
+    - [x] Adapter son namespace, les reconstructeurs SCP Epson, le détecteur Epson et le Reader IMD.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `EpsonQx10GeometryCatalog, EpsonQx10TrackGeometry, EpsonQx10Geometry`.
+    - [x] Ajouter la documentation XML des méthodes `Resolve, EpsonQx10TrackGeometry, EpsonQx10Geometry, Uniform`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Résolution explicite du format 396
+    - [x] Ajouter une branche explicite `DiskImageFormatIds.EpsonQx10_396` utilisant exactement la géométrie actuellement retournée par la branche par défaut.
+    - [x] Remplacer ensuite la branche par défaut par l’erreur Epson d’identifiant invalide déjà prévue, afin qu’un format inconnu ne soit plus interprété silencieusement comme du 396.
+    - [x] Tester séparément la résolution 396 et le rejet d’un identifiant inconnu.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs`.

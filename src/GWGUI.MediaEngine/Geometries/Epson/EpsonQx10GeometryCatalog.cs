@@ -27,6 +27,9 @@ internal static class EpsonQx10GeometryCatalog
     public static EpsonQx10TrackGeometry LayoutLogoAlternate { get; } = new(2, 10, 512);
 
     /// <summary>Résout la géométrie correspondant exactement à l'identifiant Epson demandé.</summary>
+    /// <param name="formatId">Identifiant central de la disposition Epson.</param>
+    /// <returns>La géométrie variable ou uniforme associée à l'identifiant.</returns>
+    /// <exception cref="ArgumentException">L'identifiant ne correspond à aucune disposition Epson prise en charge.</exception>
     public static EpsonQx10Geometry Resolve(string formatId) => formatId.ToLowerInvariant() switch
     {
         DiskImageFormatIds.EpsonQx10_320 => EpsonQx10Geometry.Uniform(DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Layout320),
@@ -46,9 +49,15 @@ internal static class EpsonQx10GeometryCatalog
 }
 
 /// <summary>Décrit la numérotation, le nombre et la taille des secteurs d'une piste Epson.</summary>
+/// <param name="FirstSector">Premier numéro de secteur de la piste.</param>
+/// <param name="Count">Nombre de secteurs de la piste.</param>
+/// <param name="SectorSize">Taille de chaque secteur, en octets.</param>
 internal readonly record struct EpsonQx10TrackGeometry(int FirstSector, int Count, int SectorSize);
 
 /// <summary>Décrit une géométrie Epson QX-10 dont la disposition peut varier par piste.</summary>
+/// <param name="Cylinders">Nombre de cylindres.</param>
+/// <param name="Heads">Nombre de faces.</param>
+/// <param name="Track">Fonction retournant la disposition d'un cylindre et d'une face.</param>
 internal sealed record EpsonQx10Geometry(int Cylinders, int Heads, Func<int, int, EpsonQx10TrackGeometry> Track)
 {
     /// <summary>Énumère les dispositions de toutes les pistes dans l'ordre cylindre-face.</summary>
@@ -63,5 +72,9 @@ internal sealed record EpsonQx10Geometry(int Cylinders, int Heads, Func<int, int
     }
 
     /// <summary>Crée une géométrie utilisant la même disposition sur toutes les pistes.</summary>
+    /// <param name="cylinders">Nombre de cylindres.</param>
+    /// <param name="heads">Nombre de faces.</param>
+    /// <param name="track">Disposition répétée sur chaque piste.</param>
+    /// <returns>La géométrie uniforme demandée.</returns>
     public static EpsonQx10Geometry Uniform(int cylinders, int heads, EpsonQx10TrackGeometry track) => new(cylinders, heads, (_, _) => track);
 }
