@@ -22,7 +22,6 @@ internal sealed class ScpCandidateRegistry
         AmigaScpSectorImageReader amigaReader,
         IsoScpSectorImageReader isoReader,
         AtariScpSectorImageReader atariReader,
-        IbmPcScpSectorImageReader ibmReader,
         UcsdScpSectorImageReader ucsdReader,
         CommodoreScpSectorImageReader commodoreReader,
         AppleScpSectorImageReader appleReader,
@@ -38,7 +37,7 @@ internal sealed class ScpCandidateRegistry
             (id => id.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || id.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase),
-                (path, id, token) => ibmReader.ReadAsync(path, id!, token)),
+                (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.StartsWith(DiskImageFormatIds.AcornAdfsPrefix, StringComparison.OrdinalIgnoreCase),
@@ -61,7 +60,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AcornAdfs800, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradCpc, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
-            (path, _, token) => ibmReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
+            (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
             (path, _, token) => ucsdReader.ReadAsync(path, token),
             (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token)
         };
@@ -76,7 +75,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => commodoreReader.ReadAsync(path, null, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradCpc, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
-            (path, _, token) => ibmReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
+            (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
             .. EpsonFormats.Select<string, Candidate>(formatId =>
                 (path, _, token) => isoReader.ReadAsync(path, formatId, token)),
             (path, _, token) => appleReader.ReadAsync(path, null, token)

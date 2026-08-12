@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Recognition.Ibm;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -19,6 +20,7 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
     /// <returns>L'image sectorielle IBM associée à la géométrie mesurée ou détectée.</returns>
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {
+        if (explicitlySelected && formatId is not null && !formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && !formatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) throw ScpReconstructionExceptions.InvalidRequestedFormat(DiskImageFormatIds.IbmPrefix, formatId);
         var candidates = candidateSet.Addressed;
         var measured = IsoSectorImageBuilder.Measure(candidates);
         var cylinders = measured.Cylinders;

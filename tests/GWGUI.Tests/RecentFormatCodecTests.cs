@@ -8,6 +8,7 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Reconstruction.Commodore;
 using GWGUI.MediaEngine.Reconstruction.Dec;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -67,6 +68,26 @@ public sealed class RecentFormatCodecTests
         var revolution = new FluxEncoderRegistry().Encode("iso.mfm", new TrackEncodeRequest(cylinder, Math.Min(head, 1), [new TrackSector(1, new byte[512])])).Revolution;
 
         await Assert.ThrowsAsync<InvalidDataException>(() => new CommodoreScpSectorImageReader(Fake(cylinder, head, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.Commodore1581));
+    }
+
+    [Theory]
+    [InlineData(DiskImageFormatIds.IbmScan)]
+    [InlineData(DiskImageFormatIds.Mac1440)]
+    public async Task ExplicitIbmCompatibleSelectionUsesThePublicIsoReader(string formatId)
+    {
+        var sectors = Enumerable.Range(1, 9).Select(number => new TrackSector(number, new byte[512])).ToArray();
+        var revolution = new FluxEncoderRegistry().Encode("iso.mfm", new TrackEncodeRequest(0, 0, sectors)).Revolution;
+
+        var image = await new IsoScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", formatId);
+
+        Assert.StartsWith(DiskImageFormatIds.IbmPrefix, image.FormatId, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void ExplicitIbmPolicyRejectsAnUnrelatedIdentifier()
+    {
+        var empty = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
+        Assert.Throws<InvalidDataException>(() => new IbmPcIsoScpSectorImagePolicy(true).Build(DiskImageFormatIds.Atari90, new(empty, empty)));
     }
 
     [Fact]

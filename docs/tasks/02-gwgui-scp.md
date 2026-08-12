@@ -5207,17 +5207,17 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IbmPcIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `IbmPcIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IbmPcScpSectorImageReader.cs`
-  - [ ] Suppression du wrapper sans traitement
-    - [ ] Faire router directement les identifiants commençant par `DiskImageFormatIds.IbmPrefix` vers `IbmPcIsoScpSectorImagePolicy` dans le registre ISO.
-    - [ ] Faire router directement `DiskImageFormatIds.Mac1440` vers la politique ISO IBM qui assure actuellement sa reconstruction.
-    - [ ] Remplacer l'utilisation du wrapper dans `Images/DiskImageExplorerFactory.cs` par le lecteur ISO et son registre de politiques.
-    - [ ] Remplacer l'utilisation du wrapper dans `Images/ScpDetection/ScpCandidateRegistry.cs` par le lecteur ISO et son registre de politiques.
-    - [ ] Supprimer `IbmPcScpSectorImageReader.cs` après adaptation de ses deux consommateurs.
-  - [ ] Vérification après suppression
-    - [ ] Tester par l'API publique la lecture SCP d'un format IBM explicitement sélectionné.
-    - [ ] Tester par l'API publique la lecture SCP de `DiskImageFormatIds.Mac1440` explicitement sélectionné.
-    - [ ] Tester le rejet d'un identifiant qui n'est ni IBM ni `DiskImageFormatIds.Mac1440`.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IbmPcScpSectorImageReader.cs`
+  - [x] Suppression du wrapper sans traitement
+    - [x] Faire router directement les identifiants commençant par `DiskImageFormatIds.IbmPrefix` vers `IbmPcIsoScpSectorImagePolicy` dans le registre ISO.
+    - [x] Faire router directement `DiskImageFormatIds.Mac1440` vers la politique ISO IBM qui assure actuellement sa reconstruction.
+    - [x] Remplacer l'utilisation du wrapper dans `Images/DiskImageExplorerFactory.cs` par le lecteur ISO et son registre de politiques.
+    - [x] Remplacer l'utilisation du wrapper dans `Images/ScpDetection/ScpCandidateRegistry.cs` par le lecteur ISO et son registre de politiques.
+    - [x] Supprimer `IbmPcScpSectorImageReader.cs` après adaptation de ses deux consommateurs.
+  - [x] Vérification après suppression
+    - [x] Tester par l'API publique la lecture SCP d'un format IBM explicitement sélectionné.
+    - [x] Tester par l'API publique la lecture SCP de `DiskImageFormatIds.Mac1440` explicitement sélectionné.
+    - [x] Tester le rejet d'un identifiant qui n'est ni IBM ni `DiskImageFormatIds.Mac1440`.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IIsoScpSectorImagePolicy.cs`.
