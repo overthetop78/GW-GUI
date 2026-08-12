@@ -68,6 +68,34 @@ public sealed class NorthstarMfmDecoderTests
         Assert.True(result.Confidence > 0);
     }
 
+    [Fact]
+    public void EncoderWritesMarkPayloadChecksumAndFinalGap()
+    {
+        var payload = Enumerable.Range(0, NorthstarMfmFormat.SectorSize).Select(index => (byte)index).ToArray();
+        var encoded = new NorthstarMfmTrackEncoder().Encode(new(NorthstarMfmFormat.MaximumCylinder, 0, [new(NorthstarMfmFormat.MaximumSector, payload)]));
+        var stream = new FluxBitstream(encoded.Bits.ToArray(), TrackEncodingDefaults.BitCellTicks);
+        var identity = Assert.IsType<NorthstarMfmIdentity>(NorthstarMfmDecoder.TryDecodeIdentity(stream, NorthstarMfmFormat.MarkBitCount));
+        var block = Assert.IsType<NorthstarMfmBlock>(NorthstarMfmDecoder.TryDecodeBlock(stream, NorthstarMfmFormat.MarkBitCount, identity));
+
+        Assert.True(FluxBitReader.MatchBytes(stream, 0, NorthstarMfmFormat.SectorMark));
+        Assert.Equal((byte)NorthstarMfmFormat.MaximumCylinder, identity.Cylinder);
+        Assert.Equal((byte)NorthstarMfmFormat.MaximumSector, identity.Sector);
+        Assert.Equal(payload, block.Data);
+        Assert.Equal(GWGUI.MediaEngine.Primitives.RotatingChecksumCalculator.Compute(payload), block.StoredChecksum);
+        Assert.Equal(Enumerable.Range(0, NorthstarMfmFormat.GapBitCount).Select(index => index % 2 == 0), encoded.Bits.TakeLast(NorthstarMfmFormat.GapBitCount));
+    }
+
+    [Fact]
+    public void EncoderRejectsInvalidSizeCylinderAndSector()
+    {
+        var encoder = new NorthstarMfmTrackEncoder();
+        var payload = new byte[NorthstarMfmFormat.SectorSize];
+
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new(0, payload[..^1])])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(NorthstarMfmFormat.MaximumCylinder + 1, 0, [new(0, payload)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(NorthstarMfmFormat.MaximumSector + 1, payload)])));
+    }
+
     private static FluxBitstream BlockStream(int cylinder, int sector, IReadOnlyList<byte> payload, bool validChecksum)
     {
         var checksum = GWGUI.MediaEngine.Primitives.RotatingChecksumCalculator.Compute(payload);

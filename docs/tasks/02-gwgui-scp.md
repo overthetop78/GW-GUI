@@ -4142,33 +4142,33 @@
       - [x] Tester le préambule nul et le gap final.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Micropolis avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur NorthStar
-      - [ ] Remplacer l'identifiant brut `northstar.mfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `NorthStar hard-sectored MFM` par la définition centrale correspondante.
-    - [ ] Définitions du format NorthStar MFM
-      - [ ] Déplacer la taille sectorielle dans `NorthstarMfmFormat`.
-      - [ ] Déplacer le préambule de sept octets nuls suivi de la marque `0xfb` dans `NorthstarMfmFormat`.
-      - [ ] Déplacer les largeurs, masques et décalages des demi-octets cylindre et secteur dans `NorthstarMfmFormat`.
-      - [ ] Déplacer la longueur du gap final dans `NorthstarMfmFormat`.
-      - [ ] Utiliser la définition commune du checksum rotatif partagée avec le décodeur NorthStar.
-    - [ ] Construction d'un secteur NorthStar
-      - [ ] Extraire la composition de l'octet cylindre/secteur dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire la construction du préambule, de l'adresse, des données et du checksum dans une fonction privée.
-      - [ ] Extraire l'écriture MFM des champs et du gap final dans une fonction privée sans modifier leur ordre actuel.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider que le cylindre tient dans le demi-octet haut avant son décalage.
-      - [ ] Valider que le numéro de secteur tient dans le demi-octet bas avant son masquage par `15`.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser les espaces dans le préambule, les décalages, masques, conversions et tableaux.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur NorthStar
-      - [ ] Tester la composition de l'adresse avec les valeurs minimales et maximales des deux demi-octets.
-      - [ ] Tester le préambule, les 512 octets de données, le checksum rotatif et le gap final avec un secteur connu.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste NorthStar avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
+    - [x] Identité de l'encodeur NorthStar
+      - [x] Remplacer l'identifiant brut `northstar.mfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `NorthStar hard-sectored MFM` par la définition centrale correspondante.
+    - [x] Définitions du format NorthStar MFM
+      - [x] Déplacer la taille sectorielle dans `NorthstarMfmFormat`.
+      - [x] Déplacer le préambule de sept octets nuls suivi de la marque `0xfb` dans `NorthstarMfmFormat`.
+      - [x] Déplacer les largeurs, masques et décalages des demi-octets cylindre et secteur dans `NorthstarMfmFormat`.
+      - [x] Déplacer la longueur du gap final dans `NorthstarMfmFormat`.
+      - [x] Utiliser la définition commune du checksum rotatif partagée avec le décodeur NorthStar.
+    - [x] Construction d'un secteur NorthStar
+      - [x] Extraire la composition de l'octet cylindre/secteur dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire la construction du préambule, de l'adresse, des données et du checksum dans une fonction privée.
+      - [x] Extraire l'écriture MFM des champs et du gap final dans une fonction privée sans modifier leur ordre actuel.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider que le cylindre tient dans le demi-octet haut avant son décalage.
+      - [x] Valider que le numéro de secteur tient dans le demi-octet bas avant son masquage par `15`.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser les espaces dans le préambule, les décalages, masques, conversions et tableaux.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur NorthStar
+      - [x] Tester la composition de l'adresse avec les valeurs minimales et maximales des deux demi-octets.
+      - [x] Tester le préambule, les 512 octets de données, le checksum rotatif et le gap final avec un secteur connu.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste NorthStar avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
     - [ ] Identité et préfixe de l'encodeur QD MO5
       - [ ] Remplacer l'identifiant brut `qdmo5.mfm` par la définition centrale correspondante.

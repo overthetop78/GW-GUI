@@ -37,6 +37,14 @@ internal static class NorthstarMfmFormat
     public const byte CylinderMask = 0x0f;
     /// <summary>Masque du secteur sur quatre bits.</summary>
     public const byte SectorMask = 0x0f;
+    /// <summary>Plus petit cylindre encodable dans le demi-octet haut.</summary>
+    public const int MinimumCylinder = 0;
+    /// <summary>Plus grand cylindre encodable dans le demi-octet haut.</summary>
+    public const int MaximumCylinder = CylinderMask;
+    /// <summary>Plus petit secteur encodable dans le demi-octet bas.</summary>
+    public const int MinimumSector = 0;
+    /// <summary>Plus grand secteur encodable dans le demi-octet bas.</summary>
+    public const int MaximumSector = SectorMask;
     /// <summary>Face logique des secteurs NorthStar.</summary>
     public const byte LogicalHead = 0;
     /// <summary>Code de taille des secteurs de 512 octets.</summary>
@@ -54,6 +62,10 @@ internal static class NorthstarMfmFormat
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"NorthStar sectors contain {SectorSize} bytes; received {actualSize} bytes.");
+    /// <summary>Crée l'exception signalant un cylindre impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidCylinder(int cylinder) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "cylinder", cylinder, MaximumCylinder);
+    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidSector(int sector) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "sector number", sector, MaximumSector);
 }
 
 /// <summary>Empaquette et dépaquette l'adresse NorthStar sur deux demi-octets.</summary>

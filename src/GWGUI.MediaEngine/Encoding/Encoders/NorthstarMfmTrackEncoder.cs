@@ -20,12 +20,33 @@ public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != NorthstarMfmFormat.SectorSize) throw NorthstarMfmFormat.InvalidSectorSize(sector.Data.Count);
-            bits.Raw(NorthstarMfmFormat.SectorMark.ToArray());
-            bits.Mfm([NorthstarMfmAddress.Pack(request.Cylinder, sector.Number)]);
-            bits.Mfm(sector.Data);
-            bits.Mfm([RotatingChecksumCalculator.Compute(sector.Data)]);
-            bits.Gap(NorthstarMfmFormat.GapBitCount);
+            WriteSector(bits, EncodeAddress(request.Cylinder, sector.Number), sector.Data, RotatingChecksumCalculator.Compute(sector.Data));
         }
         return bits;
+    }
+
+    /// <summary>Valide puis compose l'adresse compacte d'un secteur NorthStar.</summary>
+    /// <param name="cylinder">Numéro de cylindre.</param>
+    /// <param name="sector">Numéro de secteur.</param>
+    /// <returns>Adresse composée des deux demi-octets.</returns>
+    private static byte EncodeAddress(int cylinder, int sector)
+    {
+        if (cylinder is < NorthstarMfmFormat.MinimumCylinder or > NorthstarMfmFormat.MaximumCylinder) throw NorthstarMfmFormat.InvalidCylinder(cylinder);
+        if (sector is < NorthstarMfmFormat.MinimumSector or > NorthstarMfmFormat.MaximumSector) throw NorthstarMfmFormat.InvalidSector(sector);
+        return NorthstarMfmAddress.Pack(cylinder, sector);
+    }
+
+    /// <summary>Écrit la marque, l'adresse, les données, le checksum et le gap final d'un secteur.</summary>
+    /// <param name="bits">Tampon recevant les cellules binaires.</param>
+    /// <param name="address">Adresse compacte validée.</param>
+    /// <param name="data">Données sectorielles validées.</param>
+    /// <param name="checksum">Checksum rotatif des données.</param>
+    private static void WriteSector(List<bool> bits, byte address, IReadOnlyList<byte> data, byte checksum)
+    {
+        bits.Raw(NorthstarMfmFormat.SectorMark.ToArray());
+        bits.Mfm([address]);
+        bits.Mfm(data);
+        bits.Mfm([checksum]);
+        bits.Gap(NorthstarMfmFormat.GapBitCount);
     }
 }
