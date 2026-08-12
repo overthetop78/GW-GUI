@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Encoding;
 
 namespace GWGUI.MediaEngine.Decoding.Definitions;
 
@@ -45,6 +46,14 @@ internal static class Victor9kGcrFormat
     public const byte HeaderId1 = 0x1a;
     /// <summary>Préfixe des données.</summary>
     public const byte DataPrefix = 0x00;
+    /// <summary>Plus petit cylindre encodable.</summary>
+    public const int MinimumCylinder = byte.MinValue;
+    /// <summary>Plus grand cylindre encodable.</summary>
+    public const int MaximumCylinder = byte.MaxValue;
+    /// <summary>Plus petit numéro de secteur encodable.</summary>
+    public const int MinimumSector = byte.MinValue;
+    /// <summary>Plus grand numéro de secteur encodable.</summary>
+    public const int MaximumSector = byte.MaxValue;
     /// <summary>Position du préfixe de données.</summary>
     public const int DataPrefixOffset = 0;
     /// <summary>Position de la charge utile.</summary>
@@ -78,6 +87,19 @@ internal static class Victor9kGcrFormat
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Victor 9000 sectors contain {SectorByteCount} bytes; received {actualSize} bytes.");
+    /// <summary>Crée l'exception signalant un cylindre impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidCylinder(int cylinder) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "cylinder", cylinder, MaximumCylinder);
+    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidSector(int sector) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "sector number", sector, MaximumSector);
+    /// <summary>Crée l'exception signalant un marqueur trop court pour la disposition entrelacée.</summary>
+    public static ArgumentException InvalidMarkerLength(int markerBitCount) => new($"Victor 9000 markers must reach bit offset {EncodedDataStartBitOffset}; received {markerBitCount} bits.", "marker");
+}
+
+/// <summary>Calcule la somme d'adresse réduite sur un octet des en-têtes Victor 9000.</summary>
+internal static class Victor9kHeaderChecksum
+{
+    /// <summary>Calcule la somme du cylindre et du secteur.</summary>
+    public static byte Compute(byte cylinder, byte sector) => unchecked((byte)(cylinder + sector));
 }
 
 /// <summary>Calcule le checksum additif 16 bits Victor 9000.</summary>
@@ -90,6 +112,9 @@ internal static class Victor9kChecksum
         foreach (var value in data) checksum += value;
         return checksum;
     }
+
+    /// <summary>Sérialise le checksum avec l'octet faible en premier.</summary>
+    public static byte[] ToLittleEndianBytes(ushort checksum) => [(byte)checksum, (byte)(checksum >> BitPrimitives.BitsPerByte)];
 }
 
 /// <summary>Représente un en-tête Victor 9000 décodé.</summary>

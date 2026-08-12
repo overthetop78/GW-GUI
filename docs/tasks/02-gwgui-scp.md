@@ -4236,48 +4236,48 @@
       - [x] Tester la longueur et la valeur des deux gaps.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur TYCOM.
-  - [ ] `Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Victor 9000
-      - [ ] Remplacer l'identifiant brut `victor9k.gcr` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Victor 9000 GCR` par la définition centrale correspondante.
-    - [ ] Définitions communes et définitions propres au Victor 9000
-      - [ ] Supprimer la copie locale de la table GCR et utiliser le codec 4-vers-5 commun à `CommodoreGcrTrackEncoder`, `Commodore900GcrTrackEncoder`, aux décodeurs correspondants et au Victor 9000.
-      - [ ] Déplacer la taille sectorielle, la marque d'en-tête `0x06`, les identifiants `0xa1` et `0x1a` et le préfixe de données nul dans `Victor9kGcrFormat`.
-      - [ ] Déplacer les marqueurs hexadécimaux d'en-tête et de données dans `Victor9kGcrFormat`.
-      - [ ] Déplacer le décalage de 49 bits, le pas d'insertion de deux bits et la valeur de remplissage dans la définition de disposition Victor 9000.
-      - [ ] Déplacer les longueurs des gaps d'en-tête et de données dans `Victor9kGcrFormat`.
-      - [ ] Nommer séparément le checksum d'en-tête par addition cylindre/secteur et la somme 16 bits des données, ainsi que l'ordre petit-boutiste des deux octets de cette somme.
-    - [ ] Construction du champ d'en-tête
-      - [ ] Extraire la construction des six octets de l'en-tête dans une fonction privée recevant le cylindre et le secteur validés.
-      - [ ] Rendre explicite dans cette fonction la réduction sur un octet de la somme cylindre/secteur.
-      - [ ] Appeler la construction de bloc Victor commune avec le marqueur d'en-tête central.
-    - [ ] Construction du champ de données
-      - [ ] Extraire le calcul de la somme 16 bits des 512 octets dans une fonction commune au décodeur et à l'encodeur Victor 9000.
-      - [ ] Extraire la construction du préfixe, des données et des deux octets petit-boutistes de la somme dans une fonction privée.
-      - [ ] Appeler la construction de bloc Victor commune avec le marqueur de données central.
-    - [ ] Disposition des blocs Victor 9000
-      - [ ] Conserver `AddBlock` comme disposition propre au Victor 9000, mais remplacer sa conversion des nibbles par le codec GCR commun.
-      - [ ] Remplacer le décalage brut `49` et le pas brut `2` par les définitions de disposition Victor 9000.
-      - [ ] Extraire la préparation et le remplissage du marqueur dans une étape nommée.
-      - [ ] Extraire l'insertion des bits GCR dans une étape nommée qui conserve exactement leurs positions actuelles.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant sa conversion en octet.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet.
-      - [ ] Vérifier dans le constructeur de bloc que le marqueur possède la longueur nécessaire avant l'insertion au décalage Victor.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Séparer toutes les déclarations, boucles, calculs et appels actuellement juxtaposés sur une même ligne.
-      - [ ] Développer les trois boucles imbriquées de conversion avant leur remplacement par le codec commun.
-      - [ ] Normaliser les espaces dans la table, les tableaux, masques, décalages, signatures et arguments.
-      - [ ] Conserver sur une seule ligne chaque signature, appel ou expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Victor 9000
-      - [ ] Tester les six octets de l'en-tête et sa somme cylindre/secteur avec des valeurs connues.
-      - [ ] Tester la somme 16 bits d'un secteur connu, son débordement défini et l'ordre petit-boutiste de ses octets.
-      - [ ] Tester la longueur du marqueur préparé et les positions exactes des bits GCR à partir du décalage 49 et du pas 2.
-      - [ ] Tester les deux marqueurs et les deux longueurs de gaps.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre, d'un numéro de secteur et d'un marqueur trop court.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Victor 9000 avec le décodeur correspondant dans chaque zone prise en charge.
+  - [x] `Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
+    - [x] Identité de l'encodeur Victor 9000
+      - [x] Remplacer l'identifiant brut `victor9k.gcr` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Victor 9000 GCR` par la définition centrale correspondante.
+    - [x] Définitions communes et définitions propres au Victor 9000
+      - [x] Supprimer la copie locale de la table GCR et utiliser le codec 4-vers-5 commun à `CommodoreGcrTrackEncoder`, `Commodore900GcrTrackEncoder`, aux décodeurs correspondants et au Victor 9000.
+      - [x] Déplacer la taille sectorielle, la marque d'en-tête `0x06`, les identifiants `0xa1` et `0x1a` et le préfixe de données nul dans `Victor9kGcrFormat`.
+      - [x] Déplacer les marqueurs hexadécimaux d'en-tête et de données dans `Victor9kGcrFormat`.
+      - [x] Déplacer le décalage de 49 bits, le pas d'insertion de deux bits et la valeur de remplissage dans la définition de disposition Victor 9000.
+      - [x] Déplacer les longueurs des gaps d'en-tête et de données dans `Victor9kGcrFormat`.
+      - [x] Nommer séparément le checksum d'en-tête par addition cylindre/secteur et la somme 16 bits des données, ainsi que l'ordre petit-boutiste des deux octets de cette somme.
+    - [x] Construction du champ d'en-tête
+      - [x] Extraire la construction des six octets de l'en-tête dans une fonction privée recevant le cylindre et le secteur validés.
+      - [x] Rendre explicite dans cette fonction la réduction sur un octet de la somme cylindre/secteur.
+      - [x] Appeler la construction de bloc Victor commune avec le marqueur d'en-tête central.
+    - [x] Construction du champ de données
+      - [x] Extraire le calcul de la somme 16 bits des 512 octets dans une fonction commune au décodeur et à l'encodeur Victor 9000.
+      - [x] Extraire la construction du préfixe, des données et des deux octets petit-boutistes de la somme dans une fonction privée.
+      - [x] Appeler la construction de bloc Victor commune avec le marqueur de données central.
+    - [x] Disposition des blocs Victor 9000
+      - [x] Conserver `AddBlock` comme disposition propre au Victor 9000, mais remplacer sa conversion des nibbles par le codec GCR commun.
+      - [x] Remplacer le décalage brut `49` et le pas brut `2` par les définitions de disposition Victor 9000.
+      - [x] Extraire la préparation et le remplissage du marqueur dans une étape nommée.
+      - [x] Extraire l'insertion des bits GCR dans une étape nommée qui conserve exactement leurs positions actuelles.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant sa conversion en octet.
+      - [x] Valider le numéro de secteur avant sa conversion en octet.
+      - [x] Vérifier dans le constructeur de bloc que le marqueur possède la longueur nécessaire avant l'insertion au décalage Victor.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Séparer toutes les déclarations, boucles, calculs et appels actuellement juxtaposés sur une même ligne.
+      - [x] Développer les trois boucles imbriquées de conversion avant leur remplacement par le codec commun.
+      - [x] Normaliser les espaces dans la table, les tableaux, masques, décalages, signatures et arguments.
+      - [x] Conserver sur une seule ligne chaque signature, appel ou expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Victor 9000
+      - [x] Tester les six octets de l'en-tête et sa somme cylindre/secteur avec des valeurs connues.
+      - [x] Tester la somme 16 bits d'un secteur connu, son débordement défini et l'ordre petit-boutiste de ses octets.
+      - [x] Tester la longueur du marqueur préparé et les positions exactes des bits GCR à partir du décalage 49 et du pas 2.
+      - [x] Tester les deux marqueurs et les deux longueurs de gaps.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'un numéro de secteur et d'un marqueur trop court.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Victor 9000 avec le décodeur correspondant dans chaque zone prise en charge.
 
 ## 7. Reconstruction des images sectorielles
 

@@ -90,6 +90,44 @@ public sealed class Victor9kGcrDecoderTests
         Assert.True(result.Confidence > 0);
     }
 
+    [Fact]
+    public void EncoderWritesKnownHeaderChecksumDataChecksumAndBothGaps()
+    {
+        var payload = Enumerable.Repeat((byte)0xff, Victor9kGcrFormat.SectorByteCount).ToArray();
+        var encoded = new Victor9kGcrTrackEncoder().Encode(new(250, 0, [new(10, payload)]));
+        var stream = new FluxBitstream(encoded.Bits.ToArray(), TrackEncodingDefaults.BitCellTicks);
+        var header = Assert.IsType<Victor9kHeader>(Victor9kGcrDecoder.TryDecodeHeader(stream.Bits, 0));
+        var dataOffset = Victor9kGcrDecoder.FindDataMark(stream, 0, stream.Bits.Length);
+        var data = Assert.IsType<Victor9kData>(Victor9kGcrDecoder.TryDecodeData(stream.Bits, dataOffset));
+
+        Assert.Equal(4, header.Bytes[Victor9kGcrFormat.HeaderSumOffset]);
+        Assert.Equal(unchecked((ushort)(Victor9kGcrFormat.SectorByteCount * byte.MaxValue)), data.StoredChecksum);
+        Assert.True(data.ChecksumValid);
+        Assert.Equal(Enumerable.Range(0, Victor9kGcrFormat.DataGapBitCount).Select(index => index % 2 == 0), encoded.Bits.TakeLast(Victor9kGcrFormat.DataGapBitCount));
+    }
+
+    [Fact]
+    public void BlockLayoutUsesDefinedOffsetStrideAndRejectsShortMarker()
+    {
+        var bits = new List<bool>();
+        Victor9kGcrTrackEncoder.AddBlock(bits, Victor9kGcrFormat.HeaderMark, [0x12]);
+        var expected = CommodoreGcrCodec.Encode([0x12]);
+
+        for (var index = 0; index < expected.Count; index++) Assert.Equal(expected[index], bits[Victor9kGcrFormat.EncodedDataStartBitOffset + index * Victor9kGcrFormat.EncodedCellStride]);
+        Assert.Throws<ArgumentException>(() => Victor9kGcrTrackEncoder.AddBlock([], [0], [0x12]));
+    }
+
+    [Fact]
+    public void EncoderRejectsInvalidSizeCylinderAndSector()
+    {
+        var encoder = new Victor9kGcrTrackEncoder();
+        var payload = new byte[Victor9kGcrFormat.SectorByteCount];
+
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new(0, payload[..^1])])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(Victor9kGcrFormat.MaximumCylinder + 1, 0, [new(0, payload)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(Victor9kGcrFormat.MaximumSector + 1, payload)])));
+    }
+
     private static FluxBitstream HeaderBlock(IEnumerable<byte> values) => Block(Victor9kGcrFormat.HeaderMark, values);
 
     private static FluxBitstream DataBlock(IReadOnlyList<byte> payload, bool validChecksum)
