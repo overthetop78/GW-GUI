@@ -11,5 +11,5 @@ internal sealed class CoherentImageRecognitionPolicy(CoherentRawImageReader read
     /// <param name="context">Contexte du fichier à examiner.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du contenu partagé.</param>
     /// <returns><see langword="true"/> lorsque le superbloc COHERENT est plausible ; sinon <see langword="false"/>.</returns>
-    public override async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) => CoherentSuperblockProbe.LooksLikeCoherent((await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false)).Span);
+    public override async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken) => CoherentFormat.LooksLikeCoherent((await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false)).Span);
 }

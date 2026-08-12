@@ -9,7 +9,7 @@ public static class FileSystemReaderCatalog
         new Amiga.AmigaDosFileSystemReader(),
         new Acorn.Adfs.AcornAdfsFileSystemReader(),
         new Acorn.BbcDfs.BbcDfsFileSystemReader(),
-        new Readers.CoherentFileSystemReader(),
+        new Coherent.CoherentFileSystemReader(),
         new Readers.Rt11FileSystemReader(),
         new Readers.UcsdFileSystemReader(),
         new Apple.InformXzip.AppleInformXzipFileSystemReader(),

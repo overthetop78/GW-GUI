@@ -6698,91 +6698,91 @@
       - [x] Tester un fichier sur plusieurs secteurs avec un secteur central absent et vérifier que le suivant conserve son offset.
       - [x] Tester un bloc tronqué, un secteur hors volume et un secteur partagé entre deux fichiers.
       - [x] Vérifier avec une image connue de `image_test` le titre, les entrées, contenus, références, validités, avertissements, capacité et espace libre.
-  - [ ] `FileSystems/Readers/CoherentFileSystemReader.cs`
-    - [ ] Emplacement et identité COHERENT
-      - [ ] Déplacer le Reader vers `FileSystems/Coherent/CoherentFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `coherent` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer le nom brut `COHERENT (Commodore 900)` du volume par cet identifiant technique central.
-      - [ ] Exposer le format Commodore 900 COHERENT par un ensemble réellement non modifiable.
-    - [ ] Primitives communes avec le Reader d'image
-      - [ ] Déplacer `LooksLikeCoherent` et `ReadCanonicalUInt32` de `Images/CoherentImageReader.cs` vers `Coherent/CoherentFormat.cs`.
-      - [ ] Faire utiliser ces primitives par le Reader d'image et le Reader de système de fichiers.
-      - [ ] Supprimer l'import et la dépendance de `FileSystems` vers l'espace de noms `Images`.
-    - [ ] Disposition du superbloc COHERENT
-      - [ ] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
-      - [ ] Y déplacer la taille de bloc 512, la taille d'inode 64, le bloc racine d'inodes `2` et la zone d'inodes minimale `3`.
-      - [ ] Y définir les offsets `512`, `514`, `976`, `980` et `996` et les longueurs des champs de zone d'inodes, blocs, date, espace libre et nom de volume.
-      - [ ] Y déplacer les six octets du nom de volume et les sentinelles `xxxxx` et `noname`.
-      - [ ] Valider que le nombre de blocs du système de fichiers tient dans l'image et que la zone d'inodes est contenue dans ce nombre.
-    - [ ] Aplatissement conservant les blocs absents
-      - [ ] Remplacer `Flatten` par une représentation contenant les octets à leur bloc logique et un masque des blocs absents.
-      - [ ] Copier directement les données des blocs complets sans tableau temporaire.
-      - [ ] Ne pas confondre les zéros de remplacement d'un bloc absent avec un bloc réellement présent rempli de zéros.
-      - [ ] Faire échouer la reconnaissance si le superbloc requis traverse un bloc absent.
-      - [ ] Transmettre l'absence aux lecteurs d'inodes, de répertoires et de fichiers afin qu'ils marquent leurs résultats invalides.
-    - [ ] Modèle et plage des inodes
-      - [ ] Créer `FileSystems/Coherent/CoherentInode.cs` et y déplacer le record privé `Inode`.
-      - [ ] Copier la collection des treize pointeurs reçue avant de l'exposer par une vue non modifiable.
-      - [ ] Créer les définitions des offsets mode, taille, treize adresses de trois octets et date modifiée.
-      - [ ] Valider le numéro d'inode par rapport à la fin de zone d'inodes du superbloc, et non seulement par rapport à la longueur totale de l'image.
-      - [ ] Déplacer la composition particulière des pointeurs 24 bits dans une primitive COHERENT nommée et bornée.
-    - [ ] Modes d'inode COHERENT
-      - [ ] Créer `FileSystems/Coherent/CoherentInodeMode.cs` avec le masque de type `0xf000`, le masque d'attributs `0x0fff` et les types V7 pris en charge.
-      - [ ] Remplacer la seule comparaison brute au mode répertoire `0x4000` par cet enum.
-      - [ ] Convertir un inode régulier en `File`, un répertoire en `Directory`, un lien pris en charge en `Link` et un périphérique ou type non parcourable en `Unknown`.
-      - [ ] Conserver les bits de permission et d'attributs dans les attributs bruts de l'entrée.
-    - [ ] Lecture des répertoires
-      - [ ] Créer `FileSystems/Coherent/CoherentDirectoryReader.cs` et y déplacer `ReadDirectory`.
-      - [ ] Déplacer la taille d'entrée 16, les deux octets d'inode et les quatorze octets de nom dans la disposition.
-      - [ ] Déplacer les noms spéciaux `.`, `..` et l'inode nul dans des définitions de répertoire.
-      - [ ] Distinguer la pile de récursion utilisée pour détecter un cycle des inodes déjà vus par un autre lien.
-      - [ ] Produire un avertissement lors d'un cycle ou d'une seconde référence au lieu de retourner silencieusement une liste vide.
-      - [ ] Conserver le tri des répertoires avant les autres entrées puis des noms sans casse.
-    - [ ] Lecture positionnelle des blocs de fichier
-      - [ ] Créer `FileSystems/Coherent/CoherentFileDataReader.cs` et y déplacer `ReadFileData` et `AddIndirect`.
-      - [ ] Déplacer les dix pointeurs directs et les trois pointeurs indirects de niveaux un à trois dans la disposition.
-      - [ ] Conserver un contenu vide pour une taille d'inode nulle, notamment les nœuds de périphérique dont `i_data` n'est pas une liste de blocs.
-      - [ ] Remplacer le commentaire anglais sur les nœuds de périphérique par la CSDoc française de cette règle.
-      - [ ] Calculer le nombre requis de blocs par arrondi supérieur vérifié.
-      - [ ] Pour un bloc direct nul, conserver la plage correspondante comme trou rempli de zéros.
-      - [ ] Pour un bloc direct absent ou hors image, conserver également son offset dans le résultat, ajouter l'avertissement et marquer le contenu invalide.
-      - [ ] Toujours avancer la destination de la taille logique du bloc, même lorsqu'aucune donnée ne peut être copiée.
-    - [ ] Pointeurs indirects
-      - [ ] Définir centralement les 128 pointeurs de quatre octets par bloc indirect.
-      - [ ] Calculer la capacité logique d'un pointeur nul selon son niveau et ajouter exactement ce nombre de trous, borné aux blocs requis.
-      - [ ] Lorsqu'un bloc indirect est absent ou hors image, ajouter la même capacité de trous au lieu de laisser les pointeurs suivants glisser vers le début du fichier.
-      - [ ] Remplacer la comparaison `rawChild > image.Length / BlockSize` par une validation commune qui rejette aussi l'index égal au nombre de blocs.
-      - [ ] Conserver l'ordre des pointeurs et la récursion des trois niveaux.
-      - [ ] Suivre les blocs indirects visités afin de signaler une référence cyclique ou répétée.
-      - [ ] Faire retourner avec la liste logique des blocs un état de validité utilisé par `FileSystemEntry.MetadataValid`.
-    - [ ] Noms et dates COHERENT
-      - [ ] Créer `CoherentNameCodec.cs` et y déplacer `DecodeFixed` avec les terminateurs nul, espace, saut de ligne et retour chariot.
-      - [ ] Créer `CoherentFileSystemTime.cs` et y déplacer `DecodeTime` fondé sur l'époque Unix.
-      - [ ] Conserver une date absente pour zéro ou pour une valeur hors plage.
-      - [ ] Créer une description technique d'inode recevant son numéro au lieu de construire le texte brut dans la boucle.
-    - [ ] Validité des entrées et du volume
-      - [ ] Faire combiner par chaque entrée la validité de l'inode, des pointeurs, des blocs indirects et des données lues.
-      - [ ] Conserver un contenu partiel positionné lorsque des blocs manquent tout en marquant l'entrée invalide.
-      - [ ] Conserver le plafonnement de l'espace libre déclaré entre zéro et la capacité du système de fichiers.
-    - [ ] Erreurs et avertissements COHERENT
-      - [ ] Créer `FileSystems/Coherent/CoherentExceptions.cs` pour superbloc, zone d'inodes, inode nul/hors zone et taille trop grande.
-      - [ ] Créer `CoherentWarnings.cs` pour bloc direct/indirect, cycle, inode enfant et octets manquants.
-      - [ ] Remplacer tous les textes anglais construits directement dans le Reader par ces fonctions recevant inode, bloc, niveau, nom et longueur.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Traduire en français la CSDoc anglaise du type.
-      - [ ] Développer les contrôles de blocs directs et indirects dont avertissement et `continue` ou `return` sont sur une même ligne.
-      - [ ] Séparer les branches de récursion et les constructions d'inode actuellement cassées au milieu de leurs arguments.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-      - [ ] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader COHERENT
-      - [ ] Tester la reconnaissance du superbloc, les limites de zone d'inodes et un inode extérieur à cette zone mais intérieur à l'image.
-      - [ ] Tester un fichier utilisant les dix pointeurs directs puis chacun des trois niveaux indirects.
-      - [ ] Tester un bloc direct invalide entre deux blocs valides et vérifier que le suivant conserve son offset.
-      - [ ] Tester un bloc indirect invalide avant un niveau suivant et vérifier la conservation de toute son étendue logique.
-      - [ ] Tester des trous clairsemés, un cycle indirect et un pointeur égal au nombre de blocs.
-      - [ ] Tester un répertoire, un fichier, un lien ou type pris en charge et un nœud de périphérique de taille nulle.
-      - [ ] Tester un cycle de répertoire, une seconde référence et un bloc logique absent dans l'image aplatie.
-      - [ ] Vérifier avec une image connue de `image_test` le volume, les entrées, contenus positionnés, modes, validités, dates, avertissements et espace libre.
+  - [x] `FileSystems/Readers/CoherentFileSystemReader.cs`
+    - [x] Emplacement et identité COHERENT
+      - [x] Déplacer le Reader vers `FileSystems/Coherent/CoherentFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `coherent` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer le nom brut `COHERENT (Commodore 900)` du volume par cet identifiant technique central.
+      - [x] Exposer le format Commodore 900 COHERENT par un ensemble réellement non modifiable.
+    - [x] Primitives communes avec le Reader d'image
+      - [x] Déplacer `LooksLikeCoherent` et `ReadCanonicalUInt32` de `Images/CoherentImageReader.cs` vers `Coherent/CoherentFormat.cs`.
+      - [x] Faire utiliser ces primitives par le Reader d'image et le Reader de système de fichiers.
+      - [x] Supprimer l'import et la dépendance de `FileSystems` vers l'espace de noms `Images`.
+    - [x] Disposition du superbloc COHERENT
+      - [x] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
+      - [x] Y déplacer la taille de bloc 512, la taille d'inode 64, le bloc racine d'inodes `2` et la zone d'inodes minimale `3`.
+      - [x] Y définir les offsets `512`, `514`, `976`, `980` et `996` et les longueurs des champs de zone d'inodes, blocs, date, espace libre et nom de volume.
+      - [x] Y déplacer les six octets du nom de volume et les sentinelles `xxxxx` et `noname`.
+      - [x] Valider que le nombre de blocs du système de fichiers tient dans l'image et que la zone d'inodes est contenue dans ce nombre.
+    - [x] Aplatissement conservant les blocs absents
+      - [x] Remplacer `Flatten` par une représentation contenant les octets à leur bloc logique et un masque des blocs absents.
+      - [x] Copier directement les données des blocs complets sans tableau temporaire.
+      - [x] Ne pas confondre les zéros de remplacement d'un bloc absent avec un bloc réellement présent rempli de zéros.
+      - [x] Faire échouer la reconnaissance si le superbloc requis traverse un bloc absent.
+      - [x] Transmettre l'absence aux lecteurs d'inodes, de répertoires et de fichiers afin qu'ils marquent leurs résultats invalides.
+    - [x] Modèle et plage des inodes
+      - [x] Créer `FileSystems/Coherent/CoherentInode.cs` et y déplacer le record privé `Inode`.
+      - [x] Copier la collection des treize pointeurs reçue avant de l'exposer par une vue non modifiable.
+      - [x] Créer les définitions des offsets mode, taille, treize adresses de trois octets et date modifiée.
+      - [x] Valider le numéro d'inode par rapport à la fin de zone d'inodes du superbloc, et non seulement par rapport à la longueur totale de l'image.
+      - [x] Déplacer la composition particulière des pointeurs 24 bits dans une primitive COHERENT nommée et bornée.
+    - [x] Modes d'inode COHERENT
+      - [x] Créer `FileSystems/Coherent/CoherentInodeMode.cs` avec le masque de type `0xf000`, le masque d'attributs `0x0fff` et les types V7 pris en charge.
+      - [x] Remplacer la seule comparaison brute au mode répertoire `0x4000` par cet enum.
+      - [x] Convertir un inode régulier en `File`, un répertoire en `Directory`, un lien pris en charge en `Link` et un périphérique ou type non parcourable en `Unknown`.
+      - [x] Conserver les bits de permission et d'attributs dans les attributs bruts de l'entrée.
+    - [x] Lecture des répertoires
+      - [x] Créer `FileSystems/Coherent/CoherentDirectoryReader.cs` et y déplacer `ReadDirectory`.
+      - [x] Déplacer la taille d'entrée 16, les deux octets d'inode et les quatorze octets de nom dans la disposition.
+      - [x] Déplacer les noms spéciaux `.`, `..` et l'inode nul dans des définitions de répertoire.
+      - [x] Distinguer la pile de récursion utilisée pour détecter un cycle des inodes déjà vus par un autre lien.
+      - [x] Produire un avertissement lors d'un cycle ou d'une seconde référence au lieu de retourner silencieusement une liste vide.
+      - [x] Conserver le tri des répertoires avant les autres entrées puis des noms sans casse.
+    - [x] Lecture positionnelle des blocs de fichier
+      - [x] Créer `FileSystems/Coherent/CoherentFileDataReader.cs` et y déplacer `ReadFileData` et `AddIndirect`.
+      - [x] Déplacer les dix pointeurs directs et les trois pointeurs indirects de niveaux un à trois dans la disposition.
+      - [x] Conserver un contenu vide pour une taille d'inode nulle, notamment les nœuds de périphérique dont `i_data` n'est pas une liste de blocs.
+      - [x] Remplacer le commentaire anglais sur les nœuds de périphérique par la CSDoc française de cette règle.
+      - [x] Calculer le nombre requis de blocs par arrondi supérieur vérifié.
+      - [x] Pour un bloc direct nul, conserver la plage correspondante comme trou rempli de zéros.
+      - [x] Pour un bloc direct absent ou hors image, conserver également son offset dans le résultat, ajouter l'avertissement et marquer le contenu invalide.
+      - [x] Toujours avancer la destination de la taille logique du bloc, même lorsqu'aucune donnée ne peut être copiée.
+    - [x] Pointeurs indirects
+      - [x] Définir centralement les 128 pointeurs de quatre octets par bloc indirect.
+      - [x] Calculer la capacité logique d'un pointeur nul selon son niveau et ajouter exactement ce nombre de trous, borné aux blocs requis.
+      - [x] Lorsqu'un bloc indirect est absent ou hors image, ajouter la même capacité de trous au lieu de laisser les pointeurs suivants glisser vers le début du fichier.
+      - [x] Remplacer la comparaison `rawChild > image.Length / BlockSize` par une validation commune qui rejette aussi l'index égal au nombre de blocs.
+      - [x] Conserver l'ordre des pointeurs et la récursion des trois niveaux.
+      - [x] Suivre les blocs indirects visités afin de signaler une référence cyclique ou répétée.
+      - [x] Faire retourner avec la liste logique des blocs un état de validité utilisé par `FileSystemEntry.MetadataValid`.
+    - [x] Noms et dates COHERENT
+      - [x] Créer `CoherentNameCodec.cs` et y déplacer `DecodeFixed` avec les terminateurs nul, espace, saut de ligne et retour chariot.
+      - [x] Créer `CoherentFileSystemTime.cs` et y déplacer `DecodeTime` fondé sur l'époque Unix.
+      - [x] Conserver une date absente pour zéro ou pour une valeur hors plage.
+      - [x] Créer une description technique d'inode recevant son numéro au lieu de construire le texte brut dans la boucle.
+    - [x] Validité des entrées et du volume
+      - [x] Faire combiner par chaque entrée la validité de l'inode, des pointeurs, des blocs indirects et des données lues.
+      - [x] Conserver un contenu partiel positionné lorsque des blocs manquent tout en marquant l'entrée invalide.
+      - [x] Conserver le plafonnement de l'espace libre déclaré entre zéro et la capacité du système de fichiers.
+    - [x] Erreurs et avertissements COHERENT
+      - [x] Créer `FileSystems/Coherent/CoherentExceptions.cs` pour superbloc, zone d'inodes, inode nul/hors zone et taille trop grande.
+      - [x] Créer `CoherentWarnings.cs` pour bloc direct/indirect, cycle, inode enfant et octets manquants.
+      - [x] Remplacer tous les textes anglais construits directement dans le Reader par ces fonctions recevant inode, bloc, niveau, nom et longueur.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Traduire en français la CSDoc anglaise du type.
+      - [x] Développer les contrôles de blocs directs et indirects dont avertissement et `continue` ou `return` sont sur une même ligne.
+      - [x] Séparer les branches de récursion et les constructions d'inode actuellement cassées au milieu de leurs arguments.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+      - [x] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader COHERENT
+      - [x] Tester la reconnaissance du superbloc, les limites de zone d'inodes et un inode extérieur à cette zone mais intérieur à l'image.
+      - [x] Tester un fichier utilisant les dix pointeurs directs puis chacun des trois niveaux indirects.
+      - [x] Tester un bloc direct invalide entre deux blocs valides et vérifier que le suivant conserve son offset.
+      - [x] Tester un bloc indirect invalide avant un niveau suivant et vérifier la conservation de toute son étendue logique.
+      - [x] Tester des trous clairsemés, un cycle indirect et un pointeur égal au nombre de blocs.
+      - [x] Tester un répertoire, un fichier, un lien ou type pris en charge et un nœud de périphérique de taille nulle.
+      - [x] Tester un cycle de répertoire, une seconde référence et un bloc logique absent dans l'image aplatie.
+      - [x] Vérifier avec une image connue de `image_test` le volume, les entrées, contenus positionnés, modes, validités, dates, avertissements et espace libre.
   - [ ] `FileSystems/Readers/CommodoreDosFileSystemReader.cs`
     - [ ] Emplacement et identité CBM DOS
       - [ ] Déplacer le Reader vers `FileSystems/Commodore/Dos/CommodoreDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.

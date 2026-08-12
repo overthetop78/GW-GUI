@@ -23,10 +23,10 @@ public sealed class CoherentRawImageReader
     /// <summary>Valide le superbloc et reconstruit les blocs sectoriels du dump.</summary>
     private static SectorImage Read(ReadOnlySpan<byte> bytes, CancellationToken cancellationToken)
     {
-        if (!CoherentSuperblockProbe.LooksLikeCoherent(bytes)) throw CoherentRawImageExceptions.ContentNotCoherent(bytes.Length);
+        if (!CoherentFormat.LooksLikeCoherent(bytes)) throw CoherentRawImageExceptions.ContentNotCoherent(bytes.Length);
         if (bytes.Length % Commodore900Geometry.SectorSize != 0) throw CoherentRawImageExceptions.NonSectorAlignedLength(bytes.Length, Commodore900Geometry.SectorSize);
         var availableBlocks = bytes.Length / Commodore900Geometry.SectorSize;
-        var declaredBlocks = CoherentSuperblockProbe.ReadDeclaredFileSystemBlockCount(bytes);
+        var declaredBlocks = CoherentFormat.ReadDeclaredFileSystemBlockCount(bytes);
         if (declaredBlocks < 3 || declaredBlocks > availableBlocks) throw CoherentRawImageExceptions.InvalidDeclaredBlockCount(declaredBlocks, availableBlocks);
         if (availableBlocks > Commodore900Geometry.BlockCount) throw CoherentRawImageExceptions.GeometryCapacityExceeded(availableBlocks, Commodore900Geometry.BlockCount);
         return Commodore900SectorImageBuilder.Create(bytes, cancellationToken);

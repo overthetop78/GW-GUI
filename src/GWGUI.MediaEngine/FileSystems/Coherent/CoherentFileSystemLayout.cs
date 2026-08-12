@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.FileSystems.Coherent;
 
 /// <summary>Décrit les champs du superbloc COHERENT utilisés par le moteur.</summary>
-internal static class CoherentSuperblockLayout
+public static class CoherentFileSystemLayout
 {
     /// <summary>Taille d'un bloc logique en octets.</summary>
     public const int BlockSize = 512;
@@ -35,6 +35,8 @@ internal static class CoherentSuperblockLayout
     public const int InodeSize = 64;
     /// <summary>Numéro du premier inode utilisateur.</summary>
     public const int RootInodeNumber = 2;
+    /// <summary>Premier bloc après le superbloc et début de la zone minimale d'inodes.</summary>
+    public const int MinimumInodeZoneEnd = 3;
     /// <summary>Mode identifiant un répertoire.</summary>
     public const ushort DirectoryMode = 0x4000;
     /// <summary>Masque isolant le type d'un inode.</summary>
@@ -53,10 +55,26 @@ internal static class CoherentSuperblockLayout
     public const int InodePointerCount = 13;
     /// <summary>Nombre de pointeurs directs.</summary>
     public const int DirectPointerCount = 10;
+    /// <summary>Index du pointeur indirect simple.</summary>
+    public const int SingleIndirectPointerIndex = 10;
+    /// <summary>Index du pointeur indirect double.</summary>
+    public const int DoubleIndirectPointerIndex = 11;
+    /// <summary>Index du pointeur indirect triple.</summary>
+    public const int TripleIndirectPointerIndex = 12;
+    /// <summary>Nombre de pointeurs 32 bits par bloc indirect.</summary>
+    public const int IndirectPointersPerBlock = BlockSize / CoherentFormat.UInt32Length;
     /// <summary>Offset de la date de modification.</summary>
     public const int InodeModifiedOffset = 56;
     /// <summary>Taille d'une entrée de répertoire.</summary>
     public const int DirectoryEntrySize = 16;
     /// <summary>Longueur du nom dans une entrée.</summary>
     public const int DirectoryNameLength = 14;
+    /// <summary>Nombre d'octets du numéro d'inode d'une entrée de répertoire.</summary>
+    public const int DirectoryInodeLength = sizeof(ushort);
+    /// <summary>Numéro d'inode indiquant une entrée inutilisée.</summary>
+    public const ushort NullInodeNumber = 0;
+    /// <summary>Nom désignant le répertoire courant.</summary>
+    public const string CurrentDirectoryName = ".";
+    /// <summary>Nom désignant le répertoire parent.</summary>
+    public const string ParentDirectoryName = "..";
 }
