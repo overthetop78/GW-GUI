@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Definitions;
+using GWGUI.MediaEngine.FileSystems.Amiga;
 
 namespace GWGUI.Tests;
 
@@ -12,7 +13,7 @@ public sealed class FileSystemDisplayNamesTests
     [InlineData(1, "AmigaDOS FFS")]
     [InlineData(7, "AmigaDOS FFS Long Names")]
     [InlineData(8, "AmigaDOS")]
-    public void ResolvesAmigaDosVariant(int dosType, string expected) => Assert.Equal(expected, FileSystemDisplayNames.AmigaDos(dosType));
+    public void ResolvesAmigaDosVariant(int dosType, string expected) => Assert.Equal(expected, FileSystemDisplayNames.AmigaDos((AmigaDosVariant)dosType));
 
     /// <summary>Vérifie les variantes CP/M Amstrad.</summary>
     [Theory]

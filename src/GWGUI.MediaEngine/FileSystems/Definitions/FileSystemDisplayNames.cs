@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Amiga;
 
 namespace GWGUI.MediaEngine.FileSystems.Definitions;
 
@@ -35,7 +36,7 @@ internal static class FileSystemDisplayNames
     /// <summary>Retourne le nom de la variante AmigaDOS correspondant à son octet DOS.</summary>
     /// <param name="dosType">Octet identifiant la variante AmigaDOS.</param>
     /// <returns>Nom affiché de la variante AmigaDOS.</returns>
-    public static string AmigaDos(int dosType) => dosType switch { 0 => "AmigaDOS OFS", 1 => "AmigaDOS FFS", 2 => "AmigaDOS OFS International", 3 => "AmigaDOS FFS International", 4 => "AmigaDOS OFS Directory Cache", 5 => "AmigaDOS FFS Directory Cache", 6 => "AmigaDOS OFS Long Names", 7 => "AmigaDOS FFS Long Names", _ => "AmigaDOS" };
+    public static string AmigaDos(AmigaDosVariant variant) => variant switch { AmigaDosVariant.Ofs => "AmigaDOS OFS", AmigaDosVariant.Ffs => "AmigaDOS FFS", AmigaDosVariant.OfsInternational => "AmigaDOS OFS International", AmigaDosVariant.FfsInternational => "AmigaDOS FFS International", AmigaDosVariant.OfsDirectoryCache => "AmigaDOS OFS Directory Cache", AmigaDosVariant.FfsDirectoryCache => "AmigaDOS FFS Directory Cache", AmigaDosVariant.OfsLongNames => "AmigaDOS OFS Long Names", AmigaDosVariant.FfsLongNames => "AmigaDOS FFS Long Names", _ => "AmigaDOS" };
     /// <summary>Retourne le nom de la variante CP/M Amstrad correspondant au format.</summary>
     /// <param name="formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de la variante CP/M Amstrad.</returns>

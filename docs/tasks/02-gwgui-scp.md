@@ -5496,37 +5496,37 @@
     - [x] Tester l'injection du nom et du message d'exception sans perdre le diagnostic d'origine.
     - [x] Tester l'avertissement commun de blocs manquants par les APIs publiques RT-11 et UCSD.
 - [ ] Définitions utilisées par les Readers de systèmes de fichiers
-  - [ ] AmigaDOS
-    - [ ] `FileSystems/Amiga/AmigaDosLayout.cs`
-      - [ ] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
-      - [ ] Ajouter la taille de bloc `512` et les `72` entrées de la table de hash racine.
-      - [ ] Ajouter les offsets `0`, `12`, `16`, `24`, `312`, `324`, `328`, `432`, `508` utilisés pour les types, pointeurs, noms, dates et types secondaires.
-      - [ ] Ajouter les longueurs maximales `30` et `107` des deux formes de nom AmigaDOS.
-      - [ ] Ajouter les limites de profondeur `64`, de minutes par jour, de ticks par seconde et la durée d'un tick.
-      - [ ] Ajouter les signatures de boot `DOS` et les huit valeurs de variante actuellement reconnues.
-      - [ ] Ajouter les types primaires et secondaires de racine, fichier, répertoire, lien et extension.
-      - [ ] Ajouter l'époque Amiga du 1er janvier 1978.
-      - [ ] Remplacer chaque valeur correspondante dans `AmigaDosFileSystemReader`.
-      - [ ] Documenter en français `AmigaDosLayout` et chacune de ses définitions.
-    - [ ] `FileSystems/Amiga/AmigaDosVariant.cs`
-      - [ ] Créer l'enum `AmigaDosVariant` avec les huit valeurs OFS, FFS, International, Directory Cache et Long Names reconnues par le Reader.
-      - [ ] Remplacer le `switch` sur l'octet de variante par cet enum.
-      - [ ] Conserver les libellés d'affichage hors de l'enum technique.
-      - [ ] Documenter en français l'enum et chacune de ses valeurs.
-    - [ ] `FileSystems/Amiga/AmigaDosExceptions.cs`
-      - [ ] Créer `FileSystems/Amiga/AmigaDosExceptions.cs`.
-      - [ ] Ajouter une méthode recevant la variante observée pour l'erreur de boot non pris en charge.
-      - [ ] Ajouter une méthode recevant le bloc racine observé pour l'erreur de racine invalide.
-      - [ ] Ajouter une méthode recevant le numéro du bloc d'extension invalide.
-      - [ ] Ajouter une méthode recevant la description et le numéro d'un bloc absent.
-      - [ ] Ajouter une méthode recevant la profondeur observée pour la limite de répertoire.
-      - [ ] Remplacer tous les textes d'erreur et d'avertissement correspondants dans le Reader.
-      - [ ] Documenter en français `AmigaDosExceptions` et chacune de ses méthodes.
-    - [ ] Tests des définitions AmigaDOS
-      - [ ] Tester les huit variantes reconnues par le Reader public.
-      - [ ] Tester un bloc racine valide, un checksum invalide et un type secondaire invalide.
-      - [ ] Tester les noms ordinaires et longs, une date valide et une date hors limites.
-      - [ ] Tester un bloc d'extension valide, invalide et absent.
+  - [x] AmigaDOS
+    - [x] `FileSystems/Amiga/AmigaDosLayout.cs`
+      - [x] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
+      - [x] Ajouter la taille de bloc `512` et les `72` entrées de la table de hash racine.
+      - [x] Ajouter les offsets `0`, `12`, `16`, `24`, `312`, `324`, `328`, `432`, `508` utilisés pour les types, pointeurs, noms, dates et types secondaires.
+      - [x] Ajouter les longueurs maximales `30` et `107` des deux formes de nom AmigaDOS.
+      - [x] Ajouter les limites de profondeur `64`, de minutes par jour, de ticks par seconde et la durée d'un tick.
+      - [x] Ajouter les signatures de boot `DOS` et les huit valeurs de variante actuellement reconnues.
+      - [x] Ajouter les types primaires et secondaires de racine, fichier, répertoire, lien et extension.
+      - [x] Ajouter l'époque Amiga du 1er janvier 1978.
+      - [x] Remplacer chaque valeur correspondante dans `AmigaDosFileSystemReader`.
+      - [x] Documenter en français `AmigaDosLayout` et chacune de ses définitions.
+    - [x] `FileSystems/Amiga/AmigaDosVariant.cs`
+      - [x] Créer l'enum `AmigaDosVariant` avec les huit valeurs OFS, FFS, International, Directory Cache et Long Names reconnues par le Reader.
+      - [x] Remplacer le `switch` sur l'octet de variante par cet enum.
+      - [x] Conserver les libellés d'affichage hors de l'enum technique.
+      - [x] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] `FileSystems/Amiga/AmigaDosExceptions.cs`
+      - [x] Créer `FileSystems/Amiga/AmigaDosExceptions.cs`.
+      - [x] Ajouter une méthode recevant la variante observée pour l'erreur de boot non pris en charge.
+      - [x] Ajouter une méthode recevant le bloc racine observé pour l'erreur de racine invalide.
+      - [x] Ajouter une méthode recevant le numéro du bloc d'extension invalide.
+      - [x] Ajouter une méthode recevant la description et le numéro d'un bloc absent.
+      - [x] Ajouter une méthode recevant la profondeur observée pour la limite de répertoire.
+      - [x] Remplacer tous les textes d'erreur et d'avertissement correspondants dans le Reader.
+      - [x] Documenter en français `AmigaDosExceptions` et chacune de ses méthodes.
+    - [x] Tests des définitions AmigaDOS
+      - [x] Tester les huit variantes reconnues par le Reader public.
+      - [x] Tester un bloc racine valide, un checksum invalide et un type secondaire invalide.
+      - [x] Tester les noms ordinaires et longs, une date valide et une date hors limites.
+      - [x] Tester un bloc d'extension valide, invalide et absent.
   - [ ] CP/M et Amstrad CP/M
     - [ ] `FileSystems/Cpm/CpmFormat.cs`
       - [ ] Créer `FileSystems/Cpm/CpmFormat.cs`.

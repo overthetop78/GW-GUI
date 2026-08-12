@@ -202,6 +202,57 @@ public sealed class DiskImageExplorerTests
         Assert.Equal("AmigaDOS FFS", volume.FileSystem);
     }
 
+    [Theory]
+    [InlineData(0, "AmigaDOS OFS")]
+    [InlineData(1, "AmigaDOS FFS")]
+    [InlineData(2, "AmigaDOS OFS International")]
+    [InlineData(3, "AmigaDOS FFS International")]
+    [InlineData(4, "AmigaDOS OFS Directory Cache")]
+    [InlineData(5, "AmigaDOS FFS Directory Cache")]
+    [InlineData(6, "AmigaDOS OFS Long Names")]
+    [InlineData(7, "AmigaDOS FFS Long Names")]
+    public void AmigaDosReaderRecognizesEveryVariant(byte variant, string expected) => Assert.Equal(expected, new AmigaDosFileSystemReader().Read(BuildAmigaImage((variant & 1) != 0, variant: variant)).FileSystem);
+
+    [Fact]
+    public void AmigaDosReaderValidatesRootTypeAndChecksum()
+    {
+        var source = BuildAmigaImage(true);
+        var rootBlock = source.BlockCount / 2;
+        var corrupted = ReplaceAmigaBlock(source, rootBlock, block => block[100] ^= 1);
+        Assert.Contains(new AmigaDosFileSystemReader().Read(corrupted).Warnings, warning => warning.Contains("invalid checksum", StringComparison.Ordinal));
+
+        var invalidType = ReplaceAmigaBlock(source, rootBlock, block => { WriteInt(block, 508, 0); SetChecksum(block); });
+        Assert.Contains(rootBlock.ToString(), Assert.Throws<InvalidDataException>(() => new AmigaDosFileSystemReader().Read(invalidType)).Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void AmigaDosReaderReadsLongNamesAndRejectsInvalidDates()
+    {
+        var source = BuildAmigaImage(false, variant: 6);
+        var longName = ReplaceAmigaBlock(source, 10, block => { block[432] = 0; WriteBString(block, 328, "A long AmigaDOS file name"); WriteInt(block, 420, 1); WriteInt(block, 424, 2); WriteInt(block, 428, 3); SetChecksum(block); });
+        var entry = new AmigaDosFileSystemReader().Read(longName).Entries.Single(item => item.Kind == FileSystemEntryKind.File);
+        Assert.Equal("A long AmigaDOS file name", entry.Name);
+        Assert.NotNull(entry.Modified);
+
+        var invalidDate = ReplaceAmigaBlock(longName, 10, block => { WriteInt(block, 424, 24 * 60); SetChecksum(block); });
+        Assert.Null(new AmigaDosFileSystemReader().Read(invalidDate).Entries.Single(item => item.Kind == FileSystemEntryKind.File).Modified);
+    }
+
+    [Fact]
+    public void AmigaDosReaderValidatesExtensionBlocks()
+    {
+        var source = BuildAmigaImage(true);
+        var valid = ReplaceAmigaBlock(source, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
+        Assert.DoesNotContain(new AmigaDosFileSystemReader().Read(valid).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
+
+        var invalid = ReplaceAmigaBlock(source, 10, block => { WriteInt(block, 504, source.BlockCount); SetChecksum(block); });
+        Assert.Contains(new AmigaDosFileSystemReader().Read(invalid).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
+
+        var absentPointer = ReplaceAmigaBlock(source, 10, block => { WriteInt(block, 504, 15); SetChecksum(block); });
+        var absent = new SectorImage(absentPointer.FormatId, absentPointer.BlockSize, absentPointer.Cylinders, absentPointer.Heads, absentPointer.SectorsPerTrack, absentPointer.AvailableBlocks.Where(block => block.LogicalBlock != 15), capacity: absentPointer.Capacity, logicalBlockCount: absentPointer.BlockCount);
+        Assert.Contains(new AmigaDosFileSystemReader().Read(absent).Warnings, warning => warning.Contains("extension block", StringComparison.Ordinal));
+    }
+
     [Fact]
     public async Task ExplorerReadsAnAdfEndToEndAndAcceptsTheCatalogFormatId()
     {
@@ -417,11 +468,11 @@ public sealed class DiskImageExplorerTests
         Assert.Equal(22, AmigaScpSectorImageReader.InferSectorsPerTrack(addresses));
     }
 
-    private static SectorImage BuildAmigaImage(bool fastFileSystem, int sectorsPerTrack = 11, int? bootRootPointer = null)
+    private static SectorImage BuildAmigaImage(bool fastFileSystem, int sectorsPerTrack = 11, int? bootRootPointer = null, byte? variant = null)
     {
         var blocks = 80 * 2 * sectorsPerTrack; var rootBlock = blocks / 2; var bitmapBlock = rootBlock + 1;
         var data = new byte[blocks * 512];
-        data[0] = (byte)'D'; data[1] = (byte)'O'; data[2] = (byte)'S'; data[3] = fastFileSystem ? (byte)1 : (byte)0; WriteInt(data, 8, bootRootPointer ?? rootBlock);
+        data[0] = (byte)'D'; data[1] = (byte)'O'; data[2] = (byte)'S'; data[3] = variant ?? (fastFileSystem ? (byte)1 : (byte)0); WriteInt(data, 8, bootRootPointer ?? rootBlock);
 
         var root = Block(data, rootBlock); WriteInt(root, 0, 2); WriteInt(root, 12, 72); WriteInt(root, 24, 10); WriteInt(root, 316, bitmapBlock);
         WriteBString(root, 432, "Workbench"); WriteInt(root, 508, 1); SetChecksum(root);
@@ -442,6 +493,16 @@ public sealed class DiskImageExplorerTests
             return new SectorBlock(logical, new(track / 2, track % 2, logical % sectorsPerTrack), data.AsSpan(logical * 512, 512).ToArray());
         });
         return new(sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados", 512, 80, 2, sectorsPerTrack, sectorBlocks);
+    }
+
+    private static SectorImage ReplaceAmigaBlock(SectorImage source, int logicalBlock, Action<byte[]> update)
+    {
+        var blocks = source.AvailableBlocks.Select(block =>
+        {
+            if (block.LogicalBlock != logicalBlock) return block;
+            var data = block.Data.ToArray(); update(data); return block with { Data = data };
+        });
+        return new(source.FormatId, source.BlockSize, source.Cylinders, source.Heads, source.SectorsPerTrack, blocks, capacity: source.Capacity, logicalBlockCount: source.BlockCount);
     }
 
     private static void WriteFileData(Span<byte> block, ReadOnlySpan<byte> content, bool ffs, int header)
