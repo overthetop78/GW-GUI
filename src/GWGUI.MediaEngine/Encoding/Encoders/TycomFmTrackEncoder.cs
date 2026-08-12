@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -7,9 +7,9 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class TycomFmTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.TycomFm;
+    public override string Id => TycomFmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.TycomFm;
+    public override string DisplayName => TycomFmFormat.CodecDisplayName;
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {

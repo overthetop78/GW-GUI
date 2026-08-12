@@ -43,7 +43,6 @@ internal static class DecRx02Format
     /// <summary>Variante d'une marque de données non appariée.</summary>
     public const string UnpairedDataDescription = "data";
     /// <summary>Motif binaire de la marque d'en-tête.</summary>
-    public const string HeaderMarkHex = "55111554";
     /// <summary>Valeur décodée de la marque d'en-tête.</summary>
     public const byte HeaderAddressMark = 0xfe;
     /// <summary>Marque FM supprimée.</summary>
@@ -113,16 +112,16 @@ internal static class DecRx02Format
     /// <summary>Motif encodé utilisé par la conversion M²FM.</summary>
     public static IReadOnlyList<bool> EncodedM2FmRule { get; } = Array.AsReadOnly([false, true, false, false, false, true, false, false, false, true, false]);
     /// <summary>Motif binaire de la marque d'en-tête.</summary>
-    public static IReadOnlyList<byte> HeaderMark { get; } = Array.AsReadOnly(Convert.FromHexString(HeaderMarkHex));
+    public static IReadOnlyList<byte> HeaderMark { get; } = FmAddressMarkPatterns.For(HeaderAddressMark);
     /// <summary>Définitions fermées des six marques de données.</summary>
     public static IReadOnlyList<DecRx02DataMarkDefinition> DataMarks { get; } = Array.AsReadOnly<DecRx02DataMarkDefinition>(
     [
-        Mark(FmDeletedDataMark, "55111444", DecRx02DataEncoding.Fm, true),
-        Mark(M2FmDataMark, "55111445", DecRx02DataEncoding.M2Fm, false),
-        Mark(DataMarkFa, "55111454", DecRx02DataEncoding.Fm, false),
-        Mark(FmDataMark, "55111455", DecRx02DataEncoding.Fm, false),
-        Mark(DataMarkFc, "55111544", DecRx02DataEncoding.Fm, false),
-        Mark(M2FmDeletedDataMark, "55111545", DecRx02DataEncoding.M2Fm, true)
+        Mark(FmDeletedDataMark, DecRx02DataEncoding.Fm, true),
+        Mark(M2FmDataMark, DecRx02DataEncoding.M2Fm, false),
+        Mark(DataMarkFa, DecRx02DataEncoding.Fm, false),
+        Mark(FmDataMark, DecRx02DataEncoding.Fm, false),
+        Mark(DataMarkFc, DecRx02DataEncoding.Fm, false),
+        Mark(M2FmDeletedDataMark, DecRx02DataEncoding.M2Fm, true)
     ]);
 
     /// <summary>Crée l'exception signalant une taille de secteur incompatible.</summary>
@@ -131,5 +130,5 @@ internal static class DecRx02Format
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"DEC RX sectors contain {FmSectorByteCount} or {M2FmSectorByteCount} bytes; received {actualSize} bytes.");
 
     /// <summary>Construit une définition de marque depuis son motif et son encodage.</summary>
-    private static DecRx02DataMarkDefinition Mark(byte mark, string pattern, DecRx02DataEncoding encoding, bool deleted) => new(mark, Array.AsReadOnly(Convert.FromHexString(pattern)), encoding, deleted, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorByteCount : FmSectorByteCount, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorSizeCode : FmSectorSizeCode);
+    private static DecRx02DataMarkDefinition Mark(byte mark, DecRx02DataEncoding encoding, bool deleted) => new(mark, FmAddressMarkPatterns.For(mark), encoding, deleted, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorByteCount : FmSectorByteCount, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorSizeCode : FmSectorSizeCode);
 }

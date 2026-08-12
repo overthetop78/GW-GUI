@@ -2996,40 +2996,40 @@
       - [x] Tester une valeur juste sous puis au-dessus du seuil d'impulsion courte.
       - [x] Vérifier que le premier intervalle n'est pas classé comme impulsion courte.
       - [x] Vérifier les offsets cumulés, les longueurs, les descriptions, la confiance et les unités du résultat.
-  - [ ] `Decoding/Decoders/TycomFmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
-    - [ ] Définitions TYCOM FM
-      - [ ] Créer `Decoding/Definitions/TycomFmFormat.cs`.
-      - [ ] Extraire dans une définition FM commune les motifs de marque d'en-tête et de données que TYCOM partage réellement avec RX02, sans conserver une deuxième copie des tableaux.
-      - [ ] Y associer les marques de données TYCOM `0xf8` à `0xfb` à leur motif et à leur état normal ou supprimé.
-      - [ ] Y définir l'identifiant, le nom, la longueur de marque, les cinq octets d'en-tête et les positions du cylindre, du secteur et du CRC.
-      - [ ] Y définir la taille sectorielle de 128 octets, les deux octets de CRC, la face, le code de taille et la longueur du bloc de données incluant sa marque.
-      - [ ] Y définir la distance maximale `(88 + 16) * 8 * 2`, l'initialisation CRC `0xffff`, les gaps d'encodage `64` et les valeurs d'avancement.
-      - [ ] Remplacer toutes les marques, tailles, positions, distances, paramètres CRC, gaps, identifiants, noms et descriptions bruts dans le décodeur et `TycomFmTrackEncoder.cs`.
-    - [ ] Décodage et validation
-      - [ ] Créer un modèle nommé pour le résultat de `FindNextDataMark` au lieu du tuple et du couple sentinelle `(-1, 0)`.
-      - [ ] Arrêter la recherche des données lorsqu'une nouvelle marque d'en-tête est rencontrée afin de ne pas associer les données du secteur suivant.
-      - [ ] Extraire la lecture et la validation CRC de l'en-tête dans une méthode nommée.
-      - [ ] Extraire la lecture de la marque, des 128 octets et des deux octets de CRC dans une méthode nommée.
-      - [ ] Appeler directement le calculateur CRC commun puis supprimer les délégations locales `Crc16` et `UpdateCrc`.
-      - [ ] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
-      - [ ] Extraire la collecte des marques de données non appariées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur, marque et états des CRC.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations TYCOM actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les affectations, validations, boucles CRC et créations de structures actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions TYCOM et aux motifs FM communs.
-    - [ ] Vérification du groupe TYCOM
-      - [ ] Tester la marque d'en-tête et chacune des marques de données `0xf8` à `0xfb`.
-      - [ ] Tester un en-tête complet avec CRC valide puis invalide.
-      - [ ] Tester un secteur de 128 octets avec CRC valide puis invalide.
-      - [ ] Tester qu'une nouvelle marque d'en-tête arrête la recherche des données du secteur précédent.
-      - [ ] Tester une marque absente, un bloc tronqué et une marque de données non appariée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/TycomFmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
+    - [x] Définitions TYCOM FM
+      - [x] Créer `Decoding/Definitions/TycomFmFormat.cs`.
+      - [x] Extraire dans une définition FM commune les motifs de marque d'en-tête et de données que TYCOM partage réellement avec RX02, sans conserver une deuxième copie des tableaux.
+      - [x] Y associer les marques de données TYCOM `0xf8` à `0xfb` à leur motif et à leur état normal ou supprimé.
+      - [x] Y définir l'identifiant, le nom, la longueur de marque, les cinq octets d'en-tête et les positions du cylindre, du secteur et du CRC.
+      - [x] Y définir la taille sectorielle de 128 octets, les deux octets de CRC, la face, le code de taille et la longueur du bloc de données incluant sa marque.
+      - [x] Y définir la distance maximale `(88 + 16) * 8 * 2`, l'initialisation CRC `0xffff`, les gaps d'encodage `64` et les valeurs d'avancement.
+      - [x] Remplacer toutes les marques, tailles, positions, distances, paramètres CRC, gaps, identifiants, noms et descriptions bruts dans le décodeur et `TycomFmTrackEncoder.cs`.
+    - [x] Décodage et validation
+      - [x] Créer un modèle nommé pour le résultat de `FindNextDataMark` au lieu du tuple et du couple sentinelle `(-1, 0)`.
+      - [x] Arrêter la recherche des données lorsqu'une nouvelle marque d'en-tête est rencontrée afin de ne pas associer les données du secteur suivant.
+      - [x] Extraire la lecture et la validation CRC de l'en-tête dans une méthode nommée.
+      - [x] Extraire la lecture de la marque, des 128 octets et des deux octets de CRC dans une méthode nommée.
+      - [x] Appeler directement le calculateur CRC commun puis supprimer les délégations locales `Crc16` et `UpdateCrc`.
+      - [x] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
+      - [x] Extraire la collecte des marques de données non appariées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur, marque et états des CRC.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations TYCOM actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les affectations, validations, boucles CRC et créations de structures actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions TYCOM et aux motifs FM communs.
+    - [x] Vérification du groupe TYCOM
+      - [x] Tester la marque d'en-tête et chacune des marques de données `0xf8` à `0xfb`.
+      - [x] Tester un en-tête complet avec CRC valide puis invalide.
+      - [x] Tester un secteur de 128 octets avec CRC valide puis invalide.
+      - [x] Tester qu'une nouvelle marque d'en-tête arrête la recherche des données du secteur précédent.
+      - [x] Tester une marque absente, un bloc tronqué et une marque de données non appariée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/Victor9kGcrDecoder.cs`
     - [ ] Définitions Victor 9000 GCR
       - [ ] Créer `Decoding/Definitions/Victor9kGcrFormat.cs`.
