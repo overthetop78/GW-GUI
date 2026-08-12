@@ -5381,9 +5381,9 @@
     - [x] Documenter en français chaque membre. Aucun membre du wrapper ne subsiste.
     - [x] Tester un format explicite, la sélection automatique et une capture sans secteur valide.
   - [ ] `SectorImages/CommodoreScpSectorImageReader.cs`
-    - [ ] Remplacer codecs, zones, géométries et formats bruts par `CommodoreGeometry` et `FluxCodecIds`.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester 1541, 1571, 1581, Commodore 900 et la sélection automatique.
+    - [x] Remplacer codecs, zones, géométries et formats bruts par `CommodoreGeometry` et `FluxCodecIds`.
+    - [x] Documenter en français chaque membre.
+    - [ ] Tester 1541, 1571, 1581, Commodore 900 et la sélection automatique. Les parcours 1541/1581 et automatique disposent de captures ; aucune capture Commodore 1571 ou Commodore 900 n'est présente dans `image_test` pour achever cette validation.
   - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`
     - [ ] Remplacer codec, géométrie, format et erreurs bruts par `DecRx02Geometry`, `FluxCodecIds` et les erreurs communes.
     - [ ] Documenter en français chaque membre.
