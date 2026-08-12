@@ -2,8 +2,8 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding.BitPacking;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Builders.Apple;
 
 namespace GWGUI.MediaEngine.Containers.Apple.Woz;
 
@@ -74,7 +74,7 @@ internal static class WozReader
             if (bestStandard is not null) standardTracks.Add((track, bestStandard));
             if (bestRwts18 is not null) rwts18Tracks.Add((track, bestRwts18));
         }
-        return rwts18Tracks.Count(item => item.Sectors.Count > 0) >= AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount ? AppleDiskImageReader.CreateRwts18FromDecodedTracks(rwts18Tracks) : AppleDiskImageReader.CreateAppleIIFromDecodedTracks(standardTracks);
+        return rwts18Tracks.Count(item => item.Sectors.Count > 0) >= AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount ? AppleRwts18SectorImageBuilder.Create(rwts18Tracks) : AppleIISectorImageBuilder.Create(standardTracks);
     }
 
     /// <summary>Parcourt les chunks WOZ et retourne leurs charges utiles indexées par identifiant.</summary>

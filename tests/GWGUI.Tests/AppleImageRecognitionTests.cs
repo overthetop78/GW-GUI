@@ -1,5 +1,7 @@
 using System.IO;
+using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
@@ -34,6 +36,8 @@ public sealed class AppleImageRecognitionTests
     [InlineData(".nib")]
     [InlineData(".dsk")]
     [InlineData(".img")]
+    [InlineData(".image")]
+    [InlineData(".dc42")]
     public async Task RawAppleExtensionAloneDoesNotMakeInvalidContentReadable(string extension)
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-invalid-apple-{Guid.NewGuid():N}{extension}");
@@ -137,6 +141,18 @@ public sealed class AppleImageRecognitionTests
         {
             if (File.Exists(path)) File.Delete(path);
         }
+    }
+
+    /// <summary>Vérifie qu'une signature 2IMG certaine et corrompue n'est jamais réinterprétée comme une image brute de même capacité.</summary>
+    [Fact]
+    public async Task SignedCorruptContainerIsNotRetriedAsRawImage()
+    {
+        var bytes = new byte[143_360];
+        TwoImgFormat.SignatureBytes.CopyTo(bytes);
+        var exception = await Record.ExceptionAsync(() => new AppleDiskImageReader().ReadAsync(bytes, ".unexpected", null));
+        Assert.NotNull(exception);
+        Assert.True(exception is InvalidDataException or NotSupportedException);
+        Assert.DoesNotContain("No Apple format validated", exception.Message, StringComparison.Ordinal);
     }
 
     private static async Task AssertRecognizedAfterRenamingAsync(string sourcePath)

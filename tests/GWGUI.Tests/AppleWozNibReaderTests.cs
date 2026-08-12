@@ -2,6 +2,7 @@ using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Containers.Apple;
 
 namespace GWGUI.Tests;
 

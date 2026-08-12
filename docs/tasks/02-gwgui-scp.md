@@ -4385,45 +4385,45 @@
     - [x] Tester Macintosh simple et double face et refuser un nombre de faces non défini.
     - [x] Tester que les tables Apple II sont des permutations immuables et que la conversion DOS vers ProDOS conserve tous les secteurs.
     - [x] Tester une longueur de conversion invalide et plusieurs pistes valides.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleDiskImageReader.cs`
-  - [ ] Déplacement de la façade Apple
-    - [ ] Déplacer le fichier vers `Containers/Apple/AppleDiskImageReader.cs`, car il constitue la façade publique des formats Apple déjà placés sous `Containers/Apple`.
-    - [ ] Adapter son namespace, `DiskImageExplorerFactory`, la politique Apple et les tests publics.
-    - [ ] Conserver `ReadAsync` comme façade publique tant que les consommateurs et tests lisent volontairement une image Apple sans passer par le registre général.
-    - [ ] Supprimer `Images/AppleDiskImageReader.cs` après raccordement.
-  - [ ] Reconnaissance séparée de la lecture
-    - [ ] Déplacer la collection `Extensions`, `CanRead` et `LooksLikeAppleImage` dans `Recognition/Policies/AppleImageRecognitionPolicy.cs`.
-    - [ ] Fusionner `Extensions` avec `RawHints` afin qu'une seule collection immuable possède les indices d'extensions Apple.
-    - [ ] Conserver les extensions uniquement comme indices pour D13, DO, PO, NIB, DSK, IMG, IMAGE et DC42.
-    - [ ] Faire utiliser à la politique le contexte déjà chargé au lieu de rappeler `File.ReadAllBytes` dans `LooksLikeAppleImage`.
-    - [ ] Remplacer le `catch` général silencieux par les diagnostics normaux du registre de reconnaissance.
-    - [ ] Déplacer `IsRequestedAppleFormat` et les préfixes Apple dans une définition de familles réutilisable si la même sélection existe ailleurs.
-  - [ ] Routage de la façade de lecture
-    - [ ] Créer `Containers/Apple/AppleContainerRouter.cs` et y déplacer la sélection par contenu de 2IMG, DiskCopy et WOZ.
-    - [ ] Faire appeler directement les Readers existants `TwoImgReader`, `DiskCopyReader` et `WozReader` ; ne pas créer de futurs Readers déjà présents.
-    - [ ] Raccorder NIB au Reader spécialisé et les représentations sectorielles sans en-tête au Reader Apple brut.
-    - [ ] Définir un ordre explicite signé, NIB explicitement indicé, puis brut, sans dupliquer cet ordre dans la politique.
-    - [ ] Faire retourner un rejet de candidat brut distinct d'un conteneur signé corrompu afin que le registre ne masque pas une corruption certaine.
-    - [ ] Réutiliser les octets du contexte de reconnaissance lorsque la façade est appelée par la politique, sans relire le fichier.
-  - [ ] Suppression des relais sans rapport avec la façade
-    - [ ] Raccorder `WozReader` et `NibTrackImageReader` directement aux builders qui remplacent `AppleSectorImageFactory`.
-    - [ ] Supprimer `CreateAppleIIFromDecodedTracks` et `CreateRwts18FromDecodedTracks` de la façade.
-    - [ ] Raccorder les consommateurs directement à `LisaFileWareGeometry` et `MacintoshGcrGeometry`, puis supprimer `LisaFileWareSectors` et `AppleMacSectors`.
-    - [ ] Raccorder la reconnaissance directement à `AppleDiskImageSignatures`, puis supprimer `LooksLikeLisaOfficePayload`.
-  - [ ] Erreurs et définitions Apple
-    - [ ] Créer `Containers/Apple/AppleContainerExceptions.cs` pour l'absence de format Apple validé et la variante non prise en charge.
-    - [ ] Faire recevoir aux erreurs extension, signature ou format détecté selon le cas.
-    - [ ] Remplacer les textes bruts restant dans la façade ou le routeur.
-  - [ ] Présentation et CSDoc française
-    - [ ] Corriger tous les caractères corrompus de la CSDoc actuelle.
-    - [ ] Remettre sur une seule ligne les conditions de signatures, appels et expressions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français la façade, le routeur et chaque membre restant avec la différence entre indice, signature certaine et validation complète.
-  - [ ] Tests ciblés de la façade Apple
-    - [ ] Adapter les tests existants vers le nouveau namespace sans remplacer leurs images de référence.
-    - [ ] Tester 2IMG DOS, ProDOS et NIB, DiskCopy, WOZ1, WOZ2, NIB brut, DO, PO, D13, Macintosh, Lisa et SOS pris en charge.
-    - [ ] Tester chaque conteneur signé tronqué ou corrompu et vérifier qu'il n'est pas traité comme une image brute.
-    - [ ] Tester une extension inhabituelle avec signature certaine et une extension ambiguë dont le contenu Apple est invalide.
-    - [ ] Vérifier qu'une lecture via la politique ne lit le fichier qu'une seule fois.
+- [x] `src/GWGUI.MediaEngine/Images/AppleDiskImageReader.cs`
+  - [x] Déplacement de la façade Apple
+    - [x] Déplacer le fichier vers `Containers/Apple/AppleDiskImageReader.cs`, car il constitue la façade publique des formats Apple déjà placés sous `Containers/Apple`.
+    - [x] Adapter son namespace, `DiskImageExplorerFactory`, la politique Apple et les tests publics.
+    - [x] Conserver `ReadAsync` comme façade publique tant que les consommateurs et tests lisent volontairement une image Apple sans passer par le registre général.
+    - [x] Supprimer `Images/AppleDiskImageReader.cs` après raccordement.
+  - [x] Reconnaissance séparée de la lecture
+    - [x] Déplacer la collection `Extensions`, `CanRead` et `LooksLikeAppleImage` dans `Recognition/Policies/AppleImageRecognitionPolicy.cs`.
+    - [x] Fusionner `Extensions` avec `RawHints` afin qu'une seule collection immuable possède les indices d'extensions Apple.
+    - [x] Conserver les extensions uniquement comme indices pour D13, DO, PO, NIB, DSK, IMG, IMAGE et DC42.
+    - [x] Faire utiliser à la politique le contexte déjà chargé au lieu de rappeler `File.ReadAllBytes` dans `LooksLikeAppleImage`.
+    - [x] Remplacer le `catch` général silencieux par les diagnostics normaux du registre de reconnaissance.
+    - [x] Déplacer `IsRequestedAppleFormat` et les préfixes Apple dans une définition de familles réutilisable si la même sélection existe ailleurs.
+  - [x] Routage de la façade de lecture
+    - [x] Créer `Containers/Apple/AppleContainerRouter.cs` et y déplacer la sélection par contenu de 2IMG, DiskCopy et WOZ.
+    - [x] Faire appeler directement les Readers existants `TwoImgReader`, `DiskCopyReader` et `WozReader` ; ne pas créer de futurs Readers déjà présents.
+    - [x] Raccorder NIB au Reader spécialisé et les représentations sectorielles sans en-tête au Reader Apple brut.
+    - [x] Définir un ordre explicite signé, NIB explicitement indicé, puis brut, sans dupliquer cet ordre dans la politique.
+    - [x] Faire retourner un rejet de candidat brut distinct d'un conteneur signé corrompu afin que le registre ne masque pas une corruption certaine.
+    - [x] Réutiliser les octets du contexte de reconnaissance lorsque la façade est appelée par la politique, sans relire le fichier.
+  - [x] Suppression des relais sans rapport avec la façade
+    - [x] Raccorder `WozReader` et `NibTrackImageReader` directement aux builders qui remplacent `AppleSectorImageFactory`.
+    - [x] Supprimer `CreateAppleIIFromDecodedTracks` et `CreateRwts18FromDecodedTracks` de la façade.
+    - [x] Raccorder les consommateurs directement à `LisaFileWareGeometry` et `MacintoshGcrGeometry`, puis supprimer `LisaFileWareSectors` et `AppleMacSectors`.
+    - [x] Raccorder la reconnaissance directement à `AppleDiskImageSignatures`, puis supprimer `LooksLikeLisaOfficePayload`.
+  - [x] Erreurs et définitions Apple
+    - [x] Créer `Containers/Apple/AppleContainerExceptions.cs` pour l'absence de format Apple validé et la variante non prise en charge.
+    - [x] Faire recevoir aux erreurs extension, signature ou format détecté selon le cas.
+    - [x] Remplacer les textes bruts restant dans la façade ou le routeur.
+  - [x] Présentation et CSDoc française
+    - [x] Corriger tous les caractères corrompus de la CSDoc actuelle.
+    - [x] Remettre sur une seule ligne les conditions de signatures, appels et expressions complètes qui tiennent lisiblement.
+    - [x] Documenter en français la façade, le routeur et chaque membre restant avec la différence entre indice, signature certaine et validation complète.
+  - [x] Tests ciblés de la façade Apple
+    - [x] Adapter les tests existants vers le nouveau namespace sans remplacer leurs images de référence.
+    - [x] Tester 2IMG DOS, ProDOS et NIB, DiskCopy, WOZ1, WOZ2, NIB brut, DO, PO, D13, Macintosh, Lisa et SOS pris en charge.
+    - [x] Tester chaque conteneur signé tronqué ou corrompu et vérifier qu'il n'est pas traité comme une image brute.
+    - [x] Tester une extension inhabituelle avec signature certaine et une extension ambiguë dont le contenu Apple est invalide.
+    - [x] Vérifier qu'une lecture via la politique ne lit le fichier qu'une seule fois.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleDiskImageSignatures.cs`
   - [ ] Déplacement du composant de sondage
     - [ ] Renommer et déplacer le fichier vers `Recognition/Apple/AppleRawImageProbe.cs`.

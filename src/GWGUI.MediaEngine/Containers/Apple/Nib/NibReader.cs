@@ -1,9 +1,9 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Encoding.BitPacking;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Builders.Apple;
 
 namespace GWGUI.MediaEngine.Containers.Apple.Nib;
 
@@ -27,7 +27,7 @@ internal static class NibReader
             tracks.Add((track, result.StandardSectors));
             rwtsTracks.Add((track, result.Rwts18Sectors));
         }
-        if (rwtsTracks.Count(item => item.Sectors.Count > 0) >= AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount) return AppleDiskImageReader.CreateRwts18FromDecodedTracks(rwtsTracks);
-        return AppleDiskImageReader.CreateAppleIIFromDecodedTracks(tracks);
+        if (rwtsTracks.Count(item => item.Sectors.Count > 0) >= AppleTrackSelectionRules.MinimumCredibleRwts18TrackCount) return AppleRwts18SectorImageBuilder.Create(rwtsTracks);
+        return AppleIISectorImageBuilder.Create(tracks);
     }
 }

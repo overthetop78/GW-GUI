@@ -2,6 +2,7 @@ using System.Buffers.Binary;
 using System.IO;
 using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
+using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;

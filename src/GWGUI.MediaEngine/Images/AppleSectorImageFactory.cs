@@ -1,6 +1,4 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Geometries.Apple;
@@ -33,70 +31,4 @@ internal static class AppleSectorImageFactory
         return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: data.Length, logicalBlockCount: count);
     }
 
-    public static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
-    {
-        var selected = decodedTracks.SelectMany(item => item.Sectors
-                .Where(sector => sector.Data is { Count: 256 } && sector.Number is >= 0 and < 16)
-                .Select(sector => (item.Track, Sector: sector)))
-            .GroupBy(item => (item.Track, item.Sector.Number))
-            .ToDictionary(group => group.Key,
-                group => group.OrderByDescending(item => item.Sector.IntegrityValid == true).First().Sector);
-        var trackCount = Math.Max(35, selected.Count == 0 ? 35 : selected.Keys.Max(key => key.Track) + 1);
-        var sectorsPerTrack = selected.Count > 0 && selected.Keys.Max(key => key.Number) < 13 ? 13 : 16;
-        var dosBlocks = selected.Where(pair => pair.Key.Number < sectorsPerTrack)
-            .Select(pair => new SectorBlock(
-                pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number),
-                new(pair.Key.Track, 0, pair.Key.Number), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid))
-            .ToArray();
-        if (dosBlocks.Length == 0) return new(DiskImageFormatIds.AppleIIGcr, 256, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 16, []);
-
-        if (sectorsPerTrack == 13)
-            return new(DiskImageFormatIds.AppleIIDos32, 256, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 13, dosBlocks);
-
-        var prodosBlocks = new List<SectorBlock>();
-        for (var track = 0; track < trackCount; track++)
-        for (var block = 0; block < 8; block++)
-        {
-            var first = AppleIIGeometry.ProDosToPhysical[block * 2];
-            var second = AppleIIGeometry.ProDosToPhysical[block * 2 + 1];
-            if (!selected.TryGetValue((track, first), out var low) ||
-                !selected.TryGetValue((track, second), out var high)) continue;
-            var data = low.Data!.Concat(high.Data!).ToArray();
-            prodosBlocks.Add(new(track * 8 + block, new(track, 0, block), data,
-                low.IntegrityValid == true && high.IntegrityValid == true));
-        }
-        var prodosProbe = new byte[trackCount * 8 * 512];
-        foreach (var block in prodosBlocks)
-            block.Data.ToArray().CopyTo(prodosProbe, block.LogicalBlock * 512);
-        if (AppleDiskImageSignatures.LooksLikeProDos(prodosProbe))
-            return new(DiskImageFormatIds.AppleIIProDos, 512, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 8, prodosBlocks);
-        return new(AppleDiskImageSignatures.LooksLikeDos33(ToDense(dosBlocks, trackCount * 16, 256))
-                ? DiskImageFormatIds.AppleIIDos33
-                : DiskImageFormatIds.AppleIIGcr,
-            256, trackCount, 1, sectorsPerTrack, dosBlocks);
-    }
-
-    public static SectorImage CreateRwts18FromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
-    {
-        var blocks = decodedTracks.SelectMany(item => item.Sectors
-                .Where(sector => sector.Data is { Count: AppleRwts18Format.SectorByteCount } && sector.Number is >= 0 and < AppleRwts18Format.SectorCount)
-                .Select(sector => (item.Track, Sector: sector)))
-            .GroupBy(item => (item.Track, item.Sector.Number))
-            .Select(group => group.OrderByDescending(item => item.Sector.IntegrityValid == true).First())
-            .Select(item => new SectorBlock(item.Track * AppleRwts18Format.SectorCount + item.Sector.Number,
-                new(item.Track, 0, item.Sector.Number), item.Sector.Data!.ToArray(), item.Sector.IntegrityValid))
-            .ToArray();
-        if (blocks.Length == 0)
-            throw new InvalidDataException("No Apple II RWTS18 sectors could be decoded.");
-        var trackCount = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
-        return new(DiskImageFormatIds.AppleIIRwts18, AppleRwts18Format.SectorByteCount, trackCount, DiskGeometryConstants.SingleSidedHeadCount, AppleRwts18Format.SectorCount, blocks);
-    }
-
-    private static byte[] ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)
-    {
-        var data = new byte[count * blockSize];
-        foreach (var block in blocks)
-            block.Data.ToArray().CopyTo(data, block.LogicalBlock * blockSize);
-        return data;
-    }
 }
