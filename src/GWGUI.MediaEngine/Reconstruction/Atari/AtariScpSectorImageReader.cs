@@ -25,7 +25,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
         if (formatId is not null &&
             !formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) &&
             !formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException("The selected format is not an Atari format.", nameof(formatId));
+            throw AtariScpReconstructionExceptions.UnsupportedFormat(formatId, nameof(formatId));
 
         return reader.ReadAsync(path, formatId, cancellationToken);
     }

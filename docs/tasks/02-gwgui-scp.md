@@ -5363,10 +5363,10 @@
     - [x] Remplacer capacités, géométries et formats bruts par le catalogue Atari ST commun.
     - [x] Documenter en français chaque membre.
     - [x] Tester chaque capacité ST réellement prise en charge.
-  - [ ] `SectorImages/AtariScpSectorImageReader.cs`
-    - [ ] Remplacer codecs, préfixes et erreurs bruts par les définitions Atari et erreurs de reconstruction.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester Atari 8-bit, Atari ST, un format explicite et la sélection automatique.
+  - [x] `SectorImages/AtariScpSectorImageReader.cs`
+    - [x] Remplacer codecs, préfixes et erreurs bruts par les définitions Atari et erreurs de reconstruction.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester Atari 8-bit, Atari ST, un format explicite et la sélection automatique.
   - [ ] `SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
     - [ ] Extraire les seuils, poids et limites de géométrie automatique dans des constantes nommées.
     - [ ] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés.
