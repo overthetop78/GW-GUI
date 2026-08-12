@@ -31,6 +31,12 @@ internal static class HpMmfmFormat
     public const int HeadShift = 7;
     /// <summary>Masque isolant le secteur.</summary>
     public const byte SectorMask = 0x7f;
+    /// <summary>Plus grand cylindre représentable sur un octet.</summary>
+    public const int MaximumCylinder = byte.MaxValue;
+    /// <summary>Plus grande face représentable dans le bit fort.</summary>
+    public const int MaximumHead = 1;
+    /// <summary>Plus grand secteur représentable sous le bit de face.</summary>
+    public const int MaximumSector = SectorMask;
     /// <summary>Taille sectorielle.</summary>
     public const int SectorSize = 256;
     /// <summary>Nombre d'octets du bloc encodé.</summary>
@@ -50,9 +56,15 @@ internal static class HpMmfmFormat
     /// <summary>Diviseur du calcul de confiance.</summary>
     public const double ConfidenceDivisor = 20;
     /// <summary>Synchronisation d'en-tête.</summary>
-    public static IReadOnlyList<byte> SectorSync { get; } = Array.AsReadOnly<byte>([0x55, 0x55, 0x2a, 0x54]);
+    public static IReadOnlyList<byte> SyncPrefix { get; } = Array.AsReadOnly<byte>([0x55, 0x55, 0x2a]);
+    /// <summary>Dernier octet distinguant la synchronisation d'adresse.</summary>
+    public const byte SectorSyncSuffix = 0x54;
+    /// <summary>Dernier octet distinguant la synchronisation de données.</summary>
+    public const byte DataSyncSuffix = 0x44;
+    /// <summary>Synchronisation d'adresse.</summary>
+    public static IReadOnlyList<byte> SectorSync { get; } = Array.AsReadOnly(SyncPrefix.Append(SectorSyncSuffix).ToArray());
     /// <summary>Synchronisation de données.</summary>
-    public static IReadOnlyList<byte> DataSync { get; } = Array.AsReadOnly<byte>([0x55, 0x55, 0x2a, 0x44]);
+    public static IReadOnlyList<byte> DataSync { get; } = Array.AsReadOnly(SyncPrefix.Append(DataSyncSuffix).ToArray());
     /// <summary>Crée l'exception signalant une taille incompatible.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"HP MMFM sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }

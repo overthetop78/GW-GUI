@@ -16,6 +16,7 @@ internal static class HpMmfmCodec
     /// <summary>Transforme la charge utile logique vers l'ordre encodé HP.</summary>
     public static byte[] EncodePayload(IReadOnlyList<byte> payload)
     {
+        if ((payload.Count & 1) != 0) throw new ArgumentException($"HP MMFM pair permutation requires an even byte count; received {payload.Count}.", nameof(payload));
         var result = payload.ToArray();
         SwapPairs(result);
         for (var index = 0; index < result.Length; index++) result[index] = BitPrimitives.ReverseBits(result[index]);
@@ -25,6 +26,7 @@ internal static class HpMmfmCodec
     /// <summary>Restaure la charge utile logique depuis l'ordre encodé HP.</summary>
     public static byte[] DecodePayload(IReadOnlyList<byte> payload)
     {
+        if ((payload.Count & 1) != 0) throw new ArgumentException($"HP MMFM pair permutation requires an even byte count; received {payload.Count}.", nameof(payload));
         var result = payload.Select(BitPrimitives.ReverseBits).ToArray();
         SwapPairs(result);
         return result;

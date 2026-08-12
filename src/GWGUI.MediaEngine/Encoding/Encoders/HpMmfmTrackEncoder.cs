@@ -18,18 +18,36 @@ public sealed class HpMmfmTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackBitEncoding.Bits();
+        ValidateAddress(nameof(request.Cylinder), request.Cylinder, HpMmfmFormat.MaximumCylinder);
+        ValidateAddress(nameof(request.Head), request.Head, HpMmfmFormat.MaximumHead);
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != HpMmfmFormat.SectorSize) throw HpMmfmFormat.InvalidSectorSize(sector.Data.Count);
-            var encodedSector = (byte)(sector.Number | request.Head << HpMmfmFormat.HeadShift);
-            byte[] identity = [BitPrimitives.ReverseBits((byte)request.Cylinder), BitPrimitives.ReverseBits(encodedSector)];
-            bits.Raw(HpMmfmFormat.SectorSync.ToArray());
-            bits.Mfm(Crc16Calculator.Append(identity));
-            bits.Gap(HpMmfmFormat.HeaderGapBitCount);
-            bits.Raw(HpMmfmFormat.DataSync.ToArray());
-            bits.Mfm(Crc16Calculator.Append(HpMmfmCodec.EncodePayload(sector.Data)));
-            bits.Gap(HpMmfmFormat.DataGapBitCount);
+            ValidateAddress(nameof(sector.Number), sector.Number, HpMmfmFormat.MaximumSector);
+            WriteField(bits, HpMmfmFormat.SectorSync, BuildIdentity(request.Cylinder, request.Head, sector.Number), HpMmfmFormat.HeaderGapBitCount);
+            WriteField(bits, HpMmfmFormat.DataSync, HpMmfmCodec.EncodePayload(sector.Data), HpMmfmFormat.DataGapBitCount);
         }
         return bits;
+    }
+
+    /// <summary>Compose le secteur et la face puis inverse les deux octets de l'identité HP.</summary>
+    private static byte[] BuildIdentity(int cylinder, int head, int sector)
+    {
+        var encodedSector = (byte)(sector | head << HpMmfmFormat.HeadShift);
+        return [BitPrimitives.ReverseBits((byte)cylinder), BitPrimitives.ReverseBits(encodedSector)];
+    }
+
+    /// <summary>Écrit une synchronisation, les valeurs protégées par CRC et le gap associé.</summary>
+    private static void WriteField(List<bool> bits, IReadOnlyList<byte> sync, IReadOnlyList<byte> values, int gapBitCount)
+    {
+        bits.Raw(sync.ToArray());
+        bits.Mfm(Crc16Calculator.Append(values));
+        bits.Gap(gapBitCount);
+    }
+
+    /// <summary>Valide une composante de l'adresse HP avant son empaquetage.</summary>
+    private static void ValidateAddress(string field, int value, int maximum)
+    {
+        if (value is < 0 || value > maximum) throw TrackEncodingExceptions.FormatValueOutOfRange("HP MMFM", field, value, maximum);
     }
 }

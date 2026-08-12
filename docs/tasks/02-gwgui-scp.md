@@ -3940,43 +3940,43 @@
       - [x] Tester la répétition du préambule et les deux longueurs de gaps.
       - [x] Tester le rejet d'une taille sectorielle, d'un volume, d'un cylindre et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Heathkit avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/HpMmfmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur HP MMFM
-      - [ ] Remplacer l'identifiant brut `hp.mmfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `HP MMFM` par la définition centrale correspondante.
-    - [ ] Définitions du format HP MMFM
-      - [ ] Déplacer la taille sectorielle dans `HpMmfmFormat`.
-      - [ ] Déplacer les synchronisations et marques d'adresse `0x55, 0x55, 0x2a, 0x54` et de données `0x55, 0x55, 0x2a, 0x44` dans `HpMmfmFormat` en partageant leur préfixe commun.
-      - [ ] Déplacer les longueurs des gaps d'adresse et de données dans `HpMmfmFormat`.
-      - [ ] Déplacer le bit de tête intégré au numéro de secteur et les masques associés dans `HpMmfmFormat`.
-      - [ ] Centraliser les paramètres et l'ordre du CRC utilisés par `WithCrc` avec le décodeur HP MMFM.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire la composition du numéro de secteur et du bit de tête dans une fonction privée recevant des valeurs validées.
-      - [ ] Extraire la construction de l'identité à partir du cylindre et du secteur encodé, avec inversion des bits de chaque octet.
-      - [ ] Extraire l'écriture de la synchronisation d'adresse, de l'identité avec CRC et du premier gap dans une fonction privée.
-    - [ ] Transformation et écriture des données
-      - [ ] Extraire la permutation de chaque paire d'octets dans une fonction HP MMFM commune au décodeur et à l'encodeur.
-      - [ ] Extraire l'inversion des bits de chaque octet dans la même transformation commune.
-      - [ ] Extraire l'écriture de la synchronisation de données, de la charge utile transformée avec CRC et du second gap dans une fonction privée.
-      - [ ] Conserver l'ordre actuel des transformations : permutation des paires, puis inversion des bits.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant sa conversion en octet et l'inversion de ses bits.
-      - [ ] Valider la tête avant son insertion dans le bit fort du numéro de secteur.
-      - [ ] Valider le numéro de secteur avant sa combinaison avec le bit de tête et sa conversion en octet.
-      - [ ] Faire valider par la transformation commune que la charge utile possède une longueur paire avant de permuter ses octets deux par deux.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Développer les deux boucles de transformation dont le corps est actuellement écrit sur la même ligne que la boucle.
-      - [ ] Normaliser les espaces dans les conversions, décalages, tableaux, tuples et appels.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur HP MMFM
-      - [ ] Tester la composition et l'inversion des deux octets d'identité pour les deux têtes.
-      - [ ] Tester la permutation des paires puis l'inversion des bits avec une charge utile connue.
-      - [ ] Tester les CRC d'adresse et de données et l'ordre de leurs octets avec des résultats connus.
-      - [ ] Tester les deux synchronisations et les longueurs exactes de leurs gaps.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête, d'un secteur hors plage et d'une charge utile impaire passée à la transformation commune.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste HP MMFM avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/HpMmfmTrackEncoder.cs`
+    - [x] Identité de l'encodeur HP MMFM
+      - [x] Remplacer l'identifiant brut `hp.mmfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `HP MMFM` par la définition centrale correspondante.
+    - [x] Définitions du format HP MMFM
+      - [x] Déplacer la taille sectorielle dans `HpMmfmFormat`.
+      - [x] Déplacer les synchronisations et marques d'adresse `0x55, 0x55, 0x2a, 0x54` et de données `0x55, 0x55, 0x2a, 0x44` dans `HpMmfmFormat` en partageant leur préfixe commun.
+      - [x] Déplacer les longueurs des gaps d'adresse et de données dans `HpMmfmFormat`.
+      - [x] Déplacer le bit de tête intégré au numéro de secteur et les masques associés dans `HpMmfmFormat`.
+      - [x] Centraliser les paramètres et l'ordre du CRC utilisés par `WithCrc` avec le décodeur HP MMFM.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire la composition du numéro de secteur et du bit de tête dans une fonction privée recevant des valeurs validées.
+      - [x] Extraire la construction de l'identité à partir du cylindre et du secteur encodé, avec inversion des bits de chaque octet.
+      - [x] Extraire l'écriture de la synchronisation d'adresse, de l'identité avec CRC et du premier gap dans une fonction privée.
+    - [x] Transformation et écriture des données
+      - [x] Extraire la permutation de chaque paire d'octets dans une fonction HP MMFM commune au décodeur et à l'encodeur.
+      - [x] Extraire l'inversion des bits de chaque octet dans la même transformation commune.
+      - [x] Extraire l'écriture de la synchronisation de données, de la charge utile transformée avec CRC et du second gap dans une fonction privée.
+      - [x] Conserver l'ordre actuel des transformations : permutation des paires, puis inversion des bits.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant sa conversion en octet et l'inversion de ses bits.
+      - [x] Valider la tête avant son insertion dans le bit fort du numéro de secteur.
+      - [x] Valider le numéro de secteur avant sa combinaison avec le bit de tête et sa conversion en octet.
+      - [x] Faire valider par la transformation commune que la charge utile possède une longueur paire avant de permuter ses octets deux par deux.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Développer les deux boucles de transformation dont le corps est actuellement écrit sur la même ligne que la boucle.
+      - [x] Normaliser les espaces dans les conversions, décalages, tableaux, tuples et appels.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur HP MMFM
+      - [x] Tester la composition et l'inversion des deux octets d'identité pour les deux têtes.
+      - [x] Tester la permutation des paires puis l'inversion des bits avec une charge utile connue.
+      - [x] Tester les CRC d'adresse et de données et l'ordre de leurs octets avec des résultats connus.
+      - [x] Tester les deux synchronisations et les longueurs exactes de leurs gaps.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête, d'un secteur hors plage et d'une charge utile impaire passée à la transformation commune.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste HP MMFM avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/IsoFmTrackEncoder.cs`
     - [ ] Identité de l'encodeur ISO FM
       - [ ] Remplacer l'identifiant brut `iso.fm` par la définition centrale correspondante.
