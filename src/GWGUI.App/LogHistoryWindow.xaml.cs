@@ -21,14 +21,17 @@ public partial class LogHistoryWindow : Window
     private async void FilesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (FilesList.SelectedItem is not FileInfo file) { ContentText.Clear(); ExportButton.IsEnabled = false; return; }
-        try { ContentText.Text = await File.ReadAllTextAsync(file.FullName); ExportButton.IsEnabled = true; }
+        string content;
+        var canExport = false;
+        try { content = await File.ReadAllTextAsync(file.FullName).ConfigureAwait(false); canExport = true; }
         catch (IOException exception)
         {
             var path = ErrorLog.Write(exception, "Reading log history");
             var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
-            ContentText.Text = LocExtension.Get("Error.Unexpected", detail);
-            ExportButton.IsEnabled = false;
+            content = LocExtension.Get("Error.Unexpected", detail);
         }
+        if (Dispatcher.HasShutdownStarted || Dispatcher.HasShutdownFinished) return;
+        _ = Dispatcher.BeginInvoke(() => { if (Equals(FilesList.SelectedItem, file)) { ContentText.Text = content; ExportButton.IsEnabled = canExport; } });
     }
 
     private async void Export_Click(object sender, RoutedEventArgs e)
