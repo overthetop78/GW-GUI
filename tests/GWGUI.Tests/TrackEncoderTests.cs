@@ -202,7 +202,8 @@ public sealed class TrackEncoderTests
         var data = Enumerable.Range(0, size).Select(index => (byte)(index * 37 + 11)).ToArray();
         var sectorNumber = id == "qdmo5.mfm" ? 0x123 : 3;
         var attributes = id == FluxCodecIds.AppleIIGcr ? new Dictionary<string, int> { [AppleIIGcrFormat.SectorsPerTrackAttributeName] = AppleIIGcrFormat.SixAndTwoSectorsPerTrack } : null;
-        var request = new TrackEncodeRequest(2, 0, [new TrackSector(sectorNumber, data)], attributes);
+        var sectors = id == FluxCodecIds.AppleRwts18 ? Enumerable.Range(0, AppleRwts18Format.SectorCount).Select(number => new TrackSector(number, Enumerable.Range(0, size).Select(index => (byte)(number * 23 + index * 41)).ToArray())).ToArray() : [new TrackSector(sectorNumber, data)];
+        var request = new TrackEncodeRequest(2, 0, sectors, attributes);
         var encoded = new FluxEncoderRegistry().Encode(id, request);
 
         Assert.Equal(id, encoded.EncoderId);
@@ -210,13 +211,14 @@ public sealed class TrackEncoderTests
         Assert.IsType<GWGUI.MediaEngine.Flux.FluxRevolution>(encoded.Revolution);
         var decoded = new FluxDecoderRegistry().Decode(id, encoded.Revolution);
 
-        var sector = Assert.Single(decoded.Sectors!);
+        var sector = id == FluxCodecIds.AppleRwts18 ? Assert.Single(decoded.Sectors!, item => item.Number == sectorNumber) : Assert.Single(decoded.Sectors!);
         Assert.True(sector.IntegrityValid, string.Join(" | ", decoded.Structures.Select(item => item.Description)));
         Assert.Equal(id == "emu.fm" ? 1 : sectorNumber, sector.Number);
         Assert.Equal(id == "qdmo5.mfm" ? 0 : id == "commodore.gcr" ? 3 : 2, sector.Cylinder);
         Assert.Equal(0, sector.Head);
         var payload = sector.Data ?? (id == "commodore.gcr" ? decoded.DecodedBytes.Skip(7).Take(size).ToArray() : decoded.DecodedBytes.TakeLast(size).ToArray());
-        Assert.Equal(data, payload);
+        var expectedData = id == FluxCodecIds.AppleRwts18 ? sectors.Single(item => item.Number == sectorNumber).Data : data;
+        Assert.Equal(expectedData, payload);
     }
 
     [Fact]

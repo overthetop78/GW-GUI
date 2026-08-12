@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Encoding;
+
 namespace GWGUI.MediaEngine.Decoding.Definitions;
 
 /// <summary>Regroupe les définitions techniques du format Apple Rwts18.</summary>
@@ -19,6 +21,8 @@ internal static class AppleRwts18Format
     /// <param name="actualSectorCount">Valeur observée utilisée pour décrire précisément l'erreur.</param>
     /// <returns>Exception contenant les valeurs attendues et observées.</returns>
     public static ArgumentException InvalidTrackLayout(int actualSectorCount) => new($"RWTS18 tracks contain {SectorCount} sectors of {SectorByteCount} bytes; received {actualSectorCount} sectors.");
+    /// <summary>Crée l'erreur signalant une taille sectorielle RWTS18 invalide.</summary>
+    public static ArgumentException InvalidSectorSize(int sector, int actualSize) => new($"RWTS18 sector {sector} contains {actualSize} bytes; expected {SectorByteCount} bytes.");
     /// <summary>Définit encodé adresse marque utilisé par ce format.</summary>
     public const ushort EncodedAddressMark = 0xd59d;
     /// <summary>Définit adresse marque bit nombre utilisé par ce format.</summary>
@@ -79,6 +83,10 @@ internal static class AppleRwts18Format
     public const byte DefaultIdentifier = 0xa4;
     /// <summary>Définit six bit masque utilisé par ce format.</summary>
     public const byte SixBitMask = 0x3f;
+    /// <summary>Plus grand cylindre représentable dans une adresse RWTS18.</summary>
+    public const int MaximumCylinder = SixBitMask;
+    /// <summary>Plus grande valeur d'identification représentable sur un octet.</summary>
+    public const int MaximumIdentifier = byte.MaxValue;
     /// <summary>Masque les deux bits hauts reconstitués d'un octet de page.</summary>
     public const byte HighBitMask = 0xc0;
     /// <summary>Décalage replaçant les deux bits hauts de la première page.</summary>
@@ -97,4 +105,9 @@ internal static class AppleRwts18Format
     public const int ConfidenceCompleteSectorDivisor = SectorCount;
     /// <summary>Diviseur du nombre de secteurs détectés dans le calcul de confiance.</summary>
     public const double ConfidenceDetectedSectorDivisor = 24;
+    /// <summary>Ordre physique décroissant des six secteurs sur une piste RWTS18.</summary>
+    public static IReadOnlyList<int> EncodingSectorOrder { get; } = Array.AsReadOnly(Enumerable.Range(0, SectorCount).Reverse().ToArray());
+
+    /// <summary>Ordonne les secteurs selon leur position physique RWTS18.</summary>
+    public static IEnumerable<TrackSector> OrderForEncoding(IEnumerable<TrackSector> sectors) => EncodingSectorOrder.Select(number => sectors.Single(sector => sector.Number == number));
 }

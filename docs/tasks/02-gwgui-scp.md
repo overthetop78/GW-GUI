@@ -3642,41 +3642,41 @@
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête, d'un numéro de secteur, d'un format et d'un tag hors plage.
       - [x] Tester le codec 6-and-2 commun avec sa longueur d'entrée exacte, sa longueur de sortie exacte et des données connues.
       - [x] Tester, par l'encodeur public, l'aller-retour Macintosh puis Lisa FileWare avec leurs décodeurs correspondants.
-  - [ ] `Encoding/Encoders/AppleRwts18TrackEncoder.cs`
-    - [ ] Identité et paramètres de l'encodeur RWTS18
-      - [ ] Remplacer l'identifiant brut `apple2.rwts18` par la définition centrale correspondante.
-      - [ ] Corriger le nom affiché corrompu `Apple II BrÃ¸derbund RWTS18`, puis utiliser sa définition centrale.
-      - [ ] Remplacer la clé d'attribut brute `id` et sa valeur par défaut `0xa4` par les définitions RWTS18 correspondantes.
-    - [ ] Définitions binaires RWTS18
-      - [ ] Déplacer la table `Nibbles` vers le codec RWTS18 commun à l'encodeur et au décodeur.
-      - [ ] Remplacer les nombres de secteurs, tailles sectorielles, groupes de 256 octets et longueur encodée par les définitions de `AppleRwts18Format`.
-      - [ ] Remplacer les prologues, épilogues, octets de remplissage et longueurs de gaps par les définitions de `AppleRwts18Format`.
-      - [ ] Remplacer les masques employés pour le cylindre, le checksum et les symboles par les définitions du codec RWTS18.
-    - [ ] Construction d'une piste RWTS18
-      - [ ] Extraire l'ordre sectoriel décroissant dans une règle RWTS18 nommée commune au lecteur, au décodeur et à l'encodeur.
-      - [ ] Extraire la construction du champ d'adresse dans une fonction privée recevant le cylindre et le numéro de secteur.
-      - [ ] Déplacer `EncodePayload` dans le codec RWTS18 commun et faire dériver ses positions et sa longueur de sortie de la disposition du format.
-      - [ ] Raccorder l'encodeur au codec RWTS18 commun sans conserver une seconde table ni un second calcul de checksum.
-    - [ ] Validation avant encodage
-      - [ ] Vérifier que la requête contient exactement les six numéros de secteur RWTS18 attendus, sans numéro absent ni numéro dupliqué.
-      - [ ] Conserver la validation des 768 octets de chaque secteur en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant son masquage par `0x3f` afin de ne pas encoder silencieusement une autre valeur.
-      - [ ] Valider l'attribut d'identification avant sa conversion en octet.
-      - [ ] Faire valider par le codec commun la longueur exacte de la charge utile avant d'accéder à ses trois groupes de 256 octets.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Corriger `BrÃ¸derbund` dans la CSDoc et traduire cette documentation en français.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-      - [ ] Séparer les déclarations et instructions actuellement juxtaposées sur les lignes de construction du tampon et de lecture des trois groupes.
-      - [ ] Normaliser les espaces dans la table, les expressions, les masques et les initialisations.
-      - [ ] Remettre sur une seule ligne l'appel court à `bits.Raw` actuellement coupé après le numéro de secteur.
-      - [ ] Conserver sur une seule ligne les autres signatures, appels et expressions lorsqu'ils tiennent lisiblement sur une ligne.
-    - [ ] Tests ciblés de l'encodage RWTS18
-      - [ ] Tester l'identifiant, le nom corrigé et l'identification par défaut.
-      - [ ] Tester l'ordre exact des six secteurs et les longueurs de gaps du premier secteur écrit et des suivants.
-      - [ ] Tester le champ d'adresse et son checksum avec des valeurs connues.
-      - [ ] Tester le codec de charge utile avec 768 octets connus et vérifier ses 1 025 octets de sortie.
-      - [ ] Tester le rejet d'un secteur absent, dupliqué, hors plage ou de mauvaise taille, d'un cylindre hors plage et d'un identifiant hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste RWTS18 avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/AppleRwts18TrackEncoder.cs`
+    - [x] Identité et paramètres de l'encodeur RWTS18
+      - [x] Remplacer l'identifiant brut `apple2.rwts18` par la définition centrale correspondante.
+      - [x] Corriger le nom affiché corrompu `Apple II BrÃ¸derbund RWTS18`, puis utiliser sa définition centrale.
+      - [x] Remplacer la clé d'attribut brute `id` et sa valeur par défaut `0xa4` par les définitions RWTS18 correspondantes.
+    - [x] Définitions binaires RWTS18
+      - [x] Déplacer la table `Nibbles` vers le codec RWTS18 commun à l'encodeur et au décodeur.
+      - [x] Remplacer les nombres de secteurs, tailles sectorielles, groupes de 256 octets et longueur encodée par les définitions de `AppleRwts18Format`.
+      - [x] Remplacer les prologues, épilogues, octets de remplissage et longueurs de gaps par les définitions de `AppleRwts18Format`.
+      - [x] Remplacer les masques employés pour le cylindre, le checksum et les symboles par les définitions du codec RWTS18.
+    - [x] Construction d'une piste RWTS18
+      - [x] Extraire l'ordre sectoriel décroissant dans une règle RWTS18 nommée commune au lecteur, au décodeur et à l'encodeur.
+      - [x] Extraire la construction du champ d'adresse dans une fonction privée recevant le cylindre et le numéro de secteur.
+      - [x] Déplacer `EncodePayload` dans le codec RWTS18 commun et faire dériver ses positions et sa longueur de sortie de la disposition du format.
+      - [x] Raccorder l'encodeur au codec RWTS18 commun sans conserver une seconde table ni un second calcul de checksum.
+    - [x] Validation avant encodage
+      - [x] Vérifier que la requête contient exactement les six numéros de secteur RWTS18 attendus, sans numéro absent ni numéro dupliqué.
+      - [x] Conserver la validation des 768 octets de chaque secteur en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant son masquage par `0x3f` afin de ne pas encoder silencieusement une autre valeur.
+      - [x] Valider l'attribut d'identification avant sa conversion en octet.
+      - [x] Faire valider par le codec commun la longueur exacte de la charge utile avant d'accéder à ses trois groupes de 256 octets.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Corriger `BrÃ¸derbund` dans la CSDoc et traduire cette documentation en français.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+      - [x] Séparer les déclarations et instructions actuellement juxtaposées sur les lignes de construction du tampon et de lecture des trois groupes.
+      - [x] Normaliser les espaces dans la table, les expressions, les masques et les initialisations.
+      - [x] Remettre sur une seule ligne l'appel court à `bits.Raw` actuellement coupé après le numéro de secteur.
+      - [x] Conserver sur une seule ligne les autres signatures, appels et expressions lorsqu'ils tiennent lisiblement sur une ligne.
+    - [x] Tests ciblés de l'encodage RWTS18
+      - [x] Tester l'identifiant, le nom corrigé et l'identification par défaut.
+      - [x] Tester l'ordre exact des six secteurs et les longueurs de gaps du premier secteur écrit et des suivants.
+      - [x] Tester le champ d'adresse et son checksum avec des valeurs connues.
+      - [x] Tester le codec de charge utile avec 768 octets connus et vérifier ses 1 025 octets de sortie.
+      - [x] Tester le rejet d'un secteur absent, dupliqué, hors plage ou de mauvaise taille, d'un cylindre hors plage et d'un identifiant hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste RWTS18 avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/ArburgTrackEncoder.cs`
     - [ ] Identité et sélection du type de bloc Arburg
       - [ ] Remplacer l'identifiant brut `arburg` par la définition centrale correspondante.

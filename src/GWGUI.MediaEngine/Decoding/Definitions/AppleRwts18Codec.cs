@@ -30,6 +30,7 @@ internal static class AppleRwts18Codec
     /// <param name="data">Données des trois pages consécutives.</param><returns>Symboles encodés, checksum inclus.</returns>
     public static byte[] EncodePayload(IReadOnlyList<byte> data)
     {
+        if (data.Count != AppleRwts18Format.SectorByteCount) throw AppleRwts18Format.InvalidSectorSize(-1, data.Count);
         var encoded = new byte[AppleRwts18Format.PayloadWithChecksumSymbolCount];
         byte checksum = 0;
         for (var index = 0; index < AppleRwts18Format.PageByteCount; index++)
