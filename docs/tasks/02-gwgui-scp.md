@@ -3360,42 +3360,42 @@
       - [x] Tester que la modification ultérieure des bits fournis à `EncodedTrack` ne modifie pas le résultat.
       - [x] Tester que `EncodedTrack` et `ITrackEncoder` ne dépendent plus d'un type du namespace `Containers.Scp`.
       - [x] Tester qu'un encodage existant fournit toujours son identifiant, ses bits et une révolution de flux équivalente après le découplage.
-  - [ ] `Encoding/TrackEncoderBase.cs`
-    - [ ] Limites communes d'une requête d'encodage
-      - [ ] Créer ou compléter `Encoding/TrackEncodingLimits.cs` avec le cylindre minimal zéro et le cylindre maximal 255 acceptés par le contrat général.
-      - [ ] Y définir la tête minimale zéro et la tête maximale un acceptées par le contrat général.
-      - [ ] Y définir le nombre minimal d'un secteur nécessaire pour encoder une piste.
-      - [ ] Utiliser ces limites nommées dans `Encode` sans y placer les limites plus étroites propres à certains formats.
-      - [ ] Valider que `BitCellTicks` est strictement positif avant de produire les intervalles de flux.
-      - [ ] Valider que `IndexTimeTicks` est strictement positif avant de produire la révolution.
-    - [ ] Erreurs communes d'encodage
-      - [ ] Créer ou compléter `Encoding/TrackEncodingExceptions.cs` avec une erreur paramétrable recevant le cylindre observé et ses limites.
-      - [ ] Y ajouter une erreur paramétrable recevant la tête observée et ses limites.
-      - [ ] Y ajouter une erreur indiquant qu'aucun secteur n'a été fourni.
-      - [ ] Y ajouter les erreurs paramétrables pour des ticks de cellule ou d'index nuls.
-      - [ ] Y ajouter une erreur paramétrable recevant l'identifiant de l'encodeur qui a produit une piste vide.
-      - [ ] Remplacer les deux exceptions de plage et les deux textes bruts actuellement construits dans `Encode` par ces définitions.
-    - [ ] Production du résultat encodé
-      - [ ] Conserver l'appel unique à `EncodeBits` après toutes les validations communes.
-      - [ ] Conserver le rejet d'une collection de bits vide avant la construction du résultat.
-      - [ ] Remplacer la création directe d'une `ScpRevolution` par la création du modèle générique `FluxRevolution` prévue dans le groupe de `TrackEncoding.cs`.
-      - [ ] Construire `EncodedTrack` avec l'identifiant de l'encodeur, les bits produits et cette révolution générique.
-    - [ ] Lecture commune des attributs
-      - [ ] Extraire la recherche dictionnaire/clé/valeur de repli actuellement dupliquée par les deux surcharges `Attribute` dans une fonction privée commune.
-      - [ ] Conserver une surcharge protégée pour les attributs de `TrackEncodeRequest`.
-      - [ ] Conserver une surcharge protégée pour les attributs de `TrackSector`.
-      - [ ] Continuer à recevoir les clés définies par chaque format sans introduire de textes bruts dans cette classe.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions conditionnelles qui tiennent lisiblement sur une ligne, notamment les deux surcharges courtes de `Attribute`.
-      - [ ] Ajouter en français la CSDoc du type abstrait, de `Id`, de `DisplayName`, de `Encode`, de `EncodeBits` et des deux surcharges `Attribute`.
-      - [ ] Documenter les validations générales effectuées par `Encode` et préciser que chaque encodeur conserve ses validations propres au format.
-    - [ ] Tests ciblés de la classe de base
-      - [ ] Tester le rejet d'une requête nulle.
-      - [ ] Tester les limites minimale et maximale du cylindre et de la tête ainsi que leur dépassement.
-      - [ ] Tester le rejet d'une piste sans secteur, de ticks de cellule nuls et de ticks d'index nuls.
-      - [ ] Tester le rejet d'une collection de bits vide avec l'identifiant de l'encodeur dans l'erreur.
-      - [ ] Tester les attributs présents et absents d'une requête puis d'un secteur.
-      - [ ] Tester qu'un encodeur minimal valide produit ses bits et une `FluxRevolution` avec les deux durées demandées.
+- [x] `Encoding/TrackEncoderBase.cs`
+    - [x] Limites communes d'une requête d'encodage
+      - [x] Créer ou compléter `Encoding/TrackEncodingLimits.cs` avec le cylindre minimal zéro et le cylindre maximal 255 acceptés par le contrat général.
+      - [x] Y définir la tête minimale zéro et la tête maximale un acceptées par le contrat général.
+      - [x] Y définir le nombre minimal d'un secteur nécessaire pour encoder une piste.
+      - [x] Utiliser ces limites nommées dans `Encode` sans y placer les limites plus étroites propres à certains formats.
+      - [x] Valider que `BitCellTicks` est strictement positif avant de produire les intervalles de flux.
+      - [x] Valider que `IndexTimeTicks` est strictement positif avant de produire la révolution.
+    - [x] Erreurs communes d'encodage
+      - [x] Créer ou compléter `Encoding/TrackEncodingExceptions.cs` avec une erreur paramétrable recevant le cylindre observé et ses limites.
+      - [x] Y ajouter une erreur paramétrable recevant la tête observée et ses limites.
+      - [x] Y ajouter une erreur indiquant qu'aucun secteur n'a été fourni.
+      - [x] Y ajouter les erreurs paramétrables pour des ticks de cellule ou d'index nuls.
+      - [x] Y ajouter une erreur paramétrable recevant l'identifiant de l'encodeur qui a produit une piste vide.
+      - [x] Remplacer les deux exceptions de plage et les deux textes bruts actuellement construits dans `Encode` par ces définitions.
+    - [x] Production du résultat encodé
+      - [x] Conserver l'appel unique à `EncodeBits` après toutes les validations communes.
+      - [x] Conserver le rejet d'une collection de bits vide avant la construction du résultat.
+      - [x] Remplacer la création directe d'une `ScpRevolution` par la création du modèle générique `FluxRevolution` prévue dans le groupe de `TrackEncoding.cs`.
+      - [x] Construire `EncodedTrack` avec l'identifiant de l'encodeur, les bits produits et cette révolution générique.
+    - [x] Lecture commune des attributs
+      - [x] Extraire la recherche dictionnaire/clé/valeur de repli actuellement dupliquée par les deux surcharges `Attribute` dans une fonction privée commune.
+      - [x] Conserver une surcharge protégée pour les attributs de `TrackEncodeRequest`.
+      - [x] Conserver une surcharge protégée pour les attributs de `TrackSector`.
+      - [x] Continuer à recevoir les clés définies par chaque format sans introduire de textes bruts dans cette classe.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions conditionnelles qui tiennent lisiblement sur une ligne, notamment les deux surcharges courtes de `Attribute`.
+      - [x] Ajouter en français la CSDoc du type abstrait, de `Id`, de `DisplayName`, de `Encode`, de `EncodeBits` et des deux surcharges `Attribute`.
+      - [x] Documenter les validations générales effectuées par `Encode` et préciser que chaque encodeur conserve ses validations propres au format.
+    - [x] Tests ciblés de la classe de base
+      - [x] Tester le rejet d'une requête nulle.
+      - [x] Tester les limites minimale et maximale du cylindre et de la tête ainsi que leur dépassement.
+      - [x] Tester le rejet d'une piste sans secteur, de ticks de cellule nuls et de ticks d'index nuls.
+      - [x] Tester le rejet d'une collection de bits vide avec l'identifiant de l'encodeur dans l'erreur.
+      - [x] Tester les attributs présents et absents d'une requête puis d'un secteur.
+      - [x] Tester qu'un encodeur minimal valide produit ses bits et une `FluxRevolution` avec les deux durées demandées.
   - [ ] `Encoding/TrackEncoding.cs`
     - [ ] Séparation des responsabilités du fichier
       - [ ] Renommer `Encoding/TrackEncoding.cs` en `Encoding/TrackBitEncoding.cs` et le type `TrackEncoding` en `TrackBitEncoding` après en avoir sorti les responsabilités non binaires.

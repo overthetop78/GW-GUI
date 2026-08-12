@@ -144,6 +144,50 @@ public sealed class TrackEncoderTests
         Assert.Equal(typeof(EncodedTrack), typeof(ITrackEncoder).GetMethod(nameof(ITrackEncoder.Encode))!.ReturnType);
     }
 
+    [Fact]
+    public void TrackEncoderBaseRejectsNullAndOutOfRangeCoordinates()
+    {
+        var encoder = new TestTrackEncoder([true]);
+        var sector = new TrackSector(1, [0]);
+
+        Assert.Throws<ArgumentNullException>(() => encoder.Encode(null!));
+        encoder.Encode(new TrackEncodeRequest(TrackEncodingLimits.MinimumCylinder, TrackEncodingLimits.MinimumHead, [sector]));
+        encoder.Encode(new TrackEncodeRequest(TrackEncodingLimits.MaximumCylinder, TrackEncodingLimits.MaximumHead, [sector]));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new TrackEncodeRequest(TrackEncodingLimits.MinimumCylinder - 1, 0, [sector])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new TrackEncodeRequest(TrackEncodingLimits.MaximumCylinder + 1, 0, [sector])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new TrackEncodeRequest(0, TrackEncodingLimits.MinimumHead - 1, [sector])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new TrackEncodeRequest(0, TrackEncodingLimits.MaximumHead + 1, [sector])));
+    }
+
+    [Fact]
+    public void TrackEncoderBaseRejectsMissingSectorsZeroDurationsAndEmptyOutput()
+    {
+        var sector = new TrackSector(1, [0]);
+        var encoder = new TestTrackEncoder([true]);
+
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new TrackEncodeRequest(0, 0, [])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new TrackEncodeRequest(0, 0, [sector], BitCellTicks: 0)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new TrackEncodeRequest(0, 0, [sector], IndexTimeTicks: 0)));
+        Assert.Contains("test.base", Assert.Throws<InvalidOperationException>(() => new TestTrackEncoder([]).Encode(new TrackEncodeRequest(0, 0, [sector]))).Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void TrackEncoderBaseReadsAttributesAndProducesRequestedFluxDurations()
+    {
+        var sector = new TrackSector(1, [0], Attributes: new Dictionary<string, int> { ["sector"] = 7 });
+        var request = new TrackEncodeRequest(0, 0, [sector], new Dictionary<string, int> { ["track"] = 6 }, BitCellTicks: 5, IndexTimeTicks: 123);
+        var encoder = new TestTrackEncoder([false, true]);
+
+        Assert.Equal(6, encoder.RequestAttribute(request, "track", 1));
+        Assert.Equal(1, encoder.RequestAttribute(request, "missing", 1));
+        Assert.Equal(7, encoder.SectorAttribute(sector, "sector", 2));
+        Assert.Equal(2, encoder.SectorAttribute(sector, "missing", 2));
+        var encoded = encoder.Encode(request);
+        Assert.Equal([false, true], encoded.Bits);
+        Assert.Equal((uint)123, encoded.Revolution.IndexTimeTicks);
+        Assert.Equal([(uint)10], encoded.Revolution.FluxIntervals);
+    }
+
     private static IReadOnlyDictionary<string, string> CodecDisplayNamesById()
     {
         var identifierFields = typeof(FluxCodecIds).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
@@ -315,5 +359,14 @@ public sealed class TrackEncoderTests
             LastRequest = request;
             return Result;
         }
+    }
+
+    private sealed class TestTrackEncoder(IReadOnlyList<bool> bits) : TrackEncoderBase
+    {
+        public override string Id => "test.base";
+        public override string DisplayName => Id;
+        protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request) => bits;
+        public int RequestAttribute(TrackEncodeRequest request, string key, int fallback) => Attribute(request, key, fallback);
+        public int SectorAttribute(TrackSector sector, string key, int fallback) => Attribute(sector, key, fallback);
     }
 }

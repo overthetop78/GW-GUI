@@ -11,6 +11,8 @@ internal static class TrackEncodingLimits
     public const int MinimumHead = 0;
     /// <summary>Plus grand numéro de face admis.</summary>
     public const int MaximumHead = 1;
+    /// <summary>Nombre minimal de secteurs nécessaire pour encoder une piste.</summary>
+    public const int MinimumSectorCount = 1;
     /// <summary>Plus petit code de taille sectorielle ISO admis.</summary>
     public const byte MinimumSectorSizeCode = 0;
     /// <summary>Plus grand code de taille sectorielle ISO admis.</summary>

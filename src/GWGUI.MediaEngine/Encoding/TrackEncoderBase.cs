@@ -15,12 +15,15 @@ public abstract class TrackEncoderBase : ITrackEncoder
     /// <exception cref="ArgumentOutOfRangeException">Le cylindre ou la face se situe hors des limites communes.</exception>
     /// <exception cref="ArgumentException">La piste ne contient aucun secteur.</exception>
     /// <exception cref="InvalidOperationException">L'encodeur n'a produit aucune cellule binaire.</exception>
+    /// <remarks>Cette méthode applique uniquement les validations communes ; chaque encodeur conserve les contraintes propres à son format.</remarks>
     public EncodedTrack Encode(TrackEncodeRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
         if (request.Cylinder is < TrackEncodingLimits.MinimumCylinder or > TrackEncodingLimits.MaximumCylinder) throw TrackEncodingExceptions.InvalidCylinder(request.Cylinder);
         if (request.Head is < TrackEncodingLimits.MinimumHead or > TrackEncodingLimits.MaximumHead) throw TrackEncodingExceptions.InvalidHead(request.Head);
-        if (request.Sectors.Count == 0) throw TrackEncodingExceptions.MissingSectors(request.Sectors.Count);
+        if (request.Sectors.Count < TrackEncodingLimits.MinimumSectorCount) throw TrackEncodingExceptions.MissingSectors(request.Sectors.Count);
+        if (request.BitCellTicks == 0) throw TrackEncodingExceptions.ZeroBitCell(request.BitCellTicks);
+        if (request.IndexTimeTicks == 0) throw TrackEncodingExceptions.ZeroIndexTime(request.IndexTimeTicks);
         var bits = EncodeBits(request);
         if (bits.Count == 0) throw TrackEncodingExceptions.EmptyTrack(Id, bits.Count);
         return new(Id, bits, TrackEncoding.ToRevolution(bits, request.BitCellTicks, request.IndexTimeTicks));
@@ -36,12 +39,19 @@ public abstract class TrackEncoderBase : ITrackEncoder
     /// <param name="key">Clé technique définie par le format.</param>
     /// <param name="fallback">Valeur retournée lorsque la clé est absente.</param>
     /// <returns>Valeur de l'attribut ou valeur de repli.</returns>
-    protected static int Attribute(TrackEncodeRequest request, string key, int fallback) => request.Attributes is not null && request.Attributes.TryGetValue(key, out var value) ? value : fallback;
+    protected static int Attribute(TrackEncodeRequest request, string key, int fallback) => Attribute(request.Attributes, key, fallback);
 
     /// <summary>Lit un attribut de secteur ou retourne sa valeur de repli.</summary>
     /// <param name="sector">Secteur portant les attributs.</param>
     /// <param name="key">Clé technique définie par le format.</param>
     /// <param name="fallback">Valeur retournée lorsque la clé est absente.</param>
     /// <returns>Valeur de l'attribut ou valeur de repli.</returns>
-    protected static int Attribute(TrackSector sector, string key, int fallback) => sector.Attributes is not null && sector.Attributes.TryGetValue(key, out var value) ? value : fallback;
+    protected static int Attribute(TrackSector sector, string key, int fallback) => Attribute(sector.Attributes, key, fallback);
+
+    /// <summary>Lit une valeur dans un dictionnaire d'attributs ou retourne sa valeur de repli.</summary>
+    /// <param name="attributes">Dictionnaire optionnel portant les attributs.</param>
+    /// <param name="key">Clé technique définie par le format.</param>
+    /// <param name="fallback">Valeur retournée lorsque le dictionnaire ou la clé est absent.</param>
+    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>
+    private static int Attribute(IReadOnlyDictionary<string, int>? attributes, string key, int fallback) => attributes is not null && attributes.TryGetValue(key, out var value) ? value : fallback;
 }

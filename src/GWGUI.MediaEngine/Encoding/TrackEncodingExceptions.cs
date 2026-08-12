@@ -13,6 +13,11 @@ internal static class TrackEncodingExceptions
     /// <returns>Erreur contenant la durée invalide.</returns>
     public static ArgumentOutOfRangeException ZeroBitCell(uint cellTicks) => new(nameof(cellTicks), cellTicks, "Bit-cell duration must be greater than zero ticks.");
 
+    /// <summary>Crée l'erreur signalant une durée de révolution nulle.</summary>
+    /// <param name="indexTimeTicks">Durée observée, en ticks.</param>
+    /// <returns>Erreur contenant la durée invalide.</returns>
+    public static ArgumentOutOfRangeException ZeroIndexTime(uint indexTimeTicks) => new(nameof(indexTimeTicks), indexTimeTicks, "Index duration must be greater than zero ticks.");
+
     /// <summary>Crée l'erreur signalant un cylindre situé hors des limites communes.</summary>
     /// <param name="cylinder">Numéro de cylindre observé.</param>
     /// <returns>Erreur contenant la valeur et les limites admises.</returns>
@@ -26,7 +31,7 @@ internal static class TrackEncodingExceptions
     /// <summary>Crée l'erreur signalant qu'une piste ne contient aucun secteur.</summary>
     /// <param name="sectorCount">Nombre de secteurs observé.</param>
     /// <returns>Erreur contenant le nombre de secteurs reçu.</returns>
-    public static ArgumentException MissingSectors(int sectorCount) => new($"At least one sector is required; received {sectorCount}.", "request");
+    public static ArgumentException MissingSectors(int sectorCount) => new($"At least {TrackEncodingLimits.MinimumSectorCount} sector is required; received {sectorCount}.", "request");
 
     /// <summary>Crée l'erreur signalant qu'un encodeur n'a produit aucune cellule binaire.</summary>
     /// <param name="encoderId">Identifiant technique de l'encodeur.</param>
