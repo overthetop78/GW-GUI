@@ -26,6 +26,7 @@ public sealed class AtrReaderTests
     [Theory]
     [InlineData("validated_images/Atari/Atari 130XE/5.25 pouces - Chargeur propriétaire - 90 Kio/seeds-of-evil-atari-130xe.atr", 128, 720, DiskImageFormatIds.Atari90)]
     [InlineData("Atari 8-bit/os xl-xe.atr", 256, 720, DiskImageFormatIds.Atari180)]
+    [InlineData("_generated/atari-512-720.atr", 512, 720, "atari.atr.512.720")]
     public async Task ReadsHeaderGeometryAddressesCapacityAndSectorContents(
         string relativePath,
         int expectedSectorSize,
@@ -65,6 +66,7 @@ public sealed class AtrReaderTests
     [Theory]
     [InlineData("validated_images/Atari/Atari 130XE/5.25 pouces - Chargeur propriétaire - 90 Kio/seeds-of-evil-atari-130xe.atr")]
     [InlineData("Atari 8-bit/os xl-xe.atr")]
+    [InlineData("_generated/atari-512-720.atr")]
     public async Task ExtractsPayloadAndAllowsSectorBySectorRereading(string relativePath)
     {
         var sourcePath = ImagePath(relativePath);

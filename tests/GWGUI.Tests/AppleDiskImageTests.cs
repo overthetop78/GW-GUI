@@ -197,6 +197,28 @@ public sealed class AppleDiskImageTests
         finally { File.Delete(source); File.Delete(output); }
     }
 
+    /// <summary>Vérifie les conversions SCP vers NIB et WOZ avec la capture originale RWTS18 de Prince of Persia.</summary>
+    [Theory]
+    [InlineData(".nib")]
+    [InlineData(".woz")]
+    public async Task ConversionServiceDecodesRealRwts18Scp(string extension)
+    {
+        var root = new DirectoryInfo(AppContext.BaseDirectory);
+        while (root is not null && !File.Exists(Path.Combine(root.FullName, "GWGUI.sln"))) root = root.Parent;
+        var source = Path.Combine(root?.FullName ?? throw new DirectoryNotFoundException(), "image_test", "Apple II", "RWTS18", "Prince of Persia side B.scp");
+        if (!File.Exists(source)) throw new FileNotFoundException("La capture SCP RWTS18 obligatoire est introuvable.", source);
+        var output = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}{extension}");
+        try
+        {
+            await MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(source, output);
+            var decoded = await new AppleDiskImageReader().ReadAsync(output);
+            Assert.Equal(DiskImageFormatIds.AppleIIRwts18, decoded.FormatId);
+            Assert.NotEmpty(decoded.AvailableBlocks);
+            Assert.All(decoded.AvailableBlocks, block => Assert.Equal(768, block.Data.Count));
+        }
+        finally { File.Delete(output); }
+    }
+
     [Fact]
     public async Task AppleWriterRejectsUnsupportedOutputSourceAndInvalidSector()
     {

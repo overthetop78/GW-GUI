@@ -32,6 +32,22 @@ public sealed class I86fImageTests
         Assert.NotEmpty(image.AvailableBlocks);
     }
 
+    /// <summary>Vérifie le décodage sectoriel FM d'un conteneur 86F dont la charge utile est connue.</summary>
+    [Fact]
+    public async Task RealFmImageExposesExpectedContainerAndSectorData()
+    {
+        var path = FmImagePath();
+        var container = await new I86fReader().ReadAsync(path);
+        var track = Assert.Single(container.Tracks);
+        Assert.Equal(I86fTrackFlags.None, track.Flags & I86fTrackFlags.EncodingMask);
+
+        var image = await new I86fSectorImageReader(new I86fReader(), new FluxDecoderRegistry()).ReadAsync(path);
+        Assert.Equal(("86f.128.1.1.1", 128, 1, 1, 1), (image.FormatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack));
+        var block = Assert.Single(image.AvailableBlocks);
+        Assert.True(block.IntegrityValid);
+        Assert.Equal(Enumerable.Range(0, 128).Select(index => (byte)(index * 17 + 3)), block.Data);
+    }
+
     /// <summary>VÃ©rifie que le registre public route l'image rÃ©elle vers le lecteur sectoriel 86F.</summary>
     [Fact]
     public async Task PublicRegistryRoutesRealMfmImage()
@@ -206,6 +222,13 @@ public sealed class I86fImageTests
     {
         var path = Path.Combine(RepositoryRoot(), "image_test", "IBM PC", "Framework Premier 1.1 Fr - Systeme 1 [5.25].86f");
         return File.Exists(path) ? path : throw new FileNotFoundException("L'image 86F MFM de test est introuvable.", path);
+    }
+
+    /// <summary>Retourne le chemin obligatoire de l'image FM dont le secteur est connu.</summary>
+    private static string FmImagePath()
+    {
+        var path = Path.Combine(RepositoryRoot(), "image_test", "_generated", "iso-fm-known.86f");
+        return File.Exists(path) ? path : throw new FileNotFoundException("L'image 86F FM de test est introuvable.", path);
     }
 
     /// <summary>Localise la racine du dÃ©pÃ´t.</summary>

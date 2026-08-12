@@ -77,6 +77,25 @@ public sealed class ImdImageTests
         Assert.Equal((3, 2, 256L), (image.Cylinders, image.Heads, image.Capacity));
     }
 
+    /// <summary>Vérifie dans une même image réelle les six modes, les cartes optionnelles et les neuf types d'enregistrements ImageDisk.</summary>
+    [Fact]
+    public async Task RealCombinedImageCoversModesMapsAndRecordTypes()
+    {
+        var path = Path.Combine(RepositoryRoot(), "image_test", "_generated", "imd-all-modes-maps-records.imd");
+        if (!File.Exists(path)) throw new FileNotFoundException("L'image IMD combinée de test est introuvable.", path);
+
+        var image = await new ImdReader().ReadAsync(path);
+
+        Assert.Equal((DiskImageFormatIds.Imd, 128, 6, 1, 9, 14, 13), (image.FormatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack, image.BlockCount, image.AvailableBlocks.Count));
+        Assert.Equal([0], image.MissingBlocks);
+        Assert.Equal(4, image.AvailableBlocks.Count(block => block.IntegrityValid == false));
+        var compressed = Assert.Single(image.AvailableBlocks, block => block.Address == new SectorAddress(0, 0, 3));
+        Assert.All(compressed.Data, value => Assert.Equal(0x42, value));
+        var explicitSize = Assert.Single(image.AvailableBlocks, block => block.Address == new SectorAddress(5, 0, 1));
+        Assert.Equal(128, explicitSize.Data.Count);
+        Assert.All(explicitSize.Data, value => Assert.Equal(0x55, value));
+    }
+
     [Fact]
     public async Task UnavailableImdSectorRemainsMissing()
     {

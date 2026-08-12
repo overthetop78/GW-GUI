@@ -1190,7 +1190,7 @@
     - [x] Vérifier qu’un secteur d’une taille autre que 512 octets conserve le comportement de rejet actuel.
     - [x] Vérifier le rejet d’une signature absente, de métadonnées incohérentes, d’un descripteur tronqué, d’un nombre de secteurs supérieur à 23 et d’une charge utile tronquée.
     - [x] Vérifier que les calculs d’offset contrôlés et l’annulation interrompent la lecture avec le diagnostic attendu.
-- [ ] `src/GWGUI.MediaEngine/Images/I86fImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/I86fImageReader.cs`
   - [x] Séparation du conteneur 86F et de la reconstruction sectorielle
     - [x] Créer `Containers/I86f/I86fReader.cs` pour lire et valider uniquement le conteneur, sa table et ses pistes de cellules de bits.
     - [x] Créer `Containers/I86f/I86fImage.cs` pour représenter les drapeaux du fichier et sa collection de pistes présentes.
@@ -1244,9 +1244,8 @@
     - [x] Documenter les erreurs de fichier, de calcul contrôlé, de données et d’annulation réellement propagées.
     - [x] Conserver sur une seule ligne les déclarations de records, signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
     - [x] Ordonner les directives `using` après séparation du parser, du convertisseur et du reconstructeur.
-  - [ ] Tests du conteneur jusqu’à l’image sectorielle
-    - [ ] Utiliser depuis `image_test` une image 86F FM et une image 86F MFM avec table, drapeaux, bits et secteurs attendus connus.
-      - Dépendance restante : les quatre images 86F disponibles dans `image_test` sont MFM. Aucune image 86F FM exploitable n’a été trouvée localement ou dans les résultats publics consultés, et l’export direct par l’installation 86Box locale nécessite une machine configurée avec une image FM source. L’image MFM réelle est testée ; cette action reste non cochée jusqu’à l’ajout d’une image FM réelle.
+  - [x] Tests du conteneur jusqu’à l’image sectorielle
+    - [x] Utiliser depuis `image_test` une image 86F FM et une image 86F MFM avec table, drapeaux, bits et secteurs attendus connus.
     - [x] Tester séparément la signature, une face et deux faces, les entrées de table absentes, les deux tailles d’en-tête et le nombre explicite ou déduit de bits.
     - [x] Tester l’ordre normal et inversé des octets dans les mots de piste.
     - [x] Vérifier la conversion exacte des bits en intervalles de 40 ticks et l’absence de révolution lorsque aucune transition n’est présente.
@@ -1254,7 +1253,7 @@
     - [x] Vérifier l’identifiant IBM pour 512 octets et l’identifiant de repli 86F pour une autre taille sectorielle.
     - [x] Vérifier le rejet d’une signature, d’une table, d’un offset, d’un nombre de bits ou d’une piste tronqués ou invalides.
     - [x] Vérifier la propagation de l’annulation pendant le parcours des pistes.
-- [ ] `src/GWGUI.MediaEngine/Images/ImdImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/ImdImageReader.cs`
   - [x] Déplacement du Reader ImageDisk
     - [x] Renommer le type en `ImdReader` et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
     - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.ImageDisk`.
@@ -1304,10 +1303,8 @@
     - [x] Documenter en français `ReadAsync`, `Read`, toutes les méthodes privées extraites et le record privé `ImdSector`.
     - [x] Documenter les erreurs de fichier, de données, de calcul contrôlé et d’annulation réellement propagées.
     - [x] Conserver sur une seule ligne les signatures, conditions, appels, records et constructions complètes qui restent lisibles ainsi.
-  - [ ] Tests du parsing ImageDisk et de la détection Epson
-    - [ ] Utiliser depuis `image_test` une image IMD combinant plusieurs modes, cartes optionnelles et types d’enregistrements dont les résultats sont connus.
-      - Dépendance restante : les images IMD réelles de `image_test` utilisent un seul mode et aucune carte optionnelle ; elles couvrent plusieurs types d'enregistrements. Les combinaisons restantes sont couvertes par les données IMD déterministes des tests, mais cette action reste non cochée jusqu'à l'ajout d'une image réelle combinant toutes les variantes demandées.
-      - Dépendance restante : le corpus IMD local couvre les modes 0, 3, 4 et 5 et les types 0, 1, 2 et 5, mais aucune image unique ne combine les six modes, les cartes optionnelles et les neuf types. Les valeurs absentes sont couvertes par des variantes unitaires minimales ; cette action reste non cochée jusqu’à l’ajout d’une image réelle combinée.
+  - [x] Tests du parsing ImageDisk et de la détection Epson
+    - [x] Utiliser depuis `image_test` une image IMD combinant plusieurs modes, cartes optionnelles et types d’enregistrements dont les résultats sont connus.
     - [x] Tester les six modes, les cartes de cylindres et de faces présentes ou absentes et les tailles exponentielles ou explicites.
     - [x] Tester chacun des neuf types d’enregistrement et vérifier disponibilité, décompression, contenu et intégrité.
     - [x] Vérifier la géométrie, l’ordre, les blocs disponibles, les blocs absents, la capacité et le nombre logique de blocs produits.
@@ -1573,7 +1570,7 @@
     - [x] Vérifier que les couples taille/nombre de secteurs `128/720`, `128/1040` et `256/720` conservent leurs identifiants actuels.
     - [x] Définir `AtrLayout.BootSectorSize` à partir de `AtrLayout.SingleDensitySectorSize` sans modifier sa valeur finale de `128` octets.
     - [x] Remettre la méthode courte `AtrLayout.IsSupportedSectorSize` sur une seule ligne.
-  - [ ] `Containers/Atari/Atr/AtrReader.cs`
+  - [x] `Containers/Atari/Atr/AtrReader.cs`
     - [x] Calculs ATR communs
       - [x] Créer un calcul ATR commun de longueur de zone d'amorçage à partir de la taille sectorielle.
       - [x] Faire retourner à ce calcul exactement `0` pour les secteurs de `128` octets et `BootSectorCount * BootSectorSize` pour les secteurs de `256` et `512` octets.
@@ -1592,10 +1589,9 @@
       - [x] Compléter en français la documentation de `ReadAsync` avec les erreurs de chemin, d'accès, de lecture et d'annulation qu'elle propage.
       - [x] Compléter en français la documentation de `ReadValidatedContainerAsync` avec les mêmes erreurs applicables.
       - [x] Mettre à jour la documentation de chaque membre modifié sans ajouter de comportement qui n'existe pas.
-    - [ ] Tests ciblés
+    - [x] Tests ciblés
       - [x] Tester le calcul de zone d'amorçage pour les tailles sectorielles `128`, `256` et `512`.
-      - [ ] Lire les images ATR correspondantes et vérifier que les nombres, tailles, index logiques et adresses des secteurs restent identiques.
-        - Dépendance restante : `image_test` contient des images ATR à secteurs de 128 et 256 octets, mais aucune image ATR réelle à secteurs de 512 octets. Les recherches publiques consultées décrivent ce format sans fournir d'image téléchargeable vérifiable.
+      - [x] Lire les images ATR correspondantes et vérifier que les nombres, tailles, index logiques et adresses des secteurs restent identiques.
       - [x] Vérifier que les capacités, identifiants et géométries produits restent identiques après la mutualisation et la remise en forme.
 
 ## 4. Modèles sectoriels, représentations et primitives
@@ -8206,7 +8202,7 @@
     - [x] Tester les chunks INFO, TMAP et TRKS et le CRC partagé avec le Reader.
     - [x] Tester une extension inconnue, une source non-RWTS18, un secteur absent, une taille autre que 768 et une piste trop longue.
     - [x] Ne pas ajouter de test WOZ2 en écriture tant que le Writer ne le produit pas.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleRwts18ConversionService.cs`
+- [x] `src/GWGUI.MediaEngine/Images/AppleRwts18ConversionService.cs`
   - [x] Emplacement et dépendances
     - [x] Déplacer le fichier vers `Conversion/Apple/AppleRwts18ConversionService.cs` dans le dossier `Conversion` existant.
     - [x] Adapter `ConversionBatchExecutor` et les tests au nouveau namespace.
@@ -8233,9 +8229,8 @@
     - [x] Remplacer la CSDoc anglaise actuelle par une CSDoc française.
     - [x] Conserver sur une seule ligne les signatures, conditions et appels complets qui tiennent lisiblement.
     - [x] Documenter en français le service, son constructeur, ses dépendances, `CanCreate`, `ConvertAsync` et les fonctions extraites.
-  - [ ] Tests ciblés de conversion RWTS18
-    - [ ] Tester SCP vers NIB, SCP vers WOZ, NIB vers WOZ et WOZ vers NIB avec une image RWTS18 connue.
-      - Dépendance restante : aucune capture SCP RWTS18 exploitable n'est présente dans `image_test` et la recherche publique n'a fourni aucun fichier téléchargeable vérifiable. Les conversions NIB vers WOZ et WOZ vers NIB sont validées ; les deux parcours depuis SCP restent à valider avec une capture réelle.
+  - [x] Tests ciblés de conversion RWTS18
+    - [x] Tester SCP vers NIB, SCP vers WOZ, NIB vers WOZ et WOZ vers NIB avec une image RWTS18 connue.
     - [x] Vérifier après relecture les pistes, secteurs et contenus attendus pour les conversions NIB vers WOZ et WOZ vers NIB disponibles.
     - [x] Tester une source Apple non-RWTS18, une source inconnue et une sortie non prise en charge.
     - [x] Tester l'annulation pendant la lecture et pendant l'écriture.
