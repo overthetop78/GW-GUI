@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Reading;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -45,14 +46,7 @@ internal readonly record struct AtariStGeometry(int Cylinders, int Heads, int Se
 
     public static SectorImage CreateSectorImage(ReadOnlySpan<byte> data, AtariStGeometry geometry)
     {
-        var count = geometry.Cylinders * geometry.Heads * geometry.SectorsPerTrack;
-        if (data.Length != count * 512) throw new InvalidDataException("The ST image length does not match its geometry.");
-        var blocks = new SectorBlock[count];
-        for (var logical = 0; logical < count; logical++)
-        {
-            var track = logical / geometry.SectorsPerTrack;
-            blocks[logical] = new(logical, new(track / geometry.Heads, track % geometry.Heads, logical % geometry.SectorsPerTrack + 1), data.Slice(logical * 512, 512).ToArray());
-        }
-        return new(geometry.FormatId, 512, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks);
+        var linearGeometry = new LinearSectorImageGeometry(512, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, SectorNumbering.OneBased);
+        return LinearSectorImageBuilder.Create(data.ToArray(), geometry.FormatId, linearGeometry);
     }
 }

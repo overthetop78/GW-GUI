@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Reading;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -35,15 +36,9 @@ public sealed class IbmPcImageReader : ISectorImageReader
     internal static SectorImage Create(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
     {
         var geometry = DetectGeometry(data);
-        var blocks = new SectorBlock[geometry.Cylinders * geometry.Heads * geometry.SectorsPerTrack];
-        for (var logical = 0; logical < blocks.Length; logical++)
-        {
-            var track = logical / geometry.SectorsPerTrack;
-            blocks[logical] = new(logical,
-                new(track / geometry.Heads, track % geometry.Heads, logical % geometry.SectorsPerTrack + 1),
-                data.Slice(logical * 512, 512).ToArray());
-        }
-        return new(geometry.FormatId, 512, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks);
+        cancellationToken.ThrowIfCancellationRequested();
+        var linearGeometry = new LinearSectorImageGeometry(512, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, SectorNumbering.OneBased);
+        return LinearSectorImageBuilder.Create(data.ToArray(), geometry.FormatId, linearGeometry);
     }
 
     internal static IbmPcGeometry DetectGeometry(ReadOnlySpan<byte> data)

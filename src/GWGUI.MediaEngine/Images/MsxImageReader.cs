@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Reading;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -31,13 +32,7 @@ public sealed class MsxImageReader : ISectorImageReader
             737_280 => (DiskImageFormatIds.Msx2Dd, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 9),
             _ => throw new InvalidDataException("The MSX disk geometry is not supported.")
         };
-        var blocks = new SectorBlock[data.Length / 512];
-        for (var logical = 0; logical < blocks.Length; logical++)
-        {
-            var track = logical / sectors;
-            blocks[logical] = new(logical, new(track / heads, track % heads, logical % sectors + 1),
-                data.AsSpan(logical * 512, 512).ToArray());
-        }
-        return new(format, 512, cylinders, heads, sectors, blocks);
+        var geometry = new LinearSectorImageGeometry(512, cylinders, heads, sectors, SectorNumbering.OneBased);
+        return LinearSectorImageBuilder.Create(data, format, geometry);
     }
 }

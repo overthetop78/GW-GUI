@@ -4501,51 +4501,51 @@
     - [x] Tester une capacité connue sans structure reconnue, une capacité inconnue et un contenu tronqué.
     - [x] Vérifier pour chaque image format, géométrie, adresses, capacité et contenu des blocs.
     - [x] Tester les charges utiles provenant directement d'un fichier brut, de 2IMG et de DiskCopy sans divergence.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleSectorImageFactory.cs`
-  - [ ] Builder linéaire commun
-    - [ ] Créer `SectorImages/Builders/LinearSectorImageBuilder.cs` et y déplacer `CreateLinear`.
-    - [ ] Faire recevoir au builder une géométrie validée plutôt que six primitives indépendantes pouvant être incohérentes.
-    - [ ] Valider que longueur, taille de bloc et capacité de la géométrie correspondent exactement avant de créer les blocs.
-    - [ ] Faire définir par la géométrie si les numéros de secteurs commencent à zéro ou à un.
-    - [ ] Réutiliser ce builder dans ADF, Atari ST, IBM brut, MSX et les autres Readers qui recopient la même boucle linéaire lorsque leur ordre est réellement identique.
-  - [ ] Builder Macintosh GCR zoné
-    - [ ] Créer `SectorImages/Builders/Apple/MacintoshGcrSectorImageBuilder.cs` et y déplacer `CreateAppleMacZoned`.
-    - [ ] Faire recevoir une `MacintoshGcrGeometry` validée au lieu du seul nombre de faces.
-    - [ ] Remplacer 512, 80, 12 et les calculs d'adresse par les propriétés de cette géométrie.
-    - [ ] Valider que la longueur des données correspond à la capacité zonée avant la création des blocs.
-  - [ ] Builder Apple II depuis pistes décodées
-    - [ ] Créer `SectorImages/Builders/Apple/AppleIISectorImageBuilder.cs` et y déplacer `CreateAppleIIFromDecodedTracks`.
-    - [ ] Extraire la sélection du meilleur secteur dupliqué dans une fonction commune recevant l'intégrité et conservant la même priorité actuelle.
-    - [ ] Remplacer 256 octets, 35 pistes, une face et 13/16 secteurs par les géométries DOS 3.2 et DOS 3.3.
-    - [ ] Utiliser `AppleSectorOrderConverter` pour les correspondances physique, DOS et ProDOS.
-    - [ ] Séparer la construction des blocs DOS de l'assemblage des blocs ProDOS de 512 octets.
-    - [ ] Utiliser `AppleRawImageProbe` pour choisir ProDOS, DOS 3.3 ou GCR non identifié.
-    - [ ] Ne pas combler silencieusement les secteurs absents dans la sonde dense sans conserver leur absence dans le résultat de construction.
-  - [ ] Builder RWTS18
-    - [ ] Créer `SectorImages/Builders/Apple/AppleRwts18SectorImageBuilder.cs` et y déplacer `CreateRwts18FromDecodedTracks`.
-    - [ ] Remplacer 768 octets, six secteurs, 35 pistes et une face par les définitions RWTS18.
-    - [ ] Réutiliser la fonction commune de sélection du meilleur secteur dupliqué.
-    - [ ] Faire retourner une erreur recevant pistes et secteurs décodés lorsqu'aucun secteur RWTS18 valide n'existe.
-  - [ ] Densification des blocs
-    - [ ] Conserver `ToDense` dans le builder Apple II tant qu'il n'existe qu'un seul besoin réel.
-    - [ ] Faire recevoir le nombre de blocs et la taille depuis une géométrie, puis vérifier les numéros logiques avant chaque copie.
-    - [ ] Retourner avec le tampon dense un masque des blocs absents afin que les sondes ne prennent pas leurs zéros de remplacement pour des données valides.
-  - [ ] Raccordement et suppression
-    - [ ] Raccorder les Readers Apple bruts, `WozReader`, `NibTrackImageReader` et les reconstructeurs concernés aux builders précis.
-    - [ ] Supprimer les relais de `AppleDiskImageReader` vers cette factory.
-    - [ ] Vérifier qu'aucun consommateur ne référence encore `AppleSectorImageFactory`.
-    - [ ] Supprimer `Images/AppleSectorImageFactory.cs` après déplacement complet.
-  - [ ] Erreurs, présentation et CSDoc française
-    - [ ] Créer les erreurs des builders avec géométrie, longueur, piste, secteur et taille observés.
-    - [ ] Remplacer le texte brut RWTS18 et toute construction directe d'exception.
-    - [ ] Indenter les doubles boucles Apple II et conserver sur une seule ligne les appels et expressions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français chaque builder, méthode, résultat intermédiaire et règle de sélection.
-  - [ ] Tests ciblés des builders
-    - [ ] Tester le builder linéaire avec numérotation zéro et un, ainsi qu'une longueur incompatible.
-    - [ ] Tester les premiers, changements de zone et derniers blocs Macintosh GCR.
-    - [ ] Tester Apple II 13 et 16 secteurs, doublons avec intégrités différentes, secteurs absents et reconnaissance DOS/ProDOS.
-    - [ ] Tester RWTS18 avec doublons, aucune donnée valide et plus de 35 pistes.
-    - [ ] Vérifier que la densification conserve la position et le masque de chaque bloc absent.
+- [x] `src/GWGUI.MediaEngine/Images/AppleSectorImageFactory.cs`
+  - [x] Builder linéaire commun
+    - [x] Créer `SectorImages/Builders/LinearSectorImageBuilder.cs` et y déplacer `CreateLinear`.
+    - [x] Faire recevoir au builder une géométrie validée plutôt que six primitives indépendantes pouvant être incohérentes.
+    - [x] Valider que longueur, taille de bloc et capacité de la géométrie correspondent exactement avant de créer les blocs.
+    - [x] Faire définir par la géométrie si les numéros de secteurs commencent à zéro ou à un.
+    - [x] Réutiliser ce builder dans ADF, Atari ST, IBM brut, MSX et les autres Readers qui recopient la même boucle linéaire lorsque leur ordre est réellement identique.
+  - [x] Builder Macintosh GCR zoné
+    - [x] Créer `SectorImages/Builders/Apple/MacintoshGcrSectorImageBuilder.cs` et y déplacer `CreateAppleMacZoned`.
+    - [x] Faire recevoir une `MacintoshGcrGeometry` validée au lieu du seul nombre de faces.
+    - [x] Remplacer 512, 80, 12 et les calculs d'adresse par les propriétés de cette géométrie.
+    - [x] Valider que la longueur des données correspond à la capacité zonée avant la création des blocs.
+  - [x] Builder Apple II depuis pistes décodées
+    - [x] Créer `SectorImages/Builders/Apple/AppleIISectorImageBuilder.cs` et y déplacer `CreateAppleIIFromDecodedTracks`.
+    - [x] Extraire la sélection du meilleur secteur dupliqué dans une fonction commune recevant l'intégrité et conservant la même priorité actuelle.
+    - [x] Remplacer 256 octets, 35 pistes, une face et 13/16 secteurs par les géométries DOS 3.2 et DOS 3.3.
+    - [x] Utiliser `AppleSectorOrderConverter` pour les correspondances physique, DOS et ProDOS.
+    - [x] Séparer la construction des blocs DOS de l'assemblage des blocs ProDOS de 512 octets.
+    - [x] Utiliser `AppleRawImageProbe` pour choisir ProDOS, DOS 3.3 ou GCR non identifié.
+    - [x] Ne pas combler silencieusement les secteurs absents dans la sonde dense sans conserver leur absence dans le résultat de construction.
+  - [x] Builder RWTS18
+    - [x] Créer `SectorImages/Builders/Apple/AppleRwts18SectorImageBuilder.cs` et y déplacer `CreateRwts18FromDecodedTracks`.
+    - [x] Remplacer 768 octets, six secteurs, 35 pistes et une face par les définitions RWTS18.
+    - [x] Réutiliser la fonction commune de sélection du meilleur secteur dupliqué.
+    - [x] Faire retourner une erreur recevant pistes et secteurs décodés lorsqu'aucun secteur RWTS18 valide n'existe.
+  - [x] Densification des blocs
+    - [x] Conserver `ToDense` dans le builder Apple II tant qu'il n'existe qu'un seul besoin réel.
+    - [x] Faire recevoir le nombre de blocs et la taille depuis une géométrie, puis vérifier les numéros logiques avant chaque copie.
+    - [x] Retourner avec le tampon dense un masque des blocs absents afin que les sondes ne prennent pas leurs zéros de remplacement pour des données valides.
+  - [x] Raccordement et suppression
+    - [x] Raccorder les Readers Apple bruts, `WozReader`, `NibTrackImageReader` et les reconstructeurs concernés aux builders précis.
+    - [x] Supprimer les relais de `AppleDiskImageReader` vers cette factory.
+    - [x] Vérifier qu'aucun consommateur ne référence encore `AppleSectorImageFactory`.
+    - [x] Supprimer `Images/AppleSectorImageFactory.cs` après déplacement complet.
+  - [x] Erreurs, présentation et CSDoc française
+    - [x] Créer les erreurs des builders avec géométrie, longueur, piste, secteur et taille observés.
+    - [x] Remplacer le texte brut RWTS18 et toute construction directe d'exception.
+    - [x] Indenter les doubles boucles Apple II et conserver sur une seule ligne les appels et expressions complètes qui tiennent lisiblement.
+    - [x] Documenter en français chaque builder, méthode, résultat intermédiaire et règle de sélection.
+  - [x] Tests ciblés des builders
+    - [x] Tester le builder linéaire avec numérotation zéro et un, ainsi qu'une longueur incompatible.
+    - [x] Tester les premiers, changements de zone et derniers blocs Macintosh GCR.
+    - [x] Tester Apple II 13 et 16 secteurs, doublons avec intégrités différentes, secteurs absents et reconnaissance DOS/ProDOS.
+    - [x] Tester RWTS18 avec doublons, aucune donnée valide et plus de 35 pistes.
+    - [x] Vérifier que la densification conserve la position et le masque de chaque bloc absent.
 - [ ] `src/GWGUI.MediaEngine/Images/AtariStImageReader.cs`
   - [ ] Déplacement du Reader ST
     - [ ] Créer `Containers/Atari/St/AtariStReader.cs` et y déplacer uniquement la lecture du fichier ST brut.
