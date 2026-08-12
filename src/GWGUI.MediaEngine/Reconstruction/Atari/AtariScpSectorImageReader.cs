@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reconstruction.Iso;
 
 namespace GWGUI.MediaEngine.Reconstruction.Atari;
 

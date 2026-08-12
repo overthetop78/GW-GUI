@@ -5237,19 +5237,19 @@
     - [x] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
 - [ ] Compléments issus de la relecture complète de la conversion et de la visualisation
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Score et erreur de reconstruction
-    - [ ] Remplacer le poids brut `10` appliqué au nombre de secteurs décodés par la définition nommée prévue dans `Reconstruction/Iso/IsoScpReconstructionDefinitions.cs`.
-    - [ ] Remplacer le texte brut de l'exception levée lorsqu'aucun secteur FM/MFM n'est décodé par la méthode prévue dans `Reconstruction/Iso/IsoScpReconstructionExceptions.cs`, en lui transmettant le format demandé et les nombres de candidats adressés et physiques.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne la signature de `AddCandidate` si elle tient dans la longueur admise par le document.
-    - [ ] Supprimer la ligne vide inutile placée avant l'accolade fermante du type.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoScpSectorImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `IsoScpSectorImageReader, ReadAsync, Score, AddCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Score et erreur de reconstruction
+    - [x] Remplacer le poids brut `10` appliqué au nombre de secteurs décodés par la définition nommée prévue dans `Reconstruction/Iso/IsoScpReconstructionDefinitions.cs`.
+    - [x] Remplacer le texte brut de l'exception levée lorsqu'aucun secteur FM/MFM n'est décodé par la méthode prévue dans `Reconstruction/Iso/IsoScpReconstructionExceptions.cs`, en lui transmettant le format demandé et les nombres de candidats adressés et physiques.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne la signature de `AddCandidate` si elle tient dans la longueur admise par le document.
+    - [x] Supprimer la ligne vide inutile placée avant l'accolade fermante du type.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoScpSectorImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `IsoScpSectorImageReader, ReadAsync, Score, AddCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IsoSectorCandidate.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidate.cs`.

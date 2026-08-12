@@ -4,5 +4,9 @@ namespace GWGUI.MediaEngine.Reconstruction.Iso;
 internal static class IsoScpReconstructionExceptions
 {
     /// <summary>Crée l'erreur signalant qu'aucun candidat cohérent n'a été décodé.</summary>
-    public static InvalidDataException NoCandidates(string? formatId, int candidateCount) => new($"ISO FM/MFM reconstruction for '{formatId ?? "automatic"}' produced {candidateCount} coherent candidates.");
+    /// <param name="formatId">Identifiant demandé, ou <see langword="null"/> pour la détection automatique.</param>
+    /// <param name="addressedCandidateCount">Nombre de candidats dont l'adresse décodée correspond à la piste physique.</param>
+    /// <param name="physicalCandidateCount">Nombre de candidats conservés à leur adresse physique source.</param>
+    /// <returns>L'exception décrivant les deux collections vides.</returns>
+    public static InvalidDataException NoCandidates(string? formatId, int addressedCandidateCount, int physicalCandidateCount) => new($"ISO FM/MFM reconstruction for '{formatId ?? "automatic"}' produced {addressedCandidateCount} addressed candidate(s) and {physicalCandidateCount} physical candidate(s).");
 }
