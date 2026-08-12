@@ -4985,15 +4985,15 @@
     - [x] Utiliser l’erreur Amiga prévue dans `ScpReconstructionExceptions` en lui transmettant le nombre de candidats décodés et le nombre de blocs conservés.
     - [x] Remplacer les deux commentaires anglais de `InferSectorsPerTrack` par une explication française du rejet d’un identifiant isolé et du seuil HD.
     - [x] Tester un ensemble non vide de candidats dont toutes les adresses sont rejetées par la géométrie.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AmstradIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiants de décodeurs
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AmstradIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AmstradIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiants de décodeurs
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AmstradIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AmstradScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Raccorder le registre directement à la politique correspondante.
