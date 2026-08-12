@@ -9,7 +9,11 @@ public sealed class AppleIIGcrTrackEncoder : TrackEncoderBase
     public override string Id => FluxCodecIds.AppleIIGcr;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.AppleIIGcr;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs demandés en GCR Apple II 5-and-3 ou 6-and-2.</summary>
+    /// <param name="request">Piste logique contenant le volume éventuel, le cylindre et les secteurs de 256 octets.</param>
+    /// <returns>Cellules binaires de la piste, dans leur ordre d'émission.</returns>
+    /// <exception cref="ArgumentException">La charge utile d'un secteur ne contient pas exactement 256 octets.</exception>
+    /// <remarks>Le nombre de secteurs demandé sélectionne le parcours 5-and-3 à treize secteurs ; les autres pistes utilisent le parcours 6-and-2.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits(); var volume = (byte)Attribute(request, AppleIIGcrFormat.VolumeAttributeName, AppleIIGcrFormat.DefaultVolume);

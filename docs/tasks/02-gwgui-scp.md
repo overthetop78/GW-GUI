@@ -3134,10 +3134,10 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmigaMfmTrackEncoder`.
     - [x] Ajouter la documentation XML des méthodes `EncodeBits, Nibble, EncodeOddEven`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleIIGcrTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits, EncodeSixAndTwo, EncodeFiveAndThree`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleIIGcrTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleIIGcrTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits, EncodeSixAndTwo, EncodeFiveAndThree`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AppleLisaFileWareGcrTrackEncoder`.
