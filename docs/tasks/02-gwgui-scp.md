@@ -4994,11 +4994,11 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AmstradIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AmstradScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Raccorder le registre directement à la politique correspondante.
-    - [ ] Adapter les consommateurs et les tests.
-    - [ ] Supprimer le fichier.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AmstradScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Raccorder le registre directement à la politique correspondante.
+    - [x] Adapter les consommateurs et les tests.
+    - [x] Supprimer le fichier.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AppleIIScpSectorReconstructor.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleIIScpSectorReconstructor.cs`.

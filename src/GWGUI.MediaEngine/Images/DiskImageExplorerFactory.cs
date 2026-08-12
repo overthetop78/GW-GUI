@@ -38,7 +38,7 @@ internal static class DiskImageExplorerFactory
         var iso = new IsoScpSectorImageReader(scp, decoders);
         var candidates = new ScpCandidateRegistry(
             new AmigaScpSectorImageReader(scp, decoders), iso,
-            new AtariScpSectorImageReader(scp, decoders), new AmstradScpSectorImageReader(scp, decoders),
+            new AtariScpSectorImageReader(scp, decoders),
             new BbcScpSectorImageReader(scp, decoders), new IbmPcScpSectorImageReader(scp, decoders),
             new EpsonQx10ScpSectorImageReader(scp, decoders), new UcsdScpSectorImageReader(scp, decoders),
             new CommodoreScpSectorImageReader(scp, decoders), new AppleScpSectorImageReader(scp, decoders),
