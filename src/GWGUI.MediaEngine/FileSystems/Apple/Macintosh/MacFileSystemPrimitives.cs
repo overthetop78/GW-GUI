@@ -20,4 +20,7 @@ internal static class MacFileSystemPrimitives
 
     /// <summary>Décode un nom Macintosh et remplace son séparateur historique par une barre oblique.</summary>
     public static string DecodeName(ReadOnlySpan<byte> value) => System.Text.Encoding.Latin1.GetString(value).Replace(':', '/');
+
+    /// <summary>Convertit sans dépassement un identifiant Macintosh vers la référence de stockage commune.</summary>
+    public static int ToStorageReference(uint id) => checked((int)Math.Min(id, int.MaxValue));
 }

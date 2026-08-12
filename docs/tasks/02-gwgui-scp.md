@@ -7088,70 +7088,71 @@
       - [x] Tester trois extents intégrés, besoin d'extents supplémentaires et bloc absent sans déplacement des données suivantes.
       - [x] Tester un cycle de dossiers et la validité propagée aux entrées.
   - [ ] `FileSystems/Readers/MacMfsFileSystemReader.cs`
-    - [ ] Emplacement, identité et catalogue
-      - [ ] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Mfs/MacMfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `mac-mfs` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Rendre immuable la collection des formats MFS annoncés.
-      - [ ] Remplacer le nom brut `Macintosh MFS` par la définition centrale du système.
-    - [ ] Disposition MFS
-      - [ ] Créer `MacMfsFileSystemLayout.cs` et y définir la taille sectorielle 512, le bloc MDB 2, la longueur minimale 64 et la signature `0xD2 0xD7`.
-      - [ ] Y définir la lecture des deux blocs d'informations de volume et les offsets MDB des dates, du répertoire, des allocations, de l'espace libre et du nom.
-      - [ ] Y définir l'offset 64 et la longueur 960 de la carte d'allocation, ainsi que sa capacité maximale de 640 entrées 12 bits.
-      - [ ] Y définir la disposition complète d'une entrée de répertoire MFS : longueur minimale 51, drapeaux, Finder info, numéro de fichier, deux forks, dates et nom.
-      - [ ] Remplacer tous les nombres bruts correspondants dans le Reader.
-    - [ ] Primitives Macintosh communes
-      - [ ] Remplacer `U16`, `U32`, `Pascal`, `DecodeMac`, `MacEpoch` et `MacDate` par `MacFileSystemPrimitives` et `MacFileSystemTime` communs à HFS et MFS.
-      - [ ] Supprimer les méthodes privées, la constante d'époque et les imports devenus inutiles après raccordement.
-    - [ ] Carte d'allocation MFS
-      - [ ] Créer `MacMfsAllocationMap.cs` et y déplacer `DecodeAllocationMap`.
-      - [ ] Nommer les trois octets portant deux entrées 12 bits et les masques/décalages pairs et impairs.
-      - [ ] Valider que la plage empaquetée contient tous les octets requis par le nombre d'allocations annoncé.
-      - [ ] Décoder également la dernière entrée lorsque le nombre demandé est impair, sans la laisser implicitement à zéro.
-      - [ ] Distinguer les marqueurs de cluster libre, premier cluster utilisable et fin de chaîne `0xFF1`.
-      - [ ] Déplacer dans ce composant le parcours protégé d'une chaîne et la détection des cycles ou indices hors carte.
-    - [ ] Lecture positionnelle des blocs
-      - [ ] Remplacer `ReadBlocks` par un résultat contenant les octets, la présence des blocs et la validité globale.
-      - [ ] Réserver exactement 512 octets par bloc absent ou de taille incorrecte afin de préserver les offsets suivants.
-      - [ ] Remplacer les textes bruts de bloc absent par une définition recevant la description et le numéro logique.
-      - [ ] Ne pas valider le MDB ni une entrée de répertoire à partir des zéros réservés pour un bloc absent.
-    - [ ] Lecture du répertoire MFS
-      - [ ] Créer `MacMfsDirectoryReader.cs` et y déplacer la boucle des blocs et des entrées.
-      - [ ] Valider sans dépassement la plage `directoryStart + directoryLength` avant de parcourir les blocs.
-      - [ ] Lire séparément drapeaux, Finder info, numéro, deux forks, dates et nom depuis la disposition nommée.
-      - [ ] Valider la longueur du nom maximale 63 et son alignement pair avant de passer à l'entrée suivante.
-      - [ ] Remplacer l'erreur brute d'entrée invalide par une définition recevant bloc et offset.
-      - [ ] Remplacer la conversion directe de `uint fileNumber` vers `int` par une conversion protégée définie dans le modèle commun.
-      - [ ] Conserver le tri final des entrées par nom sans casse.
-    - [ ] Lecture des forks MFS
-      - [ ] Créer `MacMfsForkReader.cs` pour lire une chaîne depuis `MacMfsAllocationMap`.
-      - [ ] Valider que la taille d'allocation est non nulle et divisible par 512 avant de calculer ses blocs logiques.
-      - [ ] Faire retourner contenu, validité, blocs manquants et chaîne visitée.
-      - [ ] Réserver exactement 512 octets pour chaque bloc absent ou de mauvaise taille sans décaler la suite du fork.
-      - [ ] Signaler un cycle, une allocation hors carte, une fin prématurée et une longueur logique supérieure aux données valides.
-      - [ ] Conserver séparément data fork et resource fork dans le résultat technique au lieu de perdre l'un des deux lors du choix du contenu exposé.
-      - [ ] Faire porter à `FileSystemEntry` la validité combinée réelle au lieu de fournir systématiquement `true`.
-      - [ ] Remplacer l'avertissement brut de resource fork incohérent par une définition recevant le fichier, la longueur et le premier cluster.
-      - [ ] Traduire le commentaire anglais sur le choix du resource fork en CSDoc française de la règle correspondante.
-    - [ ] Capacité et espace libre
-      - [ ] Valider le nombre d'allocations, la taille d'allocation, le début de la zone et le nombre libre avant de calculer l'espace libre.
-      - [ ] Ne pas présenter un espace libre fiable lorsque le nombre libre dépasse le total ou que le MDB nécessaire est incomplet.
-      - [ ] Conserver la capacité physique de l'image telle qu'elle est actuellement exposée par MFS.
-    - [ ] Erreurs et avertissements MFS
-      - [ ] Utiliser `MacFileSystemExceptions` pour le volume non reconnu, le bloc absent, les données incomplètes et la chaîne cyclique.
-      - [ ] Ajouter les erreurs paramétrées de carte tronquée, entrée invalide, taille d'allocation invalide et métadonnées de fork incohérentes.
-      - [ ] Remplacer tous les textes d'erreur et d'avertissement bruts du Reader et des composants MFS.
-    - [ ] Présentation et CSDoc française
-      - [ ] Séparer les lectures MDB, entrées, forks, dates et entrées de carte actuellement regroupées sur une même ligne.
-      - [ ] Remettre sur une seule ligne chaque signature, appel et expression complète qui tient lisiblement.
-      - [ ] Documenter en français le Reader et chacun de ses membres restants.
-      - [ ] Documenter en français chaque type, propriété et méthode MFS créé.
+    - [x] Emplacement, identité et catalogue
+      - [x] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Mfs/MacMfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `mac-mfs` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Rendre immuable la collection des formats MFS annoncés.
+      - [x] Remplacer le nom brut `Macintosh MFS` par la définition centrale du système.
+    - [x] Disposition MFS
+      - [x] Créer `MacMfsFileSystemLayout.cs` et y définir la taille sectorielle 512, le bloc MDB 2, la longueur minimale 64 et la signature `0xD2 0xD7`.
+      - [x] Y définir la lecture des deux blocs d'informations de volume et les offsets MDB des dates, du répertoire, des allocations, de l'espace libre et du nom.
+      - [x] Y définir l'offset 64 et la longueur 960 de la carte d'allocation, ainsi que sa capacité maximale de 640 entrées 12 bits.
+      - [x] Y définir la disposition complète d'une entrée de répertoire MFS : longueur minimale 51, drapeaux, Finder info, numéro de fichier, deux forks, dates et nom.
+      - [x] Remplacer tous les nombres bruts correspondants dans le Reader.
+    - [x] Primitives Macintosh communes
+      - [x] Remplacer `U16`, `U32`, `Pascal`, `DecodeMac`, `MacEpoch` et `MacDate` par `MacFileSystemPrimitives` et `MacFileSystemTime` communs à HFS et MFS.
+      - [x] Supprimer les méthodes privées, la constante d'époque et les imports devenus inutiles après raccordement.
+    - [x] Carte d'allocation MFS
+      - [x] Créer `MacMfsAllocationMap.cs` et y déplacer `DecodeAllocationMap`.
+      - [x] Nommer les trois octets portant deux entrées 12 bits et les masques/décalages pairs et impairs.
+      - [x] Valider que la plage empaquetée contient tous les octets requis par le nombre d'allocations annoncé.
+      - [x] Décoder également la dernière entrée lorsque le nombre demandé est impair, sans la laisser implicitement à zéro.
+      - [x] Distinguer les marqueurs de cluster libre, premier cluster utilisable et fin de chaîne `0xFF1`.
+      - [x] Déplacer dans ce composant le parcours protégé d'une chaîne et la détection des cycles ou indices hors carte.
+    - [x] Lecture positionnelle des blocs
+      - [x] Remplacer `ReadBlocks` par un résultat contenant les octets, la présence des blocs et la validité globale.
+      - [x] Réserver exactement 512 octets par bloc absent ou de taille incorrecte afin de préserver les offsets suivants.
+      - [x] Remplacer les textes bruts de bloc absent par une définition recevant la description et le numéro logique.
+      - [x] Ne pas valider le MDB ni une entrée de répertoire à partir des zéros réservés pour un bloc absent.
+    - [x] Lecture du répertoire MFS
+      - [x] Créer `MacMfsDirectoryReader.cs` et y déplacer la boucle des blocs et des entrées.
+      - [x] Valider sans dépassement la plage `directoryStart + directoryLength` avant de parcourir les blocs.
+      - [x] Lire séparément drapeaux, Finder info, numéro, deux forks, dates et nom depuis la disposition nommée.
+      - [x] Valider la longueur du nom maximale 63 et son alignement pair avant de passer à l'entrée suivante.
+      - [x] Remplacer l'erreur brute d'entrée invalide par une définition recevant bloc et offset.
+      - [x] Remplacer la conversion directe de `uint fileNumber` vers `int` par une conversion protégée définie dans le modèle commun.
+      - [x] Conserver le tri final des entrées par nom sans casse.
+    - [x] Lecture des forks MFS
+      - [x] Créer `MacMfsForkReader.cs` pour lire une chaîne depuis `MacMfsAllocationMap`.
+      - [x] Valider que la taille d'allocation est non nulle et divisible par 512 avant de calculer ses blocs logiques.
+      - [x] Faire retourner contenu, validité, blocs manquants et chaîne visitée.
+      - [x] Réserver exactement 512 octets pour chaque bloc absent ou de mauvaise taille sans décaler la suite du fork.
+      - [x] Signaler un cycle, une allocation hors carte, une fin prématurée et une longueur logique supérieure aux données valides.
+      - [x] Conserver séparément data fork et resource fork dans le résultat technique au lieu de perdre l'un des deux lors du choix du contenu exposé.
+      - [x] Faire porter à `FileSystemEntry` la validité combinée réelle au lieu de fournir systématiquement `true`.
+      - [x] Remplacer l'avertissement brut de resource fork incohérent par une définition recevant le fichier, la longueur et le premier cluster.
+      - [x] Traduire le commentaire anglais sur le choix du resource fork en CSDoc française de la règle correspondante.
+    - [x] Capacité et espace libre
+      - [x] Valider le nombre d'allocations, la taille d'allocation, le début de la zone et le nombre libre avant de calculer l'espace libre.
+      - [x] Ne pas présenter un espace libre fiable lorsque le nombre libre dépasse le total ou que le MDB nécessaire est incomplet.
+      - [x] Conserver la capacité physique de l'image telle qu'elle est actuellement exposée par MFS.
+    - [x] Erreurs et avertissements MFS
+      - [x] Utiliser `MacFileSystemExceptions` pour le volume non reconnu, le bloc absent, les données incomplètes et la chaîne cyclique.
+      - [x] Ajouter les erreurs paramétrées de carte tronquée, entrée invalide, taille d'allocation invalide et métadonnées de fork incohérentes.
+      - [x] Remplacer tous les textes d'erreur et d'avertissement bruts du Reader et des composants MFS.
+    - [x] Présentation et CSDoc française
+      - [x] Séparer les lectures MDB, entrées, forks, dates et entrées de carte actuellement regroupées sur une même ligne.
+      - [x] Remettre sur une seule ligne chaque signature, appel et expression complète qui tient lisiblement.
+      - [x] Documenter en français le Reader et chacun de ses membres restants.
+      - [x] Documenter en français chaque type, propriété et méthode MFS créé.
     - [ ] Tests ciblés MFS
       - [ ] Tester par le Reader public des images MFS 400 K et 800 K disponibles dans `image_test` avec volume, dates, entrées, contenus et espace libre attendus.
-      - [ ] Tester signature et MDB tronqué, répertoire absent et entrée dont le nom dépasse la plage.
-      - [ ] Tester le décodage d'entrées 12 bits paire, impaire et dernière entrée d'une carte de longueur impaire.
-      - [ ] Tester data fork, resource fork, fichier avec les deux et métadonnées de fork incohérentes.
-      - [ ] Tester cycle, allocation hors carte, fin prématurée et bloc absent sans glissement du contenu.
-      - [ ] Tester une taille d'allocation invalide et un nombre libre incohérent.
+        - Blocage : les trois images MFS reelles 400 Kio de `image_test` sont validees, mais aucune image MFS reelle 800 Kio ne se trouve dans le corpus ; les images 800 Kio disponibles sont au format HFS.
+      - [x] Tester signature et MDB tronqué, répertoire absent et entrée dont le nom dépasse la plage.
+      - [x] Tester le décodage d'entrées 12 bits paire, impaire et dernière entrée d'une carte de longueur impaire.
+      - [x] Tester data fork, resource fork, fichier avec les deux et métadonnées de fork incohérentes.
+      - [x] Tester cycle, allocation hors carte, fin prématurée et bloc absent sans glissement du contenu.
+      - [x] Tester une taille d'allocation invalide et un nombre libre incohérent.
   - [ ] `FileSystems/Readers/ProDosFileSystemReader.cs`
     - [ ] Emplacement, identité et formats
       - [ ] Déplacer le Reader et ses composants vers `FileSystems/Apple/ProDos/` puis adapter le namespace et les consommateurs.

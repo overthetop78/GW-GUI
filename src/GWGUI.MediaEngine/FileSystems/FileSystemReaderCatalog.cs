@@ -15,7 +15,7 @@ public static class FileSystemReaderCatalog
         new Apple.InformXzip.AppleInformXzipFileSystemReader(),
         new Apple.Dos.AppleDosFileSystemReader(),
         new Readers.ProDosFileSystemReader(),
-        new Readers.MacMfsFileSystemReader(),
+        new Apple.Macintosh.Mfs.MacMfsFileSystemReader(),
         new Apple.Macintosh.Hfs.MacHfsFileSystemReader(),
         new Apple.Lisa.LisaFileSystemReader(),
         new Cpm.AmstradCpmFileSystemReader(),

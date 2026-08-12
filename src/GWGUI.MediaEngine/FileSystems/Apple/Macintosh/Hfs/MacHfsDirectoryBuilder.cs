@@ -22,9 +22,6 @@ internal static class MacHfsDirectoryBuilder
     {
         var children = record.IsDirectory ? BuildChildren(record.Id, records, new HashSet<uint>(path), warnings) : [];
         var content = record.IsDirectory ? null : record.DataFork.Count > 0 ? record.DataFork : record.ResourceFork;
-        return new(record.Name, record.IsDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, record.Size, record.Modified, record.Type, 0, ToStorageReference(record.Id), record.IsValid, children, content);
+        return new(record.Name, record.IsDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, record.Size, record.Modified, record.Type, 0, MacFileSystemPrimitives.ToStorageReference(record.Id), record.IsValid, children, content);
     }
-
-    /// <summary>Convertit sans dépassement un identifiant HFS vers la référence de stockage commune.</summary>
-    private static int ToStorageReference(uint id) => checked((int)Math.Min(id, int.MaxValue));
 }
