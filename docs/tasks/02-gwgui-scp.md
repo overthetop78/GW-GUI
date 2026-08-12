@@ -5996,39 +5996,39 @@
       - [x] Tester chaque version de catalogue que le Reader sait effectivement lire.
       - [x] Tester l'ordre des pages, les fichiers utilisateur et le comptage des pages libres.
       - [x] Tester un MDDF absent, un catalogue absent et une page manquante.
-  - [ ] RT-11
-    - [ ] `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`.
-      - [ ] Ajouter la taille de bloc `512`, le home block `1` et la signature système `DECRT11`.
-      - [ ] Ajouter les offsets du nom de volume, de l'identifiant système et du premier segment de répertoire.
-      - [ ] Ajouter les limites `2` et `1001` du premier bloc de répertoire avec des noms explicites.
-      - [ ] Ajouter la taille de l'en-tête de segment, la taille d'entrée et les offsets de statut, nom, longueur et date.
-      - [ ] Ajouter la table RADIX-50 exacte actuellement utilisée.
-      - [ ] Ajouter les règles de décodage de l'année, du mois et du jour RT-11.
-      - [ ] Remplacer chaque valeur brute correspondante dans `Rt11FileSystemReader`.
-      - [ ] Documenter en français chaque constante, table et règle de date.
-    - [ ] `FileSystems/Dec/Rt11/Rt11DirectoryEntryStatus.cs`
-      - [ ] Créer l'enum à drapeaux `Rt11DirectoryEntryStatus`.
-      - [ ] Ajouter Tentative `0x0100`, Empty `0x0200`, Permanent `0x0400`, EndOfSegment `0x0800` et Protected `0x8000`.
-      - [ ] Remplacer les cinq constantes privées du Reader par cet enum.
-      - [ ] Documenter en français l'enum et chaque drapeau.
-    - [ ] `FileSystems/Dec/Rt11/Rt11DirectoryReader.cs`
-      - [ ] Créer `FileSystems/Dec/Rt11/Rt11DirectoryReader.cs`.
-      - [ ] Déplacer le parcours des segments et le décodage des entrées hors du Reader principal.
-      - [ ] Supprimer `commentParts` et son test toujours faux.
-      - [ ] Retourner les entrées, le nombre de blocs libres et les avertissements dans un résultat nommé.
-      - [ ] Documenter en français le type, son résultat et chacune de ses méthodes.
-    - [ ] `FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de home block invalide avec signature et bloc de répertoire observés.
-      - [ ] Ajouter l'avertissement de paire de blocs absente avec premier bloc demandé.
-      - [ ] Ajouter l'avertissement de contenu tronqué avec bloc initial et nombre de blocs.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions RT-11
-      - [ ] Tester chaque drapeau d'entrée et plusieurs drapeaux combinés.
-      - [ ] Tester un nom RADIX-50, une date valide et une date invalide.
-      - [ ] Tester plusieurs segments, une paire de blocs absente et un contenu tronqué.
+  - [x] RT-11
+    - [x] `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`
+      - [x] Créer `FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs`.
+      - [x] Ajouter la taille de bloc `512`, le home block `1` et la signature système `DECRT11`.
+      - [x] Ajouter les offsets du nom de volume, de l'identifiant système et du premier segment de répertoire.
+      - [x] Ajouter les limites `2` et `1001` du premier bloc de répertoire avec des noms explicites.
+      - [x] Ajouter la taille de l'en-tête de segment, la taille d'entrée et les offsets de statut, nom, longueur et date.
+      - [x] Ajouter la table RADIX-50 exacte actuellement utilisée.
+      - [x] Ajouter les règles de décodage de l'année, du mois et du jour RT-11.
+      - [x] Remplacer chaque valeur brute correspondante dans `Rt11FileSystemReader`.
+      - [x] Documenter en français chaque constante, table et règle de date.
+    - [x] `FileSystems/Dec/Rt11/Rt11DirectoryEntryStatus.cs`
+      - [x] Créer l'enum à drapeaux `Rt11DirectoryEntryStatus`.
+      - [x] Ajouter Tentative `0x0100`, Empty `0x0200`, Permanent `0x0400`, EndOfSegment `0x0800` et Protected `0x8000`.
+      - [x] Remplacer les cinq constantes privées du Reader par cet enum.
+      - [x] Documenter en français l'enum et chaque drapeau.
+    - [x] `FileSystems/Dec/Rt11/Rt11DirectoryReader.cs`
+      - [x] Créer `FileSystems/Dec/Rt11/Rt11DirectoryReader.cs`.
+      - [x] Déplacer le parcours des segments et le décodage des entrées hors du Reader principal.
+      - [x] Supprimer `commentParts` et son test toujours faux.
+      - [x] Retourner les entrées, le nombre de blocs libres et les avertissements dans un résultat nommé.
+      - [x] Documenter en français le type, son résultat et chacune de ses méthodes.
+    - [x] `FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de home block invalide avec signature et bloc de répertoire observés.
+      - [x] Ajouter l'avertissement de paire de blocs absente avec premier bloc demandé.
+      - [x] Ajouter l'avertissement de contenu tronqué avec bloc initial et nombre de blocs.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions RT-11
+      - [x] Tester chaque drapeau d'entrée et plusieurs drapeaux combinés.
+      - [x] Tester un nom RADIX-50, une date valide et une date invalide.
+      - [x] Tester plusieurs segments, une paire de blocs absente et un contenu tronqué.
   - [ ] UCSD p-System
     - [ ] `FileSystems/Ucsd/UcsdFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Ucsd/UcsdFileSystemLayout.cs`.
