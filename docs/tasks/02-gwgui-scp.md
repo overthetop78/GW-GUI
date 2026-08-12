@@ -3275,45 +3275,45 @@
     - Blocage : `FluxRevolutionFactory` et `RotatingChecksumCalculator` n'existent pas encore ; leur création est prévue dans le découpage détaillé de `TrackEncoding.cs` plus loin dans cette section.
 
 - [ ] Compléments issus de la relecture complète de l'encodage
-  - [ ] `Encoding/FluxEncoderRegistry.cs`
-    - [ ] Séparation du catalogue par défaut et du registre
-      - [ ] Créer `Encoding/FluxEncoderCatalog.cs` pour construire la collection par défaut des vingt-quatre encodeurs actuellement instanciés directement dans le registre.
-      - [ ] Déplacer dans ce catalogue chaque construction `new ...TrackEncoder()` sans modifier les encodeurs enregistrés ni leur ordre public actuel.
-      - [ ] Ajouter à `FluxEncoderRegistry` un constructeur recevant la collection d'encodeurs à enregistrer.
-      - [ ] Conserver un constructeur public sans paramètre qui utilise explicitement le catalogue par défaut afin de ne pas casser `AppleNibbleImageWriter`, `SectorImageFluxVisualizer` et les consommateurs actuels.
-    - [ ] Index immuable des encodeurs
-      - [ ] Copier la collection reçue avant de l'exposer afin qu'un tableau fourni ou récupéré par transtypage ne puisse pas modifier le registre après sa construction.
-      - [ ] Construire une seule fois un dictionnaire indexé par identifiant avec une comparaison ordinale explicite.
-      - [ ] Refuser un encodeur nul dans la collection reçue.
-      - [ ] Refuser un identifiant nul, vide ou composé uniquement d'espaces.
-      - [ ] Refuser deux encodeurs portant le même identifiant au lieu de conserver un registre ambigu.
-      - [ ] Exposer `Encoders` par une vue réellement non modifiable conservant l'ordre du catalogue.
-    - [ ] Recherche et exécution
-      - [ ] Remplacer la recherche linéaire `First` de `Get` par la consultation du dictionnaire construit au démarrage.
-      - [ ] Remplacer l'exception générique produite par `First` par l'erreur dédiée recevant l'identifiant absent.
-      - [ ] Faire utiliser à `Encode` l'encodeur retourné par `Get` sans effectuer une seconde recherche.
-      - [ ] Conserver sur une seule ligne les implémentations courtes de `Get` et `Encode` lorsqu'elles tiennent lisiblement sur une ligne.
-    - [ ] Erreurs du registre
-      - [ ] Créer `Encoding/FluxEncoderRegistryExceptions.cs` avec une erreur paramétrable pour un encodeur nul.
-      - [ ] Y ajouter une erreur paramétrable pour un identifiant vide.
-      - [ ] Y ajouter une erreur paramétrable recevant l'identifiant dupliqué.
-      - [ ] Y ajouter une erreur paramétrable recevant l'identifiant demandé mais absent.
-      - [ ] Remplacer chaque texte d'erreur brut du registre et du catalogue par ces définitions.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Présenter dans `FluxEncoderCatalog.cs` un seul encodeur par ligne au lieu de tasser plusieurs constructions sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc de `FluxEncoderRegistry`, de `FluxEncoderCatalog`, de `FluxEncoderRegistryExceptions`, de leurs membres et de leurs constructeurs et méthodes.
-    - [ ] Raccordement des consommateurs
-      - [ ] Adapter `AppleNibbleImageWriter.cs` au constructeur sans paramètre conservé et permettre toujours l'injection explicite d'un registre.
-      - [ ] Adapter `SectorImageFluxVisualizer.cs` au constructeur sans paramètre conservé et permettre toujours l'injection explicite d'un registre.
-      - [ ] Adapter les tests qui construisent directement `FluxEncoderRegistry` sans remplacer leurs identifiants par de nouveaux textes bruts.
-    - [ ] Tests ciblés du registre
-      - [ ] Tester que le catalogue par défaut contient exactement chaque encodeur attendu une seule fois et dans l'ordre public conservé.
-      - [ ] Tester qu'une collection fournie est copiée et ne peut plus modifier `Encoders` ni l'index après la construction.
-      - [ ] Tester le rejet d'un encodeur nul, d'un identifiant vide et d'un identifiant dupliqué.
-      - [ ] Tester l'erreur et l'identifiant transmis lorsqu'un encodeur est absent.
-      - [ ] Tester la sélection puis l'exécution d'un encodeur injecté.
-      - [ ] Tester que le constructeur sans paramètre permet toujours les encodages actuellement utilisés par le writer Apple et le visualiseur.
+  - [x] `Encoding/FluxEncoderRegistry.cs`
+    - [x] Séparation du catalogue par défaut et du registre
+      - [x] Créer `Encoding/FluxEncoderCatalog.cs` pour construire la collection par défaut des vingt-quatre encodeurs actuellement instanciés directement dans le registre.
+      - [x] Déplacer dans ce catalogue chaque construction `new ...TrackEncoder()` sans modifier les encodeurs enregistrés ni leur ordre public actuel.
+      - [x] Ajouter à `FluxEncoderRegistry` un constructeur recevant la collection d'encodeurs à enregistrer.
+      - [x] Conserver un constructeur public sans paramètre qui utilise explicitement le catalogue par défaut afin de ne pas casser `AppleNibbleImageWriter`, `SectorImageFluxVisualizer` et les consommateurs actuels.
+    - [x] Index immuable des encodeurs
+      - [x] Copier la collection reçue avant de l'exposer afin qu'un tableau fourni ou récupéré par transtypage ne puisse pas modifier le registre après sa construction.
+      - [x] Construire une seule fois un dictionnaire indexé par identifiant avec une comparaison ordinale explicite.
+      - [x] Refuser un encodeur nul dans la collection reçue.
+      - [x] Refuser un identifiant nul, vide ou composé uniquement d'espaces.
+      - [x] Refuser deux encodeurs portant le même identifiant au lieu de conserver un registre ambigu.
+      - [x] Exposer `Encoders` par une vue réellement non modifiable conservant l'ordre du catalogue.
+    - [x] Recherche et exécution
+      - [x] Remplacer la recherche linéaire `First` de `Get` par la consultation du dictionnaire construit au démarrage.
+      - [x] Remplacer l'exception générique produite par `First` par l'erreur dédiée recevant l'identifiant absent.
+      - [x] Faire utiliser à `Encode` l'encodeur retourné par `Get` sans effectuer une seconde recherche.
+      - [x] Conserver sur une seule ligne les implémentations courtes de `Get` et `Encode` lorsqu'elles tiennent lisiblement sur une ligne.
+    - [x] Erreurs du registre
+      - [x] Créer `Encoding/FluxEncoderRegistryExceptions.cs` avec une erreur paramétrable pour un encodeur nul.
+      - [x] Y ajouter une erreur paramétrable pour un identifiant vide.
+      - [x] Y ajouter une erreur paramétrable recevant l'identifiant dupliqué.
+      - [x] Y ajouter une erreur paramétrable recevant l'identifiant demandé mais absent.
+      - [x] Remplacer chaque texte d'erreur brut du registre et du catalogue par ces définitions.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Présenter dans `FluxEncoderCatalog.cs` un seul encodeur par ligne au lieu de tasser plusieurs constructions sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc de `FluxEncoderRegistry`, de `FluxEncoderCatalog`, de `FluxEncoderRegistryExceptions`, de leurs membres et de leurs constructeurs et méthodes.
+    - [x] Raccordement des consommateurs
+      - [x] Adapter `AppleNibbleImageWriter.cs` au constructeur sans paramètre conservé et permettre toujours l'injection explicite d'un registre.
+      - [x] Adapter `SectorImageFluxVisualizer.cs` au constructeur sans paramètre conservé et permettre toujours l'injection explicite d'un registre.
+      - [x] Adapter les tests qui construisent directement `FluxEncoderRegistry` sans remplacer leurs identifiants par de nouveaux textes bruts.
+    - [x] Tests ciblés du registre
+      - [x] Tester que le catalogue par défaut contient exactement chaque encodeur attendu une seule fois et dans l'ordre public conservé.
+      - [x] Tester qu'une collection fournie est copiée et ne peut plus modifier `Encoders` ni l'index après la construction.
+      - [x] Tester le rejet d'un encodeur nul, d'un identifiant vide et d'un identifiant dupliqué.
+      - [x] Tester l'erreur et l'identifiant transmis lorsqu'un encodeur est absent.
+      - [x] Tester la sélection puis l'exécution d'un encodeur injecté.
+      - [x] Tester que le constructeur sans paramètre permet toujours les encodages actuellement utilisés par le writer Apple et le visualiseur.
   - [ ] `Encoding/TrackEncodeModels.cs`
     - [ ] Découpage des quatre types publics
       - [ ] Créer `Encoding/TrackSector.cs` et y déplacer uniquement le record `TrackSector`.

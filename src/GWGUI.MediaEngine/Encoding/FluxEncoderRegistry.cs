@@ -5,27 +5,26 @@ public sealed class FluxEncoderRegistry
 {
     private readonly IReadOnlyDictionary<string, ITrackEncoder> _encodersById;
 
-    /// <summary>Initialise le registre avec les encodeurs fournis par MediaEngine.</summary>
-    /// <exception cref="ArgumentException">Deux encodeurs possèdent le même identifiant technique.</exception>
-    public FluxEncoderRegistry()
+    /// <summary>Initialise le registre avec le catalogue fourni par MediaEngine.</summary>
+    public FluxEncoderRegistry() : this(FluxEncoderCatalog.CreateDefault()) { }
+
+    /// <summary>Initialise le registre avec une collection explicite d'encodeurs.</summary>
+    /// <param name="encoders">Encodeurs à copier et à indexer dans l'ordre reçu.</param>
+    /// <exception cref="ArgumentNullException">La collection est nulle.</exception>
+    /// <exception cref="ArgumentException">Un encodeur est nul, son identifiant est vide ou un identifiant est dupliqué.</exception>
+    public FluxEncoderRegistry(IEnumerable<ITrackEncoder> encoders)
     {
-        ITrackEncoder[] encoders =
-        [
-            new IsoMfmTrackEncoder(), new IsoFmTrackEncoder(), new AmigaMfmTrackEncoder(),
-            new AppleIIGcrTrackEncoder(), new AppleRwts18TrackEncoder(), new AppleMacGcrTrackEncoder(), new AppleLisaFileWareGcrTrackEncoder(), new CommodoreGcrTrackEncoder(),
-            new HpMmfmTrackEncoder(), new DataGeneralFmTrackEncoder(), new MicropolisMfmTrackEncoder(),
-            new MembrainMfmTrackEncoder(), new Aed6200pMfmTrackEncoder(), new QdMo5MfmTrackEncoder(),
-            new CenturionMfmTrackEncoder(), new NorthstarMfmTrackEncoder(), new HeathkitFmTrackEncoder(),
-            new MicralNFmTrackEncoder(), new EmuFmTrackEncoder(), new TycomFmTrackEncoder(),
-            new DecRx02TrackEncoder(), new ArburgTrackEncoder(), new Victor9kGcrTrackEncoder(),
-            new Commodore900GcrTrackEncoder()
-        ];
+        ArgumentNullException.ThrowIfNull(encoders);
+        var encoderArray = encoders.ToArray();
         var encodersById = new Dictionary<string, ITrackEncoder>(StringComparer.Ordinal);
-        foreach (var encoder in encoders)
+        for (var index = 0; index < encoderArray.Length; index++)
         {
+            var encoder = encoderArray[index];
+            if (encoder is null) throw FluxEncoderRegistryExceptions.NullEncoder(index);
+            if (string.IsNullOrWhiteSpace(encoder.Id)) throw FluxEncoderRegistryExceptions.EmptyEncoderId(index);
             if (!encodersById.TryAdd(encoder.Id, encoder)) throw FluxEncoderRegistryExceptions.DuplicateEncoder(encoder.Id);
         }
-        Encoders = Array.AsReadOnly(encoders);
+        Encoders = Array.AsReadOnly(encoderArray);
         _encodersById = encodersById;
     }
 

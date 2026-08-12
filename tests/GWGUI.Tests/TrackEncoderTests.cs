@@ -67,6 +67,49 @@ public sealed class TrackEncoderTests
         Assert.Equal(decoderIds, encoderIds);
     }
 
+    [Fact]
+    public void DefaultEncoderCatalogPreservesItsPublicOrderAndUniqueness()
+    {
+        string[] expected = ["iso.mfm", "iso.fm", "amiga.mfm", "apple2.gcr", "apple2.rwts18", "applemac.gcr", "applelisa.fileware.gcr", "commodore.gcr", "hp.mmfm", "datageneral.fm", "micropolis.mfm", "membrain.mfm", "aed6200p.mfm", "qdmo5.mfm", "centurion.mfm", "northstar.mfm", "heathkit.fm", "micraln.fm", "emu.fm", "tycom.fm", "dec.rx02", "arburg", "victor9k.gcr", "commodore900.gcr"];
+        var actual = new FluxEncoderRegistry().Encoders.Select(encoder => encoder.Id).ToArray();
+
+        Assert.Equal(expected, actual);
+        Assert.Equal(actual.Length, actual.Distinct(StringComparer.Ordinal).Count());
+    }
+
+    [Fact]
+    public void RegistryCopiesTheProvidedCollection()
+    {
+        var first = new StubTrackEncoder("first");
+        ITrackEncoder[] source = [first];
+        var registry = new FluxEncoderRegistry(source);
+
+        source[0] = new StubTrackEncoder("replacement");
+
+        Assert.Same(first, Assert.Single(registry.Encoders));
+        Assert.Same(first, registry.Get("first"));
+    }
+
+    [Fact]
+    public void RegistryRejectsNullEncoderEmptyIdentifierAndDuplicateIdentifier()
+    {
+        Assert.Contains("index 0", Assert.Throws<ArgumentException>(() => new FluxEncoderRegistry(new ITrackEncoder[] { null! })).Message, StringComparison.Ordinal);
+        Assert.Contains("index 0", Assert.Throws<ArgumentException>(() => new FluxEncoderRegistry([new StubTrackEncoder(" ")])).Message, StringComparison.Ordinal);
+        Assert.Contains("duplicate", Assert.Throws<ArgumentException>(() => new FluxEncoderRegistry([new StubTrackEncoder("duplicate"), new StubTrackEncoder("duplicate")])).Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RegistryReportsMissingIdentifierAndExecutesInjectedEncoder()
+    {
+        var encoder = new StubTrackEncoder("injected");
+        var registry = new FluxEncoderRegistry([encoder]);
+        var request = new TrackEncodeRequest(0, 0, [new TrackSector(1, [0])]);
+
+        Assert.Contains("missing", Assert.Throws<KeyNotFoundException>(() => registry.Get("missing")).Message, StringComparison.Ordinal);
+        Assert.Same(encoder.Result, registry.Encode("injected", request));
+        Assert.Same(request, encoder.LastRequest);
+    }
+
     private static IReadOnlyDictionary<string, string> CodecDisplayNamesById()
     {
         var identifierFields = typeof(FluxCodecIds).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
@@ -221,5 +264,19 @@ public sealed class TrackEncoderTests
         var decoded = new FluxDecoderRegistry().Decode(id, encoded.Revolution);
         Assert.True(Assert.Single(decoded.Sectors!).IntegrityValid);
         Assert.Contains(decoded.Structures, item => item.Kind == FluxStructureKind.DeletedDataAddressMark);
+    }
+
+    private sealed class StubTrackEncoder(string id) : ITrackEncoder
+    {
+        public string Id { get; } = id;
+        public string DisplayName => Id;
+        public TrackEncodeRequest? LastRequest { get; private set; }
+        public EncodedTrack Result { get; } = new(id, [true], TrackEncoding.ToRevolution([true], 1, 1));
+
+        public EncodedTrack Encode(TrackEncodeRequest request)
+        {
+            LastRequest = request;
+            return Result;
+        }
     }
 }
