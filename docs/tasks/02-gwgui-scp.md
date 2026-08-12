@@ -5226,15 +5226,15 @@
     - [x] Ajouter la documentation XML des types `IIsoScpSectorImagePolicy`.
     - [x] Documenter en français `DecoderIds` en précisant qu'il expose les identifiants des décodeurs acceptés par la politique.
     - [x] Documenter en français `Build`, ses paramètres, son résultat, les exceptions prévues et la signification d'un `formatId` nul pour les politiques de détection automatique.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImagePolicyRegistry.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiants de formats
-    - [ ] Remplacer les préfixes bruts `atari.`, `atarist.`, `amstrad.` et `ibm.` par `DiskImageFormatIds.AtariPrefix`, `DiskImageFormatIds.AtariStPrefix`, `DiskImageFormatIds.AmstradPrefix` et `DiskImageFormatIds.IbmPrefix`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoScpSectorImagePolicyRegistry`.
-    - [ ] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImagePolicyRegistry.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiants de formats
+    - [x] Remplacer les préfixes bruts `atari.`, `atarist.`, `amstrad.` et `ibm.` par `DiskImageFormatIds.AtariPrefix`, `DiskImageFormatIds.AtariStPrefix`, `DiskImageFormatIds.AmstradPrefix` et `DiskImageFormatIds.IbmPrefix`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoScpSectorImagePolicyRegistry`.
+    - [x] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
 - [ ] Compléments issus de la relecture complète de la conversion et de la visualisation
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImageReader.cs`
