@@ -5192,21 +5192,21 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `GenericIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Définitions communes et détection IBM
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les identifiants définis dans `Decoding/Definitions/FluxCodecIds.cs`.
-    - [ ] Remplacer la taille sectorielle `512`, les adresses CHS brutes du bloc de boot et du premier bloc FAT, l'offset `0` du descripteur de média et sa valeur de repli par les définitions de `FileSystems/Fat/FatBpbLayout.cs`.
-    - [ ] Remplacer l'appel explicitement sélectionné à `IbmPcImageReader.TryDetectFluxGeometry` par `Geometries/Ibm/IbmBootGeometryDetector.cs`.
-    - [ ] Remplacer l'appel automatique à `IbmPcImageReader.TryIdentifyFluxGeometry` par `Recognition/Ibm/IbmDosDiskProbe.cs`.
-    - [ ] Utiliser le catalogue IBM prévu pour résoudre l'identifiant correspondant à la géométrie, puis supprimer la dépendance de cette politique envers `IbmPcImageReader`.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne l'affectation conditionnelle de `identified` et l'appel à `IsoSectorImageBuilder.CreateUniform` lorsqu'ils tiennent dans la longueur admise par le document.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IbmPcIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `IbmPcIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Définitions communes et détection IBM
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les identifiants définis dans `Decoding/Definitions/FluxCodecIds.cs`.
+    - [x] Remplacer la taille sectorielle `512`, les adresses CHS brutes du bloc de boot et du premier bloc FAT, l'offset `0` du descripteur de média et sa valeur de repli par les définitions de `FileSystems/Fat/FatBpbLayout.cs`.
+    - [x] Remplacer l'appel explicitement sélectionné à `IbmPcImageReader.TryDetectFluxGeometry` par `Geometries/Ibm/IbmBootGeometryDetector.cs`.
+    - [x] Remplacer l'appel automatique à `IbmPcImageReader.TryIdentifyFluxGeometry` par `Recognition/Ibm/IbmDosDiskProbe.cs`.
+    - [x] Utiliser le catalogue IBM prévu pour résoudre l'identifiant correspondant à la géométrie, puis supprimer la dépendance de cette politique envers `IbmPcImageReader`.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne l'affectation conditionnelle de `identified` et l'appel à `IsoSectorImageBuilder.CreateUniform` lorsqu'ils tiennent dans la longueur admise par le document.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IbmPcIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `IbmPcIsoScpSectorImagePolicy, Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IbmPcScpSectorImageReader.cs`
   - [ ] Suppression du wrapper sans traitement
     - [ ] Faire router directement les identifiants commençant par `DiskImageFormatIds.IbmPrefix` vers `IbmPcIsoScpSectorImagePolicy` dans le registre ISO.

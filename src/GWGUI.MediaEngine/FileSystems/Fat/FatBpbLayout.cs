@@ -17,6 +17,18 @@ internal static class FatBpbLayout
     public const char SpacePadding = ' ';
     /// <summary>Premier numéro de secteur logique.</summary>
     public const int FirstSectorNumber = 1;
+    /// <summary>Numéro de cylindre du secteur d'amorçage et du premier secteur FAT.</summary>
+    public const int SystemCylinder = 0;
+    /// <summary>Numéro de face du secteur d'amorçage et du premier secteur FAT.</summary>
+    public const int SystemHead = 0;
+    /// <summary>Numéro du secteur d'amorçage.</summary>
+    public const int BootSectorNumber = FirstSectorNumber;
+    /// <summary>Numéro du premier secteur FAT.</summary>
+    public const int FirstFatSectorNumber = BootSectorNumber + 1;
+    /// <summary>Offset du descripteur de média dans les données du premier secteur FAT.</summary>
+    public const int FatMediaDescriptorDataOffset = 0;
+    /// <summary>Valeur utilisée lorsqu'aucun descripteur de média FAT n'est disponible.</summary>
+    public const byte UnknownMediaDescriptor = 0;
     /// <summary>Maximum admis de secteurs par piste.</summary>
     public const int MaximumSectorsPerTrack = 63;
     /// <summary>Maximum admis de têtes.</summary>
