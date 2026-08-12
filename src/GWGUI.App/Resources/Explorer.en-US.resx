@@ -15,6 +15,9 @@
   <data name="Explorer.Image">
     <value>Disk image</value>
   </data>
+  <data name="Explorer.DetectedFormats">
+    <value>Detected: {0}</value>
+  </data>
   <data name="Explorer.Format">
     <value>Format</value>
   </data>

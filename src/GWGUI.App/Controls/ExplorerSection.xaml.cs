@@ -60,6 +60,8 @@ public partial class ExplorerSection : UserControl
     {
         _applyDetectionOnDisplay = newImage && AutomaticDetection.IsChecked == true;
         PathText.Text = path ?? string.Empty;
+        DetectedFormatsText.Text = "\u2014";
+        DetectedFormatsText.ToolTip = null;
         VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
         SystemText.Text = ProtectionText.Text = "\u2014";
         _rootFolder = null;
@@ -75,6 +77,9 @@ public partial class ExplorerSection : UserControl
     {
         _document = document;
         PathText.Text = document.SourcePath;
+        var detectedSummary = DetectedFormatsSummary(document);
+        DetectedFormatsText.Text = detectedSummary;
+        DetectedFormatsText.ToolTip = detectedSummary;
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (_applyDetectionOnDisplay) Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId, DetectedFormats(document));
         _applyDetectionOnDisplay = false;
@@ -101,6 +106,18 @@ public partial class ExplorerSection : UserControl
 
     private static IReadOnlyList<string> DetectedFormats(ExploredDiskImage document) =>
         new[] { document.Image.FormatId }.Concat(document.DetectedImageFormatIds).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+
+    private string DetectedFormatsSummary(ExploredDiskImage document)
+    {
+        var catalog = new DiskClassificationCatalog(_formats);
+        var recognized = DetectedFormats(document).Select(id => catalog.ResolveFormat(id))
+            .Where(format => format is not null).Cast<DiskFormat>()
+            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
+            .Select(format => $"{format.Family} ({format.DisplayName})")
+            .ToArray();
+        var value = recognized.Length == 0 ? "\u2014" : string.Join("  \u00b7  ", recognized);
+        return LocExtension.Get("Explorer.DetectedFormats", value);
+    }
 
     public static int CountEntries(IEnumerable<FileSystemEntry> entries) => ExplorerIssueBuilder.CountEntries(entries);
 

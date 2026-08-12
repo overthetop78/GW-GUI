@@ -55,25 +55,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="120"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Margin="0,0,12,0">
+                <StackPanel Grid.RowSpan="2" Margin="0,0,12,0">
                     <TextBlock Text="{l:Loc Explorer.Image}" Margin="0,0,0,5"/>
                     <TextBox x:Name="PathText" Height="38" IsReadOnly="True" VerticalContentAlignment="Center"/>
                 </StackPanel>
                 <controls:DiskClassificationSelector x:Name="Classification" Grid.Column="1" Grid.RowSpan="2" Margin="0,0,12,0" ShowAutomatic="False"/>
-                <StackPanel Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Bottom">
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="ReadDiskButton" Height="38" MinHeight="0" Margin="0,0,8,0" Content="{l:Loc Explorer.ReadDisk}"/>
-                        <Button x:Name="OpenButton" Height="38" MinHeight="0" Content="{l:Loc Explorer.OpenImage}"/>
-                    </StackPanel>
-                    <CheckBox x:Name="AutomaticDetection" Content="{l:Loc Classification.Automatic}" IsChecked="True"
-                              HorizontalAlignment="Center" Margin="0,7,0,0" Checked="AutomaticDetection_Changed" Unchecked="AutomaticDetection_Changed"/>
+                <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button x:Name="ReadDiskButton" Height="38" MinHeight="0" Margin="0,0,8,0" Content="{l:Loc Explorer.ReadDisk}"/>
+                    <Button x:Name="OpenButton" Height="38" MinHeight="0" Content="{l:Loc Explorer.OpenImage}"/>
                 </StackPanel>
+                <TextBlock x:Name="DetectedFormatsText" Grid.Row="2" Margin="0,7,12,0" Foreground="{DynamicResource MutedTextBrush}"
+                           TextTrimming="CharacterEllipsis" Text="&#x2014;"/>
+                <CheckBox x:Name="AutomaticDetection" Grid.Row="2" Grid.Column="2" Content="{l:Loc Classification.Automatic}" IsChecked="True"
+                          HorizontalAlignment="Center" Margin="0,7,0,0" Checked="AutomaticDetection_Changed" Unchecked="AutomaticDetection_Changed"/>
             </Grid>
         </controls:CardSection>
 
