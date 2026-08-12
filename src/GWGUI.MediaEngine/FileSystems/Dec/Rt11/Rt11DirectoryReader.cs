@@ -1,5 +1,3 @@
-using GWGUI.MediaEngine.FileSystems.Readers;
-using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Dec.Rt11;
@@ -15,83 +13,51 @@ public static class Rt11DirectoryReader
         var freeBlocks = 0L;
         var seenSegments = new HashSet<int>();
         var segment = 1;
-        while (segment != 0 && segment <= Rt11FileSystemLayout.MaximumSegmentCount && seenSegments.Add(segment))
-        {
-            var firstBlock = directoryBlock + (segment - 1) * Rt11FileSystemLayout.SegmentBlockCount;
-            if (!TryReadPair(image, firstBlock, out var bytes)) { warnings.Add(Rt11FileSystemExceptions.MissingBlockPair(firstBlock)); break; }
-            var nextSegment = ReadUInt16(bytes, Rt11FileSystemLayout.NextSegmentOffset);
-            var entrySize = Rt11FileSystemLayout.MinimumEntrySize + ReadUInt16(bytes, Rt11FileSystemLayout.ExtraBytesOffset);
-            var dataBlock = ReadUInt16(bytes, Rt11FileSystemLayout.DataBlockOffset);
-            if (entrySize is < Rt11FileSystemLayout.MinimumEntrySize or > Rt11FileSystemLayout.MaximumEntrySize) { warnings.Add(Rt11FileSystemExceptions.InvalidEntrySize(segment, entrySize)); break; }
-            for (var offset = Rt11FileSystemLayout.EntriesOffset; offset + sizeof(ushort) <= bytes.Length; offset += entrySize)
-            {
-                var status = (Rt11DirectoryEntryStatus)ReadUInt16(bytes, offset + Rt11FileSystemLayout.StatusOffset);
-                if (status.HasFlag(Rt11DirectoryEntryStatus.EndOfSegment)) break;
-                if (offset + entrySize > bytes.Length) break;
-                var blockLength = ReadUInt16(bytes, offset + Rt11FileSystemLayout.BlockLengthOffset);
-                if (status.HasFlag(Rt11DirectoryEntryStatus.Empty)) { freeBlocks += blockLength; dataBlock += blockLength; continue; }
-                if ((status & (Rt11DirectoryEntryStatus.Permanent | Rt11DirectoryEntryStatus.Tentative)) == 0) { dataBlock += blockLength; continue; }
-                var name = DecodeRadix50(ReadUInt16(bytes, offset + Rt11FileSystemLayout.NameOffset)) + DecodeRadix50(ReadUInt16(bytes, offset + Rt11FileSystemLayout.NameOffset + sizeof(ushort)));
-                var extension = DecodeRadix50(ReadUInt16(bytes, offset + Rt11FileSystemLayout.ExtensionOffset));
-                name = name.TrimEnd();
-                extension = extension.TrimEnd();
-                if (extension.Length != 0) name += "." + extension;
-                if (string.IsNullOrWhiteSpace(name)) { warnings.Add(Rt11FileSystemExceptions.EmptyName(dataBlock)); dataBlock += blockLength; continue; }
-                var valid = TryReadContent(image, dataBlock, blockLength, out var content);
-                if (!valid) warnings.Add(Rt11FileSystemExceptions.TruncatedContent(dataBlock, blockLength));
-                var comment = status.HasFlag(Rt11DirectoryEntryStatus.Tentative) ? "RT-11 tentative file" : "RT-11 file";
-                entries.Add(new(name, FileSystemEntryKind.File, blockLength * (long)Rt11FileSystemLayout.BlockSize, DecodeDate(ReadUInt16(bytes, offset + Rt11FileSystemLayout.DateOffset)), comment, status.HasFlag(Rt11DirectoryEntryStatus.Protected) ? 1u : 0u, dataBlock, valid, [], content));
-                dataBlock += blockLength;
-            }
-            segment = nextSegment;
-        }
-        return new(entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), freeBlocks, warnings);
-    }
-
-    /// <summary>Décode un mot RADIX-50 en trois caractères.</summary>
-    public static string DecodeRadix50(ushort word)
-    {
-        Span<char> result = stackalloc char[3];
-        result[0] = Rt11FileSystemLayout.Radix50[word / 1600 % 40];
-        result[1] = Rt11FileSystemLayout.Radix50[word / 40 % 40];
-        result[2] = Rt11FileSystemLayout.Radix50[word % 40];
-        return new string(result);
-    }
-
-    /// <summary>Décode une date RT-11.</summary>
-    public static DateTimeOffset? DecodeDate(ushort word)
-    {
-        if (word == 0) return null;
-        var day = word & 0x1f;
-        var month = word >> 5 & 0x0f;
-        var year = Rt11FileSystemLayout.EpochYear + (word >> 9 & 0x1f) + (word >> 14 & 3) * 32;
-        try { return new DateTimeOffset(year, month, day, 0, 0, 0, TimeSpan.Zero); }
-        catch (ArgumentOutOfRangeException) { return null; }
-    }
-
-    private static bool TryReadPair(SectorImage image, int firstBlock, out byte[] bytes)
-    {
-        bytes = new byte[Rt11FileSystemLayout.BlockSize * Rt11FileSystemLayout.SegmentBlockCount];
-        if (!image.TryGetBlock(firstBlock, out var first) || !image.TryGetBlock(firstBlock + 1, out var second)) return false;
-        first.Data.Take(Rt11FileSystemLayout.BlockSize).ToArray().CopyTo(bytes, 0);
-        second.Data.Take(Rt11FileSystemLayout.BlockSize).ToArray().CopyTo(bytes, Rt11FileSystemLayout.BlockSize);
-        return first.Data.Count >= Rt11FileSystemLayout.BlockSize && second.Data.Count >= Rt11FileSystemLayout.BlockSize;
-    }
-
-    private static bool TryReadContent(SectorImage image, int start, int count, out byte[] content)
-    {
-        content = new byte[count * Rt11FileSystemLayout.BlockSize];
         var valid = true;
-        for (var index = 0; index < count; index++)
+        while (segment != 0)
         {
-            if (!image.TryGetBlock(start + index, out var block) || block.Data.Count < Rt11FileSystemLayout.BlockSize) { valid = false; continue; }
-            block.Data.Take(Rt11FileSystemLayout.BlockSize).ToArray().CopyTo(content, index * Rt11FileSystemLayout.BlockSize);
+            if (segment is < 1 or > Rt11FileSystemLayout.MaximumSegmentCount) { warnings.Add(Rt11FileSystemExceptions.InvalidSegment(segment, directoryBlock, "numéro hors plage")); valid = false; break; }
+            if (!seenSegments.Add(segment)) { warnings.Add(Rt11FileSystemExceptions.InvalidSegment(segment, directoryBlock, "cycle")); valid = false; break; }
+            var firstBlockLong = (long)directoryBlock + (segment - 1L) * Rt11FileSystemLayout.SegmentBlockCount;
+            if (firstBlockLong < 0 || firstBlockLong + 1 >= image.BlockCount) { warnings.Add(Rt11FileSystemExceptions.InvalidSegment(segment, checked((int)Math.Clamp(firstBlockLong, int.MinValue, int.MaxValue)), "bloc hors image")); valid = false; break; }
+            var firstBlock = (int)firstBlockLong;
+            var pair = Rt11BlockPairReader.Read(image, firstBlock);
+            if (!pair.IsValid) { warnings.Add(Rt11FileSystemExceptions.InvalidSegment(segment, firstBlock, "paire absente ou tronquée")); valid = false; break; }
+            var bytes = pair.Bytes.ToArray();
+            var entrySize = Rt11FileSystemLayout.MinimumEntrySize + Rt11Primitives.ReadUInt16(bytes, Rt11FileSystemLayout.ExtraBytesOffset);
+            if (entrySize is < Rt11FileSystemLayout.MinimumEntrySize or > Rt11FileSystemLayout.MaximumEntrySize) { warnings.Add(Rt11FileSystemExceptions.InvalidEntrySize(segment, entrySize)); valid = false; break; }
+            var dataBlock = (int)Rt11Primitives.ReadUInt16(bytes, Rt11FileSystemLayout.DataBlockOffset);
+            ReadEntries(image, bytes, entrySize, ref dataBlock, entries, warnings, ref freeBlocks, ref valid);
+            segment = Rt11Primitives.ReadUInt16(bytes, Rt11FileSystemLayout.NextSegmentOffset);
         }
-        return valid;
+        return new(entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), valid ? freeBlocks : 0, valid, warnings);
     }
 
-    private static ushort ReadUInt16(ReadOnlySpan<byte> source, int offset) => (ushort)(source[offset] | source[offset + 1] << BitPrimitives.BitsPerByte);
+    /// <summary>Lit les entrées complètes d'un segment et avance toujours selon leur longueur déclarée.</summary>
+    private static void ReadEntries(SectorImage image, ReadOnlySpan<byte> bytes, int entrySize, ref int dataBlock, ICollection<FileSystemEntry> entries, ICollection<string> warnings, ref long freeBlocks, ref bool valid)
+    {
+        for (var offset = Rt11FileSystemLayout.EntriesOffset; offset + entrySize <= bytes.Length; offset += entrySize)
+        {
+            var status = (Rt11DirectoryEntryStatus)Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.StatusOffset);
+            if (status.HasFlag(Rt11DirectoryEntryStatus.EndOfSegment)) break;
+            var blockLength = Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.BlockLengthOffset);
+            if (status.HasFlag(Rt11DirectoryEntryStatus.Empty)) { freeBlocks += blockLength; dataBlock = checked(dataBlock + blockLength); continue; }
+            if ((status & (Rt11DirectoryEntryStatus.Permanent | Rt11DirectoryEntryStatus.Tentative)) == 0) { dataBlock = checked(dataBlock + blockLength); continue; }
+            var name = (Rt11Radix50.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.NameOffset)) + Rt11Radix50.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.NameOffset + sizeof(ushort)))).TrimEnd();
+            var extension = Rt11Radix50.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.ExtensionOffset)).TrimEnd();
+            if (extension.Length != 0) name += "." + extension;
+            if (string.IsNullOrWhiteSpace(name)) { warnings.Add(Rt11FileSystemExceptions.EmptyName(dataBlock, offset)); dataBlock = checked(dataBlock + blockLength); continue; }
+            var content = Rt11FileContentReader.Read(image, dataBlock, blockLength);
+            if (!content.IsValid) { warnings.Add(Rt11FileSystemExceptions.MissingContent(name, content.MissingBlocks)); valid = false; }
+            entries.Add(new(name, FileSystemEntryKind.File, blockLength * (long)Rt11FileSystemLayout.BlockSize, Rt11Date.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.DateOffset)), Rt11FileSystemLayout.FileDescription(status), status.HasFlag(Rt11DirectoryEntryStatus.Protected) ? Rt11FileSystemLayout.ProtectedAttribute : Rt11FileSystemLayout.UnprotectedAttribute, dataBlock, content.IsValid, [], content.Content));
+            dataBlock = checked(dataBlock + blockLength);
+        }
+    }
 }
 
 /// <summary>Résultat de lecture du répertoire RT-11.</summary>
-public sealed record Rt11DirectoryResult(IReadOnlyList<FileSystemEntry> Entries, long FreeBlocks, IReadOnlyList<string> Warnings);
+/// <param name="Entries">Entrées reconnues et triées.</param>
+/// <param name="FreeBlocks">Blocs libres lorsque la chaîne est valide.</param>
+/// <param name="IsValid">Validité de toute la chaîne.</param>
+/// <param name="Warnings">Diagnostics produits pendant la lecture.</param>
+public sealed record Rt11DirectoryResult(IReadOnlyList<FileSystemEntry> Entries, long FreeBlocks, bool IsValid, IReadOnlyList<string> Warnings);

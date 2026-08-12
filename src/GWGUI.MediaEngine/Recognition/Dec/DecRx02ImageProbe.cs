@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
-using GWGUI.MediaEngine.FileSystems.Rt11;
+using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 using GWGUI.MediaEngine.Geometries.Dec;
 
 namespace GWGUI.MediaEngine.Recognition.Dec;

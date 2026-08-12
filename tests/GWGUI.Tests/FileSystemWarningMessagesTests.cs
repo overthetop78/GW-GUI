@@ -1,6 +1,7 @@
 using System.IO;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
@@ -32,7 +33,7 @@ public sealed class FileSystemWarningMessagesTests
         var entry = source.Volume.Entries.First();
         var incomplete = WithoutBlock(source.Image, entry.StorageReference);
         var volume = new Rt11FileSystemReader().Read(incomplete);
-        Assert.Contains(volume.Warnings, warning => warning == FileSystemWarningMessages.MissingDataBlocks(entry.Name));
+        Assert.Contains(volume.Warnings, warning => warning.Contains(entry.Name, StringComparison.Ordinal) && warning.Contains(entry.StorageReference.ToString(), StringComparison.Ordinal));
     }
 
     /// <summary>Vérifie l'avertissement UCSD produit par le lecteur public lorsqu'un bloc de fichier manque.</summary>

@@ -3,14 +3,14 @@ namespace GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 /// <summary>Construit les diagnostics propres aux volumes RT-11.</summary>
 public static class Rt11FileSystemExceptions
 {
-    /// <summary>Crée l'erreur signalant un home block invalide.</summary>
-    public static InvalidDataException InvalidHomeBlock(string signature, int directoryBlock) => new($"The RT-11 home block is invalid (signature '{signature}', directory block {directoryBlock}).");
-    /// <summary>Construit l'avertissement signalant une paire de blocs absente.</summary>
-    public static string MissingBlockPair(int firstBlock) => $"RT-11 directory block pair starting at {firstBlock} is missing.";
-    /// <summary>Construit l'avertissement signalant un contenu tronqué.</summary>
-    public static string TruncatedContent(int startBlock, int blockCount) => $"RT-11 content starting at block {startBlock} is incomplete for {blockCount} blocks.";
-    /// <summary>Construit l'avertissement signalant une taille d'entrée invalide.</summary>
-    public static string InvalidEntrySize(int segment, int size) => $"RT-11 directory segment {segment} has invalid entry size {size}.";
-    /// <summary>Construit l'avertissement signalant un nom vide.</summary>
-    public static string EmptyName(int block) => $"RT-11 entry at block {block} has an empty name.";
+    /// <summary>Construit ou décode la valeur RT-11 associée à <c>InvalidHomeBlock</c>.</summary>
+    public static InvalidDataException InvalidHomeBlock(string signature, int directoryBlock) => new($"Le home block RT-11 est invalide (signature '{signature}', bloc de répertoire {directoryBlock}).");
+    /// <summary>Construit ou décode la valeur RT-11 associée à <c>InvalidSegment</c>.</summary>
+    public static string InvalidSegment(int segment, int block, string reason) => $"Le segment RT-11 {segment} au bloc {block} est invalide : {reason}.";
+    /// <summary>Construit ou décode la valeur RT-11 associée à <c>InvalidEntrySize</c>.</summary>
+    public static string InvalidEntrySize(int segment, int size) => $"Le segment RT-11 {segment} annonce une taille d'entrée invalide de {size} octets.";
+    /// <summary>Construit ou décode la valeur RT-11 associée à <c>EmptyName</c>.</summary>
+    public static string EmptyName(int block, int offset) => $"L'entrée RT-11 au bloc de données {block}, offset {offset}, possède un nom vide.";
+    /// <summary>Construit ou décode la valeur RT-11 associée à <c>MissingContent</c>.</summary>
+    public static string MissingContent(string name, IEnumerable<int> blocks) => $"{name} : blocs RT-11 absents ou tronqués : {string.Join(", ", blocks)}.";
 }

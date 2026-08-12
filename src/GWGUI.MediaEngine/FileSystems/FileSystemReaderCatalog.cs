@@ -10,7 +10,7 @@ public static class FileSystemReaderCatalog
         new Acorn.Adfs.AcornAdfsFileSystemReader(),
         new Acorn.BbcDfs.BbcDfsFileSystemReader(),
         new Coherent.CoherentFileSystemReader(),
-        new Readers.Rt11FileSystemReader(),
+        new Dec.Rt11.Rt11FileSystemReader(),
         new Readers.UcsdFileSystemReader(),
         new Apple.InformXzip.AppleInformXzipFileSystemReader(),
         new Apple.Dos.AppleDosFileSystemReader(),

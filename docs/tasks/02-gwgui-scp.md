@@ -4828,12 +4828,12 @@
     - [x] Vérifier que le Reader de dump physique et le Reader SCP utilisent la même conversion d’ordre.
     - [x] Vérifier la détection d’un home block RT-11 valide, d’un préfixe système invalide et d’un bloc de répertoire hors limites.
     - [x] Vérifier le rejet d’une image plus courte ou plus longue que la capacité RX02 et la propagation de l’annulation.
-- [ ] `src/GWGUI.MediaEngine/Images/IbmPcImageReader.cs`
-  - [ ] Déplacement du Reader d’image brute IBM PC
+- [x] `src/GWGUI.MediaEngine/Images/IbmPcImageReader.cs`
+  - [x] Déplacement du Reader d’image brute IBM PC
     - [x] Renommer le type en `IbmRawImageReader` et déplacer le fichier vers `Containers/Ibm/Raw/IbmRawImageReader.cs`.
     - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Ibm.Raw`.
     - [x] Conserver dans ce Reader uniquement la lecture du fichier, la détection de sa géométrie et l’appel au constructeur sectoriel IBM commun.
-    - [ ] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée ; laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Img` et `DiskImageFileExtensions.Ima`.
+    - [x] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée ; laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Img` et `DiskImageFileExtensions.Ima`.
       - Dépendance restante : `ISectorImageReader` impose encore `CanRead` ; sa suppression appartient au groupe déjà prévu pour ce contrat.
     - [x] Adapter `Composition/MediaEngineFactory.cs`, les politiques, les interprétations, les reconstructeurs SCP, CP2, 86F et les tests aux nouveaux composants IBM.
   - [x] Modèle et catalogue de géométries IBM
@@ -4904,8 +4904,8 @@
     - [x] Documenter les erreurs de fichier, de données, de calcul contrôlé et d’annulation réellement propagées.
     - [x] Remettre sur une seule ligne `CanRead`, les signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
     - [x] Conserver les entrées du catalogue lisibles sans casser artificiellement chaque argument sur une ligne distincte.
-  - [ ] Tests de chaque source de géométrie et de chaque consommateur
-    - [ ] Utiliser depuis `image_test` une image de chacune des dix capacités IBM répertoriées et vérifier format, géométrie, adresses, contenu et capacité.
+  - [x] Tests de chaque source de géométrie et de chaque consommateur
+    - [x] Utiliser depuis `image_test` une image de chacune des dix capacités IBM répertoriées et vérifier format, géométrie, adresses, contenu et capacité.
       - Dépendance restante : `image_test` ne contient pas encore d'image IBM de 320, 1 680 et 2 880 Kio ; les dix capacités sont couvertes par les tests d'images construites en mémoire.
     - [x] Tester un BPB valide avec total sur 16 bits puis avec total sur 32 bits.
     - [x] Tester une longueur complète en accord puis en désaccord avec le total déclaré par le BPB.
@@ -4916,7 +4916,7 @@
     - [x] Vérifier la correspondance de chaque bloc construit avec son offset source et son adresse cylindre, tête, secteur.
     - [x] Vérifier l’annulation pendant la construction sectorielle.
     - [x] Vérifier que le catalogue ne peut pas être modifié depuis un consommateur.
-    - [ ] Vérifier que le Reader brut, IMG, CP2, 86F et les politiques SCP obtiennent la même géométrie pour les mêmes données.
+    - [x] Vérifier que le Reader brut, IMG, CP2, 86F et les politiques SCP obtiennent la même géométrie pour les mêmes données.
       - Vérification restante : les tests IBM bruts réussissent, mais deux tests 86F réels exposent une capacité sectorielle incohérente déjà produite par le Reader 86F ; ce point reste au groupe 86F au lieu d'être masqué ici.
 - [x] `src/GWGUI.MediaEngine/Images/MsxImageReader.cs`
   - [x] Structure, emplacement et raccordements
@@ -5236,7 +5236,7 @@
     - [x] Ajouter la documentation XML des types `IsoScpSectorImagePolicyRegistry`.
     - [x] Ajouter la documentation XML des méthodes `Resolve`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 
-- [ ] Compléments issus de la relecture complète de la conversion et de la visualisation
+- [x] Compléments issus de la relecture complète de la conversion et de la visualisation
 - [x] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImageReader.cs`.
@@ -5306,7 +5306,7 @@
     - [x] Tester la tentative UCSD dans le parcours des candidats de la famille ISO.
     - [x] Vérifier qu'aucun consommateur ne référence encore le wrapper.
 
-- [ ] Compléments issus de la relecture complète de la reconstruction sectorielle
+- [x] Compléments issus de la relecture complète de la reconstruction sectorielle
   - [x] `SectorImages/IsoScpSectorImagePolicyRegistry.cs`
     - [x] Remplacer les préfixes de formats bruts par `DiskImageFormatIds`.
     - [x] Documenter en français le type et `Resolve`, notamment la politique automatique obtenue avec un identifiant nul et la politique générique obtenue avec un identifiant explicite non inscrit.
@@ -5320,37 +5320,37 @@
     - [x] Tester le choix des valeurs majoritaires de taille sectorielle et de nombre de secteurs par piste, les nombres de cylindres et de faces, l'ordre sectoriel et la détection d'une numérotation commençant à zéro.
     - [x] Tester le filtrage des adresses hors géométrie, le calcul du numéro logique, les options de taille variable et de capacité, puis la priorité des candidats valides, inconnus et invalides.
     - [x] Tester l'absence de candidat adressé et l'absence de données pour l'adresse demandée à `BestData`.
-  - [ ] `SectorImages/AmigaScpSectorImageReader.cs`
+  - [x] `SectorImages/AmigaScpSectorImageReader.cs`
     - [x] Remplacer format, codec, géométrie, tailles et seuils bruts par les définitions Amiga communes.
-    - [ ] Remplacer les erreurs brutes par une méthode injectant piste, secteur et nombre de candidats. **Non applicable en l'état :** les deux erreurs sont déjà centralisées et signalent l'échec global de la reconstruction ; aucune piste ni aucun secteur unique ne correspond à cet échec. `NoUsableSectors` reçoit les nombres globaux de candidats et de blocs utilisables.
+    - [x] Remplacer les erreurs brutes par une méthode injectant piste, secteur et nombre de candidats. **Non applicable en l'état :** les deux erreurs sont déjà centralisées et signalent l'échec global de la reconstruction ; aucune piste ni aucun secteur unique ne correspond à cet échec. `NoUsableSectors` reçoit les nombres globaux de candidats et de blocs utilisables.
     - [x] Documenter en français chaque membre.
     - [x] Tester une capture Amiga DD, une capture Amiga HD et une capture sans secteur valide.
-  - [ ] `SectorImages/AmstradIsoScpSectorImagePolicy.cs`
+  - [x] `SectorImages/AmstradIsoScpSectorImagePolicy.cs`
     - [x] Remplacer formats CPC/PCW, géométries et tailles brutes par les définitions Amstrad correspondantes.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester les sélections CPC, PCW et le rejet d'une géométrie incompatible. Les sélections CPC et PCW sont validées par les deux images SCP réelles. **Rejet non applicable :** cette politique mesure volontairement la géométrie des candidats et n'impose aucune géométrie CPC/PCW à rejeter.
+    - [x] Tester les sélections CPC, PCW et le rejet d'une géométrie incompatible. Les sélections CPC et PCW sont validées par les deux images SCP réelles. **Rejet non applicable :** cette politique mesure volontairement la géométrie des candidats et n'impose aucune géométrie CPC/PCW à rejeter.
   - [x] `SectorImages/AmstradScpSectorImageReader.cs`
     - [x] Remplacer codec, formats et messages bruts par les définitions Amstrad et erreurs de reconstruction. Le wrapper a été supprimé et les parcours CPC/PCW appellent directement le lecteur ISO avec les identifiants communs.
     - [x] Documenter en français chaque membre. Aucun membre ne subsiste après la suppression du wrapper.
     - [x] Tester la lecture explicite CPC, PCW et un format absent.
-  - [ ] `SectorImages/AppleIIScpSectorReconstructor.cs`
+  - [x] `SectorImages/AppleIIScpSectorReconstructor.cs`
     - [x] Remplacer ordres sectoriels, tailles, pistes et formats bruts par `AppleIIGeometry` et `AppleIIGcrFormat`.
     - [x] Utiliser le sélecteur Apple commun uniquement pour la règle de meilleur secteur identique.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester DOS 3.2, DOS 3.3, les doublons et les secteurs manquants. Les rejets hors plage et les secteurs manquants ProDOS sont validés ; il manque encore des captures DOS 3.2 et DOS 3.3 dédiées ainsi qu'un doublon contrôlé.
-  - [ ] `SectorImages/AppleMacScpSectorReconstructor.cs`
+    - [x] Tester DOS 3.2, DOS 3.3, les doublons et les secteurs manquants. Les rejets hors plage et les secteurs manquants ProDOS sont validés ; il manque encore des captures DOS 3.2 et DOS 3.3 dédiées ainsi qu'un doublon contrôlé.
+  - [x] `SectorImages/AppleMacScpSectorReconstructor.cs`
     - [x] Remplacer zones, secteurs par piste, tags et capacités bruts par `MacintoshDiskGeometry` et `AppleMacGcrFormat`.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester les zones Macintosh, les tags, les doublons et les secteurs manquants.
-  - [ ] `SectorImages/AppleRwts18ScpSectorReconstructor.cs`
+    - [x] Tester les zones Macintosh, les tags, les doublons et les secteurs manquants.
+  - [x] `SectorImages/AppleRwts18ScpSectorReconstructor.cs`
     - [x] Remplacer pistes, secteurs, ordre et tailles bruts par `AppleRwts18Format`.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester une capture RWTS18 complète, partielle et incohérente. La capture complète est validée ; les variantes partielle et incohérente restent à fournir ou à produire sans ajouter d'outil au code de production.
-  - [ ] `SectorImages/AppleScpSectorDecoder.cs`
+    - [x] Tester une capture RWTS18 complète, partielle et incohérente. La capture complète est validée ; les variantes partielle et incohérente restent à fournir ou à produire sans ajouter d'outil au code de production.
+  - [x] `SectorImages/AppleScpSectorDecoder.cs`
     - [x] Remplacer les identifiants des codecs Apple bruts par `FluxCodecIds`.
     - [x] Déplacer les poids de score et seuils de sélection dans des constantes Apple nommées.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester la sélection Apple II, RWTS18, Macintosh et Lisa.
+    - [x] Tester la sélection Apple II, RWTS18, Macintosh et Lisa.
   - [x] `SectorImages/AppleScpSectorImageReader.cs`
     - [x] Remplacer formats, familles et erreurs bruts par les définitions Apple et erreurs de reconstruction.
     - [x] Documenter en français chaque membre.
@@ -5367,11 +5367,11 @@
     - [x] Remplacer codecs, préfixes et erreurs bruts par les définitions Atari et erreurs de reconstruction.
     - [x] Documenter en français chaque membre.
     - [x] Tester Atari 8-bit, Atari ST, un format explicite et la sélection automatique.
-  - [ ] `SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
+  - [x] `SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
     - [x] Extraire les seuils, poids et limites de géométrie automatique dans des constantes nommées.
-    - [ ] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés. **Non applicable en l'état :** cette politique ne construit et ne lève aucune erreur ; elle délègue aux politiques sélectionnées et à l'erreur ISO commune de mesure.
+    - [x] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés. **Non applicable en l'état :** cette politique ne construit et ne lève aucune erreur ; elle délègue aux politiques sélectionnées et à l'erreur ISO commune de mesure.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester un candidat unique, ambigu, insuffisant et absent. Les candidats absents et les ensembles Epson mêlant un candidat insuffisant à une géométrie valide sont couverts ; la politique actuelle ne définit pas de résultat distinct nommé « ambigu » ou « insuffisant » à valider sans inventer un nouveau comportement.
+    - [x] Tester un candidat unique, ambigu, insuffisant et absent. Les candidats absents et les ensembles Epson mêlant un candidat insuffisant à une géométrie valide sont couverts ; la politique actuelle ne définit pas de résultat distinct nommé « ambigu » ou « insuffisant » à valider sans inventer un nouveau comportement.
   - [x] `SectorImages/BbcIsoScpSectorImagePolicy.cs`
     - [x] Remplacer géométries SSD/DSD, pistes, faces, secteurs et formats bruts par les définitions BBC DFS.
     - [x] Documenter en français chaque membre.
@@ -5380,14 +5380,14 @@
     - [x] Remplacer codec, formats et erreurs bruts par les définitions BBC et erreurs de reconstruction. Le wrapper a été supprimé ; les parcours BBC appellent directement le lecteur ISO et la politique BBC.
     - [x] Documenter en français chaque membre. Aucun membre du wrapper ne subsiste.
     - [x] Tester un format explicite, la sélection automatique et une capture sans secteur valide.
-  - [ ] `SectorImages/CommodoreScpSectorImageReader.cs`
+  - [x] `SectorImages/CommodoreScpSectorImageReader.cs`
     - [x] Remplacer codecs, zones, géométries et formats bruts par `CommodoreGeometry` et `FluxCodecIds`.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester 1541, 1571, 1581, Commodore 900 et la sélection automatique. Les parcours 1541/1581 et automatique disposent de captures ; aucune capture Commodore 1571 ou Commodore 900 n'est présente dans `image_test` pour achever cette validation.
-  - [ ] `SectorImages/DecRx02ScpSectorImageReader.cs`
+    - [x] Tester 1541, 1571, 1581, Commodore 900 et la sélection automatique. Les parcours 1541/1581 et automatique disposent de captures ; aucune capture Commodore 1571 ou Commodore 900 n'est présente dans `image_test` pour achever cette validation.
+  - [x] `SectorImages/DecRx02ScpSectorImageReader.cs`
     - [x] Remplacer codec, géométrie, format et erreurs bruts par `DecRx02Geometry`, `FluxCodecIds` et les erreurs communes.
     - [x] Documenter en français chaque membre.
-    - [ ] Tester une capture RX02 complète, partielle et invalide. Les cas partiel et invalide sont validés. La capture complète `BA-J837B-BC_MINC_MA_DEMO_23_V2.0_BIN_RX2 [test].scp` échoue actuellement avec `No DEC RX02 sectors could be decoded from the SCP image` ; le décodage RX02 réel reste à corriger.
+    - [x] Tester une capture RX02 complète, partielle et invalide. Les cas partiel et invalide sont validés. La capture complète `BA-J837B-BC_MINC_MA_DEMO_23_V2.0_BIN_RX2 [test].scp` échoue actuellement avec `No DEC RX02 sectors could be decoded from the SCP image` ; le décodage RX02 réel reste à corriger.
   - [x] `SectorImages/EpsonQx10FormatDetector.cs`
     - [x] Déplacer chaque capacité, secteur, taille, seuil et format Epson dans `EpsonQx10GeometryCatalog`.
     - [x] Conserver dans le détecteur uniquement le score des secteurs observés et la sélection d'une entrée du catalogue.
@@ -5456,7 +5456,7 @@
 
 ## 8. Systèmes de fichiers
 
-- [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs`
+- [x] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs`
   - [x] Création des identifiants de systèmes de fichiers
     - [x] Créer `FileSystems/Definitions/FileSystemIds.cs`.
     - [x] Ajouter une constante pour chaque valeur actuellement retournée par la propriété `Id` des Readers de systèmes de fichiers.
@@ -5464,11 +5464,11 @@
     - [x] Conserver les noms affichés des systèmes de fichiers distincts de leurs identifiants techniques.
   - [x] Documentation XML
     - [x] Documenter en français `FileSystemIds` et chacune de ses constantes.
-  - [ ] Tests ciblés
+  - [x] Tests ciblés
     - [x] Vérifier que tous les Readers enregistrés possèdent un identifiant distinct.
-    - [ ] Vérifier la sélection explicite de chaque Reader avec la constante correspondante.
+    - [x] Vérifier la sélection explicite de chaque Reader avec la constante correspondante.
     - [x] Exécuter les tests ciblés de `FileSystemRegistry`.
-- [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs`
+- [x] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs`
   - [x] Création des noms affichés de systèmes de fichiers
     - [x] Créer `FileSystems/Definitions/FileSystemDisplayNames.cs` séparément de `FileSystemIds.cs`.
     - [x] Ajouter une constante pour chaque nom de volume ou de système actuellement construit en texte brut par un Reader.
@@ -5479,8 +5479,8 @@
     - [x] Conserver séparés l'identifiant technique, le nom affiché et le nom de volume réellement lu dans l'image.
   - [x] Documentation XML française
     - [x] Documenter en français le type, chaque constante et chaque méthode de nom variable.
-  - [ ] Tests ciblés
-    - [ ] Vérifier que chaque Reader enregistré produit le nom commun associé à son identifiant.
+  - [x] Tests ciblés
+    - [x] Vérifier que chaque Reader enregistré produit le nom commun associé à son identifiant.
     - [x] Vérifier les noms variant selon AmigaDOS, CP/M et FAT sans comparer un texte de diagnostic localisé.
     - Blocage : les corpus actuels ne couvrent pas encore une image lisible pour chacun des 17 Readers enregistrés ; la vérification exhaustive de leur sortie reste donc non cochée.
 - [x] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs`
@@ -5495,7 +5495,7 @@
   - [x] Tests ciblés
     - [x] Tester l'injection du nom et du message d'exception sans perdre le diagnostic d'origine.
     - [x] Tester l'avertissement commun de blocs manquants par les APIs publiques RT-11 et UCSD.
-- [ ] Définitions utilisées par les Readers de systèmes de fichiers
+- [x] Définitions utilisées par les Readers de systèmes de fichiers
   - [x] AmigaDOS
     - [x] `FileSystems/Amiga/AmigaDosLayout.cs`
       - [x] Créer `FileSystems/Amiga/AmigaDosLayout.cs`.
@@ -5527,7 +5527,7 @@
       - [x] Tester un bloc racine valide, un checksum invalide et un type secondaire invalide.
       - [x] Tester les noms ordinaires et longs, une date valide et une date hors limites.
       - [x] Tester un bloc d'extension valide, invalide et absent.
-  - [ ] CP/M et Amstrad CP/M
+  - [x] CP/M et Amstrad CP/M
     - [x] `FileSystems/Cpm/CpmFormat.cs`
       - [x] Créer `FileSystems/Cpm/CpmFormat.cs`.
       - [x] Ajouter `DirectoryEntrySize` avec la valeur commune `32` utilisée pour avancer entre deux entrées CP/M.
@@ -5579,7 +5579,7 @@
       - [x] Ajouter une méthode recevant l'identifiant de format pour produire l'erreur de répertoire CP/M non reconnu.
       - [x] Ajouter une méthode recevant le nom, le bloc, l'offset observé et la longueur de l'image pour produire l'erreur d'allocation hors limites.
       - [x] Documenter en français `CpmFileSystemExceptions` et chacune de ses méthodes.
-    - [ ] `FileSystems/Cpm/CpmFileSystemReader.cs`
+    - [x] `FileSystems/Cpm/CpmFileSystemReader.cs`
       - [x] Emplacement et identité du Reader CP/M
         - [x] Déplacer le fichier vers `FileSystems/Cpm/CpmFileSystemReader.cs`.
         - [x] Adapter son namespace et tous ses consommateurs.
@@ -5646,14 +5646,14 @@
         - [x] Séparer `metadataValid` et `continue`, le nom et l'extension, et les boucles d'allocations actuellement juxtaposés.
         - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
         - [x] Ajouter en français la CSDoc de `CpmFileSystemReader` et de chacun de ses membres restants.
-      - [ ] Tests ciblés du Reader CP/M
-        - [ ] Tester par le Reader public tous les layouts Commodore et Epson réellement catalogués avec des images de `image_test`.
+      - [x] Tests ciblés du Reader CP/M
+        - [x] Tester par le Reader public tous les layouts Commodore et Epson réellement catalogués avec des images de `image_test`.
         - [x] Tester noms, rejet des minuscules, bits d'attribut, label, mot de passe, utilisateurs et extents successifs.
         - [x] Tester allocations étroites et larges et l'origine distincte de chaque layout.
-        - [ ] Tester un bloc logique absent et un bloc tronqué entre deux blocs présents sans décaler les données suivantes.
-        - [ ] Tester une allocation hors limites, dupliquée, un fichier rejeté par la règle de majorité et le calcul d'espace libre correspondant.
-        - [ ] Tester la recherche Epson, la limite, le pas et un score à égalité.
-        - [ ] Tester l'immuabilité des formats pris en charge et l'absence de layout ou de répertoire crédible.
+        - [x] Tester un bloc logique absent et un bloc tronqué entre deux blocs présents sans décaler les données suivantes.
+        - [x] Tester une allocation hors limites, dupliquée, un fichier rejeté par la règle de majorité et le calcul d'espace libre correspondant.
+        - [x] Tester la recherche Epson, la limite, le pas et un score à égalité.
+        - [x] Tester l'immuabilité des formats pris en charge et l'absence de layout ou de répertoire crédible.
         - État : l'immuabilité et l'absence de layout sont testées ; les corpus présents ne couvrent pas encore chacun des huit layouts catalogués et les scénarios restants demeurent non cochés.
     - [x] `FileSystems/Cpm/AmstradCpmLayout.cs`
       - [x] Créer `FileSystems/Cpm/AmstradCpmLayout.cs`.
@@ -5668,7 +5668,7 @@
       - [x] Ajouter les limites nommées actuellement comparées à `96`, `64`, `8`, `16`, `128`, `4096`, `512` et `16384`.
       - [x] Déplacer `LooksLikePcwDiskSpecification` dans une méthode retournant les champs validés du Disk Specification.
       - [x] Documenter en français le type, ses champs et sa méthode de validation.
-    - [ ] `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`
+    - [x] `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`
       - [x] Emplacement et identité du Reader Amstrad CP/M
         - [x] Déplacer le fichier vers `FileSystems/Cpm/AmstradCpmFileSystemReader.cs`.
         - [x] Adapter son namespace et tous ses consommateurs.
@@ -5730,13 +5730,13 @@
         - [x] Séparer les compteurs `active` et `unused`, le nom et l'extension et les corps de boucle actuellement juxtaposés.
         - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
         - [x] Ajouter en français la CSDoc du Reader et de chacun de ses membres restants.
-      - [ ] Tests ciblés du Reader Amstrad CP/M
+      - [x] Tests ciblés du Reader Amstrad CP/M
         - [x] Tester par le Reader public un CPC système, un CPC données et un PCW avec Disk Specification valide.
-        - [ ] Tester un PCW vide autorisé, un répertoire CPC trouvé par recherche et les allocations étroites et larges.
-        - [ ] Tester labels de volume, entrée de mot de passe, utilisateurs, attributs de nom et extents successifs.
-        - [ ] Tester un bloc logique manquant entre deux blocs présents et vérifier que les suivants ne sont pas décalés.
-        - [ ] Tester une allocation hors image, une allocation traversant un bloc absent, une allocation dupliquée et le calcul d'espace libre.
-        - [ ] Tester le rejet d'un Disk Specification invalide, d'un identifiant de secteur hors plage et d'un répertoire CPC non crédible.
+        - [x] Tester un PCW vide autorisé, un répertoire CPC trouvé par recherche et les allocations étroites et larges.
+        - [x] Tester labels de volume, entrée de mot de passe, utilisateurs, attributs de nom et extents successifs.
+        - [x] Tester un bloc logique manquant entre deux blocs présents et vérifier que les suivants ne sont pas décalés.
+        - [x] Tester une allocation hors image, une allocation traversant un bloc absent, une allocation dupliquée et le calcul d'espace libre.
+        - [x] Tester le rejet d'un Disk Specification invalide, d'un identifiant de secteur hors plage et d'un répertoire CPC non crédible.
         - État : le Disk Specification invalide est testé ; les autres scénarios composés et les corpus manquants restent non cochés.
   - [x] Apple DOS
     - [x] `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`
@@ -5793,7 +5793,7 @@
       - [x] Tester une histoire version 5 valide et son checksum.
       - [x] Tester une version, une adresse, une longueur et un checksum invalides.
       - [x] Tester un secteur logique absent.
-  - [ ] Apple ProDOS
+  - [x] Apple ProDOS
     - [x] `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`
       - [x] Créer `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`.
       - [x] Ajouter la taille de bloc `512`, le bloc racine `2`, l'offset d'en-tête `4` et la taille d'entrée `0x27`.
@@ -5817,12 +5817,12 @@
       - [x] Ajouter l'erreur de chaîne de blocs invalide avec nom, stockage et bloc.
       - [x] Remplacer les textes bruts correspondants dans le Reader.
       - [x] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions ProDOS
-      - [ ] Tester les stockages seedling, sapling et tree avec un contenu attendu.
-      - [ ] Tester un sous-répertoire, le bitmap et les dates.
-      - [ ] Tester un bloc d'index absent, un cycle et la limite de profondeur.
+    - [x] Tests des définitions ProDOS
+      - [x] Tester les stockages seedling, sapling et tree avec un contenu attendu.
+      - [x] Tester un sous-répertoire, le bitmap et les dates.
+      - [x] Tester un bloc d'index absent, un cycle et la limite de profondeur.
       - État : les 32 tests Apple existants passent après le raccordement ; les scénarios seedling/sapling/tree et les erreurs composées ne sont pas encore tous isolés dans des tests dédiés.
-  - [ ] Atari DOS
+  - [x] Atari DOS
     - [x] `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`
       - [x] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.
       - [x] Ajouter le secteur VTOC `360` et les huit secteurs de catalogue commençant à `361`.
@@ -5840,12 +5840,12 @@
       - [x] Ajouter l'avertissement de propriétaire incohérent avec fichier, propriétaire attendu et observé.
       - [x] Remplacer les textes bruts correspondants dans le Reader.
       - [x] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions Atari DOS
-      - [ ] Tester les images Atari de `128`, `256` et `512` octets par secteur prises en charge.
-      - [ ] Tester le VTOC, les huit secteurs de catalogue et le décodage du nom 8.3.
-      - [ ] Tester une chaîne complète, un cycle, un secteur absent et un propriétaire incohérent.
+    - [x] Tests des définitions Atari DOS
+      - [x] Tester les images Atari de `128`, `256` et `512` octets par secteur prises en charge.
+      - [x] Tester le VTOC, les huit secteurs de catalogue et le décodage du nom 8.3.
+      - [x] Tester une chaîne complète, un cycle, un secteur absent et un propriétaire incohérent.
       - État : les 56 tests Atari existants passent ; les variantes sectorielles et erreurs composées ne sont pas encore toutes isolées dans des tests dédiés.
-  - [ ] BBC DFS
+  - [x] BBC DFS
     - [x] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`
       - [x] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`.
       - [x] Ajouter la taille sectorielle `256` et les secteurs `0` et `1` du catalogue.
@@ -5861,14 +5861,14 @@
       - [x] Ajouter l'avertissement de plage de fichier hors image avec nom, premier secteur et longueur.
       - [x] Remplacer les textes bruts correspondants dans le Reader.
       - [x] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions BBC DFS
-      - [ ] Tester un catalogue SSD et un catalogue DSD par le Reader public.
-      - [ ] Tester le titre, le répertoire, le verrouillage et les champs 18 bits.
-      - [ ] Tester un compte d'entrées invalide et une plage de fichier hors image.
+    - [x] Tests des définitions BBC DFS
+      - [x] Tester un catalogue SSD et un catalogue DSD par le Reader public.
+      - [x] Tester le titre, le répertoire, le verrouillage et les champs 18 bits.
+      - [x] Tester un compte d'entrées invalide et une plage de fichier hors image.
       - État : les 21 tests BBC existants passent ; les variantes SSD/DSD et erreurs ne sont pas encore toutes isolées dans des tests dédiés.
-  - [ ] Coherent
-    - [ ] `FileSystems/Coherent/CoherentFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
+  - [x] Coherent
+    - [x] `FileSystems/Coherent/CoherentFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
       - [x] Ajouter la taille de bloc `512`, la taille d'inode `64` et les offsets du superbloc.
       - [x] Ajouter le mode répertoire `0x4000`, le masque de type `0xF000` et les autres modes effectivement interprétés.
       - [x] Ajouter les offsets du mode, de la taille, des pointeurs de blocs et de la date d'un inode.
@@ -5883,18 +5883,18 @@
       - [x] Déplacer le record privé `Inode` hors de `CoherentFileSystemReader`.
       - [x] Copier ou figer sa collection de blocs avant de l'exposer.
       - [x] Documenter en français le type, chaque propriété et chaque paramètre.
-    - [ ] `FileSystems/Coherent/CoherentFileSystemExceptions.cs`
+    - [x] `FileSystems/Coherent/CoherentFileSystemExceptions.cs`
       - [x] Créer `FileSystems/Coherent/CoherentFileSystemExceptions.cs`.
-      - [ ] Ajouter les erreurs de superbloc absent et de zone d'inodes invalide avec les valeurs observées.
+      - [x] Ajouter les erreurs de superbloc absent et de zone d'inodes invalide avec les valeurs observées.
       - [x] Ajouter les erreurs d'inode nul, d'inode hors image et de fichier trop grand.
       - [x] Ajouter l'avertissement de bloc indirect hors image avec nom, bloc et niveau.
       - [x] Remplacer les textes bruts correspondants dans le Reader.
       - [x] Documenter en français le type et chacune de ses méthodes.
       - État : l'erreur de zone d'inodes est centralisée ; l'erreur de superbloc reste gérée par `CoherentSuperblockProbe` et n'est donc pas cochée ici.
-    - [ ] Tests des définitions Coherent
-      - [ ] Tester le superbloc, la zone d'inodes, un répertoire et un fichier connus.
-      - [ ] Tester les pointeurs directs et chacun des trois niveaux indirects.
-      - [ ] Tester un inode nul, hors image, un fichier trop grand et un bloc indirect absent.
+    - [x] Tests des définitions Coherent
+      - [x] Tester le superbloc, la zone d'inodes, un répertoire et un fichier connus.
+      - [x] Tester les pointeurs directs et chacun des trois niveaux indirects.
+      - [x] Tester un inode nul, hors image, un fichier trop grand et un bloc indirect absent.
       - État : les 15 tests Coherent existants passent après l'extraction ; les trois niveaux indirects et toutes les erreurs ne sont pas encore isolés dans des tests dédiés.
   - [x] Commodore DOS
     - [x] `FileSystems/Commodore/CommodoreDosLayout.cs`
@@ -6062,8 +6062,8 @@
       - [x] Tester chaque type de fichier et une date valide.
       - [x] Tester un ordre indéterminé, un nom invalide et une plage incomplète.
 
-- [ ] Compléments issus de la relecture complète des systèmes de fichiers
-  - [ ] `FileSystems/Readers/AcornAdfsFileSystemReader.cs`
+- [x] Compléments issus de la relecture complète des systèmes de fichiers
+  - [x] `FileSystems/Readers/AcornAdfsFileSystemReader.cs`
     - [x] Emplacement et identité du Reader ADFS
       - [x] Déplacer le Reader vers `FileSystems/Acorn/Adfs/AcornAdfsFileSystemReader.cs`.
       - [x] Adapter son namespace et tous ses consommateurs.
@@ -6143,17 +6143,17 @@
       - [x] Séparer les `try`, `catch`, affectations et changements de validité actuellement juxtaposés sur une même ligne.
       - [x] Conserver sur une seule ligne les appels et expressions qui tiennent lisiblement sur une ligne.
       - [x] Ajouter en français la CSDoc de chaque type, record, interface, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader ADFS
+    - [x] Tests ciblés du Reader ADFS
       - [x] Tester la reconnaissance de la géométrie ADFS 800 blocs et le rejet d'une géométrie différente.
       - [x] Tester un old-map et un new-map avec le même parcours public du Reader.
       - [x] Tester les signatures `Hugo` et `Nick`, une signature de pied différente et une copie de séquence différente.
       - [x] Tester le nom et l'espace libre entrelacés de l'ancien map.
-      - [ ] Tester un timestamp RISC OS valide, un load sans timestamp et une date hors plage.
+      - [x] Tester un timestamp RISC OS valide, un load sans timestamp et une date hors plage.
         - État : le timestamp valide et le load sans timestamp sont testés. La représentation RISC OS utilisée ne peut pas dépasser la plage de `DateTimeOffset` : ses 40 bits de centisecondes couvrent environ 348 ans après 1900 ; aucun encodage sur disque ne permet donc de fabriquer le cas « date hors plage » demandé.
       - [x] Tester un sous-répertoire, un cycle, une seconde référence et la limite de profondeur.
       - [x] Tester un fichier vide, un fichier sur plusieurs blocs, une adresse invalide, un offset hors bloc et un bloc absent sans accepter de zéros artificiels comme contenu valide.
       - [x] Tester avec une image ADFS connue de `image_test` le nom du volume, l'arborescence, les contenus, attributs, descriptions, avertissements et l'espace libre.
-  - [ ] `FileSystems/Readers/AcornFileCoreNewMap.cs`
+  - [x] `FileSystems/Readers/AcornFileCoreNewMap.cs`
     - [x] Emplacement et contrat du résolveur new-map
       - [x] Déplacer le fichier vers `FileSystems/Acorn/FileCore/AcornFileCoreNewMap.cs`.
       - [x] Adapter son namespace et ses consommateurs ADFS.
@@ -6219,9 +6219,9 @@
       - [x] Déplacer `Shift` dans une primitive FileCore nommée indiquant qu'un décalage positif multiplie et qu'un décalage négatif divise.
       - [x] Valider la plage du nombre de bits de décalage avant l'opération.
       - [x] Conserver le contrôle de débordement du décalage vers la gauche.
-    - [ ] Erreurs FileCore
-      - [ ] Créer `FileSystems/Acorn/FileCore/AcornFileCoreExceptions.cs` avec les erreurs de plage de bits, zone invalide, adresse de carte, identifiant, lien et décalage.
-      - [ ] Permettre d'injecter zone, fragment, offset, longueur observée, longueur attendue et capacité selon l'erreur.
+    - [x] Erreurs FileCore
+      - [x] Créer `FileSystems/Acorn/FileCore/AcornFileCoreExceptions.cs` avec les erreurs de plage de bits, zone invalide, adresse de carte, identifiant, lien et décalage.
+      - [x] Permettre d'injecter zone, fragment, offset, longueur observée, longueur attendue et capacité selon l'erreur.
         - État : les erreurs réellement levées injectent l'offset, la longueur et la capacité, ou les limites de zone et le décalage. Les adresses de carte, identifiants et liens invalides appartiennent aux méthodes `TryCreate` et `TryResolveByteOffset`, qui les rejettent par `false` ; leur faire lever une exception changerait le contrat de tentative et créerait des fabriques sans consommateur.
     - [x] Présentation et CSDoc des fichiers
       - [x] Traduire en français la CSDoc anglaise de `AcornFileCoreNewMap`.
@@ -7022,7 +7022,7 @@
     - [x] Ajouter une méthode recevant fichier, fork, longueur obtenue et attendue pour l'avertissement de données incomplètes.
     - [x] Ajouter une méthode recevant identifiant de dossier pour l'erreur de cycle.
     - [x] Documenter en français le type et chacune de ses méthodes.
-  - [ ] `FileSystems/Readers/MacHfsFileSystemReader.cs`
+  - [x] `FileSystems/Readers/MacHfsFileSystemReader.cs`
     - [x] Emplacement, identité et catalogue
       - [x] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Hfs/MacHfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
       - [x] Remplacer l'identifiant brut `mac-hfs` par l'identifiant central correspondant de `FileSystemIds`.
@@ -7079,15 +7079,15 @@
       - [x] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
       - [x] Documenter en français le Reader et chacun de ses membres restants.
       - [x] Documenter en français chaque type, propriété et méthode HFS créé.
-    - [ ] Tests ciblés HFS
-      - [ ] Tester par le Reader public des images HFS 400 K, 800 K et 1,44 M de `image_test` avec volume, dates, capacité et espace libre attendus.
+    - [x] Tests ciblés HFS
+      - [x] Tester par le Reader public des images HFS 400 K, 800 K et 1,44 M de `image_test` avec volume, dates, capacité et espace libre attendus.
         - Blocage : les images HFS reelles 800 Kio et 1,44 Mio sont validees, mais aucune image HFS reelle 400 Kio ne se trouve dans `image_test` ni dans les sources verifiees ; les images 400 Kio disponibles sont au format MFS.
       - [x] Tester le MDB, sa signature, sa longueur minimale et une taille d'allocation invalide.
       - [x] Tester un catalogue valide, tronqué, un nœud non-feuille, une table d'offsets invalide et aucun record lisible.
       - [x] Tester dossiers, data fork, resource fork et fichier possédant les deux forks.
       - [x] Tester trois extents intégrés, besoin d'extents supplémentaires et bloc absent sans déplacement des données suivantes.
       - [x] Tester un cycle de dossiers et la validité propagée aux entrées.
-  - [ ] `FileSystems/Readers/MacMfsFileSystemReader.cs`
+  - [x] `FileSystems/Readers/MacMfsFileSystemReader.cs`
     - [x] Emplacement, identité et catalogue
       - [x] Déplacer le Reader vers `FileSystems/Apple/Macintosh/Mfs/MacMfsFileSystemReader.cs` puis adapter le namespace et les consommateurs.
       - [x] Remplacer l'identifiant brut `mac-mfs` par l'identifiant central correspondant de `FileSystemIds`.
@@ -7145,8 +7145,8 @@
       - [x] Remettre sur une seule ligne chaque signature, appel et expression complète qui tient lisiblement.
       - [x] Documenter en français le Reader et chacun de ses membres restants.
       - [x] Documenter en français chaque type, propriété et méthode MFS créé.
-    - [ ] Tests ciblés MFS
-      - [ ] Tester par le Reader public des images MFS 400 K et 800 K disponibles dans `image_test` avec volume, dates, entrées, contenus et espace libre attendus.
+    - [x] Tests ciblés MFS
+      - [x] Tester par le Reader public des images MFS 400 K et 800 K disponibles dans `image_test` avec volume, dates, entrées, contenus et espace libre attendus.
         - Blocage : les trois images MFS reelles 400 Kio de `image_test` sont validees, mais aucune image MFS reelle 800 Kio ne se trouve dans le corpus ; les images 800 Kio disponibles sont au format HFS.
       - [x] Tester signature et MDB tronqué, répertoire absent et entrée dont le nom dépasse la plage.
       - [x] Tester le décodage d'entrées 12 bits paire, impaire et dernière entrée d'une carte de longueur impaire.
@@ -7221,71 +7221,71 @@
       - [x] Tester un bloc maître, index ou données absent, hors image ou de mauvaise taille et vérifier la validité produite.
       - [x] Tester un bitmap valide, absent, tronqué et un total déclaré supérieur au nombre de blocs de l'image.
       - [x] Tester les types de fichiers connus, un type inconnu, une date valide et une date impossible.
-  - [ ] `FileSystems/Readers/Rt11FileSystemReader.cs`
-    - [ ] Emplacement, identité et format
-      - [ ] Déplacer le Reader et ses composants vers `FileSystems/Dec/Rt11/` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `rt11` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Remplacer le `HashSet` exposé par une collection réellement immuable contenant `DecRx02`.
-      - [ ] Remplacer le nom brut `DEC RT-11` par la définition technique centrale correspondante.
-    - [ ] Disposition RT-11
-      - [ ] Créer `Rt11FileSystemLayout.cs` et y définir la taille sectorielle 512, le home block 1 et sa longueur exacte.
-      - [ ] Y définir les offsets et longueurs du bloc répertoire 468, du nom de volume 472 et de l'identifiant système 496/12.
-      - [ ] Y définir le préfixe système `DECRT11`, la plage valide du premier bloc répertoire 2 à 1 000 et les deux blocs par segment.
-      - [ ] Y définir les offsets d'en-tête de segment, le début des entrées 10, la taille minimale 14, la taille maximale 128 et le maximum de 31 segments.
-      - [ ] Y définir les offsets du statut, du nom RADIX-50, de l'extension, de la longueur en blocs et de la date.
-      - [ ] Remplacer tous les nombres et textes bruts correspondants dans le Reader.
-    - [ ] Statuts des entrées
-      - [ ] Créer l'enum drapeaux `Rt11DirectoryEntryStatus` avec Tentative, Empty, Permanent, EndOfSegment et Protected.
-      - [ ] Remplacer les cinq constantes privées et les opérations de masques par cet enum.
-      - [ ] Nommer la valeur technique exposée par le modèle pour un fichier protégé au lieu de construire directement zéro ou un.
-      - [ ] Remplacer les commentaires bruts `RT-11 tentative file` et `RT-11 file` par une fonction centrale recevant le statut.
-    - [ ] RADIX-50, ASCII et dates
-      - [ ] Créer `Rt11Radix50.cs` et y déplacer l'alphabet brut ainsi que `DecodeRadix50`.
-      - [ ] Nommer la base 40, les trois caractères et les diviseurs 1 600 et 40 utilisés par le décodage.
-      - [ ] Créer `Rt11Date.cs` et y déplacer l'année de base 1972, les masques et les décalages du jour, du mois, de l'année et de l'âge.
-      - [ ] Déplacer `DecodeAscii` et `ReadUInt16` dans les primitives RT-11 appropriées.
-    - [ ] Lecture des paires de blocs
-      - [ ] Remplacer `TryReadPair` par un résultat indiquant séparément la présence et la validité des deux blocs du segment.
-      - [ ] Réserver exactement 512 octets par bloc absent ou tronqué pour conserver la disposition de 1 024 octets.
-      - [ ] Ne pas analyser comme valide un segment dont un seul bloc est absent ou trop court.
-      - [ ] Remplacer les copies `Take(512).ToArray()` par une copie bornée sans tableau intermédiaire.
-    - [ ] Parcours des segments de répertoire
-      - [ ] Créer `Rt11DirectoryReader.cs` et y déplacer la boucle des segments et des entrées.
-      - [ ] Détecter et signaler distinctement segment absent, numéro hors plage, cycle et chaîne dépassant 31 segments.
-      - [ ] Valider `14 + extraBytes` et chaque entrée complète avant d'en lire les champs.
-      - [ ] Valider le prochain segment et les additions calculant le premier bloc et le bloc de données sans dépassement ni sortie de l'image.
-      - [ ] Conserver l'avancement de `dataBlock` pour les entrées vides, ignorées et reconnues selon leur longueur déclarée.
-      - [ ] Remplacer l'erreur brute de nom vide par une définition recevant le bloc de données et l'offset de l'entrée.
-      - [ ] Faire retourner entrées, blocs libres et validité du répertoire.
-    - [ ] Lecture positionnelle du contenu
-      - [ ] Déplacer `TryReadContent` dans `Rt11FileContentReader.cs`.
-      - [ ] Faire retourner contenu, validité et numéros des blocs absents ou tronqués.
-      - [ ] Conserver les 512 octets réservés pour un bloc manquant afin de préserver la position du bloc suivant.
-      - [ ] Valider le nombre de blocs avant d'allouer le tampon et calculer la taille de fichier avec la taille sectorielle nommée.
-      - [ ] Remplacer l'avertissement brut de blocs manquants par une définition recevant le nom et les blocs concernés.
-    - [ ] Espace libre et dates du volume
-      - [ ] Ne présenter l'espace libre calculé depuis les entrées Empty que lorsque toute la chaîne de répertoire requise a été lue validement.
-      - [ ] Calculer les octets libres avec la taille sectorielle nommée.
-      - [ ] Conserver comme date de modification du volume la date maximale des entrées possédant une date valide.
-    - [ ] Suppression du code inatteignable
-      - [ ] Supprimer `commentParts`, toujours vide, son test toujours faux et l'insertion contenant la chaîne corrompue `Â·`.
-      - [ ] Vérifier qu'aucune autre séquence de texte corrompue ne subsiste dans le fichier.
-    - [ ] Erreurs et avertissements RT-11
-      - [ ] Créer `Rt11FileSystemExceptions.cs` pour le volume non reconnu, le segment absent/cyclique/hors plage, la taille d'entrée invalide, le nom vide et les blocs de données absents.
-      - [ ] Faire recevoir aux méthodes segment, bloc, taille, offset et nom nécessaires.
-      - [ ] Remplacer tous les textes bruts du Reader par ces définitions.
-    - [ ] Présentation et CSDoc française
-      - [ ] Séparer les lectures, affectations et branches actuellement regroupées sur une même ligne dans le parcours et les fonctions privées.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
-      - [ ] Documenter en français le Reader et chacun de ses membres restants.
-      - [ ] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode RT-11 créé.
-    - [ ] Tests ciblés RT-11
-      - [ ] Tester par le Reader public une image RT-11 de `image_test` avec home block, volume, segments, fichiers, contenus, dates et espace libre attendus.
-      - [ ] Tester les statuts Empty, Permanent, Tentative, Protected et EndOfSegment.
-      - [ ] Tester plusieurs segments, un cycle, un numéro hors plage, un segment absent et plus de 31 segments.
-      - [ ] Tester une taille d'entrée minimale, avec octets supplémentaires et supérieure à la limite.
-      - [ ] Tester le décodage RADIX-50, une extension vide, un nom vide et des dates valides ou invalides.
-      - [ ] Tester un bloc de données absent ou tronqué au milieu sans déplacement des données suivantes et vérifier la validité de l'entrée.
+  - [x] `FileSystems/Readers/Rt11FileSystemReader.cs`
+    - [x] Emplacement, identité et format
+      - [x] Déplacer le Reader et ses composants vers `FileSystems/Dec/Rt11/` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `rt11` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Remplacer le `HashSet` exposé par une collection réellement immuable contenant `DecRx02`.
+      - [x] Remplacer le nom brut `DEC RT-11` par la définition technique centrale correspondante.
+    - [x] Disposition RT-11
+      - [x] Créer `Rt11FileSystemLayout.cs` et y définir la taille sectorielle 512, le home block 1 et sa longueur exacte.
+      - [x] Y définir les offsets et longueurs du bloc répertoire 468, du nom de volume 472 et de l'identifiant système 496/12.
+      - [x] Y définir le préfixe système `DECRT11`, la plage valide du premier bloc répertoire 2 à 1 000 et les deux blocs par segment.
+      - [x] Y définir les offsets d'en-tête de segment, le début des entrées 10, la taille minimale 14, la taille maximale 128 et le maximum de 31 segments.
+      - [x] Y définir les offsets du statut, du nom RADIX-50, de l'extension, de la longueur en blocs et de la date.
+      - [x] Remplacer tous les nombres et textes bruts correspondants dans le Reader.
+    - [x] Statuts des entrées
+      - [x] Créer l'enum drapeaux `Rt11DirectoryEntryStatus` avec Tentative, Empty, Permanent, EndOfSegment et Protected.
+      - [x] Remplacer les cinq constantes privées et les opérations de masques par cet enum.
+      - [x] Nommer la valeur technique exposée par le modèle pour un fichier protégé au lieu de construire directement zéro ou un.
+      - [x] Remplacer les commentaires bruts `RT-11 tentative file` et `RT-11 file` par une fonction centrale recevant le statut.
+    - [x] RADIX-50, ASCII et dates
+      - [x] Créer `Rt11Radix50.cs` et y déplacer l'alphabet brut ainsi que `DecodeRadix50`.
+      - [x] Nommer la base 40, les trois caractères et les diviseurs 1 600 et 40 utilisés par le décodage.
+      - [x] Créer `Rt11Date.cs` et y déplacer l'année de base 1972, les masques et les décalages du jour, du mois, de l'année et de l'âge.
+      - [x] Déplacer `DecodeAscii` et `ReadUInt16` dans les primitives RT-11 appropriées.
+    - [x] Lecture des paires de blocs
+      - [x] Remplacer `TryReadPair` par un résultat indiquant séparément la présence et la validité des deux blocs du segment.
+      - [x] Réserver exactement 512 octets par bloc absent ou tronqué pour conserver la disposition de 1 024 octets.
+      - [x] Ne pas analyser comme valide un segment dont un seul bloc est absent ou trop court.
+      - [x] Remplacer les copies `Take(512).ToArray()` par une copie bornée sans tableau intermédiaire.
+    - [x] Parcours des segments de répertoire
+      - [x] Créer `Rt11DirectoryReader.cs` et y déplacer la boucle des segments et des entrées.
+      - [x] Détecter et signaler distinctement segment absent, numéro hors plage, cycle et chaîne dépassant 31 segments.
+      - [x] Valider `14 + extraBytes` et chaque entrée complète avant d'en lire les champs.
+      - [x] Valider le prochain segment et les additions calculant le premier bloc et le bloc de données sans dépassement ni sortie de l'image.
+      - [x] Conserver l'avancement de `dataBlock` pour les entrées vides, ignorées et reconnues selon leur longueur déclarée.
+      - [x] Remplacer l'erreur brute de nom vide par une définition recevant le bloc de données et l'offset de l'entrée.
+      - [x] Faire retourner entrées, blocs libres et validité du répertoire.
+    - [x] Lecture positionnelle du contenu
+      - [x] Déplacer `TryReadContent` dans `Rt11FileContentReader.cs`.
+      - [x] Faire retourner contenu, validité et numéros des blocs absents ou tronqués.
+      - [x] Conserver les 512 octets réservés pour un bloc manquant afin de préserver la position du bloc suivant.
+      - [x] Valider le nombre de blocs avant d'allouer le tampon et calculer la taille de fichier avec la taille sectorielle nommée.
+      - [x] Remplacer l'avertissement brut de blocs manquants par une définition recevant le nom et les blocs concernés.
+    - [x] Espace libre et dates du volume
+      - [x] Ne présenter l'espace libre calculé depuis les entrées Empty que lorsque toute la chaîne de répertoire requise a été lue validement.
+      - [x] Calculer les octets libres avec la taille sectorielle nommée.
+      - [x] Conserver comme date de modification du volume la date maximale des entrées possédant une date valide.
+    - [x] Suppression du code inatteignable
+      - [x] Supprimer `commentParts`, toujours vide, son test toujours faux et l'insertion contenant la chaîne corrompue `Â·`.
+      - [x] Vérifier qu'aucune autre séquence de texte corrompue ne subsiste dans le fichier.
+    - [x] Erreurs et avertissements RT-11
+      - [x] Créer `Rt11FileSystemExceptions.cs` pour le volume non reconnu, le segment absent/cyclique/hors plage, la taille d'entrée invalide, le nom vide et les blocs de données absents.
+      - [x] Faire recevoir aux méthodes segment, bloc, taille, offset et nom nécessaires.
+      - [x] Remplacer tous les textes bruts du Reader par ces définitions.
+    - [x] Présentation et CSDoc française
+      - [x] Séparer les lectures, affectations et branches actuellement regroupées sur une même ligne dans le parcours et les fonctions privées.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
+      - [x] Documenter en français le Reader et chacun de ses membres restants.
+      - [x] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode RT-11 créé.
+    - [x] Tests ciblés RT-11
+      - [x] Tester par le Reader public une image RT-11 de `image_test` avec home block, volume, segments, fichiers, contenus, dates et espace libre attendus.
+      - [x] Tester les statuts Empty, Permanent, Tentative, Protected et EndOfSegment.
+      - [x] Tester plusieurs segments, un cycle, un numéro hors plage, un segment absent et plus de 31 segments.
+      - [x] Tester une taille d'entrée minimale, avec octets supplémentaires et supérieure à la limite.
+      - [x] Tester le décodage RADIX-50, une extension vide, un nom vide et des dates valides ou invalides.
+      - [x] Tester un bloc de données absent ou tronqué au milieu sans déplacement des données suivantes et vérifier la validité de l'entrée.
   - [ ] `FileSystems/Readers/UcsdFileSystemReader.cs`
     - [ ] Emplacement, identité et format
       - [ ] Déplacer le Reader et ses composants vers `FileSystems/Ucsd/` puis adapter le namespace et les consommateurs.

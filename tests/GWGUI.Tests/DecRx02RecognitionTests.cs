@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Geometries.Dec;
-using GWGUI.MediaEngine.FileSystems.Rt11;
+using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;

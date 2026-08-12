@@ -49,8 +49,17 @@ public static class Rt11FileSystemLayout
     public const int BlockLengthOffset = 8;
     /// <summary>Offset de la date.</summary>
     public const int DateOffset = 12;
+    /// <summary>Attribut brut d'un fichier protégé.</summary>
+    public const uint ProtectedAttribute = 1;
+    /// <summary>Attribut brut d'un fichier non protégé.</summary>
+    public const uint UnprotectedAttribute = 0;
+    /// <summary>Description d'un fichier provisoire.</summary>
+    public const string TentativeFileDescription = "Fichier RT-11 provisoire";
+    /// <summary>Description d'un fichier permanent.</summary>
+    public const string PermanentFileDescription = "Fichier RT-11";
+
+    /// <summary>Retourne la description technique correspondant au statut.</summary>
+    public static string FileDescription(Rt11DirectoryEntryStatus status) => status.HasFlag(Rt11DirectoryEntryStatus.Tentative) ? TentativeFileDescription : PermanentFileDescription;
     /// <summary>Alphabet RADIX-50 RT-11.</summary>
-    public const string Radix50 = " ABCDEFGHIJKLMNOPQRSTUVWXYZ$.%0123456789";
     /// <summary>Base de l'année RT-11.</summary>
-    public const int EpochYear = 1972;
 }
