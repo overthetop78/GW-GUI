@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Images.Interpretations;
@@ -32,7 +33,7 @@ public sealed class DiskImageExplorer
     public IReadOnlySet<string> SupportedFormatIds => fileSystems.SupportedFormatIds;
 
     /// <summary>Crée un explorateur utilisant la composition par défaut de MediaEngine.</summary>
-    public static DiskImageExplorer CreateDefault() => Images.DiskImageExplorerFactory.CreateDefault();
+    public static DiskImageExplorer CreateDefault() => MediaEngineFactory.CreateDefaultExplorer();
 
     /// <summary>Reconnaît le contenu, applique éventuellement une sélection explicite et explore ses systèmes de fichiers.</summary>
     /// <param name="path">Chemin de l'image à explorer.</param>

@@ -7435,16 +7435,15 @@
     - [x] Appliquer la règle d’obtention d’image du document lorsqu’une image manque.
     - [x] Exécuter uniquement les tests du fichier ou du groupe traité.
 
-- [ ] `src/GWGUI.MediaEngine/Images/DiskImageExplorer.cs`
+- [x] `src/GWGUI.MediaEngine/Images/DiskImageExplorer.cs`
   - [x] Déplacement de la façade publique d’exploration
     - [x] Déplacer le fichier vers `Exploration/DiskImageExplorer.cs` sans renommer le type public.
     - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration` et adapter tous ses consommateurs.
     - [x] Renommer le paramètre et le champ `containers` en `recognition`, car le registre traite aussi des images brutes et pas uniquement des conteneurs.
     - [x] Injecter `DiskImageInterpretationService` dans le constructeur au lieu de le créer dans un champ à partir de `FileSystemRegistry`.
     - [x] Adapter la composition dans la fabrique pour fournir la même instance du service d’interprétation à l’explorateur et aux services SCP qui l’utilisent.
-  - [ ] Point d’entrée et erreurs d’exploration
-    - [ ] Conserver `CreateDefault` comme point d’entrée public vers la composition par défaut, puis le raccorder à la fabrique déplacée et renommée dans son propre groupe.
-      - Blocage temporaire : le raccordement final dépend du groupe suivant qui déplace et renomme la fabrique.
+  - [x] Point d’entrée et erreurs d’exploration
+    - [x] Conserver `CreateDefault` comme point d’entrée public vers la composition par défaut, puis le raccorder à la fabrique déplacée et renommée dans son propre groupe.
     - [x] Créer `Exploration/DiskImageExplorationExceptions.cs` avec une méthode recevant le chemin absent.
     - [x] Remplacer le texte brut `The disk image does not exist.` par cette erreur paramétrée.
     - [x] Faire distinguer au registre l’absence de candidat reconnu du rejet d’un conteneur identifié mais corrompu.
@@ -7479,45 +7478,46 @@
     - [x] Explorer un contenu qu’aucune politique ne reconnaît et vérifier la création du document inconnu.
     - [x] Vérifier la sélection explicite, la réidentification supplémentaire, la déduplication des résultats et la propagation de l’annulation.
 - [ ] `src/GWGUI.MediaEngine/Images/DiskImageExplorerFactory.cs`
-  - [ ] Déplacement de la racine de composition
-    - [ ] Renommer le type en `MediaEngineFactory` et déplacer le fichier vers `Composition/MediaEngineFactory.cs`.
-    - [ ] Utiliser le namespace `GWGUI.MediaEngine.Composition`, car le fichier compose la reconnaissance, les conteneurs, le décodage, la reconstruction sectorielle, les systèmes de fichiers et l’exploration.
-    - [ ] Renommer `CreateDefault` en `CreateDefaultExplorer` afin que le résultat construit soit explicite.
-    - [ ] Raccorder `Exploration/DiskImageExplorer.CreateDefault` à `MediaEngineFactory.CreateDefaultExplorer`.
-    - [ ] Supprimer `Images/DiskImageExplorerFactory.cs` après adaptation de son unique consommateur.
+  - [x] Déplacement de la racine de composition
+    - [x] Renommer le type en `MediaEngineFactory` et déplacer le fichier vers `Composition/MediaEngineFactory.cs`.
+    - [x] Utiliser le namespace `GWGUI.MediaEngine.Composition`, car le fichier compose la reconnaissance, les conteneurs, le décodage, la reconstruction sectorielle, les systèmes de fichiers et l’exploration.
+    - [x] Renommer `CreateDefault` en `CreateDefaultExplorer` afin que le résultat construit soit explicite.
+    - [x] Raccorder `Exploration/DiskImageExplorer.CreateDefault` à `MediaEngineFactory.CreateDefaultExplorer`.
+    - [x] Supprimer `Images/DiskImageExplorerFactory.cs` après adaptation de son unique consommateur.
   - [ ] Découpage de la composition par responsabilité
-    - [ ] Extraire une méthode privée qui crée les Readers et définitions du conteneur SCP partagés par les reconstructeurs.
-    - [ ] Extraire une méthode privée qui crée la collection des décodeurs de flux puis la transmet à `FluxDecoderRegistry` lorsque son groupe aura retiré ses inscriptions internes.
-    - [ ] Extraire une méthode privée qui crée la collection des Readers de systèmes de fichiers puis la transmet à `FileSystemRegistry` lorsque son groupe aura retiré ses inscriptions internes.
-    - [ ] Extraire une méthode privée qui crée les reconstructeurs SCP et construit `ScpCandidateRegistry` dans leur ordre explicite actuel.
-    - [ ] Extraire une méthode privée qui crée `ScpFamilyProbe`, `ScpImageExplorationService` et leurs dépendances partagées.
-    - [ ] Extraire une méthode privée qui crée la collection ordonnée des politiques de reconnaissance puis construit `DiskImageRecognitionRegistry`.
+    - [x] Extraire une méthode privée qui crée les Readers et définitions du conteneur SCP partagés par les reconstructeurs.
+    - [x] Extraire une méthode privée qui crée la collection des décodeurs de flux puis la transmet à `FluxDecoderRegistry` lorsque son groupe aura retiré ses inscriptions internes.
+    - [x] Extraire une méthode privée qui crée la collection des Readers de systèmes de fichiers puis la transmet à `FileSystemRegistry` lorsque son groupe aura retiré ses inscriptions internes.
+    - [x] Extraire une méthode privée qui crée les reconstructeurs SCP et construit `ScpCandidateRegistry` dans leur ordre explicite actuel.
+    - [x] Extraire une méthode privée qui crée `ScpFamilyProbe`, `ScpImageExplorationService` et leurs dépendances partagées.
+    - [x] Extraire une méthode privée qui crée la collection ordonnée des politiques de reconnaissance puis construit `DiskImageRecognitionRegistry`.
     - [ ] Extraire une méthode privée qui crée les registres d’interprétation et l’unique `DiskImageInterpretationService` partagé.
-    - [ ] Faire limiter `CreateDefaultExplorer` à l’assemblage des résultats de ces méthodes et à la construction finale de `DiskImageExplorer`.
-  - [ ] Composition des politiques de reconnaissance
-    - [ ] Remplacer les anciens `DirectContainerPolicy` et `DelegatingContainerPolicy` par `ExtensionHintRecognitionPolicy` selon leurs groupes respectifs.
-    - [ ] Utiliser les nouveaux emplacements et noms des Readers ADF, BBC DFS, DEC RX02, Atari ST, MSA, ATR, Commodore, Apple, MSX, Amstrad, IMG, IBM, TD0, 86F, CP2, IMD et SCP.
-    - [ ] Conserver explicitement l’ordre actuel des politiques afin qu’une extension ambiguë soit examinée par les mêmes candidats tant que le groupe du registre n’a pas défini un autre ordre justifié.
-    - [ ] Conserver les extensions dans `DiskImageFileExtensions` et les identifiants dans `DiskImageFormatIds`, sans réintroduire de texte brut dans la composition.
-    - [ ] Faire recevoir à `ScpRecognitionPolicy` le service SCP et l’ensemble des formats réellement pris en charge.
-  - [ ] Instances partagées et dépendances
-    - [ ] Créer une seule instance de `ScpReader` et la partager entre tous les composants qui lisent le même conteneur.
-    - [ ] Créer une seule instance de `FluxDecoderRegistry`, de `FileSystemRegistry` et de `DiskImageInterpretationService` par explorateur construit.
-    - [ ] Transmettre la même instance de `DiskImageInterpretationService` à l’explorateur général et à l’exploration automatique SCP au lieu de laisser chaque service la reconstruire.
-    - [ ] Ne pas ajouter à cette fabrique la composition de services qui ne sont pas nécessaires à `DiskImageExplorer`.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `MediaEngineFactory` et à `CreateDefaultExplorer`.
-    - [ ] Documenter en français chaque méthode privée de composition et le sous-système qu’elle construit.
-    - [ ] Documenter l’ordre des politiques et les instances volontairement partagées.
-    - [ ] Conserver sur une seule ligne les constructions et appels complets qui restent lisibles, et découper les longues collections uniquement entre leurs éléments.
-    - [ ] Ordonner les directives `using` selon les modules réellement consommés après les déplacements.
-  - [ ] Tests de la composition par défaut
-    - [ ] Construire l’explorateur public par `DiskImageExplorer.CreateDefault` et vérifier qu’aucune dépendance n’est absente.
-    - [ ] Vérifier qu’une seule inscription existe pour chaque politique de reconnaissance attendue.
-    - [ ] Vérifier l’ordre complet des politiques ambiguës et des politiques signées.
-    - [ ] Vérifier la présence de chaque Reader de système de fichiers et de chaque décodeur requis par les reconstructeurs inscrits.
-    - [ ] Vérifier que les services partageant le Reader SCP, les décodeurs, les systèmes de fichiers et les interprétations reçoivent les mêmes instances.
-    - [ ] Ouvrir par la composition par défaut une image brute, un conteneur signé et une capture SCP depuis `image_test`.
+      - Blocage temporaire : les deux registres sont encore construits dans `DiskImageInterpretationService` et leur injection est la première tâche du groupe suivant.
+    - [x] Faire limiter `CreateDefaultExplorer` à l’assemblage des résultats de ces méthodes et à la construction finale de `DiskImageExplorer`.
+  - [x] Composition des politiques de reconnaissance
+    - [x] Remplacer les anciens `DirectContainerPolicy` et `DelegatingContainerPolicy` par `ExtensionHintRecognitionPolicy` selon leurs groupes respectifs.
+    - [x] Utiliser les nouveaux emplacements et noms des Readers ADF, BBC DFS, DEC RX02, Atari ST, MSA, ATR, Commodore, Apple, MSX, Amstrad, IMG, IBM, TD0, 86F, CP2, IMD et SCP.
+    - [x] Conserver explicitement l’ordre actuel des politiques afin qu’une extension ambiguë soit examinée par les mêmes candidats tant que le groupe du registre n’a pas défini un autre ordre justifié.
+    - [x] Conserver les extensions dans `DiskImageFileExtensions` et les identifiants dans `DiskImageFormatIds`, sans réintroduire de texte brut dans la composition.
+    - [x] Faire recevoir à `ScpRecognitionPolicy` le service SCP et l’ensemble des formats réellement pris en charge.
+  - [x] Instances partagées et dépendances
+    - [x] Créer une seule instance de `ScpReader` et la partager entre tous les composants qui lisent le même conteneur.
+    - [x] Créer une seule instance de `FluxDecoderRegistry`, de `FileSystemRegistry` et de `DiskImageInterpretationService` par explorateur construit.
+    - [x] Transmettre la même instance de `DiskImageInterpretationService` à l’explorateur général et à l’exploration automatique SCP au lieu de laisser chaque service la reconstruire.
+    - [x] Ne pas ajouter à cette fabrique la composition de services qui ne sont pas nécessaires à `DiskImageExplorer`.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `MediaEngineFactory` et à `CreateDefaultExplorer`.
+    - [x] Documenter en français chaque méthode privée de composition et le sous-système qu’elle construit.
+    - [x] Documenter l’ordre des politiques et les instances volontairement partagées.
+    - [x] Conserver sur une seule ligne les constructions et appels complets qui restent lisibles, et découper les longues collections uniquement entre leurs éléments.
+    - [x] Ordonner les directives `using` selon les modules réellement consommés après les déplacements.
+  - [x] Tests de la composition par défaut
+    - [x] Construire l’explorateur public par `DiskImageExplorer.CreateDefault` et vérifier qu’aucune dépendance n’est absente.
+    - [x] Vérifier qu’une seule inscription existe pour chaque politique de reconnaissance attendue.
+    - [x] Vérifier l’ordre complet des politiques ambiguës et des politiques signées.
+    - [x] Vérifier la présence de chaque Reader de système de fichiers et de chaque décodeur requis par les reconstructeurs inscrits.
+    - [x] Vérifier que les services partageant le Reader SCP, les décodeurs, les systèmes de fichiers et les interprétations reçoivent les mêmes instances.
+    - [x] Ouvrir par la composition par défaut une image brute, un conteneur signé et une capture SCP depuis `image_test`.
 - [ ] `src/GWGUI.MediaEngine/Images/DiskImageInterpretationService.cs`
   - [ ] Déplacement du coordinateur d’interprétation
     - [ ] Déplacer le fichier vers `Exploration/Interpretation/DiskImageInterpretationService.cs` sans renommer le type.
