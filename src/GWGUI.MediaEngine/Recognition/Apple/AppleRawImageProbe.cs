@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.Recognition.Apple;
 
@@ -15,8 +16,8 @@ internal static class AppleRawImageProbe
     {
         _ = requestedFormatId;
         if (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase))
-            return AppleDiskImageSignatures.LooksLikeLisaOfficePayload(bytes.Span) || AppleDiskGeometry.IsSupportedMacintoshCapacity(bytes.Length) && AppleDiskImageSignatures.LooksLikeMac(bytes.Span);
+            return AppleDiskImageSignatures.LooksLikeLisaOfficePayload(bytes.Span) || MacintoshGcrGeometry.IsSupportedCapacity(bytes.Length) && AppleDiskImageSignatures.LooksLikeMac(bytes.Span);
         if (!extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)) return false;
-        return bytes.Length == AppleDiskGeometry.AppleII525Capacity || AppleDiskGeometry.IsSupportedMacintoshCapacity(bytes.Length) && AppleDiskImageSignatures.LooksLikeMac(bytes.Span);
+        return bytes.Length == AppleIIGeometry.Capacity || MacintoshGcrGeometry.IsSupportedCapacity(bytes.Length) && AppleDiskImageSignatures.LooksLikeMac(bytes.Span);
     }
 }

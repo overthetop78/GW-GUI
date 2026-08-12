@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -120,7 +121,7 @@ public sealed class AppleContainerReaderTests
     [Fact]
     public async Task RecognizesPrebootAsLisaMacWorks()
     {
-        var bytes = BuildTaggedDiskCopy(AppleDiskGeometry.LisaFileWareBlockCount);
+        var bytes = BuildTaggedDiskCopy(LisaFileWareGeometry.BlockCount);
         var markerOffset = DiskCopyLayout.HeaderSize + DiskCopyLayout.PrebootSearchBlockIndex * DiskCopyLayout.DataBlockSize;
         DiskCopyFormat.PrebootMarker.CopyTo(bytes.AsSpan(markerOffset));
         var output = Path.Combine(FindImageTestRoot(), "_generated", "apple-containers");

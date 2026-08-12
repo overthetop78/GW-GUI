@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 using GWGUI.MediaEngine.Primitives;
 
@@ -24,7 +25,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) ||
             image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.AppleIIGcr;
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) &&
-            image.Cylinders == AppleDiskGeometry.LisaFileWareCylinderCount && image.Heads == AppleDiskGeometry.LisaFileWareHeadCount) return FluxCodecIds.AppleLisaFileWareGcr;
+            image.Cylinders == LisaFileWareGeometry.CylinderCount && image.Heads == LisaFileWareGeometry.HeadCount) return FluxCodecIds.AppleLisaFileWareGcr;
         if (image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.IsoMfm;
         return FluxCodecIds.AppleMacGcr;
     }

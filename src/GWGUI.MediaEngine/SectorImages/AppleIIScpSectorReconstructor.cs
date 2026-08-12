@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -20,7 +21,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= AppleIIGcrFormat.FiveAndThreeSectorsPerTrack) ? AppleIIGcrFormat.SixAndTwoSectorsPerTrack : AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
         var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
             .Select(pair => AppleScpSectorDecoder.Select(
-                pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == 16 ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
+                pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
         var formatId = sectorsPerTrack == 13 ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
         return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1),
             1, sectorsPerTrack, blocks);
@@ -42,7 +43,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
             for (var half = 0; half < 2; half++)
             {
                 var logicalSector = blockOnTrack * 2 + half;
-                var address = new SectorAddress(track, 0, AppleDiskGeometry.ProDosToPhysical[logicalSector]);
+                var address = new SectorAddress(track, 0, AppleIIGeometry.ProDosToPhysical[logicalSector]);
                 if (!candidates.TryGetValue(address, out var values))
                 {
                     complete = false;

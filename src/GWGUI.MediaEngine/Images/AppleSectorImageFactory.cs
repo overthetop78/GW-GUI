@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -27,9 +28,9 @@ internal static class AppleSectorImageFactory
         var count = data.Length / 512;
         var blocks = new SectorBlock[count];
         for (var logical = 0; logical < count; logical++)
-            blocks[logical] = new(logical, AppleDiskGeometry.AppleMacZonedAddress(logical, heads),
+            blocks[logical] = new(logical, MacintoshGcrGeometry.Address(logical, heads),
                 data.AsSpan(logical * 512, 512).ToArray());
-        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks, capacity: data.Length, logicalBlockCount: count);
+        return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: data.Length, logicalBlockCount: count);
     }
 
     public static SectorImage CreateAppleIIFromDecodedTracks(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
@@ -44,7 +45,7 @@ internal static class AppleSectorImageFactory
         var sectorsPerTrack = selected.Count > 0 && selected.Keys.Max(key => key.Number) < 13 ? 13 : 16;
         var dosBlocks = selected.Where(pair => pair.Key.Number < sectorsPerTrack)
             .Select(pair => new SectorBlock(
-                pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == 16 ? AppleDiskGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number),
+                pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number),
                 new(pair.Key.Track, 0, pair.Key.Number), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid))
             .ToArray();
         if (dosBlocks.Length == 0) return new(DiskImageFormatIds.AppleIIGcr, 256, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 16, []);
@@ -56,8 +57,8 @@ internal static class AppleSectorImageFactory
         for (var track = 0; track < trackCount; track++)
         for (var block = 0; block < 8; block++)
         {
-            var first = AppleDiskGeometry.ProDosToPhysical[block * 2];
-            var second = AppleDiskGeometry.ProDosToPhysical[block * 2 + 1];
+            var first = AppleIIGeometry.ProDosToPhysical[block * 2];
+            var second = AppleIIGeometry.ProDosToPhysical[block * 2 + 1];
             if (!selected.TryGetValue((track, first), out var low) ||
                 !selected.TryGetValue((track, second), out var high)) continue;
             var data = low.Data!.Concat(high.Data!).ToArray();

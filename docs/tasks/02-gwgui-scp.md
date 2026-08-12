@@ -4338,53 +4338,53 @@
     - [x] Vérifier identifiant, taille de bloc, cylindres, faces, secteurs par piste, blocs logiques, adresses et capacité.
     - [x] Tester une taille vide, non sectorielle et non cataloguée et vérifier l'erreur paramétrée.
     - [x] Vérifier que l'annulation interrompt la reconstruction sans produire une image partielle.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleDiskGeometry.cs`
-  - [ ] Séparation du fichier par géométrie
-    - [ ] Créer `Geometries/Apple/AppleIIGeometry.cs` pour les secteurs Apple II et leurs ordres DOS, physique et ProDOS.
-    - [ ] Créer `Geometries/Apple/LisaFileWareGeometry.cs` pour les blocs, cylindres, faces, zones et adresses Lisa FileWare.
-    - [ ] Créer `Geometries/Apple/MacintoshGcrGeometry.cs` pour les géométries Macintosh 400 K, double face et leurs zones de vitesse.
-    - [ ] Créer une définition distincte pour la géométrie d'image Apple taguée générique si ses valeurs restent consommées après le déplacement des Readers.
-    - [ ] Adapter chaque consommateur vers la géométrie précise qu'il utilise.
-    - [ ] Supprimer `Images/AppleDiskGeometry.cs` lorsque toutes ses responsabilités ont été déplacées.
-  - [ ] `Geometries/Apple/LisaFileWareGeometry.cs`
-    - [ ] Déplacer les 1 702 blocs, 46 cylindres, deux faces et le maximum de 22 secteurs par piste.
-    - [ ] Nommer chaque borne de zone actuellement écrite comme 4, 11, 17, 23, 29, 35, 42 et 46 cylindres.
-    - [ ] Nommer les nombres de secteurs 21, 20, 19, 18, 17, 16 et 15 propres à ces zones.
-    - [ ] Déplacer `LisaFileWareSectors` et `LisaFileWareAddress` dans ce fichier.
-    - [ ] Valider explicitement le bloc logique négatif avant la division et le cylindre avant la sélection de zone.
-    - [ ] Remplacer le texte brut de bloc hors géométrie par une erreur recevant le bloc et la capacité.
-  - [ ] `Geometries/Apple/MacintoshGcrGeometry.cs`
-    - [ ] Déplacer les 800 blocs du format 400 K, 80 cylindres, une ou deux faces et le maximum de 12 secteurs par piste.
-    - [ ] Nommer les cinq zones de 16 cylindres et leurs nombres de secteurs 12, 11, 10, 9 et 8.
-    - [ ] Déplacer `AppleMacSectors` et `AppleMacZonedAddress` dans ce fichier.
-    - [ ] Valider le nombre de faces reçu afin de n'accepter que les géométries Macintosh définies.
-    - [ ] Valider explicitement le bloc logique négatif et le cylindre hors plage.
-    - [ ] Remplacer le texte brut de bloc hors géométrie par une erreur recevant bloc, faces et capacité.
-  - [ ] `Geometries/Apple/AppleIIGeometry.cs`
-    - [ ] Déplacer les tables `ProDosToPhysical` et `PhysicalToDos` dans des collections réellement immuables.
-    - [ ] Nommer les 16 secteurs par piste et les 256 octets par secteur employés par la conversion.
-    - [ ] Vérifier que les deux tables contiennent exactement une permutation des 16 secteurs avant de les exposer.
-  - [ ] Conversion d'ordre sectoriel Apple II
-    - [ ] Créer `Conversion/Apple/AppleIISectorOrderConverter.cs` et y déplacer `ConvertDosOrderToProDosBlocks`.
-    - [ ] Utiliser `AppleIIGeometry` pour les tailles et les tables sans recopier ces données.
-    - [ ] Séparer le calcul du nombre de pistes, la résolution du secteur physique et les offsets source/destination.
-    - [ ] Remettre sur une seule ligne l'appel complet à `Slice(...).CopyTo(...)` lorsqu'il tient lisiblement après extraction des offsets.
-    - [ ] Remplacer le texte brut de longueur invalide par une erreur recevant taille observée et multiple attendu.
-  - [ ] Erreurs de géométrie Apple
-    - [ ] Créer `Geometries/Apple/AppleGeometryExceptions.cs` pour cylindre, bloc logique, nombre de faces et capacité hors géométrie.
-    - [ ] Créer dans le composant de conversion l'erreur propre à une longueur d'image incompatible avec l'ordre sectoriel Apple II.
-    - [ ] Injecter dans chaque erreur les valeurs observées et attendues.
-  - [ ] Présentation et CSDoc française
-    - [ ] Corriger les caractères corrompus de la CSDoc existante.
-    - [ ] Conserver sur une seule ligne les signatures, appels, adresses construites et expressions qui tiennent lisiblement.
-    - [ ] Documenter en français chaque type, constante, collection, méthode et règle de zone créée.
-    - [ ] Documenter les unités, la base zéro ou un des secteurs et la signification de chaque table d'ordre.
-  - [ ] Tests ciblés des géométries Apple
-    - [ ] Tester chaque limite de zone Lisa et Macintosh, ainsi que le premier cylindre hors plage.
-    - [ ] Tester les premiers et derniers blocs de chaque face Lisa et Macintosh et un bloc négatif ou supérieur à la capacité.
-    - [ ] Tester Macintosh simple et double face et refuser un nombre de faces non défini.
-    - [ ] Tester que les tables Apple II sont des permutations immuables et que la conversion DOS vers ProDOS conserve tous les secteurs.
-    - [ ] Tester une longueur de conversion invalide et plusieurs pistes valides.
+- [x] `src/GWGUI.MediaEngine/Images/AppleDiskGeometry.cs`
+  - [x] Séparation du fichier par géométrie
+    - [x] Créer `Geometries/Apple/AppleIIGeometry.cs` pour les secteurs Apple II et leurs ordres DOS, physique et ProDOS.
+    - [x] Créer `Geometries/Apple/LisaFileWareGeometry.cs` pour les blocs, cylindres, faces, zones et adresses Lisa FileWare.
+    - [x] Créer `Geometries/Apple/MacintoshGcrGeometry.cs` pour les géométries Macintosh 400 K, double face et leurs zones de vitesse.
+    - [x] Créer une définition distincte pour la géométrie d'image Apple taguée générique si ses valeurs restent consommées après le déplacement des Readers.
+    - [x] Adapter chaque consommateur vers la géométrie précise qu'il utilise.
+    - [x] Supprimer `Images/AppleDiskGeometry.cs` lorsque toutes ses responsabilités ont été déplacées.
+  - [x] `Geometries/Apple/LisaFileWareGeometry.cs`
+    - [x] Déplacer les 1 702 blocs, 46 cylindres, deux faces et le maximum de 22 secteurs par piste.
+    - [x] Nommer chaque borne de zone actuellement écrite comme 4, 11, 17, 23, 29, 35, 42 et 46 cylindres.
+    - [x] Nommer les nombres de secteurs 21, 20, 19, 18, 17, 16 et 15 propres à ces zones.
+    - [x] Déplacer `LisaFileWareSectors` et `LisaFileWareAddress` dans ce fichier.
+    - [x] Valider explicitement le bloc logique négatif avant la division et le cylindre avant la sélection de zone.
+    - [x] Remplacer le texte brut de bloc hors géométrie par une erreur recevant le bloc et la capacité.
+  - [x] `Geometries/Apple/MacintoshGcrGeometry.cs`
+    - [x] Déplacer les 800 blocs du format 400 K, 80 cylindres, une ou deux faces et le maximum de 12 secteurs par piste.
+    - [x] Nommer les cinq zones de 16 cylindres et leurs nombres de secteurs 12, 11, 10, 9 et 8.
+    - [x] Déplacer `AppleMacSectors` et `AppleMacZonedAddress` dans ce fichier.
+    - [x] Valider le nombre de faces reçu afin de n'accepter que les géométries Macintosh définies.
+    - [x] Valider explicitement le bloc logique négatif et le cylindre hors plage.
+    - [x] Remplacer le texte brut de bloc hors géométrie par une erreur recevant bloc, faces et capacité.
+  - [x] `Geometries/Apple/AppleIIGeometry.cs`
+    - [x] Déplacer les tables `ProDosToPhysical` et `PhysicalToDos` dans des collections réellement immuables.
+    - [x] Nommer les 16 secteurs par piste et les 256 octets par secteur employés par la conversion.
+    - [x] Vérifier que les deux tables contiennent exactement une permutation des 16 secteurs avant de les exposer.
+  - [x] Conversion d'ordre sectoriel Apple II
+    - [x] Créer `Conversion/Apple/AppleIISectorOrderConverter.cs` et y déplacer `ConvertDosOrderToProDosBlocks`.
+    - [x] Utiliser `AppleIIGeometry` pour les tailles et les tables sans recopier ces données.
+    - [x] Séparer le calcul du nombre de pistes, la résolution du secteur physique et les offsets source/destination.
+    - [x] Remettre sur une seule ligne l'appel complet à `Slice(...).CopyTo(...)` lorsqu'il tient lisiblement après extraction des offsets.
+    - [x] Remplacer le texte brut de longueur invalide par une erreur recevant taille observée et multiple attendu.
+  - [x] Erreurs de géométrie Apple
+    - [x] Créer `Geometries/Apple/AppleGeometryExceptions.cs` pour cylindre, bloc logique, nombre de faces et capacité hors géométrie.
+    - [x] Créer dans le composant de conversion l'erreur propre à une longueur d'image incompatible avec l'ordre sectoriel Apple II.
+    - [x] Injecter dans chaque erreur les valeurs observées et attendues.
+  - [x] Présentation et CSDoc française
+    - [x] Corriger les caractères corrompus de la CSDoc existante.
+    - [x] Conserver sur une seule ligne les signatures, appels, adresses construites et expressions qui tiennent lisiblement.
+    - [x] Documenter en français chaque type, constante, collection, méthode et règle de zone créée.
+    - [x] Documenter les unités, la base zéro ou un des secteurs et la signification de chaque table d'ordre.
+  - [x] Tests ciblés des géométries Apple
+    - [x] Tester chaque limite de zone Lisa et Macintosh, ainsi que le premier cylindre hors plage.
+    - [x] Tester les premiers et derniers blocs de chaque face Lisa et Macintosh et un bloc négatif ou supérieur à la capacité.
+    - [x] Tester Macintosh simple et double face et refuser un nombre de faces non défini.
+    - [x] Tester que les tables Apple II sont des permutations immuables et que la conversion DOS vers ProDOS conserve tous les secteurs.
+    - [x] Tester une longueur de conversion invalide et plusieurs pistes valides.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleDiskImageReader.cs`
   - [ ] Déplacement de la façade Apple
     - [ ] Déplacer le fichier vers `Containers/Apple/AppleDiskImageReader.cs`, car il constitue la façade publique des formats Apple déjà placés sous `Containers/Apple`.

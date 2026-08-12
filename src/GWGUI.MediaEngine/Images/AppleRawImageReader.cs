@@ -1,6 +1,8 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -25,7 +27,7 @@ internal static class AppleRawImageReader
         if (AppleDiskImageSignatures.LooksLikeDos33(data))
             return AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIDos33, 256, 35, 1, 16);
 
-        var prodosBlocks = AppleDiskGeometry.ConvertDosOrderToProDosBlocks(data);
+        var prodosBlocks = AppleIISectorOrderConverter.DosToProDos(data);
         if (AppleDiskImageSignatures.LooksLikeSos(data))
             return AppleSectorImageFactory.CreateLinear(prodosBlocks, DiskImageFormatIds.AppleIIISos, 512, 35, 1, 8);
         if (AppleDiskImageSignatures.LooksLikeProDos(prodosBlocks))
@@ -42,13 +44,13 @@ internal static class AppleRawImageReader
             var signature = BinaryPrimitives.ReadUInt16BigEndian(data.AsSpan(1024));
             var formatId = signature == 0xd2d7 ? DiskImageFormatIds.AppleMacMfs : DiskImageFormatIds.AppleMacHfs;
             return data.Length == 1_474_560
-                ? AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.Mac1440, 512, AppleDiskGeometry.MacintoshCylinderCount, AppleDiskGeometry.MacintoshDoubleSidedHeadCount, 18)
+                ? AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.Mac1440, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.DoubleSidedHeadCount, 18)
                 : AppleSectorImageFactory.CreateAppleMacZoned(data, formatId, data.Length == 409_600 ? 1 : 2);
         }
         if (AppleDiskImageSignatures.LooksLikeProDos(data))
             return data.Length == 819_200
                 ? AppleSectorImageFactory.CreateAppleMacZoned(data, DiskImageFormatIds.AppleIIProDos, 2)
-                : AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIProDos, 512, AppleDiskGeometry.MacintoshCylinderCount, AppleDiskGeometry.MacintoshDoubleSidedHeadCount,
+                : AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.DoubleSidedHeadCount,
                     data.Length / 512 / 160);
         throw new InvalidDataException("The Apple disk image has an unsupported size or signature.");
     }

@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Images;
@@ -63,12 +64,12 @@ public sealed class AppleDiskImageReader : ISectorImageReader
     /// <summary>Retourne le nombre de secteurs FileWare Lisa pour un cylindre.</summary>
     /// <param name="cylinder">Index du cylindre.</param>
     /// <returns>Nombre de secteurs présents sur le cylindre.</returns>
-    internal static int LisaFileWareSectors(int cylinder) => AppleDiskGeometry.LisaFileWareSectors(cylinder);
+    internal static int LisaFileWareSectors(int cylinder) => LisaFileWareGeometry.Sectors(cylinder);
 
     /// <summary>Retourne le nombre de secteurs Macintosh à vitesse zonée pour un cylindre.</summary>
     /// <param name="cylinder">Index du cylindre.</param>
     /// <returns>Nombre de secteurs présents sur le cylindre.</returns>
-    internal static int AppleMacSectors(int cylinder) => AppleDiskGeometry.AppleMacSectors(cylinder);
+    internal static int AppleMacSectors(int cylinder) => MacintoshGcrGeometry.Sectors(cylinder);
 
     /// <summary>Construit une image Apple II depuis des pistes déjà décodées.</summary>
     /// <param name="decodedTracks">Pistes et secteurs décodés dans leur ordre physique.</param>

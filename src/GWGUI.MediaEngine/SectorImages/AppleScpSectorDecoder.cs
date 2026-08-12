@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction.Apple;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -60,7 +61,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     /// <summary>Décode une révolution Macintosh avec plusieurs durées de cellule voisines.</summary>
     private FluxDecodeResult DecodeMacTrack(ScpTrack track, ScpRevolution revolution)
     {
-        var expected = AppleDiskGeometry.AppleMacSectors(track.Cylinder);
+        var expected = MacintoshGcrGeometry.Sectors(track.Cylinder);
         var initial = FluxTimingEstimator.EstimateNonFmBitCell(revolution.FluxIntervals) * 2;
         var factors = AppleScpReconstructionDefinitions.MacintoshBitCellFactors;
         FluxDecodeResult? best = null;

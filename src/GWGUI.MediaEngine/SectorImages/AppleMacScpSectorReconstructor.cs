@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -21,18 +22,17 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         foreach (var pair in candidates)
         {
             var address = pair.Key;
-            if (address.Cylinder >= AppleDiskGeometry.MacintoshCylinderCount || address.Head >= heads) continue;
-            var sectorsPerTrack = AppleDiskGeometry.AppleMacSectors(address.Cylinder);
+            if (address.Cylinder >= MacintoshGcrGeometry.CylinderCount || address.Head >= heads) continue;
+            var sectorsPerTrack = MacintoshGcrGeometry.Sectors(address.Cylinder);
             if (address.Number < 0 || address.Number >= sectorsPerTrack) continue;
             var priorCylinderBlocks = Enumerable.Range(0, address.Cylinder)
-                .Sum(cylinder => AppleDiskGeometry.AppleMacSectors(cylinder) * heads);
+                .Sum(cylinder => MacintoshGcrGeometry.Sectors(cylinder) * heads);
             var logical = priorCylinderBlocks + address.Head * sectorsPerTrack + address.Number;
             blocks.Add(AppleScpSectorDecoder.Select(logical, address, pair.Value));
         }
         if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIwmGcrFormat.StructureDescriptionName);
-        var count = 400 * heads * 2;
-        var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks,
-            capacity: count * 512L, logicalBlockCount: count);
+        var count = MacintoshGcrGeometry.SingleSidedBlockCount * heads;
+        var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
         var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true
             ? requestedFormatId
             : DiskImageFormatIds.AppleMacGcr;
@@ -53,6 +53,6 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
                         ? DiskImageFormatIds.AppleMacHfs
                         : DiskImageFormatIds.AppleIIProDos;
         }
-        return new(formatId, 512, AppleDiskGeometry.MacintoshCylinderCount, heads, 12, blocks, capacity: count * 512L, logicalBlockCount: count);
+        return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
     }
 }
