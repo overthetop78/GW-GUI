@@ -5356,8 +5356,8 @@
     - [x] Documenter en français chaque membre.
     - [x] Tester une sélection explicite, une sélection automatique et une sélection sans candidat.
   - [ ] `SectorImages/Atari8BitIsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer tailles, géométries 90K/130K/180K et formats bruts par le catalogue Atari 8-bit.
-    - [ ] Documenter en français chaque membre.
+    - [x] Remplacer tailles, géométries 90K/130K/180K et formats bruts par le catalogue Atari 8-bit.
+    - [x] Documenter en français chaque membre.
     - [ ] Tester les trois géométries et une capacité inconnue.
   - [ ] `SectorImages/AtariStIsoScpSectorImagePolicy.cs`
     - [ ] Remplacer capacités, géométries et formats bruts par le catalogue Atari ST commun.

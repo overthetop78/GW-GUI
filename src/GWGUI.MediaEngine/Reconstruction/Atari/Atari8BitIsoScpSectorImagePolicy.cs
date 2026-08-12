@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.Geometries.Atari;
 
 namespace GWGUI.MediaEngine.Reconstruction.Atari;
 
@@ -22,17 +23,17 @@ internal sealed class Atari8BitIsoScpSectorImagePolicy(string? requestedFormatId
         var measured = IsoSectorImageBuilder.Measure(candidates);
         var resolvedFormat = formatId ?? (measured.SectorSize, measured.SectorsPerTrack) switch
         {
-            (128, 18) => DiskImageFormatIds.Atari90,
-            (128, 26) => DiskImageFormatIds.Atari130,
-            (256, 18) => DiskImageFormatIds.Atari180,
+            (Atari8BitGeometry.SingleDensitySectorSize, Atari8BitGeometry.StandardSectorsPerTrack) => DiskImageFormatIds.Atari90,
+            (Atari8BitGeometry.SingleDensitySectorSize, Atari8BitGeometry.EnhancedSectorsPerTrack) => DiskImageFormatIds.Atari130,
+            (Atari8BitGeometry.DoubleDensitySectorSize, Atari8BitGeometry.StandardSectorsPerTrack) => DiskImageFormatIds.Atari180,
             _ => DiskImageFormatIds.AtariScp(measured.SectorSize, measured.SectorsPerTrack)
         };
-        var capacity = measured.SectorSize > 128
-            ? 3L * 128 + (measured.Cylinders * measured.Heads * measured.SectorsPerTrack - 3L) * measured.SectorSize
+        var capacity = measured.SectorSize > Atari8BitGeometry.SingleDensitySectorSize
+            ? (long)Atari8BitGeometry.BootSectorCount * Atari8BitGeometry.SingleDensitySectorSize + (measured.Cylinders * measured.Heads * measured.SectorsPerTrack - Atari8BitGeometry.BootSectorCount) * measured.SectorSize
             : (long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize;
         return IsoSectorImageBuilder.CreateUniform(resolvedFormat, candidates, measured.SectorSize,
             measured.Cylinders, measured.Heads, measured.SectorsPerTrack,
             address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1,
-            allowVariableBlockSize: measured.SectorSize > 128, capacity: capacity);
+            allowVariableBlockSize: measured.SectorSize > Atari8BitGeometry.SingleDensitySectorSize, capacity: capacity);
     }
 }
