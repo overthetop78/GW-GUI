@@ -5398,22 +5398,22 @@
     - [x] Protéger la collection du catalogue et refuser deux identifiants ou géométries identiques.
     - [x] Documenter en français chaque membre.
     - [x] Tester l'unicité et la capacité de chaque entrée.
-  - [ ] `SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer toute copie de géométrie ou format par une entrée de `EpsonQx10GeometryCatalog`.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester chaque sélection Epson.
-  - [ ] `SectorImages/EpsonQx10ScpSectorImageReader.cs`
-    - [ ] Remplacer codecs, formats et erreurs bruts par les définitions Epson et erreurs de reconstruction.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester une sélection explicite, détectée et absente.
-  - [ ] `SectorImages/EpsonQx10SectorImageBuilder.cs`
-    - [ ] Remplacer géométries, ordres et tailles bruts par l'entrée Epson reçue du catalogue.
-    - [ ] Utiliser le sélecteur commun du meilleur secteur lorsque sa règle est identique à celle d'ISO.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester des secteurs variables, des doublons et des secteurs manquants.
-  - [ ] `SectorImages/EpsonQx10SectorImagePolicy.cs`
-    - [ ] Reporter les tests de création sur `EpsonQx10SectorImageBuilder` et les tests de détection sur `EpsonQx10FormatDetector`.
-    - [ ] Vérifier qu'aucun consommateur ne référence encore le wrapper avant sa suppression.
+  - [x] `SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
+    - [x] Remplacer toute copie de géométrie ou format par une entrée de `EpsonQx10GeometryCatalog`.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester chaque sélection Epson.
+  - [x] `SectorImages/EpsonQx10ScpSectorImageReader.cs`
+    - [x] Remplacer codecs, formats et erreurs bruts par les définitions Epson et erreurs de reconstruction. Le wrapper a été supprimé au profit du lecteur ISO et de la politique Epson.
+    - [x] Documenter en français chaque membre. Aucun membre du wrapper ne subsiste.
+    - [x] Tester une sélection explicite, détectée et absente.
+  - [x] `SectorImages/EpsonQx10SectorImageBuilder.cs`
+    - [x] Remplacer géométries, ordres et tailles bruts par l'entrée Epson reçue du catalogue.
+    - [x] Utiliser le sélecteur commun du meilleur secteur lorsque sa règle est identique à celle d'ISO.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester des secteurs variables, des doublons et des secteurs manquants.
+  - [x] `SectorImages/EpsonQx10SectorImagePolicy.cs`
+    - [x] Reporter les tests de création sur `EpsonQx10SectorImageBuilder` et les tests de détection sur `EpsonQx10FormatDetector`.
+    - [x] Vérifier qu'aucun consommateur ne référence encore le wrapper avant sa suppression.
   - [ ] `SectorImages/GenericIsoScpSectorImagePolicy.cs`
     - [ ] Utiliser les identifiants FM et MFM de `Decoding/Definitions/FluxCodecIds.cs` dans `DecoderIds`.
     - [ ] Documenter en français chaque membre.
