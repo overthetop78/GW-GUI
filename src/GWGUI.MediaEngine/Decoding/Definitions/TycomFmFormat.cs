@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Encoding;
 
 namespace GWGUI.MediaEngine.Decoding.Definitions;
 
@@ -22,6 +23,14 @@ internal static class TycomFmFormat
     public const byte DeletedDataMark = FirstDataMark;
     /// <summary>Dernière marque de données acceptée.</summary>
     public const byte DataMark = 0xfb;
+    /// <summary>Plus petit cylindre encodable.</summary>
+    public const int MinimumCylinder = byte.MinValue;
+    /// <summary>Plus grand cylindre encodable.</summary>
+    public const int MaximumCylinder = byte.MaxValue;
+    /// <summary>Plus petit numéro de secteur encodable.</summary>
+    public const int MinimumSector = byte.MinValue;
+    /// <summary>Plus grand numéro de secteur encodable.</summary>
+    public const int MaximumSector = byte.MaxValue;
     /// <summary>Nombre d'octets physiques d'une marque.</summary>
     public const int MarkByteCount = 4;
     /// <summary>Longueur d'une marque en bits.</summary>
@@ -69,8 +78,28 @@ internal static class TycomFmFormat
     /// <summary>Définitions fermées des quatre marques de données.</summary>
     public static IReadOnlyList<TycomFmMarkDefinition> DataMarks { get; } = Array.AsReadOnly(Enumerable.Range(FirstDataMark, DataMark - FirstDataMark + 1).Select(value => new TycomFmMarkDefinition((byte)value, FmAddressMarkPatterns.For((byte)value), value == DeletedDataMark)).ToArray());
 
+    /// <summary>Sélectionne ensemble la marque et son motif selon l'état supprimé du secteur.</summary>
+    public static TycomFmMarkDefinition SelectDataMark(bool deleted) => DataMarks.Single(definition => definition.Mark == (deleted ? DeletedDataMark : DataMark));
+
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"TYCOM sectors contain {SectorSize} bytes; received {actualSize} bytes.");
+    /// <summary>Crée l'exception signalant un cylindre impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidCylinder(int cylinder) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "cylinder", cylinder, MaximumCylinder);
+    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidSector(int sector) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "sector number", sector, MaximumSector);
+}
+
+/// <summary>Calcule et sérialise les CRC TYCOM partagés par le décodeur et l'encodeur.</summary>
+internal static class TycomFmCrc
+{
+    /// <summary>Calcule le CRC de la marque d'adresse, du cylindre et du secteur.</summary>
+    public static ushort ComputeHeader(byte cylinder, byte sector) => Crc16Calculator.Compute([TycomFmFormat.HeaderAddressMark, cylinder, sector], TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue);
+    /// <summary>Calcule le CRC de la marque de données et de la charge utile.</summary>
+    public static ushort ComputeData(byte mark, IEnumerable<byte> data) => Crc16Calculator.Compute(new[] { mark }.Concat(data), TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue);
+    /// <summary>Sérialise un CRC avec l'octet fort en premier.</summary>
+    public static byte[] ToBigEndianBytes(ushort crc) => [(byte)(crc >> BitPrimitives.BitsPerByte), (byte)crc];
+    /// <summary>Vérifie un champ incluant ses deux octets de CRC.</summary>
+    public static bool IsValid(IEnumerable<byte> bytes) => Crc16Calculator.Compute(bytes, TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue) == 0;
 }
 
 /// <summary>Représente un en-tête TYCOM décodé.</summary>

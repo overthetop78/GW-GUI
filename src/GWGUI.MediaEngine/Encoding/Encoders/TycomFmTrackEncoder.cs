@@ -1,4 +1,3 @@
-using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
@@ -20,16 +19,33 @@ public sealed class TycomFmTrackEncoder : TrackEncoderBase
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != TycomFmFormat.SectorSize) throw TycomFmFormat.InvalidSectorSize(sector.Data.Count);
-            var headerCrc = Primitives.Crc16Calculator.Compute([TycomFmFormat.HeaderAddressMark,(byte)request.Cylinder,(byte)sector.Number],TycomFmFormat.CrcPolynomial,TycomFmFormat.CrcInitialValue);
-            bits.Raw(TycomFmFormat.HeaderMark.ToArray());
-            bits.DoubleFm([(byte)request.Cylinder,(byte)sector.Number,(byte)(headerCrc >> BitPrimitives.BitsPerByte),(byte)headerCrc]);
-            bits.Gap(TycomFmFormat.GapBitCount, true);
-            var mark = sector.Deleted ? TycomFmFormat.DeletedDataMark : TycomFmFormat.DataMark;
-            var dataCrc = Primitives.Crc16Calculator.Compute(new[] { mark }.Concat(sector.Data),TycomFmFormat.CrcPolynomial,TycomFmFormat.CrcInitialValue);
-            bits.Raw(TycomFmFormat.DataMarks.Single(item=>item.Mark==mark).Pattern.ToArray());
-            bits.DoubleFm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte),(byte)dataCrc]));
-            bits.Gap(TycomFmFormat.GapBitCount, true);
+            if (request.Cylinder is < TycomFmFormat.MinimumCylinder or > TycomFmFormat.MaximumCylinder) throw TycomFmFormat.InvalidCylinder(request.Cylinder);
+            if (sector.Number is < TycomFmFormat.MinimumSector or > TycomFmFormat.MaximumSector) throw TycomFmFormat.InvalidSector(sector.Number);
+            WriteHeader(bits, (byte)request.Cylinder, (byte)sector.Number);
+            WriteData(bits, TycomFmFormat.SelectDataMark(sector.Deleted), sector.Data);
         }
         return bits;
+    }
+
+    /// <summary>Écrit le motif d'adresse, le cylindre, le secteur, leur CRC et le premier gap.</summary>
+    /// <param name="bits">Tampon recevant les cellules binaires.</param>
+    /// <param name="cylinder">Cylindre validé.</param>
+    /// <param name="sector">Secteur validé.</param>
+    private static void WriteHeader(List<bool> bits, byte cylinder, byte sector)
+    {
+        bits.Raw(TycomFmFormat.HeaderMark.ToArray());
+        bits.DoubleFm(new[] { cylinder, sector }.Concat(TycomFmCrc.ToBigEndianBytes(TycomFmCrc.ComputeHeader(cylinder, sector))));
+        bits.Gap(TycomFmFormat.GapBitCount, true);
+    }
+
+    /// <summary>Écrit le motif de données, la charge utile, son CRC et le second gap.</summary>
+    /// <param name="bits">Tampon recevant les cellules binaires.</param>
+    /// <param name="mark">Marque de données et motif physique cohérents.</param>
+    /// <param name="data">Données sectorielles validées.</param>
+    private static void WriteData(List<bool> bits, TycomFmMarkDefinition mark, IReadOnlyList<byte> data)
+    {
+        bits.Raw(mark.Pattern.ToArray());
+        bits.DoubleFm(data.Concat(TycomFmCrc.ToBigEndianBytes(TycomFmCrc.ComputeData(mark.Mark, data))));
+        bits.Gap(TycomFmFormat.GapBitCount, true);
     }
 }

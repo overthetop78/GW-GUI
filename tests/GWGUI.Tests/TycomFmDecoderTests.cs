@@ -91,6 +91,38 @@ public sealed class TycomFmDecoderTests
         Assert.True(result.Confidence > 0);
     }
 
+    [Theory]
+    [InlineData(false, TycomFmFormat.DataMark)]
+    [InlineData(true, TycomFmFormat.DeletedDataMark)]
+    public void EncoderKeepsDataMarkPatternCrcAndGapsConsistent(bool deleted, byte expectedMark)
+    {
+        var payload = Enumerable.Range(0, TycomFmFormat.SectorSize).Select(index => (byte)index).ToArray();
+        var encoded = new TycomFmTrackEncoder().Encode(new(8, 0, [new(3, payload, Deleted: deleted)]));
+        var stream = new FluxBitstream(encoded.Bits.ToArray(), TrackEncodingDefaults.BitCellTicks);
+        var header = Assert.IsType<TycomFmHeader>(TycomFmDecoder.TryDecodeHeader(stream, 0));
+        var dataMark = Assert.IsType<TycomFmDataMark>(TycomFmDecoder.FindNextDataMark(stream, TycomFmFormat.HeaderBitCount, stream.Bits.Length));
+        var data = Assert.IsType<TycomFmData>(TycomFmDecoder.TryDecodeData(stream, dataMark));
+
+        Assert.Equal(8, header.Cylinder);
+        Assert.Equal(3, header.Sector);
+        Assert.True(header.CrcValid);
+        Assert.Equal(expectedMark, dataMark.Definition.Mark);
+        Assert.Equal(TycomFmFormat.SelectDataMark(deleted).Pattern, dataMark.Definition.Pattern);
+        Assert.True(data.CrcValid);
+        Assert.All(encoded.Bits.TakeLast(TycomFmFormat.GapBitCount), Assert.True);
+    }
+
+    [Fact]
+    public void EncoderRejectsInvalidSizeCylinderAndSector()
+    {
+        var encoder = new TycomFmTrackEncoder();
+        var payload = new byte[TycomFmFormat.SectorSize];
+
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new(0, payload[..^1])])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(TycomFmFormat.MaximumCylinder + 1, 0, [new(0, payload)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(TycomFmFormat.MaximumSector + 1, payload)])));
+    }
+
     private static FluxBitstream HeaderStream(byte cylinder, byte sector, bool validCrc)
     {
         var crc = Crc16Calculator.Compute([TycomFmFormat.HeaderAddressMark, cylinder, sector], TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue);

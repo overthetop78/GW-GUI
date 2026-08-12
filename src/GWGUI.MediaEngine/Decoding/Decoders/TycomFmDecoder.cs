@@ -67,7 +67,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
         var bytes = TryDecodeFmBytes(stream, offset + TycomFmFormat.MarkBitCount, TycomFmFormat.HeaderDecodedByteCount);
         if (bytes is null) return null;
         var crcBytes = new[] { TycomFmFormat.HeaderAddressMark }.Concat(bytes).ToArray();
-        var valid = Crc16Calculator.Compute(crcBytes, TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue) == 0;
+        var valid = TycomFmCrc.IsValid(crcBytes);
         return new(offset, bytes[TycomFmFormat.HeaderCylinderOffset], bytes[TycomFmFormat.HeaderSectorOffset], valid, bytes);
     }
 
@@ -90,7 +90,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
         var bytes = TryDecodeFmBytes(stream, mark.Offset, TycomFmFormat.DataBlockByteCount);
         if (bytes is null || bytes[0] != mark.Definition.Mark) return null;
         var payload = bytes.Skip(1).Take(TycomFmFormat.SectorSize).ToArray();
-        var valid = Crc16Calculator.Compute(bytes, TycomFmFormat.CrcPolynomial, TycomFmFormat.CrcInitialValue) == 0;
+        var valid = TycomFmCrc.IsValid(bytes);
         return new(mark, payload, bytes, valid);
     }
 

@@ -4204,38 +4204,38 @@
       - [x] Vérifier que le préfixe participe au checksum sans apparaître comme octet supplémentaire dans la charge utile produite.
       - [x] Tester le rejet d'une taille sectorielle, d'un numéro de secteur et d'un préfixe hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste QD MO5 avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/TycomFmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur TYCOM
-      - [ ] Remplacer l'identifiant brut `tycom.fm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `TYCOM FM` par la définition centrale correspondante.
-    - [ ] Définitions du format TYCOM FM
-      - [ ] Déplacer la taille sectorielle dans `TycomFmFormat`.
-      - [ ] Déplacer la marque d'adresse `0xfe` et son motif à horloge spéciale `55111554` dans `TycomFmFormat`.
-      - [ ] Déplacer les marques de données normale `0xfb` et supprimée `0xf8` ainsi que leurs motifs `55111455` et `55111444` dans `TycomFmFormat`.
-      - [ ] Représenter chaque marque de données avec son motif dans une seule définition afin que les deux sélections ne puissent pas diverger.
-      - [ ] Déplacer la longueur et la valeur du gap commun aux deux champs dans `TycomFmFormat`.
-      - [ ] Centraliser avec le décodeur TYCOM les paramètres CRC et l'ordre de ses deux octets.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire la construction des octets logiques marque, cylindre et secteur utilisés pour le CRC.
-      - [ ] Extraire l'écriture du motif d'adresse, du cylindre, du secteur, du CRC et du premier gap dans une fonction privée.
-    - [ ] Construction du champ de données
-      - [ ] Extraire la sélection commune de la marque de données et de son motif à partir de `sector.Deleted`.
-      - [ ] Extraire le calcul du CRC sur la marque et les données.
-      - [ ] Extraire l'écriture du motif de données, de la charge utile, du CRC et du second gap dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 128 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant sa conversion en octet.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser les espaces dans les tableaux, conversions, concaténations et appels CRC.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur TYCOM
-      - [ ] Tester le champ d'adresse, son motif spécial et son CRC avec des valeurs connues.
-      - [ ] Tester les champs de données normal et supprimé et vérifier pour chacun la cohérence entre marque, motif et CRC.
-      - [ ] Tester la longueur et la valeur des deux gaps.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur TYCOM.
+  - [x] `Encoding/Encoders/TycomFmTrackEncoder.cs`
+    - [x] Identité de l'encodeur TYCOM
+      - [x] Remplacer l'identifiant brut `tycom.fm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `TYCOM FM` par la définition centrale correspondante.
+    - [x] Définitions du format TYCOM FM
+      - [x] Déplacer la taille sectorielle dans `TycomFmFormat`.
+      - [x] Déplacer la marque d'adresse `0xfe` et son motif à horloge spéciale `55111554` dans `TycomFmFormat`.
+      - [x] Déplacer les marques de données normale `0xfb` et supprimée `0xf8` ainsi que leurs motifs `55111455` et `55111444` dans `TycomFmFormat`.
+      - [x] Représenter chaque marque de données avec son motif dans une seule définition afin que les deux sélections ne puissent pas diverger.
+      - [x] Déplacer la longueur et la valeur du gap commun aux deux champs dans `TycomFmFormat`.
+      - [x] Centraliser avec le décodeur TYCOM les paramètres CRC et l'ordre de ses deux octets.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire la construction des octets logiques marque, cylindre et secteur utilisés pour le CRC.
+      - [x] Extraire l'écriture du motif d'adresse, du cylindre, du secteur, du CRC et du premier gap dans une fonction privée.
+    - [x] Construction du champ de données
+      - [x] Extraire la sélection commune de la marque de données et de son motif à partir de `sector.Deleted`.
+      - [x] Extraire le calcul du CRC sur la marque et les données.
+      - [x] Extraire l'écriture du motif de données, de la charge utile, du CRC et du second gap dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 128 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant sa conversion en octet.
+      - [x] Valider le numéro de secteur avant sa conversion en octet.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser les espaces dans les tableaux, conversions, concaténations et appels CRC.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur TYCOM
+      - [x] Tester le champ d'adresse, son motif spécial et son CRC avec des valeurs connues.
+      - [x] Tester les champs de données normal et supprimé et vérifier pour chacun la cohérence entre marque, motif et CRC.
+      - [x] Tester la longueur et la valeur des deux gaps.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, les allers-retours de secteurs normaux et supprimés avec le décodeur TYCOM.
   - [ ] `Encoding/Encoders/Victor9kGcrTrackEncoder.cs`
     - [ ] Identité de l'encodeur Victor 9000
       - [ ] Remplacer l'identifiant brut `victor9k.gcr` par la définition centrale correspondante.
