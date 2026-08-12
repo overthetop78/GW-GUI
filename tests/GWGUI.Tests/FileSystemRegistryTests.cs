@@ -10,9 +10,9 @@ public sealed class FileSystemRegistryTests
     private static readonly SectorImage Image = new("format", 1, 1, 1, 1, [new SectorBlock(0, new(0, 0, 0), [0])]);
 
     [Fact]
-    public void DefaultCatalogContainsTheSeventeenReadersInOrder()
+    public void DefaultCatalogContainsTheEighteenReadersInOrder()
     {
-        string[] expected = ["AmigaDosFileSystemReader", "AcornAdfsFileSystemReader", "BbcDfsFileSystemReader", "CoherentFileSystemReader", "Rt11FileSystemReader", "UcsdFileSystemReader", "AppleInformXzipFileSystemReader", "AppleDosFileSystemReader", "ProDosFileSystemReader", "MacMfsFileSystemReader", "MacHfsFileSystemReader", "LisaFileSystemReader", "AmstradCpmFileSystemReader", "CpmFileSystemReader", "CommodoreDosFileSystemReader", "Fat12FileSystemReader", "AtariDosFileSystemReader"];
+        string[] expected = ["AmigaDosFileSystemReader", "AmigaFlatResourceArchiveReader", "AcornAdfsFileSystemReader", "BbcDfsFileSystemReader", "CoherentFileSystemReader", "Rt11FileSystemReader", "UcsdFileSystemReader", "AppleInformXzipFileSystemReader", "AppleDosFileSystemReader", "ProDosFileSystemReader", "MacMfsFileSystemReader", "MacHfsFileSystemReader", "LisaFileSystemReader", "AmstradCpmFileSystemReader", "CpmFileSystemReader", "CommodoreDosFileSystemReader", "Fat12FileSystemReader", "AtariDosFileSystemReader"];
         Assert.Equal(expected, new FileSystemRegistry().Readers.Select(reader => reader.GetType().Name));
     }
 

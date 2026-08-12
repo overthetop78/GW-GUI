@@ -28,7 +28,7 @@ public static class ExplorerDetailsPresenter
             new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
             new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"),
             new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()),
-            new("Explorer.Warnings", volume.Warnings.Count.ToString())
+            new("Explorer.Warnings", ExplorerIssueBuilder.Build(document).Count.ToString())
         ]);
     }
 

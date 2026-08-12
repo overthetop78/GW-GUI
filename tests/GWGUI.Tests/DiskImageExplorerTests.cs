@@ -228,6 +228,26 @@ public sealed class DiskImageExplorerTests
     }
 
     [Fact]
+    public void AmigaDosReaderRejectsAnUnsignedRootWithoutDirectoryEntries()
+    {
+        var source = BuildAmigaImage(false);
+        var rootBlock = source.BlockCount / 2;
+        var emptyUnsignedRoot = ReplaceAmigaBlock(source, rootBlock, block =>
+        {
+            block.AsSpan(AmigaDosLayout.DataPointersOffset, AmigaDosLayout.RootHashTableEntryCount * AmigaDosLayout.WordSize).Clear();
+            WriteBString(block, AmigaDosLayout.OrdinaryNameOffset, "Recovered");
+            SetChecksum(block);
+        });
+        var repairedGameDisk = ReplaceAmigaBlock(emptyUnsignedRoot, 0, block =>
+        {
+            block.AsSpan().Clear();
+            "SUPER CARS II -"u8.CopyTo(block);
+        });
+
+        Assert.False(new AmigaDosFileSystemReader().CanRead(repairedGameDisk));
+    }
+
+    [Fact]
     public void AmigaDosReaderReadsLongNamesAndRejectsInvalidDates()
     {
         var source = BuildAmigaImage(false, variant: 6);

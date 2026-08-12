@@ -18,6 +18,7 @@ public static class AmigaDosRootBlockReader
         if (!signedBoot)
         {
             if (!TryGetRoot(image, conventionalRoot, out var protectedRoot) || !AmigaDosChecksum.IsValid(protectedRoot)) return false;
+            if (HasEmptyHashTable(protectedRoot)) return false;
             root = Create(variant, conventionalRoot, protectedRoot);
             return true;
         }
@@ -47,5 +48,13 @@ public static class AmigaDosRootBlockReader
     {
         var hashTableSize = Math.Clamp(BigEndianInt32.Read(data, AmigaDosLayout.HashTableSizeOffset), 0, AmigaDosLayout.RootHashTableEntryCount);
         return new(variant, blockNumber, data, hashTableSize == 0 ? AmigaDosLayout.RootHashTableEntryCount : hashTableSize);
+    }
+
+    /// <summary>Indique que la racine ne référence aucune entrée de répertoire.</summary>
+    private static bool HasEmptyHashTable(ReadOnlySpan<byte> root)
+    {
+        for (var index = 0; index < AmigaDosLayout.RootHashTableEntryCount; index++)
+            if (BigEndianInt32.Read(root, AmigaDosLayout.DataPointersOffset + index * AmigaDosLayout.WordSize) != 0) return false;
+        return true;
     }
 }

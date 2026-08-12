@@ -22,7 +22,7 @@ Le projet ne traite pas seulement le format SCP. Il contient actuellement :
 - des lecteurs de nombreux conteneurs sectoriels ;
 - la reconstruction de secteurs depuis des captures SCP ;
 - la détection automatique et les interprétations supplémentaires ;
-- 17 lecteurs de systèmes de fichiers ;
+- 18 lecteurs de systèmes de fichiers ;
 - l’orchestration de l’exploration ;
 - une conversion interne RWTS18 ;
 - la projection d’images sectorielles vers du flux destiné au Visualisateur.
@@ -313,7 +313,7 @@ Le découpage registre/politique est déjà présent. Les risques restants sont 
 
 `FileSystemModels.cs` contient les modèles, l’enum de type d’entrée et `IFileSystemReader`. `FileSystemEntry` contient données métier et contenu complet optionnel. `FileSystemVolume.Warnings` est une liste de chaînes techniques, ce qui limite la localisation et la structuration des avertissements.
 
-`FileSystemRegistry` compose 17 lecteurs. `ReadAll` conserve tous les résultats reconnus, tandis que `TryRead` sans identifiant choisit le premier lecteur dont `CanRead` réussit. L’ordre reste donc un comportement fonctionnel dans certains parcours. Les `InvalidDataException` sont absorbées pour poursuivre la détection, sans conserver leur diagnostic.
+`FileSystemRegistry` compose 18 lecteurs. `ReadAll` conserve tous les résultats reconnus, tandis que `TryRead` sans identifiant choisit le premier lecteur dont `CanRead` réussit. L’ordre reste donc un comportement fonctionnel dans certains parcours. Les `InvalidDataException` sont absorbées pour poursuivre la détection, sans conserver leur diagnostic.
 
 ### Lecteurs inventoriés
 
@@ -531,7 +531,7 @@ Tous les fichiers C# de production observés sont couverts par les groupes ci-de
 - images directes : contrat, modèles communs, politiques de conteneurs et tous les lecteurs listés ;
 - reconstruction : modèles ISO, registre, politiques, façades et reconstructeurs non ISO listés ;
 - détection/interprétation : tous les fichiers de `Images/ScpDetection` et `Images/Interpretations` ;
-- systèmes de fichiers : modèles, registre, 17 lecteurs et `AcornFileCoreNewMap` ;
+- systèmes de fichiers : modèles, registre, 18 lecteurs et `AcornFileCoreNewMap` ;
 - exploration : `DiskImageExplorer`, sa factory, le service d’interprétation et les modèles de résultat ;
 - conversion : `AppleRwts18ConversionService` ;
 - visualisation technique : `SectorImageFluxVisualizer` et toutes les politiques de `Images/Visualization`.

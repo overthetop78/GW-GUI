@@ -41,6 +41,32 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
     }
 
     [Fact]
+    public async Task LemmingsDataDiskExposesItsFlatResourceArchive()
+    {
+        const string path = @"F:\Disquettes\Lemmings Data Disk.scp";
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+        Assert.True(document.FileSystemRecognized);
+        Assert.Equal("amiga-flat-resource-archive", document.Volume.FileSystemId);
+        Assert.Empty(document.Volume.Name);
+        Assert.Equal(72, document.Volume.Entries.Count);
+        var rampic = Assert.Single(document.Volume.Entries, entry => entry.Name == "rampic");
+        Assert.Equal(8372, rampic.Size);
+        Assert.Equal("FORM", System.Text.Encoding.ASCII.GetString(rampic.Content!.Take(4).ToArray()));
+    }
+
+    [Fact]
+    public async Task SuperCarsTwoDiskTwoDoesNotExposeAnUnsignedEmptyRootAsOfs()
+    {
+        const string path = @"F:\Disquettes\Supercars II Disk 2.scp";
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+        Assert.False(document.FileSystemRecognized);
+        Assert.NotEmpty(document.Volume.Entries);
+        Assert.All(document.Volume.Entries, entry => Assert.StartsWith("T", entry.Name));
+    }
+
+    [Fact]
     public async Task Generation4HybridDetectsAtariIbmAndAmigaWithoutInventingMsxVariants()
     {
         const string path = @"F:\Disquettes\GÃ©nÃ©ration 4\GÃ©nÃ©ration 4 NÂ°53 - Mars 1993\GÃ©nÃ©ration 4 - Disquette_Demo_NÂ°53.scp";

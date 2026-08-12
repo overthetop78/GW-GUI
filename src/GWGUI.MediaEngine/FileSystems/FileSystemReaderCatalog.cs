@@ -7,6 +7,7 @@ public static class FileSystemReaderCatalog
     public static IReadOnlyList<IFileSystemReader> CreateDefault() => Array.AsReadOnly<IFileSystemReader>(
     [
         new Amiga.AmigaDosFileSystemReader(),
+        new Amiga.FlatArchive.AmigaFlatResourceArchiveReader(),
         new Acorn.Adfs.AcornAdfsFileSystemReader(),
         new Acorn.BbcDfs.BbcDfsFileSystemReader(),
         new Coherent.CoherentFileSystemReader(),

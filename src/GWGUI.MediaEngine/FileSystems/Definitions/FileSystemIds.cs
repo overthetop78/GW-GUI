@@ -25,6 +25,8 @@ public static class FileSystemIds
     public const string AmigaDosOfsLongNames = "amigados.ofs-long-names";
     /// <summary>Identifie AmigaDOS FFS Long Names.</summary>
     public const string AmigaDosFfsLongNames = "amigados.ffs-long-names";
+    /// <summary>Identifie une archive Amiga de ressources concaténées décrite par une table linéaire.</summary>
+    public const string AmigaFlatResourceArchive = "amiga-flat-resource-archive";
     /// <summary>Identifie la variante Amstrad de CP/M.</summary>
     public const string AmstradCpm = "amstrad.cpm";
     /// <summary>Identifie Apple DOS.</summary>

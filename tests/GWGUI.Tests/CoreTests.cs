@@ -1167,6 +1167,21 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ExplorerDiskDetailsUseTheSameCombinedWarningCountAsTheSummaryButton()
+    {
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("amiga.amigados", 512, 1, 1, 1,
+            [new GWGUI.MediaEngine.SectorImages.SectorBlock(0, new(0, 0, 0), new byte[512], false)]);
+        var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("TEST", "amigados.ofs", 512, 0, null, null, [], ["filesystem warning"]);
+        var document = new ExploredDiskImage("test.adf", image, volume,
+            new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata(["amiga"], null));
+
+        var details = ExplorerDetailsPresenter.ForDisk(document);
+
+        Assert.Equal(ExplorerSection.BuildIssues(document).Count.ToString(),
+            Assert.Single(details.Rows, row => row.Key == "Explorer.Warnings").Value);
+    }
+
+    [Fact]
     public void VisualizationUsesGwOnlyForAdvertisedInputAndScpOutput()
     {
         var catalog = new BuiltInImageFormatCatalog();
