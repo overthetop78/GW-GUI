@@ -34,6 +34,7 @@ public sealed class RecentFormatCodecTests
 
         Assert.Equal("acorn.dfs.ss", image.FormatId);
         Assert.True(new FileSystemRegistry().TryRead(image, null, out var volume));
+        Assert.NotNull(volume);
         Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AcornDfs, volume.FileSystemId);
         Assert.Contains(volume.Entries, entry => entry.Name == "FILE" && entry.Content!.SequenceEqual(new byte[] { 1, 2, 3 }));
     }

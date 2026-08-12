@@ -6282,60 +6282,60 @@
       - [x] Tester la distinction entre contenu nul et contenu vide.
       - [x] Tester que les quatre natures d'entrée restent distinctes après le déplacement de l'enum.
       - [x] Tester qu'un Reader expose un identifiant de système de fichiers central et un catalogue impossible à modifier.
-  - [ ] `FileSystems/FileSystemRegistry.cs`
-    - [ ] Séparation du catalogue par défaut et du registre
-      - [ ] Créer `FileSystems/FileSystemReaderCatalog.cs` pour construire les dix-sept Readers actuellement instanciés directement dans le registre.
-      - [ ] Déplacer dans ce catalogue chaque construction `new ...FileSystemReader()` sans modifier les Readers enregistrés ni leur ordre actuel.
-      - [ ] Ajouter à `FileSystemRegistry` un constructeur recevant une collection ordonnée de Readers.
-      - [ ] Conserver un constructeur public sans paramètre utilisant explicitement le catalogue par défaut afin de ne pas casser la factory, l'exploration et les tests actuels.
-    - [ ] Index immuables des Readers
-      - [ ] Copier la collection reçue avant de l'exposer afin qu'elle ne puisse pas modifier le registre après sa construction.
-      - [ ] Refuser un Reader nul dans la collection reçue.
-      - [ ] Refuser un identifiant de Reader nul, vide ou composé uniquement d'espaces.
-      - [ ] Construire une seule fois un dictionnaire par identifiant de Reader avec la comparaison sans casse actuellement utilisée.
-      - [ ] Refuser deux Readers possédant le même identifiant.
-      - [ ] Construire pour chaque identifiant de format de catalogue la liste ordonnée des Readers qui le déclarent, sans imposer son unicité puisqu'un format d'image peut permettre plusieurs systèmes de fichiers.
-      - [ ] Construire une seule fois l'ensemble réellement non modifiable `SupportedFormatIds` au lieu de le recalculer à chaque accès.
-      - [ ] Exposer `Readers` par une vue réellement non modifiable conservant l'ordre du catalogue.
-    - [ ] Résultats de lecture et diagnostics
-      - [ ] Déplacer le record imbriqué `Match` vers `FileSystems/FileSystemMatch.cs` et le renommer `FileSystemMatch`.
-      - [ ] Créer `FileSystems/FileSystemReadFailure.cs` pour conserver l'identifiant du Reader qui a reconnu l'image puis rejeté son contenu et son `InvalidDataException`.
-      - [ ] Créer `FileSystems/FileSystemReadReport.cs` pour exposer séparément les correspondances réussies et les échecs de lecture.
-      - [ ] Copier les collections de correspondances et d'échecs avant de les exposer par ce rapport.
-      - [ ] Permettre au rapport de distinguer aucun système reconnu, au moins un système lu et un système reconnu mais corrompu.
-    - [ ] Lecture de tous les candidats
-      - [ ] Faire retourner par `ReadAll` le rapport contenant les correspondances et les échecs au lieu de supprimer les exceptions capturées.
-      - [ ] Continuer à parcourir les Readers dans leur ordre public actuel.
-      - [ ] Ignorer comme non-candidat un Reader dont `CanRead` retourne faux.
-      - [ ] Ajouter une `FileSystemMatch` lorsqu'un Reader candidat réussit sa lecture.
-      - [ ] Ajouter un `FileSystemReadFailure` lorsqu'un Reader candidat déclenche `InvalidDataException`, puis poursuivre les autres candidats.
-    - [ ] Lecture ciblée ou automatique
-      - [ ] Pour un identifiant de Reader explicite, utiliser le dictionnaire au lieu de `FirstOrDefault`.
-      - [ ] Pour un identifiant de format de catalogue, utiliser la liste ordonnée indexée puis ne conserver comme candidats que les Readers dont `CanRead` accepte l'image.
-      - [ ] Sans identifiant, construire la liste ordonnée de tous les Readers dont `CanRead` accepte l'image.
-      - [ ] Essayer chaque candidat jusqu'à la première lecture réussie au lieu de s'arrêter définitivement lorsque le premier candidat reconnu rejette le contenu.
-      - [ ] Conserver chaque `InvalidDataException` rencontrée afin que le résultat distingue une absence de candidat d'une corruption.
-      - [ ] Remplacer la sortie `null!` par un résultat explicite ne prétendant pas fournir un volume lorsque la lecture échoue.
-    - [ ] Suppression de `Read`
-      - [ ] Adapter les tests Apple et Coherent qui appellent `Read` vers une lecture explicite ou vers le résultat détaillé.
-      - [ ] Adapter les consommateurs de l'exploration vers le rapport ou la lecture ciblée selon leur besoin.
-      - [ ] Supprimer `Read`, qui transforme actuellement tous les échecs en un unique texte brut et masque les diagnostics conservés.
-    - [ ] Erreurs du registre
-      - [ ] Créer `FileSystems/FileSystemRegistryExceptions.cs` avec les erreurs paramétrables pour Reader nul, identifiant vide, identifiant dupliqué et identifiant demandé absent.
-      - [ ] Remplacer les textes d'erreur bruts ajoutés au registre ou au catalogue par ces définitions.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Présenter un seul Reader par ligne dans `FileSystemReaderCatalog.cs`.
-      - [ ] Développer les blocs `try`, `catch`, affectations et retours actuellement juxtaposés sur une même ligne.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du registre, du catalogue, des résultats, des erreurs, de leurs membres, constructeurs et méthodes.
-    - [ ] Tests ciblés du registre
-      - [ ] Tester que le catalogue par défaut contient exactement les dix-sept Readers attendus, une seule fois et dans l'ordre conservé.
-      - [ ] Tester la copie de la collection reçue et l'impossibilité de modifier `Readers` et `SupportedFormatIds` après construction.
-      - [ ] Tester le rejet d'un Reader nul, d'un identifiant vide et d'un identifiant dupliqué.
-      - [ ] Tester la sélection par identifiant de Reader et par identifiant de format de catalogue.
-      - [ ] Tester plusieurs Readers associés au même format sans les traiter comme un doublon de Reader.
-      - [ ] Tester qu'un premier candidat corrompu est conservé comme échec et que le candidat suivant est tout de même essayé.
-      - [ ] Tester distinctement aucun système reconnu, système reconnu et lu, et système reconnu mais corrompu.
+  - [x] `FileSystems/FileSystemRegistry.cs`
+    - [x] Séparation du catalogue par défaut et du registre
+      - [x] Créer `FileSystems/FileSystemReaderCatalog.cs` pour construire les dix-sept Readers actuellement instanciés directement dans le registre.
+      - [x] Déplacer dans ce catalogue chaque construction `new ...FileSystemReader()` sans modifier les Readers enregistrés ni leur ordre actuel.
+      - [x] Ajouter à `FileSystemRegistry` un constructeur recevant une collection ordonnée de Readers.
+      - [x] Conserver un constructeur public sans paramètre utilisant explicitement le catalogue par défaut afin de ne pas casser la factory, l'exploration et les tests actuels.
+    - [x] Index immuables des Readers
+      - [x] Copier la collection reçue avant de l'exposer afin qu'elle ne puisse pas modifier le registre après sa construction.
+      - [x] Refuser un Reader nul dans la collection reçue.
+      - [x] Refuser un identifiant de Reader nul, vide ou composé uniquement d'espaces.
+      - [x] Construire une seule fois un dictionnaire par identifiant de Reader avec la comparaison sans casse actuellement utilisée.
+      - [x] Refuser deux Readers possédant le même identifiant.
+      - [x] Construire pour chaque identifiant de format de catalogue la liste ordonnée des Readers qui le déclarent, sans imposer son unicité puisqu'un format d'image peut permettre plusieurs systèmes de fichiers.
+      - [x] Construire une seule fois l'ensemble réellement non modifiable `SupportedFormatIds` au lieu de le recalculer à chaque accès.
+      - [x] Exposer `Readers` par une vue réellement non modifiable conservant l'ordre du catalogue.
+    - [x] Résultats de lecture et diagnostics
+      - [x] Déplacer le record imbriqué `Match` vers `FileSystems/FileSystemMatch.cs` et le renommer `FileSystemMatch`.
+      - [x] Créer `FileSystems/FileSystemReadFailure.cs` pour conserver l'identifiant du Reader qui a reconnu l'image puis rejeté son contenu et son `InvalidDataException`.
+      - [x] Créer `FileSystems/FileSystemReadReport.cs` pour exposer séparément les correspondances réussies et les échecs de lecture.
+      - [x] Copier les collections de correspondances et d'échecs avant de les exposer par ce rapport.
+      - [x] Permettre au rapport de distinguer aucun système reconnu, au moins un système lu et un système reconnu mais corrompu.
+    - [x] Lecture de tous les candidats
+      - [x] Faire retourner par `ReadAll` le rapport contenant les correspondances et les échecs au lieu de supprimer les exceptions capturées.
+      - [x] Continuer à parcourir les Readers dans leur ordre public actuel.
+      - [x] Ignorer comme non-candidat un Reader dont `CanRead` retourne faux.
+      - [x] Ajouter une `FileSystemMatch` lorsqu'un Reader candidat réussit sa lecture.
+      - [x] Ajouter un `FileSystemReadFailure` lorsqu'un Reader candidat déclenche `InvalidDataException`, puis poursuivre les autres candidats.
+    - [x] Lecture ciblée ou automatique
+      - [x] Pour un identifiant de Reader explicite, utiliser le dictionnaire au lieu de `FirstOrDefault`.
+      - [x] Pour un identifiant de format de catalogue, utiliser la liste ordonnée indexée puis ne conserver comme candidats que les Readers dont `CanRead` accepte l'image.
+      - [x] Sans identifiant, construire la liste ordonnée de tous les Readers dont `CanRead` accepte l'image.
+      - [x] Essayer chaque candidat jusqu'à la première lecture réussie au lieu de s'arrêter définitivement lorsque le premier candidat reconnu rejette le contenu.
+      - [x] Conserver chaque `InvalidDataException` rencontrée afin que le résultat distingue une absence de candidat d'une corruption.
+      - [x] Remplacer la sortie `null!` par un résultat explicite ne prétendant pas fournir un volume lorsque la lecture échoue.
+    - [x] Suppression de `Read`
+      - [x] Adapter les tests Apple et Coherent qui appellent `Read` vers une lecture explicite ou vers le résultat détaillé.
+      - [x] Adapter les consommateurs de l'exploration vers le rapport ou la lecture ciblée selon leur besoin.
+      - [x] Supprimer `Read`, qui transforme actuellement tous les échecs en un unique texte brut et masque les diagnostics conservés.
+    - [x] Erreurs du registre
+      - [x] Créer `FileSystems/FileSystemRegistryExceptions.cs` avec les erreurs paramétrables pour Reader nul, identifiant vide, identifiant dupliqué et identifiant demandé absent.
+      - [x] Remplacer les textes d'erreur bruts ajoutés au registre ou au catalogue par ces définitions.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Présenter un seul Reader par ligne dans `FileSystemReaderCatalog.cs`.
+      - [x] Développer les blocs `try`, `catch`, affectations et retours actuellement juxtaposés sur une même ligne.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du registre, du catalogue, des résultats, des erreurs, de leurs membres, constructeurs et méthodes.
+    - [x] Tests ciblés du registre
+      - [x] Tester que le catalogue par défaut contient exactement les dix-sept Readers attendus, une seule fois et dans l'ordre conservé.
+      - [x] Tester la copie de la collection reçue et l'impossibilité de modifier `Readers` et `SupportedFormatIds` après construction.
+      - [x] Tester le rejet d'un Reader nul, d'un identifiant vide et d'un identifiant dupliqué.
+      - [x] Tester la sélection par identifiant de Reader et par identifiant de format de catalogue.
+      - [x] Tester plusieurs Readers associés au même format sans les traiter comme un doublon de Reader.
+      - [x] Tester qu'un premier candidat corrompu est conservé comme échec et que le candidat suivant est tout de même essayé.
+      - [x] Tester distinctement aucun système reconnu, système reconnu et lu, et système reconnu mais corrompu.
   - [ ] `FileSystems/Readers/AmigaDosFileSystemReader.cs`
     - [ ] Emplacement et identité AmigaDOS
       - [ ] Déplacer le Reader vers `FileSystems/Amiga/AmigaDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.

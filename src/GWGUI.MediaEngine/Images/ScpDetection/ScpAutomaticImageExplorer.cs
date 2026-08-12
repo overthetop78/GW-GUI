@@ -27,7 +27,7 @@ internal sealed class ScpAutomaticImageExplorer(
                 {
                     var candidate = await read().ConfigureAwait(false);
                     var matches = new List<(ExploredFileSystem Match, SectorImage Image)>();
-                    foreach (var match in fileSystems.ReadAll(candidate))
+                    foreach (var match in fileSystems.ReadAll(candidate).Matches)
                     {
                         var recognizedImage = interpretations.NormalizeRecognizedImage(candidate, match.ReaderId, match.Volume);
                         var recognizedVolume = ReferenceEquals(recognizedImage, candidate) ||

@@ -3,6 +3,7 @@ using System.IO;
 using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Coherent;
+using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
@@ -19,7 +20,7 @@ public sealed class CoherentDiskImageTests
         var path = CoherentImagePath();
         var bytes = await File.ReadAllBytesAsync(path);
         var image = await new CoherentRawImageReader().ReadAsync(path);
-        var volume = new FileSystemRegistry().Read(image);
+        var volume = new CoherentFileSystemReader().Read(image);
 
         Assert.Equal(DiskImageFormatIds.Commodore900Coherent, image.FormatId);
         Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.Coherent, volume.FileSystemId);

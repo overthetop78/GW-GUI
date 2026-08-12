@@ -185,7 +185,7 @@ public sealed class AppleDiskImageTests
             await File.WriteAllBytesAsync(path, data);
             var image = await new AppleDiskImageReader().ReadAsync(path);
             Assert.Equal("apple2.dos33", image.FormatId);
-            var volume = new FileSystemRegistry().Read(image);
+            var volume = new AppleDosFileSystemReader().Read(image);
             Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleDos, volume.FileSystemId);
             Assert.Contains(volume.Entries, entry => entry.Name == "HELLO");
         }
@@ -225,7 +225,7 @@ public sealed class AppleDiskImageTests
             .ToArray();
         var image = new SectorImage("apple2.dos33", 256, 35, 1, 16, blocks);
 
-        var volume = new FileSystemRegistry().Read(image);
+        var volume = new AppleInformXzipFileSystemReader().Read(image);
 
         Assert.Equal(GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds.AppleInformXzip, volume.FileSystemId);
         Assert.Equal(2, volume.Entries.Count);

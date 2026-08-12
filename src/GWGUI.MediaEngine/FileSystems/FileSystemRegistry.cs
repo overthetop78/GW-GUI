@@ -1,65 +1,76 @@
+using System.Collections.Frozen;
+using System.Diagnostics.CodeAnalysis;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems;
 
+/// <summary>Indexe les lecteurs et exécute tous les candidats pertinents dans leur ordre public.</summary>
 public sealed class FileSystemRegistry
 {
-    public sealed record Match(string ReaderId, FileSystemVolume Volume);
+    private readonly FrozenDictionary<string, IFileSystemReader> readersById;
+    private readonly FrozenDictionary<string, IReadOnlyList<IFileSystemReader>> readersByFormatId;
 
-    public IReadOnlyList<IFileSystemReader> Readers { get; } =
-    [
-        new Readers.AmigaDosFileSystemReader(),
-        new Acorn.Adfs.AcornAdfsFileSystemReader(),
-        new Readers.BbcDfsFileSystemReader(),
-        new Readers.CoherentFileSystemReader(),
-        new Readers.Rt11FileSystemReader(),
-        new Readers.UcsdFileSystemReader(),
-        new Readers.AppleInformXzipFileSystemReader(),
-        new Readers.AppleDosFileSystemReader(),
-        new Readers.ProDosFileSystemReader(),
-        new Readers.MacMfsFileSystemReader(),
-        new Readers.MacHfsFileSystemReader(),
-        new Readers.LisaFileSystemReader(),
-        new Cpm.AmstradCpmFileSystemReader(),
-        new Cpm.CpmFileSystemReader(),
-        new Readers.CommodoreDosFileSystemReader(),
-        new Readers.Fat12FileSystemReader(),
-        new Readers.AtariDosFileSystemReader()
-    ];
-    public IReadOnlySet<string> SupportedFormatIds => Readers
-        .SelectMany(reader => reader.CatalogFormatIds)
-        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+    /// <summary>Crée le registre à partir du catalogue par défaut.</summary>
+    public FileSystemRegistry() : this(FileSystemReaderCatalog.CreateDefault()) { }
 
-    public FileSystemVolume Read(SectorImage image, string? fileSystemId = null)
+    /// <summary>Crée le registre à partir d'une collection ordonnée de lecteurs.</summary>
+    public FileSystemRegistry(IEnumerable<IFileSystemReader> readers)
     {
-        if (TryRead(image, fileSystemId, out var volume)) return volume;
-        throw new InvalidDataException("No supported file system was detected in the disk image.");
+        ArgumentNullException.ThrowIfNull(readers);
+        var copied = readers.ToArray();
+        for (var index = 0; index < copied.Length; index++)
+        {
+            if (copied[index] is null) throw FileSystemRegistryExceptions.NullReader(index);
+            if (string.IsNullOrWhiteSpace(copied[index].Id)) throw FileSystemRegistryExceptions.EmptyReaderId(index);
+        }
+        var duplicate = copied.GroupBy(reader => reader.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
+        if (duplicate is not null) throw FileSystemRegistryExceptions.DuplicateReaderId(duplicate.Key);
+        Readers = Array.AsReadOnly(copied);
+        readersById = copied.ToFrozenDictionary(reader => reader.Id, StringComparer.OrdinalIgnoreCase);
+        readersByFormatId = copied.SelectMany(reader => reader.CatalogFormatIds.Select(formatId => (formatId, reader))).GroupBy(item => item.formatId, StringComparer.OrdinalIgnoreCase).ToFrozenDictionary(group => group.Key, group => (IReadOnlyList<IFileSystemReader>)Array.AsReadOnly(group.Select(item => item.reader).ToArray()), StringComparer.OrdinalIgnoreCase);
+        SupportedFormatIds = readersByFormatId.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     }
 
-    public IReadOnlyList<Match> ReadAll(SectorImage image)
+    /// <summary>Lecteurs copiés et exposés dans l'ordre du catalogue.</summary>
+    public IReadOnlyList<IFileSystemReader> Readers { get; }
+    /// <summary>Ensemble immuable des formats de catalogue déclarés.</summary>
+    public IReadOnlySet<string> SupportedFormatIds { get; }
+
+    /// <summary>Lit tous les lecteurs qui reconnaissent l'image.</summary>
+    public FileSystemReadReport ReadAll(SectorImage image) => ReadCandidates(image, Readers);
+
+    /// <summary>Lit les candidats associés à un identifiant de lecteur ou de format ; tous les lecteurs sont considérés lorsque l'identifiant est absent.</summary>
+    public FileSystemReadReport ReadCandidates(SectorImage image, string? readerOrFormatId)
     {
-        var matches = new List<Match>();
-        foreach (var reader in Readers)
+        if (readerOrFormatId is null) return ReadAll(image);
+        if (readersById.TryGetValue(readerOrFormatId, out var reader)) return ReadCandidates(image, [reader]);
+        return readersByFormatId.TryGetValue(readerOrFormatId, out var formatReaders) ? ReadCandidates(image, formatReaders) : new([], []);
+    }
+
+    /// <summary>Tente chaque candidat jusqu'à la première lecture réussie.</summary>
+    public bool TryRead(SectorImage image, string? readerOrFormatId, [NotNullWhen(true)] out FileSystemVolume? volume)
+    {
+        var report = ReadCandidates(image, readerOrFormatId);
+        volume = report.Matches.FirstOrDefault()?.Volume;
+        return volume is not null;
+    }
+
+    private static FileSystemReadReport ReadCandidates(SectorImage image, IEnumerable<IFileSystemReader> readers)
+    {
+        var matches = new List<FileSystemMatch>();
+        var failures = new List<FileSystemReadFailure>();
+        foreach (var reader in readers)
         {
             if (!reader.CanRead(image)) continue;
-            try { matches.Add(new(reader.Id, reader.Read(image))); }
-            catch (InvalidDataException) { }
+            try
+            {
+                matches.Add(new(reader.Id, reader.Read(image)));
+            }
+            catch (InvalidDataException exception)
+            {
+                failures.Add(new(reader.Id, exception));
+            }
         }
-        return matches;
-    }
-
-    public bool TryRead(SectorImage image, string? fileSystemId, out FileSystemVolume volume)
-    {
-        IFileSystemReader? reader;
-        if (fileSystemId is null) reader = Readers.FirstOrDefault(candidate => candidate.CanRead(image));
-        else
-        {
-            reader = Readers.FirstOrDefault(candidate => candidate.Id.Equals(fileSystemId, StringComparison.OrdinalIgnoreCase));
-            if (reader is null)
-                reader = Readers.FirstOrDefault(candidate => candidate.CatalogFormatIds.Contains(fileSystemId) && candidate.CanRead(image));
-        }
-        if (reader is null || !reader.CanRead(image)) { volume = null!; return false; }
-        try { volume = reader.Read(image); return true; }
-        catch (InvalidDataException) { volume = null!; return false; }
+        return new(matches, failures);
     }
 }

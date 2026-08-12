@@ -33,7 +33,7 @@ public sealed class DiskImageExplorer(DiskImageRecognitionRegistry containers, F
         var detected = new List<ExploredFileSystem>();
         if (formatId is null)
         {
-            foreach (var match in fileSystems.ReadAll(image))
+            foreach (var match in fileSystems.ReadAll(image).Matches)
                 detected.Add(new(image.FormatId, match.ReaderId, match.Volume));
             if (detected.Count == 0)
             {
