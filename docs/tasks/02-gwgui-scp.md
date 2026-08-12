@@ -5372,10 +5372,10 @@
     - [ ] Remplacer les erreurs brutes par une méthode injectant géométrie et candidats observés. **Non applicable en l'état :** cette politique ne construit et ne lève aucune erreur ; elle délègue aux politiques sélectionnées et à l'erreur ISO commune de mesure.
     - [x] Documenter en français chaque membre.
     - [ ] Tester un candidat unique, ambigu, insuffisant et absent. Les candidats absents et les ensembles Epson mêlant un candidat insuffisant à une géométrie valide sont couverts ; la politique actuelle ne définit pas de résultat distinct nommé « ambigu » ou « insuffisant » à valider sans inventer un nouveau comportement.
-  - [ ] `SectorImages/BbcIsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer géométries SSD/DSD, pistes, faces, secteurs et formats bruts par les définitions BBC DFS.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester SSD/DSD 40 et 80 pistes.
+  - [x] `SectorImages/BbcIsoScpSectorImagePolicy.cs`
+    - [x] Remplacer géométries SSD/DSD, pistes, faces, secteurs et formats bruts par les définitions BBC DFS.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester SSD/DSD 40 et 80 pistes.
   - [ ] `SectorImages/BbcScpSectorImageReader.cs`
     - [ ] Remplacer codec, formats et erreurs bruts par les définitions BBC et erreurs de reconstruction.
     - [ ] Documenter en français chaque membre.
