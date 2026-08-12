@@ -5069,15 +5069,15 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AtariScpSectorImageReader`.
     - [x] Ajouter la documentation XML des méthodes `AtariScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AtariStIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiant du décodeur
-    - [ ] Remplacer le texte brut `iso.mfm` de `DecoderIds` par le membre correspondant de `Decoding/Definitions/FluxCodecIds.cs`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AtariStIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AtariStIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiant du décodeur
+    - [x] Remplacer le texte brut `iso.mfm` de `DecoderIds` par le membre correspondant de `Decoding/Definitions/FluxCodecIds.cs`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AtariStIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AutomaticIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs`.
