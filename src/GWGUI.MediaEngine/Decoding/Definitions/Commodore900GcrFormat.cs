@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Geometries.Commodore;
+
 namespace GWGUI.MediaEngine.Decoding.Definitions;
 
 /// <summary>Regroupe les définitions techniques communes du format Commodore 900 GCR.</summary>
@@ -30,7 +32,7 @@ internal static class Commodore900GcrFormat
     /// <summary>Position du checksum dans l'en-tête.</summary>
     public const int HeaderChecksumOffset = 3;
     /// <summary>Taille d'une charge utile sectorielle.</summary>
-    public const int SectorByteCount = 512;
+    public const int SectorByteCount = Commodore900Geometry.SectorSize;
     /// <summary>Nombre d'octets composant un bloc de données complet.</summary>
     public const int DataRecordByteCount = SectorByteCount + 2;
     /// <summary>Position de la marque dans un bloc de données.</summary>
@@ -58,7 +60,7 @@ internal static class Commodore900GcrFormat
     /// <summary>Intervalle produit après un enregistrement.</summary>
     public const int RecordGapBitCount = 120;
     /// <summary>Nombre attendu de secteurs utilisé comme diviseur de confiance.</summary>
-    public const int ExpectedSectorCount = 13;
+    public const int ExpectedSectorCount = Commodore900Geometry.MinimumSectorsPerTrack;
     /// <summary>Masque isolant un demi-octet.</summary>
     public const int NibbleMask = 0x0f;
     /// <summary>Plus grand cylindre ou secteur représentable dans l'en-tête.</summary>

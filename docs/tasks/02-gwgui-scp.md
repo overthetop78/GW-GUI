@@ -4612,47 +4612,47 @@
     - [x] Vérifier format, cylindres, faces, adresses, ordre des blocs et contenu du catalogue DFS.
     - [x] Tester une piste tronquée, une capacité correspondant à 41 ou 79 pistes et une extension inconnue.
     - [x] Vérifier explicitement l'ordre des faces DSD sur plusieurs cylindres.
-- [ ] `src/GWGUI.MediaEngine/Images/CoherentImageReader.cs`
-  - [ ] Déplacement du Reader de dump Coherent
-    - [ ] Créer `Containers/Coherent/CoherentRawImageReader.cs` et y déplacer la lecture du dump sectoriel brut.
-    - [ ] Adapter la politique Coherent, `DiskImageExplorerFactory` et les tests au nouveau namespace.
-    - [ ] Supprimer `Images/CoherentImageReader.cs` après extraction des responsabilités communes.
-  - [ ] Superbloc Coherent partagé avec le système de fichiers
-    - [ ] Créer `FileSystems/Coherent/CoherentSuperblockLayout.cs` avec la taille de bloc 512 et les offsets/longueurs des champs réellement lus à 514, 976, 980, 996 et 1 002.
-    - [ ] Créer `FileSystems/Coherent/CoherentSuperblockProbe.cs` et y déplacer `LooksLikeCoherent` ainsi que la validation du nombre de blocs déclaré.
-    - [ ] Déplacer `noname`, `nopack`, `xxxxx`, l'espace et le saut de ligne acceptés dans des définitions de superbloc nommées.
-    - [ ] Faire utiliser le même probe par la reconnaissance, le Reader de dump et `CoherentFileSystemReader`.
-    - [ ] Éviter tout appel du système de fichiers vers un Reader de conteneur.
-  - [ ] Entiers canoniques Coherent
-    - [ ] Créer `FileSystems/Coherent/CoherentCanonicalBinary.cs` et y déplacer `ReadCanonicalUInt32`.
-    - [ ] Nommer les quatre octets et documenter l'ordre 2, 3, 0, 1 du format canonique.
-    - [ ] Faire utiliser cette primitive par le superbloc, les inodes, les pointeurs indirects et le Reader de dump.
-    - [ ] Remplacer le texte brut `Four bytes are required.` par une erreur recevant longueur observée et longueur attendue.
-  - [ ] Géométrie Commodore 900
-    - [ ] Créer `Geometries/Commodore/Commodore900Geometry.cs` avec 80 cylindres, deux faces, secteurs de 512 octets et maximum de 16 secteurs par piste.
-    - [ ] Déplacer `SectorsPerTrack` et définir les zones 0–38, 39–52, 53–63 et 64–79 avec 16, 15, 14 et 13 secteurs.
-    - [ ] Valider le cylindre avant de sélectionner sa zone.
-    - [ ] Calculer la capacité physique maximale et l'adresse d'un bloc logique dans la géométrie.
-    - [ ] Réutiliser cette géométrie dans les décodeurs, encodeurs et visualisations Commodore 900 concernés.
-  - [ ] Reconstruction du dump
-    - [ ] Faire valider par le probe le nombre de blocs du système de fichiers, tout en conservant tous les blocs physiques complets du dump comme le fait actuellement le Reader.
-    - [ ] Refuser un dump dont le nombre de blocs dépasse la capacité de la géométrie au lieu d'annoncer des blocs logiques sans `SectorBlock` correspondant.
-    - [ ] Remplacer les trois boucles et calculs d'adresse par un builder utilisant `Commodore900Geometry`.
-    - [ ] Conserver la numérotation sectorielle à zéro et l'intégrité vraie des blocs présents.
-  - [ ] Erreurs Coherent
-    - [ ] Créer `Containers/Coherent/CoherentRawImageExceptions.cs` pour contenu non-Coherent, taille non sectorielle, nombre de blocs déclaré invalide et dump dépassant la géométrie.
-    - [ ] Faire recevoir aux erreurs taille, blocs déclarés, blocs disponibles et capacité géométrique.
-    - [ ] Remplacer les deux textes bruts du Reader.
-  - [ ] Présentation et CSDoc française
-    - [ ] Traduire la CSDoc et le commentaire anglais expliquant la taille logique et la taille physique du C900.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le Reader, le superbloc, les primitives canoniques, la géométrie et chaque membre.
-  - [ ] Tests ciblés Coherent
-    - [ ] Tester une image Coherent connue avec une taille de système de fichiers inférieure au dump physique.
-    - [ ] Tester les quatre zones de cylindres et leurs frontières.
-    - [ ] Tester les marqueurs `noname`, `nopack` et les variantes `xxxxx` réellement acceptées.
-    - [ ] Tester un superbloc trop court, un nombre déclaré inférieur à trois, supérieur au dump et un dump supérieur à la capacité physique.
-    - [ ] Vérifier que le Reader de dump et le Reader de système de fichiers utilisent les mêmes valeurs canoniques et le même probe.
+- [x] `src/GWGUI.MediaEngine/Images/CoherentImageReader.cs`
+  - [x] Déplacement du Reader de dump Coherent
+    - [x] Créer `Containers/Coherent/CoherentRawImageReader.cs` et y déplacer la lecture du dump sectoriel brut.
+    - [x] Adapter la politique Coherent, `DiskImageExplorerFactory` et les tests au nouveau namespace.
+    - [x] Supprimer `Images/CoherentImageReader.cs` après extraction des responsabilités communes.
+  - [x] Superbloc Coherent partagé avec le système de fichiers
+    - [x] Créer `FileSystems/Coherent/CoherentSuperblockLayout.cs` avec la taille de bloc 512 et les offsets/longueurs des champs réellement lus à 514, 976, 980, 996 et 1 002.
+    - [x] Créer `FileSystems/Coherent/CoherentSuperblockProbe.cs` et y déplacer `LooksLikeCoherent` ainsi que la validation du nombre de blocs déclaré.
+    - [x] Déplacer `noname`, `nopack`, `xxxxx`, l'espace et le saut de ligne acceptés dans des définitions de superbloc nommées.
+    - [x] Faire utiliser le même probe par la reconnaissance, le Reader de dump et `CoherentFileSystemReader`.
+    - [x] Éviter tout appel du système de fichiers vers un Reader de conteneur.
+  - [x] Entiers canoniques Coherent
+    - [x] Créer `FileSystems/Coherent/CoherentCanonicalBinary.cs` et y déplacer `ReadCanonicalUInt32`.
+    - [x] Nommer les quatre octets et documenter l'ordre 2, 3, 0, 1 du format canonique.
+    - [x] Faire utiliser cette primitive par le superbloc, les inodes, les pointeurs indirects et le Reader de dump.
+    - [x] Remplacer le texte brut `Four bytes are required.` par une erreur recevant longueur observée et longueur attendue.
+  - [x] Géométrie Commodore 900
+    - [x] Créer `Geometries/Commodore/Commodore900Geometry.cs` avec 80 cylindres, deux faces, secteurs de 512 octets et maximum de 16 secteurs par piste.
+    - [x] Déplacer `SectorsPerTrack` et définir les zones 0–38, 39–52, 53–63 et 64–79 avec 16, 15, 14 et 13 secteurs.
+    - [x] Valider le cylindre avant de sélectionner sa zone.
+    - [x] Calculer la capacité physique maximale et l'adresse d'un bloc logique dans la géométrie.
+    - [x] Réutiliser cette géométrie dans les décodeurs, encodeurs et visualisations Commodore 900 concernés.
+  - [x] Reconstruction du dump
+    - [x] Faire valider par le probe le nombre de blocs du système de fichiers, tout en conservant tous les blocs physiques complets du dump comme le fait actuellement le Reader.
+    - [x] Refuser un dump dont le nombre de blocs dépasse la capacité de la géométrie au lieu d'annoncer des blocs logiques sans `SectorBlock` correspondant.
+    - [x] Remplacer les trois boucles et calculs d'adresse par un builder utilisant `Commodore900Geometry`.
+    - [x] Conserver la numérotation sectorielle à zéro et l'intégrité vraie des blocs présents.
+  - [x] Erreurs Coherent
+    - [x] Créer `Containers/Coherent/CoherentRawImageExceptions.cs` pour contenu non-Coherent, taille non sectorielle, nombre de blocs déclaré invalide et dump dépassant la géométrie.
+    - [x] Faire recevoir aux erreurs taille, blocs déclarés, blocs disponibles et capacité géométrique.
+    - [x] Remplacer les deux textes bruts du Reader.
+  - [x] Présentation et CSDoc française
+    - [x] Traduire la CSDoc et le commentaire anglais expliquant la taille logique et la taille physique du C900.
+    - [x] Conserver sur une seule ligne les signatures, conditions et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le Reader, le superbloc, les primitives canoniques, la géométrie et chaque membre.
+  - [x] Tests ciblés Coherent
+    - [x] Tester une image Coherent connue avec une taille de système de fichiers inférieure au dump physique.
+    - [x] Tester les quatre zones de cylindres et leurs frontières.
+    - [x] Tester les marqueurs `noname`, `nopack` et les variantes `xxxxx` réellement acceptées.
+    - [x] Tester un superbloc trop court, un nombre déclaré inférieur à trois, supérieur au dump et un dump supérieur à la capacité physique.
+    - [x] Vérifier que le Reader de dump et le Reader de système de fichiers utilisent les mêmes valeurs canoniques et le même probe.
 - [ ] `src/GWGUI.MediaEngine/Images/CommodoreD64ImageReader.cs`
   - [ ] Déplacement du Reader D64
     - [ ] Créer `Containers/Commodore/D64/D64Reader.cs` et y déplacer le Reader du format D64.

@@ -1,7 +1,7 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Coherent;
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.MediaEngine.Containers.Coherent;
 
@@ -23,21 +23,12 @@ public sealed class CoherentRawImageReader
     /// <summary>Valide le superbloc et reconstruit les blocs sectoriels du dump.</summary>
     private static SectorImage Read(ReadOnlySpan<byte> bytes, CancellationToken cancellationToken)
     {
-        CoherentSuperblockProbe.ReadValidatedFileSystemBlockCount(bytes);
-        var blockCount = bytes.Length / CoherentSuperblockProbe.BlockSize;
-        var sectors = new List<SectorBlock>(blockCount);
-        var block = 0;
-        for (var cylinder = 0; cylinder < DiskGeometryConstants.EightyTrackCylinderCount && block < blockCount; cylinder++)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            var sectorsPerTrack = SectorsPerTrack(cylinder);
-            for (var head = 0; head < DiskGeometryConstants.DoubleSidedHeadCount && block < blockCount; head++)
-                for (var sector = 0; sector < sectorsPerTrack && block < blockCount; sector++, block++)
-                    sectors.Add(new(block, new(cylinder, head, sector), bytes.Slice(block * CoherentSuperblockProbe.BlockSize, CoherentSuperblockProbe.BlockSize).ToArray(), true));
-        }
-        return new(DiskImageFormatIds.Commodore900Coherent, CoherentSuperblockProbe.BlockSize, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, 16, sectors, capacity: bytes.Length, logicalBlockCount: blockCount);
+        if (!CoherentSuperblockProbe.LooksLikeCoherent(bytes)) throw CoherentRawImageExceptions.ContentNotCoherent(bytes.Length);
+        if (bytes.Length % Commodore900Geometry.SectorSize != 0) throw CoherentRawImageExceptions.NonSectorAlignedLength(bytes.Length, Commodore900Geometry.SectorSize);
+        var availableBlocks = bytes.Length / Commodore900Geometry.SectorSize;
+        var declaredBlocks = CoherentSuperblockProbe.ReadDeclaredFileSystemBlockCount(bytes);
+        if (declaredBlocks < 3 || declaredBlocks > availableBlocks) throw CoherentRawImageExceptions.InvalidDeclaredBlockCount(declaredBlocks, availableBlocks);
+        if (availableBlocks > Commodore900Geometry.BlockCount) throw CoherentRawImageExceptions.GeometryCapacityExceeded(availableBlocks, Commodore900Geometry.BlockCount);
+        return Commodore900SectorImageBuilder.Create(bytes, cancellationToken);
     }
-
-    /// <summary>Retourne le nombre de secteurs physiques par piste pour un cylindre Commodore 900.</summary>
-    private static int SectorsPerTrack(int cylinder) => cylinder switch { < 39 => 16, < 53 => 15, < 64 => 14, _ => 13 };
 }

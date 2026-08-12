@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.SectorImages;
 
 
@@ -43,6 +44,6 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
     public override uint BitCellTicks(SectorImage image, int cylinder)
     {
         if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return 40;
-        return cylinder switch { < 39 => 86, < 53 => 93, < 64 => 100, _ => 106 };
+        return cylinder switch { < Commodore900Geometry.Zone2StartCylinder => 86, < Commodore900Geometry.Zone3StartCylinder => 93, < Commodore900Geometry.Zone4StartCylinder => 100, _ => 106 };
     }
 }
