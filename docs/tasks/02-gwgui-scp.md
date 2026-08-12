@@ -3739,38 +3739,38 @@
       - [x] Tester le champ de données, le nombre de blocs, les octets réservés, le remplissage et le CRC avec un résultat connu.
       - [x] Tester le rejet d'un cylindre, d'un numéro de secteur et d'un nombre de blocs qui ne tiennent pas dans leurs champs.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Centurion avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Commodore 900
-      - [ ] Remplacer l'identifiant brut `commodore900.gcr` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Commodore 900 GCR` par la définition centrale correspondante.
-    - [ ] Définitions du format Commodore 900 GCR
-      - [ ] Déplacer la table GCR locale vers le codec commun au décodeur et à l'encodeur Commodore 900.
-      - [ ] Donner à cette table le type minimal adapté à ses codes de cinq bits au lieu de conserver un tableau d'entiers.
-      - [ ] Déplacer les marques d'en-tête `0x08` et de données `0x07` dans `Commodore900GcrFormat`.
-      - [ ] Déplacer la taille sectorielle, les longueurs de synchronisation et de gaps dans `Commodore900GcrFormat`.
-      - [ ] Déplacer le masque de nibble, le nombre de bits par code GCR et l'ordre nibble haut puis nibble bas dans le codec commun.
-      - [ ] Nommer séparément les valeurs initiales et les règles XOR des checksums d'en-tête et de données.
-    - [ ] Construction d'un secteur Commodore 900
-      - [ ] Extraire la construction de l'en-tête et de son checksum dans une fonction privée recevant le cylindre et le secteur validés.
-      - [ ] Extraire la construction du champ de données et de son checksum dans une fonction privée recevant les 512 données du secteur.
-      - [ ] Déplacer `Gcr` dans le codec Commodore 900 commun et l'utiliser depuis l'encodeur sans conserver une seconde table.
-      - [ ] Conserver explicitement l'ordre nibble haut puis nibble bas et l'émission du bit fort vers le bit faible de chaque code GCR.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant sa conversion en octet et avant le calcul du checksum d'en-tête.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet et avant le calcul du checksum d'en-tête.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Traduire en français la CSDoc anglaise du type.
-      - [ ] Ajouter en français la CSDoc des membres d'identité et de chaque méthode conservée ou créée.
-      - [ ] Normaliser la présentation de la table, des tableaux temporaires, des masques et des appels.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
-    - [ ] Tests ciblés de l'encodeur Commodore 900
-      - [ ] Tester le champ d'en-tête et son checksum XOR avec un cylindre et un secteur connus.
-      - [ ] Tester le champ de données de 512 octets et son checksum XOR avec un résultat connu.
-      - [ ] Tester le codec GCR commun pour les seize nibbles et vérifier l'ordre exact des cinq bits produits.
-      - [ ] Tester les longueurs et valeurs des synchronisations et gaps placés autour des deux champs.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Commodore 900 avec le décodeur correspondant dans chaque zone prise en charge.
+  - [x] `Encoding/Encoders/Commodore900GcrTrackEncoder.cs`
+    - [x] Identité de l'encodeur Commodore 900
+      - [x] Remplacer l'identifiant brut `commodore900.gcr` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Commodore 900 GCR` par la définition centrale correspondante.
+    - [x] Définitions du format Commodore 900 GCR
+      - [x] Déplacer la table GCR locale vers le codec commun au décodeur et à l'encodeur Commodore 900.
+      - [x] Donner à cette table le type minimal adapté à ses codes de cinq bits au lieu de conserver un tableau d'entiers.
+      - [x] Déplacer les marques d'en-tête `0x08` et de données `0x07` dans `Commodore900GcrFormat`.
+      - [x] Déplacer la taille sectorielle, les longueurs de synchronisation et de gaps dans `Commodore900GcrFormat`.
+      - [x] Déplacer le masque de nibble, le nombre de bits par code GCR et l'ordre nibble haut puis nibble bas dans le codec commun.
+      - [x] Nommer séparément les valeurs initiales et les règles XOR des checksums d'en-tête et de données.
+    - [x] Construction d'un secteur Commodore 900
+      - [x] Extraire la construction de l'en-tête et de son checksum dans une fonction privée recevant le cylindre et le secteur validés.
+      - [x] Extraire la construction du champ de données et de son checksum dans une fonction privée recevant les 512 données du secteur.
+      - [x] Déplacer `Gcr` dans le codec Commodore 900 commun et l'utiliser depuis l'encodeur sans conserver une seconde table.
+      - [x] Conserver explicitement l'ordre nibble haut puis nibble bas et l'émission du bit fort vers le bit faible de chaque code GCR.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 512 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant sa conversion en octet et avant le calcul du checksum d'en-tête.
+      - [x] Valider le numéro de secteur avant sa conversion en octet et avant le calcul du checksum d'en-tête.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Traduire en français la CSDoc anglaise du type.
+      - [x] Ajouter en français la CSDoc des membres d'identité et de chaque méthode conservée ou créée.
+      - [x] Normaliser la présentation de la table, des tableaux temporaires, des masques et des appels.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement sur une ligne.
+    - [x] Tests ciblés de l'encodeur Commodore 900
+      - [x] Tester le champ d'en-tête et son checksum XOR avec un cylindre et un secteur connus.
+      - [x] Tester le champ de données de 512 octets et son checksum XOR avec un résultat connu.
+      - [x] Tester le codec GCR commun pour les seize nibbles et vérifier l'ordre exact des cinq bits produits.
+      - [x] Tester les longueurs et valeurs des synchronisations et gaps placés autour des deux champs.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Commodore 900 avec le décodeur correspondant dans chaque zone prise en charge.
   - [ ] `Encoding/Encoders/CommodoreGcrTrackEncoder.cs`
     - [ ] Identité et attributs de l'encodeur Commodore GCR
       - [ ] Remplacer l'identifiant brut `commodore.gcr` par la définition centrale correspondante.

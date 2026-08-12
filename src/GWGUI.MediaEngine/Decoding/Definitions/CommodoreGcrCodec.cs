@@ -10,13 +10,13 @@ internal static class CommodoreGcrCodec
     /// <summary>Masque isolant un demi-octet.</summary>
     public const int NibbleMask = 0x0f;
     /// <summary>Table unique des seize symboles GCR.</summary>
-    public static IReadOnlyList<int> EncodingTable { get; } = Array.AsReadOnly<int>(
+    public static IReadOnlyList<byte> EncodingTable { get; } = Array.AsReadOnly<byte>(
     [
         0x0a, 0x0b, 0x12, 0x13, 0x0e, 0x0f, 0x16, 0x17,
         0x09, 0x19, 0x1a, 0x1b, 0x0d, 0x1d, 0x1e, 0x15
     ]);
     /// <summary>Table inverse construite depuis la table d'encodage.</summary>
-    public static IReadOnlyDictionary<int, int> DecodingTable { get; } = EncodingTable.Select((value, index) => (value, index)).ToDictionary(item => item.value, item => item.index);
+    public static IReadOnlyDictionary<int, int> DecodingTable { get; } = EncodingTable.Select((value, index) => ((int)value, index)).ToDictionary(item => item.Item1, item => item.index);
 
     /// <summary>Décode un symbole GCR de cinq bits.</summary>
     /// <param name="bits">Bits source.</param><param name="offset">Position du premier bit.</param><param name="stride">Écart entre deux cellules utiles.</param><param name="value">Demi-octet décodé.</param><returns><see langword="true"/> si le symbole est complet et valide.</returns>

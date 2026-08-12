@@ -17,20 +17,39 @@ public sealed class Commodore900GcrTrackEncoder : TrackEncoderBase
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackBitEncoding.Bits();
+        ValidateAddress(nameof(request.Cylinder), request.Cylinder);
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != Commodore900GcrFormat.SectorByteCount) throw Commodore900GcrFormat.InvalidSectorSize(sector.Data.Count);
-            var headerChecksum = CommodoreGcrChecksum.Calculate([Commodore900GcrFormat.HeaderMark, (byte)request.Cylinder, (byte)sector.Number]);
-            var dataChecksum = CommodoreGcrChecksum.Calculate(new byte[] { Commodore900GcrFormat.DataMark }.Concat(sector.Data));
+            ValidateAddress(nameof(sector.Number), sector.Number);
 
             bits.Gap(Commodore900GcrFormat.SyncGapBitCount, true);
-            bits.AddRange(CommodoreGcrCodec.Encode([Commodore900GcrFormat.HeaderMark, (byte)request.Cylinder, (byte)sector.Number, headerChecksum]));
+            bits.AddRange(CommodoreGcrCodec.Encode(BuildHeader((byte)request.Cylinder, (byte)sector.Number)));
             bits.Gap(Commodore900GcrFormat.RecordGapBitCount);
             bits.Gap(Commodore900GcrFormat.SyncGapBitCount, true);
-            bits.AddRange(CommodoreGcrCodec.Encode(new byte[] { Commodore900GcrFormat.DataMark }.Concat(sector.Data).Append(dataChecksum)));
+            bits.AddRange(CommodoreGcrCodec.Encode(BuildDataRecord(sector.Data)));
             bits.Gap(Commodore900GcrFormat.RecordGapBitCount);
         }
         return bits;
     }
 
+    /// <summary>Construit l'en-tête avec son checksum XOR.</summary>
+    private static byte[] BuildHeader(byte cylinder, byte sector)
+    {
+        byte[] values = [Commodore900GcrFormat.HeaderMark, cylinder, sector];
+        return values.Append(CommodoreGcrChecksum.Calculate(values)).ToArray();
+    }
+
+    /// <summary>Construit le champ de données de 512 octets avec sa marque et son checksum XOR.</summary>
+    private static byte[] BuildDataRecord(IReadOnlyList<byte> payload)
+    {
+        var values = new byte[] { Commodore900GcrFormat.DataMark }.Concat(payload).ToArray();
+        return values.Append(CommodoreGcrChecksum.Calculate(values)).ToArray();
+    }
+
+    /// <summary>Valide un champ d'adresse avant sa conversion en octet.</summary>
+    private static void ValidateAddress(string field, int value)
+    {
+        if (value is < 0 || value > Commodore900GcrFormat.MaximumAddressValue) throw TrackEncodingExceptions.FormatValueOutOfRange("Commodore 900 GCR", field, value, Commodore900GcrFormat.MaximumAddressValue);
+    }
 }

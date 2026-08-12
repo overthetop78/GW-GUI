@@ -61,6 +61,8 @@ internal static class Commodore900GcrFormat
     public const int ExpectedSectorCount = 13;
     /// <summary>Masque isolant un demi-octet.</summary>
     public const int NibbleMask = 0x0f;
+    /// <summary>Plus grand cylindre ou secteur représentable dans l'en-tête.</summary>
+    public const int MaximumAddressValue = byte.MaxValue;
 
     /// <summary>Crée l'exception signalant une taille sectorielle invalide.</summary>
     /// <param name="actualSize">Taille observée.</param><returns>Exception contenant les tailles attendue et observée.</returns>
