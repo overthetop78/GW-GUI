@@ -2936,42 +2936,42 @@
       - [x] Tester un bloc complet de 512 octets avec checksum valide puis invalide.
       - [x] Tester un bloc contenant seulement l'identité, un bloc tronqué avant l'identité et une marque absente.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/QdMo5MfmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer la propriété `Signatures` devenue inutile.
-    - [ ] Définitions QD MO5 MFM
-      - [ ] Créer `Decoding/Definitions/QdMo5MfmFormat.cs`.
-      - [ ] Y définir les dix octets de préambule communs, les deux octets encodant la marque d'en-tête et les deux octets encodant le préfixe de données.
-      - [ ] Y définir l'identifiant, le nom, la longueur de préambule de 80 bits, la longueur physique des motifs de douze octets et la longueur d'un octet MFM.
-      - [ ] Y définir les deux octets du numéro de secteur, les treize octets réservés et les seize octets MFM composant l'en-tête après le préambule.
-      - [ ] Y définir le préfixe de données par défaut `0x5a`, les 128 octets de charge utile, l'octet de checksum et les 130 octets MFM du bloc de données après le préambule.
-      - [ ] Y définir la distance maximale `(88 + 16) * 8`, la face, le cylindre, le code de taille et les gaps d'encodage `160` et `128`.
-      - [ ] Remplacer toutes les marques, tailles, positions, valeurs par défaut, gaps, identifiants, noms et descriptions bruts dans le décodeur et `QdMo5MfmTrackEncoder.cs`.
-    - [ ] Checksum commun
-      - [ ] Créer une opération de checksum additif QD MO5 commune au décodeur et à l'encodeur.
-      - [ ] Faire recevoir à cette opération le préfixe puis les 128 octets de données.
-      - [ ] Raccorder le décodeur et l'encodeur à cette opération au lieu de calculer séparément la somme.
-    - [ ] Décodage et résultat
-      - [ ] Extraire la lecture du numéro de secteur sur deux octets et la prise en compte des treize octets réservés dans une méthode d'en-tête nommée.
-      - [ ] Extraire la recherche de la marque de données qui s'arrête lorsqu'un nouvel en-tête est rencontré.
-      - [ ] Extraire la lecture du préfixe, des 128 octets et du checksum stocké dans une méthode nommée.
-      - [ ] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
-      - [ ] Extraire la collecte des marques de données non appariées dans une méthode nommée.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant secteur, préfixe et état du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations QD MO5 actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et à l'opération de checksum QD MO5.
-    - [ ] Vérification du groupe QD MO5
-      - [ ] Tester les motifs d'en-tête et de données et leur préambule commun de dix octets.
-      - [ ] Tester les limites du numéro de secteur sur deux octets et les treize octets réservés.
-      - [ ] Tester le préfixe par défaut et un préfixe explicitement fourni.
-      - [ ] Tester un secteur complet de 128 octets avec checksum valide puis invalide.
-      - [ ] Tester un en-tête ou des données tronqués, une marque absente, un nouvel en-tête avant les données et une marque non appariée.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/QdMo5MfmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer la propriété `Signatures` devenue inutile.
+    - [x] Définitions QD MO5 MFM
+      - [x] Créer `Decoding/Definitions/QdMo5MfmFormat.cs`.
+      - [x] Y définir les dix octets de préambule communs, les deux octets encodant la marque d'en-tête et les deux octets encodant le préfixe de données.
+      - [x] Y définir l'identifiant, le nom, la longueur de préambule de 80 bits, la longueur physique des motifs de douze octets et la longueur d'un octet MFM.
+      - [x] Y définir les deux octets du numéro de secteur, les treize octets réservés et les seize octets MFM composant l'en-tête après le préambule.
+      - [x] Y définir le préfixe de données par défaut `0x5a`, les 128 octets de charge utile, l'octet de checksum et les 130 octets MFM du bloc de données après le préambule.
+      - [x] Y définir la distance maximale `(88 + 16) * 8`, la face, le cylindre, le code de taille et les gaps d'encodage `160` et `128`.
+      - [x] Remplacer toutes les marques, tailles, positions, valeurs par défaut, gaps, identifiants, noms et descriptions bruts dans le décodeur et `QdMo5MfmTrackEncoder.cs`.
+    - [x] Checksum commun
+      - [x] Créer une opération de checksum additif QD MO5 commune au décodeur et à l'encodeur.
+      - [x] Faire recevoir à cette opération le préfixe puis les 128 octets de données.
+      - [x] Raccorder le décodeur et l'encodeur à cette opération au lieu de calculer séparément la somme.
+    - [x] Décodage et résultat
+      - [x] Extraire la lecture du numéro de secteur sur deux octets et la prise en compte des treize octets réservés dans une méthode d'en-tête nommée.
+      - [x] Extraire la recherche de la marque de données qui s'arrête lorsqu'un nouvel en-tête est rencontré.
+      - [x] Extraire la lecture du préfixe, des 128 octets et du checksum stocké dans une méthode nommée.
+      - [x] Conserver la charge utile décodée et la transmettre au `DecodedSector`.
+      - [x] Extraire la collecte des marques de données non appariées dans une méthode nommée.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant secteur, préfixe et état du checksum.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations QD MO5 actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et à l'opération de checksum QD MO5.
+    - [x] Vérification du groupe QD MO5
+      - [x] Tester les motifs d'en-tête et de données et leur préambule commun de dix octets.
+      - [x] Tester les limites du numéro de secteur sur deux octets et les treize octets réservés.
+      - [x] Tester le préfixe par défaut et un préfixe explicitement fourni.
+      - [x] Tester un secteur complet de 128 octets avec checksum valide puis invalide.
+      - [x] Tester un en-tête ou des données tronqués, une marque absente, un nouvel en-tête avant les données et une marque non appariée.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/RawFluxDecoder.cs`
     - [ ] Définitions de l'analyse brute
       - [ ] Créer des définitions d'analyse du flux brut contenant `FluxCodecIds.Raw`, le nom affiché et la confiance fixe `.05`.
