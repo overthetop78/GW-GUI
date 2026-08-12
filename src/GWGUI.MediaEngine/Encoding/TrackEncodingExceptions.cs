@@ -3,6 +3,16 @@ namespace GWGUI.MediaEngine.Encoding;
 /// <summary>Construit les erreurs communes produites pendant l'encodage d'une piste.</summary>
 internal static class TrackEncodingExceptions
 {
+    /// <summary>Crée l'erreur signalant une taille sectorielle sans code ISO correspondant.</summary>
+    /// <param name="sizeBytes">Taille sectorielle observée, en octets.</param>
+    /// <returns>Erreur contenant la taille non prise en charge.</returns>
+    public static ArgumentException UnsupportedSectorSize(int sizeBytes) => new($"Unsupported sector size: {sizeBytes} bytes.", nameof(sizeBytes));
+
+    /// <summary>Crée l'erreur signalant une durée de cellule binaire nulle.</summary>
+    /// <param name="cellTicks">Durée observée, en ticks.</param>
+    /// <returns>Erreur contenant la durée invalide.</returns>
+    public static ArgumentOutOfRangeException ZeroBitCell(uint cellTicks) => new(nameof(cellTicks), cellTicks, "Bit-cell duration must be greater than zero ticks.");
+
     /// <summary>Crée l'erreur signalant un cylindre situé hors des limites communes.</summary>
     /// <param name="cylinder">Numéro de cylindre observé.</param>
     /// <returns>Erreur contenant la valeur et les limites admises.</returns>

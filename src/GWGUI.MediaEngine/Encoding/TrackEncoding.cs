@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Flux;
-using System.Text;
+using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -7,7 +7,7 @@ internal static class TrackEncoding
 {
     public static FluxRevolution ToRevolution(IReadOnlyList<bool> bits, uint cellTicks, uint indexTimeTicks)
     {
-        if (cellTicks == 0) throw new ArgumentOutOfRangeException(nameof(cellTicks));
+        if (cellTicks == 0) throw TrackEncodingExceptions.ZeroBitCell(cellTicks);
         var intervals = new List<uint>();
         uint cells = 0;
         foreach (var bit in bits)
@@ -90,8 +90,8 @@ internal static class TrackEncoding
 
     public static byte SizeCode(int size)
     {
-        for (byte code = 0; code < 8; code++) if ((128 << code) == size) return code;
-        throw new ArgumentException($"Unsupported sector size: {size} bytes.", nameof(size));
+        if (SectorSizeCode.TryFromByteCount(size, out var code)) return code;
+        throw TrackEncodingExceptions.UnsupportedSectorSize(size);
     }
 
     public static byte[] WithCrc(IEnumerable<byte> values, ushort polynomial = Primitives.Crc16Calculator.CcittPolynomial, ushort initial = Primitives.Crc16Calculator.AllBitsSetInitialValue)

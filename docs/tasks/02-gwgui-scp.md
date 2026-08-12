@@ -3256,22 +3256,23 @@
     - [x] Ajouter la documentation XML des types `TrackEncoderBase`.
     - [x] Ajouter la documentation XML des méthodes `Encode, EncodeBits, Attribute`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncoding.cs`
-  - [ ] Valeurs brutes et erreurs d’encodage
-    - [ ] Créer `Primitives/SectorSizeCode.cs` avec la correspondance commune entre tailles sectorielles `128` à `16384` et codes `0` à `7`.
-    - [ ] Raccorder `TrackEncoding.SizeCode`, les décodeurs et la visualisation à cette définition unique.
-    - [ ] Remplacer le polynôme `0x1021` et la valeur initiale `0xFFFF` par les constantes de `Crc16Calculator`.
-    - [ ] Ajouter dans `TrackEncodingExceptions` une erreur recevant la taille sectorielle non prise en charge et une erreur recevant la cellule de bit nulle.
-    - [ ] Remplacer les textes et constructions directes d’exception de `TrackEncoding.cs`.
-  - [ ] Marques FM doublées réellement communes
-    - [ ] Créer une définition commune des motifs FM doublés correspondant aux marques d'adresse `0xFE` et de données `0xF8`, `0xF9`, `0xFB` et `0xFD`.
-    - [ ] Remplacer les chaînes hexadécimales `55111554`, `55111444`, `55111445`, `55111455` et `55111545` dans `DecRx02TrackEncoder.cs` par ces définitions.
-    - [ ] Remplacer les copies des motifs `55111554`, `55111444` et `55111455` dans `TycomFmTrackEncoder.cs` par les mêmes définitions.
-    - [ ] Vérifier les autres encodeurs FM avant tout raccordement et ne pas remplacer un motif identique dont les cellules d'horloge ont une autre signification.
-    - [ ] Documenter en français chaque marque avec l'octet de données et la disposition de cellules qu'elle représente.
-    - [ ] Tester la séquence binaire exacte de chaque marque puis l'aller-retour DEC RX02 et TYCOM.
-  - [x] Documentation XML
+  - [x] Valeurs brutes et erreurs d’encodage
+    - [x] Créer `Primitives/SectorSizeCode.cs` avec la correspondance commune entre tailles sectorielles `128` à `16384` et codes `0` à `7`.
+    - [x] Raccorder `TrackEncoding.SizeCode`, les décodeurs et la visualisation à cette définition unique.
+    - [x] Remplacer le polynôme `0x1021` et la valeur initiale `0xFFFF` par les constantes de `Crc16Calculator`.
+    - [x] Ajouter dans `TrackEncodingExceptions` une erreur recevant la taille sectorielle non prise en charge et une erreur recevant la cellule de bit nulle.
+    - [x] Remplacer les textes et constructions directes d’exception de `TrackEncoding.cs`.
+  - [x] Marques FM doublées réellement communes
+    - [x] Créer une définition commune des motifs FM doublés correspondant aux marques d'adresse `0xFE` et de données `0xF8`, `0xF9`, `0xFB` et `0xFD`.
+    - [x] Remplacer les chaînes hexadécimales `55111554`, `55111444`, `55111445`, `55111455` et `55111545` dans `DecRx02TrackEncoder.cs` par ces définitions.
+    - [x] Remplacer les copies des motifs `55111554`, `55111444` et `55111455` dans `TycomFmTrackEncoder.cs` par les mêmes définitions.
+    - [x] Vérifier les autres encodeurs FM avant tout raccordement et ne pas remplacer un motif identique dont les cellules d'horloge ont une autre signification.
+    - [x] Documenter en français chaque marque avec l'octet de données et la disposition de cellules qu'elle représente.
+    - [x] Tester la séquence binaire exacte de chaque marque puis l'aller-retour DEC RX02 et TYCOM.
+  - [ ] Documentation XML
     - [ ] Ajouter la documentation XML française de `TrackBitEncoding`, `FluxRevolutionFactory`, `SectorSizeCode`, `RotatingChecksumCalculator` et `TrackEncodingExceptions`.
     - [ ] Ajouter la documentation XML des méthodes conservées ou créées après le découpage, avec paramètres, résultat, exceptions, unités et invariants applicables.
+    - Blocage : `FluxRevolutionFactory` et `RotatingChecksumCalculator` n'existent pas encore ; leur création est prévue dans le découpage détaillé de `TrackEncoding.cs` plus loin dans cette section.
 
 - [ ] Compléments issus de la relecture complète de l'encodage
   - [ ] `Encoding/FluxEncoderRegistry.cs`

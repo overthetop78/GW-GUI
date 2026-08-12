@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images.Visualization;
@@ -24,10 +25,5 @@ internal abstract class SectorImageVisualizationPolicy : ISectorImageVisualizati
             .ToDictionary(item => item.Key, item => item.Value);
     }
 
-    protected static byte? SizeCode(int size) => size switch
-    {
-        128 => 0, 256 => 1, 512 => 2, 1024 => 3,
-        2048 => 4, 4096 => 5, 8192 => 6, 16384 => 7,
-        _ => null
-    };
+    protected static byte? SizeCode(int size) => SectorSizeCode.TryFromByteCount(size, out var code) ? code : null;
 }
