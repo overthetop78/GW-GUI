@@ -5311,15 +5311,15 @@
     - [x] Remplacer les préfixes de formats bruts par `DiskImageFormatIds`.
     - [x] Documenter en français le type et `Resolve`, notamment la politique automatique obtenue avec un identifiant nul et la politique générique obtenue avec un identifiant explicite non inscrit.
     - [x] Tester la résolution des familles Atari 8 bits, Atari ST, Amstrad, IBM/Macintosh 1 440 Kio, Acorn DFS, Epson QX-10 et UCSD, puis les deux replis nul et explicite non inscrit.
-  - [ ] `SectorImages/IsoSectorImageBuilder.cs`
-    - [ ] Créer un type nommé pour le résultat à six valeurs actuellement retourné par `Measure`.
-    - [ ] Extraire la règle de sélection du meilleur secteur dans `Reconstruction/SectorCandidateSelector.cs` et ne raccorder que les classements strictement identiques.
-    - [ ] Remplacer l'exception brute d'absence de candidats adressés par l'erreur ISO correspondante, sans lui transmettre des informations que `Measure` ne reçoit pas.
-    - [ ] Remettre sur une seule ligne la construction finale de `SectorImage` lorsqu'elle tient dans la longueur admise par le document.
-    - [ ] Documenter en français le type, le résultat de mesure et chaque méthode.
-    - [ ] Tester le choix des valeurs majoritaires de taille sectorielle et de nombre de secteurs par piste, les nombres de cylindres et de faces, l'ordre sectoriel et la détection d'une numérotation commençant à zéro.
-    - [ ] Tester le filtrage des adresses hors géométrie, le calcul du numéro logique, les options de taille variable et de capacité, puis la priorité des candidats valides, inconnus et invalides.
-    - [ ] Tester l'absence de candidat adressé et l'absence de données pour l'adresse demandée à `BestData`.
+  - [x] `SectorImages/IsoSectorImageBuilder.cs`
+    - [x] Créer un type nommé pour le résultat à six valeurs actuellement retourné par `Measure`.
+    - [x] Extraire la règle de sélection du meilleur secteur dans `Reconstruction/SectorCandidateSelector.cs` et ne raccorder que les classements strictement identiques.
+    - [x] Remplacer l'exception brute d'absence de candidats adressés par l'erreur ISO correspondante, sans lui transmettre des informations que `Measure` ne reçoit pas.
+    - [x] Remettre sur une seule ligne la construction finale de `SectorImage` lorsqu'elle tient dans la longueur admise par le document.
+    - [x] Documenter en français le type, le résultat de mesure et chaque méthode.
+    - [x] Tester le choix des valeurs majoritaires de taille sectorielle et de nombre de secteurs par piste, les nombres de cylindres et de faces, l'ordre sectoriel et la détection d'une numérotation commençant à zéro.
+    - [x] Tester le filtrage des adresses hors géométrie, le calcul du numéro logique, les options de taille variable et de capacité, puis la priorité des candidats valides, inconnus et invalides.
+    - [x] Tester l'absence de candidat adressé et l'absence de données pour l'adresse demandée à `BestData`.
   - [ ] `SectorImages/AmigaScpSectorImageReader.cs`
     - [ ] Remplacer format, codec, géométrie, tailles et seuils bruts par les définitions Amiga communes.
     - [ ] Remplacer les erreurs brutes par une méthode injectant piste, secteur et nombre de candidats.
