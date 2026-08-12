@@ -41,6 +41,8 @@ internal static class EpsonQx10GeometryCatalog
     public static EpsonQx10Geometry Geometry396 { get; } = new(DiskImageFormatIds.EpsonQx10_396, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, (cylinder, _) => cylinder <= 1 ? Layout320 : LayoutData);
     /// <summary>Collection non modifiable de toutes les géométries Epson cataloguées.</summary>
     public static IReadOnlyDictionary<string, EpsonQx10Geometry> All { get; } = new ReadOnlyDictionary<string, EpsonQx10Geometry>(new[] { Geometry320, Geometry400, GeometryBooter, Geometry399, GeometryLogo, Geometry396 }.ToDictionary(geometry => geometry.FormatId, StringComparer.OrdinalIgnoreCase));
+    /// <summary>Formats essayés lors de la reconstruction automatique d'une capture SCP.</summary>
+    public static IReadOnlyList<string> ScpCandidateFormatIds { get; } = Array.AsReadOnly(new[] { DiskImageFormatIds.EpsonQx10_396, DiskImageFormatIds.EpsonQx10_399, DiskImageFormatIds.EpsonQx10_320, DiskImageFormatIds.EpsonQx10_400, DiskImageFormatIds.EpsonQx10Logo });
 
     /// <summary>Valide que deux entrées du catalogue ne décrivent pas la même géométrie.</summary>
     static EpsonQx10GeometryCatalog()

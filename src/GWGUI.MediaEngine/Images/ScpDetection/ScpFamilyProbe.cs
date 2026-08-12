@@ -4,8 +4,12 @@ using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.MediaEngine.Images.ScpDetection;
 
+/// <summary>Détecte les familles d'encodage présentes dans un échantillon de pistes SCP.</summary>
+/// <param name="scpReader">Lecteur du conteneur SCP.</param>
+/// <param name="decoders">Registre des décodeurs de flux.</param>
 internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
+    /// <summary>Associations entre familles et décodeurs de flux centraux.</summary>
     private static readonly IReadOnlyList<(ScpFormatFamily Family, string DecoderId)> Probes =
     [
         (ScpFormatFamily.Iso, FluxCodecIds.IsoMfm),
@@ -18,6 +22,7 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         (ScpFormatFamily.Dec, FluxCodecIds.DecRx02)
     ];
 
+    /// <summary>Retourne les familles dont au moins un secteur valide est décodé.</summary>
     public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);

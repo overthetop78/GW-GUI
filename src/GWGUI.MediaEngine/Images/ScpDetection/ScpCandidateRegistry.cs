@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.Reconstruction.Apple;
@@ -7,18 +8,24 @@ using GWGUI.MediaEngine.Reconstruction.Commodore;
 using GWGUI.MediaEngine.Reconstruction.Dec;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 
-
 namespace GWGUI.MediaEngine.Images.ScpDetection;
 
+/// <summary>Associe les familles et identifiants de formats aux reconstructeurs SCP.</summary>
 internal sealed class ScpCandidateRegistry
 {
+    /// <summary>Reconstructeur différé d'une image sectorielle candidate.</summary>
     private delegate Task<SectorImage> Candidate(string path, string? formatId, CancellationToken cancellationToken);
 
+    /// <summary>Reconstructeur ISO utilisé comme repli pour une sélection explicite.</summary>
     private readonly IsoScpSectorImageReader isoReader;
+    /// <summary>Routage des identifiants explicitement demandés.</summary>
     private readonly IReadOnlyList<(Predicate<string> Matches, Candidate Read)> selectedReaders;
+    /// <summary>Reconstructeurs essayés lorsqu'aucune famille n'est connue.</summary>
     private readonly IReadOnlyList<Candidate> defaultReaders;
+    /// <summary>Reconstructeurs regroupés par famille détectable.</summary>
     private readonly IReadOnlyDictionary<ScpFormatFamily, IReadOnlyList<Candidate>> familyReaders;
 
+    /// <summary>Initialise le registre avec les reconstructeurs spécialisés.</summary>
     public ScpCandidateRegistry(
         AmigaScpSectorImageReader amigaReader,
         IsoScpSectorImageReader isoReader,
@@ -30,11 +37,11 @@ internal sealed class ScpCandidateRegistry
         this.isoReader = isoReader;
         selectedReaders =
         [
-            (id => id.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase),
                 (path, _, token) => amigaReader.ReadAsync(path, token)),
-            (id => id.StartsWith("commodore.", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.CommodorePrefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => commodoreReader.ReadAsync(path, id, token)),
-            (id => id.StartsWith("amstrad.", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.AmstradPrefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || id.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
@@ -48,9 +55,9 @@ internal sealed class ScpCandidateRegistry
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
             (id => id.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => isoReader.ReadAsync(path, id, token)),
-            (id => id.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) || id.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase),
+            (id => id.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase),
                 (path, id, token) => atariReader.ReadAsync(path, id, token)),
-            (id => id.StartsWith("apple", StringComparison.OrdinalIgnoreCase) || id.StartsWith("mac.", StringComparison.OrdinalIgnoreCase),
+            (IsAppleFormat,
                 (path, id, token) => appleReader.ReadAsync(path, id, token))
         ];
 
@@ -64,7 +71,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.UcsdIbmMfm, token),
             (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token)
         };
-        isoCandidates.AddRange(EpsonFormats.Select<string, Candidate>(formatId =>
+        isoCandidates.AddRange(EpsonQx10GeometryCatalog.ScpCandidateFormatIds.Select<string, Candidate>(formatId =>
             (path, _, token) => isoReader.ReadAsync(path, formatId, token)));
 
         defaultReaders =
@@ -76,7 +83,7 @@ internal sealed class ScpCandidateRegistry
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradCpc, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.AmstradPcw, token),
             (path, _, token) => isoReader.ReadAsync(path, DiskImageFormatIds.IbmScan, token),
-            .. EpsonFormats.Select<string, Candidate>(formatId =>
+            .. EpsonQx10GeometryCatalog.ScpCandidateFormatIds.Select<string, Candidate>(formatId =>
                 (path, _, token) => isoReader.ReadAsync(path, formatId, token)),
             (path, _, token) => appleReader.ReadAsync(path, null, token)
         ];
@@ -91,6 +98,7 @@ internal sealed class ScpCandidateRegistry
         };
     }
 
+    /// <summary>Retourne le reconstructeur correspondant à une sélection explicite.</summary>
     public Func<Task<SectorImage>>? Selected(string path, string? formatId, CancellationToken cancellationToken)
     {
         if (formatId is null) return null;
@@ -100,9 +108,11 @@ internal sealed class ScpCandidateRegistry
         return () => reader(path, formatId, cancellationToken);
     }
 
+    /// <summary>Énumère les reconstructeurs essayés sans indication de famille.</summary>
     public IEnumerable<Func<Task<SectorImage>>> Default(string path, CancellationToken cancellationToken) =>
         defaultReaders.Select(reader => (Func<Task<SectorImage>>)(() => reader(path, null, cancellationToken)));
 
+    /// <summary>Énumère les reconstructeurs correspondant aux familles détectées.</summary>
     public IEnumerable<Func<Task<SectorImage>>> Automatic(string path, IReadOnlySet<ScpFormatFamily> families, CancellationToken cancellationToken)
     {
         var selectedFamilies = families.Count == 0 ? familyReaders.Keys : families;
@@ -110,7 +120,6 @@ internal sealed class ScpCandidateRegistry
             .Select(reader => (Func<Task<SectorImage>>)(() => reader(path, null, cancellationToken)));
     }
 
-    private static readonly string[] EpsonFormats =
-        [DiskImageFormatIds.EpsonQx10_396, DiskImageFormatIds.EpsonQx10_399,
-            DiskImageFormatIds.EpsonQx10_320, DiskImageFormatIds.EpsonQx10_400, DiskImageFormatIds.EpsonQx10Logo];
+    /// <summary>Indique si un identifiant appartient à une famille de formats Apple prise en charge.</summary>
+    private static bool IsAppleFormat(string formatId) => formatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase);
 }

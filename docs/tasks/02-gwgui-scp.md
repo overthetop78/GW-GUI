@@ -7414,25 +7414,26 @@
       - [x] Tester l'annulation pendant la lecture asynchrone du checksum.
 
 - [ ] Données brutes de l’interprétation et de l’exploration
-  - [ ] Fichiers de `Images/Interpretations`
-    - [ ] Remplacer dans chaque normalizer et politique les identifiants, préfixes et identifiants de Readers bruts par `DiskImageFormatIds` et `FileSystemIds`.
-    - [ ] Déplacer les correspondances de capacités et géométries Atari, Macintosh, IBM et MSX vers leurs catalogues respectifs.
-    - [ ] Créer `Recognition/Atari/AtariProgramDefinitions.cs` avec les extensions `.ttp`, `.tos`, `.acc`, `.gtp` et la signature de programme Atari `60 1A`.
-    - [ ] Remplacer les offsets BPB utilisés par `SectorImageInterpretation` par `FatBpbLayout`.
-    - [ ] Remplacer les textes ou nombres bruts correspondants dans chacun des onze fichiers d’interprétation.
-  - [ ] Fichiers de `Images/ScpDetection`
-    - [ ] Remplacer dans `ScpCandidateRegistry.cs` tous les identifiants et préfixes de formats par `DiskImageFormatIds` et tous les identifiants de codecs par `FluxCodecIds`.
-    - [ ] Déplacer la liste des formats Epson vers `EpsonQx10GeometryCatalog`.
-    - [ ] Remplacer dans `ScpFamilyProbe.cs` les huit identifiants de codecs bruts par `FluxCodecIds`.
-    - [ ] Créer `Recognition/Scp/ScpDetectionExceptions.cs` avec une erreur recevant le format ou la famille lorsqu’aucun secteur ne peut être décodé et remplacer le texte brut de `ScpSectorImageReader.cs`.
+  - [x] Fichiers de `Images/Interpretations`
+    - [x] Remplacer dans chaque normalizer et politique les identifiants, préfixes et identifiants de Readers bruts par `DiskImageFormatIds` et `FileSystemIds`.
+    - [x] Déplacer les correspondances de capacités et géométries Atari, Macintosh, IBM et MSX vers leurs catalogues respectifs.
+    - [x] Créer `Recognition/Atari/AtariProgramDefinitions.cs` avec les extensions `.ttp`, `.tos`, `.acc`, `.gtp` et la signature de programme Atari `60 1A`.
+    - [x] Remplacer les offsets BPB utilisés par `SectorImageInterpretation` par `FatBpbLayout`.
+    - [x] Remplacer les textes ou nombres bruts correspondants dans chacun des onze fichiers d’interprétation.
+  - [x] Fichiers de `Images/ScpDetection`
+    - [x] Remplacer dans `ScpCandidateRegistry.cs` tous les identifiants et préfixes de formats par `DiskImageFormatIds` et tous les identifiants de codecs par `FluxCodecIds`.
+    - [x] Déplacer la liste des formats Epson vers `EpsonQx10GeometryCatalog`.
+    - [x] Remplacer dans `ScpFamilyProbe.cs` les huit identifiants de codecs bruts par `FluxCodecIds`.
+    - [x] Créer `Recognition/Scp/ScpDetectionExceptions.cs` avec une erreur recevant le format ou la famille lorsqu’aucun secteur ne peut être décodé et remplacer le texte brut de `ScpSectorImageReader.cs`.
   - [ ] Documentation XML
     - [ ] Documenter en français `DiskImageExplorationDefinitions`, `DiskImageExplorationExceptions`, `AtariProgramDefinitions`, `ScpDetectionExceptions` et leurs membres.
-    - [ ] Mettre à jour la documentation française de chaque fichier d’interprétation et de détection modifié.
-  - [ ] Tests ciblés
-    - [ ] Tester chaque normalizer et politique avec une image de `image_test` dont l’interprétation attendue est connue.
-    - [ ] Tester `ScpCandidateRegistry`, `ScpFamilyProbe` et `ScpSectorImageReader` avec les captures SCP nécessaires disponibles dans `image_test`.
-    - [ ] Appliquer la règle d’obtention d’image du document lorsqu’une image manque.
-    - [ ] Exécuter uniquement les tests du fichier ou du groupe traité.
+      - Blocage : `DiskImageExplorationExceptions` est créé dans le groupe suivant et aucune tâche ne crée encore `DiskImageExplorationDefinitions` ; les deux définitions existantes sont documentées.
+    - [x] Mettre à jour la documentation française de chaque fichier d’interprétation et de détection modifié.
+  - [x] Tests ciblés
+    - [x] Tester chaque normalizer et politique avec une image de `image_test` dont l’interprétation attendue est connue.
+    - [x] Tester `ScpCandidateRegistry`, `ScpFamilyProbe` et `ScpSectorImageReader` avec les captures SCP nécessaires disponibles dans `image_test`.
+    - [x] Appliquer la règle d’obtention d’image du document lorsqu’une image manque.
+    - [x] Exécuter uniquement les tests du fichier ou du groupe traité.
 
 - [ ] `src/GWGUI.MediaEngine/Images/DiskImageExplorer.cs`
   - [ ] Déplacement de la façade publique d’exploration
