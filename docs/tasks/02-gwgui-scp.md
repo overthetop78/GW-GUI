@@ -1395,7 +1395,7 @@
     - [ ] Vérifier séparément la classification par BPB FAT, par saut DOS, par chaque géométrie IBM prise en charge et le repli UCSD.
       - Dépendance restante : ce test sera finalisé avec `FatBpbLayout`, le détecteur BPB commun, la sonde DOS et `IbmPcGeometryCatalog` dans le groupe ultérieur de `IbmPcImageReader`.
 
-- [ ] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
+- [x] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
   - [x] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs`
     - [x] Responsabilité et emplacement
       - [x] Conserver le fichier à la racine de `Recognition`, car il transporte les mêmes indices et octets entre toutes les politiques d’une tentative de reconnaissance.
