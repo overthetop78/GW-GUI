@@ -2972,30 +2972,30 @@
       - [x] Tester un secteur complet de 128 octets avec checksum valide puis invalide.
       - [x] Tester un en-tête ou des données tronqués, une marque absente, un nouvel en-tête avant les données et une marque non appariée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/RawFluxDecoder.cs`
-    - [ ] Définitions de l'analyse brute
-      - [ ] Créer des définitions d'analyse du flux brut contenant `FluxCodecIds.Raw`, le nom affiché et la confiance fixe `.05`.
-      - [ ] Y définir les longueurs minimale `1` et maximale `64` d'un intervalle converti en cellules.
-      - [ ] Y définir le multiplicateur `10` d'un intervalle exceptionnellement long et le rapport `.55` d'une impulsion exceptionnellement courte.
-      - [ ] Y définir les descriptions des deux anomalies temporelles.
-      - [ ] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants dans `RawFluxDecoder.cs`.
-    - [ ] Analyse et résultat
-      - [ ] Extraire la conversion d'un intervalle en nombre de cellules borné dans une méthode nommée.
-      - [ ] Extraire la classification longue ou courte d'un intervalle dans une méthode nommée.
-      - [ ] Conserver la règle actuelle excluant le premier intervalle de la détection des impulsions courtes, car il commence à l'index de révolution.
-      - [ ] Documenter explicitement que le résultat brut ne contient ni secteurs ni octets décodés et que `BitCellTicks` contient l'estimation médiane en ticks SCP.
-    - [ ] Présentation et documentation
-      - [ ] Séparer les propriétés `Id` et `DisplayName` actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec les unités utilisées.
-      - [ ] Ajouter la CSDoc française aux définitions d'analyse brute créées.
-    - [ ] Vérification du groupe de flux brut
-      - [ ] Tester un flux vide et vérifier l'estimation de cellule, l'absence de secteur, l'absence d'octets et l'absence d'anomalie.
-      - [ ] Tester les bornes de conversion à une et soixante-quatre cellules.
-      - [ ] Tester une valeur juste sous puis au-dessus du seuil d'intervalle long.
-      - [ ] Tester une valeur juste sous puis au-dessus du seuil d'impulsion courte.
-      - [ ] Vérifier que le premier intervalle n'est pas classé comme impulsion courte.
-      - [ ] Vérifier les offsets cumulés, les longueurs, les descriptions, la confiance et les unités du résultat.
+  - [x] `Decoding/Decoders/RawFluxDecoder.cs`
+    - [x] Définitions de l'analyse brute
+      - [x] Créer des définitions d'analyse du flux brut contenant `FluxCodecIds.Raw`, le nom affiché et la confiance fixe `.05`.
+      - [x] Y définir les longueurs minimale `1` et maximale `64` d'un intervalle converti en cellules.
+      - [x] Y définir le multiplicateur `10` d'un intervalle exceptionnellement long et le rapport `.55` d'une impulsion exceptionnellement courte.
+      - [x] Y définir les descriptions des deux anomalies temporelles.
+      - [x] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts correspondants dans `RawFluxDecoder.cs`.
+    - [x] Analyse et résultat
+      - [x] Extraire la conversion d'un intervalle en nombre de cellules borné dans une méthode nommée.
+      - [x] Extraire la classification longue ou courte d'un intervalle dans une méthode nommée.
+      - [x] Conserver la règle actuelle excluant le premier intervalle de la détection des impulsions courtes, car il commence à l'index de révolution.
+      - [x] Documenter explicitement que le résultat brut ne contient ni secteurs ni octets décodés et que `BitCellTicks` contient l'estimation médiane en ticks SCP.
+    - [x] Présentation et documentation
+      - [x] Séparer les propriétés `Id` et `DisplayName` actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée, avec les unités utilisées.
+      - [x] Ajouter la CSDoc française aux définitions d'analyse brute créées.
+    - [x] Vérification du groupe de flux brut
+      - [x] Tester un flux vide et vérifier l'estimation de cellule, l'absence de secteur, l'absence d'octets et l'absence d'anomalie.
+      - [x] Tester les bornes de conversion à une et soixante-quatre cellules.
+      - [x] Tester une valeur juste sous puis au-dessus du seuil d'intervalle long.
+      - [x] Tester une valeur juste sous puis au-dessus du seuil d'impulsion courte.
+      - [x] Vérifier que le premier intervalle n'est pas classé comme impulsion courte.
+      - [x] Vérifier les offsets cumulés, les longueurs, les descriptions, la confiance et les unités du résultat.
   - [ ] `Decoding/Decoders/TycomFmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
