@@ -2,6 +2,7 @@ using System.IO;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.Containers.Commodore;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
+using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages.Builders;
@@ -153,7 +154,7 @@ public sealed class CommodoreDiskImageTests
         try
         {
             await File.WriteAllBytesAsync(path, new byte[length]);
-            var image = await new CommodoreD71ImageReader().ReadAsync(path);
+            var image = await new D71Reader().ReadAsync(path);
             Assert.Equal("commodore.1571", image.FormatId);
             Assert.Equal(tracks, image.Cylinders);
             Assert.Equal(2, image.Heads);
@@ -161,6 +162,63 @@ public sealed class CommodoreDiskImageTests
             Assert.Equal(length, image.Capacity);
         }
         finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(349696, 35, false)]
+    [InlineData(351062, 35, true)]
+    [InlineData(393216, 40, false)]
+    [InlineData(394752, 40, true)]
+    public async Task D71ReaderSupportsEveryLayoutAndKeepsBothFacesInOrder(int length, int tracks, bool hasErrorMap)
+    {
+        var layout = D71Layout.Supported.Single(candidate => candidate.ImageLength == length);
+        var data = new byte[length];
+        if (hasErrorMap)
+        {
+            data.AsSpan(layout.ErrorMapOffset!.Value, layout.DataBlockCount).Fill((byte)CommodoreDiskErrorCode.None);
+            data[layout.ErrorMapOffset.Value] = (byte)CommodoreDiskErrorCode.HeaderChecksumError;
+        }
+        var path = Path.ChangeExtension(Path.GetTempFileName(), ".d71");
+        try
+        {
+            await File.WriteAllBytesAsync(path, data);
+            var image = await new D71Reader().ReadAsync(path);
+            var blocksPerSide = Commodore1541Geometry.BlocksPerSide(tracks);
+            Assert.Equal(layout.DataBlockCount * Commodore1541Geometry.SectorSize, image.Capacity);
+            Assert.True(image.TryGetBlock(blocksPerSide - 1, out var lastFirstSide));
+            Assert.True(image.TryGetBlock(blocksPerSide, out var firstSecondSide));
+            Assert.Equal(new(tracks - 1, 0, Commodore1541Geometry.SectorsPerTrack(tracks) - 1), lastFirstSide.Address);
+            Assert.Equal(new(0, 1, 0), firstSecondSide.Address);
+            Assert.Equal(hasErrorMap ? (byte)CommodoreDiskErrorCode.None : null, firstSecondSide.DiagnosticCode);
+            Assert.True(image.TryGetBlock(0, out var first));
+            Assert.Equal(hasErrorMap ? (byte)CommodoreDiskErrorCode.HeaderChecksumError : null, first.DiagnosticCode);
+            Assert.Equal(!hasErrorMap, first.IntegrityValid);
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task D71MatchesD64AddressesAndRejectsInvalidInputs()
+    {
+        var d64Path = Path.ChangeExtension(Path.GetTempFileName(), ".d64");
+        var d71Path = Path.ChangeExtension(Path.GetTempFileName(), ".d71");
+        try
+        {
+            await File.WriteAllBytesAsync(d64Path, new byte[D64Layout.Tracks35.ImageLength]);
+            await File.WriteAllBytesAsync(d71Path, new byte[D71Layout.Tracks35.ImageLength]);
+            var d64 = await new D64Reader().ReadAsync(d64Path);
+            var d71 = await new D71Reader().ReadAsync(d71Path);
+            Assert.Equal(d64.AvailableBlocks.Select(block => block.Address), d71.AvailableBlocks.Take(d64.BlockCount).Select(block => block.Address));
+            await File.WriteAllBytesAsync(d71Path, new byte[D71Layout.Tracks35.ImageLength - 1]);
+            await Assert.ThrowsAsync<InvalidDataException>(() => new D71Reader().ReadAsync(d71Path));
+        }
+        finally { File.Delete(d64Path); File.Delete(d71Path); }
+
+        var layout = D71Layout.Tracks35WithErrors;
+        Assert.Throws<InvalidDataException>(() => Commodore1541SectorImageBuilder.Create(new byte[layout.ImageLength - 1], "commodore.1571", layout.TracksPerSide, 2, layout.DataBlockCount, layout.ErrorMapOffset, D71Exceptions.InvalidErrorMap, CancellationToken.None));
+        using var cancellation = new CancellationTokenSource();
+        cancellation.Cancel();
+        Assert.Throws<OperationCanceledException>(() => Commodore1541SectorImageBuilder.Create(new byte[D71Layout.Tracks35.ImageLength], "commodore.1571", D71Layout.Tracks35.TracksPerSide, 2, D71Layout.Tracks35.DataBlockCount, null, D71Exceptions.InvalidErrorMap, cancellation.Token));
     }
 
     [Fact]

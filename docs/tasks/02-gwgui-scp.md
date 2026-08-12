@@ -4686,35 +4686,35 @@
     - [x] Vérifier les frontières des quatre zones 1541, le premier et le dernier bloc et la capacité utile.
     - [x] Tester un code valide, chaque code d'erreur pris en charge et une carte tronquée.
     - [x] Tester une taille D64 inconnue et l'annulation pendant la reconstruction.
-- [ ] `src/GWGUI.MediaEngine/Images/CommodoreD71ImageReader.cs`
-  - [ ] Déplacement du Reader D71
-    - [ ] Créer `Containers/Commodore/D71/D71Reader.cs` et y déplacer le Reader du format D71.
-    - [ ] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
-    - [ ] Supprimer `Images/CommodoreD71ImageReader.cs` après raccordement.
-  - [ ] Dispositions D71
-    - [ ] Créer `Containers/Commodore/D71/D71Layout.cs` avec 35 ou 40 pistes par face, avec ou sans carte d'erreurs.
-    - [ ] Remplacer le dictionnaire de tuples par une collection immuable de layouts nommés.
-    - [ ] Calculer et vérifier les longueurs 349 696, 351 062, 393 216 et 394 752 depuis deux faces 1541 et la longueur de carte.
-    - [ ] Réutiliser la taille sectorielle, les zones et le maximum de secteurs de `Commodore1541Geometry` sans les recopier.
-  - [ ] Construction commune D64/D71
-    - [ ] Utiliser le builder Commodore commun créé avec D64 en lui fournissant deux faces.
-    - [ ] Conserver l'ordre actuel : tous les blocs de la première face puis ceux de la seconde selon `From1541LogicalBlock`.
-    - [ ] Convertir la piste indexée à un en cylindre indexé à zéro et conserver la face retournée par la géométrie.
-    - [ ] Réutiliser `CommodoreDiskErrorCode` et la même validation de carte que D64.
-    - [ ] Conserver la capacité utile sans la carte d'erreurs.
-  - [ ] Erreurs D71
-    - [ ] Créer `Containers/Commodore/D71/D71Exceptions.cs` pour taille inconnue et carte d'erreurs incohérente.
-    - [ ] Faire recevoir aux erreurs taille observée, tailles acceptées, blocs attendus et entrées disponibles.
-    - [ ] Remplacer le texte brut de taille non prise en charge.
-  - [ ] Présentation et CSDoc française
-    - [ ] Séparer chaque layout du catalogue sur sa propre ligne.
-    - [ ] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le Reader, le layout et chaque membre, notamment l'ordre des deux faces.
-  - [ ] Tests ciblés D71
-    - [ ] Tester D71 35 et 40 pistes par face, avec et sans carte d'erreurs.
-    - [ ] Vérifier le dernier bloc de la première face et le premier de la seconde sans chevauchement ni inversion.
-    - [ ] Tester les codes d'erreur, une carte tronquée, une taille inconnue et l'annulation.
-    - [ ] Comparer les adresses d'une face D71 à celles du D64 de même nombre de pistes.
+- [x] `src/GWGUI.MediaEngine/Images/CommodoreD71ImageReader.cs`
+  - [x] Déplacement du Reader D71
+    - [x] Créer `Containers/Commodore/D71/D71Reader.cs` et y déplacer le Reader du format D71.
+    - [x] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
+    - [x] Supprimer `Images/CommodoreD71ImageReader.cs` après raccordement.
+  - [x] Dispositions D71
+    - [x] Créer `Containers/Commodore/D71/D71Layout.cs` avec 35 ou 40 pistes par face, avec ou sans carte d'erreurs.
+    - [x] Remplacer le dictionnaire de tuples par une collection immuable de layouts nommés.
+    - [x] Calculer et vérifier les longueurs 349 696, 351 062, 393 216 et 394 752 depuis deux faces 1541 et la longueur de carte.
+    - [x] Réutiliser la taille sectorielle, les zones et le maximum de secteurs de `Commodore1541Geometry` sans les recopier.
+  - [x] Construction commune D64/D71
+    - [x] Utiliser le builder Commodore commun créé avec D64 en lui fournissant deux faces.
+    - [x] Conserver l'ordre actuel : tous les blocs de la première face puis ceux de la seconde selon `From1541LogicalBlock`.
+    - [x] Convertir la piste indexée à un en cylindre indexé à zéro et conserver la face retournée par la géométrie.
+    - [x] Réutiliser `CommodoreDiskErrorCode` et la même validation de carte que D64.
+    - [x] Conserver la capacité utile sans la carte d'erreurs.
+  - [x] Erreurs D71
+    - [x] Créer `Containers/Commodore/D71/D71Exceptions.cs` pour taille inconnue et carte d'erreurs incohérente.
+    - [x] Faire recevoir aux erreurs taille observée, tailles acceptées, blocs attendus et entrées disponibles.
+    - [x] Remplacer le texte brut de taille non prise en charge.
+  - [x] Présentation et CSDoc française
+    - [x] Séparer chaque layout du catalogue sur sa propre ligne.
+    - [x] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le Reader, le layout et chaque membre, notamment l'ordre des deux faces.
+  - [x] Tests ciblés D71
+    - [x] Tester D71 35 et 40 pistes par face, avec et sans carte d'erreurs.
+    - [x] Vérifier le dernier bloc de la première face et le premier de la seconde sans chevauchement ni inversion.
+    - [x] Tester les codes d'erreur, une carte tronquée, une taille inconnue et l'annulation.
+    - [x] Comparer les adresses d'une face D71 à celles du D64 de même nombre de pistes.
 - [ ] `src/GWGUI.MediaEngine/Images/CommodoreD81ImageReader.cs`
   - [ ] Déplacement du Reader D81
     - [ ] Créer `Containers/Commodore/D81/D81Reader.cs` et y déplacer le Reader du format D81.

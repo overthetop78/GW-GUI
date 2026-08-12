@@ -3,6 +3,12 @@ using GWGUI.MediaEngine.Geometries.Commodore;
 namespace GWGUI.MediaEngine.Containers.Commodore.D64;
 
 /// <summary>Décrit une disposition D64 et l'emplacement facultatif de sa carte d'erreurs.</summary>
+/// <param name="Name">Nom technique lisible de la disposition.</param>
+/// <param name="ImageLength">Longueur totale du conteneur.</param>
+/// <param name="TrackCount">Nombre de pistes.</param>
+/// <param name="DataBlockCount">Nombre de blocs de données.</param>
+/// <param name="HasErrorMap">Indique la présence d'une carte d'erreurs.</param>
+/// <param name="ErrorMapOffset">Offset de la carte d'erreurs lorsqu'elle existe.</param>
 public sealed record D64Layout(string Name, int ImageLength, int TrackCount, int DataBlockCount, bool HasErrorMap, int? ErrorMapOffset)
 {
     /// <summary>Disposition standard de 35 pistes sans carte d'erreurs.</summary>
