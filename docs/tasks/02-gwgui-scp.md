@@ -5823,27 +5823,28 @@
       - [ ] Tester un bloc d'index absent, un cycle et la limite de profondeur.
       - État : les 32 tests Apple existants passent après le raccordement ; les scénarios seedling/sapling/tree et les erreurs composées ne sont pas encore tous isolés dans des tests dédiés.
   - [ ] Atari DOS
-    - [ ] `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.
-      - [ ] Ajouter le secteur VTOC `360` et les huit secteurs de catalogue commençant à `361`.
-      - [ ] Ajouter la taille minimale de secteur `128`, la taille d'entrée `16` et les huit entrées par secteur de catalogue.
-      - [ ] Ajouter les offsets de drapeau, compteur, premier secteur, nom et extension.
-      - [ ] Ajouter les offsets des liens de secteur, le masque du numéro de secteur et les bits du propriétaire de fichier.
-      - [ ] Ajouter les marqueurs de caractères acceptés et les longueurs `8` et `3` du nom Atari.
-      - [ ] Remplacer chaque valeur brute correspondante dans `AtariDosFileSystemReader`.
-      - [ ] Documenter en français chaque constante avec sa base d'indexation.
-    - [ ] `FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de répertoire non reconnu avec format et taille sectorielle.
-      - [ ] Ajouter l'avertissement de secteur absent avec nom et numéro de secteur.
-      - [ ] Ajouter l'avertissement de cycle avec nom et numéro de secteur.
-      - [ ] Ajouter l'avertissement de propriétaire incohérent avec fichier, propriétaire attendu et observé.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
+    - [x] `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.
+      - [x] Ajouter le secteur VTOC `360` et les huit secteurs de catalogue commençant à `361`.
+      - [x] Ajouter la taille minimale de secteur `128`, la taille d'entrée `16` et les huit entrées par secteur de catalogue.
+      - [x] Ajouter les offsets de drapeau, compteur, premier secteur, nom et extension.
+      - [x] Ajouter les offsets des liens de secteur, le masque du numéro de secteur et les bits du propriétaire de fichier.
+      - [x] Ajouter les marqueurs de caractères acceptés et les longueurs `8` et `3` du nom Atari.
+      - [x] Remplacer chaque valeur brute correspondante dans `AtariDosFileSystemReader`.
+      - [x] Documenter en français chaque constante avec sa base d'indexation.
+    - [x] `FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de répertoire non reconnu avec format et taille sectorielle.
+      - [x] Ajouter l'avertissement de secteur absent avec nom et numéro de secteur.
+      - [x] Ajouter l'avertissement de cycle avec nom et numéro de secteur.
+      - [x] Ajouter l'avertissement de propriétaire incohérent avec fichier, propriétaire attendu et observé.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
     - [ ] Tests des définitions Atari DOS
       - [ ] Tester les images Atari de `128`, `256` et `512` octets par secteur prises en charge.
       - [ ] Tester le VTOC, les huit secteurs de catalogue et le décodage du nom 8.3.
       - [ ] Tester une chaîne complète, un cycle, un secteur absent et un propriétaire incohérent.
+      - État : les 56 tests Atari existants passent ; les variantes sectorielles et erreurs composées ne sont pas encore toutes isolées dans des tests dédiés.
   - [ ] BBC DFS
     - [ ] `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Acorn/BbcDfs/BbcDfsFileSystemLayout.cs`.
