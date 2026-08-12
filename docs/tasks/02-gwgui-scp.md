@@ -5326,9 +5326,9 @@
     - [x] Documenter en français chaque membre.
     - [x] Tester une capture Amiga DD, une capture Amiga HD et une capture sans secteur valide.
   - [ ] `SectorImages/AmstradIsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer formats CPC/PCW, géométries et tailles brutes par les définitions Amstrad correspondantes.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester les sélections CPC, PCW et le rejet d'une géométrie incompatible.
+    - [x] Remplacer formats CPC/PCW, géométries et tailles brutes par les définitions Amstrad correspondantes.
+    - [x] Documenter en français chaque membre.
+    - [ ] Tester les sélections CPC, PCW et le rejet d'une géométrie incompatible. Les sélections CPC et PCW sont validées par les deux images SCP réelles. **Rejet non applicable :** cette politique mesure volontairement la géométrie des candidats et n'impose aucune géométrie CPC/PCW à rejeter.
   - [ ] `SectorImages/AmstradScpSectorImageReader.cs`
     - [ ] Remplacer codec, formats et messages bruts par les définitions Amstrad et erreurs de reconstruction.
     - [ ] Documenter en français chaque membre.
