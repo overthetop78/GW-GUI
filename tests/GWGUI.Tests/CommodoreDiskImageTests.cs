@@ -1,6 +1,10 @@
 using System.IO;
 using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.Containers.Commodore;
+using GWGUI.MediaEngine.Containers.Commodore.D64;
+using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.Tests;
 
@@ -15,13 +19,114 @@ public sealed class CommodoreDiskImageTests
         try
         {
             await File.WriteAllBytesAsync(path, new byte[length]);
-            var image = await new CommodoreD64ImageReader().ReadAsync(path);
+            var image = await new D64Reader().ReadAsync(path);
             Assert.Equal("commodore.1541", image.FormatId);
             Assert.Equal(tracks, image.Cylinders);
             Assert.Equal(blocks, image.BlockCount);
             Assert.Equal(length, image.Capacity);
         }
         finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(174848, 35, false)]
+    [InlineData(175531, 35, true)]
+    [InlineData(196608, 40, false)]
+    [InlineData(197376, 40, true)]
+    public async Task D64ReaderSupportsEveryLayoutAndPreservesErrorCodes(int length, int tracks, bool hasErrorMap)
+    {
+        var layout = D64Layout.Supported.Single(candidate => candidate.ImageLength == length);
+        var data = new byte[length];
+        if (hasErrorMap)
+        {
+            data.AsSpan(layout.ErrorMapOffset!.Value, layout.DataBlockCount).Fill((byte)CommodoreDiskErrorCode.None);
+            data[layout.ErrorMapOffset.Value] = (byte)CommodoreDiskErrorCode.DataChecksumError;
+        }
+        var path = Path.ChangeExtension(Path.GetTempFileName(), ".d64");
+        try
+        {
+            await File.WriteAllBytesAsync(path, data);
+            var image = await new D64Reader().ReadAsync(path);
+            Assert.Equal(tracks, image.Cylinders);
+            Assert.Equal(layout.DataBlockCount * Commodore1541Geometry.SectorSize, image.Capacity);
+            Assert.True(image.TryGetBlock(0, out var first));
+            Assert.True(image.TryGetBlock(image.BlockCount - 1, out var last));
+            Assert.Equal(new(0, 0, 0), first.Address);
+            Assert.Equal(Commodore1541Geometry.ToCylinder(tracks), last.Address.Cylinder);
+            Assert.Equal(hasErrorMap ? (byte)CommodoreDiskErrorCode.DataChecksumError : null, first.DiagnosticCode);
+            Assert.Equal(!hasErrorMap, first.IntegrityValid);
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(1, true)]
+    [InlineData(2, false)]
+    [InlineData(3, false)]
+    [InlineData(4, false)]
+    [InlineData(5, false)]
+    [InlineData(6, false)]
+    [InlineData(7, false)]
+    [InlineData(8, false)]
+    [InlineData(9, false)]
+    [InlineData(10, false)]
+    [InlineData(11, false)]
+    [InlineData(15, false)]
+    public async Task D64ReaderInterpretsDocumentedErrorCodes(byte code, bool integrity)
+    {
+        var layout = D64Layout.Tracks35WithErrors;
+        var data = new byte[layout.ImageLength];
+        data.AsSpan(layout.ErrorMapOffset!.Value, layout.DataBlockCount).Fill((byte)CommodoreDiskErrorCode.None);
+        data[layout.ErrorMapOffset.Value] = code;
+        var path = Path.ChangeExtension(Path.GetTempFileName(), ".d64");
+        try
+        {
+            await File.WriteAllBytesAsync(path, data);
+            var image = await new D64Reader().ReadAsync(path);
+            Assert.True(image.TryGetBlock(0, out var block));
+            Assert.Equal(code, block.DiagnosticCode);
+            Assert.Equal(integrity, block.IntegrityValid);
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Fact]
+    public async Task D64ReaderRejectsUnknownLengthAndHonorsCancellation()
+    {
+        var path = Path.ChangeExtension(Path.GetTempFileName(), ".d64");
+        try
+        {
+            await File.WriteAllBytesAsync(path, new byte[D64Layout.Tracks35.ImageLength - 1]);
+            await Assert.ThrowsAsync<InvalidDataException>(() => new D64Reader().ReadAsync(path));
+            await File.WriteAllBytesAsync(path, new byte[D64Layout.Tracks35.ImageLength]);
+            using var cancellation = new CancellationTokenSource();
+            cancellation.Cancel();
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => new D64Reader().ReadAsync(path, cancellation.Token));
+        }
+        finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(1, 21)]
+    [InlineData(17, 21)]
+    [InlineData(18, 19)]
+    [InlineData(24, 19)]
+    [InlineData(25, 18)]
+    [InlineData(30, 18)]
+    [InlineData(31, 17)]
+    [InlineData(40, 17)]
+    public void Commodore1541GeometryDefinesEveryZoneBoundary(int track, int sectors) => Assert.Equal(sectors, Commodore1541Geometry.SectorsPerTrack(track));
+
+    [Fact]
+    public void D64LayoutsHaveExactLengthsAndRejectATruncatedErrorMap()
+    {
+        Assert.Equal(new[] { 174_848, 175_531, 196_608, 197_376 }, D64Layout.Supported.Select(layout => layout.ImageLength));
+        var layout = D64Layout.Tracks35WithErrors;
+        var truncated = new byte[layout.ImageLength - 1];
+        Assert.Throws<InvalidDataException>(() => Commodore1541SectorImageBuilder.Create(truncated, "commodore.1541", layout.TrackCount, 1, layout.DataBlockCount, layout.ErrorMapOffset, D64Exceptions.InvalidErrorMap, CancellationToken.None));
+        using var cancellation = new CancellationTokenSource();
+        cancellation.Cancel();
+        Assert.Throws<OperationCanceledException>(() => Commodore1541SectorImageBuilder.Create(new byte[D64Layout.Tracks35.ImageLength], "commodore.1541", D64Layout.Tracks35.TrackCount, 1, D64Layout.Tracks35.DataBlockCount, null, D64Exceptions.InvalidErrorMap, cancellation.Token));
     }
 
     [Fact]

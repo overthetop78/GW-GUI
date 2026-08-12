@@ -4653,39 +4653,39 @@
     - [x] Tester les marqueurs `noname`, `nopack` et les variantes `xxxxx` réellement acceptées.
     - [x] Tester un superbloc trop court, un nombre déclaré inférieur à trois, supérieur au dump et un dump supérieur à la capacité physique.
     - [x] Vérifier que le Reader de dump et le Reader de système de fichiers utilisent les mêmes valeurs canoniques et le même probe.
-- [ ] `src/GWGUI.MediaEngine/Images/CommodoreD64ImageReader.cs`
-  - [ ] Déplacement du Reader D64
-    - [ ] Créer `Containers/Commodore/D64/D64Reader.cs` et y déplacer le Reader du format D64.
-    - [ ] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
-    - [ ] Supprimer `Images/CommodoreD64ImageReader.cs` après raccordement.
-  - [ ] Dispositions D64
-    - [ ] Créer `Containers/Commodore/D64/D64Layout.cs` avec quatre dispositions nommées : 35 et 40 pistes, avec ou sans carte d'erreurs.
-    - [ ] Remplacer le dictionnaire de tuples par une collection immuable de `D64Layout` contenant longueur totale, pistes, blocs de données, présence et offset de la carte d'erreurs.
-    - [ ] Calculer les longueurs 174 848, 175 531, 196 608 et 197 376 depuis `Commodore1541Geometry` et la longueur de carte, puis vérifier qu'elles correspondent aux valeurs du format.
-    - [ ] Déplacer la taille sectorielle 256 et le maximum de 21 secteurs par piste dans la géométrie 1541.
-  - [ ] Carte d'erreurs Commodore
-    - [ ] Créer `Containers/Commodore/CommodoreDiskErrorCode.cs` avec les codes documentés utilisés par D64 et D71.
-    - [ ] Remplacer la comparaison brute à un par le code enum représentant l'absence d'erreur.
-    - [ ] Conserver le code d'erreur de chaque secteur dans le modèle technique ou un diagnostic au lieu de le réduire uniquement à un booléen lorsque cette information peut être exposée.
-    - [ ] Valider que la carte contient exactement une entrée par bloc de données.
-  - [ ] Construction sectorielle D64
-    - [ ] Utiliser `Commodore1541Geometry` pour le nombre de blocs et la conversion logique vers piste/secteur.
-    - [ ] Conserver la conversion de piste 1541 indexée à un vers cylindre du modèle indexé à zéro dans une fonction nommée.
-    - [ ] Utiliser un builder Commodore commun à D64 et D71 pour éviter leurs boucles sectorielles identiques.
-    - [ ] Conserver la capacité utile sans inclure la carte d'erreurs.
-  - [ ] Erreurs D64
-    - [ ] Créer `Containers/Commodore/D64/D64Exceptions.cs` pour taille inconnue et carte d'erreurs incohérente.
-    - [ ] Faire recevoir aux erreurs taille observée, tailles acceptées, blocs attendus et entrées de carte disponibles.
-    - [ ] Remplacer le texte brut de taille non prise en charge.
-  - [ ] Présentation et CSDoc française
-    - [ ] Séparer les quatre entrées du catalogue afin qu'une ligne ne contienne pas plusieurs dispositions.
-    - [ ] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le Reader, le layout, les codes d'erreur et chaque membre.
-  - [ ] Tests ciblés D64
-    - [ ] Tester D64 35 et 40 pistes, avec et sans carte d'erreurs.
-    - [ ] Vérifier les frontières des quatre zones 1541, le premier et le dernier bloc et la capacité utile.
-    - [ ] Tester un code valide, chaque code d'erreur pris en charge et une carte tronquée.
-    - [ ] Tester une taille D64 inconnue et l'annulation pendant la reconstruction.
+- [x] `src/GWGUI.MediaEngine/Images/CommodoreD64ImageReader.cs`
+  - [x] Déplacement du Reader D64
+    - [x] Créer `Containers/Commodore/D64/D64Reader.cs` et y déplacer le Reader du format D64.
+    - [x] Adapter `DiskImageExplorerFactory`, la reconnaissance et les tests au nouveau namespace.
+    - [x] Supprimer `Images/CommodoreD64ImageReader.cs` après raccordement.
+  - [x] Dispositions D64
+    - [x] Créer `Containers/Commodore/D64/D64Layout.cs` avec quatre dispositions nommées : 35 et 40 pistes, avec ou sans carte d'erreurs.
+    - [x] Remplacer le dictionnaire de tuples par une collection immuable de `D64Layout` contenant longueur totale, pistes, blocs de données, présence et offset de la carte d'erreurs.
+    - [x] Calculer les longueurs 174 848, 175 531, 196 608 et 197 376 depuis `Commodore1541Geometry` et la longueur de carte, puis vérifier qu'elles correspondent aux valeurs du format.
+    - [x] Déplacer la taille sectorielle 256 et le maximum de 21 secteurs par piste dans la géométrie 1541.
+  - [x] Carte d'erreurs Commodore
+    - [x] Créer `Containers/Commodore/CommodoreDiskErrorCode.cs` avec les codes documentés utilisés par D64 et D71.
+    - [x] Remplacer la comparaison brute à un par le code enum représentant l'absence d'erreur.
+    - [x] Conserver le code d'erreur de chaque secteur dans le modèle technique ou un diagnostic au lieu de le réduire uniquement à un booléen lorsque cette information peut être exposée.
+    - [x] Valider que la carte contient exactement une entrée par bloc de données.
+  - [x] Construction sectorielle D64
+    - [x] Utiliser `Commodore1541Geometry` pour le nombre de blocs et la conversion logique vers piste/secteur.
+    - [x] Conserver la conversion de piste 1541 indexée à un vers cylindre du modèle indexé à zéro dans une fonction nommée.
+    - [x] Utiliser un builder Commodore commun à D64 et D71 pour éviter leurs boucles sectorielles identiques.
+    - [x] Conserver la capacité utile sans inclure la carte d'erreurs.
+  - [x] Erreurs D64
+    - [x] Créer `Containers/Commodore/D64/D64Exceptions.cs` pour taille inconnue et carte d'erreurs incohérente.
+    - [x] Faire recevoir aux erreurs taille observée, tailles acceptées, blocs attendus et entrées de carte disponibles.
+    - [x] Remplacer le texte brut de taille non prise en charge.
+  - [x] Présentation et CSDoc française
+    - [x] Séparer les quatre entrées du catalogue afin qu'une ligne ne contienne pas plusieurs dispositions.
+    - [x] Conserver sur une seule ligne les signatures, appels et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le Reader, le layout, les codes d'erreur et chaque membre.
+  - [x] Tests ciblés D64
+    - [x] Tester D64 35 et 40 pistes, avec et sans carte d'erreurs.
+    - [x] Vérifier les frontières des quatre zones 1541, le premier et le dernier bloc et la capacité utile.
+    - [x] Tester un code valide, chaque code d'erreur pris en charge et une carte tronquée.
+    - [x] Tester une taille D64 inconnue et l'annulation pendant la reconstruction.
 - [ ] `src/GWGUI.MediaEngine/Images/CommodoreD71ImageReader.cs`
   - [ ] Déplacement du Reader D71
     - [ ] Créer `Containers/Commodore/D71/D71Reader.cs` et y déplacer le Reader du format D71.

@@ -1,29 +1,23 @@
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Geometries.Commodore;
 
 namespace GWGUI.MediaEngine.Images;
 
 internal static class CommodoreGeometry
 {
-    public const int StandardTrackCount = 35;
-    public const int ExtendedTrackCount = 40;
+    public const int StandardTrackCount = Commodore1541Geometry.StandardTrackCount;
+    public const int ExtendedTrackCount = Commodore1541Geometry.ExtendedTrackCount;
     public const int StandardSideCount = 1;
     public const int DoubleSideCount = 2;
-    public const int MaximumSectorsPer1541Track = 21;
+    public const int MaximumSectorsPer1541Track = Commodore1541Geometry.MaximumSectorsPerTrack;
     public const int Commodore1581PhysicalSectorSize = 512;
     public const int Commodore1581LogicalBlockSize = 256;
     public const int Commodore1581SectorsPerTrack = 10;
     public const int Commodore1581LogicalBlocksPerTrack = 40;
     public const int Commodore1581PhysicalSectorsPerLogicalBlock = Commodore1581PhysicalSectorSize / Commodore1581LogicalBlockSize;
-    public static int SectorsFor1541Track(int track) => track switch
-    {
-        >= 1 and <= 17 => MaximumSectorsPer1541Track,
-        <= 24 => 19,
-        <= 30 => 18,
-        <= ExtendedTrackCount => 17,
-        _ => throw new ArgumentOutOfRangeException(nameof(track))
-    };
+    public static int SectorsFor1541Track(int track) => Commodore1541Geometry.SectorsPerTrack(track);
 
-    public static int BlocksPer1541Side(int tracks) => Enumerable.Range(1, tracks).Sum(SectorsFor1541Track);
+    public static int BlocksPer1541Side(int tracks) => Commodore1541Geometry.BlocksPerSide(tracks);
 
     public static int To1541LogicalBlock(int track, int sector, int tracksPerSide, int side = 0)
     {
@@ -35,20 +29,7 @@ internal static class CommodoreGeometry
             + sector;
     }
 
-    public static (int Track, int Sector, int Side) From1541LogicalBlock(int block, int tracksPerSide, int sides)
-    {
-        var blocksPerSide = BlocksPer1541Side(tracksPerSide);
-        if (block < 0 || block >= blocksPerSide * sides) throw new ArgumentOutOfRangeException(nameof(block));
-        var side = block / blocksPerSide;
-        var remaining = block % blocksPerSide;
-        for (var track = 1; track <= tracksPerSide; track++)
-        {
-            var sectors = SectorsFor1541Track(track);
-            if (remaining < sectors) return (track, remaining, side);
-            remaining -= sectors;
-        }
-        throw new InvalidOperationException();
-    }
+    public static (int Track, int Sector, int Side) From1541LogicalBlock(int block, int tracksPerSide, int sides) => Commodore1541Geometry.FromLogicalBlock(block, tracksPerSide, sides);
 
     public static int To1581LogicalBlock(int track, int sector)
     {
