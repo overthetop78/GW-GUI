@@ -6,12 +6,14 @@ using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Geometries.Acorn;
 using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
+using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.App.Controls;
 
@@ -345,6 +347,33 @@ public sealed class DiskImageExplorerTests
         var error = await Assert.ThrowsAsync<InvalidDataException>(() => reader.ReadAsync("memory.scp"));
 
         Assert.Contains("1 candidate(s) decoded, 0 usable", error.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void AppleIIReconstructionRejectsOnlyOutOfRangeSectorNumbers()
+    {
+        var scp = BuildAppleIIScp(0, 16);
+        var reconstructor = new AppleIIScpSectorReconstructor(new AppleScpSectorDecoder(new FluxDecoderRegistry()));
+
+        Assert.Throws<InvalidDataException>(() => reconstructor.Decode(scp, false, CancellationToken.None));
+    }
+
+    [Fact]
+    public void AppleIIProDosReconstructionRejectsOnlyOutOfRangeTracks()
+    {
+        var scp = BuildAppleIIScp(50, 0);
+        var reconstructor = new AppleIIScpSectorReconstructor(new AppleScpSectorDecoder(new FluxDecoderRegistry()));
+
+        Assert.Throws<InvalidDataException>(() => reconstructor.Decode(scp, true, CancellationToken.None));
+    }
+
+    private static ScpImage BuildAppleIIScp(int cylinder, int sectorNumber)
+    {
+        var attributes = new Dictionary<string, int> { [AppleIIGcrFormat.SectorsPerTrackAttributeName] = AppleIIGcrFormat.SixAndTwoSectorsPerTrack };
+        var encoded = new FluxEncoderRegistry().Encode("apple2.gcr", new TrackEncodeRequest(cylinder, 0, [new TrackSector(sectorNumber, new byte[256])], attributes));
+        var trackNumber = checked((byte)(cylinder * 2));
+        return new(new(0, 0, 1, trackNumber, trackNumber, ScpFlags.IndexAligned, ScpBitCellEncoding.Explicit16Bit, ScpHeadSelection.Both, 0, 0),
+            [new ScpTrack(trackNumber, cylinder, 0, [new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count)])], true, 0);
     }
 
     [Fact]

@@ -6,13 +6,20 @@ using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
 /// <summary>Reconstruit les images Apple II DOS et ProDOS depuis des secteurs SCP décodés.</summary>
+/// <param name="decoder">Décodeur commun chargé de regrouper les candidats sectoriels Apple.</param>
 internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
     /// <summary>Reconstruit une image Apple II dans l'ordre demandé.</summary>
+    /// <param name="scp">Capture SCP déjà analysée.</param>
+    /// <param name="prodosOrder">Indique si les paires de secteurs doivent être réunies en blocs ProDOS.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le décodage des révolutions.</param>
+    /// <returns>L'image Apple II reconstruite dans l'ordre DOS ou ProDOS demandé.</returns>
+    /// <exception cref="InvalidDataException">Aucun secteur Apple II n'a été décodé ou aucun candidat ne respecte la géométrie retenue.</exception>
     public SectorImage Decode(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleIIGcr, AppleIIGcrFormat.SectorSize, cancellationToken);
@@ -22,16 +29,21 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         var blocks = candidates.Where(pair => pair.Key.Cylinder < 50 && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
             .Select(pair => AppleScpSectorDecoder.Select(
                 pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
+        if (blocks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIIGcrFormat.StructureDescriptionName);
         var formatId = sectorsPerTrack == 13 ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
         return new(formatId, 256, Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1),
             1, sectorsPerTrack, blocks);
     }
 
     /// <summary>Réunit les paires de secteurs physiques en blocs ProDOS.</summary>
+    /// <param name="candidates">Candidats Apple II regroupés par adresse physique.</param>
+    /// <returns>L'image Apple II dont les paires de secteurs complètes sont réunies en blocs ProDOS.</returns>
+    /// <exception cref="InvalidDataException">Aucune piste candidate ne respecte la limite Apple II ou aucun bloc ProDOS complet ne peut être construit.</exception>
     private static SectorImage CreateProDosImage(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
     {
-        var tracks = Math.Max(35, candidates.Keys.Where(key => key.Cylinder < 50)
-            .Max(key => key.Cylinder) + 1);
+        var usableTracks = candidates.Keys.Where(key => key.Cylinder < 50).Select(key => key.Cylinder).ToArray();
+        if (usableTracks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors("Apple II ProDOS");
+        var tracks = Math.Max(35, usableTracks.Max() + 1);
         var blocks = new List<SectorBlock>();
         for (var track = 0; track < tracks; track++)
         for (var blockOnTrack = 0; blockOnTrack < 8; blockOnTrack++)

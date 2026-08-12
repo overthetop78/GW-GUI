@@ -4999,18 +4999,18 @@
     - [x] Raccorder le registre directement à la politique correspondante.
     - [x] Adapter les consommateurs et les tests.
     - [x] Supprimer le fichier.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AppleIIScpSectorReconstructor.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleIIScpSectorReconstructor.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleIIScpSectorReconstructor`.
-    - [ ] Ajouter la documentation XML des méthodes `AppleIIScpSectorReconstructor, Decode, CreateProDosImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Validation des candidats utilisables avant `Max`
-    - [ ] Vérifier qu’au moins un candidat DOS reste après le filtrage du cylindre, du numéro de secteur et de la géométrie avant d’appeler `blocks.Max`.
-    - [ ] Vérifier qu’au moins une piste ProDOS reste sous la limite Apple II avant d’appeler `Max` dans `CreateProDosImage`.
-    - [ ] Remplacer les exceptions LINQ produites par ces deux collections vides par les erreurs Apple de reconstruction déjà prévues.
-    - [ ] Tester des candidats décodés tous placés au-delà de la limite de piste ainsi que des numéros de secteurs tous incompatibles avec la géométrie retenue.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AppleIIScpSectorReconstructor.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Apple/AppleIIScpSectorReconstructor.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleIIScpSectorReconstructor`.
+    - [x] Ajouter la documentation XML des méthodes `AppleIIScpSectorReconstructor, Decode, CreateProDosImage`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Validation des candidats utilisables avant `Max`
+    - [x] Vérifier qu’au moins un candidat DOS reste après le filtrage du cylindre, du numéro de secteur et de la géométrie avant d’appeler `blocks.Max`.
+    - [x] Vérifier qu’au moins une piste ProDOS reste sous la limite Apple II avant d’appeler `Max` dans `CreateProDosImage`.
+    - [x] Remplacer les exceptions LINQ produites par ces deux collections vides par les erreurs Apple de reconstruction déjà prévues.
+    - [x] Tester des candidats décodés tous placés au-delà de la limite de piste ainsi que des numéros de secteurs tous incompatibles avec la géométrie retenue.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AppleMacScpSectorReconstructor.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleMacScpSectorReconstructor.cs`.
