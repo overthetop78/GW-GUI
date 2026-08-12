@@ -5339,8 +5339,8 @@
     - [x] Documenter en français chaque membre.
     - [ ] Tester DOS 3.2, DOS 3.3, les doublons et les secteurs manquants. Les rejets hors plage et les secteurs manquants ProDOS sont validés ; il manque encore des captures DOS 3.2 et DOS 3.3 dédiées ainsi qu'un doublon contrôlé.
   - [ ] `SectorImages/AppleMacScpSectorReconstructor.cs`
-    - [ ] Remplacer zones, secteurs par piste, tags et capacités bruts par `MacintoshDiskGeometry` et `AppleMacGcrFormat`.
-    - [ ] Documenter en français chaque membre.
+    - [x] Remplacer zones, secteurs par piste, tags et capacités bruts par `MacintoshDiskGeometry` et `AppleMacGcrFormat`.
+    - [x] Documenter en français chaque membre.
     - [ ] Tester les zones Macintosh, les tags, les doublons et les secteurs manquants.
   - [ ] `SectorImages/AppleRwts18ScpSectorReconstructor.cs`
     - [ ] Remplacer pistes, secteurs, ordre et tailles bruts par `AppleRwts18Format`.
