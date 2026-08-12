@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.FileSystems.Macintosh;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
@@ -15,8 +16,7 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleMacMfs, DiskImageFormatIds.Mac400, DiskImageFormatIds.Mac800, DiskImageFormatIds.Mac1440 };
 
-    public bool CanRead(SectorImage image) => image.BlockSize == 512 && image.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 64
-        && mdb.Data[0] == 0xd2 && mdb.Data[1] == 0xd7;
+    public bool CanRead(SectorImage image) => image.BlockSize == MacintoshVolumeSignatures.BlockSize && image.TryGetBlock(MacintoshVolumeSignatures.MasterDirectoryBlock, out var mdb) && mdb.Data.Count >= 64 && BinaryPrimitives.ReadUInt16BigEndian(mdb.Data.ToArray()) == MacintoshVolumeSignatures.Mfs;
 
     public FileSystemVolume Read(SectorImage image)
     {

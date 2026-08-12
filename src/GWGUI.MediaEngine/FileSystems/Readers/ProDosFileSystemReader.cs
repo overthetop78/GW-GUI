@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.FileSystems.ProDos;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
@@ -17,8 +18,7 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
 
     public bool CanRead(SectorImage image)
     {
-        if (image.BlockSize != 512 || !image.TryGetBlock(2, out var root) || root.Data.Count != 512) return false;
-        var header = root.Data[4]; return (header >> 4) == 0x0f && (header & 0x0f) is > 0 and <= 15 && root.Data[0x23] == 0x27;
+        return image.BlockSize == ProDosVolumeHeader.BlockSize && image.TryGetBlock(ProDosVolumeHeader.BlockNumber, out var root) && root.Data.Count == ProDosVolumeHeader.BlockSize && ProDosVolumeHeader.IsValid(root.Data.ToArray());
     }
 
     public FileSystemVolume Read(SectorImage image)

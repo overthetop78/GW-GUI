@@ -2,6 +2,8 @@ using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
 using System.Text;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.FileSystems.AppleDos;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
@@ -15,9 +17,8 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
     public bool CanRead(SectorImage image)
     {
         var sectors = image.SectorsPerTrack;
-        if (image.BlockSize != 256 || sectors is not (13 or 16) || image.BlockCount < 35 * sectors || !image.TryGetBlock(17 * sectors, out var vtoc) || vtoc.Data.Count < 0x38) return false;
-        return vtoc.Data[1] is > 0 and < 35 && vtoc.Data[2] < sectors && vtoc.Data[0x35] == sectors
-            && BinaryPrimitives.ReadUInt16LittleEndian(vtoc.Data.Skip(0x36).Take(2).ToArray()) == 256;
+        if (image.BlockSize != AppleIIGeometry.SectorSize || sectors is not (13 or AppleIIGeometry.SectorsPerTrack) || image.BlockCount < AppleIIGeometry.TrackCount * sectors || !image.TryGetBlock(AppleDosVtoc.Track * sectors, out var vtoc)) return false;
+        return AppleDosVtoc.IsValid(vtoc.Data.ToArray(), AppleIIGeometry.TrackCount, sectors, AppleIIGeometry.SectorSize);
     }
 
     public FileSystemVolume Read(SectorImage image)

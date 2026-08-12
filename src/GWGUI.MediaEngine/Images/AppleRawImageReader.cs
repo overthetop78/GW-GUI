@@ -3,6 +3,9 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.FileSystems.Macintosh;
+using GWGUI.MediaEngine.FileSystems.Lisa;
+using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.Images;
 
@@ -22,32 +25,32 @@ internal static class AppleRawImageReader
     private static SectorImage ReadAppleTwo525(byte[] data, string extension)
     {
         if (extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) ||
-            AppleDiskImageSignatures.LooksLikeProDos(data))
+            AppleRawImageProbe.LooksLikeProDos(data))
             return AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIProDos, 512, 35, 1, 8);
-        if (AppleDiskImageSignatures.LooksLikeDos33(data))
+        if (AppleRawImageProbe.LooksLikeDos33(data))
             return AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIDos33, 256, 35, 1, 16);
 
         var prodosBlocks = AppleIISectorOrderConverter.DosToProDos(data);
-        if (AppleDiskImageSignatures.LooksLikeSos(data))
+        if (AppleRawImageProbe.LooksLikeSos(data))
             return AppleSectorImageFactory.CreateLinear(prodosBlocks, DiskImageFormatIds.AppleIIISos, 512, 35, 1, 8);
-        if (AppleDiskImageSignatures.LooksLikeProDos(prodosBlocks))
+        if (AppleRawImageProbe.LooksLikeProDos(prodosBlocks))
             return AppleSectorImageFactory.CreateLinear(prodosBlocks, DiskImageFormatIds.AppleIIProDos, 512, 35, 1, 8);
         return AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIDos33, 256, 35, 1, 16);
     }
 
     private static SectorImage ReadApple35(byte[] data)
     {
-        if (data.Length == 409_600 && AppleDiskImageSignatures.LooksLikeLisaOfficePayload(data))
+        if (data.Length == LisaVolumeHeader.Capacity && AppleRawImageProbe.LooksLikeLisaOffice(data))
             return AppleSectorImageFactory.CreateAppleMacZoned(data, DiskImageFormatIds.AppleLisaRaw, 1);
-        if (AppleDiskImageSignatures.LooksLikeMac(data))
+        if (AppleRawImageProbe.LooksLikeMac(data))
         {
-            var signature = BinaryPrimitives.ReadUInt16BigEndian(data.AsSpan(1024));
-            var formatId = signature == 0xd2d7 ? DiskImageFormatIds.AppleMacMfs : DiskImageFormatIds.AppleMacHfs;
+            _ = MacintoshVolumeSignatures.TryRead(data, out var signature);
+            var formatId = signature == MacintoshVolumeSignatures.Mfs ? DiskImageFormatIds.AppleMacMfs : DiskImageFormatIds.AppleMacHfs;
             return data.Length == 1_474_560
                 ? AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.Mac1440, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.DoubleSidedHeadCount, 18)
                 : AppleSectorImageFactory.CreateAppleMacZoned(data, formatId, data.Length == 409_600 ? 1 : 2);
         }
-        if (AppleDiskImageSignatures.LooksLikeProDos(data))
+        if (AppleRawImageProbe.LooksLikeProDos(data))
             return data.Length == 819_200
                 ? AppleSectorImageFactory.CreateAppleMacZoned(data, DiskImageFormatIds.AppleIIProDos, 2)
                 : AppleSectorImageFactory.CreateLinear(data, DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.DoubleSidedHeadCount,

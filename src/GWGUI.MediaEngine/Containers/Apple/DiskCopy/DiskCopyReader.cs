@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 
@@ -88,7 +89,7 @@ internal static class DiskCopyReader
     /// <returns><see langword="true"/> lorsque la charge utile a été lue sans ses tags ; sinon <see langword="false"/>.</returns>
     private static bool TryReadUntaggedImage(byte[] payload, out SectorImage image)
     {
-        if (AppleDiskImageSignatures.LooksLikeMac(payload) || AppleDiskImageSignatures.LooksLikeProDos(payload))
+        if (AppleRawImageProbe.LooksLikeMac(payload) || AppleRawImageProbe.LooksLikeProDos(payload))
         {
             image = AppleRawImageReader.Read(payload, DiskImageFileExtensions.Image);
             return true;

@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.SectorImages.Builders.Apple;
 
@@ -20,8 +21,8 @@ internal static class AppleIISectorImageBuilder
         if (sectorsPerTrack == 13) return new(DiskImageFormatIds.AppleIIDos32, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, dosBlocks);
         var proDosBlocks = CreateProDosBlocks(selected, trackCount);
         var proDosProbe = ToDense(proDosBlocks, trackCount * 8, MacintoshGcrGeometry.BlockSize);
-        if (AppleDiskImageSignatures.LooksLikeProDos(proDosProbe)) return new(DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.BlockSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 8, proDosBlocks);
-        return new(AppleDiskImageSignatures.LooksLikeDos33(ToDense(dosBlocks, trackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.SectorSize)) ? DiskImageFormatIds.AppleIIDos33 : DiskImageFormatIds.AppleIIGcr, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, dosBlocks);
+        if (AppleRawImageProbe.LooksLikeProDos(proDosProbe)) return new(DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.BlockSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, 8, proDosBlocks);
+        return new(AppleRawImageProbe.LooksLikeDos33(ToDense(dosBlocks, trackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.SectorSize)) ? DiskImageFormatIds.AppleIIDos33 : DiskImageFormatIds.AppleIIGcr, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, dosBlocks);
     }
 
     /// <summary>Construit les blocs dans l'ordre d'un fichier DOS Apple II.</summary>

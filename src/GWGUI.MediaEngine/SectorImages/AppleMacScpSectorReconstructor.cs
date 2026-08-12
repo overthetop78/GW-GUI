@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -39,7 +40,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
             formatId = DiskImageFormatIds.AppleLisaOffice;
         if (requestedFormatId is null && AppleScpSectorDecoder.TryFlattenPayload(provisional, out var payload) &&
-            AppleDiskImageSignatures.LooksLikeLisaOfficePayload(payload))
+            AppleRawImageProbe.LooksLikeLisaOffice(payload))
             formatId = DiskImageFormatIds.AppleLisaRaw;
         if (provisional.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 2)
         {

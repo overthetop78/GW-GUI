@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.FileSystems.Lisa;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
@@ -39,7 +40,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
         var version = BinaryPrimitives.ReadUInt16BigEndian(mddf);
         var volumeNameLength = mddf.Length > 12 ? Math.Min(mddf[12], (byte)31) : 0;
         var volumeName = volumeNameLength > 0 && mddf.Length >= 13 + volumeNameLength
-            ? ReadLisaString(mddf.Slice(13, volumeNameLength))
+            ? LisaVolumeHeader.DecodeName(mddf.Slice(13, volumeNameLength))
             : string.Empty;
         if (string.IsNullOrWhiteSpace(volumeName)) volumeName = "Lisa";
 
@@ -97,7 +98,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
             {
                 var length = bytes[offset];
                 if (length is 0 or > 31 || offset + 1 + length > bytes.Length) continue;
-                var name = ReadLisaString(bytes.AsSpan(offset + 1, length));
+                var name = LisaVolumeHeader.DecodeName(bytes.AsSpan(offset + 1, length));
                 var fileId = BinaryPrimitives.ReadUInt16BigEndian(bytes.AsSpan(offset + 36, 2));
                 if (!IsUserFile(fileId) || string.IsNullOrWhiteSpace(name)) continue;
                 result.TryAdd(fileId, name);
@@ -109,7 +110,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
         for (var offset = 0x50; offset + 64 <= bytes.Length; offset += 64)
         {
             if (bytes[offset] != 0 || bytes[offset + 1] < 0x20) continue;
-            var name = ReadLisaString(bytes.AsSpan(offset + 1, 31));
+            var name = LisaVolumeHeader.DecodeName(bytes.AsSpan(offset + 1, 31));
             var fileId = BinaryPrimitives.ReadUInt16BigEndian(bytes.AsSpan(offset + 36, 2));
             if (!IsUserFile(fileId) || string.IsNullOrWhiteSpace(name)) continue;
             result.TryAdd(fileId, name);
@@ -133,10 +134,4 @@ public sealed class LisaFileSystemReader : IFileSystemReader
         fileId is > CatalogFileId and < 0x7fff &&
         fileId is not 0x00aa and not 0x00bb and not 0xaaaa and not 0xbbbb;
 
-    private static string ReadLisaString(ReadOnlySpan<byte> bytes)
-    {
-        var end = bytes.IndexOf((byte)0);
-        if (end >= 0) bytes = bytes[..end];
-        return System.Text.Encoding.Latin1.GetString(bytes).Trim(' ', '\0');
-    }
 }

@@ -4424,39 +4424,39 @@
     - [x] Tester chaque conteneur signé tronqué ou corrompu et vérifier qu'il n'est pas traité comme une image brute.
     - [x] Tester une extension inhabituelle avec signature certaine et une extension ambiguë dont le contenu Apple est invalide.
     - [x] Vérifier qu'une lecture via la politique ne lit le fichier qu'une seule fois.
-- [ ] `src/GWGUI.MediaEngine/Images/AppleDiskImageSignatures.cs`
-  - [ ] Déplacement du composant de sondage
-    - [ ] Renommer et déplacer le fichier vers `Recognition/Apple/AppleRawImageProbe.cs`.
-    - [ ] Adapter `AppleImageRecognitionPolicy`, le Reader Apple brut, DiskCopy, les builders sectoriels et le reconstructeur Macintosh SCP.
-    - [ ] Supprimer `Images/AppleDiskImageSignatures.cs` après raccordement.
-  - [ ] Propriétaires des définitions sondées
-    - [ ] Faire utiliser au sondage DOS 3.3 les définitions VTOC créées avec `AppleDosFileSystemReader`, sans recopier piste 17, 16 secteurs, 256 octets, offsets et bornes.
-    - [ ] Faire utiliser au sondage ProDOS les définitions d'en-tête de volume créées avec `ProDosFileSystemReader`, sans recopier bloc 2, taille 512, type `0x0F`, longueur 15 ni taille d'entrée `0x27`.
-    - [ ] Faire utiliser au sondage Macintosh les signatures et l'emplacement MDB définis par les layouts MFS et HFS, sans recopier `0xD2D7`, `0x4244`, 1 024 ni deux octets.
-    - [ ] Faire utiliser au sondage Lisa les versions, offsets de nom, longueur maximale et capacité définis par les composants Lisa.
-    - [ ] Créer dans le composant SOS propriétaire la définition du marqueur ASCII `SOS` et de la fenêtre d'amorçage de 128 octets, puis la réutiliser ici.
-  - [ ] Découpage des sondes Apple
-    - [ ] Conserver dans `AppleRawImageProbe` uniquement la composition des sondes fermées DOS, ProDOS, Macintosh, Lisa et SOS.
-    - [ ] Déplacer la validation détaillée de chaque structure vers le composant de son système de fichiers lorsqu'elle n'y existe pas encore.
-    - [ ] Faire retourner par chaque sonde un résultat nommé ou un booléen sans lever d'exception sur un contenu trop court.
-    - [ ] Ne pas qualifier ces contrôles de signatures lorsqu'ils reposent sur une géométrie, un VTOC, un MDB ou un nom imprimable.
-  - [ ] Sondage Lisa
-    - [ ] Remplacer le pas brut de 512 octets et la longueur minimale 64 par les définitions Lisa appropriées.
-    - [ ] Extraire la validation des caractères imprimables dans une primitive de nom Lisa commune au Reader de système de fichiers.
-    - [ ] Remplacer les bornes ASCII `0x20` et `0x7E` par les définitions de cette primitive.
-    - [ ] Conserver la recherche sur chaque page candidate jusqu'à une version et un nom valides.
-  - [ ] Sondage SOS
-    - [ ] Remplacer la création d'une chaîne pour les 128 premiers octets par une recherche ASCII bornée ne décodant que la plage utile.
-    - [ ] Conserver la comparaison sans casse du marqueur SOS.
-  - [ ] Présentation et CSDoc française
-    - [ ] Séparer la modification de `printable` et le `break` actuellement placés sur la même ligne.
-    - [ ] Conserver sur une seule ligne les signatures, lectures et expressions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le composant, chaque sonde et les critères exacts utilisés, sans appeler signature une simple heuristique.
-  - [ ] Tests ciblés des sondes Apple
-    - [ ] Tester un contenu valide et un faux positif proche pour DOS 3.3, ProDOS, MFS, HFS, Lisa et SOS.
-    - [ ] Tester pour chaque sonde un tampon vide et chaque longueur juste inférieure au minimum lu.
-    - [ ] Tester Lisa avec version inconnue, nom vide, trop long et non imprimable.
-    - [ ] Vérifier que les sondes et les Readers de systèmes de fichiers partagent les mêmes définitions en modifiant aucune valeur dupliquée.
+- [x] `src/GWGUI.MediaEngine/Images/AppleDiskImageSignatures.cs`
+  - [x] Déplacement du composant de sondage
+    - [x] Renommer et déplacer le fichier vers `Recognition/Apple/AppleRawImageProbe.cs`.
+    - [x] Adapter `AppleImageRecognitionPolicy`, le Reader Apple brut, DiskCopy, les builders sectoriels et le reconstructeur Macintosh SCP.
+    - [x] Supprimer `Images/AppleDiskImageSignatures.cs` après raccordement.
+  - [x] Propriétaires des définitions sondées
+    - [x] Faire utiliser au sondage DOS 3.3 les définitions VTOC créées avec `AppleDosFileSystemReader`, sans recopier piste 17, 16 secteurs, 256 octets, offsets et bornes.
+    - [x] Faire utiliser au sondage ProDOS les définitions d'en-tête de volume créées avec `ProDosFileSystemReader`, sans recopier bloc 2, taille 512, type `0x0F`, longueur 15 ni taille d'entrée `0x27`.
+    - [x] Faire utiliser au sondage Macintosh les signatures et l'emplacement MDB définis par les layouts MFS et HFS, sans recopier `0xD2D7`, `0x4244`, 1 024 ni deux octets.
+    - [x] Faire utiliser au sondage Lisa les versions, offsets de nom, longueur maximale et capacité définis par les composants Lisa.
+    - [x] Créer dans le composant SOS propriétaire la définition du marqueur ASCII `SOS` et de la fenêtre d'amorçage de 128 octets, puis la réutiliser ici.
+  - [x] Découpage des sondes Apple
+    - [x] Conserver dans `AppleRawImageProbe` uniquement la composition des sondes fermées DOS, ProDOS, Macintosh, Lisa et SOS.
+    - [x] Déplacer la validation détaillée de chaque structure vers le composant de son système de fichiers lorsqu'elle n'y existe pas encore.
+    - [x] Faire retourner par chaque sonde un résultat nommé ou un booléen sans lever d'exception sur un contenu trop court.
+    - [x] Ne pas qualifier ces contrôles de signatures lorsqu'ils reposent sur une géométrie, un VTOC, un MDB ou un nom imprimable.
+  - [x] Sondage Lisa
+    - [x] Remplacer le pas brut de 512 octets et la longueur minimale 64 par les définitions Lisa appropriées.
+    - [x] Extraire la validation des caractères imprimables dans une primitive de nom Lisa commune au Reader de système de fichiers.
+    - [x] Remplacer les bornes ASCII `0x20` et `0x7E` par les définitions de cette primitive.
+    - [x] Conserver la recherche sur chaque page candidate jusqu'à une version et un nom valides.
+  - [x] Sondage SOS
+    - [x] Remplacer la création d'une chaîne pour les 128 premiers octets par une recherche ASCII bornée ne décodant que la plage utile.
+    - [x] Conserver la comparaison sans casse du marqueur SOS.
+  - [x] Présentation et CSDoc française
+    - [x] Séparer la modification de `printable` et le `break` actuellement placés sur la même ligne.
+    - [x] Conserver sur une seule ligne les signatures, lectures et expressions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le composant, chaque sonde et les critères exacts utilisés, sans appeler signature une simple heuristique.
+  - [x] Tests ciblés des sondes Apple
+    - [x] Tester un contenu valide et un faux positif proche pour DOS 3.3, ProDOS, MFS, HFS, Lisa et SOS.
+    - [x] Tester pour chaque sonde un tampon vide et chaque longueur juste inférieure au minimum lu.
+    - [x] Tester Lisa avec version inconnue, nom vide, trop long et non imprimable.
+    - [x] Vérifier que les sondes et les Readers de systèmes de fichiers partagent les mêmes définitions en modifiant aucune valeur dupliquée.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleRawImageReader.cs`
   - [ ] Déplacement et découpage du Reader brut Apple
     - [ ] Créer `Containers/Apple/Raw/AppleRawImageReader.cs` comme point d'entrée des charges utiles Apple sans en-tête.
