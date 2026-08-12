@@ -10,7 +10,10 @@ public sealed class Aed6200pMfmTrackEncoder : TrackEncoderBase
     public override string Id => FluxCodecIds.Aed6200pMfm;
     /// <summary>Obtient le nom affiché du codec.</summary>
     public override string DisplayName => FluxCodecDisplayNames.Aed6200pMfm;
-    /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
+    /// <summary>Encode les secteurs demandés sous forme de cellules MFM AED 6200P.</summary>
+    /// <param name="request">Piste logique contenant le cylindre, la face et les secteurs à encoder.</param>
+    /// <returns>Cellules binaires de la piste, dans leur ordre d'émission.</returns>
+    /// <remarks>La taille de chaque charge utile est enregistrée sur deux octets dans l'en-tête ; les CRC couvrent respectivement l'identité et la marque suivie des données.</remarks>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
         var bits = TrackEncoding.Bits();

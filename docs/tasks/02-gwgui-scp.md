@@ -3126,10 +3126,10 @@
 ## 6. Encodage
 
 
-- [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `Aed6200pMfmTrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `Aed6200pMfmTrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `EncodeBits`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/Encoders/AmigaMfmTrackEncoder.cs`
   - [ ] Documentation XML
     - [ ] Ajouter la documentation XML des types `AmigaMfmTrackEncoder`.
