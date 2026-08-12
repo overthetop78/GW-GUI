@@ -5,6 +5,8 @@ namespace GWGUI.MediaEngine.Geometries.Commodore;
 /// <summary>Décrit les vues logique D81 et physique MFM d'une disquette Commodore 1581.</summary>
 public static class Commodore1581Geometry
 {
+    /// <summary>Nom du format physique utilisé dans les diagnostics de reconstruction.</summary>
+    public const string StructureDescriptionName = "Commodore 1581 MFM";
     /// <summary>Nombre de cylindres logiques et physiques.</summary>
     public const int LogicalCylinderCount = DiskGeometryConstants.EightyTrackCylinderCount;
     /// <summary>Nombre de têtes du modèle logique D81.</summary>

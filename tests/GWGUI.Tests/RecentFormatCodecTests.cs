@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
@@ -5,6 +6,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Flux;
+using GWGUI.MediaEngine.Reconstruction.Commodore;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -42,6 +44,28 @@ public sealed class RecentFormatCodecTests
         var image = await new IsoScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.AcornAdfs800);
 
         Assert.Equal(DiskImageFormatIds.AcornAdfs800, image.FormatId);
+    }
+
+    [Fact]
+    public async Task Commodore1581ScpMapsAValidPhysicalSector()
+    {
+        var data = Enumerable.Range(0, 512).Select(index => (byte)index).ToArray();
+        var revolution = new FluxEncoderRegistry().Encode("iso.mfm", new TrackEncodeRequest(0, 0, [new TrackSector(1, data)])).Revolution;
+
+        var image = await new CommodoreScpSectorImageReader(Fake(0, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.Commodore1581);
+
+        Assert.Equal(data.Take(256), image.GetBlock(20).ToArray());
+        Assert.Equal(data.Skip(256), image.GetBlock(21).ToArray());
+    }
+
+    [Theory]
+    [InlineData(80, 0)]
+    [InlineData(0, 2)]
+    public async Task Commodore1581ScpRejectsCandidatesOutsidePhysicalGeometry(int cylinder, int head)
+    {
+        var revolution = new FluxEncoderRegistry().Encode("iso.mfm", new TrackEncodeRequest(cylinder, Math.Min(head, 1), [new TrackSector(1, new byte[512])])).Revolution;
+
+        await Assert.ThrowsAsync<InvalidDataException>(() => new CommodoreScpSectorImageReader(Fake(cylinder, head, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp", DiskImageFormatIds.Commodore1581));
     }
 
     [Fact]

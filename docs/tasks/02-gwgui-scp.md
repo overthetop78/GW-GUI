@@ -5110,18 +5110,18 @@
     - [x] Supprimer le fichier.
   - [x] Vérification des deux routages conservés
     - [x] Tester après suppression une sélection DFS et une sélection ADFS par l'API publique.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/CommodoreScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Commodore/CommodoreScpSectorImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Validation de la géométrie 1581
-    - [ ] Filtrer dans `Read1581` les pistes dont le cylindre ou la face sortent de la géométrie physique 1581 définie dans `CommodoreGeometry`.
-    - [ ] Utiliser la conversion 1581 de `CommodoreGeometry` pour calculer les blocs logiques au lieu de conserver le calcul brut dans le Reader.
-    - [ ] Refuser la reconstruction lorsqu'aucun bloc 1581 ne reste après cette validation, avec l'erreur Commodore de reconstruction prévue.
-    - [ ] Tester une piste 1581 valide, un cylindre hors limites, une face hors limites et un ensemble de candidats entièrement rejeté.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `CommodoreScpSectorImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `CommodoreScpSectorImageReader, ReadAsync, ReadGcr, Read1581`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/CommodoreScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Commodore/CommodoreScpSectorImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Validation de la géométrie 1581
+    - [x] Filtrer dans `Read1581` les pistes dont le cylindre ou la face sortent de la géométrie physique 1581 définie dans `CommodoreGeometry`.
+    - [x] Utiliser la conversion 1581 de `CommodoreGeometry` pour calculer les blocs logiques au lieu de conserver le calcul brut dans le Reader.
+    - [x] Refuser la reconstruction lorsqu'aucun bloc 1581 ne reste après cette validation, avec l'erreur Commodore de reconstruction prévue.
+    - [x] Tester une piste 1581 valide, un cylindre hors limites, une face hors limites et un ensemble de candidats entièrement rejeté.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `CommodoreScpSectorImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `CommodoreScpSectorImageReader, ReadAsync, ReadGcr, Read1581`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/DecRx02ScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Dec/DecRx02ScpSectorImageReader.cs`.
