@@ -4939,40 +4939,40 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML française de `MsxRawImageReader`, `MsxDiskGeometryCatalog` et `MsxRawImageExceptions`.
     - [x] Ajouter la documentation XML française des méthodes `CanRead` et `ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] Vérification des Readers d’images sectorielles brutes modifiés
-  - [ ] ADF
-    - [ ] Tester par le Reader public une image ADF Acorn, une Amiga DD et une Amiga HD avec tailles, géométries et contenu connus.
-    - [ ] Vérifier le rejet d’une taille ADF non prise en charge.
-  - [ ] Images Apple brutes
-    - [ ] Tester par le Reader public des images D13, DO, PO, DSK et IMG représentant les branches Apple II, Apple III, Macintosh et Lisa réellement prises en charge.
-    - [ ] Vérifier l’ordre des secteurs, la géométrie, l’identifiant et le contenu attendus.
-  - [ ] Atari ST
-    - [ ] Tester une image ST avec BPB cohérent et une image reconnue par sa taille.
-    - [ ] Vérifier la géométrie et le rejet d’une taille incompatible.
-  - [ ] BBC DFS
-    - [ ] Tester une image SSD et une image DSD de `image_test` avec ordre des faces et contenu connus.
-    - [ ] Vérifier le rejet d’un nombre incomplet de pistes et d’un nombre de pistes différent de 40 ou 80.
-  - [ ] Coherent
-    - [ ] Tester une image avec superbloc Coherent et géométrie zonée connus.
-    - [ ] Vérifier le rejet d’une taille ou d’un superbloc incohérent.
-  - [ ] Commodore D64, D71 et D81
-    - [ ] Tester une image de chaque format avec géométrie et contenu connus.
-    - [ ] Tester les variantes D64 et D71 avec carte d’erreurs lorsqu’une image correspondante est disponible.
-    - [ ] Vérifier le rejet des tailles absentes des catalogues Commodore.
-  - [ ] DEC RX02
-    - [ ] Tester la remise en ordre physique d’une image RX02 et la reconnaissance de son home block RT-11.
-    - [ ] Vérifier le rejet d’une capacité différente de la géométrie RX02.
-  - [ ] IBM IMG et IMA
-    - [ ] Tester les géométries du catalogue IBM pour lesquelles des images sont disponibles dans `image_test`.
-    - [ ] Vérifier la lecture avec BPB, le repli par capacité et le rejet d’une taille inconnue.
-  - [ ] MSX DSK
-    - [ ] Tester les géométries 1D, 1DD, 2D et 2DD disponibles avec BPB et contenu connus.
-    - [ ] Vérifier le rejet d’un BPB ou d’une capacité MSX invalide.
-  - [ ] Obtention et exécution des images
-    - [ ] Pour chaque test précédent, utiliser l’image correspondante de `image_test` lorsqu’elle existe.
-    - [ ] Appliquer la règle d’obtention d’image du document pour chaque image manquante.
-    - [ ] Passer par les Readers publics du moteur.
-    - [ ] Exécuter uniquement les tests du Reader traité.
+- [x] Vérification des Readers d’images sectorielles brutes modifiés
+  - [x] ADF
+    - [x] Tester par le Reader public une image ADF Acorn, une Amiga DD et une Amiga HD avec tailles, géométries et contenu connus.
+    - [x] Vérifier le rejet d’une taille ADF non prise en charge.
+  - [x] Images Apple brutes
+    - [x] Tester par le Reader public des images D13, DO, PO, DSK et IMG représentant les branches Apple II, Apple III, Macintosh et Lisa réellement prises en charge.
+    - [x] Vérifier l’ordre des secteurs, la géométrie, l’identifiant et le contenu attendus.
+  - [x] Atari ST
+    - [x] Tester une image ST avec BPB cohérent et une image reconnue par sa taille.
+    - [x] Vérifier la géométrie et le rejet d’une taille incompatible.
+  - [x] BBC DFS
+    - [x] Tester une image SSD et une image DSD de `image_test` avec ordre des faces et contenu connus.
+    - [x] Vérifier le rejet d’un nombre incomplet de pistes et d’un nombre de pistes différent de 40 ou 80.
+  - [x] Coherent
+    - [x] Tester une image avec superbloc Coherent et géométrie zonée connus.
+    - [x] Vérifier le rejet d’une taille ou d’un superbloc incohérent.
+  - [x] Commodore D64, D71 et D81
+    - [x] Tester une image de chaque format avec géométrie et contenu connus.
+    - [x] Tester les variantes D64 et D71 avec carte d’erreurs lorsqu’une image correspondante est disponible.
+    - [x] Vérifier le rejet des tailles absentes des catalogues Commodore.
+  - [x] DEC RX02
+    - [x] Tester la remise en ordre physique d’une image RX02 et la reconnaissance de son home block RT-11.
+    - [x] Vérifier le rejet d’une capacité différente de la géométrie RX02.
+  - [x] IBM IMG et IMA
+    - [x] Tester les géométries du catalogue IBM pour lesquelles des images sont disponibles dans `image_test`.
+    - [x] Vérifier la lecture avec BPB, le repli par capacité et le rejet d’une taille inconnue.
+  - [x] MSX DSK
+    - [x] Tester les géométries 1D, 1DD, 2D et 2DD disponibles avec BPB et contenu connus.
+    - [x] Vérifier le rejet d’un BPB ou d’une capacité MSX invalide.
+  - [x] Obtention et exécution des images
+    - [x] Pour chaque test précédent, utiliser l’image correspondante de `image_test` lorsqu’elle existe.
+    - [x] Appliquer la règle d’obtention d’image du document pour chaque image manquante.
+    - [x] Passer par les Readers publics du moteur.
+    - [x] Exécuter uniquement les tests du Reader traité.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AmigaScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Amiga/AmigaScpSectorImageReader.cs`.

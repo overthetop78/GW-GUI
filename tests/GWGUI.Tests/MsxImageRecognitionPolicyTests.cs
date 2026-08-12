@@ -1,6 +1,8 @@
+using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Fat;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
@@ -10,6 +12,36 @@ namespace GWGUI.Tests;
 /// <summary>Vérifie la présélection MSX par extension, demande explicite et BPB.</summary>
 public sealed class MsxImageRecognitionPolicyTests
 {
+    /// <summary>Vérifie les quatre géométries MSX-DOS prises en charge par le Reader public.</summary>
+    [Theory]
+    [InlineData(40, 1, 9, 0xf9, DiskImageFormatIds.Msx1D)]
+    [InlineData(80, 1, 9, 0xf8, DiskImageFormatIds.Msx1Dd)]
+    [InlineData(40, 2, 9, 0xf9, DiskImageFormatIds.Msx2D)]
+    [InlineData(80, 2, 9, 0xf9, DiskImageFormatIds.Msx2Dd)]
+    public async Task PublicReaderReadsEverySupportedGeometry(int cylinders, int heads, int sectorsPerTrack, byte mediaDescriptor, string formatId)
+    {
+        var path = await CreateMsxImageAsync(cylinders, heads, sectorsPerTrack, mediaDescriptor);
+        try
+        {
+            var image = await new MsxRawImageReader().ReadAsync(path);
+            Assert.Equal(formatId, image.FormatId);
+            Assert.Equal(cylinders, image.Cylinders);
+            Assert.Equal(heads, image.Heads);
+            Assert.Equal(sectorsPerTrack, image.SectorsPerTrack);
+            Assert.Equal(new(cylinders - 1, heads - 1, sectorsPerTrack), image.AvailableBlocks.Last().Address);
+        }
+        finally { File.Delete(path); }
+    }
+
+    /// <summary>Vérifie le rejet d'une capacité absente du catalogue malgré un BPB MSX-DOS cohérent.</summary>
+    [Fact]
+    public async Task PublicReaderRejectsUnsupportedCapacity()
+    {
+        var path = await CreateMsxImageAsync(40, 1, 8, 0xf9);
+        try { await Assert.ThrowsAsync<InvalidDataException>(() => new MsxRawImageReader().ReadAsync(path)); }
+        finally { File.Delete(path); }
+    }
+
     /// <summary>Vérifie qu'une image MSX-DOS locale est présélectionnée puis lue par l'API publique.</summary>
     [Fact]
     public async Task ValidMsxDskIsSelectedAndRead()
@@ -80,6 +112,22 @@ public sealed class MsxImageRecognitionPolicyTests
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-msx-policy-{Guid.NewGuid():N}{extension}");
         await File.WriteAllBytesAsync(path, new byte[512]);
+        return path;
+    }
+
+    /// <summary>Crée une image MSX-DOS temporaire dont le BPB décrit exactement la géométrie demandée.</summary>
+    private static async Task<string> CreateMsxImageAsync(int cylinders, int heads, int sectorsPerTrack, byte mediaDescriptor)
+    {
+        var totalSectors = cylinders * heads * sectorsPerTrack;
+        var data = new byte[totalSectors * FatBpbLayout.SectorSize];
+        "MSX     "u8.CopyTo(data.AsSpan(FatBpbLayout.OemOffset, FatBpbLayout.OemLength));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.BytesPerSectorOffset), FatBpbLayout.SectorSize);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.TotalSectors16Offset), checked((ushort)totalSectors));
+        data[FatBpbLayout.MediaDescriptorOffset] = mediaDescriptor;
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.SectorsPerTrackOffset), checked((ushort)sectorsPerTrack));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(FatBpbLayout.HeadCountOffset), checked((ushort)heads));
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-msx-{Guid.NewGuid():N}.dsk");
+        await File.WriteAllBytesAsync(path, data);
         return path;
     }
 
