@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.Reconstruction.Atari;
+using GWGUI.MediaEngine.Reconstruction.EpsonQx10;
 
 namespace GWGUI.MediaEngine.SectorImages;
 

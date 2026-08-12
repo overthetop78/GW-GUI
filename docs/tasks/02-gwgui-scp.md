@@ -5156,16 +5156,16 @@
     - [x] Ajouter une branche explicite `DiskImageFormatIds.EpsonQx10_396` utilisant exactement la géométrie actuellement retournée par la branche par défaut.
     - [x] Remplacer ensuite la branche par défaut par l’erreur Epson d’identifiant invalide déjà prévue, afin qu’un format inconnu ne soit plus interprété silencieusement comme du 396.
     - [x] Tester séparément la résolution 396 et le rejet d’un identifiant inconnu.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-    - [ ] Appeler directement `EpsonQx10SectorImageBuilder` après la suppression du wrapper `EpsonQx10SectorImagePolicy`.
-  - [ ] Identifiants de décodeurs
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `EpsonQx10IsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10IsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+    - [x] Appeler directement `EpsonQx10SectorImageBuilder` après la suppression du wrapper `EpsonQx10SectorImagePolicy`.
+  - [x] Identifiants de décodeurs
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les membres correspondants de `Decoding/Definitions/FluxCodecIds.cs`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `EpsonQx10IsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10ScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Raccorder le registre directement à la politique correspondante.
