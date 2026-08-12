@@ -5089,19 +5089,19 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AutomaticIsoScpSectorImagePolicy`.
     - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/BbcIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiant du décodeur
-    - [ ] Remplacer le texte brut `iso.fm` de `DecoderIds` par le membre correspondant de `Decoding/Definitions/FluxCodecIds.cs`.
-  - [ ] Sélection automatique BBC
-    - [ ] Corriger l'appel automatique qui transmet actuellement `null` à `Build` alors que `Build` le refuse immédiatement.
-    - [ ] Déterminer l'identifiant SSD ou DSD 40/80 pistes à partir de la géométrie mesurée et des définitions BBC prévues, sans analyser des suffixes textuels bruts.
-    - [ ] Tester la sélection automatique des quatre géométries BBC sans identifiant demandé.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `BbcIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/BbcIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiant du décodeur
+    - [x] Remplacer le texte brut `iso.fm` de `DecoderIds` par le membre correspondant de `Decoding/Definitions/FluxCodecIds.cs`.
+  - [x] Sélection automatique BBC
+    - [x] Corriger l'appel automatique qui transmet actuellement `null` à `Build` alors que `Build` le refuse immédiatement.
+    - [x] Déterminer l'identifiant SSD ou DSD 40/80 pistes à partir de la géométrie mesurée et des définitions BBC prévues, sans analyser des suffixes textuels bruts.
+    - [x] Tester la sélection automatique des quatre géométries BBC sans identifiant demandé.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `BbcIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/BbcScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Raccorder le registre directement à `BbcIsoScpSectorImagePolicy` pour les identifiants `AcornDfsPrefix`.

@@ -2,11 +2,33 @@ using System.IO;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Geometries.Acorn;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
 public sealed class BbcDiskImageTests
 {
+    /// <summary>Vérifie la sélection automatique des quatre géométries BBC DFS sans identifiant demandé.</summary>
+    [Theory]
+    [InlineData(40, 1, "acorn.dfs.ss")]
+    [InlineData(80, 1, "acorn.dfs.ss80")]
+    [InlineData(40, 2, "acorn.dfs.ds")]
+    [InlineData(80, 2, "acorn.dfs.ds80")]
+    public void AutomaticallySelectsEveryBbcDfsGeometry(int cylinders, int heads, string formatId)
+    {
+        var address = new SectorAddress(cylinders - 1, heads - 1, 0);
+        var sector = new DecodedSector(checked((byte)address.Cylinder), checked((byte)address.Head), address.Number, 1, BbcDfsGeometry.SectorSize, true, 0, Data: new byte[BbcDfsGeometry.SectorSize]);
+        var candidates = new Dictionary<SectorAddress, List<IsoSectorCandidate>> { [address] = [new(sector, 1)] };
+
+        var image = new BbcIsoScpSectorImagePolicy().Build(null, new(candidates, candidates));
+
+        Assert.Equal(formatId, image.FormatId);
+        Assert.Equal(cylinders, image.Cylinders);
+        Assert.Equal(heads, image.Heads);
+    }
+
     /// <summary>Vérifie les quatre capacités SSD/DSD, leurs formats et l'ordre des faces sur plusieurs cylindres.</summary>
     [Theory]
     [InlineData(".ssd", 40, 1, "acorn.dfs.ss")]
