@@ -20,6 +20,7 @@ public sealed class AppleInformXzipDefinitionsTests
     {
         var story = Story();
         Assert.True(ZMachineV5Header.TryParse(story, out var header));
+        Assert.NotNull(header);
         Assert.Equal(AppleInformXzipLayout.ZMachineVersion, header.Version);
         Assert.True(header.ChecksumMatches(story));
     }
@@ -39,6 +40,7 @@ public sealed class AppleInformXzipDefinitionsTests
         Assert.False(ZMachineV5Header.TryParse(story, out _));
         story = Story(); story[^1] ^= 1;
         Assert.True(ZMachineV5Header.TryParse(story, out var header));
+        Assert.NotNull(header);
         Assert.False(header.ChecksumMatches(story));
     }
 
