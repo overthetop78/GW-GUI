@@ -17,6 +17,16 @@ internal static class WozFormat
     public const string TracksChunkId = "TRKS";
     /// <summary>Type de disque WOZ représentant une disquette Apple II 5,25 pouces.</summary>
     public const byte AppleII525DiskType = 1;
+    /// <summary>Version du chunk INFO produit pour WOZ1.</summary>
+    public const byte InfoVersion1 = 1;
+    /// <summary>Valeur indiquant une image non protégée en écriture.</summary>
+    public const byte Writable = 0;
+    /// <summary>Valeur indiquant des pistes synchronisées.</summary>
+    public const byte Synchronized = 1;
+    /// <summary>Valeur indiquant une image nettoyée.</summary>
+    public const byte Cleaned = 1;
+    /// <summary>Nom du logiciel créateur inscrit dans INFO.</summary>
+    public const string Creator = "GW GUI";
     /// <summary>Polynôme inversé utilisé par le CRC32 du conteneur WOZ.</summary>
     public const uint Crc32Polynomial = 0xedb88320u;
 }

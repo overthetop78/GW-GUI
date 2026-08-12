@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Visualization;
+﻿using GWGUI.MediaEngine.Visualization;
 using System.ComponentModel;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;
@@ -23,7 +23,6 @@ using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Images;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Localization;
@@ -634,7 +633,7 @@ public partial class MainWindow : Window
         if (path is null) return;
         _viewModel.Write.SourcePath = path;
         _detectedWriteFormat = _formatDetector.Detect(path, new FileInfo(path).Length);
-        WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} — {LocExtension.Get(_detectedWriteFormat.ExplanationKey)}";
+        WriteDetectionText.Text = $"{_detectedWriteFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} â€” {LocExtension.Get(_detectedWriteFormat.ExplanationKey)}";
         WriteFormatCombo.ItemsSource = _detectedWriteFormat.Candidates.Count > 0 ? _detectedWriteFormat.Candidates : _formatCatalog.Formats;
         WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
         WriteFormatCombo.Visibility = _detectedWriteFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
@@ -708,7 +707,7 @@ public partial class MainWindow : Window
     {
         if (CommandPreview is null || WriteSourceText is null || MainTabs?.SelectedIndex != 1) return;
         try { CommandPreview.Text = BuildWriteCommand().ToDisplayString(); }
-        catch (ArgumentException) { CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
+        catch (ArgumentException) { CommandPreview.Text = $"âš  {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
@@ -874,7 +873,7 @@ public partial class MainWindow : Window
                 : _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
-        catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
+        catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); CommandPreview.Text = $"âš  {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
@@ -903,7 +902,7 @@ public partial class MainWindow : Window
             return new ConversionBatchExecutor(_runner).RunAsync(_viewModel.Conversion.SourcePath, items, progress, item => Dispatcher.Invoke(() =>
             {
                 BeginProgress();
-                AppendConsoleText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}");
+                AppendConsoleText($"{Environment.NewLine}â†’ {item.Label}{Environment.NewLine}");
             }, System.Windows.Threading.DispatcherPriority.ContextIdle), token);
         });
         await FlushPendingOutputAsync();
@@ -1111,7 +1110,7 @@ public partial class MainWindow : Window
         var target = GetReadTarget(extension);
         if (ReadNamePreview is not null) ReadNamePreview.Text = Path.GetFileName(target);
         try { CommandPreview.Text = BuildReadCommand(target).ToDisplayString(); }
-        catch (ArgumentException) { CommandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
+        catch (ArgumentException) { CommandPreview.Text = $"âš  {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
     private string GetReadTarget(string extension)

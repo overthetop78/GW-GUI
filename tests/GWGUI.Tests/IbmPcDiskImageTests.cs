@@ -1,6 +1,5 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
@@ -98,7 +97,7 @@ public sealed class IbmPcDiskImageTests
         Assert.Throws<OperationCanceledException>(() => IbmRawSectorImageBuilder.Create(data, geometry, cancellation.Token));
     }
 
-    /// <summary>Crée un BPB FAT minimal avec total sur 16 ou 32 bits.</summary>
+    /// <summary>CrÃ©e un BPB FAT minimal avec total sur 16 ou 32 bits.</summary>
     private static byte[] CreateBpb(int totalSectors, int sectorsPerTrack, int heads, bool useLargeTotal = false)
     {
         var boot = new byte[FatBootSectorLayout.MinimumLength];

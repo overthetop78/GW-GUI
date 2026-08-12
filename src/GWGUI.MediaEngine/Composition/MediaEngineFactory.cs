@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
+﻿using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Atari.Atr;
@@ -17,6 +17,8 @@ using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.TeleDisk;
+using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
@@ -29,7 +31,6 @@ using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Geometries.Epson;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Recognition.Msx;
@@ -45,10 +46,17 @@ using GWGUI.MediaEngine.SectorImages.Scp;
 
 namespace GWGUI.MediaEngine.Composition;
 
-/// <summary>Compose les services partagés constituant le moteur d'exploration des médias.</summary>
-internal static class MediaEngineFactory
+/// <summary>Compose les services partagÃ©s constituant le moteur d'exploration des mÃ©dias.</summary>
+public static class MediaEngineFactory
 {
-    /// <summary>Crée un explorateur complet avec les registres et services par défaut.</summary>
+    /// <summary>CrÃ©e le service de conversion RWTS18 avec ses Readers et Writers partagÃ©s.</summary>
+    public static AppleRwts18ConversionService CreateAppleRwts18ConversionService()
+    {
+        var scpReader = CreateScpReader();
+        var decoders = CreateFluxDecoders();
+        return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, decoders), new AppleDiskImageWriter(new AppleRwts18TrackEncodingService()));
+    }
+    /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()
     {
         var scpReader = CreateScpReader();
@@ -61,16 +69,16 @@ internal static class MediaEngineFactory
         return new(recognition, fileSystems, scpExploration, interpretations, documents);
     }
 
-    /// <summary>Crée l'unique lecteur de conteneur SCP partagé par les reconstructeurs.</summary>
+    /// <summary>CrÃ©e l'unique lecteur de conteneur SCP partagÃ© par les reconstructeurs.</summary>
     private static ScpReader CreateScpReader() => new();
 
-    /// <summary>Crée l'unique registre des décodeurs de flux partagé par les reconstructeurs.</summary>
+    /// <summary>CrÃ©e l'unique registre des dÃ©codeurs de flux partagÃ© par les reconstructeurs.</summary>
     private static FluxDecoderRegistry CreateFluxDecoders() => new(FluxDecoderCatalog.CreateDefault());
 
-    /// <summary>Crée l'unique registre des lecteurs de systèmes de fichiers.</summary>
+    /// <summary>CrÃ©e l'unique registre des lecteurs de systÃ¨mes de fichiers.</summary>
     private static FileSystemRegistry CreateFileSystems() => new(FileSystemReaderCatalog.CreateDefault());
 
-    /// <summary>Crée le service d'interprétation partagé par les explorateurs général et SCP.</summary>
+    /// <summary>CrÃ©e le service d'interprÃ©tation partagÃ© par les explorateurs gÃ©nÃ©ral et SCP.</summary>
     private static (DiskImageInterpretationService Interpretations, DiskImageDocumentFactory Documents) CreateInterpretations(FileSystemRegistry fileSystems)
     {
         var msxInterpreter = new MsxSectorImageInterpreter();
@@ -82,7 +90,7 @@ internal static class MediaEngineFactory
         return (new(normalizers, additionalInterpretations), new(metadata));
     }
 
-    /// <summary>Crée les reconstructeurs SCP dans leur ordre explicite et les réunit dans leur registre.</summary>
+    /// <summary>CrÃ©e les reconstructeurs SCP dans leur ordre explicite et les rÃ©unit dans leur registre.</summary>
     private static ScpCandidateRegistry CreateScpCandidates(ScpReader scpReader, FluxDecoderRegistry decoders)
     {
         var isoReader = new IsoScpSectorImageReader(scpReader, decoders);
@@ -124,14 +132,14 @@ internal static class MediaEngineFactory
         return new(selections, defaults, families, [ScpFormatFamily.Iso, ScpFormatFamily.Amiga, ScpFormatFamily.Commodore, ScpFormatFamily.Apple, ScpFormatFamily.Dec], isoSelected);
     }
 
-    /// <summary>Crée la détection de famille et les deux parcours d'exploration SCP avec leurs instances partagées.</summary>
+    /// <summary>CrÃ©e la dÃ©tection de famille et les deux parcours d'exploration SCP avec leurs instances partagÃ©es.</summary>
     private static ScpImageExplorationService CreateScpExploration(ScpReader scpReader, FluxDecoderRegistry decoders, ScpCandidateRegistry candidates, FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents)
     {
         var automatic = new ScpAutomaticImageExplorer(candidates, new ScpFamilyProbe(scpReader, decoders), new ScpCandidateInspector(fileSystems, interpretations), documents);
         return new(automatic, new ScpSectorImageReader(candidates, fileSystems));
     }
 
-    /// <summary>Crée le registre des politiques de reconnaissance dans l'ordre historique conservé.</summary>
+    /// <summary>CrÃ©e le registre des politiques de reconnaissance dans l'ordre historique conservÃ©.</summary>
     private static DiskImageRecognitionRegistry CreateRecognition(FluxDecoderRegistry decoders, ScpImageExplorationService scpExploration, FileSystemRegistry fileSystems)
     {
         var appleReader = new AppleDiskImageReader();

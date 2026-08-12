@@ -1,5 +1,4 @@
-using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Exploration.Results;
+﻿using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.App.Controls;
 

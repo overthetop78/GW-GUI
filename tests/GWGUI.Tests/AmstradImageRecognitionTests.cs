@@ -1,14 +1,13 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la reconnaissance publique des conteneurs CPCEMU et leur interprétation Amstrad.</summary>
+/// <summary>VÃ©rifie la reconnaissance publique des conteneurs CPCEMU et leur interprÃ©tation Amstrad.</summary>
 public sealed class AmstradImageRecognitionTests
 {
     [Theory]
@@ -66,7 +65,7 @@ public sealed class AmstradImageRecognitionTests
         AssertSameSectorImage(parsed, explored.Image);
     }
 
-    /// <summary>Vérifie que la lecture complète réutilise le contenu chargé pendant la présélection.</summary>
+    /// <summary>VÃ©rifie que la lecture complÃ¨te rÃ©utilise le contenu chargÃ© pendant la prÃ©sÃ©lection.</summary>
     [Fact]
     public async Task ReadsFromTheRecognitionContextAfterTheFileIsRemoved()
     {

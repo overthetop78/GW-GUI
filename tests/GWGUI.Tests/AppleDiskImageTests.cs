@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Visualization;
+﻿using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Exploration.Results;
@@ -12,11 +12,13 @@ using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Mfs;
 using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
-using GWGUI.MediaEngine.Images;
-using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Containers.Apple;
+using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;
@@ -146,7 +148,7 @@ public sealed class AppleDiskImageTests
         var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}{extension}");
         try
         {
-            await new AppleNibbleImageWriter().WriteAsync(source, path);
+            await new AppleDiskImageWriter().WriteAsync(source, path);
             var decoded = await new AppleDiskImageReader().ReadAsync(path);
             Assert.Equal("apple2.rwts18", decoded.FormatId);
             Assert.Equal(35 * 6, decoded.AvailableBlocks.Count);
@@ -167,13 +169,76 @@ public sealed class AppleDiskImageTests
         var output = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.woz");
         try
         {
-            await new AppleNibbleImageWriter().WriteAsync(image, source);
-            await new AppleRwts18ConversionService().ConvertAsync(source, output);
+            await new AppleDiskImageWriter().WriteAsync(image, source);
+            await MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(source, output);
             var decoded = await new AppleDiskImageReader().ReadAsync(output);
             Assert.Equal("apple2.rwts18", decoded.FormatId);
             Assert.Equal(blocks.Length, decoded.AvailableBlocks.Count);
         }
         finally { File.Delete(source); File.Delete(output); }
+    }
+
+    [Fact]
+    public async Task ConversionServiceDecodesWozAndReencodesNib()
+    {
+        var blocks = Enumerable.Range(0, 35).SelectMany(track => Enumerable.Range(0, 6).Select(sector => new SectorBlock(track * 6 + sector, new(track, 0, sector), Enumerable.Repeat((byte)(track + sector), 768).ToArray()))).ToArray();
+        var image = new SectorImage(DiskImageFormatIds.AppleIIRwts18, 768, 35, 1, 6, blocks);
+        var source = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.woz");
+        var output = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        try
+        {
+            await new AppleDiskImageWriter().WriteAsync(image, source);
+            var service = new AppleRwts18ConversionService(new AppleDiskImageReader(), new AppleScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()), new AppleDiskImageWriter());
+            await service.ConvertAsync(source, output);
+            var decoded = await new AppleDiskImageReader().ReadAsync(output);
+            Assert.Equal(DiskImageFormatIds.AppleIIRwts18, decoded.FormatId);
+            foreach (var block in blocks) Assert.Equal(block.Data, decoded.GetBlock(block.LogicalBlock).ToArray());
+        }
+        finally { File.Delete(source); File.Delete(output); }
+    }
+
+    [Fact]
+    public async Task AppleWriterRejectsUnsupportedOutputSourceAndInvalidSector()
+    {
+        var writer = new AppleDiskImageWriter();
+        var block = new SectorBlock(0, new SectorAddress(0, 0, 0), new byte[768]);
+        await Assert.ThrowsAsync<NotSupportedException>(() => writer.WriteAsync(new SectorImage(DiskImageFormatIds.AppleIIRwts18, 768, 1, 1, 1, [block]), "output.bin"));
+        await Assert.ThrowsAsync<InvalidDataException>(() => writer.WriteAsync(new SectorImage(DiskImageFormatIds.AppleIIDos33, 256, 1, 1, 1, [new(0, new(0, 0, 0), new byte[256])]), "output.nib"));
+        await Assert.ThrowsAsync<InvalidDataException>(() => writer.WriteAsync(new SectorImage(DiskImageFormatIds.AppleIIRwts18, 768, 1, 1, 6, [new(0, new(0, 0, 0), new byte[767])], allowVariableBlockSize: true), "output.nib"));
+    }
+
+    [Fact]
+    public async Task ConversionRejectsUnsupportedOutputAndPropagatesCancellation()
+    {
+        var blocks = Enumerable.Range(0, 6).Select(sector => new SectorBlock(sector, new SectorAddress(0, 0, sector), new byte[768])).ToArray();
+        var image = new SectorImage(DiskImageFormatIds.AppleIIRwts18, 768, 1, 1, 6, blocks);
+        var source = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        try
+        {
+            await new AppleDiskImageWriter().WriteAsync(image, source);
+            var service = MediaEngineFactory.CreateAppleRwts18ConversionService();
+            await Assert.ThrowsAsync<NotSupportedException>(() => service.ConvertAsync(source, "output.bin"));
+            using var cancellation = new CancellationTokenSource();
+            cancellation.Cancel();
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => service.ConvertAsync(source, "output.woz", cancellation.Token));
+        }
+        finally { File.Delete(source); File.Delete("output.woz"); }
+    }
+
+    [Fact]
+    public async Task ConversionRejectsNonRwts18AndUnknownAppleSources()
+    {
+        var root = new DirectoryInfo(AppContext.BaseDirectory);
+        while (root is not null && !File.Exists(Path.Combine(root.FullName, "GWGUI.sln"))) root = root.Parent;
+        var standardNib = Path.Combine(root?.FullName ?? throw new DirectoryNotFoundException(), "image_test", "Apple II", "Merlin (1983)(Southwestern Data Systems)(US)(Side A).nib");
+        var unknown = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        try
+        {
+            await Assert.ThrowsAsync<InvalidDataException>(() => MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(standardNib, "output.woz"));
+            await File.WriteAllBytesAsync(unknown, [1, 2, 3]);
+            await Assert.ThrowsAnyAsync<Exception>(() => MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(unknown, "output.woz"));
+        }
+        finally { File.Delete(unknown); File.Delete("output.woz"); }
     }
 
     [Fact]

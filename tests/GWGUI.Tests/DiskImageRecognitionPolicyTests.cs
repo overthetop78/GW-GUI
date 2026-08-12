@@ -1,12 +1,11 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie les politiques de reconnaissance par l’API publique du moteur.</summary>
+/// <summary>VÃ©rifie les politiques de reconnaissance par lâ€™API publique du moteur.</summary>
 public sealed class DiskImageRecognitionPolicyTests
 {
     [Theory]
@@ -58,7 +57,7 @@ public sealed class DiskImageRecognitionPolicyTests
         }
     }
 
-    /// <summary>Vérifie qu'une extension 86F ou CP2 ne transforme pas un contenu rejeté en image reconnue.</summary>
+    /// <summary>VÃ©rifie qu'une extension 86F ou CP2 ne transforme pas un contenu rejetÃ© en image reconnue.</summary>
     [Theory]
     [InlineData(".86f")]
     [InlineData(".cp2")]
@@ -90,7 +89,7 @@ public sealed class DiskImageRecognitionPolicyTests
             DiskImageFormatIds.AppleIIDos33
         },
         {
-            Path.Combine("COHERENT - ordinateur à identifier", "COHERENT - Volume 1 - Low Resolution.bin"),
+            Path.Combine("COHERENT - ordinateur Ã  identifier", "COHERENT - Volume 1 - Low Resolution.bin"),
             DiskImageFormatIds.Commodore900Coherent
         },
         {

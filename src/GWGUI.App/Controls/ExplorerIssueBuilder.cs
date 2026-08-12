@@ -1,7 +1,6 @@
-using GWGUI.App.Localization;
+﻿using GWGUI.App.Localization;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Controls;
 

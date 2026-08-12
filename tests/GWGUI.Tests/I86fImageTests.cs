@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.I86f;
@@ -6,17 +6,16 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Flux.Conversion;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie le parsing, la conversion et la reconstruction publique des conteneurs 86F.</summary>
+/// <summary>VÃ©rifie le parsing, la conversion et la reconstruction publique des conteneurs 86F.</summary>
 public sealed class I86fImageTests
 {
-    /// <summary>Vérifie les drapeaux, les pistes et la géométrie IBM de l'image MFM réelle.</summary>
+    /// <summary>VÃ©rifie les drapeaux, les pistes et la gÃ©omÃ©trie IBM de l'image MFM rÃ©elle.</summary>
     [Fact]
     public async Task RealMfmImageExposesExpectedContainerAndSectorGeometry()
     {
@@ -33,7 +32,7 @@ public sealed class I86fImageTests
         Assert.NotEmpty(image.AvailableBlocks);
     }
 
-    /// <summary>Vérifie que le registre public route l'image réelle vers le lecteur sectoriel 86F.</summary>
+    /// <summary>VÃ©rifie que le registre public route l'image rÃ©elle vers le lecteur sectoriel 86F.</summary>
     [Fact]
     public async Task PublicRegistryRoutesRealMfmImage()
     {
@@ -42,7 +41,7 @@ public sealed class I86fImageTests
         Assert.NotEmpty(document.Image.AvailableBlocks);
     }
 
-    /// <summary>Vérifie les modes une face, deux faces, entrée absente et compte explicite ou déduit.</summary>
+    /// <summary>VÃ©rifie les modes une face, deux faces, entrÃ©e absente et compte explicite ou dÃ©duit.</summary>
     [Fact]
     public async Task ParserHandlesSidesMissingEntriesAndExplicitOrDerivedBitCounts()
     {
@@ -72,7 +71,7 @@ public sealed class I86fImageTests
         Assert.Equal((nextOffset - firstOffset - I86fLayout.StandardTrackHeaderSize) * I86fLayout.BitsPerByte, derived.Tracks.First(track => track.LogicalIndex == firstIndex).BitCount);
     }
 
-    /// <summary>Vérifie que l'ordre inversé des octets de chaque mot est normalisé par le parser.</summary>
+    /// <summary>VÃ©rifie que l'ordre inversÃ© des octets de chaque mot est normalisÃ© par le parser.</summary>
     [Fact]
     public async Task ParserNormalizesReversedWordBytes()
     {
@@ -87,7 +86,7 @@ public sealed class I86fImageTests
         Assert.Equal(reversed.Tracks[0].Bits.Skip(I86fLayout.BitsPerByte).Take(I86fLayout.BitsPerByte), normalOrder.Tracks[0].Bits.Take(I86fLayout.BitsPerByte));
     }
 
-    /// <summary>Vérifie la conversion exacte des cellules en intervalles et l'absence de révolution sans transition.</summary>
+    /// <summary>VÃ©rifie la conversion exacte des cellules en intervalles et l'absence de rÃ©volution sans transition.</summary>
     [Fact]
     public void ConverterUsesFortyTicksPerCellAndRejectsTransitionlessTracks()
     {
@@ -97,7 +96,7 @@ public sealed class I86fImageTests
         Assert.Null(I86fBitCellFluxConverter.Convert([false, false, false]));
     }
 
-    /// <summary>Vérifie le choix des décodeurs FM et MFM ainsi que les identifiants IBM et de repli.</summary>
+    /// <summary>VÃ©rifie le choix des dÃ©codeurs FM et MFM ainsi que les identifiants IBM et de repli.</summary>
     [Fact]
     public void DecoderAndFormatIdentifiersFollowFlagsAndGeometry()
     {
@@ -107,7 +106,7 @@ public sealed class I86fImageTests
         Assert.Equal(DiskImageFormatIds.Ibm360, IbmPcGeometryCatalog.FormatIdForGeometry(40, 2, 9));
     }
 
-    /// <summary>Vérifie le choix du meilleur candidat ISO selon son intégrité.</summary>
+    /// <summary>VÃ©rifie le choix du meilleur candidat ISO selon son intÃ©gritÃ©.</summary>
     [Fact]
     public void CommonBuilderSelectsTheValidCandidate()
     {
@@ -120,7 +119,7 @@ public sealed class I86fImageTests
         Assert.All(image.GetBlock(0).ToArray(), value => Assert.Equal(0x22, value));
     }
 
-    /// <summary>Vérifie les diagnostics de signature, table, position, nombre de bits et piste tronquée.</summary>
+    /// <summary>VÃ©rifie les diagnostics de signature, table, position, nombre de bits et piste tronquÃ©e.</summary>
     [Fact]
     public async Task RejectsInvalidSignatureTableOffsetBitCountAndTrackLength()
     {
@@ -147,7 +146,7 @@ public sealed class I86fImageTests
         await AssertRejectedAsync(truncated, "truncated");
     }
 
-    /// <summary>Vérifie que l'annulation est propagée avant le parcours des pistes.</summary>
+    /// <summary>VÃ©rifie que l'annulation est propagÃ©e avant le parcours des pistes.</summary>
     [Fact]
     public async Task PropagatesCancellation()
     {
@@ -156,7 +155,7 @@ public sealed class I86fImageTests
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => new I86fReader().ReadAsync(MfmImagePath(), cancellation.Token));
     }
 
-    /// <summary>Vérifie qu'une variante invalide est rejetée avec le diagnostic attendu.</summary>
+    /// <summary>VÃ©rifie qu'une variante invalide est rejetÃ©e avec le diagnostic attendu.</summary>
     private static async Task AssertRejectedAsync(byte[] data, string message)
     {
         var exception = await Assert.ThrowsAsync<InvalidDataException>(() => ReadTemporaryContainerAsync(data));
@@ -178,7 +177,7 @@ public sealed class I86fImageTests
         }
     }
 
-    /// <summary>Retourne l'index de la première piste présente.</summary>
+    /// <summary>Retourne l'index de la premiÃ¨re piste prÃ©sente.</summary>
     private static int FirstPresentTrackIndex(byte[] data)
     {
         for (var index = 0; index < I86fLayout.TwoSideTrackTableEntries; index++)
@@ -191,7 +190,7 @@ public sealed class I86fImageTests
     /// <summary>Lit la position d'une piste dans la table.</summary>
     private static int ReadTrackOffset(byte[] data, int index) => checked((int)BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fLayout.TrackTableOffset + index * I86fLayout.TrackTableEntrySize, I86fLayout.TrackTableEntrySize)));
 
-    /// <summary>Retourne la prochaine position de piste présente ou la fin du fichier.</summary>
+    /// <summary>Retourne la prochaine position de piste prÃ©sente ou la fin du fichier.</summary>
     private static int NextPresentTrackOffset(byte[] data, int start)
     {
         for (var index = start; index < I86fLayout.TwoSideTrackTableEntries; index++)
@@ -202,18 +201,18 @@ public sealed class I86fImageTests
         return data.Length;
     }
 
-    /// <summary>Retourne le chemin obligatoire de l'image MFM réelle.</summary>
+    /// <summary>Retourne le chemin obligatoire de l'image MFM rÃ©elle.</summary>
     private static string MfmImagePath()
     {
         var path = Path.Combine(RepositoryRoot(), "image_test", "IBM PC", "Framework Premier 1.1 Fr - Systeme 1 [5.25].86f");
         return File.Exists(path) ? path : throw new FileNotFoundException("L'image 86F MFM de test est introuvable.", path);
     }
 
-    /// <summary>Localise la racine du dépôt.</summary>
+    /// <summary>Localise la racine du dÃ©pÃ´t.</summary>
     private static string RepositoryRoot()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
         while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
-        return directory?.FullName ?? throw new DirectoryNotFoundException("La racine du dépôt est introuvable.");
+        return directory?.FullName ?? throw new DirectoryNotFoundException("La racine du dÃ©pÃ´t est introuvable.");
     }
 }

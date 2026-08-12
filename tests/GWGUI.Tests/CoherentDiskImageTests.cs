@@ -1,17 +1,16 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Coherent;
 using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la lecture et la reconnaissance par contenu des images Coherent locales.</summary>
+/// <summary>VÃ©rifie la lecture et la reconnaissance par contenu des images Coherent locales.</summary>
 public sealed class CoherentDiskImageTests
 {
     [Fact]
@@ -247,7 +246,7 @@ public sealed class CoherentDiskImageTests
         var volume = new CoherentFileSystemReader().Read(image);
 
         Assert.Contains(volume.Warnings, warning => warning.Contains("cycle", StringComparison.Ordinal));
-        Assert.Contains(volume.Warnings, warning => warning.Contains("déjà été parcouru", StringComparison.Ordinal));
+        Assert.Contains(volume.Warnings, warning => warning.Contains("dÃ©jÃ  Ã©tÃ© parcouru", StringComparison.Ordinal));
         Assert.Contains(volume.Entries, entry => entry.Name == "A" && !entry.MetadataValid);
         Assert.Contains(volume.Entries, entry => entry.Name == "B" && !entry.MetadataValid);
     }
@@ -277,7 +276,7 @@ public sealed class CoherentDiskImageTests
         return path ?? throw new FileNotFoundException("L'image Coherent locale requise est absente.");
     }
 
-    /// <summary>Crée une image COHERENT synthétique en rendant présents les blocs fournis et des blocs nuls complets pour les autres indices.</summary>
+    /// <summary>CrÃ©e une image COHERENT synthÃ©tique en rendant prÃ©sents les blocs fournis et des blocs nuls complets pour les autres indices.</summary>
     private static SectorImage CreateSectorImage(int blockCount, IReadOnlyDictionary<int, byte[]> overrides)
     {
         var blocks = new List<SectorBlock>();
@@ -291,7 +290,7 @@ public sealed class CoherentDiskImageTests
         return new(DiskImageFormatIds.Commodore900Coherent, CoherentFileSystemLayout.BlockSize, 1, 1, blockCount, blocks);
     }
 
-    /// <summary>Écrit les champs d'un inode synthétique utilisés par le lecteur.</summary>
+    /// <summary>Ã‰crit les champs d'un inode synthÃ©tique utilisÃ©s par le lecteur.</summary>
     private static void WriteInode(Span<byte> inode, ushort mode, int size, int firstBlock)
     {
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(inode, mode);
@@ -301,7 +300,7 @@ public sealed class CoherentDiskImageTests
         inode[CoherentFileSystemLayout.InodePointersOffset + 2] = (byte)(firstBlock >> 8);
     }
 
-    /// <summary>Écrit une entrée de répertoire synthétique.</summary>
+    /// <summary>Ã‰crit une entrÃ©e de rÃ©pertoire synthÃ©tique.</summary>
     private static void WriteDirectoryEntry(Span<byte> directory, int offset, ushort inode, string name)
     {
         System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(directory[offset..], inode);
@@ -318,7 +317,7 @@ public sealed class CoherentDiskImageTests
         throw new DirectoryNotFoundException("Le dossier local image_test est introuvable.");
     }
 
-    /// <summary>Crée un dump COHERENT minimal avec les champs canoniques demandés.</summary>
+    /// <summary>CrÃ©e un dump COHERENT minimal avec les champs canoniques demandÃ©s.</summary>
     private static byte[] CreateCoherentDump(int availableBlocks, int declaredBlocks, string? volumeName = null, string? packName = null)
     {
         var bytes = new byte[availableBlocks * CoherentFileSystemLayout.BlockSize];
@@ -328,7 +327,7 @@ public sealed class CoherentDiskImageTests
         return bytes;
     }
 
-    /// <summary>Écrit un entier 32 bits dans l'ordre canonique COHERENT 2, 3, 0, 1.</summary>
+    /// <summary>Ã‰crit un entier 32 bits dans l'ordre canonique COHERENT 2, 3, 0, 1.</summary>
     private static void WriteCanonicalUInt32(Span<byte> destination, uint value)
     {
         destination[2] = (byte)value;
@@ -337,13 +336,13 @@ public sealed class CoherentDiskImageTests
         destination[1] = (byte)(value >> 24);
     }
 
-    /// <summary>Présélectionne le fichier puis délègue sa validation au lecteur Coherent public.</summary>
+    /// <summary>PrÃ©sÃ©lectionne le fichier puis dÃ©lÃ¨gue sa validation au lecteur Coherent public.</summary>
     private sealed class CoherentReaderCandidatePolicy : IDiskImageRecognitionPolicy
     {
-        /// <summary>Nombre de lectures Coherent tentées.</summary>
+        /// <summary>Nombre de lectures Coherent tentÃ©es.</summary>
         public int ReadCalls { get; private set; }
 
-        /// <summary>Présélectionne le candidat de même taille.</summary>
+        /// <summary>PrÃ©sÃ©lectionne le candidat de mÃªme taille.</summary>
         public ValueTask<bool> CanReadAsync(
             DiskImageRecognitionContext context,
             CancellationToken cancellationToken) => ValueTask.FromResult(true);
@@ -358,10 +357,10 @@ public sealed class CoherentDiskImageTests
         }
     }
 
-    /// <summary>Politique suivante prouvant la poursuite du registre après le rejet Coherent.</summary>
+    /// <summary>Politique suivante prouvant la poursuite du registre aprÃ¨s le rejet Coherent.</summary>
     private sealed class AcceptedPolicy : IDiskImageRecognitionPolicy
     {
-        /// <summary>Nombre de lectures de secours effectuées.</summary>
+        /// <summary>Nombre de lectures de secours effectuÃ©es.</summary>
         public int ReadCalls { get; private set; }
 
         /// <summary>Accepte le candidat transmis par le registre.</summary>

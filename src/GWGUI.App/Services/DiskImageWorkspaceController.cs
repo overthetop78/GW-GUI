@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Visualization;
+﻿using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using System.Windows;
@@ -15,7 +15,6 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Services;
 
@@ -159,7 +158,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             {
                 ShowProgress(_localize("Visual.Loading", []), 0, true);
                 var visualization = await Task.Run(() => _sectorVisualizer.Create(explored.Image, cancellation.Token), cancellation.Token);
-                var summary = $"{explored.Image.FormatId} · {explored.Image.Cylinders}×{explored.Image.Heads}×{explored.Image.SectorsPerTrack} · {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
+                var summary = $"{explored.Image.FormatId} Â· {explored.Image.Cylinders}Ã—{explored.Image.Heads}Ã—{explored.Image.SectorsPerTrack} Â· {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
                 await DisplayScpAsync(visualization, displayFileName ?? Path.GetFileName(path), summary, cancellation);
                 return;
             }

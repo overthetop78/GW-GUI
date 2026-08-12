@@ -33,4 +33,13 @@ internal static class WozExceptions
     /// <param name="computedCrc">CRC32 calculé sur les chunks.</param>
     /// <returns>Exception contenant les CRC stocké et calculé.</returns>
     public static InvalidDataException InvalidCrc(uint storedCrc, uint computedCrc) => new($"The WOZ CRC32 is invalid: stored 0x{storedCrc:X8}, computed 0x{computedCrc:X8}.");
+
+    /// <summary>Crée l'erreur signalant un identifiant de chunk non ASCII ou d'une longueur incorrecte.</summary>
+    public static ArgumentException InvalidChunkId(string id) => new($"L'identifiant de chunk WOZ '{id}' doit contenir exactement {WozLayout.ChunkIdLength} caractères ASCII.", nameof(id));
+
+    /// <summary>Crée l'erreur signalant un nombre de pistes WOZ1 invalide.</summary>
+    public static InvalidDataException InvalidTrackCount(int observedCount, int maximumCount) => new($"Le Writer WOZ1 a reçu {observedCount} pistes ; la plage admise est de 1 à {maximumCount}.");
+
+    /// <summary>Crée l'erreur signalant une piste trop longue pour WOZ1.</summary>
+    public static InvalidDataException TrackTooLong(int track, int observedBits, int maximumBits) => new($"La piste WOZ1 {track} contient {observedBits} bits et dépasse la limite de {maximumBits} bits.");
 }

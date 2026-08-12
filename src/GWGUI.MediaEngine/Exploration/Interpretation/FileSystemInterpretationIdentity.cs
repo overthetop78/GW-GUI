@@ -1,33 +1,32 @@
-using GWGUI.MediaEngine.FileSystems;
+﻿using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation;
 
-/// <summary>Construit une identité stable pour dédupliquer les interprétations de systèmes de fichiers.</summary>
+/// <summary>Construit une identitÃ© stable pour dÃ©dupliquer les interprÃ©tations de systÃ¨mes de fichiers.</summary>
 internal static class FileSystemInterpretationIdentity
 {
-    /// <summary>Séparateur entre deux champs d'identité.</summary>
+    /// <summary>SÃ©parateur entre deux champs d'identitÃ©.</summary>
     public const char FieldSeparator = '\0';
-    /// <summary>Séparateur entre deux entrées sérialisées.</summary>
+    /// <summary>SÃ©parateur entre deux entrÃ©es sÃ©rialisÃ©es.</summary>
     public const char EntrySeparator = '\u001f';
-    /// <summary>Séparateur entre deux segments d'un chemin d'entrée.</summary>
+    /// <summary>SÃ©parateur entre deux segments d'un chemin d'entrÃ©e.</summary>
     public const char PathSeparator = '/';
 
-    /// <summary>Construit l'identité d'une interprétation depuis sa famille de format et son volume.</summary>
-    /// <param name="interpretation">Interprétation à identifier.</param>
-    /// <returns>Identité stable de la famille et du contenu logique.</returns>
+    /// <summary>Construit l'identitÃ© d'une interprÃ©tation depuis sa famille de format et son volume.</summary>
+    /// <param name="interpretation">InterprÃ©tation Ã  identifier.</param>
+    /// <returns>IdentitÃ© stable de la famille et du contenu logique.</returns>
     public static string Create(ExploredFileSystem interpretation) => $"{FormatFamily(interpretation.FormatId)}{FieldSeparator}{CreateVolume(interpretation.Volume)}";
 
-    /// <summary>Construit l'identité d'un volume depuis son nom et ses entrées triées.</summary>
-    /// <param name="volume">Volume à identifier.</param>
-    /// <returns>Identité stable du volume.</returns>
+    /// <summary>Construit l'identitÃ© d'un volume depuis son nom et ses entrÃ©es triÃ©es.</summary>
+    /// <param name="volume">Volume Ã  identifier.</param>
+    /// <returns>IdentitÃ© stable du volume.</returns>
     public static string CreateVolume(FileSystemVolume volume) => $"{volume.Name}{FieldSeparator}{string.Join(EntrySeparator, Entries(volume.Entries))}";
 
-    /// <summary>Énumère récursivement les entrées dans un ordre insensible à la casse.</summary>
-    /// <param name="entries">Entrées du niveau courant.</param>
+    /// <summary>Ã‰numÃ¨re rÃ©cursivement les entrÃ©es dans un ordre insensible Ã  la casse.</summary>
+    /// <param name="entries">EntrÃ©es du niveau courant.</param>
     /// <param name="prefix">Chemin technique du niveau courant.</param>
-    /// <returns>Segments d'identité ordonnés.</returns>
+    /// <returns>Segments d'identitÃ© ordonnÃ©s.</returns>
     private static IEnumerable<string> Entries(IEnumerable<FileSystemEntry> entries, string prefix = "")
     {
         foreach (var entry in entries.OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
@@ -38,9 +37,9 @@ internal static class FileSystemInterpretationIdentity
         }
     }
 
-    /// <summary>Extrait la famille précédant le premier point d'un identifiant de format.</summary>
+    /// <summary>Extrait la famille prÃ©cÃ©dant le premier point d'un identifiant de format.</summary>
     /// <param name="formatId">Identifiant de format complet.</param>
-    /// <returns>Préfixe familial ou identifiant complet sans point.</returns>
+    /// <returns>PrÃ©fixe familial ou identifiant complet sans point.</returns>
     private static string FormatFamily(string formatId)
     {
         var separator = formatId.IndexOf('.');

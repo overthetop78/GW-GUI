@@ -1,8 +1,7 @@
-using GWGUI.MediaEngine.Visualization;
+﻿using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.TeleDisk;
-using GWGUI.MediaEngine.Images;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
@@ -44,7 +43,7 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
     [Fact]
     public async Task Generation4HybridDetectsAtariIbmAndAmigaWithoutInventingMsxVariants()
     {
-        const string path = @"F:\Disquettes\Génération 4\Génération 4 N°53 - Mars 1993\Génération 4 - Disquette_Demo_N°53.scp";
+        const string path = @"F:\Disquettes\GÃ©nÃ©ration 4\GÃ©nÃ©ration 4 NÂ°53 - Mars 1993\GÃ©nÃ©ration 4 - Disquette_Demo_NÂ°53.scp";
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
         var formats = (document.DetectedFileSystems ?? []).Select(item => item.FormatId).ToArray();

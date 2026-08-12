@@ -2,7 +2,8 @@ using System.Diagnostics;
 using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Conversion;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Composition;
 
 namespace GWGUI.App.Services;
 
@@ -10,7 +11,7 @@ public sealed class ConversionBatchExecutor(
     IGreaseweazleRunner runner,
     AppleRwts18ConversionService? appleRwts18 = null)
 {
-    private readonly AppleRwts18ConversionService _appleRwts18 = appleRwts18 ?? new();
+    private readonly AppleRwts18ConversionService _appleRwts18 = appleRwts18 ?? MediaEngineFactory.CreateAppleRwts18ConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
         AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension);

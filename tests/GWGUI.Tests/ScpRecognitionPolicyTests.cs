@@ -1,17 +1,16 @@
-using System.IO;
+﻿using System.IO;
 using GWGUI.MediaEngine.Exploration.Scp;
 using System.Runtime.CompilerServices;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la signature, les demandes explicites et l'annulation de la politique SCP.</summary>
+/// <summary>VÃ©rifie la signature, les demandes explicites et l'annulation de la politique SCP.</summary>
 public sealed class ScpRecognitionPolicyTests
 {
-    /// <summary>Vérifie la signature complète et le rejet des contenus trop courts.</summary>
+    /// <summary>VÃ©rifie la signature complÃ¨te et le rejet des contenus trop courts.</summary>
     [Fact]
     public void SignatureProbeRequiresCompleteScpSignature()
     {
@@ -20,7 +19,7 @@ public sealed class ScpRecognitionPolicyTests
         Assert.False(ScpSignature.IsPresent("BAD"u8));
     }
 
-    /// <summary>Vérifie qu'un contenu tronqué est refusé par la politique et rejeté par le Reader.</summary>
+    /// <summary>VÃ©rifie qu'un contenu tronquÃ© est refusÃ© par la politique et rejetÃ© par le Reader.</summary>
     [Fact]
     public async Task TruncatedSignatureIsRejectedByPolicyAndReader()
     {
@@ -34,7 +33,7 @@ public sealed class ScpRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie qu'un identifiant absent du catalogue produit le diagnostic de la politique renommée avant exploration.</summary>
+    /// <summary>VÃ©rifie qu'un identifiant absent du catalogue produit le diagnostic de la politique renommÃ©e avant exploration.</summary>
     [Fact]
     public async Task UnsupportedRequestedFormatIsRejectedBeforeExploration()
     {
@@ -47,7 +46,7 @@ public sealed class ScpRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie que l'annulation de la lecture du contexte est propagée.</summary>
+    /// <summary>VÃ©rifie que l'annulation de la lecture du contexte est propagÃ©e.</summary>
     [Fact]
     public async Task ContextReadCancellationIsPropagated()
     {
@@ -61,14 +60,14 @@ public sealed class ScpRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Crée une politique dont le service ne sera pas appelé par les scénarios de présélection et de rejet testés.</summary>
+    /// <summary>CrÃ©e une politique dont le service ne sera pas appelÃ© par les scÃ©narios de prÃ©sÃ©lection et de rejet testÃ©s.</summary>
     private static ScpRecognitionPolicy CreatePolicy(IReadOnlySet<string> supportedFormatIds)
     {
         var service = (ScpImageExplorationService)RuntimeHelpers.GetUninitializedObject(typeof(ScpImageExplorationService));
         return new(service, supportedFormatIds);
     }
 
-    /// <summary>Crée un fichier temporaire contenant les octets fournis.</summary>
+    /// <summary>CrÃ©e un fichier temporaire contenant les octets fournis.</summary>
     private static async Task<string> CreateFileAsync(byte[] bytes, string extension)
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-scp-policy-{Guid.NewGuid():N}{extension}");

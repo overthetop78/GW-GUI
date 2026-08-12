@@ -1,6 +1,5 @@
-using GWGUI.MediaEngine.Definitions;
+﻿using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Images;
 
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
@@ -11,17 +10,17 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
-/// <summary>Reconstruit les images Macintosh et Lisa à zones depuis des secteurs SCP décodés.</summary>
-/// <param name="decoder">Décodeur commun chargé de regrouper les candidats sectoriels Apple.</param>
+/// <summary>Reconstruit les images Macintosh et Lisa Ã  zones depuis des secteurs SCP dÃ©codÃ©s.</summary>
+/// <param name="decoder">DÃ©codeur commun chargÃ© de regrouper les candidats sectoriels Apple.</param>
 internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
     /// <summary>Reconstruit et classe une image Macintosh ou Lisa.</summary>
-    /// <param name="scp">Capture SCP déjà analysée.</param>
-    /// <param name="requestedFormatId">Identifiant demandé, ou <see langword="null"/> pour détecter automatiquement le format Apple.</param>
-    /// <param name="cancellationToken">Jeton permettant d'annuler le décodage des révolutions.</param>
-    /// <returns>L'image Macintosh ou Lisa reconstruite avec sa capacité et son nombre logique de blocs.</returns>
-    /// <exception cref="InvalidDataException">Aucun secteur GCR Apple IWM n'a été décodé ou aucun candidat ne respecte la géométrie zonée.</exception>
-    /// <remarks>La capacité est exprimée en octets et dépend du nombre de faces détecté dans les adresses candidates.</remarks>
+    /// <param name="scp">Capture SCP dÃ©jÃ  analysÃ©e.</param>
+    /// <param name="requestedFormatId">Identifiant demandÃ©, ou <see langword="null"/> pour dÃ©tecter automatiquement le format Apple.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le dÃ©codage des rÃ©volutions.</param>
+    /// <returns>L'image Macintosh ou Lisa reconstruite avec sa capacitÃ© et son nombre logique de blocs.</returns>
+    /// <exception cref="InvalidDataException">Aucun secteur GCR Apple IWM n'a Ã©tÃ© dÃ©codÃ© ou aucun candidat ne respecte la gÃ©omÃ©trie zonÃ©e.</exception>
+    /// <remarks>La capacitÃ© est exprimÃ©e en octets et dÃ©pend du nombre de faces dÃ©tectÃ© dans les adresses candidates.</remarks>
     public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, AppleIwmGcrFormat.SectorByteCount, cancellationToken);
@@ -65,10 +64,10 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
         return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
     }
 
-    /// <summary>Reconstruit une charge utile linéaire lorsque tous les blocs attendus sont présents et valides.</summary>
-    /// <param name="image">Image sectorielle Macintosh à aplatir dans l'ordre des blocs logiques.</param>
-    /// <param name="payload">Charge utile complète créée lorsque la méthode retourne <see langword="true"/>.</param>
-    /// <returns><see langword="true"/> lorsque chaque bloc logique possède exactement la taille attendue ; sinon <see langword="false"/>.</returns>
+    /// <summary>Reconstruit une charge utile linÃ©aire lorsque tous les blocs attendus sont prÃ©sents et valides.</summary>
+    /// <param name="image">Image sectorielle Macintosh Ã  aplatir dans l'ordre des blocs logiques.</param>
+    /// <param name="payload">Charge utile complÃ¨te crÃ©Ã©e lorsque la mÃ©thode retourne <see langword="true"/>.</param>
+    /// <returns><see langword="true"/> lorsque chaque bloc logique possÃ¨de exactement la taille attendue ; sinon <see langword="false"/>.</returns>
     private static bool TryFlattenPayload(SectorImage image, out byte[] payload)
     {
         payload = new byte[image.BlockCount * image.BlockSize];

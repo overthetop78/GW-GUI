@@ -1,7 +1,6 @@
-using System.IO;
+﻿using System.IO;
 using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
@@ -9,14 +8,14 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la délégation commune des politiques de reconnaissance adossées à un Reader.</summary>
+/// <summary>VÃ©rifie la dÃ©lÃ©gation commune des politiques de reconnaissance adossÃ©es Ã  un Reader.</summary>
 public sealed class ReaderBackedRecognitionPolicyTests
 {
-    /// <summary>Vérifie qu'une fonction de lecture est obligatoire.</summary>
+    /// <summary>VÃ©rifie qu'une fonction de lecture est obligatoire.</summary>
     [Fact]
     public void RejectsNullReadFunction() => Assert.Throws<ArgumentNullException>(() => new TestPolicy(null!));
 
-    /// <summary>Vérifie que la délégation reçoit exactement le contexte et le jeton fournis.</summary>
+    /// <summary>VÃ©rifie que la dÃ©lÃ©gation reÃ§oit exactement le contexte et le jeton fournis.</summary>
     [Fact]
     public async Task PassesTheSameContextAndCancellationTokenToReadFunction()
     {
@@ -47,7 +46,7 @@ public sealed class ReaderBackedRecognitionPolicyTests
         }
     }
 
-    /// <summary>Vérifie que la politique Apple réutilise les octets chargés pendant la présélection.</summary>
+    /// <summary>VÃ©rifie que la politique Apple rÃ©utilise les octets chargÃ©s pendant la prÃ©sÃ©lection.</summary>
     [Fact]
     public async Task ApplePolicyReadsFromTheContextAfterTheFileIsRemoved()
     {
@@ -55,7 +54,7 @@ public sealed class ReaderBackedRecognitionPolicyTests
         await AssertReadsAfterRemovalAsync(source, path => new AppleImageRecognitionPolicy(new AppleDiskImageReader()), path => new AppleDiskImageReader().ReadAsync(path));
     }
 
-    /// <summary>Vérifie que la politique COHERENT réutilise les octets chargés pendant la présélection.</summary>
+    /// <summary>VÃ©rifie que la politique COHERENT rÃ©utilise les octets chargÃ©s pendant la prÃ©sÃ©lection.</summary>
     [Fact]
     public async Task CoherentPolicyReadsFromTheContextAfterTheFileIsRemoved()
     {
@@ -63,7 +62,7 @@ public sealed class ReaderBackedRecognitionPolicyTests
         await AssertReadsAfterRemovalAsync(source, path => new CoherentImageRecognitionPolicy(new CoherentRawImageReader()), path => new CoherentRawImageReader().ReadAsync(path));
     }
 
-    /// <summary>Vérifie que la politique DEC RX02 réutilise les octets chargés pendant la présélection.</summary>
+    /// <summary>VÃ©rifie que la politique DEC RX02 rÃ©utilise les octets chargÃ©s pendant la prÃ©sÃ©lection.</summary>
     [Fact]
     public async Task DecRx02PolicyReadsFromTheContextAfterTheFileIsRemoved()
     {
@@ -71,7 +70,7 @@ public sealed class ReaderBackedRecognitionPolicyTests
         await AssertReadsAfterRemovalAsync(source, path => new DecRx02ImageRecognitionPolicy(new DecRx02Reader()), path => new DecRx02Reader().ReadAsync(path));
     }
 
-    /// <summary>Compare la façade par chemin à la politique, puis retire le fichier après la présélection.</summary>
+    /// <summary>Compare la faÃ§ade par chemin Ã  la politique, puis retire le fichier aprÃ¨s la prÃ©sÃ©lection.</summary>
     private static async Task AssertReadsAfterRemovalAsync(string source, Func<string, IDiskImageRecognitionPolicy> createPolicy, Func<string, Task<SectorImage>> readByPath)
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-reader-policy-{Guid.NewGuid():N}{Path.GetExtension(source)}");
@@ -99,7 +98,7 @@ public sealed class ReaderBackedRecognitionPolicyTests
         }
     }
 
-    /// <summary>Recherche le corpus local non versionné.</summary>
+    /// <summary>Recherche le corpus local non versionnÃ©.</summary>
     private static string FindImageTestRoot()
     {
         for (var directory = new DirectoryInfo(AppContext.BaseDirectory); directory is not null; directory = directory.Parent)
@@ -110,10 +109,10 @@ public sealed class ReaderBackedRecognitionPolicyTests
         throw new DirectoryNotFoundException("Le dossier local image_test est introuvable.");
     }
 
-    /// <summary>Crée une image minimale utilisée pour vérifier l'identité de la valeur retournée.</summary>
+    /// <summary>CrÃ©e une image minimale utilisÃ©e pour vÃ©rifier l'identitÃ© de la valeur retournÃ©e.</summary>
     private static SectorImage CreateImage(string formatId) => new(formatId, 1, 1, 1, 1, [new SectorBlock(0, new SectorAddress(0, 0, 1), [0x01])]);
 
-    /// <summary>Expose la politique abstraite pour contrôler son contrat commun.</summary>
+    /// <summary>Expose la politique abstraite pour contrÃ´ler son contrat commun.</summary>
     private sealed class TestPolicy(Func<DiskImageRecognitionContext, CancellationToken, Task<SectorImage>> read) : ReaderBackedRecognitionPolicy(read)
     {
         /// <summary>Accepte toujours le contexte de test.</summary>

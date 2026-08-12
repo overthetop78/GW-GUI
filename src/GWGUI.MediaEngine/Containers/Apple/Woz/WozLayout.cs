@@ -32,8 +32,20 @@ internal static class WozLayout
     public const int ChunkLengthSize = 4;
     /// <summary>Longueur minimale du chunk INFO nécessaire à la lecture du type de disque.</summary>
     public const int MinimumInfoLength = 2;
+    /// <summary>Longueur du chunk INFO produit par le Writer WOZ1.</summary>
+    public const int InfoLength = 60;
+    /// <summary>Position de la version INFO.</summary>
+    public const int InfoVersionOffset = 0;
     /// <summary>Position du type de disque dans le chunk INFO.</summary>
     public const int InfoDiskTypeOffset = 1;
+    /// <summary>Position du drapeau de protection en écriture.</summary>
+    public const int InfoWriteProtectionOffset = 2;
+    /// <summary>Position du drapeau de synchronisation des pistes.</summary>
+    public const int InfoSynchronizedOffset = 3;
+    /// <summary>Position du drapeau indiquant une image nettoyée.</summary>
+    public const int InfoCleanedOffset = 4;
+    /// <summary>Position du nom du créateur.</summary>
+    public const int InfoCreatorOffset = 5;
     /// <summary>Longueur attendue du chunk TMAP.</summary>
     public const int TrackMapLength = AppleIITrackCount * TrackMapEntriesPerTrack;
     /// <summary>Nombre de pistes Apple II examinées.</summary>

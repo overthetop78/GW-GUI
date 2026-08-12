@@ -1,7 +1,6 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
@@ -9,7 +8,7 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la reconnaissance publique des conteneurs Apple signés et des candidats bruts.</summary>
+/// <summary>VÃ©rifie la reconnaissance publique des conteneurs Apple signÃ©s et des candidats bruts.</summary>
 public sealed class AppleImageRecognitionTests
 {
     [Theory]
@@ -58,7 +57,7 @@ public sealed class AppleImageRecognitionTests
         }
     }
 
-    /// <summary>Vérifie la lecture des représentations brutes Apple II possédant une capacité valide.</summary>
+    /// <summary>VÃ©rifie la lecture des reprÃ©sentations brutes Apple II possÃ©dant une capacitÃ© valide.</summary>
     [Theory]
     [InlineData(".do", 143_360)]
     [InlineData(".po", 143_360)]
@@ -81,7 +80,7 @@ public sealed class AppleImageRecognitionTests
         }
     }
 
-    /// <summary>Vérifie qu'une image NIB complète est présélectionnée puis validée.</summary>
+    /// <summary>VÃ©rifie qu'une image NIB complÃ¨te est prÃ©sÃ©lectionnÃ©e puis validÃ©e.</summary>
     [Fact]
     public async Task RecognizesACompleteNibImage()
     {
@@ -92,7 +91,7 @@ public sealed class AppleImageRecognitionTests
         Assert.NotEqual("unknown", explored.Image.FormatId);
     }
 
-    /// <summary>Vérifie que les familles Apple explicitement demandées sont traitées de la même manière pour DSK et IMG.</summary>
+    /// <summary>VÃ©rifie que les familles Apple explicitement demandÃ©es sont traitÃ©es de la mÃªme maniÃ¨re pour DSK et IMG.</summary>
     [Theory]
     [InlineData("apple2.", ".dsk")]
     [InlineData("apple2.", ".img")]
@@ -144,7 +143,7 @@ public sealed class AppleImageRecognitionTests
         }
     }
 
-    /// <summary>Vérifie qu'une signature 2IMG certaine et corrompue n'est jamais réinterprétée comme une image brute de même capacité.</summary>
+    /// <summary>VÃ©rifie qu'une signature 2IMG certaine et corrompue n'est jamais rÃ©interprÃ©tÃ©e comme une image brute de mÃªme capacitÃ©.</summary>
     [Fact]
     public async Task SignedCorruptContainerIsNotRetriedAsRawImage()
     {
@@ -196,13 +195,13 @@ public sealed class AppleImageRecognitionTests
         throw new DirectoryNotFoundException("Le dossier local image_test est introuvable.");
     }
 
-    /// <summary>Présélectionne le fichier puis délègue sa validation au lecteur Apple public.</summary>
+    /// <summary>PrÃ©sÃ©lectionne le fichier puis dÃ©lÃ¨gue sa validation au lecteur Apple public.</summary>
     private sealed class AppleReaderCandidatePolicy : IDiskImageRecognitionPolicy
     {
-        /// <summary>Nombre de lectures Apple tentées.</summary>
+        /// <summary>Nombre de lectures Apple tentÃ©es.</summary>
         public int ReadCalls { get; private set; }
 
-        /// <summary>Présélectionne le candidat de test.</summary>
+        /// <summary>PrÃ©sÃ©lectionne le candidat de test.</summary>
         public ValueTask<bool> CanReadAsync(
             DiskImageRecognitionContext context,
             CancellationToken cancellationToken) => ValueTask.FromResult(true);
@@ -217,10 +216,10 @@ public sealed class AppleImageRecognitionTests
         }
     }
 
-    /// <summary>Politique suivante produisant une image connue après le rejet Apple.</summary>
+    /// <summary>Politique suivante produisant une image connue aprÃ¨s le rejet Apple.</summary>
     private sealed class AcceptedPolicy : IDiskImageRecognitionPolicy
     {
-        /// <summary>Nombre de lectures de secours effectuées.</summary>
+        /// <summary>Nombre de lectures de secours effectuÃ©es.</summary>
         public int ReadCalls { get; private set; }
 
         /// <summary>Accepte le candidat transmis par le registre.</summary>

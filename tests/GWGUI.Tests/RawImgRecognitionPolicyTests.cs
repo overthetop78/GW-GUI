@@ -1,19 +1,18 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie le routage des images IMG brutes vers leurs interprétations IBM et Amstrad.</summary>
+/// <summary>VÃ©rifie le routage des images IMG brutes vers leurs interprÃ©tations IBM et Amstrad.</summary>
 public sealed class RawImgRecognitionPolicyTests
 {
-    /// <summary>Vérifie qu'une image IBM avec BPB valide conserve son identifiant IBM.</summary>
+    /// <summary>VÃ©rifie qu'une image IBM avec BPB valide conserve son identifiant IBM.</summary>
     [Fact]
     public async Task IbmImageWithValidBpbRemainsIbm()
     {
@@ -22,7 +21,7 @@ public sealed class RawImgRecognitionPolicyTests
         Assert.StartsWith(DiskImageFormatIds.IbmPrefix, image.FormatId, StringComparison.OrdinalIgnoreCase);
     }
 
-    /// <summary>Vérifie qu'une géométrie IBM connue reste constructible sans BPB.</summary>
+    /// <summary>VÃ©rifie qu'une gÃ©omÃ©trie IBM connue reste constructible sans BPB.</summary>
     [Fact]
     public async Task KnownIbmSizeWithoutBpbUsesGeometryCatalog()
     {
@@ -31,7 +30,7 @@ public sealed class RawImgRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie qu'une charge utile CPC issue d'une image locale est réidentifiée en Amstrad CPC.</summary>
+    /// <summary>VÃ©rifie qu'une charge utile CPC issue d'une image locale est rÃ©identifiÃ©e en Amstrad CPC.</summary>
     [Fact]
     public async Task CpcRawPayloadIsRetagged()
     {
@@ -39,7 +38,7 @@ public sealed class RawImgRecognitionPolicyTests
         await AssertRetaggedPayloadAsync(source, DiskImageFormatIds.AmstradCpc);
     }
 
-    /// <summary>Vérifie qu'une charge utile PCW issue d'une image locale est réidentifiée en Amstrad PCW.</summary>
+    /// <summary>VÃ©rifie qu'une charge utile PCW issue d'une image locale est rÃ©identifiÃ©e en Amstrad PCW.</summary>
     [Fact]
     public async Task PcwRawPayloadIsRetagged()
     {
@@ -47,7 +46,7 @@ public sealed class RawImgRecognitionPolicyTests
         await AssertRetaggedPayloadAsync(source, DiskImageFormatIds.AmstradPcw);
     }
 
-    /// <summary>Vérifie que l'erreur du Reader IBM est conservée pour une taille IMG impossible.</summary>
+    /// <summary>VÃ©rifie que l'erreur du Reader IBM est conservÃ©e pour une taille IMG impossible.</summary>
     [Fact]
     public async Task UnsupportedImgGeometryPreservesReaderError()
     {
@@ -62,7 +61,7 @@ public sealed class RawImgRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie qu'une extension différente de IMG ne présélectionne pas la politique.</summary>
+    /// <summary>VÃ©rifie qu'une extension diffÃ©rente de IMG ne prÃ©sÃ©lectionne pas la politique.</summary>
     [Fact]
     public async Task NonImgExtensionIsNotSelected()
     {
@@ -71,7 +70,7 @@ public sealed class RawImgRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Extrait temporairement la charge utile d'un conteneur CPCEMU local puis vérifie son interprétation IMG.</summary>
+    /// <summary>Extrait temporairement la charge utile d'un conteneur CPCEMU local puis vÃ©rifie son interprÃ©tation IMG.</summary>
     private static async Task AssertRetaggedPayloadAsync(string sourcePath, string expectedFormatId)
     {
         var container = await new CpcDskReader().ReadAsync(sourcePath);
@@ -81,7 +80,7 @@ public sealed class RawImgRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Crée un fichier IMG temporaire avec le contenu fourni.</summary>
+    /// <summary>CrÃ©e un fichier IMG temporaire avec le contenu fourni.</summary>
     private static async Task<string> CreateTemporaryImageAsync(byte[] bytes, string extension)
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-raw-img-{Guid.NewGuid():N}{extension}");

@@ -1,9 +1,8 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Geometries.Ucsd;
 using GWGUI.MediaEngine.Reconstruction.Iso;

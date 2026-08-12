@@ -1,7 +1,6 @@
-using GWGUI.MediaEngine.Definitions;
+﻿using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
@@ -10,16 +9,16 @@ using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
-/// <summary>Reconstruit les images Apple II DOS et ProDOS depuis des secteurs SCP décodés.</summary>
-/// <param name="decoder">Décodeur commun chargé de regrouper les candidats sectoriels Apple.</param>
+/// <summary>Reconstruit les images Apple II DOS et ProDOS depuis des secteurs SCP dÃ©codÃ©s.</summary>
+/// <param name="decoder">DÃ©codeur commun chargÃ© de regrouper les candidats sectoriels Apple.</param>
 internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
-    /// <summary>Reconstruit une image Apple II dans l'ordre demandé.</summary>
-    /// <param name="scp">Capture SCP déjà analysée.</param>
-    /// <param name="prodosOrder">Indique si les paires de secteurs doivent être réunies en blocs ProDOS.</param>
-    /// <param name="cancellationToken">Jeton permettant d'annuler le décodage des révolutions.</param>
-    /// <returns>L'image Apple II reconstruite dans l'ordre DOS ou ProDOS demandé.</returns>
-    /// <exception cref="InvalidDataException">Aucun secteur Apple II n'a été décodé ou aucun candidat ne respecte la géométrie retenue.</exception>
+    /// <summary>Reconstruit une image Apple II dans l'ordre demandÃ©.</summary>
+    /// <param name="scp">Capture SCP dÃ©jÃ  analysÃ©e.</param>
+    /// <param name="prodosOrder">Indique si les paires de secteurs doivent Ãªtre rÃ©unies en blocs ProDOS.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le dÃ©codage des rÃ©volutions.</param>
+    /// <returns>L'image Apple II reconstruite dans l'ordre DOS ou ProDOS demandÃ©.</returns>
+    /// <exception cref="InvalidDataException">Aucun secteur Apple II n'a Ã©tÃ© dÃ©codÃ© ou aucun candidat ne respecte la gÃ©omÃ©trie retenue.</exception>
     public SectorImage Decode(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleIIGcr, AppleIIGcrFormat.SectorSize, cancellationToken);
@@ -34,10 +33,10 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         return new(formatId, AppleIIGeometry.SectorSize, Math.Max(AppleIIGeometry.TrackCount, blocks.Max(block => block.Address.Cylinder) + 1), DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, blocks);
     }
 
-    /// <summary>Réunit les paires de secteurs physiques en blocs ProDOS.</summary>
-    /// <param name="candidates">Candidats Apple II regroupés par adresse physique.</param>
-    /// <returns>L'image Apple II dont les paires de secteurs complètes sont réunies en blocs ProDOS.</returns>
-    /// <exception cref="InvalidDataException">Aucune piste candidate ne respecte la limite Apple II ou aucun bloc ProDOS complet ne peut être construit.</exception>
+    /// <summary>RÃ©unit les paires de secteurs physiques en blocs ProDOS.</summary>
+    /// <param name="candidates">Candidats Apple II regroupÃ©s par adresse physique.</param>
+    /// <returns>L'image Apple II dont les paires de secteurs complÃ¨tes sont rÃ©unies en blocs ProDOS.</returns>
+    /// <exception cref="InvalidDataException">Aucune piste candidate ne respecte la limite Apple II ou aucun bloc ProDOS complet ne peut Ãªtre construit.</exception>
     private static SectorImage CreateProDosImage(Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> candidates)
     {
         var usableTracks = candidates.Keys.Where(key => key.Cylinder < AppleIIGeometry.MaximumReconstructedTrackCount).Select(key => key.Cylinder).ToArray();

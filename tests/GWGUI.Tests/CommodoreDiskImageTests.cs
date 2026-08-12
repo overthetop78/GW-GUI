@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;
 using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
@@ -7,7 +7,6 @@ using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Containers.Commodore.D81;
 using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Builders;
 
@@ -353,7 +352,7 @@ public sealed class CommodoreDiskImageTests
         }
     }
 
-    /// <summary>Recherche le corpus local non versionné à partir du dossier d'exécution des tests.</summary>
+    /// <summary>Recherche le corpus local non versionnÃ© Ã  partir du dossier d'exÃ©cution des tests.</summary>
     private static string FindImageTestRoot()
     {
         for (var directory = new DirectoryInfo(AppContext.BaseDirectory); directory is not null; directory = directory.Parent)

@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine;
@@ -7,7 +7,6 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems.Atari.Dos;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Atari.St;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;

@@ -1,17 +1,16 @@
-using GWGUI.MediaEngine.Decoding;
+﻿using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Recognition.Apple;
 
 namespace GWGUI.MediaEngine.SectorImages.Builders.Apple;
 
-/// <summary>Construit une image sectorielle Apple II depuis des pistes GCR déjà décodées.</summary>
+/// <summary>Construit une image sectorielle Apple II depuis des pistes GCR dÃ©jÃ  dÃ©codÃ©es.</summary>
 internal static class AppleIISectorImageBuilder
 {
-    /// <summary>Sélectionne les secteurs valides, construit les blocs DOS et ProDOS, puis identifie leur organisation.</summary>
+    /// <summary>SÃ©lectionne les secteurs valides, construit les blocs DOS et ProDOS, puis identifie leur organisation.</summary>
     public static SectorImage Create(IEnumerable<(int Track, IReadOnlyList<DecodedSector> Sectors)> decodedTracks)
     {
         var selected = DecodedAppleSectorSelection.Best(decodedTracks, sector => sector.Data is { Count: AppleIIGeometry.SectorSize } && sector.Number is >= 0 and < AppleIIGeometry.SectorsPerTrack);
@@ -47,7 +46,7 @@ internal static class AppleIISectorImageBuilder
         return blocks.ToArray();
     }
 
-    /// <summary>Place les blocs disponibles à leur position logique dans un tampon dense utilisé uniquement par les sondes.</summary>
+    /// <summary>Place les blocs disponibles Ã  leur position logique dans un tampon dense utilisÃ© uniquement par les sondes.</summary>
     internal static DenseAppleSectorImage ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)
     {
         var data = new byte[count * blockSize];
@@ -62,5 +61,5 @@ internal static class AppleIISectorImageBuilder
     }
 }
 
-/// <summary>Contient le tampon dense utilisé par les sondes et les positions restées absentes.</summary>
+/// <summary>Contient le tampon dense utilisÃ© par les sondes et les positions restÃ©es absentes.</summary>
 internal sealed record DenseAppleSectorImage(byte[] Data, IReadOnlyList<int> MissingBlocks);

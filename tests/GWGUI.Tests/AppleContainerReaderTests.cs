@@ -1,11 +1,10 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.IO;
 using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -15,7 +14,7 @@ public sealed class AppleContainerReaderTests
 {
     private static readonly Lazy<TestImages> Images = new(CreateTestImages);
 
-    /// <summary>Vérifie les valeurs binaires exposées par les définitions DiskCopy.</summary>
+    /// <summary>VÃ©rifie les valeurs binaires exposÃ©es par les dÃ©finitions DiskCopy.</summary>
     [Fact]
     public void ExposesExactDiskCopyFormatDefinitions()
     {
@@ -103,7 +102,7 @@ public sealed class AppleContainerReaderTests
         Assert.Equal(DiskImageFormatIds.AppleLisaOffice, image.FormatId);
     }
 
-    /// <summary>Vérifie qu'un conteneur DiskCopy sans tags délègue sa charge utile Macintosh au lecteur brut.</summary>
+    /// <summary>VÃ©rifie qu'un conteneur DiskCopy sans tags dÃ©lÃ¨gue sa charge utile Macintosh au lecteur brut.</summary>
     [Fact]
     public async Task ReadsUntaggedMacintoshDiskCopyPayload()
     {
@@ -118,7 +117,7 @@ public sealed class AppleContainerReaderTests
         Assert.All(image.AvailableBlocks, block => Assert.Null(block.Tag));
     }
 
-    /// <summary>Vérifie que le marqueur PREBOOT sélectionne l'interprétation Lisa MacWorks.</summary>
+    /// <summary>VÃ©rifie que le marqueur PREBOOT sÃ©lectionne l'interprÃ©tation Lisa MacWorks.</summary>
     [Fact]
     public async Task RecognizesPrebootAsLisaMacWorks()
     {
@@ -336,7 +335,7 @@ public sealed class AppleContainerReaderTests
 
     private static void RequireFile(string path)
     {
-        if (!File.Exists(path)) throw new FileNotFoundException("L’image de test Apple locale est absente.", path);
+        if (!File.Exists(path)) throw new FileNotFoundException("Lâ€™image de test Apple locale est absente.", path);
     }
 
     private static string FindImageTestRoot()

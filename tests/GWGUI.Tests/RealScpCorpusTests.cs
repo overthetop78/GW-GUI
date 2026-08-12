@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -13,7 +13,6 @@ using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.SectorImages;
 using SkiaSharp;

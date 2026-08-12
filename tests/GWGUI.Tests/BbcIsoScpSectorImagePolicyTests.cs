@@ -1,18 +1,17 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Acorn;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie les quatre géométries BBC DFS reconstruites depuis des candidats ISO.</summary>
+/// <summary>VÃ©rifie les quatre gÃ©omÃ©tries BBC DFS reconstruites depuis des candidats ISO.</summary>
 public sealed class BbcIsoScpSectorImagePolicyTests
 {
-    /// <summary>Vérifie SSD et DSD sur quarante et quatre-vingts pistes.</summary>
+    /// <summary>VÃ©rifie SSD et DSD sur quarante et quatre-vingts pistes.</summary>
     [Theory]
     [InlineData(40, 1, DiskImageFormatIds.AcornDfsSingleSided)]
     [InlineData(80, 1, DiskImageFormatIds.AcornDfsSingleSided80)]
@@ -25,7 +24,7 @@ public sealed class BbcIsoScpSectorImagePolicyTests
         Assert.Equal(expectedFormatId, image.FormatId);
     }
 
-    /// <summary>Vérifie les parcours public explicite et automatique sur une capture BBC DFS réelle.</summary>
+    /// <summary>VÃ©rifie les parcours public explicite et automatique sur une capture BBC DFS rÃ©elle.</summary>
     [Fact]
     public async Task PublicReaderSupportsExplicitAndAutomaticSelection()
     {
@@ -36,7 +35,7 @@ public sealed class BbcIsoScpSectorImagePolicyTests
         Assert.StartsWith(DiskImageFormatIds.AcornDfsPrefix, (await explorer.ExploreAsync(path)).Image.FormatId, StringComparison.Ordinal);
     }
 
-    /// <summary>Vérifie le rejet d'une capture ne contenant aucun secteur BBC utilisable.</summary>
+    /// <summary>VÃ©rifie le rejet d'une capture ne contenant aucun secteur BBC utilisable.</summary>
     [Fact]
     public void RejectsCaptureWithoutValidSector()
     {

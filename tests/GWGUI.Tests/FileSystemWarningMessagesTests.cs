@@ -1,18 +1,17 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
 using GWGUI.MediaEngine.Containers.TeleDisk;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie les avertissements communs des lecteurs de systèmes de fichiers.</summary>
+/// <summary>VÃ©rifie les avertissements communs des lecteurs de systÃ¨mes de fichiers.</summary>
 public sealed class FileSystemWarningMessagesTests
 {
-    /// <summary>Vérifie que le nom de l'entrée et le diagnostic d'origine sont conservés.</summary>
+    /// <summary>VÃ©rifie que le nom de l'entrÃ©e et le diagnostic d'origine sont conservÃ©s.</summary>
     [Fact]
     public void PreservesEntryNameAndOriginalDiagnostic()
     {
@@ -21,11 +20,11 @@ public sealed class FileSystemWarningMessagesTests
         Assert.Contains("invalid chain", warning, StringComparison.Ordinal);
     }
 
-    /// <summary>Vérifie que l'avertissement de blocs manquants contient le nom de l'entrée.</summary>
+    /// <summary>VÃ©rifie que l'avertissement de blocs manquants contient le nom de l'entrÃ©e.</summary>
     [Fact]
     public void IncludesEntryNameInMissingBlocksWarning() => Assert.Contains("SYSTEM.PASCAL", FileSystemWarningMessages.MissingDataBlocks("SYSTEM.PASCAL"), StringComparison.Ordinal);
 
-    /// <summary>Vérifie l'avertissement RT-11 produit par le lecteur public lorsqu'un bloc de fichier manque.</summary>
+    /// <summary>VÃ©rifie l'avertissement RT-11 produit par le lecteur public lorsqu'un bloc de fichier manque.</summary>
     [Fact]
     public async Task Rt11PublicReaderReportsMissingFileBlock()
     {
@@ -37,7 +36,7 @@ public sealed class FileSystemWarningMessagesTests
         Assert.Contains(volume.Warnings, warning => warning.Contains(entry.Name, StringComparison.Ordinal) && warning.Contains(entry.StorageReference.ToString(), StringComparison.Ordinal));
     }
 
-    /// <summary>Vérifie l'avertissement UCSD produit par le lecteur public lorsqu'un bloc de fichier manque.</summary>
+    /// <summary>VÃ©rifie l'avertissement UCSD produit par le lecteur public lorsqu'un bloc de fichier manque.</summary>
     [Fact]
     public async Task UcsdPublicReaderReportsMissingFileBlock()
     {
@@ -49,9 +48,9 @@ public sealed class FileSystemWarningMessagesTests
         Assert.Contains(volume.Warnings, warning => warning.Contains(entry.Name, StringComparison.Ordinal) && warning.Contains(entry.StorageReference.ToString(), StringComparison.Ordinal));
     }
 
-    /// <summary>Crée une image identique à la source en omettant un bloc logique.</summary>
+    /// <summary>CrÃ©e une image identique Ã  la source en omettant un bloc logique.</summary>
     private static SectorImage WithoutBlock(SectorImage source, int logicalBlock) => new(source.FormatId, source.BlockSize, source.Cylinders, source.Heads, source.SectorsPerTrack, source.AvailableBlocks.Where(block => block.LogicalBlock != logicalBlock), capacity: source.Capacity, logicalBlockCount: source.BlockCount);
 
-    /// <summary>Retourne le dossier des images de test non versionnées.</summary>
+    /// <summary>Retourne le dossier des images de test non versionnÃ©es.</summary>
     private static string ImageTestRoot() => Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test"));
 }

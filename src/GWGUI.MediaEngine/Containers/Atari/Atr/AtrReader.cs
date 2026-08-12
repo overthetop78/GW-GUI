@@ -1,16 +1,15 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.Atari.Atr;
 
-/// <summary>Valide un conteneur ATR et expose sa charge utile sous forme de secteurs Atari adressés.</summary>
+/// <summary>Valide un conteneur ATR et expose sa charge utile sous forme de secteurs Atari adressÃ©s.</summary>
 public sealed class AtrReader : ISectorImageReader
 {
-    /// <summary>Indique si le chemin porte l'extension utilisée par les conteneurs ATR.</summary>
-    /// <param name="path">Chemin du fichier à examiner.</param>
+    /// <summary>Indique si le chemin porte l'extension utilisÃ©e par les conteneurs ATR.</summary>
+    /// <param name="path">Chemin du fichier Ã  examiner.</param>
     /// <returns><see langword="true"/> lorsque l'extension est ATR ; sinon <see langword="false"/>.</returns>
     public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Atr, StringComparison.OrdinalIgnoreCase);
 
@@ -18,13 +17,13 @@ public sealed class AtrReader : ISectorImageReader
     /// <param name="path">Chemin du conteneur ATR.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
     /// <returns>Image sectorielle dont les tailles et adresses proviennent du conteneur.</returns>
-    /// <exception cref="ArgumentException">Le chemin est vide ou présente un format invalide.</exception>
+    /// <exception cref="ArgumentException">Le chemin est vide ou prÃ©sente un format invalide.</exception>
     /// <exception cref="FileNotFoundException">Le fichier ATR est introuvable.</exception>
-    /// <exception cref="DirectoryNotFoundException">Un répertoire du chemin est introuvable.</exception>
-    /// <exception cref="UnauthorizedAccessException">L'accès au fichier ATR est refusé.</exception>
-    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
-    /// <exception cref="InvalidDataException">L'en-tête, la taille déclarée ou la disposition des secteurs est invalide.</exception>
-    /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrêt de la lecture.</exception>
+    /// <exception cref="DirectoryNotFoundException">Un rÃ©pertoire du chemin est introuvable.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accÃ¨s au fichier ATR est refusÃ©.</exception>
+    /// <exception cref="IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
+    /// <exception cref="InvalidDataException">L'en-tÃªte, la taille dÃ©clarÃ©e ou la disposition des secteurs est invalide.</exception>
+    /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrÃªt de la lecture.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await ReadValidatedContainerAsync(path, cancellationToken).ConfigureAwait(false);
@@ -45,17 +44,17 @@ public sealed class AtrReader : ISectorImageReader
         return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, sectorCount, AtrLayout.LogicalHeadCount, AtrLayout.LogicalSectorsPerCylinder, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: payloadLength);
     }
 
-    /// <summary>Charge un conteneur ATR et vérifie son en-tête, ses longueurs et l'intégrité de ses limites sectorielles.</summary>
+    /// <summary>Charge un conteneur ATR et vÃ©rifie son en-tÃªte, ses longueurs et l'intÃ©gritÃ© de ses limites sectorielles.</summary>
     /// <param name="path">Chemin du conteneur ATR.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
-    /// <returns>Octets complets du conteneur validé, en-tête inclus.</returns>
-    /// <exception cref="ArgumentException">Le chemin est vide ou présente un format invalide.</exception>
+    /// <returns>Octets complets du conteneur validÃ©, en-tÃªte inclus.</returns>
+    /// <exception cref="ArgumentException">Le chemin est vide ou prÃ©sente un format invalide.</exception>
     /// <exception cref="FileNotFoundException">Le fichier ATR est introuvable.</exception>
-    /// <exception cref="DirectoryNotFoundException">Un répertoire du chemin est introuvable.</exception>
-    /// <exception cref="UnauthorizedAccessException">L'accès au fichier ATR est refusé.</exception>
-    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="DirectoryNotFoundException">Un rÃ©pertoire du chemin est introuvable.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accÃ¨s au fichier ATR est refusÃ©.</exception>
+    /// <exception cref="IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
     /// <exception cref="InvalidDataException">Le fichier ne respecte pas la disposition ATR attendue.</exception>
-    /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrêt de la lecture.</exception>
+    /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrÃªt de la lecture.</exception>
     internal static async Task<byte[]> ReadValidatedContainerAsync(string path, CancellationToken cancellationToken)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);

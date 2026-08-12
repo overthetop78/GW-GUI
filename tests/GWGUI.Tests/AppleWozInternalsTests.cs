@@ -63,6 +63,26 @@ public sealed class AppleWozInternalsTests
     [Fact]
     public void WozCrc32MatchesKnownValue() => Assert.Equal(0xcbf43926u, WozCrc32.Compute(Encoding.ASCII.GetBytes("123456789")));
 
+    /// <summary>Vérifie l'en-tête de chunk et le rejet des identifiants WOZ invalides.</summary>
+    [Fact]
+    public void WozChunkWriterValidatesAndWritesChunkHeader()
+    {
+        using var stream = new MemoryStream();
+        WozChunkWriter.Write(stream, WozFormat.InfoChunkId, [1, 2, 3]);
+        Assert.Equal("INFO", Encoding.ASCII.GetString(stream.ToArray(), 0, 4));
+        Assert.Equal(3u, System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(stream.ToArray().AsSpan(4, 4)));
+        Assert.Throws<ArgumentException>(() => WozChunkWriter.Write(stream, "BAD", []));
+    }
+
+    /// <summary>Vérifie le rejet des collections vides et des pistes trop longues avant toute écriture.</summary>
+    [Fact]
+    public async Task AppleContainerWritersValidateTracksBeforeWriting()
+    {
+        await Assert.ThrowsAsync<InvalidDataException>(() => NibWriter.WriteAsync([], "unused.nib"));
+        await Assert.ThrowsAsync<InvalidDataException>(() => NibWriter.WriteAsync([new bool[NibLayout.MaximumTrackBitCount + 1]], "unused.nib"));
+        await Assert.ThrowsAsync<InvalidDataException>(() => WozWriter.WriteAsync([new bool[WozWriter.MaximumTrackBitCount + 1]], "unused.woz"));
+    }
+
     /// <summary>Vérifie la conversion MSB-first et l'arrondi du nombre d'octets requis.</summary>
     [Fact]
     public void BitPackerUnpacksMostSignificantBitFirstAndRoundsByteCount()
@@ -74,6 +94,7 @@ public sealed class AppleWozInternalsTests
         var packed = new byte[2];
         MsbFirstBitPacker.Pack([true, false, true, false, false, false, false, false, true], packed);
         Assert.Equal([0xa0, 0x80], packed);
+        Assert.Throws<ArgumentException>(() => MsbFirstBitPacker.Pack([true, false, true, false, false, false, false, false, true], new byte[1]));
         Assert.Throws<ArgumentOutOfRangeException>(() => MsbFirstBitPacker.Unpack([0x00], 9));
     }
 
@@ -106,11 +127,11 @@ public sealed class AppleWozInternalsTests
     [Fact]
     public void SelectorScoresRwts18Sectors()
     {
-        var sectors = Enumerable.Range(0, 2).Select(number => new TrackSector(number, Enumerable.Repeat((byte)number, AppleTrackSelectionRules.Rwts18SectorSize).ToArray())).ToArray();
+        var sectors = Enumerable.Range(0, AppleTrackSelectionRules.Rwts18MaximumSectorNumber + 1).Select(number => new TrackSector(number, Enumerable.Repeat((byte)number, AppleTrackSelectionRules.Rwts18SectorSize).ToArray())).ToArray();
         var encoded = new AppleRwts18TrackEncoder().Encode(new(0, 0, sectors));
         var result = new AppleTrackDecodeSelector().Decode(encoded.Bits.ToArray(), 0);
 
-        Assert.Equal(2, result.Rwts18Sectors.Select(sector => sector.Number).Distinct().Count());
+        Assert.Equal(AppleTrackSelectionRules.Rwts18MaximumSectorNumber + 1, result.Rwts18Sectors.Select(sector => sector.Number).Distinct().Count());
         Assert.All(result.Rwts18Sectors, sector => Assert.True(sector.IntegrityValid));
         Assert.Equal(result.Rwts18Sectors.Select(sector => sector.Number).Distinct().Count() * AppleTrackSelectionRules.DistinctSectorScoreWeight + result.Rwts18Sectors.Count(sector => sector.IntegrityValid == true) * AppleTrackSelectionRules.IntegrityScoreWeight + result.Rwts18Sectors.Count, result.Rwts18Score);
     }

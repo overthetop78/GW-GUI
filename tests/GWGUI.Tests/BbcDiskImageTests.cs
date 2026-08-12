@@ -1,6 +1,5 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Geometries.Acorn;
 using GWGUI.MediaEngine.Decoding;
@@ -11,7 +10,7 @@ namespace GWGUI.Tests;
 
 public sealed class BbcDiskImageTests
 {
-    /// <summary>Vérifie la sélection automatique des quatre géométries BBC DFS sans identifiant demandé.</summary>
+    /// <summary>VÃ©rifie la sÃ©lection automatique des quatre gÃ©omÃ©tries BBC DFS sans identifiant demandÃ©.</summary>
     [Theory]
     [InlineData(40, 1, "acorn.dfs.ss")]
     [InlineData(80, 1, "acorn.dfs.ss80")]
@@ -30,7 +29,7 @@ public sealed class BbcDiskImageTests
         Assert.Equal(heads, image.Heads);
     }
 
-    /// <summary>Vérifie les quatre capacités SSD/DSD, leurs formats et l'ordre des faces sur plusieurs cylindres.</summary>
+    /// <summary>VÃ©rifie les quatre capacitÃ©s SSD/DSD, leurs formats et l'ordre des faces sur plusieurs cylindres.</summary>
     [Theory]
     [InlineData(".ssd", 40, 1, "acorn.dfs.ss")]
     [InlineData(".ssd", 80, 1, "acorn.dfs.ss80")]
@@ -63,7 +62,7 @@ public sealed class BbcDiskImageTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie une piste tronquée, 41/79 cylindres et une extension inconnue.</summary>
+    /// <summary>VÃ©rifie une piste tronquÃ©e, 41/79 cylindres et une extension inconnue.</summary>
     [Fact]
     public async Task RejectsInvalidBbcContainers()
     {
@@ -108,7 +107,7 @@ public sealed class BbcDiskImageTests
 
     private static string TestRoot() => Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test"));
 
-    /// <summary>Écrit un conteneur temporaire et vérifie le type exact de son rejet.</summary>
+    /// <summary>Ã‰crit un conteneur temporaire et vÃ©rifie le type exact de son rejet.</summary>
     private static async Task AssertRejected(byte[] data, string extension, Type exceptionType)
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-bbc-{Guid.NewGuid():N}{extension}");

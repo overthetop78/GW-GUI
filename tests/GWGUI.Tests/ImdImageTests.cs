@@ -1,10 +1,9 @@
-using GWGUI.MediaEngine.Visualization;
+﻿using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Epson;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;

@@ -1,12 +1,11 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Cp2;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la lecture publique d'un conteneur SNATCH-IT CP2 réel et de ses variantes invalides.</summary>
+/// <summary>VÃ©rifie la lecture publique d'un conteneur SNATCH-IT CP2 rÃ©el et de ses variantes invalides.</summary>
 public sealed class Cp2ImageTests
 {
     private const int ExpectedCylinderCount = 40;
@@ -15,7 +14,7 @@ public sealed class Cp2ImageTests
     private const int ExpectedGroupCount = 8;
     private const int FirstGroupDescriptorCount = 11;
 
-    /// <summary>Vérifie la structure du premier groupe et la restitution logique de secteurs stockés en ordre angulaire.</summary>
+    /// <summary>VÃ©rifie la structure du premier groupe et la restitution logique de secteurs stockÃ©s en ordre angulaire.</summary>
     [Fact]
     public async Task RealImagePreservesGroupsAngularOrderGeometryAndSectorContents()
     {
@@ -37,11 +36,11 @@ public sealed class Cp2ImageTests
         foreach (var sector in expectedSectors)
         {
             var logicalBlock = ((sector.Cylinder * ExpectedHeadCount + sector.Head) * ExpectedSectorsPerTrack) + sector.Number - 1;
-            Assert.True(sector.Data.SequenceEqual(image.GetBlock(logicalBlock).Span), $"Le secteur {sector.Cylinder}:{sector.Head}:{sector.Number} ne correspond pas à sa charge utile CP2.");
+            Assert.True(sector.Data.SequenceEqual(image.GetBlock(logicalBlock).Span), $"Le secteur {sector.Cylinder}:{sector.Head}:{sector.Number} ne correspond pas Ã  sa charge utile CP2.");
         }
     }
 
-    /// <summary>Vérifie l'exploration publique du système de fichiers DOS contenu dans l'image CP2 réelle.</summary>
+    /// <summary>VÃ©rifie l'exploration publique du systÃ¨me de fichiers DOS contenu dans l'image CP2 rÃ©elle.</summary>
     [Fact]
     public async Task RealImageExposesItsDosFileSystem()
     {
@@ -52,7 +51,7 @@ public sealed class Cp2ImageTests
         Assert.All(document.Volume.Entries, entry => Assert.False(string.IsNullOrWhiteSpace(entry.Name)));
     }
 
-    /// <summary>Vérifie qu'un secteur dont la taille n'est pas de 512 octets n'est pas ajouté à l'image reconstruite.</summary>
+    /// <summary>VÃ©rifie qu'un secteur dont la taille n'est pas de 512 octets n'est pas ajoutÃ© Ã  l'image reconstruite.</summary>
     [Fact]
     public async Task Non512ByteSectorIsRejectedFromTheReconstructedImage()
     {
@@ -69,7 +68,7 @@ public sealed class Cp2ImageTests
         Assert.Contains(image.GetBlock(719).ToArray(), value => value != 0);
     }
 
-    /// <summary>Vérifie les diagnostics produits pour une signature, des métadonnées et un descripteur invalides.</summary>
+    /// <summary>VÃ©rifie les diagnostics produits pour une signature, des mÃ©tadonnÃ©es et un descripteur invalides.</summary>
     [Fact]
     public async Task RejectsMissingSignatureInvalidMetadataAndInvalidSectorCount()
     {
@@ -88,7 +87,7 @@ public sealed class Cp2ImageTests
         await AssertRejectedAsync(invalidSectorCount, "count");
     }
 
-    /// <summary>Vérifie les contrôles de limites des descripteurs et des charges utiles CP2.</summary>
+    /// <summary>VÃ©rifie les contrÃ´les de limites des descripteurs et des charges utiles CP2.</summary>
     [Fact]
     public async Task RejectsTruncatedDescriptorAndSectorPayload()
     {
@@ -102,7 +101,7 @@ public sealed class Cp2ImageTests
         await AssertRejectedAsync(truncatedPayload, "requires");
     }
 
-    /// <summary>Vérifie que l'annulation demandée avant la lecture est propagée.</summary>
+    /// <summary>VÃ©rifie que l'annulation demandÃ©e avant la lecture est propagÃ©e.</summary>
     [Fact]
     public async Task PropagatesCancellation()
     {
@@ -126,14 +125,14 @@ public sealed class Cp2ImageTests
         }
     }
 
-    /// <summary>Vérifie qu'une variante CP2 est rejetée avec le fragment de diagnostic attendu.</summary>
+    /// <summary>VÃ©rifie qu'une variante CP2 est rejetÃ©e avec le fragment de diagnostic attendu.</summary>
     private static async Task AssertRejectedAsync(byte[] data, string expectedMessage)
     {
         var exception = await Assert.ThrowsAsync<InvalidDataException>(() => ReadTemporaryAsync(data));
         Assert.Contains(expectedMessage, exception.Message, StringComparison.OrdinalIgnoreCase);
     }
 
-    /// <summary>Relève les groupes et les positions angulaires du premier descripteur de chaque groupe.</summary>
+    /// <summary>RelÃ¨ve les groupes et les positions angulaires du premier descripteur de chaque groupe.</summary>
     private static IReadOnlyList<Cp2Group> ReadGroups(byte[] data)
     {
         var groups = new List<Cp2Group>();
@@ -166,7 +165,7 @@ public sealed class Cp2ImageTests
         return groups;
     }
 
-    /// <summary>Reconstitue les secteurs attendus à partir de l'ordre angulaire décrit dans chaque groupe.</summary>
+    /// <summary>Reconstitue les secteurs attendus Ã  partir de l'ordre angulaire dÃ©crit dans chaque groupe.</summary>
     private static IReadOnlyList<ExpectedSector> ReadExpectedSectors(byte[] data)
     {
         var sectors = new Dictionary<(int Cylinder, int Head, int Number), byte[]>();
@@ -216,27 +215,27 @@ public sealed class Cp2ImageTests
         }).ToArray();
     }
 
-    /// <summary>Retourne le chemin de l'image CP2 réelle obligatoire.</summary>
+    /// <summary>Retourne le chemin de l'image CP2 rÃ©elle obligatoire.</summary>
     private static string Cp2ImagePath()
     {
         var path = Path.Combine(RepositoryRoot(), "image_test", "IBM PC", "PFS Write C00 (1985) (5.25-360k) disk01.cp2");
         return File.Exists(path) ? path : throw new FileNotFoundException("L'image CP2 de test est introuvable.", path);
     }
 
-    /// <summary>Localise la racine du dépôt courant.</summary>
+    /// <summary>Localise la racine du dÃ©pÃ´t courant.</summary>
     private static string RepositoryRoot()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
         while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
-        return directory?.FullName ?? throw new DirectoryNotFoundException("La racine du dépôt est introuvable.");
+        return directory?.FullName ?? throw new DirectoryNotFoundException("La racine du dÃ©pÃ´t est introuvable.");
     }
 
-    /// <summary>Décrit les données structurelles nécessaires aux vérifications d'un groupe CP2.</summary>
+    /// <summary>DÃ©crit les donnÃ©es structurelles nÃ©cessaires aux vÃ©rifications d'un groupe CP2.</summary>
     private sealed record Cp2Group(int Offset, int DescriptorCount, int PayloadOffset, IReadOnlyList<ushort> FirstTrackPositions);
 
-    /// <summary>Décrit un secteur attendu et son contenu.</summary>
+    /// <summary>DÃ©crit un secteur attendu et son contenu.</summary>
     private sealed record ExpectedSector(int Cylinder, int Head, int Number, byte[] Data);
 
-    /// <summary>Décrit l'adresse, la taille et la position d'un secteur attendu avant lecture de sa charge utile.</summary>
+    /// <summary>DÃ©crit l'adresse, la taille et la position d'un secteur attendu avant lecture de sa charge utile.</summary>
     private sealed record ExpectedSectorDescriptor(int Cylinder, int Head, int Number, int Size, int Position);
 }

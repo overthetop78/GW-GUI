@@ -1,12 +1,11 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Apple;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la lecture publique des conteneurs WOZ1, WOZ2 et NIB locaux.</summary>
+/// <summary>VÃ©rifie la lecture publique des conteneurs WOZ1, WOZ2 et NIB locaux.</summary>
 public sealed class AppleWozNibReaderTests
 {
     [Theory]
@@ -88,7 +87,7 @@ public sealed class AppleWozNibReaderTests
         await AssertInvalidWoz(invalidReference, "descriptor 254");
     }
 
-    /// <summary>Vérifie qu'un chunk inconnu n'empêche pas la lecture du conteneur WOZ.</summary>
+    /// <summary>VÃ©rifie qu'un chunk inconnu n'empÃªche pas la lecture du conteneur WOZ.</summary>
     [Fact]
     public async Task IgnoresUnknownWozChunk()
     {
@@ -103,7 +102,7 @@ public sealed class AppleWozNibReaderTests
         Assert.NotEmpty(WozReader.Read(bytes).AvailableBlocks);
     }
 
-    /// <summary>Vérifie le traitement des longueurs de bits invalides dans les pistes WOZ1 et WOZ2.</summary>
+    /// <summary>VÃ©rifie le traitement des longueurs de bits invalides dans les pistes WOZ1 et WOZ2.</summary>
     [Fact]
     public async Task HandlesInvalidWozTrackBitLengths()
     {

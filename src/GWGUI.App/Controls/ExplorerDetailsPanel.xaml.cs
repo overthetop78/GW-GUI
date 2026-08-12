@@ -1,8 +1,7 @@
-using System.Windows;
+﻿using System.Windows;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.Windows.Controls;
 using GWGUI.App.Localization;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.App.Controls;
 

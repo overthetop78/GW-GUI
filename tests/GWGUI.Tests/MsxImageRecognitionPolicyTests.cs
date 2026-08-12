@@ -1,19 +1,18 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la présélection MSX par extension, demande explicite et BPB.</summary>
+/// <summary>VÃ©rifie la prÃ©sÃ©lection MSX par extension, demande explicite et BPB.</summary>
 public sealed class MsxImageRecognitionPolicyTests
 {
-    /// <summary>Vérifie les quatre géométries MSX-DOS prises en charge par le Reader public.</summary>
+    /// <summary>VÃ©rifie les quatre gÃ©omÃ©tries MSX-DOS prises en charge par le Reader public.</summary>
     [Theory]
     [InlineData(40, 1, 9, 0xf9, DiskImageFormatIds.Msx1D)]
     [InlineData(80, 1, 9, 0xf8, DiskImageFormatIds.Msx1Dd)]
@@ -34,7 +33,7 @@ public sealed class MsxImageRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie le rejet d'une capacité absente du catalogue malgré un BPB MSX-DOS cohérent.</summary>
+    /// <summary>VÃ©rifie le rejet d'une capacitÃ© absente du catalogue malgrÃ© un BPB MSX-DOS cohÃ©rent.</summary>
     [Fact]
     public async Task PublicReaderRejectsUnsupportedCapacity()
     {
@@ -43,7 +42,7 @@ public sealed class MsxImageRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie qu'une image MSX-DOS locale est présélectionnée puis lue par l'API publique.</summary>
+    /// <summary>VÃ©rifie qu'une image MSX-DOS locale est prÃ©sÃ©lectionnÃ©e puis lue par l'API publique.</summary>
     [Fact]
     public async Task ValidMsxDskIsSelectedAndRead()
     {
@@ -53,7 +52,7 @@ public sealed class MsxImageRecognitionPolicyTests
         Assert.NotEmpty(result.Image.AvailableBlocks);
     }
 
-    /// <summary>Vérifie qu'une extension différente de DSK ne présélectionne pas la politique MSX.</summary>
+    /// <summary>VÃ©rifie qu'une extension diffÃ©rente de DSK ne prÃ©sÃ©lectionne pas la politique MSX.</summary>
     [Fact]
     public async Task NonDskExtensionIsNotSelected()
     {
@@ -66,7 +65,7 @@ public sealed class MsxImageRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie qu'un faux DSK sans demande explicite ni BPB MSX est refusé avant lecture.</summary>
+    /// <summary>VÃ©rifie qu'un faux DSK sans demande explicite ni BPB MSX est refusÃ© avant lecture.</summary>
     [Fact]
     public async Task InvalidDskWithoutRequestedFormatIsNotSelected()
     {
@@ -79,7 +78,7 @@ public sealed class MsxImageRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie qu'une demande MSX explicite présélectionne le faux DSK mais que le Reader rejette ensuite son BPB.</summary>
+    /// <summary>VÃ©rifie qu'une demande MSX explicite prÃ©sÃ©lectionne le faux DSK mais que le Reader rejette ensuite son BPB.</summary>
     [Fact]
     public async Task ExplicitMsxRequestDoesNotBypassReaderValidation()
     {
@@ -93,7 +92,7 @@ public sealed class MsxImageRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Vérifie que l'annulation de la lecture du contexte est propagée par la présélection.</summary>
+    /// <summary>VÃ©rifie que l'annulation de la lecture du contexte est propagÃ©e par la prÃ©sÃ©lection.</summary>
     [Fact]
     public async Task ContextReadCancellationIsPropagated()
     {
@@ -108,7 +107,7 @@ public sealed class MsxImageRecognitionPolicyTests
         finally { File.Delete(path); }
     }
 
-    /// <summary>Crée un fichier temporaire ne contenant aucun BPB MSX valide.</summary>
+    /// <summary>CrÃ©e un fichier temporaire ne contenant aucun BPB MSX valide.</summary>
     private static async Task<string> CreateImageAsync(string extension)
     {
         var path = Path.Combine(Path.GetTempPath(), $"gwgui-msx-policy-{Guid.NewGuid():N}{extension}");
@@ -116,7 +115,7 @@ public sealed class MsxImageRecognitionPolicyTests
         return path;
     }
 
-    /// <summary>Crée une image MSX-DOS temporaire dont le BPB décrit exactement la géométrie demandée.</summary>
+    /// <summary>CrÃ©e une image MSX-DOS temporaire dont le BPB dÃ©crit exactement la gÃ©omÃ©trie demandÃ©e.</summary>
     private static async Task<string> CreateMsxImageAsync(int cylinders, int heads, int sectorsPerTrack, byte mediaDescriptor)
     {
         var totalSectors = cylinders * heads * sectorsPerTrack;

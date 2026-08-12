@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Definitions;
@@ -7,12 +7,11 @@ using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Scoring;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie les composants extraits de l'interprétation et de la construction des documents.</summary>
+/// <summary>VÃ©rifie les composants extraits de l'interprÃ©tation et de la construction des documents.</summary>
 public sealed class DiskImageInterpretationComponentsTests
 {
     [Fact]

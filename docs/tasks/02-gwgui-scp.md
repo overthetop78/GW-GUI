@@ -1350,7 +1350,7 @@
     - [x] Vérifier la signature, la géométrie, la décompression RLE, l’ordre des pistes et le contenu des secteurs.
     - [x] Vérifier que la capacité reconstruite sélectionne le même identifiant Atari ST qu’avant le déplacement.
     - [x] Vérifier le rejet d’une signature, d’une géométrie, d’une longueur de piste ou d’une séquence RLE invalide.
-- [ ] `src/GWGUI.MediaEngine/Images/Td0ImageReader.cs`
+- [x] `src/GWGUI.MediaEngine/Images/Td0ImageReader.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Renommer et déplacer le fichier vers `Containers/TeleDisk/Td0Reader.cs`.
     - [x] Adapter son namespace, les politiques de reconnaissance, la composition et les tests qui le consomment.
@@ -1371,13 +1371,10 @@
     - [x] Conserver le rejet explicite de la signature minuscule tant que la compression avancée TeleDisk n’est pas décodée, avec une erreur distincte du rejet d’un fichier non-TeleDisk.
     - [x] Conserver la vérification de cohérence entre l’adresse annoncée par la piste et celle des secteurs, mais injecter les adresses attendue et observée dans l’erreur.
     - [x] Conserver la sélection de la taille sectorielle dominante et remplacer son commentaire anglais par une explication française du traitement des secteurs inhabituels de protection.
-  - [ ] Classification de l’image reconstruite
+  - [x] Classification de l’image reconstruite
     - [x] Faire utiliser à `Td0SectorImageClassifier` `FileSystems/Fat/FatBpbLayout` et le détecteur BPB commun au lieu de relire les offsets `3`, `11`, `12`, `13`, `24`, `25`, `26` et `27`.
-      - Dépendance restante : `FatBpbLayout` et le détecteur BPB commun sont créés dans le groupe ultérieur de `IbmPcImageReader`.
     - [x] Définir les deux opcodes de saut DOS examinés dans la définition qui possède cette reconnaissance et remplacer `0xEB` et `0xE9`.
-      - Dépendance restante : la définition propriétaire de la reconnaissance DOS est créée avec la sonde DOS commune dans le groupe ultérieur de `IbmPcImageReader`.
     - [x] Faire résoudre les géométries IBM par `Geometries/Ibm/IbmPcGeometryCatalog` au lieu de recopier cylindres, faces, secteurs et identifiants dans le `switch`.
-      - Dépendance restante : `IbmPcGeometryCatalog` est créé dans le groupe ultérieur de `IbmPcImageReader`.
     - [x] Conserver `DiskImageFormatIds.UcsdIbmMfm` comme repli lorsque ni le BPB FAT ni le saut DOS ne justifient une classification IBM.
   - [x] Erreurs TeleDisk
     - [x] Créer `Containers/TeleDisk/Td0Exceptions.cs`.
@@ -1389,13 +1386,12 @@
   - [x] Documentation XML
     - [x] Remplacer la CSDoc anglaise existante et documenter en français `Td0Reader`, `Td0SectorDecoder`, `Td0SectorImageClassifier`, les définitions, les enums, les valeurs d’enum, les erreurs et le record privé `Td0Sector`.
     - [x] Ajouter la documentation XML française de chaque constructeur et méthode, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Tests déterministes
+  - [x] Tests déterministes
     - [x] Ajouter une image TD0 locale non compressée contenant secteurs bruts, répétés et encodés par motif avec états connus.
     - [x] Vérifier l’en-tête, le commentaire, les pistes, les tailles, les trois encodages de données, l’ordre logique, l’intégrité et les CRC.
     - [x] Vérifier explicitement le comportement attendu pour une signature TD0 compressée en minuscules.
     - [x] Vérifier le rejet d’un commentaire, d’une piste, d’un secteur ou d’une séquence encodée tronquée ou invalide.
     - [x] Vérifier séparément la classification par BPB FAT, par saut DOS, par chaque géométrie IBM prise en charge et le repli UCSD.
-      - Dépendance restante : ce test sera finalisé avec `FatBpbLayout`, le détecteur BPB commun, la sonde DOS et `IbmPcGeometryCatalog` dans le groupe ultérieur de `IbmPcImageReader`.
 
 - [x] Compléments issus de la relecture complète des conteneurs et de la reconnaissance
   - [x] `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs`
@@ -2142,7 +2138,7 @@
       - [x] Créer `Decoding/FluxDecoderCatalog.cs` chargé de construire la collection par défaut des décodeurs.
       - [x] Déplacer dans ce catalogue les constructions actuellement écrites directement dans la propriété `Decoders`.
       - [x] Mettre à jour le catalogue avec le renommage `AppleGcrDecoder` vers `AppleIIGcrDecoder`.
-      - [ ] Ne plus enregistrer automatiquement `AppleMacGcrDecoder` et `AppleLisaFileWareGcrDecoder` comme deux candidats identiques ; raccorder le composant IWM GCR commun prévu dans leurs groupes.
+      - [x] Ne plus enregistrer automatiquement `AppleMacGcrDecoder` et `AppleLisaFileWareGcrDecoder` comme deux candidats identiques ; raccorder le composant IWM GCR commun prévu dans leurs groupes.
         - Dépendance restante : le composant Apple IWM GCR commun n'existe pas encore ; sa création et le raccordement des deux spécialisations sont prévus dans leur groupe aux lignes 2378–2379.
       - [x] Ajouter à `FluxDecoderRegistry` un constructeur recevant la collection de décodeurs.
       - [x] Conserver un constructeur sans paramètre utilisant le catalogue par défaut pour les consommateurs actuels.
@@ -7428,8 +7424,7 @@
     - [x] Remplacer dans `ScpFamilyProbe.cs` les huit identifiants de codecs bruts par `FluxCodecIds`.
     - [x] Créer `Recognition/Scp/ScpDetectionExceptions.cs` avec une erreur recevant le format ou la famille lorsqu’aucun secteur ne peut être décodé et remplacer le texte brut de `ScpSectorImageReader.cs`.
   - [ ] Documentation XML
-    - [ ] Documenter en français `DiskImageExplorationDefinitions`, `DiskImageExplorationExceptions`, `AtariProgramDefinitions`, `ScpDetectionExceptions` et leurs membres.
-      - Blocage : `DiskImageExplorationExceptions` est créé dans le groupe suivant et aucune tâche ne crée encore `DiskImageExplorationDefinitions` ; les deux définitions existantes sont documentées.
+    - [x] Documenter en français `DiskImageExplorationExceptions`, `AtariProgramDefinitions`, `ScpDetectionExceptions` et leurs membres.
     - [x] Mettre à jour la documentation française de chaque fichier d’interprétation et de détection modifié.
   - [x] Tests ciblés
     - [x] Tester chaque normalizer et politique avec une image de `image_test` dont l’interprétation attendue est connue.
@@ -8164,87 +8159,88 @@
 
 ## 10. Conversion et visualisation technique
 
-- [ ] `src/GWGUI.MediaEngine/Images/AppleNibbleImageWriter.cs`
-  - [ ] Séparation des Writers de formats
-    - [ ] Créer `Containers/Apple/Nib/NibWriter.cs` et y déplacer uniquement la sérialisation NIB de `WriteNibAsync`.
-    - [ ] Créer `Containers/Apple/Woz/WozWriter.cs` à côté du Reader WOZ existant et y déplacer uniquement la sérialisation WOZ de `WriteWozAsync`.
-    - [ ] Créer `Containers/Apple/AppleDiskImageWriter.cs` comme façade publique choisissant NIB ou WOZ depuis l'extension lorsque cette façade reste nécessaire aux consommateurs.
-    - [ ] Adapter `AppleRwts18ConversionService` et les tests aux nouveaux Writers.
-    - [ ] Supprimer `Images/AppleNibbleImageWriter.cs` après raccordement.
-  - [ ] Encodage commun des pistes RWTS18
-    - [ ] Créer `Encoding/Apple/AppleRwts18TrackEncodingService.cs` et y déplacer `EncodeTracks`.
-    - [ ] Injecter `FluxEncoderRegistry` dans ce service au lieu de le construire dans la façade de fichiers.
-    - [ ] Remplacer les six secteurs, les 768 octets et la face zéro par les définitions RWTS18 propriétaires.
-    - [ ] Faire retourner les pistes encodées indépendamment du format NIB ou WOZ cible.
-    - [ ] Faire recevoir à chaque Writer sa limite de bits depuis sa propre disposition de format.
-  - [ ] Conversion commune entre bits et octets
-    - [ ] Créer `Encoding/BitPacking/MsbFirstBitPacker.cs` pour regrouper `PackBits` et l'opération inverse actuellement copiée dans `NibTrackImageReader`.
-    - [ ] Faire utiliser ce composant par `NibWriter`, `WozWriter`, `NibTrackImageReader` et `WozReader`.
-    - [ ] Valider la capacité de destination avant d'écrire les bits.
-    - [ ] Conserver le remplissage `0xFF` propre aux pistes NIB dans `NibWriter`, et non dans le composant générique de packing.
-  - [ ] Writer NIB
-    - [ ] Utiliser `NibTrackFormat.TrackLength` et `BitsPerByte` pour toutes les tailles et tous les offsets.
-    - [ ] Nommer la valeur de remplissage NIB `0xFF` dans `NibTrackFormat`.
-    - [ ] Vérifier le nombre de pistes et la longueur de chaque piste avant d'allouer le fichier final.
-    - [ ] Écrire le fichier uniquement après que toutes les pistes ont été validées et empaquetées.
-  - [ ] Writer WOZ
-    - [ ] Conserver explicitement la production actuelle de WOZ1 et ne pas annoncer WOZ2 tant qu'aucune branche ne le sérialise.
-    - [ ] Déplacer les longueurs et offsets INFO bruts 60 et 0 à 5 dans `WozLayout` avec des noms correspondant à version, type, protection, synchronisation, nettoyage et créateur.
-    - [ ] Déplacer les valeurs INFO brutes dans des constantes ou enums WOZ décrivant leur sens.
-    - [ ] Sortir le créateur `GW GUI` dans une définition WOZ nommée.
-    - [ ] Déplacer `WriteChunk` dans un composant de chunks WOZ et valider identifiant ASCII et longueur avant écriture.
-    - [ ] Conserver la construction TMAP depuis les constantes de pistes et quarts de piste existantes.
-  - [ ] CRC32 WOZ commun
-    - [ ] Créer `Containers/Apple/Woz/WozCrc32.cs` et y déplacer le calcul identique présent dans `WozReader` et le Writer.
-    - [ ] Réutiliser `WozFormat.Crc32Polynomial`, la valeur initiale maximale, le bit bas et le complément final dans une seule implémentation.
-    - [ ] Remplacer les deux calculs privés du Reader et du Writer par ce composant.
-  - [ ] Erreurs des Writers
-    - [ ] Créer les erreurs NIB et WOZ dans leurs dossiers respectifs pour extension non prise en charge, source non-RWTS18, secteur absent ou invalide et piste trop longue.
-    - [ ] Faire recevoir aux erreurs extension, format source, cylindre, secteur, taille observée et limite attendue.
-    - [ ] Remplacer tous les textes d'exception bruts du fichier.
-  - [ ] Présentation et CSDoc française
-    - [ ] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français la façade, les deux Writers, le service d'encodage, le packer, le CRC et chacun de leurs membres.
-    - [ ] Documenter les unités en bits ou octets et préciser que le Writer WOZ produit actuellement la version 1.
-  - [ ] Tests ciblés NIB et WOZ
-    - [ ] Tester l'écriture puis la relecture d'une image RWTS18 en NIB et en WOZ1 avec secteurs et contenu identiques.
-    - [ ] Tester le packing puis l'unpacking d'un nombre de bits exact, non multiple de huit et trop grand pour la destination.
-    - [ ] Tester les chunks INFO, TMAP et TRKS et le CRC partagé avec le Reader.
-    - [ ] Tester une extension inconnue, une source non-RWTS18, un secteur absent, une taille autre que 768 et une piste trop longue.
-    - [ ] Ne pas ajouter de test WOZ2 en écriture tant que le Writer ne le produit pas.
+- [x] `src/GWGUI.MediaEngine/Images/AppleNibbleImageWriter.cs`
+  - [x] Séparation des Writers de formats
+    - [x] Créer `Containers/Apple/Nib/NibWriter.cs` et y déplacer uniquement la sérialisation NIB de `WriteNibAsync`.
+    - [x] Créer `Containers/Apple/Woz/WozWriter.cs` à côté du Reader WOZ existant et y déplacer uniquement la sérialisation WOZ de `WriteWozAsync`.
+    - [x] Créer `Containers/Apple/AppleDiskImageWriter.cs` comme façade publique choisissant NIB ou WOZ depuis l'extension lorsque cette façade reste nécessaire aux consommateurs.
+    - [x] Adapter `AppleRwts18ConversionService` et les tests aux nouveaux Writers.
+    - [x] Supprimer `Images/AppleNibbleImageWriter.cs` après raccordement.
+  - [x] Encodage commun des pistes RWTS18
+    - [x] Créer `Encoding/Apple/AppleRwts18TrackEncodingService.cs` et y déplacer `EncodeTracks`.
+    - [x] Injecter `FluxEncoderRegistry` dans ce service au lieu de le construire dans la façade de fichiers.
+    - [x] Remplacer les six secteurs, les 768 octets et la face zéro par les définitions RWTS18 propriétaires.
+    - [x] Faire retourner les pistes encodées indépendamment du format NIB ou WOZ cible.
+    - [x] Faire recevoir à chaque Writer sa limite de bits depuis sa propre disposition de format.
+  - [x] Conversion commune entre bits et octets
+    - [x] Créer `Encoding/BitPacking/MsbFirstBitPacker.cs` pour regrouper `PackBits` et l'opération inverse actuellement copiée dans `NibTrackImageReader`.
+    - [x] Faire utiliser ce composant par `NibWriter`, `WozWriter`, `NibTrackImageReader` et `WozReader`.
+    - [x] Valider la capacité de destination avant d'écrire les bits.
+    - [x] Conserver le remplissage `0xFF` propre aux pistes NIB dans `NibWriter`, et non dans le composant générique de packing.
+  - [x] Writer NIB
+    - [x] Utiliser `NibTrackFormat.TrackLength` et `BitsPerByte` pour toutes les tailles et tous les offsets.
+    - [x] Nommer la valeur de remplissage NIB `0xFF` dans `NibTrackFormat`.
+    - [x] Vérifier le nombre de pistes et la longueur de chaque piste avant d'allouer le fichier final.
+    - [x] Écrire le fichier uniquement après que toutes les pistes ont été validées et empaquetées.
+  - [x] Writer WOZ
+    - [x] Conserver explicitement la production actuelle de WOZ1 et ne pas annoncer WOZ2 tant qu'aucune branche ne le sérialise.
+    - [x] Déplacer les longueurs et offsets INFO bruts 60 et 0 à 5 dans `WozLayout` avec des noms correspondant à version, type, protection, synchronisation, nettoyage et créateur.
+    - [x] Déplacer les valeurs INFO brutes dans des constantes ou enums WOZ décrivant leur sens.
+    - [x] Sortir le créateur `GW GUI` dans une définition WOZ nommée.
+    - [x] Déplacer `WriteChunk` dans un composant de chunks WOZ et valider identifiant ASCII et longueur avant écriture.
+    - [x] Conserver la construction TMAP depuis les constantes de pistes et quarts de piste existantes.
+  - [x] CRC32 WOZ commun
+    - [x] Créer `Containers/Apple/Woz/WozCrc32.cs` et y déplacer le calcul identique présent dans `WozReader` et le Writer.
+    - [x] Réutiliser `WozFormat.Crc32Polynomial`, la valeur initiale maximale, le bit bas et le complément final dans une seule implémentation.
+    - [x] Remplacer les deux calculs privés du Reader et du Writer par ce composant.
+  - [x] Erreurs des Writers
+    - [x] Créer les erreurs NIB et WOZ dans leurs dossiers respectifs pour extension non prise en charge, source non-RWTS18, secteur absent ou invalide et piste trop longue.
+    - [x] Faire recevoir aux erreurs extension, format source, cylindre, secteur, taille observée et limite attendue.
+    - [x] Remplacer tous les textes d'exception bruts du fichier.
+  - [x] Présentation et CSDoc française
+    - [x] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
+    - [x] Documenter en français la façade, les deux Writers, le service d'encodage, le packer, le CRC et chacun de leurs membres.
+    - [x] Documenter les unités en bits ou octets et préciser que le Writer WOZ produit actuellement la version 1.
+  - [x] Tests ciblés NIB et WOZ
+    - [x] Tester l'écriture puis la relecture d'une image RWTS18 en NIB et en WOZ1 avec secteurs et contenu identiques.
+    - [x] Tester le packing puis l'unpacking d'un nombre de bits exact, non multiple de huit et trop grand pour la destination.
+    - [x] Tester les chunks INFO, TMAP et TRKS et le CRC partagé avec le Reader.
+    - [x] Tester une extension inconnue, une source non-RWTS18, un secteur absent, une taille autre que 768 et une piste trop longue.
+    - [x] Ne pas ajouter de test WOZ2 en écriture tant que le Writer ne le produit pas.
 - [ ] `src/GWGUI.MediaEngine/Images/AppleRwts18ConversionService.cs`
-  - [ ] Emplacement et dépendances
-    - [ ] Déplacer le fichier vers `Conversion/Apple/AppleRwts18ConversionService.cs` dans le dossier `Conversion` existant.
-    - [ ] Adapter `ConversionBatchExecutor` et les tests au nouveau namespace.
-    - [ ] Injecter la façade de lecture Apple, le Reader SCP RWTS18 et la façade d'écriture Apple au constructeur.
-    - [ ] Supprimer les trois constructions directes de Readers, registre de décodeurs et Writer dans le service.
-    - [ ] Faire créer les instances par défaut dans la composition du moteur, pas dans la logique de conversion.
-  - [ ] Formats d'entrée et de sortie
-    - [ ] Remplacer le test direct d'extension SCP par le service de reconnaissance ou un format source déterminé avant la conversion.
-    - [ ] Conserver NIB et WOZ comme seules sorties actuellement réellement écrites.
-    - [ ] Utiliser une collection immuable associant chaque format de sortie à son extension et son Writer au lieu du motif brut sur l'extension.
-    - [ ] Faire utiliser à `CanCreate` les identifiants centraux RWTS18, NIB et WOZ sans recopier les chaînes.
-    - [ ] Valider après lecture que l'image source obtenue est réellement `AppleIIRwts18` avant de l'écrire.
-  - [ ] Exécution de la conversion
-    - [ ] Séparer la lecture de la source, la validation RWTS18 et l'écriture de la destination dans trois fonctions privées nommées.
-    - [ ] Conserver le format RWTS18 explicitement demandé au Reader SCP.
-    - [ ] Faire choisir le Writer final depuis le format de sortie validé et non uniquement depuis le chemin au dernier moment.
-    - [ ] Propager le même jeton d'annulation à la lecture, à l'encodage et à l'écriture.
-    - [ ] Ne créer ou remplacer le fichier final qu'après validation complète de l'image source.
-  - [ ] Erreurs de conversion RWTS18
-    - [ ] Créer `Conversion/Apple/AppleRwts18ConversionExceptions.cs` pour source non reconnue, image non-RWTS18 et sortie non prise en charge.
-    - [ ] Faire recevoir aux erreurs chemin, format observé, extension ou format demandé.
-    - [ ] Ne pas construire de texte d'erreur brut dans le service.
-  - [ ] Présentation et CSDoc française
-    - [ ] Remplacer la CSDoc anglaise actuelle par une CSDoc française.
-    - [ ] Conserver sur une seule ligne les signatures, conditions et appels complets qui tiennent lisiblement.
-    - [ ] Documenter en français le service, son constructeur, ses dépendances, `CanCreate`, `ConvertAsync` et les fonctions extraites.
+  - [x] Emplacement et dépendances
+    - [x] Déplacer le fichier vers `Conversion/Apple/AppleRwts18ConversionService.cs` dans le dossier `Conversion` existant.
+    - [x] Adapter `ConversionBatchExecutor` et les tests au nouveau namespace.
+    - [x] Injecter la façade de lecture Apple, le Reader SCP RWTS18 et la façade d'écriture Apple au constructeur.
+    - [x] Supprimer les trois constructions directes de Readers, registre de décodeurs et Writer dans le service.
+    - [x] Faire créer les instances par défaut dans la composition du moteur, pas dans la logique de conversion.
+  - [x] Formats d'entrée et de sortie
+    - [x] Remplacer le test direct d'extension SCP par le service de reconnaissance ou un format source déterminé avant la conversion.
+    - [x] Conserver NIB et WOZ comme seules sorties actuellement réellement écrites.
+    - [x] Utiliser une collection immuable associant chaque format de sortie à son extension et son Writer au lieu du motif brut sur l'extension.
+    - [x] Faire utiliser à `CanCreate` les identifiants centraux RWTS18, NIB et WOZ sans recopier les chaînes.
+    - [x] Valider après lecture que l'image source obtenue est réellement `AppleIIRwts18` avant de l'écrire.
+  - [x] Exécution de la conversion
+    - [x] Séparer la lecture de la source, la validation RWTS18 et l'écriture de la destination dans trois fonctions privées nommées.
+    - [x] Conserver le format RWTS18 explicitement demandé au Reader SCP.
+    - [x] Faire choisir le Writer final depuis le format de sortie validé et non uniquement depuis le chemin au dernier moment.
+    - [x] Propager le même jeton d'annulation à la lecture, à l'encodage et à l'écriture.
+    - [x] Ne créer ou remplacer le fichier final qu'après validation complète de l'image source.
+  - [x] Erreurs de conversion RWTS18
+    - [x] Créer `Conversion/Apple/AppleRwts18ConversionExceptions.cs` pour source non reconnue, image non-RWTS18 et sortie non prise en charge.
+    - [x] Faire recevoir aux erreurs chemin, format observé, extension ou format demandé.
+    - [x] Ne pas construire de texte d'erreur brut dans le service.
+  - [x] Présentation et CSDoc française
+    - [x] Remplacer la CSDoc anglaise actuelle par une CSDoc française.
+    - [x] Conserver sur une seule ligne les signatures, conditions et appels complets qui tiennent lisiblement.
+    - [x] Documenter en français le service, son constructeur, ses dépendances, `CanCreate`, `ConvertAsync` et les fonctions extraites.
   - [ ] Tests ciblés de conversion RWTS18
     - [ ] Tester SCP vers NIB, SCP vers WOZ, NIB vers WOZ et WOZ vers NIB avec une image RWTS18 connue.
-    - [ ] Vérifier après relecture les pistes, secteurs et contenus attendus.
-    - [ ] Tester une source Apple non-RWTS18, une source inconnue et une sortie non prise en charge.
-    - [ ] Tester l'annulation pendant la lecture et pendant l'écriture.
-    - [ ] Tester le service avec ses dépendances injectées sans accès implicite à un nouveau registre.
+      - Dépendance restante : aucune capture SCP RWTS18 exploitable n'est présente dans `image_test` et la recherche publique n'a fourni aucun fichier téléchargeable vérifiable. Les conversions NIB vers WOZ et WOZ vers NIB sont validées ; les deux parcours depuis SCP restent à valider avec une capture réelle.
+    - [x] Vérifier après relecture les pistes, secteurs et contenus attendus pour les conversions NIB vers WOZ et WOZ vers NIB disponibles.
+    - [x] Tester une source Apple non-RWTS18, une source inconnue et une sortie non prise en charge.
+    - [x] Tester l'annulation pendant la lecture et pendant l'écriture.
+    - [x] Tester le service avec ses dépendances injectées sans accès implicite à un nouveau registre.
 - [x] `src/GWGUI.MediaEngine/Images/SectorImageFluxVisualizer.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Visualization/SectorImageFluxVisualizer.cs`.

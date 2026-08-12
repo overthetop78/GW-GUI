@@ -1,16 +1,15 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Geometries.Dec;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
-/// <summary>Vérifie la reconnaissance RT-11 et la remise en ordre physique des dumps DEC RX02 locaux.</summary>
+/// <summary>VÃ©rifie la reconnaissance RT-11 et la remise en ordre physique des dumps DEC RX02 locaux.</summary>
 public sealed class DecRx02RecognitionTests
 {
     [Fact]

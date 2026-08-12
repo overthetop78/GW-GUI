@@ -1,10 +1,9 @@
-using GWGUI.MediaEngine.Visualization;
+﻿using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Reconstruction.Commodore;
 using GWGUI.MediaEngine.SectorImages;
 

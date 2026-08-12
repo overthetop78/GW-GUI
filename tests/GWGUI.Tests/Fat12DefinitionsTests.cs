@@ -1,11 +1,10 @@
-using GWGUI.MediaEngine.Exploration;
+﻿using GWGUI.MediaEngine.Exploration;
 using System.Buffers.Binary;
 using System.IO;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.Images;
 
 namespace GWGUI.Tests;
 
@@ -206,7 +205,7 @@ public sealed class Fat12DefinitionsTests
         return new SectorImage(DiskImageFormatIds.Ibm360, FatBootSectorLayout.SectorSize, 40, 2, 9, blocks);
     }
 
-    /// <summary>Recherche le dossier local non versionné contenant les images de validation.</summary>
+    /// <summary>Recherche le dossier local non versionnÃ© contenant les images de validation.</summary>
     private static string FindImageTestRoot()
     {
         for (var directory = new DirectoryInfo(AppContext.BaseDirectory); directory is not null; directory = directory.Parent)
