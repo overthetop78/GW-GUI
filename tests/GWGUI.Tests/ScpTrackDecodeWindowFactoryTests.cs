@@ -23,7 +23,7 @@ public sealed class ScpTrackDecodeWindowFactoryTests
     }
 
     [Fact]
-    public void MultipleRevolutionsExposeOneContinuousDecodeViewAndPreserveOriginals()
+    public void MultipleRevolutionsExposeChronologicalWindowsAndPreserveOriginals()
     {
         var first = new ScpRevolution(10, 2, [3, 7]);
         var second = new ScpRevolution(20, 2, [11, 9]);
@@ -32,11 +32,18 @@ public sealed class ScpTrackDecodeWindowFactoryTests
 
         var windows = ScpTrackDecodeWindowFactory.Create(track);
 
-        var window = Assert.Single(windows);
-        Assert.Equal(0, window.Revolution);
-        Assert.True(window.IsContinuous);
-        Assert.Equal(60u, window.Flux.IndexTimeTicks);
-        Assert.Equal([3u, 7u, 11u, 9u, 30u], window.Flux.FluxIntervals);
+        Assert.Equal(3, windows.Count);
+        Assert.Equal(1, windows[0].Revolution);
+        Assert.True(windows[0].IsContinuous);
+        Assert.Equal(30u, windows[0].Flux.IndexTimeTicks);
+        Assert.Equal([3u, 7u, 11u, 9u], windows[0].Flux.FluxIntervals);
+        Assert.Equal(2, windows[1].Revolution);
+        Assert.True(windows[1].IsContinuous);
+        Assert.Equal(50u, windows[1].Flux.IndexTimeTicks);
+        Assert.Equal([11u, 9u, 30u], windows[1].Flux.FluxIntervals);
+        Assert.Equal(3, windows[2].Revolution);
+        Assert.False(windows[2].IsContinuous);
+        Assert.Same(third.Flux, windows[2].Flux);
         Assert.True(ScpTrackDecodeWindowFactory.Primary(track).IsContinuous);
         Assert.Equal([first, second, third], track.Revolutions);
     }

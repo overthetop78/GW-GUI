@@ -6,10 +6,10 @@ using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Recognition.Scp;
 
-/// <summary>Sonde en parallèle un échantillon uniforme de pistes afin d'identifier les familles de reconstruction SCP.</summary>
+/// <summary>Sonde un échantillon de pistes afin d'identifier les familles de reconstruction SCP.</summary>
 internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
-    /// <summary>Retourne une occurrence de chaque famille ayant produit au moins un secteur doté de données et d'une intégrité valide.</summary>
+    /// <summary>Retourne chaque famille ayant produit au moins un secteur doté de données et d'une intégrité valide.</summary>
     public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
@@ -20,19 +20,19 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         return found.Keys.ToHashSet();
     }
 
-    /// <summary>Sonde la vue continue d'une piste et évite les décodeurs d'une famille déjà trouvée.</summary>
+    /// <summary>Sonde la première fenêtre chronologique et évite les décodeurs d'une famille déjà trouvée.</summary>
     private void ProbeTrack(ScpTrack track, ConcurrentDictionary<ScpFormatFamily, byte> found, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var window = ScpTrackDecodeWindowFactory.Primary(track);
+        var flux = ScpTrackDecodeWindowFactory.Primary(track).Flux;
         foreach (var definition in ScpFamilyProbeCatalog.Definitions)
         {
             if (found.ContainsKey(definition.Family)) continue;
-            var result = decoders.Decode(definition.DecoderId, window.Flux);
+            var result = decoders.Decode(definition.DecoderId, flux);
             if (HasValidSector(result)) found.TryAdd(definition.Family, 0);
         }
     }
 
-    /// <summary>Indique si le décodage contient des données dont l'intégrité est explicitement valide.</summary>
-    private static bool HasValidSector(FluxDecodeResult result) => result.Sectors.Any(sector => sector.Data is not null && sector.IntegrityValid == true);
+    private static bool HasValidSector(FluxDecodeResult result) =>
+        result.Sectors.Any(sector => sector.Data is not null && sector.IntegrityValid == true);
 }

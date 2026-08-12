@@ -101,7 +101,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     {
         if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
-            await Task.WhenAll(LoadVisualizerAsync(path, displayFileName), LoadExplorerAsync(path, true));
+            await LoadExplorerAsync(path, true);
+            await LoadVisualizerAsync(path, displayFileName);
             return;
         }
 
@@ -167,6 +168,10 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return; }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException) { }
+        finally
+        {
+            if (_cancellation.IsCurrentVisualization(cancellation)) HideProgress();
+        }
 
         var detection = _getFormatDetector().Detect(path, new FileInfo(path).Length);
         if (!GwVisualizationPolicy.CanConvertToScp(path, detection, _getCapabilities())) return;

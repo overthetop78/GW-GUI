@@ -6,22 +6,31 @@ namespace GWGUI.MediaEngine.Reconstruction.Scp;
 /// <summary>Construit les vues de décodage d'une piste sans modifier ses révolutions SCP originales.</summary>
 internal static class ScpTrackDecodeWindowFactory
 {
-    /// <summary>Retourne l'unique révolution originale ou le flux continu chronologique de toutes les révolutions.</summary>
+    /// <summary>Raccorde chaque révolution à la suivante et conserve la dernière telle quelle.</summary>
     public static IReadOnlyList<ScpTrackDecodeWindow> Create(ScpTrack track)
     {
         ArgumentNullException.ThrowIfNull(track);
         if (track.Revolutions.Count == 0) return [];
-
         if (track.Revolutions.Count == 1) return [new(track.Revolutions[0].Flux, 1, false)];
 
-        var indexTime = checked((uint)track.Revolutions.Sum(revolution => (long)revolution.IndexTimeTicks));
-        var intervalCount = checked(track.Revolutions.Sum(revolution => revolution.FluxIntervals.Count));
-        var intervals = new List<uint>(intervalCount);
-        foreach (var revolution in track.Revolutions) intervals.AddRange(revolution.FluxIntervals);
-        return [new(new FluxRevolution(indexTime, intervals), 0, true)];
+        var windows = new ScpTrackDecodeWindow[track.Revolutions.Count];
+        for (var index = 0; index < track.Revolutions.Count - 1; index++)
+        {
+            var current = track.Revolutions[index];
+            var next = track.Revolutions[index + 1];
+            var intervals = new List<uint>(checked(current.FluxIntervals.Count + next.FluxIntervals.Count));
+            intervals.AddRange(current.FluxIntervals);
+            intervals.AddRange(next.FluxIntervals);
+            var indexTime = checked(current.IndexTimeTicks + next.IndexTimeTicks);
+            windows[index] = new(new FluxRevolution(indexTime, intervals), index + 1, true);
+        }
+
+        var last = track.Revolutions[^1];
+        windows[^1] = new(last.Flux, track.Revolutions.Count, false);
+        return windows;
     }
 
-    /// <summary>Retourne la vue continue lorsqu'elle existe, sinon l'unique révolution disponible.</summary>
+    /// <summary>Retourne la première vue chronologique disponible.</summary>
     public static ScpTrackDecodeWindow Primary(ScpTrack track)
     {
         var windows = Create(track);

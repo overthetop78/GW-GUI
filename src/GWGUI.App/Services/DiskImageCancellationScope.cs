@@ -18,6 +18,7 @@ public sealed class DiskImageCancellationScope : IDisposable
     public CancellationTokenSource BeginInspector() => Replace(ref _inspector);
 
     public bool IsCurrentExplorer(CancellationTokenSource source) => ReferenceEquals(_explorer, source);
+    public bool IsCurrentVisualization(CancellationTokenSource source) => ReferenceEquals(_visualization, source);
     public bool IsCurrentScp(CancellationTokenSource source) => ReferenceEquals(_scp, source);
     public bool IsCurrentInspector(CancellationTokenSource source) => ReferenceEquals(_inspector, source);
 

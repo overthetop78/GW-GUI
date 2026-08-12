@@ -17,6 +17,7 @@ public sealed class DiskImageCancellationScopeTests
         Assert.False(secondExplorer.IsCancellationRequested);
         Assert.False(visualization.IsCancellationRequested);
         Assert.True(scope.IsCurrentExplorer(secondExplorer));
+        Assert.True(scope.IsCurrentVisualization(visualization));
     }
 
     [Fact]
