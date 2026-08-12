@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Reconstruction.Iso;
+
 namespace GWGUI.MediaEngine.SectorImages;
 
 internal sealed class UcsdIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy

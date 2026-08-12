@@ -5218,14 +5218,14 @@
     - [x] Tester par l'API publique la lecture SCP d'un format IBM explicitement sélectionné.
     - [x] Tester par l'API publique la lecture SCP de `DiskImageFormatIds.Mac1440` explicitement sélectionné.
     - [x] Tester le rejet d'un identifiant qui n'est ni IBM ni `DiskImageFormatIds.Mac1440`.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IIsoScpSectorImagePolicy`.
-    - [ ] Documenter en français `DecoderIds` en précisant qu'il expose les identifiants des décodeurs acceptés par la politique.
-    - [ ] Documenter en français `Build`, ses paramètres, son résultat, les exceptions prévues et la signification d'un `formatId` nul pour les politiques de détection automatique.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IIsoScpSectorImagePolicy`.
+    - [x] Documenter en français `DecoderIds` en précisant qu'il expose les identifiants des décodeurs acceptés par la politique.
+    - [x] Documenter en français `Build`, ses paramètres, son résultat, les exceptions prévues et la signification d'un `formatId` nul pour les politiques de détection automatique.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IsoScpSectorImagePolicyRegistry.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs`.
