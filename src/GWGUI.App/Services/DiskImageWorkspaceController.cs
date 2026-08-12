@@ -122,7 +122,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             if (!cancellation.IsCancellationRequested)
             {
                 _explorer.Display(document);
-                _visualizer.Header.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId);
+                _visualizer.Header.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId,
+                    new[] { document.Image.FormatId }.Concat(document.DetectedImageFormatIds).Distinct(StringComparer.OrdinalIgnoreCase));
                 ApplyClassification();
             }
             return cancellation.IsCancellationRequested ? null : document;

@@ -27,4 +27,19 @@ public sealed class AtariStIsoScpSectorImagePolicyTests
         var image = new AtariStIsoScpSectorImagePolicy().Build(null, new(candidates, candidates));
         Assert.Equal(expectedFormatId, image.FormatId);
     }
+
+    [Fact]
+    public void ExplicitFormatUsesItsCataloguedGeometryInsteadOfTheMeasuredCaptureExtent()
+    {
+        var candidates = Enumerable.Range(1, 11).ToDictionary(number => new SectorAddress(44, 1, number), number =>
+            new List<IsoSectorCandidate> { new(new(44, 1, number, 2, AtariStGeometry.SectorSize, true, 0, Data: new byte[AtariStGeometry.SectorSize]), 1) });
+
+        var image = new AtariStIsoScpSectorImagePolicy().Build(DiskImageFormatIds.AtariSt720, new(candidates, candidates));
+
+        Assert.Equal(DiskImageFormatIds.AtariSt720, image.FormatId);
+        Assert.Equal(80, image.Cylinders);
+        Assert.Equal(2, image.Heads);
+        Assert.Equal(9, image.SectorsPerTrack);
+        Assert.Equal(720 * 1024, image.Capacity);
+    }
 }

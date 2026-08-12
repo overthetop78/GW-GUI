@@ -89,6 +89,20 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         Assert.DoesNotContain(document.Metadata.SystemIds, system => system is "acorn-bbc" or "amstrad" or "ibm-pc" or "commodore" or "epson-qx10");
     }
 
+    [Fact]
+    public async Task Generation4PushOverCanBeReopenedExplicitlyAsAtariSt720()
+    {
+        const string path = @"F:\Disquettes\Génération 4\Génération 4 N°45 - Juin 1992 - Push Over\Génération 4 N°45 - Juin 1992 - Push Over.scp";
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path, "atarist.720");
+        Assert.Equal("atarist.720", document.Image.FormatId);
+        Assert.Equal(720 * 1024, document.Image.Capacity);
+        Assert.True(document.FileSystemRecognized);
+        Assert.Equal("PUSHOVER", document.Volume.Name);
+        Assert.Contains(document.Volume.Entries, entry => entry.Name == "AUTO" && entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory);
+        Assert.Contains(document.Volume.Entries, entry => entry.Name == "PUSH.EXE");
+    }
+
     [Theory]
     [InlineData(@"F:\Disquettes\Tilt\Tilt N°105\Tilt N°105 - Septembre 1992.scp")]
     [InlineData(@"F:\Disquettes\Tilt\Tilt N°110\Tilt N°110 - Janvier 1993.scp")]

@@ -30,4 +30,23 @@ public readonly record struct AtariStGeometry
     public int Capacity { get; }
     /// <summary>Identifiant Atari ST central calculé depuis la capacité.</summary>
     public string FormatId => DiskImageFormatIds.AtariStFromCapacity(Capacity);
+
+    /// <summary>Résout la géométrie exacte d'un format Atari ST catalogué.</summary>
+    public static bool TryFromFormatId(string formatId, out AtariStGeometry geometry)
+    {
+        geometry = formatId.ToLowerInvariant() switch
+        {
+            DiskImageFormatIds.AtariSt180 => new(40, 1, 9),
+            DiskImageFormatIds.AtariSt360 => new(40, 2, 9),
+            DiskImageFormatIds.AtariSt400 => new(80, 1, 10),
+            DiskImageFormatIds.AtariSt440 => new(80, 1, 11),
+            DiskImageFormatIds.AtariSt720 => new(80, 2, 9),
+            DiskImageFormatIds.AtariSt800 => new(80, 2, 10),
+            DiskImageFormatIds.AtariSt810 => new(90, 2, 9),
+            DiskImageFormatIds.AtariSt880 => new(80, 2, 11),
+            DiskImageFormatIds.AtariSt1440 => new(80, 2, 18),
+            _ => default
+        };
+        return geometry.Capacity > 0;
+    }
 }

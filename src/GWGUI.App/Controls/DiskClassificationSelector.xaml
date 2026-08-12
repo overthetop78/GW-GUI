@@ -13,11 +13,17 @@
                   VerticalAlignment="Bottom" Height="38" Margin="0,0,14,0" Checked="Automatic_Changed" Unchecked="Automatic_Changed"/>
         <StackPanel Grid.Column="1" Margin="0,0,12,0">
             <TextBlock Text="{l:Loc Classification.Machine}" Margin="0,0,0,5"/>
-            <ComboBox x:Name="Machine" Height="38" VerticalContentAlignment="Center" SelectionChanged="Machine_Changed"/>
+            <ComboBox x:Name="Machine" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Machine_Changed">
+                <ComboBox.ItemContainerStyle><Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}"><Style.Triggers><DataTrigger Binding="{Binding IsDetected}" Value="True"><Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></ComboBox.ItemContainerStyle>
+                <ComboBox.Style><Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}"><Style.Triggers><DataTrigger Binding="{Binding SelectedItem.IsDetected, RelativeSource={RelativeSource Self}}" Value="True"><Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></ComboBox.Style>
+            </ComboBox>
         </StackPanel>
         <StackPanel Grid.Column="2" Margin="0,0,12,0">
             <TextBlock Text="{l:Loc Classification.Format}" Margin="0,0,0,5"/>
-            <ComboBox x:Name="Format" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Format_Changed"/>
+            <ComboBox x:Name="Format" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Format_Changed">
+                <ComboBox.ItemContainerStyle><Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}"><Style.Triggers><DataTrigger Binding="{Binding IsDetected}" Value="True"><Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></ComboBox.ItemContainerStyle>
+                <ComboBox.Style><Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}"><Style.Triggers><DataTrigger Binding="{Binding SelectedItem.IsDetected, RelativeSource={RelativeSource Self}}" Value="True"><Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></ComboBox.Style>
+            </ComboBox>
         </StackPanel>
         <StackPanel x:Name="ProtectionPanel" Grid.Column="3" Width="200" Visibility="Collapsed">
             <TextBlock Text="{l:Loc Classification.Protection}" Margin="0,0,0,5"/>

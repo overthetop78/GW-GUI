@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.Geometries.Atari;
 
 namespace GWGUI.MediaEngine.Reconstruction.Atari;
 
@@ -19,9 +20,13 @@ internal sealed class AtariStIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
     {
         var candidates = candidateSet.Addressed;
         var measured = IsoSectorImageBuilder.Measure(candidates);
-        var resolvedFormat = formatId ?? DiskImageFormatIds.AtariStFromCapacity((long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
+        var explicitGeometry = formatId is not null && AtariStGeometry.TryFromFormatId(formatId, out var geometry) ? geometry : (AtariStGeometry?)null;
+        var resolvedFormat = explicitGeometry?.FormatId ?? DiskImageFormatIds.AtariStFromCapacity((long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
+        var cylinders = explicitGeometry?.Cylinders ?? measured.Cylinders;
+        var heads = explicitGeometry?.Heads ?? measured.Heads;
+        var sectorsPerTrack = explicitGeometry?.SectorsPerTrack ?? measured.SectorsPerTrack;
         return IsoSectorImageBuilder.CreateUniform(resolvedFormat, candidates, measured.SectorSize,
-            measured.Cylinders, measured.Heads, measured.SectorsPerTrack,
+            cylinders, heads, sectorsPerTrack,
             address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1);
     }
 }

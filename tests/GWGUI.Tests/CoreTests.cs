@@ -1348,22 +1348,29 @@ public sealed class CoreTests
                 var selector = Assert.IsType<DiskClassificationSelector>(explorer.FindName("Classification"));
 
                 explorer.Clear(path, true);
-                explorer.Display(Document(path, "amiga.amigados"));
-                Assert.Equal("Amiga", selector.SelectedMachine);
+                explorer.Display(Document(path, "atarist.720", ["atarist.720", "amiga.amigados"]));
+                Assert.Equal("Atari ST", selector.SelectedMachine);
+                Assert.Equal("atarist.720", selector.SelectedFormatId);
 
                 var machine = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
-                machine.SelectedItem = "Atari ST";
-                var selected = selector.SelectedFormatId;
-                Assert.NotNull(selected);
-                Assert.StartsWith("atarist.", selected, StringComparison.OrdinalIgnoreCase);
+                var format = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Format"));
+                Assert.True(Assert.IsType<DiskMachineChoice>(machine.SelectedItem).IsDetected);
+                Assert.True(Assert.IsType<DiskFormatChoice>(format.SelectedItem).IsDetected);
 
+                format.SelectedItem = format.Items.Cast<DiskFormatChoice>().Single(item => item.Format.Id == "atarist.180");
                 explorer.Clear(path, false);
-                explorer.Display(Document(path, "amiga.amigados"));
-                Assert.Equal(selected, selector.SelectedFormatId);
+                explorer.Display(Document(path, "atarist.180", ["atarist.180"]));
+                Assert.Equal("atarist.180", selector.SelectedFormatId);
+
+                machine.SelectedItem = machine.Items.Cast<DiskMachineChoice>().Single(item => item.DisplayName == "Amiga");
+                Assert.Equal("amiga.amigados", selector.SelectedFormatId);
+                machine.SelectedItem = machine.Items.Cast<DiskMachineChoice>().Single(item => item.DisplayName == "Atari ST");
+                Assert.Equal("atarist.720", selector.SelectedFormatId);
 
                 explorer.Clear(path, true);
-                explorer.Display(Document(path, "amiga.amigados"));
+                explorer.Display(Document(path, "amiga.amigados", ["amiga.amigados"]));
                 Assert.Equal("amiga.amigados", selector.SelectedFormatId);
+                Assert.False(machine.Items.Cast<DiskMachineChoice>().Single(item => item.DisplayName == "Atari ST").IsDetected);
             }
             catch (Exception exception) { failure = exception; }
             finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
@@ -1373,12 +1380,12 @@ public sealed class CoreTests
         Assert.True(thread.Join(TimeSpan.FromSeconds(10)), "The Explorer classification test timed out.");
         if (failure is not null) throw failure;
 
-        static ExploredDiskImage Document(string path, string formatId)
+        static ExploredDiskImage Document(string path, string formatId, IEnumerable<string> detected)
         {
             var image = new GWGUI.MediaEngine.SectorImages.SectorImage(formatId, 512, 1, 1, 1,
                 [new GWGUI.MediaEngine.SectorImages.SectorBlock(0, new(0, 0, 0), new byte[512], true)]);
             var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("TEST", "test", 512, 0, null, null, [], []);
-            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null));
+            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null), detectedImageFormatIds: detected);
         }
     }
 

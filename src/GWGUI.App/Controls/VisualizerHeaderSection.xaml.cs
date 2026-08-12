@@ -15,4 +15,5 @@ public partial class VisualizerHeaderSection : UserControl
     public DiskClassificationSelector ClassificationSelector => Classification;
     public void SetFormats(IEnumerable<DiskFormat> formats) => Classification.SetCatalog(formats);
     public void ApplyDetection(string? formatId, string? protectionId) => Classification.ApplyDetection(formatId, protectionId);
+    public void ApplyDetection(string? formatId, string? protectionId, IEnumerable<string> detectedFormatIds) => Classification.ApplyDetection(formatId, protectionId, detectedFormatIds);
 }

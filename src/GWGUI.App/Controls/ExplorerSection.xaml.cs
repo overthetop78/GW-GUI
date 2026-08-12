@@ -43,7 +43,7 @@ public partial class ExplorerSection : UserControl
         var enabled = AutomaticDetection.IsChecked == true;
         Classification.SetAutomaticDetection(enabled);
         if (enabled && _document is not null)
-            Classification.ApplyDetection(_document.Image.FormatId, _document.Metadata.ProtectionId);
+            Classification.ApplyDetection(_document.Image.FormatId, _document.Metadata.ProtectionId, DetectedFormats(_document));
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -76,7 +76,7 @@ public partial class ExplorerSection : UserControl
         _document = document;
         PathText.Text = document.SourcePath;
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
-        if (_applyDetectionOnDisplay) Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId);
+        if (_applyDetectionOnDisplay) Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId, DetectedFormats(document));
         _applyDetectionOnDisplay = false;
         var volumeName = !document.FileSystemRecognized
             ? LocExtension.Get("Explorer.Unknown")
@@ -98,6 +98,9 @@ public partial class ExplorerSection : UserControl
         WarningsButton.Visibility = warningCount == 0 ? Visibility.Collapsed : Visibility.Visible;
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
     }
+
+    private static IReadOnlyList<string> DetectedFormats(ExploredDiskImage document) =>
+        new[] { document.Image.FormatId }.Concat(document.DetectedImageFormatIds).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
 
     public static int CountEntries(IEnumerable<FileSystemEntry> entries) => ExplorerIssueBuilder.CountEntries(entries);
 
