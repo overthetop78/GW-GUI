@@ -5418,18 +5418,18 @@
     - [x] Utiliser les identifiants FM et MFM de `Decoding/Definitions/FluxCodecIds.cs` dans `DecoderIds`.
     - [x] Documenter en français chaque membre.
     - [x] Tester plusieurs géométries uniformes et une géométrie incohérente.
-  - [ ] `SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
-    - [ ] Remplacer les identifiants de décodeurs, la taille sectorielle et les positions FAT brutes par les définitions communes correspondantes.
-    - [ ] Utiliser `IbmBootGeometryDetector`, `IbmDosDiskProbe` et le catalogue IBM à la place des méthodes de détection et de résolution de `IbmPcImageReader`.
-    - [ ] Remettre sur une seule ligne les expressions inutilement découpées qui tiennent dans la longueur admise par le document.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester les géométries IBM prises en charge et `IbmScan`.
-  - [ ] `SectorImages/IbmPcScpSectorImageReader.cs`
-    - [ ] Reporter les raccordements et les tests du wrapper sur le lecteur ISO et le registre de politiques avant de supprimer le fichier.
-    - [ ] Vérifier qu'aucun consommateur ne référence encore le wrapper avant sa suppression.
-  - [ ] `SectorImages/IIsoScpSectorImagePolicy.cs`
-    - [ ] Documenter en français le contrat, chaque paramètre et le résultat de construction.
-    - [ ] Ajouter uniquement les annotations de nullabilité nécessaires aux consommateurs existants.
+  - [x] `SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
+    - [x] Remplacer les identifiants de décodeurs, la taille sectorielle et les positions FAT brutes par les définitions communes correspondantes.
+    - [x] Utiliser `IbmBootGeometryDetector`, `IbmDosDiskProbe` et le catalogue IBM à la place des méthodes de détection et de résolution de `IbmPcImageReader`.
+    - [x] Remettre sur une seule ligne les expressions inutilement découpées qui tiennent dans la longueur admise par le document.
+    - [x] Documenter en français chaque membre.
+    - [x] Tester les géométries IBM prises en charge et `IbmScan`.
+  - [x] `SectorImages/IbmPcScpSectorImageReader.cs`
+    - [x] Reporter les raccordements et les tests du wrapper sur le lecteur ISO et le registre de politiques avant de supprimer le fichier.
+    - [x] Vérifier qu'aucun consommateur ne référence encore le wrapper avant sa suppression.
+  - [x] `SectorImages/IIsoScpSectorImagePolicy.cs`
+    - [x] Documenter en français le contrat, chaque paramètre et le résultat de construction.
+    - [x] Ajouter uniquement les annotations de nullabilité nécessaires aux consommateurs existants.
   - [ ] `SectorImages/IsoScpSectorImageReader.cs`
     - [ ] Remplacer le poids brut du score et l'erreur brute d'absence de secteur par les définitions ISO communes.
     - [ ] Conserver `Score` et `AddCandidate` dans ce fichier, où ils servent uniquement à sélectionner et enregistrer les résultats de décodage de chaque révolution.
