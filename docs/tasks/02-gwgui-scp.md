@@ -3221,17 +3221,17 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `Victor9kGcrTrackEncoder`.
     - [x] Ajouter la documentation XML des méthodes `EncodeBits, AddBlock`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/Encoding/FluxEncoderRegistry.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Construire un dictionnaire par identifiant.
-    - [ ] Refuser les doublons.
-    - [ ] Remplacer les recherches `First` par une erreur explicite.
-  - [ ] Erreurs du registre
-    - [ ] Créer `Encoding/FluxEncoderRegistryExceptions.cs` avec les erreurs recevant l’identifiant d’encodeur absent ou dupliqué.
-    - [ ] Remplacer l’exception produite implicitement par `First` par l’erreur correspondante.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML française de `FluxEncoderRegistry` et `FluxEncoderRegistryExceptions`.
-    - [ ] Ajouter la documentation XML des méthodes `Get, Encode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/FluxEncoderRegistry.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Construire un dictionnaire par identifiant.
+    - [x] Refuser les doublons.
+    - [x] Remplacer les recherches `First` par une erreur explicite.
+  - [x] Erreurs du registre
+    - [x] Créer `Encoding/FluxEncoderRegistryExceptions.cs` avec les erreurs recevant l’identifiant d’encodeur absent ou dupliqué.
+    - [x] Remplacer l’exception produite implicitement par `First` par l’erreur correspondante.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML française de `FluxEncoderRegistry` et `FluxEncoderRegistryExceptions`.
+    - [x] Ajouter la documentation XML des méthodes `Get, Encode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/FluxEncoding.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer les primitives FM/MFM dans `TrackBitEncoding.cs`.
