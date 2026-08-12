@@ -5257,13 +5257,13 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IsoSectorCandidate`.
     - [x] Ajouter la documentation XML des méthodes `IsoSectorCandidate`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/IsoSectorCandidateSet.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidateSet.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `IsoSectorCandidateSet`.
-    - [ ] Ajouter la documentation XML des méthodes `IsoSectorCandidateSet`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/IsoSectorCandidateSet.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorCandidateSet.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `IsoSectorCandidateSet`.
+    - [x] Ajouter la documentation XML des méthodes `IsoSectorCandidateSet`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IsoSectorImageBuilder.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IsoSectorImageBuilder.cs`.
