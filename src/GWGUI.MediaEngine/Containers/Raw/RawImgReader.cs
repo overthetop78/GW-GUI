@@ -1,9 +1,11 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Cpm;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Images.Interpretations;
 using GWGUI.MediaEngine.Recognition.Amstrad;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.MediaEngine.Containers.Raw;
 
@@ -18,8 +20,9 @@ internal sealed class RawImgReader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        var hasFatBpb = IbmPcImageReader.HasValidBpbGeometry(bytes);
-        var image = IbmPcImageReader.Create(bytes, cancellationToken);
+        var hasFatBpb = FatBpbGeometryDetector.TryDetect(bytes, bytes.Length, out _);
+        var geometry = IbmRawImageGeometryDetector.Detect(bytes);
+        var image = IbmRawSectorImageBuilder.Create(bytes, geometry, cancellationToken);
         if (!hasFatBpb && CpmDirectoryProbe.FindCpcRawDirectory(bytes) is not null) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradCpc);
         if (!hasFatBpb && PcwDiskSpecificationProbe.LooksLikePcwDiskSpecification(bytes)) return SectorImageInterpretation.Retag(image, DiskImageFormatIds.AmstradPcw);
         return image;

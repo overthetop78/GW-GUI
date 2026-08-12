@@ -19,7 +19,7 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
             var boot = IsoSectorImageBuilder.BestData(candidates.Addressed, new(0, 0, 1));
             var fat = IsoSectorImageBuilder.BestData(candidates.Addressed, new(0, 0, 2));
             var fatMedia = fat.Length > 0 ? fat[0] : (byte)0;
-            if (GWGUI.MediaEngine.Images.IbmPcImageReader.TryIdentifyFluxGeometry(boot, fatMedia, out _))
+            if (GWGUI.MediaEngine.Recognition.Ibm.IbmDosDiskProbe.TryIdentify(boot, fatMedia, true, out _))
                 return new IbmPcIsoScpSectorImagePolicy(false).Build(null, candidates);
         }
 

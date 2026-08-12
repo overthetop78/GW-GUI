@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Ibm;
+using GWGUI.MediaEngine.Recognition.Ibm;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -19,8 +20,8 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
             var fat = IsoSectorImageBuilder.BestData(candidates, new(0, 0, 2));
             var fatMedia = fat.Length > 0 ? fat[0] : (byte)0;
             var identified = explicitlySelected
-                ? IbmPcImageReader.TryDetectFluxGeometry(boot, fatMedia, out var geometry)
-                : IbmPcImageReader.TryIdentifyFluxGeometry(boot, fatMedia, out geometry);
+                ? IbmDosDiskProbe.TryIdentify(boot, fatMedia, false, out var geometry)
+                : IbmDosDiskProbe.TryIdentify(boot, fatMedia, true, out geometry);
             if (identified)
             {
                 cylinders = geometry.Cylinders;
@@ -28,7 +29,7 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
                 sectorsPerTrack = geometry.SectorsPerTrack;
             }
         }
-        var resolved = IbmPcImageReader.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, measured.SectorSize);
+        var resolved = IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, measured.SectorSize);
         return IsoSectorImageBuilder.CreateUniform(resolved, candidates, measured.SectorSize, cylinders, heads,
             sectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1);
     }

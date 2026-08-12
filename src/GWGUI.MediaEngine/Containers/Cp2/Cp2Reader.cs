@@ -1,6 +1,7 @@
 using System.Buffers.Binary;
-using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.MediaEngine.Containers.Cp2;
 
@@ -55,7 +56,8 @@ public sealed class Cp2Reader
             var logical = ((address.Cylinder * heads + address.Head) * sectorsPerTrack) + address.Number - 1;
             bytes.CopyTo(linear, logical * Cp2Layout.ReconstructedSectorSize);
         }
-        return IbmPcImageReader.Create(linear, cancellationToken);
+        var geometry = new IbmPcGeometry(IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack), cylinders, heads, sectorsPerTrack);
+        return IbmRawSectorImageBuilder.Create(linear, geometry, cancellationToken);
     }
 
     /// <summary>Parcourt les groupes CP2 et lit leurs charges utiles dans l'ordre de position angulaire.</summary>

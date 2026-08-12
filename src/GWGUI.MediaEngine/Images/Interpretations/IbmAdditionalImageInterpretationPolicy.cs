@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Recognition.Ibm;
 using GWGUI.MediaEngine.SectorImages;
 
 
@@ -13,7 +14,7 @@ internal sealed class IbmAdditionalImageInterpretationPolicy(FileSystemRegistry 
         if (image.BlockSize != 512 || image.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ||
             !image.TryGetBlock(0, out var boot) || boot.Data.Count != 512) yield break;
         var fatMedia = image.TryGetBlock(1, out var fat) && fat.Data.Count > 0 ? fat.Data[0] : (byte)0;
-        if (!IbmPcImageReader.TryDetectFluxGeometry(boot.Data.ToArray(), fatMedia, out var geometry)) yield break;
+        if (!IbmDosDiskProbe.TryIdentify(boot.Data.ToArray(), fatMedia, false, out var geometry)) yield break;
         var formatId = geometry.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) &&
                        fileSystems.SupportedFormatIds.Contains(geometry.FormatId)
             ? geometry.FormatId : DiskImageFormatIds.IbmScan;

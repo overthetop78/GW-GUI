@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Flux.Conversion;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Geometries.Ibm;
 
 namespace GWGUI.MediaEngine.SectorImages;
 
@@ -40,7 +41,7 @@ public sealed class I86fSectorImageReader(I86fReader reader, FluxDecoderRegistry
         }
         if (candidates.Count == 0) throw I86fSectorImageExceptions.NoDecodableSectors(container.Tracks.Count);
         var measured = IsoSectorImageBuilder.Measure(candidates);
-        var formatId = measured.SectorSize == 512 ? IbmPcImageReader.FormatIdForGeometry(measured.Cylinders, measured.Heads, measured.SectorsPerTrack, measured.SectorSize) : DiskImageFormatIds.I86fFromGeometry(measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack);
+        var formatId = measured.SectorSize == 512 ? IbmPcGeometryCatalog.FormatIdForGeometry(measured.Cylinders, measured.Heads, measured.SectorsPerTrack, measured.SectorSize) : DiskImageFormatIds.I86fFromGeometry(measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack);
         return IsoSectorImageBuilder.CreateUniform(formatId, candidates, measured.SectorSize, measured.Cylinders, measured.Heads, measured.SectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1, capacity: (long)measured.Cylinders * measured.Heads * measured.SectorsPerTrack * measured.SectorSize);
     }
 

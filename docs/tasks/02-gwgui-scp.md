@@ -4830,91 +4830,94 @@
     - [x] Vérifier le rejet d’une image plus courte ou plus longue que la capacité RX02 et la propagation de l’annulation.
 - [ ] `src/GWGUI.MediaEngine/Images/IbmPcImageReader.cs`
   - [ ] Déplacement du Reader d’image brute IBM PC
-    - [ ] Renommer le type en `IbmRawImageReader` et déplacer le fichier vers `Containers/Ibm/Raw/IbmRawImageReader.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Ibm.Raw`.
-    - [ ] Conserver dans ce Reader uniquement la lecture du fichier, la détection de sa géométrie et l’appel au constructeur sectoriel IBM commun.
+    - [x] Renommer le type en `IbmRawImageReader` et déplacer le fichier vers `Containers/Ibm/Raw/IbmRawImageReader.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.Ibm.Raw`.
+    - [x] Conserver dans ce Reader uniquement la lecture du fichier, la détection de sa géométrie et l’appel au constructeur sectoriel IBM commun.
     - [ ] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée ; laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Img` et `DiskImageFileExtensions.Ima`.
-    - [ ] Adapter `Composition/MediaEngineFactory.cs`, les politiques, les interprétations, les reconstructeurs SCP, CP2, 86F et les tests aux nouveaux composants IBM.
-  - [ ] Modèle et catalogue de géométries IBM
-    - [ ] Créer `Geometries/Ibm/IbmPcGeometry.cs` et y déplacer le record actuellement déclaré à la fin du Reader.
-    - [ ] Conserver dans ce record l’identifiant de format, les cylindres, les têtes et les secteurs par piste.
-    - [ ] Créer `Geometries/Ibm/IbmPcGeometryCatalog.cs` et y déplacer les dix géométries de 160, 180, 320, 360, 720, 800, 1200, 1440, 1680 et 2880 Kio.
-    - [ ] Conserver `DataSizeConstants.BytesPerKibibyte` pour exprimer les capacités sans recopier 1024.
-    - [ ] Utiliser `DiskGeometryConstants` pour les nombres communs de 40 et 80 cylindres, une et deux têtes.
-    - [ ] Nommer dans chaque définition du catalogue les 8, 9, 10, 15, 18, 21 et 36 secteurs par piste correspondant aux géométries répertoriées.
-    - [ ] Rendre les tables internes réellement immuables et ne pas exposer le dictionnaire modifiable.
-    - [ ] Exposer des résolutions par capacité, par géométrie et par descripteur de média FAT.
-    - [ ] Déplacer `FormatIdForGeometry` dans ce catalogue et continuer à utiliser `DiskImageFormatIds.IbmFromCapacity` lorsque la géométrie n’est pas répertoriée.
-  - [ ] Disposition commune du BPB FAT
-    - [ ] Créer ou compléter `FileSystems/Fat/FatBpbLayout.cs` avec la longueur minimale de 36 octets.
-    - [ ] Y définir l’offset et la longueur du champ de 512 octets par secteur, du total de secteurs sur 16 bits, du total sur 32 bits, des secteurs par piste et du nombre de têtes.
-    - [ ] Y définir l’offset OEM `3`, sa longueur de huit octets et les caractères de remplissage nul et espace.
-    - [ ] Y définir le premier secteur logique numéroté `1`, le maximum de 63 secteurs par piste, de deux têtes et de 255 cylindres accepté par ce Reader.
-    - [ ] Remplacer tous les offsets `3`, `11`, `19`, `24`, `26` et `32`, les longueurs `8` et `36` et la taille `512` par ces définitions.
-  - [ ] Descripteurs de média FAT historiques
-    - [ ] Créer l’enum byte `FileSystems/Fat/FatMediaDescriptor.cs` pour les valeurs `0xFE`, `0xFC`, `0xFF` et `0xFD` réellement prises en charge.
-    - [ ] Associer dans `IbmPcGeometryCatalog` chaque valeur à sa géométrie historique de 160, 180, 320 ou 360 Kio.
-    - [ ] Remplacer le switch de nombres hexadécimaux de `TryDetectFluxGeometry` par la résolution du catalogue.
-    - [ ] Conserver ce repli uniquement lorsque le BPB ne fournit pas une géométrie valide.
-  - [ ] Détecteur unique de géométrie BPB
-    - [ ] Créer `FileSystems/Fat/FatBpbGeometry.cs` avec la taille sectorielle, le total de secteurs, les cylindres, les têtes et les secteurs par piste lus dans un BPB.
-    - [ ] Créer `FileSystems/Fat/FatBpbGeometryDetector.cs` pour remplacer la lecture dupliquée entre `TryDetectFluxGeometry` et `TryReadBpbGeometry` et permettre sa réutilisation par Atari et MSX.
-    - [ ] Faire lire au détecteur les champs via `FatBpbLayout` et retourner un `FatBpbGeometry` indépendant d’une machine.
-    - [ ] Faire traiter le total 16 bits puis le total 32 bits lorsque le premier vaut zéro.
-    - [ ] Refuser un total 32 bits supérieur à `int.MaxValue` avant toute conversion.
-    - [ ] Valider la taille sectorielle FAT, le total positif, les secteurs par piste, les têtes, la divisibilité du total et la plage de cylindres avec les définitions nommées.
-    - [ ] Permettre au détecteur de recevoir la longueur complète optionnelle de l’image.
-    - [ ] Lorsque cette longueur est fournie, conserver la validation actuelle exigeant que le total BPB corresponde exactement au nombre de secteurs du fichier.
-    - [ ] Lorsque seul un boot sector de flux est fourni, ne pas exiger une longueur d’image absente.
-    - [ ] Faire convertir le résultat FAT validé en `IbmPcGeometry` par le composant IBM appelant.
-    - [ ] Remplacer `HasValidBpbGeometry`, `TryReadBpbGeometry` et la branche BPB de `TryDetectFluxGeometry` par ce détecteur commun.
-  - [ ] Reconnaissance d’un disque DOS IBM issu du flux
-    - [ ] Créer `Recognition/Ibm/IbmDosOemProbe.cs` et y déplacer le décodage ASCII et la validation de l’identifiant OEM de `TryIdentifyFluxGeometry`.
-    - [ ] Définir dans ce fichier les identifiants IBM, MSDOS, MSWIN, DOS, FRDOS, FREEDOS et COPYDISK actuellement écrits en brut.
-    - [ ] Vérifier pour chaque identifiant s’il s’agit d’une valeur complète ou d’un préfixe documenté avant de remplacer les appels trop larges à `Contains`.
-    - [ ] Empêcher qu’un texte contenant accidentellement `DOS` au milieu soit reconnu comme OEM DOS sans règle documentée.
-    - [ ] Créer `Recognition/Ibm/IbmDosDiskProbe.cs` pour combiner la sonde OEM, le repli des médias FAT historiques et `FatBpbGeometryDetector`.
-    - [ ] Faire utiliser `IbmDosDiskProbe` par `AutomaticIsoScpSectorImagePolicy`, `IbmPcIsoScpSectorImagePolicy` et `IbmAdditionalImageInterpretationPolicy`.
-    - [ ] Supprimer `TryDetectFluxGeometry` et `TryIdentifyFluxGeometry` du Reader après migration de leurs consommateurs.
-  - [ ] Détection d’une image brute complète
-    - [ ] Créer `Geometries/Ibm/IbmRawImageGeometryDetector.cs` et y déplacer `DetectGeometry`.
-    - [ ] Refuser une image vide ou dont la longueur n’est pas un multiple de la taille sectorielle FAT commune.
-    - [ ] Essayer d’abord `FatBpbGeometryDetector` avec la longueur complète de l’image.
-    - [ ] Utiliser ensuite `IbmPcGeometryCatalog` pour les capacités connues lorsque le BPB n’est pas valide.
-    - [ ] Conserver l’erreur lorsque ni le BPB ni la capacité ne permettent de déterminer la géométrie.
-    - [ ] Faire utiliser ce détecteur par `IbmRawImageReader` et `RawImgReader`.
-  - [ ] Construction sectorielle IBM commune
-    - [ ] Créer `SectorImages/Builders/IbmRawSectorImageBuilder.cs` pour remplacer la méthode statique `Create` du Reader.
-    - [ ] Faire recevoir au constructeur les octets, la géométrie détectée et le jeton d’annulation.
-    - [ ] Réutiliser `SectorImages/Builders/LinearSectorImageBuilder` pour découper les secteurs uniformes et calculer leurs adresses CHS.
-    - [ ] Utiliser la taille sectorielle FAT commune et le premier numéro de secteur nommé dans `FatBpbLayout`.
-    - [ ] Vérifier l’annulation pendant la construction des blocs au lieu de conserver un paramètre `CancellationToken` inutilisé.
-    - [ ] Faire utiliser ce constructeur par `IbmRawImageReader`, `RawImgReader` et le Reader CP2.
-    - [ ] Faire utiliser `IbmPcGeometryCatalog` directement par le Reader sectoriel 86F et les politiques ISO SCP qui ne partent pas d’une image brute complète.
-    - [ ] Supprimer `Create` et `FormatIdForGeometry` de l’ancien Reader après migration de tous leurs appels.
-  - [ ] Erreurs IBM paramétrées
-    - [ ] Créer `Containers/Ibm/Raw/IbmRawImageExceptions.cs`.
-    - [ ] Y déplacer l’erreur de taille non multiple en injectant la longueur observée et la taille sectorielle attendue.
-    - [ ] Y déplacer l’erreur de géométrie indéterminable en injectant la capacité et les champs BPB disponibles utiles au diagnostic.
-    - [ ] Remplacer les deux textes bruts et constructions directes de `InvalidDataException` par ces méthodes.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `IbmRawImageReader`, `IbmPcGeometry`, `IbmPcGeometryCatalog`, `FatBpbLayout`, `FatMediaDescriptor`, `FatBpbGeometry`, `FatBpbGeometryDetector`, `IbmDosOemProbe`, `IbmDosDiskProbe`, `IbmRawImageGeometryDetector`, `IbmRawSectorImageBuilder` et `IbmRawImageExceptions`.
-    - [ ] Documenter chaque constante, valeur d’enum, propriété, constructeur et méthode avec ses unités, limites et règles de repli.
-    - [ ] Documenter les erreurs de fichier, de données, de calcul contrôlé et d’annulation réellement propagées.
-    - [ ] Remettre sur une seule ligne `CanRead`, les signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
-    - [ ] Conserver les entrées du catalogue lisibles sans casser artificiellement chaque argument sur une ligne distincte.
+      - Dépendance restante : `ISectorImageReader` impose encore `CanRead` ; sa suppression appartient au groupe déjà prévu pour ce contrat.
+    - [x] Adapter `Composition/MediaEngineFactory.cs`, les politiques, les interprétations, les reconstructeurs SCP, CP2, 86F et les tests aux nouveaux composants IBM.
+  - [x] Modèle et catalogue de géométries IBM
+    - [x] Créer `Geometries/Ibm/IbmPcGeometry.cs` et y déplacer le record actuellement déclaré à la fin du Reader.
+    - [x] Conserver dans ce record l’identifiant de format, les cylindres, les têtes et les secteurs par piste.
+    - [x] Créer `Geometries/Ibm/IbmPcGeometryCatalog.cs` et y déplacer les dix géométries de 160, 180, 320, 360, 720, 800, 1200, 1440, 1680 et 2880 Kio.
+    - [x] Conserver `DataSizeConstants.BytesPerKibibyte` pour exprimer les capacités sans recopier 1024.
+    - [x] Utiliser `DiskGeometryConstants` pour les nombres communs de 40 et 80 cylindres, une et deux têtes.
+    - [x] Nommer dans chaque définition du catalogue les 8, 9, 10, 15, 18, 21 et 36 secteurs par piste correspondant aux géométries répertoriées.
+    - [x] Rendre les tables internes réellement immuables et ne pas exposer le dictionnaire modifiable.
+    - [x] Exposer des résolutions par capacité, par géométrie et par descripteur de média FAT.
+    - [x] Déplacer `FormatIdForGeometry` dans ce catalogue et continuer à utiliser `DiskImageFormatIds.IbmFromCapacity` lorsque la géométrie n’est pas répertoriée.
+  - [x] Disposition commune du BPB FAT
+    - [x] Créer ou compléter `FileSystems/Fat/FatBpbLayout.cs` avec la longueur minimale de 36 octets.
+    - [x] Y définir l’offset et la longueur du champ de 512 octets par secteur, du total de secteurs sur 16 bits, du total sur 32 bits, des secteurs par piste et du nombre de têtes.
+    - [x] Y définir l’offset OEM `3`, sa longueur de huit octets et les caractères de remplissage nul et espace.
+    - [x] Y définir le premier secteur logique numéroté `1`, le maximum de 63 secteurs par piste, de deux têtes et de 255 cylindres accepté par ce Reader.
+    - [x] Remplacer tous les offsets `3`, `11`, `19`, `24`, `26` et `32`, les longueurs `8` et `36` et la taille `512` par ces définitions.
+  - [x] Descripteurs de média FAT historiques
+    - [x] Créer l’enum byte `FileSystems/Fat/FatMediaDescriptor.cs` pour les valeurs `0xFE`, `0xFC`, `0xFF` et `0xFD` réellement prises en charge.
+    - [x] Associer dans `IbmPcGeometryCatalog` chaque valeur à sa géométrie historique de 160, 180, 320 ou 360 Kio.
+    - [x] Remplacer le switch de nombres hexadécimaux de `TryDetectFluxGeometry` par la résolution du catalogue.
+    - [x] Conserver ce repli uniquement lorsque le BPB ne fournit pas une géométrie valide.
+  - [x] Détecteur unique de géométrie BPB
+    - [x] Créer `FileSystems/Fat/FatBpbGeometry.cs` avec la taille sectorielle, le total de secteurs, les cylindres, les têtes et les secteurs par piste lus dans un BPB.
+    - [x] Créer `FileSystems/Fat/FatBpbGeometryDetector.cs` pour remplacer la lecture dupliquée entre `TryDetectFluxGeometry` et `TryReadBpbGeometry` et permettre sa réutilisation par Atari et MSX.
+    - [x] Faire lire au détecteur les champs via `FatBpbLayout` et retourner un `FatBpbGeometry` indépendant d’une machine.
+    - [x] Faire traiter le total 16 bits puis le total 32 bits lorsque le premier vaut zéro.
+    - [x] Refuser un total 32 bits supérieur à `int.MaxValue` avant toute conversion.
+    - [x] Valider la taille sectorielle FAT, le total positif, les secteurs par piste, les têtes, la divisibilité du total et la plage de cylindres avec les définitions nommées.
+    - [x] Permettre au détecteur de recevoir la longueur complète optionnelle de l’image.
+    - [x] Lorsque cette longueur est fournie, conserver la validation actuelle exigeant que le total BPB corresponde exactement au nombre de secteurs du fichier.
+    - [x] Lorsque seul un boot sector de flux est fourni, ne pas exiger une longueur d’image absente.
+    - [x] Faire convertir le résultat FAT validé en `IbmPcGeometry` par le composant IBM appelant.
+    - [x] Remplacer `HasValidBpbGeometry`, `TryReadBpbGeometry` et la branche BPB de `TryDetectFluxGeometry` par ce détecteur commun.
+  - [x] Reconnaissance d’un disque DOS IBM issu du flux
+    - [x] Créer `Recognition/Ibm/IbmDosOemProbe.cs` et y déplacer le décodage ASCII et la validation de l’identifiant OEM de `TryIdentifyFluxGeometry`.
+    - [x] Définir dans ce fichier les identifiants IBM, MSDOS, MSWIN, DOS, FRDOS, FREEDOS et COPYDISK actuellement écrits en brut.
+    - [x] Vérifier pour chaque identifiant s’il s’agit d’une valeur complète ou d’un préfixe documenté avant de remplacer les appels trop larges à `Contains`.
+    - [x] Empêcher qu’un texte contenant accidentellement `DOS` au milieu soit reconnu comme OEM DOS sans règle documentée.
+    - [x] Créer `Recognition/Ibm/IbmDosDiskProbe.cs` pour combiner la sonde OEM, le repli des médias FAT historiques et `FatBpbGeometryDetector`.
+    - [x] Faire utiliser `IbmDosDiskProbe` par `AutomaticIsoScpSectorImagePolicy`, `IbmPcIsoScpSectorImagePolicy` et `IbmAdditionalImageInterpretationPolicy`.
+    - [x] Supprimer `TryDetectFluxGeometry` et `TryIdentifyFluxGeometry` du Reader après migration de leurs consommateurs.
+  - [x] Détection d’une image brute complète
+    - [x] Créer `Geometries/Ibm/IbmRawImageGeometryDetector.cs` et y déplacer `DetectGeometry`.
+    - [x] Refuser une image vide ou dont la longueur n’est pas un multiple de la taille sectorielle FAT commune.
+    - [x] Essayer d’abord `FatBpbGeometryDetector` avec la longueur complète de l’image.
+    - [x] Utiliser ensuite `IbmPcGeometryCatalog` pour les capacités connues lorsque le BPB n’est pas valide.
+    - [x] Conserver l’erreur lorsque ni le BPB ni la capacité ne permettent de déterminer la géométrie.
+    - [x] Faire utiliser ce détecteur par `IbmRawImageReader` et `RawImgReader`.
+  - [x] Construction sectorielle IBM commune
+    - [x] Créer `SectorImages/Builders/IbmRawSectorImageBuilder.cs` pour remplacer la méthode statique `Create` du Reader.
+    - [x] Faire recevoir au constructeur les octets, la géométrie détectée et le jeton d’annulation.
+    - [x] Réutiliser `SectorImages/Builders/LinearSectorImageBuilder` pour découper les secteurs uniformes et calculer leurs adresses CHS.
+    - [x] Utiliser la taille sectorielle FAT commune et le premier numéro de secteur nommé dans `FatBpbLayout`.
+    - [x] Vérifier l’annulation pendant la construction des blocs au lieu de conserver un paramètre `CancellationToken` inutilisé.
+    - [x] Faire utiliser ce constructeur par `IbmRawImageReader`, `RawImgReader` et le Reader CP2.
+    - [x] Faire utiliser `IbmPcGeometryCatalog` directement par le Reader sectoriel 86F et les politiques ISO SCP qui ne partent pas d’une image brute complète.
+    - [x] Supprimer `Create` et `FormatIdForGeometry` de l’ancien Reader après migration de tous leurs appels.
+  - [x] Erreurs IBM paramétrées
+    - [x] Créer `Containers/Ibm/Raw/IbmRawImageExceptions.cs`.
+    - [x] Y déplacer l’erreur de taille non multiple en injectant la longueur observée et la taille sectorielle attendue.
+    - [x] Y déplacer l’erreur de géométrie indéterminable en injectant la capacité et les champs BPB disponibles utiles au diagnostic.
+    - [x] Remplacer les deux textes bruts et constructions directes de `InvalidDataException` par ces méthodes.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `IbmRawImageReader`, `IbmPcGeometry`, `IbmPcGeometryCatalog`, `FatBpbLayout`, `FatMediaDescriptor`, `FatBpbGeometry`, `FatBpbGeometryDetector`, `IbmDosOemProbe`, `IbmDosDiskProbe`, `IbmRawImageGeometryDetector`, `IbmRawSectorImageBuilder` et `IbmRawImageExceptions`.
+    - [x] Documenter chaque constante, valeur d’enum, propriété, constructeur et méthode avec ses unités, limites et règles de repli.
+    - [x] Documenter les erreurs de fichier, de données, de calcul contrôlé et d’annulation réellement propagées.
+    - [x] Remettre sur une seule ligne `CanRead`, les signatures, conditions, appels et constructions complètes qui restent lisibles ainsi.
+    - [x] Conserver les entrées du catalogue lisibles sans casser artificiellement chaque argument sur une ligne distincte.
   - [ ] Tests de chaque source de géométrie et de chaque consommateur
     - [ ] Utiliser depuis `image_test` une image de chacune des dix capacités IBM répertoriées et vérifier format, géométrie, adresses, contenu et capacité.
-    - [ ] Tester un BPB valide avec total sur 16 bits puis avec total sur 32 bits.
-    - [ ] Tester une longueur complète en accord puis en désaccord avec le total déclaré par le BPB.
-    - [ ] Tester les limites de secteurs par piste, têtes et cylindres ainsi que les valeurs immédiatement hors limites.
-    - [ ] Tester chacun des quatre descripteurs de média FAT historiques sans BPB valide.
-    - [ ] Tester chaque OEM documenté, un OEM inconnu et un texte contenant accidentellement `DOS`.
-    - [ ] Tester une image vide, une taille non multiple de 512 et une capacité inconnue sans BPB.
-    - [ ] Vérifier la correspondance de chaque bloc construit avec son offset source et son adresse cylindre, tête, secteur.
-    - [ ] Vérifier l’annulation pendant la construction sectorielle.
-    - [ ] Vérifier que le catalogue ne peut pas être modifié depuis un consommateur.
+      - Dépendance restante : `image_test` ne contient pas encore d'image IBM de 320, 1 680 et 2 880 Kio ; les dix capacités sont couvertes par les tests d'images construites en mémoire.
+    - [x] Tester un BPB valide avec total sur 16 bits puis avec total sur 32 bits.
+    - [x] Tester une longueur complète en accord puis en désaccord avec le total déclaré par le BPB.
+    - [x] Tester les limites de secteurs par piste, têtes et cylindres ainsi que les valeurs immédiatement hors limites.
+    - [x] Tester chacun des quatre descripteurs de média FAT historiques sans BPB valide.
+    - [x] Tester chaque OEM documenté, un OEM inconnu et un texte contenant accidentellement `DOS`.
+    - [x] Tester une image vide, une taille non multiple de 512 et une capacité inconnue sans BPB.
+    - [x] Vérifier la correspondance de chaque bloc construit avec son offset source et son adresse cylindre, tête, secteur.
+    - [x] Vérifier l’annulation pendant la construction sectorielle.
+    - [x] Vérifier que le catalogue ne peut pas être modifié depuis un consommateur.
     - [ ] Vérifier que le Reader brut, IMG, CP2, 86F et les politiques SCP obtiennent la même géométrie pour les mêmes données.
+      - Vérification restante : les tests IBM bruts réussissent, mais deux tests 86F réels exposent une capacité sectorielle incohérente déjà produite par le Reader 86F ; ce point reste au groupe 86F au lieu d'être masqué ici.
 - [ ] `src/GWGUI.MediaEngine/Images/MsxImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Renommer et déplacer le fichier vers `Containers/Msx/Raw/MsxRawImageReader.cs`.

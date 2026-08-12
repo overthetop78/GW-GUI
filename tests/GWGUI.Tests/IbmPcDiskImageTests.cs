@@ -1,5 +1,10 @@
 using System.IO;
 using GWGUI.MediaEngine.Images;
+using GWGUI.MediaEngine.Containers.Ibm.Raw;
+using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.Geometries.Ibm;
+using GWGUI.MediaEngine.Recognition.Ibm;
+using GWGUI.MediaEngine.SectorImages.Builders;
 
 namespace GWGUI.Tests;
 
@@ -11,6 +16,7 @@ public sealed class IbmPcDiskImageTests
     [InlineData(320 * 1024, "ibm.320", 40, 2, 8)]
     [InlineData(360 * 1024, "ibm.360", 40, 2, 9)]
     [InlineData(720 * 1024, "ibm.720", 80, 2, 9)]
+    [InlineData(800 * 1024, "ibm.800", 80, 2, 10)]
     [InlineData(1200 * 1024, "ibm.1200", 80, 2, 15)]
     [InlineData(1440 * 1024, "ibm.1440", 80, 2, 18)]
     [InlineData(1680 * 1024, "ibm.1680", 80, 2, 21)]
@@ -21,13 +27,86 @@ public sealed class IbmPcDiskImageTests
         try
         {
             await File.WriteAllBytesAsync(path, new byte[length]);
-            var image = await new IbmPcImageReader().ReadAsync(path);
+            var image = await new IbmRawImageReader().ReadAsync(path);
             Assert.Equal(format, image.FormatId);
             Assert.Equal(cylinders, image.Cylinders);
             Assert.Equal(heads, image.Heads);
             Assert.Equal(sectors, image.SectorsPerTrack);
         }
         finally { File.Delete(path); }
+    }
+
+    [Theory]
+    [InlineData(0xfe, "ibm.160")]
+    [InlineData(0xfc, "ibm.180")]
+    [InlineData(0xff, "ibm.320")]
+    [InlineData(0xfd, "ibm.360")]
+    public void HistoricalFatDescriptorsResolveThroughTheCatalog(byte descriptor, string formatId)
+    {
+        Assert.True(IbmPcGeometryCatalog.TryFromMediaDescriptor(descriptor, out var geometry));
+        Assert.Equal(formatId, geometry.FormatId);
+    }
+
+    [Theory]
+    [InlineData("IBM  3.3", true)]
+    [InlineData("MSDOS5.0", true)]
+    [InlineData("MSWIN4.1", true)]
+    [InlineData("DOS     ", true)]
+    [InlineData("FRDOS5.1", true)]
+    [InlineData("FREEDOS ", true)]
+    [InlineData("COPYDISK", true)]
+    [InlineData("XXDOSXXX", false)]
+    [InlineData("UNKNOWN ", false)]
+    public void DosOemProbeOnlyAcceptsDocumentedPrefixes(string oem, bool expected)
+    {
+        var boot = new byte[FatBpbLayout.MinimumLength];
+        System.Text.Encoding.ASCII.GetBytes(oem).CopyTo(boot, FatBpbLayout.OemOffset);
+        Assert.Equal(expected, IbmDosOemProbe.IsKnownDosOem(boot));
+    }
+
+    [Fact]
+    public void FatBpbDetectorSupportsBothTotalsAndValidatesImageLengthAndLimits()
+    {
+        var boot = CreateBpb(720, 9, 2, useLargeTotal: false);
+        Assert.True(FatBpbGeometryDetector.TryDetect(boot, 720 * FatBpbLayout.SectorSize, out var small));
+        Assert.Equal(40, small.Cylinders);
+        Assert.False(FatBpbGeometryDetector.TryDetect(boot, 721 * FatBpbLayout.SectorSize, out _));
+        var large = CreateBpb(2_880, 18, 2, useLargeTotal: true);
+        Assert.True(FatBpbGeometryDetector.TryDetect(large, null, out var detectedLarge));
+        Assert.Equal(80, detectedLarge.Cylinders);
+        foreach (var invalid in new[] { CreateBpb(720, 0, 2), CreateBpb(720, 64, 2), CreateBpb(720, 9, 0), CreateBpb(720, 9, 3), CreateBpb(2_304, 9, 1) }) Assert.False(FatBpbGeometryDetector.TryDetect(invalid, null, out _));
+    }
+
+    [Fact]
+    public void RawGeometryAndBuilderValidateInputOffsetsCancellationAndImmutability()
+    {
+        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect([]));
+        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect(new byte[FatBpbLayout.SectorSize + 1]));
+        Assert.Throws<InvalidDataException>(() => IbmRawImageGeometryDetector.Detect(new byte[100 * FatBpbLayout.SectorSize]));
+        var geometry = IbmPcGeometryCatalog.ByCapacity[160 * 1024];
+        var data = new byte[160 * 1024];
+        data[FatBpbLayout.SectorSize] = 0x5a;
+        var image = IbmRawSectorImageBuilder.Create(data, geometry);
+        Assert.True(image.TryGetBlock(1, out var block));
+        Assert.Equal(new(0, 0, 2), block.Address);
+        Assert.Equal(0x5a, block.Data[0]);
+        Assert.IsAssignableFrom<IReadOnlyDictionary<int, IbmPcGeometry>>(IbmPcGeometryCatalog.ByCapacity);
+        Assert.Throws<NotSupportedException>(() => ((IDictionary<int, IbmPcGeometry>)IbmPcGeometryCatalog.ByCapacity).Add(1, geometry));
+        using var cancellation = new CancellationTokenSource();
+        cancellation.Cancel();
+        Assert.Throws<OperationCanceledException>(() => IbmRawSectorImageBuilder.Create(data, geometry, cancellation.Token));
+    }
+
+    /// <summary>Crée un BPB FAT minimal avec total sur 16 ou 32 bits.</summary>
+    private static byte[] CreateBpb(int totalSectors, int sectorsPerTrack, int heads, bool useLargeTotal = false)
+    {
+        var boot = new byte[FatBpbLayout.MinimumLength];
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.BytesPerSectorOffset), FatBpbLayout.SectorSize);
+        if (useLargeTotal) System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(boot.AsSpan(FatBpbLayout.TotalSectors32Offset), checked((uint)totalSectors));
+        else System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.TotalSectors16Offset), checked((ushort)totalSectors));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.SectorsPerTrackOffset), checked((ushort)sectorsPerTrack));
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBpbLayout.HeadCountOffset), checked((ushort)heads));
+        return boot;
     }
 
     [Fact]
@@ -37,7 +116,7 @@ public sealed class IbmPcDiskImageTests
         try
         {
             await File.WriteAllBytesAsync(path, new byte[720 * 1024 + 1]);
-            await Assert.ThrowsAsync<InvalidDataException>(() => new IbmPcImageReader().ReadAsync(path));
+            await Assert.ThrowsAsync<InvalidDataException>(() => new IbmRawImageReader().ReadAsync(path));
         }
         finally { File.Delete(path); }
     }
