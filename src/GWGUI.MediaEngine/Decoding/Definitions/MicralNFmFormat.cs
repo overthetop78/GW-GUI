@@ -43,6 +43,12 @@ internal static class MicralNFmFormat
     public const byte LogicalHead = 0;
     /// <summary>Code de taille des secteurs de 128 octets.</summary>
     public const byte SectorSizeCode = 0;
+    /// <summary>Plus petit numéro de secteur encodable.</summary>
+    public const int MinimumSectorNumber = byte.MinValue;
+    /// <summary>Plus grand numéro de secteur encodable.</summary>
+    public const int MaximumSectorNumber = byte.MaxValue;
+    /// <summary>Valeur initiale du checksum.</summary>
+    public const byte InitialChecksum = 0;
     /// <summary>Masque de complément du checksum.</summary>
     public const byte ComplementMask = 0xff;
     /// <summary>Masque du bit de retenue.</summary>
@@ -60,6 +66,8 @@ internal static class MicralNFmFormat
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Micral N sectors contain {SectorSize} bytes; received {actualSize} bytes.");
+    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "sector number", sectorNumber, MaximumSectorNumber);
 }
 
 /// <summary>Calcule le checksum propre au format Micral N.</summary>
@@ -76,7 +84,7 @@ internal static class MicralNChecksum
     /// <summary>Calcule le checksum de la séquence fournie.</summary>
     public static byte Compute(IEnumerable<byte> data)
     {
-        byte checksum = 0;
+        var checksum = MicralNFmFormat.InitialChecksum;
         foreach (var value in data) checksum = Update(checksum, value);
         return checksum;
     }

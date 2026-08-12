@@ -4080,35 +4080,35 @@
       - [x] Tester le champ de données, son motif spécial et son CRC avec un secteur connu.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre, d'une tête et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Membrain avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/MicralNFmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Micral N
-      - [ ] Remplacer l'identifiant brut `micraln.fm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Micral N hard-sectored FM` par la définition centrale correspondante.
-    - [ ] Définitions du format Micral N FM
-      - [ ] Déplacer la taille sectorielle dans `MicralNFmFormat`.
-      - [ ] Déplacer le préambule `[0, 0, 0, 0xff]` dans `MicralNFmFormat`.
-      - [ ] Définir centralement l'ordre numéro de secteur puis cylindre qui suit ce préambule.
-      - [ ] Déplacer la longueur du gap final dans `MicralNFmFormat`.
-      - [ ] Déplacer la valeur initiale, les masques et la règle de retenue du checksum dans un composant commun au décodeur et à l'encodeur Micral N.
-    - [ ] Construction d'un secteur Micral N
-      - [ ] Déplacer `Update` dans le composant de checksum Micral N commun.
-      - [ ] Extraire le calcul du checksum de toutes les données dans une fonction utilisant ce composant.
-      - [ ] Extraire la construction du préambule, de l'adresse, des données et du checksum dans une fonction privée.
-      - [ ] Extraire l'écriture FM du bloc et du gap final dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 128 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet.
-      - [ ] Valider le cylindre avant sa conversion en octet.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser les espaces dans le préambule, les conversions, concaténations, masques et calculs.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Micral N
-      - [ ] Tester l'ordre exact du numéro de secteur et du cylindre après le préambule.
-      - [ ] Tester le checksum commun avec une suite sans retenue puis une suite déclenchant la retenue.
-      - [ ] Tester l'encodage d'un secteur connu, son checksum et le gap final.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un numéro de secteur et d'un cylindre hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Micral N avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/MicralNFmTrackEncoder.cs`
+    - [x] Identité de l'encodeur Micral N
+      - [x] Remplacer l'identifiant brut `micraln.fm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Micral N hard-sectored FM` par la définition centrale correspondante.
+    - [x] Définitions du format Micral N FM
+      - [x] Déplacer la taille sectorielle dans `MicralNFmFormat`.
+      - [x] Déplacer le préambule `[0, 0, 0, 0xff]` dans `MicralNFmFormat`.
+      - [x] Définir centralement l'ordre numéro de secteur puis cylindre qui suit ce préambule.
+      - [x] Déplacer la longueur du gap final dans `MicralNFmFormat`.
+      - [x] Déplacer la valeur initiale, les masques et la règle de retenue du checksum dans un composant commun au décodeur et à l'encodeur Micral N.
+    - [x] Construction d'un secteur Micral N
+      - [x] Déplacer `Update` dans le composant de checksum Micral N commun.
+      - [x] Extraire le calcul du checksum de toutes les données dans une fonction utilisant ce composant.
+      - [x] Extraire la construction du préambule, de l'adresse, des données et du checksum dans une fonction privée.
+      - [x] Extraire l'écriture FM du bloc et du gap final dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 128 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le numéro de secteur avant sa conversion en octet.
+      - [x] Valider le cylindre avant sa conversion en octet.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser les espaces dans le préambule, les conversions, concaténations, masques et calculs.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Micral N
+      - [x] Tester l'ordre exact du numéro de secteur et du cylindre après le préambule.
+      - [x] Tester le checksum commun avec une suite sans retenue puis une suite déclenchant la retenue.
+      - [x] Tester l'encodage d'un secteur connu, son checksum et le gap final.
+      - [x] Tester le rejet d'une taille sectorielle, d'un numéro de secteur et d'un cylindre hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Micral N avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
     - [ ] Identité de l'encodeur Micropolis
       - [ ] Remplacer l'identifiant brut `micropolis.mfm` par la définition centrale correspondante.

@@ -64,6 +64,31 @@ public sealed class MicralNFmDecoderTests
         Assert.True(result.Confidence > 0);
     }
 
+    [Fact]
+    public void EncoderWritesSectorThenCylinderChecksumAndFinalGap()
+    {
+        var payload = Enumerable.Range(0, MicralNFmFormat.SectorSize).Select(index => (byte)index).ToArray();
+        var encoded = new MicralNFmTrackEncoder().Encode(new(42, 0, [new(7, payload)]));
+        var stream = new FluxBitstream(encoded.Bits.ToArray(), TrackEncodingDefaults.BitCellTicks);
+        var block = Assert.IsType<MicralNFmBlock>(MicralNFmDecoder.TryDecodeBlock(stream, 0));
+
+        Assert.Equal(7, block.Sector);
+        Assert.Equal(42, block.Cylinder);
+        Assert.Equal(MicralNChecksum.Compute(payload), block.StoredChecksum);
+        Assert.Equal(Enumerable.Range(0, MicralNFmFormat.GapBitCount).Select(index => index % 2 == 0), encoded.Bits.TakeLast(MicralNFmFormat.GapBitCount));
+    }
+
+    [Fact]
+    public void EncoderRejectsInvalidSizeSectorAndCylinder()
+    {
+        var encoder = new MicralNFmTrackEncoder();
+        var payload = new byte[MicralNFmFormat.SectorSize];
+
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new(0, payload[..^1])])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(MicralNFmFormat.MaximumSectorNumber + 1, payload)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(TrackEncodingLimits.MaximumCylinder + 1, 0, [new(0, payload)])));
+    }
+
     private static FluxBitstream BlockStream(byte sector, byte cylinder, IReadOnlyList<byte> payload, bool validChecksum)
     {
         var checksum = MicralNChecksum.Compute(payload);
