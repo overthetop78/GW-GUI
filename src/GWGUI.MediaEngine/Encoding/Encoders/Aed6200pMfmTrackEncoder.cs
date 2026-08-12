@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
-using Aed6200pMfmFormat = GWGUI.MediaEngine.Encoding.Definitions.Aed6200pMfmFormat;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -19,18 +19,40 @@ public sealed class Aed6200pMfmTrackEncoder : TrackEncoderBase
         var bits = TrackBitEncoding.Bits();
         foreach (var sector in request.Sectors)
         {
-            var size = sector.Data.Count;
-            byte[] header = [Aed6200pMfmFormat.HeaderAddressMark,(byte)request.Cylinder,(byte)size,(byte)sector.Number,(byte)(size >> BitPrimitives.BitsPerByte)];
-            var headerCrc = Primitives.Crc16Calculator.Compute(header);
-            bits.Raw(Aed6200pMfmFormat.HeaderPattern.ToArray());
-            bits.Mfm(header.Skip(1).Concat([(byte)(headerCrc >> BitPrimitives.BitsPerByte),(byte)headerCrc]));
-            bits.Gap(Aed6200pMfmFormat.FirstGapBitCount);
-            var mark = sector.Deleted ? Aed6200pMfmFormat.DeletedDataMark : Aed6200pMfmFormat.DataMark;
-            var dataCrc = Primitives.Crc16Calculator.Compute(new[] { mark }.Concat(sector.Data));
-            bits.Raw(Aed6200pMfmFormat.DataPatterns[sector.Deleted ? 0 : 3].ToArray());
-            bits.Mfm(sector.Data.Concat([(byte)(dataCrc >> BitPrimitives.BitsPerByte),(byte)dataCrc]));
-            bits.Gap(Aed6200pMfmFormat.SecondGapBitCount);
+            Validate(request.Cylinder, sector.Number, sector.Data.Count);
+            WriteHeader(bits, BuildHeader(request.Cylinder, sector.Number, sector.Data.Count));
+            WriteData(bits, SelectDataMark(sector.Deleted), sector.Data);
         }
         return bits;
+    }
+
+    /// <summary>Valide les champs AED stockés sur un ou deux octets.</summary>
+    private static void Validate(int cylinder, int sector, int size)
+    {
+        if (cylinder is < 0 or > Aed6200pMfmFormat.MaximumCylinder) throw TrackEncodingExceptions.FormatValueOutOfRange("AED 6200P", nameof(cylinder), cylinder, Aed6200pMfmFormat.MaximumCylinder);
+        if (sector is < 0 or > Aed6200pMfmFormat.MaximumSector) throw TrackEncodingExceptions.FormatValueOutOfRange("AED 6200P", nameof(sector), sector, Aed6200pMfmFormat.MaximumSector);
+        if (size is < 0 or > Aed6200pMfmFormat.MaximumSectorByteCount) throw TrackEncodingExceptions.FormatValueOutOfRange("AED 6200P", nameof(size), size, Aed6200pMfmFormat.MaximumSectorByteCount);
+    }
+
+    /// <summary>Construit l'en-tête AED avec la taille en ordre faible puis fort.</summary>
+    private static byte[] BuildHeader(int cylinder, int sector, int size) => [Aed6200pMfmFormat.HeaderAddressMark, (byte)cylinder, (byte)size, (byte)sector, (byte)(size >> BitPrimitives.BitsPerByte)];
+
+    /// <summary>Sélectionne la marque de données normale ou supprimée.</summary>
+    private static Aed6200pDataMarkDefinition SelectDataMark(bool deleted) => Aed6200pMfmFormat.DataMarks.Single(definition => definition.Deleted == deleted && (deleted || definition.Mark == Aed6200pMfmFormat.DataMark));
+
+    /// <summary>Écrit l'en-tête, son CRC fort-faible et le gap de 64 cellules.</summary>
+    private static void WriteHeader(List<bool> bits, IReadOnlyList<byte> header)
+    {
+        bits.Raw(Aed6200pMfmFormat.HeaderPattern.ToArray());
+        bits.Mfm(Crc16Calculator.Append(header).Skip(1));
+        bits.Gap(Aed6200pMfmFormat.FirstGapBitCount);
+    }
+
+    /// <summary>Écrit la marque, les données, leur CRC fort-faible et le gap de 128 cellules.</summary>
+    private static void WriteData(List<bool> bits, Aed6200pDataMarkDefinition definition, IReadOnlyList<byte> data)
+    {
+        bits.Raw(definition.Pattern.ToArray());
+        bits.Mfm(Crc16Calculator.Append(new[] { definition.Mark }.Concat(data)).Skip(1));
+        bits.Gap(Aed6200pMfmFormat.SecondGapBitCount);
     }
 }

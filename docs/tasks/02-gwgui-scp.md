@@ -3481,36 +3481,36 @@
       - [x] Tester une entrée vide et vérifier qu'elle produit un tableau vide.
       - [x] Tester le compactage d'un motif connu et vérifier l'ordre exact des bits dans les octets.
       - [x] Tester que les cinq motifs statiques construits par les décodeurs restent identiques après le raccordement.
-  - [ ] `Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
-    - [ ] Définitions AED communes
-      - [ ] Remplacer l'identifiant et le nom par les définitions AED créées avec `Aed6200pMfmDecoder.cs`.
-      - [ ] Remplacer le marqueur d'en-tête `0xc6`, les marques de données `0xc0` et `0xc3` et les motifs `5094`, `508A` et `5085` par `Aed6200pMfmFormat`.
-      - [ ] Remplacer les positions et ordres bruts du cylindre, de la taille basse, du secteur et de la taille haute par la disposition commune de l'en-tête.
-      - [ ] Remplacer les deux octets de CRC et les gaps `64` et `128` par les définitions communes.
-      - [ ] Utiliser les mêmes définitions de marque normale ou supprimée que le décodeur.
-    - [ ] Validation de la requête
-      - [ ] Vérifier que le cylindre tient dans l'octet prévu par l'en-tête AED avant sa conversion.
-      - [ ] Vérifier que le numéro de secteur tient dans l'octet prévu avant sa conversion.
-      - [ ] Vérifier que la taille tient dans les deux octets de longueur avant de séparer ses parties basse et haute.
-      - [ ] Créer ou utiliser les erreurs d'encodage communes recevant cylindre, secteur, taille observée et limite du format.
-      - [ ] Ne plus laisser les conversions en `byte` tronquer silencieusement une valeur hors limites.
-    - [ ] Construction des blocs
-      - [ ] Extraire la construction des champs d'en-tête dans une méthode utilisant la disposition AED commune.
-      - [ ] Extraire la sélection de la marque et du motif de données normal ou supprimé dans une méthode nommée.
-      - [ ] Utiliser le calculateur CRC commun avec exactement les paramètres AED utilisés par le décodeur.
-      - [ ] Extraire l'écriture de l'en-tête, des données et de leurs gaps afin que `EncodeBits` orchestre seulement les secteurs.
-    - [ ] Présentation et documentation
-      - [ ] Ajouter les espaces manquants dans la collection d'en-tête sans casser artificiellement les expressions qui tiennent sur une ligne.
-      - [ ] Conserver sur une seule ligne les signatures, appels et constructions cohérentes qui tiennent correctement.
-      - [ ] Séparer toute instruction distincte qui serait placée sur la même ligne pendant le refactor.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Documenter l'ordre faible/fort de la taille, les marques normale et supprimée, les CRC et les unités des gaps.
-    - [ ] Vérification de l'encodeur AED
-      - [ ] Tester l'en-tête exact pour une taille utilisant uniquement l'octet bas puis les deux octets.
-      - [ ] Tester séparément un secteur normal et un secteur supprimé avec leurs motifs et marques exacts.
-      - [ ] Tester les CRC d'en-tête et de données avec des valeurs attendues connues.
-      - [ ] Tester les limites de cylindre, de secteur et de taille puis leur dépassement.
-      - [ ] Tester les gaps exacts et l'aller-retour encodeur/décodeur sans modifier la charge utile ni l'intégrité.
+- [x] `Encoding/Encoders/Aed6200pMfmTrackEncoder.cs`
+    - [x] Définitions AED communes
+      - [x] Remplacer l'identifiant et le nom par les définitions AED créées avec `Aed6200pMfmDecoder.cs`.
+      - [x] Remplacer le marqueur d'en-tête `0xc6`, les marques de données `0xc0` et `0xc3` et les motifs `5094`, `508A` et `5085` par `Aed6200pMfmFormat`.
+      - [x] Remplacer les positions et ordres bruts du cylindre, de la taille basse, du secteur et de la taille haute par la disposition commune de l'en-tête.
+      - [x] Remplacer les deux octets de CRC et les gaps `64` et `128` par les définitions communes.
+      - [x] Utiliser les mêmes définitions de marque normale ou supprimée que le décodeur.
+    - [x] Validation de la requête
+      - [x] Vérifier que le cylindre tient dans l'octet prévu par l'en-tête AED avant sa conversion.
+      - [x] Vérifier que le numéro de secteur tient dans l'octet prévu avant sa conversion.
+      - [x] Vérifier que la taille tient dans les deux octets de longueur avant de séparer ses parties basse et haute.
+      - [x] Créer ou utiliser les erreurs d'encodage communes recevant cylindre, secteur, taille observée et limite du format.
+      - [x] Ne plus laisser les conversions en `byte` tronquer silencieusement une valeur hors limites.
+    - [x] Construction des blocs
+      - [x] Extraire la construction des champs d'en-tête dans une méthode utilisant la disposition AED commune.
+      - [x] Extraire la sélection de la marque et du motif de données normal ou supprimé dans une méthode nommée.
+      - [x] Utiliser le calculateur CRC commun avec exactement les paramètres AED utilisés par le décodeur.
+      - [x] Extraire l'écriture de l'en-tête, des données et de leurs gaps afin que `EncodeBits` orchestre seulement les secteurs.
+    - [x] Présentation et documentation
+      - [x] Ajouter les espaces manquants dans la collection d'en-tête sans casser artificiellement les expressions qui tiennent sur une ligne.
+      - [x] Conserver sur une seule ligne les signatures, appels et constructions cohérentes qui tiennent correctement.
+      - [x] Séparer toute instruction distincte qui serait placée sur la même ligne pendant le refactor.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Documenter l'ordre faible/fort de la taille, les marques normale et supprimée, les CRC et les unités des gaps.
+    - [x] Vérification de l'encodeur AED
+      - [x] Tester l'en-tête exact pour une taille utilisant uniquement l'octet bas puis les deux octets.
+      - [x] Tester séparément un secteur normal et un secteur supprimé avec leurs motifs et marques exacts.
+      - [x] Tester les CRC d'en-tête et de données avec des valeurs attendues connues.
+      - [x] Tester les limites de cylindre, de secteur et de taille puis leur dépassement.
+      - [x] Tester les gaps exacts et l'aller-retour encodeur/décodeur sans modifier la charge utile ni l'intégrité.
   - [ ] `Encoding/Encoders/AmigaMfmTrackEncoder.cs`
     - [ ] Définitions Amiga communes
       - [ ] Remplacer l'identifiant, le nom, la synchronisation `44894489`, les gaps `100` et `128` et la taille sectorielle de 512 octets par `AmigaMfmFormat`.

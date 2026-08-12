@@ -3,6 +3,14 @@ namespace GWGUI.MediaEngine.Encoding;
 /// <summary>Construit les erreurs communes produites pendant l'encodage d'une piste.</summary>
 internal static class TrackEncodingExceptions
 {
+    /// <summary>Crée l'erreur signalant une valeur propre à un format située hors de sa plage.</summary>
+    /// <param name="format">Nom du format.</param>
+    /// <param name="field">Nom du champ concerné.</param>
+    /// <param name="actual">Valeur observée.</param>
+    /// <param name="maximum">Valeur maximale admise.</param>
+    /// <returns>Erreur contenant le format, le champ, la valeur et sa limite.</returns>
+    public static ArgumentOutOfRangeException FormatValueOutOfRange(string format, string field, int actual, int maximum) => new(field, actual, $"{format} {field} must be between 0 and {maximum}.");
+
     /// <summary>Crée l'erreur signalant un caractère invalide dans une chaîne binaire.</summary>
     /// <param name="value">Caractère observé.</param>
     /// <param name="index">Position du caractère.</param>

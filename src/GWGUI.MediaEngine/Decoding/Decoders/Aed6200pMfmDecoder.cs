@@ -33,7 +33,8 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
                 var data = ReadDataBlock(stream, offset, headerBits, size, pairedData, structures, bytes);
                 if (!data.HeaderCanBeAdded) continue;
                 var integrity = CombineIntegrity(headerValid, data.Valid);
-                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], SectorSizeCode.FromByteCount(size), size, integrity, offset));
+                var sizeCode = SectorSizeCode.TryFromByteCount(size, out var knownSizeCode) ? knownSizeCode : SectorSizeCode.MinimumCode;
+                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], sizeCode, size, integrity, offset));
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], size, null, null, headerValid, data.Valid)));
                 offset = Math.Max(offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1, data.StructureEnd - 1);
             }
