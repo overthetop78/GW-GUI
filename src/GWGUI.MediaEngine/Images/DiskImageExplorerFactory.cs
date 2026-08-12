@@ -16,6 +16,7 @@ using GWGUI.MediaEngine.Images.ScpDetection;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Containers.Apple;
+using GWGUI.MediaEngine.Containers.Atari.St;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Images;
@@ -43,7 +44,7 @@ internal static class DiskImageExplorerFactory
             new ExtensionHintRecognitionPolicy(new BbcDfsImageReader().ReadAsync, DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
             new CoherentImageRecognitionPolicy(new CoherentRawImageReader()),
             new DecRx02ImageRecognitionPolicy(new DecRx02Reader()),
-            new ExtensionHintRecognitionPolicy(new AtariStImageReader().ReadAsync, DiskImageFileExtensions.St),
+            new ExtensionHintRecognitionPolicy(new AtariStReader().ReadAsync, DiskImageFileExtensions.St),
             new ExtensionHintRecognitionPolicy(new MsaReader().ReadAsync, DiskImageFileExtensions.Msa),
             new ExtensionHintRecognitionPolicy(new AtrReader().ReadAsync, DiskImageFileExtensions.Atr),
             new ExtensionHintRecognitionPolicy(new CommodoreD64ImageReader().ReadAsync, DiskImageFileExtensions.D64),

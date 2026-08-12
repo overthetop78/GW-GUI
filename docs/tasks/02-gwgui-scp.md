@@ -4546,39 +4546,39 @@
     - [x] Tester Apple II 13 et 16 secteurs, doublons avec intégrités différentes, secteurs absents et reconnaissance DOS/ProDOS.
     - [x] Tester RWTS18 avec doublons, aucune donnée valide et plus de 35 pistes.
     - [x] Vérifier que la densification conserve la position et le masque de chaque bloc absent.
-- [ ] `src/GWGUI.MediaEngine/Images/AtariStImageReader.cs`
-  - [ ] Déplacement du Reader ST
-    - [ ] Créer `Containers/Atari/St/AtariStReader.cs` et y déplacer uniquement la lecture du fichier ST brut.
-    - [ ] Adapter la politique de reconnaissance, `DiskImageExplorerFactory` et les tests au nouveau namespace.
-    - [ ] Supprimer `Images/AtariStImageReader.cs` après extraction de sa géométrie.
-  - [ ] Géométrie Atari ST
-    - [ ] Créer `Geometries/Atari/AtariStGeometry.cs` et y déplacer le record actuellement déclaré dans le Reader.
-    - [ ] Ajouter la taille sectorielle fixe de 512 octets et une propriété de capacité calculée protégée contre les dépassements.
-    - [ ] Valider cylindres, faces et secteurs par piste lors de la construction de la géométrie.
-    - [ ] Conserver la construction de l'identifiant depuis la capacité dans une définition Atari partagée avec MSA, SCP et les normalizers.
-  - [ ] Détection de géométrie
-    - [ ] Créer `Geometries/Atari/AtariStGeometryDetector.cs` et y déplacer `Detect`.
-    - [ ] Utiliser les définitions BPB communes à FAT pour bytes par secteur, total 16/32 bits, secteurs par piste et faces, sans recopier les offsets 11, 19, 32, 24 et 26.
-    - [ ] Remplacer les limites brutes 36 secteurs, deux faces et 35 à 90 cylindres par des limites Atari ST nommées.
-    - [ ] Créer un catalogue immuable des replis 9, 10, 11 et 18 secteurs et une ou deux faces.
-    - [ ] Conserver l'ordre actuel des tentatives de repli et documenter sa priorité.
-    - [ ] Faire retourner avec la géométrie la preuve utilisée, BPB ou capacité, afin que la reconnaissance distingue validation et repli.
-  - [ ] Construction sectorielle
-    - [ ] Remplacer `CreateSectorImage` par `LinearSectorImageBuilder` avec numérotation des secteurs commençant à un.
-    - [ ] Vérifier avant construction que la longueur correspond exactement à la capacité de la géométrie.
-    - [ ] Supprimer la boucle et les calculs d'adresse du Reader après raccordement.
-  - [ ] Erreurs Atari ST
-    - [ ] Créer `Containers/Atari/St/AtariStExceptions.cs` pour longueur non multiple de 512, géométrie indéterminée et longueur incompatible avec la géométrie.
-    - [ ] Faire recevoir aux erreurs longueur, capacité, cylindres, faces et secteurs observés.
-    - [ ] Remplacer les trois textes bruts du fichier.
-  - [ ] Présentation et CSDoc française
-    - [ ] Conserver sur une seule ligne les signatures, lectures BPB, conditions et constructions complètes qui tiennent lisiblement.
-    - [ ] Documenter en français le Reader, la géométrie, le détecteur, le catalogue, chaque membre et l'ordre des replis.
-  - [ ] Tests ciblés ST
-    - [ ] Tester une géométrie issue d'un BPB valide et chaque repli 9, 10, 11 et 18 secteurs avec une ou deux faces lorsqu'il produit une géométrie admissible.
-    - [ ] Tester un BPB incohérent suivi d'un repli valide et un contenu sans aucune géométrie possible.
-    - [ ] Tester une longueur vide, non multiple de 512 et incompatible avec la géométrie retenue.
-    - [ ] Vérifier format, cylindres, faces, secteurs, adresses, capacité et contenu sur les images ST de `image_test`.
+- [x] `src/GWGUI.MediaEngine/Images/AtariStImageReader.cs`
+  - [x] Déplacement du Reader ST
+    - [x] Créer `Containers/Atari/St/AtariStReader.cs` et y déplacer uniquement la lecture du fichier ST brut.
+    - [x] Adapter la politique de reconnaissance, `DiskImageExplorerFactory` et les tests au nouveau namespace.
+    - [x] Supprimer `Images/AtariStImageReader.cs` après extraction de sa géométrie.
+  - [x] Géométrie Atari ST
+    - [x] Créer `Geometries/Atari/AtariStGeometry.cs` et y déplacer le record actuellement déclaré dans le Reader.
+    - [x] Ajouter la taille sectorielle fixe de 512 octets et une propriété de capacité calculée protégée contre les dépassements.
+    - [x] Valider cylindres, faces et secteurs par piste lors de la construction de la géométrie.
+    - [x] Conserver la construction de l'identifiant depuis la capacité dans une définition Atari partagée avec MSA, SCP et les normalizers.
+  - [x] Détection de géométrie
+    - [x] Créer `Geometries/Atari/AtariStGeometryDetector.cs` et y déplacer `Detect`.
+    - [x] Utiliser les définitions BPB communes à FAT pour bytes par secteur, total 16/32 bits, secteurs par piste et faces, sans recopier les offsets 11, 19, 32, 24 et 26.
+    - [x] Remplacer les limites brutes 36 secteurs, deux faces et 35 à 90 cylindres par des limites Atari ST nommées.
+    - [x] Créer un catalogue immuable des replis 9, 10, 11 et 18 secteurs et une ou deux faces.
+    - [x] Conserver l'ordre actuel des tentatives de repli et documenter sa priorité.
+    - [x] Faire retourner avec la géométrie la preuve utilisée, BPB ou capacité, afin que la reconnaissance distingue validation et repli.
+  - [x] Construction sectorielle
+    - [x] Remplacer `CreateSectorImage` par `LinearSectorImageBuilder` avec numérotation des secteurs commençant à un.
+    - [x] Vérifier avant construction que la longueur correspond exactement à la capacité de la géométrie.
+    - [x] Supprimer la boucle et les calculs d'adresse du Reader après raccordement.
+  - [x] Erreurs Atari ST
+    - [x] Créer `Containers/Atari/St/AtariStExceptions.cs` pour longueur non multiple de 512, géométrie indéterminée et longueur incompatible avec la géométrie.
+    - [x] Faire recevoir aux erreurs longueur, capacité, cylindres, faces et secteurs observés.
+    - [x] Remplacer les trois textes bruts du fichier.
+  - [x] Présentation et CSDoc française
+    - [x] Conserver sur une seule ligne les signatures, lectures BPB, conditions et constructions complètes qui tiennent lisiblement.
+    - [x] Documenter en français le Reader, la géométrie, le détecteur, le catalogue, chaque membre et l'ordre des replis.
+  - [x] Tests ciblés ST
+    - [x] Tester une géométrie issue d'un BPB valide et chaque repli 9, 10, 11 et 18 secteurs avec une ou deux faces lorsqu'il produit une géométrie admissible.
+    - [x] Tester un BPB incohérent suivi d'un repli valide et un contenu sans aucune géométrie possible.
+    - [x] Tester une longueur vide, non multiple de 512 et incompatible avec la géométrie retenue.
+    - [x] Vérifier format, cylindres, faces, secteurs, adresses, capacité et contenu sur les images ST de `image_test`.
 - [ ] `src/GWGUI.MediaEngine/Images/BbcDfsImageReader.cs`
   - [ ] Déplacement du Reader SSD/DSD
     - [ ] Créer `Containers/Acorn/BbcDfs/BbcDfsReader.cs` et y déplacer le Reader des fichiers SSD et DSD.
