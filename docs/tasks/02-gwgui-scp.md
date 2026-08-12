@@ -5183,15 +5183,15 @@
     - [x] Remplacer `CreateImage` par des appels directs à `EpsonQx10SectorImageBuilder.Create` dans ses deux consommateurs.
     - [x] Remplacer `TryDetectFormat` par un appel direct à `EpsonQx10FormatDetector.TryDetect` dans `AutomaticIsoScpSectorImagePolicy`.
     - [x] Supprimer le fichier après adaptation de ses trois appels.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/GenericIsoScpSectorImagePolicy.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Identifiants des décodeurs
-    - [ ] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les identifiants définis dans `Decoding/Definitions/FluxCodecIds.cs`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `GenericIsoScpSectorImagePolicy`.
-    - [ ] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/GenericIsoScpSectorImagePolicy.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Identifiants des décodeurs
+    - [x] Remplacer les textes bruts `iso.fm` et `iso.mfm` de `DecoderIds` par les identifiants définis dans `Decoding/Definitions/FluxCodecIds.cs`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `GenericIsoScpSectorImagePolicy`.
+    - [x] Ajouter la documentation XML des méthodes `Build`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/IbmPcIsoScpSectorImagePolicy.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs`.
