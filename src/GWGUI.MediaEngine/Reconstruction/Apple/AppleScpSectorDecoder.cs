@@ -2,17 +2,23 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
 /// <summary>Décode et sélectionne les candidats sectoriels communs aux reconstructeurs Apple SCP.</summary>
+/// <param name="decoders">Registre fournissant les décodeurs de flux Apple demandés.</param>
 internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
 {
     private readonly AppleMacGcrDecoder _macDecoder = new();
 
     /// <summary>Décode toutes les révolutions avec le codec demandé et regroupe les candidats par adresse.</summary>
+    /// <param name="scp">Capture SCP contenant les pistes et révolutions à décoder.</param>
+    /// <param name="decoderId">Identifiant technique du décodeur de flux.</param>
+    /// <param name="size">Taille attendue de chaque secteur, en octets.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le parcours des pistes.</param>
+    /// <returns>Les candidats de taille valide, regroupés par adresse avec leur numéro de révolution à base un.</returns>
     public Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> DecodeCandidates(ScpImage scp, string decoderId, int size, CancellationToken cancellationToken)
     {
         var result = new Dictionary<SectorAddress, List<(DecodedSector, int)>>();
@@ -37,28 +43,21 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     }
 
     /// <summary>Sélectionne le meilleur candidat d'une adresse selon son intégrité.</summary>
-    public static SectorBlock Select(int logical, SectorAddress address,
-        List<(DecodedSector Sector, int Revolution)> values)
+    /// <param name="logical">Numéro de bloc logique à attribuer au secteur sélectionné.</param>
+    /// <param name="address">Adresse physique commune aux candidats.</param>
+    /// <param name="values">Candidats et numéros de révolution disponibles pour cette adresse.</param>
+    /// <returns>Le bloc construit avec le candidat dont l'intégrité est la meilleure.</returns>
+    public static SectorBlock Select(int logical, SectorAddress address, List<(DecodedSector Sector, int Revolution)> values)
     {
         var best = values.OrderByDescending(value => value.Sector.IntegrityValid == true)
             .ThenByDescending(value => value.Sector.IntegrityValid is null).First();
         return new(logical, address, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution, best.Sector.Tag?.ToArray(), best.Sector.FormatCode);
     }
 
-    /// <summary>Reconstruit une charge utile linéaire lorsque tous les blocs sont présents.</summary>
-    public static bool TryFlattenPayload(SectorImage image, out byte[] payload)
-    {
-        payload = new byte[image.BlockCount * image.BlockSize];
-        if (image.AvailableBlocks.Count != image.BlockCount) return false;
-        foreach (var block in image.AvailableBlocks)
-        {
-            if (block.LogicalBlock < 0 || block.LogicalBlock >= image.BlockCount || block.Data.Count != image.BlockSize) return false;
-            block.Data.ToArray().CopyTo(payload, block.LogicalBlock * image.BlockSize);
-        }
-        return true;
-    }
-
     /// <summary>Décode une révolution Macintosh avec plusieurs durées de cellule voisines.</summary>
+    /// <param name="track">Piste SCP dont le cylindre et la face bornent les secteurs plausibles.</param>
+    /// <param name="revolution">Révolution contenant le flux à essayer avec plusieurs durées de cellule.</param>
+    /// <returns>Le résultat de décodage obtenant le meilleur score de secteurs Macintosh plausibles.</returns>
     private FluxDecodeResult DecodeMacTrack(ScpTrack track, ScpRevolution revolution)
     {
         var expected = MacintoshGcrGeometry.Sectors(track.Cylinder);

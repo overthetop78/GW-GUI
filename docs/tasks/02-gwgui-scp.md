@@ -5011,14 +5011,13 @@
     - [x] Vérifier qu’au moins une piste ProDOS reste sous la limite Apple II avant d’appeler `Max` dans `CreateProDosImage`.
     - [x] Remplacer les exceptions LINQ produites par ces deux collections vides par les erreurs Apple de reconstruction déjà prévues.
     - [x] Tester des candidats décodés tous placés au-delà de la limite de piste ainsi que des numéros de secteurs tous incompatibles avec la géométrie retenue.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AppleMacScpSectorReconstructor.cs`
+- [x] `src/GWGUI.MediaEngine/SectorImages/AppleMacScpSectorReconstructor.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Reconstruction/Apple/AppleMacScpSectorReconstructor.cs`.
     - [x] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleMacScpSectorReconstructor`.
-    - [ ] Ajouter la documentation XML des méthodes `AppleMacScpSectorReconstructor, Decode, TryFlattenPayload`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-      - Dépendance restante : `AppleMacScpSectorReconstructor` et `Decode` sont documentés ; `TryFlattenPayload` appartient encore à `AppleScpSectorDecoder` et son déplacement dans ce fichier est prévu dans le groupe de ce décodeur plus loin dans le document.
+    - [x] Ajouter la documentation XML des méthodes `AppleMacScpSectorReconstructor, Decode, TryFlattenPayload`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [x] `src/GWGUI.MediaEngine/SectorImages/AppleRwts18ScpSectorReconstructor.cs`
   - [x] Structure, emplacement et raccordements
     - [x] Déplacer le fichier vers `Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs`.
@@ -5026,19 +5025,19 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `AppleRwts18ScpSectorReconstructor`.
     - [x] Ajouter la documentation XML des méthodes `AppleRwts18ScpSectorReconstructor, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AppleScpSectorDecoder.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorDecoder.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Responsabilité de l'aplatissement Macintosh
-    - [ ] Retirer `TryFlattenPayload` du décodeur, car cette méthode ne décode aucun flux et n'est consommée que par `AppleMacScpSectorReconstructor`.
-    - [ ] Déplacer cette méthode dans `Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` et adapter son unique appel.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleScpSectorDecoder`.
-    - [ ] Ajouter la documentation XML des méthodes `AppleScpSectorDecoder, DecodeCandidates, Select, DecodeMacTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-  - [ ] Mise en forme
-    - [ ] Remettre sur une seule ligne la signature complète de `Select`.
-    - [ ] Remettre sur une seule ligne la construction courte du `SectorBlock` retourné par `Select` si elle respecte la limite de longueur du document.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AppleScpSectorDecoder.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorDecoder.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Responsabilité de l'aplatissement Macintosh
+    - [x] Retirer `TryFlattenPayload` du décodeur, car cette méthode ne décode aucun flux et n'est consommée que par `AppleMacScpSectorReconstructor`.
+    - [x] Déplacer cette méthode dans `Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` et adapter son unique appel.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleScpSectorDecoder`.
+    - [x] Ajouter la documentation XML des méthodes `AppleScpSectorDecoder, DecodeCandidates, Select, DecodeMacTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+  - [x] Mise en forme
+    - [x] Remettre sur une seule ligne la signature complète de `Select`.
+    - [x] Remettre sur une seule ligne la construction courte du `SectorBlock` retourné par `Select` si elle respecte la limite de longueur du document.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AppleScpSectorImageReader.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorImageReader.cs`.

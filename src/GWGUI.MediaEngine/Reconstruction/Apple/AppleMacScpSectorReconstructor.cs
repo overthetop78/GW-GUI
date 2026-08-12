@@ -47,7 +47,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
             : DiskImageFormatIds.AppleMacGcr;
         if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
             formatId = DiskImageFormatIds.AppleLisaOffice;
-        if (requestedFormatId is null && AppleScpSectorDecoder.TryFlattenPayload(provisional, out var payload) &&
+        if (requestedFormatId is null && TryFlattenPayload(provisional, out var payload) &&
             AppleRawImageProbe.LooksLikeLisaOffice(payload))
             formatId = DiskImageFormatIds.AppleLisaRaw;
         if (provisional.TryGetBlock(2, out var mdb) && mdb.Data.Count >= 2)
@@ -63,5 +63,21 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
                         : DiskImageFormatIds.AppleIIProDos;
         }
         return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
+    }
+
+    /// <summary>Reconstruit une charge utile linéaire lorsque tous les blocs attendus sont présents et valides.</summary>
+    /// <param name="image">Image sectorielle Macintosh à aplatir dans l'ordre des blocs logiques.</param>
+    /// <param name="payload">Charge utile complète créée lorsque la méthode retourne <see langword="true"/>.</param>
+    /// <returns><see langword="true"/> lorsque chaque bloc logique possède exactement la taille attendue ; sinon <see langword="false"/>.</returns>
+    private static bool TryFlattenPayload(SectorImage image, out byte[] payload)
+    {
+        payload = new byte[image.BlockCount * image.BlockSize];
+        if (image.AvailableBlocks.Count != image.BlockCount) return false;
+        foreach (var block in image.AvailableBlocks)
+        {
+            if (block.LogicalBlock < 0 || block.LogicalBlock >= image.BlockCount || block.Data.Count != image.BlockSize) return false;
+            block.Data.ToArray().CopyTo(payload, block.LogicalBlock * image.BlockSize);
+        }
+        return true;
     }
 }
