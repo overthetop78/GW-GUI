@@ -3,13 +3,19 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Reconstruction;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.Apple;
 
 /// <summary>Reconstruit une image Apple II RWTS18 depuis des secteurs SCP décodés.</summary>
+/// <param name="decoder">Décodeur commun chargé de regrouper les candidats sectoriels Apple.</param>
 internal sealed class AppleRwts18ScpSectorReconstructor(AppleScpSectorDecoder decoder)
 {
     /// <summary>Sélectionne les secteurs RWTS18 et construit l'image sectorielle.</summary>
+    /// <param name="scp">Capture SCP déjà analysée.</param>
+    /// <param name="cancellationToken">Jeton permettant d'annuler le décodage des révolutions.</param>
+    /// <returns>L'image Apple II RWTS18 reconstruite à partir des secteurs dont l'adresse est utilisable.</returns>
+    /// <exception cref="InvalidDataException">Aucun secteur RWTS18 n'a été décodé ou aucun candidat ne respecte la géométrie acceptée.</exception>
     public SectorImage Decode(ScpImage scp, CancellationToken cancellationToken)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleRwts18, AppleRwts18Format.SectorByteCount, cancellationToken);

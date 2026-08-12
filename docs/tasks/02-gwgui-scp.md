@@ -5019,13 +5019,13 @@
     - [x] Ajouter la documentation XML des types `AppleMacScpSectorReconstructor`.
     - [ ] Ajouter la documentation XML des méthodes `AppleMacScpSectorReconstructor, Decode, TryFlattenPayload`, avec paramètres, résultat, exceptions, unités et invariants applicables.
       - Dépendance restante : `AppleMacScpSectorReconstructor` et `Decode` sont documentés ; `TryFlattenPayload` appartient encore à `AppleScpSectorDecoder` et son déplacement dans ce fichier est prévu dans le groupe de ce décodeur plus loin dans le document.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/AppleRwts18ScpSectorReconstructor.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `AppleRwts18ScpSectorReconstructor`.
-    - [ ] Ajouter la documentation XML des méthodes `AppleRwts18ScpSectorReconstructor, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/AppleRwts18ScpSectorReconstructor.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `AppleRwts18ScpSectorReconstructor`.
+    - [x] Ajouter la documentation XML des méthodes `AppleRwts18ScpSectorReconstructor, Decode`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/AppleScpSectorDecoder.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Reconstruction/Apple/AppleScpSectorDecoder.cs`.
