@@ -20,11 +20,26 @@ public sealed class MicropolisMfmTrackEncoder : TrackEncoderBase
         foreach (var sector in request.Sectors)
         {
             if (sector.Data.Count != MicropolisMfmFormat.SectorSize) throw MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count);
-            var record = MicropolisMfmRecord.Create((byte)request.Cylinder, (byte)sector.Number, sector.Data);
-            bits.Mfm(new byte[MicropolisMfmFormat.PreambleByteCount]);
-            bits.Mfm(record.Bytes);
-            bits.Gap(MicropolisMfmFormat.GapBitCount);
+            if (sector.Number is < MicropolisMfmFormat.MinimumSectorNumber or > MicropolisMfmFormat.MaximumSectorNumber) throw MicropolisMfmFormat.InvalidSectorNumber(sector.Number);
+            WriteRecord(bits, CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data));
         }
         return bits;
+    }
+
+    /// <summary>Construit un enregistrement Micropolis complet à partir de valeurs validées.</summary>
+    /// <param name="cylinder">Numéro de cylindre.</param>
+    /// <param name="sector">Numéro de secteur.</param>
+    /// <param name="data">Données sectorielles.</param>
+    /// <returns>Enregistrement prêt à encoder.</returns>
+    private static MicropolisMfmRecord CreateRecord(byte cylinder, byte sector, IReadOnlyList<byte> data) => MicropolisMfmRecord.Create(cylinder, sector, data);
+
+    /// <summary>Écrit le préambule nul, l'enregistrement MFM et le gap final.</summary>
+    /// <param name="bits">Tampon recevant les cellules binaires.</param>
+    /// <param name="record">Enregistrement à écrire.</param>
+    private static void WriteRecord(List<bool> bits, MicropolisMfmRecord record)
+    {
+        bits.Mfm(new byte[MicropolisMfmFormat.PreambleByteCount]);
+        bits.Mfm(record.Bytes);
+        bits.Gap(MicropolisMfmFormat.GapBitCount);
     }
 }

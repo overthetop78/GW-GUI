@@ -49,12 +49,18 @@ internal static class MicropolisMfmFormat
     public const byte LogicalHead = 0;
     /// <summary>Code de taille des secteurs de 256 octets.</summary>
     public const byte SectorSizeCode = 1;
+    /// <summary>Plus petit numéro de secteur encodable.</summary>
+    public const int MinimumSectorNumber = byte.MinValue;
+    /// <summary>Plus grand numéro de secteur encodable.</summary>
+    public const int MaximumSectorNumber = byte.MaxValue;
     /// <summary>Nombre d'octets nuls émis avant le record.</summary>
     public const int PreambleByteCount = 40;
     /// <summary>Gap ajouté après le record.</summary>
     public const int GapBitCount = 128;
     /// <summary>Modulo du checksum.</summary>
     public const int ChecksumModulus = 255;
+    /// <summary>Valeur initiale du checksum.</summary>
+    public const int InitialChecksum = 0;
     /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>
     public const int ConfidenceSectorWeight = 2;
     /// <summary>Diviseur du calcul de confiance.</summary>
@@ -64,6 +70,8 @@ internal static class MicropolisMfmFormat
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Micropolis sectors contain {SectorSize} bytes; received {actualSize} bytes.");
+    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "sector number", sectorNumber, MaximumSectorNumber);
 }
 
 /// <summary>Calcule le checksum modulo 255 du format Micropolis.</summary>
@@ -72,7 +80,7 @@ internal static class MicropolisChecksum
     /// <summary>Calcule le checksum de la séquence fournie.</summary>
     public static byte Compute(IEnumerable<byte> data)
     {
-        var value = 0;
+        var value = MicropolisMfmFormat.InitialChecksum;
         foreach (var item in data)
         {
             if (value > MicropolisMfmFormat.ChecksumModulus) value -= MicropolisMfmFormat.ChecksumModulus;

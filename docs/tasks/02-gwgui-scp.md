@@ -4109,39 +4109,39 @@
       - [x] Tester l'encodage d'un secteur connu, son checksum et le gap final.
       - [x] Tester le rejet d'une taille sectorielle, d'un numéro de secteur et d'un cylindre hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Micral N avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
-    - [ ] Identité de l'encodeur Micropolis
-      - [ ] Remplacer l'identifiant brut `micropolis.mfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `Micropolis MFM` par la définition centrale correspondante.
-    - [ ] Définitions de l'enregistrement Micropolis MFM
-      - [ ] Déplacer la taille sectorielle et la marque `0xff` dans `MicropolisMfmFormat`.
-      - [ ] Déplacer le nombre de dix octets réservés entre l'adresse et les données dans `MicropolisMfmFormat`.
-      - [ ] Déplacer le nombre de cinq octets réservés après le checksum dans `MicropolisMfmFormat`.
-      - [ ] Déplacer la longueur du préambule MFM nul et celle du gap final dans `MicropolisMfmFormat`.
-      - [ ] Définir centralement l'ordre marque, cylindre, secteur, zone réservée, données, checksum et zone finale.
-      - [ ] Déplacer la base `255`, la valeur initiale et la règle de réduction du checksum dans un composant commun au décodeur et à l'encodeur Micropolis.
-    - [ ] Construction d'un secteur Micropolis
-      - [ ] Extraire la construction de l'enregistrement complet dans une fonction privée recevant le cylindre, le secteur et les données validés.
-      - [ ] Conserver explicitement l'exclusion de la marque `0xff` du calcul de checksum actuellement réalisée par `record.Skip(1)`.
-      - [ ] Déplacer `Checksum` dans le composant Micropolis commun.
-      - [ ] Conserver dans ce composant l'ordre actuel du calcul : réduire la somme lorsqu'elle dépasse 255, puis ajouter l'octet suivant.
-      - [ ] Extraire l'écriture du préambule nul, de l'enregistrement et du gap final dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider le cylindre avant sa conversion en octet.
-      - [ ] Valider le numéro de secteur avant sa conversion en octet.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Développer la boucle de checksum afin que sa condition, sa réduction et son addition n'occupent plus une même ligne.
-      - [ ] Normaliser les espaces dans les collections, conversions et appels.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur Micropolis
-      - [ ] Tester la disposition et les longueurs exactes de chaque champ de l'enregistrement.
-      - [ ] Tester que la marque est exclue du checksum et que les zones réservées qui la suivent y participent selon le code actuel.
-      - [ ] Tester le checksum avec une somme inférieure à 255, égale à 255 et nécessitant une ou plusieurs réductions.
-      - [ ] Tester le préambule nul et le gap final.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste Micropolis avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/MicropolisMfmTrackEncoder.cs`
+    - [x] Identité de l'encodeur Micropolis
+      - [x] Remplacer l'identifiant brut `micropolis.mfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `Micropolis MFM` par la définition centrale correspondante.
+    - [x] Définitions de l'enregistrement Micropolis MFM
+      - [x] Déplacer la taille sectorielle et la marque `0xff` dans `MicropolisMfmFormat`.
+      - [x] Déplacer le nombre de dix octets réservés entre l'adresse et les données dans `MicropolisMfmFormat`.
+      - [x] Déplacer le nombre de cinq octets réservés après le checksum dans `MicropolisMfmFormat`.
+      - [x] Déplacer la longueur du préambule MFM nul et celle du gap final dans `MicropolisMfmFormat`.
+      - [x] Définir centralement l'ordre marque, cylindre, secteur, zone réservée, données, checksum et zone finale.
+      - [x] Déplacer la base `255`, la valeur initiale et la règle de réduction du checksum dans un composant commun au décodeur et à l'encodeur Micropolis.
+    - [x] Construction d'un secteur Micropolis
+      - [x] Extraire la construction de l'enregistrement complet dans une fonction privée recevant le cylindre, le secteur et les données validés.
+      - [x] Conserver explicitement l'exclusion de la marque `0xff` du calcul de checksum actuellement réalisée par `record.Skip(1)`.
+      - [x] Déplacer `Checksum` dans le composant Micropolis commun.
+      - [x] Conserver dans ce composant l'ordre actuel du calcul : réduire la somme lorsqu'elle dépasse 255, puis ajouter l'octet suivant.
+      - [x] Extraire l'écriture du préambule nul, de l'enregistrement et du gap final dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 256 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider le cylindre avant sa conversion en octet.
+      - [x] Valider le numéro de secteur avant sa conversion en octet.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Développer la boucle de checksum afin que sa condition, sa réduction et son addition n'occupent plus une même ligne.
+      - [x] Normaliser les espaces dans les collections, conversions et appels.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur Micropolis
+      - [x] Tester la disposition et les longueurs exactes de chaque champ de l'enregistrement.
+      - [x] Tester que la marque est exclue du checksum et que les zones réservées qui la suivent y participent selon le code actuel.
+      - [x] Tester le checksum avec une somme inférieure à 255, égale à 255 et nécessitant une ou plusieurs réductions.
+      - [x] Tester le préambule nul et le gap final.
+      - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste Micropolis avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/NorthstarMfmTrackEncoder.cs`
     - [ ] Identité de l'encodeur NorthStar
       - [ ] Remplacer l'identifiant brut `northstar.mfm` par la définition centrale correspondante.

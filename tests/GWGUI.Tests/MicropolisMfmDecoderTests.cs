@@ -65,4 +65,32 @@ public sealed class MicropolisMfmDecoderTests
         Assert.Contains(result.Structures, structure => structure.Kind == FluxStructureKind.FormatHeader);
         Assert.True(result.Confidence > 0);
     }
+
+    [Fact]
+    public void ChecksumExcludesMarkIncludesReservedBytesAndReducesInDefinedOrder()
+    {
+        var record = MicropolisMfmRecord.Create(2, 3, new byte[MicropolisMfmFormat.SectorSize]);
+        var coveredBytes = record.Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength).ToArray();
+
+        Assert.Equal(MicropolisMfmFormat.CylinderOffset, MicropolisMfmFormat.ChecksumDataOffset);
+        Assert.Equal(record.StoredChecksum, MicropolisChecksum.Compute(coveredBytes));
+        record.Bytes[MicropolisMfmFormat.RecordIdentityByteCount] = 1;
+        Assert.NotEqual(record.StoredChecksum, MicropolisChecksum.Compute(record.Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)));
+        Assert.Equal(1, MicropolisChecksum.Compute([1]));
+        Assert.Equal(255, MicropolisChecksum.Compute([255]));
+        Assert.Equal(0, MicropolisChecksum.Compute([255, 255, 1]));
+    }
+
+    [Fact]
+    public void EncoderWritesFinalGapAndRejectsInvalidInputs()
+    {
+        var encoder = new MicropolisMfmTrackEncoder();
+        var payload = new byte[MicropolisMfmFormat.SectorSize];
+        var encoded = encoder.Encode(new(0, 0, [new(0, payload)]));
+
+        Assert.Equal(Enumerable.Range(0, MicropolisMfmFormat.GapBitCount).Select(index => index % 2 == 0), encoded.Bits.TakeLast(MicropolisMfmFormat.GapBitCount));
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new(0, payload[..^1])])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(TrackEncodingLimits.MaximumCylinder + 1, 0, [new(0, payload)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(MicropolisMfmFormat.MaximumSectorNumber + 1, payload)])));
+    }
 }
