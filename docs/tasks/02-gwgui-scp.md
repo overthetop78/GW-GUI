@@ -5765,34 +5765,34 @@
       - [x] Tester une image DOS 3.2 à `13` secteurs et une image DOS 3.3 à `16` secteurs par piste.
       - [x] Tester chaque type de fichier, un nom avec bit fort et une extension vide.
       - [x] Tester plusieurs secteurs de liste T/S, une chaîne cyclique et un secteur absent.
-  - [ ] Apple Inform/XZIP
-    - [ ] `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`
-      - [ ] Créer `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`.
-      - [ ] Ajouter la taille sectorielle `256`, les `64` secteurs d'interpréteur et les `394` secteurs maximum de l'histoire.
-      - [ ] Ajouter la table d'entrelacement des seize secteurs dans son ordre exact actuel.
-      - [ ] Ajouter la version Z-machine `5` et la taille minimale d'en-tête `64`.
-      - [ ] Ajouter les offsets de high memory, initial PC, dictionnaire, objets, variables globales, static memory, longueur et checksum.
-      - [ ] Ajouter l'unité de longueur propre à la version Z-machine reconnue.
-      - [ ] Remplacer chaque valeur brute correspondante dans `AppleInformXzipFileSystemReader`.
-      - [ ] Documenter en français chaque constante et la table d'entrelacement.
-    - [ ] `FileSystems/Apple/InformXzip/ZMachineStoryHeader.cs`
-      - [ ] Créer `ZMachineStoryHeader` avec les champs actuellement validés par `TryReadStoryLength`.
-      - [ ] Déplacer dans sa fabrique la validation des adresses, de la longueur déclarée et de la version.
-      - [ ] Déplacer le calcul de checksum dans une méthode du type validé.
-      - [ ] Remplacer `TryReadStoryLength` et `ChecksumMatches` par ce type.
-      - [ ] Documenter en français le type, ses champs et ses méthodes.
-    - [ ] `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`
-      - [ ] Créer `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`.
-      - [ ] Ajouter l'erreur de layout absent avec version et longueur observées.
-      - [ ] Ajouter l'erreur de secteur logique absent avec son numéro.
-      - [ ] Ajouter l'erreur de longueur d'histoire incohérente avec longueurs déclarée et disponible.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions Inform/XZIP
-      - [ ] Tester l'ordre exact des seize secteurs entrelacés.
-      - [ ] Tester une histoire version 5 valide et son checksum.
-      - [ ] Tester une version, une adresse, une longueur et un checksum invalides.
-      - [ ] Tester un secteur logique absent.
+  - [x] Apple Inform/XZIP
+    - [x] `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`
+      - [x] Créer `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`.
+      - [x] Ajouter la taille sectorielle `256`, les `64` secteurs d'interpréteur et les `394` secteurs maximum de l'histoire.
+      - [x] Ajouter la table d'entrelacement des seize secteurs dans son ordre exact actuel.
+      - [x] Ajouter la version Z-machine `5` et la taille minimale d'en-tête `64`.
+      - [x] Ajouter les offsets de high memory, initial PC, dictionnaire, objets, variables globales, static memory, longueur et checksum.
+      - [x] Ajouter l'unité de longueur propre à la version Z-machine reconnue.
+      - [x] Remplacer chaque valeur brute correspondante dans `AppleInformXzipFileSystemReader`.
+      - [x] Documenter en français chaque constante et la table d'entrelacement.
+    - [x] `FileSystems/Apple/InformXzip/ZMachineStoryHeader.cs`
+      - [x] Créer `ZMachineStoryHeader` avec les champs actuellement validés par `TryReadStoryLength`.
+      - [x] Déplacer dans sa fabrique la validation des adresses, de la longueur déclarée et de la version.
+      - [x] Déplacer le calcul de checksum dans une méthode du type validé.
+      - [x] Remplacer `TryReadStoryLength` et `ChecksumMatches` par ce type.
+      - [x] Documenter en français le type, ses champs et ses méthodes.
+    - [x] `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`
+      - [x] Créer `FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`.
+      - [x] Ajouter l'erreur de layout absent avec version et longueur observées.
+      - [x] Ajouter l'erreur de secteur logique absent avec son numéro.
+      - [x] Ajouter l'erreur de longueur d'histoire incohérente avec longueurs déclarée et disponible.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions Inform/XZIP
+      - [x] Tester l'ordre exact des seize secteurs entrelacés.
+      - [x] Tester une histoire version 5 valide et son checksum.
+      - [x] Tester une version, une adresse, une longueur et un checksum invalides.
+      - [x] Tester un secteur logique absent.
   - [ ] Apple ProDOS
     - [ ] `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Apple/ProDos/ProDosFileSystemLayout.cs`.
