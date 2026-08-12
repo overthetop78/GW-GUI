@@ -3237,14 +3237,14 @@
     - [x] Déplacer les primitives FM/MFM dans `TrackBitEncoding.cs`.
     - [x] Adapter ses consommateurs.
     - [x] Supprimer `FluxEncoding.cs`.
-- [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncodeModels.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Créer `Encoding/TrackSector.cs`, `TrackEncodeRequest.cs`, `EncodedTrack.cs` et `ITrackEncoder.cs`.
-    - [ ] Déplacer les quatre types.
-    - [ ] Supprimer `TrackEncodeModels.cs`.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `TrackSector, TrackEncodeRequest, EncodedTrack, ITrackEncoder`.
-    - [ ] Ajouter la documentation XML des méthodes `TrackSector, TrackEncodeRequest, EncodedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/Encoding/TrackEncodeModels.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Créer `Encoding/TrackSector.cs`, `TrackEncodeRequest.cs`, `EncodedTrack.cs` et `ITrackEncoder.cs`.
+    - [x] Déplacer les quatre types.
+    - [x] Supprimer `TrackEncodeModels.cs`.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `TrackSector, TrackEncodeRequest, EncodedTrack, ITrackEncoder`.
+    - [x] Ajouter la documentation XML des méthodes `TrackSector, TrackEncodeRequest, EncodedTrack`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/Encoding/TrackEncoderBase.cs`
   - [ ] Validations et erreurs communes
     - [ ] Créer `Encoding/TrackEncodingLimits.cs` avec les bornes de cylindre, de face et de code de taille actuellement écrites en brut.
