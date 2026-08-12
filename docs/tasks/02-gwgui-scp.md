@@ -5469,19 +5469,20 @@
     - [ ] Vérifier la sélection explicite de chaque Reader avec la constante correspondante.
     - [x] Exécuter les tests ciblés de `FileSystemRegistry`.
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs`
-  - [ ] Création des noms affichés de systèmes de fichiers
-    - [ ] Créer `FileSystems/Definitions/FileSystemDisplayNames.cs` séparément de `FileSystemIds.cs`.
-    - [ ] Ajouter une constante pour chaque nom de volume ou de système actuellement construit en texte brut par un Reader.
-    - [ ] Prévoir des méthodes recevant la variante uniquement lorsque le nom affiché contient une donnée réellement variable.
-  - [ ] Raccordement des Readers
-    - [ ] Remplacer les noms bruts dans les Readers Acorn ADFS/FileCore, BBC DFS, AmigaDOS, CP/M, Amstrad CP/M, Apple DOS, Inform/XZIP, ProDOS et Lisa.
-    - [ ] Remplacer les noms bruts dans les Readers Atari DOS, Coherent, Commodore DOS, FAT12, Macintosh HFS, Macintosh MFS, RT-11 et UCSD.
-    - [ ] Conserver séparés l'identifiant technique, le nom affiché et le nom de volume réellement lu dans l'image.
-  - [ ] Documentation XML française
-    - [ ] Documenter en français le type, chaque constante et chaque méthode de nom variable.
+  - [x] Création des noms affichés de systèmes de fichiers
+    - [x] Créer `FileSystems/Definitions/FileSystemDisplayNames.cs` séparément de `FileSystemIds.cs`.
+    - [x] Ajouter une constante pour chaque nom de volume ou de système actuellement construit en texte brut par un Reader.
+    - [x] Prévoir des méthodes recevant la variante uniquement lorsque le nom affiché contient une donnée réellement variable.
+  - [x] Raccordement des Readers
+    - [x] Remplacer les noms bruts dans les Readers Acorn ADFS/FileCore, BBC DFS, AmigaDOS, CP/M, Amstrad CP/M, Apple DOS, Inform/XZIP, ProDOS et Lisa.
+    - [x] Remplacer les noms bruts dans les Readers Atari DOS, Coherent, Commodore DOS, FAT12, Macintosh HFS, Macintosh MFS, RT-11 et UCSD.
+    - [x] Conserver séparés l'identifiant technique, le nom affiché et le nom de volume réellement lu dans l'image.
+  - [x] Documentation XML française
+    - [x] Documenter en français le type, chaque constante et chaque méthode de nom variable.
   - [ ] Tests ciblés
     - [ ] Vérifier que chaque Reader enregistré produit le nom commun associé à son identifiant.
-    - [ ] Vérifier les noms variant selon AmigaDOS, CP/M et FAT sans comparer un texte de diagnostic localisé.
+    - [x] Vérifier les noms variant selon AmigaDOS, CP/M et FAT sans comparer un texte de diagnostic localisé.
+    - Blocage : les corpus actuels ne couvrent pas encore une image lisible pour chacun des 17 Readers enregistrés ; la vérification exhaustive de leur sortie reste donc non cochée.
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs`
   - [ ] Avertissements neutres répétés entre plusieurs systèmes
     - [ ] Créer `FileSystems/Definitions/FileSystemWarningMessages.cs`.

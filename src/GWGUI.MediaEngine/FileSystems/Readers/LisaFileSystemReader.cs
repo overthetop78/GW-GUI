@@ -64,13 +64,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
         }
 
         var freePages = image.AvailableBlocks.Count(block => TagFileId(block) is 0x0000 or 0x7fff);
-        var fileSystemName = version switch
-        {
-            0x000e => "Lisa Office System (table catalog)",
-            0x000f => "Lisa Office System (hash catalog)",
-            0x0011 => "Lisa Office System (B-tree catalog)",
-            _ => $"Lisa Office System (${version:X4})"
-        };
+        var fileSystemName = Definitions.FileSystemDisplayNames.Lisa(version);
         return new(volumeName, fileSystemName, image.Capacity, (long)freePages * image.BlockSize,
             null, null, entries, warnings);
     }

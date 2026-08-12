@@ -99,7 +99,7 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
 
         var commentParts = Array.Empty<string>();
         if (commentParts.Any()) warnings.Insert(0, string.Join(" · ", commentParts!));
-        return new FileSystemVolume(volumeName, "DEC RT-11", image.Capacity, freeBlocks * 512,
+        return new FileSystemVolume(volumeName, Definitions.FileSystemDisplayNames.Rt11, image.Capacity, freeBlocks * 512,
             null, entries.Select(entry => entry.Modified).Where(date => date.HasValue).Max(),
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }

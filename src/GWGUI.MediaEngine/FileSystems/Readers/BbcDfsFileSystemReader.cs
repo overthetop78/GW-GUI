@@ -68,7 +68,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
                 (uint)((directoryByte & 0x80) != 0 ? 1 : 0), start, valid, [], content));
         }
         var capacity = (long)totalSectors * BbcDfsGeometry.SectorSize;
-        return new(title.Trim(), "Acorn DFS", capacity, Math.Max(0, totalSectors - usedSectors) * (long)BbcDfsGeometry.SectorSize,
+        return new(title.Trim(), Definitions.FileSystemDisplayNames.AcornDfs, capacity, Math.Max(0, totalSectors - usedSectors) * (long)BbcDfsGeometry.SectorSize,
             null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

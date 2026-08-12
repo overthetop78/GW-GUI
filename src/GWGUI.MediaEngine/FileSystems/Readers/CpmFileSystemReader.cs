@@ -81,7 +81,7 @@ public sealed class CpmFileSystemReader : IFileSystemReader
                 (uint)group.Key.User, -1, metadataValid, [], content.ToArray()));
         }
         var usedBlocks = extents.SelectMany(extent => extent.Allocations).Where(block => block != 0).Distinct().Count();
-        return new(volumeName, "CP/M 3", image.Capacity, Math.Max(0, totalBlocks - usedBlocks - layout.DirectoryBlocks) * (long)layout.AllocationBlockSize,
+        return new(volumeName, Definitions.FileSystemDisplayNames.Cpm3, image.Capacity, Math.Max(0, totalBlocks - usedBlocks - layout.DirectoryBlocks) * (long)layout.AllocationBlockSize,
             null, null, entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

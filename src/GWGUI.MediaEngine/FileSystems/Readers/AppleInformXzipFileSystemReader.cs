@@ -50,7 +50,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
         ];
 
         var used = interpreter.LongLength + storyFile.LongLength;
-        return new("", "Apple II Inform/XZIP", image.Capacity, Math.Max(0, image.Capacity - used), null, null,
+        return new("", Definitions.FileSystemDisplayNames.AppleInformXzip, image.Capacity, Math.Max(0, image.Capacity - used), null, null,
             entries, []);
     }
 

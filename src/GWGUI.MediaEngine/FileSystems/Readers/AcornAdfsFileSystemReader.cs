@@ -38,7 +38,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
         var root = ReadDirectory(image, layout.RootAddress, layout.Resolve, visited, warnings, 0);
         var volumeName = layout.VolumeName;
         var freeBytes = layout.FreeBytes;
-        return new(volumeName.Length == 0 ? root.Name : volumeName, "Acorn ADFS", image.Capacity, freeBytes, null, null, root.Children, warnings);
+        return new(volumeName.Length == 0 ? root.Name : volumeName, Definitions.FileSystemDisplayNames.AcornAdfs, image.Capacity, freeBytes, null, null, root.Children, warnings);
     }
 
     private sealed record DirectoryData(string Name, string Title, IReadOnlyList<FileSystemEntry> Children);

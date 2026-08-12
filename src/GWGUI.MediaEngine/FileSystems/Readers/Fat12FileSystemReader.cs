@@ -39,9 +39,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         var entries = ReadDirectory(image, root, fat, layout, warnings, 0, new HashSet<int>());
         var freeClusters = Enumerable.Range(2, Math.Max(0, layout.ClusterCount - 2)).Count(cluster => ReadFat12(fat, cluster) == 0);
         var label = ReadVolumeLabel(root) ?? ReadBootVolumeLabel(boot.Data);
-        var fileSystemName = image.FormatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12"
-            : image.FormatId.StartsWith("msx.", StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12"
-            : "Atari TOS FAT12";
+        var fileSystemName = Definitions.FileSystemDisplayNames.Fat12(image.FormatId);
         return new(label, fileSystemName, image.Capacity, (long)freeClusters * layout.SectorsPerCluster * 512,
             null, null, entries, warnings);
     }

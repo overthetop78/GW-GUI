@@ -51,13 +51,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
         var visited = new HashSet<int> { rootBlock };
         var entries = ReadDirectory(image, root, hashSize, dosType, visited, warnings, 0);
         var freeBlocks = CountFreeBlocks(image, root, warnings);
-        var fileSystem = dosType switch
-        {
-            0 => "AmigaDOS OFS", 1 => "AmigaDOS FFS", 2 => "AmigaDOS OFS International",
-            3 => "AmigaDOS FFS International", 4 => "AmigaDOS OFS Directory Cache",
-            5 => "AmigaDOS FFS Directory Cache", 6 => "AmigaDOS OFS Long Names", 7 => "AmigaDOS FFS Long Names",
-            _ => "AmigaDOS"
-        };
+        var fileSystem = Definitions.FileSystemDisplayNames.AmigaDos(dosType);
         return new(ReadBString(root, 432, 30), fileSystem, image.Capacity, (long)freeBlocks * BlockSize,
             ReadDate(root, 420), ReadDate(root, 472), entries, warnings);
     }

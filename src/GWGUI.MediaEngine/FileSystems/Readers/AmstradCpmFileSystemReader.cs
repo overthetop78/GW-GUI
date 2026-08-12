@@ -77,7 +77,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
         var usedBlocks = extents.SelectMany(extent => extent.Allocations).Where(block => block != 0).Distinct().Count();
         var totalBlocks = Math.Max(0, (bytes.Length - layout.AllocationOrigin) / layout.AllocationBlockSize);
         var freeBlocks = Math.Max(0, totalBlocks - usedBlocks - layout.DirectoryBlocks);
-        var system = image.FormatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase) ? "Amstrad PCW CP/M Plus" : "Amstrad CPC CP/M";
+        var system = Definitions.FileSystemDisplayNames.AmstradCpm(image.FormatId);
         return new(volumeName, system, image.Capacity, freeBlocks * (long)layout.AllocationBlockSize, null, null,
             files.OrderBy(file => file.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }

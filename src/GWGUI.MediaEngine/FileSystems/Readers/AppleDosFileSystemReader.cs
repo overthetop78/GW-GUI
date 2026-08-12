@@ -50,7 +50,7 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
             track = bytes[1]; sector = bytes[2];
         }
         var free = CountFree(vtoc, tracks, sectors);
-        return new($"DOS-{vtoc[6]:D3}", sectors == 13 ? "Apple DOS 3.2" : "Apple DOS 3.3", image.Capacity, (long)free * 256, null, null,
+        return new($"DOS-{vtoc[6]:D3}", sectors == 13 ? Definitions.FileSystemDisplayNames.AppleDos32 : Definitions.FileSystemDisplayNames.AppleDos33, image.Capacity, (long)free * 256, null, null,
             entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray(), warnings);
     }
 

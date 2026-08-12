@@ -41,7 +41,7 @@ public sealed class CommodoreDosFileSystemReader : IFileSystemReader
         }
         var entries = ReadDirectory(image, directoryTrack, directorySector, warnings);
         var freeBlocks = ReadFreeBlocks(image, is1581);
-        return new(name, "CBM DOS", image.Capacity, Math.Max(0, freeBlocks) * 256L, null, null, entries, warnings);
+        return new(name, Definitions.FileSystemDisplayNames.CommodoreDos, image.Capacity, Math.Max(0, freeBlocks) * 256L, null, null, entries, warnings);
     }
 
     private static IReadOnlyList<FileSystemEntry> ReadDirectory(SectorImage image, int firstTrack, int firstSector, List<string> warnings)

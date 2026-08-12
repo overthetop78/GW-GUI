@@ -27,7 +27,7 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
         var root = image.GetBlock(2).Span; var name = ReadName(root, 4); var bitmap = ReadU16(root, 4 + 35); var total = ReadU16(root, 4 + 37);
         var warnings = new List<string>(); var entries = ReadDirectory(image, 2, warnings, new HashSet<int>(), 0);
         var free = CountFreeBlocks(image, bitmap, Math.Min(total, image.BlockCount), warnings);
-        var system = image.FormatId.StartsWith("apple3.", StringComparison.OrdinalIgnoreCase) ? "Apple SOS / ProDOS" : "Apple ProDOS";
+        var system = Definitions.FileSystemDisplayNames.ProDos(image.FormatId);
         return new(name, system, (long)Math.Min(total, image.BlockCount) * 512, (long)free * 512,
             ReadDate(root, 4 + 24), null, entries, warnings);
     }
