@@ -5738,33 +5738,33 @@
         - [ ] Tester une allocation hors image, une allocation traversant un bloc absent, une allocation dupliquée et le calcul d'espace libre.
         - [ ] Tester le rejet d'un Disk Specification invalide, d'un identifiant de secteur hors plage et d'un répertoire CPC non crédible.
         - État : le Disk Specification invalide est testé ; les autres scénarios composés et les corpus manquants restent non cochés.
-  - [ ] Apple DOS
-    - [ ] `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`
-      - [ ] Créer `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`.
-      - [ ] Ajouter la taille sectorielle `256`, les capacités de `35` pistes et les nombres de secteurs `13` et `16`.
-      - [ ] Ajouter la piste VTOC `17`, ses offsets de pointeur de catalogue, de numéro de volume, de nombre de pistes et de secteurs par piste.
-      - [ ] Ajouter l'offset de la première entrée de catalogue, la taille d'une entrée et le nombre d'entrées par secteur.
-      - [ ] Ajouter les offsets de piste, secteur, type, nom et nombre de secteurs d'une entrée.
-      - [ ] Ajouter les offsets des couples piste/secteur et leur nombre par secteur de liste T/S.
-      - [ ] Ajouter le masque `0x7F` utilisé pour les noms et les types.
-      - [ ] Remplacer chaque nombre brut correspondant dans `AppleDosFileSystemReader`.
-      - [ ] Documenter en français chaque constante avec sa structure et son unité.
-    - [ ] `FileSystems/Apple/Dos/AppleDosFileType.cs`
-      - [ ] Créer l'enum `AppleDosFileType` avec les valeurs Text, Integer BASIC, Applesoft BASIC, Binary, S, Relocatable, A et B.
-      - [ ] Remplacer le `switch` numérique de `TypeName` par l'enum.
-      - [ ] Déplacer les libellés d'affichage hors du Reader technique.
-      - [ ] Documenter en français l'enum et chacune de ses valeurs.
-    - [ ] `FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de catalogue absent avec piste et secteur VTOC observés.
-      - [ ] Ajouter l'erreur de chaîne T/S cyclique avec nom, piste et secteur.
-      - [ ] Ajouter l'erreur de secteur de données absent avec nom, piste et secteur.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions Apple DOS
-      - [ ] Tester une image DOS 3.2 à `13` secteurs et une image DOS 3.3 à `16` secteurs par piste.
-      - [ ] Tester chaque type de fichier, un nom avec bit fort et une extension vide.
-      - [ ] Tester plusieurs secteurs de liste T/S, une chaîne cyclique et un secteur absent.
+  - [x] Apple DOS
+    - [x] `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`
+      - [x] Créer `FileSystems/Apple/Dos/AppleDosFileSystemLayout.cs`.
+      - [x] Ajouter la taille sectorielle `256`, les capacités de `35` pistes et les nombres de secteurs `13` et `16`.
+      - [x] Ajouter la piste VTOC `17`, ses offsets de pointeur de catalogue, de numéro de volume, de nombre de pistes et de secteurs par piste.
+      - [x] Ajouter l'offset de la première entrée de catalogue, la taille d'une entrée et le nombre d'entrées par secteur.
+      - [x] Ajouter les offsets de piste, secteur, type, nom et nombre de secteurs d'une entrée.
+      - [x] Ajouter les offsets des couples piste/secteur et leur nombre par secteur de liste T/S.
+      - [x] Ajouter le masque `0x7F` utilisé pour les noms et les types.
+      - [x] Remplacer chaque nombre brut correspondant dans `AppleDosFileSystemReader`.
+      - [x] Documenter en français chaque constante avec sa structure et son unité.
+    - [x] `FileSystems/Apple/Dos/AppleDosFileType.cs`
+      - [x] Créer l'enum `AppleDosFileType` avec les valeurs Text, Integer BASIC, Applesoft BASIC, Binary, S, Relocatable, A et B.
+      - [x] Remplacer le `switch` numérique de `TypeName` par l'enum.
+      - [x] Déplacer les libellés d'affichage hors du Reader technique.
+      - [x] Documenter en français l'enum et chacune de ses valeurs.
+    - [x] `FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de catalogue absent avec piste et secteur VTOC observés.
+      - [x] Ajouter l'erreur de chaîne T/S cyclique avec nom, piste et secteur.
+      - [x] Ajouter l'erreur de secteur de données absent avec nom, piste et secteur.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions Apple DOS
+      - [x] Tester une image DOS 3.2 à `13` secteurs et une image DOS 3.3 à `16` secteurs par piste.
+      - [x] Tester chaque type de fichier, un nom avec bit fort et une extension vide.
+      - [x] Tester plusieurs secteurs de liste T/S, une chaîne cyclique et un secteur absent.
   - [ ] Apple Inform/XZIP
     - [ ] `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`
       - [ ] Créer `FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`.

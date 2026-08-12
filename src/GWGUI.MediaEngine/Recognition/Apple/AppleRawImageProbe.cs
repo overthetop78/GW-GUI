@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.AppleDos;
+using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
 using GWGUI.MediaEngine.FileSystems.ProDos;
@@ -29,8 +29,8 @@ internal static class AppleRawImageProbe
     public static bool LooksLikeDos33(ReadOnlySpan<byte> data)
     {
         if (data.Length != AppleIIGeometry.Capacity) return false;
-        var offset = AppleDosVtoc.Track * AppleIIGeometry.SectorsPerTrack * AppleIIGeometry.SectorSize;
-        return AppleDosVtoc.IsValid(data.Slice(offset, AppleIIGeometry.SectorSize), AppleIIGeometry.TrackCount, AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.SectorSize);
+        var offset = AppleDosFileSystemLayout.VtocTrack * AppleIIGeometry.SectorsPerTrack * AppleIIGeometry.SectorSize;
+        return AppleDosFileSystemLayout.IsValidVtoc(data.Slice(offset, AppleIIGeometry.SectorSize), AppleIIGeometry.TrackCount, AppleIIGeometry.SectorsPerTrack);
     }
 
     /// <summary>Sonde l'en-tête de volume ProDOS sans lever d'exception sur un contenu trop court.</summary>

@@ -1,5 +1,5 @@
 using System.Buffers.Binary;
-using GWGUI.MediaEngine.FileSystems.AppleDos;
+using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Lisa;
 using GWGUI.MediaEngine.FileSystems.Macintosh;
 using GWGUI.MediaEngine.FileSystems.ProDos;
@@ -17,13 +17,13 @@ public sealed class AppleRawImageProbeTests
     public void ProbesDos33VtocWithoutFalsePositive()
     {
         var data = new byte[AppleIIGeometry.Capacity];
-        var offset = AppleDosVtoc.Track * AppleIIGeometry.TrackSize;
-        data[offset + AppleDosVtoc.CatalogTrackOffset] = 1;
-        data[offset + AppleDosVtoc.CatalogSectorOffset] = 0;
-        data[offset + AppleDosVtoc.SectorsPerTrackOffset] = AppleIIGeometry.SectorsPerTrack;
-        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(offset + AppleDosVtoc.SectorSizeOffset), AppleIIGeometry.SectorSize);
+        var offset = AppleDosFileSystemLayout.VtocTrack * AppleIIGeometry.TrackSize;
+        data[offset + AppleDosFileSystemLayout.VtocCatalogTrackOffset] = 1;
+        data[offset + AppleDosFileSystemLayout.VtocCatalogSectorOffset] = 0;
+        data[offset + AppleDosFileSystemLayout.VtocSectorsPerTrackOffset] = AppleIIGeometry.SectorsPerTrack;
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(offset + AppleDosFileSystemLayout.VtocSectorSizeOffset), AppleIIGeometry.SectorSize);
         Assert.True(AppleRawImageProbe.LooksLikeDos33(data));
-        data[offset + AppleDosVtoc.CatalogSectorOffset] = AppleIIGeometry.SectorsPerTrack;
+        data[offset + AppleDosFileSystemLayout.VtocCatalogSectorOffset] = AppleIIGeometry.SectorsPerTrack;
         Assert.False(AppleRawImageProbe.LooksLikeDos33(data));
     }
 
