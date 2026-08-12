@@ -104,6 +104,38 @@ public sealed class QdMo5MfmDecoderTests
         Assert.True(result.Confidence > 0);
     }
 
+    [Fact]
+    public void EncoderWritesWideAddressReservedBytesChecksummedPrefixAndFinalGap()
+    {
+        const int sectorNumber = 0x1234;
+        const byte prefix = 0x33;
+        var payload = Enumerable.Range(0, QdMo5MfmFormat.SectorSize).Select(index => (byte)index).ToArray();
+        var attributes = new Dictionary<string, int> { [QdMo5MfmFormat.PrefixAttribute] = prefix };
+        var encoded = new QdMo5MfmTrackEncoder().Encode(new(0, 0, [new(sectorNumber, payload, Attributes: attributes)]));
+        var stream = new FluxBitstream(encoded.Bits.ToArray(), TrackEncodingDefaults.BitCellTicks);
+        var header = Assert.IsType<QdMo5MfmHeader>(QdMo5MfmDecoder.TryDecodeHeader(stream, 0));
+        var dataOffset = QdMo5MfmDecoder.FindNextData(stream, QdMo5MfmFormat.HeaderBitCount, stream.Bits.Length);
+        var data = Assert.IsType<QdMo5MfmData>(QdMo5MfmDecoder.TryDecodeData(stream, dataOffset));
+
+        Assert.Equal(sectorNumber, header.Sector);
+        Assert.All(header.ReservedBytes, value => Assert.Equal(0, value));
+        Assert.Equal(prefix, data.Prefix);
+        Assert.Equal(payload, data.Payload);
+        Assert.Equal(QdMo5Checksum.Compute(prefix, payload), data.StoredChecksum);
+        Assert.Equal(Enumerable.Range(0, QdMo5MfmFormat.DataGapBitCount).Select(index => index % 2 == 0), encoded.Bits.TakeLast(QdMo5MfmFormat.DataGapBitCount));
+    }
+
+    [Fact]
+    public void EncoderRejectsInvalidSizeSectorAndPrefix()
+    {
+        var encoder = new QdMo5MfmTrackEncoder();
+        var payload = new byte[QdMo5MfmFormat.SectorSize];
+
+        Assert.Throws<ArgumentException>(() => encoder.Encode(new(0, 0, [new(0, payload[..^1])])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(QdMo5MfmFormat.MaximumSectorNumber + 1, payload)])));
+        Assert.Throws<ArgumentOutOfRangeException>(() => encoder.Encode(new(0, 0, [new(0, payload, Attributes: new Dictionary<string, int> { [QdMo5MfmFormat.PrefixAttribute] = QdMo5MfmFormat.MaximumPrefix + 1 })])));
+    }
+
     private static FluxBitstream HeaderStream(int sector)
     {
         var bits = TrackBitEncoding.Bits();

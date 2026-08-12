@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Encoding;
 
 namespace GWGUI.MediaEngine.Decoding.Definitions;
 
@@ -25,6 +26,12 @@ internal static class QdMo5MfmFormat
     public const byte HeaderAddressMark = 0xfb;
     /// <summary>Nombre d'octets du numéro de secteur.</summary>
     public const int SectorNumberByteCount = 2;
+    /// <summary>Décalage du premier octet d'un numéro de secteur grand-boutiste.</summary>
+    public const int SectorNumberHighByteShift = BitPrimitives.BitsPerByte;
+    /// <summary>Plus petit numéro de secteur encodable.</summary>
+    public const int MinimumSectorNumber = ushort.MinValue;
+    /// <summary>Plus grand numéro de secteur encodable.</summary>
+    public const int MaximumSectorNumber = ushort.MaxValue;
     /// <summary>Nombre d'octets réservés de l'en-tête.</summary>
     public const int HeaderPaddingByteCount = 13;
     /// <summary>Nombre d'octets MFM après le préambule de l'en-tête.</summary>
@@ -33,6 +40,10 @@ internal static class QdMo5MfmFormat
     public const int HeaderBitCount = PreambleBitCount + HeaderBytesAfterPreamble * EncodedByteBitCount;
     /// <summary>Préfixe de données par défaut.</summary>
     public const byte DefaultPrefix = 0x5a;
+    /// <summary>Plus petite valeur de préfixe encodable.</summary>
+    public const int MinimumPrefix = byte.MinValue;
+    /// <summary>Plus grande valeur de préfixe encodable.</summary>
+    public const int MaximumPrefix = byte.MaxValue;
     /// <summary>Nom de l'attribut portant le préfixe.</summary>
     public const string PrefixAttribute = "prefix";
     /// <summary>Nombre d'octets de préfixe.</summary>
@@ -74,13 +85,19 @@ internal static class QdMo5MfmFormat
 
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"QD MO5 sectors contain {SectorSize} bytes; received {actualSize} bytes.");
+    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, "sector number", sectorNumber, MaximumSectorNumber);
+    /// <summary>Crée l'exception signalant un préfixe impossible à encoder.</summary>
+    public static ArgumentOutOfRangeException InvalidPrefix(int prefix) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, PrefixAttribute, prefix, MaximumPrefix);
 }
 
 /// <summary>Calcule le checksum additif du format QD MO5.</summary>
 internal static class QdMo5Checksum
 {
+    /// <summary>Valeur initiale du checksum.</summary>
+    private const byte InitialValue = 0;
     /// <summary>Calcule la somme du préfixe et de la charge utile.</summary>
-    public static byte Compute(byte prefix, IEnumerable<byte> data) => (byte)(prefix + data.Sum(value => value));
+    public static byte Compute(byte prefix, IEnumerable<byte> data) => (byte)(InitialValue + prefix + data.Sum(value => value));
 }
 
 /// <summary>Représente un en-tête QD MO5 décodé.</summary>

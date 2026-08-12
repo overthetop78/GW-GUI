@@ -4169,41 +4169,41 @@
       - [x] Tester le préambule, les 512 octets de données, le checksum rotatif et le gap final avec un secteur connu.
       - [x] Tester le rejet d'une taille sectorielle, d'un cylindre et d'un numéro de secteur hors plage.
       - [x] Tester, par l'encodeur public, l'aller-retour d'une piste NorthStar avec le décodeur correspondant.
-  - [ ] `Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
-    - [ ] Identité et préfixe de l'encodeur QD MO5
-      - [ ] Remplacer l'identifiant brut `qdmo5.mfm` par la définition centrale correspondante.
-      - [ ] Remplacer le nom brut `QD MO5 MFM` par la définition centrale correspondante.
-      - [ ] Remplacer la clé d'attribut brute `prefix` et sa valeur par défaut `0x5a` par les définitions QD MO5 correspondantes.
-    - [ ] Définitions du format QD MO5 MFM
-      - [ ] Déplacer la taille sectorielle dans `QdMo5MfmFormat`.
-      - [ ] Déplacer les deux motifs de synchronisation `A914A914A914A914A9144491` et `A914A914A914A914A9149144` dans `QdMo5MfmFormat` en partageant leur préfixe répété commun.
-      - [ ] Déplacer le nombre de treize octets réservés après le numéro de secteur dans `QdMo5MfmFormat`.
-      - [ ] Définir centralement l'ordre grand-boutiste des deux octets du numéro de secteur.
-      - [ ] Déplacer les longueurs des gaps d'adresse et de données dans `QdMo5MfmFormat`.
-      - [ ] Déplacer la valeur initiale et la règle de réduction sur un octet du checksum dans un composant commun au décodeur et à l'encodeur QD MO5.
-    - [ ] Construction du champ d'adresse
-      - [ ] Extraire la conversion du numéro de secteur validé en deux octets grand-boutistes.
-      - [ ] Extraire la construction des deux octets de secteur et des treize octets réservés dans une fonction privée.
-      - [ ] Extraire l'écriture de la synchronisation d'adresse, de ses champs et du premier gap dans une fonction privée.
-    - [ ] Construction du champ de données
-      - [ ] Extraire le calcul du checksum dans une fonction commune recevant le préfixe et les données.
-      - [ ] Conserver explicitement la règle actuelle selon laquelle le préfixe participe au checksum sans être ajouté par cette méthode à la charge utile MFM.
-      - [ ] Extraire l'écriture de la synchronisation de données, des données, du checksum et du second gap dans une fonction privée.
-    - [ ] Validation avant encodage
-      - [ ] Conserver la validation des secteurs de 128 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
-      - [ ] Valider que le numéro de secteur tient dans les deux octets écrits.
-      - [ ] Valider le préfixe avant sa conversion en octet.
-    - [ ] Présentation et CSDoc du fichier
-      - [ ] Normaliser les espaces dans les tableaux, conversions, sommes et concaténations.
-      - [ ] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
-      - [ ] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
-    - [ ] Tests ciblés de l'encodeur QD MO5
-      - [ ] Tester l'ordre des deux octets du numéro de secteur avec une valeur utilisant les deux octets.
-      - [ ] Tester la présence et le nombre exact des octets réservés ainsi que les deux synchronisations.
-      - [ ] Tester le checksum avec le préfixe par défaut puis un préfixe fourni explicitement.
-      - [ ] Vérifier que le préfixe participe au checksum sans apparaître comme octet supplémentaire dans la charge utile produite.
-      - [ ] Tester le rejet d'une taille sectorielle, d'un numéro de secteur et d'un préfixe hors plage.
-      - [ ] Tester, par l'encodeur public, l'aller-retour d'une piste QD MO5 avec le décodeur correspondant.
+  - [x] `Encoding/Encoders/QdMo5MfmTrackEncoder.cs`
+    - [x] Identité et préfixe de l'encodeur QD MO5
+      - [x] Remplacer l'identifiant brut `qdmo5.mfm` par la définition centrale correspondante.
+      - [x] Remplacer le nom brut `QD MO5 MFM` par la définition centrale correspondante.
+      - [x] Remplacer la clé d'attribut brute `prefix` et sa valeur par défaut `0x5a` par les définitions QD MO5 correspondantes.
+    - [x] Définitions du format QD MO5 MFM
+      - [x] Déplacer la taille sectorielle dans `QdMo5MfmFormat`.
+      - [x] Déplacer les deux motifs de synchronisation `A914A914A914A914A9144491` et `A914A914A914A914A9149144` dans `QdMo5MfmFormat` en partageant leur préfixe répété commun.
+      - [x] Déplacer le nombre de treize octets réservés après le numéro de secteur dans `QdMo5MfmFormat`.
+      - [x] Définir centralement l'ordre grand-boutiste des deux octets du numéro de secteur.
+      - [x] Déplacer les longueurs des gaps d'adresse et de données dans `QdMo5MfmFormat`.
+      - [x] Déplacer la valeur initiale et la règle de réduction sur un octet du checksum dans un composant commun au décodeur et à l'encodeur QD MO5.
+    - [x] Construction du champ d'adresse
+      - [x] Extraire la conversion du numéro de secteur validé en deux octets grand-boutistes.
+      - [x] Extraire la construction des deux octets de secteur et des treize octets réservés dans une fonction privée.
+      - [x] Extraire l'écriture de la synchronisation d'adresse, de ses champs et du premier gap dans une fonction privée.
+    - [x] Construction du champ de données
+      - [x] Extraire le calcul du checksum dans une fonction commune recevant le préfixe et les données.
+      - [x] Conserver explicitement la règle actuelle selon laquelle le préfixe participe au checksum sans être ajouté par cette méthode à la charge utile MFM.
+      - [x] Extraire l'écriture de la synchronisation de données, des données, du checksum et du second gap dans une fonction privée.
+    - [x] Validation avant encodage
+      - [x] Conserver la validation des secteurs de 128 octets en remplaçant le texte d'exception brut par la définition paramétrable correspondante.
+      - [x] Valider que le numéro de secteur tient dans les deux octets écrits.
+      - [x] Valider le préfixe avant sa conversion en octet.
+    - [x] Présentation et CSDoc du fichier
+      - [x] Normaliser les espaces dans les tableaux, conversions, sommes et concaténations.
+      - [x] Conserver sur une seule ligne chaque signature, appel et expression qui tient lisiblement sur une ligne.
+      - [x] Ajouter en français la CSDoc du type, des membres d'identité et de chaque méthode conservée ou créée.
+    - [x] Tests ciblés de l'encodeur QD MO5
+      - [x] Tester l'ordre des deux octets du numéro de secteur avec une valeur utilisant les deux octets.
+      - [x] Tester la présence et le nombre exact des octets réservés ainsi que les deux synchronisations.
+      - [x] Tester le checksum avec le préfixe par défaut puis un préfixe fourni explicitement.
+      - [x] Vérifier que le préfixe participe au checksum sans apparaître comme octet supplémentaire dans la charge utile produite.
+      - [x] Tester le rejet d'une taille sectorielle, d'un numéro de secteur et d'un préfixe hors plage.
+      - [x] Tester, par l'encodeur public, l'aller-retour d'une piste QD MO5 avec le décodeur correspondant.
   - [ ] `Encoding/Encoders/TycomFmTrackEncoder.cs`
     - [ ] Identité de l'encodeur TYCOM
       - [ ] Remplacer l'identifiant brut `tycom.fm` par la définition centrale correspondante.
