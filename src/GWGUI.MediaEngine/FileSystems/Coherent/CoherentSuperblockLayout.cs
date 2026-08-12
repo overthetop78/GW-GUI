@@ -31,4 +31,32 @@ internal static class CoherentSuperblockLayout
     public const char VolumePadding = ' ';
     /// <summary>Caractère de remplissage du nom de pack.</summary>
     public const char PackPadding = '\n';
+    /// <summary>Taille d'un inode.</summary>
+    public const int InodeSize = 64;
+    /// <summary>Numéro du premier inode utilisateur.</summary>
+    public const int RootInodeNumber = 2;
+    /// <summary>Mode identifiant un répertoire.</summary>
+    public const ushort DirectoryMode = 0x4000;
+    /// <summary>Masque isolant le type d'un inode.</summary>
+    public const ushort TypeMask = 0xf000;
+    /// <summary>Masque isolant les droits.</summary>
+    public const ushort ProtectionMask = 0x0fff;
+    /// <summary>Offset du mode dans un inode.</summary>
+    public const int InodeModeOffset = 0;
+    /// <summary>Offset de la taille dans un inode.</summary>
+    public const int InodeSizeOffset = 8;
+    /// <summary>Offset des pointeurs de blocs.</summary>
+    public const int InodePointersOffset = 12;
+    /// <summary>Taille d'un pointeur de bloc.</summary>
+    public const int InodePointerSize = 3;
+    /// <summary>Nombre total de pointeurs.</summary>
+    public const int InodePointerCount = 13;
+    /// <summary>Nombre de pointeurs directs.</summary>
+    public const int DirectPointerCount = 10;
+    /// <summary>Offset de la date de modification.</summary>
+    public const int InodeModifiedOffset = 56;
+    /// <summary>Taille d'une entrée de répertoire.</summary>
+    public const int DirectoryEntrySize = 16;
+    /// <summary>Longueur du nom dans une entrée.</summary>
+    public const int DirectoryNameLength = 14;
 }

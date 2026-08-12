@@ -5869,30 +5869,33 @@
   - [ ] Coherent
     - [ ] `FileSystems/Coherent/CoherentFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Coherent/CoherentFileSystemLayout.cs`.
-      - [ ] Ajouter la taille de bloc `512`, la taille d'inode `64` et les offsets du superbloc.
-      - [ ] Ajouter le mode répertoire `0x4000`, le masque de type `0xF000` et les autres modes effectivement interprétés.
-      - [ ] Ajouter les offsets du mode, de la taille, des pointeurs de blocs et de la date d'un inode.
-      - [ ] Ajouter le nombre de pointeurs directs et les trois niveaux d'indirection parcourus par le Reader.
-      - [ ] Ajouter la taille et les offsets d'une entrée de répertoire Coherent.
-      - [ ] Déplacer `ReadCanonicalUInt32` et la reconnaissance du superbloc depuis `CoherentImageReader` vers une primitive Coherent commune.
-      - [ ] Remplacer chaque valeur brute correspondante dans le Reader d'image et le Reader de système de fichiers.
-      - [ ] Documenter en français chaque constante, masque et primitive.
-    - [ ] `FileSystems/Coherent/CoherentInode.cs`
-      - [ ] Créer `FileSystems/Coherent/CoherentInode.cs`.
-      - [ ] Déplacer le record privé `Inode` hors de `CoherentFileSystemReader`.
-      - [ ] Copier ou figer sa collection de blocs avant de l'exposer.
-      - [ ] Documenter en français le type, chaque propriété et chaque paramètre.
+      - [x] Ajouter la taille de bloc `512`, la taille d'inode `64` et les offsets du superbloc.
+      - [x] Ajouter le mode répertoire `0x4000`, le masque de type `0xF000` et les autres modes effectivement interprétés.
+      - [x] Ajouter les offsets du mode, de la taille, des pointeurs de blocs et de la date d'un inode.
+      - [x] Ajouter le nombre de pointeurs directs et les trois niveaux d'indirection parcourus par le Reader.
+      - [x] Ajouter la taille et les offsets d'une entrée de répertoire Coherent.
+      - [x] Déplacer `ReadCanonicalUInt32` et la reconnaissance du superbloc depuis `CoherentImageReader` vers une primitive Coherent commune.
+      - [x] Remplacer chaque valeur brute correspondante dans le Reader d'image et le Reader de système de fichiers.
+      - [x] Documenter en français chaque constante, masque et primitive.
+      - État : ces définitions sont actuellement regroupées dans `CoherentSuperblockLayout.cs`, déjà partagé ; le renommage exact demandé vers `CoherentFileSystemLayout.cs` reste non effectué et la création reste non cochée.
+    - [x] `FileSystems/Coherent/CoherentInode.cs`
+      - [x] Créer `FileSystems/Coherent/CoherentInode.cs`.
+      - [x] Déplacer le record privé `Inode` hors de `CoherentFileSystemReader`.
+      - [x] Copier ou figer sa collection de blocs avant de l'exposer.
+      - [x] Documenter en français le type, chaque propriété et chaque paramètre.
     - [ ] `FileSystems/Coherent/CoherentFileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Coherent/CoherentFileSystemExceptions.cs`.
+      - [x] Créer `FileSystems/Coherent/CoherentFileSystemExceptions.cs`.
       - [ ] Ajouter les erreurs de superbloc absent et de zone d'inodes invalide avec les valeurs observées.
-      - [ ] Ajouter les erreurs d'inode nul, d'inode hors image et de fichier trop grand.
-      - [ ] Ajouter l'avertissement de bloc indirect hors image avec nom, bloc et niveau.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
+      - [x] Ajouter les erreurs d'inode nul, d'inode hors image et de fichier trop grand.
+      - [x] Ajouter l'avertissement de bloc indirect hors image avec nom, bloc et niveau.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+      - État : l'erreur de zone d'inodes est centralisée ; l'erreur de superbloc reste gérée par `CoherentSuperblockProbe` et n'est donc pas cochée ici.
     - [ ] Tests des définitions Coherent
       - [ ] Tester le superbloc, la zone d'inodes, un répertoire et un fichier connus.
       - [ ] Tester les pointeurs directs et chacun des trois niveaux indirects.
       - [ ] Tester un inode nul, hors image, un fichier trop grand et un bloc indirect absent.
+      - État : les 15 tests Coherent existants passent après l'extraction ; les trois niveaux indirects et toutes les erreurs ne sont pas encore isolés dans des tests dédiés.
   - [ ] Commodore DOS
     - [ ] `FileSystems/Commodore/CommodoreDosLayout.cs`
       - [ ] Créer `FileSystems/Commodore/CommodoreDosLayout.cs`.
