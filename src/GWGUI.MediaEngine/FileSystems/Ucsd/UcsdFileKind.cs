@@ -1,7 +1,27 @@
 namespace GWGUI.MediaEngine.FileSystems.Ucsd;
 
 /// <summary>Décrit les types de fichiers UCSD.</summary>
-public enum UcsdFileKind { Untyped, ExternalDisk, Code, Text, Info, Data, Graphics, Photo, SecureDirectory }
+public enum UcsdFileKind
+{
+    /// <summary>Fichier sans type particulier.</summary>
+    Untyped,
+    /// <summary>Fichier représentant un disque externe.</summary>
+    ExternalDisk,
+    /// <summary>Fichier de code.</summary>
+    Code,
+    /// <summary>Fichier texte.</summary>
+    Text,
+    /// <summary>Fichier d'informations.</summary>
+    Info,
+    /// <summary>Fichier de données.</summary>
+    Data,
+    /// <summary>Fichier graphique.</summary>
+    Graphics,
+    /// <summary>Fichier photographique.</summary>
+    Photo,
+    /// <summary>Répertoire sécurisé.</summary>
+    SecureDirectory
+}
 
 /// <summary>Fournit les libellés des types de fichiers UCSD.</summary>
 public static class UcsdFileKindNames

@@ -10,7 +10,6 @@ using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.Images;

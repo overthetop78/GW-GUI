@@ -1,6 +1,5 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;

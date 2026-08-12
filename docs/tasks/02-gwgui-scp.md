@@ -7286,77 +7286,77 @@
       - [x] Tester une taille d'entrée minimale, avec octets supplémentaires et supérieure à la limite.
       - [x] Tester le décodage RADIX-50, une extension vide, un nom vide et des dates valides ou invalides.
       - [x] Tester un bloc de données absent ou tronqué au milieu sans déplacement des données suivantes et vérifier la validité de l'entrée.
-  - [ ] `FileSystems/Readers/UcsdFileSystemReader.cs`
-    - [ ] Emplacement, identité et format
-      - [ ] Déplacer le Reader et ses composants vers `FileSystems/Ucsd/` puis adapter le namespace et les consommateurs.
-      - [ ] Remplacer l'identifiant brut `ucsd` par l'identifiant central correspondant de `FileSystemIds`.
-      - [ ] Remplacer le `HashSet` exposé par une collection réellement immuable contenant `UcsdIbmMfm`.
-      - [ ] Remplacer le nom brut `UCSD p-System` par la définition technique centrale correspondante.
-    - [ ] Disposition UCSD
-      - [ ] Créer `UcsdFileSystemLayout.cs` et y déplacer la taille de bloc 512, le premier bloc répertoire 2 et la taille d'entrée 26.
-      - [ ] Y définir les deux fins de répertoire valides 6 et 10 et les quatre ou huit blocs à lire dans chaque cas.
-      - [ ] Y définir les offsets et longueurs du nom de volume, du total de blocs, du nombre de fichiers et de la date de volume.
-      - [ ] Y définir la limite de 77 entrées ainsi que tous les offsets d'une entrée : premier/dernier bloc, type, nom, octets du dernier bloc et date.
-      - [ ] Y définir les longueurs maximales 7 du volume et 15 du fichier, les champs physiques de 8 et 16 octets et la borne ASCII valide.
-      - [ ] Remplacer toutes les constantes privées et valeurs brutes correspondantes dans le Reader.
-    - [ ] Ordre des octets
-      - [ ] Créer l'enum `UcsdByteOrder` avec `LittleEndian` et `BigEndian`.
-      - [ ] Faire retourner cet enum par `DetectByteOrder` au lieu d'un booléen nullable.
-      - [ ] Remplacer les comparaisons brutes des octets 2 et 3 par une validation nommée des deux fins de répertoire.
-      - [ ] Faire recevoir l'enum à la primitive de lecture 16 bits et utiliser les primitives binaires correspondantes.
-    - [ ] En-tête du répertoire
-      - [ ] Créer `UcsdDirectoryHeaderReader.cs` pour valider et retourner fin du répertoire, nom, total, nombre déclaré, date et ordre des octets.
-      - [ ] Réutiliser le résultat validé dans `Read` au lieu de rappeler `DetectByteOrder` et de relire les mêmes champs.
-      - [ ] Valider que le total déclaré n'excède pas l'image et que la fin de répertoire est comprise dans ce total.
-      - [ ] Remplacer l'erreur brute de système non reconnu par une définition centrale.
-    - [ ] Lecture positionnelle des blocs
-      - [ ] Remplacer `ReadBlocks` par un résultat contenant les octets, la présence de chaque bloc et leur validité.
-      - [ ] Réserver exactement 512 octets pour chaque bloc absent ou tronqué afin de conserver les offsets des blocs suivants.
-      - [ ] Copier au plus 512 octets sans tableau intermédiaire et rejeter une taille de bloc incorrecte.
-      - [ ] Conserver les numéros des blocs manquants afin de produire un avertissement précis pour répertoire et fichiers.
-    - [ ] Entrées de répertoire
-      - [ ] Créer `UcsdDirectoryEntryReader.cs` et y déplacer la lecture des entrées.
-      - [ ] Calculer le nombre maximal depuis le nombre déclaré, la limite 77 et la longueur réellement valide du répertoire.
-      - [ ] Ne pas analyser une entrée dont les 26 octets traversent un bloc de répertoire absent.
-      - [ ] Distinguer une entrée vide de coordonnées nulles d'une entrée invalide.
-      - [ ] Valider que la plage est croissante, ne dépasse pas le total déclaré et ne traverse pas la zone de répertoire.
-      - [ ] Remplacer les erreurs brutes de nom et de plage par des définitions recevant index, nom et bornes.
-      - [ ] Remplacer l'avertissement brut de différence entre nombre déclaré et entrées valides par une définition recevant les deux nombres.
-    - [ ] Noms, dates et types
-      - [ ] Créer `UcsdName.cs` et y déplacer `DecodeName` et `IsName` avec les longueurs et bornes ASCII nommées.
-      - [ ] Créer `UcsdDate.cs` et y déplacer les masques de jour/mois/année, le pivot 70 et les siècles 1900/2000.
-      - [ ] Créer l'enum `UcsdFileKind` pour les valeurs 1 à 8 et la valeur non typée.
-      - [ ] Remplacer `FileKindName` et ses textes bruts par une définition centrale recevant cet enum ou la valeur inconnue.
-    - [ ] Reconstruction des fichiers
-      - [ ] Créer `UcsdFileContentReader.cs` et y déplacer `ReadFile`.
-      - [ ] Nommer et documenter le caractère exclusif de `lastBlock` utilisé par le calcul `lastBlock - firstBlock`.
-      - [ ] Valider `lastBytes` et conserver la convention zéro signifiant un dernier bloc complet.
-      - [ ] Faire retourner contenu, validité et blocs absents.
-      - [ ] Conserver la position logique des blocs absents et tronquer uniquement à la taille calculée.
-      - [ ] Faire porter cette validité à `FileSystemEntry` et produire l'avertissement depuis les blocs réellement absents.
-    - [ ] Calcul des blocs utilisés et libres
-      - [ ] Construire l'ensemble des blocs réservés par le répertoire et des plages valides de chaque fichier.
-      - [ ] Compter une plage dupliquée ou chevauchante une seule fois et produire un avertissement pour le chevauchement.
-      - [ ] Ne pas ajouter au calcul les entrées rejetées avant validation complète de leur plage.
-      - [ ] Calculer les blocs libres par différence avec le total déclaré et la taille de bloc nommée.
-      - [ ] Rendre ce calcul non fiable lorsque le répertoire requis est incomplet.
-    - [ ] Erreurs et avertissements UCSD
-      - [ ] Créer `UcsdFileSystemExceptions.cs` pour le système non reconnu, les blocs manquants, le nom invalide, la plage invalide, le chevauchement et le nombre déclaré incohérent.
-      - [ ] Faire recevoir aux méthodes entrée, nom, blocs, plage et nombres déclarés nécessaires.
-      - [ ] Remplacer tous les textes bruts du Reader et de ses composants par ces définitions.
-    - [ ] Présentation et CSDoc française
-      - [ ] Séparer les conditions, lectures et branches compactées dans la reconnaissance, les boucles de blocs, les noms et les dates.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
-      - [ ] Documenter en français le Reader et chacun de ses membres restants.
-      - [ ] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode UCSD créé.
-    - [ ] Tests ciblés UCSD
-      - [ ] Tester par le Reader public une image UCSD de `image_test` avec volume, entrées, contenus, dates et espace libre attendus.
-      - [ ] Tester les ordres little-endian et big-endian avec le même résultat technique attendu.
-      - [ ] Tester les fins de répertoire 6 et 10 et un bloc de répertoire absent dans chacune des deux tailles.
-      - [ ] Tester les noms de volume et de fichier aux limites, vides et contenant un octet non imprimable.
-      - [ ] Tester une plage vide, inversée, hors volume, chevauchant le répertoire et chevauchant un autre fichier.
-      - [ ] Tester `lastBytes` nul, partiel et supérieur à 512, ainsi qu'un bloc de données absent sans déplacement du contenu suivant.
-      - [ ] Tester les types 1 à 8, un type inconnu et les deux branches de siècle des dates.
+  - [x] `FileSystems/Readers/UcsdFileSystemReader.cs`
+    - [x] Emplacement, identité et format
+      - [x] Déplacer le Reader et ses composants vers `FileSystems/Ucsd/` puis adapter le namespace et les consommateurs.
+      - [x] Remplacer l'identifiant brut `ucsd` par l'identifiant central correspondant de `FileSystemIds`.
+      - [x] Remplacer le `HashSet` exposé par une collection réellement immuable contenant `UcsdIbmMfm`.
+      - [x] Remplacer le nom brut `UCSD p-System` par la définition technique centrale correspondante.
+    - [x] Disposition UCSD
+      - [x] Créer `UcsdFileSystemLayout.cs` et y déplacer la taille de bloc 512, le premier bloc répertoire 2 et la taille d'entrée 26.
+      - [x] Y définir les deux fins de répertoire valides 6 et 10 et les quatre ou huit blocs à lire dans chaque cas.
+      - [x] Y définir les offsets et longueurs du nom de volume, du total de blocs, du nombre de fichiers et de la date de volume.
+      - [x] Y définir la limite de 77 entrées ainsi que tous les offsets d'une entrée : premier/dernier bloc, type, nom, octets du dernier bloc et date.
+      - [x] Y définir les longueurs maximales 7 du volume et 15 du fichier, les champs physiques de 8 et 16 octets et la borne ASCII valide.
+      - [x] Remplacer toutes les constantes privées et valeurs brutes correspondantes dans le Reader.
+    - [x] Ordre des octets
+      - [x] Créer l'enum `UcsdByteOrder` avec `LittleEndian` et `BigEndian`.
+      - [x] Faire retourner cet enum par `DetectByteOrder` au lieu d'un booléen nullable.
+      - [x] Remplacer les comparaisons brutes des octets 2 et 3 par une validation nommée des deux fins de répertoire.
+      - [x] Faire recevoir l'enum à la primitive de lecture 16 bits et utiliser les primitives binaires correspondantes.
+    - [x] En-tête du répertoire
+      - [x] Créer `UcsdDirectoryHeaderReader.cs` pour valider et retourner fin du répertoire, nom, total, nombre déclaré, date et ordre des octets.
+      - [x] Réutiliser le résultat validé dans `Read` au lieu de rappeler `DetectByteOrder` et de relire les mêmes champs.
+      - [x] Valider que le total déclaré n'excède pas l'image et que la fin de répertoire est comprise dans ce total.
+      - [x] Remplacer l'erreur brute de système non reconnu par une définition centrale.
+    - [x] Lecture positionnelle des blocs
+      - [x] Remplacer `ReadBlocks` par un résultat contenant les octets, la présence de chaque bloc et leur validité.
+      - [x] Réserver exactement 512 octets pour chaque bloc absent ou tronqué afin de conserver les offsets des blocs suivants.
+      - [x] Copier au plus 512 octets sans tableau intermédiaire et rejeter une taille de bloc incorrecte.
+      - [x] Conserver les numéros des blocs manquants afin de produire un avertissement précis pour répertoire et fichiers.
+    - [x] Entrées de répertoire
+      - [x] Créer `UcsdDirectoryEntryReader.cs` et y déplacer la lecture des entrées.
+      - [x] Calculer le nombre maximal depuis le nombre déclaré, la limite 77 et la longueur réellement valide du répertoire.
+      - [x] Ne pas analyser une entrée dont les 26 octets traversent un bloc de répertoire absent.
+      - [x] Distinguer une entrée vide de coordonnées nulles d'une entrée invalide.
+      - [x] Valider que la plage est croissante, ne dépasse pas le total déclaré et ne traverse pas la zone de répertoire.
+      - [x] Remplacer les erreurs brutes de nom et de plage par des définitions recevant index, nom et bornes.
+      - [x] Remplacer l'avertissement brut de différence entre nombre déclaré et entrées valides par une définition recevant les deux nombres.
+    - [x] Noms, dates et types
+      - [x] Créer `UcsdName.cs` et y déplacer `DecodeName` et `IsName` avec les longueurs et bornes ASCII nommées.
+      - [x] Créer `UcsdDate.cs` et y déplacer les masques de jour/mois/année, le pivot 70 et les siècles 1900/2000.
+      - [x] Créer l'enum `UcsdFileKind` pour les valeurs 1 à 8 et la valeur non typée.
+      - [x] Remplacer `FileKindName` et ses textes bruts par une définition centrale recevant cet enum ou la valeur inconnue.
+    - [x] Reconstruction des fichiers
+      - [x] Créer `UcsdFileContentReader.cs` et y déplacer `ReadFile`.
+      - [x] Nommer et documenter le caractère exclusif de `lastBlock` utilisé par le calcul `lastBlock - firstBlock`.
+      - [x] Valider `lastBytes` et conserver la convention zéro signifiant un dernier bloc complet.
+      - [x] Faire retourner contenu, validité et blocs absents.
+      - [x] Conserver la position logique des blocs absents et tronquer uniquement à la taille calculée.
+      - [x] Faire porter cette validité à `FileSystemEntry` et produire l'avertissement depuis les blocs réellement absents.
+    - [x] Calcul des blocs utilisés et libres
+      - [x] Construire l'ensemble des blocs réservés par le répertoire et des plages valides de chaque fichier.
+      - [x] Compter une plage dupliquée ou chevauchante une seule fois et produire un avertissement pour le chevauchement.
+      - [x] Ne pas ajouter au calcul les entrées rejetées avant validation complète de leur plage.
+      - [x] Calculer les blocs libres par différence avec le total déclaré et la taille de bloc nommée.
+      - [x] Rendre ce calcul non fiable lorsque le répertoire requis est incomplet.
+    - [x] Erreurs et avertissements UCSD
+      - [x] Créer `UcsdFileSystemExceptions.cs` pour le système non reconnu, les blocs manquants, le nom invalide, la plage invalide, le chevauchement et le nombre déclaré incohérent.
+      - [x] Faire recevoir aux méthodes entrée, nom, blocs, plage et nombres déclarés nécessaires.
+      - [x] Remplacer tous les textes bruts du Reader et de ses composants par ces définitions.
+    - [x] Présentation et CSDoc française
+      - [x] Séparer les conditions, lectures et branches compactées dans la reconnaissance, les boucles de blocs, les noms et les dates.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions complètes qui tiennent lisiblement.
+      - [x] Documenter en français le Reader et chacun de ses membres restants.
+      - [x] Documenter en français chaque type, enum, valeur d'enum, propriété et méthode UCSD créé.
+    - [x] Tests ciblés UCSD
+      - [x] Tester par le Reader public une image UCSD de `image_test` avec volume, entrées, contenus, dates et espace libre attendus.
+      - [x] Tester les ordres little-endian et big-endian avec le même résultat technique attendu.
+      - [x] Tester les fins de répertoire 6 et 10 et un bloc de répertoire absent dans chacune des deux tailles.
+      - [x] Tester les noms de volume et de fichier aux limites, vides et contenant un octet non imprimable.
+      - [x] Tester une plage vide, inversée, hors volume, chevauchant le répertoire et chevauchant un autre fichier.
+      - [x] Tester `lastBytes` nul, partiel et supérieur à 512, ainsi qu'un bloc de données absent sans déplacement du contenu suivant.
+      - [x] Tester les types 1 à 8, un type inconnu et les deux branches de siècle des dates.
 
 ## 9. Interprétation et exploration
 

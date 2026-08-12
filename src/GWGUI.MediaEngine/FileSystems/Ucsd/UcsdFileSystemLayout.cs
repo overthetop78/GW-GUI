@@ -55,4 +55,10 @@ public static class UcsdFileSystemLayout
     public const int EntryDateOffset = 24;
     /// <summary>Masque du type de fichier.</summary>
     public const int FileKindMask = 0x0f;
+
+    /// <summary>Indique si une valeur désigne une fin de répertoire courte ou longue.</summary>
+    public static bool IsDirectoryEnd(int value) => value is ShortDirectoryEnd or LongDirectoryEnd;
+
+    /// <summary>Retourne le nombre de blocs occupés par le répertoire annoncé.</summary>
+    public static int DirectoryBlockCount(int endDirectory) => endDirectory == LongDirectoryEnd ? LongDirectoryBlockCount : ShortDirectoryBlockCount;
 }

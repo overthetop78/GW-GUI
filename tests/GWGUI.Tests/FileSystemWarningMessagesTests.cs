@@ -1,7 +1,7 @@
 using System.IO;
 using GWGUI.MediaEngine.FileSystems.Definitions;
-using GWGUI.MediaEngine.FileSystems.Readers;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
+using GWGUI.MediaEngine.FileSystems.Ucsd;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.SectorImages;
@@ -45,7 +45,7 @@ public sealed class FileSystemWarningMessagesTests
         var reader = new UcsdFileSystemReader();
         var entry = reader.Read(source).Entries.First();
         var volume = reader.Read(WithoutBlock(source, entry.StorageReference));
-        Assert.Contains(volume.Warnings, warning => warning == FileSystemWarningMessages.MissingDataBlocks(entry.Name));
+        Assert.Contains(volume.Warnings, warning => warning.Contains(entry.Name, StringComparison.Ordinal) && warning.Contains(entry.StorageReference.ToString(), StringComparison.Ordinal));
     }
 
     /// <summary>Crée une image identique à la source en omettant un bloc logique.</summary>

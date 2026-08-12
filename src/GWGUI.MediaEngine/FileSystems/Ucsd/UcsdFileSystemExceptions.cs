@@ -1,14 +1,24 @@
+using GWGUI.MediaEngine.FileSystems.Definitions;
+
 namespace GWGUI.MediaEngine.FileSystems.Ucsd;
 
 /// <summary>Construit les diagnostics propres aux volumes UCSD.</summary>
 public static class UcsdFileSystemExceptions
 {
-    /// <summary>Crée l'erreur signalant un répertoire absent.</summary>
-    public static InvalidDataException MissingDirectory(int block, int observedSize) => new($"The UCSD directory at block {block} is unavailable or has size {observedSize}.");
-    /// <summary>Crée l'erreur signalant un ordre des octets indéterminé.</summary>
-    public static InvalidDataException UnknownByteOrder(ReadOnlySpan<byte> bytes) => new($"The UCSD byte order cannot be determined from {Convert.ToHexString(bytes[..Math.Min(4, bytes.Length)])}.");
-    /// <summary>Construit l'avertissement signalant une plage incomplète.</summary>
-    public static string IncompleteRange(int firstBlock, int blockCount, int obtainedLength) => $"UCSD block range {firstBlock}..{firstBlock + blockCount - 1} is incomplete ({obtainedLength} bytes obtained).";
-    /// <summary>Construit l'avertissement signalant une entrée invalide.</summary>
-    public static string InvalidEntry(int index, string name, int firstBlock, int lastBlock) => $"UCSD directory entry {index} ('{name}') has invalid block range {firstBlock}..{lastBlock}.";
+    /// <summary>Crée l'erreur signalant un système non reconnu.</summary>
+    public static InvalidDataException UnrecognizedSystem(int block, IEnumerable<int> missingBlocks) => new($"Le répertoire UCSD au bloc {block} n'est pas reconnu ; blocs invalides : {string.Join(", ", missingBlocks)}.");
+    /// <summary>Construit l'avertissement signalant des blocs absents ou tronqués.</summary>
+    public static string MissingBlocks(string owner, IEnumerable<int> blocks) => $"{owner} : blocs UCSD absents ou tronqués : {string.Join(", ", blocks)}.";
+    /// <summary>Construit l'avertissement signalant des blocs de répertoire absents ou tronqués.</summary>
+    public static string MissingDirectoryBlocks(IEnumerable<int> blocks) => MissingBlocks(FileSystemDisplayNames.Ucsd, blocks);
+    /// <summary>Construit l'avertissement signalant un nom invalide.</summary>
+    public static string InvalidName(int entryIndex, string name) => $"L'entrée UCSD {entryIndex} possède un nom invalide '{name}'.";
+    /// <summary>Construit l'avertissement signalant une plage invalide.</summary>
+    public static string InvalidRange(int entryIndex, string name, int firstBlock, int lastBlock, int totalBlocks) => $"L'entrée UCSD {entryIndex} ('{name}') utilise la plage invalide [{firstBlock}, {lastBlock}) sur {totalBlocks} blocs.";
+    /// <summary>Construit l'avertissement signalant un chevauchement de blocs.</summary>
+    public static string Overlap(int entryIndex, string name, IEnumerable<int> blocks) => $"L'entrée UCSD {entryIndex} ('{name}') chevauche les blocs {string.Join(", ", blocks)}.";
+    /// <summary>Construit l'avertissement signalant une différence de nombre d'entrées.</summary>
+    public static string DeclaredFileCountMismatch(int declared, int valid) => $"Le répertoire UCSD annonce {declared} fichier(s), mais {valid} entrée(s) valide(s) ont été trouvées.";
+    /// <summary>Construit l'avertissement signalant un nombre d'octets final invalide.</summary>
+    public static string InvalidLastBlockByteCount(string name, int observed) => $"{name} : le dernier bloc UCSD annonce {observed} octets.";
 }
