@@ -5171,13 +5171,13 @@
     - [x] Raccorder le registre directement à la politique correspondante.
     - [x] Adapter les consommateurs et les tests.
     - [x] Supprimer le fichier.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10SectorImageBuilder.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `EpsonQx10SectorImageBuilder`.
-    - [ ] Ajouter la documentation XML des méthodes `Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10SectorImageBuilder.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `EpsonQx10SectorImageBuilder`.
+    - [x] Ajouter la documentation XML des méthodes `Create`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10SectorImagePolicy.cs`
   - [ ] Suppression du wrapper sans traitement
     - [ ] Remplacer `CreateImage` par des appels directs à `EpsonQx10SectorImageBuilder.Create` dans ses deux consommateurs.

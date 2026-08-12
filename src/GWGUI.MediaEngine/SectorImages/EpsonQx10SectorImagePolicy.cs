@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Geometries.Epson;
+using GWGUI.MediaEngine.Reconstruction.EpsonQx10;
 
 namespace GWGUI.MediaEngine.SectorImages;
 

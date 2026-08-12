@@ -1,11 +1,17 @@
 using GWGUI.MediaEngine.Geometries.Epson;
+using GWGUI.MediaEngine.SectorImages;
 
-namespace GWGUI.MediaEngine.SectorImages;
+namespace GWGUI.MediaEngine.Reconstruction.EpsonQx10;
 
 /// <summary>Construit une image Epson QX-10 en respectant ses pistes de tailles variables.</summary>
 internal static class EpsonQx10SectorImageBuilder
 {
     /// <summary>Sélectionne les meilleurs secteurs et construit l'image selon la géométrie demandée.</summary>
+    /// <param name="formatId">Identifiant de la disposition Epson QX-10 à appliquer.</param>
+    /// <param name="candidates">Candidats ISO regroupés par adresse physique.</param>
+    /// <returns>L'image Epson à blocs fixes ou variables, avec sa capacité totale en octets.</returns>
+    /// <exception cref="ArgumentException"><paramref name="formatId"/> ne correspond à aucune géométrie Epson prise en charge.</exception>
+    /// <remarks>Un bloc absent reste indisponible tout en conservant sa place dans le nombre logique de blocs et dans la capacité.</remarks>
     public static SectorImage Create(string formatId, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates)
     {
         var geometry = EpsonQx10GeometryCatalog.Resolve(formatId);
