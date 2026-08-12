@@ -2846,37 +2846,37 @@
       - [x] Tester un secteur de 512 octets, un bloc tronqué et un CRC de données valide puis invalide.
       - [x] Tester une marque absente et une marque non appariée.
       - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/MicralNFmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
-    - [ ] Définitions Micral N FM
-      - [ ] Créer `Decoding/Definitions/MicralNFmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom et la marque FM composée de `0x00`, `0x00`, `0x00` et `0xff`.
-      - [ ] Y définir les trois octets de synchronisation précédant le bloc, l'octet `0xff`, les positions du secteur et du cylindre et leurs longueurs encodées.
-      - [ ] Y définir la taille sectorielle de 128 octets, l'octet de checksum, la longueur totale de 132 octets, la face logique et le code de taille.
-      - [ ] Y définir les masques `0xff` et `0x80` du checksum, le gap d'encodage `128` et les valeurs d'avancement du balayage.
-      - [ ] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts dans le décodeur et `MicralNFmTrackEncoder.cs`.
-    - [ ] Checksum commun
-      - [ ] Créer une opération de checksum Micral N commune au décodeur et à l'encodeur.
-      - [ ] Y déplacer le calcul de retenue et l'addition actuellement dupliqués dans `UpdateChecksum` et `Update`.
-      - [ ] Raccorder le décodeur et l'encodeur à cette opération puis supprimer leurs méthodes locales.
-    - [ ] Décodage et résultat
-      - [ ] Extraire la lecture du numéro de secteur, du cylindre, des 128 octets et du checksum dans une méthode nommée.
-      - [ ] Conserver les données décodées et les transmettre au `DecodedSector`.
-      - [ ] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et état du checksum.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations Micral N actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et à l'opération de checksum Micral N.
-    - [ ] Vérification du groupe Micral N
-      - [ ] Tester la marque FM et les positions du secteur et du cylindre.
-      - [ ] Tester un secteur complet de 128 octets avec checksum valide puis invalide.
-      - [ ] Tester les cas de checksum avec et sans retenue.
-      - [ ] Tester une marque absente et un bloc tronqué.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/MicralNFmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer les propriétés `IsFm` et `Signatures` devenues inutiles.
+    - [x] Définitions Micral N FM
+      - [x] Créer `Decoding/Definitions/MicralNFmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom et la marque FM composée de `0x00`, `0x00`, `0x00` et `0xff`.
+      - [x] Y définir les trois octets de synchronisation précédant le bloc, l'octet `0xff`, les positions du secteur et du cylindre et leurs longueurs encodées.
+      - [x] Y définir la taille sectorielle de 128 octets, l'octet de checksum, la longueur totale de 132 octets, la face logique et le code de taille.
+      - [x] Y définir les masques `0xff` et `0x80` du checksum, le gap d'encodage `128` et les valeurs d'avancement du balayage.
+      - [x] Remplacer toutes les valeurs, identifiants, noms et descriptions bruts dans le décodeur et `MicralNFmTrackEncoder.cs`.
+    - [x] Checksum commun
+      - [x] Créer une opération de checksum Micral N commune au décodeur et à l'encodeur.
+      - [x] Y déplacer le calcul de retenue et l'addition actuellement dupliqués dans `UpdateChecksum` et `Update`.
+      - [x] Raccorder le décodeur et l'encodeur à cette opération puis supprimer leurs méthodes locales.
+    - [x] Décodage et résultat
+      - [x] Extraire la lecture du numéro de secteur, du cylindre, des 128 octets et du checksum dans une méthode nommée.
+      - [x] Conserver les données décodées et les transmettre au `DecodedSector`.
+      - [x] Remplacer les descriptions textuelles brutes par le constructeur commun recevant cylindre, secteur et état du checksum.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations Micral N actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et à l'opération de checksum Micral N.
+    - [x] Vérification du groupe Micral N
+      - [x] Tester la marque FM et les positions du secteur et du cylindre.
+      - [x] Tester un secteur complet de 128 octets avec checksum valide puis invalide.
+      - [x] Tester les cas de checksum avec et sans retenue.
+      - [x] Tester une marque absente et un bloc tronqué.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/MicropolisMfmDecoder.cs`
     - [ ] Définitions Micropolis MFM
       - [ ] Créer `Decoding/Definitions/MicropolisMfmFormat.cs`.
