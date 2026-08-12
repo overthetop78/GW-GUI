@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Decoding.Definitions;
 
 namespace GWGUI.MediaEngine.Encoding;
 
@@ -6,9 +6,9 @@ namespace GWGUI.MediaEngine.Encoding;
 public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
-    public override string Id => FluxCodecIds.NorthstarMfm;
+    public override string Id => NorthstarMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
-    public override string DisplayName => FluxCodecDisplayNames.NorthstarMfm;
+    public override string DisplayName => NorthstarMfmFormat.CodecDisplayName;
     /// <summary>Encode les secteurs demandés sous forme de cellules binaires.</summary>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
     {
@@ -17,7 +17,7 @@ public sealed class NorthstarMfmTrackEncoder : TrackEncoderBase
         {
             if (sector.Data.Count != NorthstarMfmFormat.SectorSize) throw NorthstarMfmFormat.InvalidSectorSize(sector.Data.Count);
             bits.Raw(NorthstarMfmFormat.SectorMark.ToArray());
-            bits.Mfm([(byte)(request.Cylinder << NorthstarMfmFormat.CylinderShift | sector.Number & NorthstarMfmFormat.SectorMask)]);
+            bits.Mfm([NorthstarMfmAddress.Pack(request.Cylinder, sector.Number)]);
             bits.Mfm(sector.Data);
             bits.Mfm([TrackEncoding.RotatingChecksum(sector.Data)]);
             bits.Gap(NorthstarMfmFormat.GapBitCount);

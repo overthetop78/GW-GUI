@@ -2906,36 +2906,36 @@
       - [x] Tester un record complet avec checksum valide puis invalide.
       - [x] Tester un record tronqué et une synchronisation absente.
       - [x] Vérifier la charge utile de 256 octets, l'intégrité, les structures et la confiance produites.
-  - [ ] `Decoding/Decoders/NorthstarMfmDecoder.cs`
-    - [ ] Responsabilité et héritage
-      - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
-      - [ ] Supprimer la propriété `Signatures` devenue inutile.
-    - [ ] Définitions NorthStar MFM
-      - [ ] Créer `Decoding/Definitions/NorthstarMfmFormat.cs`.
-      - [ ] Y définir l'identifiant, le nom et la marque composée de sept octets `0x00` suivis de `0xfb`.
-      - [ ] Y définir la longueur de marque, l'octet d'identité, les masques et décalages des demi-octets cylindre et secteur.
-      - [ ] Y définir la taille sectorielle de 512 octets, l'octet de checksum, la face logique, le code de taille et les longueurs d'un bloc avec ou sans identité.
-      - [ ] Y définir le gap d'encodage `128` et les valeurs d'avancement du balayage.
-      - [ ] Remplacer toutes les marques, tailles, masques, décalages, identifiants, noms et descriptions bruts dans le décodeur et `NorthstarMfmTrackEncoder.cs`.
-    - [ ] Adresse et checksum communs
-      - [ ] Créer des opérations NorthStar communes pour empaqueter et dépaqueter l'octet cylindre/secteur.
-      - [ ] Raccorder le décodeur et l'encodeur à ces opérations afin qu'ils appliquent les mêmes limites de quatre bits.
-      - [ ] Utiliser la primitive commune de checksum tournant déjà employée par l'encodeur au lieu de recalculer le checksum dans la boucle de décodage.
-    - [ ] Décodage et résultat
-      - [ ] Extraire la lecture de l'identité et celle du bloc complet dans des méthodes nommées.
-      - [ ] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
-      - [ ] Remplacer les descriptions textuelles brutes des blocs complets, sans checksum et sans identité par le constructeur commun correspondant.
-      - [ ] Utiliser le calcul de confiance commun avec les pondérations NorthStar actuelles.
-    - [ ] Présentation et documentation
-      - [ ] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
-      - [ ] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
-      - [ ] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
-      - [ ] Ajouter la CSDoc française aux définitions et opérations NorthStar communes.
-    - [ ] Vérification du groupe NorthStar
-      - [ ] Tester l'empaquetage et le dépaquetage des limites de cylindre et de secteur sur quatre bits.
-      - [ ] Tester un bloc complet de 512 octets avec checksum valide puis invalide.
-      - [ ] Tester un bloc contenant seulement l'identité, un bloc tronqué avant l'identité et une marque absente.
-      - [ ] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
+  - [x] `Decoding/Decoders/NorthstarMfmDecoder.cs`
+    - [x] Responsabilité et héritage
+      - [x] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
+      - [x] Supprimer la propriété `Signatures` devenue inutile.
+    - [x] Définitions NorthStar MFM
+      - [x] Créer `Decoding/Definitions/NorthstarMfmFormat.cs`.
+      - [x] Y définir l'identifiant, le nom et la marque composée de sept octets `0x00` suivis de `0xfb`.
+      - [x] Y définir la longueur de marque, l'octet d'identité, les masques et décalages des demi-octets cylindre et secteur.
+      - [x] Y définir la taille sectorielle de 512 octets, l'octet de checksum, la face logique, le code de taille et les longueurs d'un bloc avec ou sans identité.
+      - [x] Y définir le gap d'encodage `128` et les valeurs d'avancement du balayage.
+      - [x] Remplacer toutes les marques, tailles, masques, décalages, identifiants, noms et descriptions bruts dans le décodeur et `NorthstarMfmTrackEncoder.cs`.
+    - [x] Adresse et checksum communs
+      - [x] Créer des opérations NorthStar communes pour empaqueter et dépaqueter l'octet cylindre/secteur.
+      - [x] Raccorder le décodeur et l'encodeur à ces opérations afin qu'ils appliquent les mêmes limites de quatre bits.
+      - [x] Utiliser la primitive commune de checksum tournant déjà employée par l'encodeur au lieu de recalculer le checksum dans la boucle de décodage.
+    - [x] Décodage et résultat
+      - [x] Extraire la lecture de l'identité et celle du bloc complet dans des méthodes nommées.
+      - [x] Conserver la charge utile décodée hors du bloc conditionnel et la transmettre au `DecodedSector`.
+      - [x] Remplacer les descriptions textuelles brutes des blocs complets, sans checksum et sans identité par le constructeur commun correspondant.
+      - [x] Utiliser le calcul de confiance commun avec les pondérations NorthStar actuelles.
+    - [x] Présentation et documentation
+      - [x] Séparer toutes les instructions distinctes actuellement placées sur une même ligne.
+      - [x] Conserver sur une seule ligne les signatures, déclarations, appels et expressions cohérentes qui tiennent dans la largeur du fichier.
+      - [x] Ajouter la CSDoc française au type, aux propriétés et à chaque méthode conservée ou créée.
+      - [x] Ajouter la CSDoc française aux définitions et opérations NorthStar communes.
+    - [x] Vérification du groupe NorthStar
+      - [x] Tester l'empaquetage et le dépaquetage des limites de cylindre et de secteur sur quatre bits.
+      - [x] Tester un bloc complet de 512 octets avec checksum valide puis invalide.
+      - [x] Tester un bloc contenant seulement l'identité, un bloc tronqué avant l'identité et une marque absente.
+      - [x] Vérifier la charge utile, l'intégrité, les structures et la confiance produites.
   - [ ] `Decoding/Decoders/QdMo5MfmDecoder.cs`
     - [ ] Responsabilité et héritage
       - [ ] Remplacer l'héritage `SignatureMfmDecoder` par l'implémentation directe de `IFluxDecoder`, car `Decode` effectue entièrement son propre balayage.
