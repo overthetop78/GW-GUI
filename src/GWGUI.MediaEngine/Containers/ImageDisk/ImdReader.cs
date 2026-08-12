@@ -2,16 +2,12 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.ImageDisk;
 
 /// <summary>Lit les images sectorielles Dave Dunfield ImageDisk.</summary>
-public sealed class ImdReader : ISectorImageReader
+public sealed class ImdReader
 {
-    /// <summary>Indique si l'extension du chemin correspond Ã  ImageDisk.</summary>
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Imd, StringComparison.OrdinalIgnoreCase);
-
     /// <summary>Lit un fichier ImageDisk et construit son image sectorielle.</summary>
     /// <param name="path">Chemin du fichier IMD.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>

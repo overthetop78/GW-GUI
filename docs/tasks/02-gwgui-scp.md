@@ -1255,12 +1255,11 @@
     - [x] Vérifier le rejet d’une signature, d’une table, d’un offset, d’un nombre de bits ou d’une piste tronqués ou invalides.
     - [x] Vérifier la propagation de l’annulation pendant le parcours des pistes.
 - [ ] `src/GWGUI.MediaEngine/Images/ImdImageReader.cs`
-  - [ ] Déplacement du Reader ImageDisk
+  - [x] Déplacement du Reader ImageDisk
     - [x] Renommer le type en `ImdReader` et déplacer le fichier vers `Containers/ImageDisk/ImdReader.cs`.
     - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Containers.ImageDisk`.
     - [x] Conserver le record `ImdSector` privé dans le Reader tant qu’il sert uniquement au parsing et à la construction internes de cette image.
-    - [ ] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée et laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Imd`.
-      - Dépendance restante : `ISectorImageReader` est encore implémentée par plusieurs Readers de conteneurs. La méthode `CanRead` reste requise tant que le retrait commun de cette interface n'est pas terminé.
+    - [x] Supprimer `CanRead` lorsque `ISectorImageReader` est retirée et laisser la politique de reconnaissance gérer `DiskImageFileExtensions.Imd`.
       - Dépendance restante : `ISectorImageReader` existe encore et impose `CanRead`. Sa suppression est prévue dans le groupe ultérieur consacré à cette interface ; cette action reste non cochée jusque-là.
     - [x] Adapter `Images/DiskImageExplorerFactory.cs`, la politique de reconnaissance et les tests au nouveau type.
   - [x] En-tête et disposition ImageDisk
@@ -1307,7 +1306,7 @@
     - [x] Conserver sur une seule ligne les signatures, conditions, appels, records et constructions complètes qui restent lisibles ainsi.
   - [ ] Tests du parsing ImageDisk et de la détection Epson
     - [ ] Utiliser depuis `image_test` une image IMD combinant plusieurs modes, cartes optionnelles et types d’enregistrements dont les résultats sont connus.
-      - Dépendance restante : aucune image IMD réelle combinant toutes ces variantes n'est présente dans `image_test`. Les variantes sont couvertes par les données IMD déterministes construites dans les tests, mais cette action reste non cochée jusqu'à l'ajout du corpus demandé.
+      - Dépendance restante : les images IMD réelles de `image_test` utilisent un seul mode et aucune carte optionnelle ; elles couvrent plusieurs types d'enregistrements. Les combinaisons restantes sont couvertes par les données IMD déterministes des tests, mais cette action reste non cochée jusqu'à l'ajout d'une image réelle combinant toutes les variantes demandées.
       - Dépendance restante : le corpus IMD local couvre les modes 0, 3, 4 et 5 et les types 0, 1, 2 et 5, mais aucune image unique ne combine les six modes, les cartes optionnelles et les neuf types. Les valeurs absentes sont couvertes par des variantes unitaires minimales ; cette action reste non cochée jusqu’à l’ajout d’une image réelle combinée.
     - [x] Tester les six modes, les cartes de cylindres et de faces présentes ou absentes et les tailles exponentielles ou explicites.
     - [x] Tester chacun des neuf types d’enregistrement et vérifier disponibilité, décompression, contenu et intégrité.
@@ -2132,9 +2131,9 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `IFluxDecoder`.
 
-- [ ] Compléments issus de la relecture complète du décodage
-  - [ ] `Decoding/FluxDecoderRegistry.cs`
-    - [ ] Composition des décodeurs
+- [x] Compléments issus de la relecture complète du décodage
+  - [x] `Decoding/FluxDecoderRegistry.cs`
+    - [x] Composition des décodeurs
       - [x] Créer `Decoding/FluxDecoderCatalog.cs` chargé de construire la collection par défaut des décodeurs.
       - [x] Déplacer dans ce catalogue les constructions actuellement écrites directement dans la propriété `Decoders`.
       - [x] Mettre à jour le catalogue avec le renommage `AppleGcrDecoder` vers `AppleIIGcrDecoder`.
@@ -7411,7 +7410,7 @@
       - [x] Tester un chemin nul, vide ou absent et vérifier le type d'erreur réellement documenté.
       - [x] Tester l'annulation pendant la lecture asynchrone du checksum.
 
-- [ ] Données brutes de l’interprétation et de l’exploration
+- [x] Données brutes de l’interprétation et de l’exploration
   - [x] Fichiers de `Images/Interpretations`
     - [x] Remplacer dans chaque normalizer et politique les identifiants, préfixes et identifiants de Readers bruts par `DiskImageFormatIds` et `FileSystemIds`.
     - [x] Déplacer les correspondances de capacités et géométries Atari, Macintosh, IBM et MSX vers leurs catalogues respectifs.
@@ -7423,7 +7422,7 @@
     - [x] Déplacer la liste des formats Epson vers `EpsonQx10GeometryCatalog`.
     - [x] Remplacer dans `ScpFamilyProbe.cs` les huit identifiants de codecs bruts par `FluxCodecIds`.
     - [x] Créer `Recognition/Scp/ScpDetectionExceptions.cs` avec une erreur recevant le format ou la famille lorsqu’aucun secteur ne peut être décodé et remplacer le texte brut de `ScpSectorImageReader.cs`.
-  - [ ] Documentation XML
+  - [x] Documentation XML
     - [x] Documenter en français `DiskImageExplorationExceptions`, `AtariProgramDefinitions`, `ScpDetectionExceptions` et leurs membres.
     - [x] Mettre à jour la documentation française de chaque fichier d’interprétation et de détection modifié.
   - [x] Tests ciblés

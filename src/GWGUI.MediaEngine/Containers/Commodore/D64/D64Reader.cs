@@ -1,16 +1,12 @@
-using GWGUI.MediaEngine.Definitions;
+﻿using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Builders;
-using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.Commodore.D64;
 
 /// <summary>Lit les quatre dispositions de conteneur Commodore D64.</summary>
-public sealed class D64Reader : ISectorImageReader
+public sealed class D64Reader
 {
-    /// <summary>Indique si le chemin porte l'extension D64.</summary>
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.D64, StringComparison.OrdinalIgnoreCase);
-
     /// <summary>Lit un conteneur D64 et reconstruit ses secteurs avec leurs diagnostics.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {

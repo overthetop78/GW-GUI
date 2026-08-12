@@ -1,18 +1,12 @@
 ﻿using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.Atari.Atr;
 
 /// <summary>Valide un conteneur ATR et expose sa charge utile sous forme de secteurs Atari adressÃ©s.</summary>
-public sealed class AtrReader : ISectorImageReader
+public sealed class AtrReader
 {
-    /// <summary>Indique si le chemin porte l'extension utilisÃ©e par les conteneurs ATR.</summary>
-    /// <param name="path">Chemin du fichier Ã  examiner.</param>
-    /// <returns><see langword="true"/> lorsque l'extension est ATR ; sinon <see langword="false"/>.</returns>
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Atr, StringComparison.OrdinalIgnoreCase);
-
     /// <summary>Lit et valide un conteneur ATR, puis restitue tous ses secteurs dans leur ordre logique.</summary>
     /// <param name="path">Chemin du conteneur ATR.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>

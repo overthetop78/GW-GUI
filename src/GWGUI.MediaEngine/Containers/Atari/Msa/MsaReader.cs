@@ -1,16 +1,12 @@
 ﻿using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 
 /// <summary>Lit les conteneurs Atari ST Magic Shadow Archiver.</summary>
-public sealed class MsaReader : ISectorImageReader
+public sealed class MsaReader
 {
-    /// <summary>Indique si l'extension du chemin correspond au format MSA.</summary>
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase);
-
     /// <summary>Lit les pistes MSA brutes ou compressÃ©es et construit leur image sectorielle Atari ST.</summary>
     /// <param name="path">Chemin du fichier MSA.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler le parcours des pistes.</param>

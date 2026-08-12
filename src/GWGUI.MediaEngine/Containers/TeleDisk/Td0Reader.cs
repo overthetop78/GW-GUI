@@ -1,33 +1,27 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Recognition.TeleDisk;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.SectorImages.Reading;
 
 namespace GWGUI.MediaEngine.Containers.TeleDisk;
 
-/// <summary>Lit les conteneurs TeleDisk non compressés portant la signature majuscule.</summary>
-public sealed class Td0Reader : ISectorImageReader
+/// <summary>Lit les conteneurs TeleDisk non compressÃ©s portant la signature majuscule.</summary>
+public sealed class Td0Reader
 {
-    /// <summary>Indique si l'extension du chemin correspond à un conteneur TeleDisk.</summary>
-    /// <param name="path">Chemin à examiner.</param>
-    /// <returns><see langword="true"/> lorsque l'extension est <c>.td0</c>.</returns>
-    public bool CanRead(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase);
-
     /// <summary>Lit un conteneur TeleDisk et reconstruit son image sectorielle.</summary>
     /// <param name="path">Chemin du fichier TeleDisk.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture du fichier.</param>
     /// <returns>L'image sectorielle reconstruite.</returns>
-    /// <exception cref="IOException">Une erreur d'entrée-sortie survient pendant la lecture.</exception>
+    /// <exception cref="IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
     /// <exception cref="InvalidDataException">Le conteneur, un CRC, une piste, un secteur ou son encodage est invalide.</exception>
-    /// <exception cref="OperationCanceledException">La lecture est annulée.</exception>
+    /// <exception cref="OperationCanceledException">La lecture est annulÃ©e.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         return Read(data);
     }
 
-    /// <summary>Analyse les octets d'un conteneur TeleDisk non compressé.</summary>
+    /// <summary>Analyse les octets d'un conteneur TeleDisk non compressÃ©.</summary>
     /// <param name="data">Contenu complet du conteneur.</param>
     /// <returns>L'image sectorielle reconstruite.</returns>
     /// <exception cref="InvalidDataException">Le conteneur, un CRC, une piste, un secteur ou son encodage est invalide.</exception>
@@ -111,8 +105,8 @@ public sealed class Td0Reader : ISectorImageReader
 
         if (sectors.Count == 0) throw Td0Exceptions.NoSectors();
         var blockSize = sectors.GroupBy(sector => sector.Data.Length).OrderByDescending(group => group.Count()).First().Key;
-        // Les images TeleDisk protégées peuvent contenir quelques secteurs volontairement inhabituels.
-        // L'image logique normale est reconstruite à partir de la taille sectorielle dominante.
+        // Les images TeleDisk protÃ©gÃ©es peuvent contenir quelques secteurs volontairement inhabituels.
+        // L'image logique normale est reconstruite Ã  partir de la taille sectorielle dominante.
         var logicalSectors = sectors.Where(sector => sector.Data.Length == blockSize).ToArray();
 
         var cylinders = logicalSectors.Max(sector => sector.Cylinder) + 1;
@@ -126,23 +120,23 @@ public sealed class Td0Reader : ISectorImageReader
         return new SectorImage(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: blocks.LongLength * blockSize, logicalBlockCount: blocks.Length);
     }
 
-    /// <summary>Vérifie qu'une section est entièrement disponible dans le conteneur.</summary>
+    /// <summary>VÃ©rifie qu'une section est entiÃ¨rement disponible dans le conteneur.</summary>
     /// <param name="data">Contenu complet du conteneur.</param>
     /// <param name="offset">Position de la section, en octets.</param>
     /// <param name="count">Longueur attendue, en octets.</param>
-    /// <param name="section">Section TeleDisk contrôlée.</param>
-    /// <exception cref="InvalidDataException">La section dépasse les données disponibles.</exception>
+    /// <param name="section">Section TeleDisk contrÃ´lÃ©e.</param>
+    /// <exception cref="InvalidDataException">La section dÃ©passe les donnÃ©es disponibles.</exception>
     private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, Td0Section section)
     {
         if (offset < 0 || count < 0 || offset > data.Length - count) throw Td0Exceptions.Truncated(section, offset, count, Math.Max(0, data.Length - offset));
     }
 
-    /// <summary>Lit un entier non signé 16 bits little-endian.</summary>
-    /// <param name="data">Données contenant l'entier.</param>
+    /// <summary>Lit un entier non signÃ© 16 bits little-endian.</summary>
+    /// <param name="data">DonnÃ©es contenant l'entier.</param>
     /// <param name="offset">Position de l'entier, en octets.</param>
-    /// <returns>Valeur entière lue.</returns>
+    /// <returns>Valeur entiÃ¨re lue.</returns>
     private static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(data[offset..]);
-    /// <summary>Conserve un secteur TeleDisk analysé avant la construction de l'image sectorielle.</summary>
-    /// <param name="Cylinder">Cylindre logique.</param><param name="Head">Face logique.</param><param name="Number">Numéro de secteur.</param><param name="Data">Données décodées.</param><param name="IntegrityValid">État du CRC de données lu sur le support.</param>
+    /// <summary>Conserve un secteur TeleDisk analysÃ© avant la construction de l'image sectorielle.</summary>
+    /// <param name="Cylinder">Cylindre logique.</param><param name="Head">Face logique.</param><param name="Number">NumÃ©ro de secteur.</param><param name="Data">DonnÃ©es dÃ©codÃ©es.</param><param name="IntegrityValid">Ã‰tat du CRC de donnÃ©es lu sur le support.</param>
     private sealed record Td0Sector(int Cylinder, int Head, int Number, byte[] Data, bool IntegrityValid);
 }
