@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Reconstruction.Atari;
 using GWGUI.MediaEngine.Reconstruction.Commodore;
+using GWGUI.MediaEngine.Reconstruction.Dec;
 
 
 namespace GWGUI.MediaEngine.Images.ScpDetection;

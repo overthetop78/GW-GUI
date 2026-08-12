@@ -7,6 +7,7 @@ using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Reconstruction.Commodore;
+using GWGUI.MediaEngine.Reconstruction.Dec;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
@@ -81,6 +82,14 @@ public sealed class RecentFormatCodecTests
         Assert.True(image.TryGetBlock(0, out var block));
         Assert.Equal(first.Concat(second), block.Data);
         Assert.True(block.IntegrityValid);
+    }
+
+    [Fact]
+    public async Task DecRx02ScpRejectsAnUnpairedPhysicalSector()
+    {
+        var revolution = new FluxEncoderRegistry().Encode("dec.rx02", new TrackEncodeRequest(1, 0, [new TrackSector(1, new byte[256])])).Revolution;
+
+        await Assert.ThrowsAsync<InvalidDataException>(() => new DecRx02ScpSectorImageReader(Fake(1, 0, revolution), new FluxDecoderRegistry()).ReadAsync("unused.scp"));
     }
 
     private static IScpReader Fake(int cylinder, int head, FluxRevolution revolution) => new FakeReader(new ScpImage(

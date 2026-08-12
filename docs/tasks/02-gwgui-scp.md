@@ -5122,17 +5122,17 @@
   - [x] Documentation XML
     - [x] Ajouter la documentation XML des types `CommodoreScpSectorImageReader`.
     - [x] Ajouter la documentation XML des méthodes `CommodoreScpSectorImageReader, ReadAsync, ReadGcr, Read1581`, avec paramètres, résultat, exceptions, unités et invariants applicables.
-- [ ] `src/GWGUI.MediaEngine/SectorImages/DecRx02ScpSectorImageReader.cs`
-  - [ ] Structure, emplacement et raccordements
-    - [ ] Déplacer le fichier vers `Reconstruction/Dec/DecRx02ScpSectorImageReader.cs`.
-    - [ ] Adapter son namespace et ses consommateurs.
-  - [ ] Validation des paires de secteurs physiques
-    - [ ] Vérifier qu'au moins un bloc logique complet a été assemblé après la recherche de ses deux secteurs physiques.
-    - [ ] Utiliser l'erreur RX02 de reconstruction prévue lorsque des secteurs ont été décodés mais qu'aucune paire complète ne peut former un bloc de 512 octets.
-    - [ ] Tester un ensemble non vide contenant uniquement des secteurs physiques sans leur moitié complémentaire.
-  - [ ] Documentation XML
-    - [ ] Ajouter la documentation XML des types `DecRx02ScpSectorImageReader`.
-    - [ ] Ajouter la documentation XML des méthodes `DecRx02ScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
+- [x] `src/GWGUI.MediaEngine/SectorImages/DecRx02ScpSectorImageReader.cs`
+  - [x] Structure, emplacement et raccordements
+    - [x] Déplacer le fichier vers `Reconstruction/Dec/DecRx02ScpSectorImageReader.cs`.
+    - [x] Adapter son namespace et ses consommateurs.
+  - [x] Validation des paires de secteurs physiques
+    - [x] Vérifier qu'au moins un bloc logique complet a été assemblé après la recherche de ses deux secteurs physiques.
+    - [x] Utiliser l'erreur RX02 de reconstruction prévue lorsque des secteurs ont été décodés mais qu'aucune paire complète ne peut former un bloc de 512 octets.
+    - [x] Tester un ensemble non vide contenant uniquement des secteurs physiques sans leur moitié complémentaire.
+  - [x] Documentation XML
+    - [x] Ajouter la documentation XML des types `DecRx02ScpSectorImageReader`.
+    - [x] Ajouter la documentation XML des méthodes `DecRx02ScpSectorImageReader, ReadAsync`, avec paramètres, résultat, exceptions, unités et invariants applicables.
 - [ ] `src/GWGUI.MediaEngine/SectorImages/EpsonQx10FormatDetector.cs`
   - [ ] Structure, emplacement et raccordements
     - [ ] Déplacer le fichier vers `Geometries/Epson/EpsonQx10FormatDetector.cs`, conformément à son utilisation commune par les reconstructions SCP et le conteneur IMD.
