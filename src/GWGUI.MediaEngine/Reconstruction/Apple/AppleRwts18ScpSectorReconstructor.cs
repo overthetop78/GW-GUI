@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -20,10 +21,10 @@ internal sealed class AppleRwts18ScpSectorReconstructor(AppleScpSectorDecoder de
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleRwts18, AppleRwts18Format.SectorByteCount, cancellationToken);
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleRwts18Format.StructureDescriptionName);
-        var blocks = candidates.Where(pair => pair.Key.Cylinder is >= 0 and < 50 && pair.Key.Number is >= 0 and <= AppleRwts18Format.LastSectorNumber)
+        var blocks = candidates.Where(pair => pair.Key.Cylinder is >= 0 and < AppleIIGeometry.MaximumReconstructedTrackCount && pair.Key.Number is >= 0 and <= AppleRwts18Format.LastSectorNumber)
             .Select(pair => AppleScpSectorDecoder.Select(pair.Key.Cylinder * AppleRwts18Format.SectorCount + pair.Key.Number, pair.Key, pair.Value)).ToArray();
         if (blocks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleRwts18Format.StructureDescriptionName);
-        var tracks = Math.Max(35, blocks.Max(block => block.Address.Cylinder) + 1);
+        var tracks = Math.Max(AppleIIGeometry.TrackCount, blocks.Max(block => block.Address.Cylinder) + 1);
         return new(DiskImageFormatIds.AppleIIRwts18, AppleRwts18Format.SectorByteCount, tracks, DiskGeometryConstants.SingleSidedHeadCount, AppleRwts18Format.SectorCount, blocks);
     }
 }

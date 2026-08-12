@@ -5343,9 +5343,9 @@
     - [x] Documenter en français chaque membre.
     - [ ] Tester les zones Macintosh, les tags, les doublons et les secteurs manquants.
   - [ ] `SectorImages/AppleRwts18ScpSectorReconstructor.cs`
-    - [ ] Remplacer pistes, secteurs, ordre et tailles bruts par `AppleRwts18Format`.
-    - [ ] Documenter en français chaque membre.
-    - [ ] Tester une capture RWTS18 complète, partielle et incohérente.
+    - [x] Remplacer pistes, secteurs, ordre et tailles bruts par `AppleRwts18Format`.
+    - [x] Documenter en français chaque membre.
+    - [ ] Tester une capture RWTS18 complète, partielle et incohérente. La capture complète est validée ; les variantes partielle et incohérente restent à fournir ou à produire sans ajouter d'outil au code de production.
   - [ ] `SectorImages/AppleScpSectorDecoder.cs`
     - [ ] Remplacer les identifiants des codecs Apple bruts par `FluxCodecIds`.
     - [ ] Déplacer les poids de score et seuils de sélection dans des constantes Apple nommées.
