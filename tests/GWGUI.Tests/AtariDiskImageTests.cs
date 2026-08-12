@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.FileSystems.Readers;
+using GWGUI.MediaEngine.FileSystems.Atari.Dos;
 using GWGUI.MediaEngine.Images;
 using GWGUI.MediaEngine.Containers.Atari.St;
 using GWGUI.Domain.Formats;

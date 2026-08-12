@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.FileSystems.Atari.Dos;
 
 /// <summary>Définit la disposition sectorielle des répertoires Atari DOS.</summary>
-internal static class AtariDosFileSystemLayout
+public static class AtariDosFileSystemLayout
 {
     /// <summary>Numéro du secteur VTOC, compté depuis un.</summary>
     public const int VtocSector = 360;
@@ -43,4 +43,12 @@ internal static class AtariDosFileSystemLayout
     public const int FreeSectorCountOffset = 3;
     /// <summary>Marqueur VTOC reconnu.</summary>
     public const byte VtocMarker = 2;
+    /// <summary>Largeur du compteur libre.</summary>
+    public const int FreeSectorCountLength = sizeof(ushort);
+    /// <summary>Caractère de remplissage des noms.</summary>
+    public const byte NamePadding = 0x20;
+    /// <summary>Premier caractère ASCII imprimable.</summary>
+    public const byte MinimumNameCharacter = 0x20;
+    /// <summary>Dernier caractère ASCII imprimable.</summary>
+    public const byte MaximumNameCharacter = 0x7e;
 }

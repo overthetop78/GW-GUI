@@ -22,6 +22,6 @@ public static class FileSystemReaderCatalog
         new Cpm.CpmFileSystemReader(),
         new Readers.CommodoreDosFileSystemReader(),
         new Readers.Fat12FileSystemReader(),
-        new Readers.AtariDosFileSystemReader()
+        new Atari.Dos.AtariDosFileSystemReader()
     ]);
 }

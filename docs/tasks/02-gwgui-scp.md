@@ -6567,76 +6567,76 @@
       - [x] Tester une version différente, chaque adresse d'en-tête hors limites, une longueur trop petite ou trop grande et un checksum incorrect.
       - [x] Tester l'entrelacement au début, au changement de piste et au dernier secteur pris en charge.
       - [x] Tester les noms synthétiques, leurs références, leurs tailles utiles et l'espace libre fondé sur les secteurs alloués.
-  - [ ] `FileSystems/Readers/AtariDosFileSystemReader.cs`
-    - [ ] Emplacement et identité Atari DOS
-      - [ ] Déplacer le Reader vers `FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
-      - [ ] Remplacer l'identifiant brut `atari-dos` par la valeur centrale correspondante de `FileSystemIds`.
-      - [ ] Remplacer le nom brut `Atari DOS` du volume par cet identifiant technique central.
-      - [ ] Exposer `Atari90`, `Atari130` et `Atari180` par un ensemble réellement non modifiable.
-      - [ ] Remplacer les préfixes bruts `atari.` et `atarist.` de `CanRead` par ce catalogue fermé d'identifiants pris en charge.
-    - [ ] Disposition Atari DOS
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.
-      - [ ] Y définir le secteur VTOC 360, les secteurs de répertoire 361 à 368, les huit entrées par secteur et les 16 octets par entrée.
-      - [ ] Y définir les offsets des drapeaux, du nombre de secteurs, du premier secteur et du nom 8.3.
-      - [ ] Y définir le type VTOC `2`, sa longueur minimale 128, l'offset trois et la largeur deux du nombre de secteurs libres.
-      - [ ] Y définir les trois octets de lien en fin de secteur de données, les six bits de propriétaire et les deux bits hauts du secteur suivant.
-      - [ ] Y définir les longueurs huit et trois du nom et de l'extension ainsi que les caractères espace et plage ASCII autorisée.
-    - [ ] Drapeaux d'une entrée de répertoire
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosDirectoryFlags.cs` avec les bits actif `0x40` et supprimé `0x80`.
-      - [ ] Remplacer les masques bruts dans `Read` et `LooksLikeDirectory` par cet enum.
-      - [ ] Conserver la valeur complète des drapeaux observés dans les attributs bruts de `FileSystemEntry`.
-    - [ ] Lecture et validation du VTOC
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosVtocReader.cs` et y déplacer `LooksLikeVtoc` et `ReadFreeSectors`.
-      - [ ] Remplacer le résultat sentinelle `-1` de l'espace libre inconnu par une valeur optionnelle explicite.
-      - [ ] Lire le nombre libre little-endian uniquement après validation de la longueur du VTOC.
-      - [ ] Construire l'espace libre avec une borne inférieure nulle uniquement lorsqu'une valeur VTOC est disponible.
-    - [ ] Lecture du répertoire
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` et y déplacer `LooksLikeDirectory` et le parcours des huit secteurs.
-      - [ ] Remplacer chaque numéro, nombre d'entrées, taille et offset brut par `AtariDosFileSystemLayout`.
-      - [ ] Vérifier la longueur de chaque secteur avant de parcourir ses huit entrées.
-      - [ ] Distinguer un secteur de répertoire absent d'un secteur présent mais tronqué.
-      - [ ] Conserver la validation d'un nom non vide et des caractères autorisés pour une entrée active.
-      - [ ] Calculer le numéro de fichier depuis le secteur de répertoire et le slot par une fonction nommée respectant ses six bits.
-    - [ ] Codec des noms Atari DOS
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosNameCodec.cs` et y déplacer `DecodeName`.
-      - [ ] Séparer le décodage du nom et de l'extension actuellement écrits sur une seule ligne.
-      - [ ] Utiliser l'encodage ASCII via un seul import et supprimer l'import `System.Text` inutilisé après déplacement.
-      - [ ] Conserver l'ajout du point uniquement lorsque l'extension décodée n'est pas vide.
-    - [ ] Lecture d'une chaîne de secteurs
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosFileReader.cs` et y déplacer `ReadFile`.
-      - [ ] Faire retourner ensemble le contenu, le nombre de secteurs traversés, la validité et les avertissements.
-      - [ ] Remplacer `Math.Max(expectedSectors, 1)` par une règle nommée distinguant un compteur déclaré nul d'une chaîne déclarée d'au moins un secteur.
-      - [ ] Vérifier qu'un secteur possède au moins les trois octets de lien avant de calculer leur position.
-      - [ ] Extraire le propriétaire, le secteur suivant et le nombre d'octets utilisés par une définition de lien Atari DOS.
-      - [ ] Valider le nombre d'octets utilisés par rapport à la zone de données disponible.
-      - [ ] Distinguer cycle, secteur absent, secteur tronqué et propriétaire inattendu dans la validité et les avertissements.
-      - [ ] Signaler une chaîne terminée avant le nombre déclaré et une chaîne encore non terminée après ce nombre.
-      - [ ] Remplacer `sector.Take(used)` par une copie bornée sans collection temporaire.
-    - [ ] Validité et référence des entrées
-      - [ ] Faire utiliser à `FileSystemEntry.MetadataValid` la validité retournée par la chaîne au lieu de toujours fournir `true`.
-      - [ ] Conserver comme référence de stockage le premier secteur déclaré de la chaîne.
-      - [ ] Conserver le contenu partiel récupérable lorsqu'une erreur survient tout en marquant l'entrée invalide.
-    - [ ] Accès aux secteurs Atari
-      - [ ] Développer `TrySector`, actuellement entièrement écrit sur une ligne, en validations et affectations distinctes.
-      - [ ] Valider le numéro Atari strictement positif et sa correspondance avec le bloc logique zéro-based.
-      - [ ] Retourner une donnée en lecture seule ou une copie uniquement lorsque le consommateur en a besoin.
-    - [ ] Erreurs et avertissements Atari DOS
-      - [ ] Créer `FileSystems/Atari/Dos/AtariDosExceptions.cs` pour image non reconnue et structure VTOC/répertoire invalide.
-      - [ ] Créer `AtariDosWarnings.cs` pour secteur de répertoire, cycle, secteur de données, troncature, propriétaire et compteur incohérent.
-      - [ ] Remplacer tous les textes anglais construits directement dans le Reader par ces fonctions recevant fichier, secteur, propriétaire attendu/observé et compteurs.
-    - [ ] Présentation et CSDoc des fichiers
-      - [ ] Séparer les initialisations, offsets, drapeaux, liens et changements de compteur actuellement juxtaposés sur une même ligne.
-      - [ ] Développer les corps complets de `TrySector` et de l'ancien `DecodeName`.
-      - [ ] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
-      - [ ] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
-    - [ ] Tests ciblés du Reader Atari DOS
-      - [ ] Tester les images Atari 90, 130 et 180 et le rejet d'un identifiant Atari ST.
-      - [ ] Tester un VTOC valide, tronqué et un espace libre indisponible.
-      - [ ] Tester les huit secteurs de répertoire, une entrée active, supprimée, vide et au nom invalide.
-      - [ ] Tester une chaîne valide, cyclique, terminée trop tôt, trop longue, au secteur absent ou tronqué.
-      - [ ] Tester un propriétaire correct, nul et différent du numéro de fichier attendu.
-      - [ ] Tester une longueur utilisée supérieure à la zone de données disponible.
-      - [ ] Vérifier le contenu partiel, `MetadataValid`, les attributs, la référence, les avertissements et l'espace libre avec une image connue de `image_test`.
+  - [x] `FileSystems/Readers/AtariDosFileSystemReader.cs`
+    - [x] Emplacement et identité Atari DOS
+      - [x] Déplacer le Reader vers `FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` et adapter son namespace et ses consommateurs.
+      - [x] Remplacer l'identifiant brut `atari-dos` par la valeur centrale correspondante de `FileSystemIds`.
+      - [x] Remplacer le nom brut `Atari DOS` du volume par cet identifiant technique central.
+      - [x] Exposer `Atari90`, `Atari130` et `Atari180` par un ensemble réellement non modifiable.
+      - [x] Remplacer les préfixes bruts `atari.` et `atarist.` de `CanRead` par ce catalogue fermé d'identifiants pris en charge.
+    - [x] Disposition Atari DOS
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs`.
+      - [x] Y définir le secteur VTOC 360, les secteurs de répertoire 361 à 368, les huit entrées par secteur et les 16 octets par entrée.
+      - [x] Y définir les offsets des drapeaux, du nombre de secteurs, du premier secteur et du nom 8.3.
+      - [x] Y définir le type VTOC `2`, sa longueur minimale 128, l'offset trois et la largeur deux du nombre de secteurs libres.
+      - [x] Y définir les trois octets de lien en fin de secteur de données, les six bits de propriétaire et les deux bits hauts du secteur suivant.
+      - [x] Y définir les longueurs huit et trois du nom et de l'extension ainsi que les caractères espace et plage ASCII autorisée.
+    - [x] Drapeaux d'une entrée de répertoire
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosDirectoryFlags.cs` avec les bits actif `0x40` et supprimé `0x80`.
+      - [x] Remplacer les masques bruts dans `Read` et `LooksLikeDirectory` par cet enum.
+      - [x] Conserver la valeur complète des drapeaux observés dans les attributs bruts de `FileSystemEntry`.
+    - [x] Lecture et validation du VTOC
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosVtocReader.cs` et y déplacer `LooksLikeVtoc` et `ReadFreeSectors`.
+      - [x] Remplacer le résultat sentinelle `-1` de l'espace libre inconnu par une valeur optionnelle explicite.
+      - [x] Lire le nombre libre little-endian uniquement après validation de la longueur du VTOC.
+      - [x] Construire l'espace libre avec une borne inférieure nulle uniquement lorsqu'une valeur VTOC est disponible.
+    - [x] Lecture du répertoire
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` et y déplacer `LooksLikeDirectory` et le parcours des huit secteurs.
+      - [x] Remplacer chaque numéro, nombre d'entrées, taille et offset brut par `AtariDosFileSystemLayout`.
+      - [x] Vérifier la longueur de chaque secteur avant de parcourir ses huit entrées.
+      - [x] Distinguer un secteur de répertoire absent d'un secteur présent mais tronqué.
+      - [x] Conserver la validation d'un nom non vide et des caractères autorisés pour une entrée active.
+      - [x] Calculer le numéro de fichier depuis le secteur de répertoire et le slot par une fonction nommée respectant ses six bits.
+    - [x] Codec des noms Atari DOS
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosNameCodec.cs` et y déplacer `DecodeName`.
+      - [x] Séparer le décodage du nom et de l'extension actuellement écrits sur une seule ligne.
+      - [x] Utiliser l'encodage ASCII via un seul import et supprimer l'import `System.Text` inutilisé après déplacement.
+      - [x] Conserver l'ajout du point uniquement lorsque l'extension décodée n'est pas vide.
+    - [x] Lecture d'une chaîne de secteurs
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosFileReader.cs` et y déplacer `ReadFile`.
+      - [x] Faire retourner ensemble le contenu, le nombre de secteurs traversés, la validité et les avertissements.
+      - [x] Remplacer `Math.Max(expectedSectors, 1)` par une règle nommée distinguant un compteur déclaré nul d'une chaîne déclarée d'au moins un secteur.
+      - [x] Vérifier qu'un secteur possède au moins les trois octets de lien avant de calculer leur position.
+      - [x] Extraire le propriétaire, le secteur suivant et le nombre d'octets utilisés par une définition de lien Atari DOS.
+      - [x] Valider le nombre d'octets utilisés par rapport à la zone de données disponible.
+      - [x] Distinguer cycle, secteur absent, secteur tronqué et propriétaire inattendu dans la validité et les avertissements.
+      - [x] Signaler une chaîne terminée avant le nombre déclaré et une chaîne encore non terminée après ce nombre.
+      - [x] Remplacer `sector.Take(used)` par une copie bornée sans collection temporaire.
+    - [x] Validité et référence des entrées
+      - [x] Faire utiliser à `FileSystemEntry.MetadataValid` la validité retournée par la chaîne au lieu de toujours fournir `true`.
+      - [x] Conserver comme référence de stockage le premier secteur déclaré de la chaîne.
+      - [x] Conserver le contenu partiel récupérable lorsqu'une erreur survient tout en marquant l'entrée invalide.
+    - [x] Accès aux secteurs Atari
+      - [x] Développer `TrySector`, actuellement entièrement écrit sur une ligne, en validations et affectations distinctes.
+      - [x] Valider le numéro Atari strictement positif et sa correspondance avec le bloc logique zéro-based.
+      - [x] Retourner une donnée en lecture seule ou une copie uniquement lorsque le consommateur en a besoin.
+    - [x] Erreurs et avertissements Atari DOS
+      - [x] Créer `FileSystems/Atari/Dos/AtariDosExceptions.cs` pour image non reconnue et structure VTOC/répertoire invalide.
+      - [x] Créer `AtariDosWarnings.cs` pour secteur de répertoire, cycle, secteur de données, troncature, propriétaire et compteur incohérent.
+      - [x] Remplacer tous les textes anglais construits directement dans le Reader par ces fonctions recevant fichier, secteur, propriétaire attendu/observé et compteurs.
+    - [x] Présentation et CSDoc des fichiers
+      - [x] Séparer les initialisations, offsets, drapeaux, liens et changements de compteur actuellement juxtaposés sur une même ligne.
+      - [x] Développer les corps complets de `TrySector` et de l'ancien `DecodeName`.
+      - [x] Remettre sur une seule ligne les signatures, appels et expressions qui tiennent lisiblement après le découpage.
+      - [x] Ajouter en français la CSDoc de chaque type, enum, valeur, propriété, constante et méthode conservé ou créé.
+    - [x] Tests ciblés du Reader Atari DOS
+      - [x] Tester les images Atari 90, 130 et 180 et le rejet d'un identifiant Atari ST.
+      - [x] Tester un VTOC valide, tronqué et un espace libre indisponible.
+      - [x] Tester les huit secteurs de répertoire, une entrée active, supprimée, vide et au nom invalide.
+      - [x] Tester une chaîne valide, cyclique, terminée trop tôt, trop longue, au secteur absent ou tronqué.
+      - [x] Tester un propriétaire correct, nul et différent du numéro de fichier attendu.
+      - [x] Tester une longueur utilisée supérieure à la zone de données disponible.
+      - [x] Vérifier le contenu partiel, `MetadataValid`, les attributs, la référence, les avertissements et l'espace libre avec une image connue de `image_test`.
   - [ ] `FileSystems/Readers/BbcDfsFileSystemReader.cs`
     - [ ] Emplacement et identité BBC DFS
       - [ ] Déplacer le Reader vers `FileSystems/Acorn/Dfs/BbcDfsFileSystemReader.cs` et adapter son namespace et ses consommateurs.
