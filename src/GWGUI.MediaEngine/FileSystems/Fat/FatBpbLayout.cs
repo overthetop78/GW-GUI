@@ -37,14 +37,30 @@ internal static class FatBpbLayout
     public const int MaximumCylinderCount = 255;
     /// <summary>Décalage du nombre d'octets par secteur.</summary>
     public const int BytesPerSectorOffset = 11;
+    /// <summary>Offset du nombre de secteurs par cluster.</summary>
+    public const int SectorsPerClusterOffset = 13;
+    /// <summary>Offset du nombre de secteurs réservés.</summary>
+    public const int ReservedSectorCountOffset = 14;
+    /// <summary>Offset du nombre de copies de la FAT.</summary>
+    public const int FatCountOffset = 16;
+    /// <summary>Offset du nombre d'entrées du répertoire racine.</summary>
+    public const int RootEntryCountOffset = 17;
     /// <summary>Décalage du nombre total de secteurs sur 16 bits.</summary>
     public const int TotalSectors16Offset = 19;
     /// <summary>Offset du descripteur de média.</summary>
     public const int MediaDescriptorOffset = 21;
+    /// <summary>Offset du nombre de secteurs par FAT.</summary>
+    public const int SectorsPerFatOffset = 22;
     /// <summary>Décalage du nombre de secteurs par piste.</summary>
     public const int SectorsPerTrackOffset = 24;
     /// <summary>Décalage du nombre de faces.</summary>
     public const int HeadCountOffset = 26;
     /// <summary>Décalage du nombre total de secteurs sur 32 bits.</summary>
     public const int TotalSectors32Offset = 32;
+    /// <summary>Offset du label de volume étendu.</summary>
+    public const int VolumeLabelOffset = 43;
+    /// <summary>Longueur du label de volume étendu.</summary>
+    public const int VolumeLabelLength = 11;
+    /// <summary>Longueur minimale nécessaire pour lire le label étendu.</summary>
+    public const int ExtendedBootMinimumLength = VolumeLabelOffset + VolumeLabelLength;
 }

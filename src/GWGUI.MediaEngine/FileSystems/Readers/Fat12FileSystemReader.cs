@@ -1,161 +1,191 @@
-using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
-using System.Text;
+using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems.Fat;
+using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.SectorImages;
-
-using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.FileSystems.Readers;
 
+/// <summary>Lit les volumes FAT12 contenus dans les images Atari ST, IBM PC et MSX.</summary>
 public sealed class Fat12FileSystemReader : IFileSystemReader
 {
+    /// <inheritdoc />
     public string Id => Definitions.FileSystemIds.Fat12;
+
+    /// <inheritdoc />
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
-        DiskImageFormatIds.AtariSt180, DiskImageFormatIds.AtariSt360, DiskImageFormatIds.AtariSt400,
-        DiskImageFormatIds.AtariSt440, DiskImageFormatIds.AtariSt720, DiskImageFormatIds.AtariSt800,
-        DiskImageFormatIds.AtariSt810, DiskImageFormatIds.AtariSt880, DiskImageFormatIds.AtariSt1440,
-        DiskImageFormatIds.Ibm160, DiskImageFormatIds.Ibm180, DiskImageFormatIds.Ibm320,
-        DiskImageFormatIds.Ibm360, DiskImageFormatIds.Ibm720, DiskImageFormatIds.Ibm800,
-        DiskImageFormatIds.Ibm1200, DiskImageFormatIds.Ibm1440, DiskImageFormatIds.Ibm1680,
-        DiskImageFormatIds.IbmDmf, DiskImageFormatIds.Ibm2880, DiskImageFormatIds.IbmScan,
+        DiskImageFormatIds.AtariSt180, DiskImageFormatIds.AtariSt360, DiskImageFormatIds.AtariSt400, DiskImageFormatIds.AtariSt440, DiskImageFormatIds.AtariSt720, DiskImageFormatIds.AtariSt800, DiskImageFormatIds.AtariSt810, DiskImageFormatIds.AtariSt880, DiskImageFormatIds.AtariSt1440,
+        DiskImageFormatIds.Ibm160, DiskImageFormatIds.Ibm180, DiskImageFormatIds.Ibm320, DiskImageFormatIds.Ibm360, DiskImageFormatIds.Ibm720, DiskImageFormatIds.Ibm800, DiskImageFormatIds.Ibm1200, DiskImageFormatIds.Ibm1440, DiskImageFormatIds.Ibm1680, DiskImageFormatIds.IbmDmf, DiskImageFormatIds.Ibm2880, DiskImageFormatIds.IbmScan,
         DiskImageFormatIds.Msx1D, DiskImageFormatIds.Msx1Dd, DiskImageFormatIds.Msx2D, DiskImageFormatIds.Msx2Dd
     };
 
+    /// <inheritdoc />
     public bool CanRead(SectorImage image)
     {
-        if (image.BlockSize != 512 || !image.TryGetBlock(0, out var boot) || boot.Data.Count < 64) return false;
-        return TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)
-            && HasPlausibleFatHeader(image, layout);
+        if (image.BlockSize != FatBpbLayout.SectorSize || !image.TryGetBlock(0, out var boot) || boot.Data.Count < FatBpbLayout.ExtendedBootMinimumLength) return false;
+        return TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout) && HasPlausibleFatHeader(image, layout);
     }
 
+    /// <inheritdoc />
     public FileSystemVolume Read(SectorImage image)
     {
-        if (!image.TryGetBlock(0, out var boot) || !TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)
-            || !HasPlausibleFatHeader(image, layout))
-            throw new InvalidDataException("The image does not contain a supported FAT12 file system.");
-        var warnings = new List<string>(); var fat = ReadSectors(image, layout.ReservedSectors, layout.SectorsPerFat, warnings);
+        if (!image.TryGetBlock(0, out var boot)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, null);
+        if (!TryReadLayout(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout) || !HasPlausibleFatHeader(image, layout)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, boot.Data);
+        var warnings = new List<string>();
+        var fat = ReadSectors(image, layout.ReservedSectors, layout.SectorsPerFat, warnings);
         var root = ReadSectors(image, layout.RootStart, layout.RootSectors, warnings);
-        var entries = ReadDirectory(image, root, fat, layout, warnings, 0, new HashSet<int>());
-        var freeClusters = Enumerable.Range(2, Math.Max(0, layout.ClusterCount - 2)).Count(cluster => ReadFat12(fat, cluster) == 0);
+        var entries = ReadDirectory(image, root, fat, layout, warnings, 0, string.Empty, new HashSet<int>());
+        var freeClusters = Enumerable.Range(Fat12Layout.FirstDataCluster, Math.Max(0, layout.ClusterCount - Fat12Layout.FirstDataCluster)).Count(cluster => Fat12Table.TryRead(fat, cluster, out var value) && value == Fat12Table.FreeCluster);
         var label = ReadVolumeLabel(root) ?? ReadBootVolumeLabel(boot.Data);
-        var fileSystemName = Definitions.FileSystemDisplayNames.Fat12(image.FormatId);
-        return new(label, fileSystemName, image.Capacity, (long)freeClusters * layout.SectorsPerCluster * 512,
-            null, null, entries, warnings);
+        return new(label, Definitions.FileSystemDisplayNames.Fat12(image.FormatId), image.Capacity, (long)freeClusters * layout.SectorsPerCluster * FatBpbLayout.SectorSize, null, null, entries, warnings);
     }
 
+    /// <summary>Lit le label de volume présent dans le secteur d'amorçage.</summary>
     private static string ReadBootVolumeLabel(IReadOnlyList<byte> boot)
     {
-        if (boot.Count < 54) return string.Empty;
-        var bytes = boot.Skip(43).Take(11).ToArray();
+        if (boot.Count < FatBpbLayout.ExtendedBootMinimumLength) return string.Empty;
+        var bytes = boot.Skip(FatBpbLayout.VolumeLabelOffset).Take(FatBpbLayout.VolumeLabelLength).ToArray();
         if (bytes.Any(value => value is < 0x20 or > 0x7e)) return string.Empty;
         var label = System.Text.Encoding.ASCII.GetString(bytes).Trim();
         return label.Equals("NO NAME", StringComparison.OrdinalIgnoreCase) ? string.Empty : label;
     }
 
-    private static IReadOnlyList<FileSystemEntry> ReadDirectory(SectorImage image, byte[] directory, byte[] fat, Layout layout,
-        List<string> warnings, int depth, HashSet<int> visited)
+    /// <summary>Lit récursivement un répertoire FAT12.</summary>
+    private static IReadOnlyList<FileSystemEntry> ReadDirectory(SectorImage image, byte[] directory, byte[] fat, Fat12Layout layout, List<string> warnings, int depth, string path, HashSet<int> visited)
     {
-        if (depth > 64) { warnings.Add("The FAT directory nesting limit was reached."); return []; }
+        if (depth > 64) { warnings.Add(Fat12FileSystemExceptions.DepthLimit(path, depth)); return []; }
         var entries = new List<FileSystemEntry>();
-        for (var offset = 0; offset + 32 <= directory.Length; offset += 32)
+        for (var offset = 0; offset + FatDirectoryLayout.EntrySize <= directory.Length; offset += FatDirectoryLayout.EntrySize)
         {
-            var first = directory[offset]; if (first == 0) break; if (first == 0xe5) continue;
-            var attributes = directory[offset + 11]; if ((attributes & 0x0f) == 0x0f || (attributes & 0x08) != 0) continue;
-            var name = DecodeName(directory.AsSpan(offset, 11)); if (name is "." or ".." || name.Length == 0) continue;
-            var cluster = BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + 26));
-            var size = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + 28));
-            var isDirectory = (attributes & 0x10) != 0; IReadOnlyList<byte>? content = null; IReadOnlyList<FileSystemEntry> children = [];
+            var first = directory[offset];
+            if (first == FatDirectoryLayout.EndMarker) break;
+            if (first == FatDirectoryLayout.DeletedMarker) continue;
+            var attributes = (FatDirectoryAttributes)directory[offset + FatDirectoryLayout.AttributesOffset];
+            if ((attributes & FatDirectoryLayout.LongFileName) == FatDirectoryLayout.LongFileName || attributes.HasFlag(FatDirectoryAttributes.VolumeLabel)) continue;
+            var name = DecodeName(directory.AsSpan(offset, FatDirectoryLayout.ExtensionOffset + FatDirectoryLayout.ExtensionLength));
+            if (name is "." or ".." || name.Length == 0) continue;
+            var cluster = BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + FatDirectoryLayout.FirstClusterOffset));
+            var size = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + FatDirectoryLayout.FileSizeOffset));
+            var isDirectory = attributes.HasFlag(FatDirectoryAttributes.Directory);
+            IReadOnlyList<byte>? content = null;
+            IReadOnlyList<FileSystemEntry> children = [];
             try
             {
-                var bytes = ReadClusterChain(image, fat, layout, cluster, visited, warnings);
-                if (isDirectory) children = ReadDirectory(image, bytes, fat, layout, warnings, depth + 1, new HashSet<int>());
+                var bytes = ReadClusterChain(image, fat, layout, cluster, visited, warnings, name);
+                if (isDirectory) children = ReadDirectory(image, bytes, fat, layout, warnings, depth + 1, CombinePath(path, name), new HashSet<int>());
                 else content = bytes.Take(checked((int)Math.Min(size, int.MaxValue))).ToArray();
             }
             catch (InvalidDataException exception) { warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception)); }
-            entries.Add(new(name, isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, size,
-                DecodeDateTime(BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + 24)), BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + 22))),
-                string.Empty, attributes, cluster, true, children, content));
+            entries.Add(new(name, isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, size, DecodeDateTime(BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + FatDirectoryLayout.ModifiedDateOffset)), BinaryPrimitives.ReadUInt16LittleEndian(directory.AsSpan(offset + FatDirectoryLayout.ModifiedTimeOffset))), string.Empty, (uint)attributes, cluster, true, children, content));
         }
         return entries.OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
-    private static byte[] ReadClusterChain(SectorImage image, byte[] fat, Layout layout, int first, HashSet<int> visited, List<string> warnings)
+    /// <summary>Lit une chaîne de clusters FAT12.</summary>
+    private static byte[] ReadClusterChain(SectorImage image, byte[] fat, Fat12Layout layout, int first, HashSet<int> visited, List<string> warnings, string name)
     {
-        if (first < 2) return [];
-        using var stream = new MemoryStream(); var cluster = first;
-        while (cluster is >= 2 and < 0xff8)
+        if (first < Fat12Layout.FirstDataCluster) return [];
+        using var stream = new MemoryStream();
+        var cluster = first;
+        while (cluster is >= Fat12Layout.FirstDataCluster and < Fat12Table.FirstEndOfChain)
         {
-            if (cluster >= layout.ClusterCount + 2 || !visited.Add(cluster)) throw new InvalidDataException($"Invalid or cyclic FAT chain at cluster {cluster}.");
-            var firstSector = layout.DataStart + (cluster - 2) * layout.SectorsPerCluster;
-            var bytes = ReadSectors(image, firstSector, layout.SectorsPerCluster, warnings); stream.Write(bytes);
-            cluster = ReadFat12(fat, cluster);
+            if (cluster >= layout.ClusterCount + Fat12Layout.FirstDataCluster || !visited.Add(cluster)) throw Fat12FileSystemExceptions.InvalidChain(name, cluster);
+            var firstSector = layout.DataStart + (cluster - Fat12Layout.FirstDataCluster) * layout.SectorsPerCluster;
+            stream.Write(ReadSectors(image, firstSector, layout.SectorsPerCluster, warnings));
+            if (!Fat12Table.TryRead(fat, cluster, out cluster)) throw Fat12FileSystemExceptions.TruncatedTable(cluster);
         }
         return stream.ToArray();
     }
 
+    /// <summary>Lit une plage de secteurs en conservant la position des secteurs absents.</summary>
     private static byte[] ReadSectors(SectorImage image, int first, int count, List<string> warnings)
     {
-        var output = new byte[count * 512];
+        var output = new byte[count * FatBpbLayout.SectorSize];
+        var missing = false;
         for (var index = 0; index < count; index++)
         {
-            if (!image.TryGetBlock(first + index, out var block) || block.Data.Count != 512) { warnings.Add($"Sector {first + index} is missing."); continue; }
-            block.Data.ToArray().CopyTo(output, index * 512);
+            if (!image.TryGetBlock(first + index, out var block) || block.Data.Count != FatBpbLayout.SectorSize) { missing = true; continue; }
+            block.Data.ToArray().CopyTo(output, index * FatBpbLayout.SectorSize);
         }
+        if (missing) warnings.Add(Fat12FileSystemExceptions.MissingSectors(first, count));
         return output;
     }
 
-    private static bool TryReadLayout(ReadOnlySpan<byte> boot, int availableSectors, string formatId, out Layout layout)
+    /// <summary>Lit la disposition BPB ou la disposition IBM historique d'un volume.</summary>
+    private static bool TryReadLayout(ReadOnlySpan<byte> boot, int availableSectors, string formatId, out Fat12Layout layout)
     {
-        layout = default; var bytes = BinaryPrimitives.ReadUInt16LittleEndian(boot[11..]); var cluster = boot[13];
-        var reserved = BinaryPrimitives.ReadUInt16LittleEndian(boot[14..]); var fats = boot[16];
-        var roots = BinaryPrimitives.ReadUInt16LittleEndian(boot[17..]); var total = BinaryPrimitives.ReadUInt16LittleEndian(boot[19..]);
-        if (total == 0) total = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(boot[32..])));
-        var fatSectors = BinaryPrimitives.ReadUInt16LittleEndian(boot[22..]);
-        if (bytes != 512 || cluster == 0 || reserved == 0 || fats == 0 || roots == 0 || total == 0 || total > availableSectors || fatSectors == 0)
-            return TryReadLegacyIbmLayout(formatId, availableSectors, boot, out layout);
-        var rootSectors = (roots * 32 + 511) / 512; var rootStart = reserved + fats * fatSectors; var dataStart = rootStart + rootSectors;
-        if (dataStart >= total) return false; var clusters = (total - dataStart) / cluster;
-        if (clusters >= 4085) return false; layout = new(reserved, fatSectors, rootStart, rootSectors, dataStart, cluster, clusters); return true;
+        layout = null!;
+        var bytes = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBpbLayout.BytesPerSectorOffset..]);
+        var cluster = boot[FatBpbLayout.SectorsPerClusterOffset];
+        var reserved = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBpbLayout.ReservedSectorCountOffset..]);
+        var fats = boot[FatBpbLayout.FatCountOffset];
+        var roots = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBpbLayout.RootEntryCountOffset..]);
+        var total = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBpbLayout.TotalSectors16Offset..]);
+        if (total == 0) total = checked((ushort)Math.Min(ushort.MaxValue, BinaryPrimitives.ReadUInt32LittleEndian(boot[FatBpbLayout.TotalSectors32Offset..])));
+        var fatSectors = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBpbLayout.SectorsPerFatOffset..]);
+        if (bytes != FatBpbLayout.SectorSize || cluster == 0 || reserved == 0 || fats == 0 || roots == 0 || total == 0 || total > availableSectors || fatSectors == 0) return TryReadLegacyIbmLayout(formatId, availableSectors, boot, out layout);
+        var rootSectors = (roots * FatDirectoryLayout.EntrySize + FatBpbLayout.SectorSize - 1) / FatBpbLayout.SectorSize;
+        var rootStart = reserved + fats * fatSectors;
+        var dataStart = rootStart + rootSectors;
+        if (dataStart >= total) return false;
+        var clusters = (total - dataStart) / cluster;
+        if (clusters is <= 0 or >= Fat12Layout.MaximumClusterCount) return false;
+        layout = new(reserved, fatSectors, rootStart, rootSectors, dataStart, cluster, clusters);
+        return true;
     }
 
-    private static bool TryReadLegacyIbmLayout(string formatId, int availableSectors, ReadOnlySpan<byte> boot, out Layout layout)
+    /// <summary>Résout une disposition IBM historique sans BPB exploitable.</summary>
+    private static bool TryReadLegacyIbmLayout(string formatId, int availableSectors, ReadOnlySpan<byte> boot, out Fat12Layout layout)
     {
-        layout = default;
-        if (boot.Length == 0 || boot.IndexOfAnyExcept(boot[0]) < 0) return false;
-        var parameters = formatId.ToLowerInvariant() switch
-        {
-            DiskImageFormatIds.Ibm160 => (Total: 320, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 1),
-            DiskImageFormatIds.Ibm180 => (Total: 360, SectorsPerCluster: 1, RootEntries: 64, SectorsPerFat: 2),
-            DiskImageFormatIds.Ibm320 => (Total: 640, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 1),
-            DiskImageFormatIds.Ibm360 => (Total: 720, SectorsPerCluster: 2, RootEntries: 112, SectorsPerFat: 2),
-            _ => default
-        };
-        if (parameters.Total == 0 || availableSectors < parameters.Total) return false;
-        const int reserved = 1, fats = 2;
-        var rootSectors = (parameters.RootEntries * 32 + 511) / 512;
-        var rootStart = reserved + fats * parameters.SectorsPerFat;
+        layout = null!;
+        if (boot.Length == 0 || boot.IndexOfAnyExcept(boot[0]) < 0 || !IbmLegacyFat12Layout.TryResolve(formatId, out var parameters) || availableSectors < parameters.TotalSectors) return false;
+        const int reserved = 1;
+        const int fatCount = 2;
+        var rootSectors = (parameters.RootEntries * FatDirectoryLayout.EntrySize + FatBpbLayout.SectorSize - 1) / FatBpbLayout.SectorSize;
+        var rootStart = reserved + fatCount * parameters.SectorsPerFat;
         var dataStart = rootStart + rootSectors;
-        var clusters = (parameters.Total - dataStart) / parameters.SectorsPerCluster;
+        var clusters = (parameters.TotalSectors - dataStart) / parameters.SectorsPerCluster;
         layout = new(reserved, parameters.SectorsPerFat, rootStart, rootSectors, dataStart, parameters.SectorsPerCluster, clusters);
         return true;
     }
 
-    private static bool HasPlausibleFatHeader(SectorImage image, Layout layout)
+    /// <summary>Vérifie l'en-tête de la première FAT.</summary>
+    private static bool HasPlausibleFatHeader(SectorImage image, Fat12Layout layout) => image.TryGetBlock(layout.ReservedSectors, out var fat) && fat.Data.Count >= 3 && fat.Data[0] >= 0xf0 && fat.Data[1] == 0xff && fat.Data[2] == 0xff;
+
+    /// <summary>Lit le label de volume présent dans le répertoire racine.</summary>
+    private static string? ReadVolumeLabel(ReadOnlySpan<byte> root)
     {
-        if (!image.TryGetBlock(layout.ReservedSectors, out var fat) || fat.Data.Count < 3) return false;
-        return fat.Data[0] >= 0xf0 && fat.Data[1] == 0xff && fat.Data[2] == 0xff;
+        for (var offset = 0; offset + FatDirectoryLayout.EntrySize <= root.Length; offset += FatDirectoryLayout.EntrySize)
+            if (root[offset] is not (FatDirectoryLayout.EndMarker or FatDirectoryLayout.DeletedMarker) && ((FatDirectoryAttributes)root[offset + FatDirectoryLayout.AttributesOffset]).HasFlag(FatDirectoryAttributes.VolumeLabel)) return ReadAscii(root, offset, FatDirectoryLayout.ExtensionOffset + FatDirectoryLayout.ExtensionLength).Trim();
+        return null;
     }
 
-    private static int ReadFat12(ReadOnlySpan<byte> fat, int cluster)
+    /// <summary>Décode un nom FAT au format 8.3.</summary>
+    private static string DecodeName(ReadOnlySpan<byte> value)
     {
-        var offset = cluster + cluster / 2; if (offset + 1 >= fat.Length) return 0xfff;
-        var pair = fat[offset] | fat[offset + 1] << BitPrimitives.BitsPerByte; return (cluster & 1) == 0 ? pair & 0xfff : pair >> 4;
+        var name = ReadAscii(value, 0, FatDirectoryLayout.NameLength).Trim();
+        var extension = ReadAscii(value, FatDirectoryLayout.ExtensionOffset, FatDirectoryLayout.ExtensionLength).Trim();
+        return extension.Length == 0 ? name : name + "." + extension;
     }
-    private static string? ReadVolumeLabel(ReadOnlySpan<byte> root) { for (var i = 0; i + 32 <= root.Length; i += 32) if (root[i] is not (0 or 0xe5) && (root[i + 11] & 0x08) != 0) return ReadAscii(root, i, 11).Trim(); return null; }
-    private static string DecodeName(ReadOnlySpan<byte> value) { var name = ReadAscii(value, 0, 8).Trim(); var ext = ReadAscii(value, 8, 3).Trim(); return ext.Length == 0 ? name : name + "." + ext; }
-    private static string ReadAscii(IReadOnlyList<byte> value, int offset, int length) => System.Text.Encoding.Latin1.GetString(value.Skip(offset).Take(length).ToArray()).TrimEnd('\0', ' ');
-    private static string ReadAscii(ReadOnlySpan<byte> value, int offset, int length) => System.Text.Encoding.Latin1.GetString(value.Slice(offset, length)).TrimEnd('\0', ' ');
-    private static DateTimeOffset? DecodeDateTime(ushort date, ushort time) { try { var year = 1980 + (date >> 9); var month = date >> 5 & 15; var day = date & 31; if (month == 0 || day == 0) return null; return new DateTimeOffset(year, month, day, time >> 11, time >> 5 & 63, (time & 31) * 2, TimeSpan.Zero); } catch { return null; } }
-    private readonly record struct Layout(int ReservedSectors, int SectorsPerFat, int RootStart, int RootSectors, int DataStart, int SectorsPerCluster, int ClusterCount);
+
+    /// <summary>Décode une chaîne Latin-1 de longueur fixe.</summary>
+    private static string ReadAscii(ReadOnlySpan<byte> value, int offset, int length) => System.Text.Encoding.Latin1.GetString(value.Slice(offset, length)).TrimEnd(FatBpbLayout.NullPadding, FatBpbLayout.SpacePadding);
+
+    /// <summary>Décode une date et une heure FAT.</summary>
+    private static DateTimeOffset? DecodeDateTime(ushort date, ushort time)
+    {
+        try
+        {
+            var year = 1980 + (date >> 9);
+            var month = date >> 5 & 15;
+            var day = date & 31;
+            if (month == 0 || day == 0) return null;
+            return new DateTimeOffset(year, month, day, time >> 11, time >> 5 & 63, (time & 31) * 2, TimeSpan.Zero);
+        }
+        catch { return null; }
+    }
+
+    /// <summary>Concatène deux segments de chemin FAT.</summary>
+    private static string CombinePath(string path, string name) => path.Length == 0 ? name : path + "/" + name;
 }

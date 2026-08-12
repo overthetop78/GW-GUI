@@ -5929,45 +5929,45 @@
       - [x] Tester une image D64, D71 et D81 par le Reader public.
       - [x] Tester BAM, répertoire, chaque type de fichier et les drapeaux Closed et Locked.
       - [x] Tester PETSCII, une chaîne cyclique et un secteur absent.
-  - [ ] FAT12
-    - [ ] `FileSystems/Fat/Fat12Layout.cs`
-      - [ ] Créer `FileSystems/Fat/Fat12Layout.cs` pour remplacer le record privé `Layout`.
-      - [ ] Y déplacer secteurs réservés, secteurs par FAT, début et taille de racine, début des données, secteurs par cluster et nombre de clusters.
-      - [ ] Valider chaque champ et la limite FAT12 de `4085` clusters à la construction.
-      - [ ] Utiliser `FatBpbLayout` pour lire chaque champ BPB au lieu de recopier ses offsets.
-      - [ ] Documenter en français le type, son constructeur et chaque propriété.
-    - [ ] `FileSystems/Fat/FatDirectoryLayout.cs`
-      - [ ] Créer `FileSystems/Fat/FatDirectoryLayout.cs`.
-      - [ ] Ajouter la taille d'entrée `32`, les longueurs de nom `8` et d'extension `3` et leurs offsets.
-      - [ ] Ajouter les offsets des attributs, date, heure, premier cluster et taille de fichier.
-      - [ ] Ajouter les marqueurs `0x00` de fin et `0xE5` de suppression.
-      - [ ] Créer un enum de drapeaux pour ReadOnly, Hidden, System, VolumeLabel, Directory et Archive.
-      - [ ] Remplacer chaque valeur brute correspondante dans le Reader.
-      - [ ] Documenter en français chaque constante et chaque drapeau.
-    - [ ] `FileSystems/Fat/Fat12Table.cs`
-      - [ ] Créer `FileSystems/Fat/Fat12Table.cs`.
-      - [ ] Déplacer le décodage des entrées 12 bits paires et impaires de `ReadFat12`.
-      - [ ] Ajouter les plages nommées de cluster libre, réservé, défectueux et fin de chaîne.
-      - [ ] Retourner un résultat explicite lorsqu'une entrée dépasse les octets disponibles.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Catalogue des layouts IBM historiques
-      - [ ] Déplacer les quatre tuples IBM 160, 180, 320 et 360 hors de `TryReadLegacyIbmLayout` vers le catalogue IBM commun.
-      - [ ] Remplacer les nombres de secteurs, secteurs par cluster, entrées racine et secteurs par FAT par les propriétés du catalogue.
-      - [ ] Conserver dans le Reader uniquement la construction du `Fat12Layout` à partir de la disposition résolue.
-      - [ ] Documenter en français chaque disposition historique.
-    - [ ] `FileSystems/Fat/Fat12FileSystemExceptions.cs`
-      - [ ] Créer `FileSystems/Fat/Fat12FileSystemExceptions.cs`.
-      - [ ] Ajouter l'erreur de layout non pris en charge avec format et champs BPB observés.
-      - [ ] Ajouter l'erreur de chaîne invalide ou cyclique avec nom et cluster.
-      - [ ] Ajouter l'avertissement de secteur absent avec premier secteur et nombre demandé.
-      - [ ] Ajouter l'avertissement de limite de profondeur avec chemin et profondeur.
-      - [ ] Remplacer les textes bruts correspondants dans le Reader.
-      - [ ] Documenter en français le type et chacune de ses méthodes.
-    - [ ] Tests des définitions FAT12
-      - [ ] Tester un BPB valide et chacun des quatre layouts IBM historiques.
-      - [ ] Tester une entrée paire, impaire, libre, défectueuse et de fin de chaîne.
-      - [ ] Tester un volume label `NO NAME`, un nom 8.3, une date et chaque attribut.
-      - [ ] Tester une chaîne cyclique, un cluster hors plage et un secteur absent.
+  - [x] FAT12
+    - [x] `FileSystems/Fat/Fat12Layout.cs`
+      - [x] Créer `FileSystems/Fat/Fat12Layout.cs` pour remplacer le record privé `Layout`.
+      - [x] Y déplacer secteurs réservés, secteurs par FAT, début et taille de racine, début des données, secteurs par cluster et nombre de clusters.
+      - [x] Valider chaque champ et la limite FAT12 de `4085` clusters à la construction.
+      - [x] Utiliser `FatBpbLayout` pour lire chaque champ BPB au lieu de recopier ses offsets.
+      - [x] Documenter en français le type, son constructeur et chaque propriété.
+    - [x] `FileSystems/Fat/FatDirectoryLayout.cs`
+      - [x] Créer `FileSystems/Fat/FatDirectoryLayout.cs`.
+      - [x] Ajouter la taille d'entrée `32`, les longueurs de nom `8` et d'extension `3` et leurs offsets.
+      - [x] Ajouter les offsets des attributs, date, heure, premier cluster et taille de fichier.
+      - [x] Ajouter les marqueurs `0x00` de fin et `0xE5` de suppression.
+      - [x] Créer un enum de drapeaux pour ReadOnly, Hidden, System, VolumeLabel, Directory et Archive.
+      - [x] Remplacer chaque valeur brute correspondante dans le Reader.
+      - [x] Documenter en français chaque constante et chaque drapeau.
+    - [x] `FileSystems/Fat/Fat12Table.cs`
+      - [x] Créer `FileSystems/Fat/Fat12Table.cs`.
+      - [x] Déplacer le décodage des entrées 12 bits paires et impaires de `ReadFat12`.
+      - [x] Ajouter les plages nommées de cluster libre, réservé, défectueux et fin de chaîne.
+      - [x] Retourner un résultat explicite lorsqu'une entrée dépasse les octets disponibles.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Catalogue des layouts IBM historiques
+      - [x] Déplacer les quatre tuples IBM 160, 180, 320 et 360 hors de `TryReadLegacyIbmLayout` vers le catalogue IBM commun.
+      - [x] Remplacer les nombres de secteurs, secteurs par cluster, entrées racine et secteurs par FAT par les propriétés du catalogue.
+      - [x] Conserver dans le Reader uniquement la construction du `Fat12Layout` à partir de la disposition résolue.
+      - [x] Documenter en français chaque disposition historique.
+    - [x] `FileSystems/Fat/Fat12FileSystemExceptions.cs`
+      - [x] Créer `FileSystems/Fat/Fat12FileSystemExceptions.cs`.
+      - [x] Ajouter l'erreur de layout non pris en charge avec format et champs BPB observés.
+      - [x] Ajouter l'erreur de chaîne invalide ou cyclique avec nom et cluster.
+      - [x] Ajouter l'avertissement de secteur absent avec premier secteur et nombre demandé.
+      - [x] Ajouter l'avertissement de limite de profondeur avec chemin et profondeur.
+      - [x] Remplacer les textes bruts correspondants dans le Reader.
+      - [x] Documenter en français le type et chacune de ses méthodes.
+    - [x] Tests des définitions FAT12
+      - [x] Tester un BPB valide et chacun des quatre layouts IBM historiques.
+      - [x] Tester une entrée paire, impaire, libre, défectueuse et de fin de chaîne.
+      - [x] Tester un volume label `NO NAME`, un nom 8.3, une date et chaque attribut.
+      - [x] Tester une chaîne cyclique, un cluster hors plage et un secteur absent.
   - [ ] Lisa
     - [ ] `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`
       - [ ] Créer `FileSystems/Apple/Lisa/LisaFileSystemLayout.cs`.
