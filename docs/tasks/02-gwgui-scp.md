@@ -7564,125 +7564,125 @@
     - [x] Tester le score avec aucun bloc, une image partielle et une image complète.
     - [x] Tester l’identité avec des entrées imbriquées, un ordre source différent, des familles de formats identiques et différentes.
     - [x] Tester la règle de crédibilité avec moins de trois avertissements, exactement le seuil et un nombre d’avertissements supérieur au nombre d’entrées.
-- [ ] `src/GWGUI.MediaEngine/Images/DiskImageMetadata.cs`
-  - [ ] Séparation du modèle et de sa résolution
-    - [ ] Déplacer le record vers `Exploration/Metadata/DiskImageMetadata.cs`.
-    - [ ] Créer `Exploration/Metadata/DiskImageMetadataFactory.cs` et y déplacer la méthode statique `From`.
-    - [ ] Remplacer le namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Metadata` dans les deux fichiers et adapter leurs consommateurs.
-    - [ ] Faire recevoir à la fabrique les résolveurs techniques de systèmes et de protections issus des groupes `DiskSystemCatalog.cs` et `DiskProtectionCatalog.cs`.
-    - [ ] Faire utiliser `DiskImageMetadataFactory` par `ExploredDiskImage` au lieu d’appeler une méthode statique du record.
-  - [ ] Métadonnées techniques sans texte d’interface
-    - [ ] Remplacer `SystemName` par une collection immuable `SystemIds`, car le code actuel peut reconnaître plusieurs systèmes avant de les concaténer.
-    - [ ] Remplacer `ProtectionName` par l’identifiant technique nullable `ProtectionId` correspondant à la protection actuellement reconnue.
-    - [ ] Copier les collections reçues par le record afin qu’une collection source modifiée ne change pas les métadonnées déjà créées.
-    - [ ] Faire agréger par la fabrique `image.FormatId` et les identifiants détectés, puis supprimer les doublons sans tenir compte de la casse.
-    - [ ] Faire résoudre chaque identifiant de format en identifiant technique de système, supprimer les résultats absents et conserver l’ordre de la première détection.
-    - [ ] Supprimer du moteur le tiret cadratin corrompu utilisé comme valeur « aucun système ».
-    - [ ] Supprimer du moteur le séparateur d’affichage ` + ` entre systèmes.
-    - [ ] Faire traduire et joindre les `SystemIds` par `GWGUI.App` au moment de l’affichage.
-    - [ ] Faire traduire `ProtectionId` par `GWGUI.App` et utiliser la ressource d’affichage appropriée lorsqu’il est absent.
-    - [ ] Remplacer dans `DiskImageWorkspaceController` et `ExplorerSection` les tests fondés sur le libellé de protection par le nouvel identifiant technique.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française au record `DiskImageMetadata`, à ses paramètres et à ses propriétés techniques.
-    - [ ] Ajouter une CSDoc française à `DiskImageMetadataFactory`, son constructeur et sa méthode de création.
-    - [ ] Documenter l’ordre, la suppression des doublons et l’immuabilité des identifiants retournés.
-    - [ ] Conserver sur une seule ligne la déclaration du record, les signatures, appels et expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests des métadonnées et de leurs consommateurs
-    - [ ] Tester une image associée à un seul système technique.
-    - [ ] Tester plusieurs identifiants de formats associés à plusieurs systèmes et vérifier leur ordre sans concaténation dans le moteur.
-    - [ ] Tester les doublons d’identifiants avec des casses différentes.
-    - [ ] Tester une image sans système résolu et vérifier que `SystemIds` est vide.
-    - [ ] Tester une image protégée et une image non protégée avec `ProtectionId`.
-    - [ ] Vérifier que la modification des collections sources ne modifie pas les métadonnées construites.
-    - [ ] Adapter les tests de l’application pour vérifier la traduction et la présentation des identifiants sans attendre les anciens libellés du moteur.
-- [ ] `src/GWGUI.MediaEngine/Images/DiskProtectionCatalog.cs`
-  - [ ] Remplacement du catalogue de libellés par un résolveur technique
-    - [ ] Renommer le type en `DiskProtectionResolver` et déplacer le fichier vers `Exploration/Metadata/DiskProtectionResolver.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Metadata`.
-    - [ ] Renommer `NameFor` en `ResolveId` afin d’indiquer que le résultat n’est plus un texte d’affichage.
-    - [ ] Faire retourner `DiskImageFormatIds.AppleIIRwts18` comme identifiant technique de la protection RWTS18, sans recopier la chaîne `apple2.rwts18` dans une seconde constante.
-    - [ ] Conserver `null` lorsqu’aucun des identifiants de format reçus ne correspond à cette protection.
-    - [ ] Faire utiliser ce résolveur par `DiskImageMetadataFactory`.
-    - [ ] Supprimer `Images/DiskProtectionCatalog.cs` après migration de son unique consommateur.
-  - [ ] Retrait du libellé d’interface
-    - [ ] Supprimer du moteur le texte brut et corrompu `Brøderbund RWTS18` retourné par le catalogue actuel.
-    - [ ] Ajouter ou réutiliser dans `GWGUI.App` la ressource localisée associée à l’identifiant `DiskImageFormatIds.AppleIIRwts18`.
-    - [ ] Faire afficher cette ressource par les présentateurs de l’application au lieu d’exposer un libellé depuis `GWGUI.MediaEngine`.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `DiskProtectionResolver` et à `ResolveId`.
-    - [ ] Documenter le paramètre d’identifiants de formats, l’identifiant technique retourné et le résultat nul.
-    - [ ] Conserver sur une seule ligne la signature et l’expression conditionnelle complète lorsqu’elles restent lisibles ainsi.
-  - [ ] Tests du résolveur de protection
-    - [ ] Vérifier que `DiskImageFormatIds.AppleIIRwts18` est résolu vers le même identifiant technique.
-    - [ ] Vérifier la comparaison insensible à la casse.
-    - [ ] Vérifier qu’un format Apple II ordinaire et une collection vide retournent `null`.
-    - [ ] Vérifier que l’application traduit l’identifiant RWTS18 sans dépendre de l’ancien texte du moteur.
+- [x] `src/GWGUI.MediaEngine/Images/DiskImageMetadata.cs`
+  - [x] Séparation du modèle et de sa résolution
+    - [x] Déplacer le record vers `Exploration/Metadata/DiskImageMetadata.cs`.
+    - [x] Créer `Exploration/Metadata/DiskImageMetadataFactory.cs` et y déplacer la méthode statique `From`.
+    - [x] Remplacer le namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Metadata` dans les deux fichiers et adapter leurs consommateurs.
+    - [x] Faire recevoir à la fabrique les résolveurs techniques de systèmes et de protections issus des groupes `DiskSystemCatalog.cs` et `DiskProtectionCatalog.cs`.
+    - [x] Faire utiliser `DiskImageMetadataFactory` par `ExploredDiskImage` au lieu d’appeler une méthode statique du record.
+  - [x] Métadonnées techniques sans texte d’interface
+    - [x] Remplacer `SystemName` par une collection immuable `SystemIds`, car le code actuel peut reconnaître plusieurs systèmes avant de les concaténer.
+    - [x] Remplacer `ProtectionName` par l’identifiant technique nullable `ProtectionId` correspondant à la protection actuellement reconnue.
+    - [x] Copier les collections reçues par le record afin qu’une collection source modifiée ne change pas les métadonnées déjà créées.
+    - [x] Faire agréger par la fabrique `image.FormatId` et les identifiants détectés, puis supprimer les doublons sans tenir compte de la casse.
+    - [x] Faire résoudre chaque identifiant de format en identifiant technique de système, supprimer les résultats absents et conserver l’ordre de la première détection.
+    - [x] Supprimer du moteur le tiret cadratin corrompu utilisé comme valeur « aucun système ».
+    - [x] Supprimer du moteur le séparateur d’affichage ` + ` entre systèmes.
+    - [x] Faire traduire et joindre les `SystemIds` par `GWGUI.App` au moment de l’affichage.
+    - [x] Faire traduire `ProtectionId` par `GWGUI.App` et utiliser la ressource d’affichage appropriée lorsqu’il est absent.
+    - [x] Remplacer dans `DiskImageWorkspaceController` et `ExplorerSection` les tests fondés sur le libellé de protection par le nouvel identifiant technique.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française au record `DiskImageMetadata`, à ses paramètres et à ses propriétés techniques.
+    - [x] Ajouter une CSDoc française à `DiskImageMetadataFactory`, son constructeur et sa méthode de création.
+    - [x] Documenter l’ordre, la suppression des doublons et l’immuabilité des identifiants retournés.
+    - [x] Conserver sur une seule ligne la déclaration du record, les signatures, appels et expressions complètes qui restent lisibles ainsi.
+  - [x] Tests des métadonnées et de leurs consommateurs
+    - [x] Tester une image associée à un seul système technique.
+    - [x] Tester plusieurs identifiants de formats associés à plusieurs systèmes et vérifier leur ordre sans concaténation dans le moteur.
+    - [x] Tester les doublons d’identifiants avec des casses différentes.
+    - [x] Tester une image sans système résolu et vérifier que `SystemIds` est vide.
+    - [x] Tester une image protégée et une image non protégée avec `ProtectionId`.
+    - [x] Vérifier que la modification des collections sources ne modifie pas les métadonnées construites.
+    - [x] Adapter les tests de l’application pour vérifier la traduction et la présentation des identifiants sans attendre les anciens libellés du moteur.
+- [x] `src/GWGUI.MediaEngine/Images/DiskProtectionCatalog.cs`
+  - [x] Remplacement du catalogue de libellés par un résolveur technique
+    - [x] Renommer le type en `DiskProtectionResolver` et déplacer le fichier vers `Exploration/Metadata/DiskProtectionResolver.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Metadata`.
+    - [x] Renommer `NameFor` en `ResolveId` afin d’indiquer que le résultat n’est plus un texte d’affichage.
+    - [x] Faire retourner `DiskImageFormatIds.AppleIIRwts18` comme identifiant technique de la protection RWTS18, sans recopier la chaîne `apple2.rwts18` dans une seconde constante.
+    - [x] Conserver `null` lorsqu’aucun des identifiants de format reçus ne correspond à cette protection.
+    - [x] Faire utiliser ce résolveur par `DiskImageMetadataFactory`.
+    - [x] Supprimer `Images/DiskProtectionCatalog.cs` après migration de son unique consommateur.
+  - [x] Retrait du libellé d’interface
+    - [x] Supprimer du moteur le texte brut et corrompu `Brøderbund RWTS18` retourné par le catalogue actuel.
+    - [x] Ajouter ou réutiliser dans `GWGUI.App` la ressource localisée associée à l’identifiant `DiskImageFormatIds.AppleIIRwts18`.
+    - [x] Faire afficher cette ressource par les présentateurs de l’application au lieu d’exposer un libellé depuis `GWGUI.MediaEngine`.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `DiskProtectionResolver` et à `ResolveId`.
+    - [x] Documenter le paramètre d’identifiants de formats, l’identifiant technique retourné et le résultat nul.
+    - [x] Conserver sur une seule ligne la signature et l’expression conditionnelle complète lorsqu’elles restent lisibles ainsi.
+  - [x] Tests du résolveur de protection
+    - [x] Vérifier que `DiskImageFormatIds.AppleIIRwts18` est résolu vers le même identifiant technique.
+    - [x] Vérifier la comparaison insensible à la casse.
+    - [x] Vérifier qu’un format Apple II ordinaire et une collection vide retournent `null`.
+    - [x] Vérifier que l’application traduit l’identifiant RWTS18 sans dépendre de l’ancien texte du moteur.
 
-- [ ] `src/GWGUI.MediaEngine/Images/DiskSystemCatalog.cs`
-  - [ ] Identifiants techniques de systèmes
-    - [ ] Créer `Recognition/Definitions/DiskSystemIds.cs` avec des constantes de chaîne pour Apple II, Apple III, Macintosh, Lisa, Amiga, Atari ST, Atari 8 bits, IBM PC, Commodore, Amstrad, Acorn/BBC, Epson QX-10, MSX, DEC, COHERENT et UCSD p-System.
-    - [ ] Utiliser des constantes de chaîne plutôt qu’un enum afin que ces identifiants restent utilisables comme clés de ressources et puissent être étendus sans modifier un ensemble fermé sérialisé.
-    - [ ] Donner à chaque constante un identifiant technique stable sans libellé destiné à l’affichage.
-  - [ ] Remplacement du catalogue de noms
-    - [ ] Renommer le type en `DiskSystemResolver` et déplacer le fichier vers `Exploration/Metadata/DiskSystemResolver.cs`.
-    - [ ] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Metadata`.
-    - [ ] Renommer `NameFor` en `ResolveId` et lui faire retourner un identifiant de `DiskSystemIds` ou `null`.
-    - [ ] Supprimer l’appel à `ToLowerInvariant` et comparer chaque préfixe avec `StringComparison.OrdinalIgnoreCase`.
-    - [ ] Remplacer les préfixes bruts Apple II, Apple III, Macintosh, Lisa, Amiga, Atari ST, Atari, IBM, Commodore, Amstrad, MSX et UCSD par les constantes existantes de `DiskImageFormatIds`.
-    - [ ] Utiliser `DiskImageFormatIds.AcornAdfsPrefix` et `DiskImageFormatIds.AcornDfsPrefix` pour la famille Acorn/BBC au lieu des textes `acorn.` et `bbc.`.
-    - [ ] Utiliser `DiskImageFormatIds.EpsonQx10Prefix` pour Epson QX-10.
-    - [ ] Définir `DiskImageFormatIds.DecPrefix` à partir de l’identifiant RX02 existant puis l’utiliser pour DEC.
-    - [ ] Utiliser `DiskImageFormatIds.Commodore900Prefix` pour résoudre l’image réellement produite `commodore900.coherent` vers l’identifiant technique COHERENT, à la place du préfixe mort `coherent.`.
-    - [ ] Faire utiliser `DiskSystemResolver` par `DiskImageMetadataFactory` et supprimer `Images/DiskSystemCatalog.cs` après migration.
-  - [ ] Retrait des libellés d’interface
-    - [ ] Supprimer du moteur tous les libellés Apple, Amiga, Atari, IBM, Commodore, Amstrad, Acorn, Epson, MSX, DEC, COHERENT et UCSD actuellement retournés par le switch.
-    - [ ] Supprimer le tiret cadratin corrompu du cas inconnu et retourner `null`.
-    - [ ] Créer ou réutiliser dans `GWGUI.App` une ressource localisée pour chaque valeur de `DiskSystemIds`.
-    - [ ] Faire présenter les systèmes par l’application à partir de ces ressources, sans reconstruire les familles depuis les identifiants de formats.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Documenter en français `DiskSystemIds`, chacune de ses constantes, `DiskSystemResolver` et `ResolveId`.
-    - [ ] Documenter la priorité des préfixes Apple Macintosh/Lisa, Atari ST/Atari 8 bits et Commodore 900/Commodore afin que le format le plus précis soit testé avant sa famille voisine.
-    - [ ] Conserver sur une seule ligne les branches du switch et les expressions complètes qui restent lisibles ainsi.
-  - [ ] Tests de toutes les résolutions de système
-    - [ ] Tester au moins un identifiant de format pour chacune des familles techniques définies dans `DiskSystemIds`.
-    - [ ] Tester séparément `mac.*` et `applemac.*`, puis `lisa.*` et `applelisa.*`.
-    - [ ] Tester qu’Atari ST n’est pas résolu comme Atari 8 bits.
-    - [ ] Tester `DiskImageFormatIds.Commodore900Coherent` et vérifier qu’il ne retourne plus le cas inconnu.
-    - [ ] Tester les comparaisons avec une casse différente et un identifiant sans famille connue.
-    - [ ] Vérifier dans l’application la traduction de chaque identifiant technique et la présentation du cas sans système.
-- [ ] `src/GWGUI.MediaEngine/Images/ExploredDiskImage.cs`
-  - [ ] Séparation des deux résultats d’exploration
-    - [ ] Créer `Exploration/Results/ExploredFileSystem.cs` et y déplacer le record `ExploredFileSystem`.
-    - [ ] Déplacer le record restant vers `Exploration/Results/ExploredDiskImage.cs`.
-    - [ ] Utiliser le namespace `GWGUI.MediaEngine.Exploration.Results` dans les deux fichiers.
-    - [ ] Adapter `DiskImageExplorer`, `DiskImageDocumentFactory`, l’exploration SCP, l’application et les tests aux nouveaux namespaces.
-    - [ ] Supprimer `Images/ExploredDiskImage.cs` après déplacement des deux types.
-  - [ ] Métadonnées calculées au moment de la construction
-    - [ ] Ajouter `DiskImageMetadata` aux données reçues par `ExploredDiskImage` au lieu de la recalculer dans une propriété à chaque accès.
-    - [ ] Injecter `DiskImageMetadataFactory` dans `DiskImageDocumentFactory` et y calculer les métadonnées à partir de l’image et des formats réellement détectés.
-    - [ ] Conserver `Metadata` comme propriété publique déjà calculée du résultat.
-    - [ ] Supprimer du record l’appel statique à l’ancienne méthode `DiskImageMetadata.From`.
-    - [ ] Adapter les constructions directes restantes dans les tests à fournir les métadonnées attendues ou à passer par `DiskImageDocumentFactory`.
-  - [ ] Collections de résultats protégées
-    - [ ] Remplacer les collections nullables `DetectedFileSystems` et `DetectedImageFormatIds` par des collections vides lorsqu’aucune détection n’est disponible.
-    - [ ] Copier les éléments de `DetectedFileSystems` lors de la construction afin qu’une liste source modifiée ne change pas le document exploré.
-    - [ ] Copier les éléments de `DetectedImageFormatIds` et supprimer leurs doublons sans tenir compte de la casse tout en conservant leur ordre.
-    - [ ] Conserver séparément `FileSystemRecognized`, car le volume physique de repli existe même lorsqu’aucun système de fichiers n’a été reconnu.
-    - [ ] Conserver `Volume` comme volume principal présenté par l’explorateur et `DetectedFileSystems` comme ensemble des résultats détectés.
-  - [ ] Modèle d’un système de fichiers exploré
-    - [ ] Conserver dans `ExploredFileSystem` l’identifiant de format sectoriel, le véritable identifiant du Reader de système de fichiers et le volume produit.
-    - [ ] Ne plus construire ce record avec un identifiant de format utilisé à tort comme `ReaderId`, conformément au groupe de `DiskImageExplorer.cs`.
-  - [ ] Documentation XML française et mise en forme
-    - [ ] Ajouter une CSDoc française à `ExploredFileSystem`, `ExploredDiskImage`, chacun de leurs paramètres et chacune de leurs propriétés.
-    - [ ] Documenter la différence entre format d’image, Reader de système de fichiers, volume principal, systèmes détectés et formats détectés.
-    - [ ] Documenter l’immuabilité des copies de collections et le cas où aucun système de fichiers n’est reconnu.
-    - [ ] Conserver sur une seule ligne les déclarations de records et signatures complètes qui restent lisibles, sans découpage vertical d’un paramètre par ligne.
-  - [ ] Tests des résultats d’exploration
-    - [ ] Construire un résultat avec un système de fichiers détecté et vérifier le format, le Reader, le volume et les métadonnées.
-    - [ ] Construire un résultat physique sans système reconnu et vérifier `FileSystemRecognized`, le volume de repli et les collections vides.
-    - [ ] Vérifier que les collections sources modifiées après construction ne changent pas le résultat.
-    - [ ] Vérifier la suppression ordonnée des doublons de formats avec des casses différentes.
-    - [ ] Vérifier que plusieurs accès à `Metadata` retournent les données déjà calculées sans relancer la résolution.
+- [x] `src/GWGUI.MediaEngine/Images/DiskSystemCatalog.cs`
+  - [x] Identifiants techniques de systèmes
+    - [x] Créer `Recognition/Definitions/DiskSystemIds.cs` avec des constantes de chaîne pour Apple II, Apple III, Macintosh, Lisa, Amiga, Atari ST, Atari 8 bits, IBM PC, Commodore, Amstrad, Acorn/BBC, Epson QX-10, MSX, DEC, COHERENT et UCSD p-System.
+    - [x] Utiliser des constantes de chaîne plutôt qu’un enum afin que ces identifiants restent utilisables comme clés de ressources et puissent être étendus sans modifier un ensemble fermé sérialisé.
+    - [x] Donner à chaque constante un identifiant technique stable sans libellé destiné à l’affichage.
+  - [x] Remplacement du catalogue de noms
+    - [x] Renommer le type en `DiskSystemResolver` et déplacer le fichier vers `Exploration/Metadata/DiskSystemResolver.cs`.
+    - [x] Remplacer son namespace `GWGUI.MediaEngine.Images` par `GWGUI.MediaEngine.Exploration.Metadata`.
+    - [x] Renommer `NameFor` en `ResolveId` et lui faire retourner un identifiant de `DiskSystemIds` ou `null`.
+    - [x] Supprimer l’appel à `ToLowerInvariant` et comparer chaque préfixe avec `StringComparison.OrdinalIgnoreCase`.
+    - [x] Remplacer les préfixes bruts Apple II, Apple III, Macintosh, Lisa, Amiga, Atari ST, Atari, IBM, Commodore, Amstrad, MSX et UCSD par les constantes existantes de `DiskImageFormatIds`.
+    - [x] Utiliser `DiskImageFormatIds.AcornAdfsPrefix` et `DiskImageFormatIds.AcornDfsPrefix` pour la famille Acorn/BBC au lieu des textes `acorn.` et `bbc.`.
+    - [x] Utiliser `DiskImageFormatIds.EpsonQx10Prefix` pour Epson QX-10.
+    - [x] Définir `DiskImageFormatIds.DecPrefix` à partir de l’identifiant RX02 existant puis l’utiliser pour DEC.
+    - [x] Utiliser `DiskImageFormatIds.Commodore900Prefix` pour résoudre l’image réellement produite `commodore900.coherent` vers l’identifiant technique COHERENT, à la place du préfixe mort `coherent.`.
+    - [x] Faire utiliser `DiskSystemResolver` par `DiskImageMetadataFactory` et supprimer `Images/DiskSystemCatalog.cs` après migration.
+  - [x] Retrait des libellés d’interface
+    - [x] Supprimer du moteur tous les libellés Apple, Amiga, Atari, IBM, Commodore, Amstrad, Acorn, Epson, MSX, DEC, COHERENT et UCSD actuellement retournés par le switch.
+    - [x] Supprimer le tiret cadratin corrompu du cas inconnu et retourner `null`.
+    - [x] Créer ou réutiliser dans `GWGUI.App` une ressource localisée pour chaque valeur de `DiskSystemIds`.
+    - [x] Faire présenter les systèmes par l’application à partir de ces ressources, sans reconstruire les familles depuis les identifiants de formats.
+  - [x] Documentation XML française et mise en forme
+    - [x] Documenter en français `DiskSystemIds`, chacune de ses constantes, `DiskSystemResolver` et `ResolveId`.
+    - [x] Documenter la priorité des préfixes Apple Macintosh/Lisa, Atari ST/Atari 8 bits et Commodore 900/Commodore afin que le format le plus précis soit testé avant sa famille voisine.
+    - [x] Conserver sur une seule ligne les branches du switch et les expressions complètes qui restent lisibles ainsi.
+  - [x] Tests de toutes les résolutions de système
+    - [x] Tester au moins un identifiant de format pour chacune des familles techniques définies dans `DiskSystemIds`.
+    - [x] Tester séparément `mac.*` et `applemac.*`, puis `lisa.*` et `applelisa.*`.
+    - [x] Tester qu’Atari ST n’est pas résolu comme Atari 8 bits.
+    - [x] Tester `DiskImageFormatIds.Commodore900Coherent` et vérifier qu’il ne retourne plus le cas inconnu.
+    - [x] Tester les comparaisons avec une casse différente et un identifiant sans famille connue.
+    - [x] Vérifier dans l’application la traduction de chaque identifiant technique et la présentation du cas sans système.
+- [x] `src/GWGUI.MediaEngine/Images/ExploredDiskImage.cs`
+  - [x] Séparation des deux résultats d’exploration
+    - [x] Créer `Exploration/Results/ExploredFileSystem.cs` et y déplacer le record `ExploredFileSystem`.
+    - [x] Déplacer le record restant vers `Exploration/Results/ExploredDiskImage.cs`.
+    - [x] Utiliser le namespace `GWGUI.MediaEngine.Exploration.Results` dans les deux fichiers.
+    - [x] Adapter `DiskImageExplorer`, `DiskImageDocumentFactory`, l’exploration SCP, l’application et les tests aux nouveaux namespaces.
+    - [x] Supprimer `Images/ExploredDiskImage.cs` après déplacement des deux types.
+  - [x] Métadonnées calculées au moment de la construction
+    - [x] Ajouter `DiskImageMetadata` aux données reçues par `ExploredDiskImage` au lieu de la recalculer dans une propriété à chaque accès.
+    - [x] Injecter `DiskImageMetadataFactory` dans `DiskImageDocumentFactory` et y calculer les métadonnées à partir de l’image et des formats réellement détectés.
+    - [x] Conserver `Metadata` comme propriété publique déjà calculée du résultat.
+    - [x] Supprimer du record l’appel statique à l’ancienne méthode `DiskImageMetadata.From`.
+    - [x] Adapter les constructions directes restantes dans les tests à fournir les métadonnées attendues ou à passer par `DiskImageDocumentFactory`.
+  - [x] Collections de résultats protégées
+    - [x] Remplacer les collections nullables `DetectedFileSystems` et `DetectedImageFormatIds` par des collections vides lorsqu’aucune détection n’est disponible.
+    - [x] Copier les éléments de `DetectedFileSystems` lors de la construction afin qu’une liste source modifiée ne change pas le document exploré.
+    - [x] Copier les éléments de `DetectedImageFormatIds` et supprimer leurs doublons sans tenir compte de la casse tout en conservant leur ordre.
+    - [x] Conserver séparément `FileSystemRecognized`, car le volume physique de repli existe même lorsqu’aucun système de fichiers n’a été reconnu.
+    - [x] Conserver `Volume` comme volume principal présenté par l’explorateur et `DetectedFileSystems` comme ensemble des résultats détectés.
+  - [x] Modèle d’un système de fichiers exploré
+    - [x] Conserver dans `ExploredFileSystem` l’identifiant de format sectoriel, le véritable identifiant du Reader de système de fichiers et le volume produit.
+    - [x] Ne plus construire ce record avec un identifiant de format utilisé à tort comme `ReaderId`, conformément au groupe de `DiskImageExplorer.cs`.
+  - [x] Documentation XML française et mise en forme
+    - [x] Ajouter une CSDoc française à `ExploredFileSystem`, `ExploredDiskImage`, chacun de leurs paramètres et chacune de leurs propriétés.
+    - [x] Documenter la différence entre format d’image, Reader de système de fichiers, volume principal, systèmes détectés et formats détectés.
+    - [x] Documenter l’immuabilité des copies de collections et le cas où aucun système de fichiers n’est reconnu.
+    - [x] Conserver sur une seule ligne les déclarations de records et signatures complètes qui restent lisibles, sans découpage vertical d’un paramètre par ligne.
+  - [x] Tests des résultats d’exploration
+    - [x] Construire un résultat avec un système de fichiers détecté et vérifier le format, le Reader, le volume et les métadonnées.
+    - [x] Construire un résultat physique sans système reconnu et vérifier `FileSystemRecognized`, le volume de repli et les collections vides.
+    - [x] Vérifier que les collections sources modifiées après construction ne changent pas le résultat.
+    - [x] Vérifier la suppression ordonnée des doublons de formats avec des casses différentes.
+    - [x] Vérifier que plusieurs accès à `Metadata` retournent les données déjà calculées sans relancer la résolution.
 - [ ] `src/GWGUI.MediaEngine/Images/Interpretations/AdditionalImageInterpretationRegistry.cs`
   - [ ] Déplacement du registre d’interprétations
     - [ ] Déplacer le fichier vers `Exploration/Interpretation/AdditionalImageInterpretationRegistry.cs`.
