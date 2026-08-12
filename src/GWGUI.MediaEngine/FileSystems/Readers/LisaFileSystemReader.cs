@@ -20,7 +20,7 @@ public sealed class LisaFileSystemReader : IFileSystemReader
     private const ushort SRecordsFileId = 0x0003;
     private const ushort CatalogFileId = 0x0004;
 
-    public string Id => "lisa";
+    public string Id => Definitions.FileSystemIds.Lisa;
     public IReadOnlySet<string> CatalogFormatIds { get; } =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase) { DiskImageFormatIds.AppleLisaOffice, DiskImageFormatIds.Mac400 };
 

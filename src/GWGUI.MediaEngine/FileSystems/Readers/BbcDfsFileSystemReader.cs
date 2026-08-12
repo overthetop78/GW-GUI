@@ -9,7 +9,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class BbcDfsFileSystemReader : IFileSystemReader
 {
-    public string Id => "acorn-dfs";
+    public string Id => Definitions.FileSystemIds.AcornDfs;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AcornDfsSingleSided, DiskImageFormatIds.AcornDfsSingleSided80,
             DiskImageFormatIds.AcornDfsDoubleSided, DiskImageFormatIds.AcornDfsDoubleSided80 };

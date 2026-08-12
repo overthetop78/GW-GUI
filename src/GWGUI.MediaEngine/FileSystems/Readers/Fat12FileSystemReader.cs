@@ -9,7 +9,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class Fat12FileSystemReader : IFileSystemReader
 {
-    public string Id => "fat12";
+    public string Id => Definitions.FileSystemIds.Fat12;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
         DiskImageFormatIds.AtariSt180, DiskImageFormatIds.AtariSt360, DiskImageFormatIds.AtariSt400,

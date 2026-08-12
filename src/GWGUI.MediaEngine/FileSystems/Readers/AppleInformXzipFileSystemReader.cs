@@ -20,7 +20,7 @@ public sealed class AppleInformXzipFileSystemReader : IFileSystemReader
 
     private static readonly int[] Interleave = [0, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 15];
 
-    public string Id => "apple-inform-xzip";
+    public string Id => Definitions.FileSystemIds.AppleInformXzip;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleIIDos33, DiskImageFormatIds.AppleIIAppleDos140 };
 

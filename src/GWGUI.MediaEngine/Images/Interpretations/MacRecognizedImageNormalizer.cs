@@ -10,8 +10,7 @@ internal sealed class MacRecognizedImageNormalizer : IRecognizedImageNormalizer
     public bool TryNormalize(SectorImage image, string readerId, FileSystemVolume volume, out SectorImage normalized)
     {
         normalized = image;
-        if (!readerId.Equals("mac-hfs", StringComparison.OrdinalIgnoreCase) &&
-            !readerId.Equals("mac-mfs", StringComparison.OrdinalIgnoreCase)) return false;
+        if (!readerId.Equals(FileSystems.Definitions.FileSystemIds.MacHfs, StringComparison.OrdinalIgnoreCase) && !readerId.Equals(FileSystems.Definitions.FileSystemIds.MacMfs, StringComparison.OrdinalIgnoreCase)) return false;
         if (image.BlockSize != 512 || image.BlockCount != 2880 ||
             image.FormatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return false;
         normalized = SectorImageInterpretation.Retag(image, DiskImageFormatIds.Mac1440);

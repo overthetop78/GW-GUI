@@ -12,7 +12,7 @@ public sealed class UcsdFileSystemReader : IFileSystemReader
     private const int DirectoryBlock = 2;
     private const int EntrySize = 26;
 
-    public string Id => "ucsd";
+    public string Id => Definitions.FileSystemIds.Ucsd;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.UcsdIbmMfm };
 

@@ -12,7 +12,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     private const int HashTableEntries = 72;
     private static readonly DateTimeOffset AmigaEpoch = new(1978, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
-    public string Id => "amigados";
+    public string Id => Definitions.FileSystemIds.AmigaDos;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
         DiskImageFormatIds.AmigaDos,

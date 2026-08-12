@@ -10,7 +10,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 public sealed class MacHfsFileSystemReader : IFileSystemReader
 {
     private static readonly DateTimeOffset MacEpoch = new(1904, 1, 1, 0, 0, 0, TimeSpan.Zero);
-    public string Id => "mac-hfs";
+    public string Id => Definitions.FileSystemIds.MacHfs;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleMacHfs, DiskImageFormatIds.Mac400, DiskImageFormatIds.Mac800, DiskImageFormatIds.Mac1440 };
 

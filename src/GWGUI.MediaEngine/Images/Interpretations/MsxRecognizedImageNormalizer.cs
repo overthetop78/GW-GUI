@@ -8,7 +8,7 @@ internal sealed class MsxRecognizedImageNormalizer : IRecognizedImageNormalizer
     public bool TryNormalize(SectorImage image, string readerId, FileSystemVolume volume, out SectorImage normalized)
     {
         normalized = image;
-        return readerId.Equals("fat12", StringComparison.OrdinalIgnoreCase) &&
+        return readerId.Equals(FileSystems.Definitions.FileSystemIds.Fat12, StringComparison.OrdinalIgnoreCase) &&
                SectorImageInterpretation.TryCreateMsx(image, out normalized);
     }
 }

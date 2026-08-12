@@ -5457,17 +5457,17 @@
 ## 8. Systèmes de fichiers
 
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs`
-  - [ ] Création des identifiants de systèmes de fichiers
-    - [ ] Créer `FileSystems/Definitions/FileSystemIds.cs`.
-    - [ ] Ajouter une constante pour chaque valeur actuellement retournée par la propriété `Id` des Readers de systèmes de fichiers.
-    - [ ] Remplacer les identifiants bruts dans les Readers, `FileSystemRegistry`, `DiskImageInterpretationService`, les normalizers et les tests concernés.
-    - [ ] Conserver les noms affichés des systèmes de fichiers distincts de leurs identifiants techniques.
-  - [ ] Documentation XML
-    - [ ] Documenter en français `FileSystemIds` et chacune de ses constantes.
+  - [x] Création des identifiants de systèmes de fichiers
+    - [x] Créer `FileSystems/Definitions/FileSystemIds.cs`.
+    - [x] Ajouter une constante pour chaque valeur actuellement retournée par la propriété `Id` des Readers de systèmes de fichiers.
+    - [x] Remplacer les identifiants bruts dans les Readers, `FileSystemRegistry`, `DiskImageInterpretationService`, les normalizers et les tests concernés.
+    - [x] Conserver les noms affichés des systèmes de fichiers distincts de leurs identifiants techniques.
+  - [x] Documentation XML
+    - [x] Documenter en français `FileSystemIds` et chacune de ses constantes.
   - [ ] Tests ciblés
-    - [ ] Vérifier que tous les Readers enregistrés possèdent un identifiant distinct.
+    - [x] Vérifier que tous les Readers enregistrés possèdent un identifiant distinct.
     - [ ] Vérifier la sélection explicite de chaque Reader avec la constante correspondante.
-    - [ ] Exécuter les tests ciblés de `FileSystemRegistry`.
+    - [x] Exécuter les tests ciblés de `FileSystemRegistry`.
 - [ ] `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs`
   - [ ] Création des noms affichés de systèmes de fichiers
     - [ ] Créer `FileSystems/Definitions/FileSystemDisplayNames.cs` séparément de `FileSystemIds.cs`.

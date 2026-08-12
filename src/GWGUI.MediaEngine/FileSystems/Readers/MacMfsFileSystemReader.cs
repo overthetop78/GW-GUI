@@ -12,7 +12,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 public sealed class MacMfsFileSystemReader : IFileSystemReader
 {
     private static readonly DateTimeOffset MacEpoch = new(1904, 1, 1, 0, 0, 0, TimeSpan.Zero);
-    public string Id => "mac-mfs";
+    public string Id => Definitions.FileSystemIds.MacMfs;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleMacMfs, DiskImageFormatIds.Mac400, DiskImageFormatIds.Mac800, DiskImageFormatIds.Mac1440 };
 

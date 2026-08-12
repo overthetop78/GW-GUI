@@ -10,7 +10,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AtariDosFileSystemReader : IFileSystemReader
 {
-    public string Id => "atari-dos";
+    public string Id => Definitions.FileSystemIds.AtariDos;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.Atari90, DiskImageFormatIds.Atari130, DiskImageFormatIds.Atari180 };
     public bool CanRead(SectorImage image) => image.FormatId.StartsWith("atari.", StringComparison.OrdinalIgnoreCase) &&

@@ -11,7 +11,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class ProDosFileSystemReader : IFileSystemReader
 {
-    public string Id => "prodos";
+    public string Id => Definitions.FileSystemIds.ProDos;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleIIProDos, DiskImageFormatIds.AppleIIProDos140,
             DiskImageFormatIds.AppleIIProDos800, DiskImageFormatIds.AppleIIISos };

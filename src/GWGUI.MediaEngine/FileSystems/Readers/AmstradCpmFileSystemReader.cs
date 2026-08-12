@@ -10,7 +10,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 /// <summary>Read-only CP/M directory reader for Amstrad CPC and PCW media.</summary>
 public sealed class AmstradCpmFileSystemReader : IFileSystemReader
 {
-    public string Id => "amstrad.cpm";
+    public string Id => Definitions.FileSystemIds.AmstradCpm;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AmstradCpc, DiskImageFormatIds.AmstradPcw };
 

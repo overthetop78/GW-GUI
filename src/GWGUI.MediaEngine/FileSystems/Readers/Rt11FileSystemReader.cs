@@ -16,7 +16,7 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
     private const ushort Protected = 0x8000;
     private const string Radix50 = " ABCDEFGHIJKLMNOPQRSTUVWXYZ$.%0123456789";
 
-    public string Id => "rt11";
+    public string Id => Definitions.FileSystemIds.Rt11;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.DecRx02 };
 

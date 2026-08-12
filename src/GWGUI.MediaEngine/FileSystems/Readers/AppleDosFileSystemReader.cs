@@ -10,7 +10,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class AppleDosFileSystemReader : IFileSystemReader
 {
-    public string Id => "apple-dos";
+    public string Id => Definitions.FileSystemIds.AppleDos;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AppleIIDos32, DiskImageFormatIds.AppleIIDos33, DiskImageFormatIds.AppleIIAppleDos140 };
 

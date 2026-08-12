@@ -7,7 +7,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class CommodoreDosFileSystemReader : IFileSystemReader
 {
-    public string Id => "commodore-dos";
+    public string Id => Definitions.FileSystemIds.CommodoreDos;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.Commodore1541, DiskImageFormatIds.Commodore1571, DiskImageFormatIds.Commodore1581 };
 

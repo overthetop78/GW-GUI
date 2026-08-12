@@ -17,7 +17,7 @@ public sealed class CoherentFileSystemReader : IFileSystemReader
     private const ushort TypeMask = 0xf000;
 
     /// <summary>Obtient l'identifiant du lecteur.</summary>
-    public string Id => "coherent";
+    public string Id => Definitions.FileSystemIds.Coherent;
     /// <summary>Obtient les formats dont le catalogue peut être lu.</summary>
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.Commodore900Coherent };

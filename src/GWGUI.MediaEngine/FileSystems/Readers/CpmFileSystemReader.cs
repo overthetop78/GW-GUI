@@ -8,7 +8,7 @@ namespace GWGUI.MediaEngine.FileSystems.Readers;
 
 public sealed class CpmFileSystemReader : IFileSystemReader
 {
-    public string Id => "cpm";
+    public string Id => Definitions.FileSystemIds.Cpm;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             DiskImageFormatIds.Commodore1541, DiskImageFormatIds.Commodore1571, DiskImageFormatIds.Commodore1581,

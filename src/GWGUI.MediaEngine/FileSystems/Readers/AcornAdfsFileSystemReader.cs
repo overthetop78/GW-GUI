@@ -17,7 +17,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     private const int EntrySize = 26;
     private static readonly DateTimeOffset RiscOsEpoch = new(1900, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
-    public string Id => "acorn-adfs";
+    public string Id => Definitions.FileSystemIds.AcornAdfs;
     public IReadOnlySet<string> CatalogFormatIds { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         { DiskImageFormatIds.AcornAdfs800 };
 
