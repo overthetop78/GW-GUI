@@ -21,7 +21,9 @@ internal abstract class SectorImageVisualizationPolicy : ISectorImageVisualizati
     /// <inheritdoc />
     public virtual IReadOnlyDictionary<string, int>? TrackAttributes(SectorImage image, int sectorCount) => null;
     /// <inheritdoc />
-    public virtual uint BitCellTicks(SectorImage image, int cylinder) => TrackEncodingDefaults.BitCellTicks;
+    public virtual uint BitCellTicks(SectorImage image, int cylinder) => SectorImageTrackTimingCatalog.BitCellTicks(image.FormatId);
+    /// <inheritdoc />
+    public virtual uint IndexTimeTicks(SectorImage image, int cylinder) => SectorImageTrackTimingCatalog.IndexTimeTicks(image.FormatId);
 
     /// <summary>Convertit les tags binaires d'un secteur en attributs indexés d'encodage.</summary>
     /// <param name="tag">Tags du secteur, ou <see langword="null"/>.</param>

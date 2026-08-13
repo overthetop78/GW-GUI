@@ -34,4 +34,9 @@ internal interface ISectorImageVisualizationPolicy
     /// <param name="cylinder">Cylindre de la piste.</param>
     /// <returns>Durée en ticks.</returns>
     uint BitCellTicks(SectorImage image, int cylinder);
+    /// <summary>Retourne la durée nominale d'une révolution.</summary>
+    /// <param name="image">Image sectorielle reconnue.</param>
+    /// <param name="cylinder">Cylindre de la piste.</param>
+    /// <returns>Durée en ticks.</returns>
+    uint IndexTimeTicks(SectorImage image, int cylinder);
 }

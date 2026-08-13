@@ -34,8 +34,9 @@ public sealed class SectorImageTrackEncoder
             var sectors = policy.CreateTrackSectors(image, items);
             if (sectors.Count == 0) continue;
             var bitCellTicks = policy.BitCellTicks(image, group.Key.Cylinder);
+            var indexTimeTicks = policy.IndexTimeTicks(image, group.Key.Cylinder);
             EncodedTrack encoded;
-            try { encoded = encoders.Encode(policy.EncoderId(image), new TrackEncodeRequest(group.Key.Cylinder, group.Key.Head, sectors, policy.TrackAttributes(image, sectors.Count), bitCellTicks)); }
+            try { encoded = encoders.Encode(policy.EncoderId(image), new TrackEncodeRequest(group.Key.Cylinder, group.Key.Head, sectors, policy.TrackAttributes(image, sectors.Count), bitCellTicks, indexTimeTicks)); }
             catch (KeyNotFoundException) { throw SectorImageVisualizationExceptions.MissingPolicy(image.FormatId); }
             tracks.Add(new(group.Key.Cylinder, group.Key.Head, bitCellTicks, encoded));
         }

@@ -444,7 +444,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 5.2 Amiga, Atari ST/8-bit, IBM, MSX, Acorn/BBC, Amstrad et Epson
 
-- [ ] Raccorder les familles Amiga MFM et ISO FM/MFM au service de création SCP en appliquant géométrie, bitrate, RPM et ordre sectoriel de chaque format, puis valider SCP→secteurs contre l’image source.
+- [x] Raccorder les familles Amiga MFM et ISO FM/MFM au service de création SCP en appliquant géométrie, bitrate, RPM et ordre sectoriel de chaque format, puis valider SCP→secteurs contre l’image source.
 
   Informations nécessaires :
 
