@@ -7,6 +7,7 @@ using GWGUI.MediaEngine.Containers.Epson.Raw;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
+using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Containers.Atari.Msa;
 using GWGUI.MediaEngine.Containers.Atari.St;
@@ -106,6 +107,13 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new AppleRawImageWriter(), new TwoImgWriter());
+    }
+
+    /// <summary>Crée le service Macintosh brut et DiskCopy avec ses Readers et Writers partagés.</summary>
+    public static MacintoshConversionService CreateMacintoshConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new MacintoshRawImageWriter(), new DiskCopyWriter());
     }
     /// <summary>Crée le service de conversion sectorielle Atari ST avec ses Reader et Writer partagés.</summary>
     public static AtariStConversionService CreateAtariStConversionService()

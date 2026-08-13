@@ -24,7 +24,10 @@ internal static class DiskCopyReader
     /// <exception cref="OverflowException">
     /// Une longueur 32 bits déclarée par l’en-tête ne peut pas être représentée par un entier signé.
     /// </exception>
-    public static SectorImage Read(byte[] container)
+    public static SectorImage Read(byte[] container) => ReadDetailed(container).Image;
+
+    /// <summary>Lit l'image et conserve le nom ainsi que les deux octets de format de l'en-tête.</summary>
+    public static DiskCopyImage ReadDetailed(byte[] container)
     {
         if (container.Length < DiskCopyLayout.HeaderSize)
             throw DiskCopyExceptions.TruncatedHeader();
@@ -40,15 +43,21 @@ internal static class DiskCopyReader
         var tags = container.AsSpan(DiskCopyLayout.HeaderSize + dataLength, tagLength);
         ValidateChecksums(container, payload, tags);
 
-        if (TryReadUntaggedImage(payload, out var untaggedImage)) return untaggedImage;
-        ValidateTags(dataLength, tagLength);
-
-        var blockCount = dataLength / DiskCopyLayout.DataBlockSize;
-        var geometryKind = DetermineTaggedGeometry(blockCount);
-        var blocks = CreateTaggedBlocks(payload, tags, geometryKind);
-        var formatId = SelectTaggedFormat(payload);
-        var geometry = CreateTaggedGeometry(geometryKind, blocks.Length);
-        return new(formatId, DiskCopyLayout.DataBlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, capacity: dataLength, logicalBlockCount: blocks.Length);
+        SectorImage image;
+        if (TryReadUntaggedImage(payload, out var untaggedImage)) image = untaggedImage;
+        else
+        {
+            ValidateTags(dataLength, tagLength);
+            var blockCount = dataLength / DiskCopyLayout.DataBlockSize;
+            var geometryKind = DetermineTaggedGeometry(blockCount);
+            var blocks = CreateTaggedBlocks(payload, tags, geometryKind);
+            var formatId = SelectTaggedFormat(payload);
+            var geometry = CreateTaggedGeometry(geometryKind, blocks.Length);
+            image = new(formatId, DiskCopyLayout.DataBlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, capacity: dataLength, logicalBlockCount: blocks.Length);
+        }
+        var nameLength = Math.Min((int)container[DiskCopyLayout.NameLengthOffset], DiskCopyLayout.MaximumNameLength);
+        var nameBytes = container.AsSpan(DiskCopyLayout.NameOffset, nameLength).ToArray();
+        return new(image, nameBytes, container[DiskCopyLayout.DiskFormatOffset], container[DiskCopyLayout.FormatByteOffset]);
     }
 
     /// <summary>Construit les blocs tagués en conservant l'adressage propre à la géométrie reconnue.</summary>

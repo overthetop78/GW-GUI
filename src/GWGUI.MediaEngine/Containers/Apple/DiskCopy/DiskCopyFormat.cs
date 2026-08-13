@@ -18,6 +18,18 @@ public static class DiskCopyFormat
     public const int ChecksumRotation = 1;
     /// <summary>Nombre de bits du registre de checksum DiskCopy.</summary>
     public const int ChecksumBitCount = sizeof(uint) * BitPrimitives.BitsPerByte;
+    /// <summary>Identifiant DiskCopy d'une disquette GCR 400 Kio.</summary>
+    public const byte DiskFormat400K = 0;
+    /// <summary>Identifiant DiskCopy d'une disquette GCR 800 Kio.</summary>
+    public const byte DiskFormat800K = 1;
+    /// <summary>Identifiant DiskCopy d'une disquette MFM 720 Kio.</summary>
+    public const byte DiskFormat720K = 2;
+    /// <summary>Identifiant DiskCopy d'une disquette MFM 1,44 Mio.</summary>
+    public const byte DiskFormat1440K = 3;
+    /// <summary>Octet de format couramment utilisé pour Macintosh MFS.</summary>
+    public const byte FormatByteMacintoshMfs = 0x22;
+    /// <summary>Octet de format couramment utilisé pour Macintosh HFS.</summary>
+    public const byte FormatByteMacintoshHfs = 0x24;
 
     /// <summary>Octets ASCII mémorisés du marqueur MacWorks PREBOOT.</summary>
     private static readonly byte[] PrebootMarkerBytes = [0x50, 0x52, 0x45, 0x42, 0x4F, 0x4F, 0x54];

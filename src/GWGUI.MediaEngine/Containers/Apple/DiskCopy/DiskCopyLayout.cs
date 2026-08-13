@@ -5,6 +5,12 @@ namespace GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 /// </summary>
 public static class DiskCopyLayout
 {
+    /// <summary>Offset de la longueur du nom Pascal.</summary>
+    public const int NameLengthOffset = 0;
+    /// <summary>Offset des octets du nom suivant sa longueur.</summary>
+    public const int NameOffset = 1;
+    /// <summary>Longueur maximale du nom DiskCopy.</summary>
+    public const int MaximumNameLength = 63;
     /// <summary>Longueur minimale, en octets, des données sectorielles déclarées.</summary>
     public const int MinimumDataLength = 1;
     /// <summary>Taille, en octets, de l’en-tête DiskCopy 4.2.</summary>
@@ -21,6 +27,12 @@ public static class DiskCopyLayout
 
     /// <summary>Offset du checksum 32 bits big-endian des tags sectoriels.</summary>
     public const int TagChecksumOffset = 76;
+
+    /// <summary>Offset du type de disquette DiskCopy.</summary>
+    public const int DiskFormatOffset = 80;
+
+    /// <summary>Offset de l'octet identifiant le format logique DiskCopy.</summary>
+    public const int FormatByteOffset = 81;
 
     /// <summary>Offset du mot magique big-endian terminant l'en-tête.</summary>
     public const int PrivateWordOffset = 82;

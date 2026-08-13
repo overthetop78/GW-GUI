@@ -102,6 +102,31 @@ public sealed class AppleContainerReaderTests
         Assert.Equal(DiskImageFormatIds.AppleLisaOffice, image.FormatId);
     }
 
+    [Fact]
+    public async Task DiskCopyWriterPreservesSourceNameFormatTagsAndChecksums()
+    {
+        var sourceBytes = await File.ReadAllBytesAsync(Images.Value.TaggedDiskCopy);
+        var source = DiskCopyReader.ReadDetailed(sourceBytes);
+        var outputPath = Path.Combine(Path.GetTempPath(), $"gwgui-diskcopy-{Guid.NewGuid():N}.dc42");
+        try
+        {
+            await new DiskCopyWriter().WriteAsync(source.Image, outputPath, source);
+            var outputBytes = await File.ReadAllBytesAsync(outputPath);
+            var reopened = DiskCopyReader.ReadDetailed(outputBytes);
+            Assert.Equal(source.NameBytes, reopened.NameBytes);
+            Assert.Equal(source.DiskFormat, reopened.DiskFormat);
+            Assert.Equal(source.FormatByte, reopened.FormatByte);
+            Assert.Equal(source.Image.AvailableBlocks.SelectMany(block => block.Data), reopened.Image.AvailableBlocks.SelectMany(block => block.Data));
+            Assert.Equal(source.Image.AvailableBlocks.SelectMany(block => block.Tag ?? []), reopened.Image.AvailableBlocks.SelectMany(block => block.Tag ?? []));
+            Assert.Equal(BinaryPrimitives.ReadUInt32BigEndian(sourceBytes.AsSpan(DiskCopyLayout.DataChecksumOffset)), BinaryPrimitives.ReadUInt32BigEndian(outputBytes.AsSpan(DiskCopyLayout.DataChecksumOffset)));
+            Assert.Equal(BinaryPrimitives.ReadUInt32BigEndian(sourceBytes.AsSpan(DiskCopyLayout.TagChecksumOffset)), BinaryPrimitives.ReadUInt32BigEndian(outputBytes.AsSpan(DiskCopyLayout.TagChecksumOffset)));
+        }
+        finally
+        {
+            if (File.Exists(outputPath)) File.Delete(outputPath);
+        }
+    }
+
     /// <summary>VÃ©rifie qu'un conteneur DiskCopy sans tags dÃ©lÃ¨gue sa charge utile Macintosh au lecteur brut.</summary>
     [Fact]
     public async Task ReadsUntaggedMacintoshDiskCopyPayload()

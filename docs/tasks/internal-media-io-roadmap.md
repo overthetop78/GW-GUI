@@ -274,7 +274,7 @@ Références communes :
 
 ### 3.1 Macintosh — IMG, IMAGE et DC42
 
-- [ ] Implémenter un Writer brut Macintosh pour MFM 1,44 Mio et GCR 400/800 Kio en respectant la géométrie zonée, puis valider MFS/HFS et chaque secteur après réouverture.
+- [x] Implémenter un Writer brut Macintosh pour MFM 1,44 Mio et GCR 400/800 Kio en respectant la géométrie zonée, puis valider MFS/HFS et chaque secteur après réouverture.
 
   Informations nécessaires :
 
@@ -285,7 +285,7 @@ Références communes :
   Référence de validation : https://github.com/fadden/CiderPress2
   ```
 
-- [ ] Implémenter un Writer DiskCopy 4.2 commun à `.image` et `.dc42`, incluant nom, tailles des données et tags, checksums et encodage, puis vérifier les forks et métadonnées après réouverture.
+- [x] Implémenter un Writer DiskCopy 4.2 commun à `.image` et `.dc42`, incluant nom, tailles des données et tags, checksums et encodage, puis vérifier les forks et métadonnées après réouverture.
 
   Informations nécessaires :
 
