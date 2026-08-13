@@ -92,7 +92,7 @@ public partial class ExplorerSection : UserControl
         ProtectionText.Text = ExplorerMetadataPresenter.Protection(document.Metadata);
         FileSystemText.Text = ExplorerDetailsPresenter.FileSystemText(document);
         CapacityText.Text = ExplorerFormatting.FormatBytes(document.Volume.Capacity);
-        FreeText.Text = document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
+        FreeText.Text = document.FileSystemRecognized && document.Volume.FreeSpaceKnown ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
         EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
         _rootEntries = document.Volume.Entries;
         _rootFolder = new ExplorerFolderItem(volumeName.Text, null, 0, _rootEntries, volumeName.IsSynthetic) { IsExpanded = true };

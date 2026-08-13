@@ -17,6 +17,8 @@ public static class AmigaDosLayout
     public const int RootHashTableEntryCount = 72;
     /// <summary>Offset du type primaire.</summary>
     public const int PrimaryTypeOffset = 0;
+    /// <summary>Offset du numéro du bloc d'en-tête.</summary>
+    public const int HeaderKeyOffset = 4;
     /// <summary>Offset de la taille de la table de hachage.</summary>
     public const int HashTableSizeOffset = 12;
     /// <summary>Offset du premier champ réservé suivant la table de hachage.</summary>
@@ -41,6 +43,8 @@ public static class AmigaDosLayout
     public const int OrdinaryNameOffset = 432;
     /// <summary>Offset du pointeur de chaîne de hachage.</summary>
     public const int HashChainOffset = 496;
+    /// <summary>Offset du pointeur vers le répertoire parent.</summary>
+    public const int ParentBlockOffset = 500;
     /// <summary>Offset du pointeur de bloc d'extension.</summary>
     public const int ExtensionBlockOffset = 504;
     /// <summary>Offset du type secondaire.</summary>

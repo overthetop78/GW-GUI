@@ -4,7 +4,7 @@ namespace GWGUI.MediaEngine.FileSystems;
 public sealed record FileSystemVolume
 {
     /// <summary>Crée un volume et copie ses collections.</summary>
-    public FileSystemVolume(string name, string fileSystemId, long capacity, long freeBytes, DateTimeOffset? created, DateTimeOffset? modified, IEnumerable<FileSystemEntry> entries, IEnumerable<string> warnings)
+    public FileSystemVolume(string name, string fileSystemId, long capacity, long freeBytes, DateTimeOffset? created, DateTimeOffset? modified, IEnumerable<FileSystemEntry> entries, IEnumerable<string> warnings, bool freeSpaceKnown = true)
     {
         Name = name;
         FileSystemId = fileSystemId;
@@ -14,6 +14,7 @@ public sealed record FileSystemVolume
         Modified = modified;
         Entries = Array.AsReadOnly(entries.ToArray());
         Warnings = Array.AsReadOnly(warnings.ToArray());
+        FreeSpaceKnown = freeSpaceKnown;
     }
 
     /// <summary>Nom du volume, éventuellement vide.</summary>
@@ -24,6 +25,8 @@ public sealed record FileSystemVolume
     public long Capacity { get; }
     /// <summary>Espace libre en octets.</summary>
     public long FreeBytes { get; }
+    /// <summary>Indique si l'espace libre a pu être calculé depuis les structures du volume.</summary>
+    public bool FreeSpaceKnown { get; }
     /// <summary>Date de création, ou <see langword="null"/> lorsqu'elle est absente.</summary>
     public DateTimeOffset? Created { get; }
     /// <summary>Date de dernière modification, ou <see langword="null"/> lorsqu'elle est absente.</summary>

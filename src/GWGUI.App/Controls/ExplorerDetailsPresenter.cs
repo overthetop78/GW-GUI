@@ -41,7 +41,7 @@ public static class ExplorerDetailsPresenter
         rows.Add(new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)));
         if (!document.UsesCustomSectorLoader)
         {
-            rows.Add(new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"));
+            rows.Add(new("Explorer.Free", document.FileSystemRecognized && volume.FreeSpaceKnown ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"));
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()));
             rows.Add(new("Explorer.Warnings", ExplorerIssueBuilder.Build(document).Count.ToString()));
         }

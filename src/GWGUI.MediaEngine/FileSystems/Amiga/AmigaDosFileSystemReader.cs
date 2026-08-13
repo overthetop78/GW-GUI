@@ -17,7 +17,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     /// <summary>Indique si l'image contient un volume AmigaDOS plausible.</summary>
     /// <param name="image">Image sectorielle à examiner.</param>
     /// <returns><see langword="true"/> si un volume AmigaDOS est reconnu.</returns>
-    public bool CanRead(SectorImage image) => AmigaDosRootBlockReader.TryRead(image, out _);
+    public bool CanRead(SectorImage image) => AmigaDosRootBlockReader.TryRead(image, out _) || AmigaDosRecoveryReader.TryRead(image, out _);
 
     /// <summary>Lit le volume AmigaDOS contenu dans l'image.</summary>
     /// <param name="image">Image sectorielle à lire.</param>
@@ -28,6 +28,7 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
         if (image.TryGetBlock(AmigaDosLayout.BootBlock, out var bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()) && bootBlock.Data[AmigaDosLayout.DosVariantOffset] > (byte)AmigaDosLayout.MaximumVariant) throw AmigaDosExceptions.UnsupportedBootVariant(bootBlock.Data[AmigaDosLayout.DosVariantOffset]);
         if (!AmigaDosRootBlockReader.TryRead(image, out var rootResult) || rootResult is null)
         {
+            if (AmigaDosRecoveryReader.TryRead(image, out var recovered) && recovered is not null) return recovered;
             if (image.TryGetBlock(AmigaDosLayout.BootBlock, out bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()))
             {
                 var declaredRoot = BigEndianInt32.Read(bootBlock.Data.ToArray(), AmigaDosLayout.BootRootPointerOffset);

@@ -27,4 +27,6 @@ public static class AmigaDosWarnings
     public static string InvalidBitmapChecksum(int block) => $"Bitmap block {block} has an invalid checksum.";
     /// <summary>Signale la profondeur maximale d'un répertoire.</summary>
     public static string DirectoryDepthExceeded(int depth) => $"The directory nesting limit was reached at depth {depth}.";
+    /// <summary>Signale une reconstruction du catalogue sans bloc racine exploitable.</summary>
+    public static string CatalogRecoveredWithoutRoot(int entries) => $"Recovered {entries} AmigaDOS catalog entries from valid headers because the root block is unavailable.";
 }

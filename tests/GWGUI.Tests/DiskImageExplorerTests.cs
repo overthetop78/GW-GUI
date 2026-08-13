@@ -228,6 +228,24 @@ public sealed class DiskImageExplorerTests
     }
 
     [Fact]
+    public void AmigaDosReaderRecoversRealEntriesWhenTheCapturedRootIsUnavailable()
+    {
+        var source = BuildAmigaImage(true);
+        var rootBlock = source.BlockCount / 2;
+        var damaged = ReplaceAmigaBlock(source, rootBlock, block => block.AsSpan().Clear(), integrityValid: false);
+        var reader = new AmigaDosFileSystemReader();
+
+        Assert.True(reader.CanRead(damaged));
+        var volume = reader.Read(damaged);
+
+        Assert.Empty(volume.Name);
+        Assert.False(volume.FreeSpaceKnown);
+        Assert.Contains(volume.Warnings, warning => warning.Contains("Recovered 3 AmigaDOS catalog entries", StringComparison.Ordinal));
+        Assert.Equal("hello"u8.ToArray(), volume.Entries.Single(entry => entry.Name == "Hello").Content);
+        Assert.Equal("inside"u8.ToArray(), volume.Entries.Single(entry => entry.Name == "Drawer").Children.Single(entry => entry.Name == "Nested").Content);
+    }
+
+    [Fact]
     public void AmigaDosReaderRejectsAnUnsignedRootWithoutDirectoryEntries()
     {
         var source = BuildAmigaImage(false);
@@ -520,12 +538,12 @@ public sealed class DiskImageExplorerTests
         return new(sectorsPerTrack == 22 ? "amiga.amigados_hd" : "amiga.amigados", 512, 80, 2, sectorsPerTrack, sectorBlocks);
     }
 
-    private static SectorImage ReplaceAmigaBlock(SectorImage source, int logicalBlock, Action<byte[]> update)
+    private static SectorImage ReplaceAmigaBlock(SectorImage source, int logicalBlock, Action<byte[]> update, bool? integrityValid = null)
     {
         var blocks = source.AvailableBlocks.Select(block =>
         {
             if (block.LogicalBlock != logicalBlock) return block;
-            var data = block.Data.ToArray(); update(data); return block with { Data = data };
+            var data = block.Data.ToArray(); update(data); return block with { Data = data, IntegrityValid = integrityValid ?? block.IntegrityValid };
         });
         return new(source.FormatId, source.BlockSize, source.Cylinders, source.Heads, source.SectorsPerTrack, blocks, capacity: source.Capacity, logicalBlockCount: source.BlockCount);
     }
