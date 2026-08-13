@@ -19,7 +19,19 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
             foreach (var match in fileSystems.ReadAll(image).Matches)
             {
                 var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, match.Volume);
-                var volume = ReferenceEquals(normalized, image) || !fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch) ? match.Volume : normalizedMatch.Volume;
+                if (ReferenceEquals(normalized, image))
+                {
+                    matches.Add((new(image.FormatId, match.ReaderId, match.Volume), image));
+                    continue;
+                }
+
+                if (FileSystemInterpretationIdentity.FormatFamily(image.FormatId) != FileSystemInterpretationIdentity.FormatFamily(normalized.FormatId))
+                {
+                    matches.Add((new(image.FormatId, match.ReaderId, match.Volume), image));
+                }
+
+                var volume = match.Volume;
+                if (fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch)) volume = normalizedMatch.Volume;
                 matches.Add((new(normalized.FormatId, match.ReaderId, volume), normalized));
             }
             foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(image))

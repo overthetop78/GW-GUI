@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Recognition.Definitions;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
@@ -181,11 +182,26 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
     [InlineData(@"F:\Disquettes\Tilt\Tilt N°105\Tilt N°105 - Septembre 1992.scp")]
     [InlineData(@"F:\Disquettes\Tilt\Tilt N°110\Tilt N°110 - Janvier 1993.scp")]
     [InlineData(@"F:\Disquettes\Tilt\Tilt N°117\Tilt N°117 - Septembre 1993.scp")]
-    public async Task TiltHybridCorpusDoesNotReportGeometryAliasesAsSystems(string path)
+    public async Task TiltHybridCorpusReportsOnlyCredibleCompatibleSystems(string path)
     {
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
-        Assert.DoesNotContain(document.Metadata.SystemIds, system => system is "acorn-bbc" or "amstrad" or "ibm-pc" or "commodore" or "epson-qx10");
+        Assert.DoesNotContain(document.Metadata.SystemIds, system => system is "acorn-bbc" or "amstrad" or "commodore" or "epson-qx10");
+    }
+
+    [Fact]
+    public async Task TiltNumber105ReportsItsAmigaAtariAndIbmFileSystems()
+    {
+        const string path = @"F:\Disquettes\Tilt\Tilt N°105\Tilt N°105 - Septembre 1992.scp";
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+        Assert.Contains(DiskSystemIds.Amiga, document.Metadata.SystemIds);
+        Assert.Contains(DiskSystemIds.AtariSt, document.Metadata.SystemIds);
+        Assert.Contains(DiskSystemIds.IbmPc, document.Metadata.SystemIds);
+        Assert.Contains(document.DetectedFileSystems, detected => detected.FormatId == DiskImageFormatIds.AmigaDos);
+        Assert.Contains(document.DetectedFileSystems, detected => detected.FormatId == DiskImageFormatIds.AtariSt720);
+        Assert.Contains(document.DetectedFileSystems, detected => detected.FormatId == DiskImageFormatIds.Ibm720);
     }
 
     private async Task VerifyScp(string path, bool requireRecognized)

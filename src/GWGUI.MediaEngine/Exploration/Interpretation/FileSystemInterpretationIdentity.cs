@@ -40,7 +40,7 @@ internal static class FileSystemInterpretationIdentity
     /// <summary>Extrait la famille prÃ©cÃ©dant le premier point d'un identifiant de format.</summary>
     /// <param name="formatId">Identifiant de format complet.</param>
     /// <returns>PrÃ©fixe familial ou identifiant complet sans point.</returns>
-    private static string FormatFamily(string formatId)
+    internal static string FormatFamily(string formatId)
     {
         var separator = formatId.IndexOf('.');
         return separator < 0 ? formatId : formatId[..separator];

@@ -150,6 +150,15 @@ public sealed class DiskImageInterpretationComponentsTests
         Assert.NotEqual(FileSystemInterpretationIdentity.Create(first), FileSystemInterpretationIdentity.Create(otherHierarchy));
     }
 
+    [Theory]
+    [InlineData("ibm.720", "ibm")]
+    [InlineData("atarist.720", "atarist")]
+    [InlineData("amiga.amigados", "amiga")]
+    public void InterpretationIdentityExtractsTheMachineFamily(string formatId, string expected)
+    {
+        Assert.Equal(expected, FileSystemInterpretationIdentity.FormatFamily(formatId));
+    }
+
     [Fact]
     public void AlternativePolicyAppliesMinimumAndEntryCountThresholds()
     {
