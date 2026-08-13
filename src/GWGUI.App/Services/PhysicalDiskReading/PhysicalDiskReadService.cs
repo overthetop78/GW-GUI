@@ -25,7 +25,7 @@ public sealed class PhysicalDiskReadService(
     {
         ArgumentNullException.ThrowIfNull(options);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
-        var acquisitionProgress = new AcquisitionProgressAdapter(progress);
+        var acquisitionProgress = new AcquisitionProgressAdapter(progress, options.Tracks);
         var acquisition = await acquisitionService.AcquireAsync(options, acquisitionProgress, cancellationToken).ConfigureAwait(false);
 
         progress?.Report(new(PhysicalDiskReadStage.Saving, options.Tracks.Count, options.Tracks.Count));
@@ -56,7 +56,9 @@ public sealed class PhysicalDiskReadService(
         return diagnostics;
     }
 
-    private sealed class AcquisitionProgressAdapter(IProgress<PhysicalDiskReadOperationProgress>? progress) : IProgress<PhysicalDiskReadProgress>
+    private sealed class AcquisitionProgressAdapter(
+        IProgress<PhysicalDiskReadOperationProgress>? progress,
+        IReadOnlyList<PhysicalDiskTrackAddress> tracks) : IProgress<PhysicalDiskReadProgress>
     {
         public void Report(PhysicalDiskReadProgress value) => progress?.Report(new(
             PhysicalDiskReadStage.Acquiring,
@@ -64,6 +66,7 @@ public sealed class PhysicalDiskReadService(
             value.TotalTracks,
             value.Cylinder,
             value.Head,
-            value.Attempt));
+            value.Attempt,
+            tracks));
     }
 }

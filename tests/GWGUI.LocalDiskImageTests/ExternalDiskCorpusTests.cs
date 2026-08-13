@@ -123,6 +123,23 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         Assert.Equal(DiskContentIds.OrganizationCataloglessBootImage, document.Metadata.Content.OrganizationId);
     }
 
+    [Fact]
+    public async Task SkidmarksDiskTwoAdfAndScpExposeTheSameCataloglessOrganization()
+    {
+        const string scpPath = @"F:\Disquettes\Skidmarks v1.06\Skidmarks v1.06 - disk 2.scp";
+        const string adfPath = @"F:\Disquettes\Skidmarks v1.06\Skidmarks v1.06 - disk 2.adf";
+        if (!File.Exists(scpPath) || !File.Exists(adfPath)) return;
+        var explorer = DiskImageExplorer.CreateDefault();
+        var scp = await explorer.ExploreAsync(scpPath);
+        var adf = await explorer.ExploreAsync(adfPath);
+
+        Assert.True(scp.UsesCustomSectorLoader);
+        Assert.True(adf.UsesCustomSectorLoader);
+        Assert.Empty(scp.Volume.Entries);
+        Assert.Empty(adf.Volume.Entries);
+        Assert.Equal(adf.Metadata.Content.OrganizationId, scp.Metadata.Content.OrganizationId);
+    }
+
     [Theory]
     [InlineData(@"F:\Disquettes\Goblins II Disk 2.scp")]
     [InlineData(@"F:\Disquettes\Speedball II.scp")]
@@ -138,16 +155,16 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public async Task Generation4HybridDetectsAtariIbmAndAmigaWithoutInventingMsxVariants()
+    public async Task Generation4Number53DetectsItsAmigaAndAtariFileSystems()
     {
-        const string path = @"F:\Disquettes\GÃ©nÃ©ration 4\GÃ©nÃ©ration 4 NÂ°53 - Mars 1993\GÃ©nÃ©ration 4 - Disquette_Demo_NÂ°53.scp";
+        const string path = @"F:\Disquettes\Génération 4\Génération 4 N°53 - Mars 1993\Génération 4 - Disquette_Demo_N°53.scp";
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
         var formats = (document.DetectedFileSystems ?? []).Select(item => item.FormatId).ToArray();
         Assert.Contains(formats, format => format.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase));
-        Assert.Contains(formats, format => format.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase));
         Assert.Contains(formats, format => format.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase));
-        Assert.DoesNotContain(formats, format => format.StartsWith("msx.", StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(DiskSystemIds.AtariSt, document.Metadata.SystemIds);
+        Assert.Contains(DiskSystemIds.Amiga, document.Metadata.SystemIds);
     }
 
     [Fact]

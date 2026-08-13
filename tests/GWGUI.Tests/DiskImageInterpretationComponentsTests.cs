@@ -106,6 +106,23 @@ public sealed class DiskImageInterpretationComponentsTests
     }
 
     [Fact]
+    public void CataloglessBootDetectorAcceptsANearlyCompleteCapture()
+    {
+        const int blockCount = 100;
+        var bytes = Enumerable.Repeat((byte)1, blockCount * 512).ToArray();
+        var blocks = Enumerable.Range(0, 96)
+            .Select(index => new SectorBlock(index, new(index / 2, index % 2, 0), bytes.AsMemory(index * 512, 512).ToArray()))
+            .ToArray();
+        var image = new SectorImage(DiskImageFormatIds.AmigaDos, 512, 50, 2, 1, blocks, logicalBlockCount: blockCount);
+        var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
+
+        var document = factory.Create("partial.adf", image, []);
+
+        Assert.True(document.UsesCustomSectorLoader);
+        Assert.Empty(document.Volume.Entries);
+    }
+
+    [Fact]
     public void DocumentFactoryRecognizesAnAlignedAtnImploderArchiveWithoutInventingFiles()
     {
         var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));

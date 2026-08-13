@@ -50,6 +50,8 @@ public sealed class PhysicalDiskReadServiceTests
             Assert.Equal(1, first.CallCount);
             Assert.Equal(1, second.CallCount);
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Acquiring);
+            Assert.All(progress.Values.Where(item => item.Stage == PhysicalDiskReadStage.Acquiring),
+                item => Assert.Equal(options.Tracks, item.Tracks));
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Saving);
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Decoding);
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Exploring);

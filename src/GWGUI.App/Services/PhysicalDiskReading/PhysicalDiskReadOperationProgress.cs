@@ -6,4 +6,5 @@ public sealed record PhysicalDiskReadOperationProgress(
     int TotalTracks,
     int? Cylinder = null,
     int? Head = null,
-    int Attempt = 1);
+    int Attempt = 1,
+    IReadOnlyList<PhysicalDiskTrackAddress>? Tracks = null);

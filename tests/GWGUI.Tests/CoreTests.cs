@@ -1433,10 +1433,17 @@ public sealed class CoreTests
                 Assert.Equal("Atari ST", selector.SelectedMachine);
                 Assert.Equal("atarist.720", selector.SelectedFormatId);
 
+                var detected = Assert.IsType<System.Windows.Controls.TextBlock>(explorer.FindName("DetectedFormatsText"));
+                var currentSystem = Assert.IsType<System.Windows.Controls.TextBlock>(explorer.FindName("SystemText"));
+                Assert.Contains("Atari ST", detected.Text);
+                Assert.Contains("Amiga", detected.Text);
+                Assert.Equal("Atari ST", currentSystem.Text);
+
                 var machine = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
                 var format = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Format"));
                 Assert.True(Assert.IsType<DiskMachineChoice>(machine.SelectedItem).IsDetected);
                 Assert.True(Assert.IsType<DiskFormatChoice>(format.SelectedItem).IsDetected);
+                Assert.True(machine.Items.Cast<DiskMachineChoice>().Single(item => item.DisplayName == "Amiga").IsDetected);
 
                 format.SelectedItem = format.Items.Cast<DiskFormatChoice>().Single(item => item.Format.Id == "atarist.180");
                 explorer.Clear(path, false);

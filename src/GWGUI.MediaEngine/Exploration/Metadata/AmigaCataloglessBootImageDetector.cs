@@ -9,14 +9,19 @@ internal static class AmigaCataloglessBootImageDetector
     private const int BootBlockLength = 1024;
     private const int MinimumBootPayloadBytes = 64;
     private const int MinimumOccupiedBlockPercentage = 50;
+    private const int MinimumAvailableBlockPercentage = 95;
 
     /// <summary>Vérifie la structure générale sans dépendre d'un jeu, d'un crack ou d'un nom présent dans l'image.</summary>
     public static bool IsMatch(SectorImage image, ReadOnlySpan<byte> bytes)
     {
         if (!image.FormatId.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase)
-            || image.AvailableBlocks.Count != image.BlockCount
             || image.BlockSize <= 0
             || bytes.Length < BootBlockLength)
+        {
+            return false;
+        }
+        if (image.BlockCount <= 0
+            || image.AvailableBlocks.Count * 100 < image.BlockCount * MinimumAvailableBlockPercentage)
         {
             return false;
         }

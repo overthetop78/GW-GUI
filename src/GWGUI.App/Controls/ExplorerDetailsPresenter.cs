@@ -21,14 +21,14 @@ public static class ExplorerDetailsPresenter
 
     public static string FileSystemText(ExploredDiskImage document) => document.FileSystemRecognized ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystemId).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystemId)) : LocExtension.Get(document.UsesCustomSectorLoader ? "Explorer.CustomSectorLoaderNoCatalog" : "Explorer.PhysicalSectorsNoFileSystem");
 
-    public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document)
+    public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document, string? currentSystem = null)
     {
         var volume = document.Volume;
         var volumeName = VolumeName(document);
         var rows = new List<ExplorerDetailRow>
         {
             new("Explorer.Volume", volumeName.Text, volumeName.IsSynthetic),
-            new("Explorer.System", ExplorerMetadataPresenter.Systems(document.Metadata)),
+            new("Explorer.System", currentSystem ?? ExplorerMetadataPresenter.Systems(document.Metadata)),
             new("Explorer.Protection", ExplorerMetadataPresenter.Protection(document.Metadata)),
             new("Explorer.FileSystem", FileSystemText(document))
         };

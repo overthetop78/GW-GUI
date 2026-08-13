@@ -16,6 +16,7 @@ public sealed class OperationProgressController(
 {
     private readonly GwProgressTracker _tracker = new();
     private bool _needsConfiguration;
+    private int _completedPhysicalTracks;
 
     public void Begin()
     {
@@ -23,6 +24,7 @@ public sealed class OperationProgressController(
         face0.ResetToPending();
         face1.ResetToPending();
         _needsConfiguration = true;
+        _completedPhysicalTracks = 0;
         SetState("Status.Running", Color.FromRgb(45, 125, 210));
         viewModel.ProgressVisibility = Visibility.Visible;
         viewModel.ProgressIndeterminate = true;
@@ -88,12 +90,41 @@ public sealed class OperationProgressController(
 
     public void Accept(PhysicalDiskReadOperationProgress progress)
     {
+        if (progress.Tracks is { Count: > 0 })
+        {
+            ConfigureFaces(progress.Tracks);
+        }
+
+        if (progress.Cylinder is int cylinder
+            && progress.Head is int head
+            && progress.Tracks is { Count: > 0 })
+        {
+            var strip = head == 0 ? face0 : face1;
+            face0.ClearActive();
+            face1.ClearActive();
+            if (progress.CompletedTracks > _completedPhysicalTracks)
+            {
+                strip.SetState(cylinder, TrackSegmentState.Success);
+            }
+            else if (progress.Attempt > 1)
+            {
+                strip.SetState(cylinder, TrackSegmentState.Retry);
+            }
+            else
+            {
+                strip.SetActive(cylinder);
+            }
+
+            _completedPhysicalTracks = Math.Max(_completedPhysicalTracks, progress.CompletedTracks);
+            UpdateFaceProgress(head, cylinder);
+        }
+
         viewModel.ProgressIndeterminate = false;
         viewModel.ProgressValue = progress.TotalTracks == 0
             ? 0
             : progress.CompletedTracks * 100d / progress.TotalTracks;
-        viewModel.ProgressText = progress.Cylinder is int cylinder && progress.Head is int head
-            ? localize("Status.TrackProgress", [cylinder, head, progress.CompletedTracks, progress.TotalTracks])
+        viewModel.ProgressText = progress.Cylinder is int progressCylinder && progress.Head is int progressHead
+            ? localize("Status.TrackProgress", [progressCylinder, progressHead, progress.CompletedTracks, progress.TotalTracks])
             : localize("Status.Running", []);
     }
 
@@ -120,6 +151,58 @@ public sealed class OperationProgressController(
         if ((_needsConfiguration || face1.Segments.Count == 0) && progress.Head1Expected)
             face1.Configure(1, progress.Cylinders, localize("Visual.Side", [1]));
         _needsConfiguration = false;
+    }
+
+    private void ConfigureFaces(IReadOnlyList<PhysicalDiskTrackAddress> tracks)
+    {
+        if (!_needsConfiguration)
+        {
+            return;
+        }
+
+        var face0Cylinders = tracks
+            .Where(track => track.Head == 0)
+            .Select(track => track.Cylinder)
+            .Distinct()
+            .Order()
+            .ToArray();
+        var face1Cylinders = tracks
+            .Where(track => track.Head == 1)
+            .Select(track => track.Cylinder)
+            .Distinct()
+            .Order()
+            .ToArray();
+        viewModel.GlobalProgressVisibility = Visibility.Collapsed;
+        viewModel.Face0ProgressVisibility = face0Cylinders.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+        viewModel.Face1ProgressVisibility = face1Cylinders.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+        if (face0Cylinders.Length > 0)
+        {
+            face0.Configure(0, face0Cylinders, localize("Visual.Side", [0]));
+        }
+        if (face1Cylinders.Length > 0)
+        {
+            face1.Configure(1, face1Cylinders, localize("Visual.Side", [1]));
+        }
+
+        _needsConfiguration = false;
+    }
+
+    private void UpdateFaceProgress(int head, int cylinder)
+    {
+        var strip = head == 0 ? face0 : face1;
+        var completed = strip.Segments.Count(segment => segment.State == TrackSegmentState.Success);
+        var total = strip.Segments.Count;
+        var value = total == 0 ? 0 : completed * 100d / total;
+        var text = localize("Status.FaceTrackProgress", [head, cylinder, completed, total]);
+        if (head == 0)
+        {
+            viewModel.Face0ProgressValue = value;
+            viewModel.Face0ProgressText = text;
+            return;
+        }
+
+        viewModel.Face1ProgressValue = value;
+        viewModel.Face1ProgressText = text;
     }
 
     private static TrackSegmentState ToSegmentState(GwTrackState state) => state switch

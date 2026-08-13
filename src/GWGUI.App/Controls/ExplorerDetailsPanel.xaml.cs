@@ -10,6 +10,7 @@ public partial class ExplorerDetailsPanel : UserControl
 {
     private ExploredDiskImage? _document;
     private ExplorerContentItem? _item;
+    private string? _currentSystem;
 
     public ExplorerDetailsPanel()
     {
@@ -26,16 +27,18 @@ public partial class ExplorerDetailsPanel : UserControl
     {
         _document = null;
         _item = null;
+        _currentSystem = null;
         DetailsIcon.Kind = ExplorerIconKind.DiskImage;
         DetailsTitle.Text = "\u2014";
         DetailsTitle.Foreground = BrushFor(false);
         SetRows([]);
     }
 
-    public void ShowDisk(ExploredDiskImage document)
+    public void ShowDisk(ExploredDiskImage document, string? currentSystem = null)
     {
         _document = document;
         _item = null;
+        _currentSystem = currentSystem;
         Render();
     }
 
@@ -54,14 +57,24 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void Render()
     {
-        if (_document is null) { Clear(); return; }
-        if (_item is null) RenderDisk(_document);
-        else RenderItem(_item);
+        if (_document is null)
+        {
+            Clear();
+            return;
+        }
+
+        if (_item is null)
+        {
+            RenderDisk(_document);
+            return;
+        }
+
+        RenderItem(_item);
     }
 
     private void RenderDisk(ExploredDiskImage document)
     {
-        Apply(ExplorerDetailsPresenter.ForDisk(document));
+        Apply(ExplorerDetailsPresenter.ForDisk(document, _currentSystem));
     }
 
     private void RenderItem(ExplorerContentItem item)
@@ -77,7 +90,11 @@ public partial class ExplorerDetailsPanel : UserControl
         SetRows(presentation.Rows.Select(row => ((string?)row.Key, (string?)row.Value, row.IsSyntheticValue)).ToArray());
     }
 
-    private Brush BrushFor(bool synthetic) => (Brush)FindResource(synthetic ? "SyntheticNameBrush" : "TextBrush");
+    private Brush BrushFor(bool synthetic)
+    {
+        var resourceKey = synthetic ? "SyntheticNameBrush" : "TextBrush";
+        return TryFindResource(resourceKey) as Brush ?? SystemColors.WindowTextBrush;
+    }
 
     private void SetRows(IReadOnlyList<(string? Key, string? Value, bool IsSynthetic)> values)
     {
@@ -88,7 +105,11 @@ public partial class ExplorerDetailsPanel : UserControl
         {
             var visible = index < values.Count && values[index].Key is not null;
             rows[index].Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
-            if (!visible) continue;
+            if (!visible)
+            {
+                continue;
+            }
+
             labels[index].Text = LocExtension.Get(values[index].Key!);
             displayedValues[index].Text = string.IsNullOrWhiteSpace(values[index].Value) ? "\u2014" : values[index].Value;
             displayedValues[index].Foreground = BrushFor(values[index].IsSynthetic);

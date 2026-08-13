@@ -279,6 +279,10 @@ public static class MediaEngineFactory
         var isoSelected = new ScpSectorImageCandidate(ScpCandidateIds.IsoSelected, ScpFormatFamily.Iso, (path, format, token) => isoReader.ReadAsync(path, format, token));
         var amiga = new ScpSectorImageCandidate(ScpCandidateIds.Amiga, ScpFormatFamily.Amiga, (path, _, token) => amigaReader.ReadAsync(path, token));
         var atari = new ScpSectorImageCandidate(ScpCandidateIds.Atari, ScpFormatFamily.Iso, (path, format, token) => atariReader.ReadAsync(path, format, token));
+        var atariSt720 = new ScpSectorImageCandidate(
+            ScpCandidateIds.AtariSt720,
+            ScpFormatFamily.Iso,
+            (path, _, token) => atariReader.ReadAsync(path, DiskImageFormatIds.AtariSt720, token));
         var commodoreAutomatic = new ScpSectorImageCandidate(ScpCandidateIds.CommodoreAutomatic, ScpFormatFamily.Commodore, (path, _, token) => commodoreReader.ReadAsync(path, null, token));
         var commodore1581 = new ScpSectorImageCandidate(ScpCandidateIds.Commodore1581, ScpFormatFamily.Iso, (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token));
         var apple = new ScpSectorImageCandidate(ScpCandidateIds.Apple, ScpFormatFamily.Apple, (path, format, token) => appleReader.ReadAsync(path, format, token));
@@ -290,7 +294,19 @@ public static class MediaEngineFactory
         var ibmScan = Iso(DiskImageFormatIds.IbmScan);
         var ucsd = Iso(DiskImageFormatIds.UcsdIbmMfm);
         var epson = EpsonQx10GeometryCatalog.ScpCandidateFormatIds.Select(Iso).ToArray();
-        var isoFamily = new[] { isoAutomatic, acornAdfs, amstradCpc, amstradPcw, ibmScan, ucsd, commodore1581 }.Concat(epson).ToArray();
+        var isoFamily = new[]
+            {
+                isoAutomatic,
+                atariSt720,
+                acornAdfs,
+                amstradCpc,
+                amstradPcw,
+                ibmScan,
+                ucsd,
+                commodore1581
+            }
+            .Concat(epson)
+            .ToArray();
         var defaults = new[] { isoAutomatic, amiga, commodore1581, commodoreAutomatic, amstradCpc, amstradPcw, ibmScan }.Concat(epson).Append(apple).ToArray();
         var selections = new[]
         {
