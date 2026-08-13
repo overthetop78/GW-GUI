@@ -151,4 +151,7 @@
   <data name="Migration.Target.Commodore1581"><value>Commodore DOS 1581 — D81</value></data>
   <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
   <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
 </root>

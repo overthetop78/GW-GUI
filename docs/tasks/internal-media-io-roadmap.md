@@ -682,7 +682,11 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 10.1 Garanties de fidélité
 
-- [ ] Ajouter au modèle de conversion un niveau de fidélité déclaré — sectoriel, piste reconstruite ou flux préservé — et empêcher l’interface d’annoncer une conservation de protection lors d’une sortie sectorielle.
+- [x] Ajouter au modèle de conversion un niveau de fidélité déclaré — sectoriel, piste reconstruite ou flux préservé — et empêcher l’interface d’annoncer une conservation de protection lors d’une sortie sectorielle.
+
+  Réalisation : `ConversionOutput` déclare désormais `SectorData`, `ReconstructedTracks` ou `PreservedFlux`. Les sorties ADF/ST/IMG/DSK et autres conteneurs sectoriels sont explicitement sectorielles ; les SCP/HFE issus des encodeurs actuels sont explicitement des pistes reconstruites. Seul un chemin marqué `PreservedFlux` peut annoncer la conservation de la protection. La liste des sorties sélectionnées expose cette garantie à l’utilisateur.
+
+  Validation : tests dédiés des trois niveaux, avec refus explicite de toute promesse de conservation pour les sorties sectorielles et les pistes reconstruites.
 
   Informations nécessaires :
 

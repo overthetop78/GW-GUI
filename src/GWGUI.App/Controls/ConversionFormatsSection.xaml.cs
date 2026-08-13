@@ -1,6 +1,8 @@
 using System.Windows.Controls;
 using System.Windows.Input;
+using GWGUI.App.Localization;
 using GWGUI.App.ViewModels;
+using GWGUI.Domain.Conversion;
 
 namespace GWGUI.App.Controls;
 
@@ -33,8 +35,19 @@ public partial class ConversionFormatsSection : UserControl
         var extensions = item.ExplicitExtensions.Count == 0
             ? item.Format.Extensions.Where(extension => extension.IsDefault).Take(1).Select(extension => extension.Extension)
             : item.ExplicitExtensions.Order(StringComparer.OrdinalIgnoreCase);
-        foreach (var extension in extensions) yield return $"{item.Format.DisplayName} · {extension.TrimStart('.').ToUpperInvariant()}";
+        foreach (var extension in extensions)
+        {
+            var fidelity = ConversionFidelity.ForRebuiltOutput(extension);
+            yield return $"{item.Format.DisplayName} · {extension.TrimStart('.').ToUpperInvariant()} · {LocExtension.Get(FidelityKey(fidelity))}";
+        }
     }
+
+    private static string FidelityKey(ConversionFidelityLevel fidelity) => fidelity switch
+    {
+        ConversionFidelityLevel.ReconstructedTracks => "Conversion.Fidelity.ReconstructedTracks",
+        ConversionFidelityLevel.PreservedFlux => "Conversion.Fidelity.PreservedFlux",
+        _ => "Conversion.Fidelity.SectorData"
+    };
 
     private void RefreshFormats()
     {
