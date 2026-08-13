@@ -346,11 +346,13 @@ Références communes :
   Réalisé : `ProtectedTrackImage` conserve les cellules, segments de timing, marques, gaps, erreurs intentionnelles, zones faibles et révolutions de flux. Les adaptateurs de pistes encodées et SCP partagent les structures existantes sans modifier les révolutions ; le raccordement flux→flux aux Writers reste dans la tâche 10.2.
   ```
 
+> Blocage d'environnement : le push du groupe 3 vers `origin/main` a été interrompu pendant la demande d'autorisation. Les commits 3.1 à 3.5 sont conservés localement et prêts à être poussés.
+
 ## 4. Conversions entre conteneurs compatibles
 
 ### 4.1 IMA ↔ IMG
 
-- [ ] Raccorder une conversion interne IBM IMA/IMG validant format, longueur et géométrie avant copie sectorielle, puis vérifier que les deux extensions sont relues avec la même identité de blocs.
+- [x] Raccorder une conversion interne IBM IMA/IMG validant format, longueur et géométrie avant copie sectorielle, puis vérifier que les deux extensions sont relues avec la même identité de blocs.
 
   Informations nécessaires :
 

@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
 using GWGUI.MediaEngine.Conversion.Ibm;
+using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
@@ -31,6 +32,31 @@ public sealed class IbmRawImageWriterTests
         finally
         {
             if (File.Exists(path)) File.Delete(path);
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(Profiles))]
+    public async Task ConversionServiceRoundTripsImaAndImgWithTheSameBlocks(string formatId, string sourceExtension)
+    {
+        Assert.True(IbmPcGeometryCatalog.TryFromFormatId(formatId, out var geometry));
+        var source = CreateImage(geometry);
+        var targetExtension = sourceExtension == DiskImageFileExtensions.Ima ? DiskImageFileExtensions.Img : DiskImageFileExtensions.Ima;
+        var sourcePath = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}{sourceExtension}");
+        var targetPath = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}{targetExtension}");
+        try
+        {
+            await new IbmRawImageWriter().WriteAsync(source, sourcePath, formatId);
+            await MediaEngineFactory.CreateIbmRawConversionService().ConvertAsync(sourcePath, targetPath, formatId);
+            var reopened = await new IbmRawImageReader().ReadAsync(targetPath);
+            Assert.Equal(geometry.Capacity, new FileInfo(targetPath).Length);
+            Assert.Equal(source.BlockCount, reopened.BlockCount);
+            for (var logicalBlock = 0; logicalBlock < source.BlockCount; logicalBlock++) Assert.Equal(source.GetBlock(logicalBlock).ToArray(), reopened.GetBlock(logicalBlock).ToArray());
+        }
+        finally
+        {
+            if (File.Exists(sourcePath)) File.Delete(sourcePath);
+            if (File.Exists(targetPath)) File.Delete(targetPath);
         }
     }
 
