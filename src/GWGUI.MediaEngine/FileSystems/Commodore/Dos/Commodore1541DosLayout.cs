@@ -17,4 +17,10 @@ public static class Commodore1541DosLayout
     public const int BamEntriesOffset = 4;
     /// <summary>Taille d'une entrée BAM.</summary>
     public const int BamEntrySize = 4;
+    /// <summary>Offset de l'identifiant de disque.</summary>
+    public const int DiskIdOffset = 0xa2;
+    /// <summary>Offset du type DOS.</summary>
+    public const int DosTypeOffset = 0xa5;
+    /// <summary>Type DOS standard 2A.</summary>
+    public static ReadOnlySpan<byte> DosType => "2A"u8;
 }

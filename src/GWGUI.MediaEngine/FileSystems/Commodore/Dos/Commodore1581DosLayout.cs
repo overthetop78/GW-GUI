@@ -23,4 +23,12 @@ public static class Commodore1581DosLayout
     public const int BamEntrySize = 6;
     /// <summary>Nombre d'entrées BAM par secteur.</summary>
     public const int BamEntryCount = 40;
+    /// <summary>Offset de l'identifiant de disque dans l'en-tête.</summary>
+    public const int DiskIdOffset = 22;
+    /// <summary>Offset du type DOS dans l'en-tête.</summary>
+    public const int DosTypeOffset = 25;
+    /// <summary>Type DOS standard 3D.</summary>
+    public static ReadOnlySpan<byte> DosType => "3D"u8;
+    /// <summary>Offset de l'identifiant de disque dans un secteur BAM.</summary>
+    public const int BamDiskIdOffset = 4;
 }

@@ -649,7 +649,11 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 9.4 Commodore DOS
 
-- [ ] Implémenter les primitives de création BAM, répertoires et chaînes de fichiers D64/D71/D81, puis raccorder les migrations depuis/vers le modèle commun avec validation sur émulateur et relecture interne.
+- [x] Implémenter les primitives de création BAM, répertoires et chaînes de fichiers D64/D71/D81, puis raccorder les migrations depuis/vers le modèle commun avec validation sur émulateur et relecture interne.
+
+  Le créateur de volume commun reconstruit les BAM 1541/1571/1581, les chaînes de répertoire et de données ainsi que les secteurs latéraux REL classiques. Les types PRG, SEQ, USR et REL, les drapeaux verrouillé/fermé et les splats restent dans les attributs bruts lors d'une migration Commodore→Commodore ; une politique explicite choisit le type lors d'une migration venant d'un autre système de fichiers.
+
+  Validation : relecture interne D64, D71 et D81 sans avertissement, 72 tests Commodore existants sans régression, puis lecture du BAM, catalogue et extraction binaire des fichiers avec `c1541` de VICE 3.10 pour les trois conteneurs.
 
   Informations nécessaires :
 

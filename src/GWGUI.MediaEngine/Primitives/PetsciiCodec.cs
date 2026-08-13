@@ -32,4 +32,20 @@ public static class PetsciiCodec
         }
         return new string(characters.ToArray()).Trim();
     }
+
+    /// <summary>Encode les caractères PETSCII communs et complète le champ avec des espaces décalés.</summary>
+    public static byte[] Encode(string value, int length)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        if (length < 0) throw new ArgumentOutOfRangeException(nameof(length));
+        if (value.Length > length) throw new ArgumentException($"The PETSCII value exceeds {length} characters.", nameof(value));
+        var result = Enumerable.Repeat(ShiftedSpaceTerminator, length).ToArray();
+        for (var index = 0; index < value.Length; index++)
+        {
+            var character = char.ToUpperInvariant(value[index]);
+            if (character is < (char)DirectRangeStart or > (char)DirectRangeEnd) throw new ArgumentException($"The character '{value[index]}' cannot be represented by the supported PETSCII subset.", nameof(value));
+            result[index] = (byte)character;
+        }
+        return result;
+    }
 }

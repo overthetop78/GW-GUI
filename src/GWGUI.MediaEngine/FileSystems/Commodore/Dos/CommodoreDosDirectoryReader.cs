@@ -82,7 +82,9 @@ internal static class CommodoreDosDirectoryReader
             var declaredBlocks = BinaryPrimitives.ReadUInt16LittleEndian(countBytes);
             var file = CommodoreDosFileReader.Read(image, firstDataTrack, firstDataSector, warnings, name);
             var size = file.IsValid ? file.Content.Count : declaredBlocks * CommodoreDosLayout.DataBytesPerSector;
-            entries.Add(new(name, FileSystemEntryKind.File, size, null, CommodoreDosFileTypeNames.GetComment(rawType), (uint)(byte)rawType, file.FirstLogicalBlock.GetValueOrDefault(), file.IsValid, [], file.Content));
+            var rawAttributes = (uint)(byte)rawType;
+            if ((rawType & CommodoreDosFileType.BaseTypeMask) == CommodoreDosFileType.Rel) rawAttributes |= (uint)data[offset + CommodoreDosLayout.RelativeRecordLengthOffset] << CommodoreDosLayout.RelativeRecordLengthAttributeShift;
+            entries.Add(new(name, FileSystemEntryKind.File, size, null, CommodoreDosFileTypeNames.GetComment(rawType), rawAttributes, file.FirstLogicalBlock.GetValueOrDefault(), file.IsValid, [], file.Content));
         }
     }
 

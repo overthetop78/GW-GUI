@@ -6,6 +6,8 @@ using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
+using GWGUI.MediaEngine.Geometries.Commodore;
 
 namespace GWGUI.MediaEngine.Migration;
 
@@ -35,5 +37,18 @@ public static class FileSystemMigrationCapabilityCatalog
     {
         var fileSystemId = formatId.Equals(Definitions.DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? FileSystemIds.Sos : formatId.Equals(Definitions.DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(Definitions.DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) || formatId.Equals(Definitions.DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) ? FileSystemIds.ProDos : throw new InvalidDataException($"The ProDOS/SOS format '{formatId}' is unsupported.");
         return new(fileSystemId, ProDosFileSystemLayout.MaximumNameLength, ProDosFileSystemLayout.MaximumFileLength, true, false, true, false, false, false, string.Empty, NamePolicy: new ProDosNamePolicy(), MaximumVolumeNameLength: ProDosFileSystemLayout.MaximumNameLength, VolumeNamePolicy: new ProDosNamePolicy());
+    }
+
+    /// <summary>Retourne les contraintes du catalogue plat Commodore DOS.</summary>
+    public static MigrationTargetCapabilities ForCommodoreDos(string formatId)
+    {
+        var capacity = formatId switch
+        {
+            Definitions.DiskImageFormatIds.Commodore1541 => Commodore1541Geometry.BlocksPerSide(Commodore1541Geometry.StandardTrackCount) * CommodoreDosLayout.DataBytesPerSector,
+            Definitions.DiskImageFormatIds.Commodore1571 => Commodore1541Geometry.BlocksPerSide(Commodore1541Geometry.StandardTrackCount) * Commodore1571Geometry.SideCount * CommodoreDosLayout.DataBytesPerSector,
+            Definitions.DiskImageFormatIds.Commodore1581 => Commodore1581Geometry.LogicalCylinderCount * Commodore1581Geometry.LogicalBlocksPerTrack * CommodoreDosLayout.DataBytesPerSector,
+            _ => throw new InvalidDataException($"The Commodore DOS format '{formatId}' is unsupported.")
+        };
+        return new(FileSystemIds.CommodoreDos, CommodoreDosLayout.NameLength, capacity, false, false, false, false, false, false, string.Empty, NamePolicy: new CommodoreDosNamePolicy(), MaximumVolumeNameLength: CommodoreDosLayout.NameLength, VolumeNamePolicy: new CommodoreDosNamePolicy());
     }
 }

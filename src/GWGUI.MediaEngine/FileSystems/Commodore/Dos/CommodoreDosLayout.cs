@@ -50,6 +50,36 @@ public sealed class CommodoreDosLayout
     /// <summary>Offset du nombre de blocs déclaré dans une entrée.</summary>
     public const int DeclaredBlockCountOffset = 30;
 
+    /// <summary>Offset de la piste du premier secteur latéral REL.</summary>
+    public const int RelativeSideTrackOffset = 21;
+
+    /// <summary>Offset du secteur du premier secteur latéral REL.</summary>
+    public const int RelativeSideSectorOffset = 22;
+
+    /// <summary>Offset de la longueur d'enregistrement REL.</summary>
+    public const int RelativeRecordLengthOffset = 23;
+
+    /// <summary>Décalage stockant la longueur d'enregistrement REL dans les attributs communs.</summary>
+    public const int RelativeRecordLengthAttributeShift = 8;
+
+    /// <summary>Nombre de pointeurs de données dans un secteur latéral REL.</summary>
+    public const int RelativeDataPointersPerSideSector = 120;
+
+    /// <summary>Nombre maximal de secteurs latéraux du format REL classique.</summary>
+    public const int MaximumRelativeSideSectors = 6;
+
+    /// <summary>Offset du numéro d'un secteur latéral REL.</summary>
+    public const int RelativeSideNumberOffset = 2;
+
+    /// <summary>Offset de la longueur d'enregistrement dans un secteur latéral REL.</summary>
+    public const int RelativeSideRecordLengthOffset = 3;
+
+    /// <summary>Offset de la table des secteurs latéraux REL.</summary>
+    public const int RelativeSideTableOffset = 4;
+
+    /// <summary>Offset des pointeurs de données REL.</summary>
+    public const int RelativeDataPointersOffset = 16;
+
     /// <summary>Nombre maximal d'octets de données dans un secteur chaîné.</summary>
     public const int DataBytesPerSector = SectorSize - DirectoryEntriesOffset;
 
