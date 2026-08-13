@@ -44,14 +44,15 @@ internal static class DiskCopyReader
         ValidateChecksums(container, payload, tags);
 
         SectorImage image;
-        if (TryReadUntaggedImage(payload, out var untaggedImage)) image = untaggedImage;
+        if (tagLength == 0 && TryReadUntaggedImage(payload, out var untaggedImage)) image = untaggedImage;
         else
         {
             ValidateTags(dataLength, tagLength);
             var blockCount = dataLength / DiskCopyLayout.DataBlockSize;
+            var formatByte = container[DiskCopyLayout.FormatByteOffset];
             var geometryKind = DetermineTaggedGeometry(blockCount);
             var blocks = CreateTaggedBlocks(payload, tags, geometryKind);
-            var formatId = SelectTaggedFormat(payload);
+            var formatId = SelectTaggedFormat(payload, geometryKind, formatByte);
             var geometry = CreateTaggedGeometry(geometryKind, blocks.Length);
             image = new(formatId, DiskCopyLayout.DataBlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, capacity: dataLength, logicalBlockCount: blocks.Length);
         }
@@ -65,7 +66,7 @@ internal static class DiskCopyReader
     /// <param name="tags">Tags associés à chaque bloc.</param>
     /// <param name="geometryKind">Géométrie déterminée une seule fois pour la charge utile.</param>
     /// <returns>Blocs sectoriels avec leurs adresses et tags.</returns>
-    private static SectorBlock[] CreateTaggedBlocks(ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags, TaggedGeometryKind geometryKind)
+    private static SectorBlock[] CreateTaggedBlocks(ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags, DiskCopyTaggedGeometryKind geometryKind)
     {
         var blocks = new SectorBlock[payload.Length / DiskCopyLayout.DataBlockSize];
         for (var logical = 0; logical < blocks.Length; logical++)
@@ -80,17 +81,24 @@ internal static class DiskCopyReader
     /// <param name="geometryKind">Type de géométrie déterminé depuis le nombre de blocs.</param>
     /// <param name="blockCount">Nombre de blocs de la charge utile.</param>
     /// <returns>Nombre de cylindres, de faces et nombre maximal de secteurs par piste.</returns>
-    private static (int Cylinders, int Heads, int SectorsPerTrack) CreateTaggedGeometry(TaggedGeometryKind geometryKind, int blockCount) => geometryKind switch
+    private static (int Cylinders, int Heads, int SectorsPerTrack) CreateTaggedGeometry(DiskCopyTaggedGeometryKind geometryKind, int blockCount) => geometryKind switch
     {
-        TaggedGeometryKind.LisaFileWare => (LisaFileWareGeometry.CylinderCount, LisaFileWareGeometry.HeadCount, LisaFileWareGeometry.MaximumSectorsPerTrack),
-        TaggedGeometryKind.Macintosh400K => (MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.SingleSidedHeadCount, MacintoshGcrGeometry.MaximumSectorsPerTrack),
+        DiskCopyTaggedGeometryKind.LisaFileWare => (LisaFileWareGeometry.CylinderCount, LisaFileWareGeometry.HeadCount, LisaFileWareGeometry.MaximumSectorsPerTrack),
+        DiskCopyTaggedGeometryKind.Macintosh400K => (MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.SingleSidedHeadCount, MacintoshGcrGeometry.MaximumSectorsPerTrack),
+        DiskCopyTaggedGeometryKind.Macintosh800K => (MacintoshGcrGeometry.CylinderCount, MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.MaximumSectorsPerTrack),
         _ => (Math.Max(AppleTaggedImageGeometry.MinimumCylinderCount, blockCount / AppleTaggedImageGeometry.SectorsPerTrack), AppleTaggedImageGeometry.HeadCount, AppleTaggedImageGeometry.SectorsPerTrack)
     };
 
     /// <summary>Classe le nombre de blocs dans l'une des trois géométries taguées prises en charge.</summary>
     /// <param name="blockCount">Nombre de blocs sectoriels de la charge utile.</param>
     /// <returns>Type de géométrie taguée correspondant au nombre de blocs.</returns>
-    private static TaggedGeometryKind DetermineTaggedGeometry(int blockCount) => blockCount switch { LisaFileWareGeometry.BlockCount => TaggedGeometryKind.LisaFileWare, MacintoshGcrGeometry.SingleSidedBlockCount => TaggedGeometryKind.Macintosh400K, _ => TaggedGeometryKind.Generic };
+    private static DiskCopyTaggedGeometryKind DetermineTaggedGeometry(int blockCount)
+    {
+        if (blockCount == LisaFileWareGeometry.BlockCount) return DiskCopyTaggedGeometryKind.LisaFileWare;
+        if (blockCount == MacintoshGcrGeometry.SingleSidedBlockCount) return DiskCopyTaggedGeometryKind.Macintosh400K;
+        if (blockCount == MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount) return DiskCopyTaggedGeometryKind.Macintosh800K;
+        return DiskCopyTaggedGeometryKind.Generic;
+    }
 
     /// <summary>Tente de lire une charge utile dépourvue de tags comme une image Apple brute reconnue.</summary>
     /// <param name="payload">Données sectorielles extraites du conteneur.</param>
@@ -119,18 +127,20 @@ internal static class DiskCopyReader
     /// <param name="geometryKind">Type de géométrie taguée.</param>
     /// <param name="logicalBlock">Index logique du bloc.</param>
     /// <returns>Adresse physique du bloc.</returns>
-    private static SectorAddress SelectTaggedAddress(TaggedGeometryKind geometryKind, int logicalBlock) => geometryKind switch
+    private static SectorAddress SelectTaggedAddress(DiskCopyTaggedGeometryKind geometryKind, int logicalBlock) => geometryKind switch
     {
-        TaggedGeometryKind.LisaFileWare => LisaFileWareGeometry.Address(logicalBlock),
-        TaggedGeometryKind.Macintosh400K => MacintoshGcrGeometry.Address(logicalBlock, MacintoshGcrGeometry.SingleSidedHeadCount),
+        DiskCopyTaggedGeometryKind.LisaFileWare => LisaFileWareGeometry.Address(logicalBlock),
+        DiskCopyTaggedGeometryKind.Macintosh400K => MacintoshGcrGeometry.Address(logicalBlock, MacintoshGcrGeometry.SingleSidedHeadCount),
+        DiskCopyTaggedGeometryKind.Macintosh800K => MacintoshGcrGeometry.Address(logicalBlock, MacintoshGcrGeometry.DoubleSidedHeadCount),
         _ => new SectorAddress(logicalBlock / AppleTaggedImageGeometry.SectorsPerTrack, AppleTaggedImageGeometry.FirstHead, logicalBlock % AppleTaggedImageGeometry.SectorsPerTrack)
     };
 
     /// <summary>Sélectionne l'identifiant Lisa Office ou MacWorks d'après le marqueur PREBOOT.</summary>
     /// <param name="payload">Données sectorielles de l'image Lisa.</param>
     /// <returns>Identifiant du format Lisa reconnu.</returns>
-    private static string SelectTaggedFormat(byte[] payload)
+    private static string SelectTaggedFormat(byte[] payload, DiskCopyTaggedGeometryKind geometryKind, byte formatByte)
     {
+        if ((geometryKind is DiskCopyTaggedGeometryKind.Macintosh400K or DiskCopyTaggedGeometryKind.Macintosh800K) && AppleRawImageProbe.LooksLikeMac(payload)) return formatByte == DiskCopyFormat.FormatByteMacintoshMfs ? DiskImageFormatIds.AppleMacMfs : DiskImageFormatIds.AppleMacHfs;
         var prebootSearchOffset = DiskCopyLayout.PrebootSearchBlockIndex * DiskCopyLayout.DataBlockSize;
         if (payload.Length >= prebootSearchOffset + DiskCopyLayout.PrebootSearchLength && payload.AsSpan(prebootSearchOffset, DiskCopyLayout.PrebootSearchLength).IndexOf(DiskCopyFormat.PrebootMarker) >= 0) return DiskImageFormatIds.AppleLisaMacWorks;
         return DiskImageFormatIds.AppleLisaOffice;
@@ -194,6 +204,4 @@ internal static class DiskCopyReader
         return checksum;
     }
 
-    /// <summary>Types de géométries taguées distingués par le lecteur DiskCopy.</summary>
-    private enum TaggedGeometryKind { LisaFileWare, Macintosh400K, Generic }
 }

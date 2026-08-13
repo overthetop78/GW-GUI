@@ -8,6 +8,8 @@ using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Mfs;
+using GWGUI.MediaEngine.Geometries.Apple;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 
@@ -71,6 +73,63 @@ public sealed class MacintoshWriterTests
         {
             if (File.Exists(outputPath)) File.Delete(outputPath);
         }
+    }
+
+    /// <summary>Vérifie IMAGE vers DC42 puis IMAGE avec données, tags et en-tête strictement conservés.</summary>
+    [Fact]
+    public async Task ConversionServiceRoundTripsImageAndDc42WithTagsAndMetadata()
+    {
+        var rawPath = ImagePath("3.5 pouces - HFS - 800 Kio", "System 3.2.dsk");
+        var sourcePath = Path.Combine(Path.GetTempPath(), $"gwgui-diskcopy-{Guid.NewGuid():N}.image");
+        var dc42Path = Path.Combine(Path.GetTempPath(), $"gwgui-diskcopy-{Guid.NewGuid():N}.dc42");
+        var outputPath = Path.Combine(Path.GetTempPath(), $"gwgui-diskcopy-{Guid.NewGuid():N}.image");
+        try
+        {
+            var rawImage = await new AppleDiskImageReader().ReadAsync(rawPath);
+            var blocks = rawImage.AvailableBlocks.Select(block => new SectorBlock(block.LogicalBlock, block.Address, block.Data, block.IntegrityValid, block.Revolution, Enumerable.Range(0, DiskCopyLayout.TagSizePerBlock).Select(index => (byte)(block.LogicalBlock * 13 + index * 7)).ToArray(), block.FormatCode, block.DiagnosticCode)).ToArray();
+            var taggedImage = new SectorImage(rawImage.FormatId, rawImage.BlockSize, rawImage.Cylinders, rawImage.Heads, rawImage.SectorsPerTrack, blocks, capacity: rawImage.Capacity, logicalBlockCount: rawImage.BlockCount);
+            var metadata = new DiskCopyImage(taggedImage, [0x53, 0x79, 0x73, 0x74, 0x8e, 0x6d, 0x65], DiskCopyFormat.DiskFormat800K, DiskCopyFormat.FormatByteMacintoshHfs);
+            await new DiskCopyWriter().WriteAsync(taggedImage, sourcePath, metadata);
+            var service = MediaEngineFactory.CreateMacintoshConversionService();
+            await service.ConvertAsync(sourcePath, dc42Path, DiskImageFormatIds.AppleMacHfs);
+            await service.ConvertAsync(dc42Path, outputPath, DiskImageFormatIds.AppleMacHfs);
+            var sourceBytes = await File.ReadAllBytesAsync(sourcePath);
+            var dc42Bytes = await File.ReadAllBytesAsync(dc42Path);
+            var outputBytes = await File.ReadAllBytesAsync(outputPath);
+            Assert.Equal(sourceBytes, dc42Bytes);
+            Assert.Equal(sourceBytes, outputBytes);
+            var source = DiskCopyReader.ReadDetailed(sourceBytes);
+            var output = DiskCopyReader.ReadDetailed(outputBytes);
+            Assert.Equal(source.NameBytes, output.NameBytes);
+            Assert.Equal(source.DiskFormat, output.DiskFormat);
+            Assert.Equal(source.FormatByte, output.FormatByte);
+            Assert.Equal(DiskImageFormatIds.AppleMacHfs, output.Image.FormatId);
+            Assert.Equal(MacintoshGcrGeometry.DoubleSidedHeadCount, output.Image.Heads);
+            foreach (var expectedBlock in source.Image.AvailableBlocks)
+            {
+                var actualBlock = Assert.Single(output.Image.AvailableBlocks, block => block.LogicalBlock == expectedBlock.LogicalBlock);
+                Assert.Equal(expectedBlock.Data, actualBlock.Data);
+                Assert.Equal(expectedBlock.Tag, actualBlock.Tag);
+            }
+            AssertDiskCopyChecksums(outputBytes);
+        }
+        finally
+        {
+            File.Delete(sourcePath);
+            File.Delete(dc42Path);
+            File.Delete(outputPath);
+        }
+    }
+
+    /// <summary>Vérifie les deux checksums stockés dans un conteneur DiskCopy.</summary>
+    private static void AssertDiskCopyChecksums(byte[] bytes)
+    {
+        var dataLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.DataLengthOffset)));
+        var tagLength = checked((int)BinaryPrimitives.ReadUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.TagLengthOffset)));
+        var data = bytes.AsSpan(DiskCopyLayout.HeaderSize, dataLength);
+        var tags = bytes.AsSpan(DiskCopyLayout.HeaderSize + dataLength, tagLength);
+        Assert.Equal(DiskCopyReader.CalculateChecksum(data), BinaryPrimitives.ReadUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.DataChecksumOffset)));
+        Assert.Equal(DiskCopyReader.CalculateChecksum(tags[DiskCopyLayout.TagChecksumExcludedPrefixSize..]), BinaryPrimitives.ReadUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.TagChecksumOffset)));
     }
 
     private static FileSystemVolume ReadFileSystem(GWGUI.MediaEngine.SectorImages.SectorImage image)

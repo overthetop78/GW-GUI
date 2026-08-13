@@ -405,7 +405,7 @@ Références communes :
 
 ### 4.6 IMAGE ↔ DC42
 
-- [ ] Raccorder la conversion DiskCopy après disponibilité du Writer commun et comparer données, tags, nom, encodage et checksums.
+- [x] Raccorder la conversion DiskCopy après disponibilité du Writer commun et comparer données, tags, nom, encodage et checksums.
 
   Informations nécessaires :
 
