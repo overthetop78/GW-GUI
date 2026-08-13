@@ -45,7 +45,7 @@ Références communes :
 
 ### 1.2 IBM PC — IMA et IMG, 160 Kio à 2,88 Mio
 
-- [ ] Implémenter et raccorder un Writer brut ISO CHS commun pour `.ima` et `.img`, couvrant 160, 180, 320, 360, 720, 800, 1 200, 1 440, 1 680, DMF 1 680 et 2 880 Kio, puis comparer chaque sortie au Reader et à `gw convert` sur un corpus validé.
+- [x] Implémenter et raccorder un Writer brut ISO CHS commun pour `.ima` et `.img`, couvrant 160, 180, 320, 360, 720, 800, 1 200, 1 440, 1 680, DMF 1 680 et 2 880 Kio, puis comparer chaque sortie au Reader et à `gw convert` sur un corpus validé.
 
   Informations nécessaires :
 

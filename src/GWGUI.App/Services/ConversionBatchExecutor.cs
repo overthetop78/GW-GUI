@@ -4,6 +4,7 @@ using GWGUI.Domain.Commands;
 using GWGUI.Domain.Conversion;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Conversion.Amiga;
+using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Composition;
 
@@ -12,15 +13,17 @@ namespace GWGUI.App.Services;
 public sealed class ConversionBatchExecutor(
     IGreaseweazleRunner runner,
     AmigaAdfConversionService? amigaAdf = null,
+    IbmRawConversionService? ibmRaw = null,
     AppleRwts18ConversionService? appleRwts18 = null,
     AtariStConversionService? atariSt = null)
 {
     private readonly AmigaAdfConversionService _amigaAdf = amigaAdf ?? MediaEngineFactory.CreateAmigaAdfConversionService();
+    private readonly IbmRawConversionService _ibmRaw = ibmRaw ?? MediaEngineFactory.CreateIbmRawConversionService();
     private readonly AppleRwts18ConversionService _appleRwts18 = appleRwts18 ?? MediaEngineFactory.CreateAppleRwts18ConversionService();
     private readonly AtariStConversionService _atariSt = atariSt ?? MediaEngineFactory.CreateAtariStConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension);
+        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
@@ -46,6 +49,8 @@ public sealed class ConversionBatchExecutor(
             {
                 if (AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension))
                     await _amigaAdf.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
+                else if (IbmRawConversionService.CanCreate(output.FormatId, output.Extension))
+                    await _ibmRaw.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else if (AtariStConversionService.CanCreate(output.FormatId, output.Extension))
                     await _atariSt.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else

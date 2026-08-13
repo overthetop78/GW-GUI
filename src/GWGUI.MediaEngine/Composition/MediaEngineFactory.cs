@@ -19,6 +19,7 @@ using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Conversion.Amiga;
+using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Decoding;
@@ -56,6 +57,12 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new AmigaScpSectorImageReader(scpReader, CreateFluxDecoders()), new Containers.Adf.AdfReader(), new Containers.Adf.AmigaAdfWriter());
+    }
+    /// <summary>Crée le service de conversion IBM brute avec ses Reader et Writer partagés.</summary>
+    public static IbmRawConversionService CreateIbmRawConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new IbmRawImageReader(), new IbmRawImageWriter());
     }
     /// <summary>CrÃ©e le service de conversion RWTS18 avec ses Readers et Writers partagÃ©s.</summary>
     public static AppleRwts18ConversionService CreateAppleRwts18ConversionService()

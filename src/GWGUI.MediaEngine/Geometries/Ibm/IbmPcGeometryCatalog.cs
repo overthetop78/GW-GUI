@@ -22,23 +22,32 @@ public static class IbmPcGeometryCatalog
     /// <summary>Nombre de secteurs d'une piste à trente-six secteurs.</summary>
     public const int Sectors36 = 36;
 
-    /// <summary>Catalogue des géométries indexées par capacité en octets.</summary>
-    public static IReadOnlyDictionary<int, IbmPcGeometry> ByCapacity { get; } = new System.Collections.ObjectModel.ReadOnlyDictionary<int, IbmPcGeometry>(new Dictionary<int, IbmPcGeometry>
-    {
-        [160 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm160, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, Sectors8),
-        [180 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm180, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, Sectors9),
-        [320 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm320, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors8),
-        [360 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm360, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors9),
-        [720 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm720, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors9),
-        [800 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm800, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors10),
-        [1200 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm1200, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors15),
-        [1440 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm1440, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors18),
-        [1680 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm1680, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors21),
-        [2880 * DataSizeConstants.BytesPerKibibyte] = new(DiskImageFormatIds.Ibm2880, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors36)
-    });
+    /// <summary>Profils IBM pris en charge, y compris le profil DMF explicitement distinct.</summary>
+    public static IReadOnlyList<IbmPcGeometry> All { get; } = Array.AsReadOnly<IbmPcGeometry>(
+    [
+        new(DiskImageFormatIds.Ibm160, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, Sectors8),
+        new(DiskImageFormatIds.Ibm180, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.SingleSidedHeadCount, Sectors9),
+        new(DiskImageFormatIds.Ibm320, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors8),
+        new(DiskImageFormatIds.Ibm360, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors9),
+        new(DiskImageFormatIds.Ibm720, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors9),
+        new(DiskImageFormatIds.Ibm800, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors10),
+        new(DiskImageFormatIds.Ibm1200, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors15),
+        new(DiskImageFormatIds.Ibm1440, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors18),
+        new(DiskImageFormatIds.Ibm1680, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors21),
+        new(DiskImageFormatIds.IbmDmf, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors21),
+        new(DiskImageFormatIds.Ibm2880, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, Sectors36)
+    ]);
+
+    /// <summary>Catalogue des profils indexés par identifiant technique.</summary>
+    public static IReadOnlyDictionary<string, IbmPcGeometry> ByFormatId { get; } = new System.Collections.ObjectModel.ReadOnlyDictionary<string, IbmPcGeometry>(All.ToDictionary(geometry => geometry.FormatId, StringComparer.OrdinalIgnoreCase));
+
+    /// <summary>Catalogue des géométries standards indexées par capacité en octets.</summary>
+    public static IReadOnlyDictionary<int, IbmPcGeometry> ByCapacity { get; } = new System.Collections.ObjectModel.ReadOnlyDictionary<int, IbmPcGeometry>(All.Where(geometry => geometry.FormatId != DiskImageFormatIds.IbmDmf).ToDictionary(geometry => geometry.Capacity));
 
     /// <summary>Recherche une géométrie par capacité exacte.</summary>
     public static bool TryFromCapacity(int capacity, out IbmPcGeometry geometry) => ByCapacity.TryGetValue(capacity, out geometry);
+    /// <summary>Recherche le profil explicitement sélectionné par son identifiant.</summary>
+    public static bool TryFromFormatId(string formatId, out IbmPcGeometry geometry) => ByFormatId.TryGetValue(formatId, out geometry);
     /// <summary>Recherche une géométrie depuis un descripteur FAT historique.</summary>
     public static bool TryFromMediaDescriptor(byte descriptor, out IbmPcGeometry geometry)
     {
