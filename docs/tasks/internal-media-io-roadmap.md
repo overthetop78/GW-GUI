@@ -456,7 +456,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 5.3 Apple II/III, Macintosh et Lisa
 
-- [ ] Raccorder Apple II GCR, RWTS18, Macintosh GCR et Lisa FileWare au service SCP après validation des Writers sectoriels correspondants, puis comparer chaque piste redécodée.
+- [x] Raccorder Apple II GCR, RWTS18, Macintosh GCR et Lisa FileWare au service SCP après validation des Writers sectoriels correspondants, puis comparer chaque piste redécodée.
 
   Informations nécessaires :
 

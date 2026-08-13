@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Encoding.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Primitives;
@@ -19,7 +20,8 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     {
         if (image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase))
             return FluxCodecIds.AppleRwts18;
-        if (image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) &&
+        if ((image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) ||
+             image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) &&
             image.BlockSize == AppleIIGeometry.ProDosBlockSize && image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount) return FluxCodecIds.AppleMacGcr;
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) ||
             image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return FluxCodecIds.AppleIIGcr;
@@ -67,5 +69,23 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int> { [TrackEncodingAttributeKeys.Format] = AppleTrackFormatCodes.LisaFileWare };
         return null;
+    }
+
+    /// <inheritdoc />
+    public override uint BitCellTicks(SectorImage image, int cylinder)
+    {
+        var encoderId = EncoderId(image);
+        if (encoderId.Equals(FluxCodecIds.AppleIIGcr, StringComparison.OrdinalIgnoreCase) || encoderId.Equals(FluxCodecIds.AppleRwts18, StringComparison.OrdinalIgnoreCase)) return AppleTrackEncodingTimings.AppleIIBitCellTicks;
+        if (encoderId.Equals(FluxCodecIds.AppleMacGcr, StringComparison.OrdinalIgnoreCase) || encoderId.Equals(FluxCodecIds.AppleLisaFileWareGcr, StringComparison.OrdinalIgnoreCase)) return AppleTrackEncodingTimings.IwmGcrBitCellTicks;
+        return base.BitCellTicks(image, cylinder);
+    }
+
+    /// <inheritdoc />
+    public override uint IndexTimeTicks(SectorImage image, int cylinder)
+    {
+        var encoderId = EncoderId(image);
+        if (encoderId.Equals(FluxCodecIds.AppleLisaFileWareGcr, StringComparison.OrdinalIgnoreCase)) return AppleTrackEncodingTimings.LisaIndexTimeTicks(cylinder);
+        if (encoderId.Equals(FluxCodecIds.AppleMacGcr, StringComparison.OrdinalIgnoreCase)) return AppleTrackEncodingTimings.MacintoshIndexTimeTicks(cylinder);
+        return base.IndexTimeTicks(image, cylinder);
     }
 }

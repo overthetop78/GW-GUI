@@ -38,7 +38,7 @@ public sealed class SectorImageScpConversionService(SectorImageTrackEncoder enco
 
     private static ScpFlags CreateFlags(IReadOnlyList<EncodedDiskTrack> tracks)
     {
-        var flags = ScpFlags.IndexAligned | ScpFlags.Normalized | ScpFlags.Writable | ScpFlags.ThirdPartyCreator;
+        var flags = ScpFlags.IndexAligned | ScpFlags.Normalized | ScpFlags.ThirdPartyCreator;
         if (tracks.Max(track => track.Cylinder) > 41) flags |= ScpFlags.Tpi96;
         if (tracks.Any(track => track.Track.Revolution.IndexTimeTicks == TrackEncodingTimings.Rpm360IndexTimeTicks)) flags |= ScpFlags.Rpm360;
         return flags;

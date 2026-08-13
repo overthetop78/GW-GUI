@@ -16,6 +16,10 @@ internal static class ScpDiskTypeCatalog
         if (formatId.Equals(DiskImageFormatIds.Atari130, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitEnhancedDensity;
         if (formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitDoubleDensity;
         if (formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase)) return image.Heads == DiskGeometryConstants.SingleSidedHeadCount ? ScpDiskType.AtariStSingleSided : ScpDiskType.AtariStDoubleSided;
+        if (formatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.AppleMacintosh800;
+        if (formatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase)) return formatId.Contains("prodos", StringComparison.OrdinalIgnoreCase) ? ScpDiskType.AppleIIProDos : ScpDiskType.AppleII;
+        if (formatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.AppleMacintosh1440;
+        if (formatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase)) return image.Heads == DiskGeometryConstants.SingleSidedHeadCount ? ScpDiskType.AppleMacintosh400 : ScpDiskType.AppleMacintosh800;
         if (IsIbmPc360Family(formatId)) return ScpDiskType.IbmPc360;
         if (formatId.Equals(DiskImageFormatIds.Ibm720, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm800, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.IbmPc720;
         if (formatId.Equals(DiskImageFormatIds.Ibm1200, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.IbmPc1200;
