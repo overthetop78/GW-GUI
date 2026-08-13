@@ -335,7 +335,7 @@ Références communes :
 
 ### 3.5 Formats protégés Apple, Commodore et autres
 
-- [ ] Définir et implémenter un contrat d’image de piste préservant marques, gaps, erreurs intentionnelles, timing et zones faibles avant de raccorder une sortie protégée à NIB, WOZ, HFE ou SCP.
+- [x] Définir et implémenter un contrat d’image de piste préservant marques, gaps, erreurs intentionnelles, timing et zones faibles avant de raccorder une sortie protégée à NIB, WOZ, HFE ou SCP.
 
   Informations nécessaires :
 
@@ -343,6 +343,7 @@ Références communes :
   SectorImage ne suffit pas à représenter une protection qui dépend du timing ou d’une erreur volontaire.
   Réutiliser FluxStructure, TrackEncoder, les pistes brutes du SCP et les modèles de visualisation sans modifier les révolutions originales.
   Une sortie sectorielle standard ne doit jamais être annoncée comme préservant ces informations.
+  Réalisé : `ProtectedTrackImage` conserve les cellules, segments de timing, marques, gaps, erreurs intentionnelles, zones faibles et révolutions de flux. Les adaptateurs de pistes encodées et SCP partagent les structures existantes sans modifier les révolutions ; le raccordement flux→flux aux Writers reste dans la tâche 10.2.
   ```
 
 ## 4. Conversions entre conteneurs compatibles
