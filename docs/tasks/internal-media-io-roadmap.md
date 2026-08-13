@@ -414,11 +414,13 @@ Références communes :
   La reconnaissance de signature reste obligatoire.
   ```
 
+Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé par la politique de sécurité, la destination distante n'étant pas reconnue comme approuvée. Les commits 4.1 à 4.6 restent disponibles localement.
+
 ## 5. Création interne de fichiers SCP
 
 ### 5.1 Socle commun SCP
 
-- [ ] Implémenter et raccorder `ScpWriter` avec en-tête, table de 168 pistes, blocs `TRK`, descripteurs de révolutions, intervalles 16 bits avec débordements, résolution, drapeaux et checksum, puis valider l’aller-retour par `ScpReader`.
+- [x] Implémenter et raccorder `ScpWriter` avec en-tête, table de 168 pistes, blocs `TRK`, descripteurs de révolutions, intervalles 16 bits avec débordements, résolution, drapeaux et checksum, puis valider l’aller-retour par `ScpReader`.
 
   Informations nécessaires :
 
@@ -430,7 +432,7 @@ Références communes :
   Format public version 1.9 disponible dans le dossier doc de pySuperCardPro.
   ```
 
-- [ ] Implémenter un service commun transformant `EncodedTrack` en intervalles SCP indexés avec une révolution déterministe, puis vérifier durée, RPM, résolution et absence de dérive cumulative.
+- [x] Implémenter un service commun transformant `EncodedTrack` en intervalles SCP indexés avec une révolution déterministe, puis vérifier durée, RPM, résolution et absence de dérive cumulative.
 
   Informations nécessaires :
 

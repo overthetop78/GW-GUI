@@ -17,11 +17,18 @@ public sealed record ScpRevolution
     /// <param name="flux">Révolution générique à raccorder.</param>
     /// <param name="declaredFluxCount">Nombre de mots de flux déclaré dans le descripteur SCP.</param>
     /// <exception cref="ArgumentNullException"><paramref name="flux"/> est nul.</exception>
-    public ScpRevolution(FluxRevolution flux, uint declaredFluxCount)
+    public ScpRevolution(FluxRevolution flux, uint declaredFluxCount) : this(flux, declaredFluxCount, ScpRevolutionOrigin.Captured) { }
+
+    /// <summary>Initialise une révolution SCP en conservant son origine.</summary>
+    /// <param name="flux">Révolution générique à raccorder.</param>
+    /// <param name="declaredFluxCount">Nombre de mots de flux déclaré dans le descripteur SCP.</param>
+    /// <param name="origin">Origine capturée ou synthétique de la révolution.</param>
+    public ScpRevolution(FluxRevolution flux, uint declaredFluxCount, ScpRevolutionOrigin origin)
     {
         ArgumentNullException.ThrowIfNull(flux);
         DeclaredFluxCount = declaredFluxCount;
         Flux = flux;
+        Origin = origin;
     }
 
     /// <summary>Obtient la durée déclarée de la révolution, exprimée en pas temporels SCP.</summary>
@@ -35,6 +42,9 @@ public sealed record ScpRevolution
 
     /// <summary>Obtient la représentation générique de la révolution de flux.</summary>
     public FluxRevolution Flux { get; }
+
+    /// <summary>Obtient l'origine de la révolution dans le moteur.</summary>
+    public ScpRevolutionOrigin Origin { get; }
 
     /// <summary>Convertit la durée déclarée de la révolution en millisecondes.</summary>
     /// <param name="resolutionNanoseconds">Durée strictement positive d'un pas temporel, en nanosecondes.</param>
