@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>시스템</value></data>
   <data name="Explorer.Protection"><value>보호</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>물리 섹터 — 인식된 파일 시스템 없음</value></data>
+  <data name="Explorer.Organization"><value>구성</value></data>
+  <data name="Explorer.Modification"><value>수정</value></data>
+  <data name="Explorer.Compression"><value>압축</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>사용자 정의 섹터 로더</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>사용자 정의 로더 — 파일 카탈로그 없음</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>The Company 크랙</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>감지됨: {0}</value></data>
 </root>

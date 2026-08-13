@@ -1182,6 +1182,24 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ExplorerShowsOnlyDetectedCustomLoaderCharacteristicsOutsideProtection()
+    {
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("amiga.amigados", 512, 1, 1, 1, []);
+        var content = new GWGUI.MediaEngine.Exploration.Metadata.DiskContentMetadata(true, GWGUI.MediaEngine.Exploration.Metadata.DiskContentIds.CrackTheCompany, [GWGUI.MediaEngine.Exploration.Metadata.DiskContentIds.CompressionFire]);
+        var metadata = new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata(["amiga"], null, content);
+        var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("Elf", "amiga.amigados", 901120, 0, null, null, [], []);
+        var details = ExplorerDetailsPresenter.ForDisk(new ExploredDiskImage("elf.adf", image, volume, metadata, false));
+
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.Organization");
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.Modification" && row.Value.Contains("The Company"));
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.Compression" && row.Value == "FIRE");
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.Protection" && row.Value == "\u2014");
+
+        var ordinary = ExplorerDetailsPresenter.ForDisk(new ExploredDiskImage("disk.adf", image, volume, new(["amiga"], null), false));
+        Assert.DoesNotContain(ordinary.Rows, row => row.Key is "Explorer.Organization" or "Explorer.Modification" or "Explorer.Compression");
+    }
+
+    [Fact]
     public void ExplorerMarksARecognizedVolumeWithoutARealNameAsSynthetic()
     {
         var image = new GWGUI.MediaEngine.SectorImages.SectorImage("amiga.amigados", 512, 1, 1, 1,

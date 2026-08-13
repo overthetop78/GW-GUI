@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Rendszer</value></data>
   <data name="Explorer.Protection"><value>Védelem</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fizikai szektorok — nem ismerhető fel fájlrendszer</value></data>
+  <data name="Explorer.Organization"><value>Szervezés</value></data>
+  <data name="Explorer.Modification"><value>Módosítás</value></data>
+  <data name="Explorer.Compression"><value>Tömörítés</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Egyéni szektorbetöltő</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Egyéni szektorbetöltő — nincs fájlkatalógus</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>A The Company crackje</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Észlelve: {0}</value></data>
 </root>

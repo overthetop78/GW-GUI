@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Система</value></data>
   <data name="Explorer.Protection"><value>Защита</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Физические секторы — файловая система не распознана</value></data>
+  <data name="Explorer.Organization"><value>Организация</value></data>
+  <data name="Explorer.Modification"><value>Модификация</value></data>
+  <data name="Explorer.Compression"><value>Сжатие</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Пользовательский загрузчик секторов</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Пользовательский загрузчик — нет каталога файлов</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack от The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
 </root>

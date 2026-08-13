@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Systém</value></data>
   <data name="Explorer.Protection"><value>Ochrana</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fyzické sektory — nebyl rozpoznán žádný souborový systém</value></data>
+  <data name="Explorer.Organization"><value>Organizace</value></data>
+  <data name="Explorer.Modification"><value>Úprava</value></data>
+  <data name="Explorer.Compression"><value>Komprese</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Vlastní zavaděč sektorů</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Vlastní zavaděč — bez katalogu souborů</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack od The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Zjištěno: {0}</value></data>
 </root>

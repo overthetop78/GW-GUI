@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>النظام</value></data>
   <data name="Explorer.Protection"><value>الحماية</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>القطاعات الفعلية — لم يتم التعرّف على نظام ملفات</value></data>
+  <data name="Explorer.Organization"><value>التنظيم</value></data>
+  <data name="Explorer.Modification"><value>التعديل</value></data>
+  <data name="Explorer.Compression"><value>الضغط</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>مُحمّل قطاعات مخصص</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>مُحمّل مخصص — لا يوجد فهرس ملفات</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>كراك بواسطة The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
 </root>

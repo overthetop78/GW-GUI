@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Skydd</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiska sektorer — inget identifierat filsystem</value></data>
+  <data name="Explorer.Organization"><value>Organisation</value></data>
+  <data name="Explorer.Modification"><value>Ändring</value></data>
+  <data name="Explorer.Compression"><value>Komprimering</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Anpassad sektorladdare</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Anpassad sektorladdare — ingen filkatalog</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack av The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Identifierat: {0}</value></data>
 </root>

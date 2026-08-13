@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>システム</value></data>
   <data name="Explorer.Protection"><value>プロテクション</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>物理セクター — 認識されたファイルシステムなし</value></data>
+  <data name="Explorer.Organization"><value>構成</value></data>
+  <data name="Explorer.Modification"><value>変更</value></data>
+  <data name="Explorer.Compression"><value>圧縮</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>カスタムセクタローダー</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>カスタムローダー — ファイルカタログなし</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>The Company によるクラック</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>検出: {0}</value></data>
 </root>

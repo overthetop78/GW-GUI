@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Perlindungan</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sektor fisik — tidak ada sistem berkas yang dikenali</value></data>
+  <data name="Explorer.Organization"><value>Organisasi</value></data>
+  <data name="Explorer.Modification"><value>Modifikasi</value></data>
+  <data name="Explorer.Compression"><value>Kompresi</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Pemuat sektor khusus</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Pemuat sektor khusus — tanpa katalog berkas</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack oleh The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Terdeteksi: {0}</value></data>
 </root>

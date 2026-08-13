@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Zabezpieczenie</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sektory fizyczne — nie rozpoznano systemu plików</value></data>
+  <data name="Explorer.Organization"><value>Organizacja</value></data>
+  <data name="Explorer.Modification"><value>Modyfikacja</value></data>
+  <data name="Explorer.Compression"><value>Kompresja</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Niestandardowy program ładujący sektory</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Niestandardowy program ładujący — brak katalogu plików</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack autorstwa The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Wykryto: {0}</value></data>
 </root>

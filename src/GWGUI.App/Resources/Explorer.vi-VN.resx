@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Hệ thống</value></data>
   <data name="Explorer.Protection"><value>Bảo vệ</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sector vật lý — không nhận dạng được hệ thống tệp</value></data>
+  <data name="Explorer.Organization"><value>Tổ chức</value></data>
+  <data name="Explorer.Modification"><value>Sửa đổi</value></data>
+  <data name="Explorer.Compression"><value>Nén</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Trình nạp sector tùy chỉnh</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Trình nạp tùy chỉnh — không có danh mục tệp</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack bởi The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Đã phát hiện: {0}</value></data>
 </root>

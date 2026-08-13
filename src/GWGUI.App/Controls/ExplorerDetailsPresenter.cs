@@ -19,26 +19,33 @@ public static class ExplorerDetailsPresenter
         return new($"({LocExtension.Get("Explorer.Unnamed")})", true);
     }
 
-    public static string FileSystemText(ExploredDiskImage document) => document.FileSystemRecognized
-        ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystemId)
-            .Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystemId))
-        : LocExtension.Get("Explorer.PhysicalSectorsNoFileSystem");
+    public static string FileSystemText(ExploredDiskImage document) => document.FileSystemRecognized ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystemId).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystemId)) : LocExtension.Get(document.UsesCustomSectorLoader ? "Explorer.CustomSectorLoaderNoCatalog" : "Explorer.PhysicalSectorsNoFileSystem");
 
     public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document)
     {
         var volume = document.Volume;
         var volumeName = VolumeName(document);
-        return new(volumeName.Text, ExplorerIconKind.DiskImage,
-        [
+        var rows = new List<ExplorerDetailRow>
+        {
             new("Explorer.Volume", volumeName.Text, volumeName.IsSynthetic),
             new("Explorer.System", ExplorerMetadataPresenter.Systems(document.Metadata)),
             new("Explorer.Protection", ExplorerMetadataPresenter.Protection(document.Metadata)),
-            new("Explorer.FileSystem", FileSystemText(document)),
-            new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)),
-            new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"),
-            new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()),
-            new("Explorer.Warnings", ExplorerIssueBuilder.Build(document).Count.ToString())
-        ], volumeName.IsSynthetic);
+            new("Explorer.FileSystem", FileSystemText(document))
+        };
+        if (document.UsesCustomSectorLoader)
+        {
+            rows.Add(new("Explorer.Organization", LocExtension.Get("Explorer.CustomSectorLoader")));
+            if (document.Metadata.Content.ModificationId is { } modificationId) rows.Add(new("Explorer.Modification", LocExtension.Get($"Explorer.Content.{modificationId}")));
+            foreach (var compressionId in document.Metadata.Content.CompressionIds) rows.Add(new("Explorer.Compression", LocExtension.Get($"Explorer.Content.{compressionId}")));
+        }
+        rows.Add(new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)));
+        if (!document.UsesCustomSectorLoader)
+        {
+            rows.Add(new("Explorer.Free", document.FileSystemRecognized ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"));
+            rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()));
+            rows.Add(new("Explorer.Warnings", ExplorerIssueBuilder.Build(document).Count.ToString()));
+        }
+        return new(volumeName.Text, ExplorerIconKind.DiskImage, rows, volumeName.IsSynthetic);
     }
 
     public static ExplorerDetailsPresentation ForItem(ExplorerContentItem item)

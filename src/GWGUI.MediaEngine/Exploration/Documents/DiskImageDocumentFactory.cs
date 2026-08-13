@@ -27,7 +27,8 @@ internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadata
         var formatIds = detectedImageFormatIds ?? detected.Select(item => item.FormatId).ToArray();
         var metadata = metadataFactory.Create(image, formatIds);
         if (detected.Count > 0) return new(path, image, detected[0].Volume, metadata, true, detected, formatIds);
-        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), image.FormatId, image.Capacity, 0, null, null, PhysicalSectorTreeBuilder.Build(image), []);
+        var entries = metadata.Content.HasValidAmigaBootLoader && metadata.Content.HasIdentifiedCharacteristics ? [] : PhysicalSectorTreeBuilder.Build(image);
+        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), image.FormatId, image.Capacity, 0, null, null, entries, []);
         return new(path, image, physical, metadata, false, [], formatIds);
     }
 

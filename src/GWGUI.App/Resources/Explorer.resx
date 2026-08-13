@@ -115,4 +115,11 @@
   <data name="Explorer.Protection"><value>Protection</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Physical sectors — no recognized file system</value></data>
   <data name="Explorer.Metadata.None"><value>—</value></data>
+  <data name="Explorer.Organization"><value>Organization</value></data>
+  <data name="Explorer.Modification"><value>Modification</value></data>
+  <data name="Explorer.Compression"><value>Compression</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Custom sector loader</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Custom sector loader — no file catalog</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack by The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
 </root>

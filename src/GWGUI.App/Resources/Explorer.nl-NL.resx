@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Systeem</value></data>
   <data name="Explorer.Protection"><value>Beveiliging</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysieke sectoren — geen herkend bestandssysteem</value></data>
+  <data name="Explorer.Organization"><value>Organisatie</value></data>
+  <data name="Explorer.Modification"><value>Wijziging</value></data>
+  <data name="Explorer.Compression"><value>Compressie</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Aangepaste sectorlader</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Aangepaste sectorlader — geen bestandscatalogus</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack door The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Gedetecteerd: {0}</value></data>
 </root>

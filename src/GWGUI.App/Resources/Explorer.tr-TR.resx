@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Koruma</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fiziksel sektörler — tanınan dosya sistemi yok</value></data>
+  <data name="Explorer.Organization"><value>Düzen</value></data>
+  <data name="Explorer.Modification"><value>Değişiklik</value></data>
+  <data name="Explorer.Compression"><value>Sıkıştırma</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Özel sektör yükleyici</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Özel sektör yükleyici — dosya kataloğu yok</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>The Company tarafından crack</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Algılandı: {0}</value></data>
 </root>

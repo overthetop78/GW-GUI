@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>מערכת</value></data>
   <data name="Explorer.Protection"><value>הגנה</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>סקטורים פיזיים — לא זוהתה מערכת קבצים</value></data>
+  <data name="Explorer.Organization"><value>ארגון</value></data>
+  <data name="Explorer.Modification"><value>שינוי</value></data>
+  <data name="Explorer.Compression"><value>דחיסה</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>טוען סקטורים מותאם</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>טוען מותאם — אין קטלוג קבצים</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack על ידי The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>זוהה: {0}</value></data>
 </root>

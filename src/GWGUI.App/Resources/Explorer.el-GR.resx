@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Σύστημα</value></data>
   <data name="Explorer.Protection"><value>Προστασία</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Φυσικοί τομείς — δεν αναγνωρίστηκε σύστημα αρχείων</value></data>
+  <data name="Explorer.Organization"><value>Οργάνωση</value></data>
+  <data name="Explorer.Modification"><value>Τροποποίηση</value></data>
+  <data name="Explorer.Compression"><value>Συμπίεση</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Προσαρμοσμένος φορτωτής τομέων</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Προσαρμοσμένος φορτωτής — χωρίς κατάλογο αρχείων</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack από την The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Εντοπίστηκε: {0}</value></data>
 </root>

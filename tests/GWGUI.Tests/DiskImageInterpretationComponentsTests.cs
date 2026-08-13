@@ -62,6 +62,29 @@ public sealed class DiskImageInterpretationComponentsTests
     }
 
     [Fact]
+    public void DocumentFactoryHidesPhysicalSectorsForAnIdentifiedCustomAmigaLoader()
+    {
+        var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
+        var document = factory.Create("elf.adf", CustomAmigaImage(true), []);
+
+        Assert.True(document.UsesCustomSectorLoader);
+        Assert.Empty(document.Volume.Entries);
+        Assert.Equal(DiskContentIds.CrackTheCompany, document.Metadata.Content.ModificationId);
+        Assert.Equal([DiskContentIds.CompressionFire], document.Metadata.Content.CompressionIds);
+        Assert.Null(document.Metadata.ProtectionId);
+    }
+
+    [Fact]
+    public void DocumentFactoryKeepsPhysicalSectorsWhenTheAmigaBootLoaderIsInvalid()
+    {
+        var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
+        var document = factory.Create("damaged.adf", CustomAmigaImage(false), []);
+
+        Assert.False(document.UsesCustomSectorLoader);
+        Assert.NotEmpty(document.Volume.Entries);
+    }
+
+    [Fact]
     public void DecodeScoreCoversEmptyPartialAndCompleteImages()
     {
         Assert.Equal(0, DiskImageDecodeScore.Calculate(Image(1, [])));
@@ -94,6 +117,27 @@ public sealed class DiskImageInterpretationComponentsTests
     private static SectorBlock Block(int logical, int cylinder, int sector, byte value) => new(logical, new(cylinder, 0, sector), [value]);
     private static FileSystemEntry Entry(string name, long size) => new(name, FileSystemEntryKind.File, size, null, string.Empty, 0, 0, true, []);
     private static FileSystemVolume Volume(string name, IEnumerable<FileSystemEntry> entries, IEnumerable<string>? warnings = null) => new(name, "test", 0, 0, null, null, entries, warnings ?? []);
+
+    private static SectorImage CustomAmigaImage(bool validBootChecksum)
+    {
+        var bytes = new byte[1024];
+        "DOS\0"u8.CopyTo(bytes);
+        "CRACKED BY   THE COMPANY"u8.CopyTo(bytes.AsSpan(128));
+        "FIRE"u8.CopyTo(bytes.AsSpan(512));
+        if (validBootChecksum)
+        {
+            uint sum = 0;
+            for (var offset = 0; offset < bytes.Length; offset += sizeof(uint))
+            {
+                var value = System.Buffers.Binary.BinaryPrimitives.ReadUInt32BigEndian(bytes.AsSpan(offset));
+                var previous = sum;
+                sum += value;
+                if (sum < previous) sum++;
+            }
+            System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(4), ~sum);
+        }
+        return new(DiskImageFormatIds.AmigaDos, 512, 1, 1, 2, [new(0, new(0, 0, 0), bytes[..512]), new(1, new(0, 0, 1), bytes[512..])]);
+    }
 
     private sealed class FakeNormalizer(string name, ICollection<string> calls, SectorImage? result) : IRecognizedImageNormalizer
     {

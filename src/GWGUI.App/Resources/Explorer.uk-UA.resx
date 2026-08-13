@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Система</value></data>
   <data name="Explorer.Protection"><value>Захист</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Фізичні сектори — файлову систему не розпізнано</value></data>
+  <data name="Explorer.Organization"><value>Організація</value></data>
+  <data name="Explorer.Modification"><value>Модифікація</value></data>
+  <data name="Explorer.Compression"><value>Стиснення</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Власний завантажувач секторів</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Власний завантажувач — немає каталогу файлів</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack від The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Виявлено: {0}</value></data>
 </root>

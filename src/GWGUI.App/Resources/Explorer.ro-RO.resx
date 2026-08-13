@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Protecție</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sectoare fizice — niciun sistem de fișiere recunoscut</value></data>
+  <data name="Explorer.Organization"><value>Organizare</value></data>
+  <data name="Explorer.Modification"><value>Modificare</value></data>
+  <data name="Explorer.Compression"><value>Compresie</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Încărcător de sectoare personalizat</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Încărcător personalizat — fără catalog de fișiere</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack de The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Detectat: {0}</value></data>
 </root>

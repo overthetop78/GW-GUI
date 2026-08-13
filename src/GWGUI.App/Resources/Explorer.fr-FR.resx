@@ -114,4 +114,11 @@
   <data name="Explorer.System"><value>Système</value></data>
   <data name="Explorer.Protection"><value>Protection</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Secteurs physiques — aucun système de fichiers reconnu</value></data>
+  <data name="Explorer.Organization"><value>Organisation</value></data>
+  <data name="Explorer.Modification"><value>Modification</value></data>
+  <data name="Explorer.Compression"><value>Compactage</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Chargeur personnalisé par secteurs</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Chargeur personnalisé — aucun catalogue de fichiers</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack par The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
 </root>

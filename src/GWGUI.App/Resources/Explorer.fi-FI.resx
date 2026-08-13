@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>Järjestelmä</value></data>
   <data name="Explorer.Protection"><value>Suojaus</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fyysiset sektorit — tiedostojärjestelmää ei tunnistettu</value></data>
+  <data name="Explorer.Organization"><value>Järjestys</value></data>
+  <data name="Explorer.Modification"><value>Muokkaus</value></data>
+  <data name="Explorer.Compression"><value>Pakkaus</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Mukautettu sektorilataaja</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Mukautettu sektorilataaja — ei tiedostoluetteloa</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>The Companyn crack</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Tunnistettu: {0}</value></data>
 </root>

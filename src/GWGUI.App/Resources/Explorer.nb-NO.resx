@@ -111,4 +111,12 @@
   <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Beskyttelse</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiske sektorer — ingen gjenkjent filsystem</value></data>
+  <data name="Explorer.Organization"><value>Organisering</value></data>
+  <data name="Explorer.Modification"><value>Endring</value></data>
+  <data name="Explorer.Compression"><value>Komprimering</value></data>
+  <data name="Explorer.CustomSectorLoader"><value>Tilpasset sektorinnlaster</value></data>
+  <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Tilpasset sektorinnlaster — ingen filkatalog</value></data>
+  <data name="Explorer.Content.crack-the-company"><value>Crack av The Company</value></data>
+  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.DetectedFormats"><value>Oppdaget: {0}</value></data>
 </root>
