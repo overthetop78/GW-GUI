@@ -11,6 +11,12 @@ internal static class ProDosFileSystemLayout
     public const int HeaderOffset = 4;
     /// <summary>Offset de la longueur d'entrée dans l'en-tête.</summary>
     public const int HeaderEntryLengthOffset = 0x23;
+    /// <summary>Nombre de blocs réservés au répertoire racine standard.</summary>
+    public const int RootDirectoryBlockCount = 4;
+    /// <summary>Premier bloc du bitmap d'allocation standard.</summary>
+    public const int DefaultBitmapBlock = 6;
+    /// <summary>Offset du type de stockage et de la longueur du nom.</summary>
+    public const int StorageAndNameLengthOffset = 0;
     /// <summary>Taille d'une entrée de répertoire.</summary>
     public const int EntrySize = 0x27;
     /// <summary>Offset du nom dans une entrée.</summary>
@@ -31,6 +37,28 @@ internal static class ProDosFileSystemLayout
     public const int AccessOffset = 30;
     /// <summary>Offset de la date de modification.</summary>
     public const int ModifiedDateOffset = 33;
+    /// <summary>Offset du pointeur vers l'en-tête du répertoire parent.</summary>
+    public const int HeaderPointerOffset = 37;
+    /// <summary>Offset absolu du champ réservé d'un en-tête de sous-répertoire.</summary>
+    public const int SubdirectoryReservedOffset = HeaderOffset + 16;
+    /// <summary>Valeur réservée utilisée par les en-têtes de sous-répertoires récents.</summary>
+    public const byte SubdirectoryReservedValue = 0x76;
+    /// <summary>Offset absolu de la version d'un sous-répertoire.</summary>
+    public const int SubdirectoryVersionOffset = HeaderOffset + 28;
+    /// <summary>Version de sous-répertoire compatible GS/OS.</summary>
+    public const byte SubdirectoryVersion = 5;
+    /// <summary>Droits de lecture, écriture, renommage et suppression d'une entrée déverrouillée.</summary>
+    public const byte DefaultAccess = 0xc3;
+    /// <summary>Offset absolu du bloc contenant l'entrée parente.</summary>
+    public const int SubdirectoryParentBlockOffset = HeaderOffset + 35;
+    /// <summary>Offset absolu du numéro d'entrée parente.</summary>
+    public const int SubdirectoryParentEntryOffset = HeaderOffset + 37;
+    /// <summary>Offset absolu de la longueur de l'entrée parente.</summary>
+    public const int SubdirectoryParentEntryLengthOffset = HeaderOffset + 38;
+    /// <summary>Nombre d'entrées par bloc de répertoire.</summary>
+    public const int EntriesPerDirectoryBlock = 13;
+    /// <summary>Offset du bloc précédent.</summary>
+    public const int PreviousBlockOffset = 0;
     /// <summary>Offset du pointeur vers le bloc suivant.</summary>
     public const int NextBlockOffset = 2;
     /// <summary>Offset de la première entrée suivant l'en-tête de volume.</summary>
@@ -49,6 +77,8 @@ internal static class ProDosFileSystemLayout
     public const int TotalBlocksOffset = HeaderOffset + 37;
     /// <summary>Nombre de blocs décrits par un bloc bitmap.</summary>
     public const int BlocksPerBitmapBlock = 4096;
+    /// <summary>Longueur maximale d'un fichier exprimée sur 24 bits.</summary>
+    public const int MaximumFileLength = 0x00ffffff;
     /// <summary>Masque du bit de poids fort d'un octet de bitmap.</summary>
     public const byte BitmapHighBitMask = 0x80;
     /// <summary>Nombre de bits dans un octet.</summary>

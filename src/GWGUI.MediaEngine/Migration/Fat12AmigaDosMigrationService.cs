@@ -32,7 +32,7 @@ public sealed class Fat12AmigaDosMigrationService(
         var capabilities = targetIsAmiga ? FileSystemMigrationCapabilityCatalog.ForAmigaDos(amigaVariant, targetFormatId) : FileSystemMigrationCapabilityCatalog.ForFat12(targetFormatId);
         var report = MigrationValidator.Validate(plan, capabilities, acceptMetadataLoss);
         MigrationValidator.EnsureExecutable(report);
-        var writable = RemoveUnrepresentableMetadata(plan, capabilities);
+        var writable = MigrationMetadataReducer.Reduce(plan, capabilities);
         if (targetIsAmiga)
         {
             var image = new AmigaDosVolumeWriter().Create(writable, amigaVariant, targetFormatId);
@@ -46,7 +46,4 @@ public sealed class Fat12AmigaDosMigrationService(
         return report;
     }
 
-    private static MigrationPlan RemoveUnrepresentableMetadata(MigrationPlan plan, MigrationTargetCapabilities target) => new(plan.SourceFileSystemId, plan.TargetFileSystemId, plan.VolumeName, plan.Entries.Select(entry => RemoveUnrepresentableMetadata(entry, target)));
-
-    private static MigrationEntry RemoveUnrepresentableMetadata(MigrationEntry entry, MigrationTargetCapabilities target) => new(entry.SourcePath, entry.TargetName, entry.Kind, entry.Content, target.SupportsModifiedDate ? entry.Modified : null, target.SupportsComments ? entry.Comment : string.Empty, target.SupportsRawAttributes ? entry.RawAttributes : 0, entry.MetadataValid, entry.Children.Select(child => RemoveUnrepresentableMetadata(child, target)));
 }

@@ -633,7 +633,11 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 9.3 Apple DOS/ProDOS/SOS
 
-- [ ] Implémenter les Writers de systèmes de fichiers Apple nécessaires à la création de volumes et raccorder les migrations depuis/vers le modèle commun, puis valider avec CiderPress2.
+- [x] Implémenter les Writers de systèmes de fichiers Apple nécessaires à la création de volumes et raccorder les migrations depuis/vers le modèle commun, puis valider avec CiderPress2.
+
+  Les créateurs Apple DOS 3.2/3.3 reconstruisent VTOC, bitmap, catalogue, listes T/S et fichiers binaires avec leur longueur logique. Le créateur ProDOS gère répertoires, fichiers seedling/sapling/tree et bitmap pour 140 et 800 Kio ; SOS conserve un profil et un amorçage distincts sur la structure de fichiers ProDOS/SOS commune. Les migrations valident noms, hiérarchie, tailles et pertes de métadonnées avant d'utiliser les Writers de conteneurs Apple existants.
+
+  Validation : relecture interne des volumes et conteneurs D13, DO, PO et 2MG, puis `catalog` et `test` avec CiderPress2 v2.0.0-dev3. DOS 3.2, DOS 3.3, ProDOS et SOS ont tous été reconnus ; les quatre tests CiderPress2 ont parcouru leurs fichiers sans avertissement ni erreur.
 
   Informations nécessaires :
 

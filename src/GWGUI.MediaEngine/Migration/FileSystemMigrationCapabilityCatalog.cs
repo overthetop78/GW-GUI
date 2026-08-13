@@ -3,6 +3,9 @@ using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Amiga;
+using GWGUI.MediaEngine.FileSystems.Apple.Dos;
+using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+using GWGUI.MediaEngine.Geometries.Apple;
 
 namespace GWGUI.MediaEngine.Migration;
 
@@ -18,5 +21,19 @@ public static class FileSystemMigrationCapabilityCatalog
     {
         if (!Fat12TargetGeometryCatalog.TryResolve(formatId, out var geometry)) throw new InvalidDataException($"The target format '{formatId}' is not a supported FAT12 geometry.");
         return new(FileSystemIds.Fat12, FatDirectoryLayout.NameLength + 1 + FatDirectoryLayout.ExtensionLength, geometry.Capacity, true, false, true, false, false, false, "\"*+,/:;<=>?[\\]|", NamePolicy: new Fat12ShortNamePolicy(), MaximumVolumeNameLength: FatBootSectorLayout.VolumeLabelLength, VolumeNamePolicy: new Fat12VolumeNamePolicy());
+    }
+
+    /// <summary>Retourne les contraintes propres à Apple DOS 3.2 ou 3.3.</summary>
+    public static MigrationTargetCapabilities ForAppleDos(string formatId)
+    {
+        var capacity = formatId.Equals(Definitions.DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) ? AppleIIGeometry.Dos32Capacity : formatId.Equals(Definitions.DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) ? AppleIIGeometry.Capacity : throw new InvalidDataException($"The Apple DOS format '{formatId}' is unsupported.");
+        return new(FileSystemIds.AppleDos, AppleDosFileSystemLayout.EntryNameLength, Math.Min(capacity, ushort.MaxValue), false, false, false, false, false, false, ",", NamePolicy: new AppleDosNamePolicy(), MaximumVolumeNameLength: AppleDosFileSystemLayout.VolumeNamePrefix.Length + 3, VolumeNamePolicy: new AppleDosVolumeNamePolicy());
+    }
+
+    /// <summary>Retourne les contraintes ProDOS ou SOS en conservant leur identité distincte.</summary>
+    public static MigrationTargetCapabilities ForProDos(string formatId)
+    {
+        var fileSystemId = formatId.Equals(Definitions.DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? FileSystemIds.Sos : formatId.Equals(Definitions.DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(Definitions.DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) || formatId.Equals(Definitions.DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) ? FileSystemIds.ProDos : throw new InvalidDataException($"The ProDOS/SOS format '{formatId}' is unsupported.");
+        return new(fileSystemId, ProDosFileSystemLayout.MaximumNameLength, ProDosFileSystemLayout.MaximumFileLength, true, false, true, false, false, false, string.Empty, NamePolicy: new ProDosNamePolicy(), MaximumVolumeNameLength: ProDosFileSystemLayout.MaximumNameLength, VolumeNamePolicy: new ProDosNamePolicy());
     }
 }

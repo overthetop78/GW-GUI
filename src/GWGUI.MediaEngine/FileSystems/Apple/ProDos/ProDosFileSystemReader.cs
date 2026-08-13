@@ -35,6 +35,7 @@ public sealed class ProDosFileSystemReader : IFileSystemReader
         }
         var bitmap = ProDosBitmapReader.Read(image, header.BitmapBlock, effectiveTotal, warnings);
         var freeBytes = bitmap.IsValid ? (long)bitmap.FreeBlocks * ProDosFileSystemLayout.BlockSize : 0;
-        return new(header.Name, FileSystemIds.ProDos, (long)effectiveTotal * ProDosFileSystemLayout.BlockSize, freeBytes, header.Created, null, directory.Entries, warnings);
+        var fileSystemId = image.FormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? FileSystemIds.Sos : FileSystemIds.ProDos;
+        return new(header.Name, fileSystemId, (long)effectiveTotal * ProDosFileSystemLayout.BlockSize, freeBytes, header.Created, null, directory.Entries, warnings);
     }
 }

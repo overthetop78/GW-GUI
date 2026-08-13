@@ -33,7 +33,7 @@ public static class AppleDosVtocReader
             var offset = AppleDosFileSystemLayout.VtocFreeBitmapOffset + track * AppleDosFileSystemLayout.VtocTrackBitmapSize;
             if (offset > data.Length - AppleDosFileSystemLayout.VtocTrackBitmapSize) break;
             var bits = BinaryPrimitives.ReadUInt32BigEndian(data.Slice(offset, AppleDosFileSystemLayout.VtocTrackBitmapSize));
-            for (var sector = 0; sector < sectors; sector++) if ((bits & (1u << sector)) != 0) free++;
+            for (var sector = 0; sector < sectors; sector++) if ((bits & (1u << (sizeof(uint) * 8 - sectors + sector))) != 0) free++;
         }
         return free;
     }

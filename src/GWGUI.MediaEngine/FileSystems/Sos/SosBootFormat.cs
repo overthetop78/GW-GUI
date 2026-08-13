@@ -12,6 +12,9 @@ internal static class SosBootFormat
     /// <summary>Marqueur ASCII SOS recherché sans tenir compte de la casse.</summary>
     public static ReadOnlySpan<byte> Marker => "SOS"u8;
 
+    /// <summary>Offset non structurel utilisé par les images produites pour le marqueur SOS.</summary>
+    public const int MarkerOffset = 8;
+
     /// <summary>Recherche le marqueur dans la fenêtre utile sans construire de chaîne.</summary>
     public static bool ContainsMarker(ReadOnlySpan<byte> data)
     {

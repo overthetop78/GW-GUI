@@ -67,10 +67,17 @@ public sealed class AppleDosFileSystemReader : IFileSystemReader
             var file = AppleDosTrackSectorListReader.Read(image, tsTrack, tsSector, warnings, name);
             var sizeValid = declaredSectors == file.TraversedSectorCount;
             if (!sizeValid) warnings.Add(AppleDosFileSystemWarnings.InconsistentSize(name, declaredSectors, file.TraversedSectorCount));
-            entries.Add(new(name, FileSystemEntryKind.File, file.Content.Count, null, AppleDosFileTypeNames.Get(type), rawType, file.StorageReference, file.IsValid && sizeValid, [], file.Content));
+            var content = file.Content;
+            uint attributes = rawType;
+            if (type == AppleDosFileType.Binary && AppleDosBinaryFileCodec.TryDecode(file.Content, out var decoded, out var loadAddress))
+            {
+                content = decoded;
+                attributes |= (uint)loadAddress << AppleDosFileSystemLayout.BinaryLoadAddressAttributeShift;
+            }
+            entries.Add(new(name, FileSystemEntryKind.File, content.Count, null, AppleDosFileTypeNames.Get(type), attributes, file.StorageReference, file.IsValid && sizeValid, [], content));
         }
     }
 
     /// <summary>Construit le nom technique du volume depuis son numéro VTOC.</summary>
-    public static string VolumeName(byte number) => $"DOS-{number:D3}";
+    public static string VolumeName(byte number) => $"{AppleDosFileSystemLayout.VolumeNamePrefix}{number:D3}";
 }

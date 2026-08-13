@@ -51,6 +51,8 @@ public static class FileSystemIds
     public const string MacMfs = "mac-mfs";
     /// <summary>Identifie ProDOS.</summary>
     public const string ProDos = "prodos";
+    /// <summary>Identifie Apple III SOS.</summary>
+    public const string Sos = "apple3-sos";
     /// <summary>Identifie RT-11.</summary>
     public const string Rt11 = "rt11";
     /// <summary>Identifie UCSD p-System.</summary>

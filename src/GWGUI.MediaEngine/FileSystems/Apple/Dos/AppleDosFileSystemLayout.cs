@@ -3,6 +3,14 @@ namespace GWGUI.MediaEngine.FileSystems.Apple.Dos;
 /// <summary>Définit la géométrie et les champs binaires d'Apple DOS 3.2 et 3.3.</summary>
 public static class AppleDosFileSystemLayout
 {
+    /// <summary>Version DOS inscrite dans le VTOC d'un volume 3.2.</summary>
+    public const byte Dos32VtocVersion = 2;
+    /// <summary>Version DOS inscrite dans le VTOC d'un volume 3.3.</summary>
+    public const byte Dos33VtocVersion = 4;
+    /// <summary>Direction d'allocation descendante inscrite dans le VTOC.</summary>
+    public const byte DescendingAllocationDirection = byte.MaxValue;
+    /// <summary>Préfixe du nom technique dérivé du numéro de volume.</summary>
+    public const string VolumeNamePrefix = "DOS-";
     /// <summary>Taille d'un secteur, en octets.</summary>
     public const int SectorSize = 256;
     /// <summary>Nombre de pistes d'une disquette Apple DOS.</summary>
@@ -19,6 +27,12 @@ public static class AppleDosFileSystemLayout
     public const int VtocCatalogSectorOffset = 2;
     /// <summary>Offset du numéro de volume.</summary>
     public const int VtocVolumeNumberOffset = 6;
+    /// <summary>Offset du nombre maximal de couples par liste T/S.</summary>
+    public const int VtocMaximumPairsOffset = 0x27;
+    /// <summary>Offset de la dernière piste examinée par l'allocateur DOS.</summary>
+    public const int VtocLastAllocatedTrackOffset = 0x30;
+    /// <summary>Offset du sens d'allocation des pistes.</summary>
+    public const int VtocAllocationDirectionOffset = 0x31;
     /// <summary>Offset du nombre de pistes.</summary>
     public const int VtocTrackCountOffset = 0x34;
     /// <summary>Offset du nombre de secteurs par piste.</summary>
@@ -49,6 +63,8 @@ public static class AppleDosFileSystemLayout
     public const int EntrySectorCountOffset = 33;
     /// <summary>Offset du premier couple piste/secteur d'une liste T/S.</summary>
     public const int TrackSectorPairsOffset = 0x0c;
+    /// <summary>Offset du premier secteur logique décrit par une liste T/S.</summary>
+    public const int TrackSectorListOffsetOffset = 5;
     /// <summary>Taille d'un couple piste/secteur.</summary>
     public const int TrackSectorPairSize = 2;
     /// <summary>Nombre maximal de couples piste/secteur.</summary>
@@ -61,6 +77,14 @@ public static class AppleDosFileSystemLayout
     public const byte UnusedEntryMarker = 0;
     /// <summary>Masque du bit de verrouillage dans le type brut.</summary>
     public const byte LockedMask = 0x80;
+    /// <summary>Taille de l'en-tête adresse/longueur d'un fichier binaire DOS.</summary>
+    public const int BinaryHeaderSize = 4;
+    /// <summary>Offset de l'adresse de chargement d'un fichier binaire.</summary>
+    public const int BinaryLoadAddressOffset = 0;
+    /// <summary>Offset de la longueur logique d'un fichier binaire.</summary>
+    public const int BinaryLengthOffset = 2;
+    /// <summary>Décalage de l'adresse de chargement dans les attributs communs.</summary>
+    public const int BinaryLoadAddressAttributeShift = 8;
     /// <summary>Offset de la piste suivante dans un catalogue ou une liste T/S.</summary>
     public const int NextTrackOffset = 1;
     /// <summary>Offset du secteur suivant dans un catalogue ou une liste T/S.</summary>

@@ -13,6 +13,8 @@ internal enum ProDosStorageType : byte
     Tree = 3,
     /// <summary>Sous-répertoire.</summary>
     Subdirectory = 0x0d,
+    /// <summary>En-tête du premier bloc d'un sous-répertoire.</summary>
+    SubdirectoryHeader = 0x0e,
     /// <summary>En-tête de volume.</summary>
     VolumeHeader = 0x0f
 }

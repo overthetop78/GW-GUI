@@ -33,4 +33,20 @@ internal static class ProDosDateTime
         try { return new DateTimeOffset(year, (date >> MonthShift) & MonthMask, date & DayMask, time >> HourShift, time & MinuteMask, 0, TimeSpan.Zero); }
         catch (ArgumentOutOfRangeException) { return null; }
     }
+
+    /// <summary>Écrit une date ProDOS ou quatre octets nuls en l'absence de date.</summary>
+    public static void Write(Span<byte> data, int offset, DateTimeOffset? value)
+    {
+        if (value is null)
+        {
+            data.Slice(offset, sizeof(ushort) * 2).Clear();
+            return;
+        }
+        var local = value.Value;
+        var year = local.Year % 100;
+        var date = checked((ushort)(year << YearShift | local.Month << MonthShift | local.Day));
+        var time = checked((ushort)(local.Hour << HourShift | local.Minute));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.Slice(offset, sizeof(ushort)), date);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.Slice(offset + sizeof(ushort), sizeof(ushort)), time);
+    }
 }
