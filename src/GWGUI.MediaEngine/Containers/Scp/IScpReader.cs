@@ -5,6 +5,13 @@ namespace GWGUI.MediaEngine.Containers.Scp;
 /// </summary>
 public interface IScpReader
 {
+    /// <summary>Mémorise une capture déjà disponible en mémoire pour le chemin indiqué.</summary>
+    /// <param name="path">Chemin du fichier correspondant à la capture.</param>
+    /// <param name="image">Capture SCP déjà construite et validée.</param>
+    void Remember(string path, ScpImage image)
+    {
+    }
+
     /// <summary>
     /// Lit et valide une capture SCP.
     /// </summary>

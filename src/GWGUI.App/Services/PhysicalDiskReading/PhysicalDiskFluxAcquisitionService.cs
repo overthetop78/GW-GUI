@@ -27,7 +27,18 @@ public sealed class PhysicalDiskFluxAcquisitionService(IGreaseweazleReadDevice d
                 captures.Add(track, pair.Capture);
                 normalized.Add(track, (pair.Capture, pair.Layout));
                 completed++;
-                progress?.Report(new(completed, options.Tracks.Count, track.Cylinder, track.Head, pair.Attempt));
+                var capturedTrack = GreaseweazleScpImageBuilder.BuildTrack(
+                    track,
+                    pair.Capture,
+                    pair.Layout,
+                    options.Revolutions);
+                progress?.Report(new(
+                    completed,
+                    options.Tracks.Count,
+                    track.Cylinder,
+                    track.Head,
+                    pair.Attempt,
+                    capturedTrack));
             }
 
             var image = GreaseweazleScpImageBuilder.Build(normalized, options);

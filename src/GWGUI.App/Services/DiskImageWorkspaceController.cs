@@ -15,6 +15,7 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Exploration.Contracts;
 
 namespace GWGUI.App.Services;
 
@@ -40,6 +41,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private readonly Func<string, object[], string> _localize;
     private readonly DiskImageCancellationScope _cancellation;
     private ScpImage? _scpImage;
+    private ExploredDiskImage? _exploredImage;
 
     public DiskImageWorkspaceController(
         ExplorerSection explorer,
@@ -85,6 +87,24 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     public string? ExplorerPath { get; private set; }
     public string? LastCapturedPath { get; set; }
+    public IImageDisquette? LastReadImage { get; private set; }
+
+    public async Task<ExploredDiskImage> AnalyzeAsync(
+        string path,
+        CancellationToken cancellationToken = default)
+    {
+        var document = await _diskImageExplorer.ExploreAsync(
+            path,
+            cancellationToken: cancellationToken);
+        LastReadImage = document;
+        return document;
+    }
+
+    public void RememberReadImage(IImageDisquette image)
+    {
+        ArgumentNullException.ThrowIfNull(image);
+        LastReadImage = image;
+    }
 
     public string? SelectImage()
     {
@@ -99,13 +119,6 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     public async Task LoadAsync(string path, string? displayFileName = null)
     {
-        if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
-        {
-            await LoadExplorerAsync(path, true);
-            await LoadVisualizerAsync(path, displayFileName);
-            return;
-        }
-
         var explored = await LoadExplorerAsync(path, true);
         await LoadVisualizerAsync(path, displayFileName, explored);
     }
@@ -119,12 +132,20 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         try
         {
             var requestedFormat = newImage ? _explorer.FormatIdForNewImage : _explorer.SelectedFormatId;
-            var document = await ExploreWithSelectedEngineAsync(path, requestedFormat, cancellation.Token);
+            var document = SelectCachedInterpretation(path, newImage, requestedFormat);
+            document ??= await ExploreWithSelectedEngineAsync(path, requestedFormat, cancellation.Token);
             if (!cancellation.IsCancellationRequested)
             {
+                _exploredImage = document;
+                LastReadImage = document;
                 _explorer.Display(document);
-                _visualizer.Header.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId,
-                    new[] { document.Image.FormatId }.Concat(document.DetectedImageFormatIds).Distinct(StringComparer.OrdinalIgnoreCase));
+                var detectedFormatIds = document.FormatsDetectes
+                    .Select(format => format.FormatId)
+                    .ToArray();
+                _visualizer.Header.ApplyDetection(
+                    document.PrimaryFormatId,
+                    document.Metadata.ProtectionId,
+                    detectedFormatIds);
                 ApplyClassification();
             }
             return cancellation.IsCancellationRequested ? null : document;
@@ -140,6 +161,24 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         {
             if (_cancellation.IsCurrentExplorer(cancellation)) _explorer.SetLoading(false);
         }
+    }
+
+    private ExploredDiskImage? SelectCachedInterpretation(
+        string path,
+        bool newImage,
+        string? requestedFormat)
+    {
+        if (newImage || string.IsNullOrWhiteSpace(requestedFormat) || _exploredImage is null)
+        {
+            return null;
+        }
+
+        if (!string.Equals(_exploredImage.SourcePath, path, StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
+        return _exploredImage.SelectFormat(requestedFormat);
     }
 
     private async Task<ExploredDiskImage> ExploreWithSelectedEngineAsync(
@@ -185,6 +224,27 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     public async Task LoadVisualizerAsync(string path, string? displayFileName = null, ExploredDiskImage? exploredImage = null)
     {
         var cancellation = _cancellation.BeginVisualization();
+        var explored = exploredImage;
+        try
+        {
+            if (explored is null)
+            {
+                explored = await AnalyzeAsync(path, cancellation.Token);
+            }
+            else
+            {
+                LastReadImage = explored;
+            }
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
+        {
+            return;
+        }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
+        {
+            explored = null;
+        }
+
         if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
             await LoadScpAsync(path, displayFileName);
@@ -195,13 +255,14 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         if (_operationIsRunning()) return;
         try
         {
-            var explored = exploredImage ?? await _diskImageExplorer.ExploreAsync(path, cancellationToken: cancellation.Token);
             cancellation.Token.ThrowIfCancellationRequested();
-            if (_sectorVisualizer.CanVisualize(explored.Image) && explored.Image.AvailableBlocks.Count > 0)
+            if (explored is not null
+                && _sectorVisualizer.CanVisualize(explored.Image)
+                && explored.Image.AvailableBlocks.Count > 0)
             {
                 ShowProgress(_localize("Visual.Loading", []), 0, true);
                 var visualization = await Task.Run(() => _sectorVisualizer.Create(explored.Image, cancellation.Token), cancellation.Token);
-                var summary = $"{explored.Image.FormatId} Â· {explored.Image.Cylinders}Ã—{explored.Image.Heads}Ã—{explored.Image.SectorsPerTrack} Â· {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
+                var summary = $"{explored.Image.FormatId} · {explored.Image.Cylinders}×{explored.Image.Heads}×{explored.Image.SectorsPerTrack} · {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
                 await DisplayScpAsync(visualization, displayFileName ?? Path.GetFileName(path), summary, cancellation);
                 return;
             }

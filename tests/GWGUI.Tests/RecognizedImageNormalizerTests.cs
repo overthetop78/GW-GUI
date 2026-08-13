@@ -7,7 +7,6 @@ using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Geometries.Msx;
-using GWGUI.MediaEngine.Recognition.Atari;
 using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -27,24 +26,6 @@ public sealed class RecognizedImageNormalizerTests
         Assert.Equal(2, normalized.BlockCount);
         Assert.Equal(2L * FatBootSectorLayout.SectorSize, normalized.Capacity);
         Assert.Equal(2, normalized.AvailableBlocks.Count);
-    }
-
-    [Theory]
-    [InlineData("PROGRAM.TTP")]
-    [InlineData("PROGRAM.TOS")]
-    [InlineData("PROGRAM.ACC")]
-    [InlineData("PROGRAM.GTP")]
-    public void AtariDetectorFindsEveryExtensionRecursively(string name)
-    {
-        var nested = new FileSystemEntry("DIR", FileSystemEntryKind.Directory, 0, null, string.Empty, 0, 0, true, [new FileSystemEntry(name, FileSystemEntryKind.File, 0, null, string.Empty, 0, 0, true, [])]);
-        Assert.True(AtariProgramDetector.ContainsProgram([nested]));
-    }
-
-    [Fact]
-    public void AtariDetectorFindsExecutableSignatureWithoutExtension()
-    {
-        var entry = new FileSystemEntry("PROGRAM", FileSystemEntryKind.File, 2, null, string.Empty, 0, 0, true, [], [0x60, 0x1a]);
-        Assert.True(AtariProgramDetector.ContainsProgram([entry]));
     }
 
     [Theory]

@@ -41,7 +41,7 @@ public sealed class DiskImageInterpretationComponentsTests
         var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
         var image = Image(2, [Block(0, 0, 0, 1), Block(1, 0, 1, 2)]);
         var volume = Volume("VOL", [Entry("FILE", 1)]);
-        var recognized = factory.Create("disk.img", image, [new("ibm.160", "fat12", volume)]);
+        var recognized = factory.Create("disk.img", image, [new("ibm.160", "fat12", image, volume)]);
         Assert.True(recognized.FileSystemRecognized);
         Assert.Same(volume, recognized.Volume);
 
@@ -158,10 +158,10 @@ public sealed class DiskImageInterpretationComponentsTests
     [Fact]
     public void InterpretationIdentityIgnoresEntryOrderButPreservesHierarchyAndFamily()
     {
-        var first = new ExploredFileSystem("ibm.160", "reader", Volume("VOL", [Entry("B", 2), Entry("A", 1)]));
-        var reordered = new ExploredFileSystem("ibm.360", "other", Volume("VOL", [Entry("A", 1), Entry("B", 2)]));
+        var first = new ExploredFileSystem("ibm.160", "reader", Image(1, []), Volume("VOL", [Entry("B", 2), Entry("A", 1)]));
+        var reordered = new ExploredFileSystem("ibm.360", "other", Image(1, []), Volume("VOL", [Entry("A", 1), Entry("B", 2)]));
         var otherFamily = reordered with { FormatId = "atari.360" };
-        var otherHierarchy = new ExploredFileSystem("ibm.360", "reader", Volume("VOL", [new FileSystemEntry("A", FileSystemEntryKind.Directory, 1, null, string.Empty, 0, 0, true, [Entry("B", 2)])]));
+        var otherHierarchy = new ExploredFileSystem("ibm.360", "reader", Image(1, []), Volume("VOL", [new FileSystemEntry("A", FileSystemEntryKind.Directory, 1, null, string.Empty, 0, 0, true, [Entry("B", 2)])]));
         Assert.Equal(FileSystemInterpretationIdentity.Create(first), FileSystemInterpretationIdentity.Create(reordered));
         Assert.NotEqual(FileSystemInterpretationIdentity.Create(first), FileSystemInterpretationIdentity.Create(otherFamily));
         Assert.NotEqual(FileSystemInterpretationIdentity.Create(first), FileSystemInterpretationIdentity.Create(otherHierarchy));

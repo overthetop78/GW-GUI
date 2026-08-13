@@ -119,16 +119,16 @@ public sealed class ProDosFileSystemTests
 
     /// <summary>Vérifie par les lecteurs publics une image ProDOS 140 Kio, une image ProDOS 800 Kio et une image Apple III SOS.</summary>
     [Theory]
-    [InlineData("Apple II", "*Beagle Graphics*ProDOS*.woz")]
-    [InlineData("Apple II", "AMR35SCS.po")]
-    [InlineData("Apple III", "Backup3.dsk")]
-    public async Task PublicReaderReadsRealProDosAndSosImages(string directory, string pattern)
+    [InlineData("Apple II", "*Beagle Graphics*ProDOS*.woz", "prodos")]
+    [InlineData("Apple II", "AMR35SCS.po", "prodos")]
+    [InlineData("Apple III", "Backup3.dsk", "apple3-sos")]
+    public async Task PublicReaderReadsRealProDosAndSosImages(string directory, string pattern, string expectedFileSystemId)
     {
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", directory));
         var path = Directory.EnumerateFiles(root, pattern, SearchOption.AllDirectories).Single();
         var image = await new AppleDiskImageReader().ReadAsync(path);
         var volume = new ProDosFileSystemReader().Read(image);
-        Assert.Equal("prodos", volume.FileSystemId);
+        Assert.Equal(expectedFileSystemId, volume.FileSystemId);
         Assert.NotEmpty(volume.Name);
         Assert.NotEmpty(volume.Entries);
         Assert.True(volume.Capacity > 0);

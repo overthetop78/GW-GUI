@@ -118,9 +118,8 @@ public partial class ExplorerSection : UserControl
 
     private static IReadOnlyList<string> ReportedFormats(ExploredDiskImage document)
     {
-        return new[] { document.Image.FormatId }
-            .Concat(document.DetectedImageFormatIds)
-            .Concat(document.DetectedFileSystems.Select(item => item.FormatId))
+        return document.FormatsDetectes
+            .Select(format => format.FormatId)
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }

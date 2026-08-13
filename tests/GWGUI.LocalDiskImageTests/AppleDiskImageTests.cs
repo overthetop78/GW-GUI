@@ -50,7 +50,13 @@ public sealed class AppleDiskImageTests
     {
         var image = new SectorImage("apple2.dos33", 256, 35, 1, 16, []);
         var metadata = new DiskImageMetadata(["apple-ii"], null);
-        var document = new ExploredDiskImage("airheart.scp", image, new FileSystemVolume("", "apple2.dos33", 143_360, 0, null, null, [], []), metadata, false, detectedImageFormatIds: ["apple2.dos33"]);
+        var document = new ExploredDiskImage(
+            "airheart.scp",
+            image,
+            new FileSystemVolume("", "apple2.dos33", 143_360, 0, null, null, [], []),
+            metadata,
+            false,
+            detectedSectorImages: [image]);
 
         Assert.Equal(["apple-ii"], document.Metadata.SystemIds);
         Assert.NotEqual(LocExtension.Get("Explorer.Unknown"), ExplorerDetailsPresenter.FileSystemText(document));

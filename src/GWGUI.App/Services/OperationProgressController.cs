@@ -5,6 +5,7 @@ using GWGUI.App.ViewModels;
 using GWGUI.App.Services.PhysicalDiskWriting;
 using GWGUI.App.Services.PhysicalDiskReading;
 using GWGUI.Domain.Commands;
+using GWGUI.MediaEngine.Exploration.Contracts;
 
 namespace GWGUI.App.Services;
 
@@ -15,16 +16,23 @@ public sealed class OperationProgressController(
     Func<string, object[], string> localize)
 {
     private readonly GwProgressTracker _tracker = new();
+    private readonly Dictionary<(int Cylinder, int Head), ExternalTrackReadState> _externalTrackStates = [];
     private bool _needsConfiguration;
     private int _completedPhysicalTracks;
+
+    public IEtatLectureDisquette? CurrentReadState { get; private set; }
+
+    public event EventHandler<IEtatLectureDisquette>? ReadStateChanged;
 
     public void Begin()
     {
         _tracker.Reset();
+        _externalTrackStates.Clear();
         face0.ResetToPending();
         face1.ResetToPending();
         _needsConfiguration = true;
         _completedPhysicalTracks = 0;
+        CurrentReadState = null;
         SetState("Status.Running", Color.FromRgb(45, 125, 210));
         viewModel.ProgressVisibility = Visibility.Visible;
         viewModel.ProgressIndeterminate = true;
@@ -35,7 +43,23 @@ public sealed class OperationProgressController(
     public void Accept(string output)
     {
         var progress = _tracker.Accept(output);
-        if (progress is null) return;
+        if (progress is null)
+        {
+            var current = CurrentReadState;
+            Publish(new ExternalReadState(
+                current?.Etape ?? "Acquiring",
+                current?.NombrePistesTerminees ?? _completedPhysicalTracks,
+                current?.NombrePistesTotal ?? 0,
+                current?.Cylindre,
+                current?.Face,
+                current?.Tentative ?? 1,
+                current?.EtatsPistes ?? [],
+                output));
+            return;
+        }
+
+        _completedPhysicalTracks = Math.Max(_completedPhysicalTracks, progress.CompletedTracks);
+        Publish(CreateExternalReadState(progress, output));
 
         if (progress.TotalOnHead is int totalOnHead)
         {
@@ -90,6 +114,7 @@ public sealed class OperationProgressController(
 
     public void Accept(PhysicalDiskReadOperationProgress progress)
     {
+        Publish(progress);
         if (progress.Tracks is { Count: > 0 })
         {
             ConfigureFaces(progress.Tracks);
@@ -123,9 +148,16 @@ public sealed class OperationProgressController(
         viewModel.ProgressValue = progress.TotalTracks == 0
             ? 0
             : progress.CompletedTracks * 100d / progress.TotalTracks;
-        viewModel.ProgressText = progress.Cylinder is int progressCylinder && progress.Head is int progressHead
-            ? localize("Status.TrackProgress", [progressCylinder, progressHead, progress.CompletedTracks, progress.TotalTracks])
-            : localize("Status.Running", []);
+        if (progress.Cylinder is int progressCylinder && progress.Head is int progressHead)
+        {
+            viewModel.ProgressText = localize(
+                "Status.TrackProgress",
+                [progressCylinder, progressHead, progress.CompletedTracks, progress.TotalTracks]);
+        }
+        else
+        {
+            viewModel.ProgressText = localize("Status.Running", []);
+        }
     }
 
     public void End()
@@ -211,4 +243,101 @@ public sealed class OperationProgressController(
         GwTrackState.Failed => TrackSegmentState.Failed,
         _ => TrackSegmentState.Success
     };
+
+    private ExternalReadState CreateExternalReadState(GwTrackProgress progress, string output)
+    {
+        EnsureExternalTrackStates(progress);
+        var key = (progress.Cylinder, progress.Head);
+        var attempts = 1;
+        if (_externalTrackStates.TryGetValue(key, out var previous))
+        {
+            attempts = previous.Tentatives;
+            if (progress.State == GwTrackState.Retry)
+            {
+                attempts++;
+            }
+
+            attempts = Math.Max(attempts, 1);
+        }
+        _externalTrackStates[key] = new ExternalTrackReadState(
+            progress.Cylinder,
+            progress.Head,
+            TrackState(progress.State),
+            attempts);
+        var states = _externalTrackStates.Values
+            .OrderBy(state => state.Cylindre)
+            .ThenBy(state => state.Face)
+            .Cast<IEtatPisteLecture>()
+            .ToArray();
+
+        return new ExternalReadState(
+            "Acquiring",
+            progress.CompletedTracks,
+            progress.TotalTracks ?? 0,
+            progress.Cylinder,
+            progress.Head,
+            progress.State == GwTrackState.Retry ? 2 : 1,
+            states,
+            output);
+    }
+
+    private void EnsureExternalTrackStates(GwTrackProgress progress)
+    {
+        foreach (var cylinder in progress.Cylinders)
+        {
+            if (progress.Head0Expected)
+            {
+                _externalTrackStates.TryAdd(
+                    (cylinder, 0),
+                    new ExternalTrackReadState(cylinder, 0, "pending", 0));
+            }
+
+            if (progress.Head1Expected)
+            {
+                _externalTrackStates.TryAdd(
+                    (cylinder, 1),
+                    new ExternalTrackReadState(cylinder, 1, "pending", 0));
+            }
+        }
+    }
+
+    private static string TrackState(GwTrackState state)
+    {
+        return state switch
+        {
+            GwTrackState.Retry => "retry",
+            GwTrackState.Failed => "failed",
+            _ => "completed"
+        };
+    }
+
+    private void Publish(IEtatLectureDisquette state)
+    {
+        CurrentReadState = state;
+        ReadStateChanged?.Invoke(this, state);
+    }
+
+    private sealed record ExternalReadState(
+        string Etape,
+        int NombrePistesTerminees,
+        int NombrePistesTotal,
+        int? Cylindre,
+        int? Face,
+        int Tentative,
+        IReadOnlyList<IEtatPisteLecture> EtatsPistes,
+        string? MessageExterne) : IEtatLectureDisquette
+    {
+        public IPiste? PisteAcquise => null;
+
+        public string? CodeMessage => null;
+
+        public IReadOnlyDictionary<string, string> ParametresMessage { get; } =
+            new Dictionary<string, string>();
+    }
+
+    private sealed record ExternalTrackReadState(
+        int Cylindre,
+        int Face,
+        string Etat,
+        int Tentatives) : IEtatPisteLecture;
 }

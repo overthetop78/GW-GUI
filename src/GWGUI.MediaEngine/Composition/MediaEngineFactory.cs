@@ -327,7 +327,7 @@ public static class MediaEngineFactory
     /// <summary>CrÃ©e la dÃ©tection de famille et les deux parcours d'exploration SCP avec leurs instances partagÃ©es.</summary>
     private static ScpImageExplorationService CreateScpExploration(ScpReader scpReader, FluxDecoderRegistry decoders, ScpCandidateRegistry candidates, FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents)
     {
-        var automatic = new ScpAutomaticImageExplorer(candidates, new ScpFamilyProbe(scpReader, decoders), new ScpCandidateInspector(fileSystems, interpretations), documents);
+        var automatic = new ScpAutomaticImageExplorer(scpReader, candidates, new ScpFamilyProbe(scpReader, decoders), new ScpCandidateInspector(fileSystems, interpretations), documents);
         return new(automatic, new ScpSectorImageReader(candidates, fileSystems));
     }
 

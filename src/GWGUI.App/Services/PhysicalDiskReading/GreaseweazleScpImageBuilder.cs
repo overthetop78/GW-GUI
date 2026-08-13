@@ -33,7 +33,7 @@ public static class GreaseweazleScpImageBuilder
         return new ScpImage(header, scpTracks, false, PhysicalDiskReadDefaults.InMemoryFileSize);
     }
 
-    private static ScpTrack BuildTrack(
+    internal static ScpTrack BuildTrack(
         PhysicalDiskTrackAddress address,
         GreaseweazleFluxCapture capture,
         GreaseweazleRotationLayout layout,

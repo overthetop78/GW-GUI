@@ -15,27 +15,20 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
         try
         {
             var image = await candidate.ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
-            var matches = new List<(ExploredFileSystem Match, SectorImage Image)>();
-            foreach (var match in fileSystems.ReadAll(image).Matches)
+            var matches = new List<ExploredFileSystem>();
+            foreach (var match in fileSystems.ReadCandidates(image, image.FormatId).Matches)
             {
                 var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, match.Volume);
                 if (ReferenceEquals(normalized, image))
                 {
-                    matches.Add((new(image.FormatId, match.ReaderId, match.Volume), image));
+                    matches.Add(new(image.FormatId, match.ReaderId, image, match.Volume));
                     continue;
-                }
-
-                if (FileSystemInterpretationIdentity.FormatFamily(image.FormatId) != FileSystemInterpretationIdentity.FormatFamily(normalized.FormatId))
-                {
-                    matches.Add((new(image.FormatId, match.ReaderId, match.Volume), image));
                 }
 
                 var volume = match.Volume;
                 if (fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch)) volume = normalizedMatch.Volume;
-                matches.Add((new(normalized.FormatId, match.ReaderId, volume), normalized));
+                matches.Add(new(normalized.FormatId, match.ReaderId, normalized, volume));
             }
-            foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(image))
-                if (fileSystems.TryRead(interpretation, null, out var interpretationMatch)) matches.Add((new(interpretation.FormatId, interpretationMatch.ReaderId, interpretationMatch.Volume), interpretation));
             return new(candidate.Id, image, matches, null);
         }
         catch (InvalidDataException exception)

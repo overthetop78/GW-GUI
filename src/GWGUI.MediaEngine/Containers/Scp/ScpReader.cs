@@ -8,6 +8,9 @@ public sealed class ScpReader : IScpReader
     /// <summary>Conserve les images déjà analysées tant que leur fichier source reste inchangé.</summary>
     private readonly ScpFileCache _fileCache = new();
 
+    /// <summary>Mémorise une capture déjà construite afin que les traitements suivants ne relisent pas son fichier.</summary>
+    public void Remember(string path, ScpImage image) => _fileCache.Remember(path, image);
+
     /// <summary>Lit un fichier SCP et réutilise le résultat déjà chargé tant que son chemin, sa taille et sa date de modification restent identiques.</summary>
     /// <param name="path">Chemin du fichier SCP à lire.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler l'attente de la lecture.</param>

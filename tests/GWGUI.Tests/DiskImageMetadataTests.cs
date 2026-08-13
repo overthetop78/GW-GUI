@@ -32,14 +32,79 @@ public sealed class DiskImageMetadataTests
         systems.Add(DiskSystemIds.Amiga);
         Assert.Equal([DiskSystemIds.AppleII], metadata.SystemIds);
 
-        var formats = new List<string> { DiskImageFormatIds.Ibm160, "IBM.160", DiskImageFormatIds.AtariSt720 };
-        var fileSystems = new List<ExploredFileSystem> { new(DiskImageFormatIds.Ibm160, "reader", Volume()) };
-        var result = new ExploredDiskImage("disk.img", Image(DiskImageFormatIds.Ibm160), Volume(), metadata, true, fileSystems, formats);
+        var formats = new List<SectorImage>
+        {
+            Image(DiskImageFormatIds.Ibm160),
+            Image("IBM.160"),
+            Image(DiskImageFormatIds.AtariSt720)
+        };
+        var image = Image(DiskImageFormatIds.Ibm160);
+        var fileSystems = new List<ExploredFileSystem> { new(DiskImageFormatIds.Ibm160, "reader", image, Volume()) };
+        var result = new ExploredDiskImage("disk.img", image, Volume(), metadata, true, fileSystems, formats);
         formats.Clear();
         fileSystems.Clear();
         Assert.Equal([DiskImageFormatIds.Ibm160, DiskImageFormatIds.AtariSt720], result.DetectedImageFormatIds);
         Assert.Single(result.DetectedFileSystems);
         Assert.Same(metadata, result.Metadata);
+    }
+
+    [Fact]
+    public void MultiformatResultKeepsTheImageVolumeAndEntriesOfEveryDetectedFormat()
+    {
+        var amigaImage = ImageWithData(DiskImageFormatIds.AmigaDos, 0x11);
+        var atariImage = ImageWithData(DiskImageFormatIds.AtariSt720, 0x22);
+        var amigaVolume = Volume("AMIGA", "amigados.ofs", "AMIGA-FILE");
+        var atariVolume = Volume("ATARI", "fat12", "ATARI.PRG");
+        var fileSystems = new[]
+        {
+            new ExploredFileSystem(amigaImage.FormatId, "amigados.ofs", amigaImage, amigaVolume),
+            new ExploredFileSystem(atariImage.FormatId, "fat12", atariImage, atariVolume)
+        };
+        var metadata = new DiskImageMetadata([DiskSystemIds.Amiga, DiskSystemIds.AtariSt], null);
+
+        var result = new ExploredDiskImage(
+            "multi.scp",
+            amigaImage,
+            amigaVolume,
+            metadata,
+            true,
+            fileSystems,
+            [amigaImage, atariImage],
+            amigaImage.FormatId);
+
+        Assert.Equal(2, result.FormatsDetectes.Count);
+        var amiga = Assert.Single(result.FormatsDetectes, format => format.FormatId == amigaImage.FormatId);
+        var atari = Assert.Single(result.FormatsDetectes, format => format.FormatId == atariImage.FormatId);
+        Assert.Equal("AMIGA", amiga.NomVolume);
+        Assert.Equal("AMIGA-FILE", Assert.Single(amiga.Entrees).Nom);
+        Assert.Equal(0x11, Assert.Single(amiga.Secteurs).Donnees.Span[0]);
+        Assert.Equal("ATARI", atari.NomVolume);
+        Assert.Equal("ATARI.PRG", Assert.Single(atari.Entrees).Nom);
+        Assert.Equal(0x22, Assert.Single(atari.Secteurs).Donnees.Span[0]);
+
+        var selected = Assert.IsType<ExploredDiskImage>(result.SelectFormat(atariImage.FormatId));
+        Assert.Same(atariImage, selected.Image);
+        Assert.Same(atariVolume, selected.Volume);
+        Assert.Equal(atariImage.FormatId, selected.PrimaryFormatId);
+        Assert.Equal("ATARI.PRG", Assert.Single(selected.Volume.Entries).Name);
+        Assert.Equal(2, selected.FormatsDetectes.Count);
+    }
+
+    [Fact]
+    public void SectorImageContractExposesItsSourceSectorsOnLogicalTracks()
+    {
+        var image = ImageWithData(DiskImageFormatIds.AtariSt720, 0x5A);
+        var result = new ExploredDiskImage(
+            "disk.st",
+            image,
+            Volume("ATARI", "fat12", "AUTO.PRG"),
+            new DiskImageMetadata([DiskSystemIds.AtariSt], null));
+
+        var track = Assert.Single(result.Pistes);
+        Assert.Empty(track.Revolutions);
+        var sector = Assert.Single(track.SecteursSource);
+        Assert.Equal(0x5A, sector.Donnees.Span[0]);
+        Assert.Equal("ST", result.TypeImage);
     }
 
     [Theory]
@@ -84,4 +149,31 @@ public sealed class DiskImageMetadataTests
 
     private static SectorImage Image(string formatId) => new(formatId, 1, 1, 1, 1, [], logicalBlockCount: 1);
     private static FileSystemVolume Volume() => new("VOL", "test", 1, 0, null, null, [], []);
+
+    private static SectorImage ImageWithData(string formatId, byte value)
+    {
+        return new SectorImage(
+            formatId,
+            1,
+            1,
+            1,
+            1,
+            [new SectorBlock(0, new SectorAddress(0, 0, 0), [value])]);
+    }
+
+    private static FileSystemVolume Volume(string name, string fileSystemId, string entryName)
+    {
+        var entry = new FileSystemEntry(
+            entryName,
+            FileSystemEntryKind.File,
+            1,
+            null,
+            string.Empty,
+            0,
+            0,
+            true,
+            [],
+            [0x42]);
+        return new FileSystemVolume(name, fileSystemId, 1, 0, null, null, [entry], []);
+    }
 }

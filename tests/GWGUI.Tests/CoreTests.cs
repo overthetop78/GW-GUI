@@ -1483,12 +1483,22 @@ public sealed class CoreTests
             var amigaVolume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("AMIGA", "amigados.ofs", 880 * 1024, 0, null, null, [], []);
             var fileSystems = new[]
             {
-                new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("atarist.720", "fat12", atariVolume),
-                new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("amiga.amigados", "amigados.ofs", amigaVolume)
+                new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("atarist.720", "fat12", image, atariVolume),
+                new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("amiga.amigados", "amigados.ofs", image, amigaVolume)
             }.Where(item => detected.Contains(item.FormatId, StringComparer.OrdinalIgnoreCase)).ToArray();
             var volume = formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase) ? amigaVolume : atariVolume;
             var primaryFormatId = formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase) ? "amiga.amigados" : "atarist.720";
-            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null), detectedFileSystems: fileSystems, detectedImageFormatIds: detected, primaryFormatId: primaryFormatId);
+            var detectedImages = detected
+                .Select(id => image.WithFormatId(id))
+                .ToArray();
+            return new(
+                path,
+                image,
+                volume,
+                new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null),
+                detectedFileSystems: fileSystems,
+                detectedSectorImages: detectedImages,
+                primaryFormatId: primaryFormatId);
         }
     }
 
@@ -1847,6 +1857,54 @@ public sealed class CoreTests
         Assert.Equal(Enumerable.Range(0, 80), second.Cylinders);
         Assert.Equal(1, second.NextCylinder);
         Assert.Equal(0, second.NextHead);
+    }
+
+    [Fact]
+    public void ExternalReadProgressPublishesCommonStateAndBothFaceStrips()
+    {
+        Exception? failure = null;
+        var thread = new Thread(() =>
+        {
+            try
+            {
+                var viewModel = new MainWindowViewModel("No hardware", "Ready");
+                var face0 = new TrackProgressStrip();
+                var face1 = new TrackProgressStrip();
+                var controller = new OperationProgressController(
+                    viewModel,
+                    face0,
+                    face1,
+                    (key, values) => $"{key}:{string.Join(',', values)}");
+                var published = new List<GWGUI.MediaEngine.Exploration.Contracts.IEtatLectureDisquette>();
+                controller.ReadStateChanged += (_, state) => published.Add(state);
+
+                controller.Begin();
+                controller.Accept("Reading c=0-79:h=0-1 revs=3");
+                controller.Accept("T0.0: Raw Flux");
+
+                var state = Assert.IsAssignableFrom<GWGUI.MediaEngine.Exploration.Contracts.IEtatLectureDisquette>(
+                    controller.CurrentReadState);
+                Assert.Equal("Acquiring", state.Etape);
+                Assert.Equal(1, state.NombrePistesTerminees);
+                Assert.Equal(160, state.NombrePistesTotal);
+                Assert.Equal(0, state.Cylindre);
+                Assert.Equal(0, state.Face);
+                Assert.Equal(160, state.EtatsPistes.Count);
+                Assert.Equal("T0.0: Raw Flux", state.MessageExterne);
+                Assert.Equal(80, face0.Segments.Count);
+                Assert.Equal(80, face1.Segments.Count);
+                Assert.Equal(TrackSegmentState.Success, face0.Segments[0].State);
+                Assert.NotEmpty(published);
+            }
+            catch (Exception exception)
+            {
+                failure = exception;
+            }
+        });
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        Assert.True(thread.Join(TimeSpan.FromSeconds(15)));
+        Assert.Null(failure);
     }
 
     [Fact]

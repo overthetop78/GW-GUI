@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Scp;
@@ -18,6 +19,11 @@ public sealed class ScpImageExplorationService
     }
     /// <summary>Délègue l'exploration automatique du chemin et propage l'annulation et les erreurs.</summary>
     public Task<ExploredDiskImage> ExploreAutomaticallyAsync(string path, CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, cancellationToken);
+    /// <summary>Explore une capture SCP déjà disponible en mémoire.</summary>
+    public Task<ExploredDiskImage> ExploreAutomaticallyAsync(
+        string path,
+        ScpImage image,
+        CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, image, cancellationToken);
     /// <summary>Délègue la reconstruction du chemin et du format explicitement demandé.</summary>
     public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) => sectorImageReader.ReadAsync(path, formatId, cancellationToken);
 }

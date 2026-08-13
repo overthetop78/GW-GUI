@@ -174,6 +174,7 @@ public partial class MainWindow : Window
     private readonly ConsoleLogSession _consoleLog;
     private readonly TerminalPanelController _terminalPanel;
     private readonly MainWindowViewModel _viewModel;
+    private string? _lastInternalReadProgressLine;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
     private bool _settingsSaveInProgress;
     private bool _closeAfterSettingsSave;
@@ -493,9 +494,10 @@ public partial class MainWindow : Window
             PhysicalDiskTrackSelectionParser.Parse("c=0-79:h=0-1"),
             ScpCaptureDiskTypePolicy.Resolve(hardware.Drive.Density));
         var stopwatch = Stopwatch.StartNew();
+        _lastInternalReadProgressLine = null;
         return await _operation.RunAsync(async token =>
         {
-            var progress = new Progress<PhysicalDiskReadOperationProgress>(_progress.Accept);
+            var progress = new Progress<PhysicalDiskReadOperationProgress>(ReportInternalReadProgress);
             await InternalPhysicalDiskReader.CreateDefault().ReadAsync(options, temporaryPath, progress, token);
             return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
         });
@@ -661,7 +663,7 @@ public partial class MainWindow : Window
     private void RefreshConvertProfiles(string? selectedId = null)
         => _profileController.Refresh(ConvertProfileCombo, OperationKind.Convert, selectedId);
 
-    private void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
+    private async void BrowseWriteSource_Click(object sender, RoutedEventArgs e)
     {
         var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
         if (path is null) return;
@@ -672,6 +674,14 @@ public partial class MainWindow : Window
         WriteFormatCombo.SelectedItem = _detectedWriteFormat.Format;
         WriteFormatCombo.Visibility = _detectedWriteFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
         WriteFormatBlock.VisualizeTracksButton.IsEnabled = true;
+        try
+        {
+            await _diskImageWorkspace.AnalyzeAsync(path);
+        }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
+        {
+            AppendAnalysisFailure(exception, $"Analyzing write source: {path}");
+        }
         UpdateWriteCommand();
     }
 
@@ -945,7 +955,7 @@ public partial class MainWindow : Window
         UpdateConvertCommand();
     }
 
-    private void BrowseConvertSource_Click(object sender, RoutedEventArgs e)
+    private async void BrowseConvertSource_Click(object sender, RoutedEventArgs e)
     {
         var path = _fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), ReadFolder.Text));
         if (path is null) return;
@@ -955,6 +965,14 @@ public partial class MainWindow : Window
         ConvertSourceBlock.ActionButton.Visibility = Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)
             ? Visibility.Visible
             : Visibility.Collapsed;
+        try
+        {
+            await _diskImageWorkspace.AnalyzeAsync(path);
+        }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
+        {
+            AppendAnalysisFailure(exception, $"Analyzing conversion source: {path}");
+        }
         BuildConversionFormats(Path.GetExtension(path), detection); UpdateConvertCommand();
     }
 
@@ -1425,6 +1443,10 @@ public partial class MainWindow : Window
                 OpenScpBanner.Visibility = Visibility.Visible;
                 await AppendScpCaptureSummaryAsync(target);
             }
+            if (result.IsSuccess && File.Exists(target))
+            {
+                await AnalyzeCompletedReadAsync(target);
+            }
             var sequenceKind = ReadSequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
             if (result.IsSuccess) _viewModel.Read.TryAdvanceSequence();
         }
@@ -1440,10 +1462,11 @@ public partial class MainWindow : Window
         await _consoleLog.BeginAsync("read-internal", LocExtension.Get("Read.InternalPreview", target));
         var stopwatch = Stopwatch.StartNew();
         PhysicalDiskReadResult? capture = null;
+        _lastInternalReadProgressLine = null;
         var outcome = await _operation.RunAsync(async token =>
         {
             var reader = InternalPhysicalDiskReader.CreateDefault();
-            var progress = new Progress<PhysicalDiskReadOperationProgress>(_progress.Accept);
+            var progress = new Progress<PhysicalDiskReadOperationProgress>(ReportInternalReadProgress);
             capture = await reader.ReadAsync(options, target, progress, token);
             return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
         });
@@ -1462,6 +1485,7 @@ public partial class MainWindow : Window
         }
         if (outcome.Result?.IsSuccess == true && capture is not null)
         {
+            _diskImageWorkspace.RememberReadImage(capture.Document);
             _diskImageWorkspace.LastCapturedPath = target;
             OpenScpBanner.Visibility = Visibility.Visible;
             await AppendScpCaptureSummaryAsync(target);
@@ -1469,6 +1493,55 @@ public partial class MainWindow : Window
         }
         EndProgress();
         ReadExecuteButton.Content = LocExtension.Get("Common.Execute");
+    }
+
+    private void ReportInternalReadProgress(PhysicalDiskReadOperationProgress progress)
+    {
+        _progress.Accept(progress);
+        string line;
+        if (progress.Cylinder is int cylinder && progress.Head is int head)
+        {
+            line = LocExtension.Get(
+                "Status.TrackProgress",
+                cylinder,
+                head,
+                progress.CompletedTracks,
+                progress.TotalTracks);
+        }
+        else
+        {
+            line = LocExtension.Get("Status.Running");
+        }
+        if (string.Equals(line, _lastInternalReadProgressLine, StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        _lastInternalReadProgressLine = line;
+        AppendConsoleText(line + Environment.NewLine);
+    }
+
+    private async Task AnalyzeCompletedReadAsync(string path)
+    {
+        try
+        {
+            await _diskImageWorkspace.AnalyzeAsync(path);
+        }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
+        {
+            AppendAnalysisFailure(exception, $"Analyzing completed disk read: {path}");
+        }
+    }
+
+    private void AppendAnalysisFailure(Exception exception, string context)
+    {
+        var logPath = ErrorLog.Write(exception, context);
+        var detail = logPath is null
+            ? LocExtension.Get("Common.Unknown")
+            : LocExtension.Get("Error.LogSaved", logPath);
+        AppendConsoleText(Environment.NewLine);
+        AppendConsoleText(LocExtension.Get("Error.Unexpected", detail));
+        AppendConsoleText(Environment.NewLine);
     }
 
     private PhysicalDiskReadOptions CreateInternalReadOptions(HardwareChoice hardware)

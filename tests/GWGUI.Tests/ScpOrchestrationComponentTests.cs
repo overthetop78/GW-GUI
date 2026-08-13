@@ -47,12 +47,14 @@ public sealed class ScpOrchestrationComponentTests
         var first = Image("first", 1);
         var second = Image("second", 1);
         var volume = new FileSystemVolume("VOL", "fs", 1, 0, null, null, [], []);
-        var match = new ExploredFileSystem("first", "reader", volume);
+        var match = new ExploredFileSystem("first", "reader", first, volume);
         var rejected = new ScpCandidateInspection("bad", null, [], new InvalidDataException("bad"));
-        var result = ScpCandidateRanker.Rank([new("first-candidate", first, [(match, first)], null), new("second-candidate", second, [], null), rejected]);
+        var result = ScpCandidateRanker.Rank([new("first-candidate", first, [match], null), new("second-candidate", second, [], null), rejected]);
         Assert.Same(first, result.BestDecoded);
         Assert.Same(first, result.BestRecognized);
-        Assert.Equal(["first", "second"], result.DecodedFormatIds);
+        Assert.Equal(["first", "second"], result.DecodedImages.Select(image => image.FormatId));
+        Assert.Same(first, result.DecodedImages[0]);
+        Assert.Same(second, result.DecodedImages[1]);
         Assert.Single(result.Detected);
         Assert.Same(rejected, result.Rejected.Single());
     }

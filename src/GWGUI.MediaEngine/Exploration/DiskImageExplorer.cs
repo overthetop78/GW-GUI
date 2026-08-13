@@ -65,7 +65,18 @@ public sealed class DiskImageExplorer
 
         var result = formatId is null ? ReadAutomatically(image) : ReadExplicitly(image, formatId);
         var unique = Deduplicate(result.Detected);
-        return documents.Create(path, result.Image, unique, [result.Image.FormatId]);
+        return documents.Create(path, result.Image, unique, [result.Image]);
+    }
+
+    /// <summary>Explore une capture SCP déjà acquise en mémoire tout en conservant son chemin de destination.</summary>
+    public Task<ExploredDiskImage> ExploreScpAsync(
+        string path,
+        ScpImage image,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+        ArgumentNullException.ThrowIfNull(image);
+        return scpExploration.ExploreAutomaticallyAsync(path, image, cancellationToken);
     }
 
     /// <summary>VÃ©rifie la signature SCP commune sans se fier Ã  l'extension du chemin.</summary>
@@ -80,13 +91,13 @@ public sealed class DiskImageExplorer
     /// <summary>Lit les systÃ¨mes de fichiers directement reconnus, puis la premiÃ¨re interprÃ©tation supplÃ©mentaire exploitable.</summary>
     private (SectorImage Image, IReadOnlyList<ExploredFileSystem> Detected) ReadAutomatically(SectorImage image)
     {
-        var detected = fileSystems.ReadAll(image).Matches.Select(match => new ExploredFileSystem(image.FormatId, match.ReaderId, match.Volume)).ToList();
-        if (detected.Count != 0) return (image, detected);
+        var detected = fileSystems.ReadCandidates(image, image.FormatId).Matches
+            .Select(match => new ExploredFileSystem(image.FormatId, match.ReaderId, image, match.Volume))
+            .ToList();
         foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(image))
         {
             if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var match)) continue;
-            detected.Add(new(interpretation.FormatId, match.ReaderId, match.Volume));
-            return (interpretation, detected);
+            detected.Add(new(interpretation.FormatId, match.ReaderId, interpretation, match.Volume));
         }
         return (image, detected);
     }
@@ -95,7 +106,10 @@ public sealed class DiskImageExplorer
     private (SectorImage Image, IReadOnlyList<ExploredFileSystem> Detected) ReadExplicitly(SectorImage image, string formatId)
     {
         var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);
-        if (fileSystems.TryRead(selectedImage, formatId, out var match) || fileSystems.TryRead(selectedImage, null, out match)) return (selectedImage, [new(formatId, match.ReaderId, match.Volume)]);
+        if (fileSystems.TryRead(selectedImage, formatId, out var match))
+        {
+            return (selectedImage, [new(formatId, match.ReaderId, selectedImage, match.Volume)]);
+        }
         return (selectedImage, []);
     }
 

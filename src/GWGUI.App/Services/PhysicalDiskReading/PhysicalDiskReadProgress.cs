@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Containers.Scp;
+
 namespace GWGUI.App.Services.PhysicalDiskReading;
 
 public sealed record PhysicalDiskReadProgress(
@@ -5,4 +7,5 @@ public sealed record PhysicalDiskReadProgress(
     int TotalTracks,
     int Cylinder,
     int Head,
-    int Attempt);
+    int Attempt,
+    ScpTrack? CapturedTrack = null);

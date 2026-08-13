@@ -8,6 +8,22 @@ internal sealed class ScpFileCache
     /// <summary>Associe chaque version physique d'un fichier à son chargement partagé.</summary>
     private readonly ConcurrentDictionary<FileIdentity, Lazy<Task<ScpImage>>> _entries = new();
 
+    /// <summary>Associe immédiatement une image déjà chargée à la version actuelle du fichier.</summary>
+    public void Remember(string path, ScpImage image)
+    {
+        ArgumentNullException.ThrowIfNull(image);
+        var file = new FileInfo(path);
+        var identity = new FileIdentity(file.FullName, file.Length, file.LastWriteTimeUtc.Ticks);
+        foreach (var obsolete in _entries.Keys.Where(key => StringComparer.OrdinalIgnoreCase.Equals(key.Path, identity.Path) && !key.Equals(identity)))
+        {
+            _entries.TryRemove(obsolete, out _);
+        }
+
+        _entries[identity] = new Lazy<Task<ScpImage>>(
+            () => Task.FromResult(image),
+            LazyThreadSafetyMode.ExecutionAndPublication);
+    }
+
     /// <summary>Retourne l'image déjà chargée ou appelle le chargeur pour la version actuelle du fichier.</summary>
     /// <param name="path">Chemin du fichier SCP à identifier.</param>
     /// <param name="loader">Fonction chargeant et analysant le fichier lorsqu'il n'est pas en cache.</param>

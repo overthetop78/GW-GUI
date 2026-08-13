@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;
@@ -28,4 +29,6 @@ public sealed record PhysicalDiskReadResult
     public IReadOnlyList<PhysicalDiskTrackDiagnostic> TrackDiagnostics { get; }
 
     public ExploredDiskImage Document { get; }
+
+    public IImageDisquette Image => Document;
 }

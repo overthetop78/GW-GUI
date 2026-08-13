@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Exploration.Results;
 
@@ -6,4 +7,8 @@ namespace GWGUI.MediaEngine.Exploration.Results;
 /// <param name="FormatId">Identifiant du format de l'image sectorielle.</param>
 /// <param name="ReaderId">Identifiant réel du lecteur de système de fichiers.</param>
 /// <param name="Volume">Volume produit par le lecteur.</param>
-public sealed record ExploredFileSystem(string FormatId, string ReaderId, FileSystemVolume Volume);
+public sealed record ExploredFileSystem(
+    string FormatId,
+    string ReaderId,
+    SectorImage Image,
+    FileSystemVolume Volume);

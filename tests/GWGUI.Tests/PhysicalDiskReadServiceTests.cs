@@ -11,7 +11,7 @@ namespace GWGUI.Tests;
 public sealed class PhysicalDiskReadServiceTests
 {
     [Fact]
-    public async Task ServiceSavesScpDecodesEveryRegisteredCodecAndExploresSavedFile()
+    public async Task ServiceSavesScpDecodesEveryRegisteredCodecAndExploresAcquiredImage()
     {
         var capture = new GreaseweazleFluxCapture(
             Enumerable.Repeat(1_000_000u, 10).ToArray(),
@@ -43,6 +43,7 @@ public sealed class PhysicalDiskReadServiceTests
             Assert.True(File.Exists(path));
             Assert.Equal(path, result.OutputPath);
             Assert.Equal(path, result.Document.SourcePath);
+            Assert.Same(result.Acquisition.Image, result.Document.ScpImage);
             Assert.Same(capture, result.Acquisition.RawCaptures[options.Tracks[0]]);
             var diagnostic = Assert.Single(result.TrackDiagnostics);
             Assert.Equal("test.second", diagnostic.Best.Result.DecoderId);
@@ -52,6 +53,13 @@ public sealed class PhysicalDiskReadServiceTests
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Acquiring);
             Assert.All(progress.Values.Where(item => item.Stage == PhysicalDiskReadStage.Acquiring),
                 item => Assert.Equal(options.Tracks, item.Tracks));
+            var acquired = Assert.Single(progress.Values, item =>
+                item.Stage == PhysicalDiskReadStage.Acquiring && item.PisteAcquise is not null);
+            Assert.Equal(0, acquired.PisteAcquise!.Cylindre);
+            Assert.Equal(0, acquired.PisteAcquise.Face);
+            Assert.NotEmpty(acquired.PisteAcquise.Revolutions);
+            Assert.Equal(0, acquired.PisteAcquise.Revolutions[0].DebutIndex);
+            Assert.Equal("Captured", acquired.PisteAcquise.Revolutions[0].Origine);
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Saving);
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Decoding);
             Assert.Contains(progress.Values, item => item.Stage == PhysicalDiskReadStage.Exploring);
