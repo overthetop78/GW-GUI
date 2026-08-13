@@ -956,7 +956,7 @@ public partial class MainWindow : Window
         {
             var outputs = PlanConversions();
             if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
-            var first = ConversionBatchExecutor.IsInternal(outputs[0])
+            var first = ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, outputs[0])
                 ? new GwCommand("GW GUI", "encode", ["--codec", outputs[0].FormatId, _viewModel.Conversion.SourcePath, outputs[0].OutputPath])
                 : _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
@@ -973,7 +973,7 @@ public partial class MainWindow : Window
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception) { _diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { _dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
-        if (outputs.Any(output => !ConversionBatchExecutor.IsInternal(output)) &&
+        if (outputs.Any(output => !ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, output)) &&
             (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
         { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();

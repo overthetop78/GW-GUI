@@ -714,7 +714,11 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 10.3 Validation finale et retrait progressif de `gw.exe`
 
-- [ ] Construire une matrice automatisée de parité MediaEngine/`gw.exe` par format et opération, puis retirer la dépendance à `gw.exe` uniquement pour les lignes dont lecture, conversion, réouverture et éventuellement écriture physique sont toutes validées.
+- [x] Construire une matrice automatisée de parité MediaEngine/`gw.exe` par format et opération, puis retirer la dépendance à `gw.exe` uniquement pour les lignes dont lecture, conversion, réouverture et éventuellement écriture physique sont toutes validées.
+
+  Réalisation : la matrice énumère chaque combinaison format/conteneur source/conteneur cible du catalogue et conserve la géométrie, les validations de lecture, conversion et réouverture, l'égalité des blocs, fichiers, métadonnées et flux, l'état du test physique, l'identifiant de preuve et la disponibilité du repli `gw.exe`. `ConversionBatchExecutor` et l'aperçu de l'interface consultent désormais cette même matrice avec le conteneur source ; une ligne absente ou incomplète reste routée vers `gw.exe`.
+
+  Validation : `MediaParityComparisonService` construit une ligne à partir des documents MediaEngine et `gw.exe` rouverts et compare géométrie, blocs, contenus, arborescence et métadonnées. Les tests automatisés couvrent toutes les colonnes obligatoires, le refus d'une différence de bloc, les routes sectorielles, les routes de flux et la cohérence interface/exécuteur. Aucune ligne d'écriture physique n'est qualifiée sans essai matériel ; le repli `gw.exe` reste donc disponible pour toutes ces opérations ainsi que pour les commandes de maintenance hors plan.
 
   Informations nécessaires :
 

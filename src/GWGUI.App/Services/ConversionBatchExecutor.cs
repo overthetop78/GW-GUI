@@ -2,6 +2,8 @@ using System.Diagnostics;
 using System.IO;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Conversion;
+using GWGUI.Domain.Parity;
+using GWGUI.App.Services.Parity;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Conversion.Amiga;
 using GWGUI.MediaEngine.Conversion.Ibm;
@@ -67,11 +69,17 @@ public sealed class ConversionBatchExecutor(
     private readonly SectorImageScpFileConversionService _scp = scp ?? MediaEngineFactory.CreateSectorImageScpFileConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        SectorImageScpFileConversionService.CanCreate(output.FormatId, output.Extension) || AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleNibbleConversionService.CanCreate(output.FormatId, output.Extension) || MacintoshConversionService.CanCreate(output.FormatId, output.Extension) || LisaConversionService.CanCreate(output.FormatId, output.Extension) || HfeConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || CoherentConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension) || DecRx02ConversionService.CanCreate(output.FormatId, output.Extension) || UcsdImgConversionService.CanCreate(output.FormatId, output.Extension);
+        MediaEngineParityCatalog.Matrix.Rows.Any(row =>
+            row.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase) &&
+            row.TargetContainer.Equals(output.Extension, StringComparison.OrdinalIgnoreCase) &&
+            row.IsValidatedFor(MediaParityOperation.Conversion));
 
     public static bool IsInternal(string sourcePath, ConversionOutput output) =>
-        FluxContainerConversionService.CanConvert(sourcePath, output.FormatId, output.Extension) ||
-        IsInternal(output);
+        MediaEngineParityCatalog.Matrix.IsValidated(
+            Path.GetExtension(sourcePath),
+            output.FormatId,
+            output.Extension,
+            MediaParityOperation.Conversion);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
