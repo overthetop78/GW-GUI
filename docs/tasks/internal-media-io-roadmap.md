@@ -29,7 +29,7 @@ Références communes :
 
 ### 1.1 Amiga — ADF 880 Kio et 1,76 Mio
 
-- [ ] Implémenter et raccorder un `AmigaAdfWriter` et un `AmigaAdfConversionService` produisant les ADF DD et HD depuis une image SCP ou sectorielle, puis vérifier l’égalité de tous les secteurs après réouverture.
+- [x] Implémenter et raccorder un `AmigaAdfWriter` et un `AmigaAdfConversionService` produisant les ADF DD et HD depuis une image SCP ou sectorielle, puis vérifier l’égalité de tous les secteurs après réouverture.
 
   Informations nécessaires :
 
@@ -678,4 +678,3 @@ Références communes :
   Le retrait est progressif par capacité ; aucune suppression globale de gw.exe avant parité complète des commandes matérielles et de maintenance.
   Les commandes erase, clean, seek, delays, update, pin, reset, bandwidth, rpm et align restent hors de ce plan tant qu’un remplacement explicite n’est pas décidé.
   ```
-

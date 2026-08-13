@@ -18,6 +18,7 @@ using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Conversion.Apple;
+using GWGUI.MediaEngine.Conversion.Amiga;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Decoding;
@@ -50,6 +51,12 @@ namespace GWGUI.MediaEngine.Composition;
 /// <summary>Compose les services partagÃ©s constituant le moteur d'exploration des mÃ©dias.</summary>
 public static class MediaEngineFactory
 {
+    /// <summary>Crée le service de conversion ADF Amiga avec ses Reader et Writer partagés.</summary>
+    public static AmigaAdfConversionService CreateAmigaAdfConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AmigaScpSectorImageReader(scpReader, CreateFluxDecoders()), new Containers.Adf.AdfReader(), new Containers.Adf.AmigaAdfWriter());
+    }
     /// <summary>CrÃ©e le service de conversion RWTS18 avec ses Readers et Writers partagÃ©s.</summary>
     public static AppleRwts18ConversionService CreateAppleRwts18ConversionService()
     {
