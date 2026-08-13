@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.Containers.ImageDisk;
 
 /// <summary>Définit la signature et le terminateur de commentaire ImageDisk.</summary>
-internal static class ImdFormat
+public static class ImdFormat
 {
     /// <summary>Signature binaire ASCII <c>IMD</c>.</summary>
     public static ReadOnlySpan<byte> Signature => "IMD"u8;
@@ -9,4 +9,7 @@ internal static class ImdFormat
     public const int SignatureLength = 3;
     /// <summary>Octet terminant le commentaire d'en-tête.</summary>
     public const byte CommentTerminator = 0x1A;
+
+    /// <summary>Commentaire minimal écrit pour une image construite depuis des secteurs.</summary>
+    public const string DefaultComment = "IMD GW GUI";
 }

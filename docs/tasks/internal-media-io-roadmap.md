@@ -215,7 +215,7 @@ Références communes :
 
 ### 2.5 Epson QX-10 — IMG et IMD
 
-- [ ] Raccorder les formats Epson 320, 396, 399, 400 Kio et Logo au Writer brut lorsque la géométrie est uniforme, puis valider l’ordre et la capacité de chaque variante.
+- [x] Raccorder les formats Epson 320, 396, 399, 400 Kio et Logo au Writer brut lorsque la géométrie est uniforme, puis valider l’ordre et la capacité de chaque variante.
 
   Informations nécessaires :
 
@@ -224,7 +224,7 @@ Références communes :
   Ne pas aplatir une variante contenant des tailles sectorielles incompatibles sans diagnostic explicite.
   ```
 
-- [ ] Implémenter et raccorder un `ImdWriter` conservant mode FM/MFM, cylindre, tête, cartes de secteurs, tailles, données absentes et états, puis vérifier l’aller-retour avec `ImdReader`.
+- [x] Implémenter et raccorder un `ImdWriter` conservant mode FM/MFM, cylindre, tête, cartes de secteurs, tailles, données absentes et états, puis vérifier l’aller-retour avec `ImdReader`.
 
   Informations nécessaires :
 

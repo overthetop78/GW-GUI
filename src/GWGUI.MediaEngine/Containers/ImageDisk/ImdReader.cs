@@ -1,4 +1,4 @@
-﻿using System.Buffers.Binary;
+using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.SectorImages;
@@ -9,24 +9,23 @@ namespace GWGUI.MediaEngine.Containers.ImageDisk;
 public sealed class ImdReader
 {
     /// <summary>Lit un fichier ImageDisk et construit son image sectorielle.</summary>
-    /// <param name="path">Chemin du fichier IMD.</param>
-    /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
-    /// <returns>L'image sectorielle reconstruite.</returns>
-    /// <exception cref="IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
-    /// <exception cref="InvalidDataException">Une section ou une valeur ImageDisk est invalide.</exception>
-    /// <exception cref="OverflowException">Un calcul de taille dÃ©passe la capacitÃ© d'un entier.</exception>
-    /// <exception cref="OperationCanceledException">L'opÃ©ration est annulÃ©e.</exception>
-    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => (await ReadDetailedAsync(path, cancellationToken).ConfigureAwait(false)).SectorImage;
+
+    /// <summary>Lit un fichier ImageDisk en conservant ses pistes, modes, cartes et états.</summary>
+    public async Task<ImdImage> ReadDetailedAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        return Read(data, cancellationToken);
+        return ReadDetailed(data, cancellationToken);
     }
 
-    /// <summary>Analyse les pistes et secteurs contenus dans une sÃ©quence ImageDisk.</summary>
-    internal static SectorImage Read(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
+    /// <summary>Analyse une séquence ImageDisk et construit son image sectorielle.</summary>
+    internal static SectorImage Read(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default) => ReadDetailed(data, cancellationToken).SectorImage;
+
+    /// <summary>Analyse une séquence ImageDisk en conservant les informations réinscriptibles.</summary>
+    public static ImdImage ReadDetailed(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
     {
-        var offset = FindTrackDataOffset(data);
-        var sectors = new List<ImdSector>();
+        var offset = FindTrackDataOffset(data, out var comment);
+        var tracks = new List<ImdTrack>();
         while (offset < data.Length)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -35,29 +34,28 @@ public sealed class ImdReader
             var cylinders = header.HeadFlags.HasFlag(ImdHeadFlags.HasCylinderMap) ? ReadByteMap(data, ref offset, header.SectorCount, ImdSection.CylinderMap) : null;
             var heads = header.HeadFlags.HasFlag(ImdHeadFlags.HasHeadMap) ? ReadByteMap(data, ref offset, header.SectorCount, ImdSection.HeadMap) : null;
             var sizes = ReadSectorSizes(data, ref offset, header.SectorCount, header.SectorSizeCode);
-
+            var sectors = new List<ImdSector>(header.SectorCount);
             for (var index = 0; index < header.SectorCount; index++)
             {
                 EnsureAvailable(data, offset, ImdLayout.MapEntrySize, ImdSection.SectorRecord);
-                var rawRecordType = data[offset++];
-                var recordType = (ImdSectorRecordType)rawRecordType;
-                if (!Enum.IsDefined(recordType)) throw ImdExceptions.InvalidRecordType(rawRecordType);
+                var recordType = (ImdSectorRecordType)data[offset++];
+                if (!Enum.IsDefined(recordType)) throw ImdExceptions.InvalidRecordType((byte)recordType);
                 var bytes = ReadSectorRecord(data, ref offset, recordType, sizes[index]);
-                sectors.Add(new(cylinders?[index] ?? header.Cylinder, (heads?[index] ?? header.Head) & (int)ImdHeadFlags.HeadMask, numbers[index], bytes, recordType.HasData(), recordType.IsIntegrityValid()));
+                sectors.Add(new(cylinders?[index] ?? header.Cylinder, checked((byte)((heads?[index] ?? header.Head) & (int)ImdHeadFlags.HeadMask)), numbers[index], sizes[index], recordType, bytes));
             }
+            tracks.Add(new(header.Mode, header.Cylinder, checked((byte)header.Head), sectors));
         }
-        return BuildImage(sectors);
+        return new(comment, tracks, BuildImage(tracks.SelectMany(track => track.Sectors).ToArray()));
     }
 
-    /// <summary>Valide la signature et retourne la position suivant le commentaire.</summary>
-    private static int FindTrackDataOffset(ReadOnlySpan<byte> data)
+    private static int FindTrackDataOffset(ReadOnlySpan<byte> data, out string comment)
     {
         var commentEnd = data.IndexOf(ImdFormat.CommentTerminator);
         if (commentEnd < ImdFormat.SignatureLength || !data[..ImdFormat.SignatureLength].SequenceEqual(ImdFormat.Signature)) throw ImdExceptions.MissingSignature(commentEnd, data.Length);
+        comment = System.Text.Encoding.ASCII.GetString(data[..commentEnd]);
         return commentEnd + ImdLayout.MapEntrySize;
     }
 
-    /// <summary>Lit et valide l'en-tÃªte de piste situÃ© Ã  la position courante.</summary>
     private static ImdTrackHeader ReadTrackHeader(ReadOnlySpan<byte> data, ref int offset)
     {
         EnsureAvailable(data, offset, ImdLayout.TrackHeaderSize, ImdSection.TrackHeader);
@@ -66,21 +64,18 @@ public sealed class ImdReader
         var mode = (ImdMode)header[ImdLayout.ModeOffset];
         var sectorCount = header[ImdLayout.SectorCountOffset];
         if (!Enum.IsDefined(mode) || sectorCount == 0) throw ImdExceptions.InvalidTrackHeader(mode, sectorCount);
-        var headFlags = (ImdHeadFlags)header[ImdLayout.HeadFlagsOffset];
-        return new(mode, header[ImdLayout.CylinderOffset], headFlags, (int)(headFlags & ImdHeadFlags.HeadMask), sectorCount, header[ImdLayout.SectorSizeCodeOffset]);
+        var flags = (ImdHeadFlags)header[ImdLayout.HeadFlagsOffset];
+        return new(mode, header[ImdLayout.CylinderOffset], flags, (int)(flags & ImdHeadFlags.HeadMask), sectorCount, header[ImdLayout.SectorSizeCodeOffset]);
     }
 
-    /// <summary>Lit une carte d'octets et avance la position courante.</summary>
     private static byte[] ReadByteMap(ReadOnlySpan<byte> data, ref int offset, int count, ImdSection section)
     {
-        var length = count * ImdLayout.MapEntrySize;
-        EnsureAvailable(data, offset, length, section);
-        var map = data.Slice(offset, length).ToArray();
-        offset += length;
+        EnsureAvailable(data, offset, count, section);
+        var map = data.Slice(offset, count).ToArray();
+        offset += count;
         return map;
     }
 
-    /// <summary>Lit les tailles explicites ou dÃ©veloppe le code exponentiel commun.</summary>
     private static int[] ReadSectorSizes(ReadOnlySpan<byte> data, ref int offset, int count, byte sizeCode)
     {
         if (sizeCode != ImdLayout.ExplicitSectorSizeCode)
@@ -88,7 +83,6 @@ public sealed class ImdReader
             if (sizeCode > ImdLayout.MaximumExponentialSizeCode) throw ImdExceptions.InvalidSizeCode(sizeCode);
             return Enumerable.Repeat(ImdLayout.BaseSectorSize << sizeCode, count).ToArray();
         }
-
         var length = count * ImdLayout.SectorSizeMapEntrySize;
         EnsureAvailable(data, offset, length, ImdSection.SectorSizeMap);
         var sizes = new int[count];
@@ -97,13 +91,12 @@ public sealed class ImdReader
         return sizes;
     }
 
-    /// <summary>Lit, dÃ©compresse ou matÃ©rialise la charge utile d'un enregistrement sectoriel.</summary>
-    private static byte[] ReadSectorRecord(ReadOnlySpan<byte> data, ref int offset, ImdSectorRecordType recordType, int size)
+    private static byte[] ReadSectorRecord(ReadOnlySpan<byte> data, ref int offset, ImdSectorRecordType type, int size)
     {
-        if (!recordType.HasData()) return new byte[size];
-        if (recordType.IsCompressed())
+        if (!type.HasData()) return new byte[size];
+        if (type.IsCompressed())
         {
-            EnsureAvailable(data, offset, ImdLayout.MapEntrySize, ImdSection.CompressedValue);
+            EnsureAvailable(data, offset, 1, ImdSection.CompressedValue);
             return Enumerable.Repeat(data[offset++], size).ToArray();
         }
         EnsureAvailable(data, offset, size, ImdSection.SectorData);
@@ -112,31 +105,24 @@ public sealed class ImdReader
         return bytes;
     }
 
-    /// <summary>Construit la gÃ©omÃ©trie, les blocs disponibles et les blocs absents de l'image sectorielle.</summary>
     private static SectorImage BuildImage(IReadOnlyList<ImdSector> sectors)
     {
         if (sectors.Count == 0) throw ImdExceptions.NoSectors();
-        var blockSize = sectors.GroupBy(sector => sector.Data.Length).OrderByDescending(group => group.Count()).First().Key;
+        var blockSize = sectors.GroupBy(sector => sector.Size).OrderByDescending(group => group.Count()).First().Key;
         var cylinders = sectors.Max(sector => sector.Cylinder) + 1;
         var heads = sectors.Max(sector => sector.Head) + 1;
         var sectorsPerTrack = sectors.GroupBy(sector => (sector.Cylinder, sector.Head)).Max(group => group.Count());
         var ordered = sectors.OrderBy(sector => sector.Cylinder).ThenBy(sector => sector.Head).ThenBy(sector => sector.Number).ToArray();
-        var blocks = ordered.Select((sector, logical) => (sector, logical)).Where(item => item.sector.Available).Select(item => new SectorBlock(item.logical, new(item.sector.Cylinder, item.sector.Head, item.sector.Number), item.sector.Data, item.sector.IntegrityValid)).ToArray();
-        var capacity = ordered.Sum(sector => (long)sector.Data.Length);
-        var descriptors = sectors.Select(sector => new EpsonQx10SectorDescriptor(sector.Cylinder, sector.Head, sector.Number, sector.Data.Length)).ToArray();
-        var formatId = EpsonQx10FormatDetector.TryDetect(descriptors, out var detectedFormat) ? detectedFormat : DiskImageFormatIds.Imd;
-        return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, sectors.Any(sector => sector.Data.Length != blockSize), capacity, ordered.Length);
+        var blocks = ordered.Select((sector, logical) => (sector, logical)).Where(item => item.sector.RecordType.HasData()).Select(item => new SectorBlock(item.logical, new(item.sector.Cylinder, item.sector.Head, item.sector.Number), item.sector.Data, item.sector.RecordType.IsIntegrityValid(), DiagnosticCode: (byte)item.sector.RecordType)).ToArray();
+        var descriptors = sectors.Select(sector => new EpsonQx10SectorDescriptor(sector.Cylinder, sector.Head, sector.Number, sector.Size)).ToArray();
+        var formatId = EpsonQx10FormatDetector.TryDetect(descriptors, out var detected) ? detected : DiskImageFormatIds.Imd;
+        return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, sectors.Any(sector => sector.Size != blockSize), ordered.Sum(sector => (long)sector.Size), ordered.Length);
     }
 
-    /// <summary>VÃ©rifie qu'une section complÃ¨te est disponible Ã  la position demandÃ©e.</summary>
     private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, ImdSection section)
     {
         if (offset < 0 || count < 0 || offset > data.Length - count) throw ImdExceptions.TruncatedSection(section, offset, count, Math.Max(0, data.Length - offset));
     }
 
-    /// <summary>Regroupe les champs validÃ©s d'un en-tÃªte de piste ImageDisk.</summary>
-    private readonly record struct ImdTrackHeader(ImdMode Mode, int Cylinder, ImdHeadFlags HeadFlags, int Head, int SectorCount, byte SectorSizeCode);
-
-    /// <summary>ReprÃ©sente un secteur ImageDisk dÃ©clarÃ©, disponible ou absent.</summary>
-    private sealed record ImdSector(int Cylinder, int Head, int Number, byte[] Data, bool Available, bool IntegrityValid);
+    private readonly record struct ImdTrackHeader(ImdMode Mode, byte Cylinder, ImdHeadFlags HeadFlags, int Head, int SectorCount, byte SectorSizeCode);
 }
