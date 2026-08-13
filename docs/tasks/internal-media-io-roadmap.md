@@ -373,7 +373,7 @@ Références communes :
 
 ### 4.3 NIB ↔ WOZ
 
-- [ ] Généraliser `AppleDiskImageWriter` pour convertir NIB/WOZ des formats Apple effectivement représentables, sans le limiter implicitement à RWTS18, puis valider le flux de chaque piste.
+- [x] Généraliser `AppleDiskImageWriter` pour convertir NIB/WOZ des formats Apple effectivement représentables, sans le limiter implicitement à RWTS18, puis valider le flux de chaque piste.
 
   Informations nécessaires :
 

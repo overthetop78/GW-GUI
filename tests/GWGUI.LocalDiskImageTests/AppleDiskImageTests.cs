@@ -173,7 +173,7 @@ public sealed class AppleDiskImageTests
         try
         {
             await new AppleDiskImageWriter().WriteAsync(image, source);
-            await MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(source, output);
+            await MediaEngineFactory.CreateAppleNibbleConversionService().ConvertAsync(source, output);
             var decoded = await new AppleDiskImageReader().ReadAsync(output);
             Assert.Equal("apple2.rwts18", decoded.FormatId);
             Assert.Equal(blocks.Length, decoded.AvailableBlocks.Count);
@@ -220,13 +220,56 @@ public sealed class AppleDiskImageTests
         try
         {
             await new AppleDiskImageWriter().WriteAsync(image, source);
-            var service = new AppleRwts18ConversionService(new AppleDiskImageReader(), new AppleScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()), new AppleDiskImageWriter());
+            var service = new AppleNibbleConversionService(new AppleDiskImageReader(), new AppleScpSectorImageReader(new ScpReader(), new FluxDecoderRegistry()), new AppleDiskImageWriter());
             await service.ConvertAsync(source, output);
             var decoded = await new AppleDiskImageReader().ReadAsync(output);
             Assert.Equal(DiskImageFormatIds.AppleIIRwts18, decoded.FormatId);
             foreach (var block in blocks) Assert.Equal(block.Data, decoded.GetBlock(block.LogicalBlock).ToArray());
         }
         finally { File.Delete(source); File.Delete(output); }
+    }
+
+    /// <summary>Vérifie NIB vers WOZ puis WOZ vers NIB pour chaque encodage Apple II standard représentable.</summary>
+    [Theory]
+    [InlineData(DiskImageFormatIds.AppleIIDos32, 13)]
+    [InlineData(DiskImageFormatIds.AppleIIDos33, 16)]
+    public async Task ConversionServicePreservesEveryStandardAppleTrack(string formatId, int sectorsPerTrack)
+    {
+        var blocks = Enumerable.Range(0, 35).SelectMany(track => Enumerable.Range(0, sectorsPerTrack).Select(sector =>
+        {
+            var logical = sectorsPerTrack == 16 ? track * sectorsPerTrack + AppleIISectorOrderConverter.PhysicalToDosFileSector(sector) : track * sectorsPerTrack + sector;
+            var data = Enumerable.Range(0, 256).Select(index => (byte)(track * 17 + sector * 29 + index * 43)).ToArray();
+            return new SectorBlock(logical, new(track, 0, sector), data);
+        })).ToArray();
+        var image = new SectorImage(formatId, 256, 35, 1, sectorsPerTrack, blocks);
+        var source = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        var intermediate = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.woz");
+        var output = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        try
+        {
+            await new AppleDiskImageWriter().WriteAsync(image, source);
+            var service = MediaEngineFactory.CreateAppleNibbleConversionService();
+            await service.ConvertAsync(source, intermediate);
+            await service.ConvertAsync(intermediate, output);
+            var sourceImage = await new AppleDiskImageReader().ReadAsync(source);
+            var wozImage = await new AppleDiskImageReader().ReadAsync(intermediate);
+            var outputImage = await new AppleDiskImageReader().ReadAsync(output);
+            Assert.Equal(35, wozImage.Cylinders);
+            Assert.Equal(sectorsPerTrack, wozImage.SectorsPerTrack);
+            Assert.Equal(sourceImage.AvailableBlocks.Count, wozImage.AvailableBlocks.Count);
+            foreach (var expectedBlock in sourceImage.AvailableBlocks)
+            {
+                Assert.Equal(expectedBlock.Data, wozImage.GetBlock(expectedBlock.LogicalBlock).ToArray());
+                Assert.Equal(expectedBlock.Data, outputImage.GetBlock(expectedBlock.LogicalBlock).ToArray());
+            }
+            Assert.Equal(await File.ReadAllBytesAsync(source), await File.ReadAllBytesAsync(output));
+        }
+        finally
+        {
+            File.Delete(source);
+            File.Delete(intermediate);
+            File.Delete(output);
+        }
     }
 
     /// <summary>Vérifie les conversions SCP vers NIB et WOZ avec la capture originale RWTS18 de Prince of Persia.</summary>
@@ -242,7 +285,7 @@ public sealed class AppleDiskImageTests
         var output = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}{extension}");
         try
         {
-            await MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(source, output);
+            await MediaEngineFactory.CreateAppleNibbleConversionService().ConvertAsync(source, output);
             var decoded = await new AppleDiskImageReader().ReadAsync(output);
             Assert.Equal(DiskImageFormatIds.AppleIIRwts18, decoded.FormatId);
             Assert.NotEmpty(decoded.AvailableBlocks);
@@ -270,7 +313,7 @@ public sealed class AppleDiskImageTests
         try
         {
             await new AppleDiskImageWriter().WriteAsync(image, source);
-            var service = MediaEngineFactory.CreateAppleRwts18ConversionService();
+            var service = MediaEngineFactory.CreateAppleNibbleConversionService();
             await Assert.ThrowsAsync<NotSupportedException>(() => service.ConvertAsync(source, "output.bin"));
             using var cancellation = new CancellationTokenSource();
             cancellation.Cancel();
@@ -288,9 +331,9 @@ public sealed class AppleDiskImageTests
         var unknown = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
         try
         {
-            await Assert.ThrowsAsync<InvalidDataException>(() => MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(standardNib, "output.woz"));
+            await Assert.ThrowsAsync<InvalidDataException>(() => MediaEngineFactory.CreateAppleNibbleConversionService().ConvertAsync(standardNib, "output.woz"));
             await File.WriteAllBytesAsync(unknown, [1, 2, 3]);
-            await Assert.ThrowsAnyAsync<Exception>(() => MediaEngineFactory.CreateAppleRwts18ConversionService().ConvertAsync(unknown, "output.woz"));
+            await Assert.ThrowsAnyAsync<Exception>(() => MediaEngineFactory.CreateAppleNibbleConversionService().ConvertAsync(unknown, "output.woz"));
         }
         finally { File.Delete(unknown); File.Delete("output.woz"); }
     }

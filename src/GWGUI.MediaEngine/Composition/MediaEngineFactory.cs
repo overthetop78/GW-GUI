@@ -97,12 +97,12 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new BbcDfsReader(), new BbcDfsImageWriter());
     }
-    /// <summary>CrÃ©e le service de conversion RWTS18 avec ses Readers et Writers partagÃ©s.</summary>
-    public static AppleRwts18ConversionService CreateAppleRwts18ConversionService()
+    /// <summary>Crée le service de conversion NIB et WOZ avec ses Readers et Writers partagés.</summary>
+    public static AppleNibbleConversionService CreateAppleNibbleConversionService()
     {
         var scpReader = CreateScpReader();
         var decoders = CreateFluxDecoders();
-        return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, decoders), new AppleDiskImageWriter(new AppleRwts18TrackEncodingService()));
+        return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, decoders), new AppleDiskImageWriter(new AppleRwts18TrackEncodingService(), new AppleIITrackEncodingService()));
     }
     /// <summary>Crée le service de conversion sectorielle Apple avec ses Readers et Writers partagés.</summary>
     public static AppleSectorConversionService CreateAppleSectorConversionService()

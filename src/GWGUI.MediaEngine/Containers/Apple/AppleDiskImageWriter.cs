@@ -7,7 +7,7 @@ using GWGUI.MediaEngine.Containers.Apple.Woz;
 
 namespace GWGUI.MediaEngine.Containers.Apple;
 
-/// <summary>Encode puis écrit une image RWTS18 dans un conteneur Apple NIB ou WOZ1.</summary>
+/// <summary>Encode puis écrit une image Apple II représentable dans un conteneur NIB ou WOZ1.</summary>
 public sealed class AppleDiskImageWriter
 {
     private static readonly IReadOnlyDictionary<string, (int MaximumBits, Func<IReadOnlyList<IReadOnlyList<bool>>, string, CancellationToken, Task> Write)> Outputs = new Dictionary<string, (int, Func<IReadOnlyList<IReadOnlyList<bool>>, string, CancellationToken, Task>)>(StringComparer.OrdinalIgnoreCase)
@@ -16,22 +16,29 @@ public sealed class AppleDiskImageWriter
         [DiskImageFileExtensions.Woz] = (WozWriter.MaximumTrackBitCount, WozWriter.WriteAsync)
     }.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
     private readonly AppleRwts18TrackEncodingService _encoder;
+    private readonly AppleIITrackEncodingService _standardEncoder;
 
     /// <summary>Crée la façade avec le service d'encodage fourni ou le service par défaut.</summary>
     /// <param name="encoder">Service d'encodage RWTS18 optionnel.</param>
-    public AppleDiskImageWriter(AppleRwts18TrackEncodingService? encoder = null) => _encoder = encoder ?? new();
+    /// <param name="standardEncoder">Service d'encodage Apple II GCR standard optionnel.</param>
+    public AppleDiskImageWriter(AppleRwts18TrackEncodingService? encoder = null, AppleIITrackEncodingService? standardEncoder = null)
+    {
+        _encoder = encoder ?? new();
+        _standardEncoder = standardEncoder ?? new();
+    }
 
     /// <summary>Indique si l'extension correspond à un conteneur actuellement écrit.</summary>
     public static bool SupportsExtension(string extension) => Outputs.ContainsKey(extension);
 
     /// <summary>Choisit le Writer depuis l'extension, encode les pistes puis écrit le fichier.</summary>
-    /// <param name="image">Image RWTS18 source.</param>
+    /// <param name="image">Image Apple II source.</param>
     /// <param name="path">Chemin NIB ou WOZ de destination.</param>
     /// <param name="cancellationToken">Jeton d'annulation propagé à l'encodage et à l'écriture.</param>
     public Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(path);
         if (!Outputs.TryGetValue(extension, out var output)) throw AppleDiskImageWriterExceptions.UnsupportedExtension(extension);
-        return output.Write(_encoder.Encode(image, output.MaximumBits, cancellationToken), path, cancellationToken);
+        var tracks = image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) ? _encoder.Encode(image, output.MaximumBits, cancellationToken) : _standardEncoder.Encode(image, output.MaximumBits, cancellationToken);
+        return output.Write(tracks, path, cancellationToken);
     }
 }

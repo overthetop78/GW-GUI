@@ -25,7 +25,7 @@ public sealed class ConversionBatchExecutor(
     MsxRawConversionService? msxRaw = null,
     AcornAdfConversionService? acornAdf = null,
     BbcDfsConversionService? bbcDfs = null,
-    AppleRwts18ConversionService? appleRwts18 = null,
+    AppleNibbleConversionService? appleNibble = null,
     AtariStConversionService? atariSt = null,
     D81ConversionService? d81 = null,
     AtrConversionService? atr = null,
@@ -45,7 +45,7 @@ public sealed class ConversionBatchExecutor(
     private readonly MsxRawConversionService _msxRaw = msxRaw ?? MediaEngineFactory.CreateMsxRawConversionService();
     private readonly AcornAdfConversionService _acornAdf = acornAdf ?? MediaEngineFactory.CreateAcornAdfConversionService();
     private readonly BbcDfsConversionService _bbcDfs = bbcDfs ?? MediaEngineFactory.CreateBbcDfsConversionService();
-    private readonly AppleRwts18ConversionService _appleRwts18 = appleRwts18 ?? MediaEngineFactory.CreateAppleRwts18ConversionService();
+    private readonly AppleNibbleConversionService _appleNibble = appleNibble ?? MediaEngineFactory.CreateAppleNibbleConversionService();
     private readonly AtariStConversionService _atariSt = atariSt ?? MediaEngineFactory.CreateAtariStConversionService();
     private readonly D81ConversionService _d81 = d81 ?? MediaEngineFactory.CreateD81ConversionService();
     private readonly AtrConversionService _atr = atr ?? MediaEngineFactory.CreateAtrConversionService();
@@ -61,7 +61,7 @@ public sealed class ConversionBatchExecutor(
     private readonly HfeConversionService _hfe = hfe ?? MediaEngineFactory.CreateHfeConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || MacintoshConversionService.CanCreate(output.FormatId, output.Extension) || LisaConversionService.CanCreate(output.FormatId, output.Extension) || HfeConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || CoherentConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension) || DecRx02ConversionService.CanCreate(output.FormatId, output.Extension) || UcsdImgConversionService.CanCreate(output.FormatId, output.Extension);
+        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleNibbleConversionService.CanCreate(output.FormatId, output.Extension) || MacintoshConversionService.CanCreate(output.FormatId, output.Extension) || LisaConversionService.CanCreate(output.FormatId, output.Extension) || HfeConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || CoherentConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension) || DecRx02ConversionService.CanCreate(output.FormatId, output.Extension) || UcsdImgConversionService.CanCreate(output.FormatId, output.Extension);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
@@ -132,9 +132,9 @@ public sealed class ConversionBatchExecutor(
                 {
                     try
                     {
-                        await _appleRwts18.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
+                        await _appleNibble.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
                     }
-                    catch (InvalidDataException) when (AppleRwts18ConversionService.IsCatalogAliasTarget(output.FormatId, output.Extension))
+                    catch (InvalidDataException) when (AppleNibbleConversionService.IsCatalogAliasTarget(output.FormatId, output.Extension))
                     {
                         completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
                         continue;
