@@ -20,6 +20,14 @@ internal static class DecRx02SectorOrder
         source.Slice((track * DecRx02Geometry.PhysicalSectorsPerTrack + sector - 1) * DecRx02Geometry.PhysicalSectorSize, DecRx02Geometry.PhysicalSectorSize).CopyTo(destination);
     }
 
+    /// <summary>Copie un secteur logique vers sa position physique entrelacée dans un dump RX02.</summary>
+    public static void WriteLogicalSector(Span<byte> destination, int logicalSector, ReadOnlySpan<byte> source)
+    {
+        if (source.Length != DecRx02Geometry.PhysicalSectorSize) throw new ArgumentException($"RX02 physical sectors contain {DecRx02Geometry.PhysicalSectorSize} bytes.", nameof(source));
+        var (track, sector) = LogicalToPhysical(logicalSector);
+        source.CopyTo(destination.Slice((track * DecRx02Geometry.PhysicalSectorsPerTrack + sector - FirstPhysicalSectorNumber) * DecRx02Geometry.PhysicalSectorSize, DecRx02Geometry.PhysicalSectorSize));
+    }
+
     /// <summary>Retourne la piste et le numéro de secteur physiques correspondant à un secteur logique.</summary>
     public static (int Track, int Sector) LogicalToPhysical(int logicalSector)
     {

@@ -235,7 +235,7 @@ Références communes :
 
 ### 2.6 DEC RX02 — IMG
 
-- [ ] Implémenter et raccorder un Writer IMG RX02 appliquant la géométrie et l’ordre logique DEC, puis comparer chaque secteur avec `Rx02Reader` et une reconstruction SCP.
+- [x] Implémenter et raccorder un Writer IMG RX02 appliquant la géométrie et l’ordre logique DEC, puis comparer chaque secteur avec `Rx02Reader` et une reconstruction SCP.
 
   Informations nécessaires :
 

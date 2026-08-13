@@ -11,6 +11,7 @@ using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Conversion.Commodore;
 using GWGUI.MediaEngine.Conversion.Amstrad;
 using GWGUI.MediaEngine.Conversion.Epson;
+using GWGUI.MediaEngine.Conversion.Dec;
 using GWGUI.MediaEngine.Composition;
 
 namespace GWGUI.App.Services;
@@ -29,7 +30,8 @@ public sealed class ConversionBatchExecutor(
     CommodoreDosConversionService? commodoreDos = null,
     AppleSectorConversionService? appleSector = null,
     AmstradDskConversionService? amstradDsk = null,
-    EpsonQx10ConversionService? epsonQx10 = null)
+    EpsonQx10ConversionService? epsonQx10 = null,
+    DecRx02ConversionService? decRx02 = null)
 {
     private readonly AmigaAdfConversionService _amigaAdf = amigaAdf ?? MediaEngineFactory.CreateAmigaAdfConversionService();
     private readonly IbmRawConversionService _ibmRaw = ibmRaw ?? MediaEngineFactory.CreateIbmRawConversionService();
@@ -44,9 +46,10 @@ public sealed class ConversionBatchExecutor(
     private readonly AppleSectorConversionService _appleSector = appleSector ?? MediaEngineFactory.CreateAppleSectorConversionService();
     private readonly AmstradDskConversionService _amstradDsk = amstradDsk ?? MediaEngineFactory.CreateAmstradDskConversionService();
     private readonly EpsonQx10ConversionService _epsonQx10 = epsonQx10 ?? MediaEngineFactory.CreateEpsonQx10ConversionService();
+    private readonly DecRx02ConversionService _decRx02 = decRx02 ?? MediaEngineFactory.CreateDecRx02ConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension);
+        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension) || DecRx02ConversionService.CanCreate(output.FormatId, output.Extension);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
@@ -92,6 +95,8 @@ public sealed class ConversionBatchExecutor(
                     await _amstradDsk.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else if (EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension))
                     await _epsonQx10.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
+                else if (DecRx02ConversionService.CanCreate(output.FormatId, output.Extension))
+                    await _decRx02.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
                 else if (AppleSectorConversionService.CanCreate(output.FormatId, output.Extension))
                     await _appleSector.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else

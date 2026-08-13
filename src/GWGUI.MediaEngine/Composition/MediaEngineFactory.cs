@@ -2,6 +2,7 @@
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Conversion.Amstrad;
 using GWGUI.MediaEngine.Conversion.Epson;
+using GWGUI.MediaEngine.Conversion.Dec;
 using GWGUI.MediaEngine.Containers.Epson.Raw;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Apple.Raw;
@@ -141,6 +142,13 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new EpsonQx10RawImageReader(), new EpsonQx10RawImageWriter(), new ImdReader(), new ImdWriter());
+    }
+
+    /// <summary>Crée le service de conversion DEC RX02 avec son ordre physique partagé.</summary>
+    public static DecRx02ConversionService CreateDecRx02ConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new DecRx02ScpSectorImageReader(scpReader, CreateFluxDecoders()), new DecRx02Reader(), new DecRx02Writer());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()
