@@ -13,7 +13,7 @@ public static class ExplorerDetailsPresenter
     public static ExplorerVolumeNamePresentation VolumeName(ExploredDiskImage document)
     {
         if (!document.FileSystemRecognized)
-            return new(LocExtension.Get("Explorer.Unknown"), false);
+            return document.UsesCustomSectorLoader ? new($"({LocExtension.Get("Explorer.Unnamed")})", true) : new(LocExtension.Get("Explorer.Unknown"), false);
         if (!string.IsNullOrWhiteSpace(document.Volume.Name))
             return new(document.Volume.Name, false);
         return new($"({LocExtension.Get("Explorer.Unnamed")})", true);
@@ -37,6 +37,7 @@ public static class ExplorerDetailsPresenter
             rows.Add(new("Explorer.Organization", LocExtension.Get("Explorer.CustomSectorLoader")));
             if (document.Metadata.Content.ModificationId is { } modificationId) rows.Add(new("Explorer.Modification", LocExtension.Get($"Explorer.Content.{modificationId}")));
             foreach (var compressionId in document.Metadata.Content.CompressionIds) rows.Add(new("Explorer.Compression", LocExtension.Get($"Explorer.Content.{compressionId}")));
+            if (document.Metadata.Content.OrganizationMemberCount > 0) rows.Add(new("Explorer.DataBlocks", document.Metadata.Content.OrganizationMemberCount.ToString()));
         }
         rows.Add(new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)));
         if (!document.UsesCustomSectorLoader)

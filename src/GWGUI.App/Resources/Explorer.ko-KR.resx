@@ -118,6 +118,8 @@
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>사용자 정의 로더 — 파일 카탈로그 없음</value></data>
   <data name="Explorer.Content.crack-the-company"><value>The Company 크랙</value></data>
   <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.Content.compression-atn-imploder"><value>ATN! (File Imploder)</value></data>
+  <data name="Explorer.DataBlocks"><value>데이터 블록</value></data>
   <data name="Explorer.DetectedFormats"><value>감지됨: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>

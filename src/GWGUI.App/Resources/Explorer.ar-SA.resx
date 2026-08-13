@@ -118,6 +118,8 @@
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>مُحمّل مخصص — لا يوجد فهرس ملفات</value></data>
   <data name="Explorer.Content.crack-the-company"><value>كراك بواسطة The Company</value></data>
   <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
+  <data name="Explorer.Content.compression-atn-imploder"><value>ATN! (File Imploder)</value></data>
+  <data name="Explorer.DataBlocks"><value>كتل البيانات</value></data>
   <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>

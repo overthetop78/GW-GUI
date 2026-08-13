@@ -16,8 +16,11 @@ internal sealed class DiskContentDetector
     {
         var bytes = Flatten(image);
         var modificationId = ContainsInOrder(bytes, CrackedBySignature, TheCompanySignature) ? DiskContentIds.CrackTheCompany : null;
-        var compressionIds = Contains(bytes, FireSignature) ? new[] { DiskContentIds.CompressionFire } : [];
-        return new(IsValidAmigaBootLoader(image, bytes), modificationId, compressionIds);
+        var compressionIds = new List<string>();
+        if (Contains(bytes, FireSignature)) compressionIds.Add(DiskContentIds.CompressionFire);
+        var organizationId = AtnImploderArchiveDetector.TryDetect(bytes, image.BlockSize, out var memberCount) ? DiskContentIds.OrganizationAtnArchive : null;
+        if (organizationId is not null) compressionIds.Add(DiskContentIds.CompressionAtnImploder);
+        return new(IsValidAmigaBootLoader(image, bytes), modificationId, compressionIds, organizationId, memberCount);
     }
 
     private static byte[] Flatten(SectorImage image)

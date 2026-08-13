@@ -34,5 +34,5 @@ public sealed record ExploredDiskImage
     /// <summary>Obtient les métadonnées techniques calculées lors de la construction.</summary>
     public DiskImageMetadata Metadata { get; }
     /// <summary>Indique que l'image valide utilise un chargeur plutôt qu'un catalogue de fichiers.</summary>
-    public bool UsesCustomSectorLoader => !FileSystemRecognized && Metadata.Content.HasValidAmigaBootLoader && Metadata.Content.HasIdentifiedCharacteristics;
+    public bool UsesCustomSectorLoader => !FileSystemRecognized && Metadata.Content.HasCataloglessOrganization;
 }

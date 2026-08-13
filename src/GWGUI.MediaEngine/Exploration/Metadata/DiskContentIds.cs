@@ -7,4 +7,8 @@ public static class DiskContentIds
     public const string CrackTheCompany = "crack-the-company";
     /// <summary>Données compactées portant la signature FIRE.</summary>
     public const string CompressionFire = "compression-fire";
+    /// <summary>Organisation sectorielle composée de blocs ATN!/File Imploder.</summary>
+    public const string OrganizationAtnArchive = "organization-atn-archive";
+    /// <summary>Données compactées au format ATN!, compatible avec File Imploder.</summary>
+    public const string CompressionAtnImploder = "compression-atn-imploder";
 }

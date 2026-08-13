@@ -2,6 +2,9 @@
 using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.TeleDisk;
+using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Exploration.Metadata;
 using Xunit.Abstractions;
 
 namespace GWGUI.Tests;
@@ -53,6 +56,43 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         var rampic = Assert.Single(document.Volume.Entries, entry => entry.Name == "rampic");
         Assert.Equal(8372, rampic.Size);
         Assert.Equal("FORM", System.Text.Encoding.ASCII.GetString(rampic.Content!.Take(4).ToArray()));
+    }
+
+    [Fact]
+    public async Task BodyBlowsDiskTwoRecognizesItsAtnArchiveWithoutInventingFiles()
+    {
+        const string path = @"F:\Disquettes\Body Blows Disk 2.scp";
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+        Assert.False(document.FileSystemRecognized);
+        Assert.True(document.UsesCustomSectorLoader);
+        Assert.Empty(document.Volume.Entries);
+        Assert.Equal(DiskContentIds.OrganizationAtnArchive, document.Metadata.Content.OrganizationId);
+        Assert.Equal(91, document.Metadata.Content.OrganizationMemberCount);
+        Assert.Contains(DiskContentIds.CompressionAtnImploder, document.Metadata.Content.CompressionIds);
+    }
+
+    [Fact]
+    public async Task BodyBlowsDiskTwoKeepsItsAtnOrganizationAfterInternalAdfConversion()
+    {
+        const string path = @"F:\Disquettes\Body Blows Disk 2.scp";
+        if (!File.Exists(path)) return;
+        var outputPath = Path.Combine(Path.GetTempPath(), $"gwgui-body-blows-{Guid.NewGuid():N}.adf");
+        try
+        {
+            await MediaEngineFactory.CreateAmigaAdfConversionService().ConvertAsync(path, outputPath, DiskImageFormatIds.AmigaDos);
+            var document = await DiskImageExplorer.CreateDefault().ExploreAsync(outputPath);
+
+            Assert.True(document.UsesCustomSectorLoader);
+            Assert.Empty(document.Volume.Entries);
+            Assert.Equal(DiskContentIds.OrganizationAtnArchive, document.Metadata.Content.OrganizationId);
+            Assert.Equal(91, document.Metadata.Content.OrganizationMemberCount);
+        }
+        finally
+        {
+            if (File.Exists(outputPath)) File.Delete(outputPath);
+        }
     }
 
     [Fact]

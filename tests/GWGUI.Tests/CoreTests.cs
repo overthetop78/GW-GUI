@@ -1203,6 +1203,22 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public void ExplorerPresentsAtnMembersAsDataBlocksInsteadOfFiles()
+    {
+        var image = new GWGUI.MediaEngine.SectorImages.SectorImage("amiga.amigados", 512, 1, 1, 1, []);
+        var content = new GWGUI.MediaEngine.Exploration.Metadata.DiskContentMetadata(false, null, [GWGUI.MediaEngine.Exploration.Metadata.DiskContentIds.CompressionAtnImploder], GWGUI.MediaEngine.Exploration.Metadata.DiskContentIds.OrganizationAtnArchive, 91);
+        var metadata = new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata(["amiga"], null, content);
+        var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("Body Blows Disk 2", "amiga.amigados", 901120, 0, null, null, [], []);
+        var details = ExplorerDetailsPresenter.ForDisk(new ExploredDiskImage("body-blows-disk-2.adf", image, volume, metadata, false));
+
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.Compression" && row.Value == "ATN! (File Imploder)");
+        Assert.Contains(details.Rows, row => row.Key == "Explorer.DataBlocks" && row.Value == "91");
+        Assert.DoesNotContain(details.Rows, row => row.Key == "Explorer.Entries");
+        Assert.True(details.IsSyntheticTitle);
+        Assert.Equal($"({LocExtension.Get("Explorer.Unnamed")})", details.Title);
+    }
+
+    [Fact]
     public void ExplorerMarksARecognizedVolumeWithoutARealNameAsSynthetic()
     {
         var image = new GWGUI.MediaEngine.SectorImages.SectorImage("amiga.amigados", 512, 1, 1, 1,

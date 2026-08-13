@@ -85,6 +85,31 @@ public sealed class DiskImageInterpretationComponentsTests
     }
 
     [Fact]
+    public void DocumentFactoryRecognizesAnAlignedAtnImploderArchiveWithoutInventingFiles()
+    {
+        var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
+        var document = factory.Create("archive.adf", AtnArchiveImage(), []);
+
+        Assert.True(document.UsesCustomSectorLoader);
+        Assert.Empty(document.Volume.Entries);
+        Assert.Equal(DiskContentIds.OrganizationAtnArchive, document.Metadata.Content.OrganizationId);
+        Assert.Equal(2, document.Metadata.Content.OrganizationMemberCount);
+        Assert.Contains(DiskContentIds.CompressionAtnImploder, document.Metadata.Content.CompressionIds);
+    }
+
+    [Fact]
+    public void AtnArchiveDetectorRejectsAnIsolatedSignatureAndInvalidSizes()
+    {
+        var bytes = new byte[1024];
+        "ATN!"u8.CopyTo(bytes);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(4), 100);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(8), 2000);
+
+        Assert.False(AtnImploderArchiveDetector.TryDetect(bytes, 512, out var memberCount));
+        Assert.Equal(0, memberCount);
+    }
+
+    [Fact]
     public void DecodeScoreCoversEmptyPartialAndCompleteImages()
     {
         Assert.Equal(0, DiskImageDecodeScore.Calculate(Image(1, [])));
@@ -137,6 +162,21 @@ public sealed class DiskImageInterpretationComponentsTests
             System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(4), ~sum);
         }
         return new(DiskImageFormatIds.AmigaDos, 512, 1, 1, 2, [new(0, new(0, 0, 0), bytes[..512]), new(1, new(0, 0, 1), bytes[512..])]);
+    }
+
+    private static SectorImage AtnArchiveImage()
+    {
+        var bytes = new byte[1024];
+        WriteAtnHeader(bytes.AsSpan(0), 384, 128);
+        WriteAtnHeader(bytes.AsSpan(512), 256, 96);
+        return new(DiskImageFormatIds.AmigaDos, 512, 1, 1, 2, [new(0, new(0, 0, 0), bytes[..512]), new(1, new(0, 0, 1), bytes[512..])]);
+    }
+
+    private static void WriteAtnHeader(Span<byte> destination, uint expandedSize, uint compressedSize)
+    {
+        "ATN!"u8.CopyTo(destination);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(destination[4..], expandedSize);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(destination[8..], compressedSize);
     }
 
     private sealed class FakeNormalizer(string name, ICollection<string> calls, SectorImage? result) : IRecognizedImageNormalizer
