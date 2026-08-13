@@ -90,7 +90,10 @@ public partial class ExplorerSection : UserControl
         DetectedFormatsText.ToolTip = detectedSummary;
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (_applyDetectionOnDisplay)
-            Classification.ApplyDetection(document.Image.FormatId, document.Metadata.ProtectionId, _detectedFormatIds);
+        {
+            Classification.ApplyDetection(CurrentFormatId(document), document.Metadata.ProtectionId, _detectedFormatIds);
+        }
+
         _applyDetectionOnDisplay = false;
         var volumeName = ExplorerDetailsPresenter.VolumeName(document);
         VolumeNameText.Text = volumeName.Text;
@@ -141,8 +144,14 @@ public partial class ExplorerSection : UserControl
             return selectedMachine;
         }
 
-        var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.Image.FormatId);
+        var format = new DiskClassificationCatalog(_formats).ResolveFormat(CurrentFormatId(document));
         return format?.Family ?? ExplorerMetadataPresenter.Systems(document.Metadata);
+    }
+
+    private static string CurrentFormatId(ExploredDiskImage document)
+    {
+        var currentFileSystem = document.DetectedFileSystems.FirstOrDefault(item => ReferenceEquals(item.Volume, document.Volume));
+        return currentFileSystem?.FormatId ?? document.Image.FormatId;
     }
 
     private Brush BrushFor(bool synthetic)

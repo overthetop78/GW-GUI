@@ -1435,9 +1435,13 @@ public sealed class CoreTests
 
                 var detected = Assert.IsType<System.Windows.Controls.TextBlock>(explorer.FindName("DetectedFormatsText"));
                 var currentSystem = Assert.IsType<System.Windows.Controls.TextBlock>(explorer.FindName("SystemText"));
+                var currentFileSystem = Assert.IsType<System.Windows.Controls.TextBlock>(explorer.FindName("FileSystemText"));
+                var currentCapacity = Assert.IsType<System.Windows.Controls.TextBlock>(explorer.FindName("CapacityText"));
                 Assert.Contains("Atari ST", detected.Text);
                 Assert.Contains("Amiga", detected.Text);
                 Assert.Equal("Atari ST", currentSystem.Text);
+                Assert.Equal("fat12", currentFileSystem.Text);
+                Assert.Equal("720 KiB", currentCapacity.Text);
 
                 var machine = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
                 var format = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Format"));
@@ -1458,6 +1462,9 @@ public sealed class CoreTests
                 explorer.Clear(path, true);
                 explorer.Display(Document(path, "amiga.amigados", ["amiga.amigados"]));
                 Assert.Equal("amiga.amigados", selector.SelectedFormatId);
+                Assert.Equal("Amiga", currentSystem.Text);
+                Assert.Equal("amigados.ofs", currentFileSystem.Text);
+                Assert.Equal("880 KiB", currentCapacity.Text);
                 Assert.False(machine.Items.Cast<DiskMachineChoice>().Single(item => item.DisplayName == "Atari ST").IsDetected);
             }
             catch (Exception exception) { failure = exception; }
@@ -1472,8 +1479,15 @@ public sealed class CoreTests
         {
             var image = new GWGUI.MediaEngine.SectorImages.SectorImage(formatId, 512, 1, 1, 1,
                 [new GWGUI.MediaEngine.SectorImages.SectorBlock(0, new(0, 0, 0), new byte[512], true)]);
-            var volume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("TEST", "test", 512, 0, null, null, [], []);
-            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null), detectedImageFormatIds: detected);
+            var atariVolume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("TEST", "fat12", 720 * 1024, 0, null, null, [], []);
+            var amigaVolume = new GWGUI.MediaEngine.FileSystems.FileSystemVolume("AMIGA", "amigados.ofs", 880 * 1024, 0, null, null, [], []);
+            var fileSystems = new[]
+            {
+                new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("atarist.720", "fat12", atariVolume),
+                new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("amiga.amigados", "amigados.ofs", amigaVolume)
+            }.Where(item => detected.Contains(item.FormatId, StringComparer.OrdinalIgnoreCase)).ToArray();
+            var volume = formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase) ? amigaVolume : atariVolume;
+            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null), detectedFileSystems: fileSystems, detectedImageFormatIds: detected);
         }
     }
 

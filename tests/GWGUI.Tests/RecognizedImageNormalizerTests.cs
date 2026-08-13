@@ -138,6 +138,7 @@ public sealed class RecognizedImageNormalizerTests
     private static SectorImage IbmImage(int sectors, int heads, int sectorsPerTrack)
     {
         var boot = Boot(sectors, heads, sectorsPerTrack);
+        System.Text.Encoding.ASCII.GetBytes("IBM  3.3").CopyTo(boot, FatBootSectorLayout.OemOffset);
         var fat = new byte[512];
         fat[FatBootSectorLayout.FatMediaDescriptorDataOffset] = 0xfd;
         return new("atarist.360", 512, sectors / (heads * sectorsPerTrack), heads, sectorsPerTrack, [new SectorBlock(0, new SectorAddress(0, 0, 1), boot), new SectorBlock(1, new SectorAddress(0, 0, 2), fat)], logicalBlockCount: sectors);

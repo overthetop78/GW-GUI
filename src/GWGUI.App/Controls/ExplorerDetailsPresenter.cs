@@ -19,7 +19,12 @@ public static class ExplorerDetailsPresenter
         return new($"({LocExtension.Get("Explorer.Unnamed")})", true);
     }
 
-    public static string FileSystemText(ExploredDiskImage document) => document.FileSystemRecognized ? string.Join(" + ", (document.DetectedFileSystems ?? []).Select(item => item.Volume.FileSystemId).Distinct(StringComparer.CurrentCultureIgnoreCase).DefaultIfEmpty(document.Volume.FileSystemId)) : LocExtension.Get(document.UsesCustomSectorLoader ? "Explorer.CustomSectorLoaderNoCatalog" : "Explorer.PhysicalSectorsNoFileSystem");
+    public static string FileSystemText(ExploredDiskImage document)
+    {
+        if (document.FileSystemRecognized) return document.Volume.FileSystemId;
+        var resourceKey = document.UsesCustomSectorLoader ? "Explorer.CustomSectorLoaderNoCatalog" : "Explorer.PhysicalSectorsNoFileSystem";
+        return LocExtension.Get(resourceKey);
+    }
 
     public static ExplorerDetailsPresentation ForDisk(ExploredDiskImage document, string? currentSystem = null)
     {
