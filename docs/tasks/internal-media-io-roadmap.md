@@ -506,7 +506,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 6.1 Transport et protocole Greaseweazle
 
-- [ ] Implémenter dans Infrastructure un client de protocole Greaseweazle couvrant ouverture série, négociation de version, sélection du lecteur, moteur, seek, écriture de flux, index, terminaison, annulation et fermeture sûre, puis le valider sur un faux transport déterministe.
+- [x] Implémenter dans Infrastructure un client de protocole Greaseweazle couvrant ouverture série, négociation de version, sélection du lecteur, moteur, seek, écriture de flux, index, terminaison, annulation et fermeture sûre, puis le valider sur un faux transport déterministe.
 
   Informations nécessaires :
 
