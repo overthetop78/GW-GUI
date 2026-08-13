@@ -77,6 +77,45 @@ public sealed class AtariStWriterTests
         }
     }
 
+    /// <summary>Vérifie le trajet ST vers MSA puis MSA vers ST sur chaque géométrie cataloguée.</summary>
+    [Theory]
+    [MemberData(nameof(Formats))]
+    public async Task RoundTripsEveryCataloguedGeometryBetweenStAndMsa(string formatId)
+    {
+        Assert.True(AtariStGeometry.TryFromFormatId(formatId, out var geometry));
+        var source = TemporaryPath(".st");
+        var intermediate = TemporaryPath(".msa");
+        var output = TemporaryPath(".st");
+        var expected = DeterministicBytes(geometry.Capacity);
+        try
+        {
+            await File.WriteAllBytesAsync(source, expected);
+            var service = MediaEngineFactory.CreateAtariStConversionService();
+            await service.ConvertAsync(source, intermediate, formatId);
+            await service.ConvertAsync(intermediate, output, formatId);
+            var msaImage = await new MsaReader().ReadAsync(intermediate);
+            var stImage = await new AtariStReader().ReadAsync(output);
+            Assert.Equal(formatId, msaImage.FormatId);
+            Assert.Equal(formatId, stImage.FormatId);
+            Assert.Equal(geometry.Cylinders, msaImage.Cylinders);
+            Assert.Equal(geometry.Heads, msaImage.Heads);
+            Assert.Equal(geometry.SectorsPerTrack, msaImage.SectorsPerTrack);
+            Assert.Equal(msaImage.AvailableBlocks.Count, stImage.AvailableBlocks.Count);
+            foreach (var expectedBlock in msaImage.AvailableBlocks.OrderBy(block => block.LogicalBlock))
+            {
+                var actualBlock = Assert.Single(stImage.AvailableBlocks, block => block.LogicalBlock == expectedBlock.LogicalBlock);
+                Assert.Equal(expectedBlock.Data, actualBlock.Data);
+            }
+            Assert.Equal(expected, await File.ReadAllBytesAsync(output));
+        }
+        finally
+        {
+            File.Delete(source);
+            File.Delete(intermediate);
+            File.Delete(output);
+        }
+    }
+
     /// <summary>Vérifie qu'un changement de capacité est refusé sans écraser la destination.</summary>
     [Fact]
     public async Task RejectsLossyGeometryChangeWithoutReplacingDestination()

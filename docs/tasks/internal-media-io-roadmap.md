@@ -363,7 +363,7 @@ Références communes :
 
 ### 4.2 ST ↔ MSA
 
-- [ ] Raccorder la conversion bidirectionnelle Atari ST/​MSA au service interne après disponibilité du `MsaWriter`, puis valider les géométries et l’égalité de tous les blocs.
+- [x] Raccorder la conversion bidirectionnelle Atari ST/​MSA au service interne après disponibilité du `MsaWriter`, puis valider les géométries et l’égalité de tous les blocs.
 
   Informations nécessaires :
 
