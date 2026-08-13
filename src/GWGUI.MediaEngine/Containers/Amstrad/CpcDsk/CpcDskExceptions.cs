@@ -47,4 +47,13 @@ internal static class CpcDskExceptions
     /// <summary>Crée l’erreur signalant qu’aucun secteur n’a été extrait du conteneur.</summary>
     /// <returns>L’exception décrivant l’absence de secteurs.</returns>
     public static InvalidDataException NoSectors() => new("The Amstrad DSK image contains no sectors.");
+
+    /// <summary>Crée l'erreur signalant un modèle de conteneur incohérent.</summary>
+    public static InvalidDataException InvalidContainer(string reason) => new($"The Amstrad DSK container cannot be written: {reason}");
+
+    /// <summary>Crée l'erreur signalant qu'une piste Extended ne tient pas dans sa table de taille.</summary>
+    public static InvalidDataException ExtendedTrackTooLarge(int trackIndex, int size) => new($"Amstrad EDSK track {trackIndex} occupies {size} bytes and exceeds the 65280-byte container limit.");
+
+    /// <summary>Crée l'erreur signalant qu'une piste n'est pas représentable par le format Standard.</summary>
+    public static InvalidDataException StandardTrackNotRepresentable(int trackIndex) => new($"Amstrad DSK track {trackIndex} uses an absent, variable-size or non-nominal sector representation that requires EDSK.");
 }

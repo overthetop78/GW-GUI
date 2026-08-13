@@ -200,7 +200,7 @@ Références communes :
 
 ### 2.4 Amstrad CPC et PCW — DSK et EDSK
 
-- [ ] Implémenter et raccorder un Writer DSK/EDSK commun conservant les descripteurs de pistes, tailles sectorielles, statuts et données disponibles, puis valider les variantes CPC et PCW.
+- [x] Implémenter et raccorder un Writer DSK/EDSK commun conservant les descripteurs de pistes, tailles sectorielles, statuts et données disponibles, puis valider les variantes CPC et PCW.
 
   Informations nécessaires :
 

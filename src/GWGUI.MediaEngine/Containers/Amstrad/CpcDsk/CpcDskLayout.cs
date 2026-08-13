@@ -110,4 +110,7 @@ public static class CpcDskLayout
 
     /// <summary>Masque du bit signalant une erreur d’intégrité des données dans le premier octet d’état.</summary>
     public const int DataErrorMask = 0x20;
+
+    /// <summary>Nombre maximal de descripteurs tenant dans un bloc d'informations de piste.</summary>
+    public const int MaximumSectorsPerTrack = (TrackInformationBlockSize - SectorDescriptorTableOffset) / SectorDescriptorSize;
 }

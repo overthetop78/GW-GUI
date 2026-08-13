@@ -1,5 +1,6 @@
 ﻿using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
+using GWGUI.MediaEngine.Conversion.Amstrad;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
@@ -124,6 +125,13 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new CommodoreScpSectorImageReader(scpReader, CreateFluxDecoders()), new D64Reader(), new D71Reader(), new CommodoreDosContainerWriter());
+    }
+
+    /// <summary>Crée le service de conversion CPCEMU DSK/EDSK avec son modèle de conteneur partagé.</summary>
+    public static AmstradDskConversionService CreateAmstradDskConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new CpcDskReader(), new CpcDskWriter());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()
