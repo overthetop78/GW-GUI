@@ -384,7 +384,7 @@ Références communes :
 
 ### 4.4 DO ↔ PO ↔ 2MG
 
-- [ ] Raccorder les Writers Apple sectoriels et 2MG à un service de conversion commun appliquant explicitement l’ordre DOS ou ProDOS, puis tester les chaînes aller-retour sans se fier au suffixe `.dsk`.
+- [x] Raccorder les Writers Apple sectoriels et 2MG à un service de conversion commun appliquant explicitement l’ordre DOS ou ProDOS, puis tester les chaînes aller-retour sans se fier au suffixe `.dsk`.
 
   Informations nécessaires :
 

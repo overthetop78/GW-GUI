@@ -3,6 +3,7 @@ using System.IO;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Containers.Apple.TwoImg;
+using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
@@ -94,6 +95,37 @@ public sealed class AppleSectorWriterTests
         finally
         {
             File.Delete(path);
+        }
+    }
+
+    /// <summary>Vérifie la chaîne PO vers DO vers 2MG puis PO avec un ordre sectoriel explicite.</summary>
+    [Fact]
+    public async Task ConversionServiceRoundTripsProDosThroughDoPoAndTwoImg()
+    {
+        var image = CreateImage(DiskImageFormatIds.AppleIIProDos140);
+        var source = TemporaryPath(DiskImageFileExtensions.Po);
+        var dos = TemporaryPath(DiskImageFileExtensions.Do);
+        var container = TemporaryPath(DiskImageFileExtensions.TwoMg);
+        var output = TemporaryPath(DiskImageFileExtensions.Po);
+        try
+        {
+            await new AppleRawImageWriter().WriteAsync(image, source, DiskImageFormatIds.AppleIIProDos140);
+            var service = MediaEngineFactory.CreateAppleSectorConversionService();
+            await service.ConvertAsync(source, dos, DiskImageFormatIds.AppleIIProDos140);
+            Assert.Equal(Flatten(image), AppleIISectorOrderConverter.DosToProDos(await File.ReadAllBytesAsync(dos)));
+            await service.ConvertAsync(dos, container, DiskImageFormatIds.AppleIIProDos140);
+            await service.ConvertAsync(container, output, DiskImageFormatIds.AppleIIProDos140);
+            var reopened = await new AppleDiskImageReader().ReadAsync(output);
+            Assert.Equal(image.BlockCount, reopened.BlockCount);
+            foreach (var expectedBlock in image.AvailableBlocks) Assert.Equal(expectedBlock.Data, reopened.GetBlock(expectedBlock.LogicalBlock).ToArray());
+            Assert.Equal(await File.ReadAllBytesAsync(source), await File.ReadAllBytesAsync(output));
+        }
+        finally
+        {
+            File.Delete(source);
+            File.Delete(dos);
+            File.Delete(container);
+            File.Delete(output);
         }
     }
 
