@@ -27,7 +27,10 @@ public sealed class AppleRwts18ConversionService
     }
 
     /// <summary>Indique si le format RWTS18 peut produire l'extension demandÃ©e.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) && OutputExtensions.Contains(extension);
+    public static bool CanCreate(string formatId, string extension) => (formatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase)) && OutputExtensions.Contains(extension);
+
+    /// <summary>Indique que l'interface présente le volume comme Apple DOS 140 Kio tout en laissant le service sonder son encodage RWTS18.</summary>
+    public static bool IsCatalogAliasTarget(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) && OutputExtensions.Contains(extension);
 
     /// <summary>Lit, valide puis convertit une source RWTS18 sans crÃ©er la sortie avant la fin des validations.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)

@@ -38,4 +38,24 @@ public static class AppleIISectorOrderConverter
         }
         return output;
     }
+
+    /// <summary>Réordonne tous les blocs logiques ProDOS en secteurs enregistrés dans l'ordre d'un fichier DOS.</summary>
+    public static byte[] ProDosToDos(ReadOnlySpan<byte> proDosOrder)
+    {
+        if (proDosOrder.Length % AppleIIGeometry.TrackSize != 0) throw AppleIISectorOrderExceptions.InvalidLength(proDosOrder.Length, AppleIIGeometry.TrackSize);
+        var output = new byte[proDosOrder.Length];
+        var trackCount = proDosOrder.Length / AppleIIGeometry.TrackSize;
+        for (var track = 0; track < trackCount; track++)
+        {
+            for (var logicalSector = 0; logicalSector < AppleIIGeometry.SectorsPerTrack; logicalSector++)
+            {
+                var physicalSector = ProDosToPhysicalSector(logicalSector);
+                var dosFileSector = PhysicalToDosFileSector(physicalSector);
+                var sourceOffset = (track * AppleIIGeometry.SectorsPerTrack + logicalSector) * AppleIIGeometry.SectorSize;
+                var destinationOffset = (track * AppleIIGeometry.SectorsPerTrack + dosFileSector) * AppleIIGeometry.SectorSize;
+                proDosOrder.Slice(sourceOffset, AppleIIGeometry.SectorSize).CopyTo(output.AsSpan(destinationOffset, AppleIIGeometry.SectorSize));
+            }
+        }
+        return output;
+    }
 }

@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.Reconstruction.Apple;
+using GWGUI.MediaEngine.Recognition.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.Reconstruction.Apple;
@@ -46,8 +47,9 @@ public sealed class AppleScpSectorImageReader
             formatId?.StartsWith(DiskImageFormatIds.AppleIINoFileSystemPrefix, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.AppleIIDosPrefix, StringComparison.OrdinalIgnoreCase) == true)
             return _appleII.Decode(scp, false, cancellationToken);
-        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) == true ||
-            formatId?.StartsWith(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) == true)
+        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) == true)
+            return ReadSos(scp, cancellationToken);
+        if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) == true)
             return _appleII.Decode(scp, true, cancellationToken);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
@@ -57,6 +59,15 @@ public sealed class AppleScpSectorImageReader
             return _macintosh.Decode(scp, formatId, cancellationToken);
 
         return DetectAutomatically(scp, cancellationToken);
+    }
+
+    /// <summary>Reconstruit l'ordre ProDOS et n'accepte le profil SOS que si son marqueur d'amorçage est présent.</summary>
+    private SectorImage ReadSos(ScpImage scp, CancellationToken cancellationToken)
+    {
+        var image = _appleII.Decode(scp, true, cancellationToken);
+        var payload = Enumerable.Range(0, image.BlockCount).SelectMany(logicalBlock => image.GetBlock(logicalBlock).ToArray()).ToArray();
+        if (!AppleRawImageProbe.LooksLikeSos(payload)) throw new InvalidDataException("The reconstructed Apple III image does not contain a valid SOS boot marker.");
+        return image.WithFormatId(DiskImageFormatIds.AppleIIISos);
     }
 
     /// <summary>Essaie chaque famille Apple et conserve l'image la plus complète.</summary>

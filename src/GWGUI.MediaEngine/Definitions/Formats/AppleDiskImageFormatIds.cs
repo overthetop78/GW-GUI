@@ -7,6 +7,8 @@ public static partial class DiskImageFormatIds
     public const string AppleIIPrefix = "apple2.";
     /// <summary>Préfixe des formats Apple II AppleDOS.</summary>
     public const string AppleIIAppleDosPrefix = "apple2.appledos";
+    /// <summary>Image Apple II AppleDOS de 113 Kio.</summary>
+    public const string AppleIIAppleDos113 = "apple2.appledos.113";
     /// <summary>Image Apple II AppleDOS de 140 Kio.</summary>
     public const string AppleIIAppleDos140 = "apple2.appledos.140";
     /// <summary>Préfixe des formats Apple II DOS.</summary>

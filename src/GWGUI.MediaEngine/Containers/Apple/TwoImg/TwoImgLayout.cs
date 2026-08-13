@@ -14,6 +14,12 @@ public static class TwoImgLayout
     /// <summary>Longueur, en octets, de la signature ASCII 2IMG.</summary>
     public const int SignatureLength = 4;
 
+    /// <summary>Offset de l'identifiant ASCII de l'application ayant créé le conteneur.</summary>
+    public const int CreatorOffset = 4;
+
+    /// <summary>Longueur de l'identifiant ASCII de l'application ayant créé le conteneur.</summary>
+    public const int CreatorLength = 4;
+
     /// <summary>Offset du champ 16 bits little-endian contenant la taille de l’en-tête.</summary>
     public const int HeaderSizeOffset = 8;
 
@@ -22,6 +28,12 @@ public static class TwoImgLayout
 
     /// <summary>Offset du champ 32 bits little-endian contenant le format de la charge utile.</summary>
     public const int ImageFormatOffset = 12;
+
+    /// <summary>Offset du champ 32 bits little-endian contenant les drapeaux du conteneur.</summary>
+    public const int FlagsOffset = 16;
+
+    /// <summary>Offset du champ 32 bits little-endian contenant le nombre de blocs ProDOS.</summary>
+    public const int BlockCountOffset = 20;
 
     /// <summary>Offset du champ 32 bits little-endian contenant la position de la charge utile.</summary>
     public const int DataOffsetOffset = 24;

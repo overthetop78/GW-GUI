@@ -1,6 +1,8 @@
 ﻿using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Containers.Apple;
+using GWGUI.MediaEngine.Containers.Apple.Raw;
+using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Containers.Atari.Msa;
 using GWGUI.MediaEngine.Containers.Atari.St;
@@ -92,6 +94,12 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         var decoders = CreateFluxDecoders();
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, decoders), new AppleDiskImageWriter(new AppleRwts18TrackEncodingService()));
+    }
+    /// <summary>Crée le service de conversion sectorielle Apple avec ses Readers et Writers partagés.</summary>
+    public static AppleSectorConversionService CreateAppleSectorConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new AppleRawImageWriter(), new TwoImgWriter());
     }
     /// <summary>Crée le service de conversion sectorielle Atari ST avec ses Reader et Writer partagés.</summary>
     public static AtariStConversionService CreateAtariStConversionService()

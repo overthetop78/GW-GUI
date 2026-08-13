@@ -165,7 +165,7 @@ Références communes :
 
 ### 2.3 Apple II et Apple III — D13, DO, DSK, PO et 2MG
 
-- [ ] Implémenter et raccorder les Writers sectoriels Apple D13, DOS-order et ProDOS-order en centralisant les tables d’interleave, puis valider DOS 3.2, DOS 3.3, ProDOS 140/800 Kio et SOS.
+- [x] Implémenter et raccorder les Writers sectoriels Apple D13, DOS-order et ProDOS-order en centralisant les tables d’interleave, puis valider DOS 3.2, DOS 3.3, ProDOS 140/800 Kio et SOS.
 
   Informations nécessaires :
 
@@ -178,7 +178,7 @@ Références communes :
   Référence de validation : https://github.com/fadden/CiderPress2
   ```
 
-- [ ] Implémenter et raccorder un `TwoImgWriter` enveloppant une image Apple validée dans un conteneur 2MG, avec offsets, longueur, type d’image et drapeaux contrôlés à la réouverture.
+- [x] Implémenter et raccorder un `TwoImgWriter` enveloppant une image Apple validée dans un conteneur 2MG, avec offsets, longueur, type d’image et drapeaux contrôlés à la réouverture.
 
   Informations nécessaires :
 
@@ -188,7 +188,7 @@ Références communes :
   Référence CiderPress2 : https://github.com/fadden/CiderPress2
   ```
 
-- [ ] Corriger le raccordement d’Apple II Brøderbund RWTS18 afin que le format technique détecté appelle réellement `AppleRwts18ConversionService` pour les sorties NIB et WOZ, puis tester le chemin complet depuis l’interface.
+- [x] Corriger le raccordement d’Apple II Brøderbund RWTS18 afin que le format technique détecté appelle réellement `AppleRwts18ConversionService` pour les sorties NIB et WOZ, puis tester le chemin complet depuis l’interface.
 
   Informations nécessaires :
 

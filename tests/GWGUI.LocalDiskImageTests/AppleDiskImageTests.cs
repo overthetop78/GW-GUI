@@ -24,6 +24,9 @@ using GWGUI.Domain.Formats;
 using GWGUI.Domain.Write;
 using GWGUI.App.Controls;
 using GWGUI.App.Localization;
+using GWGUI.App.Services;
+using GWGUI.Domain.Commands;
+using GWGUI.Domain.Conversion;
 
 namespace GWGUI.Tests;
 
@@ -176,6 +179,35 @@ public sealed class AppleDiskImageTests
             Assert.Equal(blocks.Length, decoded.AvailableBlocks.Count);
         }
         finally { File.Delete(source); File.Delete(output); }
+    }
+
+    /// <summary>Vérifie que la sélection Apple DOS visible route une source RWTS18 vers le convertisseur interne sans créer un faux format de volume.</summary>
+    [Fact]
+    public async Task CatalogSelectionRoutesRwts18ThroughInternalBatchConversion()
+    {
+        var blocks = Enumerable.Range(0, 35).SelectMany(track => Enumerable.Range(0, 6).Select(sector => new SectorBlock(track * 6 + sector, new(track, 0, sector), Enumerable.Repeat((byte)(track * 11 + sector), 768).ToArray()))).ToArray();
+        var sourceImage = new SectorImage(DiskImageFormatIds.AppleIIRwts18, 768, 35, 1, 6, blocks);
+        var source = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.nib");
+        var destination = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.woz");
+        try
+        {
+            await new AppleDiskImageWriter().WriteAsync(sourceImage, source);
+            var catalog = new BuiltInImageFormatCatalog();
+            var output = Assert.Single(new ConversionPlanner(catalog).Plan(source, Path.GetDirectoryName(destination)!, Path.GetFileNameWithoutExtension(destination), [new(DiskImageFormatIds.AppleIIAppleDos140, new HashSet<string> { DiskImageFileExtensions.Woz })], false));
+            var runner = new RecordingRunner();
+            var command = new GwCommand("gw.exe", "convert", [source, destination]);
+            var result = await new ConversionBatchExecutor(runner).RunAsync(source, [(output, command)]);
+            Assert.True(ConversionBatchExecutor.IsInternal(output));
+            Assert.Equal(DiskImageFormatIds.AppleIIAppleDos140, output.FormatId);
+            Assert.Equal(0, runner.CallCount);
+            Assert.True(Assert.Single(result.Items).Result.IsSuccess);
+            Assert.Equal(DiskImageFormatIds.AppleIIRwts18, (await new AppleDiskImageReader().ReadAsync(destination)).FormatId);
+        }
+        finally
+        {
+            File.Delete(source);
+            File.Delete(destination);
+        }
     }
 
     [Fact]
@@ -607,5 +639,18 @@ public sealed class AppleDiskImageTests
     private sealed class MemoryScpReader(ScpImage image) : IScpReader
     {
         public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) => Task.FromResult(image);
+    }
+
+    /// <summary>Compte les appels externes afin de prouver que le chemin RWTS18 reste interne.</summary>
+    private sealed class RecordingRunner : IGreaseweazleRunner
+    {
+        public int CallCount { get; private set; }
+        public bool IsRunning => false;
+
+        public Task<GwExecutionResult> RunAsync(GwCommand command, IProgress<GwOutputLine>? output = null, CancellationToken cancellationToken = default)
+        {
+            CallCount++;
+            return Task.FromResult(new GwExecutionResult(1, false, TimeSpan.Zero, []));
+        }
     }
 }

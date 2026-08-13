@@ -23,6 +23,7 @@ internal static class AppleII525RawImageReader
     /// <summary>Applique dans l'ordre l'indice PO, ProDOS direct, DOS direct, SOS converti, ProDOS converti et le repli DOS 3.3.</summary>
     public static AppleRawImageReadResult Read(ReadOnlyMemory<byte> data, string extension)
     {
+        if (extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) && AppleRawImageProbe.LooksLikeSos(data.Span)) return new(LinearSectorImageBuilder.Create(data, DiskImageFormatIds.AppleIIISos, ProDosGeometry), AppleRawImageMatchKind.ValidatedStructure);
         if (extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase)) return CreateProDos(data, AppleRawImageMatchKind.ExtensionHint);
         if (AppleRawImageProbe.LooksLikeProDos(data.Span)) return CreateProDos(data, AppleRawImageMatchKind.ValidatedStructure);
         if (AppleRawImageProbe.LooksLikeDos33(data.Span)) return CreateDos33(data, AppleRawImageMatchKind.ValidatedStructure);
