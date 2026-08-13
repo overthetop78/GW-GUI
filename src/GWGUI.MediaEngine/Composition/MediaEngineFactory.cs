@@ -8,6 +8,7 @@ using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Containers.Commodore.D81;
+using GWGUI.MediaEngine.Containers.Commodore;
 using GWGUI.MediaEngine.Containers.Cp2;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
 using GWGUI.MediaEngine.Containers.I86f;
@@ -109,6 +110,12 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new CommodoreScpSectorImageReader(scpReader, CreateFluxDecoders()), new D81Reader(), new D81Writer(new LinearSectorImageWriter()));
+    }
+    /// <summary>Crée le service de conversion D64/D71 avec son Writer zoné commun.</summary>
+    public static CommodoreDosConversionService CreateCommodoreDosConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new CommodoreScpSectorImageReader(scpReader, CreateFluxDecoders()), new D64Reader(), new D71Reader(), new CommodoreDosContainerWriter());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()

@@ -150,7 +150,7 @@ Références communes :
 
 ### 2.2 Commodore 1541 et 1571 — D64 et D71
 
-- [ ] Implémenter et raccorder un Writer commun Commodore DOS produisant D64 et D71 selon les zones de pistes, avec prise en charge séparée de la table facultative d’erreurs, puis valider BAM, chaînes de répertoire et fichiers.
+- [x] Implémenter et raccorder un Writer commun Commodore DOS produisant D64 et D71 selon les zones de pistes, avec prise en charge séparée de la table facultative d’erreurs, puis valider BAM, chaînes de répertoire et fichiers.
 
   Informations nécessaires :
 
