@@ -646,6 +646,32 @@ public sealed class CoreTests
     }
 
     [Fact]
+    public async Task OperationCoordinatorSignalsCompletionOnlyAfterCancelledWorkHasStopped()
+    {
+        var coordinator = new OperationCoordinator();
+        var stopped = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var running = coordinator.RunAsync<int>(async cancellationToken =>
+        {
+            try
+            {
+                await Task.Delay(Timeout.InfiniteTimeSpan, cancellationToken);
+            }
+            finally
+            {
+                stopped.SetResult();
+            }
+            return 0;
+        });
+        await Task.Yield();
+
+        coordinator.RequestCancellation();
+        await coordinator.WaitForCompletionAsync();
+
+        Assert.True(stopped.Task.IsCompleted);
+        Assert.True((await running).Error is OperationCanceledException);
+    }
+
+    [Fact]
     public void OperationResultPresenterDistinguishesSingleSuccessFailureAndCancellation()
     {
         var presenter = new OperationResultPresenter();

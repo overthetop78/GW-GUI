@@ -41,6 +41,7 @@ public sealed class OperationRuntimeController
 
     public bool IsRunning => _coordinator.IsRunning;
     public void RequestCancellation() => _coordinator.RequestCancellation();
+    public Task WaitForCompletionAsync() => _coordinator.WaitForCompletionAsync();
     public Task<OperationOutcome<T>> RunAsync<T>(Func<CancellationToken, Task<T>> operation) => _coordinator.RunAsync(operation);
     public OperationResultPresentation Present(OperationOutcome<GwExecutionResult> outcome) => _resultPresenter.Present(outcome);
     public OperationResultPresentation Present(OperationOutcome<GwBatchExecutionResult> outcome) => _resultPresenter.Present(outcome);

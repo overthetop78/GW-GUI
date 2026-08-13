@@ -85,6 +85,27 @@ public sealed class DiskImageInterpretationComponentsTests
     }
 
     [Fact]
+    public void CataloglessBootDetectorRejectsSparseAndIncompleteImages()
+    {
+        var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));
+        var sparse = new byte[2048];
+        sparse.AsSpan(12, 64).Fill(1);
+        var blocks = new[]
+        {
+            new SectorBlock(0, new(0, 0, 0), sparse[..512]),
+            new SectorBlock(1, new(0, 0, 1), sparse[512..1024]),
+            new SectorBlock(2, new(0, 0, 2), sparse[1024..1536]),
+            new SectorBlock(3, new(0, 0, 3), sparse[1536..])
+        };
+        var sparseImage = new SectorImage(DiskImageFormatIds.AmigaDos, 512, 1, 1, 4, blocks);
+
+        var document = factory.Create("sparse.adf", sparseImage, []);
+
+        Assert.False(document.UsesCustomSectorLoader);
+        Assert.NotEmpty(document.Volume.Entries);
+    }
+
+    [Fact]
     public void DocumentFactoryRecognizesAnAlignedAtnImploderArchiveWithoutInventingFiles()
     {
         var factory = new DiskImageDocumentFactory(new DiskImageMetadataFactory(new DiskSystemResolver(), new DiskProtectionResolver()));

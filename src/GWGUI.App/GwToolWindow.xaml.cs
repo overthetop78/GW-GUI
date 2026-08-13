@@ -22,6 +22,8 @@ public partial class GwToolWindow : Window
     private CancellationTokenSource? _cancellation;
     private readonly Dictionary<string, TextBox> _fields = [];
     private readonly Dictionary<string, CheckBox> _checks = [];
+    private bool _closeWhenOperationStops;
+    private bool _operationHasStopped;
 
     public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null, ConsoleLogSession? consoleLog = null)
     {
@@ -35,6 +37,17 @@ public partial class GwToolWindow : Window
         _consoleLog = consoleLog;
         Heading.Text = Title = TitleFor(verb);
         CreateParameters(); UpdateCommand();
+    }
+
+    protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+    {
+        if (_cancellation is not null && !_operationHasStopped)
+        {
+            e.Cancel = true;
+            _closeWhenOperationStops = true;
+            _cancellation.Cancel();
+        }
+        base.OnClosing(e);
     }
 
     private void CreateParameters()
@@ -119,7 +132,17 @@ public partial class GwToolWindow : Window
             Summary.Text = LocExtension.Get("Error.Unexpected", detail);
             if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
         }
-        finally { ExecuteButton.Content = LocExtension.Get("Common.Execute"); _cancellation.Dispose(); _cancellation = null; }
+        finally
+        {
+            ExecuteButton.Content = LocExtension.Get("Common.Execute");
+            _cancellation.Dispose();
+            _cancellation = null;
+            if (_closeWhenOperationStops)
+            {
+                _operationHasStopped = true;
+                Close();
+            }
+        }
     }
 
     private static string L(string key) => LocExtension.Get(key);

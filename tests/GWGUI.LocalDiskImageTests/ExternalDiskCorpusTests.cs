@@ -111,14 +111,29 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public async Task SuperCarsTwoDiskTwoDoesNotExposeAnUnsignedEmptyRootAsOfs()
+    public async Task SuperCarsTwoDiskTwoIsRecognizedAsACataloglessBootImage()
     {
         const string path = @"F:\Disquettes\Supercars II Disk 2.scp";
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
         Assert.False(document.FileSystemRecognized);
-        Assert.NotEmpty(document.Volume.Entries);
-        Assert.All(document.Volume.Entries, entry => Assert.StartsWith("T", entry.Name));
+        Assert.True(document.UsesCustomSectorLoader);
+        Assert.Empty(document.Volume.Entries);
+        Assert.Equal(DiskContentIds.OrganizationCataloglessBootImage, document.Metadata.Content.OrganizationId);
+    }
+
+    [Theory]
+    [InlineData(@"F:\Disquettes\Goblins II Disk 2.scp")]
+    [InlineData(@"F:\Disquettes\Speedball II.scp")]
+    public async Task CompleteAmigaBootImagesWithoutCatalogDoNotExposePhysicalSectors(string path)
+    {
+        if (!File.Exists(path)) return;
+        var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
+
+        Assert.False(document.FileSystemRecognized);
+        Assert.True(document.UsesCustomSectorLoader);
+        Assert.Empty(document.Volume.Entries);
+        Assert.Equal(DiskContentIds.OrganizationCataloglessBootImage, document.Metadata.Content.OrganizationId);
     }
 
     [Fact]

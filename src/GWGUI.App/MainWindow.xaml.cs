@@ -1098,6 +1098,8 @@ public partial class MainWindow : Window
             failure = exception;
         }
 
+        await _operation.WaitForCompletionAsync().ConfigureAwait(false);
+
         if (Dispatcher.HasShutdownStarted || Dispatcher.HasShutdownFinished) return;
         try
         {

@@ -9,6 +9,8 @@ public static class DiskContentIds
     public const string CompressionFire = "compression-fire";
     /// <summary>Organisation sectorielle composée de blocs ATN!/File Imploder.</summary>
     public const string OrganizationAtnArchive = "organization-atn-archive";
+    /// <summary>Image amorçable complète chargée directement par secteurs et dépourvue de catalogue reconnu.</summary>
+    public const string OrganizationCataloglessBootImage = "organization-catalogless-boot-image";
     /// <summary>Données compactées au format ATN!, compatible avec File Imploder.</summary>
     public const string CompressionAtnImploder = "compression-atn-imploder";
 }
