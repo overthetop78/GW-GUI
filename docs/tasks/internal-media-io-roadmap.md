@@ -560,7 +560,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 7.2 Sauvegarde et décodage en direct
 
-- [ ] Implémenter un `PhysicalDiskReadService` capable d’écrire un SCP par `ScpWriter`, de décoder progressivement les pistes avec MediaEngine et de présenter les mêmes diagnostics que l’ouverture d’un fichier SCP.
+- [x] Implémenter un `PhysicalDiskReadService` capable d’écrire un SCP par `ScpWriter`, de décoder progressivement les pistes avec MediaEngine et de présenter les mêmes diagnostics que l’ouverture d’un fichier SCP.
 
   Informations nécessaires :
 
@@ -568,6 +568,8 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
   Formats visés : tous les décodeurs déjà enregistrés dans FluxDecoderRegistry.
   Ne pas coupler l’acquisition au choix d’un système de fichiers : une capture brute doit rester possible.
   ```
+
+  Réalisé : `PhysicalDiskReadService` conserve la capture brute, écrit le conteneur par `IScpWriter`, produit un diagnostic progressif pour chaque piste avec tous les codecs de `FluxDecoderRegistry`, puis confie le SCP sauvegardé au même `DiskImageExplorer` que l’ouverture d’un fichier existant. Le choix d’un système de fichiers n’intervient jamais dans l’acquisition.
 
 ### 7.3 Raccordement et validation matérielle
 

@@ -3,7 +3,7 @@ using System.Buffers.Binary;
 namespace GWGUI.MediaEngine.Containers.Scp;
 
 /// <summary>Écrit atomiquement un conteneur SCP standard à partir de son modèle de pistes et de révolutions.</summary>
-public sealed class ScpWriter
+public sealed class ScpWriter : IScpWriter
 {
     /// <summary>Écrit l'image dans un fichier temporaire, finalise sa table et sa somme de contrôle, puis remplace la destination.</summary>
     public async Task WriteAsync(string path, ScpImage image, CancellationToken cancellationToken = default)
