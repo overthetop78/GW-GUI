@@ -96,6 +96,21 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
     }
 
     [Fact]
+    public async Task DuneTwoSaveAdfRecoversTheSameCatalogAsItsScpSource()
+    {
+        const string scpPath = @"F:\Disquettes\Dune II (Save 2).scp";
+        const string adfPath = @"F:\Disquettes\Dune II (Save 2).adf";
+        if (!File.Exists(scpPath) || !File.Exists(adfPath)) return;
+        var explorer = DiskImageExplorer.CreateDefault();
+        var scp = await explorer.ExploreAsync(scpPath);
+        var adf = await explorer.ExploreAsync(adfPath);
+
+        Assert.True(scp.FileSystemRecognized);
+        Assert.True(adf.FileSystemRecognized);
+        Assert.Equal(Names(scp.Volume.Entries), Names(adf.Volume.Entries));
+    }
+
+    [Fact]
     public async Task SuperCarsTwoDiskTwoDoesNotExposeAnUnsignedEmptyRootAsOfs()
     {
         const string path = @"F:\Disquettes\Supercars II Disk 2.scp";
@@ -199,4 +214,7 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
 
     private static int Count(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries)
         => entries.Sum(entry => 1 + Count(entry.Children));
+
+    private static string[] Names(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries)
+        => entries.SelectMany(entry => new[] { entry.Name }.Concat(Names(entry.Children))).Order(StringComparer.OrdinalIgnoreCase).ToArray();
 }

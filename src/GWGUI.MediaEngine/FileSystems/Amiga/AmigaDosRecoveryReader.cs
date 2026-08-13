@@ -34,7 +34,11 @@ public static class AmigaDosRecoveryReader
         return expectedRoot > 0 && expectedRoot < image.BlockCount;
     }
 
-    private static bool IsRootUnavailable(SectorImage image, int expectedRoot) => !image.TryGetBlock(expectedRoot, out var root) || root.IntegrityValid == false;
+    private static bool IsRootUnavailable(SectorImage image, int expectedRoot)
+    {
+        if (!image.TryGetBlock(expectedRoot, out var root) || root.IntegrityValid == false || root.Data.Count != AmigaDosLayout.BlockSize) return true;
+        return AmigaDosUnavailableBlockDetector.IsUnavailable(root.Data.ToArray());
+    }
 
     private static Dictionary<int, RecoveredEntry> ReadCandidates(SectorImage image, AmigaDosVariant variant)
     {

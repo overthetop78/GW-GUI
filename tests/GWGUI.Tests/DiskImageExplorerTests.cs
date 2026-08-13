@@ -246,6 +246,38 @@ public sealed class DiskImageExplorerTests
     }
 
     [Fact]
+    public void AmigaDosReaderRecoversRealEntriesWhenARawImageContainsAnInvalidRootPlaceholder()
+    {
+        var source = BuildAmigaImage(true);
+        var rootBlock = source.BlockCount / 2;
+        var placeholder = ReplaceAmigaBlock(source, rootBlock, block =>
+        {
+            for (var offset = 0; offset < block.Length; offset += 16) "-=[BAD SECTOR]=-"u8.CopyTo(block.AsSpan(offset));
+        }, integrityValid: true);
+        var reader = new AmigaDosFileSystemReader();
+
+        Assert.True(reader.CanRead(placeholder));
+        var volume = reader.Read(placeholder);
+
+        Assert.False(volume.FreeSpaceKnown);
+        Assert.Contains(volume.Warnings, warning => warning.Contains("Recovered 3 AmigaDOS catalog entries", StringComparison.Ordinal));
+        Assert.Equal("hello"u8.ToArray(), volume.Entries.Single(entry => entry.Name == "Hello").Content);
+        Assert.Equal("inside"u8.ToArray(), volume.Entries.Single(entry => entry.Name == "Drawer").Children.Single(entry => entry.Name == "Nested").Content);
+    }
+
+    [Fact]
+    public void AmigaDosUnavailableBlockDetectorRequiresTheCompleteRepeatedMarker()
+    {
+        var placeholder = new byte[512];
+        for (var offset = 0; offset < placeholder.Length; offset += 16) "-=[BAD SECTOR]=-"u8.CopyTo(placeholder.AsSpan(offset));
+
+        Assert.True(AmigaDosUnavailableBlockDetector.IsUnavailable(placeholder));
+        placeholder[^1] ^= 1;
+        Assert.False(AmigaDosUnavailableBlockDetector.IsUnavailable(placeholder));
+        Assert.False(AmigaDosUnavailableBlockDetector.IsUnavailable("prefix -=[BAD SECTOR]=- suffix"u8));
+    }
+
+    [Fact]
     public void AmigaDosReaderRejectsAnUnsignedRootWithoutDirectoryEntries()
     {
         var source = BuildAmigaImage(false);
