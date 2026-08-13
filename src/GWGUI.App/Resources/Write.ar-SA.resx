@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>حدد تنسيق القرص قبل تصور مساراته.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>كتابة داخلية (تجريبية)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>يكتب مباشرة بالمحرك الداخلي دون gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>كتابة GW GUI الداخلية: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>بعض الخيارات المتقدمة المحددة غير مدعومة بعد.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>التحقق الداخلي غير متاح بعد. فعّل «عدم التحقق».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>المسار {0}، الوجه {1}: {2}</value></data>
 </root>

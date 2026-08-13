@@ -2,13 +2,6 @@ using GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 namespace GWGUI.App.Services.PhysicalDiskWriting;
 
-public enum PhysicalTrackEncoding
-{
-    Mfm,
-    Fm,
-    Gcr
-}
-
 public sealed record PhysicalWritePrecompensationStep(int FromCylinder, double Nanoseconds);
 
 public sealed record PhysicalDiskWriteOptions(

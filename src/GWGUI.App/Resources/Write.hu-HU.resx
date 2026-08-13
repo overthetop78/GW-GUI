@@ -62,4 +62,10 @@ Lemezre írja ezt a képet?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>A műsorszámok megjelenítése előtt válassza ki a lemez formátumát.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Belső írás (kísérleti)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Közvetlenül a belső motorral ír, gw.exe nélkül.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI belső írás: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Egy vagy több kiválasztott speciális beállítás még nem támogatott.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>A belső ellenőrzés még nem érhető el. Kapcsolja be a „Ne ellenőrizze” lehetőséget.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Sáv {0}, oldal {1}: {2}</value></data>
 </root>

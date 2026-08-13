@@ -62,4 +62,10 @@ Skriva den här bilden till disken?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Välj skivformat innan du visualiserar dess spår.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Intern skrivning (experimentell)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Skriver direkt med den interna motorn utan gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Intern GW GUI-skrivning: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Ett eller flera valda avancerade alternativ stöds ännu inte.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Intern verifiering är ännu inte tillgänglig. Aktivera ”Verifiera inte”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Spår {0}, sida {1}: {2}</value></data>
 </root>

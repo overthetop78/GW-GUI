@@ -62,4 +62,10 @@ Tulis gambar ini ke disk?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Pilih format disk sebelum memvisualisasikan treknya.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Penulisan internal (eksperimental)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Menulis langsung dengan mesin internal tanpa gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Penulisan internal GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Satu atau beberapa opsi lanjutan belum didukung.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Verifikasi internal belum tersedia. Aktifkan “Jangan verifikasi”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Trek {0}, sisi {1}: {2}</value></data>
 </root>

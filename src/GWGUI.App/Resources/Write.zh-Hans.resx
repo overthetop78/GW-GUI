@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>在查看其磁道之前选择磁盘格式。</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>内部写入（实验性）</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>不使用 gw.exe，直接通过内部引擎写入。</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI 内部写入：{0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>一个或多个所选高级选项尚不受支持。</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>内部验证尚不可用。请启用“不验证”。</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>磁道 {0}，盘面 {1}：{2}</value></data>
 </root>

@@ -32,6 +32,7 @@ using GWGUI.App.ViewModels;
 using GWGUI.App.Services;
 using GWGUI.App.Controls;
 using GWGUI.App.Rendering;
+using GWGUI.App.Services.PhysicalDiskWriting;
 
 namespace GWGUI.App;
 
@@ -706,6 +707,11 @@ public partial class MainWindow : Window
     private void UpdateWriteCommand()
     {
         if (CommandPreview is null || WriteSourceText is null || MainTabs?.SelectedIndex != 1) return;
+        if (_viewModel.Write.InternalWriter.Enabled)
+        {
+            CommandPreview.Text = LocExtension.Get("Write.InternalPreview", WriteSourceText.Text);
+            return;
+        }
         try { CommandPreview.Text = BuildWriteCommand().ToDisplayString(); }
         catch (ArgumentException) { CommandPreview.Text = $"âš  {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
@@ -719,6 +725,11 @@ public partial class MainWindow : Window
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
         { _dialogs.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
+        if (_viewModel.Write.InternalWriter.Enabled)
+        {
+            await ExecuteInternalWriteAsync(selected);
+            return;
+        }
         if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)) { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information); return; }
         GwCommand command;
         try { command = BuildWriteCommand(); }
@@ -733,6 +744,75 @@ public partial class MainWindow : Window
         ApplyOperationResult(_operation.Present(outcome));
         EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
+
+    private async Task ExecuteInternalWriteAsync(DiskFormat selected)
+    {
+        var hardware = SelectedHardware();
+        if (hardware is null)
+        {
+            _dialogs.Show(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning);
+            return;
+        }
+        if (!_viewModel.Write.DisableVerification)
+        {
+            _dialogs.Show(LocExtension.Get("Write.InternalVerificationUnavailable"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning);
+            return;
+        }
+        if (HasUnsupportedInternalWriteOptions())
+        {
+            _dialogs.Show(LocExtension.Get("Write.InternalUnsupportedOptions"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning);
+            return;
+        }
+
+        var warning = LocExtension.Get(_viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
+        var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(WriteSourceText.Text), selected.DisplayName, hardware.Label, warning);
+        if (_dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
+
+        WriteExecuteButton.Content = LocExtension.Get("Common.Stop");
+        BeginProgress();
+        await RenderPendingProgressAsync();
+        LogOutput.Clear();
+        await _consoleLog.BeginAsync("write-internal", LocExtension.Get("Write.InternalPreview", WriteSourceText.Text));
+        var stopwatch = Stopwatch.StartNew();
+        var outcome = await _operation.RunAsync(async token =>
+        {
+            var writer = InternalPhysicalDiskWriter.CreateDefault();
+            var options = CreateInternalWriteOptions(hardware);
+            var progress = new Progress<PhysicalTrackWriteProgress>(_progress.Accept);
+            var request = new InternalPhysicalDiskWriteRequest(WriteSourceText.Text, selected.Id, options);
+            var result = await writer.WriteAsync(request, progress, token);
+            var lines = result.Failures.Select(failure => new GwOutputLine(
+                DateTimeOffset.Now,
+                GwOutputStream.Error,
+                LocExtension.Get("Write.InternalFailure", failure.Cylinder?.ToString() ?? "-", failure.Head?.ToString() ?? "-", failure.Message))).ToArray();
+            foreach (var line in lines) ReportOutput(line);
+            return new GwExecutionResult(result.IsSuccess ? 0 : 1, result.Cancelled, stopwatch.Elapsed, lines);
+        });
+        await FlushPendingOutputAsync();
+        ApplyOperationResult(_operation.Present(outcome));
+        EndProgress();
+        WriteExecuteButton.Content = LocExtension.Get("Common.Execute");
+    }
+
+    private PhysicalDiskWriteOptions CreateInternalWriteOptions(HardwareChoice hardware)
+    {
+        var selection = GreaseweazleDriveSelectionPolicy.Resolve(hardware.Drive.Selection);
+        return new(hardware.Port, selection.BusType, selection.Unit, Verify: false);
+    }
+
+    private bool HasUnsupportedInternalWriteOptions() =>
+        _viewModel.Write.EraseEmpty.Enabled ||
+        _viewModel.Write.Retries.Enabled ||
+        _viewModel.Write.Tracks.Enabled ||
+        _viewModel.Write.PreErase.Enabled ||
+        _viewModel.Write.FakeIndex.Enabled ||
+        _viewModel.Write.HardSectors.Enabled ||
+        _viewModel.Write.Precomp.Enabled ||
+        _viewModel.Write.Reverse.Enabled ||
+        _viewModel.Write.Densel.Enabled ||
+        _viewModel.Write.Tg43.Enabled ||
+        _viewModel.Write.DiskDefs.Enabled ||
+        !string.IsNullOrWhiteSpace(_viewModel.Write.ExpertArguments);
 
     private void WriteProfile_Changed(object sender, SelectionChangedEventArgs e)
     {

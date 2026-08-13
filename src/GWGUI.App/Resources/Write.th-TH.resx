@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>เลือกรูปแบบดิสก์ก่อนที่จะแสดงภาพแทร็ก</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>เขียนภายใน (ทดลอง)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>เขียนโดยตรงด้วยเอนจินภายในโดยไม่ใช้ gw.exe</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>การเขียนภายใน GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>ตัวเลือกขั้นสูงบางรายการยังไม่รองรับ</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>ยังไม่มีการตรวจสอบภายใน โปรดเปิด “ไม่ตรวจสอบ”</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>แทร็ก {0} ด้าน {1}: {2}</value></data>
 </root>

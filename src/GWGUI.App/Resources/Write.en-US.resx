@@ -62,4 +62,10 @@ Write this image to disk?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Select the disk format before visualizing its tracks.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Internal writing (experimental)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Writes directly through the internal engine without gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI internal write: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>One or more selected advanced options are not yet supported by internal writing.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Internal verification is not available yet. Enable “Do not verify” to use experimental internal writing.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Track {0}, side {1}: {2}</value></data>
 </root>

@@ -62,4 +62,10 @@ Scrieți această imagine pe disc?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Selectați formatul discului înainte de a-i vizualiza urmele.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Scriere internă (experimentală)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Scrie direct cu motorul intern, fără gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Scriere internă GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una sau mai multe opțiuni avansate selectate nu sunt încă acceptate.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Verificarea internă nu este încă disponibilă. Activați „Nu verifica”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Pistă {0}, față {1}: {2}</value></data>
 </root>

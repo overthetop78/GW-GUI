@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>Επιλέξτε τη μορφή του δίσκου πριν οπτικοποιήσετε τα κομμάτια του.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Εσωτερική εγγραφή (πειραματική)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Γράφει απευθείας με την εσωτερική μηχανή χωρίς gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Εσωτερική εγγραφή GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Μία ή περισσότερες σύνθετες επιλογές δεν υποστηρίζονται ακόμη.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Η εσωτερική επαλήθευση δεν είναι ακόμη διαθέσιμη. Ενεργοποιήστε το «Χωρίς επαλήθευση».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Ίχνος {0}, πλευρά {1}: {2}</value></data>
 </root>

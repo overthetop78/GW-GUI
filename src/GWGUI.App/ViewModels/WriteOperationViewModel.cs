@@ -11,6 +11,7 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
 
     public string SourcePath { get => _sourcePath; set => Set(ref _sourcePath, value); }
     public string ExpertArguments { get => _expertArguments; set => Set(ref _expertArguments, value); }
+    public FlagOptionViewModel InternalWriter { get; } = new("--internal-writer");
     public FlagOptionViewModel NoVerify { get; } = new("--no-verify");
     public FlagOptionViewModel EraseEmpty { get; } = new("--erase-empty");
     public ValueOptionViewModel Retries { get; } = new("--retries", "3");
@@ -25,7 +26,7 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
     public ValueOptionViewModel DiskDefs { get; } = new("--diskdefs", "");
 
     public bool DisableVerification => NoVerify.Enabled;
-    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(x => x.Enabled && x != NoVerify).Select(x => x.ToEnabledOption()).ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(x => x.Enabled && x != NoVerify && x != InternalWriter).Select(x => x.ToEnabledOption()).ToArray();
     public void EnableFakeIndex() { FakeIndex.Enabled = true; HardSectors.Enabled = false; }
     public void EnableHardSectors() { HardSectors.Enabled = true; FakeIndex.Enabled = false; }
     public void EnableDensel() { Densel.Enabled = true; Tg43.Enabled = false; }
@@ -48,7 +49,7 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
         result["expert"] = ExpertArguments; return result;
     }
 
-    private IEnumerable<OperationOptionViewModelBase> AllOptions() => [NoVerify, EraseEmpty, Retries, Tracks, PreErase, FakeIndex, HardSectors, Precomp, Reverse, Densel, Tg43, DiskDefs];
+    private IEnumerable<OperationOptionViewModelBase> AllOptions() => [InternalWriter, NoVerify, EraseEmpty, Retries, Tracks, PreErase, FakeIndex, HardSectors, Precomp, Reverse, Densel, Tg43, DiskDefs];
     public event PropertyChangedEventHandler? PropertyChanged;
     private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null) { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; PropertyChanged?.Invoke(this, new(name)); }
 }

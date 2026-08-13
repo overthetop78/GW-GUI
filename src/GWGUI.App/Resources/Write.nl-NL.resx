@@ -62,4 +62,10 @@ Deze afbeelding naar schijf schrijven?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Selecteer het schijfformaat voordat u de tracks visualiseert.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Intern schrijven (experimenteel)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Schrijft rechtstreeks met de interne engine zonder gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Interne GW GUI-schrijfactie: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Een of meer geselecteerde geavanceerde opties worden nog niet ondersteund.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Interne verificatie is nog niet beschikbaar. Schakel ‘Niet verifiëren’ in.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Spoor {0}, zijde {1}: {2}</value></data>
 </root>

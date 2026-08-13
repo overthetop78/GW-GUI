@@ -62,4 +62,10 @@ Dieses Bild auf die Festplatte schreiben?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Wählen Sie das Festplattenformat aus, bevor Sie die Spuren anzeigen.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Internes Schreiben (experimentell)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Schreibt direkt mit der internen Engine ohne gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Interner GW-GUI-Schreibvorgang: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Mindestens eine ausgewählte erweiterte Option wird beim internen Schreiben noch nicht unterstützt.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Die interne Überprüfung ist noch nicht verfügbar. Aktivieren Sie „Nicht überprüfen“.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Spur {0}, Seite {1}: {2}</value></data>
 </root>

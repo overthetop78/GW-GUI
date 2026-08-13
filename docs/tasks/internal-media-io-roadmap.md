@@ -533,6 +533,8 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 - [ ] Raccorder l’onglet Écriture au service interne derrière une option explicite, puis valider sur disquettes de test Amiga, Atari ST, IBM, MSX, Apple, Commodore, Acorn/BBC, Amstrad, Epson et DEC avant de retirer le repli `gw.exe` pour une famille.
 
+  État : le raccordement logiciel est disponible derrière l’option explicite « Écriture physique interne (expérimental) ». Le chemin `gw.exe` reste le comportement par défaut et aucune famille n’en a été retirée. La validation matérielle destructive est bloquée tant qu’un corpus de disquettes sacrifiables couvrant les dix familles et une autorisation explicite d’écriture physique ne sont pas disponibles ; aucun résultat matériel n’est donc affirmé.
+
   Informations nécessaires :
 
   ```text

@@ -62,4 +62,10 @@ Scrivere questa immagine su disco?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Seleziona il formato del disco prima di visualizzarne le tracce.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Scrittura interna (sperimentale)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Scrive direttamente con il motore interno senza gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Scrittura interna GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una o più opzioni avanzate selezionate non sono ancora supportate dalla scrittura interna.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La verifica interna non è ancora disponibile. Attivare «Non verificare».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Traccia {0}, lato {1}: {2}</value></data>
 </root>

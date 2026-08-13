@@ -2,6 +2,7 @@ using System.Windows;
 using System.Windows.Media;
 using GWGUI.App.Controls;
 using GWGUI.App.ViewModels;
+using GWGUI.App.Services.PhysicalDiskWriting;
 using GWGUI.Domain.Commands;
 
 namespace GWGUI.App.Services;
@@ -72,6 +73,16 @@ public sealed class OperationProgressController(
         }
         else
             viewModel.ProgressText = localize("Status.TrackUnknown", [progress.Cylinder, progress.Head, progress.CompletedTracks]);
+    }
+
+    public void Accept(PhysicalTrackWriteProgress progress)
+    {
+        viewModel.ProgressIndeterminate = false;
+        viewModel.ProgressValue = progress.TotalTracks == 0
+            ? 0
+            : progress.CompletedTracks * 100d / progress.TotalTracks;
+        viewModel.ProgressText = localize("Status.TrackProgress",
+            [progress.Cylinder, progress.Head, progress.CompletedTracks, progress.TotalTracks]);
     }
 
     public void End()

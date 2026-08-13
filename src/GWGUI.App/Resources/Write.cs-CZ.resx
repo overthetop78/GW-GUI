@@ -62,4 +62,10 @@ Zapsat tento obrázek na disk?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Před zobrazením jeho stop vyberte formát disku.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Interní zápis (experimentální)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Zapisuje přímo interním jádrem bez gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Interní zápis GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Některé vybrané pokročilé volby zatím interní zápis nepodporuje.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Interní ověření zatím není dostupné. Zapněte „Neověřovat“.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Stopa {0}, strana {1}: {2}</value></data>
 </root>

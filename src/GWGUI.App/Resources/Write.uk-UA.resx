@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>Виберіть формат диска перед візуалізацією його треків.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Внутрішній запис (експериментально)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Записує безпосередньо внутрішнім рушієм без gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Внутрішній запис GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Деякі вибрані розширені параметри ще не підтримуються.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Внутрішня перевірка ще недоступна. Увімкніть «Не перевіряти».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Доріжка {0}, сторона {1}: {2}</value></data>
 </root>

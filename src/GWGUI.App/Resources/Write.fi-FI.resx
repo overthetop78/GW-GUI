@@ -62,4 +62,10 @@ Kirjoita tämä kuva levylle?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Valitse levyn muoto ennen sen kappaleiden visualisointia.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Sisäinen kirjoitus (kokeellinen)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Kirjoittaa suoraan sisäisellä moottorilla ilman gw.exe:tä.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI:n sisäinen kirjoitus: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Yhtä tai useampaa lisäasetusta ei vielä tueta.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Sisäinen tarkistus ei ole vielä käytettävissä. Valitse ”Älä tarkista”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Raita {0}, puoli {1}: {2}</value></data>
 </root>

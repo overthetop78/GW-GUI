@@ -62,4 +62,10 @@ Lecteur : {2}
   <data name="Write.VisualizeFormatRequired">
     <value>Sélectionnez le format de la disquette avant de visualiser ses pistes.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Écriture interne (expérimentale)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Écrit directement avec le moteur interne, sans gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Écriture interne GW GUI : {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Une ou plusieurs options avancées sélectionnées ne sont pas encore prises en charge par l’écriture interne.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La vérification interne n’est pas encore disponible. Activez « Ne pas vérifier » pour utiliser l’écriture interne expérimentale.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Piste {0}, face {1} : {2}</value></data>
 </root>

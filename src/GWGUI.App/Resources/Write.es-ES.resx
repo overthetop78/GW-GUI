@@ -62,4 +62,10 @@ Unidad: {2}
   <data name="Write.VisualizeFormatRequired">
     <value>Seleccione el formato del disco antes de visualizar sus pistas.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Escritura interna (experimental)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Escribe directamente con el motor interno sin gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Escritura interna de GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una o más opciones avanzadas seleccionadas aún no son compatibles con la escritura interna.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La verificación interna aún no está disponible. Active «No verificar».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Pista {0}, cara {1}: {2}</value></data>
 </root>

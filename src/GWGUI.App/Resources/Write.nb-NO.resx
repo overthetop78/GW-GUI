@@ -62,4 +62,10 @@ Vil du skrive dette bildet til disk?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Velg diskformatet før du visualiserer sporene.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Intern skriving (eksperimentell)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Skriver direkte med den interne motoren uten gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Intern GW GUI-skriving: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Ett eller flere valgte avanserte alternativer støttes ikke ennå.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Intern verifisering er ikke tilgjengelig ennå. Aktiver «Ikke verifiser».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Spor {0}, side {1}: {2}</value></data>
 </root>

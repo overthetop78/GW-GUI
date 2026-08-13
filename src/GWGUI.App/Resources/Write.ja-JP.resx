@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>トラックを視覚化する前にディスク形式を選択します。</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>内部書き込み（試験運用）</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>gw.exe を使わず、内部エンジンで直接書き込みます。</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI 内部書き込み: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>選択した詳細オプションの一部はまだ対応していません。</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>内部検証はまだ利用できません。「検証しない」を有効にしてください。</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>トラック {0}、面 {1}: {2}</value></data>
 </root>

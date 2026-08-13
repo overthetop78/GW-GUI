@@ -6,10 +6,6 @@ public sealed class GreaseweazleProtocolClient(
     IGreaseweazleSerialTransport transport,
     int maximumFluxUnderflowRetries = 5) : IGreaseweazleWriteDevice
 {
-    public const int CommunicationClearBaudRate = 10000;
-    public const int NormalBaudRate = 9600;
-    public static readonly Version EarliestSupportedFirmware = new(0, 31);
-
     private bool _selected;
     private bool _motorOn;
     private byte _selectedUnit;
@@ -21,7 +17,7 @@ public sealed class GreaseweazleProtocolClient(
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(portName);
-        await transport.OpenAsync(portName, NormalBaudRate, cancellationToken);
+        await transport.OpenAsync(portName, GreaseweazleProtocol.NormalBaudRate, cancellationToken);
         try
         {
             await ResetCommunicationAsync(cancellationToken);
@@ -31,7 +27,7 @@ public sealed class GreaseweazleProtocolClient(
             Firmware = ParseFirmware(response);
             if (!Firmware.IsMainFirmware)
                 throw new InvalidOperationException("The Greaseweazle controller is in firmware-update mode.");
-            if (Firmware.Version < EarliestSupportedFirmware)
+            if (Firmware.Version < GreaseweazleProtocol.EarliestSupportedFirmware)
                 throw new InvalidOperationException($"Greaseweazle firmware {Firmware.Version} is too old.");
             return Firmware;
         }
@@ -163,8 +159,8 @@ public sealed class GreaseweazleProtocolClient(
 
     private async ValueTask ResetCommunicationAsync(CancellationToken cancellationToken)
     {
-        await transport.SetBaudRateAsync(CommunicationClearBaudRate, cancellationToken);
-        await transport.SetBaudRateAsync(NormalBaudRate, cancellationToken);
+        await transport.SetBaudRateAsync(GreaseweazleProtocol.CommunicationClearBaudRate, cancellationToken);
+        await transport.SetBaudRateAsync(GreaseweazleProtocol.NormalBaudRate, cancellationToken);
         await transport.DiscardBuffersAsync(cancellationToken);
     }
 

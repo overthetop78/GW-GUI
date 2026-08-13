@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>Выберите формат диска, прежде чем визуализировать его треки.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Внутренняя запись (экспериментально)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Записывает напрямую внутренним движком без gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Внутренняя запись GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Некоторые выбранные расширенные параметры пока не поддерживаются внутренней записью.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Внутренняя проверка пока недоступна. Включите «Не проверять».</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Дорожка {0}, сторона {1}: {2}</value></data>
 </root>

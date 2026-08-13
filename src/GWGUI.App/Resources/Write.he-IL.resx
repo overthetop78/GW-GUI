@@ -62,4 +62,10 @@
   <data name="Write.VisualizeFormatRequired">
     <value>בחר את פורמט הדיסק לפני הצגת הרצועות שלו.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>כתיבה פנימית (ניסיונית)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>כתיבה ישירה באמצעות המנוע הפנימי ללא gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>כתיבה פנימית של GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>אפשרות מתקדמת אחת או יותר עדיין אינה נתמכת.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>אימות פנימי עדיין אינו זמין. יש להפעיל „ללא אימות”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>רצועה {0}, צד {1}: {2}</value></data>
 </root>

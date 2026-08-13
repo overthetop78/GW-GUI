@@ -62,4 +62,10 @@ Gravar esta imagem no disco?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Selecione o formato do disco antes de visualizar suas trilhas.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Gravação interna (experimental)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Grava diretamente com o mecanismo interno sem gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Gravação interna do GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Uma ou mais opções avançadas selecionadas ainda não são compatíveis com a gravação interna.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>A verificação interna ainda não está disponível. Ative “Não verificar”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Trilha {0}, lado {1}: {2}</value></data>
 </root>

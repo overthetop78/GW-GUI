@@ -62,4 +62,10 @@ Bu görüntü diske yazılsın mı?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Parçalarını görselleştirmeden önce disk formatını seçin.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Dahili yazma (deneysel)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>gw.exe olmadan doğrudan dahili motorla yazar.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI dahili yazma: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Seçilen gelişmiş seçeneklerden bazıları henüz desteklenmiyor.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Dahili doğrulama henüz kullanılamıyor. “Doğrulama” seçeneğini kapatın.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>İz {0}, yüz {1}: {2}</value></data>
 </root>

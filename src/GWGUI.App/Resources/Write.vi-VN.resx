@@ -62,4 +62,10 @@ Ghi hình ảnh này vào đĩa?</value>
   <data name="Write.VisualizeFormatRequired">
     <value>Chọn định dạng đĩa trước khi hiển thị các bản nhạc của nó.</value>
   </data>
+  <data name="Write.InternalWriter" xml:space="preserve"><value>Ghi nội bộ (thử nghiệm)</value></data>
+  <data name="Write.InternalWriterTip" xml:space="preserve"><value>Ghi trực tiếp bằng bộ máy nội bộ mà không dùng gw.exe.</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>Ghi nội bộ GW GUI: {0}</value></data>
+  <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Một hoặc nhiều tùy chọn nâng cao chưa được hỗ trợ.</value></data>
+  <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Chưa có xác minh nội bộ. Hãy bật “Không xác minh”.</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Rãnh {0}, mặt {1}: {2}</value></data>
 </root>
