@@ -60,7 +60,7 @@ Références communes :
 
 ### 1.3 MSX — DSK 1D, 1DD, 2D et 2DD
 
-- [ ] Raccorder le Writer brut ISO commun aux sorties MSX `.dsk`, valider les quatre géométries cataloguées et prouver que le BPB, les FAT, les répertoires et les contenus restent identiques après réouverture.
+- [x] Raccorder le Writer brut ISO commun aux sorties MSX `.dsk`, valider les quatre géométries cataloguées et prouver que le BPB, les FAT, les répertoires et les contenus restent identiques après réouverture.
 
   Informations nécessaires :
 

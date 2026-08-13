@@ -19,6 +19,13 @@ public static class MsxDiskGeometryCatalog
         new MsxDiskGeometry(737_280, DiskImageFormatIds.Msx2Dd, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, SectorsPerTrack)
     });
 
+    /// <summary>Recherche un profil MSX par son identifiant technique explicite.</summary>
+    public static bool TryFromFormatId(string formatId, out MsxDiskGeometry geometry)
+    {
+        geometry = Supported.SingleOrDefault(candidate => candidate.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))!;
+        return geometry is not null;
+    }
+
     /// <summary>Résout la capacité et le descripteur média en tenant compte de l'ambiguïté des images de 368 640 octets.</summary>
     /// <param name="capacity">Capacité totale de l'image, en octets.</param>
     /// <param name="mediaDescriptor">Descripteur de média lu dans le BPB FAT.</param>
