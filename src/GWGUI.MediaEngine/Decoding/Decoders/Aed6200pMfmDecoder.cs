@@ -34,7 +34,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
                 if (!data.HeaderCanBeAdded) continue;
                 var integrity = CombineIntegrity(headerValid, data.Valid);
                 var sizeCode = SectorSizeCode.TryFromByteCount(size, out var knownSizeCode) ? knownSizeCode : SectorSizeCode.MinimumCode;
-                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], sizeCode, size, integrity, offset));
+                sectors.Add(new(header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], sizeCode, size, integrity, offset, Data: data.Payload));
                 structures.Add(new(FluxStructureKind.FormatHeader, offset, headerBits, FluxStructureDescriptions.Complete("AED 6200P", FluxStructureKind.FormatHeader, header[Aed6200pMfmFormat.CylinderOffset], 0, header[Aed6200pMfmFormat.SectorOffset], size, null, null, headerValid, data.Valid)));
                 offset = Math.Max(offset + Aed6200pMfmFormat.HeaderPattern.Count * BitPrimitives.BitsPerByte - 1, data.StructureEnd - 1);
             }
@@ -69,21 +69,22 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
     private static AedDataReadResult ReadDataBlock(FluxBitstream stream, int headerOffset, int headerBits, int size, HashSet<int> pairedData, List<FluxStructure> structures, List<byte> bytes)
     {
         var dataOffset = FindDataMark(stream, headerOffset + 1, Math.Min(stream.Bits.Length, headerOffset + Aed6200pMfmFormat.DataSearchWindowByteCount * BitPrimitives.BitsPerByte));
-        if (dataOffset < 0) return new(true, null, headerOffset + headerBits);
+        if (dataOffset < 0) return new(true, null, headerOffset + headerBits, null);
         pairedData.Add(dataOffset);
         var dataBlockBytes = Aed6200pMfmFormat.DataMarkByteCount + size + Aed6200pMfmFormat.CrcByteCount;
         var dataEnd = (long)dataOffset + dataBlockBytes * MfmEncoding.EncodedByteBitCount;
         if (size <= 0 || dataEnd > stream.Bits.Length)
         {
             structures.Add(new(FluxStructureKind.FormatData, dataOffset, MfmEncoding.EncodedByteBitCount, FluxStructureDescriptions.Truncated("AED 6200P", FluxStructureKind.FormatData, null, "CRC unavailable")));
-            return new(true, null, headerOffset + headerBits);
+            return new(true, null, headerOffset + headerBits, null);
         }
         var data = TryDecodeMfmBytes(stream, dataOffset, dataBlockBytes);
-        if (data is null) return new(false, null, headerOffset + headerBits);
+        if (data is null) return new(false, null, headerOffset + headerBits, null);
         var valid = data[Aed6200pMfmFormat.HeaderMarkOffset] is >= Aed6200pMfmFormat.FirstDataAddressMark and <= Aed6200pMfmFormat.LastDataAddressMark && Primitives.Crc16Calculator.Compute(data) == 0;
-        bytes.AddRange(data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size));
+        var payload = data.Skip(Aed6200pMfmFormat.DataMarkByteCount).Take(size).ToArray();
+        bytes.AddRange(payload);
         structures.Add(new(FluxStructureKind.FormatData, dataOffset, (int)dataEnd - dataOffset, FluxStructureDescriptions.WithIntegrity("AED 6200P", FluxStructureKind.FormatData, 0, 0, 0, size, data[Aed6200pMfmFormat.HeaderMarkOffset], null, "CRC", valid)));
-        return new(true, valid, (int)dataEnd);
+        return new(true, valid, (int)dataEnd, payload);
     }
 
     /// <summary>Combine la validité de l'en-tête et celle des données.</summary>
@@ -104,7 +105,7 @@ public sealed class Aed6200pMfmDecoder : IFluxDecoder
 
     /// <summary>Décrit le résultat de la lecture d'un bloc de données AED.</summary>
     /// <param name="HeaderCanBeAdded">Indique si le traitement de l'en-tête peut se poursuivre.</param><param name="Valid">Validité du bloc, ou valeur nulle lorsqu'elle est indisponible.</param><param name="StructureEnd">Position de fin de la structure, en bits.</param>
-    private readonly record struct AedDataReadResult(bool HeaderCanBeAdded, bool? Valid, int StructureEnd);
+    private readonly record struct AedDataReadResult(bool HeaderCanBeAdded, bool? Valid, int StructureEnd, byte[]? Payload);
 
     /// <summary>Recherche la prochaine marque de données.</summary>
     /// <param name="stream">Flux binaire MFM à parcourir.</param>

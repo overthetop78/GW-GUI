@@ -478,7 +478,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 5.5 DEC RX02 et formats rares déjà encodés
 
-- [ ] Raccorder DEC RX02, HP MMFM, Data General, Micropolis, Membrain, AED, QD MO5, Centurion, NorthStar, Heathkit, Micral N, E-mu, TYCOM, Arburg et Victor 9000 au service SCP, format par format, avec un test aller-retour et un corpus physique lorsqu’il existe.
+- [x] Raccorder DEC RX02, HP MMFM, Data General, Micropolis, Membrain, AED, QD MO5, Centurion, NorthStar, Heathkit, Micral N, E-mu, TYCOM, Arburg et Victor 9000 au service SCP, format par format, avec un test aller-retour et un corpus physique lorsqu’il existe.
 
   Informations nécessaires :
 
@@ -487,6 +487,8 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
   Utiliser docs/scp-decoder-references.md pour les sources précises HxC/Greaseweazle.
   Un test synthétique prouve l’algorithme, pas la compatibilité physique : conserver cette distinction dans les résultats.
   ```
+
+  Validation : les quinze formats passent par le service SCP commun et sont redécodés avec leurs données intactes. Aucun corpus physique de ces formats rares n'est distribué dans le dépôt ; ces tests valident donc la chaîne synthétique sans prétendre valider chaque support réel.
 
 ### 5.6 Interface de conversion SCP
 
