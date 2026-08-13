@@ -588,7 +588,9 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 8.1 Atari ST, IBM PC et MSX
 
-- [ ] Implémenter une politique de compatibilité FAT12 prouvant égalité de taille de secteur, géométrie, BPB, capacité et disposition avant d’autoriser Atari ST↔IBM PC↔MSX, puis écrire la sortie avec le Writer de la famille cible.
+- [x] Implémenter une politique de compatibilité FAT12 prouvant égalité de taille de secteur, géométrie, BPB, capacité et disposition avant d’autoriser Atari ST↔IBM PC↔MSX, puis écrire la sortie avec le Writer de la famille cible.
+
+  Implémenté avec validation stricte des blocs, de la capacité, de la géométrie et du BPB FAT12. Les images hybrides, incomplètes ou seulement compatibles par hypothèse sont refusées ; les sorties utilisent les Writers Atari ST, IBM PC et MSX existants.
 
   Informations nécessaires :
 

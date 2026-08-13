@@ -129,6 +129,14 @@ public static class MediaEngineFactory
     /// <summary>Crée le service commun de reconstruction SCP depuis les images sectorielles.</summary>
     public static SectorImageScpConversionService CreateSectorImageScpConversionService() => new(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter());
 
+    /// <summary>Crée le service strict de réinterprétation entre formats FAT12 compatibles.</summary>
+    public static Conversion.Fat12.Fat12ReinterpretationService CreateFat12ReinterpretationService()
+    {
+        var linear = new Containers.Raw.LinearSectorImageWriter();
+        var writer = new Conversion.Fat12.Fat12TargetImageWriter(new Containers.Atari.St.AtariStWriter(linear), new Containers.Ibm.Raw.IbmRawImageWriter(linear), new Containers.Msx.Raw.MsxRawImageWriter(linear));
+        return new(CreateDefaultExplorer(), writer);
+    }
+
     /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
     public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()
     {
