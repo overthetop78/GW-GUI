@@ -9,9 +9,11 @@ public partial class ConversionTabSection : UserControl
     {
         InitializeComponent();
         ExecuteButton.Click += (_, e) => ExecuteRequested?.Invoke(this, e);
+        MigrationButton.Click += (_, e) => MigrationRequested?.Invoke(this, e);
     }
 
     public event RoutedEventHandler? ExecuteRequested;
+    public event RoutedEventHandler? MigrationRequested;
 
     public ConversionAdvancedSection AdvancedBlock => AdvancedSection;
     public PathSection SourceBlock => SourceSection;

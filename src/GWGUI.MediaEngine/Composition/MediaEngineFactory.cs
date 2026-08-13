@@ -151,6 +151,9 @@ public static class MediaEngineFactory
     /// <summary>Crée le service de migration vers les volumes Commodore DOS D64, D71 et D81.</summary>
     public static Migration.CommodoreDosMigrationService CreateCommodoreDosMigrationService() => new(new Containers.Commodore.CommodoreDosContainerWriter(), new Containers.Commodore.D81.D81Writer(new Containers.Raw.LinearSectorImageWriter()));
 
+    /// <summary>Crée le service unifié de migration entre systèmes de fichiers.</summary>
+    public static Migration.FileSystemMigrationService CreateFileSystemMigrationService() => new(CreateFat12AmigaDosMigrationService(), CreateAppleFileSystemMigrationService(), CreateCommodoreDosMigrationService());
+
     /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
     public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()
     {

@@ -664,7 +664,11 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 9.5 Interface de migration
 
-- [ ] Ajouter une opération distincte « Migration de fichiers » présentant source, destination, compatibilités et pertes, sans la mélanger avec la conversion d’image secteur-à-secteur.
+- [x] Ajouter une opération distincte « Migration de fichiers » présentant source, destination, compatibilités et pertes, sans la mélanger avec la conversion d’image secteur-à-secteur.
+
+  Réalisation : une fenêtre dédiée est accessible depuis l’onglet Conversion sans réutiliser son exécuteur secteur-à-secteur. Elle analyse le catalogue source, propose uniquement les systèmes de fichiers reconstructibles, affiche les incompatibilités bloquantes et les pertes de métadonnées, exige leur acceptation explicite, puis écrit une nouvelle image sans pouvoir remplacer silencieusement la source. Le service unifié accepte toute source reconnue et route les destinations FAT12, AmigaDOS, Apple DOS/ProDOS/SOS et Commodore DOS vers leurs Writers respectifs.
+
+  Validation : migration générique Commodore DOS→IBM FAT12 relue avec le Reader FAT12, tests des services FAT12/AmigaDOS et contrôle des catalogues de localisation pour les 29 langues prises en charge.
 
   Informations nécessaires :
 

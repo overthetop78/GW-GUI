@@ -388,6 +388,7 @@ public partial class MainWindow : Window
         ConvertFormatsBlock.ValueChanged += ConversionSelectionChanged;
         ConvertAdvancedBlock.InputChanged += ConvertInput_Changed;
         ConvertTabBlock.ExecuteRequested += ExecuteConvert_Click;
+        ConvertTabBlock.MigrationRequested += OpenFileMigration_Click;
         RegisterName(nameof(ConvertProfileCombo), ConvertProfileCombo);
         RegisterName(nameof(ConvertSourceText), ConvertSourceText);
         RegisterName(nameof(ConvertOutputName), ConvertOutputName);
@@ -744,6 +745,12 @@ public partial class MainWindow : Window
         await FlushPendingOutputAsync();
         ApplyOperationResult(_operation.Present(outcome));
         EndProgress(); WriteExecuteButton.Content = LocExtension.Get("Common.Execute");
+    }
+
+    private void OpenFileMigration_Click(object sender, RoutedEventArgs e)
+    {
+        var sourcePath = File.Exists(ConvertSourceText.Text) ? ConvertSourceText.Text : null;
+        new FileMigrationWindow(sourcePath) { Owner = this }.ShowDialog();
     }
 
     private async Task ExecuteInternalWriteAsync(DiskFormat selected)

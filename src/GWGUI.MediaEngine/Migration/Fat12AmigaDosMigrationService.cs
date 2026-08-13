@@ -24,11 +24,9 @@ public sealed class Fat12AmigaDosMigrationService(
     public async Task<MigrationValidationReport> WriteAsync(MigrationPlan plan, string outputPath, string targetFormatId, bool acceptMetadataLoss = false, AmigaDosVariant amigaVariant = AmigaDosVariant.Ffs, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(plan);
-        var sourceIsFat = plan.SourceFileSystemId.Equals(FileSystemIds.Fat12, StringComparison.OrdinalIgnoreCase);
-        var sourceIsAmiga = plan.SourceFileSystemId.StartsWith(FileSystemIds.AmigaDos, StringComparison.OrdinalIgnoreCase);
         var targetIsAmiga = targetFormatId.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase);
         var targetIsFat = Fat12TargetGeometryCatalog.TryResolve(targetFormatId, out _);
-        if (!(sourceIsFat && targetIsAmiga || sourceIsAmiga && targetIsFat)) throw Fat12AmigaDosMigrationExceptions.UnsupportedDirection(plan.SourceFileSystemId, plan.TargetFileSystemId);
+        if (!targetIsAmiga && !targetIsFat) throw Fat12AmigaDosMigrationExceptions.UnsupportedDirection(plan.SourceFileSystemId, plan.TargetFileSystemId);
         var capabilities = targetIsAmiga ? FileSystemMigrationCapabilityCatalog.ForAmigaDos(amigaVariant, targetFormatId) : FileSystemMigrationCapabilityCatalog.ForFat12(targetFormatId);
         var report = MigrationValidator.Validate(plan, capabilities, acceptMetadataLoss);
         MigrationValidator.EnsureExecutable(report);

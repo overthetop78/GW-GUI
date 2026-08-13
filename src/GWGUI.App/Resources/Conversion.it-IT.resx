@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -105,4 +105,50 @@
   <data name="Conversion.ReconstructedFlux">
     <value>flusso ricostruito</value>
   </data>
+  <data name="Migration.Open"><value>File migration...</value></data>
+  <data name="Migration.Title"><value>File migration</value></data>
+  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
+  <data name="Migration.Source"><value>Source image</value></data>
+  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
+  <data name="Migration.Destination"><value>Destination file system and format</value></data>
+  <data name="Migration.Output"><value>Destination image</value></data>
+  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
+  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
+  <data name="Migration.Severity"><value>Severity</value></data>
+  <data name="Migration.Path"><value>Source path</value></data>
+  <data name="Migration.Description"><value>Description</value></data>
+  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
+  <data name="Migration.Execute"><value>Migrate files</value></data>
+  <data name="Migration.Blocking"><value>Blocking</value></data>
+  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
+  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
+  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
+  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
+  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
+  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
+  <data name="Migration.Target.Amiga880"><value>AmigaDOS FFS — 880 KiB</value></data>
+  <data name="Migration.Target.Atari720"><value>Atari ST FAT12 — 720 KiB</value></data>
+  <data name="Migration.Target.Ibm720"><value>IBM PC FAT12 — 720 KiB</value></data>
+  <data name="Migration.Target.Msx720"><value>MSX FAT12 — 720 KiB</value></data>
+  <data name="Migration.Target.AppleDos140"><value>Apple DOS 3.3 — 140 KiB</value></data>
+  <data name="Migration.Target.ProDos140"><value>Apple ProDOS — 140 KiB</value></data>
+  <data name="Migration.Target.ProDos800"><value>Apple ProDOS — 800 KiB</value></data>
+  <data name="Migration.Target.Sos800"><value>Apple SOS — 800 KiB</value></data>
+  <data name="Migration.Target.Commodore1541"><value>Commodore DOS 1541 — D64</value></data>
+  <data name="Migration.Target.Commodore1571"><value>Commodore DOS 1571 — D71</value></data>
+  <data name="Migration.Target.Commodore1581"><value>Commodore DOS 1581 — D81</value></data>
+  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
 </root>
