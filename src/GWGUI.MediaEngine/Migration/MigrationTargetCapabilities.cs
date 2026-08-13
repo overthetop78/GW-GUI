@@ -11,4 +11,7 @@ public sealed record MigrationTargetCapabilities(
     bool SupportsRawAttributes,
     bool IsCaseSensitive,
     string ForbiddenNameCharacters,
-    bool AllowsControlCharacters = false);
+    bool AllowsControlCharacters = false,
+    IMigrationNamePolicy? NamePolicy = null,
+    int MaximumVolumeNameLength = int.MaxValue,
+    IMigrationNamePolicy? VolumeNamePolicy = null);

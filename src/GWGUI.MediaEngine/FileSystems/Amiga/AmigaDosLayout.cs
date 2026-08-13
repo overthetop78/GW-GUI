@@ -9,6 +9,8 @@ public static class AmigaDosLayout
     public const int WordSize = sizeof(uint);
     /// <summary>Numéro du bloc de boot.</summary>
     public const int BootBlock = 0;
+    /// <summary>Nombre de blocs occupés par le bloc de démarrage complet.</summary>
+    public const int BootBlockCount = 2;
     /// <summary>Longueur de la signature DOS.</summary>
     public const int DosSignatureLength = 3;
     /// <summary>Offset de la variante après la signature DOS.</summary>
@@ -23,6 +25,8 @@ public static class AmigaDosLayout
     public const int HashTableSizeOffset = 12;
     /// <summary>Offset du premier champ réservé suivant la table de hachage.</summary>
     public const int FirstReservedOffset = 16;
+    /// <summary>Offset du checksum commun aux blocs de métadonnées.</summary>
+    public const int ChecksumOffset = 20;
     /// <summary>Offset du premier pointeur de données.</summary>
     public const int DataPointersOffset = 24;
     /// <summary>Offset du premier pointeur de bitmap.</summary>
@@ -71,6 +75,8 @@ public static class AmigaDosLayout
     public const int MaximumBitmapPointerCount = 25;
     /// <summary>Offset des mots de bitmap après leur checksum.</summary>
     public const int BitmapDataOffset = WordSize;
+    /// <summary>Nombre de mots de données dans un bloc bitmap.</summary>
+    public const int BitmapDataWordCount = 127;
     /// <summary>Somme attendue d'un bloc dont le checksum est valide.</summary>
     public const uint ValidChecksumSum = 0;
     /// <summary>Taille de l'en-tête d'un bloc de données OFS.</summary>

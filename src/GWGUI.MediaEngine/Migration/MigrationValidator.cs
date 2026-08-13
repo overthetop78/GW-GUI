@@ -11,6 +11,8 @@ public static class MigrationValidator
         if (!plan.TargetFileSystemId.Equals(target.FileSystemId, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("The target capabilities do not describe the migration target.", nameof(target));
         if (target.MaximumNameLength <= 0 || target.MaximumFileSize < 0) throw new ArgumentOutOfRangeException(nameof(target), "Target name and file-size limits must be valid.");
         var losses = new List<MigrationLoss>();
+        if (plan.VolumeName.Length > target.MaximumVolumeNameLength) losses.Add(new(MigrationLossKind.NameTooLong, "/", true, plan.VolumeName.Length.ToString()));
+        if (target.VolumeNamePolicy is not null && !target.VolumeNamePolicy.IsValid(plan.VolumeName)) losses.Add(new(MigrationLossKind.InvalidName, "/", true, plan.VolumeName));
         ValidateEntries(plan.Entries, target, losses);
         return new(losses, acceptMetadataLoss);
     }
@@ -37,7 +39,7 @@ public static class MigrationValidator
 
     private static void ValidateEntry(MigrationEntry entry, MigrationTargetCapabilities target, ICollection<MigrationLoss> losses)
     {
-        if (entry.TargetName.Length == 0 || entry.TargetName.Any(character => target.ForbiddenNameCharacters.Contains(character) || (!target.AllowsControlCharacters && char.IsControl(character)))) losses.Add(new(MigrationLossKind.InvalidName, entry.SourcePath, true, entry.TargetName));
+        if (entry.TargetName.Length == 0 || entry.TargetName.Any(character => target.ForbiddenNameCharacters.Contains(character) || !target.AllowsControlCharacters && char.IsControl(character)) || target.NamePolicy is not null && !target.NamePolicy.IsValid(entry.TargetName)) losses.Add(new(MigrationLossKind.InvalidName, entry.SourcePath, true, entry.TargetName));
         if (entry.TargetName.Length > target.MaximumNameLength) losses.Add(new(MigrationLossKind.NameTooLong, entry.SourcePath, true, entry.TargetName.Length.ToString()));
         if (!entry.MetadataValid) losses.Add(new(MigrationLossKind.InvalidMetadata, entry.SourcePath, true, string.Empty));
         if (entry.Kind == FileSystemEntryKind.Directory && !target.SupportsDirectories) losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));

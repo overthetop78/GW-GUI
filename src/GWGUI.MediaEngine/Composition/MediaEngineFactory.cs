@@ -137,6 +137,14 @@ public static class MediaEngineFactory
         return new(CreateDefaultExplorer(), writer);
     }
 
+    /// <summary>Crée le service de migration de fichiers entre FAT12 et AmigaDOS.</summary>
+    public static Migration.Fat12AmigaDosMigrationService CreateFat12AmigaDosMigrationService()
+    {
+        var linear = new Containers.Raw.LinearSectorImageWriter();
+        var fatWriter = new Conversion.Fat12.Fat12TargetImageWriter(new Containers.Atari.St.AtariStWriter(linear), new Containers.Ibm.Raw.IbmRawImageWriter(linear), new Containers.Msx.Raw.MsxRawImageWriter(linear));
+        return new(new Containers.Adf.AmigaAdfWriter(), fatWriter);
+    }
+
     /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
     public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()
     {

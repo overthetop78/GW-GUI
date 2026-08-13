@@ -619,7 +619,9 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 9.2 FAT12 ↔ AmigaDOS
 
-- [ ] Implémenter les primitives d’écriture AmigaDOS OFS/FFS nécessaires à la création de volume, répertoires, fichiers, bitmap et checksums, puis raccorder une migration FAT12↔AmigaDOS avec rapport de pertes.
+- [x] Implémenter les primitives d’écriture AmigaDOS OFS/FFS nécessaires à la création de volume, répertoires, fichiers, bitmap et checksums, puis raccorder une migration FAT12↔AmigaDOS avec rapport de pertes.
+
+  Les constructeurs de volumes AmigaDOS OFS/FFS et FAT12 créent leurs structures propres avant passage aux Writers de conteneurs. Les migrations dans les deux sens sont relues intégralement ; les noms incompatibles, contenus absents et pertes de métadonnées sont refusés ou exigent une acceptation explicite.
 
   Informations nécessaires :
 
