@@ -582,6 +582,8 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
   Une capture interne et une capture gw de la même opération doivent être comparées au niveau flux, index et secteurs décodés.
   ```
 
+  Réalisé partiellement : l’onglet Lecture expose une option interne explicitement expérimentale, limitée aux SCP bruts. Sans cette option, `gw.exe` reste le chemin par défaut. Les révolutions, tentatives, reprises de seek, pistes, faux index, secteurs durs, annulation, sauvegarde SCP, décodage et exploration sont raccordés et couverts par des tests déterministes. Blocage : la comparaison physique capture interne/capture `gw.exe` sur le même média et la validation de reprise sur matériel réel nécessitent un lecteur configuré et des disquettes de qualification ; la tâche reste donc non cochée et `gw.exe` n’est pas retiré.
+
 ## 8. Réinterprétation entre formats FAT12 compatibles
 
 ### 8.1 Atari ST, IBM PC et MSX

@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>עיון בקבצים</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>קריאה פנימית של דיסק פיזי (ניסיוני)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>קורא את השטף ישירות דרך פרוטוקול Greaseweazle; ‏gw.exe נשאר ברירת המחדל.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>קריאה פנימית של דיסק פיזי אל {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>הקריאה הפנימית יוצרת כרגע תמונות SCP גולמיות בלבד.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>חלק מהאפשרויות שהופעלו עדיין אינן נתמכות בקורא הפנימי.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>הגדרות הקריאה הפנימית אינן חוקיות.</value>
+  </data>
 </root>

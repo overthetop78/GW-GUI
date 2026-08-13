@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Duyệt tệp</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Đọc đĩa vật lý nội bộ (thử nghiệm)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Đọc luồng trực tiếp qua giao thức Greaseweazle; gw.exe vẫn là mặc định.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Đọc đĩa vật lý nội bộ vào {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Đọc nội bộ hiện chỉ tạo ảnh SCP thô.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Một số tùy chọn đã bật chưa được trình đọc nội bộ hỗ trợ.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Cài đặt đọc nội bộ không hợp lệ.</value>
+  </data>
 </root>

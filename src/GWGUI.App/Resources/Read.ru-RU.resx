@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Просмотреть файлы</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Внутреннее чтение физического диска (экспериментально)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Читает поток напрямую по протоколу Greaseweazle; gw.exe остаётся вариантом по умолчанию.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Внутреннее чтение физического диска в {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Сейчас внутреннее чтение создаёт только необработанные образы SCP.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Некоторые включённые параметры пока не поддерживаются внутренним считывателем.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Параметры внутреннего чтения недопустимы.</value>
+  </data>
 </root>

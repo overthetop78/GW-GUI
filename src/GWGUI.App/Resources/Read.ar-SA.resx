@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>استعراض الملفات</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>قراءة القرص الفعلي داخليًا (تجريبي)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>يقرأ التدفق مباشرة عبر بروتوكول Greaseweazle؛ ويظل gw.exe هو الافتراضي.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>قراءة القرص الفعلي داخليًا إلى {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>تنشئ القراءة الداخلية حاليًا صور SCP خام فقط.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>بعض الخيارات المفعلة غير مدعومة بعد في القارئ الداخلي.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>إعدادات القراءة الداخلية غير صالحة.</value>
+  </data>
 </root>

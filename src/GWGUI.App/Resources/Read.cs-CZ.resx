@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Procházet soubory</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Interní čtení fyzického disku (experimentální)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Čte tok přímo přes protokol Greaseweazle; gw.exe zůstává výchozí.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Interní čtení fyzického disku do {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Interní čtení nyní vytváří pouze nezpracované obrazy SCP.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Interní čtečka zatím nepodporuje některé povolené volby.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Nastavení interního čtení je neplatné.</value>
+  </data>
 </root>

@@ -33,6 +33,7 @@ using GWGUI.App.Services;
 using GWGUI.App.Controls;
 using GWGUI.App.Rendering;
 using GWGUI.App.Services.PhysicalDiskWriting;
+using GWGUI.App.Services.PhysicalDiskReading;
 
 namespace GWGUI.App;
 
@@ -1189,6 +1190,11 @@ public partial class MainWindow : Window
         var extension = GetReadExtension();
         var target = GetReadTarget(extension);
         if (ReadNamePreview is not null) ReadNamePreview.Text = Path.GetFileName(target);
+        if (_viewModel.Read.InternalReader.Enabled)
+        {
+            CommandPreview.Text = LocExtension.Get("Read.InternalPreview", target);
+            return;
+        }
         try { CommandPreview.Text = BuildReadCommand(target).ToDisplayString(); }
         catch (ArgumentException) { CommandPreview.Text = $"âš  {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
@@ -1286,7 +1292,7 @@ public partial class MainWindow : Window
             _dialogs.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Information);
             return;
         }
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
+        if (!_viewModel.Read.InternalReader.Enabled && (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
         {
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
@@ -1308,6 +1314,34 @@ public partial class MainWindow : Window
                 target = available.Path;
                 _viewModel.Read.SequenceValue = kind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, kind, 1);
             }
+        }
+        if (_viewModel.Read.InternalReader.Enabled)
+        {
+            var hardware = SelectedHardware();
+            if (hardware is null)
+            {
+                _dialogs.Show(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                return;
+            }
+            if (RawScpRadio.IsChecked != true)
+            {
+                _dialogs.Show(LocExtension.Get("Read.InternalRawScpOnly"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                return;
+            }
+            if (HasUnsupportedInternalReadOptions())
+            {
+                _dialogs.Show(LocExtension.Get("Read.InternalUnsupportedOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                return;
+            }
+            PhysicalDiskReadOptions options;
+            try { options = CreateInternalReadOptions(hardware); }
+            catch (Exception exception) when (exception is ArgumentException or OverflowException)
+            {
+                _dialogs.Show(LocExtension.Get("Read.InternalInvalidOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                return;
+            }
+            await ExecuteInternalReadAsync(options, target);
+            return;
         }
         GwCommand command;
         try { command = BuildReadCommand(target); }
@@ -1346,6 +1380,66 @@ public partial class MainWindow : Window
         }
         EndProgress(); ReadExecuteButton.Content = LocExtension.Get("Common.Execute");
     }
+
+    private async Task ExecuteInternalReadAsync(PhysicalDiskReadOptions options, string target)
+    {
+        ReadExecuteButton.Content = LocExtension.Get("Common.Stop");
+        BeginProgress();
+        await RenderPendingProgressAsync();
+        LogOutput.Clear();
+        await _consoleLog.BeginAsync("read-internal", LocExtension.Get("Read.InternalPreview", target));
+        var stopwatch = Stopwatch.StartNew();
+        PhysicalDiskReadResult? capture = null;
+        var outcome = await _operation.RunAsync(async token =>
+        {
+            var reader = InternalPhysicalDiskReader.CreateDefault();
+            var progress = new Progress<PhysicalDiskReadOperationProgress>(_progress.Accept);
+            capture = await reader.ReadAsync(options, target, progress, token);
+            return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
+        });
+        await FlushPendingOutputAsync();
+        ApplyOperationResult(_operation.Present(outcome));
+        if (outcome.Result is { WasCancelled: true })
+        {
+            var deletionError = CancelledOutputCleaner.TryDelete(target);
+            if (deletionError is null) AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleted", target) + Environment.NewLine);
+            else
+            {
+                var logPath = ErrorLog.Write(deletionError, "Deleting cancelled internal read output");
+                var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+                AppendConsoleText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleteFailed", target, detail) + Environment.NewLine);
+            }
+        }
+        if (outcome.Result?.IsSuccess == true && capture is not null)
+        {
+            _diskImageWorkspace.LastCapturedPath = target;
+            OpenScpBanner.Visibility = Visibility.Visible;
+            await AppendScpCaptureSummaryAsync(target);
+            _viewModel.Read.TryAdvanceSequence();
+        }
+        EndProgress();
+        ReadExecuteButton.Content = LocExtension.Get("Common.Execute");
+    }
+
+    private PhysicalDiskReadOptions CreateInternalReadOptions(HardwareChoice hardware)
+    {
+        var selection = GreaseweazleDriveSelectionPolicy.Resolve(hardware.Drive.Selection);
+        var tracks = PhysicalDiskTrackSelectionParser.Parse(_viewModel.Read.Tracks.Enabled ? _viewModel.Read.Tracks.Value : "c=0-79:h=0-1");
+        var revolutions = _viewModel.Read.Revs.Enabled ? int.Parse(_viewModel.Read.Revs.Value) : PhysicalDiskReadDefaults.Revolutions;
+        var retries = _viewModel.Read.Retries.Enabled ? int.Parse(_viewModel.Read.Retries.Value) : PhysicalDiskReadDefaults.FluxOverflowRetries;
+        var seekRetries = _viewModel.Read.SeekRetries.Enabled ? int.Parse(_viewModel.Read.SeekRetries.Value) : PhysicalDiskReadDefaults.SeekRetries;
+        TimeSpan? fakeIndex = _viewModel.Read.FakeIndex.Enabled ? PhysicalDiskIndexPeriodParser.Parse(_viewModel.Read.FakeIndex.Value) : null;
+        return new(hardware.Port, selection.BusType, selection.Unit, tracks, ScpCaptureDiskTypePolicy.Resolve(hardware.Drive.Density), revolutions, retries, seekRetries, fakeIndex, _viewModel.Read.HardSectors.Enabled);
+    }
+
+    private bool HasUnsupportedInternalReadOptions() =>
+        _viewModel.Read.AdjustSpeed.Enabled ||
+        _viewModel.Read.Pll.Enabled ||
+        _viewModel.Read.Reverse.Enabled ||
+        _viewModel.Read.Densel.Enabled ||
+        _viewModel.Read.Tg43.Enabled ||
+        _viewModel.Read.DiskDefs.Enabled ||
+        !string.IsNullOrWhiteSpace(_viewModel.Read.ExpertArguments);
 
     private void RestoreReadSettings()
     {

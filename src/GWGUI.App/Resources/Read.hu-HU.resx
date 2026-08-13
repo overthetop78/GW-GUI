@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Fájlok böngészése</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Belső fizikai lemezolvasás (kísérleti)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Közvetlenül a Greaseweazle protokollal olvassa a fluxust; a gw.exe marad az alapértelmezett.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Belső fizikai lemezolvasás ide: {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>A belső olvasás jelenleg csak nyers SCP-képeket készít.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>A belső olvasó néhány engedélyezett beállítást még nem támogat.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>A belső olvasási beállítások érvénytelenek.</value>
+  </data>
 </root>

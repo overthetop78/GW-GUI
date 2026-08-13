@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>瀏覽檔案</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>內部實體磁碟讀取（實驗性）</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>透過 Greaseweazle 通訊協定直接讀取磁通；gw.exe 仍為預設方式。</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>內部實體磁碟讀取至 {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>內部讀取目前僅建立原始 SCP 映像。</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>內部讀取器尚未支援某些已啟用的選項。</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>內部讀取設定無效。</value>
+  </data>
 </root>

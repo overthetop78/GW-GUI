@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Bestanden verkennen</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Interne fysieke schijflezing (experimenteel)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Leest flux rechtstreeks via het Greaseweazle-protocol; gw.exe blijft de standaard.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Interne fysieke schijflezing naar {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Intern lezen maakt momenteel alleen ruwe SCP-images.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Sommige ingeschakelde opties worden nog niet ondersteund door de interne lezer.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>De interne leesinstellingen zijn ongeldig.</value>
+  </data>
 </root>

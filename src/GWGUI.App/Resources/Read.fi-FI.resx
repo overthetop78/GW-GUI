@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Selaa tiedostoja</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Sisäinen fyysisen levyn luku (kokeellinen)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Lukee vuon suoraan Greaseweazle-protokollalla; gw.exe pysyy oletuksena.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Sisäinen fyysisen levyn luku kohteeseen {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Sisäinen luku luo tällä hetkellä vain raakoja SCP-levykuvia.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Sisäinen lukija ei vielä tue joitakin käytössä olevia asetuksia.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Sisäisen luvun asetukset ovat virheelliset.</value>
+  </data>
 </root>

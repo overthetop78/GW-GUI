@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Explorer les fichiers</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Lecture physique interne (expérimental)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Lit le flux directement avec le protocole Greaseweazle ; gw.exe reste utilisé par défaut.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Lecture physique interne vers {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>La lecture interne crée actuellement uniquement des images SCP brutes.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Certaines options activées ne sont pas encore prises en charge par le lecteur interne.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Les réglages de lecture interne sont invalides.</value>
+  </data>
 </root>

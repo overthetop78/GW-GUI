@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Dosyalara göz at</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Dahili fiziksel disk okuma (deneysel)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Akışı doğrudan Greaseweazle protokolüyle okur; gw.exe varsayılan olarak kalır.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>{0} konumuna dahili fiziksel disk okuma</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Dahili okuma şu anda yalnızca ham SCP görüntüleri oluşturur.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Etkin seçeneklerin bazıları dahili okuyucu tarafından henüz desteklenmiyor.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Dahili okuma ayarları geçersiz.</value>
+  </data>
 </root>

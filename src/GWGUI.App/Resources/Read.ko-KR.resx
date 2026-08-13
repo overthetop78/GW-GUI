@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>파일 탐색</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>내부 물리 디스크 읽기(실험적)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Greaseweazle 프로토콜을 통해 플럭스를 직접 읽습니다. 기본값은 계속 gw.exe입니다.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>{0}(으)로 내부 물리 디스크 읽기</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>현재 내부 읽기는 원시 SCP 이미지만 생성합니다.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>활성화된 일부 옵션은 아직 내부 판독기에서 지원되지 않습니다.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>내부 읽기 설정이 잘못되었습니다.</value>
+  </data>
 </root>

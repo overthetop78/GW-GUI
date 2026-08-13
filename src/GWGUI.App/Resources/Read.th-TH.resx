@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>สำรวจไฟล์</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>การอ่านดิสก์จริงภายใน (ทดลอง)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>อ่านฟลักซ์โดยตรงผ่านโพรโทคอล Greaseweazle โดยยังใช้ gw.exe เป็นค่าเริ่มต้น</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>อ่านดิสก์จริงภายในไปยัง {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>ขณะนี้การอ่านภายในสร้างได้เฉพาะอิมเมจ SCP ดิบ</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>ตัวอ่านภายในยังไม่รองรับตัวเลือกที่เปิดใช้บางรายการ</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>การตั้งค่าการอ่านภายในไม่ถูกต้อง</value>
+  </data>
 </root>

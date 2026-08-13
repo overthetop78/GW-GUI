@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Gennemse filer</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Intern fysisk disklæsning (eksperimentel)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Læser flux direkte via Greaseweazle-protokollen; gw.exe forbliver standard.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Intern fysisk disklæsning til {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Intern læsning opretter i øjeblikket kun rå SCP-images.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Nogle aktiverede indstillinger understøttes endnu ikke af den interne læser.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Indstillingerne for intern læsning er ugyldige.</value>
+  </data>
 </root>

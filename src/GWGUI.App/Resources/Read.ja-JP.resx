@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>ファイルを参照</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>内部物理ディスク読み取り（実験的）</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Greaseweazle プロトコルでフラックスを直接読み取ります。既定は引き続き gw.exe です。</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>{0} への内部物理ディスク読み取り</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>現在、内部読み取りで作成できるのは生の SCP イメージのみです。</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>有効なオプションの一部は、内部リーダーではまだサポートされていません。</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>内部読み取りの設定が無効です。</value>
+  </data>
 </root>

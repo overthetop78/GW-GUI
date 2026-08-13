@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Explorați fișierele</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Citire fizică internă a discului (experimental)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Citește fluxul direct prin protocolul Greaseweazle; gw.exe rămâne implicit.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Citire fizică internă a discului în {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Citirea internă creează momentan numai imagini SCP brute.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Unele opțiuni activate nu sunt încă acceptate de cititorul intern.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Setările citirii interne nu sunt valide.</value>
+  </data>
 </root>

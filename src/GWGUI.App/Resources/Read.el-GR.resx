@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Εξερεύνηση αρχείων</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Εσωτερική ανάγνωση φυσικού δίσκου (πειραματική)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Διαβάζει τη ροή απευθείας μέσω του πρωτοκόλλου Greaseweazle· το gw.exe παραμένει προεπιλογή.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Εσωτερική ανάγνωση φυσικού δίσκου στο {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Η εσωτερική ανάγνωση δημιουργεί προς το παρόν μόνο ακατέργαστες εικόνες SCP.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Ορισμένες ενεργοποιημένες επιλογές δεν υποστηρίζονται ακόμη από τον εσωτερικό αναγνώστη.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Οι ρυθμίσεις εσωτερικής ανάγνωσης δεν είναι έγκυρες.</value>
+  </data>
 </root>

@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Explore files</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Internal physical disk read (experimental)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Reads flux directly through the Greaseweazle protocol; gw.exe remains the default.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Internal physical disk read to {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Internal reading currently creates raw SCP images only.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Some enabled options are not yet supported by the internal reader.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>The internal read settings are invalid.</value>
+  </data>
 </root>

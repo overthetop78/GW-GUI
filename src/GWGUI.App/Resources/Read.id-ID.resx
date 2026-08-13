@@ -117,4 +117,22 @@
   <data name="Read.OpenExplore">
     <value>Jelajahi berkas</value>
   </data>
+  <data name="Read.InternalReader">
+    <value>Pembacaan disk fisik internal (eksperimental)</value>
+  </data>
+  <data name="Read.InternalReaderTip">
+    <value>Membaca fluks langsung melalui protokol Greaseweazle; gw.exe tetap menjadi bawaan.</value>
+  </data>
+  <data name="Read.InternalPreview">
+    <value>Pembacaan disk fisik internal ke {0}</value>
+  </data>
+  <data name="Read.InternalRawScpOnly">
+    <value>Pembacaan internal saat ini hanya membuat citra SCP mentah.</value>
+  </data>
+  <data name="Read.InternalUnsupportedOptions">
+    <value>Beberapa opsi aktif belum didukung oleh pembaca internal.</value>
+  </data>
+  <data name="Read.InternalInvalidOptions">
+    <value>Pengaturan pembacaan internal tidak valid.</value>
+  </data>
 </root>
