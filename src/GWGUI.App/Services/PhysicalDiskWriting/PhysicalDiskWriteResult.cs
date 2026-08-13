@@ -1,0 +1,34 @@
+namespace GWGUI.App.Services.PhysicalDiskWriting;
+
+public enum PhysicalDiskWriteFailureKind
+{
+    Validation,
+    Device,
+    WriteProtected,
+    Verification,
+    Cancelled,
+    Unexpected
+}
+
+public sealed record PhysicalTrackWriteProgress(
+    int CompletedTracks,
+    int TotalTracks,
+    int Cylinder,
+    int Head,
+    bool IsVerification);
+
+public sealed record PhysicalTrackWriteFailure(
+    int? Cylinder,
+    int? Head,
+    PhysicalDiskWriteFailureKind Kind,
+    string Message,
+    Exception? Exception = null);
+
+public sealed record PhysicalDiskWriteResult(
+    int WrittenTracks,
+    int TotalTracks,
+    bool Cancelled,
+    IReadOnlyList<PhysicalTrackWriteFailure> Failures)
+{
+    public bool IsSuccess => !Cancelled && Failures.Count == 0 && WrittenTracks == TotalTracks;
+}

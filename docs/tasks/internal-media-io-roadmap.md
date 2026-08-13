@@ -519,7 +519,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 6.2 Pipeline d’écriture
 
-- [ ] Implémenter un `PhysicalDiskWriteService` consommant directement les pistes de flux SCP ou celles produites par les TrackEncoder, avec progression par piste, arrêt, précompensation, vérification optionnelle et remontée structurée des erreurs.
+- [x] Implémenter un `PhysicalDiskWriteService` consommant directement les pistes de flux SCP ou celles produites par les TrackEncoder, avec progression par piste, arrêt, précompensation, vérification optionnelle et remontée structurée des erreurs.
 
   Informations nécessaires :
 

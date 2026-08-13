@@ -42,7 +42,7 @@ public sealed class ScpEncodedTrackFluxService
     /// <summary>Convertit une durée en arrondissant une seule fois sa valeur absolue.</summary>
     private static uint ConvertTicks(ulong ticks, int targetTickNanoseconds)
     {
-        var nanoseconds = checked(ticks * ScpSyntheticFluxConstants.EncoderTickNanoseconds);
+        var nanoseconds = checked(ticks * EncodedTrackTiming.TickNanoseconds);
         var converted = checked((nanoseconds + (ulong)targetTickNanoseconds / 2) / (ulong)targetTickNanoseconds);
         return checked((uint)converted);
     }
