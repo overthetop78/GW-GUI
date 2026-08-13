@@ -310,7 +310,7 @@ Références communes :
 
 ### 3.3 HFE
 
-- [ ] Implémenter et raccorder un Writer HFE capable de sérialiser les pistes encodées avec leur bitrate, leurs faces et leur table d’offsets, puis valider le flux produit par relecture et comparaison des secteurs.
+- [x] Implémenter et raccorder un Writer HFE capable de sérialiser les pistes encodées avec leur bitrate, leurs faces et leur table d’offsets, puis valider le flux produit par relecture et comparaison des secteurs.
 
   Informations nécessaires :
 

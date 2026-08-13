@@ -11,4 +11,6 @@ public static partial class DiskImageFormatIds
     public const string Td0 = "td0";
     /// <summary>Identifiant neutre des conteneurs CPCEMU DSK.</summary>
     public const string CpcEmuDsk = "cpcemu.dsk";
+    /// <summary>Identifiant du conteneur de pistes HxC Floppy Emulator.</summary>
+    public const string RawHfe = "raw.hfe";
 }

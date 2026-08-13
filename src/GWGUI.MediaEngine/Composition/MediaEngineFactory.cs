@@ -31,10 +31,12 @@ using GWGUI.MediaEngine.Conversion.Amiga;
 using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Msx;
 using GWGUI.MediaEngine.Conversion.Ucsd;
+using GWGUI.MediaEngine.Conversion.Hfe;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Conversion.Commodore;
 using GWGUI.MediaEngine.Encoding.Apple;
+using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
@@ -121,6 +123,8 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new DiskCopyWriter());
     }
+    /// <summary>Crée le service HFE sectoriel avec l'explorateur et l'encodeur de pistes communs.</summary>
+    public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new Containers.Hfe.HfeWriter());
     /// <summary>Crée le service de conversion sectorielle Atari ST avec ses Reader et Writer partagés.</summary>
     public static AtariStConversionService CreateAtariStConversionService()
     {

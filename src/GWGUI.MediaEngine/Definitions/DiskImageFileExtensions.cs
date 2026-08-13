@@ -59,6 +59,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des conteneurs Dave Dunfield ImageDisk.</summary>
     public const string Imd = ".imd";
 
+    /// <summary>Extension des images de pistes HxC Floppy Emulator.</summary>
+    public const string Hfe = ".hfe";
+
     /// <summary>Extension générique IMG partagée par plusieurs formats d’images disque.</summary>
     public const string Img = ".img";
 
