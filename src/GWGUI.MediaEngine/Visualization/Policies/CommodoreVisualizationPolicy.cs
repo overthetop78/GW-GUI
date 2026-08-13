@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
-using GWGUI.MediaEngine.Encoding.Definitions;
+using GWGUI.MediaEngine.Encoding.Commodore;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Visualization;
@@ -44,11 +44,22 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
         return new(physical / sectorsPerCylinder, physical % sectorsPerCylinder / Commodore1581Geometry.PhysicalSectorsPerTrack, physical % Commodore1581Geometry.PhysicalSectorsPerTrack + Commodore1581Geometry.FirstPhysicalSectorNumber);
     }
 
+    /// <inheritdoc />
+    public override IReadOnlyDictionary<string, int>? TrackAttributes(SectorImage image, int sectorCount)
+    {
+        if (image.FormatId.Equals(DiskImageFormatIds.Commodore1541, StringComparison.OrdinalIgnoreCase) ||
+            image.FormatId.Equals(DiskImageFormatIds.Commodore1571, StringComparison.OrdinalIgnoreCase))
+            return new Dictionary<string, int> { [TrackEncodingAttributeKeys.TracksPerSide] = image.Cylinders };
+        return null;
+    }
+
+    /// <inheritdoc />
     public override uint BitCellTicks(SectorImage image, int cylinder)
     {
-        if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return TrackEncodingDefaults.BitCellTicks;
-        return cylinder switch { < Commodore900Geometry.Zone2StartCylinder => Commodore900Encoding.Zone1BitCellTicks, < Commodore900Geometry.Zone3StartCylinder => Commodore900Encoding.Zone2BitCellTicks, < Commodore900Geometry.Zone4StartCylinder => Commodore900Encoding.Zone3BitCellTicks, _ => Commodore900Encoding.Zone4BitCellTicks };
+        if (image.FormatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return CommodoreTrackEncodingTimings.Commodore900BitCellTicks(cylinder);
+        if (image.FormatId.Equals(DiskImageFormatIds.Commodore1541, StringComparison.OrdinalIgnoreCase) ||
+            image.FormatId.Equals(DiskImageFormatIds.Commodore1571, StringComparison.OrdinalIgnoreCase)) return CommodoreTrackEncodingTimings.Commodore1541BitCellTicks(cylinder);
+        if (image.FormatId.Equals(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return TrackEncodingTimings.DoubleDensityMfmBitCellTicks;
+        return base.BitCellTicks(image, cylinder);
     }
 }
-    /// <inheritdoc />
-    /// <inheritdoc />

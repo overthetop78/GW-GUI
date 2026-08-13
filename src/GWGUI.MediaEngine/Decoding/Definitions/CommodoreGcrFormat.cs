@@ -81,12 +81,14 @@ internal static class CommodoreGcrFormat
     public const byte DefaultId1 = 0x1a;
     /// <summary>Nombre de pistes par face utilisé pour calculer la piste logique.</summary>
     public const int TracksPerSide = 35;
+    /// <summary>Nombre maximal de pistes par face d'une image étendue.</summary>
+    public const int MaximumTracksPerSide = 40;
     /// <summary>Premier numéro de piste disque Commodore.</summary>
     public const int MinimumDiskTrack = 1;
     /// <summary>Dernier numéro de piste d'une image double face standard.</summary>
-    public const int MaximumDiskTrack = TracksPerSide * 2;
-    /// <summary>Plus grand cylindre d'une face standard.</summary>
-    public const int MaximumCylinder = TracksPerSide - 1;
+    public const int MaximumDiskTrack = MaximumTracksPerSide * 2;
+    /// <summary>Plus grand cylindre d'une face étendue.</summary>
+    public const int MaximumCylinder = MaximumTracksPerSide - 1;
     /// <summary>Plus grande valeur d'un identifiant ou numéro de secteur écrit sur un octet.</summary>
     public const int MaximumByteValue = byte.MaxValue;
     /// <summary>Masque isolant un demi-octet.</summary>

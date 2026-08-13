@@ -3,6 +3,7 @@ namespace GWGUI.MediaEngine.Containers.Scp;
 /// <summary>Définit les types de disquettes publics du champ Disk Type SCP.</summary>
 public enum ScpDiskType : byte
 {
+    Commodore64 = 0x00,
     Amiga = 0x04,
     AmigaHighDensity = 0x08,
     Atari8BitSingleDensity = 0x10,

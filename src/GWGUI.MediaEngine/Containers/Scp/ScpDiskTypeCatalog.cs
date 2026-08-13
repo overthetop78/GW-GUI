@@ -10,6 +10,8 @@ internal static class ScpDiskTypeCatalog
     public static ScpDiskType Resolve(SectorImage image)
     {
         var formatId = image.FormatId;
+        if (formatId.Equals(DiskImageFormatIds.Commodore1541, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Commodore1571, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Commodore64;
+        if (formatId.StartsWith(DiskImageFormatIds.Commodore900Prefix, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Other1200;
         if (formatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.AmigaHighDensity;
         if (formatId.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Amiga;
         if (formatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitSingleDensity;

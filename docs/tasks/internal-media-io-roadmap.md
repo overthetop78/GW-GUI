@@ -467,7 +467,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 5.4 Commodore 64/128 et Commodore 900
 
-- [ ] Raccorder Commodore GCR et Commodore 900 GCR au service SCP avec zones de débit et géométries propres, puis vérifier l’identité après redécodage.
+- [x] Raccorder Commodore GCR et Commodore 900 GCR au service SCP avec zones de débit et géométries propres, puis vérifier l’identité après redécodage.
 
   Informations nécessaires :
 
