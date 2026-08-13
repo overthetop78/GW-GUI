@@ -555,6 +555,7 @@ public partial class MainWindow : Window
         SynchronizeFormatWorkspace();
         _diskDefinitionsController.LoadConfigured();
         RebuildFormatCatalog();
+        RefreshExplorerFormats();
         ScpDecoderCombo.ItemsSource = new[] { new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic")) }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
         ScpDecoderCombo.SelectedIndex = 0;
         LoadProfileStores();

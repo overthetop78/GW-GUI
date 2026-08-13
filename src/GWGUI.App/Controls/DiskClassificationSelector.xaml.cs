@@ -51,13 +51,22 @@ public partial class DiskClassificationSelector : UserControl
 
     public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId, IEnumerable<string> detectedFormatIds)
     {
-        if (!AutomaticDetection) return;
-        var resolved = detectedFormatIds.Select(_catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>()
-            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase).ToArray();
+        if (!AutomaticDetection)
+        {
+            return;
+        }
+
+        var resolved = detectedFormatIds
+            .Select(_catalog.ResolveFormat)
+            .Where(format => format is not null)
+            .Cast<DiskFormat>()
+            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         _detectedFormatIds = resolved.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        _detectedFormatByMachine = resolved.GroupBy(format => format.Family, StringComparer.OrdinalIgnoreCase)
+        _detectedFormatByMachine = resolved
+            .GroupBy(format => format.Family, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(group => group.Key, group => group.First().Id, StringComparer.OrdinalIgnoreCase);
-        var format = _catalog.ResolveFormat(detectedFormatId);
+        var format = _catalog.ResolveFormat(detectedFormatId) ?? resolved.FirstOrDefault();
         _updating = true;
         RefreshMachines(format?.Family);
         if (format is null)

@@ -136,6 +136,11 @@ public partial class ExplorerSection : UserControl
 
     private string CurrentSystem(ExploredDiskImage document)
     {
+        if (Classification.SelectedMachine is { } selectedMachine)
+        {
+            return selectedMachine;
+        }
+
         var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.Image.FormatId);
         return format?.Family ?? ExplorerMetadataPresenter.Systems(document.Metadata);
     }

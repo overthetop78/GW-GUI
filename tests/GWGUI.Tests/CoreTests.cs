@@ -1429,7 +1429,7 @@ public sealed class CoreTests
                 var selector = Assert.IsType<DiskClassificationSelector>(explorer.FindName("Classification"));
 
                 explorer.Clear(path, true);
-                explorer.Display(Document(path, "atarist.720", ["atarist.720", "amiga.amigados"]));
+                explorer.Display(Document(path, "scp.composite", ["atarist.720", "amiga.amigados"]));
                 Assert.Equal("Atari ST", selector.SelectedMachine);
                 Assert.Equal("atarist.720", selector.SelectedFormatId);
 
