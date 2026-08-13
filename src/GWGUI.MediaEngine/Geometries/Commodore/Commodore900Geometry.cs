@@ -48,4 +48,16 @@ public static class Commodore900Geometry
         }
         throw new InvalidOperationException();
     }
+
+    /// <summary>Convertit une adresse physique Commodore 900 en bloc logique.</summary>
+    public static int LogicalBlockOf(SectorAddress address)
+    {
+        if (address.Cylinder is < 0 or >= CylinderCount) throw new ArgumentOutOfRangeException(nameof(address), address, $"Le cylindre Commodore 900 doit être compris entre 0 et {CylinderCount - 1}.");
+        if (address.Head is < 0 or >= HeadCount) throw new ArgumentOutOfRangeException(nameof(address), address, $"La face Commodore 900 doit être comprise entre 0 et {HeadCount - 1}.");
+        var sectors = SectorsPerTrack(address.Cylinder);
+        if (address.Number is < 0 || address.Number >= sectors) throw new ArgumentOutOfRangeException(nameof(address), address, $"Le secteur Commodore 900 doit être compris entre 0 et {sectors - 1} sur ce cylindre.");
+        var preceding = 0;
+        for (var cylinder = 0; cylinder < address.Cylinder; cylinder++) preceding += SectorsPerTrack(cylinder) * HeadCount;
+        return preceding + address.Head * sectors + address.Number;
+    }
 }

@@ -132,6 +132,13 @@ public static class MediaEngineFactory
         return new(new CommodoreScpSectorImageReader(scpReader, CreateFluxDecoders()), new D64Reader(), new D71Reader(), new CommodoreDosContainerWriter());
     }
 
+    /// <summary>Crée le service de conversion Commodore 900 COHERENT avec son ordre zoné commun.</summary>
+    public static CoherentConversionService CreateCoherentConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new CommodoreScpSectorImageReader(scpReader, CreateFluxDecoders()), new CoherentRawImageReader(), new CoherentRawImageWriter());
+    }
+
     /// <summary>Crée le service de conversion CPCEMU DSK/EDSK avec son modèle de conteneur partagé.</summary>
     public static AmstradDskConversionService CreateAmstradDskConversionService()
     {

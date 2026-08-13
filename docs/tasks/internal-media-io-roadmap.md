@@ -258,7 +258,7 @@ Références communes :
 
 ### 2.8 Commodore 900 COHERENT — BIN et IMG
 
-- [ ] Implémenter et raccorder un Writer sectoriel Commodore 900 produisant BIN/IMG selon l’ordre documenté, puis valider superbloc, inodes, répertoires et contenu des fichiers.
+- [x] Implémenter et raccorder un Writer sectoriel Commodore 900 produisant BIN/IMG selon l’ordre documenté, puis valider superbloc, inodes, répertoires et contenu des fichiers.
 
   Informations nécessaires :
 
@@ -267,6 +267,8 @@ Références communes :
   Définir un seul ordre logique central avant d’écrire les deux extensions.
   Référence HxC : libhxcfe/sources/tracks/track_formats/commodore900_gcr_track.c
   ```
+
+> Blocage d'environnement : le push du groupe 2 vers `origin/main` a été refusé par la politique d'autorisation, qui ne considère pas encore cette destination comme approuvée. Les commits 2.1 à 2.8 sont conservés localement et prêts à être poussés.
 
 ## 3. Conversions internes complexes
 

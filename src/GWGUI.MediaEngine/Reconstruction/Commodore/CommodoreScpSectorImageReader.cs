@@ -25,7 +25,38 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId == DiskImageFormatIds.Commodore1581) return Read1581(scp, cancellationToken);
+        if (formatId == DiskImageFormatIds.Commodore900Coherent) return Read900(scp, cancellationToken);
         return ReadGcr(scp, formatId, cancellationToken);
+    }
+
+    /// <summary>Reconstruit les secteurs GCR zonés d'une disquette Commodore 900.</summary>
+    private SectorImage Read900(ScpImage scp, CancellationToken cancellationToken)
+    {
+        var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
+        foreach (var track in scp.Tracks)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (track.Cylinder is < 0 or >= Commodore900Geometry.CylinderCount || track.Head is < 0 or >= Commodore900Geometry.HeadCount) continue;
+            foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
+            {
+                var decoded = decoders.Decode(FluxCodecIds.Commodore900Gcr, window.Flux);
+                foreach (var sector in decoded.Sectors)
+                {
+                    if (sector.Data is null || sector.Data.Count != Commodore900Geometry.SectorSize || sector.Cylinder != track.Cylinder || sector.Number < 0 || sector.Number >= Commodore900Geometry.SectorsPerTrack(track.Cylinder)) continue;
+                    var address = new SectorAddress(track.Cylinder, track.Head, sector.Number);
+                    if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
+                    list.Add((sector, window.Revolution));
+                }
+            }
+        }
+        if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(Commodore900GcrFormat.StructureDescriptionName);
+        var blocks = candidates.Select(candidate =>
+        {
+            var best = SectorCandidateSelector.Best(candidate.Value, value => value.Sector.IntegrityValid);
+            return new SectorBlock(Commodore900Geometry.LogicalBlockOf(candidate.Key), candidate.Key, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution);
+        }).ToArray();
+        var blockCount = blocks.Max(block => block.LogicalBlock) + 1;
+        return new(DiskImageFormatIds.Commodore900Coherent, Commodore900Geometry.SectorSize, Commodore900Geometry.CylinderCount, Commodore900Geometry.HeadCount, Commodore900Geometry.MaximumSectorsPerTrack, blocks, capacity: (long)blockCount * Commodore900Geometry.SectorSize, logicalBlockCount: blockCount);
     }
 
     /// <summary>Reconstruit une image 1541 ou 1571 depuis les secteurs GCR.</summary>

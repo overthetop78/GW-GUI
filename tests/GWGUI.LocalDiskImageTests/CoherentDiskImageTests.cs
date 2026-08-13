@@ -2,6 +2,8 @@
 using GWGUI.MediaEngine.Definitions;
 using System.IO;
 using GWGUI.MediaEngine.Containers.Coherent;
+using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine.Conversion.Commodore;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Coherent;
 using GWGUI.MediaEngine.Geometries.Commodore;
@@ -35,6 +37,41 @@ public sealed class CoherentDiskImageTests
     }
 
     [Theory]
+    [InlineData(".bin")]
+    [InlineData(".img")]
+    public async Task CoherentConversionPreservesSuperblockInodesDirectoriesAndContents(string extension)
+    {
+        var sourcePath = CoherentImagePath();
+        var outputPath = Path.Combine(Path.GetTempPath(), $"gwgui-coherent-{Guid.NewGuid():N}{extension}");
+        try
+        {
+            Assert.True(CoherentConversionService.CanCreate(DiskImageFormatIds.Commodore900Coherent, extension));
+            await MediaEngineFactory.CreateCoherentConversionService().ConvertAsync(sourcePath, outputPath);
+            Assert.Equal(await File.ReadAllBytesAsync(sourcePath), await File.ReadAllBytesAsync(outputPath));
+            var reader = new CoherentRawImageReader();
+            var sourceImage = await reader.ReadAsync(sourcePath);
+            var reopenedImage = await reader.ReadAsync(outputPath);
+            Assert.Equal(sourceImage.BlockCount, reopenedImage.BlockCount);
+            for (var block = 0; block < sourceImage.BlockCount; block++)
+            {
+                Assert.Equal(sourceImage.GetBlock(block).ToArray(), reopenedImage.GetBlock(block).ToArray());
+                Assert.Equal(sourceImage.AvailableBlocks.Single(item => item.LogicalBlock == block).Address, reopenedImage.AvailableBlocks.Single(item => item.LogicalBlock == block).Address);
+            }
+            var fileSystem = new CoherentFileSystemReader();
+            var sourceVolume = fileSystem.Read(sourceImage);
+            var reopenedVolume = fileSystem.Read(reopenedImage);
+            Assert.Equal(sourceVolume.Name, reopenedVolume.Name);
+            Assert.Equal(sourceVolume.Capacity, reopenedVolume.Capacity);
+            Assert.Equal(sourceVolume.FreeBytes, reopenedVolume.FreeBytes);
+            AssertEntriesEqual(sourceVolume.Entries, reopenedVolume.Entries);
+        }
+        finally
+        {
+            if (File.Exists(outputPath)) File.Delete(outputPath);
+        }
+    }
+
+    [Theory]
     [InlineData(0, 16)]
     [InlineData(38, 16)]
     [InlineData(39, 15)]
@@ -44,6 +81,12 @@ public sealed class CoherentDiskImageTests
     [InlineData(64, 13)]
     [InlineData(79, 13)]
     public void Commodore900GeometryDefinesEveryZoneBoundary(int cylinder, int expectedSectors) => Assert.Equal(expectedSectors, Commodore900Geometry.SectorsPerTrack(cylinder));
+
+    [Fact]
+    public void Commodore900LogicalOrderRoundTripsEveryPhysicalAddress()
+    {
+        for (var logicalBlock = 0; logicalBlock < Commodore900Geometry.BlockCount; logicalBlock++) Assert.Equal(logicalBlock, Commodore900Geometry.LogicalBlockOf(Commodore900Geometry.AddressOf(logicalBlock)));
+    }
 
     [Fact]
     public void CoherentProbeAcceptsTheDocumentedNamesAndCanonicalOrder()
@@ -274,6 +317,20 @@ public sealed class CoherentDiskImageTests
                 SearchOption.AllDirectories)
             .FirstOrDefault();
         return path ?? throw new FileNotFoundException("L'image Coherent locale requise est absente.");
+    }
+
+    private static void AssertEntriesEqual(IReadOnlyList<FileSystemEntry> expected, IReadOnlyList<FileSystemEntry> actual)
+    {
+        Assert.Equal(expected.Count, actual.Count);
+        for (var index = 0; index < expected.Count; index++)
+        {
+            Assert.Equal(expected[index].Name, actual[index].Name);
+            Assert.Equal(expected[index].Kind, actual[index].Kind);
+            Assert.Equal(expected[index].Size, actual[index].Size);
+            Assert.Equal(expected[index].StorageReference, actual[index].StorageReference);
+            Assert.Equal(expected[index].Content, actual[index].Content);
+            AssertEntriesEqual(expected[index].Children, actual[index].Children);
+        }
     }
 
     /// <summary>CrÃ©e une image COHERENT synthÃ©tique en rendant prÃ©sents les blocs fournis et des blocs nuls complets pour les autres indices.</summary>
