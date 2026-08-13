@@ -877,7 +877,7 @@ public partial class MainWindow : Window
             if (!item.IsCompatible && _viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 _viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
         }
-        ConvertFormatsBlock.SetItems(items);
+        ConvertFormatsBlock.SetItems(items, sourceExtension);
     }
 
     private void ConvertProfile_Changed(object sender, SelectionChangedEventArgs e)

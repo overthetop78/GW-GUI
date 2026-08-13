@@ -699,7 +699,11 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 10.2 Flux original
 
-- [ ] Raccorder les conversions flux→flux SCP/HFE de façon à conserver les pistes et révolutions disponibles sans passage par `SectorImage`, puis vérifier index, timings et structures avant/après.
+- [x] Raccorder les conversions flux→flux SCP/HFE de façon à conserver les pistes et révolutions disponibles sans passage par `SectorImage`, puis vérifier index, timings et structures avant/après.
+
+  Réalisation : `FluxContainerConversionService` traite les conteneurs de flux avant les convertisseurs sectoriels. SCP→SCP conserve toutes les pistes et toutes les révolutions ; HFE→HFE conserve les cellules et timings uniformes ; HFE→SCP transporte directement l'unique révolution disponible. SCP→HFE est direct uniquement lorsque la capture possède une révolution et que tous ses timings sont représentables exactement par HFE v1. HFE v1 ne pouvant stocker ni plusieurs index séparés ni le jitter analogique SCP, une capture non représentable conserve le repli `gw.exe` et reste déclarée « piste reconstruite », jamais « flux préservé ».
+
+  Validation : les tests comparent les en-têtes, checksums, adresses de pistes, nombres de révolutions, temps d'index, intervalles SCP, cellules HFE, bitrates et timings après réouverture. Un test d'intégration prouve que `ConversionBatchExecutor` choisit le chemin interne avant `gw.exe`, et un test négatif interdit d'annoncer un SCP multi-révolution comme HFE préservé.
 
   Informations nécessaires :
 

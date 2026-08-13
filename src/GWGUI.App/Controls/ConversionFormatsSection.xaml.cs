@@ -9,6 +9,7 @@ namespace GWGUI.App.Controls;
 public partial class ConversionFormatsSection : UserControl
 {
     private IReadOnlyList<ConversionFormatPresentation> _items = [];
+    private string _sourceExtension = "";
 
     public ConversionFormatsSection() => InitializeComponent();
     public event EventHandler? ValueChanged;
@@ -16,9 +17,10 @@ public partial class ConversionFormatsSection : UserControl
     public IReadOnlyList<string> MachineChoices => Machines.Items.Cast<string>().ToArray();
     public IReadOnlyList<ConversionFormatPresentation> VisibleFormats => Formats.Items.Cast<ConversionFormatPresentation>().ToArray();
 
-    public void SetItems(IReadOnlyList<ConversionFormatPresentation> items)
+    public void SetItems(IReadOnlyList<ConversionFormatPresentation> items, string? sourceExtension = null)
     {
         var selectedMachine = Machines.SelectedItem as string;
+        _sourceExtension = sourceExtension ?? "";
         _items = items;
         SelectedOutputs.ItemsSource = items.Where(item => item.IsSelected)
             .SelectMany(item => SelectedLines(item)).ToArray();
@@ -30,14 +32,14 @@ public partial class ConversionFormatsSection : UserControl
         RefreshFormats();
     }
 
-    private static IEnumerable<string> SelectedLines(ConversionFormatPresentation item)
+    private IEnumerable<string> SelectedLines(ConversionFormatPresentation item)
     {
         var extensions = item.ExplicitExtensions.Count == 0
             ? item.Format.Extensions.Where(extension => extension.IsDefault).Take(1).Select(extension => extension.Extension)
             : item.ExplicitExtensions.Order(StringComparer.OrdinalIgnoreCase);
         foreach (var extension in extensions)
         {
-            var fidelity = ConversionFidelity.ForRebuiltOutput(extension);
+            var fidelity = ConversionFidelity.ForConversion(_sourceExtension, extension);
             yield return $"{item.Format.DisplayName} · {extension.TrimStart('.').ToUpperInvariant()} · {LocExtension.Get(FidelityKey(fidelity))}";
         }
     }

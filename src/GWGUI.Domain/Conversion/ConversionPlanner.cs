@@ -19,6 +19,7 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
                     outputBaseName,
                     format,
                     extension,
+                    sourceExtension,
                     addTags,
                     tagPattern,
                     selection.ExplicitExtensions.Count == 0));

@@ -32,6 +32,7 @@ using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Msx;
 using GWGUI.MediaEngine.Conversion.Ucsd;
 using GWGUI.MediaEngine.Conversion.Hfe;
+using GWGUI.MediaEngine.Conversion.Flux;
 using GWGUI.MediaEngine.Conversion.Scp;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Conversion.Atari;
@@ -126,6 +127,13 @@ public static class MediaEngineFactory
     }
     /// <summary>Crée le service HFE sectoriel avec l'explorateur et l'encodeur de pistes communs.</summary>
     public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new Containers.Hfe.HfeWriter());
+
+    /// <summary>Crée le service de conversion directe entre conteneurs de flux.</summary>
+    public static FluxContainerConversionService CreateFluxContainerConversionService() => new(
+        CreateScpReader(),
+        new ScpWriter(),
+        new Containers.Hfe.HfeReader(),
+        new Containers.Hfe.HfeWriter());
     /// <summary>Crée le service commun de reconstruction SCP depuis les images sectorielles.</summary>
     public static SectorImageScpConversionService CreateSectorImageScpConversionService() => new(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter());
 

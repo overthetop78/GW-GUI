@@ -9,6 +9,7 @@ internal static class ConversionOutputFactory
         string outputBaseName,
         DiskFormat format,
         ImageExtension extension,
+        string sourceExtension,
         bool addTags,
         string tagPattern,
         bool usesImplicitExtension)
@@ -23,6 +24,7 @@ internal static class ConversionOutputFactory
             format.Id,
             extension.Extension,
             Path.Combine(destinationFolder, fileName + extension.Extension),
-            usesImplicitExtension);
+            usesImplicitExtension,
+            ConversionFidelity.ForConversion(sourceExtension, extension.Extension));
     }
 }

@@ -323,7 +323,7 @@ public sealed class CoreTests
                 typeof(MainWindow).GetMethod("BuildConversionFormats", privateFlags)!.Invoke(window, [null, null]);
                 Assert.Contains(conversionFormats.SelectedOutputLines,
                     line => line.Contains("IBM PC", StringComparison.CurrentCultureIgnoreCase)
-                        && line.EndsWith("IMG", StringComparison.Ordinal));
+                        && line.Contains("· IMG ·", StringComparison.Ordinal));
                 typeof(MainWindow).GetMethod("ShowAdvancedValidation", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
                     .Invoke(window, [new ArgumentException("invalid value"), "Validation"]);
                 var request = Assert.Single(dialogs.Requests);
