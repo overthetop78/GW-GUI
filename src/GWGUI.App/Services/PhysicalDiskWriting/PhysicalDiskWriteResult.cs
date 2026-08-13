@@ -11,7 +11,6 @@ public sealed record PhysicalTrackWriteFailure(
     int? Cylinder,
     int? Head,
     PhysicalDiskWriteFailureKind Kind,
-    string Message,
     Exception? Exception = null);
 
 public sealed record PhysicalDiskWriteResult(

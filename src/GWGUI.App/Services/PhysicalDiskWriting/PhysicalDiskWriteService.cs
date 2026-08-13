@@ -77,8 +77,7 @@ public sealed class PhysicalDiskWriteService(
                     progress?.Report(new(written, orderedTracks.Length, track.Cylinder, track.Head, true));
                     if (!await verifier!.VerifyAsync(track.Cylinder, track.Head, intervals, cancellationToken))
                     {
-                        failures.Add(new(track.Cylinder, track.Head, PhysicalDiskWriteFailureKind.Verification,
-                            "The written track did not match the expected flux."));
+                        failures.Add(new(track.Cylinder, track.Head, PhysicalDiskWriteFailureKind.Verification));
                         break;
                     }
                 }
@@ -109,8 +108,7 @@ public sealed class PhysicalDiskWriteService(
             }
             catch (Exception exception)
             {
-                failures.Add(new(null, null, PhysicalDiskWriteFailureKind.Device,
-                    "The Greaseweazle device could not be closed safely.", exception));
+                failures.Add(new(null, null, PhysicalDiskWriteFailureKind.Device, exception));
             }
         }
 
@@ -138,16 +136,15 @@ public sealed class PhysicalDiskWriteService(
         PhysicalDiskWriteOptions options)
     {
         if (tracks.Count == 0)
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation, "The image contains no writable track.");
+            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
         if (string.IsNullOrWhiteSpace(options.PortName))
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation, "A serial port is required.");
+            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
         if (options.Verify && verifier is null)
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation, "Verification is unavailable.");
+            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
         if (options.Precompensation is { Count: > 0 } && tracks.Any(track => track.EncodedTrack is null))
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation,
-                "Precompensation requires tracks produced by an internal track encoder.");
+            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
         if (tracks.Any(track => track.Cylinder is < 0 or > short.MaxValue || track.Head is < 0 or > byte.MaxValue))
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation, "A track address is outside the controller range.");
+            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
         return null;
     }
 
@@ -184,6 +181,6 @@ public sealed class PhysicalDiskWriteService(
             ArgumentException or InvalidDataException or OverflowException => PhysicalDiskWriteFailureKind.Validation,
             _ => PhysicalDiskWriteFailureKind.Unexpected
         };
-        return new(track?.Cylinder, track?.Head, kind, exception.Message, exception);
+        return new(track?.Cylinder, track?.Head, kind, exception);
     }
 }

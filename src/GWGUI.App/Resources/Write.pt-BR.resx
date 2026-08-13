@@ -68,4 +68,7 @@ Gravar esta imagem no disco?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Uma ou mais opções avançadas selecionadas ainda não são compatíveis com a gravação interna.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>A verificação interna ainda não está disponível. Ative “Não verificar”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Trilha {0}, lado {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>A escrita interna falhou.</value>
+  </data>
 </root>

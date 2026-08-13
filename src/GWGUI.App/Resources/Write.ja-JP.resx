@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>選択した詳細オプションの一部はまだ対応していません。</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>内部検証はまだ利用できません。「検証しない」を有効にしてください。</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>トラック {0}、面 {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>内部書き込みに失敗しました。</value>
+  </data>
 </root>

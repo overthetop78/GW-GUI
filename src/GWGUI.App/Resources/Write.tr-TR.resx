@@ -68,4 +68,7 @@ Bu görüntü diske yazılsın mı?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Seçilen gelişmiş seçeneklerden bazıları henüz desteklenmiyor.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Dahili doğrulama henüz kullanılamıyor. “Doğrulama” seçeneğini kapatın.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>İz {0}, yüz {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Dahili yazma başarısız oldu.</value>
+  </data>
 </root>

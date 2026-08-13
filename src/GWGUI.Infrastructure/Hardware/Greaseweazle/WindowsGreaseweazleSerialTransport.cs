@@ -85,6 +85,14 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
         await _stream!.ReadExactlyAsync(buffer, cancellationToken);
     }
 
+    public async ValueTask<int> ReadAsync(
+        Memory<byte> buffer,
+        CancellationToken cancellationToken = default)
+    {
+        EnsureOpen();
+        return await _stream!.ReadAsync(buffer, cancellationToken);
+    }
+
     public ValueTask CloseAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();

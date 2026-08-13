@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>一个或多个所选高级选项尚不受支持。</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>内部验证尚不可用。请启用“不验证”。</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>磁道 {0}，盘面 {1}：{2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>内部写入失败。</value>
+  </data>
 </root>

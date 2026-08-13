@@ -784,7 +784,7 @@ public partial class MainWindow : Window
             var lines = result.Failures.Select(failure => new GwOutputLine(
                 DateTimeOffset.Now,
                 GwOutputStream.Error,
-                LocExtension.Get("Write.InternalFailure", failure.Cylinder?.ToString() ?? "-", failure.Head?.ToString() ?? "-", failure.Message))).ToArray();
+                LocExtension.Get("Write.InternalFailure", failure.Cylinder?.ToString() ?? "-", failure.Head?.ToString() ?? "-", LocExtension.Get("Write.InternalFailureReason")))).ToArray();
             foreach (var line in lines) ReportOutput(line);
             return new GwExecutionResult(result.IsSuccess ? 0 : 1, result.Cancelled, stopwatch.Elapsed, lines);
         });

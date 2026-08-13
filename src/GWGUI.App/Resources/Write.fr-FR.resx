@@ -68,4 +68,7 @@ Lecteur : {2}
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Une ou plusieurs options avancées sélectionnées ne sont pas encore prises en charge par l’écriture interne.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La vérification interne n’est pas encore disponible. Activez « Ne pas vérifier » pour utiliser l’écriture interne expérimentale.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Piste {0}, face {1} : {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>L’écriture interne a échoué.</value>
+  </data>
 </root>

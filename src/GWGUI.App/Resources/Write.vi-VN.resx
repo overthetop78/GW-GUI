@@ -68,4 +68,7 @@ Ghi hình ảnh này vào đĩa?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Một hoặc nhiều tùy chọn nâng cao chưa được hỗ trợ.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Chưa có xác minh nội bộ. Hãy bật “Không xác minh”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Rãnh {0}, mặt {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Ghi nội bộ không thành công.</value>
+  </data>
 </root>

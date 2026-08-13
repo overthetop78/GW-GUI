@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>ตัวเลือกขั้นสูงบางรายการยังไม่รองรับ</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>ยังไม่มีการตรวจสอบภายใน โปรดเปิด “ไม่ตรวจสอบ”</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>แทร็ก {0} ด้าน {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>การเขียนภายในล้มเหลว</value>
+  </data>
 </root>

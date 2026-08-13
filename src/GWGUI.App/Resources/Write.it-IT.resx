@@ -68,4 +68,7 @@ Scrivere questa immagine su disco?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una o più opzioni avanzate selezionate non sono ancora supportate dalla scrittura interna.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La verifica interna non è ancora disponibile. Attivare «Non verificare».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Traccia {0}, lato {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>La scrittura interna non è riuscita.</value>
+  </data>
 </root>

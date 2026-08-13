@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Μία ή περισσότερες σύνθετες επιλογές δεν υποστηρίζονται ακόμη.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Η εσωτερική επαλήθευση δεν είναι ακόμη διαθέσιμη. Ενεργοποιήστε το «Χωρίς επαλήθευση».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Ίχνος {0}, πλευρά {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Η εσωτερική εγγραφή απέτυχε.</value>
+  </data>
 </root>

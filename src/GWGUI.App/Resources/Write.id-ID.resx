@@ -68,4 +68,7 @@ Tulis gambar ini ke disk?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Satu atau beberapa opsi lanjutan belum didukung.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Verifikasi internal belum tersedia. Aktifkan “Jangan verifikasi”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Trek {0}, sisi {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Penulisan internal gagal.</value>
+  </data>
 </root>

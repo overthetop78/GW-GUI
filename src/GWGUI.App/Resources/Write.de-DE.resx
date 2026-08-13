@@ -68,4 +68,7 @@ Dieses Bild auf die Festplatte schreiben?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Mindestens eine ausgewählte erweiterte Option wird beim internen Schreiben noch nicht unterstützt.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Die interne Überprüfung ist noch nicht verfügbar. Aktivieren Sie „Nicht überprüfen“.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spur {0}, Seite {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Der interne Schreibvorgang ist fehlgeschlagen.</value>
+  </data>
 </root>

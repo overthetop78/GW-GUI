@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Деякі вибрані розширені параметри ще не підтримуються.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Внутрішня перевірка ще недоступна. Увімкніть «Не перевіряти».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Доріжка {0}, сторона {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Внутрішній запис не виконано.</value>
+  </data>
 </root>

@@ -68,4 +68,7 @@ Vil du skrive dette billede til disken?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>En eller flere valgte avancerede indstillinger understøttes endnu ikke.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Intern kontrol er endnu ikke tilgængelig. Aktivér “Kontrollér ikke”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spor {0}, side {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Intern skrivning mislykkedes.</value>
+  </data>
 </root>

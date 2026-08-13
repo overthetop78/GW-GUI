@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>선택한 고급 옵션 중 일부는 아직 지원되지 않습니다.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>내부 검증은 아직 사용할 수 없습니다. ‘검증 안 함’을 활성화하세요.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>트랙 {0}, 면 {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>내부 쓰기에 실패했습니다.</value>
+  </data>
 </root>

@@ -81,6 +81,43 @@ public sealed class GreaseweazleProtocolClientTests
         Assert.False(transport.IsOpen);
     }
 
+    [Fact]
+    public async Task ClientReadsIndexedFluxAndPreservesTheRawStream()
+    {
+        var stream = new byte[] { 10, 255, 1, 181, 1, 1, 1, 120, 255, 1, 141, 1, 1, 1, 0 };
+        var transport = new DeterministicTransport { ReadFluxStream = stream };
+        await using var client = new GreaseweazleProtocolClient(transport);
+        await client.OpenAsync("COM5");
+        await client.SelectDriveAsync(0);
+        await client.SetMotorAsync(true);
+
+        var capture = await client.ReadFluxAsync(1);
+
+        Assert.Equal(new uint[] { 10, 120 }, capture.FluxIntervals);
+        Assert.Equal(new uint[] { 100, 100 }, capture.IndexIntervals);
+        Assert.Equal(stream, capture.RawStream);
+        Assert.Equal(72_000_000u, capture.SampleFrequency);
+        Assert.Contains(GreaseweazleCommand.ReadFlux, transport.Commands);
+        Assert.Contains(GreaseweazleCommand.GetFluxStatus, transport.Commands);
+    }
+
+    [Fact]
+    public async Task ReadFluxRetriesTransientControllerOverflow()
+    {
+        var transport = new DeterministicTransport { ReadFluxStream = [10, 0] };
+        transport.FluxStatusAcknowledgements.Enqueue(GreaseweazleAcknowledgement.FluxOverflow);
+        transport.FluxStatusAcknowledgements.Enqueue(GreaseweazleAcknowledgement.Okay);
+        await using var client = new GreaseweazleProtocolClient(transport);
+        await client.OpenAsync("COM6");
+        await client.SelectDriveAsync(0);
+        await client.SetMotorAsync(true);
+
+        var capture = await client.ReadFluxAsync(0, 1_000, retries: 1);
+
+        Assert.Equal(new uint[] { 10 }, capture.FluxIntervals);
+        Assert.Equal(2, transport.Commands.Count(command => command == GreaseweazleCommand.ReadFlux));
+    }
+
     private sealed class DeterministicTransport : IGreaseweazleSerialTransport
     {
         private readonly Queue<byte> _readBytes = new();
@@ -92,6 +129,8 @@ public sealed class GreaseweazleProtocolClientTests
         public List<GreaseweazleCommand> Commands { get; } = [];
         public bool BuffersDiscarded { get; private set; }
         public byte[]? FluxStream { get; private set; }
+        public byte[]? ReadFluxStream { get; init; }
+        public Queue<GreaseweazleAcknowledgement> FluxStatusAcknowledgements { get; } = new();
         public (GreaseweazleCommand Command, GreaseweazleAcknowledgement Acknowledgement)? Failure { get; init; }
 
         public ValueTask OpenAsync(string portName, int baudRate, CancellationToken cancellationToken = default)
@@ -133,13 +172,27 @@ public sealed class GreaseweazleProtocolClientTests
             var acknowledgement = Failure is { } failure && failure.Command == command
                 ? failure.Acknowledgement
                 : GreaseweazleAcknowledgement.Okay;
+            if (command == GreaseweazleCommand.GetFluxStatus && FluxStatusAcknowledgements.Count > 0)
+                acknowledgement = FluxStatusAcknowledgements.Dequeue();
             _readBytes.Enqueue((byte)command);
             _readBytes.Enqueue((byte)acknowledgement);
             if (acknowledgement != GreaseweazleAcknowledgement.Okay) return ValueTask.CompletedTask;
 
             if (command == GreaseweazleCommand.GetInfo) EnqueueFirmware();
             if (command == GreaseweazleCommand.WriteFlux) _expectFlux = true;
+            if (command == GreaseweazleCommand.ReadFlux)
+            {
+                foreach (var value in ReadFluxStream ?? [0]) _readBytes.Enqueue(value);
+            }
             return ValueTask.CompletedTask;
+        }
+
+        public ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var count = Math.Min(buffer.Length, _readBytes.Count);
+            for (var index = 0; index < count; index++) buffer.Span[index] = _readBytes.Dequeue();
+            return ValueTask.FromResult(count);
         }
 
         public ValueTask ReadExactlyAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)

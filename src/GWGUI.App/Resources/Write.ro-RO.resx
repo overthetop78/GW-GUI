@@ -68,4 +68,7 @@ Scrieți această imagine pe disc?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una sau mai multe opțiuni avansate selectate nu sunt încă acceptate.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Verificarea internă nu este încă disponibilă. Activați „Nu verifica”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Pistă {0}, față {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Scrierea internă a eșuat.</value>
+  </data>
 </root>

@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Некоторые выбранные расширенные параметры пока не поддерживаются внутренней записью.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Внутренняя проверка пока недоступна. Включите «Не проверять».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Дорожка {0}, сторона {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Внутренняя запись не удалась.</value>
+  </data>
 </root>

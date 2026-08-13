@@ -68,4 +68,7 @@ Vil du skrive dette bildet til disk?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Ett eller flere valgte avanserte alternativer støttes ikke ennå.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Intern verifisering er ikke tilgjengelig ennå. Aktiver «Ikke verifiser».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spor {0}, side {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Intern skriving mislyktes.</value>
+  </data>
 </root>

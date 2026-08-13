@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>بعض الخيارات المتقدمة المحددة غير مدعومة بعد.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>التحقق الداخلي غير متاح بعد. فعّل «عدم التحقق».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>المسار {0}، الوجه {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>فشلت الكتابة الداخلية.</value>
+  </data>
 </root>

@@ -68,4 +68,7 @@ Write this image to disk?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>One or more selected advanced options are not yet supported by internal writing.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Internal verification is not available yet. Enable “Do not verify” to use experimental internal writing.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Track {0}, side {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Internal writing failed.</value>
+  </data>
 </root>

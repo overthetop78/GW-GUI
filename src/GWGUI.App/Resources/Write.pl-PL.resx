@@ -68,4 +68,7 @@ Zapisać ten obraz na dysk?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Niektóre wybrane opcje zaawansowane nie są jeszcze obsługiwane.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Wewnętrzna weryfikacja nie jest jeszcze dostępna. Włącz „Nie weryfikuj”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Ścieżka {0}, strona {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Wewnętrzny zapis nie powiódł się.</value>
+  </data>
 </root>

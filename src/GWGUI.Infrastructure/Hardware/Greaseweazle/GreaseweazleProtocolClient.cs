@@ -4,7 +4,7 @@ namespace GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 public sealed class GreaseweazleProtocolClient(
     IGreaseweazleSerialTransport transport,
-    int maximumFluxUnderflowRetries = 5) : IGreaseweazleWriteDevice
+    int maximumFluxUnderflowRetries = 5) : IGreaseweazleWriteDevice, IGreaseweazleReadDevice
 {
     private bool _selected;
     private bool _motorOn;
@@ -115,6 +115,36 @@ public sealed class GreaseweazleProtocolClient(
         }
     }
 
+    public async ValueTask<GreaseweazleFluxCapture> ReadFluxAsync(
+        int revolutions,
+        uint tickLimit = 0,
+        int retries = 5,
+        CancellationToken cancellationToken = default)
+    {
+        EnsureDriveSelected();
+        if (!_motorOn) throw new InvalidOperationException("The drive motor is not running.");
+        if (Firmware is null) throw new InvalidOperationException("The controller is not open.");
+        if (revolutions is < 0 or >= ushort.MaxValue) throw new ArgumentOutOfRangeException(nameof(revolutions));
+        if (retries < 0) throw new ArgumentOutOfRangeException(nameof(retries));
+
+        for (var attempt = 0; ; attempt++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                await SendCommandAsync(BuildReadCommand(revolutions, tickLimit), cancellationToken);
+                var stream = await ReadFluxStreamAsync(cancellationToken);
+                await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.GetFluxStatus, 2 }, cancellationToken);
+                return GreaseweazleFluxStreamDecoder.Decode(stream, Firmware.SampleFrequency);
+            }
+            catch (GreaseweazleProtocolException exception) when (
+                exception.Acknowledgement == GreaseweazleAcknowledgement.FluxOverflow &&
+                attempt < retries)
+            {
+            }
+        }
+    }
+
     public async ValueTask ResetAsync(CancellationToken cancellationToken = default)
     {
         await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.Reset, 2 }, cancellationToken);
@@ -207,6 +237,35 @@ public sealed class GreaseweazleProtocolClient(
         command[3] = terminateAtIndex ? (byte)1 : (byte)0;
         BinaryPrimitives.WriteUInt32LittleEndian(command.AsSpan(4), hardSectorTicks);
         return command;
+    }
+
+    private static byte[] BuildReadCommand(int revolutions, uint tickLimit)
+    {
+        var command = new byte[8];
+        command[0] = (byte)GreaseweazleCommand.ReadFlux;
+        command[1] = 8;
+        BinaryPrimitives.WriteUInt32LittleEndian(command.AsSpan(2), tickLimit);
+        BinaryPrimitives.WriteUInt16LittleEndian(command.AsSpan(6), revolutions == 0 ? (ushort)0 : checked((ushort)(revolutions + 1)));
+        return command;
+    }
+
+    private async ValueTask<byte[]> ReadFluxStreamAsync(CancellationToken cancellationToken)
+    {
+        using var stream = new MemoryStream();
+        var buffer = new byte[GreaseweazleFluxProtocol.ReadBufferSize];
+        while (true)
+        {
+            var count = await transport.ReadAsync(buffer, cancellationToken);
+            if (count == 0) throw new EndOfStreamException("The Greaseweazle flux stream ended before its terminator.");
+            var terminator = Array.IndexOf(buffer, GreaseweazleFluxProtocol.EndOfStream, 0, count);
+            if (terminator < 0)
+            {
+                stream.Write(buffer, 0, count);
+                continue;
+            }
+            stream.Write(buffer, 0, terminator + 1);
+            return stream.ToArray();
+        }
     }
 
     private void EnsureDriveSelected()

@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>一個或多個所選進階選項尚未支援。</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>內部驗證尚未可用。請啟用「不驗證」。</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>磁軌 {0}，磁面 {1}：{2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>內部寫入失敗。</value>
+  </data>
 </root>

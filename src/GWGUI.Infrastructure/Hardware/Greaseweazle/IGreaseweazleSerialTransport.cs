@@ -12,6 +12,8 @@ public interface IGreaseweazleSerialTransport : IAsyncDisposable
 
     ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default);
 
+    ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default);
+
     ValueTask ReadExactlyAsync(Memory<byte> buffer, CancellationToken cancellationToken = default);
 
     ValueTask CloseAsync(CancellationToken cancellationToken = default);

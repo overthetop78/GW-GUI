@@ -68,4 +68,7 @@ Zapsat tento obrázek na disk?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Některé vybrané pokročilé volby zatím interní zápis nepodporuje.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Interní ověření zatím není dostupné. Zapněte „Neověřovat“.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Stopa {0}, strana {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Interní zápis se nezdařil.</value>
+  </data>
 </root>

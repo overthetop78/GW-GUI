@@ -68,4 +68,7 @@ Unidad: {2}
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una o más opciones avanzadas seleccionadas aún no son compatibles con la escritura interna.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La verificación interna aún no está disponible. Active «No verificar».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Pista {0}, cara {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>La escritura interna ha fallado.</value>
+  </data>
 </root>

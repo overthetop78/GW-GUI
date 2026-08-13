@@ -547,7 +547,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 7.1 Acquisition de flux
 
-- [ ] Étendre le client Greaseweazle avec lecture de flux, index, révolutions, sélection de pistes, faux index, secteurs matériels, temporisations, annulation et reprise d’erreur, puis produire directement les modèles `ScpImage` en mémoire.
+- [x] Étendre le client Greaseweazle avec lecture de flux, index, révolutions, sélection de pistes, faux index, secteurs matériels, temporisations, annulation et reprise d’erreur, puis produire directement les modèles `ScpImage` en mémoire.
 
   Informations nécessaires :
 
@@ -555,6 +555,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
   Référence de protocole : https://github.com/keirf/greaseweazle/blob/master/src/greaseweazle/usb.py
   Référence du parcours : https://github.com/keirf/greaseweazle/blob/master/src/greaseweazle/tools/read.py
   Les révolutions acquises restent brutes et séparées ; l’enrichissement sectoriel intervient après acquisition.
+  Réalisé : le client décode les flux et index bruts du protocole, reprend les débordements transitoires et conserve le flux source. Le service d’acquisition sélectionne les pistes physiques, gère les index réels, simulés ou à secteurs matériels, puis construit en mémoire des révolutions SCP capturées et séparées. Les tests utilisent un périphérique et un transport déterministes ; aucune lecture physique n’est revendiquée avant la validation du titre 7.3.
   ```
 
 ### 7.2 Sauvegarde et décodage en direct

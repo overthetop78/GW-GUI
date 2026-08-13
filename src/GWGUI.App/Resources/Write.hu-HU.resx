@@ -68,4 +68,7 @@ Lemezre írja ezt a képet?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Egy vagy több kiválasztott speciális beállítás még nem támogatott.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>A belső ellenőrzés még nem érhető el. Kapcsolja be a „Ne ellenőrizze” lehetőséget.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Sáv {0}, oldal {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>A belső írás sikertelen.</value>
+  </data>
 </root>

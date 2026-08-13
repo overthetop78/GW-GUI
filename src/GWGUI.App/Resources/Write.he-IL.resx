@@ -68,4 +68,7 @@
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>אפשרות מתקדמת אחת או יותר עדיין אינה נתמכת.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>אימות פנימי עדיין אינו זמין. יש להפעיל „ללא אימות”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>רצועה {0}, צד {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>הכתיבה הפנימית נכשלה.</value>
+  </data>
 </root>

@@ -6,6 +6,7 @@ public enum GreaseweazleCommand : byte
     Seek = 2,
     Head = 3,
     Motor = 6,
+    ReadFlux = 7,
     WriteFlux = 8,
     GetFluxStatus = 9,
     Select = 12,

@@ -68,4 +68,7 @@ Kirjoita tämä kuva levylle?</value>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Yhtä tai useampaa lisäasetusta ei vielä tueta.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Sisäinen tarkistus ei ole vielä käytettävissä. Valitse ”Älä tarkista”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Raita {0}, puoli {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason">
+    <value>Sisäinen kirjoitus epäonnistui.</value>
+  </data>
 </root>
