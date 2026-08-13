@@ -78,6 +78,12 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new Containers.Adf.AdfReader(), new Containers.Adf.AcornAdfWriter());
     }
+    /// <summary>Crée le service de conversion BBC DFS avec ses Reader et Writer partagés.</summary>
+    public static BbcDfsConversionService CreateBbcDfsConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new BbcDfsReader(), new BbcDfsImageWriter());
+    }
     /// <summary>CrÃ©e le service de conversion RWTS18 avec ses Readers et Writers partagÃ©s.</summary>
     public static AppleRwts18ConversionService CreateAppleRwts18ConversionService()
     {

@@ -85,7 +85,7 @@ Références communes :
 
 ### 1.5 BBC Micro — SSD et DSD
 
-- [ ] Implémenter et raccorder un `BbcDfsImageWriter` produisant SSD 40/80 pistes et DSD 40/80 pistes, avec ordre des faces explicite, puis comparer catalogue et contenus après réouverture.
+- [x] Implémenter et raccorder un `BbcDfsImageWriter` produisant SSD 40/80 pistes et DSD 40/80 pistes, avec ordre des faces explicite, puis comparer catalogue et contenus après réouverture.
 
   Informations nécessaires :
 
