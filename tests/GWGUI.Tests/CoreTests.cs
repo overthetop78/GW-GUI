@@ -1487,7 +1487,8 @@ public sealed class CoreTests
                 new GWGUI.MediaEngine.Exploration.Results.ExploredFileSystem("amiga.amigados", "amigados.ofs", amigaVolume)
             }.Where(item => detected.Contains(item.FormatId, StringComparer.OrdinalIgnoreCase)).ToArray();
             var volume = formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase) ? amigaVolume : atariVolume;
-            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null), detectedFileSystems: fileSystems, detectedImageFormatIds: detected);
+            var primaryFormatId = formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase) ? "amiga.amigados" : "atarist.720";
+            return new(path, image, volume, new GWGUI.MediaEngine.Exploration.Metadata.DiskImageMetadata([], null), detectedFileSystems: fileSystems, detectedImageFormatIds: detected, primaryFormatId: primaryFormatId);
         }
     }
 

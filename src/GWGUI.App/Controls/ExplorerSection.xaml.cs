@@ -45,7 +45,7 @@ public partial class ExplorerSection : UserControl
         var enabled = AutomaticDetection.IsChecked == true;
         Classification.SetAutomaticDetection(enabled);
         if (enabled && _document is not null)
-            Classification.ApplyDetection(_document.Image.FormatId, _document.Metadata.ProtectionId, _detectedFormatIds);
+            Classification.ApplyDetection(_document.PrimaryFormatId, _document.Metadata.ProtectionId, _detectedFormatIds);
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -91,7 +91,7 @@ public partial class ExplorerSection : UserControl
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (_applyDetectionOnDisplay)
         {
-            Classification.ApplyDetection(CurrentFormatId(document), document.Metadata.ProtectionId, _detectedFormatIds);
+            Classification.ApplyDetection(document.PrimaryFormatId, document.Metadata.ProtectionId, _detectedFormatIds);
         }
 
         _applyDetectionOnDisplay = false;
@@ -144,14 +144,8 @@ public partial class ExplorerSection : UserControl
             return selectedMachine;
         }
 
-        var format = new DiskClassificationCatalog(_formats).ResolveFormat(CurrentFormatId(document));
+        var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.PrimaryFormatId);
         return format?.Family ?? ExplorerMetadataPresenter.Systems(document.Metadata);
-    }
-
-    private static string CurrentFormatId(ExploredDiskImage document)
-    {
-        var currentFileSystem = document.DetectedFileSystems.FirstOrDefault(item => ReferenceEquals(item.Volume, document.Volume));
-        return currentFileSystem?.FormatId ?? document.Image.FormatId;
     }
 
     private Brush BrushFor(bool synthetic)

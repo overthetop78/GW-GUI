@@ -8,7 +8,7 @@ namespace GWGUI.MediaEngine.Exploration.Results;
 public sealed record ExploredDiskImage
 {
     /// <summary>Construit un résultat en copiant les collections détectées et en conservant séparément le volume principal.</summary>
-    public ExploredDiskImage(string sourcePath, SectorImage image, FileSystemVolume volume, DiskImageMetadata metadata, bool fileSystemRecognized = true, IEnumerable<ExploredFileSystem>? detectedFileSystems = null, IEnumerable<string>? detectedImageFormatIds = null)
+    public ExploredDiskImage(string sourcePath, SectorImage image, FileSystemVolume volume, DiskImageMetadata metadata, bool fileSystemRecognized = true, IEnumerable<ExploredFileSystem>? detectedFileSystems = null, IEnumerable<string>? detectedImageFormatIds = null, string? primaryFormatId = null)
     {
         SourcePath = sourcePath;
         Image = image;
@@ -17,6 +17,7 @@ public sealed record ExploredDiskImage
         FileSystemRecognized = fileSystemRecognized;
         DetectedFileSystems = (detectedFileSystems ?? []).ToArray();
         DetectedImageFormatIds = (detectedImageFormatIds ?? []).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+        PrimaryFormatId = primaryFormatId ?? DetectedFileSystems.FirstOrDefault()?.FormatId ?? image.FormatId;
     }
 
     /// <summary>Obtient le chemin source.</summary>
@@ -31,6 +32,8 @@ public sealed record ExploredDiskImage
     public IReadOnlyList<ExploredFileSystem> DetectedFileSystems { get; }
     /// <summary>Obtient la copie ordonnée et sans doublon des formats détectés.</summary>
     public IReadOnlyList<string> DetectedImageFormatIds { get; }
+    /// <summary>Obtient le format correspondant au volume principal actuellement présenté.</summary>
+    public string PrimaryFormatId { get; }
     /// <summary>Obtient les métadonnées techniques calculées lors de la construction.</summary>
     public DiskImageMetadata Metadata { get; }
     /// <summary>Indique que l'image valide utilise un chargeur plutôt qu'un catalogue de fichiers.</summary>

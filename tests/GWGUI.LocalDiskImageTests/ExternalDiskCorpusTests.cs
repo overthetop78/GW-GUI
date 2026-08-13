@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Recognition.Definitions;
 using Xunit.Abstractions;
 
@@ -160,7 +161,11 @@ public sealed class ExternalDiskCorpusTests(ITestOutputHelper output)
         const string path = @"F:\Disquettes\Génération 4\Génération 4 N°53 - Mars 1993\Génération 4 - Disquette_Demo_N°53.scp";
         if (!File.Exists(path)) return;
         var document = await DiskImageExplorer.CreateDefault().ExploreAsync(path);
-        var formats = (document.DetectedFileSystems ?? []).Select(item => item.FormatId).ToArray();
+        var formats = document.DetectedFileSystems.Select(item => item.FormatId).ToArray();
+        Assert.Equal(document.DetectedFileSystems[0].FormatId, document.PrimaryFormatId);
+        Assert.StartsWith("atarist.", document.PrimaryFormatId, StringComparison.OrdinalIgnoreCase);
+        Assert.Equal(FileSystemIds.Fat12, document.Volume.FileSystemId);
+        Assert.Equal(720 * 1024, document.Volume.Capacity);
         Assert.Contains(formats, format => format.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase));
         Assert.Contains(formats, format => format.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase));
         Assert.Contains(DiskSystemIds.AtariSt, document.Metadata.SystemIds);
