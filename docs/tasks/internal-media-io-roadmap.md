@@ -131,11 +131,13 @@ Références communes :
   Référence HxC : libhxcfe/sources/loaders/d81_loader/d81_loader.c
   ```
 
+> Blocage d'environnement : le push du groupe 1 vers `origin/main` a été refusé par la politique d'autorisation. Les commits 1.1 à 1.7 sont conservés localement et prêts à être poussés.
+
 ## 2. Conversions sectorielles internes nécessitant un Writer spécialisé
 
 ### 2.1 Atari 8-bit — ATR 90, 130 et 180 Kio
 
-- [ ] Implémenter et raccorder un `AtrWriter` complet produisant l’en-tête ATR et les secteurs de tailles attendues pour les trois formats, puis remplacer l’usage limité d’`AtrPayloadWriter` par la façade adaptée.
+- [x] Implémenter et raccorder un `AtrWriter` complet produisant l’en-tête ATR et les secteurs de tailles attendues pour les trois formats, puis remplacer l’usage limité d’`AtrPayloadWriter` par la façade adaptée.
 
   Informations nécessaires :
 

@@ -98,6 +98,12 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtariStReader(), new MsaReader(), new AtariStWriter(new LinearSectorImageWriter()), new MsaWriter());
     }
+    /// <summary>Crée le service de conversion ATR avec ses Reader et Writer partagés.</summary>
+    public static AtrConversionService CreateAtrConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtrReader(), new AtrWriter());
+    }
     /// <summary>Crée le service de conversion Commodore 1581 avec ses Reader et Writer partagés.</summary>
     public static D81ConversionService CreateD81ConversionService()
     {

@@ -1,8 +1,18 @@
 namespace GWGUI.MediaEngine.Containers.Atari.Atr;
 
+using GWGUI.MediaEngine.SectorImages;
+
 /// <summary>Construit les erreurs produites pendant la validation d'un conteneur ATR.</summary>
 internal static class AtrExceptions
 {
+    /// <summary>Signale un identifiant absent du catalogue ATR en écriture.</summary>
+    public static InvalidDataException UnsupportedFormat(string formatId) => new($"ATR target format '{formatId}' is not supported.");
+    /// <summary>Signale une image sectorielle incompatible avec le profil demandé.</summary>
+    public static InvalidDataException IncompatibleSectorImage(SectorImage image, AtrFormatProfile profile) => new($"Sector image '{image.FormatId}' contains {image.BlockCount} sectors and {image.Capacity} bytes; ATR profile '{profile.FormatId}' requires {profile.SectorCount} sectors and {profile.PayloadLength} bytes.");
+    /// <summary>Signale un secteur requis absent.</summary>
+    public static InvalidDataException MissingSector(int sector) => new($"ATR sector {sector} is missing.");
+    /// <summary>Signale une taille sectorielle incompatible.</summary>
+    public static InvalidDataException InvalidSectorSize(int sector, int actual, int expected) => new($"ATR sector {sector} contains {actual} bytes; expected {expected}.");
     /// <summary>Crée l'erreur signalant un en-tête trop court ou une signature invalide.</summary>
     /// <param name="observedLength">Longueur observée du fichier, en octets.</param>
     /// <param name="expectedMinimumLength">Longueur minimale attendue, en octets.</param>
