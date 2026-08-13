@@ -1,8 +1,16 @@
+using GWGUI.MediaEngine.SectorImages;
+
 namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 
 /// <summary>Construit les erreurs détaillées produites pendant la lecture d'un conteneur MSA.</summary>
 internal static class MsaExceptions
 {
+    /// <summary>Signale une image sectorielle incompatible avec le format MSA.</summary>
+    public static InvalidDataException UnsupportedSectorImage(SectorImage image) => new($"Sector image '{image.FormatId}' with geometry {image.Cylinders}x{image.Heads}x{image.SectorsPerTrack} and block size {image.BlockSize} cannot be written as MSA.");
+    /// <summary>Signale un secteur nécessaire absent.</summary>
+    public static InvalidDataException MissingSector(int logical, int cylinder, int head, int sector) => new($"MSA logical sector {logical} ({cylinder}:{head}:{sector}) is missing.");
+    /// <summary>Signale un secteur dont la taille est invalide.</summary>
+    public static InvalidDataException InvalidSectorSize(int logical, int actual, int expected) => new($"MSA logical sector {logical} contains {actual} bytes; expected {expected}.");
     /// <summary>Signale un en-tête absent ou incomplet.</summary>
     public static InvalidDataException InvalidHeader(int observedLength) => new($"The MSA header is invalid; the file contains {observedLength} bytes.");
     /// <summary>Signale une géométrie MSA hors des limites acceptées.</summary>

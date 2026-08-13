@@ -95,7 +95,7 @@ public static class MediaEngineFactory
     public static AtariStConversionService CreateAtariStConversionService()
     {
         var scpReader = CreateScpReader();
-        return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtariStReader(), new AtariStWriter());
+        return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtariStReader(), new MsaReader(), new AtariStWriter(new LinearSectorImageWriter()), new MsaWriter());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()

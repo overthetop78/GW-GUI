@@ -98,7 +98,7 @@ Références communes :
 
 ### 1.6 Atari ST — ST et MSA
 
-- [ ] Durcir `AtariStConversionService` pour valider ou transformer réellement la géométrie demandée au lieu d’ignorer le format cible pour une source non-SCP, puis couvrir 180, 360, 400, 440, 720, 800, 810, 880 et 1 440 Kio.
+- [x] Durcir `AtariStConversionService` pour valider ou transformer réellement la géométrie demandée au lieu d’ignorer le format cible pour une source non-SCP, puis couvrir 180, 360, 400, 440, 720, 800, 810, 880 et 1 440 Kio.
 
   Informations nécessaires :
 
@@ -108,7 +108,7 @@ Références communes :
   Fichiers : Conversion/Atari/AtariStConversionService.cs, Containers/Atari/St/AtariStWriter.cs.
   ```
 
-- [ ] Implémenter et raccorder un `MsaWriter` pour les images Atari compatibles, avec compression par piste et relecture comparative par `MsaReader`.
+- [x] Implémenter et raccorder un `MsaWriter` pour les images Atari compatibles, avec compression par piste et relecture comparative par `MsaReader`.
 
   Informations nécessaires :
 
