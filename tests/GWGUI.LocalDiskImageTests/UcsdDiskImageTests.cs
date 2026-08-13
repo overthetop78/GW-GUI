@@ -1,7 +1,11 @@
 ﻿using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using GWGUI.MediaEngine.Containers.TeleDisk;
+using GWGUI.MediaEngine.Containers.Ucsd.Raw;
+using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine.Conversion.Ucsd;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Geometries.Ucsd;
@@ -48,6 +52,37 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
     }
 
     [Fact]
+    public async Task UcsdImgConversionPreservesCatalogSegmentsAndFileContents()
+    {
+        var sourcePath = ImagePath("ucsdpasc.td0");
+        if (!File.Exists(sourcePath)) return;
+        var outputPath = Path.Combine(Path.GetTempPath(), $"gwgui-ucsd-{Guid.NewGuid():N}.img");
+        try
+        {
+            Assert.True(UcsdImgConversionService.CanCreate(DiskImageFormatIds.UcsdIbmMfm, ".img"));
+            await MediaEngineFactory.CreateUcsdImgConversionService().ConvertAsync(sourcePath, outputPath);
+            var sourceImage = (await new Td0Reader().ReadAsync(sourcePath)).WithFormatId(DiskImageFormatIds.UcsdIbmMfm);
+            var reopenedImage = await new UcsdRawImageReader().ReadAsync(outputPath);
+            Assert.Equal(40, reopenedImage.Cylinders);
+            Assert.Equal(UcsdIbmMfmGeometry.HeadCount, reopenedImage.Heads);
+            Assert.Equal(UcsdIbmMfmGeometry.LogicalSectorsPerCylinder, reopenedImage.SectorsPerTrack);
+            Assert.Equal(sourceImage.BlockCount, reopenedImage.BlockCount);
+            for (var block = 0; block < sourceImage.BlockCount; block++) Assert.Equal(sourceImage.GetBlock(block).ToArray(), reopenedImage.GetBlock(block).ToArray());
+            var reader = new UcsdFileSystemReader();
+            var sourceVolume = reader.Read(sourceImage);
+            var reopenedVolume = reader.Read(reopenedImage);
+            Assert.Equal(sourceVolume.Name, reopenedVolume.Name);
+            Assert.Equal(sourceVolume.Capacity, reopenedVolume.Capacity);
+            Assert.Equal(sourceVolume.FreeBytes, reopenedVolume.FreeBytes);
+            AssertEntriesEqual(sourceVolume.Entries, reopenedVolume.Entries);
+        }
+        finally
+        {
+            if (File.Exists(outputPath)) File.Delete(outputPath);
+        }
+    }
+
+    [Fact]
     public void UcsdPolicyUsesPhysicalCandidatesAndDeclaredGeometry()
     {
         var physical = Enumerable.Range(1, UcsdIbmMfmGeometry.LogicalSectorsPerCylinder).ToDictionary(number => new SectorAddress(0, 0, number), number => new List<IsoSectorCandidate> { new(new(4, 1, number, 2, 512, true, 0, Data: new byte[512]), 1) });
@@ -60,7 +95,7 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
 
     private async Task VerifyImage(string fileName)
     {
-        var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", fileName));
+        var path = ImagePath(fileName);
         if (!File.Exists(path)) return;
         var image = await new Td0Reader().ReadAsync(path);
         var reader = new UcsdFileSystemReader();
@@ -80,5 +115,21 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
         var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", "ucsdpasc [test].scp"));
         Assert.True(File.Exists(path), $"Image SCP UCSD obligatoire absente : {path}");
         return path;
+    }
+
+    private static string ImagePath(string fileName) => Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "image_test", "validated_images", "UCSD", "p-System", "5.25 pouces - IBM MFM - 160 Kio", fileName));
+
+    private static void AssertEntriesEqual(IReadOnlyList<FileSystemEntry> expected, IReadOnlyList<FileSystemEntry> actual)
+    {
+        Assert.Equal(expected.Count, actual.Count);
+        for (var index = 0; index < expected.Count; index++)
+        {
+            Assert.Equal(expected[index].Name, actual[index].Name);
+            Assert.Equal(expected[index].Kind, actual[index].Kind);
+            Assert.Equal(expected[index].Size, actual[index].Size);
+            Assert.Equal(expected[index].StorageReference, actual[index].StorageReference);
+            Assert.Equal(expected[index].Content, actual[index].Content);
+            AssertEntriesEqual(expected[index].Children, actual[index].Children);
+        }
     }
 }

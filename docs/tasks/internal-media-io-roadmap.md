@@ -247,7 +247,7 @@ Références communes :
 
 ### 2.7 UCSD p-System — IMG
 
-- [ ] Raccorder l’image UCSD IBM MFM au Writer brut avec géométrie explicite et valider catalogue, segments et fichiers après réouverture.
+- [x] Raccorder l’image UCSD IBM MFM au Writer brut avec géométrie explicite et valider catalogue, segments et fichiers après réouverture.
 
   Informations nécessaires :
 

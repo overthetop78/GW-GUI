@@ -24,10 +24,12 @@ using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Containers.Raw;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Containers.TeleDisk;
+using GWGUI.MediaEngine.Containers.Ucsd.Raw;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Conversion.Amiga;
 using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Msx;
+using GWGUI.MediaEngine.Conversion.Ucsd;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Conversion.Commodore;
@@ -149,6 +151,13 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new DecRx02ScpSectorImageReader(scpReader, CreateFluxDecoders()), new DecRx02Reader(), new DecRx02Writer());
+    }
+
+    /// <summary>Crée le service de conversion UCSD IMG avec sa géométrie sectorielle explicite.</summary>
+    public static UcsdImgConversionService CreateUcsdImgConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new UcsdRawImageReader(), new Td0Reader(), new LinearSectorImageWriter());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()
