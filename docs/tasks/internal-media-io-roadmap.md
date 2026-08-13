@@ -605,7 +605,9 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 9.1 Contrat commun de migration
 
-- [ ] Implémenter un modèle de migration représentant dossiers, fichiers, contenu, date, commentaire, attributs et pertes de métadonnées, puis un validateur empêchant toute migration silencieusement destructive.
+- [x] Implémenter un modèle de migration représentant dossiers, fichiers, contenu, date, commentaire, attributs et pertes de métadonnées, puis un validateur empêchant toute migration silencieusement destructive.
+
+  Le modèle commun conserve contenu, hiérarchie et métadonnées source. Le validateur bloque les données absentes, types non représentables, conflits de noms, caractères interdits et dépassements de taille ; toute perte de date, commentaire ou attribut requiert une acceptation explicite.
 
   Informations nécessaires :
 
