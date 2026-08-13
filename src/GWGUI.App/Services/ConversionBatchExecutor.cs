@@ -8,6 +8,7 @@ using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Msx;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Conversion.Atari;
+using GWGUI.MediaEngine.Conversion.Commodore;
 using GWGUI.MediaEngine.Composition;
 
 namespace GWGUI.App.Services;
@@ -20,7 +21,8 @@ public sealed class ConversionBatchExecutor(
     AcornAdfConversionService? acornAdf = null,
     BbcDfsConversionService? bbcDfs = null,
     AppleRwts18ConversionService? appleRwts18 = null,
-    AtariStConversionService? atariSt = null)
+    AtariStConversionService? atariSt = null,
+    D81ConversionService? d81 = null)
 {
     private readonly AmigaAdfConversionService _amigaAdf = amigaAdf ?? MediaEngineFactory.CreateAmigaAdfConversionService();
     private readonly IbmRawConversionService _ibmRaw = ibmRaw ?? MediaEngineFactory.CreateIbmRawConversionService();
@@ -29,9 +31,10 @@ public sealed class ConversionBatchExecutor(
     private readonly BbcDfsConversionService _bbcDfs = bbcDfs ?? MediaEngineFactory.CreateBbcDfsConversionService();
     private readonly AppleRwts18ConversionService _appleRwts18 = appleRwts18 ?? MediaEngineFactory.CreateAppleRwts18ConversionService();
     private readonly AtariStConversionService _atariSt = atariSt ?? MediaEngineFactory.CreateAtariStConversionService();
+    private readonly D81ConversionService _d81 = d81 ?? MediaEngineFactory.CreateD81ConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension);
+        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleRwts18ConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
@@ -67,6 +70,8 @@ public sealed class ConversionBatchExecutor(
                     await _msxRaw.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else if (AtariStConversionService.CanCreate(output.FormatId, output.Extension))
                     await _atariSt.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
+                else if (D81ConversionService.CanCreate(output.FormatId, output.Extension))
+                    await _d81.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else
                     await _appleRwts18.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
                 completed.Add(new(item, new(0, false, stopwatch.Elapsed, [])));

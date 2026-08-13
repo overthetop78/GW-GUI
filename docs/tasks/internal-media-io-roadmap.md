@@ -120,7 +120,7 @@ Références communes :
 
 ### 1.7 Commodore 1581 — D81
 
-- [ ] Implémenter et raccorder un `D81Writer` à partir de l’image ISO MFM reconstruite, puis vérifier les 80×2×10 secteurs, le BAM, le répertoire et les fichiers après réouverture.
+- [x] Implémenter et raccorder un `D81Writer` à partir de l’image ISO MFM reconstruite, puis vérifier les 80×2×10 secteurs, le BAM, le répertoire et les fichiers après réouverture.
 
   Informations nécessaires :
 

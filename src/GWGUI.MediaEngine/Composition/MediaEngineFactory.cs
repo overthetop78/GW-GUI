@@ -23,6 +23,7 @@ using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Msx;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Conversion.Atari;
+using GWGUI.MediaEngine.Conversion.Commodore;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Definitions;
@@ -96,6 +97,12 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtariStReader(), new MsaReader(), new AtariStWriter(new LinearSectorImageWriter()), new MsaWriter());
+    }
+    /// <summary>Crée le service de conversion Commodore 1581 avec ses Reader et Writer partagés.</summary>
+    public static D81ConversionService CreateD81ConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new CommodoreScpSectorImageReader(scpReader, CreateFluxDecoders()), new D81Reader(), new D81Writer(new LinearSectorImageWriter()));
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()
