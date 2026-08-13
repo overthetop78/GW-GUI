@@ -54,6 +54,7 @@ public partial class OptionsWindow : Window
     private readonly TagOptionsController _tagOptionsController;
     private readonly LoggingOptionsController _loggingOptionsController;
     private readonly HardwareOptionsController _hardwareOptionsController;
+    private readonly EngineOptionsController _engineOptionsController;
     private readonly List<ControllerSettings> _controllers;
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
@@ -127,8 +128,20 @@ public partial class OptionsWindow : Window
             () => _hostToolsOptionsController.CurrentPath,
             PersistSettingsAsync,
             ShowLoggedError);
+        _engineOptionsController = new EngineOptionsController(
+            EnginesSection,
+            settings.Engines,
+            () => _initializing,
+            PersistSettingsAsync);
         _hardwareOptionsController.Initialize();
-        Navigation.SelectedIndex = section switch { OptionsSection.Logs => 1, OptionsSection.Hardware or OptionsSection.HostTools => 2, OptionsSection.Profiles => 3, _ => 0 };
+        Navigation.SelectedIndex = section switch
+        {
+            OptionsSection.Logs => 1,
+            OptionsSection.Hardware or OptionsSection.HostTools => 2,
+            OptionsSection.Engines => 3,
+            OptionsSection.Profiles => 4,
+            _ => 0
+        };
         _initializing = false;
     }
 
@@ -213,6 +226,7 @@ public partial class OptionsWindow : Window
         _hostToolsOptionsController.ApplyTo(_settings);
         _tagOptionsController.ApplyTo(_settings);
         _hardwareOptionsController.ApplyTo(_settings);
+        _engineOptionsController.ApplyTo(_settings);
         _profileOptionsController.ApplyTo(_settings);
     }
 

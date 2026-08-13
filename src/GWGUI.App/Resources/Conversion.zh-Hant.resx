@@ -154,4 +154,9 @@
   <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
 </root>

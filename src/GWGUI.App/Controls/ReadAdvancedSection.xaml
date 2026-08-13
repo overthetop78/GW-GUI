@@ -3,7 +3,6 @@
         <Border Style="{StaticResource Card}" Margin="0,10,0,12">
             <StackPanel>
                 <WrapPanel>
-                    <CheckBox x:Name="InternalReader" IsChecked="{Binding Read.InternalReader.Enabled, Mode=TwoWay}" Content="{l:Loc Read.InternalReader}" FontWeight="SemiBold" Margin="8" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Read.InternalReaderTip}" />
                     <CheckBox x:Name="RevsEnabled" IsChecked="{Binding Read.Revs.Enabled, Mode=TwoWay}" Content="{l:Loc Read.Revolutions}" Margin="8" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Advanced.RevsTip}" />
                     <TextBox x:Name="RevsValue" Width="70" Text="{Binding Read.Revs.Value, UpdateSourceTrigger=PropertyChanged}" TextChanged="Input_Changed" />
                     <CheckBox x:Name="RetriesEnabled" IsChecked="{Binding Read.Retries.Enabled}" Content="{l:Loc Read.Retries}" Margin="18,8,8,8" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Advanced.RetriesTip}" />

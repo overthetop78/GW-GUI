@@ -2,7 +2,6 @@
     <Expander Header="{l:Loc Common.Advanced}">
         <Border Style="{StaticResource Card}" Margin="0,10,0,12">
             <StackPanel>
-                <CheckBox x:Name="InternalWriter" IsChecked="{Binding Write.InternalWriter.Enabled, Mode=TwoWay}" Content="{l:Loc Write.InternalWriter}" FontWeight="SemiBold" Margin="8" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Write.InternalWriterTip}"/>
                 <WrapPanel>
                     <CheckBox x:Name="NoVerify" IsChecked="{Binding Write.NoVerify.Enabled, Mode=TwoWay}" Content="{l:Loc Write.NoVerify}" Foreground="#B3261E" Margin="8" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Write.NoVerifyTip}"/>
                     <CheckBox x:Name="EraseEmpty" IsChecked="{Binding Write.EraseEmpty.Enabled}" Content="{l:Loc Write.EraseEmpty}" Margin="16,8" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Advanced.EraseEmptyTip}"/>

@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = необмежений</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Рушії</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Окремо виберіть рушій для кожної операції.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>Внутрішній рушій GW GUI</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>Вибраний рушій використовується без перемикання. Якщо він не може виконати операцію, GW GUI повідомить про це й не застосовуватиме інший рушій непомітно.</value></data>
 </root>

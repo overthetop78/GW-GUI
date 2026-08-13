@@ -1,6 +1,7 @@
 using GWGUI.App.Services.PhysicalDiskReading;
 using GWGUI.App.ViewModels;
 using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.Domain.Settings;
 
 namespace GWGUI.Tests;
 
@@ -34,12 +35,12 @@ public sealed class InternalPhysicalDiskReadOptionTests
     }
 
     [Fact]
-    public void InternalReaderChoiceIsPersistedButNeverSentToGw()
+    public void InternalReaderChoiceIsStoredInGlobalEngineSettings()
     {
-        var viewModel = new ReadOperationViewModel();
-        viewModel.InternalReader.Enabled = true;
+        var settings = new AppSettings();
+        settings.Engines.PhysicalRead = OperationEngine.Internal;
 
-        Assert.DoesNotContain(viewModel.BuildOptions(), option => option.Argument == "--internal-reader");
-        Assert.Contains("internal-reader", viewModel.CaptureEnabledOptions());
+        Assert.Equal(OperationEngine.Internal, settings.Engines.PhysicalRead);
+        Assert.DoesNotContain(new ReadOperationViewModel().BuildOptions(), option => option.Argument == "--internal-reader");
     }
 }

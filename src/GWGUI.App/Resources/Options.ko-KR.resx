@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = 무제한</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>엔진</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>각 작업에 사용할 엔진을 개별적으로 선택합니다.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 내부 엔진</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>선택한 엔진만 사용합니다. 작업을 수행할 수 없으면 GW GUI가 다른 엔진으로 자동 전환하지 않고 이를 알립니다.</value></data>
 </root>

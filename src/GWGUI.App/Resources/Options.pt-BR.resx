@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = ilimitado</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Mecanismos</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Escolha de forma independente o mecanismo usado em cada operação.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>Mecanismo interno do GW GUI</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>O mecanismo selecionado é usado estritamente. Se não puder realizar a operação, o GW GUI informa sem usar silenciosamente o outro mecanismo.</value></data>
 </root>

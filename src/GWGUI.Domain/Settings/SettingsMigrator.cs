@@ -2,7 +2,7 @@ namespace GWGUI.Domain.Settings;
 
 public static class SettingsMigrator
 {
-    public const int CurrentVersion = 7;
+    public const int CurrentVersion = 8;
 
     public static AppSettings Migrate(AppSettings settings)
     {
@@ -21,6 +21,7 @@ public static class SettingsMigrator
                 case 4: MigrateV4ToV5(settings); break;
                 case 5: MigrateV5ToV6(settings); break;
                 case 6: MigrateV6ToV7(settings); break;
+                case 7: MigrateV7ToV8(settings); break;
                 default: throw new NotSupportedException($"No migration exists for settings schema {settings.SchemaVersion}.");
             }
         }
@@ -75,6 +76,27 @@ public static class SettingsMigrator
         settings.SchemaVersion = 7;
     }
 
+    private static void MigrateV7ToV8(AppSettings settings)
+    {
+        settings.Engines = new EngineSettings
+        {
+            PhysicalRead = settings.Read.EnabledOptions.Remove("internal-reader")
+                ? OperationEngine.Internal
+                : OperationEngine.GreaseweazleHostTools,
+            PhysicalWrite = settings.Write.EnabledOptions.Remove("internal-writer")
+                ? OperationEngine.Internal
+                : OperationEngine.GreaseweazleHostTools,
+            Conversion = OperationEngine.Internal,
+            ExplorerRead = OperationEngine.Internal
+        };
+        foreach (var profile in settings.Profiles)
+        {
+            profile.EnabledOptions.Remove("internal-reader");
+            profile.EnabledOptions.Remove("internal-writer");
+        }
+        settings.SchemaVersion = 8;
+    }
+
     private static void Normalize(AppSettings settings)
     {
         settings.Language = settings.Language?.Trim() ?? "";
@@ -84,6 +106,7 @@ public static class SettingsMigrator
         settings.Controllers ??= [];
         settings.UnconfiguredControllers ??= [];
         settings.Drives ??= [];
+        settings.Engines ??= new EngineSettings();
         settings.Read ??= new ReadUiSettings();
         settings.Write ??= new AdvancedUiSettings();
         settings.Profiles ??= [];
@@ -105,7 +128,14 @@ public static class SettingsMigrator
         if (string.Equals(settings.Conversion.TagPattern, " [{FAMILY}-{FORMAT}]", StringComparison.OrdinalIgnoreCase))
             settings.Conversion.TagPattern = "[{FAMILY}-{FORMAT}] ";
         foreach (var profile in settings.Profiles) { profile.Values ??= []; profile.EnabledOptions ??= []; }
+        settings.Engines.PhysicalRead = NormalizeEngine(settings.Engines.PhysicalRead, OperationEngine.GreaseweazleHostTools);
+        settings.Engines.PhysicalWrite = NormalizeEngine(settings.Engines.PhysicalWrite, OperationEngine.GreaseweazleHostTools);
+        settings.Engines.Conversion = NormalizeEngine(settings.Engines.Conversion, OperationEngine.Internal);
+        settings.Engines.ExplorerRead = NormalizeEngine(settings.Engines.ExplorerRead, OperationEngine.Internal);
     }
+
+    private static OperationEngine NormalizeEngine(OperationEngine engine, OperationEngine fallback) =>
+        Enum.IsDefined(engine) ? engine : fallback;
 
     private static string? CorrectFormatId(string? id) => id == "amiga.amigadoshd" ? "amiga.amigados_hd" : id;
 

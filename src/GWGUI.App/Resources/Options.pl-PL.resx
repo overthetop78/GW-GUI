@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = nieograniczony</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Silniki</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Wybierz niezależnie silnik używany dla każdej operacji.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>Wewnętrzny silnik GW GUI</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>Wybrany silnik jest używany bez przełączania. Jeśli nie może wykonać operacji, GW GUI zgłasza to zamiast po cichu używać drugiego silnika.</value></data>
 </root>

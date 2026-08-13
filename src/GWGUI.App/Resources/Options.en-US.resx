@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = unlimited</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Engines</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Choose the engine used independently for each operation.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>Internal GW GUI engine</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>The selected engine is used strictly. If it cannot perform the operation, GW GUI reports it instead of silently using the other engine.</value></data>
 </root>

@@ -1,6 +1,7 @@
 using GWGUI.App.Services.PhysicalDiskWriting;
 using GWGUI.App.ViewModels;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
+using GWGUI.Domain.Settings;
 
 namespace GWGUI.Tests;
 
@@ -23,18 +24,12 @@ public sealed class InternalPhysicalDiskWritingTests
     }
 
     [Fact]
-    public void InternalWriterPersistsInProfilesWithoutLeakingIntoGwArguments()
+    public void InternalWriterChoiceIsStoredInGlobalEngineSettings()
     {
-        var model = new WriteOperationViewModel();
-        model.InternalWriter.Enabled = true;
+        var settings = new AppSettings();
+        settings.Engines.PhysicalWrite = OperationEngine.Internal;
 
-        Assert.Contains("internal-writer", model.CaptureEnabledOptions());
-        Assert.DoesNotContain(model.BuildOptions(), option => option.Argument == "--internal-writer");
-
-        var restored = new WriteOperationViewModel();
-        restored.ApplyOptions(model.CaptureEnabledOptions(), model.CaptureValues());
-
-        Assert.True(restored.InternalWriter.Enabled);
-        Assert.Empty(restored.BuildOptions());
+        Assert.Equal(OperationEngine.Internal, settings.Engines.PhysicalWrite);
+        Assert.DoesNotContain(new WriteOperationViewModel().BuildOptions(), option => option.Argument == "--internal-writer");
     }
 }

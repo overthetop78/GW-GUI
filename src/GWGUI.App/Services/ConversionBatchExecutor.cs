@@ -19,6 +19,8 @@ using GWGUI.MediaEngine.Conversion.Hfe;
 using GWGUI.MediaEngine.Conversion.Flux;
 using GWGUI.MediaEngine.Conversion.Scp;
 using GWGUI.MediaEngine.Composition;
+using GWGUI.App.Localization;
+using GWGUI.Domain.Settings;
 
 namespace GWGUI.App.Services;
 
@@ -86,7 +88,8 @@ public sealed class ConversionBatchExecutor(
         IReadOnlyList<(ConversionOutput Output, GwCommand Command)> items,
         IProgress<GwOutputLine>? progress = null,
         Action<GwBatchItem>? itemStarting = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        OperationEngine engine = OperationEngine.Internal)
     {
         var completed = new List<GwBatchItemResult>(items.Count);
         foreach (var (output, command) in items)
@@ -94,27 +97,28 @@ public sealed class ConversionBatchExecutor(
             if (cancellationToken.IsCancellationRequested) break;
             var item = new GwBatchItem(Path.GetFileName(output.OutputPath), command);
             itemStarting?.Invoke(item);
+            if (engine == OperationEngine.GreaseweazleHostTools)
+            {
+                Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineExternal", item.Label));
+                completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
+                continue;
+            }
+
             if (!IsInternal(sourcePath, output))
             {
-                completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
+                var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalUnavailable", item.Label));
+                completed.Add(new(item, new(1, false, TimeSpan.Zero, [line])));
                 continue;
             }
 
             var stopwatch = Stopwatch.StartNew();
             try
             {
+                Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalStart", Path.GetFileName(sourcePath), item.Label));
                 if (FluxContainerConversionService.CanConvert(sourcePath, output.FormatId, output.Extension))
                 {
-                    try
-                    {
-                        await _flux.ConvertAsync(sourcePath, output.OutputPath, cancellationToken)
-                            .ConfigureAwait(false);
-                    }
-                    catch (NotSupportedException) when (!output.PreservesOriginalProtection)
-                    {
-                        completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
-                        continue;
-                    }
+                    await _flux.ConvertAsync(sourcePath, output.OutputPath, cancellationToken)
+                        .ConfigureAwait(false);
                 }
                 else if (SectorImageScpFileConversionService.CanCreate(output.FormatId, output.Extension))
                     await _scp.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
@@ -133,14 +137,7 @@ public sealed class ConversionBatchExecutor(
                 else if (LisaConversionService.CanCreate(output.FormatId, output.Extension))
                     await _lisa.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else if (HfeConversionService.CanCreate(output.FormatId, output.Extension))
-                {
-                    try { await _hfe.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false); }
-                    catch (NotSupportedException)
-                    {
-                        completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
-                        continue;
-                    }
-                }
+                    await _hfe.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
                 else if (AtariStConversionService.CanCreate(output.FormatId, output.Extension))
                     await _atariSt.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else if (D81ConversionService.CanCreate(output.FormatId, output.Extension))
@@ -162,17 +159,8 @@ public sealed class ConversionBatchExecutor(
                 else if (AppleSectorConversionService.CanCreate(output.FormatId, output.Extension))
                     await _appleSector.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else
-                {
-                    try
-                    {
-                        await _appleNibble.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
-                    }
-                    catch (InvalidDataException) when (AppleNibbleConversionService.IsCatalogAliasTarget(output.FormatId, output.Extension))
-                    {
-                        completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
-                        continue;
-                    }
-                }
+                    await _appleNibble.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
+                Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalComplete", item.Label));
                 completed.Add(new(item, new(0, false, stopwatch.Elapsed, [])));
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -183,9 +171,17 @@ public sealed class ConversionBatchExecutor(
             catch (Exception exception)
             {
                 ErrorLog.Write(exception, $"Converting image to {output.FormatId}");
-                completed.Add(new(item, new(1, false, stopwatch.Elapsed, [])));
+                var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalFailed", item.Label, LocExtension.Get("Common.Unknown")));
+                completed.Add(new(item, new(1, false, stopwatch.Elapsed, [line])));
             }
         }
         return new(completed, cancellationToken.IsCancellationRequested || completed.Any(result => result.Result.WasCancelled));
+    }
+
+    private static GwOutputLine Report(IProgress<GwOutputLine>? progress, GwOutputStream stream, string text)
+    {
+        var line = new GwOutputLine(DateTimeOffset.Now, stream, text);
+        progress?.Report(line);
+        return line;
     }
 }

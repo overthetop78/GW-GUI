@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = ไม่จำกัด</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>เอนจิน</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>เลือกเอนจินที่ใช้สำหรับแต่ละการทำงานแยกกัน</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>เอนจินภายในของ GW GUI</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>ระบบจะใช้เอนจินที่เลือกเท่านั้น หากทำงานไม่ได้ GW GUI จะแจ้งให้ทราบโดยไม่สลับไปใช้อีกเอนจินอย่างเงียบ ๆ</value></data>
 </root>

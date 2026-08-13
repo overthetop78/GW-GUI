@@ -16,7 +16,6 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
     private string _sequenceValue = "1";
     private string _expertArguments = "";
 
-    public FlagOptionViewModel InternalReader { get; } = new("--internal-reader");
     public ValueOptionViewModel Revs { get; } = new("--revs", "5");
     public ValueOptionViewModel Retries { get; } = new("--retries", "5");
     public ValueOptionViewModel Tracks { get; } = new("--tracks", "c=0-79:h=0-1");
@@ -59,7 +58,7 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
 
     public IReadOnlyList<EnabledOption> BuildOptions() =>
         AllOptions()
-            .Where(option => option.Enabled && option != InternalReader)
+            .Where(option => option.Enabled)
             .Select(option => option.ToEnabledOption())
             .ToArray();
 
@@ -95,7 +94,7 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
         return values;
     }
 
-    private IEnumerable<OperationOptionViewModelBase> AllOptions() => [InternalReader, Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs];
+    private IEnumerable<OperationOptionViewModelBase> AllOptions() => [Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs];
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

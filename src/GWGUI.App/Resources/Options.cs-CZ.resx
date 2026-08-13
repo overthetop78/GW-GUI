@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = neomezeně</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Moduly</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Zvolte nezávisle modul použitý pro každou operaci.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>Interní modul GW GUI</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>Vybraný modul se používá striktně. Pokud operaci nezvládne, GW GUI to oznámí a tiše nepoužije druhý modul.</value></data>
 </root>

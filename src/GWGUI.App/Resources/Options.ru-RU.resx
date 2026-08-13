@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = неограниченно</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Движки</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Независимо выберите движок для каждой операции.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>Внутренний движок GW GUI</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>Выбранный движок используется строго. Если он не может выполнить операцию, GW GUI сообщит об этом, не переключаясь незаметно на другой движок.</value></data>
 </root>

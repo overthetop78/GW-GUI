@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = rajoittamaton</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>Moottorit</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>Valitse kullekin toiminnolle käytettävä moottori erikseen.</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>GW GUI:n sisäinen moottori</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>Valittua moottoria käytetään ehdottomasti. Jos se ei voi suorittaa toimintoa, GW GUI ilmoittaa siitä vaihtamatta huomaamatta toiseen moottoriin.</value></data>
 </root>

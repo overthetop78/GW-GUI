@@ -533,7 +533,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 - [ ] Raccorder l’onglet Écriture au service interne derrière une option explicite, puis valider sur disquettes de test Amiga, Atari ST, IBM, MSX, Apple, Commodore, Acorn/BBC, Amstrad, Epson et DEC avant de retirer le repli `gw.exe` pour une famille.
 
-  État : le raccordement logiciel est disponible derrière l’option explicite « Écriture physique interne (expérimental) ». Le chemin `gw.exe` reste le comportement par défaut et aucune famille n’en a été retirée. Le Greaseweazle V4.1 configuré sur COM3 répond correctement à `gw info`, mais la validation matérielle destructive reste bloquée tant qu’un corpus de disquettes sacrifiables couvrant les dix familles et une autorisation explicite d’écriture physique ne sont pas disponibles ; aucun résultat matériel n’est donc affirmé.
+  État : le raccordement logiciel est disponible via le choix global indépendant Options > Moteurs > Écriture. Le chemin `gw.exe` reste le comportement par défaut et aucune famille n’en a été retirée. Le Greaseweazle V4.1 configuré sur COM3 répond correctement à `gw info`, mais la validation matérielle destructive reste bloquée tant qu’un corpus de disquettes sacrifiables couvrant les dix familles et une autorisation explicite d’écriture physique ne sont pas disponibles ; aucun résultat matériel n’est donc affirmé.
 
   Informations nécessaires :
 
@@ -582,7 +582,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
   Une capture interne et une capture gw de la même opération doivent être comparées au niveau flux, index et secteurs décodés.
   ```
 
-  Réalisé partiellement : l’onglet Lecture expose une option interne explicitement expérimentale, limitée aux SCP bruts. Sans cette option, `gw.exe` reste le chemin par défaut. Les révolutions, tentatives, reprises de seek, pistes, faux index, secteurs durs, annulation, sauvegarde SCP, décodage et exploration sont raccordés et couverts par des tests déterministes. Le Greaseweazle V4.1 configuré sur COM3 a été identifié sans erreur par les outils hôte. Blocage : aucun média actuellement inséré n’est identifié comme disquette de qualification ; lancer deux captures comparatives sans connaître le média rendrait le résultat non attribuable. La comparaison capture interne/capture `gw.exe` et la reprise sur matériel réel restent donc à effectuer sur une disquette explicitement désignée ; la tâche reste non cochée et `gw.exe` n’est pas retiré.
+  Réalisé partiellement : la lecture interne se sélectionne via le choix global indépendant Options > Moteurs > Lecture physique et reste limitée aux SCP bruts. `gw.exe` demeure le choix par défaut. Les révolutions, tentatives, reprises de seek, pistes, faux index, secteurs durs, annulation, sauvegarde SCP, décodage et exploration sont raccordés et couverts par des tests déterministes. Le Greaseweazle V4.1 configuré sur COM3 a été identifié sans erreur par les outils hôte. Blocage : aucun média actuellement inséré n’est identifié comme disquette de qualification ; lancer deux captures comparatives sans connaître le média rendrait le résultat non attribuable. La comparaison capture interne/capture `gw.exe` et la reprise sur matériel réel restent donc à effectuer sur une disquette explicitement désignée ; la tâche reste non cochée et `gw.exe` n’est pas retiré.
 
 ## 8. Réinterprétation entre formats FAT12 compatibles
 

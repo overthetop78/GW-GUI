@@ -144,6 +144,10 @@ public partial class MainWindow : Window
     private readonly IHardwareRegistry _hardwareRegistry;
     private readonly StartupHardwareMonitor _startupHardwareMonitor;
     private AppSettings _settings = new();
+    private bool UsesInternalPhysicalRead => _settings.Engines.PhysicalRead == OperationEngine.Internal;
+    private bool UsesInternalPhysicalWrite => _settings.Engines.PhysicalWrite == OperationEngine.Internal;
+    private bool UsesInternalConversion => _settings.Engines.Conversion == OperationEngine.Internal;
+    private bool UsesInternalExplorerRead => _settings.Engines.ExplorerRead == OperationEngine.Internal;
     private readonly OperationRuntimeController _operation;
     private readonly IMessageDialogService _dialogs;
     private readonly IFileDialogService _fileDialogs;
@@ -431,7 +435,7 @@ public partial class MainWindow : Window
     {
         if (_operation.IsRunning) { ConfirmAndRequestStop(); return; }
         if (!EnsureSelectedHardwareAvailable()) return;
-        if (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath))
+        if (!UsesInternalExplorerRead && (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
         {
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
@@ -446,15 +450,21 @@ public partial class MainWindow : Window
         var temporaryDirectory = Path.Combine(Path.GetTempPath(), "GW GUI");
         Directory.CreateDirectory(temporaryDirectory);
         var temporaryPath = Path.Combine(temporaryDirectory, $"explorer-{Guid.NewGuid():N}.scp");
-        var command = _commandBuilder.BuildRead(new ReadRequest(_settings.GwExecutablePath, temporaryPath, ReadResultKind.RawScp, null, [], SelectedDeviceArgument(), SelectedDriveArgument()));
+        var command = UsesInternalExplorerRead
+            ? null
+            : _commandBuilder.BuildRead(new ReadRequest(_settings.GwExecutablePath!, temporaryPath, ReadResultKind.RawScp, null, [], SelectedDeviceArgument(), SelectedDriveArgument()));
         try
         {
             DiskExplorer.SetReadDiskRunning(true);
             BeginProgress();
             await RenderPendingProgressAsync();
             LogOutput.Clear();
-            await _consoleLog.BeginAsync("read", command.ToDisplayString());
-            var outcome = await _operation.RunAsync(token => _runner.RunAsync(command, new Progress<GwOutputLine>(ReportOutput), token));
+            await _consoleLog.BeginAsync(
+                UsesInternalExplorerRead ? "read-explorer-internal" : "read-explorer",
+                UsesInternalExplorerRead ? LocExtension.Get("Read.InternalPreview", temporaryPath) : command!.ToDisplayString());
+            var outcome = UsesInternalExplorerRead
+                ? await ExecuteInternalExplorerReadAsync(temporaryPath)
+                : await _operation.RunAsync(token => _runner.RunAsync(command!, new Progress<GwOutputLine>(ReportOutput), token));
             await FlushPendingOutputAsync();
             ApplyOperationResult(_operation.Present(outcome));
             if (outcome.Result?.IsSuccess == true && File.Exists(temporaryPath)) await LoadImageInExplorerAndVisualizerAsync(temporaryPath);
@@ -469,6 +479,26 @@ public partial class MainWindow : Window
             DiskExplorer.SetReadDiskRunning(false);
             try { if (File.Exists(temporaryPath)) File.Delete(temporaryPath); } catch { }
         }
+    }
+
+    private async Task<OperationOutcome<GwExecutionResult>> ExecuteInternalExplorerReadAsync(string temporaryPath)
+    {
+        var hardware = SelectedHardware();
+        if (hardware is null) return new(false, null, new InvalidOperationException(LocExtension.Get("Hardware.NotConfigured")));
+        var selection = GreaseweazleDriveSelectionPolicy.Resolve(hardware.Drive.Selection);
+        var options = new PhysicalDiskReadOptions(
+            hardware.Port,
+            selection.BusType,
+            selection.Unit,
+            PhysicalDiskTrackSelectionParser.Parse("c=0-79:h=0-1"),
+            ScpCaptureDiskTypePolicy.Resolve(hardware.Drive.Density));
+        var stopwatch = Stopwatch.StartNew();
+        return await _operation.RunAsync(async token =>
+        {
+            var progress = new Progress<PhysicalDiskReadOperationProgress>(_progress.Accept);
+            await InternalPhysicalDiskReader.CreateDefault().ReadAsync(options, temporaryPath, progress, token);
+            return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
+        });
     }
 
     private async Task<ExploredDiskImage?> LoadExplorerImageAsync(string path, bool newImage = true)
@@ -709,7 +739,7 @@ public partial class MainWindow : Window
     private void UpdateWriteCommand()
     {
         if (CommandPreview is null || WriteSourceText is null || MainTabs?.SelectedIndex != 1) return;
-        if (_viewModel.Write.InternalWriter.Enabled)
+        if (UsesInternalPhysicalWrite)
         {
             CommandPreview.Text = LocExtension.Get("Write.InternalPreview", WriteSourceText.Text);
             return;
@@ -727,7 +757,7 @@ public partial class MainWindow : Window
         var selected = WriteFormatCombo.SelectedItem as DiskFormat ?? _detectedWriteFormat?.Format;
         if (selected is null || (_detectedWriteFormat?.RequiresUserChoice == true && WriteFormatCombo.SelectedItem is null))
         { _dialogs.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning); WriteFormatCombo.Visibility = Visibility.Visible; return; }
-        if (_viewModel.Write.InternalWriter.Enabled)
+        if (UsesInternalPhysicalWrite)
         {
             await ExecuteInternalWriteAsync(selected);
             return;
@@ -956,7 +986,12 @@ public partial class MainWindow : Window
         {
             var outputs = PlanConversions();
             if (outputs.Count == 0) { CommandPreview.Text = LocExtension.Get("Conversion.SelectOutput"); return; }
-            var first = ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, outputs[0])
+            if (UsesInternalConversion && !ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, outputs[0]))
+            {
+                CommandPreview.Text = LocExtension.Get("Conversion.EngineInternalUnavailable", outputs[0].OutputPath);
+                return;
+            }
+            var first = UsesInternalConversion
                 ? new GwCommand("GW GUI", "encode", ["--codec", outputs[0].FormatId, _viewModel.Conversion.SourcePath, outputs[0].OutputPath])
                 : _commandBuilder.BuildConversion(_settings.GwExecutablePath ?? "gw.exe", _viewModel.Conversion.SourcePath, outputs[0], GetConvertOptions(), _viewModel.Conversion.ExpertArguments);
             CommandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
@@ -973,7 +1008,12 @@ public partial class MainWindow : Window
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = PlanConversions(); GwOptionValidator.Validate(GetConvertOptions()); } catch (Exception) { _diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { _dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
-        if (outputs.Any(output => !ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, output)) &&
+        if (UsesInternalConversion && outputs.Any(output => !ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, output)))
+        {
+            _dialogs.Show(LocExtension.Get("Conversion.EngineInternalUnavailable", outputs.First(output => !ConversionBatchExecutor.IsInternal(_viewModel.Conversion.SourcePath, output)).OutputPath), LocExtension.Get("Conversion.Title"));
+            return;
+        }
+        if (!UsesInternalConversion &&
             (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
         { _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
         var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
@@ -991,7 +1031,7 @@ public partial class MainWindow : Window
             {
                 BeginProgress();
                 AppendConsoleText($"{Environment.NewLine}â†’ {item.Label}{Environment.NewLine}");
-            }, System.Windows.Threading.DispatcherPriority.ContextIdle), token);
+            }, System.Windows.Threading.DispatcherPriority.ContextIdle), token, _settings.Engines.Conversion);
         });
         await FlushPendingOutputAsync();
         ApplyOperationResult(_operation.Present(outcome));
@@ -1197,7 +1237,7 @@ public partial class MainWindow : Window
         var extension = GetReadExtension();
         var target = GetReadTarget(extension);
         if (ReadNamePreview is not null) ReadNamePreview.Text = Path.GetFileName(target);
-        if (_viewModel.Read.InternalReader.Enabled)
+        if (UsesInternalPhysicalRead)
         {
             CommandPreview.Text = LocExtension.Get("Read.InternalPreview", target);
             return;
@@ -1299,7 +1339,7 @@ public partial class MainWindow : Window
             _dialogs.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Information);
             return;
         }
-        if (!_viewModel.Read.InternalReader.Enabled && (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
+        if (!UsesInternalPhysicalRead && (string.IsNullOrWhiteSpace(_settings.GwExecutablePath) || !File.Exists(_settings.GwExecutablePath)))
         {
             _dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
@@ -1322,7 +1362,7 @@ public partial class MainWindow : Window
                 _viewModel.Read.SequenceValue = kind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, kind, 1);
             }
         }
-        if (_viewModel.Read.InternalReader.Enabled)
+        if (UsesInternalPhysicalRead)
         {
             var hardware = SelectedHardware();
             if (hardware is null)
@@ -1511,6 +1551,8 @@ public partial class MainWindow : Window
             app.SetTheme(_settings.Theme);
             await _settingsStore.SaveAsync(_settings);
             UpdateReadCommand();
+            UpdateWriteCommand();
+            UpdateConvertCommand();
         }
     }
 

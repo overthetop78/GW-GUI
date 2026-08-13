@@ -19,6 +19,7 @@ public sealed class AppSettings
     public List<ControllerSettings> Controllers { get; set; } = [];
     public List<ControllerSettings> UnconfiguredControllers { get; set; } = [];
     public List<DriveSettings> Drives { get; set; } = [];
+    public EngineSettings Engines { get; set; } = new();
     public ReadUiSettings Read { get; set; } = new();
     public AdvancedUiSettings Write { get; set; } = new();
     public List<ProfileSettings> Profiles { get; set; } = [];

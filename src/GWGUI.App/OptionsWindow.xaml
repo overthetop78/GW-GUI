@@ -22,6 +22,9 @@
             <TabItem Header="{l:Loc Options.Hardware}">
                 <controls:OptionsHardwareSection x:Name="HardwareSection" />
             </TabItem>
+            <TabItem Header="{l:Loc Options.Engines}">
+                <controls:OptionsEnginesSection x:Name="EnginesSection" />
+            </TabItem>
             <TabItem Header="{l:Loc Options.Profiles}">
                 <controls:OptionsProfilesSection x:Name="ProfilesSection" />
             </TabItem>

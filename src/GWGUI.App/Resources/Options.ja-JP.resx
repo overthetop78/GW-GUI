@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = 無制限</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>エンジン</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>各操作で使用するエンジンを個別に選択します。</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 内部エンジン</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>選択したエンジンだけを使用します。処理できない場合、GW GUI は別のエンジンへ暗黙に切り替えず、その旨を通知します。</value></data>
 </root>

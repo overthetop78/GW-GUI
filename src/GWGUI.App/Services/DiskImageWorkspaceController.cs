@@ -119,7 +119,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         try
         {
             var requestedFormat = newImage ? _explorer.FormatIdForNewImage : _explorer.SelectedFormatId;
-            var document = await _diskImageExplorer.ExploreAsync(path, requestedFormat, cancellation.Token);
+            var document = await ExploreWithSelectedEngineAsync(path, requestedFormat, cancellation.Token);
             if (!cancellation.IsCancellationRequested)
             {
                 _explorer.Display(document);
@@ -139,6 +139,46 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         finally
         {
             if (_cancellation.IsCurrentExplorer(cancellation)) _explorer.SetLoading(false);
+        }
+    }
+
+    private async Task<ExploredDiskImage> ExploreWithSelectedEngineAsync(
+        string path,
+        string? requestedFormat,
+        CancellationToken cancellationToken)
+    {
+        var settings = _getSettings();
+        if (settings.Engines.ExplorerRead == OperationEngine.Internal)
+            return await _diskImageExplorer.ExploreAsync(path, requestedFormat, cancellationToken);
+
+        if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !File.Exists(settings.GwExecutablePath))
+            throw new InvalidOperationException(_localize("App.GwNotConfigured", []));
+
+        var detection = _getFormatDetector().Detect(path, new FileInfo(path).Length);
+        var format = !string.IsNullOrWhiteSpace(requestedFormat)
+            ? new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats.FirstOrDefault(item => item.Id == requestedFormat)
+            : detection.Format;
+        if (format is null)
+            throw new InvalidDataException(_localize("Detection.Ambiguous", []));
+
+        var extension = format.Extensions.FirstOrDefault(item => item.IsDefault)?.Extension
+            ?? format.Extensions.FirstOrDefault()?.Extension;
+        if (string.IsNullOrWhiteSpace(extension) || extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
+            throw new NotSupportedException(_localize("Explorer.ExternalEngineUnavailable", [format.DisplayName]));
+
+        var temporaryPath = Path.Combine(Path.GetTempPath(), $"gwgui-explorer-{Guid.NewGuid():N}{extension}");
+        try
+        {
+            var output = new ConversionOutput(format.Id, extension, temporaryPath, false);
+            var command = _commandBuilder.BuildConversion(settings.GwExecutablePath, path, output);
+            var result = await _visualizationRunner.RunAsync(command, cancellationToken: cancellationToken);
+            if (!result.IsSuccess || !File.Exists(temporaryPath))
+                throw new InvalidDataException(_localize("Explorer.ExternalEngineFailed", [format.DisplayName]));
+            return await _diskImageExplorer.ExploreAsync(temporaryPath, format.Id, cancellationToken);
+        }
+        finally
+        {
+            TryDelete(temporaryPath);
         }
     }
 

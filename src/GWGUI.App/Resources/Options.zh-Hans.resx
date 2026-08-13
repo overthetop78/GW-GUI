@@ -177,4 +177,8 @@
   <data name="Options.LogUnlimitedHint">
     <value>0 = 无限制</value>
   </data>
+  <data name="Options.Engines" xml:space="preserve"><value>引擎</value></data>
+  <data name="Engines.Description" xml:space="preserve"><value>为每项操作分别选择所使用的引擎。</value></data>
+  <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 内部引擎</value></data>
+  <data name="Engines.StrictChoice" xml:space="preserve"><value>严格使用所选引擎。如果无法执行操作，GW GUI 会进行报告，而不会静默改用另一个引擎。</value></data>
 </root>
