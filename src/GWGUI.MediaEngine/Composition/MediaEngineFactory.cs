@@ -128,6 +128,18 @@ public static class MediaEngineFactory
     public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new Containers.Hfe.HfeWriter());
     /// <summary>Crée le service commun de reconstruction SCP depuis les images sectorielles.</summary>
     public static SectorImageScpConversionService CreateSectorImageScpConversionService() => new(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter());
+
+    /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
+    public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()
+    {
+        var scpReader = CreateScpReader();
+        var decoders = CreateFluxDecoders();
+        var fileSystems = CreateFileSystems();
+        var (interpretations, documents) = CreateInterpretations(fileSystems);
+        var candidates = CreateScpCandidates(scpReader, decoders);
+        var scpExploration = CreateScpExploration(scpReader, decoders, candidates, fileSystems, interpretations, documents);
+        return new(CreateRecognition(decoders, scpExploration, fileSystems), CreateSectorImageScpConversionService());
+    }
     /// <summary>Crée le service de conversion sectorielle Atari ST avec ses Reader et Writer partagés.</summary>
     public static AtariStConversionService CreateAtariStConversionService()
     {

@@ -13,4 +13,6 @@ public static partial class DiskImageFormatIds
     public const string CpcEmuDsk = "cpcemu.dsk";
     /// <summary>Identifiant du conteneur de pistes HxC Floppy Emulator.</summary>
     public const string RawHfe = "raw.hfe";
+    /// <summary>Identifiant du conteneur de flux SuperCard Pro.</summary>
+    public const string RawScp = "raw.scp";
 }

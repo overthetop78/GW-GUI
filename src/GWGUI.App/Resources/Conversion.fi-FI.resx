@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Tulostetiedoston nimeä ei löytynyt.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>rekonstruoitu vuo</value>
+  </data>
 </root>

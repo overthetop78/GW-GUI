@@ -744,7 +744,7 @@ public sealed class CoreTests
         var catalog = new BuiltInImageFormatCatalog();
         var detection = new ImageFormatDetector(catalog).Detect("disk.ima", 737280);
         var outputs = ConversionSourceCompatibility.GetOutputs(catalog, ".ima", detection);
-        Assert.Collection(outputs, output => Assert.Equal("ibm.720", output.Id));
+        Assert.Equal(["raw.scp", "ibm.720"], outputs.Select(output => output.Id));
     }
 
     [Fact]
@@ -793,6 +793,9 @@ public sealed class CoreTests
         Assert.False(incompatible.IsCompatible);
         Assert.False(incompatible.IsSelected);
         Assert.NotEqual(ConversionFormatGroup.Selected, incompatible.Group);
+        var scp = items.Single(item => item.Format.Id == "raw.scp");
+        Assert.True(scp.IsCompatible);
+        Assert.True(scp.IsReconstructedFlux);
     }
 
     [Fact]

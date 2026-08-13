@@ -14,6 +14,7 @@ using GWGUI.MediaEngine.Conversion.Epson;
 using GWGUI.MediaEngine.Conversion.Dec;
 using GWGUI.MediaEngine.Conversion.Ucsd;
 using GWGUI.MediaEngine.Conversion.Hfe;
+using GWGUI.MediaEngine.Conversion.Scp;
 using GWGUI.MediaEngine.Composition;
 
 namespace GWGUI.App.Services;
@@ -38,7 +39,8 @@ public sealed class ConversionBatchExecutor(
     CoherentConversionService? coherent = null,
     MacintoshConversionService? macintosh = null,
     LisaConversionService? lisa = null,
-    HfeConversionService? hfe = null)
+    HfeConversionService? hfe = null,
+    SectorImageScpFileConversionService? scp = null)
 {
     private readonly AmigaAdfConversionService _amigaAdf = amigaAdf ?? MediaEngineFactory.CreateAmigaAdfConversionService();
     private readonly IbmRawConversionService _ibmRaw = ibmRaw ?? MediaEngineFactory.CreateIbmRawConversionService();
@@ -59,9 +61,10 @@ public sealed class ConversionBatchExecutor(
     private readonly MacintoshConversionService _macintosh = macintosh ?? MediaEngineFactory.CreateMacintoshConversionService();
     private readonly LisaConversionService _lisa = lisa ?? MediaEngineFactory.CreateLisaConversionService();
     private readonly HfeConversionService _hfe = hfe ?? MediaEngineFactory.CreateHfeConversionService();
+    private readonly SectorImageScpFileConversionService _scp = scp ?? MediaEngineFactory.CreateSectorImageScpFileConversionService();
 
     public static bool IsInternal(ConversionOutput output) =>
-        AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleNibbleConversionService.CanCreate(output.FormatId, output.Extension) || MacintoshConversionService.CanCreate(output.FormatId, output.Extension) || LisaConversionService.CanCreate(output.FormatId, output.Extension) || HfeConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || CoherentConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension) || DecRx02ConversionService.CanCreate(output.FormatId, output.Extension) || UcsdImgConversionService.CanCreate(output.FormatId, output.Extension);
+        SectorImageScpFileConversionService.CanCreate(output.FormatId, output.Extension) || AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension) || AcornAdfConversionService.CanCreate(output.FormatId, output.Extension) || BbcDfsConversionService.CanCreate(output.FormatId, output.Extension) || IbmRawConversionService.CanCreate(output.FormatId, output.Extension) || MsxRawConversionService.CanCreate(output.FormatId, output.Extension) || AppleSectorConversionService.CanCreate(output.FormatId, output.Extension) || AppleNibbleConversionService.CanCreate(output.FormatId, output.Extension) || MacintoshConversionService.CanCreate(output.FormatId, output.Extension) || LisaConversionService.CanCreate(output.FormatId, output.Extension) || HfeConversionService.CanCreate(output.FormatId, output.Extension) || AtariStConversionService.CanCreate(output.FormatId, output.Extension) || D81ConversionService.CanCreate(output.FormatId, output.Extension) || AtrConversionService.CanCreate(output.FormatId, output.Extension) || CommodoreDosConversionService.CanCreate(output.FormatId, output.Extension) || CoherentConversionService.CanCreate(output.FormatId, output.Extension) || AmstradDskConversionService.CanCreate(output.FormatId, output.Extension) || EpsonQx10ConversionService.CanCreate(output.FormatId, output.Extension) || DecRx02ConversionService.CanCreate(output.FormatId, output.Extension) || UcsdImgConversionService.CanCreate(output.FormatId, output.Extension);
 
     public async Task<GwBatchExecutionResult> RunAsync(
         string sourcePath,
@@ -85,7 +88,9 @@ public sealed class ConversionBatchExecutor(
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                if (AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension))
+                if (SectorImageScpFileConversionService.CanCreate(output.FormatId, output.Extension))
+                    await _scp.ConvertAsync(sourcePath, output.OutputPath, cancellationToken).ConfigureAwait(false);
+                else if (AmigaAdfConversionService.CanCreate(output.FormatId, output.Extension))
                     await _amigaAdf.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);
                 else if (AcornAdfConversionService.CanCreate(output.FormatId, output.Extension))
                     await _acornAdf.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, cancellationToken).ConfigureAwait(false);

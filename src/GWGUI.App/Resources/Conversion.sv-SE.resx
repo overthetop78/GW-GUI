@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Inget tillgängligt utdatafilnamn kunde hittas.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>rekonstruerat flöde</value>
+  </data>
 </root>

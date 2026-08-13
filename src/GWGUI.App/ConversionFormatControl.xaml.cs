@@ -28,7 +28,7 @@ public partial class ConversionFormatControl : UserControl
 
     public ConversionFormatControl(DiskFormat format) : this()
     {
-        Presentation = new(format, true, false, new HashSet<string>(StringComparer.OrdinalIgnoreCase), format.IsCommon ? ConversionFormatGroup.Common : ConversionFormatGroup.Rare);
+        Presentation = new(format, true, false, new HashSet<string>(StringComparer.OrdinalIgnoreCase), format.IsCommon ? ConversionFormatGroup.Common : ConversionFormatGroup.Rare, false);
     }
 
     private static void PresentationChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
@@ -40,7 +40,7 @@ public partial class ConversionFormatControl : UserControl
     private void Render(ConversionFormatPresentation presentation)
     {
         var format = presentation.Format;
-        FormatCheck.Content = format.DisplayName;
+        FormatCheck.Content = presentation.IsReconstructedFlux ? $"{format.DisplayName} — {LocExtension.Get("Conversion.ReconstructedFlux")}" : format.DisplayName;
         FormatCheck.ToolTip = LocExtension.Get("Conversion.DefaultExtensionTip", format.Extensions.First(x => x.IsDefault).Extension.ToUpperInvariant());
         ToolTip = presentation.IsCompatible ? null : LocExtension.Get("Conversion.Incompatible", format.DisplayName);
         ExtensionsPanel.Children.Clear();

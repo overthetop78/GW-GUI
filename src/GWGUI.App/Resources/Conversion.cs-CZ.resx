@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Nebyl nalezen žádný dostupný výstupní název souboru.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>rekonstruovaný tok</value>
+  </data>
 </root>

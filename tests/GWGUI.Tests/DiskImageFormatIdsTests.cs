@@ -11,12 +11,12 @@ public sealed class DiskImageFormatIdsTests
     {
         var expected = new HashSet<string>(StringComparer.Ordinal)
         {
-            "unknown", "imd", "td0", "cpcemu.dsk",
+            "unknown", "imd", "td0", "cpcemu.dsk", "raw.hfe", "raw.scp",
             "acorn.adfs.", "acorn.adfs.800", "acorn.dfs.", "acorn.dfs.ss", "acorn.dfs.ss80",
             "acorn.dfs.ds", "acorn.dfs.ds80",
             "amiga.", "amiga.amigados", "amiga.amigados_hd",
             "amstrad.", "amstrad.cpc", "amstrad.pcw",
-            "apple2.", "apple2.appledos", "apple2.appledos.140", "apple2.dos", "apple2.dos32",
+            "apple2.", "apple2.appledos", "apple2.appledos.113", "apple2.appledos.140", "apple2.dos", "apple2.dos32",
             "apple2.dos33", "apple2.gcr", "apple2.nofs", "apple2.prodos", "apple2.prodos.140",
             "apple2.prodos.800", "apple2.rwts18", "apple3.", "apple3.sos",
             "applelisa.", "applelisa.macworks", "applelisa.office", "applelisa.raw",
@@ -32,7 +32,9 @@ public sealed class DiskImageFormatIdsTests
             "ibm.1440", "ibm.1680", "ibm.dmf", "ibm.2880", "ibm.scan",
             "mac.", "mac.400", "mac.800", "mac.1440",
             "msx.", "msx.1d", "msx.1dd", "msx.2d", "msx.2dd",
-            "ucsd.", "ucsd.ibm.mfm"
+            "ucsd.", "ucsd.ibm.mfm", "hp.mmfm", "datageneral.fm", "micropolis.mfm", "membrain.mfm",
+            "aed6200p.mfm", "qdmo5.mfm", "centurion.mfm", "northstar.mfm", "heathkit.fm", "micraln.fm",
+            "emu.fm", "tycom.fm", "arburg", "victor9k.gcr"
         };
         var actual = typeof(DiskImageFormatIds)
             .GetFields(BindingFlags.Public | BindingFlags.Static)

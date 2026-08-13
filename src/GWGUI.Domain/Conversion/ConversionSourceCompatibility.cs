@@ -11,6 +11,6 @@ public static class ConversionSourceCompatibility
         var extension = sourceExtension.StartsWith('.') ? sourceExtension.ToLowerInvariant() : "." + sourceExtension.ToLowerInvariant();
         if (extension is ".scp" or ".hfe" || detection?.Format is null || detection.RequiresUserChoice)
             return catalog.GetCompatibleOutputs(extension);
-        return catalog.Formats.Where(format => format.Id == detection.Format.Id).ToArray();
+        return catalog.Formats.Where(format => format.Id == detection.Format.Id || format.Id == "raw.scp").ToArray();
     }
 }

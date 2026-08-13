@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>사용 가능한 출력 파일 이름을 찾을 수 없습니다.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>재구성된 플럭스</value>
+  </data>
 </root>

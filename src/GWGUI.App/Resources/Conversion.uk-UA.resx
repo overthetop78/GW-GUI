@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Не вдалося знайти доступну назву вихідного файлу.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>реконструйований потік</value>
+  </data>
 </root>

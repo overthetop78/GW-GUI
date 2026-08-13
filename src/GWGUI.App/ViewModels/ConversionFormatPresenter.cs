@@ -11,7 +11,8 @@ public sealed record ConversionFormatPresentation(
     bool IsCompatible,
     bool IsSelected,
     IReadOnlySet<string> ExplicitExtensions,
-    ConversionFormatGroup Group);
+    ConversionFormatGroup Group,
+    bool IsReconstructedFlux);
 
 public sealed class ConversionFormatPresenter
 {
@@ -27,9 +28,7 @@ public sealed class ConversionFormatPresenter
             .Select(format => format.Id)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return catalog.Formats
-            .Where(format => format.Id != "raw.scp")
-            .Select(format =>
+        return catalog.Formats.Select(format =>
             {
                 var isCompatible = compatible.Contains(format.Id);
                 var isSelected = isCompatible && selectedFormats.Contains(format.Id);
@@ -37,7 +36,8 @@ public sealed class ConversionFormatPresenter
                 IReadOnlySet<string> extensions = explicitExtensions.TryGetValue(format.Id, out var values)
                     ? values.ToHashSet(StringComparer.OrdinalIgnoreCase)
                     : new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                return new ConversionFormatPresentation(format, isCompatible, isSelected, extensions, group);
+                var isReconstructedFlux = format.Id == "raw.scp" && detection?.Format is not null && sourceExtension is not null && !sourceExtension.Equals(".scp", StringComparison.OrdinalIgnoreCase) && !sourceExtension.Equals(".hfe", StringComparison.OrdinalIgnoreCase);
+                return new ConversionFormatPresentation(format, isCompatible, isSelected, extensions, group, isReconstructedFlux);
             })
             .OrderBy(item => item.Group)
             .ThenBy(item => item.Format.DisplayName, StringComparer.CurrentCulture)

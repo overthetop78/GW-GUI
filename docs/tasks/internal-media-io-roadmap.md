@@ -492,7 +492,7 @@ Blocage d'environnement : le push du groupe 4 vers `origin/main` a été refusé
 
 ### 5.6 Interface de conversion SCP
 
-- [ ] Ajouter la sortie SCP permanente au catalogue et à l’onglet Conversion, afficher qu’il s’agit d’un flux reconstruit quand la source est sectorielle, et router vers MediaEngine sans exiger `gw.exe`.
+- [x] Ajouter la sortie SCP permanente au catalogue et à l’onglet Conversion, afficher qu’il s’agit d’un flux reconstruit quand la source est sectorielle, et router vers MediaEngine sans exiger `gw.exe`.
 
   Informations nécessaires :
 

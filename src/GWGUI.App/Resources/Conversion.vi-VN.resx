@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Không thể tìm thấy tên tệp đầu ra có sẵn.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>luồng được tái tạo</value>
+  </data>
 </root>

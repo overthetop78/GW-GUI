@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Nem található elérhető kimeneti fájlnév.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>rekonstruált fluxus</value>
+  </data>
 </root>

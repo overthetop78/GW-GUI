@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Er kon geen beschikbare uitvoerbestandsnaam worden gevonden.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>gereconstrueerde flux</value>
+  </data>
 </root>

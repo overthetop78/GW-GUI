@@ -102,4 +102,7 @@
   <data name="Conversion.NoAvailableOutputName">
     <value>Nenhum nome de ficheiro de saída disponível foi encontrado.</value>
   </data>
+  <data name="Conversion.ReconstructedFlux">
+    <value>fluxo reconstruído</value>
+  </data>
 </root>
