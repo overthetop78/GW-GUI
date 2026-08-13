@@ -323,13 +323,14 @@ Références communes :
 
 ### 3.4 TeleDisk TD0
 
-- [ ] Implémenter et raccorder un `Td0Writer` non compressé conservant commentaires, pistes, cartes de secteurs, tailles et états, puis ajouter la compression seulement après validation de l’aller-retour non compressé.
+- [x] Implémenter et raccorder un `Td0Writer` non compressé conservant commentaires, pistes, cartes de secteurs, tailles et états, puis ajouter la compression seulement après validation de l’aller-retour non compressé.
 
   Informations nécessaires :
 
   ```text
   Td0Reader existe déjà. Séparer clairement sérialisation des records et compression avancée.
   Référence GW : https://github.com/keirf/greaseweazle/blob/master/src/greaseweazle/image/td0.py
+  Réalisé : le modèle détaillé et le Writer `TD` conservent les métadonnées réinscriptibles ; l'encodage sectoriel compact par mot répété n'a été activé qu'après validation de l'aller-retour brut. La compression globale avancée `td` reste une couche distincte et n'est pas émise.
   ```
 
 ### 3.5 Formats protégés Apple, Commodore et autres

@@ -71,6 +71,30 @@ public sealed class Td0ReaderTests
         Assert.False(image.AvailableBlocks.Single(block => block.LogicalBlock == 2).IntegrityValid);
     }
 
+    [Fact]
+    public async Task WriterPreservesCommentMapsSizesAndSectorStates()
+    {
+        var source = await new Td0Reader().ReadDetailedAsync(KnownImagePath());
+        var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.td0");
+        try
+        {
+            await new Td0Writer().WriteAsync(source, path);
+            var bytes = await File.ReadAllBytesAsync(path);
+            var actual = await new Td0Reader().ReadDetailedAsync(path);
+            Assert.Equal("TD"u8.ToArray(), bytes[..2]);
+            Assert.Equal(source.Header, actual.Header);
+            Assert.Equal(source.Comment?.Data, actual.Comment?.Data);
+            Assert.Equal(source.Tracks.Select(track => (track.Cylinder, track.Head, track.Sectors.Count)), actual.Tracks.Select(track => (track.Cylinder, track.Head, track.Sectors.Count)));
+            Assert.Equal(source.Tracks.SelectMany(track => track.Sectors).Select(sector => (sector.Cylinder, sector.Head, sector.Number, sector.SizeCode, sector.Flags)), actual.Tracks.SelectMany(track => track.Sectors).Select(sector => (sector.Cylinder, sector.Head, sector.Number, sector.SizeCode, sector.Flags)));
+            Assert.Equal(source.Tracks.SelectMany(track => track.Sectors).Select(sector => sector.Data), actual.Tracks.SelectMany(track => track.Sectors).Select(sector => sector.Data));
+            Assert.Equal(source.SectorImage.AvailableBlocks.Select(block => block.Data), actual.SectorImage.AvailableBlocks.Select(block => block.Data));
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
     /// <summary>Vérifie le diagnostic propre à la signature de compression avancée.</summary>
     [Fact]
     public async Task RejectsAdvancedCompressionSignatureExplicitly()

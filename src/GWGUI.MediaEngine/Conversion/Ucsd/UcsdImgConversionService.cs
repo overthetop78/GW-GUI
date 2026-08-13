@@ -9,15 +9,20 @@ using GWGUI.MediaEngine.SectorImages;
 namespace GWGUI.MediaEngine.Conversion.Ucsd;
 
 /// <summary>Convertit les sources UCSD p-System en image IMG sectorielle brute.</summary>
-public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, UcsdRawImageReader rawReader, Td0Reader td0Reader, LinearSectorImageWriter writer)
+public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, UcsdRawImageReader rawReader, Td0Reader td0Reader, LinearSectorImageWriter writer, Td0Writer td0Writer)
 {
     /// <summary>Indique si la cible est une image UCSD IBM MFM brute.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase);
+    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase));
 
     /// <summary>Reconstruit ou relit la source, puis écrit les secteurs selon la géométrie UCSD explicite.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         var image = await ReadSourceAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        if (Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase))
+        {
+            await td0Writer.WriteAsync(image.WithFormatId(DiskImageFormatIds.UcsdIbmMfm), outputPath, cancellationToken).ConfigureAwait(false);
+            return;
+        }
         await writer.WriteAsync(image.WithFormatId(DiskImageFormatIds.UcsdIbmMfm), outputPath, UcsdIbmMfmGeometry.SectorGeometry, cancellationToken).ConfigureAwait(false);
     }
 

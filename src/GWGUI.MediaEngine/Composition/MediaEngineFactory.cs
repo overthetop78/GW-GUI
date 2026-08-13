@@ -182,7 +182,7 @@ public static class MediaEngineFactory
     public static UcsdImgConversionService CreateUcsdImgConversionService()
     {
         var scpReader = CreateScpReader();
-        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new UcsdRawImageReader(), new Td0Reader(), new LinearSectorImageWriter());
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new UcsdRawImageReader(), new Td0Reader(), new LinearSectorImageWriter(), new Td0Writer());
     }
     /// <summary>CrÃ©e un explorateur complet avec les registres et services par dÃ©faut.</summary>
     public static DiskImageExplorer CreateDefaultExplorer()

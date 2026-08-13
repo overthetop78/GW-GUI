@@ -83,6 +83,30 @@ public sealed class UcsdDiskImageTests(ITestOutputHelper output)
     }
 
     [Fact]
+    public async Task UcsdConversionCreatesReadableTeleDiskImage()
+    {
+        var sourcePath = ImagePath("ucsdpasc.td0");
+        if (!File.Exists(sourcePath)) return;
+        var rawPath = Path.Combine(Path.GetTempPath(), $"gwgui-ucsd-{Guid.NewGuid():N}.img");
+        var outputPath = Path.Combine(Path.GetTempPath(), $"gwgui-ucsd-{Guid.NewGuid():N}.td0");
+        try
+        {
+            var service = MediaEngineFactory.CreateUcsdImgConversionService();
+            Assert.True(UcsdImgConversionService.CanCreate(DiskImageFormatIds.UcsdIbmMfm, ".td0"));
+            await service.ConvertAsync(sourcePath, rawPath);
+            await service.ConvertAsync(rawPath, outputPath);
+            var source = await new Td0Reader().ReadAsync(sourcePath);
+            var actual = await new Td0Reader().ReadAsync(outputPath);
+            Assert.Equal(source.AvailableBlocks.Select(block => block.Data), actual.AvailableBlocks.Select(block => block.Data));
+        }
+        finally
+        {
+            if (File.Exists(rawPath)) File.Delete(rawPath);
+            if (File.Exists(outputPath)) File.Delete(outputPath);
+        }
+    }
+
+    [Fact]
     public void UcsdPolicyUsesPhysicalCandidatesAndDeclaredGeometry()
     {
         var physical = Enumerable.Range(1, UcsdIbmMfmGeometry.LogicalSectorsPerCylinder).ToDictionary(number => new SectorAddress(0, 0, number), number => new List<IsoSectorCandidate> { new(new(4, 1, number, 2, 512, true, 0, Data: new byte[512]), 1) });

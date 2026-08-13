@@ -17,6 +17,8 @@ internal static class Td0Exceptions
     /// <param name="stored">CRC stocké.</param><param name="calculated">CRC calculé.</param>
     /// <returns>Erreur de données construite.</returns>
     public static InvalidDataException InvalidHeaderCrc(ushort stored, ushort calculated) => new($"The TeleDisk header CRC is invalid: expected 0x{stored:X4}, calculated 0x{calculated:X4}.");
+    /// <summary>Signale un CRC de commentaire invalide.</summary>
+    public static InvalidDataException InvalidCommentCrc(ushort stored, ushort calculated) => new($"The TeleDisk comment CRC is invalid: expected 0x{stored:X4}, calculated 0x{calculated:X4}.");
     /// <summary>Signale un CRC de piste incorrect.</summary>
     /// <param name="cylinder">Cylindre.</param><param name="head">Face.</param><param name="stored">CRC stocké.</param><param name="calculated">CRC calculé.</param>
     /// <returns>Erreur de données construite.</returns>
