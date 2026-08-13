@@ -30,6 +30,8 @@ public static class DiskCopyFormat
     public const byte FormatByteMacintoshMfs = 0x22;
     /// <summary>Octet de format couramment utilisé pour Macintosh HFS.</summary>
     public const byte FormatByteMacintoshHfs = 0x24;
+    /// <summary>Octet de format utilisé par les images DiskCopy Lisa Office et MacWorks.</summary>
+    public const byte FormatByteLisa = 0x02;
 
     /// <summary>Octets ASCII mémorisés du marqueur MacWorks PREBOOT.</summary>
     private static readonly byte[] PrebootMarkerBytes = [0x50, 0x52, 0x45, 0x42, 0x4F, 0x4F, 0x54];

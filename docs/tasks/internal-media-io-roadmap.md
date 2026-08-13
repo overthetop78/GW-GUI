@@ -297,7 +297,7 @@ Références communes :
 
 ### 3.2 Apple Lisa — IMAGE et DC42
 
-- [ ] Étendre le Writer DiskCopy aux images Lisa Office et MacWorks en conservant pages, tags et checksums, puis valider MDDF, catalogue et fichiers.
+- [x] Étendre le Writer DiskCopy aux images Lisa Office et MacWorks en conservant pages, tags et checksums, puis valider MDDF, catalogue et fichiers.
 
   Informations nécessaires :
 

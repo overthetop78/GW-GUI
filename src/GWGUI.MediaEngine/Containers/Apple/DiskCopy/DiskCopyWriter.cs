@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Containers.Apple.Raw;
+using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
 
@@ -51,7 +52,7 @@ public sealed class DiskCopyWriter
             MacintoshMfmGeometry.Capacity => DiskCopyFormat.DiskFormat1440K,
             _ => throw new InvalidDataException($"La capacité DiskCopy {image.Capacity} n'est pas prise en charge.")
         };
-        var formatByte = image.FormatId.Contains("mfs", StringComparison.OrdinalIgnoreCase) ? DiskCopyFormat.FormatByteMacintoshMfs : DiskCopyFormat.FormatByteMacintoshHfs;
+        var formatByte = image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) ? DiskCopyFormat.FormatByteLisa : image.FormatId.Contains("mfs", StringComparison.OrdinalIgnoreCase) ? DiskCopyFormat.FormatByteMacintoshMfs : DiskCopyFormat.FormatByteMacintoshHfs;
         return new(image, System.Text.Encoding.ASCII.GetBytes(name), diskFormat, formatByte);
     }
 

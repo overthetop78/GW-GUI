@@ -115,6 +115,12 @@ public static class MediaEngineFactory
         var scpReader = CreateScpReader();
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new MacintoshRawImageWriter(), new DiskCopyWriter());
     }
+    /// <summary>Crée le service Lisa DiskCopy avec ses Readers et son Writer partagés.</summary>
+    public static LisaConversionService CreateLisaConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new DiskCopyWriter());
+    }
     /// <summary>Crée le service de conversion sectorielle Atari ST avec ses Reader et Writer partagés.</summary>
     public static AtariStConversionService CreateAtariStConversionService()
     {
