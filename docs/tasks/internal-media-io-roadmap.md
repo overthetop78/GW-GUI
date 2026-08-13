@@ -72,7 +72,7 @@ Références communes :
 
 ### 1.4 Acorn — ADFS 800 Kio
 
-- [ ] Raccorder le Writer brut sectoriel à `acorn.adfs.800`, produire un `.adf` Acorn strictement dimensionné et valider carte libre, catalogue, fichiers et checksums après réouverture.
+- [x] Raccorder le Writer brut sectoriel à `acorn.adfs.800`, produire un `.adf` Acorn strictement dimensionné et valider carte libre, catalogue, fichiers et checksums après réouverture.
 
   Informations nécessaires :
 

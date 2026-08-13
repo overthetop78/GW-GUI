@@ -21,6 +21,7 @@ using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Conversion.Amiga;
 using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Msx;
+using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Decoding;
@@ -70,6 +71,12 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new MsxRawImageReader(), new MsxRawImageWriter());
+    }
+    /// <summary>Crée le service de conversion ADF Acorn avec ses Reader et Writer partagés.</summary>
+    public static AcornAdfConversionService CreateAcornAdfConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new Containers.Adf.AdfReader(), new Containers.Adf.AcornAdfWriter());
     }
     /// <summary>CrÃ©e le service de conversion RWTS18 avec ses Readers et Writers partagÃ©s.</summary>
     public static AppleRwts18ConversionService CreateAppleRwts18ConversionService()
