@@ -81,6 +81,44 @@ public sealed class CpcDskWriterTests
         await Assert.ThrowsAsync<InvalidDataException>(() => new CpcDskWriter().WriteAsync(source, GeneratedPath("lossy-standard.dsk")));
     }
 
+    /// <summary>Vérifie EDSK vers DSK puis EDSK sans perdre les descripteurs représentables.</summary>
+    [Fact]
+    public async Task ConversionServiceRoundTripsRepresentableExtendedDescriptors()
+    {
+        var id = Guid.NewGuid().ToString("N");
+        var source = GeneratedPath($"representable-source-{id}.edsk");
+        var standard = GeneratedPath($"representable-roundtrip-{id}.dsk");
+        var output = GeneratedPath($"representable-output-{id}.edsk");
+        var sectors = new[]
+        {
+            new CpcDskSector(0, 0, 0xc1, 2, 0x20, 0x00, Enumerable.Repeat((byte)0x19, 512).ToArray()),
+            new CpcDskSector(0, 0, 0xc2, 2, 0x00, 0x20, Enumerable.Repeat((byte)0x73, 512).ToArray())
+        };
+        var blocks = sectors.Select((sector, index) => new GWGUI.MediaEngine.SectorImages.SectorBlock(index, new(0, 0, sector.Id), sector.Data.ToArray())).ToArray();
+        var sectorImage = new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 2, blocks);
+        var image = new CpcDskImage(CpcDskContainerKind.Extended, 1, 1, [new(0, true, 0, 0, 2, 0x4e, 0xe5, sectors)], sectorImage);
+        await new CpcDskWriter().WriteAsync(image, source);
+        var service = MediaEngineFactory.CreateAmstradDskConversionService();
+        await service.ConvertAsync(source, standard, DiskImageFormatIds.AmstradCpc);
+        await service.ConvertAsync(standard, output, DiskImageFormatIds.AmstradCpc);
+        var result = await new CpcDskReader().ReadDetailedAsync(output);
+        AssertEquivalent(image, result);
+    }
+
+    /// <summary>Vérifie que le service refuse une piste EDSK absente avant toute réduction en DSK.</summary>
+    [Fact]
+    public async Task ConversionServiceRejectsMissingExtendedTrackInStandardOutput()
+    {
+        var id = Guid.NewGuid().ToString("N");
+        var source = GeneratedPath($"missing-track-source-{id}.edsk");
+        var output = GeneratedPath($"missing-track-output-{id}.dsk");
+        var sectorImage = new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 1, []);
+        var image = new CpcDskImage(CpcDskContainerKind.Extended, 1, 1, [new(0, false, 0, 0, 2, 0x4e, 0xe5, [])], sectorImage);
+        await new CpcDskWriter().WriteAsync(image, source);
+        await Assert.ThrowsAsync<InvalidDataException>(() => MediaEngineFactory.CreateAmstradDskConversionService().ConvertAsync(source, output, DiskImageFormatIds.AmstradCpc));
+        Assert.False(File.Exists(output));
+    }
+
     private static void AssertEquivalent(CpcDskImage expected, CpcDskImage actual)
     {
         Assert.Equal(expected.Kind, actual.Kind);

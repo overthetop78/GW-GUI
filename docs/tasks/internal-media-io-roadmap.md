@@ -395,7 +395,7 @@ Références communes :
 
 ### 4.5 DSK ↔ EDSK
 
-- [ ] Raccorder la conversion Amstrad DSK/EDSK en refusant toute réduction EDSK→DSK qui perdrait tailles, statuts ou géométries non représentables.
+- [x] Raccorder la conversion Amstrad DSK/EDSK en refusant toute réduction EDSK→DSK qui perdrait tailles, statuts ou géométries non représentables.
 
   Informations nécessaires :
 
