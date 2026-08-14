@@ -27,6 +27,7 @@ public sealed class AmigaMachineView : UserControl
     private bool _disposed;
     private bool _mouseCaptured;
     private Button? _mouseCaptureButton;
+    private Button? _pauseButton;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
 
     public AmigaMachineView(IAmigaMachine machine)
@@ -37,6 +38,7 @@ public sealed class AmigaMachineView : UserControl
         root.RowDefinitions.Add(new RowDefinition());
         var bar = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 8) };
         AddButton(bar, "Common.Stop", StopAsync);
+        _pauseButton = AddButton(bar, "Common.Pause", TogglePauseAsync);
         AddButton(bar, "Common.Reset", () => _machine.HardResetAsync().AsTask());
         AddButton(bar, "Common.Browse", InsertDisk);
         bar.Children.Add(_diskSelection);
@@ -156,6 +158,21 @@ public sealed class AmigaMachineView : UserControl
     {
         if (_diskSelection.SelectedIndex < 0) return;
         await _machine.SelectDiskAsync(_diskSelection.SelectedIndex);
+    }
+
+    private async Task TogglePauseAsync()
+    {
+        if (_machine.State == EmulationMachineState.Running)
+        {
+            await _machine.PauseAsync();
+            if (_pauseButton is not null) _pauseButton.Content = LocExtension.Get("Common.Continue");
+        }
+        else if (_machine.State == EmulationMachineState.Paused)
+        {
+            await _machine.ResumeAsync();
+            if (_pauseButton is not null) _pauseButton.Content = LocExtension.Get("Common.Pause");
+        }
+        _status.Text = _machine.State.ToString();
     }
 
     private async Task LoadState()

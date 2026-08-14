@@ -68,6 +68,7 @@ internal sealed class AmigaMachine : IAmigaMachine
             if (State != EmulationMachineState.Running) return ValueTask.CompletedTask;
             _pauseRequested = true;
             State = EmulationMachineState.Paused;
+            FlushAudio();
         }
         return ValueTask.CompletedTask;
     }
@@ -85,7 +86,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     }
 
     public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(_core.HardReset, cancellationToken);
+        QueueCommand(() => { FlushAudio(); _core.HardReset(); }, cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
@@ -236,6 +237,13 @@ internal sealed class AmigaMachine : IAmigaMachine
     private void FailPendingCommands(Exception error)
     {
         while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);
+    }
+
+    private void FlushAudio()
+    {
+        if (_audioOutput is null) return;
+        try { _audioOutput.Flush(); }
+        catch { _audioOutput.Dispose(); _audioOutput = null; }
     }
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);

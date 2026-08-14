@@ -75,4 +75,5 @@
   <data name="Common.New" xml:space="preserve"><value>New</value></data>
   <data name="Common.Refresh" xml:space="preserve"><value>Refresh</value></data>
   <data name="Common.OpenFolder" xml:space="preserve"><value>Open folder</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Pause</value></data>
 </root>
