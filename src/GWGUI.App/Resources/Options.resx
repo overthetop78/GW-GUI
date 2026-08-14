@@ -195,6 +195,8 @@
   <data name="Emulation.LoadOptions" xml:space="preserve"><value>Load available options</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Configurations</value></data>
   <data name="Emulation.Firmware" xml:space="preserve"><value>Firmware</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capture mouse</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Release mouse</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Delete this Amiga configuration?</value></data>
   <data name="Emulation.ModelRequired" xml:space="preserve"><value>An Amiga model is required.</value></data>
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>A Kickstart path is required.</value></data>

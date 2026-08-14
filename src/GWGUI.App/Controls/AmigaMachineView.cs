@@ -1,4 +1,5 @@
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,6 +25,8 @@ public sealed class AmigaMachineView : UserControl
     private Point? _lastMouse;
     private int _framePending;
     private bool _disposed;
+    private bool _mouseCaptured;
+    private Button? _mouseCaptureButton;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
 
     public AmigaMachineView(IAmigaMachine machine)
@@ -38,6 +41,7 @@ public sealed class AmigaMachineView : UserControl
         AddButton(bar, "Common.Browse", InsertDisk);
         bar.Children.Add(_diskSelection);
         AddButton(bar, "Common.Choose", SelectDisk);
+        _mouseCaptureButton = AddButton(bar, "Emulation.CaptureMouse", ToggleMouseCapture);
         AddButton(bar, "Common.Save", SaveState);
         AddButton(bar, "Common.Choose", LoadState);
         AddButton(bar, "Common.Close", () =>
@@ -83,6 +87,7 @@ public sealed class AmigaMachineView : UserControl
         finally
         {
             _inputTimer.Stop();
+            ReleaseRelativeMouse();
             await _machine.DisposeAsync();
             _machine.VideoFrameReady -= VideoFrameReady;
             _status.Text = _machine.State.ToString();
@@ -90,7 +95,7 @@ public sealed class AmigaMachineView : UserControl
         }
     }
 
-    private void AddButton(Panel panel, string key, Func<Task> action)
+    private Button AddButton(Panel panel, string key, Func<Task> action)
     {
         var button = new Button { Content = LocExtension.Get(key), MinWidth = 88, Margin = new Thickness(0, 0, 8, 0) };
         button.Click += async (_, _) =>
@@ -110,6 +115,7 @@ public sealed class AmigaMachineView : UserControl
             }
         };
         panel.Children.Add(button);
+        return button;
     }
 
     private void VideoFrameReady(object? sender, VideoFrame frame)
@@ -168,6 +174,12 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayKeyDown(object sender, KeyEventArgs e)
     {
+        if (_mouseCaptured && Keyboard.Modifiers.HasFlag(ModifierKeys.Control) && Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+        {
+            ReleaseRelativeMouse();
+            e.Handled = true;
+            return;
+        }
         var source = e.Key == Key.System ? e.SystemKey : e.Key;
         if (TryMapKey(source, out var key)) { _keys.Add(key); PublishInput(); e.Handled = true; }
     }
@@ -178,17 +190,65 @@ public sealed class AmigaMachineView : UserControl
         if (TryMapKey(source, out var key)) { _keys.Remove(key); PublishInput(); e.Handled = true; }
     }
 
-    private void DisplayLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) { _keys.Clear(); PublishInput(); }
+    private void DisplayLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+    {
+        ReleaseRelativeMouse();
+        _keys.Clear();
+        PublishInput();
+    }
 
     private void DisplayMouseMove(object sender, MouseEventArgs e)
     {
         var current = e.GetPosition(_display);
+        if (_mouseCaptured)
+        {
+            var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
+            var deltaX = (int)Math.Round(current.X - center.X);
+            var deltaY = (int)Math.Round(current.Y - center.Y);
+            if (deltaX == 0 && deltaY == 0) return;
+            PublishInput(deltaX, deltaY);
+            var screen = _display.PointToScreen(center);
+            SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
+            return;
+        }
         if (_lastMouse is { } previous) PublishInput((int)(current.X - previous.X), (int)(current.Y - previous.Y));
         _lastMouse = current;
     }
 
     private void MouseChanged(object sender, MouseButtonEventArgs e) => PublishInput();
     private void DisplayMouseWheel(object sender, MouseWheelEventArgs e) => PublishInput(wheel: e.Delta);
+
+    private Task ToggleMouseCapture()
+    {
+        if (_mouseCaptured) ReleaseRelativeMouse();
+        else
+        {
+            _mouseCaptured = true;
+            _display.Cursor = Cursors.None;
+            Mouse.Capture(_display);
+            _display.Focus();
+            var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
+            var screen = _display.PointToScreen(center);
+            SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
+            if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.ReleaseMouse");
+        }
+        return Task.CompletedTask;
+    }
+
+    private void ReleaseRelativeMouse()
+    {
+        if (!_mouseCaptured) return;
+        _mouseCaptured = false;
+        Mouse.Capture(null);
+        _display.Cursor = null;
+        _lastMouse = null;
+        _keys.Remove(EmulationKey.LeftControl);
+        _keys.Remove(EmulationKey.RightControl);
+        _keys.Remove(EmulationKey.LeftAlt);
+        _keys.Remove(EmulationKey.RightAlt);
+        if (!_disposed) PublishInput();
+        if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.CaptureMouse");
+    }
 
     private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0) => _machine.SetInput(new EmulationInputSnapshot(
         new HashSet<EmulationKey>(_keys), new EmulationPointerState(deltaX, deltaY, wheel,
@@ -227,4 +287,7 @@ public sealed class AmigaMachineView : UserControl
         };
         return result != EmulationKey.Unknown;
     }
+
+    [DllImport("user32.dll")]
+    private static extern bool SetCursorPos(int x, int y);
 }
