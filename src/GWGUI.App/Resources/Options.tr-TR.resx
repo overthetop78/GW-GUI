@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>Her işlem için kullanılacak motoru bağımsız olarak seçin.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Dahili GW GUI motoru</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Seçilen motor kesin olarak kullanılır. İşlemi yapamazsa GW GUI diğer motoru sessizce kullanmak yerine bunu bildirir.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
 </root>

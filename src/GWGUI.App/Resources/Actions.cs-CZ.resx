@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>Nový</value></data>
   <data name="Common.Refresh"><value>Obnovit</value></data>
+  <data name="Common.OpenFolder"><value>Otevřít složku</value></data>
 </root>

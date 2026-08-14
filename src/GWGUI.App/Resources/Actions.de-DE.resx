@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>Neu</value></data>
   <data name="Common.Refresh"><value>Aktualisieren</value></data>
+  <data name="Common.OpenFolder"><value>Ordner öffnen</value></data>
 </root>

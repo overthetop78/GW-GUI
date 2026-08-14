@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>Mới</value></data>
   <data name="Common.Refresh"><value>Làm mới</value></data>
+  <data name="Common.OpenFolder"><value>Mở thư mục</value></data>
 </root>

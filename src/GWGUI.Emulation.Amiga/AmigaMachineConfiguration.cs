@@ -8,7 +8,9 @@ public sealed record AmigaControllerBinding(int Port, AmigaControllerType Type, 
 public sealed record AmigaInputConfiguration(IReadOnlyDictionary<string, GWGUI.Emulation.EmulationKey>? KeyboardMappings = null,
     string? MouseDeviceId = null, bool CaptureMouse = true, IReadOnlyList<AmigaControllerBinding>? ControllerBindings = null,
     IReadOnlyDictionary<string, AmigaMouseAction>? MouseButtonMappings = null,
-    GWGUI.Emulation.EmulationKey ReleaseMouseKey = GWGUI.Emulation.EmulationKey.Escape);
+    GWGUI.Emulation.EmulationKey ReleaseMouseKey = GWGUI.Emulation.EmulationKey.Escape,
+    IReadOnlyDictionary<string, string>? KeyboardBindings = null,
+    string? ReleaseMouseBinding = null);
 public sealed record AmigaAudioConfiguration(string? OutputDeviceId = null, int LatencyMilliseconds = 50,
     string Interpolation = "anti", string Filter = "emulated", int StereoSeparation = 100);
 public sealed record AmigaFloppyConfiguration(string Path, string? Label = null, bool IsReadOnly = false);

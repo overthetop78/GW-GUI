@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>Kies onafhankelijk de engine die voor elke bewerking wordt gebruikt.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Interne GW GUI-engine</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>De geselecteerde engine wordt strikt gebruikt. Kan deze de bewerking niet uitvoeren, dan meldt GW GUI dit zonder stilzwijgend de andere engine te gebruiken.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
 </root>

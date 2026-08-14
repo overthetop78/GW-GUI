@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>Pilih secara terpisah mesin yang digunakan untuk setiap operasi.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Mesin internal GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Mesin yang dipilih digunakan secara ketat. Jika tidak dapat melakukan operasi, GW GUI akan melaporkannya tanpa diam-diam menggunakan mesin lain.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
 </root>

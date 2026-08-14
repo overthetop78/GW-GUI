@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>Alegeți independent motorul utilizat pentru fiecare operație.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Motor intern GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Motorul selectat este utilizat strict. Dacă nu poate efectua operația, GW GUI raportează acest lucru fără a utiliza în tăcere celălalt motor.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
 </root>

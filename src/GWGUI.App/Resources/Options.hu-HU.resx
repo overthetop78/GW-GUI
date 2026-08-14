@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>Minden művelethez külön válassza ki a használt motort.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>A GW GUI belső motorja</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>A kiválasztott motor kizárólagosan használatos. Ha nem tudja elvégezni a műveletet, a GW GUI jelzi ezt, és nem vált át észrevétlenül a másik motorra.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Modell</value></data>
 </root>

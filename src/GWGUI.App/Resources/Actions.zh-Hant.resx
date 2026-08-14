@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>新增</value></data>
   <data name="Common.Refresh"><value>重新整理</value></data>
+  <data name="Common.OpenFolder"><value>開啟資料夾</value></data>
 </root>

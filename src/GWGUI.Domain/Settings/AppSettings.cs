@@ -6,6 +6,13 @@ public sealed class AppSettings
     public string Language { get; set; } = "";
     public AppTheme Theme { get; set; } = AppTheme.System;
     public string DefaultImagesFolder { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    public string EmulationStorageFolder { get; set; } = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation");
+    public string EmulationCaptureFolder { get; set; } = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "Captures");
+    public string EmulationStateFolder { get; set; } = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "States");
+    public bool CreateEmulationFoldersAutomatically { get; set; } = true;
     public string? LastDiskImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }
     public string? PreviousGwExecutablePath { get; set; }

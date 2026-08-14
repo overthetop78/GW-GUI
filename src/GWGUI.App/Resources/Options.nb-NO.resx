@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>Velg uavhengig hvilken motor som brukes for hver operasjon.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Intern GW GUI-motor</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Den valgte motoren brukes konsekvent. Hvis den ikke kan utføre operasjonen, melder GW GUI fra uten å bruke den andre motoren i det skjulte.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Modell</value></data>
 </root>

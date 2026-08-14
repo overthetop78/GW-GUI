@@ -119,7 +119,7 @@
   </data>
   <data name="Emulation.CpuModel"><value>Modèle de CPU</value></data>
   <data name="Emulation.CpuMultiplier"><value>Multiplicateur du CPU</value></data>
-  <data name="Emulation.CpuCompatibility"><value>CPU compatible cycle par cycle</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Compatibilité</value></data>
   <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
   <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
   <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
@@ -227,4 +227,29 @@
   <data name="Emulation.TurboButton"><value>Bouton turbo</value></data>
   <data name="Emulation.TurboPulse"><value>Cadence du turbo</value></data>
   <data name="Emulation.JoyPortOrder"><value>Ordre des ports de manette</value></data>
+  <data name="Emulation.Emulator"><value>Émulateur</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Dossier de stockage commun des émulateurs</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Les disques durs sont rangés automatiquement dans HDD\Amiga, HDD\Atari et les dossiers des futurs systèmes.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Ajouter un disque dur existant</value></data>
+  <data name="Emulation.HardDisks"><value>Disques durs</value></data>
+  <data name="Emulation.NoHardDisks"><value>Aucun disque dur n’est associé à cette machine.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Raccourcis réservés</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>Les raccourcis de GW GUI et de Windows restent actifs et ne sont pas capturés par la machine.</value></data>
+  <data name="Emulation.InputBehavior"><value>Comportement</value></data>
+  <data name="Emulation.AssignInput"><value>Assigner…</value></data>
+  <data name="Emulation.InputActions"><value>Actions</value></data>
+  <data name="Emulation.PressInput"><value>Appuyez sur une touche…</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Créer automatiquement les sous-dossiers manquants</value></data>
+  <data name="Emulation.CommonFolders"><value>Dossiers communs</value></data>
+  <data name="Emulation.SharedInputDescription"><value>La détection est commune, mais les affectations sont enregistrées séparément dans chaque configuration de machine.</value></data>
+  <data name="Emulation.TestInputs"><value>Tester les entrées</value></data>
+  <data name="Emulation.SharedDevices"><value>Périphériques d’entrée communs</value></data>
+  <data name="Emulation.CaptureFolder"><value>Dossier des captures</value></data>
+  <data name="Emulation.StateFolder"><value>Dossier des états sauvegardés</value></data>
+  <data name="Emulation.DefaultFolders"><value>Valeurs par défaut</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Aucune manette détectée</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Appuyez sur une touche du clavier ou un bouton de souris pour tester sa détection.</value></data>
+  <data name="Emulation.Floppies"><value>Disquettes</value></data>
+  <data name="Emulation.ExtendedRom"><value>ROM étendue</value></data>
+  <data name="Emulation.RomKey"><value>Clé ROM</value></data>
 </root>

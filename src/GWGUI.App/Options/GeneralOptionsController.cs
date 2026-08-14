@@ -34,6 +34,7 @@ internal sealed class GeneralOptionsController
         _localize = localize;
 
         section.ImagesFolder.Text = settings.DefaultImagesFolder;
+        StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
         section.Languages.ItemsSource = UiLanguageCatalog.Available;
         section.Languages.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language =>
             string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
@@ -49,6 +50,7 @@ internal sealed class GeneralOptionsController
     public void ApplyTo(AppSettings settings)
     {
         settings.DefaultImagesFolder = _section.ImagesFolder.Text.Trim();
+        StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
         if (_section.Languages.SelectedItem is UiLanguage language) settings.Language = language.Code;
         settings.Theme = (AppTheme)Math.Max(0, _section.Themes.SelectedIndex);
     }
@@ -80,4 +82,5 @@ internal sealed class GeneralOptionsController
         _section.ImagesFolder.Text = dialog.FolderName;
         await _persistSettings();
     }
+
 }

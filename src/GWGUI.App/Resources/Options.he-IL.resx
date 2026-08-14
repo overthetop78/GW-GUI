@@ -181,4 +181,5 @@
   <data name="Engines.Description" xml:space="preserve"><value>בחר בנפרד את המנוע המשמש לכל פעולה.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>המנוע הפנימי של GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>המנוע שנבחר משמש באופן בלעדי. אם אינו יכול לבצע את הפעולה, GW GUI ידווח על כך ולא ישתמש במנוע האחר ללא הודעה.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>דגם</value></data>
 </root>

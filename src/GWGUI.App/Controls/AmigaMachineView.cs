@@ -19,12 +19,14 @@ public sealed class AmigaMachineView : UserControl
     private readonly IAmigaMachine _machine;
     private readonly AmigaInputConfiguration _input;
     private readonly IReadOnlyDictionary<EmulationKey, EmulationKey> _keyboardMap;
+    private readonly IReadOnlyList<KeyboardShortcutBinding> _keyboardShortcuts;
     private readonly Image _display = new() { Stretch = Stretch.Uniform, Focusable = true };
     private readonly Border _screen;
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly ComboBox _diskSelection = new() { MinWidth = 120, Margin = new Thickness(0, 0, 8, 0) };
     private readonly HashSet<EmulationKey> _keys = [];
     private readonly HashSet<EmulationKey> _hostKeys = [];
+    private readonly Dictionary<Key, EmulationKey> _pressedShortcutKeys = [];
     private WriteableBitmap? _bitmap;
     private Point? _lastMouse;
     private int _framePending;
@@ -39,6 +41,7 @@ public sealed class AmigaMachineView : UserControl
         _machine = machine;
         _input = input ?? new AmigaInputConfiguration();
         _keyboardMap = BuildKeyboardMap(_input.KeyboardMappings);
+        _keyboardShortcuts = BuildKeyboardShortcuts(_input.KeyboardBindings);
         var root = new Grid();
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
@@ -233,13 +236,23 @@ public sealed class AmigaMachineView : UserControl
     private void DisplayKeyDown(object sender, KeyEventArgs e)
     {
         var source = e.Key == Key.System ? e.SystemKey : e.Key;
+        if (IsReservedShortcut(source, Keyboard.Modifiers)) return;
         if (_mouseCaptured && TryMapKey(source, out var pressed) && pressed == _input.ReleaseMouseKey)
         {
             ReleaseRelativeMouse();
             e.Handled = true;
             return;
         }
-        if (TryMapKey(source, out var key))
+        var shortcut = _keyboardShortcuts.FirstOrDefault(binding =>
+            binding.Key == source && binding.Modifiers == Keyboard.Modifiers);
+        if (shortcut is not null)
+        {
+            _pressedShortcutKeys[source] = shortcut.AmigaKey;
+            _keys.Add(shortcut.AmigaKey);
+            PublishInput();
+            e.Handled = true;
+        }
+        else if (TryMapKey(source, out var key))
         {
             _hostKeys.Add(key);
             _keys.Add(_keyboardMap.GetValueOrDefault(key, key));
@@ -251,7 +264,13 @@ public sealed class AmigaMachineView : UserControl
     private void DisplayKeyUp(object sender, KeyEventArgs e)
     {
         var source = e.Key == Key.System ? e.SystemKey : e.Key;
-        if (TryMapKey(source, out var key))
+        if (_pressedShortcutKeys.Remove(source, out var shortcutKey))
+        {
+            _keys.Remove(shortcutKey);
+            PublishInput();
+            e.Handled = true;
+        }
+        else if (TryMapKey(source, out var key))
         {
             _hostKeys.Remove(key);
             _keys.Remove(_keyboardMap.GetValueOrDefault(key, key));
@@ -265,6 +284,7 @@ public sealed class AmigaMachineView : UserControl
         ReleaseRelativeMouse();
         _keys.Clear();
         _hostKeys.Clear();
+        _pressedShortcutKeys.Clear();
         PublishInput();
     }
 
@@ -333,16 +353,18 @@ public sealed class AmigaMachineView : UserControl
         };
         var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
         {
-            ["Left"] = AmigaMouseAction.LeftButton,
-            ["Right"] = AmigaMouseAction.RightButton,
-            ["Middle"] = AmigaMouseAction.MiddleButton
+            ["Mouse:Left"] = AmigaMouseAction.LeftButton,
+            ["Mouse:Right"] = AmigaMouseAction.RightButton,
+            ["Mouse:Middle"] = AmigaMouseAction.MiddleButton
         };
+        var controllers = XInputControllerReader.ReadAll();
+        var primaryController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;
         bool IsPressed(AmigaMouseAction action) => actions.Any(mapping => mapping.Value == action
-            && physical.GetValueOrDefault(mapping.Key));
+            && IsControllerSourcePressed(mapping.Key, primaryController, physical));
         _machine.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey>(_keys),
             new EmulationPointerState(deltaX, deltaY, wheel, IsPressed(AmigaMouseAction.LeftButton),
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
-            MapControllers(XInputControllerReader.ReadAll(), physical)));
+            MapControllers(controllers, physical)));
     }
 
     private IReadOnlyList<EmulationControllerState> MapControllers(IReadOnlyList<EmulationControllerState> physical,
@@ -399,6 +421,46 @@ public sealed class AmigaMachineView : UserControl
                 result[mapping.Value] = amigaKey;
         return result;
     }
+
+    private static IReadOnlyList<KeyboardShortcutBinding> BuildKeyboardShortcuts(
+        IReadOnlyDictionary<string, string>? mappings)
+    {
+        if (mappings is null || mappings.Count == 0) return [];
+        var result = new List<KeyboardShortcutBinding>();
+        foreach (var mapping in mappings)
+        {
+            if (!Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) ||
+                !TryParseHostBinding(mapping.Value, out var key, out var modifiers)) continue;
+            result.Add(new KeyboardShortcutBinding(key, modifiers, amigaKey));
+        }
+        return result;
+    }
+
+    internal static bool TryParseHostBinding(string? text, out Key key, out ModifierKeys modifiers)
+    {
+        key = Key.None;
+        modifiers = ModifierKeys.None;
+        if (string.IsNullOrWhiteSpace(text)) return false;
+        var parts = text.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        foreach (var part in parts[..^1])
+            modifiers |= part.ToLowerInvariant() switch
+            {
+                "ctrl" or "control" => ModifierKeys.Control,
+                "shift" => ModifierKeys.Shift,
+                "alt" => ModifierKeys.Alt,
+                "win" or "windows" => ModifierKeys.Windows,
+                _ => ModifierKeys.None
+            };
+        return Enum.TryParse(parts[^1], true, out key) && key != Key.None;
+    }
+
+    private static bool IsReservedShortcut(Key key, ModifierKeys modifiers) =>
+        (modifiers.HasFlag(ModifierKeys.Alt) && key is Key.F4 or Key.Tab) ||
+        (modifiers.HasFlag(ModifierKeys.Control) && key == Key.Escape) ||
+        (modifiers.HasFlag(ModifierKeys.Control) && modifiers.HasFlag(ModifierKeys.Shift) && key == Key.Escape) ||
+        modifiers.HasFlag(ModifierKeys.Windows);
+
+    private sealed record KeyboardShortcutBinding(Key Key, ModifierKeys Modifiers, EmulationKey AmigaKey);
 
     internal static bool TryMapKey(Key key, out EmulationKey result)
     {

@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>Nieuw</value></data>
   <data name="Common.Refresh"><value>Vernieuwen</value></data>
+  <data name="Common.OpenFolder"><value>Map openen</value></data>
 </root>

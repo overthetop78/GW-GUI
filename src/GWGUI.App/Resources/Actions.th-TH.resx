@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>ใหม่</value></data>
   <data name="Common.Refresh"><value>รีเฟรช</value></data>
+  <data name="Common.OpenFolder"><value>เปิดโฟลเดอร์</value></data>
 </root>

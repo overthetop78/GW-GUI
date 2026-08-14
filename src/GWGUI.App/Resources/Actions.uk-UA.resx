@@ -74,4 +74,5 @@
   </data>
   <data name="Common.New"><value>Новий</value></data>
   <data name="Common.Refresh"><value>Оновити</value></data>
+  <data name="Common.OpenFolder"><value>Відкрити папку</value></data>
 </root>
