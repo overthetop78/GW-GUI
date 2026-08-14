@@ -53,6 +53,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         InputPoll = HandleInputPoll;
         InputState = HandleInputState;
         Log = HandleLog;
+        Led = HandleLed;
     }
 
     internal string SystemDirectory { get; }
@@ -62,6 +63,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal AudioChunk? LatestAudioChunk { get; private set; }
     private readonly ConcurrentQueue<AudioChunk> _audioChunks = new();
     private readonly ConcurrentQueue<string> _diagnostics = new();
+    private readonly ConcurrentDictionary<int, bool> _ledStates = new();
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     internal EmulationInputSnapshot Input
     {
@@ -86,12 +88,14 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal AmigaExternalApi.InputPollCallback InputPoll { get; }
     internal AmigaExternalApi.InputStateCallback InputState { get; }
     internal AmigaExternalApi.LogCallback Log { get; }
+    internal AmigaExternalApi.SetLedState Led { get; }
     internal int SampleRate { get; set; } = 44100;
     internal double FramesPerSecond { get; private set; } = 50;
     internal bool SupportsNoGame { get; private set; }
     internal IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
+    internal IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>(_ledStates);
 
     internal void SetOption(string key, string value)
     {
@@ -193,8 +197,14 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     }, data, false);
                     return true;
                 case AmigaExternalApi.GetVfsInterface:
-                case AmigaExternalApi.GetLedInterface:
                     return false;
+                case AmigaExternalApi.GetLedInterface:
+                    if (data == 0) return false;
+                    Marshal.StructureToPtr(new AmigaExternalApi.LedInterface
+                    {
+                        SetLedState = Marshal.GetFunctionPointerForDelegate(Led)
+                    }, data, false);
+                    return true;
                 default:
                     if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($"Unsupported environment command: {command}");
                     return false;
@@ -439,6 +449,11 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     {
         var message = format == 0 ? null : Marshal.PtrToStringUTF8(format);
         if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[{level}] {message.TrimEnd()}");
+    }
+
+    private void HandleLed(int led, int state)
+    {
+        if (led is >= 0 and < 256) _ledStates[led] = state != 0;
     }
 
     private void AddDiagnostic(string message)

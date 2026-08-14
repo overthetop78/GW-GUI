@@ -362,6 +362,7 @@ public sealed class AmigaMachineLifecycleTests
         }
         public IReadOnlyList<AmigaCoreOption> Options => [];
         public IReadOnlyList<string> Diagnostics => [];
+        public IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>();
         public string CoreName => "Fake Amiga";
         public string CoreVersion => "1";
         public IReadOnlySet<string> SupportedContentExtensions { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "adf" };

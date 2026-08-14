@@ -119,6 +119,25 @@ internal static class AmigaCoreHostProtocol
         }
         return chunks;
     }
+
+    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states)
+    {
+        writer.Write(states.Count);
+        foreach (var state in states.OrderBy(pair => pair.Key))
+        {
+            writer.Write(state.Key);
+            writer.Write(state.Value);
+        }
+    }
+
+    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader)
+    {
+        var count = reader.ReadInt32();
+        if (count is < 0 or > 256) throw new InvalidDataException($"Invalid Amiga LED state count {count}.");
+        var states = new Dictionary<int, bool>(count);
+        for (var index = 0; index < count; index++) states[reader.ReadInt32()] = reader.ReadBoolean();
+        return states;
+    }
 }
 
 public static class AmigaCoreHost
@@ -160,6 +179,7 @@ public static class AmigaCoreHost
                         writer.Write(core.CoreName); writer.Write(core.CoreVersion);
                         writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
                         writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
+                        AmigaCoreHostProtocol.WriteLedStates(writer, core.LedStates);
                         break;
                     case AmigaHostCommand.RunFrame:
                         var activeCore = EnsureCore(core);
@@ -182,6 +202,7 @@ public static class AmigaCoreHost
                             writer.Write(JsonSerializer.Serialize(diagnostics, AmigaCoreHostProtocol.JsonOptions));
                             lastDiagnosticCount = diagnostics.Count;
                         }
+                        AmigaCoreHostProtocol.WriteLedStates(writer, activeCore.LedStates);
                         break;
                     case AmigaHostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;
                     case AmigaHostCommand.Stop: EnsureCore(core).Stop(); WriteSuccess(writer); break;

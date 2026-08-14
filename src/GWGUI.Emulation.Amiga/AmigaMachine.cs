@@ -44,6 +44,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
     public IReadOnlyList<AmigaCoreOption> AvailableOptions => _core.Options;
     public IReadOnlyList<string> Diagnostics => _core.Diagnostics;
+    public IReadOnlyDictionary<int, bool> LedStates => _core.LedStates;
     public string CoreName => _core.CoreName;
     public string CoreVersion => _core.CoreVersion;
     public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;

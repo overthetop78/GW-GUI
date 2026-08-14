@@ -107,6 +107,30 @@ public sealed class AmigaEnvironmentCallbackTests
         }
     }
 
+    [Fact]
+    public void LedInterface_RecordsCoreDriveActivity()
+    {
+        var root = TemporaryRoot();
+        using var callbacks = CreateCallbacks(root);
+        var pointer = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.LedInterface>());
+        try
+        {
+            Assert.True(callbacks.Environment(AmigaExternalApi.GetLedInterface, pointer));
+            var ledInterface = Marshal.PtrToStructure<AmigaExternalApi.LedInterface>(pointer);
+            var setLed = Marshal.GetDelegateForFunctionPointer<AmigaExternalApi.SetLedState>(ledInterface.SetLedState);
+            setLed(2, 1);
+            setLed(3, 0);
+
+            Assert.True(callbacks.LedStates[2]);
+            Assert.False(callbacks.LedStates[3]);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pointer);
+            Directory.Delete(root, true);
+        }
+    }
+
     private static string TemporaryRoot()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Environment", Guid.NewGuid().ToString("N"));

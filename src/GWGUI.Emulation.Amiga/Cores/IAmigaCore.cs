@@ -9,6 +9,7 @@ internal interface IAmigaCore : IDisposable
     bool TryDequeueAudio(out AudioChunk? chunk);
     IReadOnlyList<AmigaCoreOption> Options { get; }
     IReadOnlyList<string> Diagnostics { get; }
+    IReadOnlyDictionary<int, bool> LedStates { get; }
     string CoreName { get; }
     string CoreVersion { get; }
     IReadOnlySet<string> SupportedContentExtensions { get; }

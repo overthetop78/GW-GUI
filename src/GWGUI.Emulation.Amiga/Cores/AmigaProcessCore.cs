@@ -32,6 +32,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
     public AudioChunk? LatestAudioChunk { get; private set; }
     public IReadOnlyList<AmigaCoreOption> Options { get; private set; } = [];
     public IReadOnlyList<string> Diagnostics { get; private set; } = [];
+    public IReadOnlyDictionary<int, bool> LedStates { get; private set; } = new Dictionary<int, bool>();
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -94,6 +95,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
+            LedStates = AmigaCoreHostProtocol.ReadLedStates(Response);
             _initialized = true;
         }
         catch
@@ -120,6 +122,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
         CurrentDiskIndex = Response.ReadInt32();
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), AmigaCoreHostProtocol.JsonOptions) ?? [];
+        LedStates = AmigaCoreHostProtocol.ReadLedStates(Response);
     }
 
     public void HardReset() => SimpleRequest(AmigaHostCommand.HardReset);

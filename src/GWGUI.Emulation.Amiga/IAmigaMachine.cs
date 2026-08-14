@@ -10,6 +10,7 @@ public interface IAmigaMachine : IEmulatedMachine
     AudioChunk? LatestAudioChunk { get; }
     IReadOnlyList<AmigaCoreOption> AvailableOptions { get; }
     IReadOnlyList<string> Diagnostics { get; }
+    IReadOnlyDictionary<int, bool> LedStates { get; }
     string CoreName { get; }
     string CoreVersion { get; }
     IReadOnlySet<string> SupportedContentExtensions { get; }
