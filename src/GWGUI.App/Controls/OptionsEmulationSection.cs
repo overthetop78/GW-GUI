@@ -35,8 +35,10 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBox _romKey = new();
     private readonly CheckBox _audio = new() { IsChecked = true };
     private readonly ComboBox _cpuModel = new();
-    private readonly CheckBox _cpuCompatible = new() { IsChecked = true };
-    private readonly ComboBox _cpuMultiplier = new() { ItemsSource = new[] { "0", "1", "2", "4", "8", "16" } };
+    private readonly ComboBox _fpuModel = new();
+    private readonly ComboBox _cpuCompatibility = new();
+    private readonly ComboBox _cpuMultiplier = new();
+    private readonly ComboBox _cpuThrottle = new();
     private readonly ComboBox _chipMemory = new() { ItemsSource = new[] { "auto", "1", "2", "3", "4" } };
     private readonly ComboBox _slowMemory = new() { ItemsSource = new[] { "auto", "0", "2", "4", "6", "7" } };
     private readonly ComboBox _fastMemory = new() { ItemsSource = new[] { "auto", "0", "1", "2", "4", "8" } };
@@ -46,11 +48,23 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _videoResolution = new() { ItemsSource = new[] { "auto", "auto-lores", "auto-superhires", "lores", "hires", "superhires" } };
     private readonly ComboBox _videoAspect = new() { ItemsSource = new[] { "auto", "PAL", "NTSC", "1:1" } };
     private readonly ComboBox _cropVideo = new() { ItemsSource = new[] { "disabled", "minimum", "smaller", "small", "medium", "large", "larger", "maximum", "auto" } };
+    private readonly ComboBox _videoLineMode = new();
+    private readonly ComboBox _videoHzChange = new();
+    private readonly ComboBox _videoFrameskip = new();
+    private readonly ComboBox _videoColors = new();
+    private readonly ComboBox _videoGamma = new();
+    private readonly ComboBox _immediateBlits = new();
+    private readonly ComboBox _collisionLevel = new();
     private readonly CheckBox _flickerFixer = new();
     private readonly ComboBox _audioOutput = new() { DisplayMemberPath = nameof(AudioOutputDevice.Name) };
     private readonly ComboBox _audioLatency = new() { ItemsSource = new[] { 20, 35, 50, 75, 100, 150, 250 } };
     private readonly ComboBox _audioInterpolation = new() { ItemsSource = new[] { "none", "anti", "sinc", "rh", "crux" } };
     private readonly ComboBox _audioFilter = new() { ItemsSource = new[] { "emulated", "off", "on" } };
+    private readonly ComboBox _audioFilterType = new();
+    private readonly ComboBox _floppySound = new();
+    private readonly ComboBox _floppySoundType = new();
+    private readonly CheckBox _muteEmptyFloppy = new();
+    private readonly ComboBox _cdAudioVolume = new();
     private readonly Slider _stereoSeparation = new() { Minimum = 0, Maximum = 100, TickFrequency = 10, IsSnapToTickEnabled = true };
     private readonly ComboBox[] _controllers = Enumerable.Range(0, 4).Select(_ => new ComboBox
     {
@@ -60,14 +74,28 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _hardDriveCount = new() { ItemsSource = new[] { 0, 1 }, SelectedItem = 0 };
     private readonly CheckBox _cdDrive = new();
     private readonly CheckBox _multiDrive = new();
+    private readonly ComboBox _floppySpeed = new();
+    private readonly CheckBox _floppyWriteProtection = new();
+    private readonly CheckBox _floppyWriteRedirect = new();
+    private readonly ComboBox _cdSpeed = new();
     private readonly TextBox _mouseDevice = new();
     private readonly CheckBox _captureMouse = new() { IsChecked = true };
+    private readonly ComboBox _physicalMouse = new();
+    private readonly ComboBox _mouseSpeed = new();
+    private readonly ComboBox _analogMouse = new();
+    private readonly ComboBox _analogMouseDeadzone = new();
+    private readonly ComboBox _analogMouseSpeed = new();
     private readonly ComboBox _releaseMouseKey = new() { ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown) };
     private readonly ComboBox[] _mouseActions = Enumerable.Range(0, 3).Select(_ => new ComboBox()).ToArray();
     private readonly ComboBox[] _controllerDevices = Enumerable.Range(0, 4).Select(_ => new ComboBox { DisplayMemberPath = nameof(GameControllerDevice.Name) }).ToArray();
     private readonly ObservableCollection<ControllerMappingItem>[] _controllerMappings = Enumerable.Range(0, 4)
         .Select(_ => new ObservableCollection<ControllerMappingItem>()).ToArray();
     private readonly ObservableCollection<KeyMappingItem> _keyboardMappings = [];
+    private readonly CheckBox _keyboardPassThrough = new();
+    private readonly CheckBox _turboFire = new();
+    private readonly ComboBox _turboButton = new();
+    private readonly ComboBox _turboPulse = new();
+    private readonly ComboBox _joyPortOrder = new();
     private readonly DataGrid _keyboardGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
     private Guid _currentId;
     private bool _loading;
@@ -82,17 +110,14 @@ public sealed class OptionsEmulationSection : UserControl
         _firmwareList.DisplayMemberPath = nameof(FirmwareItem.DisplayName);
         _firmwareList.SelectionChanged += FirmwareSelected;
         _model.SelectionChanged += (_, _) => ApplyModelDefaults();
+        _cpuModel.SelectionChanged += (_, _) => ConfigureFpuChoices();
         _floppyDriveCount.SelectionChanged += (_, _) => RefreshMediaRows();
         _hardDriveCount.SelectionChanged += (_, _) => RefreshMediaRows();
         _cdDrive.Checked += (_, _) => RefreshMediaRows();
         _cdDrive.Unchecked += (_, _) => RefreshMediaRows();
         _keyboardGrid.ItemsSource = _keyboardMappings;
-        _audio.Content = LocExtension.Get("Emulation.Audio");
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
-        _captureMouse.Content = LocExtension.Get("Emulation.CaptureMouse");
-        _cpuCompatible.Content = LocExtension.Get("Emulation.CpuCompatibility");
-        _flickerFixer.Content = LocExtension.Get("Emulation.FlickerFixer");
-        _cdDrive.Content = LocExtension.Get("Emulation.CdDrive");
+        ConfigureOptionChoices();
         var controllerChoices = new[]
         {
             new LocalizedChoice<AmigaControllerType>(AmigaControllerType.Automatic, LocExtension.Get("Visual.Automatic")),
@@ -187,10 +212,12 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildCpuTab()
     {
-        var form = CreateForm(3);
+        var form = CreateForm(5);
         AddField(form, 0, LocExtension.Get("Emulation.CpuModel"), _cpuModel);
-        AddField(form, 1, LocExtension.Get("Emulation.CpuMultiplier"), _cpuMultiplier);
-        AddField(form, 2, LocExtension.Get("Emulation.CpuCompatibility"), _cpuCompatible);
+        AddField(form, 1, LocExtension.Get("Emulation.FpuModel"), _fpuModel);
+        AddField(form, 2, LocExtension.Get("Emulation.CpuSpeed"), _cpuThrottle);
+        AddField(form, 3, LocExtension.Get("Emulation.CpuMultiplier"), _cpuMultiplier);
+        AddField(form, 4, LocExtension.Get("Emulation.CpuCompatibility"), _cpuCompatibility);
         return Wrap(form);
     }
 
@@ -206,13 +233,20 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildVideoTab()
     {
-        var form = CreateForm(6);
+        var form = CreateForm(13);
         AddField(form, 0, LocExtension.Get("Emulation.Chipset"), _chipset);
         AddField(form, 1, LocExtension.Get("Emulation.VideoStandard"), _videoStandard);
         AddField(form, 2, LocExtension.Get("Emulation.VideoResolution"), _videoResolution);
         AddField(form, 3, LocExtension.Get("Emulation.AspectRatio"), _videoAspect);
         AddField(form, 4, LocExtension.Get("Emulation.VideoCrop"), _cropVideo);
         AddField(form, 5, LocExtension.Get("Emulation.FlickerFixer"), _flickerFixer);
+        AddField(form, 6, LocExtension.Get("Emulation.VideoLineMode"), _videoLineMode);
+        AddField(form, 7, LocExtension.Get("Emulation.VideoHzChange"), _videoHzChange);
+        AddField(form, 8, LocExtension.Get("Emulation.VideoFrameskip"), _videoFrameskip);
+        AddField(form, 9, LocExtension.Get("Emulation.VideoColors"), _videoColors);
+        AddField(form, 10, LocExtension.Get("Emulation.VideoGamma"), _videoGamma);
+        AddField(form, 11, LocExtension.Get("Emulation.ImmediateBlits"), _immediateBlits);
+        AddField(form, 12, LocExtension.Get("Emulation.CollisionLevel"), _collisionLevel);
         return Wrap(form);
     }
 
@@ -241,7 +275,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildAudioTab()
     {
-        var form = CreateForm(7);
+        var form = CreateForm(12);
         AddField(form, 0, LocExtension.Get("Emulation.AudioEnabled"), _audio);
         AddField(form, 1, LocExtension.Get("Emulation.AudioOutput"), _audioOutput);
         AddField(form, 2, LocExtension.Get("Emulation.AudioLatency"), _audioLatency);
@@ -253,6 +287,11 @@ public sealed class OptionsEmulationSection : UserControl
             Text = LocExtension.Get("Emulation.AudioInputUnavailable"),
             VerticalAlignment = VerticalAlignment.Center
         });
+        AddField(form, 7, LocExtension.Get("Emulation.AudioFilterType"), _audioFilterType);
+        AddField(form, 8, LocExtension.Get("Emulation.FloppySound"), _floppySound);
+        AddField(form, 9, LocExtension.Get("Emulation.FloppySoundType"), _floppySoundType);
+        AddField(form, 10, LocExtension.Get("Emulation.MuteEmptyFloppy"), _muteEmptyFloppy);
+        AddField(form, 11, LocExtension.Get("Emulation.CdAudioVolume"), _cdAudioVolume);
         return Wrap(form);
     }
 
@@ -262,10 +301,14 @@ public sealed class OptionsEmulationSection : UserControl
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        var hardware = CreateForm(3);
+        var hardware = CreateForm(7);
         AddField(hardware, 0, LocExtension.Get("Emulation.FloppyDriveCount"), _floppyDriveCount);
         AddField(hardware, 1, LocExtension.Get("Emulation.HardDriveCount"), _hardDriveCount);
         AddField(hardware, 2, LocExtension.Get("Emulation.CdDrive"), _cdDrive);
+        AddField(hardware, 3, LocExtension.Get("Emulation.FloppySpeed"), _floppySpeed);
+        AddField(hardware, 4, LocExtension.Get("Emulation.FloppyWriteProtection"), _floppyWriteProtection);
+        AddField(hardware, 5, LocExtension.Get("Emulation.FloppyWriteRedirect"), _floppyWriteRedirect);
+        AddField(hardware, 6, LocExtension.Get("Emulation.CdSpeed"), _cdSpeed);
         root.Children.Add(hardware);
         var media = new ScrollViewer
         {
@@ -299,18 +342,31 @@ public sealed class OptionsEmulationSection : UserControl
         });
         _keyboardGrid.RowStyle = style;
         _keyboardGrid.CurrentCellChanged += (_, _) => ValidateKeyboardMappings();
-        return new Grid { Margin = new Thickness(12), Children = { _keyboardGrid } };
+        var panel = new Grid { Margin = new Thickness(12) };
+        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        panel.RowDefinitions.Add(new RowDefinition());
+        var keyboardOptions = CreateForm(1);
+        AddField(keyboardOptions, 0, LocExtension.Get("Emulation.KeyboardPassThrough"), _keyboardPassThrough);
+        panel.Children.Add(keyboardOptions);
+        Grid.SetRow(_keyboardGrid, 1);
+        panel.Children.Add(_keyboardGrid);
+        return panel;
     }
 
     private UIElement BuildMouseTab()
     {
-        var form = CreateForm(6);
+        var form = CreateForm(11);
         AddField(form, 0, LocExtension.Get("Emulation.DeviceId"), _mouseDevice);
         AddField(form, 1, LocExtension.Get("Emulation.CaptureMouse"), _captureMouse);
         AddField(form, 2, LocExtension.Get("Emulation.ReleaseMouseKey"), _releaseMouseKey);
         AddField(form, 3, LocExtension.Get("Emulation.MouseLeftButton"), _mouseActions[0]);
         AddField(form, 4, LocExtension.Get("Emulation.MouseRightButton"), _mouseActions[1]);
         AddField(form, 5, LocExtension.Get("Emulation.MouseMiddleButton"), _mouseActions[2]);
+        AddField(form, 6, LocExtension.Get("Emulation.PhysicalMouse"), _physicalMouse);
+        AddField(form, 7, LocExtension.Get("Emulation.MouseSpeed"), _mouseSpeed);
+        AddField(form, 8, LocExtension.Get("Emulation.AnalogMouse"), _analogMouse);
+        AddField(form, 9, LocExtension.Get("Emulation.AnalogMouseDeadzone"), _analogMouseDeadzone);
+        AddField(form, 10, LocExtension.Get("Emulation.AnalogMouseSpeed"), _analogMouseSpeed);
         return Wrap(form);
     }
 
@@ -320,6 +376,12 @@ public sealed class OptionsEmulationSection : UserControl
         var detect = new WrapPanel { Margin = new Thickness(0, 0, 0, 8) };
         AddButton(detect, "Emulation.DetectControllers", DetectControllersAsync);
         root.Children.Add(detect);
+        var behavior = CreateForm(4);
+        AddField(behavior, 0, LocExtension.Get("Emulation.TurboFire"), _turboFire);
+        AddField(behavior, 1, LocExtension.Get("Emulation.TurboButton"), _turboButton);
+        AddField(behavior, 2, LocExtension.Get("Emulation.TurboPulse"), _turboPulse);
+        AddField(behavior, 3, LocExtension.Get("Emulation.JoyPortOrder"), _joyPortOrder);
+        root.Children.Add(behavior);
         for (var port = 0; port < 4; port++)
         {
             var form = CreateForm(2);
@@ -383,6 +445,52 @@ public sealed class OptionsEmulationSection : UserControl
         }
         return Task.CompletedTask;
     }
+
+    private void ConfigureOptionChoices()
+    {
+        _chipMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("1", "512 KiB"), ("2", "1 MiB"), ("3", "1.5 MiB"), ("4", "2 MiB") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
+        _slowMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("0", LocExtension.Get("HostTools.None")), ("2", "512 KiB"), ("4", "1 MiB"), ("6", "1.5 MiB"), ("7", "1.8 MiB") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
+        _fastMemory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8]);
+        _z3Memory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
+        _videoStandard.ItemsSource = new[] { new OptionChoice("PAL auto", $"PAL ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("NTSC auto", $"NTSC ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("PAL", "PAL"), new OptionChoice("NTSC", "NTSC") };
+        _cpuMultiplier.ItemsSource = Choices(("0", "Emulation.CpuSpeedOriginal"), ("1", "1×"), ("2", "2×"), ("4", "4×"), ("8", "8×"), ("10", "10×"), ("12", "12×"), ("16", "16×"));
+        _cpuThrottle.ItemsSource = new[] { "-900.0", "-500.0", "-200.0", "-100.0", "0.0", "1000.0", "2000.0", "4000.0", "8000.0", "10000.0" }
+            .Select(value => new OptionChoice(value, value == "0.0" ? LocExtension.Get("Emulation.CpuSpeedOriginal") : $"{value.TrimEnd('0').TrimEnd('.')} %")).ToArray();
+        _cpuCompatibility.ItemsSource = Choices(("normal", "Emulation.CompatibilityNormal"), ("compatible", "Emulation.CompatibilityCompatible"), ("memory", "Emulation.CompatibilityMemory"), ("exact", "Emulation.CompatibilityExact"));
+        _videoResolution.ItemsSource = Choices(("auto", "Visual.Automatic"), ("auto-lores", "Emulation.ResolutionAutoLow"), ("auto-superhires", "Emulation.ResolutionAutoSuperHigh"), ("lores", "Emulation.ResolutionLow"), ("hires", "Emulation.ResolutionHigh"), ("superhires", "Emulation.ResolutionSuperHigh"));
+        _videoAspect.ItemsSource = Choices(("auto", "Visual.Automatic"), ("PAL", "PAL"), ("NTSC", "NTSC"), ("1:1", "1:1"));
+        _cropVideo.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("minimum", "Emulation.Minimum"), ("smaller", "Emulation.VerySmall"), ("small", "Emulation.Small"), ("medium", "Emulation.Medium"), ("large", "Emulation.Large"), ("larger", "Emulation.VeryLarge"), ("maximum", "Emulation.Maximum"), ("auto", "Visual.Automatic"));
+        _videoLineMode.ItemsSource = Choices(("auto", "Visual.Automatic"), ("single", "Emulation.LineModeSingle"), ("double", "Emulation.LineModeDouble"));
+        _videoHzChange.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("enabled", "Emulation.Enabled"), ("locked", "Emulation.Locked"));
+        _videoFrameskip.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("1", "1"), ("2", "2"));
+        _videoColors.ItemsSource = new[] { new OptionChoice("16bit", "16 bits"), new OptionChoice("24bit", "24 bits") };
+        _videoGamma.ItemsSource = Enumerable.Range(-5, 11).Select(value => new OptionChoice((value * 100).ToString(), value.ToString())).ToArray();
+        _immediateBlits.ItemsSource = Choices(("false", "Emulation.Disabled"), ("immediate", "Emulation.Immediate"), ("waiting", "Emulation.Waiting"));
+        _collisionLevel.ItemsSource = Choices(("none", "HostTools.None"), ("sprites", "Emulation.CollisionSprites"), ("playfields", "Emulation.CollisionPlayfields"), ("full", "Emulation.CollisionFull"));
+        _audioInterpolation.ItemsSource = Choices(("none", "HostTools.None"), ("anti", "Emulation.InterpolationAnti"), ("sinc", "Sinc"), ("rh", "RH"), ("crux", "Crux"));
+        _audioFilter.ItemsSource = Choices(("emulated", "Emulation.FilterEmulated"), ("off", "Emulation.Disabled"), ("on", "Emulation.Enabled"));
+        _audioFilterType.ItemsSource = Choices(("auto", "Visual.Automatic"), ("standard", "Emulation.Standard"), ("enhanced", "Emulation.Enhanced"));
+        _floppySound.ItemsSource = Enumerable.Range(0, 21).Select(index => 100 - index * 5).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
+        _floppySoundType.ItemsSource = new[] { new OptionChoice("internal", LocExtension.Get("Emulation.Internal")), new OptionChoice("A500", "A500"), new OptionChoice("LOUD", LocExtension.Get("Emulation.Loud")) };
+        _cdAudioVolume.ItemsSource = Enumerable.Range(0, 21).Select(index => index * 5).Select(value => new OptionChoice($"{value}%", $"{value} %")).ToArray();
+        _floppySpeed.ItemsSource = new[] { 100, 200, 400, 800, 0 }.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.Maximum") : $"{value} %")).ToArray();
+        _cdSpeed.ItemsSource = new[] { new OptionChoice("100", "1×"), new OptionChoice("0", LocExtension.Get("Emulation.Maximum")) };
+        _physicalMouse.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("enabled", "Emulation.Enabled"), ("double", "Emulation.PhysicalMouseDouble"));
+        _mouseSpeed.ItemsSource = Enumerable.Range(1, 100).Select(value => value * 10).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
+        _analogMouse.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("left", "Emulation.LeftStick"), ("right", "Emulation.RightStick"), ("both", "Emulation.BothSticks"));
+        _analogMouseDeadzone.ItemsSource = Enumerable.Range(0, 11).Select(value => value * 5).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
+        _analogMouseSpeed.ItemsSource = Enumerable.Range(1, 30).Select(value => value / 10d).Select(value => new OptionChoice(value.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture), $"{value:0.0}×")).ToArray();
+        _turboButton.ItemsSource = new[] { "B", "A", "Y", "X", "L", "R", "L2", "R2" };
+        _turboPulse.ItemsSource = new[] { "2", "4", "6", "8", "10", "12" };
+        _joyPortOrder.ItemsSource = new[] { "1234", "2143", "3412", "4321" };
+    }
+
+    private static OptionChoice[] Choices(params (string Value, string TextOrKey)[] choices) => choices
+        .Select(choice => new OptionChoice(choice.Value, choice.TextOrKey.Contains('.') ? LocExtension.Get(choice.TextOrKey) : choice.TextOrKey))
+        .ToArray();
+
+    private static OptionChoice[] MemoryChoices(IEnumerable<int> values) =>
+        [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("HostTools.None") : $"{value} MiB"))];
 
     private Task AddMediaAsync()
     {
@@ -569,21 +677,50 @@ public sealed class OptionsEmulationSection : UserControl
         _cpuModel.ItemsSource = model.CpuModels;
         _cpuModel.SelectedItem = model.DefaultCpu;
         _cpuModel.IsEnabled = model.CpuModels.Count > 1;
+        ConfigureFpuChoices();
         _chipset.Text = model.Chipset;
-        _chipMemory.SelectedItem = Math.Clamp(model.ChipMemoryKib / 512, 1, 4).ToString();
-        _slowMemory.SelectedItem = model.SlowMemoryKib == 0 ? "0" : Math.Clamp(model.SlowMemoryKib / 256, 2, 7).ToString();
-        _fastMemory.SelectedItem = model.FastMemoryMib.ToString();
-        _z3Memory.SelectedItem = "0";
-        _videoStandard.SelectedItem = "PAL";
-        _videoResolution.SelectedItem = "auto";
-        _videoAspect.SelectedItem = "auto";
-        _cropVideo.SelectedItem = "disabled";
+        SelectValue(_chipMemory, Math.Clamp(model.ChipMemoryKib / 512, 1, 4).ToString());
+        SelectValue(_slowMemory, model.SlowMemoryKib == 0 ? "0" : Math.Clamp(model.SlowMemoryKib / 256, 2, 7).ToString());
+        SelectValue(_fastMemory, model.FastMemoryMib.ToString());
+        SelectValue(_z3Memory, "0");
+        SelectValue(_videoStandard, "PAL auto");
+        SelectValue(_cpuThrottle, "0.0");
+        SelectValue(_cpuMultiplier, "0");
+        SelectValue(_cpuCompatibility, "exact");
+        SelectValue(_videoResolution, "auto");
+        SelectValue(_videoAspect, "auto");
+        SelectValue(_cropVideo, "disabled");
         _floppyDriveCount.ItemsSource = Enumerable.Range(0, model.MaximumFloppyDrives + 1).ToArray();
         _floppyDriveCount.SelectedItem = Math.Min(1, model.MaximumFloppyDrives);
         _hardDriveCount.ItemsSource = Enumerable.Range(0, model.MaximumHardDrives + 1).ToArray();
         _hardDriveCount.SelectedItem = 0;
         _cdDrive.IsChecked = model.HasCdDrive;
         RefreshMediaRows();
+    }
+
+    private void ConfigureFpuChoices()
+    {
+        var cpu = _cpuModel.SelectedItem?.ToString() ?? "68000";
+        var values = cpu switch
+        {
+            "68000" or "68010" => new[] { "0" },
+            "68020" or "68030" => new[] { "0", "68881", "68882" },
+            _ => new[] { "cpu", "0", "68881", "68882" }
+        };
+        var previous = SelectedText(_fpuModel);
+        _fpuModel.ItemsSource = values.Select(value => new OptionChoice(value,
+            value == "0" ? LocExtension.Get("HostTools.None") : value == "cpu" ? LocExtension.Get("Emulation.IntegratedFpu") : value)).ToArray();
+        SelectValue(_fpuModel, values.Contains(previous) ? previous : DefaultFpu(cpu));
+        _fpuModel.IsEnabled = values.Length > 1;
+    }
+
+    private static string DefaultFpu(string cpu) => cpu is "68040" or "68060" ? "cpu" : "0";
+
+    private static void SelectValue(ComboBox comboBox, string value)
+    {
+        comboBox.SelectedItem = comboBox.Items.Cast<object>().FirstOrDefault(item =>
+            string.Equals(item is OptionChoice choice ? choice.Value : item.ToString(), value, StringComparison.OrdinalIgnoreCase));
+        if (comboBox.SelectedItem is null && comboBox.Items.Count > 0) comboBox.SelectedIndex = 0;
     }
 
     private static void AddButton(Panel panel, string resourceKey, Func<Task> action)
@@ -679,8 +816,10 @@ public sealed class OptionsEmulationSection : UserControl
         foreach (var option in configuration.Options ?? new Dictionary<string, string>())
             _options.Add(new OptionItem { Category = "Configuration", Key = option.Key, Name = option.Key, Value = option.Value });
         SetOption(_cpuModel, configuration, "puae_cpu_model", selectedModel.DefaultCpu);
+        SetOption(_fpuModel, configuration, "puae_fpu_model", DefaultFpu(selectedModel.DefaultCpu));
+        SetOption(_cpuThrottle, configuration, "puae_cpu_throttle", "0.0");
         SetOption(_cpuMultiplier, configuration, "puae_cpu_multiplier", "0");
-        _cpuCompatible.IsChecked = GetOption(configuration, "puae_cpu_compatibility", "exact") == "exact";
+        SetOption(_cpuCompatibility, configuration, "puae_cpu_compatibility", "exact");
         SetOption(_chipMemory, configuration, "puae_chipmem_size", Math.Clamp(((_model.SelectedItem as AmigaModel)?.ChipMemoryKib ?? 512) / 512, 1, 4).ToString());
         SetOption(_slowMemory, configuration, "puae_bogomem_size", ((_model.SelectedItem as AmigaModel)?.SlowMemoryKib ?? 0) == 0 ? "0" : "2");
         SetOption(_fastMemory, configuration, "puae_fastmem_size", ((_model.SelectedItem as AmigaModel)?.FastMemoryMib ?? 0).ToString());
@@ -689,6 +828,13 @@ public sealed class OptionsEmulationSection : UserControl
         SetOption(_videoResolution, configuration, "puae_video_resolution", "auto");
         SetOption(_videoAspect, configuration, "puae_video_aspect", "auto");
         SetOption(_cropVideo, configuration, "puae_crop", "disabled");
+        SetOption(_videoLineMode, configuration, "puae_video_vresolution", "auto");
+        SetOption(_videoHzChange, configuration, "puae_video_allow_hz_change", "locked");
+        SetOption(_videoFrameskip, configuration, "puae_gfx_framerate", "disabled");
+        SetOption(_videoColors, configuration, "puae_gfx_colors", "24bit");
+        SetOption(_videoGamma, configuration, "puae_gfx_gamma", "0");
+        SetOption(_immediateBlits, configuration, "puae_immediate_blits", "waiting");
+        SetOption(_collisionLevel, configuration, "puae_collision_level", "playfields");
         _flickerFixer.IsChecked = GetOption(configuration, "puae_gfx_flickerfixer", "disabled") == "enabled";
         var audio = configuration.Audio ?? new AmigaAudioConfiguration();
         var outputs = WasapiAudioOutput.GetOutputDevices();
@@ -696,8 +842,13 @@ public sealed class OptionsEmulationSection : UserControl
         _audioOutput.SelectedItem = _audioOutput.Items.OfType<AudioOutputDevice>().FirstOrDefault(device => device.Id == audio.OutputDeviceId)
             ?? _audioOutput.Items.OfType<AudioOutputDevice>().FirstOrDefault();
         _audioLatency.SelectedItem = audio.LatencyMilliseconds;
-        _audioInterpolation.SelectedItem = GetOption(configuration, "puae_sound_interpol", audio.Interpolation);
-        _audioFilter.SelectedItem = GetOption(configuration, "puae_sound_filter", audio.Filter);
+        SetOption(_audioInterpolation, configuration, "puae_sound_interpol", audio.Interpolation);
+        SetOption(_audioFilter, configuration, "puae_sound_filter", audio.Filter);
+        SetOption(_audioFilterType, configuration, "puae_sound_filter_type", "auto");
+        SetOption(_floppySound, configuration, "puae_floppy_sound", "80");
+        SetOption(_floppySoundType, configuration, "puae_floppy_sound_type", "internal");
+        _muteEmptyFloppy.IsChecked = GetOption(configuration, "puae_floppy_sound_empty_mute", "enabled") == "enabled";
+        SetOption(_cdAudioVolume, configuration, "puae_sound_volume_cd", "100%");
         _stereoSeparation.Value = int.TryParse(GetOption(configuration, "puae_sound_stereo_separation", $"{audio.StereoSeparation}%").TrimEnd('%'), out var separation) ? separation : 100;
         _media.Clear();
         var media = configuration.Media ?? configuration.Floppies?.Select(floppy => new AmigaMediaConfiguration(
@@ -711,6 +862,10 @@ public sealed class OptionsEmulationSection : UserControl
             media.Count(item => item.Kind == AmigaMediaKind.HardDrive));
         _cdDrive.IsChecked = selectedModel.HasCdDrive || media.Any(item => item.Kind == AmigaMediaKind.CompactDisc);
         _multiDrive.IsChecked = configuration.MountFloppiesInSeparateDrives;
+        SetOption(_floppySpeed, configuration, "puae_floppy_speed", "100");
+        _floppyWriteProtection.IsChecked = GetOption(configuration, "puae_floppy_write_protection", "disabled") == "enabled";
+        _floppyWriteRedirect.IsChecked = GetOption(configuration, "puae_floppy_write_redirect", "disabled") == "enabled";
+        SetOption(_cdSpeed, configuration, "puae_cd_speed", "100");
         _keyboardMappings.Clear();
         foreach (var key in Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown))
             _keyboardMappings.Add(new KeyMappingItem
@@ -721,6 +876,16 @@ public sealed class OptionsEmulationSection : UserControl
         _mouseDevice.Text = configuration.Input?.MouseDeviceId ?? string.Empty;
         _captureMouse.IsChecked = configuration.Input?.CaptureMouse ?? true;
         _releaseMouseKey.SelectedItem = configuration.Input?.ReleaseMouseKey ?? GWGUI.Emulation.EmulationKey.Escape;
+        SetOption(_physicalMouse, configuration, "puae_physicalmouse", "enabled");
+        SetOption(_mouseSpeed, configuration, "puae_mouse_speed", "100");
+        SetOption(_analogMouse, configuration, "puae_analogmouse", "both");
+        SetOption(_analogMouseDeadzone, configuration, "puae_analogmouse_deadzone", "20");
+        SetOption(_analogMouseSpeed, configuration, "puae_analogmouse_speed", "1.0");
+        _keyboardPassThrough.IsChecked = GetOption(configuration, "puae_physical_keyboard_pass_through", "disabled") == "enabled";
+        _turboFire.IsChecked = GetOption(configuration, "puae_turbo_fire", "disabled") == "enabled";
+        SetOption(_turboButton, configuration, "puae_turbo_fire_button", "B");
+        SetOption(_turboPulse, configuration, "puae_turbo_pulse", "6");
+        SetOption(_joyPortOrder, configuration, "puae_joyport_order", "1234");
         var mouseMappings = configuration.Input?.MouseButtonMappings;
         SelectChoice(_mouseActions[0], mouseMappings?.GetValueOrDefault("Left") ?? AmigaMouseAction.LeftButton);
         SelectChoice(_mouseActions[1], mouseMappings?.GetValueOrDefault("Right") ?? AmigaMouseAction.RightButton);
@@ -749,7 +914,7 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var value = GetOption(configuration, key, fallback ?? string.Empty);
         comboBox.SelectedItem = comboBox.Items.Cast<object>().FirstOrDefault(item =>
-            string.Equals(item.ToString(), value, StringComparison.OrdinalIgnoreCase));
+            string.Equals(item is OptionChoice choice ? choice.Value : item.ToString(), value, StringComparison.OrdinalIgnoreCase));
         if (comboBox.SelectedItem is null && comboBox.Items.Count > 0) comboBox.SelectedIndex = 0;
     }
 
@@ -767,8 +932,10 @@ public sealed class OptionsEmulationSection : UserControl
             .ToDictionary(item => item.Key.Trim(), item => item.Value?.Trim() ?? string.Empty, StringComparer.Ordinal);
         options["puae_model"] = model.BackendModel;
         options["puae_cpu_model"] = SelectedText(_cpuModel);
+        options["puae_fpu_model"] = SelectedText(_fpuModel);
+        options["puae_cpu_throttle"] = SelectedText(_cpuThrottle);
         options["puae_cpu_multiplier"] = SelectedText(_cpuMultiplier);
-        options["puae_cpu_compatibility"] = _cpuCompatible.IsChecked == true ? "exact" : "normal";
+        options["puae_cpu_compatibility"] = SelectedText(_cpuCompatibility);
         options["puae_chipmem_size"] = SelectedText(_chipMemory);
         options["puae_bogomem_size"] = SelectedText(_slowMemory);
         options["puae_fastmem_size"] = SelectedText(_fastMemory);
@@ -777,10 +944,36 @@ public sealed class OptionsEmulationSection : UserControl
         options["puae_video_resolution"] = SelectedText(_videoResolution);
         options["puae_video_aspect"] = SelectedText(_videoAspect);
         options["puae_crop"] = SelectedText(_cropVideo);
+        options["puae_video_vresolution"] = SelectedText(_videoLineMode);
+        options["puae_video_allow_hz_change"] = SelectedText(_videoHzChange);
+        options["puae_gfx_framerate"] = SelectedText(_videoFrameskip);
+        options["puae_gfx_colors"] = SelectedText(_videoColors);
+        options["puae_gfx_gamma"] = SelectedText(_videoGamma);
+        options["puae_immediate_blits"] = SelectedText(_immediateBlits);
+        options["puae_collision_level"] = SelectedText(_collisionLevel);
         options["puae_gfx_flickerfixer"] = _flickerFixer.IsChecked == true ? "enabled" : "disabled";
         options["puae_sound_interpol"] = SelectedText(_audioInterpolation);
         options["puae_sound_filter"] = SelectedText(_audioFilter);
+        options["puae_sound_filter_type"] = SelectedText(_audioFilterType);
+        options["puae_floppy_sound"] = SelectedText(_floppySound);
+        options["puae_floppy_sound_type"] = SelectedText(_floppySoundType);
+        options["puae_floppy_sound_empty_mute"] = _muteEmptyFloppy.IsChecked == true ? "enabled" : "disabled";
+        options["puae_sound_volume_cd"] = SelectedText(_cdAudioVolume);
         options["puae_sound_stereo_separation"] = $"{(int)_stereoSeparation.Value}%";
+        options["puae_floppy_speed"] = SelectedText(_floppySpeed);
+        options["puae_floppy_write_protection"] = _floppyWriteProtection.IsChecked == true ? "enabled" : "disabled";
+        options["puae_floppy_write_redirect"] = _floppyWriteRedirect.IsChecked == true ? "enabled" : "disabled";
+        options["puae_cd_speed"] = SelectedText(_cdSpeed);
+        options["puae_physical_keyboard_pass_through"] = _keyboardPassThrough.IsChecked == true ? "enabled" : "disabled";
+        options["puae_physicalmouse"] = SelectedText(_physicalMouse);
+        options["puae_mouse_speed"] = SelectedText(_mouseSpeed);
+        options["puae_analogmouse"] = SelectedText(_analogMouse);
+        options["puae_analogmouse_deadzone"] = SelectedText(_analogMouseDeadzone);
+        options["puae_analogmouse_speed"] = SelectedText(_analogMouseSpeed);
+        options["puae_turbo_fire"] = _turboFire.IsChecked == true ? "enabled" : "disabled";
+        options["puae_turbo_fire_button"] = SelectedText(_turboButton);
+        options["puae_turbo_pulse"] = SelectedText(_turboPulse);
+        options["puae_joyport_order"] = SelectedText(_joyPortOrder);
         var media = _media.Where(item => !string.IsNullOrWhiteSpace(item.Path)).Select(item =>
         {
             ValidateOptionalFile(item.Path, required: true);
@@ -838,7 +1031,9 @@ public sealed class OptionsEmulationSection : UserControl
         await ReloadAsync();
     }
 
-    private static string SelectedText(ComboBox comboBox) => comboBox.SelectedItem?.ToString() ?? string.Empty;
+    private static string SelectedText(ComboBox comboBox) => comboBox.SelectedItem is OptionChoice choice
+        ? choice.Value
+        : comboBox.SelectedItem?.ToString() ?? string.Empty;
 
     private static T SelectedChoice<T>(ComboBox comboBox, T fallback) where T : struct, Enum =>
         comboBox.SelectedItem is LocalizedChoice<T> choice ? choice.Value : fallback;
@@ -938,6 +1133,11 @@ public sealed class OptionsEmulationSection : UserControl
     }
 
     private sealed record LocalizedChoice<T>(T Value, string Text) where T : struct, Enum
+    {
+        public override string ToString() => Text;
+    }
+
+    private sealed record OptionChoice(string Value, string Text)
     {
         public override string ToString() => Text;
     }
