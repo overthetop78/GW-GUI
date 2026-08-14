@@ -126,7 +126,7 @@ public sealed class AmigaMachineLifecycleTests
     }
 
     [Fact]
-    public async Task StateV2_RejectsCorruptionAndChangedOptions()
+    public async Task StateV3_RejectsCorruptionAndChangedOptions()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-State", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -151,6 +151,42 @@ public sealed class AmigaMachineLifecycleTests
         finally
         {
             await machine.DisposeAsync();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public async Task StateV3_RejectsAChangedSecondaryMediaImage()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-State-Media", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var rom = Path.Combine(root, "kick.rom");
+        var floppy = Path.Combine(root, "boot.adf");
+        var hardDisk = Path.Combine(root, "system.hdf");
+        var statePath = Path.Combine(root, "state.gwas");
+        await File.WriteAllBytesAsync(rom, [1]);
+        await File.WriteAllBytesAsync(floppy, [2]);
+        await File.WriteAllBytesAsync(hardDisk, [3]);
+        var configuration = AmigaMachineConfiguration.A500(rom) with
+        {
+            Media =
+            [
+                new AmigaMediaConfiguration(floppy, AmigaMediaKind.Floppy),
+                new AmigaMediaConfiguration(hardDisk, AmigaMediaKind.HardDrive)
+            ]
+        };
+        await using var machine = new AmigaMachine(Guid.NewGuid(), configuration, new FakeCore(), Path.Combine(root, "session"));
+        try
+        {
+            await machine.StartAsync();
+            await machine.SaveStateAsync(statePath);
+            Assert.Equal(2, AmigaStateStore.Read(statePath).Header.MediaSha256s!.Count);
+            await File.WriteAllBytesAsync(hardDisk, [4]);
+            await Assert.ThrowsAsync<InvalidDataException>(() => machine.LoadStateAsync(statePath).AsTask());
+        }
+        finally
+        {
+            await machine.StopAsync();
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
     }
@@ -248,6 +284,54 @@ public sealed class AmigaMachineLifecycleTests
         finally { Directory.Delete(root, true); }
     }
 
+    [Fact]
+    public async Task MixedMedia_CreateOnePlaylistWithoutFloppyMultidriveTag()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Mixed-M3U", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var floppy = Path.Combine(root, "boot.adf");
+        var hardDisk = Path.Combine(root, "system.hdf");
+        var compactDisc = Path.Combine(root, "game.iso");
+        await File.WriteAllBytesAsync(floppy, [1]);
+        await File.WriteAllBytesAsync(hardDisk, [2]);
+        await File.WriteAllBytesAsync(compactDisc, [3]);
+        try
+        {
+            var configuration = AmigaMachineConfiguration.A500(@"C:\kick.rom") with
+            {
+                Media =
+                [
+                    new AmigaMediaConfiguration(floppy, AmigaMediaKind.Floppy, "Boot"),
+                    new AmigaMediaConfiguration(hardDisk, AmigaMediaKind.HardDrive),
+                    new AmigaMediaConfiguration(compactDisc, AmigaMediaKind.CompactDisc)
+                ],
+                MountFloppiesInSeparateDrives = true
+            };
+            var playlist = AmigaExternalCore.PrepareContentPath(configuration, Path.Combine(root, "session"));
+            Assert.NotNull(playlist);
+            Assert.DoesNotContain("(MD)", playlist!, StringComparison.Ordinal);
+            Assert.Equal(new[] { $"{floppy}|Boot", hardDisk, compactDisc }, await File.ReadAllLinesAsync(playlist));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [Fact]
+    public async Task DirectoryHardDrive_IsRecognizedAndHasAContentSensitiveStateHash()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Directory-HD", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "System"));
+        var file = Path.Combine(root, "System", "startup-sequence");
+        await File.WriteAllTextAsync(file, "echo first");
+        try
+        {
+            Assert.Equal(AmigaMediaKind.HardDrive, AmigaExternalCore.InferMediaKind(root));
+            var before = AmigaStateStore.HashPath(root);
+            await File.WriteAllTextAsync(file, "echo changed");
+            Assert.NotEqual(before, AmigaStateStore.HashPath(root));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
     private static AmigaMachine CreateMachine(FakeCore core) => new(Guid.NewGuid(),
         AmigaMachineConfiguration.A500(@"C:\kick.rom"), core,
         Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N")));
@@ -278,6 +362,9 @@ public sealed class AmigaMachineLifecycleTests
         }
         public IReadOnlyList<AmigaCoreOption> Options => [];
         public IReadOnlyList<string> Diagnostics => [];
+        public string CoreName => "Fake Amiga";
+        public string CoreVersion => "1";
+        public IReadOnlySet<string> SupportedContentExtensions { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "adf" };
         public string CoreSha256 => "fake-core";
         public double FramesPerSecond => 200;
         public int SampleRate => 44_100;

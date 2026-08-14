@@ -32,6 +32,9 @@ internal sealed class AmigaProcessCore : IAmigaCore
     public AudioChunk? LatestAudioChunk { get; private set; }
     public IReadOnlyList<AmigaCoreOption> Options { get; private set; } = [];
     public IReadOnlyList<string> Diagnostics { get; private set; } = [];
+    public string CoreName { get; private set; } = string.Empty;
+    public string CoreVersion { get; private set; } = string.Empty;
+    public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
     public double FramesPerSecond { get; private set; } = 50;
     public int SampleRate { get; private set; } = 44100;
@@ -85,6 +88,10 @@ internal sealed class AmigaProcessCore : IAmigaCore
             SampleRate = Response.ReadInt32();
             Options = JsonSerializer.Deserialize<IReadOnlyList<AmigaCoreOption>>(Response.ReadString(), AmigaCoreHostProtocol.JsonOptions) ?? [];
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), AmigaCoreHostProtocol.JsonOptions) ?? [];
+            CoreName = Response.ReadString();
+            CoreVersion = Response.ReadString();
+            SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             _initialized = true;

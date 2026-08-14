@@ -185,6 +185,12 @@ public sealed class AmigaExternalCoreTests
         await WaitForFrame(first, TimeSpan.FromSeconds(15));
         await WaitForFrame(second, TimeSpan.FromSeconds(15));
 
+        Assert.Equal("PUAE", first.CoreName);
+        Assert.False(string.IsNullOrWhiteSpace(first.CoreVersion));
+        Assert.Contains("adf", first.SupportedContentExtensions);
+        Assert.Contains("hdf", first.SupportedContentExtensions);
+        Assert.Contains("iso", first.SupportedContentExtensions);
+        Assert.Contains("m3u", first.SupportedContentExtensions);
         Assert.NotEqual(first.Id, second.Id);
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, first.State);
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, second.State);
@@ -223,6 +229,30 @@ public sealed class AmigaExternalCoreTests
         Assert.InRange(output.SampleRate, 22050, 96000);
         Assert.True(output.SamplesWritten > 0);
         Assert.True(output.WasStopped);
+    }
+
+    [Fact]
+    public async Task ProcessCore_RejectsContentExtensionNotAdvertisedByTheNativeCore()
+    {
+        var repository = FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Unsupported", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var unsupported = Path.Combine(root, "not-amiga.txt");
+        await File.WriteAllTextAsync(unsupported, "not an Amiga image");
+        var engine = new AmigaEngine(Path.Combine(root, "Sessions"),
+            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"),
+            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "GW GUI.exe"));
+        await using var machine = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(
+            Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom"), unsupported));
+        try
+        {
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => machine.StartAsync().AsTask());
+            Assert.Contains("does not support '.txt'", error.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
     }
 
     private static async Task WaitForFrame(IAmigaMachine machine, TimeSpan timeout)

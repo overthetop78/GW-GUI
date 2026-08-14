@@ -155,6 +155,8 @@ public static class AmigaCoreHost
                         writer.Write(core.CoreSha256); writer.Write(core.FramesPerSecond); writer.Write(core.SampleRate);
                         writer.Write(JsonSerializer.Serialize(core.Options, AmigaCoreHostProtocol.JsonOptions));
                         writer.Write(JsonSerializer.Serialize(core.Diagnostics, AmigaCoreHostProtocol.JsonOptions));
+                        writer.Write(core.CoreName); writer.Write(core.CoreVersion);
+                        writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
                         writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
                         break;
                     case AmigaHostCommand.RunFrame:

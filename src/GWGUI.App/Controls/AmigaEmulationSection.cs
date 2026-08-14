@@ -52,7 +52,7 @@ public sealed class AmigaEmulationSection : UserControl
         AddRow(setup, 0, LocExtension.Get("Emulation.Configuration"), _configuration, null);
         AddRow(setup, 1, LocExtension.Get("Emulation.Model"), _model, null);
         AddRow(setup, 2, "Kickstart", _kickstart, BrowseKickstart);
-        AddRow(setup, 3, "ADF", _disk, BrowseDisk);
+        AddRow(setup, 3, "Média Amiga", _disk, BrowseDisk);
         Grid.SetColumn(_firmwareFolder, 3); Grid.SetRow(_firmwareFolder, 1); setup.Children.Add(_firmwareFolder);
         Grid.SetColumn(_start, 3); Grid.SetRow(_start, 3); setup.Children.Add(_start);
         root.Children.Add(setup);
@@ -97,7 +97,7 @@ public sealed class AmigaEmulationSection : UserControl
         var configuration = item.Configuration;
         _model.SelectedItem = AmigaModelCatalog.All.FirstOrDefault(model => model.Id == configuration.Model) ?? AmigaModelCatalog.Get("A500");
         _kickstart.Text = configuration.KickstartPath;
-        _disk.Text = configuration.InitialDiskPath ?? string.Empty;
+        _disk.Text = configuration.Media?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath ?? string.Empty;
     }
 
     private void BrowseKickstart(object sender, RoutedEventArgs e) => Browse(_kickstart, "ROM|*.rom;*.bin|All files|*.*");
@@ -122,6 +122,15 @@ public sealed class AmigaEmulationSection : UserControl
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
             var saved = (_configuration.SelectedItem as ConfigurationItem)?.Configuration;
+            var media = saved?.Media;
+            var floppies = saved?.Floppies;
+            var selectedPath = string.IsNullOrWhiteSpace(_disk.Text) ? null : Path.GetFullPath(_disk.Text);
+            if (media is { Count: > 0 } && !string.Equals(Path.GetFullPath(media[0].Path),
+                    selectedPath, StringComparison.OrdinalIgnoreCase))
+                media = null;
+            if (media is null && floppies is { Count: > 0 }
+                && !string.Equals(Path.GetFullPath(floppies[0].Path), selectedPath, StringComparison.OrdinalIgnoreCase))
+                floppies = null;
             var options = new Dictionary<string, string>(saved?.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
             {
                 ["puae_model"] = model.Id
@@ -130,7 +139,7 @@ public sealed class AmigaEmulationSection : UserControl
                 string.IsNullOrWhiteSpace(_disk.Text) ? null : _disk.Text,
                 saved?.ExtendedRomPath, saved?.RomKeyPath, saved?.Core ?? AmigaCoreKind.External,
                 options, saved?.Id ?? Guid.NewGuid(), saved?.AudioEnabled ?? true, saved?.Controllers, saved?.Input,
-                saved?.Floppies, saved?.MountFloppiesInSeparateDrives ?? false);
+                floppies, saved?.MountFloppiesInSeparateDrives ?? false, Media: media);
             var machine = engine.CreateAmigaMachine(configuration);
             var view = new AmigaMachineView(machine);
             var tab = new TabItem { Header = model.DisplayName, Content = view };

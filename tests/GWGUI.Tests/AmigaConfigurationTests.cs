@@ -49,22 +49,30 @@ public sealed class AmigaConfigurationTests
         var configurations = Path.Combine(data, "Emulation", "Machines", "Amiga", "Configurations");
         var firmware = Path.Combine(data, "Emulation", "Machines", "Amiga", "Firmware", "kick.rom");
         var externalDisk = Path.Combine(root, "External", "game.adf");
+        var hardDisk = Path.Combine(data, "Emulation", "Machines", "Amiga", "Media", "workbench.hdf");
         Directory.CreateDirectory(Path.GetDirectoryName(firmware)!);
         Directory.CreateDirectory(Path.GetDirectoryName(externalDisk)!);
         await File.WriteAllBytesAsync(firmware, [1]);
         await File.WriteAllBytesAsync(externalDisk, [2]);
+        Directory.CreateDirectory(Path.GetDirectoryName(hardDisk)!);
+        await File.WriteAllBytesAsync(hardDisk, [3]);
         try
         {
-            var configuration = AmigaMachineConfiguration.A500(firmware, externalDisk);
+            var configuration = AmigaMachineConfiguration.A500(firmware, externalDisk) with
+            {
+                Media = [new AmigaMediaConfiguration(hardDisk, AmigaMediaKind.HardDrive)]
+            };
             var store = new AmigaConfigurationStore(configurations, data);
             await store.SaveAsync(configuration);
             var json = await File.ReadAllTextAsync(Path.Combine(configurations, configuration.Id.ToString("N"), "machine.json"));
             Assert.Contains("Emulation/Machines/Amiga/Firmware/kick.rom", json, StringComparison.Ordinal);
             Assert.Contains(externalDisk.Replace("\\", "\\\\"), json, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("Emulation/Machines/Amiga/Media/workbench.hdf", json, StringComparison.Ordinal);
             var loaded = Assert.Single(await store.LoadAllAsync());
             Assert.Equal(Path.GetFullPath(firmware), loaded.KickstartPath);
             Assert.Equal(Path.GetFullPath(externalDisk), loaded.InitialDiskPath);
-            Assert.Equal(2, loaded.SchemaVersion);
+            Assert.Equal(Path.GetFullPath(hardDisk), Assert.Single(loaded.Media!).Path);
+            Assert.Equal(3, loaded.SchemaVersion);
         }
         finally
         {

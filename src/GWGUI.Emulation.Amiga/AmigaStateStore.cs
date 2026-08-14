@@ -7,7 +7,8 @@ namespace GWGUI.Emulation.Amiga;
 
 internal sealed record AmigaSavedStateHeader(int FormatVersion, string Model, string CoreSha256,
     string KickstartSha256, string? MediaSha256, IReadOnlyDictionary<string, string>? Options,
-    string? ExtendedRomSha256 = null, string? RomKeySha256 = null, string? StateSha256 = null);
+    string? ExtendedRomSha256 = null, string? RomKeySha256 = null, string? StateSha256 = null,
+    IReadOnlyList<string>? MediaSha256s = null);
 
 internal static class AmigaStateStore
 {
@@ -63,6 +64,28 @@ internal static class AmigaStateStore
     {
         using var stream = File.OpenRead(path);
         return Convert.ToHexString(SHA256.HashData(stream));
+    }
+
+    internal static string HashPath(string path)
+    {
+        if (File.Exists(path)) return HashFile(path);
+        if (!Directory.Exists(path)) throw new FileNotFoundException("The Amiga media path was not found.", path);
+        using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
+        Span<byte> length = stackalloc byte[sizeof(int)];
+        foreach (var file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories)
+                     .Order(StringComparer.OrdinalIgnoreCase))
+        {
+            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, '/');
+            var name = Encoding.UTF8.GetBytes(relative);
+            BinaryPrimitives.WriteInt32LittleEndian(length, name.Length);
+            hash.AppendData(length);
+            hash.AppendData(name);
+            using var stream = File.OpenRead(file);
+            var buffer = new byte[64 * 1024];
+            int read;
+            while ((read = stream.Read(buffer)) > 0) hash.AppendData(buffer.AsSpan(0, read));
+        }
+        return Convert.ToHexString(hash.GetHashAndReset());
     }
 
     internal static string HashBytes(ReadOnlySpan<byte> bytes) => Convert.ToHexString(SHA256.HashData(bytes));

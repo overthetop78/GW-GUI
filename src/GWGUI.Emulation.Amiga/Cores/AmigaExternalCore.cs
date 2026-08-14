@@ -30,6 +30,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
     }
     public IReadOnlyList<AmigaCoreOption> Options => _host?.OptionCatalog ?? [];
     public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
+    public string CoreName { get; private set; } = string.Empty;
+    public string CoreVersion { get; private set; } = string.Empty;
+    public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
     public double FramesPerSecond { get; private set; } = 50;
     public int SampleRate { get; private set; } = 44100;
@@ -41,11 +44,10 @@ internal sealed class AmigaExternalCore : IAmigaCore
         ArgumentException.ThrowIfNullOrWhiteSpace(configuration.KickstartPath);
         if (!File.Exists(configuration.KickstartPath))
             throw new FileNotFoundException("The configured Amiga Kickstart was not found.", configuration.KickstartPath);
-        var floppyPaths = configuration.Floppies is { Count: > 0 }
-            ? configuration.Floppies.Select(floppy => floppy.Path).ToArray()
-            : configuration.InitialDiskPath is null ? [] : new[] { configuration.InitialDiskPath };
-        foreach (var floppyPath in floppyPaths)
-            if (!File.Exists(floppyPath)) throw new FileNotFoundException("The configured Amiga disk image was not found.", floppyPath);
+        var media = ResolveConfiguredMedia(configuration);
+        foreach (var item in media)
+            if (!File.Exists(item.Path) && !Directory.Exists(item.Path))
+                throw new FileNotFoundException("The configured Amiga media image or directory was not found.", item.Path);
         if (configuration.ExtendedRomPath is not null && !File.Exists(configuration.ExtendedRomPath))
             throw new FileNotFoundException("The configured Amiga extended ROM was not found.", configuration.ExtendedRomPath);
         if (configuration.RomKeyPath is not null && !File.Exists(configuration.RomKeyPath))
@@ -54,7 +56,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var coreStream = File.OpenRead(sourceCorePath)) CoreSha256 = Convert.ToHexString(SHA256.HashData(coreStream));
         var systemDirectory = Path.Combine(sessionDirectory, "System");
-        var contentPath = PrepareContentPath(configuration, sessionDirectory, floppyPaths);
+        var contentPath = PrepareContentPath(configuration, sessionDirectory, media);
         var contentDirectory = contentPath is null
             ? Path.Combine(sessionDirectory, "Content")
             : Path.GetDirectoryName(contentPath)!;
@@ -82,8 +84,11 @@ internal sealed class AmigaExternalCore : IAmigaCore
             ["puae_model"] = configuration.Model,
             ["puae_kickstart"] = Path.GetFullPath(configuration.KickstartPath)
         };
-        if (floppyPaths.Length > 1)
+        var floppyCount = media.Count(item => item.Kind == AmigaMediaKind.Floppy);
+        if (floppyCount > 1)
             options["puae_floppy_multidrive"] = configuration.MountFloppiesInSeparateDrives ? "enabled" : "disabled";
+        if (floppyCount > 0 && media.Where(item => item.Kind == AmigaMediaKind.Floppy).All(item => item.IsReadOnly))
+            options["puae_floppy_write_protection"] = "enabled";
         _host = new AmigaExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options);
 
         try
@@ -95,6 +100,20 @@ internal sealed class AmigaExternalCore : IAmigaCore
             var libraryName = Marshal.PtrToStringUTF8(systemInfo.LibraryName);
             if (!string.Equals(libraryName, "PUAE", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"The selected native library identifies itself as '{libraryName}', not PUAE.");
+            if (!systemInfo.NeedFullPath)
+                throw new InvalidDataException("The Amiga core does not request full content paths as required by this host.");
+            CoreName = libraryName!;
+            CoreVersion = Marshal.PtrToStringUTF8(systemInfo.LibraryVersion) ?? string.Empty;
+            SupportedContentExtensions = (Marshal.PtrToStringUTF8(systemInfo.ValidExtensions) ?? string.Empty)
+                .Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Select(extension => extension.TrimStart('.'))
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            if (contentPath is not null && !Directory.Exists(contentPath))
+            {
+                var extension = Path.GetExtension(contentPath).TrimStart('.');
+                if (extension.Length == 0 || !SupportedContentExtensions.Contains(extension))
+                    throw new InvalidDataException($"The Amiga core does not support '.{extension}' content.");
+            }
             Export<AmigaExternalApi.SetEnvironment>("retro_set_environment")(_host.Environment);
             Export<AmigaExternalApi.SetVideo>("retro_set_video_refresh")(_host.Video);
             Export<AmigaExternalApi.SetAudioSample>("retro_set_audio_sample")(_host.AudioSample);
@@ -155,29 +174,49 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
     public void RunFrame() => (_run ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
 
-    internal static string? PrepareContentPath(AmigaMachineConfiguration configuration, string sessionDirectory,
-        IReadOnlyList<string>? resolvedFloppyPaths = null)
+    internal static IReadOnlyList<AmigaMediaConfiguration> ResolveConfiguredMedia(AmigaMachineConfiguration configuration)
     {
-        var paths = resolvedFloppyPaths ?? (configuration.Floppies is { Count: > 0 }
-            ? configuration.Floppies.Select(floppy => floppy.Path).ToArray()
-            : configuration.InitialDiskPath is null ? [] : new[] { configuration.InitialDiskPath });
-        if (paths.Count == 0) return null;
-        if (paths.Count == 1) return Path.GetFullPath(paths[0]);
-        if (paths.Count > 64) throw new ArgumentOutOfRangeException(nameof(configuration), "An Amiga playlist cannot contain more than 64 disks.");
+        if (configuration.Media is { Count: > 0 }) return configuration.Media;
+        if (configuration.Floppies is { Count: > 0 })
+            return configuration.Floppies.Select(floppy => new AmigaMediaConfiguration(
+                floppy.Path, AmigaMediaKind.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray();
+        return configuration.InitialDiskPath is null ? []
+            : [new AmigaMediaConfiguration(configuration.InitialDiskPath, InferMediaKind(configuration.InitialDiskPath))];
+    }
+
+    internal static string? PrepareContentPath(AmigaMachineConfiguration configuration, string sessionDirectory,
+        IReadOnlyList<AmigaMediaConfiguration>? resolvedMedia = null)
+    {
+        var media = resolvedMedia ?? ResolveConfiguredMedia(configuration);
+        if (media.Count == 0) return null;
+        if (media.Count == 1) return Path.GetFullPath(media[0].Path);
+        if (media.Count > 64) throw new ArgumentOutOfRangeException(nameof(configuration), "An Amiga playlist cannot contain more than 64 media images.");
         var contentDirectory = Path.Combine(sessionDirectory, "Content");
         Directory.CreateDirectory(contentDirectory);
+        var multidrive = configuration.MountFloppiesInSeparateDrives && media.All(item => item.Kind == AmigaMediaKind.Floppy);
         var playlist = Path.Combine(contentDirectory,
-            configuration.MountFloppiesInSeparateDrives ? "GW GUI disks (MD).m3u" : "GW GUI disks.m3u");
-        var lines = paths.Select((path, index) =>
+            multidrive ? "GW GUI media (MD).m3u" : "GW GUI media.m3u");
+        var lines = media.Select(item =>
         {
-            var label = configuration.Floppies?.ElementAtOrDefault(index)?.Label;
+            var label = item.Label;
             if (label?.IndexOfAny(['|', '\r', '\n']) >= 0) throw new InvalidDataException("An Amiga disk label cannot contain a pipe or a line break.");
-            var fullPath = Path.GetFullPath(path);
+            var fullPath = Path.GetFullPath(item.Path);
             return string.IsNullOrWhiteSpace(label) ? fullPath : $"{fullPath}|{label}";
         });
         File.WriteAllLines(playlist, lines, new System.Text.UTF8Encoding(false));
         return playlist;
     }
+
+    internal static AmigaMediaKind InferMediaKind(string path) => Directory.Exists(path)
+        ? AmigaMediaKind.HardDrive
+        : Path.GetExtension(path).ToLowerInvariant() switch
+    {
+        ".hdf" or ".hdz" => AmigaMediaKind.HardDrive,
+        ".cue" or ".ccd" or ".chd" or ".nrg" or ".mds" or ".iso" => AmigaMediaKind.CompactDisc,
+        ".lha" or ".slave" or ".info" => AmigaMediaKind.WhdLoad,
+        ".uae" => AmigaMediaKind.Configuration,
+            _ => AmigaMediaKind.Floppy
+        };
     public void HardReset() => (_reset ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {

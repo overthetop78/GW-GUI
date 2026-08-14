@@ -29,7 +29,7 @@ public sealed class AmigaConfigurationStore
             {
                 await using var stream = File.OpenRead(path);
                 var configuration = await JsonSerializer.DeserializeAsync<AmigaMachineConfiguration>(stream, JsonOptions, cancellationToken);
-                if (configuration is not null && configuration.SchemaVersion is > 0 and <= 2)
+                if (configuration is not null && configuration.SchemaVersion is > 0 and <= 3)
                     configurations.Add(ResolvePaths(configuration.EnsureId()));
             }
             catch (JsonException) { }
@@ -40,7 +40,7 @@ public sealed class AmigaConfigurationStore
 
     public async Task SaveAsync(AmigaMachineConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        configuration = configuration.EnsureId();
+        configuration = configuration.EnsureId() with { SchemaVersion = 3 };
         var machineDirectory = Path.Combine(_directory, configuration.Id.ToString("N"));
         Directory.CreateDirectory(machineDirectory);
         var target = Path.Combine(machineDirectory, "machine.json");
@@ -64,7 +64,8 @@ public sealed class AmigaConfigurationStore
         InitialDiskPath = StorePath(configuration.InitialDiskPath),
         ExtendedRomPath = StorePath(configuration.ExtendedRomPath),
         RomKeyPath = StorePath(configuration.RomKeyPath),
-        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = StorePath(floppy.Path)! }).ToArray()
+        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = StorePath(floppy.Path)! }).ToArray(),
+        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()
     };
 
     private AmigaMachineConfiguration ResolvePaths(AmigaMachineConfiguration configuration) => configuration with
@@ -73,7 +74,8 @@ public sealed class AmigaConfigurationStore
         InitialDiskPath = ResolvePath(configuration.InitialDiskPath),
         ExtendedRomPath = ResolvePath(configuration.ExtendedRomPath),
         RomKeyPath = ResolvePath(configuration.RomKeyPath),
-        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = ResolvePath(floppy.Path)! }).ToArray()
+        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = ResolvePath(floppy.Path)! }).ToArray(),
+        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()
     };
 
     private string? StorePath(string? path)

@@ -18,6 +18,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
     private string? _currentDiskPath;
+    private readonly List<string> _mediaPaths;
     private readonly Dictionary<string, string> _currentOptions;
 
     internal AmigaMachine(Guid id, AmigaMachineConfiguration configuration,
@@ -29,7 +30,9 @@ internal sealed class AmigaMachine : IAmigaMachine
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
         _audioOutput = audioOutput;
-        _currentDiskPath = configuration.Floppies?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath;
+        _mediaPaths = AmigaExternalCore.ResolveConfiguredMedia(configuration)
+            .Select(item => Path.GetFullPath(item.Path)).ToList();
+        _currentDiskPath = _mediaPaths.FirstOrDefault();
         _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
     }
 
@@ -41,6 +44,9 @@ internal sealed class AmigaMachine : IAmigaMachine
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
     public IReadOnlyList<AmigaCoreOption> AvailableOptions => _core.Options;
     public IReadOnlyList<string> Diagnostics => _core.Diagnostics;
+    public string CoreName => _core.CoreName;
+    public string CoreVersion => _core.CoreVersion;
+    public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
     public int DiskCount => _core.DiskCount;
     public int CurrentDiskIndex => _core.CurrentDiskIndex;
     public event EventHandler<VideoFrame>? VideoFrameReady;
@@ -112,7 +118,15 @@ internal sealed class AmigaMachine : IAmigaMachine
     public void SetInput(EmulationInputSnapshot snapshot) => _core.SetInput(snapshot);
 
     public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { _core.InsertFloppy(path); _currentDiskPath = Path.GetFullPath(path); }, cancellationToken);
+        QueueCommand(() =>
+        {
+            var fullPath = Path.GetFullPath(path);
+            _core.InsertFloppy(fullPath);
+            var index = Math.Max(0, _core.CurrentDiskIndex);
+            if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
+            else _mediaPaths.Add(fullPath);
+            _currentDiskPath = fullPath;
+        }, cancellationToken);
 
     public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(() => { _core.EjectFloppy(); _currentDiskPath = null; }, cancellationToken);
@@ -121,20 +135,19 @@ internal sealed class AmigaMachine : IAmigaMachine
         QueueCommand(() =>
         {
             _core.SelectDisk(index);
-            if (Configuration.Floppies is { } floppies && index < floppies.Count)
-                _currentDiskPath = floppies[index].Path;
+            if (index < _mediaPaths.Count) _currentDiskPath = _mediaPaths[index];
         }, cancellationToken);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
             var state = _core.SaveState();
-            var header = new AmigaSavedStateHeader(2, Configuration.Model, _core.CoreSha256,
+            var header = new AmigaSavedStateHeader(3, Configuration.Model, _core.CoreSha256,
                 AmigaStateStore.HashFile(Configuration.KickstartPath),
-                _currentDiskPath is null ? null : AmigaStateStore.HashFile(_currentDiskPath),
+                _currentDiskPath is null ? null : AmigaStateStore.HashPath(_currentDiskPath),
                 new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal),
                 HashOptionalFile(Configuration.ExtendedRomPath), HashOptionalFile(Configuration.RomKeyPath),
-                AmigaStateStore.HashBytes(state));
+                AmigaStateStore.HashBytes(state), _mediaPaths.Select(AmigaStateStore.HashPath).ToArray());
             AmigaStateStore.Write(path, header, state);
         }, cancellationToken);
 
@@ -142,16 +155,19 @@ internal sealed class AmigaMachine : IAmigaMachine
         QueueCommand(() =>
         {
             var saved = AmigaStateStore.Read(path);
-            if (saved.Header.FormatVersion is not (1 or 2) || saved.Header.Model != Configuration.Model
+            if (saved.Header.FormatVersion is < 1 or > 3 || saved.Header.Model != Configuration.Model
                 || saved.Header.CoreSha256 != _core.CoreSha256
                 || saved.Header.KickstartSha256 != AmigaStateStore.HashFile(Configuration.KickstartPath))
                 throw new InvalidDataException("The Amiga state does not match the running machine.");
             if (saved.Header.FormatVersion >= 2
                 && (saved.Header.ExtendedRomSha256 != HashOptionalFile(Configuration.ExtendedRomPath)
                     || saved.Header.RomKeySha256 != HashOptionalFile(Configuration.RomKeyPath)
-                    || saved.Header.MediaSha256 != HashOptionalFile(_currentDiskPath)
+                    || saved.Header.MediaSha256 != HashOptionalPath(_currentDiskPath)
                     || !OptionsEqual(saved.Header.Options, _currentOptions)))
                 throw new InvalidDataException("The Amiga state firmware, media or options do not match the running machine.");
+            if (saved.Header.FormatVersion >= 3
+                && !(saved.Header.MediaSha256s ?? []).SequenceEqual(_mediaPaths.Select(AmigaStateStore.HashPath), StringComparer.OrdinalIgnoreCase))
+                throw new InvalidDataException("The Amiga state media list does not match the running machine.");
             _core.LoadState(saved.State);
         }, cancellationToken);
 
@@ -159,6 +175,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         QueueCommand(() => { _core.SetOption(key, value); _currentOptions[key] = value; }, cancellationToken);
 
     private static string? HashOptionalFile(string? path) => path is null ? null : AmigaStateStore.HashFile(path);
+    private static string? HashOptionalPath(string? path) => path is null ? null : AmigaStateStore.HashPath(path);
 
     private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
     {

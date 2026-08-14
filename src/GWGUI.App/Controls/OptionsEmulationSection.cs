@@ -35,6 +35,7 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly CheckBox _multiDrive = new();
     private Guid _currentId;
     private bool _loading;
+    private IReadOnlyList<AmigaMediaConfiguration>? _loadedMedia;
 
     public OptionsEmulationSection()
     {
@@ -199,7 +200,8 @@ public sealed class OptionsEmulationSection : UserControl
         _kickstart.Text = configuration.KickstartPath;
         _extendedRom.Text = configuration.ExtendedRomPath ?? string.Empty;
         _romKey.Text = configuration.RomKeyPath ?? string.Empty;
-        _disk.Text = configuration.InitialDiskPath ?? string.Empty;
+        _loadedMedia = configuration.Media;
+        _disk.Text = configuration.Media?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath ?? string.Empty;
         _audio.IsChecked = configuration.AudioEnabled;
         for (var port = 0; port < _controllers.Length; port++)
             _controllers[port].SelectedItem = configuration.Controllers?.ElementAtOrDefault(port) ?? AmigaControllerType.Automatic;
@@ -228,13 +230,18 @@ public sealed class OptionsEmulationSection : UserControl
             ValidateOptionalFile(item.Path, required: true);
             return new AmigaFloppyConfiguration(Path.GetFullPath(item.Path), string.IsNullOrWhiteSpace(item.Label) ? null : item.Label.Trim(), item.IsReadOnly);
         }).ToArray();
+        var initialPath = OptionalFullPath(_disk.Text);
+        var preservedMedia = floppies.Length == 0 && _loadedMedia is { Count: > 0 }
+            && string.Equals(Path.GetFullPath(_loadedMedia[0].Path), initialPath, StringComparison.OrdinalIgnoreCase)
+                ? _loadedMedia : null;
         var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
-            OptionalFullPath(_disk.Text), OptionalFullPath(_extendedRom.Text), OptionalFullPath(_romKey.Text),
+            initialPath, OptionalFullPath(_extendedRom.Text), OptionalFullPath(_romKey.Text),
             Options: options, Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId,
             AudioEnabled: _audio.IsChecked == true,
             Controllers: _controllers.Select(combo => (AmigaControllerType)(combo.SelectedItem ?? AmigaControllerType.Automatic)).ToArray(),
             Floppies: floppies.Length == 0 ? null : floppies,
-            MountFloppiesInSeparateDrives: floppies.Length > 1 && _multiDrive.IsChecked == true);
+            MountFloppiesInSeparateDrives: floppies.Length > 1 && _multiDrive.IsChecked == true,
+            Media: preservedMedia);
         await _store.SaveAsync(configuration);
         _currentId = configuration.Id;
         await ReloadAsync();
