@@ -1,4 +1,5 @@
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using GWGUI.Emulation.Amiga;
 
@@ -92,10 +93,49 @@ public sealed class AmigaConfigurationTests
         }
     }
 
+    [Fact]
+    public async Task ExternalCoreInstaller_UsesPinnedFallbackAndValidatesTheLibrary()
+    {
+        Assert.DoesNotContain("latest", AmigaExternalCoreInstaller.DownloadUrl, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("latest", AmigaExternalCoreInstaller.FallbackDownloadUrl, StringComparison.OrdinalIgnoreCase);
+        var repository = FindRepositoryRoot();
+        var bytes = await File.ReadAllBytesAsync(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+        var handler = new CoreDownloadHandler(bytes);
+        using var client = new HttpClient(handler);
+        var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Core", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var installer = new AmigaExternalCoreInstaller(client, directory);
+            var installed = await installer.InstallAsync();
+            Assert.True(installer.IsInstalled);
+            Assert.Equal(2, handler.RequestCount);
+            Assert.Equal(AmigaExternalCoreInstaller.LibrarySize, new FileInfo(installed).Length);
+            Assert.Contains(AmigaExternalCoreInstaller.FallbackDownloadUrl,
+                await File.ReadAllTextAsync(Path.Combine(directory, "core.json")), StringComparison.Ordinal);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, true);
+        }
+    }
+
     private static string FindRepositoryRoot()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
         while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
         return directory?.FullName ?? throw new DirectoryNotFoundException("GWGUI repository root not found.");
+    }
+
+    private sealed class CoreDownloadHandler(byte[] library) : HttpMessageHandler
+    {
+        public int RequestCount { get; private set; }
+
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            RequestCount++;
+            return Task.FromResult(RequestCount == 1
+                ? new HttpResponseMessage(HttpStatusCode.ServiceUnavailable)
+                : new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(library) });
+        }
     }
 }
