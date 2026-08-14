@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Disketler</value></data>
   <data name="Emulation.ExtendedRom"><value>Genişletilmiş ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM anahtarı</value></data>
+  <data name="Emulation.Processor"><value>İşlemci</value></data>
+  <data name="Emulation.Precision"><value>Hassasiyet</value></data>
+  <data name="Emulation.Acceleration"><value>Hızlandırma</value></data>
 </root>

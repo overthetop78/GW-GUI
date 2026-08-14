@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Đĩa mềm</value></data>
   <data name="Emulation.ExtendedRom"><value>ROM mở rộng</value></data>
   <data name="Emulation.RomKey"><value>Khóa ROM</value></data>
+  <data name="Emulation.Processor"><value>Bộ xử lý</value></data>
+  <data name="Emulation.Precision"><value>Độ chính xác</value></data>
+  <data name="Emulation.Acceleration"><value>Tăng tốc</value></data>
 </root>

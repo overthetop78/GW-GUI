@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>ฟลอปปีดิสก์</value></data>
   <data name="Emulation.ExtendedRom"><value>ROM เพิ่มเติม</value></data>
   <data name="Emulation.RomKey"><value>คีย์ ROM</value></data>
+  <data name="Emulation.Processor"><value>หน่วยประมวลผล</value></data>
+  <data name="Emulation.Precision"><value>ความแม่นยำ</value></data>
+  <data name="Emulation.Acceleration"><value>การเร่งความเร็ว</value></data>
 </root>

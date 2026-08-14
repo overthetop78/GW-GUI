@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>플로피 디스크</value></data>
   <data name="Emulation.ExtendedRom"><value>확장 ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM 키</value></data>
+  <data name="Emulation.Processor"><value>프로세서</value></data>
+  <data name="Emulation.Precision"><value>정밀도</value></data>
+  <data name="Emulation.Acceleration"><value>가속</value></data>
 </root>

@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Hajlékonylemezek</value></data>
   <data name="Emulation.ExtendedRom"><value>Kiterjesztett ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM-kulcs</value></data>
+  <data name="Emulation.Processor"><value>Processzor</value></data>
+  <data name="Emulation.Precision"><value>Pontosság</value></data>
+  <data name="Emulation.Acceleration"><value>Gyorsítás</value></data>
 </root>

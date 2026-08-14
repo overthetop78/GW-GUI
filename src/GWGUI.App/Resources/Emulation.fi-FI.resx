@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Levykkeet</value></data>
   <data name="Emulation.ExtendedRom"><value>Laajennettu ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM-avain</value></data>
+  <data name="Emulation.Processor"><value>Suoritin</value></data>
+  <data name="Emulation.Precision"><value>Tarkkuus</value></data>
+  <data name="Emulation.Acceleration"><value>Kiihdytys</value></data>
 </root>

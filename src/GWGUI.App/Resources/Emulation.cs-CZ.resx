@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Diskety</value></data>
   <data name="Emulation.ExtendedRom"><value>Rozšířená ROM</value></data>
   <data name="Emulation.RomKey"><value>Klíč ROM</value></data>
+  <data name="Emulation.Processor"><value>Procesor</value></data>
+  <data name="Emulation.Precision"><value>Přesnost</value></data>
+  <data name="Emulation.Acceleration"><value>Akcelerace</value></data>
 </root>

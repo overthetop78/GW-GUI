@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>フロッピーディスク</value></data>
   <data name="Emulation.ExtendedRom"><value>拡張 ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM キー</value></data>
+  <data name="Emulation.Processor"><value>プロセッサ</value></data>
+  <data name="Emulation.Precision"><value>精度</value></data>
+  <data name="Emulation.Acceleration"><value>高速化</value></data>
 </root>

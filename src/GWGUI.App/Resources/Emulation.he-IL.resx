@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>תקליטונים</value></data>
   <data name="Emulation.ExtendedRom"><value>ROM מורחב</value></data>
   <data name="Emulation.RomKey"><value>מפתח ROM</value></data>
+  <data name="Emulation.Processor"><value>מעבד</value></data>
+  <data name="Emulation.Precision"><value>דיוק</value></data>
+  <data name="Emulation.Acceleration"><value>האצה</value></data>
 </root>

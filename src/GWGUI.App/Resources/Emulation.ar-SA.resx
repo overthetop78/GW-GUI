@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>الأقراص المرنة</value></data>
   <data name="Emulation.ExtendedRom"><value>ROM موسعة</value></data>
   <data name="Emulation.RomKey"><value>مفتاح ROM</value></data>
+  <data name="Emulation.Processor"><value>المعالج</value></data>
+  <data name="Emulation.Precision"><value>الدقة</value></data>
+  <data name="Emulation.Acceleration"><value>التسريع</value></data>
 </root>

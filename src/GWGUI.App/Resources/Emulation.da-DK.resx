@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Disketter</value></data>
   <data name="Emulation.ExtendedRom"><value>Udvidet ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM-nøgle</value></data>
+  <data name="Emulation.Processor"><value>Processor</value></data>
+  <data name="Emulation.Precision"><value>Præcision</value></data>
+  <data name="Emulation.Acceleration"><value>Acceleration</value></data>
 </root>

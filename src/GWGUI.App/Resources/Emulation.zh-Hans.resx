@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>软盘</value></data>
   <data name="Emulation.ExtendedRom"><value>扩展 ROM</value></data>
   <data name="Emulation.RomKey"><value>ROM 密钥</value></data>
+  <data name="Emulation.Processor"><value>处理器</value></data>
+  <data name="Emulation.Precision"><value>精度</value></data>
+  <data name="Emulation.Acceleration"><value>加速</value></data>
 </root>

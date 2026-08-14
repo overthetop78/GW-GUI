@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Δισκέτες</value></data>
   <data name="Emulation.ExtendedRom"><value>Εκτεταμένη ROM</value></data>
   <data name="Emulation.RomKey"><value>Κλειδί ROM</value></data>
+  <data name="Emulation.Processor"><value>Επεξεργαστής</value></data>
+  <data name="Emulation.Precision"><value>Ακρίβεια</value></data>
+  <data name="Emulation.Acceleration"><value>Επιτάχυνση</value></data>
 </root>

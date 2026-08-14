@@ -252,4 +252,7 @@
   <data name="Emulation.Floppies"><value>Дискети</value></data>
   <data name="Emulation.ExtendedRom"><value>Розширена ROM</value></data>
   <data name="Emulation.RomKey"><value>Ключ ROM</value></data>
+  <data name="Emulation.Processor"><value>Процесор</value></data>
+  <data name="Emulation.Precision"><value>Точність</value></data>
+  <data name="Emulation.Acceleration"><value>Прискорення</value></data>
 </root>

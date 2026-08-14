@@ -41,6 +41,8 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _fpuModel = new();
     private readonly ComboBox _cpuCompatibility = new();
     private readonly ComboBox _cpuFrequency = new();
+    private readonly TextBlock _cpuNominalFrequency = new() { VerticalAlignment = VerticalAlignment.Center };
+    private readonly TextBlock _cpuModelHint = new() { VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap };
     private readonly ComboBox _chipMemory = new() { ItemsSource = new[] { "auto", "1", "2", "3", "4" } };
     private readonly ComboBox _slowMemory = new() { ItemsSource = new[] { "auto", "0", "2", "4", "6", "7" } };
     private readonly ComboBox _fastMemory = new() { ItemsSource = new[] { "auto", "0", "1", "2", "4", "8" } };
@@ -125,6 +127,7 @@ public sealed class OptionsEmulationSection : UserControl
         {
             ConfigureFpuChoices();
             ConfigureCpuFrequencyChoices();
+            UpdateCpuModelSummary();
         };
         _cpuCompatibility.SelectionChanged += (_, _) => ConfigureCpuFrequencyChoices();
         _videoStandard.SelectionChanged += (_, _) =>
@@ -350,20 +353,17 @@ public sealed class OptionsEmulationSection : UserControl
         header.Children.Add(_model);
         root.Children.Add(header);
         var tabs = new TabControl();
-        tabs.Items.Add(new TabItem
-        {
-            Header = LocExtension.Get("Emulation.GeneralTab"),
-            Content = new AmigaCoreManagementSection { Margin = new Thickness(12) }
-        });
-        tabs.Items.Add(new TabItem { Header = "CPU", Content = BuildCpuTab() });
-        tabs.Items.Add(new TabItem { Header = "RAM", Content = BuildRamTab() });
-        tabs.Items.Add(new TabItem { Header = "ROM", Content = Wrap(BuildRomTab()) });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.VideoTab"), Content = BuildVideoTab() });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.Audio"), Content = BuildAudioTab() });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.StorageTab"), Content = Wrap(BuildStorageTab()) });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.KeyboardTab"), Content = Wrap(BuildKeyboardTab()) });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.MouseTab"), Content = BuildMouseTab() });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.ControllersTab"), Content = BuildControllersTab() });
+        AddMachineTab(tabs, "\uE713", LocExtension.Get("Emulation.GeneralTab"),
+            new AmigaCoreManagementSection { Margin = new Thickness(12) });
+        AddMachineTab(tabs, "\uE950", "CPU", BuildCpuTab());
+        AddMachineTab(tabs, "\uE964", "RAM", BuildRamTab());
+        AddMachineTab(tabs, "\uE8B7", "ROM", Wrap(BuildRomTab()));
+        AddMachineTab(tabs, "\uE7F4", LocExtension.Get("Emulation.VideoTab"), BuildVideoTab());
+        AddMachineTab(tabs, "\uE767", LocExtension.Get("Emulation.Audio"), BuildAudioTab());
+        AddMachineTab(tabs, "\uEDA2", LocExtension.Get("Emulation.StorageTab"), Wrap(BuildStorageTab()));
+        AddMachineTab(tabs, "\uE765", LocExtension.Get("Emulation.KeyboardTab"), Wrap(BuildKeyboardTab()));
+        AddMachineTab(tabs, "\uE962", LocExtension.Get("Emulation.MouseTab"), BuildMouseTab());
+        AddMachineTab(tabs, "\uE7FC", LocExtension.Get("Emulation.ControllersTab"), BuildControllersTab());
         Grid.SetRow(tabs, 1);
         root.Children.Add(tabs);
         var actions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 10, 0, 0) };
@@ -375,11 +375,19 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildCpuTab()
     {
+        var processor = new StackPanel();
+        processor.Children.Add(FieldGrid((LocExtension.Get("Emulation.CpuModel"), _cpuModel)));
+        _cpuModelHint.Margin = new Thickness(12, 0, 12, 12);
+        _cpuModelHint.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        processor.Children.Add(_cpuModelHint);
         var root = TwoColumnPage(
-            Card(FieldGrid((LocExtension.Get("Emulation.CpuModel"), _cpuModel),
-                (LocExtension.Get("Emulation.CpuSpeed"), _cpuFrequency)), "CPU"),
-            Card(FieldGrid((LocExtension.Get("Emulation.CpuCompatibility"), _cpuCompatibility),
-                (LocExtension.Get("Emulation.FpuModel"), _fpuModel)), LocExtension.Get("Emulation.CpuCompatibility")));
+            IconCard(processor, LocExtension.Get("Emulation.Processor"), "\uE950"),
+            IconCard(FieldGrid((LocExtension.Get("Emulation.Precision"), _cpuCompatibility),
+                (LocExtension.Get("Emulation.FpuModel"), _fpuModel)), LocExtension.Get("Emulation.CpuCompatibility"), "\uEA18"));
+        root.Children.Add(FullWidthIconCard(FieldGrid(2,
+            (LocExtension.Get("Emulation.CpuSpeedOriginal"), _cpuNominalFrequency),
+            (LocExtension.Get("Emulation.CpuSpeed"), _cpuFrequency)),
+            LocExtension.Get("Emulation.Acceleration"), "\uE945", 1));
         return ScrollPage(root);
     }
 
@@ -898,6 +906,18 @@ public sealed class OptionsEmulationSection : UserControl
         return grid;
     }
 
+    private static void AddMachineTab(TabControl tabs, string icon, string title, UIElement content)
+    {
+        var tab = new TabItem
+        {
+            Header = new MainTabHeader { Icon = icon, Text = title },
+            Content = content,
+            Padding = new Thickness(14, 9, 14, 9)
+        };
+        tab.SetResourceReference(StyleProperty, "MainTabItemStyle");
+        tabs.Items.Add(tab);
+    }
+
     private static Grid ThreeColumnPage(Border left, Border center, Border right)
     {
         var grid = new Grid { Margin = new Thickness(12) };
@@ -916,6 +936,15 @@ public sealed class OptionsEmulationSection : UserControl
     private static Border FullWidthCard(UIElement content, string title, int row)
     {
         var card = Card(content, title);
+        card.Margin = new Thickness(0, 10, 0, 0);
+        Grid.SetRow(card, row);
+        Grid.SetColumnSpan(card, 2);
+        return card;
+    }
+
+    private static Border FullWidthIconCard(UIElement content, string title, string icon, int row)
+    {
+        var card = IconCard(content, title, icon);
         card.Margin = new Thickness(0, 10, 0, 0);
         Grid.SetRow(card, row);
         Grid.SetColumnSpan(card, 2);
@@ -1079,6 +1108,54 @@ public sealed class OptionsEmulationSection : UserControl
         return card;
     }
 
+    private static Border IconCard(UIElement child, string title, string icon)
+    {
+        var header = new Border
+        {
+            BorderThickness = new Thickness(0, 0, 0, 1),
+            Padding = new Thickness(16, 12, 16, 12)
+        };
+        header.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        var heading = new StackPanel { Orientation = Orientation.Horizontal };
+        var glyph = new TextBlock
+        {
+            Text = icon,
+            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontSize = 19,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 10, 0)
+        };
+        glyph.SetResourceReference(ForegroundProperty, "AccentBrush");
+        heading.Children.Add(glyph);
+        heading.Children.Add(new TextBlock
+        {
+            Text = title,
+            FontWeight = FontWeights.SemiBold,
+            FontSize = 17,
+            VerticalAlignment = VerticalAlignment.Center
+        });
+        header.Child = heading;
+
+        var body = new Border { Child = child, Padding = new Thickness(6, 8, 6, 8) };
+        var layout = new Grid();
+        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        layout.RowDefinitions.Add(new RowDefinition());
+        layout.Children.Add(header);
+        Grid.SetRow(body, 1);
+        layout.Children.Add(body);
+
+        var card = new Border
+        {
+            Child = layout,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(9),
+            ClipToBounds = true
+        };
+        card.SetResourceReference(BackgroundProperty, "CardBrush");
+        card.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        return card;
+    }
+
     private static UIElement Wrap(UIElement child)
     {
         var card = new Border
@@ -1207,6 +1284,17 @@ public sealed class OptionsEmulationSection : UserControl
             .ToArray();
         SelectValue(_cpuModel, model.CpuModels.Contains(previous) ? previous : model.DefaultCpu);
         _cpuModel.IsEnabled = model.CpuModels.Count > 1;
+        UpdateCpuModelSummary();
+    }
+
+    private void UpdateCpuModelSummary()
+    {
+        if (_model.SelectedItem is not AmigaModel model) return;
+        var cpu = SelectedText(_cpuModel);
+        if (string.IsNullOrWhiteSpace(cpu)) cpu = model.DefaultCpu;
+        var frequency = FormatMhz(NominalCpuFrequencyMhz(model));
+        _cpuNominalFrequency.Text = frequency;
+        _cpuModelHint.Text = $"{model.DisplayName} · {CpuDisplayName(cpu)} · {model.Chipset} · {frequency}";
     }
 
     private void ConfigureCpuFrequencyChoices()
