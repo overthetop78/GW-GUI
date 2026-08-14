@@ -181,4 +181,17 @@
   <data name="Engines.Description" xml:space="preserve"><value>Choose the engine used independently for each operation.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Internal GW GUI engine</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>The selected engine is used strictly. If it cannot perform the operation, GW GUI reports it instead of silently using the other engine.</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Configuration</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.ExtendedRom" xml:space="preserve"><value>Extended ROM</value></data>
+  <data name="Emulation.RomKey" xml:space="preserve"><value>ROM key</value></data>
+  <data name="Emulation.InitialDisk" xml:space="preserve"><value>Initial disk</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+  <data name="Emulation.CoreOptions" xml:space="preserve"><value>Core options</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Delete this Amiga configuration?</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>An Amiga model is required.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>A Kickstart path is required.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>A required firmware path is empty.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>The selected file does not exist.</value></data>
 </root>

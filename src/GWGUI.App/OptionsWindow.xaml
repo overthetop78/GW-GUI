@@ -28,6 +28,9 @@
             <TabItem Header="{l:Loc Options.Profiles}">
                 <controls:OptionsProfilesSection x:Name="ProfilesSection" />
             </TabItem>
+            <TabItem Header="{l:Loc Tab.Emulation}">
+                <controls:OptionsEmulationSection x:Name="EmulationSection" />
+            </TabItem>
         </TabControl>
 
         <Button x:Name="CloseButton" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="120"

@@ -14,6 +14,7 @@ namespace GWGUI.App.Controls;
 public sealed class AmigaEmulationSection : UserControl
 {
     private readonly ComboBox _model = new() { Width = 230, DisplayMemberPath = nameof(AmigaModel.DisplayName) };
+    private readonly ComboBox _configuration = new() { MinWidth = 320, DisplayMemberPath = nameof(ConfigurationItem.DisplayName) };
     private readonly TextBox _kickstart = new() { MinWidth = 320 };
     private readonly TextBox _disk = new() { MinWidth = 320 };
     private readonly Button _start = new() { MinWidth = 110 };
@@ -24,6 +25,7 @@ public sealed class AmigaEmulationSection : UserControl
     public AmigaEmulationSection()
     {
         AutomationProperties.SetName(_model, "Amiga model");
+        AutomationProperties.SetName(_configuration, "Amiga configuration");
         AutomationProperties.SetName(_kickstart, "Amiga Kickstart");
         AutomationProperties.SetName(_disk, "Amiga disk image");
         AutomationProperties.SetName(_start, "Start Amiga");
@@ -31,6 +33,7 @@ public sealed class AmigaEmulationSection : UserControl
         AutomationProperties.SetName(_machines, "Running Amiga machines");
         _model.ItemsSource = AmigaModelCatalog.All;
         _model.SelectedItem = AmigaModelCatalog.Get("A500");
+        _configuration.SelectionChanged += ConfigurationSelected;
         _start.Content = LocExtension.Get("Common.Execute");
         _firmwareFolder.Content = "Firmware";
         _start.Click += StartClick;
@@ -47,15 +50,21 @@ public sealed class AmigaEmulationSection : UserControl
         setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        AddRow(setup, 0, "Modèle", _model, null);
-        AddRow(setup, 1, "Kickstart", _kickstart, BrowseKickstart);
-        AddRow(setup, 2, "ADF", _disk, BrowseDisk);
-        Grid.SetColumn(_firmwareFolder, 3); Grid.SetRow(_firmwareFolder, 0); setup.Children.Add(_firmwareFolder);
-        Grid.SetColumn(_start, 3); Grid.SetRow(_start, 2); setup.Children.Add(_start);
+        setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        AddRow(setup, 0, LocExtension.Get("Emulation.Configuration"), _configuration, null);
+        AddRow(setup, 1, LocExtension.Get("Emulation.Model"), _model, null);
+        AddRow(setup, 2, "Kickstart", _kickstart, BrowseKickstart);
+        AddRow(setup, 3, "ADF", _disk, BrowseDisk);
+        Grid.SetColumn(_firmwareFolder, 3); Grid.SetRow(_firmwareFolder, 1); setup.Children.Add(_firmwareFolder);
+        Grid.SetColumn(_start, 3); Grid.SetRow(_start, 3); setup.Children.Add(_start);
         root.Children.Add(setup);
         Grid.SetRow(_machines, 1); root.Children.Add(_machines);
         Content = root;
-        Loaded += (_, _) => LoadDefaultFirmware();
+        Loaded += async (_, _) =>
+        {
+            await ReloadConfigurationsAsync();
+            LoadDefaultFirmware();
+        };
     }
 
     private static void AddRow(Grid grid, int row, string label, Control input, RoutedEventHandler? browse)
@@ -77,6 +86,22 @@ public sealed class AmigaEmulationSection : UserControl
         if (firmware is not null) _kickstart.Text = firmware.Path;
     }
 
+    private async Task ReloadConfigurationsAsync()
+    {
+        var configurations = await new AmigaConfigurationStore(StoragePaths.AmigaConfigurationsDirectory).LoadAllAsync();
+        _configuration.ItemsSource = configurations.Select(configuration => new ConfigurationItem(configuration)).ToArray();
+        _configuration.SelectedIndex = configurations.Count > 0 ? 0 : -1;
+    }
+
+    private void ConfigurationSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (_configuration.SelectedItem is not ConfigurationItem item) return;
+        var configuration = item.Configuration;
+        _model.SelectedItem = AmigaModelCatalog.All.FirstOrDefault(model => model.Id == configuration.Model) ?? AmigaModelCatalog.Get("A500");
+        _kickstart.Text = configuration.KickstartPath;
+        _disk.Text = configuration.InitialDiskPath ?? string.Empty;
+    }
+
     private void BrowseKickstart(object sender, RoutedEventArgs e) => Browse(_kickstart, "ROM|*.rom;*.bin|All files|*.*");
     private void BrowseDisk(object sender, RoutedEventArgs e) => Browse(_disk, "Amiga disk|*.adf;*.adz;*.ipf;*.dms;*.hdf;*.lha;*.iso;*.cue|All files|*.*");
 
@@ -96,8 +121,15 @@ public sealed class AmigaEmulationSection : UserControl
             if (_disk.Text.Length > 0 && !File.Exists(_disk.Text)) throw new FileNotFoundException("ADF", _disk.Text);
             var corePath = await EnsureCoreAsync();
             var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput());
+            var saved = (_configuration.SelectedItem as ConfigurationItem)?.Configuration;
+            var options = new Dictionary<string, string>(saved?.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
+            {
+                ["puae_model"] = model.Id
+            };
             var configuration = new AmigaMachineConfiguration(model.Id, _kickstart.Text,
-                string.IsNullOrWhiteSpace(_disk.Text) ? null : _disk.Text, Id: Guid.NewGuid());
+                string.IsNullOrWhiteSpace(_disk.Text) ? null : _disk.Text,
+                saved?.ExtendedRomPath, saved?.RomKeyPath, saved?.Core ?? AmigaCoreKind.External,
+                options, Guid.NewGuid(), saved?.AudioEnabled ?? true, saved?.Controllers, saved?.Input);
             var machine = engine.CreateAmigaMachine(configuration);
             var view = new AmigaMachineView(machine);
             var tab = new TabItem { Header = model.DisplayName, Content = view };
@@ -133,5 +165,10 @@ public sealed class AmigaEmulationSection : UserControl
     {
         foreach (var view in _machines.Items.OfType<TabItem>().Select(item => item.Content).OfType<AmigaMachineView>().ToArray())
             await view.StopAsync();
+    }
+
+    private sealed record ConfigurationItem(AmigaMachineConfiguration Configuration)
+    {
+        public string DisplayName => $"{Configuration.Model} · {Configuration.Id.ToString("N")[..8]}";
     }
 }

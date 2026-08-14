@@ -140,6 +140,7 @@ public partial class OptionsWindow : Window
             OptionsSection.Hardware or OptionsSection.HostTools => 2,
             OptionsSection.Engines => 3,
             OptionsSection.Profiles => 4,
+            OptionsSection.Emulation => 5,
             _ => 0
         };
         _initializing = false;
