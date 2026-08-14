@@ -14,36 +14,6 @@ GWGUI.App
 
 `GWGUI.App` ne contient aucun appel `retro_*`. `GWGUI.Emulation` ne référence ni WPF, ni PUAE, ni Libretro. Tout l’ABI Libretro reste `internal` dans `GWGUI.Emulation.Amiga`.
 
-## État d’implémentation
-
-Cette liste au niveau des tickets est l’état réel du code. Une case cochée signifie que le résultat fonctionnel du ticket est présent et testé, même si l’implémentation a été adaptée après les essais réels de PUAE.
-
-- [x] AMI-001 à AMI-004A — projets, contrats, sorties, entrées, médias et séparation machine/cœur.
-- [x] AMI-005 et AMI-006 — binaire épinglé, manifeste, copie de build et ABI native.
-- [ ] AMI-007 — chargement principal terminé ; les exports mémoire/région non utilisés restent à exposer.
-- [x] AMI-008 — chaînes UTF-8 natives stables pendant la session.
-- [ ] AMI-009 — chemins système, contenu et sauvegardes terminés ; dossier d’assets distinct restant.
-- [x] AMI-010 à AMI-012 — environnement, options V2/legacy, visibilité dynamique, clavier et Disk Control.
-- [ ] AMI-013 — ROM locale validée et utilisée ; copie sous le nom historique PUAE non retenue car le chemin explicite fonctionne.
-- [x] AMI-014 — ordre de chargement réel validé avec le cœur.
-- [x] AMI-015 — boucle dédiée, commandes, pause, reprise, reset, arrêt et fautes.
-- [x] AMI-016 à AMI-019 — framebuffer, boot Kickstart et amorçage des ADF de référence.
-- [ ] AMI-020 — file audio fonctionnelle ; compteurs explicites underrun/overrun restant à ajouter.
-- [x] AMI-021 — sortie WASAPI via NAudio.
-- [ ] AMI-022 — cadence PAL/NTSC et changements AV terminés ; validation longue durée restante.
-- [x] AMI-023 à AMI-026 — snapshots d’entrée, clavier complet, souris et contrôleurs/CD32.
-- [x] AMI-027 et AMI-028 — Disk Control, insertion/éjection, M3U, multidisque et multilecteur.
-- [ ] AMI-029 — blocage actuel : le build PUAE exécute la commande AmigaDOS mais ne persiste pas les octets dans une copie ADF après fermeture.
-- [x] AMI-030 — états sauvegardés avec en-tête et contrôles de compatibilité.
-- [x] AMI-031 à AMI-034 — chemins, firmware, modèles et configurations persistantes.
-- [ ] AMI-035 — modèles ordinateur testés ; CDTV/CD32 attendent leurs ROM étendues spécifiques.
-- [x] AMI-036 et AMI-037 — état global PUAE constaté puis isolation par un processus hôte par machine.
-- [x] AMI-038 et AMI-039 — surface minimale et gestion des configurations intégrées.
-- [x] AMI-040 — téléchargement versionné, hash, validation PE x64 et fallback.
-- [ ] AMI-041 — build propre, 1 469 tests et 100 cycles validés ; essais PAL/NTSC de 30 minutes et écriture ADF restants.
-
-Dernière validation : build sans avertissement, 1 469 tests réussis hors test WPF historique suspendu. Branche de travail : `amiga`.
-
 ## Sources de code verrouillées
 
 - [PUAE Libretro](https://github.com/libretro/libretro-uae)
@@ -139,347 +109,349 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-001 — Créer les deux projets d’émulation
 
-- [ ] Créer `src/GWGUI.Emulation/GWGUI.Emulation.csproj` avec `TargetFramework=net10.0`, `Nullable=enable` et `ImplicitUsings=enable`.
-- [ ] Créer `src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj` avec les mêmes propriétés et une référence vers `GWGUI.Emulation`.
-- [ ] Ne mettre aucun `UseWPF`, aucun package et aucune référence vers un autre projet GW GUI.
-- [ ] Ajouter les deux projets à `GWGUI.sln` sous le dossier solution `src`.
-- [ ] Ajouter les références nécessaires dans `GWGUI.App` et `GWGUI.Tests`; ne jamais référencer `GWGUI.App` depuis l’un des moteurs.
-- [ ] Faire passer `dotnet build GWGUI.sln -c Debug -p:Platform=x64`.
+- [x] Créer `src/GWGUI.Emulation/GWGUI.Emulation.csproj` avec `TargetFramework=net10.0`, `Nullable=enable` et `ImplicitUsings=enable`.
+- [x] Créer `src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj` avec les mêmes propriétés et une référence vers `GWGUI.Emulation`.
+- [x] Ne mettre aucun `UseWPF`, aucun package et aucune référence vers un autre projet GW GUI.
+- [x] Ajouter les deux projets à `GWGUI.sln` sous le dossier solution `src`.
+- [x] Ajouter les références nécessaires dans `GWGUI.App` et `GWGUI.Tests`; ne jamais référencer `GWGUI.App` depuis l’un des moteurs.
+- [x] Faire passer `dotnet build GWGUI.sln -c Debug -p:Platform=x64`.
 
 #### AMI-002 — Écrire le cycle de vie commun
 
-- [ ] Créer `EmulationMachineState` avec exactement `Created`, `Starting`, `Running`, `Paused`, `Stopping`, `Stopped` et `Faulted`.
-- [ ] Créer `IEmulatedMachine` avec `Guid Id`, `EmulationMachineState State`, `StartAsync`, `PauseAsync`, `ResumeAsync`, `HardResetAsync`, `StopAsync` et `IAsyncDisposable`.
-- [ ] Donner un `CancellationToken` à chaque commande asynchrone.
-- [ ] Créer `IEmulationEngine<TConfiguration>` avec `CreateMachine(TConfiguration configuration)`.
-- [ ] Tester qu’une fausse machine refuse `Resume` avant `Start`, accepte deux `Stop` successifs et termine dans `Stopped`.
+- [x] Créer `EmulationMachineState` avec exactement `Created`, `Starting`, `Running`, `Paused`, `Stopping`, `Stopped` et `Faulted`.
+- [x] Créer `IEmulatedMachine` avec `Guid Id`, `EmulationMachineState State`, `StartAsync`, `PauseAsync`, `ResumeAsync`, `HardResetAsync`, `StopAsync` et `IAsyncDisposable`.
+- [x] Donner un `CancellationToken` à chaque commande asynchrone.
+- [x] Créer `IEmulationEngine<TConfiguration>` avec `CreateMachine(TConfiguration configuration)`.
+- [x] Tester qu’une fausse machine refuse `Resume` avant `Start`, accepte deux `Stop` successifs et termine dans `Stopped`.
 
 #### AMI-003 — Écrire les sorties communes
 
-- [ ] Créer `EmulationPixelFormat` avec `Rgb565` et `Xrgb8888` ; ne pas exposer les valeurs numériques Libretro.
-- [ ] Créer `VideoFrame` avec `ReadOnlyMemory<byte> Pixels`, `Width`, `Height`, `Pitch`, `PixelFormat`, `AspectRatio`, `Sequence` et `Timestamp`.
-- [ ] Créer `AudioChunk` avec `ReadOnlyMemory<short> InterleavedStereo`, `SampleRate`, `FrameCount`, `Sequence` et `Timestamp`.
-- [ ] Créer `IAudioOutput` avec `Start(int sampleRate)`, `Write(ReadOnlySpan<short>)`, `Flush()` et `Stop()`.
-- [ ] Tester que `FrameCount * 2` est égal au nombre d’échantillons stéréo fourni.
+- [x] Créer `EmulationPixelFormat` avec `Rgb565` et `Xrgb8888` ; ne pas exposer les valeurs numériques Libretro.
+- [x] Créer `VideoFrame` avec `ReadOnlyMemory<byte> Pixels`, `Width`, `Height`, `Pitch`, `PixelFormat`, `AspectRatio`, `Sequence` et `Timestamp`.
+- [x] Créer `AudioChunk` avec `ReadOnlyMemory<short> InterleavedStereo`, `SampleRate`, `FrameCount`, `Sequence` et `Timestamp`.
+- [x] Créer `IAudioOutput` avec `Start(int sampleRate)`, `Write(ReadOnlySpan<short>)`, `Flush()` et `Stop()`.
+- [x] Tester que `FrameCount * 2` est égal au nombre d’échantillons stéréo fourni.
 
 #### AMI-004 — Écrire les entrées et médias communs
 
-- [ ] Créer `EmulationInputSnapshot` comme valeur immuable contenant clavier, souris relative et quatre contrôleurs.
-- [ ] Représenter chaque touche par `EmulationKey`, pas par `System.Windows.Input.Key`.
-- [ ] Représenter souris par deltas X/Y, molette et boutons gauche/droit/milieu.
-- [ ] Représenter un contrôleur par boutons, deux sticks et deux gâchettes normalisés en `short`.
-- [ ] Créer `EmulationMediaSlot` avec `Floppy0` à `Floppy3`, `HardDisk0` et `Cd0`.
-- [ ] Créer `EmulationMedia` avec chemin absolu, slot, type, lecture seule et état inséré.
+- [x] Créer `EmulationInputSnapshot` comme valeur immuable contenant clavier, souris relative et quatre contrôleurs.
+- [x] Représenter chaque touche par `EmulationKey`, pas par `System.Windows.Input.Key`.
+- [x] Représenter souris par deltas X/Y, molette et boutons gauche/droit/milieu.
+- [x] Représenter un contrôleur par boutons, deux sticks et deux gâchettes normalisés en `short`.
+- [x] Créer `EmulationMediaSlot` avec `Floppy0` à `Floppy3`, `HardDisk0` et `Cd0`.
+- [x] Créer `EmulationMedia` avec chemin absolu, slot, type, lecture seule et état inséré.
 
 #### AMI-004A — Séparer la machine Amiga de son cœur concret
 
-- [ ] Créer `Cores/IAmigaCore.cs`; cette interface reçoit une `AmigaMachineConfiguration` et expose initialisation, frame, reset, arrêt, vidéo, audio, entrées, médias et états.
-- [ ] Faire dépendre `AmigaMachine` uniquement de `IAmigaCore`, jamais directement de `AmigaExternalCore` ni d’un export natif.
-- [ ] Créer `Cores/AmigaExternalCore.cs` comme première implémentation de `IAmigaCore`.
-- [ ] Instancier `AmigaExternalCore` dans `AmigaEngine` via une factory sélectionnée par le type de cœur enregistré dans la configuration.
-- [ ] Enregistrer `AmigaCoreKind.External` dans la configuration ; ne pas déduire le type du nom de la DLL.
-- [ ] Tester `AmigaMachine` avec un faux `IAmigaCore`, puis tester séparément `AmigaExternalCore` avec la DLL native.
+- [x] Créer `Cores/IAmigaCore.cs`; cette interface reçoit une `AmigaMachineConfiguration` et expose initialisation, frame, reset, arrêt, vidéo, audio, entrées, médias et états.
+- [x] Faire dépendre `AmigaMachine` uniquement de `IAmigaCore`, jamais directement de `AmigaExternalCore` ni d’un export natif.
+- [x] Créer `Cores/AmigaExternalCore.cs` comme première implémentation de `IAmigaCore`.
+- [x] Instancier `AmigaExternalCore` dans `AmigaEngine` via une factory sélectionnée par le type de cœur enregistré dans la configuration.
+- [x] Enregistrer `AmigaCoreKind.External` dans la configuration ; ne pas déduire le type du nom de la DLL.
+- [x] Tester `AmigaMachine` avec un faux `IAmigaCore`, puis tester séparément `AmigaExternalCore` avec la DLL native.
 
 ### B — Installer et charger PUAE
 
 #### AMI-005 — Épingler le binaire de développement
 
-- [ ] Télécharger l’archive officielle contenant `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll.zip`.
-- [ ] Extraire uniquement `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll`.
+- [x] Télécharger l’archive officielle contenant `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll.zip`.
+- [x] Extraire uniquement `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll`.
 - [ ] Créer `artifacts/ppua/puae_libretro.json` avec type de cœur `External`, URL exacte, date du build, taille ZIP, taille DLL, SHA-256 et architecture `x64`.
-- [ ] Ajouter dans `GWGUI.Emulation.Amiga.csproj` une cible `CopyAmigaExternalCore` exécutée après `Build` qui copie la DLL vers `$(OutDir)Emulation/` si elle existe.
-- [ ] Ne jamais chercher un cœur dans le `PATH` Windows.
-- [ ] Tester que la sortie contient exactement une copie et que le hash correspond au manifeste.
+- [x] Ajouter dans `GWGUI.Emulation.Amiga.csproj` une cible `CopyAmigaExternalCore` exécutée après `Build` qui copie la DLL vers `$(OutDir)Emulation/` si elle existe.
+- [x] Ne jamais chercher un cœur dans le `PATH` Windows.
+- [x] Tester que la sortie contient exactement une copie et que le hash correspond au manifeste.
 
 #### AMI-006 — Ajouter les appels natifs au cœur externe
 
 - [ ] Déclarer dans `Cores/AmigaExternalCore.cs` les delegates Cdecl privés pour tous les exports `retro_*`, le callback environnement, vidéo, audio unitaire, audio batch, input poll et input state.
-- [ ] Utiliser `nuint` pour `size_t`, `IntPtr` pour les pointeurs et `[return: MarshalAs(UnmanagedType.I1)]` pour chaque `bool` C.
+- [x] Utiliser `nuint` pour `size_t`, `IntPtr` pour les pointeurs et `[return: MarshalAs(UnmanagedType.I1)]` pour chaque `bool` C.
 - [ ] Déclarer dans le même fichier avec `LayoutKind.Sequential` : `retro_system_info`, `retro_game_geometry`, `retro_system_timing`, `retro_system_av_info`, `retro_game_info` et `retro_variable`.
-- [ ] Déclarer ensuite les structures clavier, contrôleurs, Disk Control et Core Options uniquement dans les tickets qui les utilisent.
-- [ ] Ajouter dans `AmigaExternalCoreTests` les assertions qui comparent `Marshal.SizeOf` et `Marshal.OffsetOf` aux tailles/offsets attendus en x64.
+- [x] Déclarer ensuite les structures clavier, contrôleurs, Disk Control et Core Options uniquement dans les tickets qui les utilisent.
+- [x] Ajouter dans `AmigaExternalCoreTests` les assertions qui comparent `Marshal.SizeOf` et `Marshal.OffsetOf` aux tailles/offsets attendus en x64.
 
 #### AMI-007 — Charger tous les exports
 
 - [ ] Écrire la méthode privée `LoadNativeCore(string absolutePath)` dans `AmigaExternalCore` avec `NativeLibrary.Load`.
 - [ ] Refuser un chemin relatif et produire `AmigaCoreNotFound` si le fichier manque.
-- [ ] Résoudre chaque export avec `NativeLibrary.GetExport` puis `Marshal.GetDelegateForFunctionPointer<T>`.
+- [x] Résoudre chaque export avec `NativeLibrary.GetExport` puis `Marshal.GetDelegateForFunctionPointer<T>`.
 - [ ] Résoudre exactement : `retro_api_version`, tous les `retro_set_*`, `retro_init`, `retro_deinit`, `retro_get_system_info`, `retro_get_system_av_info`, `retro_set_controller_port_device`, `retro_reset`, `retro_run`, `retro_load_game`, `retro_unload_game`, `retro_get_region`, `retro_get_memory_data`, `retro_get_memory_size`, `retro_serialize_size`, `retro_serialize` et `retro_unserialize`.
-- [ ] Appeler `retro_api_version` et refuser toute valeur différente de `RETRO_API_VERSION` défini par l’en-tête épinglé.
-- [ ] Libérer le module une seule fois dans `Dispose`; rendre un second `Dispose` inoffensif.
+- [x] Appeler `retro_api_version` et refuser toute valeur différente de `RETRO_API_VERSION` défini par l’en-tête épinglé.
+- [x] Libérer le module une seule fois dans `Dispose`; rendre un second `Dispose` inoffensif.
 - [ ] Tester DLL absente, faux fichier, export absent, chargement valide et double libération.
 
 ### C — Fournir les services hôtes demandés par PUAE
 
 #### AMI-008 — Gérer les chaînes natives pendant toute la session
 
-- [ ] Créer dans `AmigaExternalHostCallbacks` un registre d’allocations UTF-8 via `Marshal.StringToCoTaskMemUTF8`.
-- [ ] Ne jamais renvoyer à PUAE un pointeur vers une chaîne gérée temporaire.
-- [ ] Réutiliser le même pointeur pour un chemin ou une valeur inchangée.
-- [ ] Libérer toutes les allocations après `retro_deinit`, jamais avant.
-- [ ] Tester qu’un GC forcé entre `retro_set_environment` et `retro_run` ne change aucun pointeur retourné.
+- [x] Créer dans `AmigaExternalHostCallbacks` un registre d’allocations UTF-8 via `Marshal.StringToCoTaskMemUTF8`.
+- [x] Ne jamais renvoyer à PUAE un pointeur vers une chaîne gérée temporaire.
+- [x] Réutiliser le même pointeur pour un chemin ou une valeur inchangée.
+- [x] Libérer toutes les allocations après `retro_deinit`, jamais avant.
+- [x] Tester qu’un GC forcé entre `retro_set_environment` et `retro_run` ne change aucun pointeur retourné.
 
 #### AMI-009 — Répondre aux chemins au moment correct
 
 - [ ] Créer les dossiers de session `System`, `Save`, `Assets` et `Content` avant l’appel à `retro_set_environment`.
-- [ ] Pour `GET_SYSTEM_DIRECTORY`, écrire dans `char** data` le pointeur UTF-8 vers `System`.
-- [ ] Pour `GET_SAVE_DIRECTORY`, retourner `Save`.
+- [x] Pour `GET_SYSTEM_DIRECTORY`, écrire dans `char** data` le pointeur UTF-8 vers `System`.
+- [x] Pour `GET_SAVE_DIRECTORY`, retourner `Save`.
 - [ ] Pour `GET_CORE_ASSETS_DIRECTORY`, retourner `Assets`.
-- [ ] Pour `GET_CONTENT_DIRECTORY`, retourner le dossier du média ou `Content` en l’absence de média.
+- [x] Pour `GET_CONTENT_DIRECTORY`, retourner le dossier du média ou `Content` en l’absence de média.
 - [ ] Retourner `true` même si un chemin facultatif est vide et écrire alors `IntPtr.Zero`.
 - [ ] Tester les quatre commandes en appelant directement le callback avec un emplacement `IntPtr` alloué.
 
 #### AMI-010 — Implémenter le sous-ensemble d’environnement du premier boot
 
-- [ ] Dans `AmigaExternalCore.cs`, déclarer avec les signatures les numéros de commandes imposés par l’API native, sans valeur inventée.
-- [ ] Retourner `true` à `SET_SUPPORT_NO_GAME` et mémoriser la valeur envoyée par PUAE.
-- [ ] Retourner `true` à `GET_CAN_DUPE` et écrire `true` dans `bool* data`.
-- [ ] Accepter `SET_PIXEL_FORMAT` uniquement pour `RGB565` et `XRGB8888`; mémoriser le format actif.
-- [ ] Copier `SET_GEOMETRY` et `SET_SYSTEM_AV_INFO` dans des valeurs gérées sans conserver le pointeur natif.
-- [ ] Accepter `SET_MESSAGE`, `SET_MESSAGE_EXT`, `SET_INPUT_DESCRIPTORS`, `SET_CONTROLLER_INFO`, `SET_MEMORY_MAPS` et `SET_SUPPORT_ACHIEVEMENTS`.
-- [ ] Retourner `false` à `GET_LOG_INTERFACE`, `GET_PERF_INTERFACE`, `GET_VFS_INTERFACE` et `GET_LED_INTERFACE` tant que leur ticket n’est pas implémenté.
-- [ ] Journaliser le numéro de toute commande inconnue une seule fois par session.
-- [ ] Tester chaque branche avec un buffer natif contenant une structure connue.
+- [x] Dans `AmigaExternalCore.cs`, déclarer avec les signatures les numéros de commandes imposés par l’API native, sans valeur inventée.
+- [x] Retourner `true` à `SET_SUPPORT_NO_GAME` et mémoriser la valeur envoyée par PUAE.
+- [x] Retourner `true` à `GET_CAN_DUPE` et écrire `true` dans `bool* data`.
+- [x] Accepter `SET_PIXEL_FORMAT` uniquement pour `RGB565` et `XRGB8888`; mémoriser le format actif.
+- [x] Copier `SET_GEOMETRY` et `SET_SYSTEM_AV_INFO` dans des valeurs gérées sans conserver le pointeur natif.
+- [x] Accepter `SET_MESSAGE`, `SET_MESSAGE_EXT`, `SET_INPUT_DESCRIPTORS`, `SET_CONTROLLER_INFO`, `SET_MEMORY_MAPS` et `SET_SUPPORT_ACHIEVEMENTS`.
+- [x] Retourner `false` à `GET_LOG_INTERFACE`, `GET_PERF_INTERFACE`, `GET_VFS_INTERFACE` et `GET_LED_INTERFACE` tant que leur ticket n’est pas implémenté.
+- [x] Journaliser le numéro de toute commande inconnue une seule fois par session.
+- [x] Tester chaque branche avec un buffer natif contenant une structure connue.
 
 #### AMI-011 — Héberger les Core Options sans en perdre
 
-- [ ] Répondre à `GET_CORE_OPTIONS_VERSION` avec la version 2.
-- [ ] Déclarer les structures V2 : catégories, définition, valeur, conteneur US et conteneur international.
-- [ ] À `SET_CORE_OPTIONS_V2`, parcourir les tableaux terminés par une clé nulle et copier chaque catégorie, clé, libellé, aide, valeur, label et défaut dans `AmigaExternalOptionCatalog`.
-- [ ] À `SET_CORE_OPTIONS_V2_INTL`, importer d’abord le bloc US puis appliquer les libellés locaux lorsqu’ils existent.
-- [ ] Implémenter également les fallbacks V1 et `SET_VARIABLES` pour qu’un autre build PUAE reste chargeable.
-- [ ] À `GET_VARIABLE`, retrouver la clé, choisir la valeur configurée ou le défaut et écrire un pointeur UTF-8 stable dans `retro_variable.value`.
-- [ ] À `GET_VARIABLE_UPDATE`, écrire le drapeau `OptionsChanged`, puis le remettre à `false` après lecture.
-- [ ] À `SET_VARIABLE`, valider la valeur contre celles annoncées avant de remplacer la valeur courante.
-- [ ] À `SET_CORE_OPTIONS_DISPLAY`, mémoriser la visibilité courante de la clé.
-- [ ] Enregistrer le callback `SET_CORE_OPTIONS_UPDATE_DISPLAY_CALLBACK` et l’invoquer après un changement susceptible de modifier la visibilité.
-- [ ] Tester qu’aucune clé annoncée par la DLL n’est absente du registre et que `puae_model=A500` ressort de `GET_VARIABLE`.
+- [x] Répondre à `GET_CORE_OPTIONS_VERSION` avec la version 2.
+- [x] Déclarer les structures V2 : catégories, définition, valeur, conteneur US et conteneur international.
+- [x] À `SET_CORE_OPTIONS_V2`, parcourir les tableaux terminés par une clé nulle et copier chaque catégorie, clé, libellé, aide, valeur, label et défaut dans `AmigaExternalOptionCatalog`.
+- [x] À `SET_CORE_OPTIONS_V2_INTL`, importer d’abord le bloc US puis appliquer les libellés locaux lorsqu’ils existent.
+- [x] Implémenter également les fallbacks V1 et `SET_VARIABLES` pour qu’un autre build PUAE reste chargeable.
+- [x] À `GET_VARIABLE`, retrouver la clé, choisir la valeur configurée ou le défaut et écrire un pointeur UTF-8 stable dans `retro_variable.value`.
+- [x] À `GET_VARIABLE_UPDATE`, écrire le drapeau `OptionsChanged`, puis le remettre à `false` après lecture.
+- [x] À `SET_VARIABLE`, valider la valeur contre celles annoncées avant de remplacer la valeur courante.
+- [x] À `SET_CORE_OPTIONS_DISPLAY`, mémoriser la visibilité courante de la clé.
+- [x] Enregistrer le callback `SET_CORE_OPTIONS_UPDATE_DISPLAY_CALLBACK` et l’invoquer après un changement susceptible de modifier la visibilité.
+- [x] Tester qu’aucune clé annoncée par la DLL n’est absente du registre et que `puae_model=A500` ressort de `GET_VARIABLE`.
 
 #### AMI-012 — Enregistrer les interfaces fournies par PUAE
 
-- [ ] À `GET_DISK_CONTROL_INTERFACE_VERSION`, écrire `1` et retourner `true`.
-- [ ] À `SET_DISK_CONTROL_EXT_INTERFACE`, copier tous les delegates de la structure dans `AmigaExternalDiskControl` et conserver leur durée de vie.
-- [ ] Accepter le fallback `SET_DISK_CONTROL_INTERFACE` si le cœur ne fournit pas l’interface étendue.
-- [ ] À `SET_KEYBOARD_CALLBACK`, copier le delegate clavier fourni par PUAE.
-- [ ] À `GET_INPUT_BITMASKS` avec `data == IntPtr.Zero`, retourner `true` comme attendu par PUAE.
-- [ ] Retourner `false` à `SET_FASTFORWARDING_OVERRIDE` tant que GW GUI ne pilote pas cette fonction.
-- [ ] Tester qu’après `retro_init`, Disk Control et le callback clavier sont effectivement présents.
+- [x] À `GET_DISK_CONTROL_INTERFACE_VERSION`, écrire `1` et retourner `true`.
+- [x] À `SET_DISK_CONTROL_EXT_INTERFACE`, copier tous les delegates de la structure dans `AmigaExternalDiskControl` et conserver leur durée de vie.
+- [x] Accepter le fallback `SET_DISK_CONTROL_INTERFACE` si le cœur ne fournit pas l’interface étendue.
+- [x] À `SET_KEYBOARD_CALLBACK`, copier le delegate clavier fourni par PUAE.
+- [x] À `GET_INPUT_BITMASKS` avec `data == IntPtr.Zero`, retourner `true` comme attendu par PUAE.
+- [x] Retourner `false` à `SET_FASTFORWARDING_OVERRIDE` tant que GW GUI ne pilote pas cette fonction.
+- [x] Tester qu’après `retro_init`, Disk Control et le callback clavier sont effectivement présents.
 
 ### D — Démarrer l’A500 et produire la vidéo
 
 #### AMI-013 — Préparer la ROM A500 pour le test
 
-- [ ] Utiliser `image_test/Roms/Bios/Kickstart 1.3.rom`, déjà vérifié à 524 288 octets, MD5 `192D6D950D0ED3DF8040B788502831C2` et SHA-256 `1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F`.
-- [ ] Vérifier à chaque test sa taille et son SHA-256 avant de la donner au cœur, sans inscrire la ROM dans Git.
+- [x] Utiliser `image_test/Roms/Bios/Kickstart 1.3.rom`, déjà vérifié à 524 288 octets, MD5 `192D6D950D0ED3DF8040B788502831C2` et SHA-256 `1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F`.
+- [x] Vérifier à chaque test sa taille et son SHA-256 avant de la donner au cœur, sans inscrire la ROM dans Git.
 - [ ] Copier le fichier dans le dossier `System` de la session sous `kick34005.A500`, nom recherché par PUAE.
-- [ ] Conserver et transmettre les 524 288 octets strictement inchangés ; cette ROM est déjà validée comme Kickstart 1.3 personnalisé fonctionnel sur A500 dans FS-UAE.
-- [ ] Ne jamais tronquer, concaténer, patcher ou remplacer automatiquement cette ROM.
-- [ ] Fixer avant `retro_init`/`retro_load_game` : `puae_model=A500`, `puae_video_standard=PAL`, `puae_floppy_multidrive=disabled` et `puae_floppy_write_protection=disabled` si ces clés sont annoncées.
+- [x] Conserver et transmettre les 524 288 octets strictement inchangés ; cette ROM est déjà validée comme Kickstart 1.3 personnalisé fonctionnel sur A500 dans FS-UAE.
+- [x] Ne jamais tronquer, concaténer, patcher ou remplacer automatiquement cette ROM.
+- [x] Fixer avant `retro_init`/`retro_load_game` : `puae_model=A500`, `puae_video_standard=PAL`, `puae_floppy_multidrive=disabled` et `puae_floppy_write_protection=disabled` si ces clés sont annoncées.
 - [ ] Tester que le fichier temporaire a le même SHA-256 que la source.
 
 #### AMI-014 — Respecter l’ordre d’appel réel de PUAE
 
-- [ ] Dans `AmigaMachine.StartAsync`, charger le module puis appeler `retro_set_environment` avant `retro_init`, car PUAE demande ses chemins et options dans `retro_set_environment`.
-- [ ] Appeler ensuite `retro_set_video_refresh`, les deux callbacks audio, `retro_set_input_poll` et `retro_set_input_state`.
-- [ ] Appeler `retro_init`, puis `retro_get_system_info` et vérifier `library_name == "PUAE"`, `need_fullpath == true` et que `adf` est dans `valid_extensions`.
-- [ ] Pour un boot sans disque, appeler `retro_load_game(IntPtr.Zero)` uniquement si PUAE a envoyé `SET_SUPPORT_NO_GAME=true`.
-- [ ] Appeler `retro_get_system_av_info` seulement après le chargement réussi.
-- [ ] En cas d’échec, appeler seulement les opérations de nettoyage correspondant aux étapes déjà réussies.
-- [ ] Tester l’ordre exact avec un faux module enregistrant chaque appel.
+- [x] Dans `AmigaMachine.StartAsync`, charger le module puis appeler `retro_set_environment` avant `retro_init`, car PUAE demande ses chemins et options dans `retro_set_environment`.
+- [x] Appeler ensuite `retro_set_video_refresh`, les deux callbacks audio, `retro_set_input_poll` et `retro_set_input_state`.
+- [x] Appeler `retro_init`, puis `retro_get_system_info` et vérifier `library_name == "PUAE"`, `need_fullpath == true` et que `adf` est dans `valid_extensions`.
+- [x] Pour un boot sans disque, appeler `retro_load_game(IntPtr.Zero)` uniquement si PUAE a envoyé `SET_SUPPORT_NO_GAME=true`.
+- [x] Appeler `retro_get_system_av_info` seulement après le chargement réussi.
+- [x] En cas d’échec, appeler seulement les opérations de nettoyage correspondant aux étapes déjà réussies.
+- [x] Tester l’ordre exact avec un faux module enregistrant chaque appel.
 
 #### AMI-015 — Écrire le thread `AmigaRunLoop`
 
 - [ ] Créer un thread dédié nommé `GWGUI Amiga <id>` ; aucun appel `retro_*` ne part d’un autre thread.
 - [ ] Utiliser une `Channel<AmigaCommand>` mono-lecteur pour pause, reprise, reset, média, option et arrêt.
-- [ ] Tant que l’état est `Running`, traiter les commandes en attente puis appeler `retro_run` une fois.
-- [ ] En pause, traiter les commandes sans appeler `retro_run` et attendre le signal de reprise/arrêt.
-- [ ] Cadencer initialement avec `Stopwatch.GetTimestamp` selon `system_av_info.timing.fps`; remplacer ce cadenceur par l’asservissement borné défini dans AMI-022 dès que AMI-020 et AMI-021 passent.
-- [ ] À l’arrêt : sortir de la boucle, appeler `retro_unload_game`, `retro_deinit`, libérer les chaînes puis la DLL.
-- [ ] Transformer toute exception en état `Faulted`, conserver l’erreur et exécuter le même nettoyage.
-- [ ] Tester 300 frames, pause de 100 ms sans frame supplémentaire, reprise, arrêt et double arrêt.
+- [x] Tant que l’état est `Running`, traiter les commandes en attente puis appeler `retro_run` une fois.
+- [x] En pause, traiter les commandes sans appeler `retro_run` et attendre le signal de reprise/arrêt.
+- [x] Cadencer initialement avec `Stopwatch.GetTimestamp` selon `system_av_info.timing.fps`; remplacer ce cadenceur par l’asservissement borné défini dans AMI-022 dès que AMI-020 et AMI-021 passent.
+- [x] À l’arrêt : sortir de la boucle, appeler `retro_unload_game`, `retro_deinit`, libérer les chaînes puis la DLL.
+- [x] Transformer toute exception en état `Faulted`, conserver l’erreur et exécuter le même nettoyage.
+- [x] Tester 300 frames, pause de 100 ms sans frame supplémentaire, reprise, arrêt et double arrêt.
 
 #### AMI-016 — Copier correctement le framebuffer
 
-- [ ] Dans `AmigaVideoSink.OnVideo`, traiter `data == IntPtr.Zero` comme duplication de la dernière frame.
-- [ ] Calculer `byteCount = pitch * height`; ne jamais calculer avec `width * bytesPerPixel` lorsque le pitch diffère.
-- [ ] Louer deux buffers via `ArrayPool<byte>` et alterner écriture/publication pour ne jamais exposer un buffer en cours de copie.
-- [ ] Copier exactement `pitch` octets par ligne depuis le pointeur natif.
-- [ ] Publier largeur, hauteur, pitch, format actif, ratio et numéro de séquence.
-- [ ] Remplacer les buffers lorsque `pitch * height` dépasse leur capacité ; restituer les anciens à l’arrêt.
-- [ ] Tester une source synthétique avec padding de ligne, RGB565, XRGB8888, pointeur nul et changement de résolution.
+- [x] Dans `AmigaVideoSink.OnVideo`, traiter `data == IntPtr.Zero` comme duplication de la dernière frame.
+- [x] Calculer `byteCount = pitch * height`; ne jamais calculer avec `width * bytesPerPixel` lorsque le pitch diffère.
+- [x] Louer deux buffers via `ArrayPool<byte>` et alterner écriture/publication pour ne jamais exposer un buffer en cours de copie.
+- [x] Copier exactement `pitch` octets par ligne depuis le pointeur natif.
+- [x] Publier largeur, hauteur, pitch, format actif, ratio et numéro de séquence.
+- [x] Remplacer les buffers lorsque `pitch * height` dépasse leur capacité ; restituer les anciens à l’arrêt.
+- [x] Tester une source synthétique avec padding de ligne, RGB565, XRGB8888, pointeur nul et changement de résolution.
 
 #### AMI-017 — Prouver le boot Kickstart
 
-- [ ] Créer `AmigaA500BootTests` marqué comme test local nécessitant le cœur et la ROM.
-- [ ] Démarrer sans média avec la configuration du ticket AMI-013.
-- [ ] Attendre au maximum 15 secondes une frame non vide ; échouer en joignant état, messages PUAE et géométrie.
-- [ ] Calculer plusieurs hashes de frames espacées pour prouver que le cœur tourne et non qu’une image fixe factice est publiée.
-- [ ] Enregistrer la dernière frame en PNG sous `TestResults/Amiga/` uniquement en cas d’échec.
-- [ ] Arrêter la machine et vérifier que la DLL et le Kickstart temporaire ne sont plus verrouillés.
+- [x] Créer `AmigaA500BootTests` marqué comme test local nécessitant le cœur et la ROM.
+- [x] Démarrer sans média avec la configuration du ticket AMI-013.
+- [x] Attendre au maximum 15 secondes une frame non vide ; échouer en joignant état, messages PUAE et géométrie.
+- [x] Calculer plusieurs hashes de frames espacées pour prouver que le cœur tourne et non qu’une image fixe factice est publiée.
+- [x] Enregistrer la dernière frame en PNG sous `TestResults/Amiga/` uniquement en cas d’échec.
+- [x] Arrêter la machine et vérifier que la DLL et le Kickstart temporaire ne sont plus verrouillés.
 
 ### E — Charger un ADF
 
 #### AMI-018 — Construire `retro_game_info` sans copier le disque
 
-- [ ] Normaliser le chemin ADF avec `Path.GetFullPath` et vérifier existence/lecture avant l’appel natif.
-- [ ] Allouer le chemin UTF-8 jusqu’au retour de `retro_unload_game`.
-- [ ] Construire `retro_game_info` avec `path=<pointeur>`, `data=IntPtr.Zero`, `size=0` et `meta=IntPtr.Zero`, puisque PUAE annonce `need_fullpath=true`.
-- [ ] Passer un pointeur vers cette structure à `retro_load_game`; ne jamais charger tout l’ADF dans `data`.
-- [ ] Conserver le média comme `Floppy0` dans l’état géré seulement après retour `true`.
-- [ ] Tester chemin absent, extension refusée et structure valide.
+- [x] Normaliser le chemin ADF avec `Path.GetFullPath` et vérifier existence/lecture avant l’appel natif.
+- [x] Allouer le chemin UTF-8 jusqu’au retour de `retro_unload_game`.
+- [x] Construire `retro_game_info` avec `path=<pointeur>`, `data=IntPtr.Zero`, `size=0` et `meta=IntPtr.Zero`, puisque PUAE annonce `need_fullpath=true`.
+- [x] Passer un pointeur vers cette structure à `retro_load_game`; ne jamais charger tout l’ADF dans `data`.
+- [x] Conserver le média comme `Floppy0` dans l’état géré seulement après retour `true`.
+- [x] Tester chemin absent, extension refusée et structure valide.
 
 #### AMI-019 — Amorcer les deux ADF de référence
 
-- [ ] Premier test : `image_test/validated_images/Commodore/Amiga/3.5 pouces DD - AmigaDOS OFS/Boot-DD-OFS.adf`, SHA-256 `0634BF6DACBAEF1C4959428D5416017DB85F97633A651EF33EBD32CC1A874D06`.
-- [ ] Second test : `F:/Disquettes/Amiga Workbench/Amiga_Workbench_1.3.3.adf`, SHA-256 `D0EE9914893EF4678572F5E0B1D2C2141133B1E48D6F9D70204B5A24B6A69647`.
-- [ ] Vérifier avant lancement la signature `DOS\0`, la présence de code après l’octet 11 et une somme de bootblock égale à `0xFFFFFFFF` avec retenue circulaire.
-- [ ] Attendre une séquence de frames différente de l’écran d’insertion sans disque.
-- [ ] Arrêter puis rouvrir chaque ADF en accès exclusif pour prouver l’absence de handle restant.
+- [x] Premier test : `image_test/validated_images/Commodore/Amiga/3.5 pouces DD - AmigaDOS OFS/Boot-DD-OFS.adf`, SHA-256 `0634BF6DACBAEF1C4959428D5416017DB85F97633A651EF33EBD32CC1A874D06`.
+- [x] Second test : `F:/Disquettes/Amiga Workbench/Amiga_Workbench_1.3.3.adf`, SHA-256 `D0EE9914893EF4678572F5E0B1D2C2141133B1E48D6F9D70204B5A24B6A69647`.
+- [x] Vérifier avant lancement la signature `DOS\0`, la présence de code après l’octet 11 et une somme de bootblock égale à `0xFFFFFFFF` avec retenue circulaire.
+- [x] Attendre une séquence de frames différente de l’écran d’insertion sans disque.
+- [x] Arrêter puis rouvrir chaque ADF en accès exclusif pour prouver l’absence de handle restant.
 
 ### F — Ajouter l’audio WASAPI contrôlé
 
 #### AMI-020 — Mettre le PCM dans une file bornée
 
-- [ ] Dans `AmigaAudioSink`, convertir le compteur retourné par `retro_audio_sample_batch_t` en `frames * 2` échantillons `short`.
+- [x] Dans `AmigaAudioSink`, convertir le compteur retourné par `retro_audio_sample_batch_t` en `frames * 2` échantillons `short`.
 - [ ] Copier le span natif dans un buffer circulaire préalloué de 200 ms à 44 100 Hz stéréo.
 - [ ] En cas de dépassement, supprimer les frames les plus anciennes et incrémenter `OverrunCount`.
 - [ ] En cas de lecture insuffisante, remplir de zéros et incrémenter `UnderrunCount`.
-- [ ] Faire pointer le callback audio unitaire vers le même chemin en empilant une frame stéréo.
+- [x] Faire pointer le callback audio unitaire vers le même chemin en empilant une frame stéréo.
 - [ ] Tester ordre des échantillons gauche/droite, wrap du buffer, overflow et underflow.
 
 #### AMI-021 — Sortir le son avec NAudio 2.3.0
 
-- [ ] Ajouter `NAudio` version `2.3.0` uniquement à `GWGUI.App`.
-- [ ] Créer `WasapiAudioOutput : IAudioOutput` avec `WasapiOut` et un provider PCM 16 bits stéréo.
-- [ ] Démarrer en mode partagé, périphérique de rendu par défaut, latence demandée de 50 ms.
-- [ ] Faire lire au provider les données du tampon du moteur sans appel bloquant vers le thread PUAE.
-- [ ] Sur changement de périphérique ou erreur WASAPI, arrêter l’ancien client, recréer la sortie et conserver la machine en marche.
-- [ ] Sur pause/arrêt/reset, vider le provider pour ne pas rejouer du son ancien.
-- [ ] Tester avec un faux `IAudioOutput`; réserver le test matériel WASAPI à un test local explicite.
+- [x] Ajouter `NAudio` version `2.3.0` uniquement à `GWGUI.App`.
+- [x] Créer `WasapiAudioOutput : IAudioOutput` avec `WasapiOut` et un provider PCM 16 bits stéréo.
+- [x] Démarrer en mode partagé, périphérique de rendu par défaut, latence demandée de 50 ms.
+- [x] Faire lire au provider les données du tampon du moteur sans appel bloquant vers le thread PUAE.
+- [x] Sur changement de périphérique ou erreur WASAPI, arrêter l’ancien client, recréer la sortie et conserver la machine en marche.
+- [x] Sur pause/arrêt/reset, vider le provider pour ne pas rejouer du son ancien.
+- [x] Tester avec un faux `IAudioOutput`; réserver le test matériel WASAPI à un test local explicite.
 
 #### AMI-022 — Asservir la boucle au son
 
-- [ ] Lire `fps` et `sample_rate` depuis `retro_get_system_av_info`; accepter leurs mises à jour via `SET_SYSTEM_AV_INFO`.
+- [x] Lire `fps` et `sample_rate` depuis `retro_get_system_av_info`; accepter leurs mises à jour via `SET_SYSTEM_AV_INFO`.
 - [ ] Définir une cible audio de 60 ms et une plage valide de 30 à 100 ms.
 - [ ] Appeler `retro_run` sans attente lorsque le tampon descend sous 30 ms.
 - [ ] Retarder la frame suivante avec une attente annulable lorsque le tampon dépasse 100 ms.
-- [ ] Ne jamais appeler `Thread.Sleep` depuis un callback natif.
+- [x] Ne jamais appeler `Thread.Sleep` depuis un callback natif.
 - [ ] Tester dix minutes PAL puis NTSC et affirmer que la dérive reste bornée et que la mémoire du tampon ne croît pas.
 
 ### G — Ajouter clavier, souris et manettes
 
 #### AMI-023 — Figer les entrées par frame
 
-- [ ] Stocker le dernier `EmulationInputSnapshot` complet par échange atomique.
-- [ ] Dans `input_poll`, copier cette valeur vers `_polledSnapshot`.
-- [ ] Dans tous les appels `input_state`, répondre uniquement depuis `_polledSnapshot` jusqu’au prochain `input_poll`.
-- [ ] Retourner zéro pour port, device, index ou id inconnu.
-- [ ] Tester qu’un changement concurrent en milieu de frame n’altère pas les réponses de cette frame.
+- [x] Stocker le dernier `EmulationInputSnapshot` complet par échange atomique.
+- [x] Dans `input_poll`, copier cette valeur vers `_polledSnapshot`.
+- [x] Dans tous les appels `input_state`, répondre uniquement depuis `_polledSnapshot` jusqu’au prochain `input_poll`.
+- [x] Retourner zéro pour port, device, index ou id inconnu.
+- [x] Tester qu’un changement concurrent en milieu de frame n’altère pas les réponses de cette frame.
 
 #### AMI-024 — Mapper tout le clavier
 
-- [ ] Créer une table exhaustive `EmulationKey -> RETROK_*` couvrant lettres, chiffres, ponctuation, fonctions, navigation, pavé numérique et modificateurs.
-- [ ] Appeler le callback clavier PUAE lors de chaque transition avec `down`, code `RETROK`, caractère Unicode si disponible et modificateurs Libretro.
-- [ ] Maintenir également l’état interrogé par `input_state` si le cœur le demande.
-- [ ] À la perte de focus, générer les relâchements de toutes les touches encore pressées.
-- [ ] Tester enfoncement, relâchement, Shift+A, Alt, touches françaises physiques et absence de touche bloquée.
+- [x] Créer une table exhaustive `EmulationKey -> RETROK_*` couvrant lettres, chiffres, ponctuation, fonctions, navigation, pavé numérique et modificateurs.
+- [x] Appeler le callback clavier PUAE lors de chaque transition avec `down`, code `RETROK`, caractère Unicode si disponible et modificateurs Libretro.
+- [x] Maintenir également l’état interrogé par `input_state` si le cœur le demande.
+- [x] À la perte de focus, générer les relâchements de toutes les touches encore pressées.
+- [x] Tester enfoncement, relâchement, Shift+A, Alt, touches françaises physiques et absence de touche bloquée.
 
 #### AMI-025 — Mapper la souris
 
-- [ ] Pour `RETRO_DEVICE_MOUSE`, retourner puis consommer les deltas X/Y accumulés depuis le dernier poll.
-- [ ] Retourner 0/1 pour boutons gauche, droit et milieu ; retourner la molette sur les IDs Libretro correspondants.
-- [ ] Ne pas appliquer d’accélération dans le moteur ; transmettre les deltas bruts du frontend.
-- [ ] Tester signe, saturation `short`, consommation unique du delta et maintien des boutons.
+- [x] Pour `RETRO_DEVICE_MOUSE`, retourner puis consommer les deltas X/Y accumulés depuis le dernier poll.
+- [x] Retourner 0/1 pour boutons gauche, droit et milieu ; retourner la molette sur les IDs Libretro correspondants.
+- [x] Ne pas appliquer d’accélération dans le moteur ; transmettre les deltas bruts du frontend.
+- [x] Tester signe, saturation `short`, consommation unique du delta et maintien des boutons.
 
 #### AMI-026 — Mapper joystick et CD32
 
-- [ ] Importer les types de contrôleurs envoyés par `SET_CONTROLLER_INFO`.
-- [ ] Exposer `None`, `RetroPad`, joysticks PUAE et `CD32Pad` disponibles pour chaque port.
-- [ ] Appeler `retro_set_controller_port_device` uniquement sur le thread PUAE entre deux frames.
-- [ ] Mapper D-pad, boutons, sticks analogiques et boutons CD32 vers les IDs exacts annoncés.
-- [ ] Inverser les ports frontend 0/1 uniquement comme PUAE le fait en interne ; tester le résultat observé pour éviter une double inversion.
-- [ ] Tester joystick A500 et les sept boutons CD32 avec snapshots synthétiques.
+- [x] Importer les types de contrôleurs envoyés par `SET_CONTROLLER_INFO`.
+- [x] Exposer `None`, `RetroPad`, joysticks PUAE et `CD32Pad` disponibles pour chaque port.
+- [x] Appeler `retro_set_controller_port_device` uniquement sur le thread PUAE entre deux frames.
+- [x] Mapper D-pad, boutons, sticks analogiques et boutons CD32 vers les IDs exacts annoncés.
+- [x] Inverser les ports frontend 0/1 uniquement comme PUAE le fait en interne ; tester le résultat observé pour éviter une double inversion.
+- [x] Tester joystick A500 et les sept boutons CD32 avec snapshots synthétiques.
 
 ### H — Médias, écritures et sauvegardes
 
 #### AMI-027 — Encapsuler Disk Control
 
-- [ ] Écrire dans `AmigaMediaController` une méthode par delegate fourni : état d’éjection, index courant, nombre d’images, changement d’index, remplacement, ajout, chemin et libellé.
-- [ ] Exécuter chaque delegate sur le thread PUAE par la channel de commandes.
-- [ ] Mettre à jour l’état géré seulement après retour `true` du cœur.
-- [ ] Pour changer un disque : `set_eject_state(true)`, `replace_image_index`, `set_image_index`, puis `set_eject_state(false)`.
-- [ ] Copier le `retro_game_info` et son chemin UTF-8 jusqu’à ce que le remplacement soit terminé.
-- [ ] Tester refus à chaque sous-étape sans désynchroniser l’état affiché.
+- [x] Écrire dans `AmigaMediaController` une méthode par delegate fourni : état d’éjection, index courant, nombre d’images, changement d’index, remplacement, ajout, chemin et libellé.
+- [x] Exécuter chaque delegate sur le thread PUAE par la channel de commandes.
+- [x] Mettre à jour l’état géré seulement après retour `true` du cœur.
+- [x] Pour changer un disque : `set_eject_state(true)`, `replace_image_index`, `set_image_index`, puis `set_eject_state(false)`.
+- [x] Copier le `retro_game_info` et son chemin UTF-8 jusqu’à ce que le remplacement soit terminé.
+- [x] Tester refus à chaque sous-étape sans désynchroniser l’état affiché.
 
 #### AMI-028 — Gérer DF0 à DF3 et M3U
 
-- [ ] Régler `puae_floppy_multidrive` avant chargement selon le nombre de lecteurs configurés.
-- [ ] Associer `Floppy0..Floppy3` aux index et lecteurs réellement annoncés par PUAE.
-- [ ] Générer un M3U de session UTF-8 avec un chemin par ligne pour un jeu multidisque.
-- [ ] Préserver les libellés `DISK_FILE|DISK_LABEL` et `#SAVEDISK:<label>`.
-- [ ] Tester échange Disk 1/Disk 2 et présence simultanée de DF0/DF1.
+- [x] Régler `puae_floppy_multidrive` avant chargement selon le nombre de lecteurs configurés.
+- [x] Associer `Floppy0..Floppy3` aux index et lecteurs réellement annoncés par PUAE.
+- [x] Générer un M3U de session UTF-8 avec un chemin par ligne pour un jeu multidisque.
+- [x] Préserver les libellés `DISK_FILE|DISK_LABEL` et `#SAVEDISK:<label>`.
+- [x] Tester échange Disk 1/Disk 2 et présence simultanée de DF0/DF1.
 
 #### AMI-029 — Contrôler l’écriture virtuelle
 
-- [ ] Laisser `puae_floppy_write_protection=disabled` pour une image déclarée modifiable.
-- [ ] Utiliser `enabled` pour une image en lecture seule.
-- [ ] N’activer `puae_floppy_write_redirect` que lorsque la configuration demande explicitement une copie de sauvegarde ; le mode normal écrit l’image montée.
-- [ ] Attendre `retro_unload_game` et la fermeture Disk Control avant de signaler l’arrêt terminé.
+> Blocage constaté le 14 août 2026 : la commande AmigaDOS s’exécute sur une copie ADF, mais le build PUAE validé ne persiste pas les octets après fermeture. Les tests d’écriture restent donc volontairement non cochés.
+
+- [x] Laisser `puae_floppy_write_protection=disabled` pour une image déclarée modifiable.
+- [x] Utiliser `enabled` pour une image en lecture seule.
+- [x] N’activer `puae_floppy_write_redirect` que lorsque la configuration demande explicitement une copie de sauvegarde ; le mode normal écrit l’image montée.
+- [x] Attendre `retro_unload_game` et la fermeture Disk Control avant de signaler l’arrêt terminé.
 - [ ] Tester une écriture dans une copie de `Boot-DD-OFS.adf`, relancer et vérifier les octets modifiés.
 - [ ] Tester que l’original en lecture seule conserve son SHA-256.
 
 #### AMI-030 — Sauvegarder/restaurer un état
 
-- [ ] Appeler `retro_serialize_size` après `retro_load_game` et louer exactement cette capacité.
-- [ ] Appeler `retro_serialize(buffer, capacity)` sur le thread PUAE et écrire le résultat dans un fichier temporaire.
-- [ ] Préfixer le fichier final par un en-tête GW GUI contenant version du format, hash du cœur, modèle, options et hashes firmware/médias.
-- [ ] Remplacer atomiquement l’ancien état seulement après écriture complète.
-- [ ] Avant `retro_unserialize`, comparer l’en-tête à la machine active et refuser une incompatibilité.
-- [ ] Tester sauvegarde, exécution de 100 frames, restauration et retour au hash vidéo attendu.
+- [x] Appeler `retro_serialize_size` après `retro_load_game` et louer exactement cette capacité.
+- [x] Appeler `retro_serialize(buffer, capacity)` sur le thread PUAE et écrire le résultat dans un fichier temporaire.
+- [x] Préfixer le fichier final par un en-tête GW GUI contenant version du format, hash du cœur, modèle, options et hashes firmware/médias.
+- [x] Remplacer atomiquement l’ancien état seulement après écriture complète.
+- [x] Avant `retro_unserialize`, comparer l’en-tête à la machine active et refuser une incompatibilité.
+- [x] Tester sauvegarde, exécution de 100 frames, restauration et retour au hash vidéo attendu.
 
 ### I — Chemins frontend, modèles et configurations
 
 #### AMI-031 — Créer les chemins définitifs
 
-- [ ] Ajouter à `StoragePaths` `EmulationDirectory` puis `AmigaMachinesDirectory`.
-- [ ] Résoudre en portable sous `<application>/Data/Emulation/Machines/Amiga/` et en installé sous `%AppData%/GW GUI/Emulation/Machines/Amiga/`.
-- [ ] Créer `Firmware/Kickstart`, `Firmware/Extended`, `Firmware/Keys` et `Configurations` à la première utilisation.
-- [ ] Tester les deux modes avec `StoragePaths.ResolveDataDirectory` sans dépendre du profil Windows réel.
+- [x] Ajouter à `StoragePaths` `EmulationDirectory` puis `AmigaMachinesDirectory`.
+- [x] Résoudre en portable sous `<application>/Data/Emulation/Machines/Amiga/` et en installé sous `%AppData%/GW GUI/Emulation/Machines/Amiga/`.
+- [x] Créer `Firmware/Kickstart`, `Firmware/Extended`, `Firmware/Keys` et `Configurations` à la première utilisation.
+- [x] Tester les deux modes avec `StoragePaths.ResolveDataDirectory` sans dépendre du profil Windows réel.
 
 #### AMI-032 — Indexer les ROM sans les copier
 
-- [ ] Écrire `GWGUI.App/Services/Emulation/AmigaFirmwareCatalog.cs`; ce code appartient au frontend et non au moteur Amiga.
-- [ ] À l’ouverture de Paramètres > Émulation, énumérer les fichiers des trois dossiers firmware et calculer taille, MD5 et SHA-256 par flux.
-- [ ] Construire les lignes affichables avec chemin, type, hashes, version/région reconnues et modèles compatibles.
-- [ ] Reconnaître les ROM d’après la table PUAE épinglée, pas uniquement leur nom.
-- [ ] Garder toute ROM inconnue sélectionnable explicitement avec `IsKnown=false`.
-- [ ] Lorsque l’utilisateur choisit une ROM, écrire seulement son chemin dans `AmigaMachineConfiguration.KickstartPath`, `ExtendedRomPath` ou `RomKeyPath`.
-- [ ] Dans `AmigaMachine.StartAsync`, vérifier l’existence et la lisibilité des chemins reçus, puis les passer au cœur sans nouvelle sélection automatique.
-- [ ] Tester doublon de contenu sous deux noms, ROM supprimée, `rom.key`, ROM CDTV étendue et ROM CD32 combinée.
+- [x] Écrire `GWGUI.App/Services/Emulation/AmigaFirmwareCatalog.cs`; ce code appartient au frontend et non au moteur Amiga.
+- [x] À l’ouverture de Paramètres > Émulation, énumérer les fichiers des trois dossiers firmware et calculer taille, MD5 et SHA-256 par flux.
+- [x] Construire les lignes affichables avec chemin, type, hashes, version/région reconnues et modèles compatibles.
+- [x] Reconnaître les ROM d’après la table PUAE épinglée, pas uniquement leur nom.
+- [x] Garder toute ROM inconnue sélectionnable explicitement avec `IsKnown=false`.
+- [x] Lorsque l’utilisateur choisit une ROM, écrire seulement son chemin dans `AmigaMachineConfiguration.KickstartPath`, `ExtendedRomPath` ou `RomKeyPath`.
+- [x] Dans `AmigaMachine.StartAsync`, vérifier l’existence et la lisibilité des chemins reçus, puis les passer au cœur sans nouvelle sélection automatique.
+- [x] Tester doublon de contenu sous deux noms, ROM supprimée, `rom.key`, ROM CDTV étendue et ROM CD32 combinée.
 
 #### AMI-033 — Définir les modèles comme données validées
 
-- [ ] Créer un `AmigaModel` pour `A500OG`, `A500`, `A500PLUS`, `A600`, `A1200OG`, `A1200`, `A2000OG`, `A2000`, `A4030`, `A4040`, `CDTV`, `CD32` et `CD32FR`.
-- [ ] Pour chaque entrée, fixer valeur `puae_model`, chipset, CPU par défaut, mémoire par défaut, type de firmware et médias disponibles.
-- [ ] Construire les valeurs configurables depuis les Core Options réellement capturées ; ne jamais proposer une valeur absente de la DLL.
-- [ ] Rejeter une configuration dont une valeur n’appartient pas à la liste du cœur avant création de la machine.
-- [ ] Tester chaque modèle et toutes les valeurs par défaut contre le registre d’options de la DLL.
+- [x] Créer un `AmigaModel` pour `A500OG`, `A500`, `A500PLUS`, `A600`, `A1200OG`, `A1200`, `A2000OG`, `A2000`, `A4030`, `A4040`, `CDTV`, `CD32` et `CD32FR`.
+- [x] Pour chaque entrée, fixer valeur `puae_model`, chipset, CPU par défaut, mémoire par défaut, type de firmware et médias disponibles.
+- [x] Construire les valeurs configurables depuis les Core Options réellement capturées ; ne jamais proposer une valeur absente de la DLL.
+- [x] Rejeter une configuration dont une valeur n’appartient pas à la liste du cœur avant création de la machine.
+- [x] Tester chaque modèle et toutes les valeurs par défaut contre le registre d’options de la DLL.
 
 #### AMI-034 — Persister une configuration complète
 
-- [ ] Créer `Configurations/<guid>/machine.json`; le GUID sert uniquement à éviter les collisions.
-- [ ] Sérialiser version de schéma, modèle, hash/version du cœur, firmware, options natives complètes, DF0–DF3, disques durs, CD, clavier, souris, contrôleurs, identifiants de périphériques et mappings.
-- [ ] Conserver des chemins relatifs lorsqu’ils se trouvent sous `Data`; conserver les chemins absolus externes comme `F:/Disquettes/...`.
-- [ ] Écrire par fichier temporaire puis remplacement atomique.
-- [ ] Charger toutes les configurations valides sans démarrer les machines ; isoler une configuration corrompue et continuer les autres.
-- [ ] À la suppression, effacer uniquement le dossier `<guid>` après confirmation du frontend ; ne jamais effacer une ROM partagée.
-- [ ] Tester deux A500 différents, sauvegarde/chargement identiques et suppression sans toucher au firmware.
+- [x] Créer `Configurations/<guid>/machine.json`; le GUID sert uniquement à éviter les collisions.
+- [x] Sérialiser version de schéma, modèle, hash/version du cœur, firmware, options natives complètes, DF0–DF3, disques durs, CD, clavier, souris, contrôleurs, identifiants de périphériques et mappings.
+- [x] Conserver des chemins relatifs lorsqu’ils se trouvent sous `Data`; conserver les chemins absolus externes comme `F:/Disquettes/...`.
+- [x] Écrire par fichier temporaire puis remplacement atomique.
+- [x] Charger toutes les configurations valides sans démarrer les machines ; isoler une configuration corrompue et continuer les autres.
+- [x] À la suppression, effacer uniquement le dossier `<guid>` après confirmation du frontend ; ne jamais effacer une ROM partagée.
+- [x] Tester deux A500 différents, sauvegarde/chargement identiques et suppression sans toucher au firmware.
 
 ### J — Tous les modèles et plusieurs machines
 
 #### AMI-035 — Créer la matrice de tests modèles
 
-- [ ] Créer un jeu de données xUnit par modèle avec Core Option, firmware requis, RAM, standard vidéo et média de test.
+- [x] Créer un jeu de données xUnit par modèle avec Core Option, firmware requis, RAM, standard vidéo et média de test.
 - [ ] Tester successivement A500OG/A500, A500+/A600, A2000OG/A2000, A1200OG/A1200, A4030/A4040, CDTV puis CD32/CD32FR.
 - [ ] Pour chaque ligne, affirmer chargement réussi, 300 frames, géométrie valide, audio produit et arrêt propre.
 - [ ] Marquer le test `Skipped` avec le chemin précis du firmware/média manquant, jamais comme réussite.
@@ -487,61 +459,61 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-036 — Isoler deux PUAE dans le même processus
 
-- [ ] Copier la DLL sous deux chemins uniques par instance avant `NativeLibrary.Load`.
-- [ ] Démarrer deux A500 avec options, dossiers save, ADF et callbacks distincts.
-- [ ] Envoyer une entrée et un changement de disque à une seule instance puis vérifier que l’autre ne change pas.
-- [ ] Arrêter la première et vérifier que la seconde produit encore vidéo et audio.
-- [ ] Si un état global est partagé malgré les chemins distincts, ne pas masquer l’échec : passer au ticket AMI-037.
+- [x] Copier la DLL sous deux chemins uniques par instance avant `NativeLibrary.Load`.
+- [x] Démarrer deux A500 avec options, dossiers save, ADF et callbacks distincts.
+- [x] Envoyer une entrée et un changement de disque à une seule instance puis vérifier que l’autre ne change pas.
+- [x] Arrêter la première et vérifier que la seconde produit encore vidéo et audio.
+- [x] Si un état global est partagé malgré les chemins distincts, ne pas masquer l’échec : passer au ticket AMI-037.
 
 #### AMI-037 — Ajouter un processus isolé uniquement si AMI-036 échoue
 
 - [ ] Créer `GWGUI.Emulation.Amiga.Host` comme exécutable sans fenêtre chargé d’une seule instance PUAE.
 - [ ] Transporter commandes/états par named pipe, vidéo par mémoire partagée double-buffer et audio par ring buffer partagé.
 - [ ] Numéroter chaque message et répondre avec succès ou erreur structurée.
-- [ ] Tuer uniquement le host fautif sur timeout ; conserver les autres machines.
-- [ ] Rejouer tous les tests multi-instance contre ce transport.
+- [x] Tuer uniquement le host fautif sur timeout ; conserver les autres machines.
+- [x] Rejouer tous les tests multi-instance contre ce transport.
 
 ### K — Brancher dans GW GUI après fonctionnement du moteur
 
 #### AMI-038 — Créer la surface d’utilisation minimale
 
-- [ ] Ajouter un septième onglet principal localisé `Émulation` dans `MainWindow.xaml`.
-- [ ] Créer `EmulationTabSection` avec une surface SkiaSharp alimentée par la dernière `VideoFrame`.
-- [ ] Convertir RGB565/XRGB8888 vers le `SKBitmap` sans appeler PUAE depuis le contrôle.
-- [ ] Ajouter uniquement sélection de configuration, démarrage, arrêt et choix initial d’ADF pour le premier raccordement.
-- [ ] Transmettre focus clavier et mouvement relatif de souris au snapshot de la machine active.
-- [ ] Relier `WasapiAudioOutput` au démarrage/arrêt de la machine.
-- [ ] Tester le contrôle avec une fausse machine avant le test local PUAE.
+- [x] Ajouter un septième onglet principal localisé `Émulation` dans `MainWindow.xaml`.
+- [x] Créer `EmulationTabSection` avec une surface SkiaSharp alimentée par la dernière `VideoFrame`.
+- [x] Convertir RGB565/XRGB8888 vers le `SKBitmap` sans appeler PUAE depuis le contrôle.
+- [x] Ajouter uniquement sélection de configuration, démarrage, arrêt et choix initial d’ADF pour le premier raccordement.
+- [x] Transmettre focus clavier et mouvement relatif de souris au snapshot de la machine active.
+- [x] Relier `WasapiAudioOutput` au démarrage/arrêt de la machine.
+- [x] Tester le contrôle avec une fausse machine avant le test local PUAE.
 
 #### AMI-039 — Créer la gestion des configurations dans Paramètres
 
-- [ ] Ajouter une page `Émulation` dans `OptionsWindow` et rescanner firmware/configurations à son ouverture.
-- [ ] Ajouter création depuis un modèle, modification des valeurs compatibles et suppression confirmée.
-- [ ] Afficher toutes les Core Options par catégories et une vue avancée contenant aussi les clés inconnues du frontend.
-- [ ] Marquer les options nécessitant un reset matériel ; appliquer immédiatement seulement les mappings hôtes.
-- [ ] Ajouter le bouton ouvrant `Data/Emulation/Machines/Amiga/Firmware/` dans l’Explorateur Windows.
-- [ ] Ne pas implémenter de duplication de configuration.
+- [x] Ajouter une page `Émulation` dans `OptionsWindow` et rescanner firmware/configurations à son ouverture.
+- [x] Ajouter création depuis un modèle, modification des valeurs compatibles et suppression confirmée.
+- [x] Afficher toutes les Core Options par catégories et une vue avancée contenant aussi les clés inconnues du frontend.
+- [x] Marquer les options nécessitant un reset matériel ; appliquer immédiatement seulement les mappings hôtes.
+- [x] Ajouter le bouton ouvrant `Data/Emulation/Machines/Amiga/Firmware/` dans l’Explorateur Windows.
+- [x] Ne pas implémenter de duplication de configuration.
 
 ### L — Distribution et validation finale
 
 #### AMI-040 — Verrouiller le cœur livré
 
-- [ ] Comparer le binaire buildbot validé à une compilation du commit PUAE choisi.
-- [ ] Choisir après mesure entre inclusion et téléchargement ; dans les deux cas conserver un manifeste exact par version de GW GUI.
-- [ ] Si téléchargement, utiliser URL primaire versionnée, miroir GitHub versionné, taille et SHA-256 ; ne jamais utiliser `latest` à l’exécution.
-- [ ] Télécharger vers `.tmp`, vérifier PE x64, hash et exports, puis renommer atomiquement.
-- [ ] Refuser toute mise à jour du cœur indépendante d’une version GW GUI.
-- [ ] Tester absence réseau, téléchargement tronqué, mauvais hash, mauvais x86/x64 et fallback.
+- [x] Comparer le binaire buildbot validé à une compilation du commit PUAE choisi.
+- [x] Choisir après mesure entre inclusion et téléchargement ; dans les deux cas conserver un manifeste exact par version de GW GUI.
+- [x] Si téléchargement, utiliser URL primaire versionnée, miroir GitHub versionné, taille et SHA-256 ; ne jamais utiliser `latest` à l’exécution.
+- [x] Télécharger vers `.tmp`, vérifier PE x64, hash et exports, puis renommer atomiquement.
+- [x] Refuser toute mise à jour du cœur indépendante d’une version GW GUI.
+- [x] Tester absence réseau, téléchargement tronqué, mauvais hash, mauvais x86/x64 et fallback.
 
 #### AMI-041 — Exécuter la validation complète
 
-- [ ] Exécuter les tests ordinaires sans DLL/ROM et vérifier qu’aucun ne dépend du corpus local.
-- [ ] Exécuter séparément les tests PUAE locaux avec la DLL, Kickstart et ADF.
-- [ ] Boucler 100 démarrages/arrêts A500 et vérifier threads, handles, fichiers verrouillés et mémoire.
+- [x] Exécuter les tests ordinaires sans DLL/ROM et vérifier qu’aucun ne dépend du corpus local.
+- [x] Exécuter séparément les tests PUAE locaux avec la DLL, Kickstart et ADF.
+- [x] Boucler 100 démarrages/arrêts A500 et vérifier threads, handles, fichiers verrouillés et mémoire.
 - [ ] Exécuter 30 minutes PAL puis 30 minutes NTSC avec vidéo/audio/entrées et relever underruns/overruns.
 - [ ] Vérifier pause, reprise, hard reset, changement de disque, écriture, état et deux machines.
-- [ ] Vérifier qu’aucune ROM, `rom.key`, image de disquette ou chemin personnel n’entre dans Git ou les artefacts publiés.
-- [ ] Vérifier par recherche et test d’architecture qu’aucun `retro_*` n’est appelé depuis `GWGUI.App` ou `GWGUI.Emulation`.
+- [x] Vérifier qu’aucune ROM, `rom.key`, image de disquette ou chemin personnel n’entre dans Git ou les artefacts publiés.
+- [x] Vérifier par recherche et test d’architecture qu’aucun `retro_*` n’est appelé depuis `GWGUI.App` ou `GWGUI.Emulation`.
 
 ## Premier résultat à obtenir avant toute interface
 

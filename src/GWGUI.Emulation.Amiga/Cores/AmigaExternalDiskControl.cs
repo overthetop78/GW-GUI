@@ -63,9 +63,23 @@ internal sealed class AmigaExternalDiskControl
         EnsureAvailable();
         var count = ImageCount;
         if (index < 0 || index >= count) throw new ArgumentOutOfRangeException(nameof(index));
-        if (!_setEjectState!(true)) throw new InvalidOperationException("The Amiga media drive could not be ejected.");
-        if (!_setImageIndex!((uint)index)) throw new InvalidOperationException("The Amiga core could not select the requested disk.");
-        if (!_setEjectState!(false)) throw new InvalidOperationException("The Amiga media drive could not insert the requested image.");
+        var previousIndex = _getImageIndex!();
+        var wasEjected = _getEjectState!();
+        if (!wasEjected && !_setEjectState!(true))
+            throw new InvalidOperationException("The Amiga media drive could not be ejected.");
+        try
+        {
+            if (!_setImageIndex!((uint)index))
+                throw new InvalidOperationException("The Amiga core could not select the requested disk.");
+            if (!_setEjectState!(false))
+                throw new InvalidOperationException("The Amiga media drive could not insert the requested image.");
+        }
+        catch
+        {
+            if (previousIndex != uint.MaxValue) _setImageIndex!(previousIndex);
+            if (!wasEjected) _setEjectState!(false);
+            throw;
+        }
     }
 
     internal string? GetPath(int index) => ReadText(_getImagePath, index);
@@ -100,17 +114,20 @@ internal sealed class AmigaExternalDiskControl
 
         var nativePath = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(path));
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.GameInfo>());
+        var inserted = false;
         try
         {
             Marshal.StructureToPtr(new AmigaExternalApi.GameInfo { Path = nativePath }, game, false);
             if (!_replaceImage!(index, game)) throw new InvalidOperationException("The Amiga core refused the media image.");
             if (!_setImageIndex!(index)) throw new InvalidOperationException("The Amiga core could not select the media image.");
             if (!_setEjectState!(false)) throw new InvalidOperationException("The Amiga media drive could not insert the image.");
+            inserted = true;
         }
         finally
         {
             Marshal.FreeHGlobal(game);
             Marshal.FreeCoTaskMem(nativePath);
+            if (!inserted && !wasEjected) _setEjectState!(false);
         }
     }
 
