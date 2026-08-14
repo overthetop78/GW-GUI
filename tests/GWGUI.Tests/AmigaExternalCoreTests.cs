@@ -88,6 +88,10 @@ public sealed class AmigaExternalCoreTests
         var replacement = Path.Combine(repository, "image_test", "validated_images", "Commodore", "Amiga",
             "3.5 pouces DD - AmigaDOS OFS", "Boot-DD-OFS.adf");
         await first.InsertFloppyAsync(replacement);
+        var statePath = Path.Combine(sessions, "first.state");
+        await first.SaveStateAsync(statePath);
+        Assert.True(new FileInfo(statePath).Length > 1024);
+        await first.LoadStateAsync(statePath);
         await first.ResumeAsync();
         await first.StopAsync();
         await second.StopAsync();

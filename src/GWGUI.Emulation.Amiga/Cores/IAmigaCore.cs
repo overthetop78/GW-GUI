@@ -7,6 +7,7 @@ internal interface IAmigaCore : IDisposable
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
     IReadOnlyList<AmigaCoreOption> Options { get; }
+    string CoreSha256 { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }
     void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory);

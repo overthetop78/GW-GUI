@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
+using System.Security.Cryptography;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 
@@ -22,6 +23,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
     public IReadOnlyList<AmigaCoreOption> Options => _host?.OptionCatalog ?? [];
+    public string CoreSha256 { get; private set; } = string.Empty;
     public double FramesPerSecond { get; private set; } = 50;
     public int SampleRate { get; private set; } = 44100;
 
@@ -38,6 +40,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
             throw new FileNotFoundException("The configured Amiga ROM key was not found.", configuration.RomKeyPath);
 
         var sourceCorePath = ResolveCorePath(_corePath);
+        using (var coreStream = File.OpenRead(sourceCorePath)) CoreSha256 = Convert.ToHexString(SHA256.HashData(coreStream));
         var systemDirectory = Path.Combine(sessionDirectory, "System");
         var contentDirectory = configuration.InitialDiskPath is null
             ? Path.Combine(sessionDirectory, "Content")
@@ -51,9 +54,6 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var corePath = Path.Combine(isolatedCoreDirectory, "puae_libretro.dll");
         File.Copy(sourceCorePath, corePath, true);
 
-        var kickstartFileName = "kickstart.rom";
-        var sessionKickstart = Path.Combine(systemDirectory, kickstartFileName);
-        File.Copy(configuration.KickstartPath, sessionKickstart, true);
         if (configuration.ExtendedRomPath is not null)
         {
             var extendedName = configuration.Model is "CD32" or "CD32FR" ? "kick40060.CD32.ext"
@@ -67,7 +67,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
             ["puae_model"] = configuration.Model,
-            ["puae_kickstart"] = kickstartFileName
+            ["puae_kickstart"] = Path.GetFullPath(configuration.KickstartPath)
         };
         _host = new AmigaExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options);
 
@@ -95,6 +95,14 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _serialize = Export<AmigaExternalApi.Serialize>("retro_serialize");
             _unserialize = Export<AmigaExternalApi.Serialize>("retro_unserialize");
             Export<AmigaExternalApi.VoidCall>("retro_init")();
+            var setController = Export<AmigaExternalApi.SetControllerPortDevice>("retro_set_controller_port_device");
+            for (var port = 0; port < 6; port++)
+            {
+                var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port]
+                    : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type
+                      ?? (port < 2 ? AmigaControllerType.Automatic : AmigaControllerType.None);
+                setController((uint)port, ControllerDevice(controller));
+            }
 
             AmigaExternalApi.LoadGame loadGame = Export<AmigaExternalApi.LoadGame>("retro_load_game");
             if (configuration.InitialDiskPath is null)
@@ -175,6 +183,18 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
     private T Export<T>(string name) where T : Delegate =>
         Marshal.GetDelegateForFunctionPointer<T>(NativeLibrary.GetExport(_library, name));
+
+    private static uint ControllerDevice(AmigaControllerType controller) => controller switch
+    {
+        AmigaControllerType.Automatic => 1,
+        AmigaControllerType.RetroPad => (1u << 8) | 1,
+        AmigaControllerType.Cd32Pad => (2u << 8) | 5,
+        AmigaControllerType.AnalogJoystick => (3u << 8) | 5,
+        AmigaControllerType.Joystick => (1u << 8) | 5,
+        AmigaControllerType.Keyboard => (1u << 8) | 3,
+        AmigaControllerType.None => 0,
+        _ => throw new ArgumentOutOfRangeException(nameof(controller))
+    };
 
     private static string ResolveCorePath(string? configuredPath)
     {

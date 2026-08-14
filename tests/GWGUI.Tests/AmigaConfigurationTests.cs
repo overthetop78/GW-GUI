@@ -12,15 +12,25 @@ public sealed class AmigaConfigurationTests
         var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Config", Guid.NewGuid().ToString("N"));
         var store = new AmigaConfigurationStore(directory);
         var first = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 1.3.rom", @"F:\Diskettes\Workbench.adf");
-        var second = first with { Id = Guid.NewGuid(), Model = "A1200", InitialDiskPath = null, AudioEnabled = false };
+        var second = first with
+        {
+            Id = Guid.NewGuid(), Model = "A1200", InitialDiskPath = null, AudioEnabled = false,
+            Input = new AmigaInputConfiguration(MouseDeviceId: "mouse-1",
+                ControllerBindings: [new AmigaControllerBinding(0, AmigaControllerType.Cd32Pad, "gamepad-uuid")])
+        };
         try
         {
             await store.SaveAsync(first);
             await store.SaveAsync(second);
+            var broken = Path.Combine(directory, "broken");
+            Directory.CreateDirectory(broken);
+            await File.WriteAllTextAsync(Path.Combine(broken, "machine.json"), "{broken");
             var loaded = await store.LoadAllAsync();
             Assert.Equal(2, loaded.Count);
             Assert.Contains(loaded, configuration => configuration.Id == first.Id && configuration.Model == "A500");
             Assert.Contains(loaded, configuration => configuration.Id == second.Id && !configuration.AudioEnabled);
+            Assert.Equal("gamepad-uuid", loaded.Single(configuration => configuration.Id == second.Id)
+                .Input!.ControllerBindings![0].DeviceId);
             store.Delete(first.Id);
             Assert.Single(await store.LoadAllAsync());
         }

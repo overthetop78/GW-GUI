@@ -16,6 +16,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private bool _disposed;
     private readonly ConcurrentQueue<Action> _commands = new();
     private TaskCompletionSource? _started;
+    private string? _currentDiskPath;
 
     internal AmigaMachine(Guid id, AmigaMachineConfiguration configuration,
         IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null)
@@ -25,6 +26,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         _core = core;
         _sessionDirectory = sessionDirectory;
         _audioOutput = audioOutput;
+        _currentDiskPath = configuration.InitialDiskPath;
     }
 
     public Guid Id { get; }
@@ -98,7 +100,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     public void SetInput(EmulationInputSnapshot snapshot) => _core.SetInput(snapshot);
 
     public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.InsertFloppy(path), cancellationToken);
+        QueueCommand(() => { _core.InsertFloppy(path); _currentDiskPath = Path.GetFullPath(path); }, cancellationToken);
 
     public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(_core.EjectFloppy, cancellationToken);
@@ -106,13 +108,23 @@ internal sealed class AmigaMachine : IAmigaMachine
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
-            var fullPath = Path.GetFullPath(path);
-            Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
-            File.WriteAllBytes(fullPath, _core.SaveState());
+            var header = new AmigaSavedStateHeader(1, Configuration.Model, _core.CoreSha256,
+                AmigaStateStore.HashFile(Configuration.KickstartPath),
+                _currentDiskPath is null ? null : AmigaStateStore.HashFile(_currentDiskPath),
+                Configuration.Options);
+            AmigaStateStore.Write(path, header, _core.SaveState());
         }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.LoadState(File.ReadAllBytes(path)), cancellationToken);
+        QueueCommand(() =>
+        {
+            var saved = AmigaStateStore.Read(path);
+            if (saved.Header.FormatVersion != 1 || saved.Header.Model != Configuration.Model
+                || saved.Header.CoreSha256 != _core.CoreSha256
+                || saved.Header.KickstartSha256 != AmigaStateStore.HashFile(Configuration.KickstartPath))
+                throw new InvalidDataException("The Amiga state does not match the running machine.");
+            _core.LoadState(saved.State);
+        }, cancellationToken);
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.SetOption(key, value), cancellationToken);

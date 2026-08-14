@@ -67,6 +67,8 @@ internal static class AmigaExternalApi
     internal delegate bool ReplaceImage(uint index, nint gameInfo);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool AddImage();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    internal delegate void KeyboardEvent([MarshalAs(UnmanagedType.I1)] bool down, uint keyCode, uint character, ushort modifiers);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetEnvironment(EnvironmentCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetVideo(VideoCallback callback);
@@ -74,6 +76,7 @@ internal static class AmigaExternalApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetAudioBatch(AudioBatchCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetInputPoll(InputPollCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetInputState(InputStateCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetControllerPortDevice(uint port, uint device);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void VoidCall();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemInfo(out SystemInfo info);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetApiVersion();
@@ -151,5 +154,11 @@ internal static class AmigaExternalApi
         internal nint GetImageCount;
         internal nint ReplaceImage;
         internal nint AddImage;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct KeyboardCallback
+    {
+        internal nint Callback;
     }
 }

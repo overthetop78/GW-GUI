@@ -23,6 +23,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private readonly object _inputGate = new();
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
+    private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
+    private AmigaExternalApi.KeyboardEvent? _keyboardEvent;
     internal AmigaExternalDiskControl DiskControl { get; } = new();
 
     internal AmigaExternalHostCallbacks(string systemDirectory, string contentDirectory,
@@ -125,7 +127,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     if (data != 0) Marshal.WriteInt32(data, 0);
                     return true;
                 case AmigaExternalApi.SetInputDescriptors:
+                    return true;
                 case AmigaExternalApi.SetKeyboardCallback:
+                    var keyboard = Marshal.PtrToStructure<AmigaExternalApi.KeyboardCallback>(data);
+                    _keyboardEvent = keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<AmigaExternalApi.KeyboardEvent>(keyboard.Callback);
                     return true;
                 case AmigaExternalApi.SetDiskControl:
                     DiskControl.Capture(data);
@@ -278,6 +283,21 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                 Pointer = _pendingInput.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0 }
             };
         }
+        PublishKeyboardTransitions(_polledInput.Keys);
+    }
+
+    private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
+    {
+        if (_keyboardEvent is null) return;
+        var reverseMap = KeyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
+        var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? 1 : 0)
+            | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? 2 : 0)
+            | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? 4 : 0));
+        foreach (var key in _previousKeys.Except(keys))
+            if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(false, code, 0, modifiers);
+        foreach (var key in keys.Except(_previousKeys))
+            if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(true, code, code is >= 32 and <= 126 ? code : 0, modifiers);
+        _previousKeys = new HashSet<EmulationKey>(keys);
     }
 
     private static void HandleLog(int level, nint format)
