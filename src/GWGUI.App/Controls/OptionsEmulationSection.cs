@@ -414,7 +414,7 @@ public sealed class OptionsEmulationSection : UserControl
         if (dialog.ShowDialog() != true) return Task.CompletedTask;
         var size = AskHardDiskSize();
         if (size is null) return Task.CompletedTask;
-        using (var stream = new FileStream(dialog.FileName, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+        using (var stream = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
             stream.SetLength(size.Value * 1024L * 1024L);
         _media.Add(new MediaItem
         {

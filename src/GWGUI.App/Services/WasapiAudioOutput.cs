@@ -22,11 +22,18 @@ public sealed class WasapiAudioOutput : IAudioOutput
 
     public static IReadOnlyList<AudioOutputDevice> GetOutputDevices()
     {
-        using var enumerator = new MMDeviceEnumerator();
-        return enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active)
-            .Select(device => new AudioOutputDevice(device.ID, device.FriendlyName))
-            .OrderBy(device => device.Name, StringComparer.CurrentCultureIgnoreCase)
-            .ToArray();
+        try
+        {
+            using var enumerator = new MMDeviceEnumerator();
+            return enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active)
+                .Select(device => new AudioOutputDevice(device.ID, device.FriendlyName))
+                .OrderBy(device => device.Name, StringComparer.CurrentCultureIgnoreCase)
+                .ToArray();
+        }
+        catch (COMException)
+        {
+            return [];
+        }
     }
 
     public void Start(int sampleRate)

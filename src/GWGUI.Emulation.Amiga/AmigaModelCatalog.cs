@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Amiga;
 
 public sealed record AmigaModel(string Id, string DisplayName, string Cpu, string Chipset,
     int ChipMemoryKib, int SlowMemoryKib, int FastMemoryMib, bool HasCdDrive, string RecommendedKickstart,
-    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 4);
+    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 1);
 
 public static class AmigaModelCatalog
 {
@@ -18,9 +18,9 @@ public static class AmigaModelCatalog
         new("A2000", "Amiga 2000 · Kickstart 3.1", "68000", "ECS", 1024, 0, 0, false, "3.1"),
         new("A4030", "Amiga 4000/030", "68030", "AGA", 2048, 0, 8, false, "3.1"),
         new("A4040", "Amiga 4000/040", "68040", "AGA", 2048, 0, 8, false, "3.1"),
-        new("CDTV", "Commodore CDTV", "68000", "OCS", 1024, 0, 0, true, "1.3 CDTV"),
-        new("CD32", "Amiga CD32", "68EC020", "AGA", 2048, 0, 0, true, "3.1 CD32"),
-        new("CD32FR", "Amiga CD32 · 8 Mio Fast", "68EC020", "AGA", 2048, 0, 8, true, "3.1 CD32")
+        new("CDTV", "Commodore CDTV", "68000", "OCS", 1024, 0, 0, true, "1.3 CDTV", 1, true, 1),
+        new("CD32", "Amiga CD32", "68EC020", "AGA", 2048, 0, 0, true, "3.1 CD32", 0, false, 0),
+        new("CD32FR", "Amiga CD32 · 8 Mio Fast", "68EC020", "AGA", 2048, 0, 8, true, "3.1 CD32", 0, false, 0)
     ];
 
     public static AmigaModel Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal))
