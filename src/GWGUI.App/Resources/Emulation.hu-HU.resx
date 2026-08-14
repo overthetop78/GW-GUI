@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Processzor</value></data>
   <data name="Emulation.Precision"><value>Pontosság</value></data>
   <data name="Emulation.Acceleration"><value>Gyorsítás</value></data>
+  <data name="Emulation.MainMemory"><value>Főmemória</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Memóriabővítések</value></data>
+  <data name="Emulation.MemoryNone"><value>Nincs</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>A memóriabeállítás kompatibilis ezzel: {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>A memóriabővítések kompatibilisek ezzel: {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>A Zorro III RAM nem érhető el ezen: {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Összes beállított memória: {0} {1}</value></data>
 </root>

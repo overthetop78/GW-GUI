@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>المعالج</value></data>
   <data name="Emulation.Precision"><value>الدقة</value></data>
   <data name="Emulation.Acceleration"><value>التسريع</value></data>
+  <data name="Emulation.MainMemory"><value>الذاكرة الرئيسية</value></data>
+  <data name="Emulation.MemoryExtensions"><value>توسعات الذاكرة</value></data>
+  <data name="Emulation.MemoryNone"><value>لا شيء</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>إعداد الذاكرة متوافق مع {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>توسعات الذاكرة متوافقة مع {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>ذاكرة Zorro III غير متاحة على {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>إجمالي الذاكرة المعدّة: {0} {1}</value></data>
 </root>

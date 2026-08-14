@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Suoritin</value></data>
   <data name="Emulation.Precision"><value>Tarkkuus</value></data>
   <data name="Emulation.Acceleration"><value>Kiihdytys</value></data>
+  <data name="Emulation.MainMemory"><value>Päämuisti</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Muistilaajennukset</value></data>
+  <data name="Emulation.MemoryNone"><value>Ei mitään</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Muistimääritys on yhteensopiva mallin {0} kanssa.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Muistilaajennukset ovat yhteensopivia mallin {0} kanssa.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III -RAM ei ole käytettävissä mallissa {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Määritetty muisti yhteensä: {0} {1}</value></data>
 </root>

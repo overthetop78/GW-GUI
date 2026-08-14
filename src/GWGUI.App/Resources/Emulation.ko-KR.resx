@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>프로세서</value></data>
   <data name="Emulation.Precision"><value>정밀도</value></data>
   <data name="Emulation.Acceleration"><value>가속</value></data>
+  <data name="Emulation.MainMemory"><value>주 메모리</value></data>
+  <data name="Emulation.MemoryExtensions"><value>메모리 확장</value></data>
+  <data name="Emulation.MemoryNone"><value>없음</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>메모리 구성이 {0}과(와) 호환됩니다.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>메모리 확장이 {0}과(와) 호환됩니다.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM은 {0}에서 사용할 수 없습니다.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>구성된 총 메모리: {0} {1}</value></data>
 </root>

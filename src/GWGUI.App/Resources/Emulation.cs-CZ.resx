@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Procesor</value></data>
   <data name="Emulation.Precision"><value>Přesnost</value></data>
   <data name="Emulation.Acceleration"><value>Akcelerace</value></data>
+  <data name="Emulation.MainMemory"><value>Hlavní paměť</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Rozšíření paměti</value></data>
+  <data name="Emulation.MemoryNone"><value>Žádná</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Konfigurace paměti je kompatibilní s {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Rozšíření paměti jsou kompatibilní s {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Paměť Zorro III není u modelu {0} dostupná.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Celková nakonfigurovaná paměť: {0} {1}</value></data>
 </root>

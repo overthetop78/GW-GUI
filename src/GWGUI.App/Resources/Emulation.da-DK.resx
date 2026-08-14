@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Processor</value></data>
   <data name="Emulation.Precision"><value>Præcision</value></data>
   <data name="Emulation.Acceleration"><value>Acceleration</value></data>
+  <data name="Emulation.MainMemory"><value>Hovedhukommelse</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Hukommelsesudvidelser</value></data>
+  <data name="Emulation.MemoryNone"><value>Ingen</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Hukommelseskonfigurationen er kompatibel med {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Hukommelsesudvidelserne er kompatible med {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III-RAM er ikke tilgængelig på {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Samlet konfigureret hukommelse: {0} {1}</value></data>
 </root>

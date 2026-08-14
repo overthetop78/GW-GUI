@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>หน่วยประมวลผล</value></data>
   <data name="Emulation.Precision"><value>ความแม่นยำ</value></data>
   <data name="Emulation.Acceleration"><value>การเร่งความเร็ว</value></data>
+  <data name="Emulation.MainMemory"><value>หน่วยความจำหลัก</value></data>
+  <data name="Emulation.MemoryExtensions"><value>ส่วนขยายหน่วยความจำ</value></data>
+  <data name="Emulation.MemoryNone"><value>ไม่มี</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>การกำหนดค่าหน่วยความจำเข้ากันได้กับ {0}</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>ส่วนขยายหน่วยความจำเข้ากันได้กับ {0}</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III ไม่พร้อมใช้งานบน {0}</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>หน่วยความจำที่กำหนดค่าทั้งหมด: {0} {1}</value></data>
 </root>

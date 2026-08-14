@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Procesor</value></data>
   <data name="Emulation.Precision"><value>Precizie</value></data>
   <data name="Emulation.Acceleration"><value>Accelerare</value></data>
+  <data name="Emulation.MainMemory"><value>Memorie principală</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Extensii de memorie</value></data>
+  <data name="Emulation.MemoryNone"><value>Niciuna</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Configurația memoriei este compatibilă cu {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Extensiile de memorie sunt compatibile cu {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Memoria RAM Zorro III nu este disponibilă pe {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Memorie totală configurată: {0} {1}</value></data>
 </root>

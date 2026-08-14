@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Processor</value></data>
   <data name="Emulation.Precision"><value>Nauwkeurigheid</value></data>
   <data name="Emulation.Acceleration"><value>Versnelling</value></data>
+  <data name="Emulation.MainMemory"><value>Hoofdgeheugen</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Geheugenuitbreidingen</value></data>
+  <data name="Emulation.MemoryNone"><value>Geen</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>De geheugenconfiguratie is compatibel met {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>De geheugenuitbreidingen zijn compatibel met {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III-RAM is niet beschikbaar op {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Totaal geconfigureerd geheugen: {0} {1}</value></data>
 </root>

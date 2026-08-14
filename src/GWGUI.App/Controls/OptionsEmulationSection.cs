@@ -47,6 +47,9 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _slowMemory = new() { ItemsSource = new[] { "auto", "0", "2", "4", "6", "7" } };
     private readonly ComboBox _fastMemory = new() { ItemsSource = new[] { "auto", "0", "1", "2", "4", "8" } };
     private readonly ComboBox _z3Memory = new() { ItemsSource = new[] { "auto", "0", "1", "2", "4", "8", "16", "32", "64", "128", "256", "512" } };
+    private readonly TextBlock _mainMemoryHint = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly TextBlock _extensionMemoryHint = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly TextBlock _totalMemory = new() { VerticalAlignment = VerticalAlignment.Center, FontSize = 16 };
     private readonly ComboBox _videoStandard = new() { ItemsSource = new[] { "PAL", "NTSC" } };
     private readonly TextBlock _chipset = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly ComboBox _videoResolution = new() { ItemsSource = new[] { "auto", "auto-lores", "auto-superhires", "lores", "hires", "superhires" } };
@@ -123,6 +126,10 @@ public sealed class OptionsEmulationSection : UserControl
         _firmwareList.DisplayMemberPath = nameof(FirmwareItem.DisplayName);
         _firmwareList.SelectionChanged += FirmwareSelected;
         _model.SelectionChanged += (_, _) => ApplyModelDefaults();
+        _chipMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
+        _slowMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
+        _fastMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
+        _z3Memory.SelectionChanged += (_, _) => UpdateMemorySummary();
         _cpuModel.SelectionChanged += (_, _) =>
         {
             ConfigureFpuChoices();
@@ -393,13 +400,21 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildRamTab()
     {
-        return ScrollPage(TwoColumnPage(
-            Card(FieldGrid((LocExtension.Get("Emulation.ChipMemory"), _chipMemory),
-                (LocExtension.Get("Emulation.SlowMemory"), _slowMemory)),
-                $"{LocExtension.Get("Emulation.ChipMemory")} / {LocExtension.Get("Emulation.SlowMemory")}"),
-            Card(FieldGrid((LocExtension.Get("Emulation.FastMemory"), _fastMemory),
-                (LocExtension.Get("Emulation.Z3Memory"), _z3Memory)),
-                $"{LocExtension.Get("Emulation.FastMemory")} / {LocExtension.Get("Emulation.Z3Memory")}")));
+        var mainMemory = new StackPanel();
+        mainMemory.Children.Add(FieldGrid((LocExtension.Get("Emulation.ChipMemory"), _chipMemory),
+            (LocExtension.Get("Emulation.SlowMemory"), _slowMemory)));
+        mainMemory.Children.Add(InformationBanner(_mainMemoryHint));
+
+        var extensions = new StackPanel();
+        extensions.Children.Add(FieldGrid((LocExtension.Get("Emulation.FastMemory"), _fastMemory),
+            (LocExtension.Get("Emulation.Z3Memory"), _z3Memory)));
+        extensions.Children.Add(InformationBanner(_extensionMemoryHint));
+
+        var root = TwoColumnPage(
+            IconCard(mainMemory, LocExtension.Get("Emulation.MainMemory"), "\uE964"),
+            IconCard(extensions, LocExtension.Get("Emulation.MemoryExtensions"), "\uE950"));
+        root.Children.Add(FullWidthMemorySummary(1));
+        return ScrollPage(root);
     }
 
     private UIElement BuildVideoTab()
@@ -685,7 +700,7 @@ public sealed class OptionsEmulationSection : UserControl
         var oneAndHalf = 1.5.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
         var oneAndEight = 1.8.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
         _chipMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("1", $"512 {kib}"), ("2", $"1 {mib}"), ("3", $"{oneAndHalf} {mib}"), ("4", $"2 {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
-        _slowMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("0", LocExtension.Get("HostTools.None")), ("2", $"512 {kib}"), ("4", $"1 {mib}"), ("6", $"{oneAndHalf} {mib}"), ("7", $"{oneAndEight} {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
+        _slowMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("0", LocExtension.Get("Emulation.MemoryNone")), ("2", $"512 {kib}"), ("4", $"1 {mib}"), ("6", $"{oneAndHalf} {mib}"), ("7", $"{oneAndEight} {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
         _fastMemory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8]);
         _z3Memory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
         _videoStandard.ItemsSource = new[] { new OptionChoice("PAL auto", $"PAL ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("NTSC auto", $"NTSC ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("PAL", "PAL"), new OptionChoice("NTSC", "NTSC") };
@@ -731,7 +746,7 @@ public sealed class OptionsEmulationSection : UserControl
     private static OptionChoice[] MemoryChoices(IEnumerable<int> values)
     {
         var unit = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB";
-        return [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("HostTools.None") : $"{value} {unit}"))];
+        return [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {unit}"))];
     }
 
     private Task AddMediaAsync()
@@ -949,6 +964,63 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetRow(card, row);
         Grid.SetColumnSpan(card, 2);
         return card;
+    }
+
+    private Border FullWidthMemorySummary(int row)
+    {
+        var content = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Margin = new Thickness(14, 10, 14, 10)
+        };
+        var icon = new TextBlock
+        {
+            Text = "\uE964",
+            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontSize = 22,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 12, 0)
+        };
+        icon.SetResourceReference(ForegroundProperty, "AccentBrush");
+        content.Children.Add(icon);
+        content.Children.Add(_totalMemory);
+        var card = Card(content);
+        card.Margin = new Thickness(0, 10, 0, 0);
+        Grid.SetRow(card, row);
+        Grid.SetColumnSpan(card, 2);
+        return card;
+    }
+
+    private static Border InformationBanner(TextBlock text)
+    {
+        var content = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Margin = new Thickness(12, 9, 12, 9)
+        };
+        var icon = new TextBlock
+        {
+            Text = "\uE946",
+            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontSize = 18,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 10, 0)
+        };
+        icon.SetResourceReference(ForegroundProperty, "AccentBrush");
+        content.Children.Add(icon);
+        text.VerticalAlignment = VerticalAlignment.Center;
+        text.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        content.Children.Add(text);
+        var banner = new Border
+        {
+            Child = content,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(7),
+            Margin = new Thickness(12, 0, 12, 12)
+        };
+        banner.SetResourceReference(BackgroundProperty, "WindowBrush");
+        banner.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        return banner;
     }
 
     private static Grid FieldGrid(params (string Label, FrameworkElement Control)[] fields) => FieldGrid(1, fields);
@@ -1233,10 +1305,7 @@ public sealed class OptionsEmulationSection : UserControl
         SelectValue(_cpuModel, model.DefaultCpu);
         ConfigureFpuChoices();
         _chipset.Text = model.Chipset;
-        SelectValue(_chipMemory, Math.Clamp(model.ChipMemoryKib / 512, 1, 4).ToString());
-        SelectValue(_slowMemory, model.SlowMemoryKib == 0 ? "0" : Math.Clamp(model.SlowMemoryKib / 256, 2, 7).ToString());
-        SelectValue(_fastMemory, model.FastMemoryMib.ToString());
-        SelectValue(_z3Memory, "0");
+        ConfigureMemoryChoices(model);
         SelectValue(_videoStandard, "PAL auto");
         SelectValue(_cpuCompatibility, "exact");
         ConfigureCpuFrequencyChoices();
@@ -1250,6 +1319,106 @@ public sealed class OptionsEmulationSection : UserControl
         _hardDriveCount.SelectedItem = 0;
         _cdDrive.IsChecked = model.HasCdDrive;
         RefreshMediaRows();
+    }
+
+    private void ConfigureMemoryChoices(AmigaModel model)
+    {
+        var chipValues = model.Id switch
+        {
+            "A1000" => new[] { 512 },
+            "A500" => new[] { 512, 1024, 1536, 2048 },
+            "A500PLUS" or "A600" => new[] { 1024, 2048 },
+            "A2000" => new[] { 512, 1024, 2048 },
+            _ => new[] { 2048 }
+        };
+        var slowValues = model.Id switch
+        {
+            "A1000" or "A500" or "A500PLUS" or "A2000" => new[] { 0, 512, 1024, 1536, 1792 },
+            _ => new[] { 0 }
+        };
+        var fastValues = new[] { 0, 1, 2, 4, 8 };
+        var z3Values = model.Id is "A3000" or "A4000"
+            ? new[] { 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 }
+            : new[] { 0 };
+
+        _chipMemory.ItemsSource = chipValues.Select(ChipMemoryChoice).ToArray();
+        _slowMemory.ItemsSource = slowValues.Select(SlowMemoryChoice).ToArray();
+        _fastMemory.ItemsSource = ModelMemoryChoices(fastValues);
+        _z3Memory.ItemsSource = ModelMemoryChoices(z3Values);
+
+        SelectValue(_chipMemory, ChipMemoryValue(model.ChipMemoryKib));
+        SelectValue(_slowMemory, SlowMemoryValue(model.SlowMemoryKib));
+        SelectValue(_fastMemory, fastValues.Contains(model.FastMemoryMib) ? model.FastMemoryMib.ToString() : "0");
+        SelectValue(_z3Memory, "0");
+
+        _chipMemory.IsEnabled = chipValues.Length > 1;
+        _slowMemory.IsEnabled = slowValues.Length > 1;
+        _fastMemory.IsEnabled = fastValues.Length > 1;
+        _z3Memory.IsEnabled = z3Values.Length > 1;
+
+        _mainMemoryHint.Text = LocExtension.Get("Emulation.MemoryCompatibleWithModel", model.DisplayName);
+        _extensionMemoryHint.Text = _z3Memory.IsEnabled
+            ? LocExtension.Get("Emulation.MemoryExtensionsCompatibleWithModel", model.DisplayName)
+            : LocExtension.Get("Emulation.Z3MemoryUnavailableForModel", model.DisplayName);
+        UpdateMemorySummary();
+    }
+
+    private void UpdateMemorySummary()
+    {
+        var totalKib = ChipMemoryKib(SelectedText(_chipMemory))
+            + SlowMemoryKib(SelectedText(_slowMemory))
+            + MemoryMib(SelectedText(_fastMemory)) * 1024
+            + MemoryMib(SelectedText(_z3Memory)) * 1024;
+        var totalMib = totalKib / 1024d;
+        _totalMemory.Text = LocExtension.Get("Emulation.TotalMemoryConfigured",
+            totalMib.ToString(totalMib % 1 == 0 ? "0" : "0.##", System.Globalization.CultureInfo.CurrentCulture),
+            System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB");
+    }
+
+    private static OptionChoice ChipMemoryChoice(int kib) =>
+        new(ChipMemoryValue(kib), FormatMemory(kib));
+
+    private static OptionChoice SlowMemoryChoice(int kib) =>
+        new(SlowMemoryValue(kib), kib == 0 ? LocExtension.Get("Emulation.MemoryNone") : FormatMemory(kib));
+
+    private static string ChipMemoryValue(int kib) => Math.Clamp(kib / 512, 1, 4).ToString();
+
+    private static string SlowMemoryValue(int kib) => kib switch
+    {
+        0 => "0",
+        512 => "2",
+        1024 => "4",
+        1536 => "6",
+        1792 => "7",
+        _ => "0"
+    };
+
+    private static int ChipMemoryKib(string value) => int.TryParse(value, out var units) ? units * 512 : 0;
+
+    private static int SlowMemoryKib(string value) => value switch
+    {
+        "2" => 512,
+        "4" => 1024,
+        "6" => 1536,
+        "7" => 1792,
+        _ => 0
+    };
+
+    private static int MemoryMib(string value) => int.TryParse(value, out var mib) ? mib : 0;
+
+    private static OptionChoice[] ModelMemoryChoices(IEnumerable<int> values)
+    {
+        var unit = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB";
+        return values.Select(value => new OptionChoice(value.ToString(),
+            value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {unit}")).ToArray();
+    }
+
+    private static string FormatMemory(int kib)
+    {
+        var frenchUnits = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
+        if (kib < 1024) return $"{kib} {(frenchUnits ? "Kio" : "KiB")}";
+        var mib = kib / 1024d;
+        return $"{mib.ToString(mib % 1 == 0 ? "0" : "0.##", System.Globalization.CultureInfo.CurrentCulture)} {(frenchUnits ? "Mio" : "MiB")}";
     }
 
     private void ConfigureFpuChoices()

@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>处理器</value></data>
   <data name="Emulation.Precision"><value>精度</value></data>
   <data name="Emulation.Acceleration"><value>加速</value></data>
+  <data name="Emulation.MainMemory"><value>主内存</value></data>
+  <data name="Emulation.MemoryExtensions"><value>内存扩展</value></data>
+  <data name="Emulation.MemoryNone"><value>无</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>内存配置与 {0} 兼容。</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>内存扩展与 {0} 兼容。</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>{0} 不支持 Zorro III 内存。</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>已配置内存总量：{0} {1}</value></data>
 </root>

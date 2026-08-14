@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Bộ xử lý</value></data>
   <data name="Emulation.Precision"><value>Độ chính xác</value></data>
   <data name="Emulation.Acceleration"><value>Tăng tốc</value></data>
+  <data name="Emulation.MainMemory"><value>Bộ nhớ chính</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Mở rộng bộ nhớ</value></data>
+  <data name="Emulation.MemoryNone"><value>Không có</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Cấu hình bộ nhớ tương thích với {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Các phần mở rộng bộ nhớ tương thích với {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III không khả dụng trên {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Tổng bộ nhớ đã cấu hình: {0} {1}</value></data>
 </root>

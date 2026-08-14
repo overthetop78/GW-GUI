@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>מעבד</value></data>
   <data name="Emulation.Precision"><value>דיוק</value></data>
   <data name="Emulation.Acceleration"><value>האצה</value></data>
+  <data name="Emulation.MainMemory"><value>זיכרון ראשי</value></data>
+  <data name="Emulation.MemoryExtensions"><value>הרחבות זיכרון</value></data>
+  <data name="Emulation.MemoryNone"><value>ללא</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>תצורת הזיכרון תואמת ל־{0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>הרחבות הזיכרון תואמות ל־{0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>זיכרון Zorro III אינו זמין ב־{0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>סך הזיכרון שהוגדר: {0} {1}</value></data>
 </root>

@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>プロセッサ</value></data>
   <data name="Emulation.Precision"><value>精度</value></data>
   <data name="Emulation.Acceleration"><value>高速化</value></data>
+  <data name="Emulation.MainMemory"><value>メインメモリ</value></data>
+  <data name="Emulation.MemoryExtensions"><value>メモリ拡張</value></data>
+  <data name="Emulation.MemoryNone"><value>なし</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>メモリ構成は {0} と互換性があります。</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>メモリ拡張は {0} と互換性があります。</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM は {0} では使用できません。</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>構成済みメモリ合計: {0} {1}</value></data>
 </root>

@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>İşlemci</value></data>
   <data name="Emulation.Precision"><value>Hassasiyet</value></data>
   <data name="Emulation.Acceleration"><value>Hızlandırma</value></data>
+  <data name="Emulation.MainMemory"><value>Ana bellek</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Bellek genişletmeleri</value></data>
+  <data name="Emulation.MemoryNone"><value>Yok</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Bellek yapılandırması {0} ile uyumludur.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Bellek genişletmeleri {0} ile uyumludur.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM, {0} üzerinde kullanılamaz.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Toplam yapılandırılmış bellek: {0} {1}</value></data>
 </root>

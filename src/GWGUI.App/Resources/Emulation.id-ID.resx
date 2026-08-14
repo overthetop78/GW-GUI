@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Prosesor</value></data>
   <data name="Emulation.Precision"><value>Presisi</value></data>
   <data name="Emulation.Acceleration"><value>Akselerasi</value></data>
+  <data name="Emulation.MainMemory"><value>Memori utama</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Ekstensi memori</value></data>
+  <data name="Emulation.MemoryNone"><value>Tidak ada</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Konfigurasi memori kompatibel dengan {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Ekstensi memori kompatibel dengan {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III tidak tersedia pada {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Total memori yang dikonfigurasi: {0} {1}</value></data>
 </root>

@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Processore</value></data>
   <data name="Emulation.Precision"><value>Precisione</value></data>
   <data name="Emulation.Acceleration"><value>Accelerazione</value></data>
+  <data name="Emulation.MainMemory"><value>Memoria principale</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Espansioni di memoria</value></data>
+  <data name="Emulation.MemoryNone"><value>Nessuna</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>La configurazione della memoria è compatibile con {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Le espansioni di memoria sono compatibili con {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>La RAM Zorro III non è disponibile su {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Memoria totale configurata: {0} {1}</value></data>
 </root>

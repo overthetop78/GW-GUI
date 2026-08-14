@@ -255,4 +255,11 @@
   <data name="Emulation.Processor"><value>Процессор</value></data>
   <data name="Emulation.Precision"><value>Точность</value></data>
   <data name="Emulation.Acceleration"><value>Ускорение</value></data>
+  <data name="Emulation.MainMemory"><value>Основная память</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Расширения памяти</value></data>
+  <data name="Emulation.MemoryNone"><value>Нет</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Конфигурация памяти совместима с {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Расширения памяти совместимы с {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>ОЗУ Zorro III недоступно на {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Всего настроено памяти: {0} {1}</value></data>
 </root>
