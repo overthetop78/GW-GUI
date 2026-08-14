@@ -131,6 +131,53 @@ public sealed class AmigaEnvironmentCallbackTests
         }
     }
 
+    [Fact]
+    public void LegacyOptions_PreserveVisibilityAndInvokeTheUpdateCallback()
+    {
+        var root = TemporaryRoot();
+        using var callbacks = CreateCallbacks(root);
+        var key = Marshal.StringToCoTaskMemUTF8("legacy_option");
+        var definition = Marshal.StringToCoTaskMemUTF8("Legacy option; disabled|enabled");
+        var variableSize = Marshal.SizeOf<AmigaExternalApi.Variable>();
+        var variables = Marshal.AllocHGlobal(variableSize * 2);
+        var display = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.CoreOptionDisplay>());
+        var callbackData = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.CoreOptionsUpdateDisplayCallback>());
+        var updateCount = 0;
+        AmigaExternalApi.UpdateCoreOptionsDisplay update = () => { updateCount++; return true; };
+        try
+        {
+            Marshal.StructureToPtr(new AmigaExternalApi.Variable { Key = key, Value = definition }, variables, false);
+            Marshal.StructureToPtr(new AmigaExternalApi.Variable(), variables + variableSize, false);
+            Assert.True(callbacks.Environment(AmigaExternalApi.SetVariables, variables));
+            var option = Assert.Single(callbacks.OptionCatalog);
+            Assert.Equal("legacy_option", option.Key);
+            Assert.Equal("disabled", option.DefaultValue);
+            Assert.True(option.IsVisible);
+
+            Marshal.StructureToPtr(new AmigaExternalApi.CoreOptionDisplay { Key = key, Visible = false }, display, false);
+            Assert.True(callbacks.Environment(AmigaExternalApi.SetCoreOptionsDisplay, display));
+            Assert.False(Assert.Single(callbacks.OptionCatalog).IsVisible);
+
+            Marshal.StructureToPtr(new AmigaExternalApi.CoreOptionsUpdateDisplayCallback
+            {
+                Callback = Marshal.GetFunctionPointerForDelegate(update)
+            }, callbackData, false);
+            Assert.True(callbacks.Environment(AmigaExternalApi.SetCoreOptionsUpdateDisplayCallback, callbackData));
+            callbacks.SetOption("legacy_option", "enabled");
+            Assert.Equal(1, updateCount);
+        }
+        finally
+        {
+            GC.KeepAlive(update);
+            Marshal.FreeHGlobal(callbackData);
+            Marshal.FreeHGlobal(display);
+            Marshal.FreeHGlobal(variables);
+            Marshal.FreeCoTaskMem(definition);
+            Marshal.FreeCoTaskMem(key);
+            Directory.Delete(root, true);
+        }
+    }
+
     private static string TemporaryRoot()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Environment", Guid.NewGuid().ToString("N"));

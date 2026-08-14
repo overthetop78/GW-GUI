@@ -28,6 +28,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
     private AmigaExternalApi.KeyboardEvent? _keyboardEvent;
+    private AmigaExternalApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
+    private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal AmigaExternalDiskControl DiskControl { get; } = new();
 
     internal AmigaExternalHostCallbacks(string systemDirectory, string contentDirectory,
@@ -106,6 +108,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
             throw new ArgumentOutOfRangeException(nameof(value), value, $"Invalid value for Amiga option {key}.");
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, 1);
+        _updateOptionsDisplay?.Invoke();
     }
 
     private bool HandleEnvironment(uint command, nint data)
@@ -173,9 +176,11 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     return CaptureControllerInfo(data);
                 case AmigaExternalApi.SetMemoryMaps:
                 case AmigaExternalApi.SetSupportAchievements:
-                case AmigaExternalApi.SetCoreOptionsDisplay:
-                case AmigaExternalApi.SetCoreOptionsUpdateDisplayCallback:
                     return true;
+                case AmigaExternalApi.SetCoreOptionsDisplay:
+                    return ApplyOptionVisibility(data);
+                case AmigaExternalApi.SetCoreOptionsUpdateDisplayCallback:
+                    return CaptureOptionsDisplayCallback(data);
                 case AmigaExternalApi.SetSupportNoGame:
                     SupportsNoGame = data != 0 && Marshal.ReadByte(data) != 0;
                     return true;
@@ -219,17 +224,23 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private void RegisterLegacyOptions(nint data)
     {
         var size = Marshal.SizeOf<AmigaExternalApi.Variable>();
+        var catalog = new List<AmigaCoreOption>();
         for (var current = data; current != 0; current += size)
         {
             var variable = Marshal.PtrToStructure<AmigaExternalApi.Variable>(current);
             if (variable.Key == 0) break;
             var key = Marshal.PtrToStringUTF8(variable.Key)!;
-            if (_options.ContainsKey(key)) continue;
             var definition = Marshal.PtrToStringUTF8(variable.Value);
-            var values = definition?.Split(';', 2).ElementAtOrDefault(1)?.Trim();
-            var defaultValue = values?.Split('|', 2)[0];
-            if (!string.IsNullOrWhiteSpace(defaultValue)) _options[key] = defaultValue;
+            var parts = definition?.Split(';', 2) ?? [];
+            var name = parts.ElementAtOrDefault(0)?.Trim() ?? key;
+            var values = parts.ElementAtOrDefault(1)?.Trim().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Select(value => new AmigaCoreOptionValue(value, value)).ToArray() ?? [];
+            var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;
+            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
+            catalog.Add(new AmigaCoreOption(key, name, null, null, defaultValue, values,
+                !_optionVisibility.TryGetValue(key, out var visible) || visible));
         }
+        OptionCatalog = catalog;
     }
 
     private void RegisterVersionTwoOptions(nint options)
@@ -261,10 +272,34 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                 if (value is null) break;
                 values.Add(new AmigaCoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));
             }
-            catalog.Add(new AmigaCoreOption(key, name, description, category, defaultValue, values));
+            catalog.Add(new AmigaCoreOption(key, name, description, category, defaultValue, values,
+                !_optionVisibility.TryGetValue(key, out var visible) || visible));
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
         }
         OptionCatalog = catalog;
+    }
+
+    private bool ApplyOptionVisibility(nint data)
+    {
+        if (data == 0) return false;
+        var display = Marshal.PtrToStructure<AmigaExternalApi.CoreOptionDisplay>(data);
+        var key = display.Key == 0 ? null : Marshal.PtrToStringUTF8(display.Key);
+        if (string.IsNullOrWhiteSpace(key)) return false;
+        _optionVisibility[key] = display.Visible;
+        OptionCatalog = OptionCatalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal)
+            ? option with { IsVisible = display.Visible }
+            : option).ToArray();
+        return true;
+    }
+
+    private bool CaptureOptionsDisplayCallback(nint data)
+    {
+        if (data == 0) return false;
+        var callback = Marshal.PtrToStructure<AmigaExternalApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
+        _updateOptionsDisplay = callback == 0
+            ? null
+            : Marshal.GetDelegateForFunctionPointer<AmigaExternalApi.UpdateCoreOptionsDisplay>(callback);
+        return true;
     }
 
     private static string? StringAt(nint structure, int offset)

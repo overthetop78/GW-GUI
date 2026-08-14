@@ -77,6 +77,8 @@ internal static class AmigaExternalApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void KeyboardEvent([MarshalAs(UnmanagedType.I1)] bool down, uint keyCode, uint character, ushort modifiers);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetLedState(int led, int state);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool UpdateCoreOptionsDisplay();
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetEnvironment(EnvironmentCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetVideo(VideoCallback callback);
@@ -144,6 +146,19 @@ internal static class AmigaExternalApi
     {
         internal nint Key;
         internal nint Value;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CoreOptionDisplay
+    {
+        internal nint Key;
+        [MarshalAs(UnmanagedType.I1)] internal bool Visible;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CoreOptionsUpdateDisplayCallback
+    {
+        internal nint Callback;
     }
 
     [StructLayout(LayoutKind.Sequential)]
