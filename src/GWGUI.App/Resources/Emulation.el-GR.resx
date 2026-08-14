@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Προβολή</value></data>
   <data name="Emulation.RenderingSettings"><value>Απόδοση</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Συμβατότητα chipset</value></data>
+  <data name="Emulation.AudioDevice"><value>Συσκευή</value></data>
+  <data name="Emulation.Latency"><value>Καθυστέρηση</value></data>
+  <data name="Emulation.AudioQuality"><value>Ποιότητα</value></data>
+  <data name="Emulation.AudioDrives"><value>Μονάδες</value></data>
+  <data name="Emulation.Type"><value>Τύπος</value></data>
 </root>

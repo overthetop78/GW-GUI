@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Weergave</value></data>
   <data name="Emulation.RenderingSettings"><value>Rendering</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Chipsetcompatibiliteit</value></data>
+  <data name="Emulation.AudioDevice"><value>Apparaat</value></data>
+  <data name="Emulation.Latency"><value>Latentie</value></data>
+  <data name="Emulation.AudioQuality"><value>Kwaliteit</value></data>
+  <data name="Emulation.AudioDrives"><value>Stations</value></data>
+  <data name="Emulation.Type"><value>Type</value></data>
 </root>

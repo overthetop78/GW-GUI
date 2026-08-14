@@ -67,14 +67,14 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _collisionLevel = new();
     private readonly CheckBox _flickerFixer = new();
     private readonly ComboBox _audioOutput = new() { DisplayMemberPath = nameof(AudioOutputDevice.Name) };
-    private readonly ComboBox _audioLatency = new() { ItemsSource = new[] { 20, 35, 50, 75, 100, 150, 250 } };
+    private readonly ComboBox _audioLatency = new();
     private readonly ComboBox _audioInterpolation = new() { ItemsSource = new[] { "none", "anti", "sinc", "rh", "crux" } };
     private readonly ComboBox _audioFilter = new() { ItemsSource = new[] { "emulated", "off", "on" } };
     private readonly ComboBox _audioFilterType = new();
-    private readonly ComboBox _floppySound = new();
+    private readonly Slider _floppySound = new() { Minimum = 0, Maximum = 100, Value = 80, TickFrequency = 5, IsSnapToTickEnabled = true };
     private readonly ComboBox _floppySoundType = new();
     private readonly CheckBox _muteEmptyFloppy = new();
-    private readonly ComboBox _cdAudioVolume = new();
+    private readonly Slider _cdAudioVolume = new() { Minimum = 0, Maximum = 100, Value = 100, TickFrequency = 5, IsSnapToTickEnabled = true };
     private readonly Slider _stereoSeparation = new() { Minimum = 0, Maximum = 100, TickFrequency = 10, IsSnapToTickEnabled = true };
     private readonly ComboBox[] _controllers = Enumerable.Range(0, 4).Select(_ => new ComboBox
     {
@@ -489,24 +489,35 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildAudioTab()
     {
+        _audio.Content = LocExtension.Get("Emulation.AudioEnabled");
+        _muteEmptyFloppy.Content = LocExtension.Get("Emulation.MuteEmptyFloppy");
         var root = ThreeColumnPage(
-            Card(FieldGrid((LocExtension.Get("Emulation.AudioEnabled"), _audio),
-                (LocExtension.Get("Emulation.AudioOutput"), _audioOutput),
-                (LocExtension.Get("Emulation.AudioLatency"), _audioLatency),
-                (LocExtension.Get("Emulation.AudioInput"), new TextBlock
+            ActionCard(TileGrid(1,
+                CheckBoxTile(_audio),
+                LabeledTile(LocExtension.Get("Emulation.AudioDevice"), _audioOutput),
+                LabeledTile(LocExtension.Get("Emulation.Latency"), _audioLatency)),
+                LocExtension.Get("Emulation.AudioOutput")),
+            ActionCard(TileGrid(1,
+                LabeledTile(LocExtension.Get("Emulation.AudioInterpolation"), _audioInterpolation),
+                LabeledTile(LocExtension.Get("Emulation.AudioFilter"), _audioFilter),
+                LabeledTile(LocExtension.Get("Emulation.AudioFilterType"), _audioFilterType),
+                PercentageSliderTile(LocExtension.Get("Emulation.StereoSeparation"), _stereoSeparation)),
+                LocExtension.Get("Emulation.AudioQuality")),
+            ActionCard(TileGrid(1,
+                PercentageSliderTile(LocExtension.Get("Emulation.FloppySound"), _floppySound),
+                LabeledTile(LocExtension.Get("Emulation.Type"), _floppySoundType),
+                CheckBoxTile(_muteEmptyFloppy),
+                PercentageSliderTile(LocExtension.Get("Emulation.CdAudioVolume"), _cdAudioVolume)),
+                LocExtension.Get("Emulation.AudioDrives")));
+        var audioInput = InformationBanner(new TextBlock
         {
             Text = LocExtension.Get("Emulation.AudioInputUnavailable"),
-            VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap
-        })), LocExtension.Get("Emulation.AudioOutput")),
-            Card(FieldGrid((LocExtension.Get("Emulation.AudioInterpolation"), _audioInterpolation),
-                (LocExtension.Get("Emulation.AudioFilter"), _audioFilter),
-                (LocExtension.Get("Emulation.AudioFilterType"), _audioFilterType),
-                (LocExtension.Get("Emulation.StereoSeparation"), _stereoSeparation)), LocExtension.Get("Emulation.AudioFilter")),
-            Card(FieldGrid(
-            (LocExtension.Get("Emulation.FloppySound"), _floppySound),
-            (LocExtension.Get("Emulation.FloppySoundType"), _floppySoundType),
-            (LocExtension.Get("Emulation.MuteEmptyFloppy"), _muteEmptyFloppy),
-            (LocExtension.Get("Emulation.CdAudioVolume"), _cdAudioVolume)), LocExtension.Get("Emulation.FloppySound")));
+            TextWrapping = TextWrapping.Wrap
+        });
+        audioInput.Margin = new Thickness(0, 12, 0, 0);
+        Grid.SetRow(audioInput, 1);
+        Grid.SetColumnSpan(audioInput, 3);
+        root.Children.Add(audioInput);
         return ScrollPage(root);
     }
 
@@ -748,9 +759,9 @@ public sealed class OptionsEmulationSection : UserControl
         _audioInterpolation.ItemsSource = Choices(("none", "HostTools.None"), ("anti", "Emulation.InterpolationAnti"), ("sinc", "Sinc"), ("rh", "RH"), ("crux", "Crux"));
         _audioFilter.ItemsSource = Choices(("emulated", "Emulation.FilterEmulated"), ("off", "Emulation.Disabled"), ("on", "Emulation.Enabled"));
         _audioFilterType.ItemsSource = Choices(("auto", "Visual.Automatic"), ("standard", "Emulation.Standard"), ("enhanced", "Emulation.Enhanced"));
-        _floppySound.ItemsSource = Enumerable.Range(0, 21).Select(index => 100 - index * 5).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
+        _audioLatency.ItemsSource = new[] { 20, 35, 50, 75, 100, 150, 250 }
+            .Select(value => new OptionChoice(value.ToString(), $"{value} ms")).ToArray();
         _floppySoundType.ItemsSource = new[] { new OptionChoice("internal", LocExtension.Get("Emulation.Internal")), new OptionChoice("A500", "A500"), new OptionChoice("LOUD", LocExtension.Get("Emulation.Loud")) };
-        _cdAudioVolume.ItemsSource = Enumerable.Range(0, 21).Select(index => index * 5).Select(value => new OptionChoice($"{value}%", $"{value} %")).ToArray();
         _floppySpeed.ItemsSource = new[] { 100, 200, 400, 800, 0 }.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.Maximum") : $"{value} %")).ToArray();
         _cdSpeed.ItemsSource = new[] { new OptionChoice("100", "1×"), new OptionChoice("0", LocExtension.Get("Emulation.Maximum")) };
         _physicalMouse.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("enabled", "Emulation.Enabled"), ("double", "Emulation.PhysicalMouseDouble"));
@@ -960,6 +971,8 @@ public sealed class OptionsEmulationSection : UserControl
     private static Grid ThreeColumnPage(Border left, Border center, Border right)
     {
         var grid = new Grid { Margin = new Thickness(12) };
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         grid.ColumnDefinitions.Add(new ColumnDefinition());
         grid.ColumnDefinitions.Add(new ColumnDefinition());
         grid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -1053,6 +1066,44 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetColumn(checkBox, 1);
         row.Children.Add(checkBox);
         return row;
+    }
+
+    private static FrameworkElement CheckBoxTile(CheckBox checkBox)
+    {
+        checkBox.HorizontalAlignment = HorizontalAlignment.Left;
+        checkBox.VerticalAlignment = VerticalAlignment.Center;
+        checkBox.Margin = new Thickness(0, 6, 0, 6);
+        return checkBox;
+    }
+
+    private static FrameworkElement PercentageSliderTile(string label, Slider slider)
+    {
+        var panel = new StackPanel();
+        panel.Children.Add(new TextBlock
+        {
+            Text = label,
+            Margin = new Thickness(0, 0, 0, 7),
+            TextWrapping = TextWrapping.NoWrap
+        });
+        var row = new Grid();
+        row.ColumnDefinitions.Add(new ColumnDefinition());
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        slider.Margin = new Thickness(0, 0, 12, 0);
+        slider.VerticalAlignment = VerticalAlignment.Center;
+        row.Children.Add(slider);
+        var value = new TextBlock
+        {
+            MinWidth = 48,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Right
+        };
+        void RefreshValue() => value.Text = $"{slider.Value:0} %";
+        slider.ValueChanged += (_, _) => RefreshValue();
+        RefreshValue();
+        Grid.SetColumn(value, 1);
+        row.Children.Add(value);
+        panel.Children.Add(row);
+        return panel;
     }
 
     private Border FullWidthMemorySummary(int row)
@@ -2019,14 +2070,14 @@ public sealed class OptionsEmulationSection : UserControl
         _audioOutput.ItemsSource = new[] { new AudioOutputDevice(string.Empty, LocExtension.Get("Emulation.DefaultAudioOutput")) }.Concat(outputs).ToArray();
         _audioOutput.SelectedItem = _audioOutput.Items.OfType<AudioOutputDevice>().FirstOrDefault(device => device.Id == audio.OutputDeviceId)
             ?? _audioOutput.Items.OfType<AudioOutputDevice>().FirstOrDefault();
-        _audioLatency.SelectedItem = audio.LatencyMilliseconds;
+        SelectValue(_audioLatency, audio.LatencyMilliseconds.ToString());
         SetOption(_audioInterpolation, configuration, "puae_sound_interpol", audio.Interpolation);
         SetOption(_audioFilter, configuration, "puae_sound_filter", audio.Filter);
         SetOption(_audioFilterType, configuration, "puae_sound_filter_type", "auto");
-        SetOption(_floppySound, configuration, "puae_floppy_sound", "80");
+        _floppySound.Value = ParsePercentage(GetOption(configuration, "puae_floppy_sound", "80"), 80);
         SetOption(_floppySoundType, configuration, "puae_floppy_sound_type", "internal");
         _muteEmptyFloppy.IsChecked = GetOption(configuration, "puae_floppy_sound_empty_mute", "enabled") == "enabled";
-        SetOption(_cdAudioVolume, configuration, "puae_sound_volume_cd", "100%");
+        _cdAudioVolume.Value = ParsePercentage(GetOption(configuration, "puae_sound_volume_cd", "100%"), 100);
         _stereoSeparation.Value = int.TryParse(GetOption(configuration, "puae_sound_stereo_separation", $"{audio.StereoSeparation}%").TrimEnd('%'), out var separation) ? separation : 100;
         _media.Clear();
         var media = configuration.Media ?? configuration.Floppies?.Select(floppy => new AmigaMediaConfiguration(
@@ -2138,10 +2189,10 @@ public sealed class OptionsEmulationSection : UserControl
         options["puae_sound_interpol"] = SelectedText(_audioInterpolation);
         options["puae_sound_filter"] = SelectedText(_audioFilter);
         options["puae_sound_filter_type"] = SelectedText(_audioFilterType);
-        options["puae_floppy_sound"] = SelectedText(_floppySound);
+        options["puae_floppy_sound"] = $"{(int)_floppySound.Value}";
         options["puae_floppy_sound_type"] = SelectedText(_floppySoundType);
         options["puae_floppy_sound_empty_mute"] = _muteEmptyFloppy.IsChecked == true ? "enabled" : "disabled";
-        options["puae_sound_volume_cd"] = SelectedText(_cdAudioVolume);
+        options["puae_sound_volume_cd"] = $"{(int)_cdAudioVolume.Value}%";
         options["puae_sound_stereo_separation"] = $"{(int)_stereoSeparation.Value}%";
         options["puae_floppy_speed"] = SelectedText(_floppySpeed);
         options["puae_floppy_write_protection"] = _floppyWriteProtection.IsChecked == true ? "enabled" : "disabled";
@@ -2205,7 +2256,8 @@ public sealed class OptionsEmulationSection : UserControl
             keyboardBindings);
         var selectedOutput = _audioOutput.SelectedItem as AudioOutputDevice;
         var audio = new AmigaAudioConfiguration(string.IsNullOrWhiteSpace(selectedOutput?.Id) ? null : selectedOutput.Id,
-            (int)(_audioLatency.SelectedItem ?? 50), SelectedText(_audioInterpolation), SelectedText(_audioFilter),
+            int.TryParse(SelectedText(_audioLatency), out var latency) ? latency : 50,
+            SelectedText(_audioInterpolation), SelectedText(_audioFilter),
             (int)_stereoSeparation.Value);
         var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
             initialPath, OptionalFullPath(_extendedRom.Text), OptionalFullPath(_romKey.Text),
@@ -2225,6 +2277,9 @@ public sealed class OptionsEmulationSection : UserControl
     private static string SelectedText(ComboBox comboBox) => comboBox.SelectedItem is OptionChoice choice
         ? choice.Value
         : comboBox.SelectedItem?.ToString() ?? string.Empty;
+
+    private static int ParsePercentage(string value, int fallback) =>
+        int.TryParse(value.Trim().TrimEnd('%'), out var parsed) ? Math.Clamp(parsed, 0, 100) : fallback;
 
     private static T SelectedChoice<T>(ComboBox comboBox, T fallback) where T : struct, Enum =>
         comboBox.SelectedItem is LocalizedChoice<T> choice ? choice.Value : fallback;

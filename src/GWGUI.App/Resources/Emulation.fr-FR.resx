@@ -131,12 +131,12 @@
   <data name="Emulation.FlickerFixer"><value>Corriger le scintillement</value></data>
   <data name="Emulation.AudioEnabled"><value>Activer le son</value></data>
   <data name="Emulation.AudioOutput"><value>Sortie audio</value></data>
-  <data name="Emulation.AudioLatency"><value>Latence (ms)</value></data>
+  <data name="Emulation.AudioLatency"><value>Latence</value></data>
   <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
-  <data name="Emulation.AudioFilter"><value>Filtre audio Amiga</value></data>
-  <data name="Emulation.StereoSeparation"><value>Séparation stéréo (%)</value></data>
+  <data name="Emulation.AudioFilter"><value>Filtre Amiga</value></data>
+  <data name="Emulation.StereoSeparation"><value>Séparation stéréo</value></data>
   <data name="Emulation.AudioInput"><value>Entrée audio</value></data>
-  <data name="Emulation.AudioInputUnavailable"><value>Ce cœur Amiga ne fournit aucune entrée audio.</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>L’Amiga ne fournit pas d’entrée audio.</value></data>
   <data name="Emulation.DefaultAudioOutput"><value>Sortie Windows par défaut</value></data>
   <data name="Emulation.AddMedia"><value>Ajouter un média</value></data>
   <data name="Emulation.CreateHardDisk"><value>Créer un disque dur</value></data>
@@ -205,7 +205,7 @@
   <data name="Emulation.InterpolationAnti"><value>Interpolation anti</value></data>
   <data name="Emulation.FilterEmulated"><value>Émulé</value></data>
   <data name="Emulation.AudioFilterType"><value>Type de filtre</value></data>
-  <data name="Emulation.FloppySound"><value>Volume du bruit des lecteurs</value></data>
+  <data name="Emulation.FloppySound"><value>Bruit des lecteurs</value></data>
   <data name="Emulation.FloppySoundType"><value>Type de bruit des lecteurs</value></data>
   <data name="Emulation.MuteEmptyFloppy"><value>Couper le son des lecteurs vides</value></data>
   <data name="Emulation.CdAudioVolume"><value>Volume audio du CD</value></data>
@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Affichage</value></data>
   <data name="Emulation.RenderingSettings"><value>Rendu</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Compatibilité du jeu de puces</value></data>
+  <data name="Emulation.AudioDevice"><value>Périphérique</value></data>
+  <data name="Emulation.Latency"><value>Latence</value></data>
+  <data name="Emulation.AudioQuality"><value>Qualité</value></data>
+  <data name="Emulation.AudioDrives"><value>Lecteurs</value></data>
+  <data name="Emulation.Type"><value>Type</value></data>
 </root>

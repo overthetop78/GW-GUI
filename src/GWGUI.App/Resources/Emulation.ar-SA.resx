@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>العرض</value></data>
   <data name="Emulation.RenderingSettings"><value>التصيير</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>توافق مجموعة الشرائح</value></data>
+  <data name="Emulation.AudioDevice"><value>الجهاز</value></data>
+  <data name="Emulation.Latency"><value>زمن الاستجابة</value></data>
+  <data name="Emulation.AudioQuality"><value>الجودة</value></data>
+  <data name="Emulation.AudioDrives"><value>محركات الأقراص</value></data>
+  <data name="Emulation.Type"><value>النوع</value></data>
 </root>

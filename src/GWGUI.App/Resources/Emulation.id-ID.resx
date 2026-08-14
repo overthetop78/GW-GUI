@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Tampilan</value></data>
   <data name="Emulation.RenderingSettings"><value>Perenderan</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Kompatibilitas chipset</value></data>
+  <data name="Emulation.AudioDevice"><value>Perangkat</value></data>
+  <data name="Emulation.Latency"><value>Latensi</value></data>
+  <data name="Emulation.AudioQuality"><value>Kualitas</value></data>
+  <data name="Emulation.AudioDrives"><value>Drive</value></data>
+  <data name="Emulation.Type"><value>Jenis</value></data>
 </root>

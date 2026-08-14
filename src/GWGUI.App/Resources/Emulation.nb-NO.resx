@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Visning</value></data>
   <data name="Emulation.RenderingSettings"><value>Gjengivelse</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Brikkesettkompatibilitet</value></data>
+  <data name="Emulation.AudioDevice"><value>Enhet</value></data>
+  <data name="Emulation.Latency"><value>Forsinkelse</value></data>
+  <data name="Emulation.AudioQuality"><value>Kvalitet</value></data>
+  <data name="Emulation.AudioDrives"><value>Stasjoner</value></data>
+  <data name="Emulation.Type"><value>Type</value></data>
 </root>

@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Afișare</value></data>
   <data name="Emulation.RenderingSettings"><value>Randare</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Compatibilitatea chipsetului</value></data>
+  <data name="Emulation.AudioDevice"><value>Dispozitiv</value></data>
+  <data name="Emulation.Latency"><value>Latență</value></data>
+  <data name="Emulation.AudioQuality"><value>Calitate</value></data>
+  <data name="Emulation.AudioDrives"><value>Unități</value></data>
+  <data name="Emulation.Type"><value>Tip</value></data>
 </root>

@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Görüntü</value></data>
   <data name="Emulation.RenderingSettings"><value>İşleme</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Yonga seti uyumluluğu</value></data>
+  <data name="Emulation.AudioDevice"><value>Aygıt</value></data>
+  <data name="Emulation.Latency"><value>Gecikme</value></data>
+  <data name="Emulation.AudioQuality"><value>Kalite</value></data>
+  <data name="Emulation.AudioDrives"><value>Sürücüler</value></data>
+  <data name="Emulation.Type"><value>Tür</value></data>
 </root>

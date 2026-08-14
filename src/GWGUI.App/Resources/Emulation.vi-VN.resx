@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Hiển thị</value></data>
   <data name="Emulation.RenderingSettings"><value>Kết xuất</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Tương thích chipset</value></data>
+  <data name="Emulation.AudioDevice"><value>Thiết bị</value></data>
+  <data name="Emulation.Latency"><value>Độ trễ</value></data>
+  <data name="Emulation.AudioQuality"><value>Chất lượng</value></data>
+  <data name="Emulation.AudioDrives"><value>Ổ đĩa</value></data>
+  <data name="Emulation.Type"><value>Loại</value></data>
 </root>

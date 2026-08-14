@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Näyttö</value></data>
   <data name="Emulation.RenderingSettings"><value>Renderöinti</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Piirisarjan yhteensopivuus</value></data>
+  <data name="Emulation.AudioDevice"><value>Laite</value></data>
+  <data name="Emulation.Latency"><value>Viive</value></data>
+  <data name="Emulation.AudioQuality"><value>Laatu</value></data>
+  <data name="Emulation.AudioDrives"><value>Asemat</value></data>
+  <data name="Emulation.Type"><value>Tyyppi</value></data>
 </root>

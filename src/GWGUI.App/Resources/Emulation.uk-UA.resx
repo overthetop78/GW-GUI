@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Відображення</value></data>
   <data name="Emulation.RenderingSettings"><value>Рендеринг</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Сумісність чипсета</value></data>
+  <data name="Emulation.AudioDevice"><value>Пристрій</value></data>
+  <data name="Emulation.Latency"><value>Затримка</value></data>
+  <data name="Emulation.AudioQuality"><value>Якість</value></data>
+  <data name="Emulation.AudioDrives"><value>Приводи</value></data>
+  <data name="Emulation.Type"><value>Тип</value></data>
 </root>

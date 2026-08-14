@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>디스플레이</value></data>
   <data name="Emulation.RenderingSettings"><value>렌더링</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>칩셋 호환성</value></data>
+  <data name="Emulation.AudioDevice"><value>장치</value></data>
+  <data name="Emulation.Latency"><value>지연 시간</value></data>
+  <data name="Emulation.AudioQuality"><value>품질</value></data>
+  <data name="Emulation.AudioDrives"><value>드라이브</value></data>
+  <data name="Emulation.Type"><value>유형</value></data>
 </root>

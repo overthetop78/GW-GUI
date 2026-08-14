@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>תצוגה</value></data>
   <data name="Emulation.RenderingSettings"><value>עיבוד</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>תאימות ערכת שבבים</value></data>
+  <data name="Emulation.AudioDevice"><value>התקן</value></data>
+  <data name="Emulation.Latency"><value>השהיה</value></data>
+  <data name="Emulation.AudioQuality"><value>איכות</value></data>
+  <data name="Emulation.AudioDrives"><value>כוננים</value></data>
+  <data name="Emulation.Type"><value>סוג</value></data>
 </root>

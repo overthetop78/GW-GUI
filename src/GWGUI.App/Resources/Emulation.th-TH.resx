@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>การแสดงผล</value></data>
   <data name="Emulation.RenderingSettings"><value>การเรนเดอร์</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>ความเข้ากันได้ของชิปเซ็ต</value></data>
+  <data name="Emulation.AudioDevice"><value>อุปกรณ์</value></data>
+  <data name="Emulation.Latency"><value>ความหน่วง</value></data>
+  <data name="Emulation.AudioQuality"><value>คุณภาพ</value></data>
+  <data name="Emulation.AudioDrives"><value>ไดรฟ์</value></data>
+  <data name="Emulation.Type"><value>ชนิด</value></data>
 </root>

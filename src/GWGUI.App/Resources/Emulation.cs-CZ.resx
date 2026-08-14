@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Zobrazení</value></data>
   <data name="Emulation.RenderingSettings"><value>Vykreslování</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Kompatibilita čipové sady</value></data>
+  <data name="Emulation.AudioDevice"><value>Zařízení</value></data>
+  <data name="Emulation.Latency"><value>Latence</value></data>
+  <data name="Emulation.AudioQuality"><value>Kvalita</value></data>
+  <data name="Emulation.AudioDrives"><value>Jednotky</value></data>
+  <data name="Emulation.Type"><value>Typ</value></data>
 </root>

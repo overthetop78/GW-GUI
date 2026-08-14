@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Megjelenítés</value></data>
   <data name="Emulation.RenderingSettings"><value>Renderelés</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Lapkakészlet-kompatibilitás</value></data>
+  <data name="Emulation.AudioDevice"><value>Eszköz</value></data>
+  <data name="Emulation.Latency"><value>Késleltetés</value></data>
+  <data name="Emulation.AudioQuality"><value>Minőség</value></data>
+  <data name="Emulation.AudioDrives"><value>Meghajtók</value></data>
+  <data name="Emulation.Type"><value>Típus</value></data>
 </root>

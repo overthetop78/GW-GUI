@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>显示</value></data>
   <data name="Emulation.RenderingSettings"><value>渲染</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>芯片组兼容性</value></data>
+  <data name="Emulation.AudioDevice"><value>设备</value></data>
+  <data name="Emulation.Latency"><value>延迟</value></data>
+  <data name="Emulation.AudioQuality"><value>质量</value></data>
+  <data name="Emulation.AudioDrives"><value>驱动器</value></data>
+  <data name="Emulation.Type"><value>类型</value></data>
 </root>

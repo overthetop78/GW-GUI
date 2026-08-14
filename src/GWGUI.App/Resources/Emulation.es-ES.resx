@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>Pantalla</value></data>
   <data name="Emulation.RenderingSettings"><value>Renderizado</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>Compatibilidad del chipset</value></data>
+  <data name="Emulation.AudioDevice"><value>Dispositivo</value></data>
+  <data name="Emulation.Latency"><value>Latencia</value></data>
+  <data name="Emulation.AudioQuality"><value>Calidad</value></data>
+  <data name="Emulation.AudioDrives"><value>Unidades</value></data>
+  <data name="Emulation.Type"><value>Tipo</value></data>
 </root>

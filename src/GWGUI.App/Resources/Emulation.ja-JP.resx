@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>表示</value></data>
   <data name="Emulation.RenderingSettings"><value>レンダリング</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>チップセット互換性</value></data>
+  <data name="Emulation.AudioDevice"><value>デバイス</value></data>
+  <data name="Emulation.Latency"><value>遅延</value></data>
+  <data name="Emulation.AudioQuality"><value>品質</value></data>
+  <data name="Emulation.AudioDrives"><value>ドライブ</value></data>
+  <data name="Emulation.Type"><value>種類</value></data>
 </root>

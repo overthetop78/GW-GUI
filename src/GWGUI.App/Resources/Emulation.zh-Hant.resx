@@ -271,4 +271,9 @@
   <data name="Emulation.DisplaySettings"><value>顯示</value></data>
   <data name="Emulation.RenderingSettings"><value>算繪</value></data>
   <data name="Emulation.ChipsetCompatibility"><value>晶片組相容性</value></data>
+  <data name="Emulation.AudioDevice"><value>裝置</value></data>
+  <data name="Emulation.Latency"><value>延遲</value></data>
+  <data name="Emulation.AudioQuality"><value>品質</value></data>
+  <data name="Emulation.AudioDrives"><value>磁碟機</value></data>
+  <data name="Emulation.Type"><value>類型</value></data>
 </root>
