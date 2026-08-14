@@ -41,6 +41,55 @@ public sealed class AmigaEnvironmentCallbackTests
     }
 
     [Fact]
+    public void AudioCallbacks_PreserveStereoOrderAndBoundQueuedAudioToTwoHundredMilliseconds()
+    {
+        var root = TemporaryRoot();
+        using var callbacks = CreateCallbacks(root);
+        callbacks.SampleRate = 1000;
+        var samples = new short[40];
+        for (var index = 0; index < samples.Length; index += 2)
+        {
+            samples[index] = (short)(100 + index);
+            samples[index + 1] = (short)(-100 - index);
+        }
+        var pointer = Marshal.AllocHGlobal(samples.Length * sizeof(short));
+        try
+        {
+            Marshal.Copy(samples, 0, pointer, samples.Length);
+            for (var batch = 0; batch < 15; batch++)
+                Assert.Equal((nuint)20, callbacks.AudioBatch(pointer, 20));
+
+            Assert.InRange(callbacks.BufferedAudioFrames, 1, 200);
+            Assert.True(callbacks.AudioOverrunCount > 0);
+            Assert.True(callbacks.TryDequeueAudio(out var chunk));
+            Assert.NotNull(chunk);
+            Assert.Equal(samples, chunk!.InterleavedStereo.ToArray());
+
+            while (callbacks.TryDequeueAudio(out _)) { }
+            callbacks.AudioSample(123, -456);
+            Assert.True(callbacks.TryDequeueAudio(out chunk));
+            Assert.Equal(new short[] { 123, -456 }, chunk!.InterleavedStereo.ToArray());
+            Assert.Equal(0, callbacks.BufferedAudioFrames);
+
+            var oversized = new short[600];
+            for (var index = 0; index < oversized.Length; index++) oversized[index] = (short)index;
+            Marshal.FreeHGlobal(pointer);
+            pointer = Marshal.AllocHGlobal(oversized.Length * sizeof(short));
+            Marshal.Copy(oversized, 0, pointer, oversized.Length);
+            Assert.Equal((nuint)300, callbacks.AudioBatch(pointer, 300));
+            Assert.Equal(200, callbacks.BufferedAudioFrames);
+            Assert.True(callbacks.TryDequeueAudio(out chunk));
+            Assert.Equal(200, chunk!.FrameCount);
+            Assert.Equal(oversized[^400..], chunk.InterleavedStereo.ToArray());
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pointer);
+            Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SupportNoGame_IsReadFromTheNativeBoolean()
     {
         var root = TemporaryRoot();

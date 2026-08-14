@@ -63,7 +63,9 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
-    private readonly ConcurrentQueue<AudioChunk> _audioChunks = new();
+    private readonly Queue<AudioChunk> _audioChunks = new();
+    private readonly object _audioGate = new();
+    private int _bufferedAudioFrames;
     private readonly ConcurrentQueue<string> _diagnostics = new();
     private readonly ConcurrentDictionary<int, bool> _ledStates = new();
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
@@ -98,6 +100,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
     internal IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>(_ledStates);
+    internal int BufferedAudioFrames { get { lock (_audioGate) return _bufferedAudioFrames; } }
+    internal long AudioOverrunCount { get; private set; }
 
     internal void SetOption(string key, string value)
     {
@@ -448,10 +452,34 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private void PublishAudio(AudioChunk chunk)
     {
         LatestAudioChunk = chunk;
-        _audioChunks.Enqueue(chunk);
+        lock (_audioGate)
+        {
+            var maximumFrames = Math.Max(1, SampleRate / 5);
+            if (chunk.FrameCount > maximumFrames)
+            {
+                var retainedSamples = chunk.InterleavedStereo.Slice((chunk.FrameCount - maximumFrames) * 2).ToArray();
+                chunk = new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);
+                AudioOverrunCount++;
+            }
+            _audioChunks.Enqueue(chunk);
+            _bufferedAudioFrames += chunk.FrameCount;
+            while (_bufferedAudioFrames > maximumFrames && _audioChunks.Count > 1)
+            {
+                _bufferedAudioFrames -= _audioChunks.Dequeue().FrameCount;
+                AudioOverrunCount++;
+            }
+        }
     }
 
-    internal bool TryDequeueAudio(out AudioChunk? chunk) => _audioChunks.TryDequeue(out chunk);
+    internal bool TryDequeueAudio(out AudioChunk? chunk)
+    {
+        lock (_audioGate)
+        {
+            if (!_audioChunks.TryDequeue(out chunk)) return false;
+            _bufferedAudioFrames -= chunk.FrameCount;
+            return true;
+        }
+    }
 
     private void HandleInputPoll()
     {

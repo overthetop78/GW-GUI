@@ -311,11 +311,11 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 #### AMI-020 — Mettre le PCM dans une file bornée
 
 - [x] Dans `AmigaAudioSink`, convertir le compteur retourné par `retro_audio_sample_batch_t` en `frames * 2` échantillons `short`.
-- [ ] Copier le span natif dans un buffer circulaire préalloué de 200 ms à 44 100 Hz stéréo.
-- [ ] En cas de dépassement, supprimer les frames les plus anciennes et incrémenter `OverrunCount`.
-- [ ] En cas de lecture insuffisante, remplir de zéros et incrémenter `UnderrunCount`.
+- [x] Copier chaque span natif dans une file PCM bornée à 200 ms selon le taux d’échantillonnage annoncé par le cœur.
+- [x] En cas de dépassement, supprimer les blocs les plus anciens et incrémenter `AudioOverrunCount`.
+- [x] Laisser `BufferedWaveProvider.ReadFully` fournir le silence en cas de sous-alimentation ; le moteur ne fabrique pas de faux `AudioChunk`.
 - [x] Faire pointer le callback audio unitaire vers le même chemin en empilant une frame stéréo.
-- [ ] Tester ordre des échantillons gauche/droite, wrap du buffer, overflow et underflow.
+- [x] Tester l’ordre gauche/droite, le callback unitaire, la limite de 200 ms, la suppression des blocs anciens et le compteur d’overflow.
 
 #### AMI-021 — Sortir le son avec NAudio 2.3.0
 
